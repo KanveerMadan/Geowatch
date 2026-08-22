@@ -22,6 +22,53 @@ Output:
              annotated_at, skipped}
 """
 
+# ── FROZEN — DO NOT RUN (audit finding C28) ──────────────────────────────────
+# Deliberately placed ABOVE the imports so an attempted run refuses before the
+# module-level tkinter/PIL import work happens. Guarded on __main__ rather than
+# executed unconditionally so that importing this module (e.g. to reuse a
+# helper) is unaffected — the freeze is on running an annotation session, not
+# on the file existing.
+if __name__ == "__main__":
+    import sys as _sys
+
+    _sys.stderr.write("""
+================================================================================
+FROZEN — annotate.py will not run.  (audit finding C28)
+================================================================================
+
+C28: annotate.py joins masks.json to result.json by segment_id in order to
+embed mask_rle into each annotation record. On post-Phase-2 runs those ids do
+not correspond — 30.6% of segments (11/36) measured mis-joined on a fresh run,
+with a clean one-position shift from id 25 onward. Root cause is C9:
+result.json ids come from a counter over surviving segments while masks.json
+ids come from a counter over all masks.
+
+Running an annotation session against such a run would pair one segment's bbox
+with another segment's mask and write that into annotations.json, where it
+becomes permanent training data. Per C30, the one tool that could catch it
+(verify_masks.py) checks only that segment ids EXIST in masks.json, never that
+they refer to the same geometry — so nothing downstream would detect the
+corruption.
+
+Existing training data is not affected: the eleven training runs predate
+Phase 2. The damage would be done by the NEXT annotation round, and baking a
+mis-joined mask into annotations.json is irreversible.
+
+THIS FREEZE LIFTS WHEN EITHER:
+  * C9 and C30 are both fixed — segment ids join correctly across result.json
+    and masks.json, AND verify_masks.py validates id CORRESPONDENCE rather
+    than mere existence; or
+  * the SAM decision removes segment-based annotation entirely, making the
+    segment_id join moot.
+
+Do not bypass this guard to label "just a few". There is no partial-safety
+mode: the join is wrong for an unknown subset of every post-Phase-2 run, and
+which subset is not visible from inside the annotation UI.
+================================================================================
+""")
+    raise SystemExit(2)
+
+
 import json
 import os
 import sys
