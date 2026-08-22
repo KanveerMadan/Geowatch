@@ -1298,3 +1298,168 @@ establishes almost nothing about whether the number attached to it was measured
 or inferred. Where a figure carries weight, re-derive it; and where a derived
 figure is reported, say which operation produced it, so a later reader can tell
 corroboration from restatement.
+
+---
+
+## OSM Coverage Baseline
+
+Groundwork for deciding how far the pipeline can rely on OSM vector geometry for
+road information. Measured 2026-08-22 against live Overpass, one query per city
+(`way["highway"](bbox); out geom;`), using the AOI bboxes of the same 11
+training runs `find_annotated_run_dir` selects. Read-only; **no code changed.**
+
+**Method.** Way geometries were clipped to the AOI polygon before measuring, so
+lengths are *within-AOI* and density is honest. Length is geodesic
+(`pyproj.Geod.line_length` on WGS84 lon/lat), not projected. AOI area is
+geodesic polygon area, the same method `api.py::compute_aoi_geodesics()` uses.
+
+**What is measured and what is inferred — the distinction matters here.**
+Everything in the tables below is *measured*: way counts, clipped geodesic
+lengths, densities, ratios. Everything in "Read" is *inference* from those
+numbers plus the urban character of each AOI. **No completeness rate is claimed
+anywhere**, because there is no reference network to measure against — no
+ground-truth path inventory, no imagery-derived path extraction, nothing. "Under-
+mapped" below always means *"density is low relative to peer AOIs of similar
+character"*, never *"X% of paths are missing."* Establishing an actual
+completeness figure needs a reference this work does not have.
+
+### Per-city measurements
+
+| city | AOI km² | all `highway` ways | all km | km/km² | grp-P:V | foot:V |
+|---|---:|---:|---:|---:|---:|---:|
+| capetown | 23.04 | 5,684 | 572.2 | 24.83 | 10.79 | 3.97 |
+| dharavi | 6.97 | 1,694 | 160.4 | 23.02 | 2.01 | 0.40 |
+| dhaka | 13.55 | 1,816 | 285.1 | 21.04 | 2.35 | 0.42 |
+| nairobi | 14.23 | 3,096 | 300.8 | 21.14 | 4.63 | 0.62 |
+| kigali | 6.79 | 608 | 96.9 | 14.27 | 3.14 | 0.58 |
+| guatemala | 19.07 | 4,811 | 503.5 | 26.40 | 2.49 | 0.25 |
+| accra | 12.87 | 2,587 | 269.9 | 20.98 | 3.30 | 0.28 |
+| hcmc | 120.96 | 29,077 | 3,013.8 | 24.92 | 5.42 | 0.24 |
+| nusantara | 40.61 | 749 | 176.5 | 4.35 | 1.99 | 0.63 |
+| jakarta | 42.84 | 3,988 | 355.8 | 8.31 | 3.38 | 0.25 |
+| lagos | 17.13 | 907 | 162.4 | 9.48 | 3.52 | 0.10 |
+
+### A grouping caveat that changes the reading
+
+The requested "pedestrian/informal" group — `footway, path, pedestrian, steps,
+track, service, residential` — mixes two very different things. `service`,
+`residential` and `track` are **vehicular-capable** minor roads; `footway`,
+`path`, `pedestrian` and `steps` are the genuinely non-vehicular classes, and
+those are the ones that stand in for alleys in dense informal fabric. Reported
+both ways: **grp-P:V** uses the requested grouping, **foot:V** uses the narrow
+one. The two rank cities differently — HCMC is 5.42 on the requested grouping
+(second-highest) but 0.24 on the narrow one (third-lowest), because its total is
+dominated by 990 km of `service` and 1,382 km of `residential`. **The narrow
+measure is the one that speaks to informal-path coverage**, and the ranking
+below uses it.
+
+| city | footway km | path km | pedestrian km | steps km | **foot km** | **foot/km²** | service km | residential km |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| capetown | 87.54 | 104.70 | 0.00 | 0.18 | **192.42** | **8.35** | 25.32 | 303.32 |
+| dharavi | 16.65 | 1.22 | 0.51 | 1.01 | **19.39** | **2.78** | 18.32 | 58.99 |
+| dhaka | 25.56 | 1.24 | 3.68 | 0.23 | **30.71** | **2.27** | 18.48 | 123.02 |
+| nairobi | 23.54 | 5.99 | 0.37 | 0.12 | **30.02** | **2.11** | 111.80 | 82.84 |
+| kigali | 5.17 | 4.52 | 0.41 | 3.09 | **13.18** | **1.94** | 10.68 | 47.48 |
+| guatemala | 25.58 | 1.73 | 6.19 | 1.45 | **34.95** | **1.83** | 84.47 | 225.66 |
+| accra | 13.88 | 1.69 | 1.04 | 0.03 | **16.65** | **1.29** | 102.49 | 76.18 |
+| hcmc | 95.46 | 8.84 | 4.32 | 0.34 | **108.96** | **0.90** | 990.76 | 1381.78 |
+| nusantara | 8.90 | 14.85 | 1.65 | 0.28 | **25.68** | **0.63** | 27.62 | 27.38 |
+| jakarta | 14.86 | 0.86 | 0.47 | 0.72 | **16.91** | **0.39** | 117.47 | 94.90 |
+| lagos | 0.37 | 2.93 | 0.00 | 0.00 | **3.30** | **0.19** | 26.02 | 82.67 |
+
+Arterial classes (`motorway`/`trunk`/`primary`/`secondary`/`tertiary`) total
+22.8–458.9 km per AOI and are the *least* variable group — every city has a
+usable arterial skeleton. Classes at or near zero: `motorway` absent in
+accra/guatemala/kigali/nairobi/nusantara; `track` absent in
+accra/dhaka/dharavi/guatemala; `primary` absent in nairobi/nusantara;
+`pedestrian` and `steps` **both** absent in **lagos**.
+
+### What the AOIs actually contain — this reframes the ranking
+
+Queried `place=suburb|neighbourhood|town` nodes per AOI, because the
+interpretation depends entirely on what fabric each bbox covers:
+
+- **capetown → Khayelitsha** (Enkanini, Kuyasa, Harare, Makhaza, Ilitha Park).
+  One of South Africa's largest townships — dense informal fabric, not the Table
+  Mountain trail network. I checked the hiking hypothesis explicitly: only
+  **3 of 1,544** `path` ways carry hiking-specific tags (`sac_scale`,
+  `trail_visibility`, `mtb:scale`), and the AOI holds one small nature reserve
+  (Wolfgat). The 8.35 km/km² is **real informal-settlement path mapping**.
+- **nairobi → Kibera** (named directly, plus Olympic, Karanja Stage).
+- **lagos → Ebute-Metta and Makoko** — Makoko being among the densest informal
+  waterfront settlements anywhere.
+- **jakarta →** no `place` nodes returned at all in a 42.84 km² central-Jakarta
+  bbox, which is itself a mild completeness signal.
+
+### Ranking by true pedestrian-path density, and the read
+
+| rank | city | foot/km² | read |
+|---:|---|---:|---|
+| 1 | capetown (Khayelitsha) | **8.35** | dense informal fabric, densely mapped — **4.4× the next city** |
+| 2 | dharavi | 2.78 | community-mapped, see caveat |
+| 3 | dhaka | 2.27 | plausible |
+| 4 | nairobi (Kibera) | 2.11 | community-mapped, see caveat |
+| 5 | kigali | 1.94 | plausible |
+| 6 | guatemala | 1.83 | plausible |
+| 7 | accra | 1.29 | **suspect** |
+| 8 | hcmc | 0.90 | mixed — see note |
+| 9 | nusantara | 0.63 | **low, but plausibly genuine** |
+| 10 | jakarta | 0.39 | **suspect** |
+| 11 | lagos | 0.19 | **strongest under-mapping signal** |
+
+**The Dharavi/Kibera caveat lands harder than expected.** Both were flagged in
+advance as having had dedicated community mapping and therefore atypically good
+coverage. They measure 2.78 and 2.11 km/km² — and **Khayelitsha, at 8.35, is
+three times Dharavi.** So the two AOIs nominated as "atypically good" are not
+the ceiling; they sit mid-table. Either Khayelitsha is exceptionally mapped even
+by community-mapping standards, or Dharavi and Kibera are less complete than
+their reputation implies. Both readings are consistent with the numbers and this
+work cannot separate them. **Neither Dharavi nor Kibera should be used as the
+representative case, and neither should be used as the optimistic bound.**
+
+**Outliers, in order of confidence:**
+
+- **lagos (0.19 km/km²) — the clearest signal.** 3.30 km of pedestrian way
+  across 17.13 km², from **14 `footway` ways** total, with `pedestrian` and
+  `steps` both at zero. The AOI contains Makoko and Ebute-Metta. Dense informal
+  waterfront settlement with essentially no mapped pedestrian network is far more
+  consistent with an OSM completeness gap than with an absence of paths. Note
+  its arterial coverage is fine (32.0 km) — **the gap is specifically in the
+  pedestrian layer, not in OSM presence generally**, which is the signature of
+  partial mapping rather than an unmapped area.
+- **jakarta (0.39)** — 16.91 km over 42.84 km² of central Jakarta kampung
+  fabric, and no `place` nodes at all. Suspect on the same grounds as Lagos,
+  slightly weaker because I did not confirm the specific neighbourhoods.
+- **accra (1.29)** — mid-table but with 102 km of `service` against 13.9 km of
+  `footway`, a lopsided profile suggesting vehicular-first mapping.
+- **hcmc (0.90)** — genuinely ambiguous. The 120.96 km² AOI is 5–17× the others
+  and likely spans periurban land, so a low *mean* density may be an averaging
+  artifact rather than a mapping gap. Its 29,077 ways are the most of any city.
+  **Do not treat this as under-mapped without re-measuring on a comparable
+  sub-AOI.**
+- **nusantara (0.63)** — lowest overall network density (4.35 km/km², half the
+  next city) and missing `motorway`/`primary`/`secondary` entirely. This is the
+  Indonesian new-capital greenfield site, so **sparse mapping here plausibly
+  reflects sparse construction**, not a mapping gap. The one low-density city I
+  would *not* flag as under-mapped.
+
+### What this does and does not support
+
+Measured: pedestrian-path density spans **44×** across the 11 training AOIs
+(0.19 → 8.35 km/km²), while total network density spans only **6×**
+(4.35 → 26.40) and arterial coverage is near-universal. **The variance is
+concentrated almost entirely in the pedestrian layer.**
+
+Inferred: for a pipeline relying on OSM road geometry, arterial and
+`residential`/`service` geometry looks broadly usable across all 11 cities,
+whereas **pedestrian-path geometry is not uniformly available and its
+availability does not track the density of the fabric it should describe.** Any
+per-AOI feature derived from footpath geometry would carry a bias that varies by
+city in a way the pipeline currently has no signal for — the same class of
+problem as `rainfall_spatial_treatment` in §5.2, but undeclared.
+
+**Explicitly not established:** any completeness percentage; whether the low
+cities are missing paths or genuinely have fewer; whether Khayelitsha's 8.35
+represents near-complete mapping or merely better-than-peers. Settling those
+needs a reference network — a hand-digitised sample from imagery over a few
+km² per city would be the cheapest route, and is a separate piece of work.
