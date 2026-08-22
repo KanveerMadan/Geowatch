@@ -66,8 +66,22 @@ problem, and the unknown mass is dominated by one class rather than shared.
 | Figure | V1 claim | Measured | Outcome |
 |---|---|---|---|
 | Pair share of unknown mass | 72.9% | **70.1%** (production) / 72.4% (no penalties) | ✅ holds |
-| Unknown-pixel rate | "~50%" | **25.73%** / **28.79%** | ❌ stale by ~2× — now **explained** |
-| `paved_road` supervision share | 41.0% | **41% by patch, 17.8% by pixel** | ⚠️ patch-level only |
+| Unknown-pixel rate | "~50%" | **25.74%** / **28.79%** | ❌ stale by ~2× — now **explained** |
+| `paved_road` supervision share | 41.0% | **73.38% by patch, 17.81% by pixel** (both measured on the 1,345-patch pool) | ⚠️ V1's 41% is not a pool measurement — see note |
+
+*On the `paved_road` row:* V1's **41.0%** and the pool figures are **not
+commensurable and must not be read as a like-for-like correction.** 41% is
+*inferred* by inverting the trained checkpoint's `class_weights`
+(`models/production/geowatch_production_model.pth`; normalised 1/w gives
+**40.96%**) — it is a property of the model that was trained, not a count of
+anything on disk. **73.38%** and **17.81%** are both *measured* from the same
+1,345-patch / 484,796-pixel pool. The by-patch figure for that pool is
+**73.38%, not 41%**: `paved_road`'s patch dominance is roughly **1.8× larger**
+than the V1 number suggests, not smaller. An earlier version of this row read
+"41% by patch, 17.8% by pixel", which juxtaposed a checkpoint-inferred value
+and a pool-measured value under one "by patch / by pixel" heading and so
+understated patch dominance by nearly 2× while appearing to correct it.
+Corrected 2026-08-22 after manual re-derivation. **[E]**
 
 **The system is deterministic.** Two identical runs produced bit-identical
 landcover maps (0/74,787 differing pixels) and identical scores throughout.
@@ -161,8 +175,19 @@ statistic and the loss domain disagree in opposite directions for the two
 classes whose label *geometry* differs most.
 
 *Note:* the checkpoint's actual weights sit between raw-patch (0.0415) and
-pixel-derived (0.2394) values because the notebook caps OSM sources at 25/city
-before computing them. Both are patch statistics; the cap explains the gap.
+pixel-derived (0.2394) values. Both are patch statistics, and the notebook's
+25/city cap on OSM sources moves the number in the right direction — but it
+does **not** account for the gap quantitatively. Direct reconstruction of that
+cap (all human annotations + the first 25 OSM road and 25 OSM water records per
+city) yields a 637-patch pool at **44.74%** `paved_road`, against the
+checkpoint-implied **40.96%**. Nor does either pool reconcile with the
+checkpoint's own record of what it trained on: `n_train_patches = 1272` and
+`n_monitor_patches = 141` (1,413 total) match neither the capped 637 nor the
+uncapped 1,345. **The real training pool is therefore not reconstructible from
+the files on disk**, and every patch/pixel figure derived here is a proxy for
+training supervision rather than a reconstruction of it. The direction of the
+patch-vs-pixel mismatch is unaffected; only the claim that the cap *explains*
+the gap is withdrawn. **[E]**
 
 ### R3 — The origin of "~50% unknown": found **[E]**
 
@@ -327,7 +352,7 @@ production checkpoint. The stricter check exists in `resnet_classifier.py`
 **[CONFIRMED] C11 — Penalties applied post-calibration. [E]** Neither
 diagnostic nor the notebook that produced the deployed CAAT applies the
 proximity penalties (verified: zero references), while `run_inference` does.
-Measured effect: unknown 24.45% → 25.73% (**+1.28 pp**); `standing_water`
+Measured effect: unknown 24.45% → 25.74% (**+1.28 pp**); `standing_water`
 unknown count 564 → 1111 (**+97%**); `paved_road` 11,899 → 12,098 (+1.7%).
 *Mechanism and direction confirmed; magnitude bounded — V1's "systematic
 over-rejection" framing overstated the aggregate effect.* **Severity: Critical → Moderate.**
@@ -420,15 +445,18 @@ pixels, so the `road_px_count == 0` precondition never fired. **Not refuted —
 latent.** *Severity: Critical → Moderate (conditional).*
 
 **[CORRECTED] The "~50% unknown" figure. [E]** Stale by ~2×; origin identified
-(R3). Real rate 25.73%/28.79%. **Every V1 argument conditioned on ~50% is
+(R3). Real rate 25.74%/28.79%. **Every V1 argument conditioned on ~50% is
 overstated by roughly a factor of two** — notably C19's severity framing and
 parts of the C14 narrative. Directions unchanged; magnitudes not.
 
 **[CORRECTED] The "41% `paved_road`" figure. [E]** A **patch** statistic. At
 pixel level `paved_road` is **17.8%** and `standing_water` dominates at
 **49.1%**. Ratio to `dense_informal_roofing`: **18.62× by patch, 2.00× by
-pixel**. Raw pool is 73.4% paved_road by patch; the notebook's 25/city caps
-reduce that to the checkpoint's implied 41%.
+pixel**. Raw pool is 73.4% paved_road by patch. The checkpoint's implied 41%
+(40.96%, from inverting its `class_weights`) is lower, and the notebook's
+25/city OSM cap is the reason it moves in that direction — but the cap does not
+reproduce the number: reconstructing it directly gives 44.74%. See the withdrawn
+"cap explains the gap" note under R2.
 
 | class | patches | patch % | pixels | pixel % |
 |---|---:|---:|---:|---:|
@@ -1073,3 +1101,86 @@ technical one, and has not been made.*
 improve the `dense_informal_roofing` / `sparse_informal_roofing` /
 `paved_road` confusion, or how they would be reconciled with the existing
 7-class taxonomy. Those are separate questions and remain open.
+
+---
+
+## Addendum 3 — 2026-08-22: manual re-verification of two headline figures
+
+Both figures were re-derived first-hand from the run outputs, annotation files
+and checkpoint on disk, because both had previously been wrong by roughly 2×.
+Read-only; no code changed. Three corrections were applied in place above
+(executive-summary unknown rate, executive-summary `paved_road` row, and the
+class-weight cap note); this section records what was checked and one new
+finding.
+
+### What reproduced exactly
+
+**Unknown-pixel rate. [E]** From `<run>/landcover_map_full.npy` (uint8) with
+the pipeline's own denominator (`ingestion/inference.py:308-312`,
+`total_px = H*W`, `UNKNOWN_INDEX = 255`):
+
+| Run | Array | total_px | == 255 | Computation | Result |
+|---|---|---:|---:|---|---:|
+| `phase1_dharavi_20260820_125646` | 257×291 | 74,787 | 19,252 | 100 × 19,252 / 74,787 = 25.742442 | **25.74** |
+| `phase1_dharavi_20260820_125809` | 257×291 | 74,787 | 19,252 | identical | **25.74** |
+| `phase1_multitile_20260820_130117` | 891×892 | 794,772 | 228,785 | 100 × 228,785 / 794,772 = 28.786243 | **28.79** |
+
+All three agree with the `landcover.unknown_pct` recorded in each
+`result.json`. The two Dharavi runs are bit-identical down to the class
+histogram, independently reconfirming the determinism claim.
+
+**Correction applied: 25.73% → 25.74%.** There were **three** occurrences, not
+two — the executive-summary table, C11's "24.45% → 25.74%", and the
+`[CORRECTED] The "~50% unknown" figure` entry. `100 × 19,252 / 74,787` rounds
+to 25.74 and no arithmetic on this array yields 25.73. Magnitude 0.01 pp; the
+"stale by ~2×" conclusion is unaffected. The rounded range "25.7%–28.8%" in R3
+was already correct and was left alone.
+
+**Supervision-share table. [E]** All seven rows reproduce exactly, patch counts
+and pixel sums alike — including `paved_road` 987 / 86,349 and
+`standing_water` 133 / 238,265. Pool: `annotations.json` +
+`osm_generated_annotations.json` + `osm_generated_annotations_water.json`
+across the 11 training runs selected by `find_annotated_run_dir`'s rule
+(newest dir per city carrying `tiles/tile_0_0.png` + `annotations.json` +
+`masks.json`). Patches = record count per `human_label`; pixels = sum of each
+record's `area` field. Restricted to the checkpoint's 7 `categories` —
+`unpaved_dirt_road`, `open_drainage_channel`, `open_waste` and `unknown` are
+outside the model taxonomy and excluded. Denominators **1,345 patches /
+484,796 pixels**. Source split: human 331, OSM road 976, OSM water 101.
+
+**Class-weight table. [E]** All 21 values — checkpoint, patch-derived,
+pixel-derived — reproduce to four decimal places under
+`w_i = K × (1/freq_i) / Σ(1/freq_j)`, against
+`models/production/geowatch_production_model.pth`, whose `class_weights` tensor
+confirms `paved_road = 0.1707` and `standing_water = 0.4915`.
+
+### New finding
+
+**[NEW] C39 — Two annotations in the training pool hold free text as
+`human_label`. [E]**
+In `data/pipeline_runs/accra_20260702_163854/annotations.json`:
+
+| segment_id | area | `human_label` |
+|---|---:|---|
+| 18 | 123 | `data/annotation_queues/_current_candidate_preview.png` |
+| 26 | 64 | `python annotate_queue.py capetown` |
+
+A file path and a shell command were typed at `annotate_queue.py`'s label
+prompt and stored verbatim. The tool's contract is
+`<text> -> type any other real category name to label it as that instead`, with
+**no validation against `CATEGORIES`** — any string the operator types becomes
+a label. Both values are almost certainly mis-paste/mis-typed shell input
+during an annotation session, not deliberate labels.
+
+**Impact is currently nil**, and stated as such rather than inflated: both fall
+outside the 7 model classes, so they are excluded from every patch/pixel figure
+in this document and from training. The defect is that nothing rejects,
+reports, or repairs them — they sit in the pool indefinitely, and any consumer
+that trusts `human_label` without whitelisting against `CATEGORIES` would carry
+them silently. It also bounds how much the operator's typed input can be
+trusted elsewhere in the same files.
+
+*Related, not the same:* `annotate.py` and `annotate_queue.py` are both frozen
+as of 2026-08-22 (see DE-adjacent freeze under C28), so no new labels of any
+kind can be added until that freeze lifts. C39 concerns the two records already
+on disk. *Minor.*
