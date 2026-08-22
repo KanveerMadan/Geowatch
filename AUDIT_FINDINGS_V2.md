@@ -335,13 +335,27 @@ the loss failed; it adds a sixth and more fundamental reason.
 
 **[CONFIRMED] C9 — `segment_id` mis-joins `result.json` and `masks.json`. [E]**
 Fresh run: 36 segments (ids 0–35) vs 44 masks (ids 0–43); **11/36 = 30.6%** of
-segments have a bbox that disagrees with the `masks.json` entry of the same id,
-with a clean one-position shift from id 25 onward. Magnitude is run-dependent
+segments have a bbox that disagrees with the `masks.json` entry of the same id
+— ids **25–35**, contiguous. The offset is **not** constant: it **accumulates**,
+ids 25–28 at **+1**, ids 29–31 at **+2**, ids 32–35 at **+3**. Every disagreeing
+segment still matches *some* mask, so nothing is lost; the drift grows as
+filtered-out masks accumulate. Magnitude is run-dependent
 (67% on an earlier run). Root cause: `result.json` ids come from a counter over
 *surviving* segments (post `w<8/h<8` filter) while `masks.json` ids come from a
 counter over *all* masks. *Critical. Currently harmless for existing training
 data — the eleven training runs predate Phase 2 — and irreversible the moment a
 new annotation round runs (see C28).*
+
+*Corrected 2026-08-22 after manual re-derivation:* this entry previously read
+"a clean one-position shift from id 25 onward", which holds only for ids 25–28
+and is false for 29–35. **The correction strengthens the finding rather than
+weakening it:** a cumulative offset is precisely what two divergent counters
+produce — each mask dropped by the `w<8/h<8` filter adds one to the drift —
+whereas a constant shift would suggest a single one-off skip and point at a
+different mechanism. It also matters operationally: **any repair keyed to a
+constant +1 would fix ids 25–28 and silently corrupt ids 29–35.** The 11/36 =
+30.6% figure, the contiguous 25-onward range and the root cause at
+`pipeline.py:332-361` are all unchanged and were re-confirmed. **[E]**
 
 **[CONFIRMED] C10 — Deployed CAAT thresholds have no provenance and are not checked. [E]**
 Live run logged `Loaded CAAT thresholds (source_checkpoint=?, verified_sanity_check_miou=?)`.
@@ -352,7 +366,7 @@ production checkpoint. The stricter check exists in `resnet_classifier.py`
 **[CONFIRMED] C11 — Penalties applied post-calibration. [E]** Neither
 diagnostic nor the notebook that produced the deployed CAAT applies the
 proximity penalties (verified: zero references), while `run_inference` does.
-Measured effect: unknown 24.45% → 25.74% (**+1.28 pp**); `standing_water`
+Measured effect: unknown 24.45% → 25.74% (**+1.29 pp**); `standing_water`
 unknown count 564 → 1111 (**+97%**); `paved_road` 11,899 → 12,098 (+1.7%).
 *Mechanism and direction confirmed; magnitude bounded — V1's "systematic
 over-rejection" framing overstated the aggregate effect.* **Severity: Critical → Moderate.**
@@ -381,11 +395,24 @@ directories match `startswith('dharavi')`; lexicographic last remains
 also sort below it. *Critical.*
 
 **[CONFIRMED] C19 — Imperviousness deflated by the unknown rate. [E]**
-Emitted `impervious_fraction_pct = 41.68`; recomputed with a known-pixel
-denominator = **56.12**. Understatement factor **1.347×** at 25.74% unknown —
-exactly `1/(1−0.2574)`. Direction is the dangerous one: higher unknown → lower
-apparent imperviousness → settlement reads as *less* flood-prone. *Critical.
-See CORRECTED note on magnitude.*
+Emitted `impervious_fraction_pct = 41.68` (reproduced exactly:
+`25.97×1.0 + 9.58×0.9 + 11.81×0.6 = 41.6780`); recounted against a known-pixel
+denominator (55,535 of 74,787 px, straight from `landcover_map_full.npy`) =
+**56.13**. Understatement factor **1.347×** at 25.74% unknown. Direction is the
+dangerous one: higher unknown → lower apparent imperviousness → settlement
+reads as *less* flood-prone. *Critical. See CORRECTED note on magnitude.*
+
+*Corrected 2026-08-22 after manual re-derivation:* this entry previously read
+**56.12** and described the factor as **exactly** `1/(1−0.2574)`. Neither
+survives a genuine recount. 56.12 is reproducible only by *rescaling* the
+emitted value (`41.678 / (1 − 0.2574) = 56.1244`), not by recounting pixels; a
+true known-pixel recount gives **56.1273 → 56.13**. And because 56.12 was
+produced *by dividing by* `1−0.2574`, the stated identity was **true by
+construction, not an independent confirmation of the mechanism** — it read as
+corroborating evidence and was not. On a real recount the ratio is
+**1.346689** against `1/(1−0.2574) = 1.346620`: agreeing to four significant
+figures, not identically. **The mechanism, the direction, the severity and the
+1.347× figure (both values round to it) all stand unchanged.** **[E]**
 
 **[CONFIRMED] C21 — A total landcover failure emits a confident "very_low". [E]**
 `compute_hydrological_surfaces({})` returns `impervious 0.0`, `infiltration 0.0`,
@@ -1184,3 +1211,90 @@ trusted elsewhere in the same files.
 as of 2026-08-22 (see DE-adjacent freeze under C28), so no new labels of any
 kind can be added until that freeze lifts. C39 concerns the two records already
 on disk. *Minor.*
+
+---
+
+## Addendum 4 — 2026-08-22: targeted spot-check of 10 weight-bearing findings
+
+Ten findings were re-verified by hand — chosen for carrying the most weight in
+the build plan or being cited elsewhere in this document. Much of Modules 1–4
+came from parallel sub-agents whose line citations had never been independently
+confirmed. `[E]` findings were re-measured rather than re-read; `[S]` findings
+were checked against the code. Read-only; **no code was changed.**
+
+### Result
+
+**8 of 10 reproduced exactly**, several to the pixel. Two carried defects, both
+corrected in place above (C19, C9). Two further imprecisions are recorded below
+(C31, C29).
+
+| # | Finding | Verdict |
+|---|---|---|
+| 1 | C14 / C20 | CONFIRMED |
+| 2 | C19 | Mechanism holds; **two numbers corrected** — see the entry |
+| 3 | C21 | CONFIRMED |
+| 4 | C25 / C26 | CONFIRMED |
+| 5 | C31 | CONFIRMED (line-range note below) |
+| 6 | C32 | CONFIRMED |
+| 7 | C13 | CONFIRMED |
+| 8 | C29 | CONFIRMED (table note below) |
+| 9 | W1 | CONFIRMED to the pixel |
+| 10 | C9 | Numbers confirmed; **shift pattern corrected** — see the entry |
+
+Highlights of what reproduced: C14/C20 — all 8 `compute_*` functions in
+`susceptibility/` and `perception/` enumerated by AST, **none takes an
+applicability argument**; `pipeline.py:412` (hydrological_surfaces) precedes
+`:413` (applicability). C13 — `primary_tile` measured at 512×512 against
+`tile_dimensions` 892×891, **102/116 = 87.9%** exact. C31 — all 8 ΔRGB values
+exact, **0/8** matches. C32 — `applicability` occurs **exactly once** in the
+whole frontend, at `App.jsx:493`. W1 — all 11 city rows, pooled
+**16,538/33,933 = 48.7%**, and human annotations **197,637/200,428 = 98.6%**,
+all exact.
+
+### Two line-reference imprecisions (neither is a wrong citation)
+
+**C31 — the `unknown` row's source sits one line outside the cited range.**
+V1 cites `ingestion/inference.py:165-178` for `CATEGORY_COLORS_RGB`. That span
+covers the comment header (164–169) and the dict (170–178), which supplies 7 of
+the table's 8 rows. The 8th row, `unknown (96, 96, 128)`, comes from
+`UNKNOWN_COLOR_RGB` at **`inference.py:179`** — just outside. The value and the
+Δ are correct; only the citation is one line short of covering the whole claim.
+**[S]**
+
+**C29 — the width table omits `trunk`, and the "only motorway" phrasing leans
+on a strict reading.** `HIGHWAY_WIDTH_M` (`generate_osm_road_masks.py:76-82`,
+inside V1's looser `:70-89` citation) also contains **`trunk: 10 m = exactly
+1.00 px`**, which V1's table does not list. The claim *"Only `motorway` exceeds
+one pixel"* is therefore true only because 1.00 does not strictly *exceed* 1.00.
+More accurate: **`motorway` (1.20 px) is the only class wider than one pixel;
+`trunk` lands exactly on one; every other class is sub-pixel.** The substantive
+point — that the supervision is sub-pixel by construction — is unaffected and
+arguably reinforced, since a feature exactly one pixel wide is still mixed
+whenever it does not align to the pixel grid. All six listed widths, the 192
+Cape Town records and the **median mask area 23.5 px** reproduced exactly.
+**[S/E]**
+
+### Methodological note — what this spot-check actually caught
+
+Worth recording, because it bears on how the rest of Modules 1–4 should be
+treated.
+
+**The line citations held up.** Of eight distinct references resolved: **six
+exact, two loose-but-containing, none pointing at the wrong construct.** The
+sub-agent citation risk that motivated this check did not materialise.
+
+**Both real defects were the same kind of error: a derived number presented as
+a measured one.** C19's `56.12` was reproducible only by rescaling the emitted
+value, yet was described as "recomputed with a known-pixel denominator" — and
+the accompanying "exactly `1/(1−0.2574)`" was then an identity of that
+derivation rather than evidence for the mechanism. C9's "clean one-position
+shift" was true of the first four instances and asserted of all eleven.
+
+**Neither would have been caught by auditing line references, and neither
+changed a severity rating or a downstream argument.** Both fell out only from
+re-running the measurement. The practical lesson for the remaining
+un-spot-checked findings: verifying that a citation points at the right code
+establishes almost nothing about whether the number attached to it was measured
+or inferred. Where a figure carries weight, re-derive it; and where a derived
+figure is reported, say which operation produced it, so a later reader can tell
+corroboration from restatement.

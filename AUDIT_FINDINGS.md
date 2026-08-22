@@ -1813,8 +1813,21 @@ production configuration. **One holds, two do not.**
 | Figure | As cited in this document | Measured under production config | Verdict |
 |---|---|---|---|
 | Confusion-pair share of unknown mass | **72.9%** | **70.1%** (with penalties) / **72.4%** (without) | ✅ **HOLDS** |
-| Unknown-pixel rate | **"~50%"** | **25.73%** Dharavi / **28.79%** multi-tile | ❌ **NOT REPRODUCED — roughly half the cited value** |
+| Unknown-pixel rate | **"~50%"** | **25.74%** Dharavi / **28.79%** multi-tile | ❌ **NOT REPRODUCED — roughly half the cited value** |
 | `paved_road` share of training supervision | **41.0%** | **41%/73% by patch — but 17.8% by pixel** | ⚠️ **PATCH-LEVEL ONLY** |
+
+
+> **Note (2026-08-22, manual re-derivation):** the unknown-pixel rate was
+> corrected **25.73% → 25.74%** at all four occurrences in this file, and the
+> penalty delta from **+1.28 pp → +1.29 pp** to follow from its own inputs
+> (24.45% → 25.74%). `100 × 19,252 / 74,787 = 25.742442`, and the run's
+> `result.json` records `25.74`; 25.73 is not derivable from the data. A
+> transcription slip, corrected in place rather than annotated, since no
+> reasoning attached to it. The 28.79% multi-tile figure was re-derived and is
+> unchanged. See `AUDIT_FINDINGS_V2.md` → "Addendum 3 — manual re-verification
+> of two headline figures". *Caveat: the 24.45% no-penalty baseline was **not**
+> independently re-measured; the delta is corrected only for internal
+> consistency with the two rounded values as stated.*
 
 **On 72.9%** — my stated concern that the diagnostics omitted the proximity
 penalties was **correct as a fact but immaterial as an effect**. Confirmed:
@@ -1822,12 +1835,12 @@ penalties was **correct as a fact but immaterial as an effect**. Confirmed:
 references to `road_dist`/`dist_map`/`PROXIMITY`/`penalty`, while
 `run_inference` applies both. Measured on the same tile, adding the penalties
 moves the pair share from 72.4% → 70.1% (−2.3 pp) and the unknown rate from
-24.45% → 25.73% (+1.28 pp). **The 72.9% figure is sound and the audit's
+24.45% → 25.74% (+1.29 pp). **The 72.9% figure is sound and the audit's
 reliance on it was justified.** I flagged this as the document's weakest
 foundation; that was over-cautious.
 
 **On "~50% unknown"** — not reproduced anywhere. Real production unknown rate
-is **25.73%** (Dharavi) and **28.79%** (multi-tile). Any argument in this
+is **25.74%** (Dharavi) and **28.79%** (multi-tile). Any argument in this
 document that leaned on a ~50% unknown rate (notably C19's severity framing
 and parts of the C14 narrative) is **overstated by roughly a factor of two**.
 The direction of every such finding is unchanged; the magnitude is not.
@@ -1911,7 +1924,7 @@ Three consequences for this audit:
 
 | # | Predicted | Observed | Verdict |
 |---|---|---|---|
-| **C9** | `segment_id` mis-joins between `result.json` and `masks.json` on post-Phase-2 runs | Fresh run: 36 segments (ids 0–35) vs 44 masks (ids 0–43); **11/36 = 30.6%** bbox mismatch, with a clean one-position shift from id 25 onward | ✅ **CONFIRMED** (magnitude run-dependent: 30.6% here vs 67% previously) |
+| **C9** | `segment_id` mis-joins between `result.json` and `masks.json` on post-Phase-2 runs | Fresh run: 36 segments (ids 0–35) vs 44 masks (ids 0–43); **11/36 = 30.6%** bbox mismatch, with a clean one-position shift from id 25 onward | ✅ **CONFIRMED** (magnitude run-dependent: 30.6% here vs 67% previously) — ⚠️ *shift pattern corrected, see †C9 below* |
 | **C10** | Loader accepts a CAAT file with no `source_checkpoint` and merely prints it | Live run logged: `Loaded CAAT thresholds (source_checkpoint=?, verified_sanity_check_miou=?)` | ✅ **CONFIRMED** |
 | **C13** | `primary_tile` is one 512px tile while everything else is full-raster | 4 tiles, `tile_dimensions` 892×891, `landcover.png` 892×891, **`primary_tile` actually 512×512**; segment bboxes reach x=891,y=890; **102/116 segments (87.9%) fall outside `primary_tile`**, which covers 57.4% of width | ✅ **CONFIRMED — worse than predicted** |
 | **C14/C20** | OOD verdict emitted alongside `applicable` siblings | At `unknown_pct=60`: `urban_landcover_model: out_of_distribution` with `pluvial: applicable`, `waterlogging: applicable` in the same dict | ✅ **CONFIRMED** |
@@ -1919,14 +1932,14 @@ Three consequences for this audit:
 | **C16** | `aoi_label` escapes the data root | `'../../../../tmp/pwn'` → `run_dir` normalizes to `../../tmp/pwn_...` (verified by path arithmetic; **nothing was created**) | ✅ **CONFIRMED** |
 | **C17** | `/api/demo` permanently serves `dharavi_test_*` | 37 dirs match `startswith('dharavi')`; lexicographic last is still **`dharavi_test_20260806_114208`**, while newest-by-mtime is `dharavi_phase11_postfix_20260807_125913`. The two new `phase1_dharavi_*` runs also sort below it | ✅ **CONFIRMED** |
 | **C18** | Failed run reported as success, empty dir left | **Not observed** — every run this session completed successfully. Would require forcing a no-tiles failure | ⬜ **NOT OBSERVED** |
-| **C19** | Imperviousness deflated in proportion to unknown rate | Emitted `impervious_fraction_pct = 41.68`; recomputed with known-pixel denominator = **56.12**. **Understatement factor 1.347× at 25.74% unknown** — exactly `1/(1−0.2574)` | ✅ **CONFIRMED AND QUANTIFIED** |
+| **C19** | Imperviousness deflated in proportion to unknown rate | Emitted `impervious_fraction_pct = 41.68`; recomputed with known-pixel denominator = **56.12**. **Understatement factor 1.347× at 25.74% unknown** — exactly `1/(1−0.2574)` | ✅ **CONFIRMED AND QUANTIFIED** — ⚠️ *two numbers corrected, see †C19 below* |
 | **C21** | Total landcover failure scores as 0.0 = permeable | `compute_hydrological_surfaces({})` → `impervious 0.0`, `infiltration 0.0`, **no `status` key**. Fed to `compute_waterlogging_susceptibility` with HAND unavailable → **`status: "experimental"`, `score: 0.0`, `class: "very_low"`** | ✅ **CONFIRMED — worse than predicted** (emits a confident *"very_low"* hazard class) |
 | **C22** | No-data pixels render as **maximum** pluvial susceptibility | Real `pluvial_susceptibility.png`: unknown pixels **mean 125.4, median 124**, range 118–153. Known pixels mean **149.1**, range 63–220. `paved_road` pixels mean 197.9. **0.0% of unknown pixels sit at the PNG maximum** | ❌ **PARTIALLY REFUTED** — mechanism real (no-data does receive maximum *infiltration deficit*, same as `active_construction` at 125.8), but the **consequence claim is wrong**: unknown renders mid-range, *below* the known-pixel mean, not alarming |
 | **C23** | `product_validation_status` dropped on the `not_calculated` path | Forced that path: returns exactly `['label','layer_id','reason','status']`. **Field absent**; `.get()` → `None` | ✅ **CONFIRMED** (all five layers on the real runs took the success path and *did* carry it — the defect needs an inland AOI to surface naturally) |
 | **C25** | All-unknown ward → `impervious 0.0` with a real score | Reproduced zonal's construction: all-unknown 40×40 ward → `category_area_pct = {}` → `impervious_fraction_pct 0.0`; **zero-pixel guard does not fire** (`pixel_count=1600`). A 50%-unknown ward reports `impervious 50.0` where known-pixel truth is 100.0 | ✅ **CONFIRMED** |
 | **C26** | No per-ward unknown fraction emitted | Confirmed: no field carries it; a 100%-unknown and a 50%-unknown ward differ only by an inference from the `category_area_pct` sum that no consumer is instructed to make | ✅ **CONFIRMED** |
 | **C31/C33** | Palette drift; legend hardcoded | Unchanged from the static measurement (0/8 colour matches; legend iterates the frontend constant). Not re-tested — these are static constants | ✅ **CONFIRMED** (static) |
-| **C11** | Penalties over-reject `paved_road`/`standing_water` into unknown | Measured: penalties raise unknown 24.45%→25.73% (**+1.28 pp**). `standing_water` unknown count 564→1111 (**+97%**), `paved_road` 11,899→12,098 (+1.7%) | ✅ **CONFIRMED in mechanism and direction, bounded in magnitude** — the effect on `standing_water` is large proportionally but small absolutely (3.1%→5.8% of unknown mass) |
+| **C11** | Penalties over-reject `paved_road`/`standing_water` into unknown | Measured: penalties raise unknown 24.45%→25.74% (**+1.29 pp**). `standing_water` unknown count 564→1111 (**+97%**), `paved_road` 11,899→12,098 (+1.7%) | ✅ **CONFIRMED in mechanism and direction, bounded in magnitude** — the effect on `standing_water` is large proportionally but small absolutely (3.1%→5.8% of unknown mass) |
 | **OSM-override purity** (Moderate) | Purity describes the pre-override category | Segment 25: `dominant_landcover_category: unpaved_dirt_road`, `label_source: osm_vector`, **`landcover_purity_pct: 0.0`** | ✅ **CONFIRMED** |
 | **`summary.unknown_segments`** (Moderate) | Under-reports because counted post-override | `unknown_segments: 0` while `unknown_pct: 25.74` and one segment was OSM-overridden | ✅ **CONFIRMED** |
 | **`dominant_category`** (Moderate) | Argmax over a partial distribution | `dominant_category: "paved_road"` at 25.97% while 25.74% of the raster is unknown — the "dominant" class barely exceeds the unclassified fraction | ✅ **CONFIRMED** |
@@ -1934,6 +1947,63 @@ Three consequences for this audit:
 | **C2/C3/C4** (tiler) | Export/band validation gaps | **Not triggered** — the 75 km² multi-tile AOI (15× the documented 5 km² limit) exported and tiled correctly at 892×891, so no silent truncation occurred at this size | ⬜ **NOT TRIGGERED** |
 | **C27** | Ward tiers non-reproducible | **Not re-tested this session** — rests on the two disagreeing ward-screening JSONs already on disk | ✅ (prior empirical evidence stands) |
 | **C24/C32** | Frontend omits Gate C / applicability | Static, unchanged | ✅ **CONFIRMED** (static) |
+
+
+
+> **† C9 — the shift pattern is misdescribed. The row above is preserved
+> verbatim; the finding itself stands, and is strengthened.** See
+> `AUDIT_FINDINGS_V2.md` → "Addendum 4 — targeted spot-check of 10
+> weight-bearing findings", and the corrected C9 entry in V2's "Confirmed by
+> execution".
+>
+> Re-measured by hand from `phase1_dharavi_20260820_125646` on 2026-08-22.
+> "A clean one-position shift from id 25 onward" holds only for ids 25–28 and
+> is false for 29–35. **The offset accumulates:**
+>
+> | ids | offset |
+> |---|---|
+> | 25–28 | **+1** |
+> | 29–31 | **+2** |
+> | 32–35 | **+3** |
+>
+> Every disagreeing segment still matches *some* mask, so nothing is lost — the
+> drift simply grows as filtered-out masks accumulate.
+>
+> **This strengthens the finding rather than weakening it.** A cumulative offset
+> is precisely what two divergent counters produce: each mask dropped by the
+> `w<8/h<8` filter adds one to the drift. A constant shift would instead suggest
+> a single one-off skip and point at a different mechanism, so the corrected
+> pattern is better evidence for the stated root cause, not worse. It also
+> matters operationally: **any repair keyed to a constant +1 would fix ids 25–28
+> and silently corrupt ids 29–35.**
+>
+> **Unchanged:** 36 segments vs 44 masks, **11/36 = 30.6%**, the contiguous
+> 25-onward range, the run-dependent magnitude, and the root cause at
+> `pipeline.py:332-361` — all re-confirmed. The verdict stays CONFIRMED.
+
+> **† C19 — two numbers corrected. The row above is preserved verbatim; the
+> finding itself stands.** See `AUDIT_FINDINGS_V2.md` → "Addendum 4 — targeted
+> spot-check of 10 weight-bearing findings", and the corrected C19 entry in V2's
+> "Confirmed by execution".
+>
+> Re-derived by hand from `phase1_dharavi_20260820_125646` on 2026-08-22:
+>
+> - **`56.12` → `56.13`.** A genuine known-pixel recount (55,535 of 74,787 px,
+>   counted straight from `landcover_map_full.npy`) gives **56.1273 → 56.13**.
+>   The stated 56.12 is reproducible *only* by rescaling the emitted value
+>   (`41.678 / (1 − 0.2574) = 56.1244`), which is not the operation the row
+>   describes.
+> - **"exactly `1/(1−0.2574)`" — withdrawn.** Because 56.12 was produced *by
+>   dividing by* `1 − 0.2574`, that identity was **true by construction, not an
+>   independent confirmation of the mechanism.** It reads here as corroborating
+>   evidence and is not. On a real recount the ratio is **1.346689** against
+>   `1/(1−0.2574) = 1.346620` — agreeing to four significant figures, not
+>   identically.
+>
+> **Unchanged:** the emitted `41.68` (reproduced exactly from
+> `25.97×1.0 + 9.58×0.9 + 11.81×0.6 = 41.6780`), the mechanism, the direction,
+> the severity, and the **1.347×** factor — both values round to it. The
+> verdict stays CONFIRMED.
 
 ---
 
