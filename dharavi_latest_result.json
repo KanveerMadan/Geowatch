@@ -1,0 +1,600 @@
+{
+  "run_id": "aoi_20260714_152719",
+  "aoi": {
+    "west": 72.836,
+    "south": 19.037,
+    "east": 72.862,
+    "north": 19.06
+  },
+  "date_range": {
+    "start": "2024-01-01",
+    "end": "2024-03-31",
+    "mode": "manual"
+  },
+  "status": "complete",
+  "imagery_acquisition_date": "unknown",
+  "primary_tile": "data/pipeline_runs/aoi_20260714_152719/tiles/tile_0_0.png",
+  "tile_dimensions": {
+    "width": 291,
+    "height": 257
+  },
+  "total_tiles": 1,
+  "landcover": {
+    "map_path": "landcover.png",
+    "confidence_map_path": "landcover_confidence.png",
+    "categories": [
+      "dense_informal_roofing",
+      "sparse_informal_roofing",
+      "paved_road",
+      "standing_water",
+      "vegetation_clearing",
+      "active_construction",
+      "dense_vegetation"
+    ],
+    "unknown_index": 255,
+    "category_area_pct": {
+      "dense_informal_roofing": 3.88,
+      "sparse_informal_roofing": 16.31,
+      "paved_road": 39.05,
+      "standing_water": 1.43,
+      "vegetation_clearing": 0.0,
+      "active_construction": 1.51,
+      "dense_vegetation": 37.82
+    },
+    "unknown_pct": 71.1,
+    "model_provenance": {
+      "architecture": "GeoWatchResNetSeg (ResNet50 SSL4EO-S12 MoCo + DeepLabV3+)",
+      "training_cities": [
+        "accra",
+        "capetown",
+        "dhaka",
+        "dharavi",
+        "guatemala",
+        "hcmc",
+        "jakarta",
+        "kigali",
+        "lagos",
+        "nairobi",
+        "nusantara"
+      ],
+      "loco_mean_miou": 0.2994,
+      "loco_std_miou": 0.0535,
+      "loco_n_folds": 11
+    }
+  },
+  "segments": [
+    {
+      "segment_id": 0,
+      "bbox": [
+        83,
+        89,
+        85,
+        70
+      ],
+      "area": 3628,
+      "landcover_purity_pct": 70.73,
+      "road_access_score": 0.6673,
+      "dominant_landcover_category": "dense_vegetation"
+    },
+    {
+      "segment_id": 1,
+      "bbox": [
+        238,
+        174,
+        52,
+        82
+      ],
+      "area": 2376,
+      "landcover_purity_pct": 88.64,
+      "road_access_score": 0.9522,
+      "dominant_landcover_category": "sparse_informal_roofing"
+    },
+    {
+      "segment_id": 2,
+      "bbox": [
+        0,
+        153,
+        23,
+        103
+      ],
+      "area": 1940,
+      "landcover_purity_pct": 15.98,
+      "road_access_score": 0.6647,
+      "dominant_landcover_category": "standing_water"
+    },
+    {
+      "segment_id": 3,
+      "bbox": [
+        238,
+        32,
+        52,
+        46
+      ],
+      "area": 1713,
+      "landcover_purity_pct": 59.08,
+      "road_access_score": 0.4762,
+      "dominant_landcover_category": "dense_vegetation"
+    },
+    {
+      "segment_id": 4,
+      "bbox": [
+        143,
+        90,
+        52,
+        50
+      ],
+      "area": 1390,
+      "landcover_purity_pct": 68.42,
+      "road_access_score": 0.7281,
+      "dominant_landcover_category": "dense_vegetation"
+    },
+    {
+      "segment_id": 5,
+      "bbox": [
+        241,
+        0,
+        49,
+        30
+      ],
+      "area": 1061,
+      "landcover_purity_pct": 76.34,
+      "road_access_score": 0.7634,
+      "dominant_landcover_category": "dense_vegetation"
+    },
+    {
+      "segment_id": 6,
+      "bbox": [
+        235,
+        72,
+        55,
+        28
+      ],
+      "area": 747,
+      "landcover_purity_pct": 23.83,
+      "road_access_score": 0.9158,
+      "dominant_landcover_category": "dense_vegetation"
+    },
+    {
+      "segment_id": 7,
+      "bbox": [
+        65,
+        26,
+        27,
+        32
+      ],
+      "area": 642,
+      "landcover_purity_pct": 24.3,
+      "road_access_score": 0.934,
+      "dominant_landcover_category": "dense_informal_roofing"
+    },
+    {
+      "segment_id": 8,
+      "bbox": [
+        42,
+        102,
+        27,
+        32
+      ],
+      "area": 627,
+      "landcover_purity_pct": 70.97,
+      "road_access_score": 0.8087,
+      "dominant_landcover_category": "dense_vegetation"
+    },
+    {
+      "segment_id": 9,
+      "bbox": [
+        207,
+        91,
+        33,
+        38
+      ],
+      "area": 576,
+      "landcover_purity_pct": 4.51,
+      "road_access_score": 0.7983,
+      "dominant_landcover_category": "paved_road"
+    },
+    {
+      "segment_id": 10,
+      "bbox": [
+        126,
+        82,
+        51,
+        65
+      ],
+      "area": 460,
+      "landcover_purity_pct": 12.61,
+      "road_access_score": 0.775,
+      "dominant_landcover_category": "paved_road"
+    },
+    {
+      "segment_id": 11,
+      "bbox": [
+        115,
+        0,
+        11,
+        77
+      ],
+      "area": 444,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.9848,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 12,
+      "bbox": [
+        72,
+        55,
+        21,
+        29
+      ],
+      "area": 416,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.8519,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 13,
+      "bbox": [
+        218,
+        214,
+        22,
+        23
+      ],
+      "area": 302,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.8809,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 14,
+      "bbox": [
+        43,
+        12,
+        14,
+        15
+      ],
+      "area": 213,
+      "landcover_purity_pct": 43.19,
+      "road_access_score": 0.9591,
+      "dominant_landcover_category": "dense_informal_roofing"
+    },
+    {
+      "segment_id": 15,
+      "bbox": [
+        45,
+        109,
+        14,
+        19
+      ],
+      "area": 203,
+      "landcover_purity_pct": 98.52,
+      "road_access_score": 0.7502,
+      "dominant_landcover_category": "dense_vegetation"
+    },
+    {
+      "segment_id": 16,
+      "bbox": [
+        241,
+        98,
+        16,
+        18
+      ],
+      "area": 197,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.965,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 17,
+      "bbox": [
+        26,
+        66,
+        20,
+        9
+      ],
+      "area": 163,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.979,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 18,
+      "bbox": [
+        55,
+        161,
+        17,
+        12
+      ],
+      "area": 159,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.9642,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 19,
+      "bbox": [
+        131,
+        14,
+        12,
+        12
+      ],
+      "area": 149,
+      "landcover_purity_pct": 26.85,
+      "road_access_score": 0.9308,
+      "dominant_landcover_category": "active_construction"
+    },
+    {
+      "segment_id": 20,
+      "bbox": [
+        222,
+        3,
+        14,
+        14
+      ],
+      "area": 142,
+      "landcover_purity_pct": 59.86,
+      "road_access_score": 0.8629,
+      "dominant_landcover_category": "dense_vegetation"
+    },
+    {
+      "segment_id": 21,
+      "bbox": [
+        178,
+        1,
+        13,
+        14
+      ],
+      "area": 134,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.9666,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 22,
+      "bbox": [
+        110,
+        116,
+        14,
+        11
+      ],
+      "area": 128,
+      "landcover_purity_pct": 100.0,
+      "road_access_score": 0.1623,
+      "dominant_landcover_category": "dense_vegetation"
+    },
+    {
+      "segment_id": 23,
+      "bbox": [
+        226,
+        79,
+        14,
+        11
+      ],
+      "area": 127,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.6377,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 24,
+      "bbox": [
+        4,
+        128,
+        16,
+        10
+      ],
+      "area": 122,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.9015,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 26,
+      "bbox": [
+        141,
+        34,
+        14,
+        17
+      ],
+      "area": 111,
+      "landcover_purity_pct": 4.5,
+      "road_access_score": 0.9723,
+      "dominant_landcover_category": "paved_road"
+    },
+    {
+      "segment_id": 27,
+      "bbox": [
+        55,
+        163,
+        11,
+        10
+      ],
+      "area": 108,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.9606,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 28,
+      "bbox": [
+        62,
+        67,
+        8,
+        20
+      ],
+      "area": 106,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.7787,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 29,
+      "bbox": [
+        168,
+        100,
+        13,
+        8
+      ],
+      "area": 105,
+      "landcover_purity_pct": 100.0,
+      "road_access_score": 0.4891,
+      "dominant_landcover_category": "dense_vegetation"
+    },
+    {
+      "segment_id": 31,
+      "bbox": [
+        79,
+        66,
+        10,
+        12
+      ],
+      "area": 96,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.7629,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 32,
+      "bbox": [
+        133,
+        212,
+        9,
+        13
+      ],
+      "area": 89,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.9723,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 33,
+      "bbox": [
+        44,
+        81,
+        8,
+        12
+      ],
+      "area": 85,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.8969,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 35,
+      "bbox": [
+        96,
+        65,
+        8,
+        11
+      ],
+      "area": 77,
+      "landcover_purity_pct": 100.0,
+      "road_access_score": 0.9511,
+      "dominant_landcover_category": "dense_informal_roofing"
+    },
+    {
+      "segment_id": 36,
+      "bbox": [
+        151,
+        4,
+        11,
+        8
+      ],
+      "area": 77,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.9525,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 37,
+      "bbox": [
+        39,
+        0,
+        8,
+        12
+      ],
+      "area": 73,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.9043,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    },
+    {
+      "segment_id": 38,
+      "bbox": [
+        131,
+        31,
+        10,
+        11
+      ],
+      "area": 71,
+      "landcover_purity_pct": 0.0,
+      "road_access_score": 0.9786,
+      "label_source": "osm_vector",
+      "osm_feature_type": "highway_unpaved",
+      "dominant_landcover_category": "unpaved_dirt_road"
+    }
+  ],
+  "summary": {
+    "total_segments": 36,
+    "unknown_segments": 0,
+    "dominant_category": "paved_road",
+    "flood_risk_segments": 1,
+    "flood_risk_flag": false
+  },
+  "elevation": {
+    "min_elevation_m": 0.0,
+    "max_elevation_m": 16.0,
+    "mean_elevation_m": 6.08,
+    "elevation_range_m": 16.0,
+    "sample_count": 25,
+    "flood_risk_flag": true,
+    "elevation_fallback": false
+  },
+  "flood_susceptibility": {
+    "susceptibility_score": 0.4581,
+    "flood_risk_flag": false,
+    "elevation_fallback": false,
+    "dsm_caveat": true,
+    "method": "hand_gee_approximation",
+    "dem_source": "COPERNICUS/DEM/GLO30"
+  },
+  "osm_context": {
+    "osm_available": true,
+    "road_segments": 1681,
+    "waterway_features": 70,
+    "road_access_scores_reliable": true,
+    "road_score_method": "distance_transform"
+  }
+}

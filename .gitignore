@@ -1,0 +1,33 @@
+# Data and model artifacts (hashed separately, not tracked)
+data/
+models/
+cache/
+
+# Virtualenvs
+venv/
+geowatch-env/
+
+# Node
+node_modules/
+geowatch-ui/node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Secrets
+.env
+*.pem
+*.key
+
+# Debug/scratch artifacts
+debug_*.png
+*_context_dump*.txt
+geowatch_phase6_context.txt
+geowatch_bundle_for_claude.txt
+geowatch_backend_review.zip
+
+# OS
+.DS_Store

@@ -1,0 +1,26 @@
+sentinel2:
+  cloud_cover_threshold: 20
+  scale: 10
+  bands: ["Blue", "Green", "Red", "NIR", "SWIR1", "SWIR2"]
+
+tiling:
+  tile_size: 512
+  output_format: png
+
+export:
+  drive_folder: GeoWatch
+  local_raw_dir: data/raw
+  local_tile_dir: data/tiles
+
+# Test AOI — Dharavi, Mumbai (small, for development validation)
+test_aoi:
+  type: bbox
+  west: 72.836
+  south: 19.037
+  east: 72.862
+  north: 19.060
+  label: dharavi_mumbai
+
+test_dates:
+  start: "2024-01-01"
+  end: "2024-03-31"
