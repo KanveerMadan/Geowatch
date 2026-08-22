@@ -785,3 +785,179 @@ places `api.py` still constructs paths from input that the C16 fix does not see
 that bypasses the boundary where the fix lives. Neither was in the C16 fix's
 declared scope (`api.py` + its test file, no downstream changes), and neither
 was modified.
+
+---
+
+## Addendum 2 — 2026-08-22: population data-year investigation
+
+Triggered by a challenge to the "WorldPop caps at 2020" framing. Investigation
+only; **no code was changed**. All GEE queries below are read-only.
+
+### Corrected
+
+**[CORRECTED] "Population caps at 2020" is a property of the GEE mirror this
+project chose, not a limitation of WorldPop. [E]**
+
+The *observation* is correct and reconfirmed live. The *diagnosis* is wrong.
+
+Confirmed by execution against `WorldPop/GP/100m/pop`:
+
+| Query | Result |
+|---|---|
+| Collection size | 5,221 images |
+| Distinct `year` (global) | 2000–2020, contiguous |
+| `country=IND` images / years | 21 / 2000–2020 |
+| Dharavi AOI + `IND`, `aggregate_max("year")` | **2020** |
+
+So that asset genuinely stops at 2020. What does not follow is the conclusion
+the code draws from it — that "no fresher WorldPop release exists." WorldPop's
+current release is R2025A (September 2025), covering 2015–2030 including
+projections. *This release fact is reported by the project owner and was not
+independently verified here;* what was verified is that it is **not reachable
+through the asset this project uses**. Probing `WorldPop/GP/100m/pop/R2025A`
+and `WorldPop/R2025A/POP` returned `asset not found` for both. **[E]** (Two
+plausible paths, not an exhaustive catalog search — absence of a mirrored
+R2025A asset in GEE is likely but not proven by these two probes alone.)
+
+**Consequence for how this is recorded:** the cap belongs in the "ingestion
+channel we selected" category, alongside decisions like MERIT Hydro's bbox-only
+API, not in the "external data does not exist" category, alongside genuine
+gaps. Reaching R2025A would require a **non-GEE ingestion path** (direct
+WorldPop download or their API) — real work, not a constant edit. That is a
+materially different backlog item from "nothing can be done," which is what the
+current wording implies.
+
+**Neither audit challenged this.** V2 mentions population twice (the 282,983
+Dharavi figure at line 256; "Population is `None`, never a fabricated 0" at
+line 499) and never interrogates the cap's cause. The framing was inherited
+from the code's own docstrings and comments and accepted at face value. Logged
+here so the inheritance is visible.
+
+**[CONFIRMED-GOOD, worth recording] The WorldPop *selection logic* has no
+hardcoded year at all. [S]**
+`ingestion/exposure_sources.py:89-92` resolves the epoch dynamically —
+`aggregate_max("year")` then `Filter.eq("year", latest_year)`. No `filterDate`,
+no literal year, no cap anywhere in the population path; the call site
+(`pipeline.py:470`) likewise resolves ISO3 dynamically rather than pinning
+`"IND"`. If a fresher epoch ever appeared in that collection, the code would
+select it automatically and report it correctly in `population_year`. This is
+the opposite of the defect one would expect from the docstring, and it is why
+C37 below matters.
+
+### New findings
+
+**[NEW] C36 — `GHSL_BUILTUP_ASSET` hardcodes the epoch inside the asset string,
+while 2025 and 2030 sit in the same collection. [E]**
+`configs/exposure_constants.py:58` —
+`GHSL_BUILTUP_ASSET = "JRC/GHSL/P2023A/GHS_BUILT_S/2020"`. Consumed at
+`ingestion/exposure_sources.py:159` as `ee.Image(GHSL_BUILTUP_ASSET)`: a single
+image load, with no collection query, no `aggregate_max`, and no dynamic
+selection of any kind. Unlike the WorldPop path, this **cannot** pick up a
+newer epoch without editing the constant.
+
+Verified live: the parent collection `JRC/GHSL/P2023A/GHS_BUILT_S` holds **12
+epochs — 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025,
+2030**. `.../GHS_BUILT_S/2025` and `.../GHS_BUILT_S/2030` both load and both
+return **identical bands** to the pinned 2020 image:
+`['built_surface', 'built_surface_nres']`. So the newer epochs are drop-in
+compatible at the band level — the only thing preventing their use is the
+literal `2020` in the string. *Severity: low in isolation (built-up is a
+cross-check, not a primary), but it is the only true hardcoded year in the
+exposure path and it is invisible as a year because it is spelled as part of an
+asset ID.*
+
+**[NEW] C37 — `exposure_sources.py`'s `limitations` list is constructed before
+the GEE query, so a fresher epoch would emit a self-contradicting record. [S]**
+`ingestion/exposure_sources.py:53-62` builds the `limitations` list — including
+the literal string *"Population data caps at year 2020 -- no fresher WorldPop
+release exists as of this verification"* — at line 53. The GEE query that
+actually determines the epoch does not run until line 63, and the resolved
+`population_year` is not read until line 89. The caveat is therefore a
+**hardcoded assertion, not a derived statement**, and it is returned verbatim on
+every success path regardless of which year was selected.
+
+If the collection were ever updated, a single returned dict would carry
+`population_year: 2025` alongside `"Population data caps at year 2020"`, and
+`exposure/compute.py:177` would propagate both into `result.json` — the year via
+`population_source.population_year`, the contradicting text via
+`result["limitations"]`. The same stale claim appears in the function docstring
+(`:46`), the constants comment (`configs/exposure_constants.py:18`), and
+`exposure/compute.py:41`.
+
+*Not currently observable* — the collection has not moved, so no run has yet
+produced the contradiction; the finding is the construction order, which is
+static and certain. **[S]** The consequence is **[R]**, contingent on an
+upstream update this project does not control.
+
+This inverts the project's rule 4.7 (*degradation is always visible, never
+silent*): the failure mode is not a hidden caveat on degraded data, but a stale
+caveat welded onto fresh data — understating currency rather than overstating
+it. Both mislead; this direction is merely the less dangerous one.
+
+**[NEW] C38 — `GHSL_BUILTUP_ASSET`'s `UNVERIFIED` label is stale. [E]**
+The asset is labelled unverified in three places — `configs/exposure_constants.py:55-58`,
+the `get_builtup_reference()` docstring (`ingestion/exposure_sources.py:132-138`),
+and a per-run stdout line (`pipeline.py:704`, *"GHSL built-up reference:
+status=available (UNVERIFIED asset ID)"*) — and the warning is also injected
+into that component's user-facing `limitations` list
+(`exposure_sources.py:145-148`), so it reaches `result.json` on every run.
+
+`JRC/GHSL/P2023A/GHS_BUILT_S/2020` resolves live and returns bands
+`['built_surface', 'built_surface_nres']`. Existence, band names and load
+behaviour are confirmed. *What remains genuinely unverified is narrower than
+the label implies:* no pixel-level agreement comparison against GeoWatch's own
+built-up estimate has been done (`exposure/compute.py:198` still carries
+`agreement_status: "not_yet_compared"`), and licence/resolution were not
+re-checked here. The label should be narrowed to what is actually outstanding
+rather than left as a blanket "unverified," which currently costs the reader
+trust in a component that does load correctly. *Minor.*
+
+### Context for a decision not yet made — GHS-POP
+
+Recorded as evidence, **not** as a recommendation. Switching population source
+is a methodology decision of the same class as Gate E, and it has not been made.
+
+`JRC/GHSL/P2023A/GHS_POP` is already present in GEE — same P2023A family the
+project already depends on for built-up — with **12 epochs, 1975 through 2030**
+(1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025, 2030). It is
+not used as a population source anywhere in the codebase. **[E]**
+
+Zonal sums over the canonical Dharavi AOI, computed with the image's own
+`crs`/`crsTransform` (the same method `exposure/compute.py:151-158` uses, not a
+`scale=` argument — see the scale bug documented at
+`configs/exposure_constants.py:26-45`): **[E]**
+
+| Source | Estimated population | Note |
+|---|---|---|
+| GHS_POP 2015 | 248,492 | observation-based |
+| GHS_POP 2020 | 261,569 | observation-based |
+| GHS_POP 2025 | 279,331 | **projection** |
+| GHS_POP 2030 | 309,591 | **projection** |
+| WorldPop 2020 | 282,983 | current source |
+
+The WorldPop figure reproduces `282,983.025` as recorded at
+`configs/exposure_constants.py:35` exactly, confirming the query method matches
+the code's rather than measuring something else.
+
+Three things any such decision must confront, none of them resolved here:
+
+1. **GHS_POP 2025 and 2030 are projections, not observations.** Adopting them
+   changes the epistemic status of the exposure number. On a track that returns
+   `not_calculated` rather than fabricate a fusion formula, silently swapping a
+   modelled-observation for a modelled-projection would be inconsistent, unless
+   labelled at least as explicitly as `contextual_screening` is under rule 4.6.
+2. **GHS_POP and WorldPop disagree by ~7.6% at the same epoch** over the same
+   AOI (261,569 vs 282,983 at 2020). They are different models, so this is not a
+   like-for-like substitution and would break comparability with every existing
+   Phase 10A/12A output.
+3. **Neither addresses the actual freshness gap.** GHS_POP's newest
+   *observation* epoch is 2020 — the same year WorldPop stops. Moving to
+   GHS_POP buys projections, not newer measurements. Only a non-GEE WorldPop
+   R2025A path would buy genuinely fresher observed data, and even R2025A's
+   post-2020 years are themselves projections.
+
+**Net:** the "2020 cap" is real, but it is a cap on *observed* global gridded
+population in the GEE catalogue generally — not a WorldPop-specific dead end,
+and not something a constant edit fixes. C36 and C37 are cheap and worth doing
+independently of any source decision; the source decision itself is not a
+coding task.
