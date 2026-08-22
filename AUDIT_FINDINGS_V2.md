@@ -961,3 +961,115 @@ population in the GEE catalogue generally — not a WorldPop-specific dead end,
 and not something a constant edit fixes. C36 and C37 are cheap and worth doing
 independently of any source decision; the source decision itself is not a
 coding task.
+
+---
+
+## Verified Dead Ends
+
+Questions that have been investigated and **closed**. Each entry records what
+was checked, how, and what the limits of the check were — so the same
+investigation is not repeated. A dead end is not a defect; it is a path that
+was examined and found not to exist. Reopen an entry only if new evidence
+contradicts the "how verified" column, not on a hunch that the answer might
+have changed.
+
+### DE1 — Google Open Buildings does not publish a public ROAD layer. **[E/S]**
+
+**Closed 2026-08-22. Answer: no such layer exists.** Investigation only; no
+code was written or changed.
+
+**Why it was asked.** Sirko et al., *High-Resolution Building and Road
+Detection from Sentinel-2* (arXiv:2310.11622) demonstrates road detection from
+Sentinel-2 via a high-resolution teacher — the same method behind Open
+Buildings. Since the project's `paved_road` class is its weakest (over-predicted
+~2.4x, the top-2 confusion partner for all six other classes — see R1 and §5.4
+of the flood-track brief), an authoritative external road vector would be
+valuable. The question was whether roads ever shipped the way footprints did.
+
+**The paper itself says they did not. [S]** §7: *"Our evaluations focus on the
+building detection task and **we do not report metrics for the road detection
+and image super-resolution tasks.**"* On release it states only that
+***buildings*** data is publicly available. No road download URL appears
+anywhere in the paper.
+
+**Earth Engine namespace enumeration. [E]** Run live via
+`ee.data.listAssets` rather than by guessing asset names:
+
+```
+GOOGLE/Research/open-buildings/v1  -> polygons, polygons_FeatureView
+GOOGLE/Research/open-buildings/v2  -> polygons, polygons_FeatureView
+GOOGLE/Research/open-buildings/v3  -> polygons, polygons_FeatureView
+```
+
+Three folders, building tables only. Feature properties on `v3/polygons` are
+`['area_in_meters', 'confidence', 'full_plus_code', 'longitude_latitude']` —
+no road field. Open Buildings Temporal v1 bands, read live off
+`bd_EPSG_32720_2023_06_30`, are exactly
+`['building_fractional_count', 'building_height', 'building_presence']` —
+three bands, all buildings. The paper's road head is absent from the released
+product. Seven plausible road asset IDs were also probed
+(`.../v3/roads`, `.../v3/road_polygons`, `GOOGLE/Research/open-roads/v1`,
+`open-roads/v1/polylines`, `open_roads/v1`, `open-buildings-roads/v1`,
+`GOOGLE/Research/roads/v1`) — all returned `not found`. **[E]**
+
+**Distribution mirrors carry buildings only. [S]**
+`source.coop/cholmes/google-open-buildings` holds 1.8 billion building
+detections as PMTiles / GeoParquet (S2 and by-country) / FlatGeobuf / STAC,
+with per-feature attributes footprint, confidence, Plus Code, country ISO,
+quadkey, area. No linear features. Adjacent repos
+(`cholmes/google-buildings-tools`, `opengeos/open-buildings`) are
+format-conversion tooling over the same building data.
+`sites.research.google/gr/open-buildings` does not mention roads at all; its
+downloads are building polygons (178 GB), building points (48 GB), score
+thresholds, and tile metadata. On both that page and the temporal sub-page the
+**only** occurrence of the word "road" is inside the citation of the Sirko
+paper's title.
+
+**Honest limit on the search. [R]** Earth Engine's API has no server-side
+wildcard search. The check is therefore **exhaustive within the
+`open-buildings` namespace** (via `listAssets`, which enumerates rather than
+guesses) but **name-probing only outside it**. A Google road asset under some
+unrelated catalog path cannot be fully excluded by this method. Nothing in
+Google's own documentation, the paper, or the distribution mirrors points to
+one, so the residual probability is low — but it is not zero, and this is the
+one line of the entry that would justify reopening it.
+
+**Net:** the method is real and Google ran it at continental scale; they
+released one head of a multi-head model. The project's `paved_road` weakness
+gets no help from this source.
+
+### What IS available from Open Buildings — relevant to the vector-layer plan
+
+Recorded alongside DE1 because the negative answer above is likely to prompt
+"what about the buildings, then?", and the licence/coverage facts are the ones
+that decision needs.
+
+| Property | Value | Confidence |
+|---|---|---|
+| Licence | Dual: **CC-BY-4.0 OR ODbL v1.0** (user's choice) | [S] |
+| Inference area | 58M km², Africa / South Asia / Southeast Asia / Latin America & Caribbean, 140+ countries | [S] |
+| Footprints (v3) | 1.8 billion building detections; attributes: polygon, confidence, Plus Code, area_in_meters | [E] |
+| Temporal v1 | 4 m effective resolution (0.5 m rasters), annual **2016–2023**, 3 building bands | [S/E] |
+
+**All ten target countries verified live, not inferred from stated regions.**
+Building counts returned by `GOOGLE/Research/open-buildings/v3/polygons` within
+a ~1 km box over one urban point per country: **[E]**
+
+| Country (point) | Buildings | Country (point) | Buildings |
+|---|---|---|---|
+| India (Mumbai) | 1,234 | Indonesia (Jakarta) | 3,047 |
+| Kenya (Nairobi) | 913 | Rwanda (Kigali) | 3,042 |
+| Nigeria (Lagos) | 2,726 | South Africa (Cape Town) | 1,384 |
+| Ghana (Accra) | 1,606 | Vietnam (Ho Chi Minh City) | 2,269 |
+| Bangladesh (Dhaka) | 2,575 | Guatemala (Guatemala City) | 3,642 |
+
+Ten of ten covered with non-trivial counts. *The dual licence is worth noting
+against this project's OSM dependency: ODbL matches OSM's licence, so the two
+can be combined under one regime, while CC-BY-4.0 is the more permissive option
+if OSM-derived data is not mixed in. That choice is a licensing decision, not a
+technical one, and has not been made.*
+
+**Not investigated here:** whether Open Buildings footprints would actually
+improve the `dense_informal_roofing` / `sparse_informal_roofing` /
+`paved_road` confusion, or how they would be reconciled with the existing
+7-class taxonomy. Those are separate questions and remain open.
