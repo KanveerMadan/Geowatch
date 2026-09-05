@@ -70,19 +70,34 @@ OBSERVATION_QUALITY_SCALE_M = 60
 
 def mask_s2_clouds(image: ee.Image) -> ee.Image:
     """
-    Mask clouds using the Sentinel-2 QA60 band (opaque cloud + cirrus bits).
+    Mask clouds and no-data pixels using the Sentinel-2 SCL (Scene
+    Classification Layer), applied per-pixel via updateMask -- cheap,
+    no AOI-wide reduction, unlike compute_observation_quality's
+    aggregate stats.
 
-    PHASE 1 NOTE: this does NOT mask cloud shadow -- QA60 has no shadow
-    bit. Shadow detection now happens separately via SCL in
-    compute_observation_quality(). This function is kept for the
-    spectral compositing path only.
+    Cloud (SCL_CLOUD_CODES) and no-data (SCL_NODATA_CODES) pixels are
+    masked out -- not real reflectance. Cloud SHADOW pixels
+    (SCL_SHADOW_CODES) are deliberately LEFT IN: shadow is real (dim)
+    reflectance, not missing data, and Decision 13 treats it as a
+    sixth endmember term for item 21's unmixing solver rather than
+    something to discard upstream. Masking it here would silently
+    starve that solver of the pixels it's meant to see.
+
+    PHASE 2: replaces QA60 with SCL. QA60 has been deprecated/
+    zero-filled on newer processing baselines (C1), so this now shares
+    its basis with compute_observation_quality() instead of disagreeing
+    with it. Verified live (Dharavi AOI, 2026-01 to 2026-03,
+    get_sentinel2_collection): SCL is a native band on every image in
+    this collection, alongside QA60/QA10/QA20/MSK_CLDPRB/MSK_SNWPRB.
     """
-    qa = image.select("QA60")
-    cloud_bit_mask = 1 << 10
-    cirrus_bit_mask = 1 << 11
-    mask = qa.bitwiseAnd(cloud_bit_mask).eq(0).And(
-        qa.bitwiseAnd(cirrus_bit_mask).eq(0)
-    )
+    scl = image.select("SCL")
+    is_cloud = scl.eq(list(SCL_CLOUD_CODES)[0])
+    for code in list(SCL_CLOUD_CODES)[1:]:
+        is_cloud = is_cloud.Or(scl.eq(code))
+    is_nodata = scl.eq(list(SCL_NODATA_CODES)[0])
+    for code in list(SCL_NODATA_CODES)[1:]:
+        is_nodata = is_nodata.Or(scl.eq(code))
+    mask = is_cloud.Or(is_nodata).Not()
     return image.updateMask(mask).divide(10000).select(S2_BANDS, S2_BAND_NAMES)
 
 
@@ -171,6 +186,10 @@ def get_sentinel2_median_composite(
     PHASE 1 RENAME: formerly get_best_image() -- misleading name, it
     never selected a single least-cloudy image. Returns a median
     composite PLUS full provenance and observation-quality metadata.
+
+    PHASE 2: the composite's masking (via mask_s2_clouds) now uses SCL
+    rather than QA60, and deliberately preserves cloud-shadow pixels --
+    see mask_s2_clouds()'s docstring for why.
 
     Returns:
         dict with keys: image, provenance, observation_quality
