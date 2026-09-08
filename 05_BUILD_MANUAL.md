@@ -295,7 +295,74 @@ validate the method before scaling it.
 
 ---
 
-### 14. `category_area_pct` denominator ✅ **SETTLED**
+### 14. `category_area_pct` denominator ✅ **SETTLED — reasoning intact; ⚠️ amendment proposed, awaiting sign-off**
+
+> **Amendment proposed, not settled.** The core of this decision — known-pixel
+> denominator, mandatory `observed_fraction` sibling, and above all the rule
+> that distinct causes are never merged — survives the item 21 pilot untouched,
+> and the anti-merging rule is *strengthened* by it. What breaks is narrower:
+> **two of the three named components delegate to mechanisms that no longer
+> exist**, because Decision 13 is reopened. Four changes are proposed below.
+> Evidence: `06_UNMIXING_CEILING.md`. **Not re-settled.**
+>
+> **(a) Shadow's mechanism is orphaned.** This decision delegates shadow to
+> Decision 13 — *"solved as a sixth endmember term; five fractions renormalize
+> over the illuminated portion."* Under the item 21 re-scope there is no
+> unmixing solve and therefore no sixth term, so the field has no producer and
+> "illuminated portion" has no definition. A standalone shadow estimator is
+> needed (SCL class 3 plus solar geometry is the obvious candidate). Note also
+> that shadow is shakier than this decision assumes: the B-decomposition test
+> asked directly whether a dark spectrum was material or material-plus-shadow
+> and returned **indeterminate at 6.5–9.7% residual** across three independent
+> shadow references. Whatever produces this field should carry that caveat.
+>
+> **(b) "Low unmixing confidence" needs redefinition — and improves.** It is
+> currently specified as *"pixels where the solve is poorly constrained against
+> the endmember model."* With no solve and no endmember model, the field has no
+> definition at all. Under regression it becomes a genuine **prediction
+> interval** (quantile regression or ensemble spread), which is better founded
+> than a residual against a simplex. Rename accordingly; the concept survives
+> and strengthens.
+>
+> **(c) The taxonomy should split into two groups, along an axis already latent
+> in it.** This decision is fundamentally about **the denominator**: what counts
+> as observed. Shadow and cloud/nodata *remove a pixel from the denominator* —
+> that is what makes them observability. Estimate quality does not: such a pixel
+> was validly observed, stays in the denominator, and merely carries wide
+> uncertainty. The seam already exists here — the third field explicitly says it
+> is *"not folded into either the fractions or the coverage number"*, i.e. it is
+> already an estimate-quality field listed among two denominator-defining ones.
+>
+> | group | fields | touches the denominator? |
+> |---|---|---|
+> | **Observability** | shadow, cloud/nodata → feed `observed_fraction` | **yes — these define it** |
+> | **Estimate quality** | per-fraction confidence / prediction interval | **no — never** |
+>
+> Keeping them in one list invites a consumer to subtract ambiguity from
+> coverage, shrinking the denominator and reintroducing **exactly the C19 bias
+> direction** (less observed area silently reading as less flood-prone). That is
+> this decision's own founding failure, recreated one level up.
+>
+> **(d) The impervious/bare finding enters as a confidence marker on
+> `impervious_total` — NOT as a member of the observability list.** Measured
+> directly rather than inferred: ceiling R² **0.822** at documented S2 noise,
+> and **0.737** even in a bare-dominated arid scene. That is the **weakest
+> remaining boundary, recoverable**, and it inherits Decision 11's treatment of
+> the weakest boundary — its own confidence marker, never presented at the same
+> confidence as vegetation or water. It is explicitly **not** the
+> "unidentifiable in principle" case; that claim is earned only by `built`/
+> `paved` at 0.490. One conditional caveat carries with it: at 2× noise the arid
+> scene falls to 0.477, so the recoverability is contingent on radiometric
+> quality. Because regression emits prediction intervals natively, and those
+> widen precisely where impervious/bare ambiguity bites, this likely needs **no
+> new field at all** — the interval on `impervious_total` encodes it.
+>
+> **Downstream, flagged but deliberately NOT yet edited:** item 33's acceptance
+> criterion reads *"the three non-observation components are independently
+> readable"*, and the Part 6 header note at §"Part 6" describes the same
+> three-field contract. If (c) is accepted, both need rewording to the
+> two-group structure. **Left for a separate pass once this decision's wording
+> is confirmed.**
 
 **Chosen: known-pixel denominator. Observability reported as a mandatory
 companion field. Non-observation reported as three separate fields, never
@@ -429,7 +496,7 @@ decision's text.
 | 11 | Fraction taxonomy | Five disjoint fractions; `impervious_total` derived; scope boundary stated. ⚠️ *Amendment proposed: measure `impervious_total`, derive `paved` — principle intact, assignment reversed* |
 | 12 | SAM | Deleted; connected-components on fraction rasters deferred, named, unbuilt |
 | 13 | Endmembers | Option D constrained; corrected `paved` source; shadow as 6th term, renormalized. ⚠️ **REOPENED — pilot falsified the central assumption; `built`/`paved` unidentifiable at 1.70°** |
-| 14 | Denominator | Known-pixel; mandatory coverage field; shadow/cloud/low-confidence reported separately |
+| 14 | Denominator | Known-pixel; mandatory coverage field; shadow/cloud/low-confidence reported separately. ⚠️ *Amendment proposed: shadow mechanism re-pointed, low-confidence → prediction interval, taxonomy split into observability vs estimate-quality* |
 | 15 | Severity rule | Strong bar (confirmed unreachable/no consumer only); severity ≠ fix priority |
 | 16 | Planning user | Research audience |
 | 17 | Gate C | Closed via advisor review against D.7; planner protocol filed as unrun future work |
