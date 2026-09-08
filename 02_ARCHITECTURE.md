@@ -159,23 +159,55 @@ is not an error; it is the correct answer for a pixel that genuinely contains
 both. There is no argmax, no winner, nothing to be a magnet *of*. Ambiguity stays
 proportional instead of amplifying.
 
-Three further differences:
+**This argument survives, with one part of it removed.** Eliminating argmax does
+eliminate the magnet failure mode, and that reasoning is untouched. But the
+worked example presupposes that the `built`/`paved` split *can* be resolved into
+those numbers. Measurement has since shown it cannot at 10 m — see the corrected
+bullets below and `06_UNMIXING_CEILING.md`. Proportional ambiguity is still
+better than a coin-flip label; it is not the same as a correct decomposition.
 
-- **The classes are no longer sub-pixel.** A roof is 3–6 m, a courtyard often
-  5–15 m — comparable to or larger than a 10 m cell. Roads at 4.5 m were the
-  pathological case, and that class is gone.
-- **They do not compete for the same physical space.** Roads and roofs were
-  interleaved at sub-pixel scale within the same square metre. Roofs and
-  courtyards are adjacent but distinct areas.
-- **The error is bounded where it matters most.** Misallocation between `built`
-  and `paved` leaves `impervious_total` unchanged — the flood model, the primary
-  consumer, is unaffected. The error surfaces only in morphology, which is
-  exactly where the footprint layer independently checks it.
+Three further differences were claimed here. **Two of them have since been
+falsified by measurement** — see `06_UNMIXING_CEILING.md`. They are corrected in
+place below rather than deleted, because the original wording is load-bearing
+for arguments made elsewhere in this document and in Decision 13.
 
-**The residual risk, stated honestly:** if `built` systematically absorbs `paved`
-in dense fabric, morphology metrics distort — density reads higher,
-footprint-derived characterization skews. Real, not hypothetical. Which is why
-the cross-check below is a deliberate build item, not an afterthought.
+- **The classes are no longer sub-pixel — CORRECTED, this was wrong.** The
+  original read: *"A roof is 3–6 m, a courtyard often 5–15 m — comparable to or
+  larger than a 10 m cell."* A 3–6 m roof is **smaller** than a 10 m cell; the
+  sentence conceded the problem and then concluded the opposite. Measured
+  square-equivalent footprint sizes are **6.9 m (Khayelitsha), 10.6 m
+  (Dharavi), 12.4 m (formal Cape Town)**. And "comparable to a 10 m cell" is not
+  sufficient: with arbitrary grid phase, the formal suburbs' 12.4 m buildings
+  still yield only **4.97%** fully-covered pixels. Roads at 4.5 m were the
+  pathological case, but removing that class did not remove the pathology.
+- **They do not compete for the same physical space — geometrically true, and it
+  does not help.** Roofs and courtyards genuinely are adjacent distinct areas
+  rather than interleaved within a square metre. But at 10 m a *single cell
+  spans both*, so the mixing is sub-pixel whether or not the surfaces are.
+  Measured pure-pixel yield across three AOIs: **1.02–5.43%**.
+- **The error is bounded where it matters most — CORRECTED, this was wrong.**
+  The original claim was that misallocation between `built` and `paved` leaves
+  `impervious_total` unchanged, so the flood model is unaffected. That holds for
+  a **swap**, which cancels in the sum. The measured error is not a swap.
+  Changing only the `built` endmember between two defensible choices moves
+  `impervious_total` by **+81.6% (Dharavi), −27.1% (Khayelitsha), +16.2% (formal
+  Cape Town)**. In Dharavi both fractions rose and *compounded*; nothing
+  cancelled. The direction is not even consistent across AOIs, so no calibration
+  constant can correct it. **The primary consumer is affected.**
+
+**The residual risk is no longer a risk — it is a measurement.** The original
+text said that if `built` systematically absorbs `paved` in dense fabric,
+morphology metrics distort, and called this "real, not hypothetical." It is now
+quantified, and it is worse than the framing suggested: `built` and `paved` are
+separated by **1.70°** of spectral angle against a sensor noise floor of ~0.7°,
+so the split is not low-confidence — it is **unidentifiable**. Worse, the
+institutional-roof endmember that Decision 13's spec would actually produce sits
+4.69° from `paved`, versus 1.66° for a realistic informal-roof endmember:
+**using it manufactures separability that does not physically exist**, yielding
+a confident-looking split that is an artifact.
+
+The cross-check below remains a deliberate build item, and becomes more
+important rather than less.
 
 ### The built-vs-footprint cross-check
 
