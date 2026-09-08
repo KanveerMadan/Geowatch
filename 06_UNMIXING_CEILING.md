@@ -221,6 +221,41 @@ becomes internal to the class and no longer needs resolving. The residual cost
 the WorldCover Africa failure mode the architecture already cites (47.1%
 built-up user's accuracy, bare compacted earth called built).
 
+### 3.1 The new weakest boundary, measured directly [E]
+
+Reading the 0.964-vs-0.822 gap as evidence about impervious-vs-bare is an
+*inference from two numbers*, not a measurement of that split. Because it was
+about to be used to support a strong claim, it was measured directly
+(`ceiling_impervious_bare.py`), with the decision rule fixed in advance:
+below 0.50 → unidentifiable in principle, the same claim as built/paved; at or
+above 0.70 → the weakest remaining boundary, recoverable but warranting its own
+confidence marker; between → indeterminate.
+
+Control passed first (vegetation R² = 0.974).
+
+| scene | bare mean | R² @ 0.005 (ridge / gbt) | R² @ 0.010 | R² @ 0.020 |
+|---|---|---|---|---|
+| **realistic (primary)** | 0.294 | **0.822 / 0.867** | 0.615 | 0.333 |
+| pairwise impervious+bare | 0.496 | 0.859 / 0.923 | 0.753 | 0.631 |
+| bare-dominated (arid) | 0.676 | **0.737 / 0.813** | 0.477 | 0.233 |
+
+**Verdict: the weakest remaining boundary — recoverable, needs a confidence
+marker. NOT unidentifiable.** At documented S2 noise the split clears 0.70 even
+in the bare-dominated arid stress case. Against built/paved's 0.490 at the same
+noise, these are categorically different situations, and the "no remediation
+ever" framing that applies to built/paved **does not** apply here.
+
+Two corrections to expectations stated before the run:
+
+- The pairwise scene was pre-registered as *"strictly harder than any real
+  scene, a conservative lower bound."* It scored **higher** (0.859 vs 0.822) —
+  removing vegetation and water removed variance sources rather than adding
+  difficulty. The stated expectation was wrong.
+- **The real sensitivity is to radiometric noise, not to bare dominance.** At
+  2× noise the arid scene falls to 0.477, into unidentifiable territory. So the
+  earned claim is conditional: *recoverable at documented radiometry, degrading
+  sharply if radiometric quality drops* — not a blanket verdict either way.
+
 ---
 
 ## Part 4 — Consequences for settled decisions
@@ -375,6 +410,7 @@ which derived.
 | `regress_built_fraction_spatial.py` | + texture + temporal variance |
 | `regress_scale_sweep.py` | Scale sweep, PanTex, SAR, combined label |
 | `ceiling_built_fraction.py` | **The ceiling computation** |
+| `ceiling_impervious_bare.py` | Dedicated ceiling for the impervious/bare split |
 
 Every script carries its pre-registered thresholds as module constants fixed
 before results existed, and documents any deviation inline.
