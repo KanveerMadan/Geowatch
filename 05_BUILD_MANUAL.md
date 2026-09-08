@@ -108,7 +108,22 @@ into a real number for one city.
 *Seven decisions. All settled. Twelve technical items were blocked behind
 these; none of this was typing.*
 
-### 11. Fraction taxonomy ✅ **SETTLED**
+### 11. Fraction taxonomy ✅ **SETTLED — governing principle intact; one amendment proposed**
+
+> **Amendment proposed, not settled.** The governing principle below — *measure
+> disjoint things, derive overlapping ones* — survives the item 21 pilot
+> unchanged and is if anything vindicated by it. What the evidence contradicts is
+> **which** quantities are measured and which derived: this decision measures
+> `built` and `paved` and derives `impervious_total`, but `built` vs `paved` is
+> separated by only **1.70°** of spectral angle against a ~0.7° noise floor and
+> is therefore unidentifiable, while `impervious_total` is recoverable
+> (ceiling R² 0.822 vs 0.490). The proposal is to measure `impervious_total`,
+> take `built` from vector footprints directly, and derive `paved` — same
+> principle, reversed assignment. See item 21 and `06_UNMIXING_CEILING.md`.
+>
+> The note below that "`built` vs. `paved` is the weakest boundary of the five"
+> was directionally right and understated: it is not weak, it is unidentifiable.
+
 Fractions (disjoint, sum to ~1):
 built — roofed structure
 paved — hard surface, unroofed
@@ -184,7 +199,24 @@ engineering, not a research problem.
 
 ---
 
-### 13. Global endmember strategy ✅ **SETTLED — Option D, constrained**
+### 13. Global endmember strategy ⚠️ **REOPENED BY EVIDENCE — was SETTLED (Option D, constrained)**
+
+> **The pilot this decision required has run, and it falsified the decision's
+> central assumption.** Both risks this decision left explicitly open (below)
+> have now fired. `built` and `paved` are separated by **1.70°** of spectral
+> angle against a ~0.7° sensor noise floor, so the constrained extraction cannot
+> produce a usable `built` endmember for informal fabric by any method — three
+> extraction families were tried and failed, and the failure was then shown to
+> be an information limit rather than a method problem.
+>
+> Worse than a null result: the institutional-roof endmember this spec would
+> actually produce sits **4.69°** from `paved`, versus **1.66°** for a realistic
+> informal-roof endmember. **Following this spec manufactures separability that
+> does not physically exist**, yielding a confident-looking split that is an
+> artifact.
+>
+> The text below is preserved for provenance. See item 21 for the proposed
+> re-scope and `06_UNMIXING_CEILING.md` for the evidence. **Not re-settled.**
 
 **The split:**
 
@@ -394,9 +426,9 @@ decision's text.
 
 | # | Decision | Outcome |
 |---|---|---|
-| 11 | Fraction taxonomy | Five disjoint fractions; `impervious_total` derived; scope boundary stated |
+| 11 | Fraction taxonomy | Five disjoint fractions; `impervious_total` derived; scope boundary stated. ⚠️ *Amendment proposed: measure `impervious_total`, derive `paved` — principle intact, assignment reversed* |
 | 12 | SAM | Deleted; connected-components on fraction rasters deferred, named, unbuilt |
-| 13 | Endmembers | Option D constrained; corrected `paved` source; shadow as 6th term, renormalized |
+| 13 | Endmembers | Option D constrained; corrected `paved` source; shadow as 6th term, renormalized. ⚠️ **REOPENED — pilot falsified the central assumption; `built`/`paved` unidentifiable at 1.70°** |
 | 14 | Denominator | Known-pixel; mandatory coverage field; shadow/cloud/low-confidence reported separately |
 | 15 | Severity rule | Strong bar (confirmed unreachable/no consumer only); severity ≠ fix priority |
 | 16 | Planning user | Research audience |
@@ -488,7 +520,87 @@ Khayelitsha's 8.35 km/km².
 low-coverage AOI is visibly flagged end-to-end through to the UI; Lagos (0.19)
 and Khayelitsha (8.35) produce visibly different scores.
 
-### 21. Spectral unmixing → fractions 🔓 *(needs 11 ✅ and 13 ✅ — both settled)*
+### 21. Spectral unmixing → fractions ⚠️ **PILOT COMPLETE — RE-SCOPE PROPOSED, AWAITING DECISION**
+
+> **The sequencing requirement below was honoured, and the pilot returned a
+> negative result.** This item as originally specified is not buildable. The
+> original text is preserved below the rule for provenance; the re-scope
+> proposed above it has **not** been signed off and this item is not settled.
+> Full evidence: `06_UNMIXING_CEILING.md`.
+
+#### What the pilot established
+
+Seven pre-registered methods failed to recover per-pixel `built` fraction for
+small-structure informal fabric. Measured pairwise spectral angles put every
+hard surface — institutional roof, informal roof, asphalt, bare soil — inside a
+cone **under 5° wide**, against a Sentinel-2 L2A noise floor of ~0.7°.
+`built` vs `paved` is **1.70°**.
+
+Simulating from those measured endmembers under conditions strictly *more
+favourable* than reality (exact labels, linear mixing, fixed endmembers, no
+shadow, no cross-city transfer), the best achievable R² for `built` fraction is
+**0.49–0.56** — against a success bar of 0.50. Observed real values were
+0.35–0.41 within-AOI and 0.08–0.18 cross-city.
+
+**This is an information limit, not a method-selection problem.** No unmixing
+solver, endmember library or feature set can exceed it.
+
+#### Proposed re-scope
+
+**1. Retire the `built`/`paved` split as a measured product.** State it as a
+non-goal with the ceiling as its justification. Decision 11 already calls this
+"the weakest boundary of the five"; the measurement shows it is not weak but
+*unidentifiable*.
+
+**2. Invert where each quantity is estimated.** Decision 11 measures `built`
+and `paved` and derives `impervious_total`. The evidence says reverse it, while
+keeping Decision 11's governing principle — *measure disjoint things, derive
+overlapping ones* — fully intact:
+
+| Fraction | Source | Ceiling R² |
+|---|---|---|
+| **built** | **vector footprints, directly** | n/a — not estimated from spectra |
+| **impervious_total** | spectral regression | 0.822 |
+| **paved** | derived: `impervious_total − built`, with explicit uncertainty | — |
+| **vegetation** | spectral regression | 0.974 |
+| **water** | spectral regression | 0.965 |
+| **bare** | residual | — |
+
+The first row is the substantive move. Open Buildings coverage **is** a `built`
+estimate — VHR-derived, Sentinel-2-independent, and it served as the regression
+*label* throughout the pilot. Predicting it from spectra re-derives, badly, what
+the vector layer already supplies well.
+
+**3. Revised acceptance.** Fractions produced for at least one formal and one
+informal AOI; sum to ~1 within tolerance over the observed portion; documented
+**provenance per fraction** (training-data provenance where regression replaces
+an endmember); per-fraction confidence with **`paved` explicitly marked derived,
+never measured**; and `impervious_total` validated against a held-out AOI rather
+than against a same-AOI split.
+
+**4. Blocking gap, stated plainly.** The 0.822 `impervious_total` ceiling is
+*simulated, not achieved*. Testing it needs a real impervious label, and the
+only available paved source — unroofed OSM polygons — covers **0.23–1.82%** of
+the pilot AOIs against a built mean of 19–30%. **This item cannot be closed
+until that label exists.** It is a data-sourcing problem (VHR-derived or
+hand-annotated paved labels on a sample), not a method problem.
+
+#### What this costs downstream
+
+- **Flood risk** — unaffected. Its stated input is `impervious_total` plus
+  vector conduits (§6 outputs table; item 26).
+- **Morphological characterisation** — unaffected. Item 23 separates formal from
+  informal *without any spectral input*.
+- **Change over time** — improved. A stable estimator of a recoverable quantity
+  yields more defensible deltas than an unstable estimator of an unrecoverable
+  one.
+- **Roofing material per building** — was never deliverable from this data.
+  Should be stated out of scope explicitly.
+
+---
+
+*Original specification, preserved for provenance. Superseded by the pilot
+result above.*
 
 **What:** linear unmixing per 10 m pixel into the five fractions, per Decision
 13's constrained-extraction spec in full.
