@@ -1,6 +1,14 @@
 """
 Item 21 Phase 0 — a real impervious-fraction label from free VHR imagery.
 
+SITE-PARAMETERISED. This script originally hard-coded Old Fadama / Agbogbloshie
+(Accra). It now takes its site from `vhr_sites.SITES`, selected by the GW_SITE
+environment variable and DEFAULTING TO `oldfadama`, so running it with no
+arguments reproduces the Phase 0 result unchanged. The per-site configuration
+and the hand-assigned patch labels both live in `vhr_sites.py`; the method
+below -- features, patch-level accuracy protocol, refit -- is identical for
+every site. See `vhr_sites.py` for the re-run's pre-registration.
+
 Why
 ---
 06_UNMIXING_CEILING.md establishes that `impervious_total` has a simulated
@@ -82,76 +90,25 @@ from sklearn.metrics import classification_report, confusion_matrix
 import diagnose_pure_pixels as pure_diag
 import ee
 
-SCRATCH = os.environ.get(
-    "GW_SCRATCH",
-    "/private/tmp/claude-501/-Users-kanveermadan-geowatch/"
-    "f0fb6a5f-62d2-4c09-93c4-806575bd5530/scratchpad")
-UAV = os.path.join(SCRATCH, "oldfadama.tif")
+import vhr_sites
 
-AOI_BBOX = [-0.225852, 5.541892, -0.214147, 5.556530]
-S2_START, S2_END = "2024-06-01", "2024-11-30"
+SITE = vhr_sites.site()
 
-WORKING_RES_M = 0.20          # classify at 20 cm
-NATIVE_RES_M = 0.05
-DS = int(round(WORKING_RES_M / NATIVE_RES_M))   # 4x downsample
-PATCH_NATIVE = 100            # 5 m patches, as rendered on the contact sheets
+SCRATCH = SITE["scratch"]
+UAV = SITE["raster_path"]          # kept as `UAV` for interface stability;
+                                   # note the Nairobi site is satellite, not UAV
 
-CLASSES = ["roof", "hard_unroofed", "vegetation", "bare", "water"]
-NFEAT = 14
-IMPERVIOUS = {"roof", "hard_unroofed"}
+AOI_BBOX = SITE["bbox"]
+S2_START, S2_END = SITE["s2_start"], SITE["s2_end"]
 
-# --- hand assignments, made by viewing the rendered contact sheets ---------
-#
-# IMPORTANT — these are the SECOND pass. The first pass was made at 1x zoom and
-# contained real errors, which a held-out run exposed: bare recall was 0.29 and
-# 2412 of 4375 bare pixels were predicted roof. Re-inspecting at 2x showed the
-# classifier was frequently right and the labels wrong -- patches 14 and 63 are
-# flat ROOFS with visible seams, and 50 and 55 are WATER with floating rubbish,
-# all four of which the first pass called bare. Every patch was therefore
-# re-assigned at 2x, and anything spanning two classes was discarded rather
-# than forced. Discard lists below are deliberately long for that reason.
-#
-# sheet 1 = 64 random patches (patch_meta.json)
-SHEET1 = {
-    "roof": [0, 1, 3, 4, 5, 6, 7, 8, 10, 11, 12, 14, 16, 17, 18, 19, 24, 27,
-             29, 31, 33, 44, 47, 51, 52, 54, 61, 63],
-    "hard_unroofed": [13, 38, 46],
-    "vegetation": [20, 23, 28, 35, 48, 57, 59],
-    "bare": [37, 40, 41, 53, 56, 58],
-    "water": [43, 50, 55],
-}
-# discarded as mixed/ambiguous: 2,9,15,21,22,25,26,30,32,34,36,39,42,45,49,60,62
-# sheet 2 = 36 targeted patches (patch_meta2.json)
-SHEET2 = {
-    "water": [0, 1, 2, 3, 4, 6, 7, 10, 11, 12],
-    "hard_unroofed": [13, 14, 16, 17, 21, 23],
-    "vegetation": [15, 24, 26, 28, 29, 30, 31, 32, 33, 34, 35],
-    "bare": [],
-    "roof": [19, 20],
-}
-# discarded as mixed/ambiguous: 5,8,9,18,22,25,27
-# sheet 3 = 36 patches from neighbourhoods of confirmed bare/hard (patch_meta3.json)
-SHEET3 = {
-    "bare": [1, 2, 13, 14],
-    "hard_unroofed": [4, 8, 9, 18, 19, 20, 24, 25, 26, 27, 30, 31, 32, 35],
-    "roof": [7, 11, 17, 33, 34],
-    "vegetation": [22],
-    "water": [],
-}
-# discarded as mixed/ambiguous: 0,3,5,6,10,12,15,16,21,23,28,29
-# sheet 4 = 40 CLASSIFIER-PROPOSED bare/hard candidates (patch_meta4.json).
-# The classifier proposed; every one was still verified by eye and 15 of 40
-# were rejected. Proposing candidates for a rare class is far more efficient
-# than random sampling -- bare is ~10% of this scene -- and does not bias the
-# label, because acceptance is a human decision made on the imagery.
-SHEET4 = {
-    "bare": [1, 5, 12, 20, 25, 29, 31, 32, 33, 35, 37],
-    "hard_unroofed": [4, 8, 19, 22, 28, 34, 38],
-    "roof": [9, 13, 14, 15, 17, 23, 27],
-    "vegetation": [],
-    "water": [],
-}
-# discarded: 0,2,3,6,7,10,11,16,18,21,24,26,30,36,39
+WORKING_RES_M = SITE["working_res_m"]
+NATIVE_RES_M = SITE["native_res_m"]
+DS = SITE["ds"]                    # native -> working downsample factor
+PATCH_NATIVE = SITE["patch_native"]
+
+CLASSES = vhr_sites.CLASSES
+NFEAT = vhr_sites.NFEAT
+IMPERVIOUS = vhr_sites.IMPERVIOUS
 
 
 def features(rgb):
@@ -201,20 +158,18 @@ def read_patch(src, r, c, size=PATCH_NATIVE):
 
 
 def build_training():
-    meta1 = {m["i"]: m for m in json.load(
-        open(os.path.join(SCRATCH, "patch_meta.json")))}
-    meta2 = {m["i"]: m for m in json.load(
-        open(os.path.join(SCRATCH, "patch_meta2.json")))}
-    meta3 = {m["i"]: m for m in json.load(
-        open(os.path.join(SCRATCH, "patch_meta3.json")))}
-    meta4 = {m["i"]: m for m in json.load(
-        open(os.path.join(SCRATCH, "patch_meta4.json")))}
+    """Load every hand-assigned patch for the active site.
 
+    Sheets are (meta_filename, {class: [patch indices]}) pairs from
+    `vhr_sites`. Indices absent from every list were DISCARDED as mixed or
+    ambiguous rather than forced into a class.
+    """
     X, y, pid = [], [], []
     pcount = 0
     with rasterio.open(UAV) as src:
-        for sheet, meta in ((SHEET1, meta1), (SHEET2, meta2), (SHEET3, meta3),
-                            (SHEET4, meta4)):
+        for fname, sheet in SITE["sheets"]:
+            meta = {m["i"]: m for m in json.load(
+                open(os.path.join(SCRATCH, fname)))}
             for cls, idxs in sheet.items():
                 for i in idxs:
                     m = meta[i]
@@ -226,13 +181,19 @@ def build_training():
                     y.append(np.full(len(F), CLASSES.index(cls)))
                     pid.append(np.full(len(F), pcount))
                     pcount += 1
+    if not X:
+        raise SystemExit(f"no labelled patches for site {SITE['key']!r}")
     return (np.vstack(X), np.concatenate(y), np.concatenate(pid), pcount)
 
 
 def main():
     print("=" * 74)
-    print("ITEM 21 PHASE 0 — VHR impervious label, Old Fadama / Accra")
+    print(f"ITEM 21 PHASE 0 — VHR impervious label, {SITE['label']}")
     print("=" * 74)
+    print(f"  site={SITE['key']}  sensor={SITE['sensor']}")
+    print(f"  acquired={SITE['acquired']}  native={NATIVE_RES_M} m  "
+          f"working={WORKING_RES_M} m  patch={SITE['patch_m']} m")
+    print(f"  S2 composite window {S2_START}..{S2_END}")
 
     X, y, pid, npatch = build_training()
     print(f"\ntraining: {npatch} hand-assigned patches, {len(X)} pixels "
@@ -289,11 +250,22 @@ def main():
                                       n_jobs=-1, random_state=0,
                                       class_weight="balanced")
     clf_full.fit(X, y)
-    np.save(os.path.join(SCRATCH, "vhr_classifier_classes.npy"),
+    np.save(os.path.join(SCRATCH, f"vhr_classes_{SITE['key']}.npy"),
             np.array(CLASSES))
     import pickle
-    with open(os.path.join(SCRATCH, "vhr_clf.pkl"), "wb") as fh:
+    with open(os.path.join(SCRATCH, f"vhr_clf_{SITE['key']}.pkl"), "wb") as fh:
         pickle.dump(clf_full, fh)
+    # Persist the measured label quality so the regression step reads it
+    # rather than having it retyped -- the pre-registered de-confounding gate
+    # in `vhr_sites` is checked against this number.
+    metrics = {"site": SITE["key"], "n_patches": npatch,
+               "five_class_acc": acc, "binary_acc": binacc,
+               "precision": tp / (tp + fp) if tp + fp else None,
+               "recall": tp / (tp + fn) if tp + fn else None}
+    with open(os.path.join(SCRATCH,
+                           f"vhr_label_metrics_{SITE['key']}.json"), "w") as fh:
+        json.dump(metrics, fh, indent=2)
+
     print(f"\nclassifier refit on all {npatch} patches and saved")
     print(f"held-out accuracy above is the honest estimate of label quality")
 
