@@ -115,10 +115,13 @@ TRAINING data path" and the preview path "is explicitly NOT the training data
 source anymore" — aspirational and wrong, describing a migration the training
 code never adopted.
 
-**Relevant to Decision 13's reflectance precondition:** the 6-band float32
-tiler is a prerequisite for unmixing (item 21), not a retired path — the
+**Relevant to the float32 reflectance path (Decision 13 — REOPENED BY EVIDENCE):**
+the 6-band float32 tiler is a prerequisite for item 21, not a retired path — the
 dual-stem classifier that consumed it is dead, but the tiler itself produces
-exactly the physical-reflectance input the new architecture requires.
+exactly the physical-reflectance input the new architecture requires. This holds
+independent of how item 21's re-scope resolves: both the original unmixing solve
+and the proposed `impervious_total` regression read the float32 multi-band tile,
+never the stretched 8-bit preview.
 
 ### C22's consequence claim [E] ❌ REFUTED
 Predicted no-data pixels would render as *maximum* susceptibility. Measured: mean
@@ -221,10 +224,12 @@ imports only `generate_rgb_preview_tiles`. Can only fire if
 
 **Deleted** — the training path is being rebuilt. **Correction from
 consolidation pass:** the 6-band float32 tiler itself is not being retired —
-it is a prerequisite for Decision 13's unmixing (item 21), which requires the
-float32 reflectance path rather than the stretched-preview path. What is
-deleted is the dual-stem classifier that used to consume the tiler's output,
-not the tiler.
+it is a prerequisite for item 21, which requires the float32 reflectance path
+rather than the stretched-preview path. What is deleted is the dual-stem
+classifier that used to consume the tiler's output, not the tiler. Decision 13
+is now REOPENED BY EVIDENCE and item 21's re-scope is awaiting decision, but
+this correction is unaffected: the re-scope's `impervious_total` regression
+needs the same float32 path, and C3's fate stays DELETED either way.
 
 ### C6 — `get_osm_features` returns `None` for both "no roads" and "API failed" [S]
 The docstring claims `None` means the request failed; false. A confirmed-zero AOI
@@ -313,7 +318,19 @@ epistemic-contract cluster below) are rewritten by Decision 14, not merely
 carried forward unchanged. See the Part 6 translation note at the end of this
 section.*
 
-### The epistemic contract (Decision 14 — SETTLED, spec rewritten below)
+### The epistemic contract (Decision 14 — SETTLED, reasoning intact; ⚠️ amendment PROPOSED, awaiting sign-off)
+
+*The core of Decision 14 — known-pixel denominator, mandatory `observed_fraction`
+sibling, and the rule that distinct causes are never merged — is settled and, per
+the item 21 pilot, strengthened. What is proposed (not settled) is four
+field-spec changes that follow from the Decision 13 reopen: a standalone shadow
+estimator (the sixth-endmember mechanism it delegated to no longer exists);
+renaming "low unmixing confidence" to a regression prediction interval; splitting
+the three fields into an observability group (shadow, cloud/nodata — define the
+denominator) and an estimate-quality group (per-fraction confidence — never
+touches it); and carrying the impervious/bare boundary as a confidence marker on
+`impervious_total`. See `05_BUILD_MANUAL.md` Decision 14 and `06_UNMIXING_CEILING.md`.
+None of this changes the fate of the findings below — they SURVIVE regardless.*
 
 **C19 — Imperviousness deflated by the unknown rate** [E]
 Emitted 41.68; recomputed with known-pixel denominator **56.13**. Factor
@@ -582,12 +599,17 @@ selection. **Cannot reach another epoch without editing the constant** — while
 `aggregate_max("year")` then filter. It would pick up newer epochs
 automatically.*
 
-**Relevant to Decision 13's validation gate:** GHS-BUILT-S is used there as a
-(weaker, non-independent) reference for `built` fraction validation. This
-finding means the reference is pinned to a 2020 epoch regardless of which
-Sentinel-2 composite date the unmixing solve uses — a real, separate
-temporal-mismatch caveat for that validation step, distinct from the
-lineage-independence caveat already noted there.
+**Relevant to Decision 13's validation gate (Decision 13 — REOPENED BY
+EVIDENCE):** as originally specified, GHS-BUILT-S is a (weaker, non-independent)
+reference for `built` fraction validation, and this finding means that reference
+is pinned to a 2020 epoch regardless of the Sentinel-2 composite date — a real
+temporal-mismatch caveat, distinct from the lineage-independence caveat already
+noted there. **This role is conditional on the item 21 decision, awaiting
+sign-off:** the proposed re-scope takes `built` from vector footprints and does
+not spectrally estimate or GHS-validate it, in which case GHS-BUILT-S is an audit
+target (as in commit `5331f0a`) rather than a validation reference. The
+epoch-pin caveat applies wherever GHS is used as a reference under either
+outcome.
 
 *Update (commit `5331f0a`, GHS-BUILT-S audit): the collection was verified live
 — twelve epochs (1975–2030 by 5) are present, at 100 m Mollweide. The pin is
