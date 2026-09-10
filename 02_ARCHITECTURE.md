@@ -43,7 +43,15 @@ the old architecture was least equipped to deliver.
 
 ---
 
-## 3. The fraction taxonomy (Decision 11 — SETTLED)
+## 3. The fraction taxonomy (Decision 11 — SETTLED; amendment proposed)
+
+*The governing principle below — measure disjoint things, derive overlapping
+ones — is settled and, per the item 21 pilot, vindicated. What the pilot
+contradicts is **which** quantities are measured and which derived: it proposes
+measuring `impervious_total`, taking `built` from vector footprints directly,
+and deriving `paved`. Same principle, reversed assignment. Proposed, not
+settled — see `05_BUILD_MANUAL.md` Decision 11 and item 21, and
+`06_UNMIXING_CEILING.md` §4.3.*
 
 ### The five fractions
 
@@ -309,7 +317,20 @@ already supply more cleanly. **Do not build it.**
 
 ## 5. Component detail
 
-### 5.1 Spectral unmixing → continuous fractions (Decision 13 — SETTLED)
+### 5.1 Spectral unmixing → continuous fractions (Decision 13 — REOPENED BY EVIDENCE)
+
+> **The 2–3 city pilot this section required has run, and it falsified the
+> central assumption.** Both risks left explicitly open below have fired.
+> `built` and `paved` are separated by **1.70°** of spectral angle against a
+> ~0.7° sensor noise floor, so the constrained extraction cannot produce a
+> usable `built` endmember for informal fabric by any method — three extraction
+> families were tried and failed, and the failure is an information limit, not
+> a method problem. Worse, the institutional-roof endmember this spec would
+> produce sits **4.69°** from `paved` versus **1.66°** for a realistic
+> informal-roof endmember, so following the spec manufactures separability that
+> does not physically exist. The text below is preserved for provenance. See
+> item 21 in `05_BUILD_MANUAL.md` for the proposed re-scope (awaiting decision)
+> and `06_UNMIXING_CEILING.md` for the evidence. **Not re-settled.**
 
 Model each 10 m pixel as a linear mixture of endmembers; solve for per-pixel
 abundance fractions via constrained least-squares (non-negativity,
@@ -427,25 +448,35 @@ screening-scale answers, not a limitation that went unsolved.
 
 ---
 
-## 7. Decisions — Part 3, all SETTLED
+## 7. Decisions — Part 3
 
 Full reasoning for every decision lives in `05_BUILD_MANUAL.md`, Part 3. This
 section is a pointer, not a duplicate, so the two documents cannot drift out
 of sync with each other.
 
-- **Decision 11 — Fraction taxonomy.** Settled. §3 above.
+Decisions 12, 15, 16 and 17 are settled. **Decision 13 is reopened by the item
+21 pilot; Decisions 11 and 14 keep their settled reasoning but carry proposed
+amendments awaiting sign-off.**
+
+- **Decision 11 — Fraction taxonomy.** Settled — governing principle intact.
+  Amendment proposed: measure `impervious_total`, take `built` from vector
+  footprints, derive `paved` (same principle, reversed assignment). §3 above.
 - **Decision 12 — Does SAM survive?** Settled: deleted. Nothing in §6's
   outputs table consumes a segment. The one genuine gap found under
   stress-testing — object-level tracking of non-building features, e.g. water
   bodies — is answered by connected-component labeling on thresholded
   unmixing rasters, named as a deferred, unbuilt forward reference, not by
   keeping SAM.
-- **Decision 13 — Global endmember strategy.** Settled: Option D, constrained.
-  §5.1 above.
+- **Decision 13 — Global endmember strategy.** REOPENED BY EVIDENCE (was
+  settled: Option D, constrained). The pilot falsified the central assumption —
+  `built`/`paved` is unidentifiable at 1.70° against a ~0.7° noise floor. See
+  item 21 for the proposed re-scope, awaiting decision. §5.1 above.
 - **Decision 14 — The `category_area_pct` denominator.** Settled: known-pixel
   denominator, mandatory observed-fraction field, shadow / cloud-nodata /
   low-confidence unmixing reported as three separate fields, never merged
-  into one "unknown."
+  into one "unknown." Reasoning intact; a field-spec amendment is proposed
+  (four changes, following from the Decision 13 reopen) and awaits sign-off —
+  see `05_BUILD_MANUAL.md` Decision 14.
 - **Decision 15 — Severity re-rating rule.** Settled: downgrade only on
   confirmed unreachability or confirmed absence of a consumer, never on
   "never observed to fire" alone. Severity and fix priority are separate
@@ -488,9 +519,13 @@ field specs) — see `05_BUILD_MANUAL.md` Part 6's translation note.
 - **The sensor limit remains.** Fractions and vector are honest accommodations,
   not a resolution fix. If the actual need is street-level surface material in
   informal settlements, 10 m optical cannot deliver it.
-- **Decision 13's endmember strategy is unvalidated until the pilot runs.** If
-  global endmembers cannot be made to work even in constrained form, that
-  component weakens substantially and the plan needs revisiting.
+- **Decision 13's endmember strategy did not survive its pilot.** The 2–3 city
+  pilot ran; global endmembers could not be made to work even in constrained
+  form, because `built`/`paved` is unidentifiable at 10 m (1.70° against a
+  ~0.7° noise floor). Decision 13 is reopened and item 21's re-scope — measure
+  `impervious_total`, take `built` from vector footprints, derive `paved` — is
+  proposed and awaiting decision. See `05_BUILD_MANUAL.md` items 13 and 21 and
+  `06_UNMIXING_CEILING.md`.
 - **No global independent gold set exists.** Confirmed dead end. The held-out
   firewall and intra-annotator test-retest mitigate single-annotator risk; neither
   eliminates it, and neither produces a number meaning what Cohen's kappa means.
