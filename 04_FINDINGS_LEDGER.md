@@ -536,9 +536,11 @@ single-city run.
 ## NEEDS FATE — flagged during consolidation, not yet triaged
 
 *C34–C38 were logged as "NEW findings from Part 1" in the original ledger but
-never received a fate category, never appeared in the summary table, and have
-no corresponding build item. This is a real gap, flagged during the Part 3
-consolidation pass — it does not resolve on its own and needs the same triage
+never received a fate category. They now carry a summary-table row
+(NEEDS FATE, 5) but still no assigned fate. Partial progress since: C34 and C35
+are scheduled as `05_BUILD_MANUAL.md` item 47, and the GHS-BUILT-S audit
+(commit `5331f0a`) has verified the asset that C36 and C38 concern (see those
+entries). Fate assignment is still outstanding and needs the same triage
 attention every other finding in this document received.*
 
 ### C34 — `GET /api/runs/{run_id}` builds a path from an unvalidated parameter [S]
@@ -550,11 +552,11 @@ normalizes some traversal in the URL path, so it is likely weaker — but untest
 rather than directory creation. Percent-encoded, mixed-separator, and
 absolute-path variants were **not** tried.*
 
-**Priority note:** this is the sharpest unscheduled gap in the whole ledger.
-Same bug class as C16 (which got 72 tests and was verified against the
-unpatched file), currently scheduled nowhere in `05_BUILD_MANUAL.md`.
-Recommend scheduling into Part 8 (Contract Enforcement) alongside C4/C10/C13
-— same "trust boundary enforced only by convention, not code" shape.
+**Priority note:** same bug class as C16 (which got 72 tests and was verified
+against the unpatched file). Now scheduled as `05_BUILD_MANUAL.md` item 47,
+alongside C4/C10/C13 — same "trust boundary enforced only by convention, not
+code" shape — with C35 folded into the same pass and the same
+verify-against-the-unpatched-endpoint discipline required at acceptance.
 
 ### C35 — `WATCHED_AOIS` bypasses the API boundary [E]
 The scheduler calls `run_pipeline` with no validation. All three configured
@@ -565,6 +567,10 @@ would reach path construction unimpeded, under the scheduler's privileges.
 **The important implication: "validated at the API boundary" is not the same as
 "validated everywhere."** Relevant to the validation-ownership decision, and
 compounds C34's priority — the API boundary is not the only door.
+
+*Scheduled with C34 as `05_BUILD_MANUAL.md` item 47 ("address C35 in the same
+pass"): the boundary check must be confirmed everywhere `run_pipeline` or path
+construction from a label can be reached, not only at the two known sinks.*
 
 ### C36 — `GHSL_BUILTUP_ASSET` pins the epoch in the asset string [E]
 `configs/exposure_constants.py:58` hardcodes `.../GHS_BUILT_S/2020`.
@@ -582,6 +588,15 @@ finding means the reference is pinned to a 2020 epoch regardless of which
 Sentinel-2 composite date the unmixing solve uses — a real, separate
 temporal-mismatch caveat for that validation step, distinct from the
 lineage-independence caveat already noted there.
+
+*Update (commit `5331f0a`, GHS-BUILT-S audit): the collection was verified live
+— twelve epochs (1975–2030 by 5) are present, at 100 m Mollweide. The pin is
+real, but dynamic selection would not close the temporal gap: post-2020 epochs
+are extrapolated, and GHS 2025 is bit-identical to 2020 across all 115 Accra
+comparison cells (0 differing). For a recent Sentinel-2 composite the mismatch
+is irreducible with this product. So the fix here is dynamic epoch selection
+for pre-2020 comparisons and a projected/observed flag, not a route to a
+current-date reference.*
 
 ### C37 — `limitations` constructed before the query it describes [S/R]
 `exposure_sources.py:53` builds the limitations list; `:63` runs the GEE query. If
@@ -604,6 +619,17 @@ Labelled UNVERIFIED in the constant, the docstring, and a runtime print at
 behaviour confirmed; no pixel-level agreement comparison exists
 (`agreement_status: "not_yet_compared"`); licence and resolution not re-checked.
 The finding is that the blanket label overstates what is outstanding.*
+
+*Update (commit `5331f0a`, GHS-BUILT-S audit): resolution is now confirmed —
+100 m Mollweide, `crs_transform [100,0,-18041000,0,-100,9000000]`, and
+`built_surface` is a per-cell area in m² (fraction = `built_surface/10000`),
+matching the existing `GHSL_RESOLUTION_M = 100`. All twelve epochs resolve. A
+pixel-level agreement comparison against VHR impervious labels now exists
+(Nairobi, 567 cells: r 0.921, R² 0.394, MAE 0.178, bias −0.171 — right ranking,
+systematic ~17-point under-call, worse in informal fabric). What the audit did
+not do: re-check the licence, or compare GHS against the unmixing output
+specifically. The residual is that `configs/exposure_constants.py:58`, its
+docstring, and the `pipeline.py:704` runtime print still say `UNVERIFIED`.*
 
 ---
 
