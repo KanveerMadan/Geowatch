@@ -802,7 +802,7 @@ for the base image.
 consumer), but the downgrade does not remove this item — severity and fix
 priority are separate axes.
 
-### 47. C34 — validate `run_id` at the read boundary 🔓 *(new, added during consolidation)*
+### 47. C34 — validate `run_id` at the read boundary ✅ *(new, added during consolidation)*
 `GET /api/runs/{run_id}` constructs a path from an unvalidated parameter — same
 bug class as C16, a read sink rather than a write sink. Previously unscheduled;
 added here alongside C4/C10/C13 as the same "trust boundary enforced only by
@@ -819,6 +819,45 @@ address C35 in the same pass — `WATCHED_AOIS` bypasses the API boundary
 entirely, so "validated at the boundary" must be confirmed true everywhere
 `run_pipeline` or path construction from a label can be reached, not just at
 the two originally-known sinks.
+
+**Built.** `tests/test_api_run_id_validation.py`, 115 tests, all passing.
+Verified against the unpatched endpoint first: **58 failed, 57 passed.**
+
+**The untried variants are now tried, and they answer C34's open question.**
+The ledger recorded that "Starlette normalizes some traversal in the URL path,
+so it is likely weaker — but untested." Measured by recording the exact string
+the unpatched handler passed to `Path()`:
+
+- **POSIX traversal** (`../`, `../../../etc/passwd`, `%2e%2e%2f`, double-encoded,
+  `/etc/passwd`) — **the handler never ran.** Starlette normalised or rejected
+  the path before routing. The hypothesis was right for this class, and C34 was
+  **not exploitable through it on this stack.**
+- **Backslash variants** (`..\`, `..\..\windows\system32`, `C:\Windows\Temp`)
+  — **reached the handler with the hostile string intact**, e.g.
+  `Path('data/pipeline_runs/..\..\windows\system32/result.json')`. Inert on
+  POSIX, where a backslash is an ordinary filename character; **real traversal
+  on Windows.** Nothing in the code was platform-guarded.
+- `x/../<real_run_id>` returned 200, but *not* because traversal succeeded — the
+  URL normalised to `/api/runs/<real_run_id>` before routing and the handler
+  received the clean id.
+
+**Net: C34's practical severity on POSIX was lower than feared, and the
+mitigation was incidental** — the router plus the host OS, neither a control
+this codebase owns. The whitelist makes refusal explicit, platform-independent
+and testable. A `resolve_within_data_root()` containment check backs it up, so a
+future sink whose author forgets to validate is still contained — which is how
+C34 came to exist after C16 was fixed.
+
+**C35 closed in the same pass.** The whitelist is now one predicate,
+`_matches_label_whitelist()`, called by both the HTTP boundary (400) and a
+startup assertion over `WATCHED_AOIS` (RuntimeError), so the two cannot drift
+about what a valid label is. The scheduler loop re-checks at call time, since
+`WATCHED_AOIS` is a mutable module-level list and the import-time assertion
+proves only that the *configured* value was good; a bad entry is skipped loudly
+rather than raising, so one typo cannot stop the other cities refreshing.
+`get_latest_run()` is checked too — traversal is not reachable through its
+`startswith()` filter today, but "not reachable through the current code" is
+precisely the reasoning that left C35 open.
 
 ### 70. C40 — authenticate the API boundary ✅ *(new, added during the pre-push audit)*
 `api.py` has no authentication on any of its 8 endpoints. **Pairs with item 47**:

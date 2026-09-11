@@ -173,6 +173,20 @@ AOI_LABEL_MAX_LENGTH = 64
 AOI_LABEL_PATTERN = re.compile(r"[a-z0-9_-]{1,%d}" % AOI_LABEL_MAX_LENGTH)
 
 
+def _matches_label_whitelist(label: str) -> bool:
+    """
+    The whitelist predicate itself, with no opinion about how to complain.
+
+    Split out for C35 (build item 47). The same rule has to hold at two
+    boundaries that fail in different ways: the HTTP boundary raises
+    HTTPException(400), while the startup check over WATCHED_AOIS raises
+    RuntimeError, because an HTTPException outside a request is meaningless.
+    One predicate, two callers -- so the two can never drift into disagreeing
+    about what a valid label is, which is the failure mode that let C35 exist.
+    """
+    return isinstance(label, str) and AOI_LABEL_PATTERN.fullmatch(label) is not None
+
+
 def validate_aoi_label(label: str) -> str:
     r"""
     Whitelist-validate an AOI label. Returns it unchanged, or raises
@@ -187,7 +201,7 @@ def validate_aoi_label(label: str) -> str:
     The rejected value is deliberately not echoed back in `detail`: it is
     attacker-controlled and the response is rendered by a browser client.
     """
-    if not isinstance(label, str) or not AOI_LABEL_PATTERN.fullmatch(label):
+    if not _matches_label_whitelist(label):
         raise HTTPException(
             status_code=400,
             detail=(
@@ -197,6 +211,64 @@ def validate_aoi_label(label: str) -> str:
             ),
         )
     return label
+
+
+# ── run_id validation and path containment — C34 (build item 47) ──
+#
+# `GET /api/runs/{run_id}` built `data/pipeline_runs/{run_id}/result.json`
+# straight from an unvalidated path parameter. Same bug class as C16, a READ
+# sink rather than a write sink, so the impact shape is disclosure (returning
+# file contents) rather than directory creation.
+#
+# A run_id is `<aoi_label>_<timestamp>`, so the alphabet is the same as
+# aoi_label's; only the length budget differs (64-char label + '_' + timestamp).
+# Same three placement decisions C16 settled, for the same reasons:
+#   - whitelist, not blacklist: enumerating bad sequences is open-ended and has
+#     been bypassed in every codebase that tried it;
+#   - fullmatch(), not match() with '$', because in Python '$' also matches
+#     before a trailing newline;
+#   - REJECT, never sanitize-and-continue: a rewritten id would return a run the
+#     caller did not ask for.
+RUN_ID_MAX_LENGTH = 128
+RUN_ID_PATTERN = re.compile(r"[a-z0-9_-]{1,%d}" % RUN_ID_MAX_LENGTH)
+
+# The one directory any run artifact may live under. Resolved once at import so
+# the containment check below compares two absolute, symlink-free paths.
+DATA_ROOT = Path("data/pipeline_runs").resolve()
+
+
+def validate_run_id(run_id: str) -> str:
+    """Whitelist-validate a run id. Returns it unchanged, or raises 400."""
+    if not isinstance(run_id, str) or not RUN_ID_PATTERN.fullmatch(run_id):
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "Invalid run_id. Allowed characters: lowercase a-z, digits 0-9, "
+                f"underscore and hyphen; length 1-{RUN_ID_MAX_LENGTH}."
+            ),
+        )
+    return run_id
+
+
+def resolve_within_data_root(*parts: str) -> Path:
+    """
+    Build a path under DATA_ROOT and prove it stayed there.
+
+    Defence in depth, deliberately kept even though the whitelist above already
+    makes traversal unreachable at this sink. The whitelist is the control; this
+    is the backstop that does not depend on every future caller remembering to
+    apply it. C35 is the argument for having it: a boundary enforced only where
+    someone remembered to enforce it is not a boundary.
+
+    Uses Path.resolve() on the FULL candidate path, then re-checks containment,
+    so '..' segments, absolute components and symlinks are all normalised away
+    before the comparison rather than pattern-matched beforehand.
+    """
+    candidate = DATA_ROOT.joinpath(*parts).resolve()
+    if candidate != DATA_ROOT and DATA_ROOT not in candidate.parents:
+        # Deliberately generic: the caller learns nothing about the filesystem.
+        raise HTTPException(status_code=400, detail="Invalid path.")
+    return candidate
 
 
 def compute_aoi_geodesics(west: float, south: float, east: float, north: float) -> dict:
@@ -231,6 +303,17 @@ def compute_aoi_geodesics(west: float, south: float, east: float, north: float) 
 
 def get_latest_run(aoi_label: str) -> dict | None:
     """Return the most recent result.json for a given AOI label, or None."""
+    # C35 sweep (build item 47): a label reaching a filesystem operation, so it
+    # is checked here too. Traversal is not reachable through this particular
+    # function -- it filters directory names with startswith() rather than
+    # building a path from the label -- but "not reachable through today's
+    # implementation" is exactly the reasoning that left C35 open. The check is
+    # on the label's validity, not on the current shape of the code below it.
+    if not _matches_label_whitelist(aoi_label):
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid aoi_label.",
+        )
     runs_dir = Path("data/pipeline_runs")
     matching = sorted([
         d for d in runs_dir.iterdir()
@@ -250,6 +333,18 @@ def refresh_all_watched_aois():
     print(f"[Scheduler] Starting refresh at {datetime.now().isoformat()}")
     from pipeline import run_pipeline
     for aoi in WATCHED_AOIS:
+        # C35: re-checked at call time, not only at import. WATCHED_AOIS is a
+        # module-level list and nothing makes it immutable, so the import-time
+        # assertion proves the configured value was good, not that the value
+        # being used right now is. Skip loudly rather than raising: one bad
+        # entry must not stop the other cities from refreshing.
+        if not _matches_label_whitelist(aoi.get("label")):
+            print(
+                f"[Scheduler] SKIPPING {aoi.get('label')!r}: fails the AOI "
+                f"whitelist (C35). It would become a path component inside "
+                f"run_pipeline()."
+            )
+            continue
         try:
             run_pipeline(
                 west=aoi["west"], south=aoi["south"],
@@ -261,6 +356,40 @@ def refresh_all_watched_aois():
         except Exception as e:
             print(f"[Scheduler] {aoi['label']} failed: {e}")
 
+
+# ── C35 — WATCHED_AOIS bypasses the API boundary (build item 47) ──
+#
+# The scheduler calls run_pipeline() directly, so a label in WATCHED_AOIS
+# reaches path construction WITHOUT crossing the API boundary that
+# validate_aoi_label() defends. All three configured labels happen to pass the
+# whitelist today, so there is no current exposure — but nothing enforced that,
+# and a future edit would have reached path construction unimpeded, under the
+# scheduler's privileges.
+#
+# The important implication C35 recorded: "validated at the API boundary" is not
+# the same as "validated everywhere." So the same whitelist is asserted here, at
+# import, against the same predicate the HTTP boundary uses.
+#
+# Startup failure, not a warning and not a silent skip: a mistyped watched label
+# should stop the service, not quietly drop one city's refresh and leave a gap
+# nobody notices for five days.
+def _validate_watched_aois() -> None:
+    """Assert every configured watched label satisfies the AOI whitelist."""
+    offenders = [
+        aoi.get("label") for aoi in WATCHED_AOIS
+        if not _matches_label_whitelist(aoi.get("label"))
+    ]
+    if offenders:
+        raise RuntimeError(
+            f"WATCHED_AOIS contains labels that fail the AOI whitelist: "
+            f"{offenders!r}. Each label becomes a filesystem path component "
+            f"inside run_pipeline(), and the scheduler reaches it without "
+            f"crossing the API boundary (C35). Allowed: lowercase a-z, digits "
+            f"0-9, underscore and hyphen; length 1-{AOI_LABEL_MAX_LENGTH}."
+        )
+
+
+_validate_watched_aois()
 
 # Start background scheduler — refreshes every 5 days
 scheduler = BackgroundScheduler()
@@ -416,8 +545,15 @@ def list_runs():
 
 @app.get("/api/runs/{run_id}")
 def get_run(run_id: str):
-    result_path = Path(f"data/pipeline_runs/{run_id}/result.json")
+    # C34: validate BEFORE any path is constructed, and outside any try/except.
+    # Same placement reasoning as C16 — this handler has no try block today, and
+    # the check is kept ahead of path construction so adding one later cannot
+    # swallow the 400 into a 500.
+    validate_run_id(run_id)
+    result_path = resolve_within_data_root(run_id, "result.json")
     if not result_path.exists():
+        # The run_id is echoed here only because it has already been proved to
+        # match the whitelist, so it cannot carry markup or separators.
         raise HTTPException(status_code=404, detail=f"Run {run_id} not found.")
     with open(result_path) as f:
         return json.load(f)
