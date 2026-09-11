@@ -774,7 +774,8 @@ neither substitutes for the other.
 
 # PART 8 — Contract enforcement 🔓
 
-*Five items. Rules that comments cannot enforce.*
+*Six items. Rules that comments cannot enforce. Two are done (47, 70 — the
+trust-boundary pass); four remain: 43, 44, 45, 46.*
 
 ### 43. C31 — single-source palette
 **The quick fix is copying values across. The correct fix is a single source of
