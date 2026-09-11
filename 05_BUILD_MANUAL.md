@@ -820,7 +820,7 @@ entirely, so "validated at the boundary" must be confirmed true everywhere
 `run_pipeline` or path construction from a label can be reached, not just at
 the two originally-known sinks.
 
-### 70. C40 — authenticate the API boundary 🔓 *(new, added during the pre-push audit)*
+### 70. C40 — authenticate the API boundary ✅ *(new, added during the pre-push audit)*
 `api.py` has no authentication on any of its 8 endpoints. **Pairs with item 47**:
 C34/C35 validate *what* crosses the trust boundary, this establishes *who* may
 reach it at all. Same "trust boundary enforced only by convention, not code"
@@ -832,12 +832,31 @@ sequence deliberately — the part it belongs to is contract/trust-boundary
 enforcement, and the pairing with item 47 above is what governs sequencing, not
 the integer.*
 
-**How:** a single shared secret checked by **one FastAPI dependency applied at
-the router**, not per-endpoint — `APIKeyHeader` + `Depends`, 401 on missing or
+**How:** a single shared secret checked at the perimeter — 401 on missing or
 wrong, reject-not-sanitize. Secret from the environment with a loud startup
 failure if unset: the same "fail loudly" discipline `gee_client.py` already
 uses, and subject to the same gap `archive/AUDIT_FINDINGS.md` records against it
 — *validate that the variable is actually set, do not pass `None` through*.
+
+**AMENDED DURING BUILD — the enforcement mechanism is middleware, not
+`Depends`.** This item originally specified a router-level dependency
+(`FastAPI(dependencies=[Depends(...)])`). That was measured insufficient before
+implementing: an app-level dependency covers routes on the app router but does
+**not** cover `app.mount(...)`, because a Mount is a separate ASGI application
+that FastAPI's dependency system never enters. Probed directly — with
+`FastAPI(dependencies=[Depends(gate)])` a route returned **401** while a mounted
+`StaticFiles` path returned **200 and served the file**. `api.py` mounts `/runs`
+over `data/pipeline_runs/`, serving landcover rasters, confidence maps and run
+artifacts: **the same data C34 would disclose.** A dependency-only fix would
+have closed the front door and left that one open, while reading as complete.
+
+Middleware is therefore the enforcement point — the only mechanism that sits in
+front of routes *and* mounts, so coverage is a property of the perimeter rather
+than of remembering to decorate each new endpoint. `APIKeyHeader` is still
+declared, but for the OpenAPI document only; it documents, it does not enforce.
+Registered **after** `CORSMiddleware` so it is outermost (Starlette runs the
+last-added middleware first), with `OPTIONS` exempt so CORS preflight — which
+browsers send without credentials by design — still reaches the CORS layer.
 
 Router-level, not per-endpoint, so a future endpoint is covered **by default
 rather than by remembering**. That is the structural lesson of C35: the
@@ -866,6 +885,20 @@ documents C34's sink, file, line, and explicitly which attack variants were
 *not* tried — detail that is safe only while the repo is private and the
 endpoint is unreachable, and item 70 is what makes reachability a decision
 rather than an accident.
+
+**Built.** `tests/test_api_authentication.py`, 46 tests, all passing. Verified
+against the unpatched `api.py` first: **31 failed, 3 passed**, and the 3 are the
+ones that should pass either way — one structural precondition guard, and two
+`must NOT be 401` preflight assertions. No test asserting the security property
+passed before the fix. Route coverage is enumerated from the **live route
+table** (`app.routes`), not a hand-written list, so a future endpoint joins the
+suite automatically. C16's 72 tests still pass; its client fixture is now
+authenticated, because an unauthenticated request stops at 401 and would never
+reach `aoi_label` validation — leaving it anonymous would have made every C16
+assertion pass for the wrong reason. **C35 is not yet closed by this item**: the
+perimeter now covers everything reachable over HTTP, but the scheduler calls
+`run_pipeline` in-process, which is not an HTTP path. That remains item 47's
+scope.
 
 ---
 

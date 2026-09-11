@@ -1,15 +1,22 @@
 """
 GeoWatch Copilot — FastAPI Backend
 ====================================
-Run: uvicorn api:app --reload --port 8000
+Run: GEOWATCH_API_KEY=<secret> uvicorn api:app --reload --port 8000
+
+Every endpoint requires the `X-API-Key` header (C40, build item 70). The
+service refuses to start if GEOWATCH_API_KEY is unset — see _load_api_key().
+Generate one with:  python -c "import secrets; print(secrets.token_urlsafe(32))"
 """
 
 import json
 import os
 import re
+import secrets
 from pathlib import Path
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from fastapi.security import APIKeyHeader
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -23,6 +30,104 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ── API authentication — 04_FINDINGS_LEDGER.md C40 (build item 70) ──
+#
+# Before this, every endpoint was reachable by anyone who could reach the port.
+# CORS above is NOT an access control: it is enforced by browsers, so it is no
+# obstacle whatsoever to curl, a script, or any non-browser client. It restricts
+# which web origins may *read* a response in a browser; it does not restrict who
+# may *send* a request. Do not count it as authentication.
+#
+# WHY MIDDLEWARE AND NOT `Depends` AT THE ROUTER.
+# Build item 70 originally specified a router-level dependency
+# (`FastAPI(dependencies=[Depends(...)])`). That was verified insufficient
+# during implementation and the item has been amended. An app-level dependency
+# covers routes on the app router but does NOT cover `app.mount(...)`, because a
+# Mount is a separate ASGI application that FastAPI's dependency system never
+# enters. Measured directly: with `FastAPI(dependencies=[Depends(gate)])`, a
+# route returned 401 while a mounted StaticFiles path returned 200 and served
+# the file. The `/runs` mount below serves everything under
+# `data/pipeline_runs/` — landcover rasters, confidence maps, result artifacts —
+# which is the same data C34 would disclose. A dependency-only fix would have
+# closed the front door and left that one open.
+#
+# Middleware is therefore the enforcement point: it is the only mechanism that
+# sits in front of routes AND mounts, so coverage is a property of the
+# perimeter, not of remembering to decorate each new endpoint. That is the
+# structural lesson of C35 — the scheduler reached run_pipeline without crossing
+# the boundary believed to protect it, because protection lived at call sites
+# rather than at the perimeter. One gate, ahead of everything.
+#
+# Fail loudly at import if the secret is unset, rather than defaulting to a
+# development key or disabling auth. A missing-secret default is how an
+# "authenticated" service ships unauthenticated. This mirrors gee_client.py's
+# loud-failure discipline, and closes the gap archive/AUDIT_FINDINGS.md records
+# against it: check that the variable is actually set, do not pass None through.
+API_KEY_ENV_VAR = "GEOWATCH_API_KEY"
+API_KEY_HEADER_NAME = "X-API-Key"
+
+
+def _load_api_key() -> str:
+    """Read the API secret at import time, or refuse to start."""
+    key = os.getenv(API_KEY_ENV_VAR)
+    if key is None or not key.strip():
+        raise RuntimeError(
+            f"{API_KEY_ENV_VAR} is not set. The GeoWatch API refuses to start "
+            f"without it: every endpoint runs GEE-backed pipeline work or "
+            f"returns run data, and POST /api/scheduler/trigger fans one "
+            f"request out into a pipeline run per watched AOI. Set "
+            f"{API_KEY_ENV_VAR} to a high-entropy secret "
+            f"(python -c 'import secrets; print(secrets.token_urlsafe(32))') "
+            f"and restart."
+        )
+    return key
+
+
+API_KEY = _load_api_key()
+
+# Declared so the scheme appears in the OpenAPI document. Enforcement is the
+# middleware below, not this object — it is documentation, not a control.
+api_key_scheme = APIKeyHeader(name=API_KEY_HEADER_NAME, auto_error=False)
+
+
+@app.middleware("http")
+async def require_api_key(request: Request, call_next):
+    """
+    Reject any request without a valid API key, before it reaches a route or a
+    mount.
+
+    Registered AFTER CORSMiddleware, which makes it the OUTERMOST layer:
+    Starlette builds the stack so the last-added middleware runs first, so an
+    unauthenticated request is refused before any other handler sees it.
+
+    CORS preflight is exempt. A browser sends `OPTIONS` without credentials by
+    design, so rejecting preflight would break the frontend while protecting
+    nothing — the preflight response carries no run data, only the CORS policy
+    that is already public in the source. Every non-OPTIONS method is checked.
+
+    `secrets.compare_digest` rather than `==`: constant-time comparison, so the
+    duration of a failed request does not leak how much of the key was correct.
+    """
+    if request.method == "OPTIONS":
+        return await call_next(request)
+
+    presented = request.headers.get(API_KEY_HEADER_NAME)
+    if presented is None or not secrets.compare_digest(presented, API_KEY):
+        # The presented value is deliberately not echoed back: it is
+        # attacker-controlled and the response is rendered by a browser client.
+        # One message for both "missing" and "wrong", so the response does not
+        # confirm that a particular key exists.
+        return JSONResponse(
+            status_code=401,
+            content={
+                "detail": (
+                    f"Missing or invalid API key. Send it in the "
+                    f"{API_KEY_HEADER_NAME} header."
+                )
+            },
+        )
+    return await call_next(request)
 
 # ── Static file mount ──
 # Serves pipeline run outputs (landcover.png, landcover_confidence.png, etc.)
