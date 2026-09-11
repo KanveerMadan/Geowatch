@@ -1,33 +1,105 @@
-# Data and model artifacts (hashed separately, not tracked)
+# ---------------------------------------------------------------------------
+# Credentials and secrets
+#
+# Nothing in this block may ever be committed. The repo has already had one
+# incident: an ngrok authtoken was hardcoded in a Colab notebook and reached
+# the root commit (2ac07d5). It has been revoked; the notebooks are deleted.
+#
+# push_water_annotations_to_drive.py is the live hazard. Its defaults are
+# creds_path="credentials.json" and token_path="token.json", BOTH written
+# into the repo root -- an OAuth client secret and a refresh token. Neither
+# was ignored before this rule existed.
+# ---------------------------------------------------------------------------
+credentials.json
+token.json
+client_secret.json
+client_secret*.json
+
+# Earth Engine / Google Cloud service-account keys.
+# Deliberately pattern-matched rather than ignoring *.json, because tracked
+# JSON (package.json, configs, pipeline results) must stay visible.
+*service-account*.json
+*service_account*.json
+*-sa.json
+gcp-*.json
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+id_rsa*
+
+# ---------------------------------------------------------------------------
+# Data and model artifacts (hashed separately in ARTIFACT_HASHES.txt,
+# not tracked)
+# ---------------------------------------------------------------------------
 data/
 models/
 cache/
 
+# Geospatial rasters and arrays. Blanket rules, not just under data/ --
+# a stray VHR GeoTIFF dropped at the repo root is how a 100MB push gets
+# blocked. GitHub warns above 50MB per file and hard-blocks at 100MB.
+*.tif
+*.tiff
+*.npy
+*.npz
+
+# Model checkpoints and pickles. Blanket, for the same reason as above:
+# these are large and must never be tracked, wherever they land.
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.h5
+*.hdf5
+*.pkl
+*.joblib
+
+# ---------------------------------------------------------------------------
 # Virtualenvs
+# ---------------------------------------------------------------------------
 venv/
+.venv/
+env/
 geowatch-env/
 
+# ---------------------------------------------------------------------------
 # Node
+# ---------------------------------------------------------------------------
 node_modules/
 geowatch-ui/node_modules/
 
+# ---------------------------------------------------------------------------
 # Python
+# ---------------------------------------------------------------------------
 __pycache__/
 *.pyc
 *.pyo
 *.egg-info/
+.ipynb_checkpoints/
 
-# Secrets
-.env
-*.pem
-*.key
+# ---------------------------------------------------------------------------
+# Editors and tooling
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+.claude/settings.local.json
 
+# ---------------------------------------------------------------------------
 # Debug/scratch artifacts
+# ---------------------------------------------------------------------------
+*.log
 debug_*.png
 *_context_dump*.txt
 geowatch_phase6_context.txt
 geowatch_bundle_for_claude.txt
 geowatch_backend_review.zip
 
+# ---------------------------------------------------------------------------
 # OS
+# ---------------------------------------------------------------------------
 .DS_Store
