@@ -69,6 +69,10 @@ class EvidenceLayer:
         self.limitations = limitations or []
 
 
+from perception.applicability_gate import gated
+
+
+@gated("exposure")
 def compute_exposure_for_layer(
     evidence_layer: EvidenceLayer,
     aoi_geometry: "ee.Geometry",

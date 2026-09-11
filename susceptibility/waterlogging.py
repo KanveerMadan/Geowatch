@@ -32,6 +32,10 @@ def _classify(score):
     return "very_high"
 
 
+from perception.applicability_gate import gated
+
+
+@gated("waterlogging")
 def compute_waterlogging_susceptibility(hand_context: dict, hydrological_surfaces: dict,
                                          rainfall_climatology: dict = None) -> dict:
     """

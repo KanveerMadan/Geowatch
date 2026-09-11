@@ -738,7 +738,7 @@ asserted ahead of it. Same shape as C37.
 
 *Three items. One signal that currently dies three times.*
 
-### 40. C14 / C20 — `applicability` gates downstream
+### 40. C14 / C20 — `applicability` gates downstream ✅
 1. Move the computation **before** `hydrological_surfaces` (currently
    `pipeline.py:412` then `:413` — backwards)
 2. Pass it into every downstream consumer — susceptibility ×5, exposure, risk
@@ -750,6 +750,57 @@ asserted ahead of it. Same shape as C37.
 
 **Acceptance:** given a synthetic result with `out_of_distribution: true`, assert
 **every** susceptibility/exposure/risk block contains the flag.
+
+**Built.** `tests/test_applicability_gating.py`, 23 tests, all passing. The
+acceptance assertion is `test_every_block_carries_the_flag`: 11 blocks — five
+susceptibility, exposure, and five risk — every one carrying a flag, with the
+gate reporting something other than `not_wired`.
+
+**The ordering was a real cycle, not a simple mis-ordering.**
+`compute_applicability()` *read* `hydrological_surfaces`, for one check: whether
+`waterlogging` has a usable input. So the call could not just be moved. Split
+into two stages — stage 1 decides everything depending only on inference output
+and external context and runs first; `finalize_applicability()` runs after the
+surfaces exist and resolves the single status that needed them. Proved
+behaviour-preserving across **all 192 input combinations** before the reorder
+landed, and that equivalence is pinned by a test.
+
+*Noted while there: the resolved check is **vacuous**. It asks whether
+`impervious_fraction_pct is not None`, and `compute_hydrological_surfaces()`
+always returns a float on every path because it has no failure path at all —
+C21/S1 at this exact site. The guard is preserved exactly as written rather than
+"fixed", because making it meaningful means giving that module a real failure
+path, which is C21's item, not this one.*
+
+**Compute-and-flag, per rule 3.** No value is ever withheld; a test asserts the
+score survives an OOD verdict. Withholding would have invented a fourth
+ambiguous state for downstream code to guess about — S1 again, in a new costume.
+
+**The dependency chain is modelled, per rule 4, and blanket-flagging is
+explicitly rejected.** Traced through the code: `pluvial` consumes the
+classified raster, `waterlogging` consumes `hydrological_surfaces` (a weighted
+sum of `category_area_pct`), and `exposure` consumes `landcover_builtup_pct` —
+so those three inherit the land-cover verdict. `fluvial` reads MERIT Hydro,
+`coastal` a GEE shoreline dataset, `flash_flood` slope and upstream catchment —
+**none touch the semantic model, so none is marked OOD by it.** Marking them
+anyway would be false, and would train a reader to ignore the flag the way
+C33's `{pct ? ... : '0.0%'}` taught readers that "0.0%" means nothing. A test
+asserts each direction, so a later "simplification" into blanket-flagging fails.
+
+`compute_risk()` inherits instead: it has no applicability entry of its own, so
+it takes the worst trust of the hazard and exposure it consumed and carries
+their `degraded_by` forward.
+
+**Enforcement is a decorator at the function boundary**, not edits to ~15
+individual `return` statements. These consumers have several early returns each
+(`insufficient_evidence`, `not_applicable`, the success path) and the acceptance
+criterion is *every* block — a rule applied at the boundary cannot miss a path.
+Same argument that made item 70's auth middleware rather than per-endpoint.
+
+A consumer called without the gate reports `gate: "not_wired"` rather than
+presenting itself as trusted — silently implying trust is precisely C14.
+
+*Does not close C32 (the frontend still never renders it) — that is item 41.*
 
 ### 41. C32 — render it
 Surface `applicability` as a prominent banner, not a buried field. Add to

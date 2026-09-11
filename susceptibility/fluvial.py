@@ -22,6 +22,10 @@ def _classify(score):
     return "very_high"
 
 
+from perception.applicability_gate import gated
+
+
+@gated("fluvial")
 def compute_fluvial_susceptibility(hand_context: dict) -> dict:
     """
     Args:

@@ -36,6 +36,10 @@ file without that explicit go/no-go having happened first.
 """
 
 
+from perception.applicability_gate import gated_inherit
+
+
+@gated_inherit("risk", "hazard", "exposure")
 def compute_risk(hazard: dict = None, exposure: dict = None, vulnerability: dict = None) -> dict:
     """
     Args:
