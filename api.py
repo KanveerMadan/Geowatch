@@ -21,6 +21,18 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
+from dotenv import load_dotenv
+
+# Load .env BEFORE _load_api_key() runs at import, below. Without this the
+# module-level API_KEY read happens against the raw process environment and a
+# key sitting in .env is invisible — the service would refuse to start while
+# the secret was, from the operator's point of view, plainly set.
+#
+# ingestion/gee_client.py already calls load_dotenv() for GEE_PROJECT_ID, but
+# api.py imports pipeline lazily inside handlers, so that call happens long
+# after this module's import-time checks. The two entry points each need their
+# own load; dotenv is idempotent, so calling it twice is harmless.
+load_dotenv()
 
 app = FastAPI(title="GeoWatch Copilot API", version="1.0")
 

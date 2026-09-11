@@ -925,7 +925,12 @@ documents C34's sink, file, line, and explicitly which attack variants were
 endpoint is unreachable, and item 70 is what makes reachability a decision
 rather than an accident.
 
-**Built.** `tests/test_api_authentication.py`, 46 tests, all passing. Verified
+**Built.** `tests/test_api_authentication.py`, 46 tests, all passing. The
+secret is read from `.env` via `load_dotenv()`, called in `api.py` ahead of the
+import-time key read — `ingestion/gee_client.py` already loads `.env` for
+`GEE_PROJECT_ID`, but `api.py` imports `pipeline` lazily inside handlers, so
+that call lands long after this module's import-time check. Each entry point
+needs its own load; `dotenv` is idempotent. Verified
 against the unpatched `api.py` first: **31 failed, 3 passed**, and the 3 are the
 ones that should pass either way — one structural precondition guard, and two
 `must NOT be 401` preflight assertions. No test asserting the security property
