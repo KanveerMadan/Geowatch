@@ -28,7 +28,7 @@ Fate categories:
 | REFUTED | 2 | Disproven |
 | DELETED | 13 | Architecture change removes the code |
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
-| SURVIVES | 21 | The irreducible cluster — real work |
+| SURVIVES | 22 | The irreducible cluster — real work (C40 added by the pre-push audit) |
 | NEEDS FATE | 5 | C34–C38, flagged during consolidation, not yet triaged |
 
 **This is the authoritative list for the "irreducible cluster."**
@@ -499,6 +499,53 @@ to flag this and are read but never used to gate status.
 `raw_score` numerically. **Module 6 changed this:** `App.jsx:568/572` renders
 `raw_score` directly with no type guard, so an invalid cell displays to the user
 as `x / 10`.*
+
+**C40 — The API has no authentication or authorization of any kind** [S]
+`api.py` exposes 8 endpoints with **zero** auth primitives — `Depends`,
+`HTTPBearer`, `HTTPBasic`, `OAuth2`, `APIKeyHeader`, `Security(` all return zero
+matches across the file. Any party who can reach the port has full access to
+every endpoint.
+
+- `POST /api/scheduler/trigger` (`api.py:332`), docstringed *"Manually trigger a
+  refresh of all watched AOIs (admin use)"*, calls
+  `scheduler.modify_job("auto_refresh", next_run_time=datetime.now())`. One
+  unauthenticated request fires `run_pipeline` across all of `WATCHED_AOIS`.
+  **Amplification: one HTTP call → 3 GEE-backed pipeline runs**, billed to the
+  project. "(admin use)" is a docstring, not a control.
+- `POST /api/analyze` and `POST /api/analyze_inundation` run the full GEE
+  pipeline on a caller-supplied bbox — unauthenticated consumption of metered
+  third-party quota.
+- `GET /api/runs` and `GET /api/runs/{run_id}` return all run data. The latter is
+  also **C34's traversal sink**.
+
+**The only access control present is CORS** (`api.py:22`,
+`allow_origins=["http://localhost:5173", "http://localhost:3000"]`). **CORS is
+browser-enforced, not server-enforced** — it is irrelevant to `curl`, a script,
+or any non-browser client, and it is not an authorization mechanism. Reading the
+tight origin list as though it restricted access is the specific error to avoid
+here.
+
+*Read from source, not exercised against a running server — hence [S]. No
+`Dockerfile`, `Procfile`, or deploy script is tracked, and the documented launch
+is `uvicorn api:app --reload --port 8000`, which defaults to binding
+`127.0.0.1`.*
+
+**Severity: Critical.** **Under Decision 15:** the localhost default is
+*mitigating context, not positive evidence of unreachability*. Nothing
+structurally prevents `--host 0.0.0.0` — no code path, no config assertion, no
+deployment artifact constrains the bind address; it is a CLI default that any
+invocation can override. Under the strong bar this does **not** qualify for a
+probability downgrade, and harm if it fires is high (unauthenticated compute and
+quota spend, full read of all run data, and the reachability that makes C34
+exploitable by anyone). Stays Critical.
+
+**Orthogonal to C34/C35, not duplicative.** C34 and C35 are about *what* a
+caller may pass through the boundary; C40 is about *who* may reach the boundary
+at all. C35's own framing — "validated at the API boundary is not the same as
+validated everywhere" — names the inward axis; C40 names the outward one. The
+two do not substitute for each other: **fixing item 47 does not touch C40, and
+C40 is what makes C34 reachable by an anonymous caller rather than by an
+authenticated one.** Both are required.
 
 ### Orchestration and hygiene
 
