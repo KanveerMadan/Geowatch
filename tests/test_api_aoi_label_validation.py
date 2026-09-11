@@ -72,8 +72,16 @@ def stub_pipeline(monkeypatch):
 
 @pytest.fixture
 def client():
+    """
+    An AUTHENTICATED client. C40 (build item 70) put an API-key check at the
+    perimeter, so an unauthenticated request now stops at 401 and never reaches
+    aoi_label validation at all. These tests are about the 400, so they must get
+    past the 401 first — otherwise every assertion below would pass for entirely
+    the wrong reason. C40's own 401 behaviour is covered in
+    tests/test_api_authentication.py.
+    """
     import api
-    return TestClient(api.app)
+    return TestClient(api.app, headers={api.API_KEY_HEADER_NAME: api.API_KEY})
 
 
 # ── The payloads ──

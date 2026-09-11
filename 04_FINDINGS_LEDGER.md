@@ -24,12 +24,12 @@ Fate categories:
 
 | Fate | Count | Meaning |
 |---|---:|---|
-| CLOSED | 5 | Done during Part 1 |
+| CLOSED | 7 | 5 during Part 1; C34 and C35 added by item 47 |
 | REFUTED | 2 | Disproven |
 | DELETED | 13 | Architecture change removes the code |
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SURVIVES | 22 | The irreducible cluster — real work (C40 added by the pre-push audit) |
-| NEEDS FATE | 5 | C34–C38, flagged during consolidation, not yet triaged |
+| NEEDS FATE | 3 | C36–C38; C34 and C35 triaged and CLOSED via item 47 |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
@@ -65,8 +65,12 @@ detect the bug rather than passing vacuously.
 codebase breaks, but any client sending a capitalised label now gets a 400.
 
 **Note (consolidation pass):** C34 is the same bug class, a different sink
-(`GET /api/runs/{run_id}`, read not write). See NEEDS FATE below — it should
-receive the same treatment as this finding did, not remain unscheduled.
+(`GET /api/runs/{run_id}`, read not write). **It did receive the same treatment**
+— scheduled as `05_BUILD_MANUAL.md` item 47, built, and now CLOSED below. Its
+entry also records the empirical result that this one could not: C16's traversal
+was demonstrated by path arithmetic, while C34's was measured against the live
+router, which turned out to refuse the POSIX payloads before the handler ever
+ran. Same bug class, very different reachability.
 
 ### Git initialisation ✅ DONE
 Commit `2ac07d5`. 172 files. Reproducibility begins here; everything prior is
@@ -97,6 +101,79 @@ it builds `{segment_id: mask}` from `masks.json` and writes the same
 See C36–C38 below and `03_EVIDENCE.md` §C.4. The 2020 cap is a property of the
 GEE mirror, not of WorldPop — and GHS-POP does not help, since its newest
 *observation* epoch is also 2020.
+
+### C34 — `GET /api/runs/{run_id}` builds a path from an unvalidated parameter [S] ✅ FIXED
+`api.py` constructed `Path(f"data/pipeline_runs/{run_id}/result.json")` from an
+unvalidated path parameter. Same bug class as C16, a **read** sink rather than a
+write sink, so the impact shape is disclosure rather than directory creation.
+
+**Fix applied** (`05_BUILD_MANUAL.md` item 47): whitelist validation
+`[a-z0-9_-]{1,128}` with `re.fullmatch`, `HTTPException(400)`,
+reject-not-sanitize, placed before any path is constructed and outside any try
+block. Backed by `resolve_within_data_root()`, which resolves the full candidate
+path and re-checks containment, so `..`, absolute components and symlinks are
+normalised away before comparison rather than pattern-matched beforehand. 115
+tests; verified against the unpatched endpoint first — **58 failed, 57 passed.**
+
+**What the testing established — this entry previously read "likely weaker, but
+untested", and that guess was both confirmed and, in an important respect,
+wrong.** Measured against the unpatched endpoint by recording the exact string
+the handler passed to `Path()`:
+
+- **POSIX traversal never reached the handler.** `../`, `../../../etc/passwd`,
+  `%2e%2e%2f`, double-encoded variants and `/etc/passwd` were all normalised or
+  rejected by **Starlette before routing** — the handler did not run. For this
+  class the "likely weaker" guess was right, and C34 was **not exploitable**.
+- **Backslash variants DID reach the handler, with the string intact.** `..\`,
+  `..\..\windows\system32` and `C:\Windows\Temp` arrived unmodified, producing
+  e.g. `Path('data/pipeline_runs/..\..\windows\system32/result.json')`. They were
+  inert **only because POSIX treats a backslash as an ordinary filename
+  character.** On Windows they are real traversal. Nothing in the code was
+  platform-guarded.
+- `x/../<real_run_id>` returned 200, but *not* because traversal succeeded: the
+  URL normalised to `/api/runs/<real_run_id>` before routing and the handler
+  received the clean id. An ordinary request, not an escape.
+
+**The correction that matters more than the fix: the pre-fix mitigation was
+incidental.** What protected this endpoint was Starlette's URL normalisation
+plus the host operating system's filename conventions — **neither of which is a
+control this codebase owns, tests, or would be told about if it changed.** The
+same code deployed on Windows was exploitable. "It didn't reproduce" was
+therefore never evidence the sink was safe; it was evidence that two external
+accidents happened to line up. This is the same shape as Decision 15's rule
+about absence-of-observation: the mechanism was real and understood, and only
+the triggering conditions were absent.
+
+*Carry forward: when a finding does not reproduce, establish **which layer**
+refused it before concluding anything. Here the router's 404
+(`{"detail":"Not Found"}`) and the handler's 404 (`Run <id> not found.`) are
+visually identical in a status code and mean opposite things.*
+
+### C35 — `WATCHED_AOIS` bypasses the API boundary [E] ✅ FIXED
+The scheduler called `run_pipeline` with no validation. All three configured
+labels (`dharavi`, `nairobi`, `jakarta`) passed the whitelist, so there was **no
+current exposure** — but nothing *enforced* that, so a future edit would have
+reached path construction unimpeded, under the scheduler's privileges.
+
+**The important implication, unchanged and now enforced: "validated at the API
+boundary" is not the same as "validated everywhere."**
+
+**Fix applied** (item 47, same pass as C34): the whitelist is now a single
+predicate, `_matches_label_whitelist()`, called by **both** the HTTP boundary
+(raising `HTTPException(400)`) and an import-time assertion over `WATCHED_AOIS`
+(raising `RuntimeError`, because an `HTTPException` outside a request is
+meaningless). One predicate, two callers — so the two boundaries cannot drift
+about what a valid label is, which is the divergence that let this exist.
+
+Startup failure rather than a warning: a mistyped watched label should stop the
+service, not silently drop one city's refresh and leave a five-day gap nobody
+notices. The scheduler loop re-checks at call time as well, because
+`WATCHED_AOIS` is a mutable module-level list and the import-time assertion
+proves only that the *configured* value was good; a bad entry is skipped loudly
+so one typo cannot stop the other cities refreshing. `get_latest_run()` is
+validated too — traversal is not reachable through its `startswith()` directory
+filter today, but *"not reachable through the current implementation"* is
+precisely the reasoning that left this finding open in the first place.
 
 ---
 
@@ -583,35 +660,14 @@ single-city run.
 ## NEEDS FATE — flagged during consolidation, not yet triaged
 
 *C34–C38 were logged as "NEW findings from Part 1" in the original ledger but
-never received a fate category, never appeared in the summary table, and have
-no corresponding build item. This is a real gap, flagged during the Part 3
+never received a fate category, never appeared in the summary table, and had no
+corresponding build item. This is a real gap, flagged during the Part 3
 consolidation pass — it does not resolve on its own and needs the same triage
 attention every other finding in this document received.*
 
-### C34 — `GET /api/runs/{run_id}` builds a path from an unvalidated parameter [S]
-`api.py:256` constructs `Path(f"data/pipeline_runs/{run_id}/result.json")` from an
-unvalidated path parameter. Same bug class as C16, different sink. Starlette
-normalizes some traversal in the URL path, so it is likely weaker — but untested.
-
-*Impact shape differs from C16: a read returning file contents, so disclosure
-rather than directory creation. Percent-encoded, mixed-separator, and
-absolute-path variants were **not** tried.*
-
-**Priority note:** this is the sharpest unscheduled gap in the whole ledger.
-Same bug class as C16 (which got 72 tests and was verified against the
-unpatched file), currently scheduled nowhere in `05_BUILD_MANUAL.md`.
-Recommend scheduling into Part 8 (Contract Enforcement) alongside C4/C10/C13
-— same "trust boundary enforced only by convention, not code" shape.
-
-### C35 — `WATCHED_AOIS` bypasses the API boundary [E]
-The scheduler calls `run_pipeline` with no validation. All three configured
-labels (`dharavi`, `nairobi`, `jakarta`) pass the whitelist, so **no current
-exposure** — but `WATCHED_AOIS` has no enforced constraint, so a future edit
-would reach path construction unimpeded, under the scheduler's privileges.
-
-**The important implication: "validated at the API boundary" is not the same as
-"validated everywhere."** Relevant to the validation-ownership decision, and
-compounds C34's priority — the API boundary is not the only door.
+***Partially resolved.** C34 and C35 were scheduled as `05_BUILD_MANUAL.md` item
+47, built, and have moved to **CLOSED** above. **C36, C37 and C38 remain
+untriaged** and still need a fate.*
 
 ### C36 — `GHSL_BUILTUP_ASSET` pins the epoch in the asset string [E]
 `configs/exposure_constants.py:58` hardcodes `.../GHS_BUILT_S/2020`.

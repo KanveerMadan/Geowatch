@@ -802,7 +802,7 @@ for the base image.
 consumer), but the downgrade does not remove this item — severity and fix
 priority are separate axes.
 
-### 47. C34 — validate `run_id` at the read boundary *(new, added during consolidation)*
+### 47. C34 — validate `run_id` at the read boundary ✅ *(new, added during consolidation)*
 `GET /api/runs/{run_id}` constructs a path from an unvalidated parameter — same
 bug class as C16, a read sink rather than a write sink. Previously unscheduled;
 added here alongside C4/C10/C13 as the same "trust boundary enforced only by
@@ -820,12 +820,143 @@ entirely, so "validated at the boundary" must be confirmed true everywhere
 `run_pipeline` or path construction from a label can be reached, not just at
 the two originally-known sinks.
 
+**Built.** `tests/test_api_run_id_validation.py`, 115 tests, all passing.
+Verified against the unpatched endpoint first: **58 failed, 57 passed.**
+
+**The untried variants are now tried, and they answer C34's open question.**
+The ledger recorded that "Starlette normalizes some traversal in the URL path,
+so it is likely weaker — but untested." Measured by recording the exact string
+the unpatched handler passed to `Path()`:
+
+- **POSIX traversal** (`../`, `../../../etc/passwd`, `%2e%2e%2f`, double-encoded,
+  `/etc/passwd`) — **the handler never ran.** Starlette normalised or rejected
+  the path before routing. The hypothesis was right for this class, and C34 was
+  **not exploitable through it on this stack.**
+- **Backslash variants** (`..\`, `..\..\windows\system32`, `C:\Windows\Temp`)
+  — **reached the handler with the hostile string intact**, e.g.
+  `Path('data/pipeline_runs/..\..\windows\system32/result.json')`. Inert on
+  POSIX, where a backslash is an ordinary filename character; **real traversal
+  on Windows.** Nothing in the code was platform-guarded.
+- `x/../<real_run_id>` returned 200, but *not* because traversal succeeded — the
+  URL normalised to `/api/runs/<real_run_id>` before routing and the handler
+  received the clean id.
+
+**Net: C34's practical severity on POSIX was lower than feared, and the
+mitigation was incidental** — the router plus the host OS, neither a control
+this codebase owns. The whitelist makes refusal explicit, platform-independent
+and testable. A `resolve_within_data_root()` containment check backs it up, so a
+future sink whose author forgets to validate is still contained — which is how
+C34 came to exist after C16 was fixed.
+
+**C35 closed in the same pass.** The whitelist is now one predicate,
+`_matches_label_whitelist()`, called by both the HTTP boundary (400) and a
+startup assertion over `WATCHED_AOIS` (RuntimeError), so the two cannot drift
+about what a valid label is. The scheduler loop re-checks at call time, since
+`WATCHED_AOIS` is a mutable module-level list and the import-time assertion
+proves only that the *configured* value was good; a bad entry is skipped loudly
+rather than raising, so one typo cannot stop the other cities refreshing.
+`get_latest_run()` is checked too — traversal is not reachable through its
+`startswith()` filter today, but "not reachable through the current code" is
+precisely the reasoning that left C35 open.
+
+### 70. C40 — authenticate the API boundary ✅ *(new, added during the pre-push audit)*
+`api.py` has no authentication on any of its 8 endpoints. **Pairs with item 47**:
+C34/C35 validate *what* crosses the trust boundary, this establishes *who* may
+reach it at all. Same "trust boundary enforced only by convention, not code"
+shape as C4/C10/C13/C34.
+
+*Numbered 70 rather than 48 because Part 9's deleted items historically occupied
+48–50, and 69 is the highest live item. It sits in Part 8 out of numeric
+sequence deliberately — the part it belongs to is contract/trust-boundary
+enforcement, and the pairing with item 47 above is what governs sequencing, not
+the integer.*
+
+**How:** a single shared secret checked at the perimeter — 401 on missing or
+wrong, reject-not-sanitize. Secret from the environment with a loud startup
+failure if unset: the same "fail loudly" discipline `gee_client.py` already
+uses, and subject to the same gap `archive/AUDIT_FINDINGS.md` records against it
+— *validate that the variable is actually set, do not pass `None` through*.
+
+**AMENDED DURING BUILD — the enforcement mechanism is middleware, not
+`Depends`.** This item originally specified a router-level dependency
+(`FastAPI(dependencies=[Depends(...)])`). That was measured insufficient before
+implementing: an app-level dependency covers routes on the app router but does
+**not** cover `app.mount(...)`, because a Mount is a separate ASGI application
+that FastAPI's dependency system never enters. Probed directly — with
+`FastAPI(dependencies=[Depends(gate)])` a route returned **401** while a mounted
+`StaticFiles` path returned **200 and served the file**. `api.py` mounts `/runs`
+over `data/pipeline_runs/`, serving landcover rasters, confidence maps and run
+artifacts: **the same data C34 would disclose.** A dependency-only fix would
+have closed the front door and left that one open, while reading as complete.
+
+Middleware is therefore the enforcement point — the only mechanism that sits in
+front of routes *and* mounts, so coverage is a property of the perimeter rather
+than of remembering to decorate each new endpoint. `APIKeyHeader` is still
+declared, but for the OpenAPI document only; it documents, it does not enforce.
+Registered **after** `CORSMiddleware` so it is outermost (Starlette runs the
+last-added middleware first), with `OPTIONS` exempt so CORS preflight — which
+browsers send without credentials by design — still reaches the CORS layer.
+
+Router-level, not per-endpoint, so a future endpoint is covered **by default
+rather than by remembering**. That is the structural lesson of C35: the
+scheduler reached `run_pipeline` without ever crossing the boundary that was
+believed to protect it, because protection was applied at call sites rather than
+at the perimeter.
+
+**Do not rely on CORS.** `api.py:22` restricts origins to
+`http://localhost:5173` and `http://localhost:3000`, which is browser-enforced
+and therefore no obstacle to `curl`, a script, or any non-browser client. It is
+not an access-control mechanism and must not be counted as one.
+
+**Acceptance:** verified against the unauthenticated endpoints **first**, same
+discipline as C16 and item 47 — a test that passes before the fix is decoration.
+Specifically assert that `POST /api/scheduler/trigger` returns 401 without a
+credential, since that is the amplification path: one unauthenticated call fires
+`run_pipeline` across all of `WATCHED_AOIS`, three GEE-backed runs on metered
+quota. Confirm coverage by **enumerating the live route table**, not a
+hand-written endpoint list, so a later-added endpoint cannot silently escape the
+check.
+
+**Sequencing: build item 70 before item 47.** Item 47 narrows what an anonymous
+caller may pass through the boundary; item 70 removes the anonymous caller. If
+only one ships, item 70 reduces C34's exposure more. `04_FINDINGS_LEDGER.md`
+documents C34's sink, file, line, and explicitly which attack variants were
+*not* tried — detail that is safe only while the repo is private and the
+endpoint is unreachable, and item 70 is what makes reachability a decision
+rather than an accident.
+
+**Built.** `tests/test_api_authentication.py`, 46 tests, all passing. The
+secret is read from `.env` via `load_dotenv()`, called in `api.py` ahead of the
+import-time key read — `ingestion/gee_client.py` already loads `.env` for
+`GEE_PROJECT_ID`, but `api.py` imports `pipeline` lazily inside handlers, so
+that call lands long after this module's import-time check. Each entry point
+needs its own load; `dotenv` is idempotent. Verified
+against the unpatched `api.py` first: **31 failed, 3 passed**, and the 3 are the
+ones that should pass either way — one structural precondition guard, and two
+`must NOT be 401` preflight assertions. No test asserting the security property
+passed before the fix. Route coverage is enumerated from the **live route
+table** (`app.routes`), not a hand-written list, so a future endpoint joins the
+suite automatically. C16's 72 tests still pass; its client fixture is now
+authenticated, because an unauthenticated request stops at 401 and would never
+reach `aoi_label` validation — leaving it anonymous would have made every C16
+assertion pass for the wrong reason. **C35 is not yet closed by this item**: the
+perimeter now covers everything reachable over HTTP, but the scheduler calls
+`run_pipeline` in-process, which is not an HTTP path. That remains item 47's
+scope.
+
 ---
 
 # PART 9 — SAM-conditional items — **DELETED per Decision 12** 🚫
 
 *Four items. Decision 12 settled: SAM is deleted. Do not build any of the
 below.*
+
+**Numbering note.** These four originally carried numbers 47–50. Part 8's live
+item 47 (C34 — validate `run_id` at the read boundary) collided with the first
+of them, so the numbers are struck from this part rather than renumbering any
+live item. **Item 47 means C34, in Part 8.** The historical numbers are recorded
+inline below so references in older documents remain traceable. Numbers 48–50 are
+retired and must not be reused.
 
 **What replaces the one real gap this part would have addressed:** if
 per-object tracking of non-building features (primarily standing water, for
@@ -834,11 +965,11 @@ mechanism is **connected-component labeling on thresholded unmixing-fraction
 rasters** — not SAM, not the items below. Not built now; named here so the
 gap in this part isn't mistaken for an oversight.
 
-~~### 47. C9 — stable IDs at mask creation~~ — deleted with SAM.
-~~### 48. C30 — geometry check, not set membership~~ — deleted with SAM.
-~~### 49. C28 — unfreeze annotation~~ — deleted with SAM; annotation moves to
-stratified points (item 31) regardless.
-~~### 50. C39 — corrupted annotations + input validation~~ — deleted with SAM.
+~~### C9 — stable IDs at mask creation~~ — deleted with SAM. *(was item 47 in the pre-Decision-12 numbering; the live item 47 is C34 in Part 8)*
+~~### C30 — geometry check, not set membership~~ — deleted with SAM. *(was item 48)*
+~~### C28 — unfreeze annotation~~ — deleted with SAM; annotation moves to
+stratified points (item 31) regardless. *(was item 49)*
+~~### C39 — corrupted annotations + input validation~~ — deleted with SAM. *(was item 50)*
 
 ---
 
@@ -1053,7 +1184,7 @@ Part-time alongside coursework:
 | 4 — Architecture | ~6 weeks | Item 18 first (after 51); 21 is the risk, pilot validation gates it |
 | 5 — Validation | ~1 week | |
 | 6 — Epistemic contract | ~1 week | Highest leverage; read the translation note first |
-| 7–8 — Gating, contracts | ~1 week | Includes new item 47 (C34/C35) |
+| 7–8 — Gating, contracts | ~1 week | Includes new items 70 (C40) and 47 (C34/C35), in that order |
 | 9 — SAM-conditional | 0 | Deleted per Decision 12 |
 | 10–12 — Boundaries, hygiene | ~1 week | |
 | 13 — Documentation | ~1.5 weeks | Do not leave to the last week; includes new item 65 |

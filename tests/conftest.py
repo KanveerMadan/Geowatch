@@ -1,8 +1,18 @@
 """
 Shared fixtures for Phase 0 flood-safety tests.
 """
+import os
+
 import pytest
 import numpy as np
+
+# C40 / build item 70: api.py refuses to import without GEOWATCH_API_KEY, by
+# design — a missing-secret default is how an "authenticated" service ships
+# unauthenticated. Tests need a value present before `import api` runs at
+# collection time, and conftest is imported first, so it is set here.
+# setdefault, not assignment: a real key in the environment is left alone.
+TEST_API_KEY = "test-key-not-a-real-secret"
+os.environ.setdefault("GEOWATCH_API_KEY", TEST_API_KEY)
 
 
 @pytest.fixture
