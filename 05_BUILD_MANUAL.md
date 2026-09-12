@@ -920,8 +920,8 @@ extended, not replaced.
 
 # PART 8 — Contract enforcement 🔓
 
-*Six items. Rules that comments cannot enforce. Three are done (47, 70 — the
-trust-boundary pass — and 43); three remain: 44, 45, 46.*
+*Six items. Rules that comments cannot enforce. Four are done (43, 44, 47, 70);
+two remain: 45, 46.*
 
 ### 43. C31 — single-source palette ✅
 **The quick fix is copying values across. The correct fix is a single source of
@@ -1008,9 +1008,54 @@ authentication** — adequate because the API binds to `127.0.0.1` and CORS admi
 only localhost, and *not* adequate if this is ever deployed, which would need a
 server-side session or per-user tokens.
 
-### 44. C4 — assert band order at runtime
+### 44. C4 — assert band order at runtime ✅
 Verify against the file's actual band descriptions at load time, not a
 top-of-file comment.
+
+**Built.** `tests/test_band_order.py`, 30 tests, all passing.
+
+**⚠️ The item as specified could not work, and the fix is larger because of it.**
+Measured before building: **150 of 150** GeoTIFFs this project has produced
+report `descriptions == (None,) * 6`. Neither `geemap.ee_export_image` nor the
+chunked stitcher writes band descriptions. So "check the file's actual band
+descriptions" had nothing to read — asserting equality would have failed every
+existing run, and asserting only-when-present would never have fired. A check
+that cannot fail is decoration, which is the standard C16 and item 47 were held
+to.
+
+Four parts, because the contract had to be *created* before it could be checked:
+
+1. **`BAND_NAMES` is derived from `sentinel2.py`**, not retyped, plus an
+   import-time assertion. The comment said the two must match; now they are the
+   same list and cannot disagree.
+2. **`RGB_BAND_INDICES` is derived from `BAND_NAMES`** rather than pinned to
+   2/1/0. *This is the half that kills C4 at the root* — a reorder now moves the
+   indices with it, so the swap is impossible rather than merely detectable.
+   Values are unchanged today (`Red: 2, Green: 1, Blue: 0`).
+3. **Exports stamp the band names into the file**, so the contract travels with
+   the data. Best-effort: failing to annotate a good export must not discard it.
+4. **Both read boundaries verify against the file** — `generate_tiles` (the
+   training path, where a wrong order is baked into every `.npy`) and
+   `generate_rgb_preview_tiles` (which actually indexes with
+   `RGB_BAND_INDICES`).
+
+**Three verdicts, kept distinct:** `verified`, `mismatch` (always raises), and
+`unverifiable` — descriptions absent, the state all 150 existing files are in.
+Letting that third state read as "verified" would be the same collapse C23 made
+with Gate C's waiver: *nobody checked* rendering as *checked and fine*. It warns
+by default and tells the reader how to fix it; `GEOWATCH_STRICT_BAND_ORDER=1`
+promotes it to an error. The default decays toward strict on its own as files
+are re-exported.
+
+*A wrong band **count** now raises too. It was previously a `print()` that
+execution ran straight past — and a wrong count makes every index into the
+array meaningless, `RGB_BAND_INDICES` included.*
+
+**Demonstrated, not just asserted.** Against the pre-fix code, a GeoTIFF whose
+bands are `["Red","Green","Blue",...]` was read with `Red` taken from index 2
+(value 9000, actually blue) and `Blue` from index 0 (value 1000, actually red) —
+**R and B swapped, `generate_rgb_preview_tiles()` completing without complaint.**
+The same file now raises `BandOrderError` naming both orders.
 
 ### 45. C10 — enforce `source_checkpoint`
 Make the loader **refuse** thresholds whose source does not match the loaded
