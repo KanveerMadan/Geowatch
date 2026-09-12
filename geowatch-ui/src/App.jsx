@@ -48,6 +48,10 @@ const STATUS_META = {
   unavailable:            { label: 'Unavailable',      color: C.coral },
   insufficient_evidence:  { label: 'Not enough data',  color: C.coral },
   waived_pending_real_user_validation: { label: 'Validation pending', color: C.amber },
+  // C23/C24, build item 42. Distinguishes "there is no exposure product to
+  // validate" from "the product passed Gate C". Before item 42 both arrived as
+  // an absent field, so the waiver and its own opposite looked identical.
+  not_applicable_no_exposure_product: { label: 'No product to validate', color: C.textFaint },
 }
 function statusMeta(status) {
   return STATUS_META[status] || { label: (status || 'unknown').replace(/_/g, ' '), color: C.textDim }
@@ -259,6 +263,42 @@ function ReportCard({ title, status, children, style }) {
       {children}
     </div>
   )
+}
+
+/* ============================================================
+   GATE C WAIVER — C23 / C24 / build item 42
+   ============================================================ */
+
+// Plain-language reading of exposure/compute.py's GATE_C_STATUS constants.
+// Gate C is "is this output actually useful and correctly understood by a real
+// user" -- waived, never passed. PROJECT_GATES.md holds the reasoning.
+const GATE_C_NOTES = {
+  waived_pending_real_user_validation:
+    '(not yet reviewed by a real user for decision-support use)',
+  not_applicable_no_exposure_product:
+    '(nothing was computed here, so there is no product to validate)',
+}
+
+/*
+ * The susceptibility panel's caveat span, lifted verbatim.
+ *
+ * C24's point was that the discipline already existed in this file and simply
+ * had not been applied to exposure: SecHazard renders
+ *
+ *     {s.status === 'experimental' && <span style={{ fontFamily: FONTS.body,
+ *       fontSize: 11, color: C.textDim }}>(early-stage estimate, not a
+ *       certified hazard map)</span>}
+ *
+ * so item 42 says copy that exact pattern rather than invent another. The style
+ * object below is that one, unchanged. It is a component only so the three
+ * sites that need it stay identical -- three hand-copies of one rule is S3
+ * ("cross-boundary contracts enforced only by prose"), which is how C31 ended
+ * up with 0 of 8 categories matching.
+ */
+function GateCNote({ status }) {
+  const note = GATE_C_NOTES[status]
+  if (!note) return null
+  return <span style={{ fontFamily: FONTS.body, fontSize: 11, color: C.textDim }}>{note}</span>
 }
 
 /* ============================================================
@@ -772,11 +812,24 @@ function SecExposure({ result }) {
 
   return (
     <section id="exposure">
-      <ReportCard title="Who and what is in this area">
+      {/* C24 / item 42: `status=` on ReportCard renders a StatusPill in the
+          header -- exactly what SecHazard does with `status={s.status}`. The
+          value is read from the layer, never hardcoded; exposure/compute.py's
+          GATE_C_STATUS is the single source of truth. */}
+      <ReportCard title="Who and what is in this area" status={layer.product_validation_status || 'unavailable'}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 8 }}>
+          <span style={{ fontFamily: FONTS.body, fontSize: 12, color: C.text, fontWeight: 600 }}>Review status</span>
+          <GateCNote status={layer.product_validation_status} />
+        </div>
         <Explain>
           Exposure means counting people, buildings, roads and facilities that sit inside this area, if a flood happened. It doesn't mean they will flood or
           be harmed, just that they're physically located here. Pick a flood type below to see the count relevant to that specific risk.
         </Explain>
+        {layer.product_validation_status === 'waived_pending_real_user_validation' && (
+          <CaveatList items={[
+            "These exposure figures have passed their data checks, but no planner, NGO or researcher has yet reviewed whether they are shaped and labelled well enough to actually decide anything with. Treat them as screening context, not as a finished product.",
+          ]} />
+        )}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, marginTop: 8 }}>
           {layerKeys.map(k => (
             <button key={k} onClick={() => setActiveLayer(k)} style={{
@@ -924,6 +977,16 @@ function SecRisk({ result }) {
       {Object.entries(layers).map(([key, r]) => (
         <ReportCard key={key} title={SUSC_INFO[key]?.label || key.replace(/_/g, ' ')} status={r.status}>
           <Small>{r.reason || 'No further detail available.'}</Small>
+          {/* C23/C24 item 42: risk's own docstring requires it to propagate
+              exposure's Gate C status "rather than silently disappearing two
+              layers up the stack". It now does, on all four return paths, and
+              this is where it surfaces. */}
+          {r.exposure_product_validation_status && (
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 8 }}>
+              <StatusPill status={r.exposure_product_validation_status} />
+              <GateCNote status={r.exposure_product_validation_status} />
+            </div>
+          )}
           {/* Risk inherits its trust from the hazard and exposure it consumed
               (item 40's gated_inherit), so the inherited verdict shows here. */}
           <BlockTrustNote block={r} />

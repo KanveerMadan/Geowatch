@@ -734,9 +734,12 @@ asserted ahead of it. Same shape as C37.
 
 ---
 
-# PART 7 — Gating architecture 🔓
+# PART 7 — Gating architecture ✅ **COMPLETE**
 
-*Three items. One signal that currently dies three times.*
+*Three items, all done. Two signals that were computed correctly and then
+discarded: `applicability` died three times (C14 → C20 → C32, items 40 and 41)
+and the Gate C waiver died twice (C23 → C24, item 42). Both are now carried
+from the point of computation through to the screen.*
 
 ### 40. C14 / C20 — `applicability` gates downstream ✅
 1. Move the computation **before** `hydrological_surfaces` (currently
@@ -862,7 +865,7 @@ run. It imports `vitest` and `@testing-library/react`, neither installed, and
 cannot fail is decoration — the same standard C16 and item 47 were held to.
 Worth its own item.*
 
-### 42. C23 / C24 — Gate C waiver on all paths, rendered
+### 42. C23 / C24 — Gate C waiver on all paths, rendered ✅
 `product_validation_status` must be present on the `not_calculated` path too, and
 the frontend must read it.
 
@@ -873,6 +876,45 @@ that pattern. Low effort, high integrity value.
 against D.7). This item fixes how the waiver *status field* propagates through
 code; Decision 17 settles how Gate C itself is *validated*. Both are needed;
 neither substitutes for the other.
+
+**Built.** `tests/test_gate_c_waiver.py` (22 tests) and
+`tests/test_gate_c_ui.mjs` (11 tests), all passing. C23 and C24 reproduced
+against the unmodified code first:
+
+| | before | after |
+|---|---|---|
+| exposure `not_calculated` keys | `['label','layer_id','reason','status']` | `+ product_validation_status` |
+| `.get('product_validation_status')` | `None` | `'waived_pending_real_user_validation'` |
+| `product_validation_status` in `App.jsx` | 0 | 6 |
+
+**Why `None` was the bug, not merely untidy.** `None` is also what a caller sees
+once Gate C is **passed** and the waiver field is removed. So *"never reviewed
+by a real user"* and *"reviewed and cleared"* arrived as the same value — the
+waiver did not weaken, it **inverted**, on the one path nobody exercised.
+
+**The same defect, one level up, was fixed in the same pass.** `compute_risk()`
+has four return paths and carried `exposure_product_validation_status` on only
+the last. The three early returns are the ones that actually fire in Phase 10A,
+since the fusion methodology is deliberately undefined — so the waiver vanished
+on *every real run*, at the layer `risk/compute.py`'s own docstring calls "the
+most consequential output this system produces", in the very field that
+docstring demands be propagated "rather than silently disappearing two layers up
+the stack." All four paths now route through one helper.
+
+**A third state was needed.** "Waived", "no product to validate", and "passed"
+are three different things; C23 collapsed the first and third. `GATE_C_STATUS`
+and the new `GATE_C_STATUS_NO_PRODUCT` sit together in `exposure/compute.py`,
+keeping that module's "single source of truth — do not hardcode the string"
+rule. A test asserts the literal is not re-hardcoded inside the function.
+
+**The frontend copies the susceptibility panel, verbatim.** Same
+`status=` prop on `ReportCard` → `StatusPill` in the header; and `GateCNote`
+reuses that panel's caveat-span style object *unchanged*
+(`FONTS.body, fontSize: 11, color: C.textDim`), asserted by a test that greps
+both. `waived_pending_real_user_validation` was **already** in `STATUS_META`
+before this item — the vocabulary existed with nothing feeding it, which is
+precisely C24's "the discipline exists; it just was not applied here." It is
+extended, not replaced.
 
 ---
 

@@ -36,7 +36,35 @@ file without that explicit go/no-go having happened first.
 """
 
 
+from exposure.compute import GATE_C_STATUS_NO_PRODUCT
 from perception.applicability_gate import gated_inherit
+
+
+def _exposure_gate_c_status(exposure) -> str:
+    """
+    Gate C's status for whatever exposure this risk was built on.
+
+    C23/C24, build item 42. This module's own docstring already required that
+    any consumer "must propagate the exposure input's product_validation_status
+    field into its own output ... rather than silently disappearing two layers
+    up the stack." It was propagated on exactly one of four return paths. The
+    three early returns -- the ones that actually fire in Phase 10A, since the
+    fusion methodology is deliberately undefined -- dropped it.
+
+    So in practice the waiver disappeared two layers up on every real run,
+    which is the outcome the docstring was written to prevent.
+
+    Never returns None. None is the value a caller also sees once Gate C is
+    PASSED and the field is removed, so returning it here would make "waived"
+    and "passed" indistinguishable -- C23's defect, reproduced at the risk
+    layer where the docstring calls it "the most consequential output this
+    system produces".
+    """
+    if isinstance(exposure, dict):
+        status = exposure.get("product_validation_status")
+        if status:
+            return status
+    return GATE_C_STATUS_NO_PRODUCT
 
 
 @gated_inherit("risk", "hazard", "exposure")
@@ -62,6 +90,7 @@ def compute_risk(hazard: dict = None, exposure: dict = None, vulnerability: dict
             "status": "not_calculated",
             "reason": "Risk requires hazard evidence; hazard is unavailable "
                       "or not yet calculated for this evidence layer.",
+            "exposure_product_validation_status": _exposure_gate_c_status(exposure),
         }
 
     if exposure is None or exposure.get("status") != "available":
@@ -69,6 +98,7 @@ def compute_risk(hazard: dict = None, exposure: dict = None, vulnerability: dict
             "status": "not_calculated",
             "reason": "Risk requires exposure; exposure is unavailable or "
                       "not yet calculated for this evidence layer.",
+            "exposure_product_validation_status": _exposure_gate_c_status(exposure),
         }
 
     if vulnerability is None or vulnerability.get("status") != "available":
@@ -80,6 +110,7 @@ def compute_risk(hazard: dict = None, exposure: dict = None, vulnerability: dict
                       "real vulnerability input; this project does not use "
                       "V=1.0 fallbacks or imagery-derived vulnerability "
                       "proxies.",
+            "exposure_product_validation_status": _exposure_gate_c_status(exposure),
         }
 
     # Phase 10B: vulnerability IS now available (INFORM Risk), but per
@@ -101,5 +132,5 @@ def compute_risk(hazard: dict = None, exposure: dict = None, vulnerability: dict
                   "approved the same way Gate E defined the "
                   "vulnerability_context schema before any code was written.",
         "vulnerability_available": True,
-        "exposure_product_validation_status": exposure.get("product_validation_status"),
+        "exposure_product_validation_status": _exposure_gate_c_status(exposure),
     }

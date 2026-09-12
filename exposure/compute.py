@@ -26,6 +26,16 @@ change) only after a real user has actually reviewed this output.
 # read it here, do not hardcode the string "waived..." anywhere else.
 GATE_C_STATUS = "waived_pending_real_user_validation"
 
+# Used where a consumer must report Gate C's status but no exposure product was
+# produced or supplied at all (C23/C24, build item 42). This exists so that
+# "there is no product to validate" and "the product passed Gate C" are
+# different strings rather than both being absence. The original defect was
+# exactly that collapse: the not_calculated path omitted the field entirely, so
+# `.get("product_validation_status")` returned None -- and None is what a caller
+# also sees when Gate C has been passed and the waiver removed. Two opposite
+# meanings, one indistinguishable value.
+GATE_C_STATUS_NO_PRODUCT = "not_applicable_no_exposure_product"
+
 """ HARD RULE, per Document 1's correction of the original Phase 10 plan:
 exposure is computed SEPARATELY for every EvidenceLayer (e.g. pluvial
 susceptibility, fluvial susceptibility, coastal susceptibility, observed
@@ -126,6 +136,21 @@ def compute_exposure_for_layer(
             "status": "not_calculated",
             "reason": f"Evidence layer status is '{evidence_layer.status}', "
                       f"not usable for exposure computation.",
+            # C23 (build item 42): this field was absent on this path, so
+            # `.get("product_validation_status")` returned None -- which is
+            # also what a caller sees once Gate C is PASSED and the waiver is
+            # removed. The waiver silently became indistinguishable from its
+            # own opposite, on the one path nobody exercised: all five layers
+            # took the success path on the real runs.
+            #
+            # GATE_C_STATUS, not the no-product sentinel, because Gate C is a
+            # property of THIS MODULE's output shape and limitation-labeling,
+            # and that has still not been reviewed by a real user. The early
+            # return is this module's output. The `reason` above already says
+            # no numbers were computed; the waiver says nothing here has been
+            # user-validated. Both are true at once and neither substitutes
+            # for the other.
+            "product_validation_status": GATE_C_STATUS,
         }
 
     result = {
