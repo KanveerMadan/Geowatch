@@ -802,12 +802,65 @@ presenting itself as trusted — silently implying trust is precisely C14.
 
 *Does not close C32 (the frontend still never renders it) — that is item 41.*
 
-### 41. C32 — render it
+### 41. C32 — render it ✅
 Surface `applicability` as a prominent banner, not a buried field. Add to
 `NAV_SECTIONS`.
 
 **Acceptance:** an AOI that trips `out_of_distribution` produces a UI where the
 user cannot miss it.
+
+**Built.** `tests/test_applicability_ui.mjs`, 15 tests, all passing
+(`node tests/test_applicability_ui.mjs`). C32's three specific claims are now
+all false — measured before and after:
+
+| C32's claim | before | after |
+|---|---:|---:|
+| `applicability` occurrences in `App.jsx` | 1 | 12 |
+| `NAV_SECTIONS` entries | 6 | 7 |
+| `result.applicability` ever read | no | yes |
+
+**Three surfaces, because "cannot miss it" is not one thing.** A banner above
+every section, so a flagged run cannot be read without meeting it first; the
+`Reliability` nav entry itself turns coral with a dot and an `OOD`/`WEAK` tag,
+because the sidebar is always on screen and the banner is not; and a
+`BlockTrustNote` beside each affected number in Hazard, Exposure and Risk,
+because "not a buried field" has to mean the warning travels *with the value*,
+not merely that a banner exists somewhere above it.
+
+**Loud only when there is something to be loud about.** On a clean run the
+banner collapses to one quiet confirmation line. A banner that fires on every
+run trains readers to scroll past it — the same mechanism that made C33's
+`{pct ? ... : '0.0%'}` meaningless. The quiet line still appears, because
+silence would leave a reader unable to tell *checked and fine* from *never
+checked*, and that collapse is S1.
+
+**The UI reads, it never re-derives.** Trust comes from the flag item 40 emits
+on every block. Recomputing it in JavaScript from `unknown_pct` and a threshold
+would recreate C31 exactly — a Python rule restated in JS, drifting silently.
+A test forges a block whose status contradicts any threshold rule and asserts
+the UI follows the block, plus greps the module to assert the threshold is not
+reimplemented.
+
+**Absence does not read as approval.** A run predating item 40 carries no
+`applicability` block; it renders as *not checked*, and its blocks are counted
+`ungated` rather than `unaffected`. Asserted by a fixture with every flag
+stripped.
+
+*Fixtures are generated from the real backend, not hand-written — a
+hand-written fixture lets the UI test keep passing while the emitted shape
+moves underneath it, which is C31's failure mode applied to tests.*
+
+**Verification note:** `geowatch-ui` has no test runner installed, so the
+reliability logic lives in a plain module (`geowatch-ui/src/applicability.js`)
+that `node` imports directly, with no new dependencies. JSX validity is covered
+by `vite build` (passes, 41 modules) and `oxlint` (passes, **no new findings** —
+the 3 reported are pre-existing and identical on the unmodified file).
+
+*Separate finding, not fixed here: `tests/FloodAssessmentPanel.test.jsx` cannot
+run. It imports `vitest` and `@testing-library/react`, neither installed, and
+`../src/FloodAssessmentPanel`, which does not exist in `src/`. A test that
+cannot fail is decoration — the same standard C16 and item 47 were held to.
+Worth its own item.*
 
 ### 42. C23 / C24 — Gate C waiver on all paths, rendered
 `product_validation_status` must be present on the `not_calculated` path too, and

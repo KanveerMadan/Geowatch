@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { MapContainer, TileLayer, Rectangle, ImageOverlay, GeoJSON, useMapEvents, useMap, Tooltip } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
+import {
+  TRUST_META, blockFlag, isFlagged, reportApplicability, mechanismRows,
+} from './applicability'
 
 const API = 'http://localhost:8000'
 
@@ -259,6 +262,296 @@ function ReportCard({ title, status, children, style }) {
 }
 
 /* ============================================================
+   APPLICABILITY — C32 / build item 41
+   ============================================================ */
+
+// Trust levels get their own palette rather than reusing STATUS_META. The two
+// answer different questions and must not be confusable: STATUS_META describes
+// RELEVANCE and completeness ("Not applicable", "Not yet defined"), while this
+// describes whether a number can be BELIEVED. The backend keeps the same two
+// axes apart for the same reason -- collapsing them would let "there is no
+// coastline here" read as "this cannot be trusted".
+const TRUST_COLORS = {
+  out_of_distribution: C.coral,
+  degraded: C.amber,
+  in_distribution: C.green,
+  unknown: C.textFaint,
+}
+
+function TrustPill({ trust, size = 'sm' }) {
+  const color = TRUST_COLORS[trust] || C.textFaint
+  const label = TRUST_META[trust]?.label || 'Not checked'
+  return (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', gap: 5,
+      fontFamily: FONTS.mono, fontSize: size === 'sm' ? 9 : 10.5, letterSpacing: '0.03em',
+      color, background: `${color}18`, border: `1px solid ${color}44`,
+      borderRadius: 20, padding: size === 'sm' ? '2px 8px' : '4px 11px', whiteSpace: 'nowrap',
+    }}>
+      <span style={{ width: 5, height: 5, borderRadius: 5, background: color, flexShrink: 0 }} />
+      {label}
+    </span>
+  )
+}
+
+/*
+ * The banner. Item 41's acceptance is that an AOI tripping out_of_distribution
+ * produces a UI the user cannot miss, so this sits above every section, spans
+ * the column, and carries the severity colour.
+ *
+ * It is loud ONLY when there is something to be loud about. On a clean run it
+ * collapses to one quiet confirmation line. A banner that shouts on every run
+ * trains readers to scroll past it, which is the same mechanism that made
+ * C33's "0.0%" meaningless -- a signal that always fires carries no
+ * information. The quiet line still appears, because silence would leave a
+ * reader unable to tell "checked and fine" from "never checked".
+ */
+function ApplicabilityBanner({ result, onJump }) {
+  const app = reportApplicability(result)
+  const color = TRUST_COLORS[app.trust] || C.textFaint
+
+  if (!app.isAlert) {
+    return (
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 9, marginBottom: 14,
+        padding: '9px 13px', borderRadius: 9,
+        background: C.panelDeep, border: `1px solid ${C.hairline}`,
+      }}>
+        <span style={{ width: 6, height: 6, borderRadius: 6, background: color, flexShrink: 0 }} />
+        <span style={{ fontFamily: FONTS.body, fontSize: 11.5, color: C.textDim }}>
+          {app.meta.headline}
+        </span>
+        <button onClick={() => onJump?.('reliability')} style={{
+          marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer',
+          fontFamily: FONTS.body, fontSize: 11, color: C.textFaint, textDecoration: 'underline',
+        }}>Reliability detail</button>
+      </div>
+    )
+  }
+
+  return (
+    <div role="alert" style={{
+      marginBottom: 18, borderRadius: 12, overflow: 'hidden',
+      background: app.trust === 'out_of_distribution' ? C.coralDim : C.amberDim,
+      border: `1px solid ${color}`,
+      boxShadow: `0 0 0 1px ${color}22, 0 6px 24px -12px ${color}66`,
+    }}>
+      <div style={{ height: 3, background: color }} />
+      <div style={{ padding: '15px 18px 16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 9 }}>
+          <span style={{
+            fontFamily: FONTS.mono, fontSize: 9.5, letterSpacing: '0.10em',
+            textTransform: 'uppercase', fontWeight: 700, color,
+          }}>
+            {app.trust === 'out_of_distribution' ? 'Reliability warning' : 'Reliability caution'}
+          </span>
+          <TrustPill trust={app.trust} />
+        </div>
+
+        <div style={{
+          fontFamily: FONTS.display, fontSize: 16.5, fontWeight: 700,
+          color: C.text, lineHeight: 1.35, marginBottom: 8,
+        }}>
+          {app.meta.headline}
+        </div>
+
+        <div style={{ fontFamily: FONTS.body, fontSize: 12.5, color: C.textDim, lineHeight: 1.6 }}>
+          {app.meta.plain}
+        </div>
+
+        {app.reason && (
+          <div style={{
+            marginTop: 11, padding: '9px 11px', borderRadius: 7,
+            background: 'rgba(0,0,0,0.22)', border: `1px solid ${color}33`,
+            fontFamily: FONTS.mono, fontSize: 10.5, color: C.textDim, lineHeight: 1.55,
+          }}>
+            {app.reason}
+          </div>
+        )}
+
+        {/* Naming what IS and IS NOT affected is the point of item 40's
+            dependency chain. "Everything is suspect" would be both false and
+            useless -- fluvial reads MERIT Hydro, coastal a shoreline dataset,
+            flash flood slope and catchment; none touches the semantic model. */}
+        {app.affectedCount > 0 && (
+          <div style={{ marginTop: 12, display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>
+            <span style={{ fontFamily: FONTS.body, fontSize: 10.5, color: C.textFaint, marginRight: 2 }}>
+              Affected ({app.affectedCount}):
+            </span>
+            {app.affected.map(({ group, key }) => (
+              <span key={`${group}-${key}`} style={{
+                fontFamily: FONTS.mono, fontSize: 9.5, color, background: `${color}14`,
+                border: `1px solid ${color}33`, borderRadius: 5, padding: '2px 7px',
+              }}>{group}/{key.replace(/_/g, ' ')}</span>
+            ))}
+          </div>
+        )}
+
+        {app.unaffected.length > 0 && (
+          <div style={{ marginTop: 7, fontFamily: FONTS.body, fontSize: 10.5, color: C.textFaint, lineHeight: 1.5 }}>
+            Not affected — these read independent data sources:{' '}
+            {app.unaffected.map(u => `${u.group}/${u.key.replace(/_/g, ' ')}`).join(', ')}.
+          </div>
+        )}
+
+        <button onClick={() => onJump?.('reliability')} style={{
+          marginTop: 13, background: `${color}1a`, border: `1px solid ${color}55`,
+          color, borderRadius: 7, padding: '7px 13px', cursor: 'pointer',
+          fontFamily: FONTS.body, fontSize: 11.5, fontWeight: 600,
+        }}>What this means →</button>
+      </div>
+    </div>
+  )
+}
+
+/*
+ * Inline per-block marker. Item 40 put a flag on every susceptibility,
+ * exposure and risk block; this is what reads it where the number actually
+ * appears. "Not a buried field" has to mean the warning travels with the value,
+ * not only that a banner exists somewhere above.
+ */
+function BlockTrustNote({ block }) {
+  const flag = blockFlag(block)
+  if (!flag) return null
+
+  if (flag.gate === 'not_wired') {
+    return (
+      <div style={{ marginTop: 9, fontFamily: FONTS.mono, fontSize: 10, color: C.textFaint }}>
+        Reliability not checked for this value.
+      </div>
+    )
+  }
+  if (!isFlagged(block)) return null
+
+  const color = flag.out_of_distribution ? C.coral : C.amber
+  const via = (flag.degraded_by || []).join(', ').replace(/_/g, ' ')
+  return (
+    <div style={{
+      marginTop: 10, padding: '8px 10px', borderRadius: 7,
+      background: `${color}12`, border: `1px solid ${color}3a`,
+      display: 'flex', gap: 8, alignItems: 'flex-start',
+    }}>
+      <span style={{ color, fontSize: 12, lineHeight: 1.2, flexShrink: 0 }}>▲</span>
+      <span style={{ fontFamily: FONTS.body, fontSize: 11, color: C.textDim, lineHeight: 1.5 }}>
+        {flag.out_of_distribution
+          ? 'This number is derived from land-cover output that is currently unreliable'
+          : 'This number is derived from land-cover output that is weaker than usual'}
+        {via ? <> — via <span style={{ fontFamily: FONTS.mono, fontSize: 10, color }}>{via}</span></> : null}.
+        {' '}It is shown rather than withheld so the value and its caveat stay together.
+      </span>
+    </div>
+  )
+}
+
+function SecReliability({ result }) {
+  const app = reportApplicability(result)
+  const rows = mechanismRows(result)
+  const color = TRUST_COLORS[app.trust] || C.textFaint
+
+  return (
+    <section id="reliability">
+      <ReportCard
+        title="Can these results be trusted here"
+        style={app.isAlert ? { background: app.trust === 'out_of_distribution' ? C.coralDim : C.amberDim, border: `1px solid ${color}55` } : undefined}
+      >
+        <div style={{ marginBottom: 10 }}><TrustPill trust={app.trust} size="md" /></div>
+        <Explain>{app.meta.plain}</Explain>
+
+        {!app.hasBlock && (
+          <CaveatList items={[
+            'This run carries no applicability block at all, so no reliability ' +
+            'verdict was recorded. Treat that as "not checked" rather than ' +
+            '"checked and fine" — it most likely predates reliability gating.',
+          ]} />
+        )}
+
+        {app.reason && (
+          <div style={{
+            marginTop: 10, padding: '10px 12px', borderRadius: 8,
+            background: C.panelDeep, border: `1px solid ${C.hairline}`,
+            fontFamily: FONTS.mono, fontSize: 10.5, color: C.textDim, lineHeight: 1.6,
+          }}>{app.reason}</div>
+        )}
+      </ReportCard>
+
+      {rows.length > 0 && (
+        <ReportCard title="Verdict by mechanism">
+          <Explain>
+            Each flood mechanism is judged separately, because they read different data.
+            A problem with the land-cover model does not implicate a mechanism that never uses it.
+          </Explain>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 1, marginTop: 4 }}>
+            {rows.map(r => (
+              <div key={r.key} style={{
+                display: 'flex', alignItems: 'flex-start', gap: 12, padding: '10px 11px',
+                background: r.isRoot ? C.panelDeep : 'transparent',
+                borderRadius: 7, border: r.isRoot ? `1px solid ${color}33` : `1px solid transparent`,
+              }}>
+                <div style={{ minWidth: 168 }}>
+                  <div style={{ fontFamily: FONTS.body, fontSize: 12, color: C.text, fontWeight: r.isRoot ? 600 : 500 }}>
+                    {r.isRoot ? 'Land-cover model' : (SUSC_INFO[r.key]?.label || r.key.replace(/_/g, ' '))}
+                  </div>
+                  {r.isRoot && (
+                    <div style={{ fontFamily: FONTS.body, fontSize: 10, color: C.textFaint, marginTop: 2 }}>
+                      Root of the chain — everything derived from it inherits this
+                    </div>
+                  )}
+                </div>
+                <div style={{ flexShrink: 0 }}>
+                  {r.isRoot ? <TrustPill trust={r.status} /> : <StatusPill status={r.status} />}
+                </div>
+                {r.reason && (
+                  <div style={{ fontFamily: FONTS.body, fontSize: 11, color: C.textFaint, lineHeight: 1.5 }}>
+                    {r.reason}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </ReportCard>
+      )}
+
+      {(app.affected.length > 0 || app.ungated.length > 0) && (
+        <ReportCard title="What this changes downstream">
+          {app.affected.length > 0 && (
+            <>
+              <Explain>
+                These {app.affected.length} values are computed from the land-cover model, so they
+                carry its verdict. They are still shown, with the reason attached, rather than hidden.
+              </Explain>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 4 }}>
+                {app.affected.map(({ group, key, flag }) => (
+                  <span key={`${group}-${key}`} style={{
+                    fontFamily: FONTS.mono, fontSize: 9.5,
+                    color: flag.out_of_distribution ? C.coral : C.amber,
+                    background: `${flag.out_of_distribution ? C.coral : C.amber}14`,
+                    border: `1px solid ${flag.out_of_distribution ? C.coral : C.amber}33`,
+                    borderRadius: 5, padding: '3px 8px',
+                  }}>{group}/{key.replace(/_/g, ' ')}</span>
+                ))}
+              </div>
+            </>
+          )}
+          {app.unaffected.length > 0 && (
+            <Small>
+              Unaffected: {app.unaffected.map(u => `${u.group}/${u.key.replace(/_/g, ' ')}`).join(', ')} —
+              these read river, shoreline and terrain data, not the land-cover model.
+            </Small>
+          )}
+          {app.ungated.length > 0 && (
+            <CaveatList items={[
+              `${app.ungated.length} value(s) carry no reliability flag at all: ` +
+              app.ungated.map(u => `${u.group}/${u.key}`).join(', ') +
+              '. Unflagged means nobody checked, not that the value is sound.',
+            ]} />
+          )}
+        </ReportCard>
+      )}
+    </section>
+  )
+}
+
+/* ============================================================
    REPORT SECTIONS
    ============================================================ */
 
@@ -454,6 +747,10 @@ function SecHazard({ result }) {
             ) : (
               <Small>{s.reason || 'Not enough data to score this for this area.'}</Small>
             )}
+            {/* C32 / item 41: the warning travels with the number, not only in
+                the banner above. A reader who scrolls straight to waterlogging
+                must still see that it is derived from unreliable land cover. */}
+            <BlockTrustNote block={s} />
           </ReportCard>
         )
       })}
@@ -493,6 +790,12 @@ function SecExposure({ result }) {
         {layer.intersection_type === 'aoi_total_given_layer_applicability' && (
           <CaveatList items={["These are totals for the whole area, not just the flood-prone parts, because this flood type is currently scored as a single area-wide number rather than mapped spot by spot."]} />
         )}
+        {/* C32 / item 41. Note the line above: `intersection_type ===
+            'aoi_total_given_layer_applicability'` was the ONLY occurrence of
+            the string "applicability" anywhere in src/ before this item — an
+            unrelated comparison that made the signal look wired when it was
+            not. The real flag is read here. */}
+        <BlockTrustNote block={layer} />
       </ReportCard>
 
       <ReportCard title="Estimated population" status={pop.status || 'unavailable'}>
@@ -621,6 +924,9 @@ function SecRisk({ result }) {
       {Object.entries(layers).map(([key, r]) => (
         <ReportCard key={key} title={SUSC_INFO[key]?.label || key.replace(/_/g, ' ')} status={r.status}>
           <Small>{r.reason || 'No further detail available.'}</Small>
+          {/* Risk inherits its trust from the hazard and exposure it consumed
+              (item 40's gated_inherit), so the inherited verdict shows here. */}
+          <BlockTrustNote block={r} />
         </ReportCard>
       ))}
     </section>
@@ -673,6 +979,12 @@ function SegmentDetail({ seg, onClose }) {
 
 const NAV_SECTIONS = [
   { id: 'overview', label: 'Overview' },
+  // C32 / build item 41. Placed second, directly after Overview, because the
+  // verdict governs how everything below it should be read. Not placed first:
+  // Overview is the landing section and NAV_SECTIONS[0] is the scroll-spy
+  // default, so promoting Reliability to index 0 would change where the report
+  // opens for every run, including the ones where nothing is wrong.
+  { id: 'reliability', label: 'Reliability', alertable: true },
   { id: 'landcover', label: 'Landcover' },
   { id: 'hazard', label: 'Hazard' },
   { id: 'exposure', label: 'Exposure' },
@@ -706,6 +1018,9 @@ function ReportMode({ result, onBackToMap, landcoverProps }) {
   }, [])
 
   const imageUrl = landcoverImageUrl(result)
+  // Read once per render and share with the nav; the banner and section read it
+  // themselves so they stay usable standalone.
+  const reportTrust = reportApplicability(result)
 
   return (
     <div style={{ position: 'absolute', inset: 0, background: C.void, zIndex: 900, display: 'flex' }}>
@@ -729,22 +1044,50 @@ function ReportMode({ result, onBackToMap, landcoverProps }) {
         </div>
 
         <nav style={{ padding: '0 10px', flex: 1, overflowY: 'auto' }}>
-          {NAV_SECTIONS.map(s => (
-            <button key={s.id} onClick={() => jumpTo(s.id)} style={{
-              display: 'block', width: '100%', textAlign: 'left', padding: '9px 12px', marginBottom: 2,
-              background: activeSection === s.id ? C.cyanDim : 'none', border: 'none', borderRadius: 7, cursor: 'pointer',
-              fontFamily: FONTS.body, fontSize: 12.5, fontWeight: activeSection === s.id ? 600 : 500,
-              color: activeSection === s.id ? C.cyan : C.textDim,
-              borderLeft: `2px solid ${activeSection === s.id ? C.cyan : 'transparent'}`,
-            }}>{s.label}</button>
-          ))}
+          {NAV_SECTIONS.map(s => {
+            // C32 / item 41: the nav itself carries the alert, so a flagged run
+            // is visible without scrolling and without having reached the
+            // banner. The sidebar is always on screen; the banner is not.
+            const alerting = s.alertable && reportTrust.isAlert
+            const alertColor = reportTrust.trust === 'out_of_distribution' ? C.coral : C.amber
+            const active = activeSection === s.id
+            return (
+              <button key={s.id} onClick={() => jumpTo(s.id)} style={{
+                display: 'flex', alignItems: 'center', gap: 7, width: '100%', textAlign: 'left',
+                padding: '9px 12px', marginBottom: 2,
+                background: active ? (alerting ? `${alertColor}1a` : C.cyanDim) : 'none',
+                border: 'none', borderRadius: 7, cursor: 'pointer',
+                fontFamily: FONTS.body, fontSize: 12.5, fontWeight: active || alerting ? 600 : 500,
+                color: alerting ? alertColor : (active ? C.cyan : C.textDim),
+                borderLeft: `2px solid ${active ? (alerting ? alertColor : C.cyan) : 'transparent'}`,
+              }}>
+                {alerting && (
+                  <span aria-hidden="true" style={{
+                    width: 6, height: 6, borderRadius: 6, background: alertColor, flexShrink: 0,
+                    boxShadow: `0 0 6px ${alertColor}`,
+                  }} />
+                )}
+                <span>{s.label}</span>
+                {alerting && (
+                  <span style={{
+                    marginLeft: 'auto', fontFamily: FONTS.mono, fontSize: 8.5, letterSpacing: '0.06em',
+                    color: alertColor, border: `1px solid ${alertColor}55`, borderRadius: 4, padding: '1px 5px',
+                  }}>{reportTrust.trust === 'out_of_distribution' ? 'OOD' : 'WEAK'}</span>
+                )}
+              </button>
+            )
+          })}
         </nav>
       </div>
 
       {/* Scrollable report body */}
       <div ref={scrollRef} style={{ flex: 1, overflowY: 'auto', padding: '32px 0' }}>
         <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 32px' }}>
+          {/* C32 / item 41: above everything, so an out_of_distribution run
+              cannot be read without seeing it first. */}
+          <ApplicabilityBanner result={result} onJump={jumpTo} />
           <div ref={el => sectionRefs.current.overview = el}><SecOverview result={result} /></div>
+          <div ref={el => sectionRefs.current.reliability = el} style={{ marginTop: 8 }}><SecReliability result={result} /></div>
           <div ref={el => sectionRefs.current.landcover = el} style={{ marginTop: 8 }}><SecLandcover result={result} {...landcoverProps} /></div>
           <div ref={el => sectionRefs.current.hazard = el} style={{ marginTop: 8 }}><SecHazard result={result} /></div>
           <div ref={el => sectionRefs.current.exposure = el} style={{ marginTop: 8 }}><SecExposure result={result} /></div>
