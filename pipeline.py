@@ -10,6 +10,7 @@ from ingestion.tiler import export_image_local, generate_rgb_preview_tiles
 from ingestion.segmentation import load_sam, segment_tile, encode_mask_rle
 from perception.applicability import compute_applicability, finalize_applicability
 from perception.applicability_gate import annotate as annotate_applicability
+from configs.palette import palette_for_result
 from perception.hydrological_surfaces import compute_hydrological_surfaces
 from ingestion.rainfall import get_rainfall_climatology
 from susceptibility.pluvial import compute_pluvial_susceptibility, save_pluvial_susceptibility_output
@@ -620,6 +621,12 @@ def run_pipeline(
         "confidence_map_path": landcover_paths["confidence_map_path"],
         "categories": categories,
         "unknown_index": 255,
+        # C31 / build item 43: the palette travels WITH the result, so the
+        # frontend has no colour map of its own to drift from. This is the
+        # mechanism that makes the drift structurally impossible rather than
+        # merely currently-absent -- changing a colour in configs/palette.py
+        # changes the rendered legend with zero frontend edits.
+        "palette": palette_for_result(),
         "category_area_pct": inference_result["category_area_pct"],
         "unknown_pct": inference_result["unknown_pct"],
         "ambiguous_pct": inference_result["ambiguous_pct"],

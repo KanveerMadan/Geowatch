@@ -162,22 +162,25 @@ class GeoWatchResNetSeg(nn.Module):
 
 
 # ============================================================
-# Category color palette — must match App.jsx's CAT_COLORS for the
-# 7 ML-resolvable categories exactly, so the frontend legend and the
-# PNG overlay agree visually.
+# Category color palette — C31 / build item 43.
+#
+# This used to be a literal dict here, above a comment reading "must match
+# App.jsx's CAT_COLORS ... exactly, so the frontend legend and the PNG overlay
+# agree visually." A Python comment asserting a JavaScript constant: S3, "a rule
+# enforced only by prose fails at the first edit made by someone who did not
+# read the prose." It failed on all 8 of 8, worst case Δ(34, 37, 75).
+#
+# The values now live in configs/palette.py and reach the frontend by being
+# emitted into result.json, not by being retyped. The names below are re-exported
+# unchanged so existing callers (generate_rgb_preview_tiles, the PNG writer)
+# keep working untouched.
 # ============================================================
 
-CATEGORY_COLORS_RGB = {
-    "dense_informal_roofing":  (224, 60, 60),
-    "sparse_informal_roofing": (240, 140, 80),
-    "paved_road":              (120, 120, 180),
-    "standing_water":          (40, 100, 200),
-    "vegetation_clearing":     (210, 200, 80),
-    "active_construction":     (200, 80, 200),
-    "dense_vegetation":        (60, 180, 80),
-}
-UNKNOWN_COLOR_RGB = (96, 96, 128)
-UNKNOWN_INDEX = 255
+from configs.palette import (  # noqa: E402
+    CATEGORY_COLORS_RGB,
+    UNKNOWN_COLOR_RGB,
+    UNKNOWN_INDEX,
+)
 
 PATCH_SIZE = 64   # must match training patch size (build_sam_patches / GeoWatchDatasetResNet)
 

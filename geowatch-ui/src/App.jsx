@@ -4,8 +4,13 @@ import 'leaflet/dist/leaflet.css'
 import {
   TRUST_META, blockFlag, isFlagged, reportApplicability, mechanismRows,
 } from './applicability'
+import { categoryColor, legendEntries } from './palette'
+// Build item 43: API base and credentials now live in ./api, so every request
+// is authenticated by construction rather than by remembering. Item 70 put an
+// X-API-Key check at the perimeter; this frontend sent no header on any call,
+// so every request had been 401ing since that shipped.
+import { apiFetch, fetchImageObjectUrl, isKeyMissing } from './api'
 
-const API = 'http://localhost:8000'
 
 /* ============================================================
    DESIGN TOKENS
@@ -73,12 +78,12 @@ function StatusPill({ status, size = 'sm' }) {
 
 const CLASS_COLORS = { very_low: C.green, low: '#9ccc65', moderate: C.amber, high: '#ff8a65', very_high: C.coral, unknown: C.textDim }
 
-const CAT_COLORS = {
-  dense_informal_roofing: '#e0625a', sparse_informal_roofing: '#e8a35a', unpaved_dirt_road: '#b48c50',
-  paved_road: '#8888c8', open_drainage_channel: '#50a0dc', standing_water: '#4a90e2',
-  vegetation_clearing: '#d8c85a', active_construction: '#c878d0', dense_vegetation: C.green,
-  open_waste: '#8c6438', unknown: C.textFaint,
-}
+// C31 / build item 43: the CAT_COLORS literal that used to live here is gone.
+// It was 0 of 8 in agreement with ingestion/inference.py's CATEGORY_COLORS_RGB,
+// on the authority of a Python comment claiming they must match exactly.
+// Colours now come from result.landcover.palette via ./palette — there is no
+// palette on this side any more, so there is nothing left to drift.
+// CAT_LABELS below is display text, not colour, and stays.
 const CAT_LABELS = {
   dense_informal_roofing: 'Dense informal roofing', sparse_informal_roofing: 'Sparse informal roofing',
   unpaved_dirt_road: 'Unpaved dirt road', paved_road: 'Paved road', open_drainage_channel: 'Open drainage channel',
@@ -96,9 +101,38 @@ const SUSC_INFO = {
   waterlogging: { label: 'Waterlogging', what: 'How likely water is to sit and build up on the surface for an extended time after rain, rather than draining or evaporating.' },
 }
 
-function landcoverImageUrl(result) {
+function landcoverImagePath(result) {
   if (!result?.run_id || !result?.landcover?.map_path) return null
-  return `${API}/runs/${result.run_id}/${result.landcover.map_path}`
+  return `/runs/${result.run_id}/${result.landcover.map_path}`
+}
+
+/*
+ * The landcover PNG is served from the /runs mount, which item 70 put behind
+ * the API key. An <img> load cannot carry a custom header, so the bytes are
+ * fetched with one and handed to Leaflet as a blob URL instead. See
+ * api.js:fetchImageObjectUrl for why the alternatives (key-in-query-string,
+ * exempting the mount) were rejected.
+ */
+function useAuthedImage(path) {
+  const [objectUrl, setObjectUrl] = useState(null)
+  useEffect(() => {
+    if (!path) { setObjectUrl(null); return }
+    let cancelled = false
+    let created = null
+    fetchImageObjectUrl(path)
+      .then(url => {
+        if (cancelled) { URL.revokeObjectURL(url); return }
+        created = url
+        setObjectUrl(url)
+      })
+      .catch(() => { if (!cancelled) setObjectUrl(null) })
+    return () => {
+      cancelled = true
+      // Revoke on unmount or path change, or every re-render leaks a blob.
+      if (created) URL.revokeObjectURL(created)
+    }
+  }, [path])
+  return objectUrl
 }
 function fmtNum(n, digits = 0) {
   if (n === null || n === undefined) return '—'
@@ -167,8 +201,8 @@ function OSMVectorLayer({ runId, visible }) {
   useEffect(() => {
     setRoads(null); setWaterways(null)
     if (!runId) return
-    fetch(`${API}/runs/${runId}/osm/roads.geojson`).then(r => r.ok ? r.json() : null).then(setRoads).catch(() => setRoads(null))
-    fetch(`${API}/runs/${runId}/osm/waterways.geojson`).then(r => r.ok ? r.json() : null).then(setWaterways).catch(() => setWaterways(null))
+    apiFetch(`/runs/${runId}/osm/roads.geojson`).then(r => r.ok ? r.json() : null).then(setRoads).catch(() => setRoads(null))
+    apiFetch(`/runs/${runId}/osm/waterways.geojson`).then(r => r.ok ? r.json() : null).then(setWaterways).catch(() => setWaterways(null))
   }, [runId])
   if (!visible) return null
   const roadStyle = (f) => { const u = UNPAVED_HIGHWAY_TYPES.has(f?.properties?.highway); return { color: u ? '#c89858' : '#d8d8f0', weight: u ? 1.5 : 2, opacity: 0.9, dashArray: u ? '4 3' : null } }
@@ -179,14 +213,17 @@ function OSMVectorLayer({ runId, visible }) {
     </>
   )
 }
-function SegmentOverlays({ segments, bbox, onSelect, selected, tileWidth, tileHeight }) {
+// `colorFor` is passed in rather than the whole result: these components only
+// need "category -> colour", and handing them the resolver keeps them unable to
+// reach for a palette of their own.
+function SegmentOverlays({ segments, bbox, onSelect, selected, tileWidth, tileHeight, colorFor }) {
   if (!segments || !bbox) return null
   const lonPerPx = (bbox.east - bbox.west) / tileWidth, latPerPx = (bbox.north - bbox.south) / tileHeight
   return segments.map(seg => {
     const [px, py, pw, ph] = seg.bbox
     const west = bbox.west + px * lonPerPx, east = bbox.west + (px + pw) * lonPerPx
     const north = bbox.north - py * latPerPx, south = bbox.north - (py + ph) * latPerPx
-    const color = CAT_COLORS[seg.dominant_landcover_category] || '#888'
+    const color = colorFor(seg.dominant_landcover_category)
     const isSelected = selected?.segment_id === seg.segment_id
     const label = CAT_LABELS[seg.dominant_landcover_category] || seg.dominant_landcover_category
     return (
@@ -606,7 +643,7 @@ function SecOverview({ result }) {
       <ReportCard title="What this run found">
         <Explain>
           This scan split the area into {fmtNum(summary.total_segments)} segments and matched each one to a land-cover type.
-          The most common type here was <b style={{ color: CAT_COLORS[summary.dominant_category] || C.text }}>{(summary.dominant_category || '—').replace(/_/g, ' ')}</b>.
+          The most common type here was <b style={{ color: categoryColor(result, summary.dominant_category) }}>{(summary.dominant_category || '—').replace(/_/g, ' ')}</b>.
         </Explain>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 18 }}>
           <Metric label="Segments found" value={fmtNum(summary.total_segments)} accent={C.cyan} big />
@@ -661,7 +698,10 @@ function SecOverview({ result }) {
 function SecLandcover({ result, showLandcover, setShowLandcover, landcoverOpacity, setLandcoverOpacity, showRoadsVector, setShowRoadsVector }) {
   const landcover = result?.landcover || {}
   const areaPct = landcover.category_area_pct || {}
-  const entries = Object.entries(CAT_COLORS).filter(([k]) => k !== 'unknown')
+  // C31 / item 43: the legend is built from the palette the backend emitted
+  // with THIS run, so changing a colour in configs/palette.py changes what is
+  // drawn here with no edit to this file. That is the item's acceptance test.
+  const entries = legendEntries(result).map(e => [e.category, e.color])
 
   return (
     <section id="landcover">
@@ -1000,9 +1040,9 @@ function SecRisk({ result }) {
    SEGMENT DETAIL (map popover)
    ============================================================ */
 
-function SegmentDetail({ seg, onClose }) {
+function SegmentDetail({ seg, onClose, colorFor }) {
   if (!seg) return null
-  const color = CAT_COLORS[seg.dominant_landcover_category] || '#888'
+  const color = colorFor(seg.dominant_landcover_category)
   const isOsmTagged = seg.label_source === 'osm_vector'
   return (
     <div style={{ position: 'absolute', bottom: 20, left: '50%', transform: 'translateX(-50%)', background: C.panelRaised, border: `1px solid ${C.hairlineBright}`, borderRadius: 12, padding: '18px 22px', width: 420, zIndex: 1000, boxShadow: '0 16px 48px rgba(0,0,0,0.55)' }}>
@@ -1080,7 +1120,9 @@ function ReportMode({ result, onBackToMap, landcoverProps }) {
     return () => container.removeEventListener('scroll', onScroll)
   }, [])
 
-  const imageUrl = landcoverImageUrl(result)
+  // (ReportMode previously computed an unused imageUrl here. Since item 43 that
+  // would issue a real authenticated image fetch for a value nothing reads, so
+  // it is removed rather than left as a silent request.)
   // Read once per render and share with the nav; the banner and section read it
   // themselves so they stay usable standalone.
   const reportTrust = reportApplicability(result)
@@ -1197,10 +1239,20 @@ export default function App() {
     if (!bbox) { setError('Draw an AOI first'); return }
     setLoading(true); setError(null); setResult(null); setSelected(null)
     try {
-      const res = await fetch(`${API}/api/analyze`, {
+      const res = await apiFetch('/api/analyze', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ west: bbox.west, south: bbox.south, east: bbox.east, north: bbox.north, start_date: '2024-01-01', end_date: '2024-03-31', aoi_label: 'aoi', demo: false }),
       })
+      // A 401 has one cause and one fix; say so instead of surfacing the raw
+      // body. Before item 43 this was every request, and the error the user saw
+      // gave no hint that a key was involved at all.
+      if (res.status === 401) {
+        throw new Error(
+          isKeyMissing()
+            ? 'API key not configured. Set VITE_GEOWATCH_API_KEY in geowatch-ui/.env (see .env.example) and restart the dev server.'
+            : 'API rejected the key. Check VITE_GEOWATCH_API_KEY in geowatch-ui/.env matches GEOWATCH_API_KEY in the backend .env.'
+        )
+      }
       if (!res.ok) throw new Error(await res.text())
       const data = await res.json()
       setResult(data)
@@ -1213,12 +1265,25 @@ export default function App() {
   }
 
   const reset = () => { setBbox(null); setResult(null); setSelected(null); setError(null); setDrawing(false); setReportMode(false) }
-  const imageUrl = landcoverImageUrl(result)
+  const imageUrl = useAuthedImage(landcoverImagePath(result))
 
   const landcoverProps = { showLandcover, setShowLandcover, landcoverOpacity, setLandcoverOpacity, showRoadsVector, setShowRoadsVector }
 
   return (
     <div style={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative', background: C.void, fontFamily: FONTS.body }}>
+      {isKeyMissing() && (
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, zIndex: 2000,
+          background: C.coralDim, borderBottom: `1px solid ${C.coral}`,
+          padding: '9px 16px', fontFamily: FONTS.body, fontSize: 12, color: C.text,
+        }}>
+          <b style={{ color: C.coral }}>No API key configured.</b>{' '}
+          Every request will be refused. Copy <code style={{ fontFamily: FONTS.mono, fontSize: 11 }}>geowatch-ui/.env.example</code> to{' '}
+          <code style={{ fontFamily: FONTS.mono, fontSize: 11 }}>geowatch-ui/.env</code>, set{' '}
+          <code style={{ fontFamily: FONTS.mono, fontSize: 11 }}>VITE_GEOWATCH_API_KEY</code> to the backend&rsquo;s{' '}
+          <code style={{ fontFamily: FONTS.mono, fontSize: 11 }}>GEOWATCH_API_KEY</code>, and restart the dev server.
+        </div>
+      )}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
         * { box-sizing: border-box; }
@@ -1304,7 +1369,8 @@ export default function App() {
           {result?.run_id && <OSMVectorLayer runId={result.run_id} visible={showRoadsVector} />}
           {result?.segments && (
             <SegmentOverlays segments={result.segments} bbox={result.aoi} onSelect={setSelected} selected={selected}
-              tileWidth={result.tile_dimensions?.width ?? 291} tileHeight={result.tile_dimensions?.height ?? 257} />
+              tileWidth={result.tile_dimensions?.width ?? 291} tileHeight={result.tile_dimensions?.height ?? 257}
+              colorFor={cat => categoryColor(result, cat)} />
           )}
         </MapContainer>
 
@@ -1321,7 +1387,7 @@ export default function App() {
           </div>
         )}
 
-        {selected && !reportMode && <SegmentDetail seg={selected} onClose={() => setSelected(null)} />}
+        {selected && !reportMode && <SegmentDetail seg={selected} onClose={() => setSelected(null)} colorFor={cat => categoryColor(result, cat)} />}
 
         {result && !reportMode && (
           <div style={{ position: 'absolute', top: 14, right: 14, zIndex: 400, display: 'flex', gap: 8 }}>

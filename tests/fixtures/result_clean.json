@@ -401,5 +401,52 @@
         }
       }
     }
+  },
+  "landcover": {
+    "palette": {
+      "format": "hex_rgb",
+      "source": "configs/palette.py",
+      "unknown_index": 255,
+      "ml_categories": [
+        "active_construction",
+        "dense_informal_roofing",
+        "dense_vegetation",
+        "paved_road",
+        "sparse_informal_roofing",
+        "standing_water",
+        "vegetation_clearing"
+      ],
+      "osm_only_categories": [
+        "open_drainage_channel",
+        "open_waste",
+        "unpaved_dirt_road"
+      ],
+      "colors": {
+        "dense_informal_roofing": "#e03c3c",
+        "sparse_informal_roofing": "#f08c50",
+        "paved_road": "#7878b4",
+        "standing_water": "#2864c8",
+        "vegetation_clearing": "#d2c850",
+        "active_construction": "#c850c8",
+        "dense_vegetation": "#3cb450",
+        "unpaved_dirt_road": "#b48c50",
+        "open_drainage_channel": "#50a0dc",
+        "open_waste": "#8c643c",
+        "unknown": "#606080"
+      }
+    },
+    "categories": [
+      "active_construction",
+      "dense_informal_roofing",
+      "dense_vegetation",
+      "open_drainage_channel",
+      "open_waste",
+      "paved_road",
+      "sparse_informal_roofing",
+      "standing_water",
+      "unknown",
+      "unpaved_dirt_road",
+      "vegetation_clearing"
+    ]
   }
 }

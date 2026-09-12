@@ -920,16 +920,93 @@ extended, not replaced.
 
 # PART 8 — Contract enforcement 🔓
 
-*Six items. Rules that comments cannot enforce. Two are done (47, 70 — the
-trust-boundary pass); four remain: 43, 44, 45, 46.*
+*Six items. Rules that comments cannot enforce. Three are done (47, 70 — the
+trust-boundary pass — and 43); three remain: 44, 45, 46.*
 
-### 43. C31 — single-source palette
+### 43. C31 — single-source palette ✅
 **The quick fix is copying values across. The correct fix is a single source of
 truth** — emit the palette into `result.json` from the backend and have the
 frontend read it, so drift becomes structurally impossible.
 
 **Acceptance:** changing a colour in the backend changes the legend with **no
 frontend edit.**
+
+**Built.** `tests/test_palette_single_source.py` (20 tests) and
+`tests/test_palette_ui.mjs` (14 tests), all passing. The 0/8 drift was
+reproduced numerically first, matching the ledger including its worst case:
+
+| category | backend | frontend | Δ |
+|---|---|---|---|
+| `dense_informal_roofing` | `#e03c3c` | `#e0625a` | (0, 38, 30) |
+| `sparse_informal_roofing` | `#f08c50` | `#e8a35a` | (8, 23, 10) |
+| `paved_road` | `#7878b4` | `#8888c8` | (16, 16, 20) |
+| `standing_water` | `#2864c8` | `#4a90e2` | (34, 44, 26) |
+| `vegetation_clearing` | `#d2c850` | `#d8c85a` | (6, 0, 10) |
+| `active_construction` | `#c850c8` | `#c878d0` | (0, 40, 8) |
+| `dense_vegetation` | `#3cb450` | `#5ed99b` | **(34, 37, 75)** |
+| `unknown` | `#606080` | `#716fa0` | (17, 15, 32) |
+
+**The acceptance test is behavioural, not structural.** It mutates the backend
+palette, re-emits it through the real `palette_for_result()`, reads what the
+frontend resolver returns — and asserts `App.jsx` is byte-identical before and
+after, so "no frontend edit" is verified rather than asserted.
+
+**One definition, in `configs/palette.py`.** `inference.py` now re-exports it,
+and the comment that made the unenforceable promise — *"must match App.jsx's
+CAT_COLORS ... exactly"*, a Python comment asserting a JavaScript constant, S3
+in one line — is gone. `App.jsx`'s `CAT_COLORS` literal is deleted outright.
+A test asserts the canonical hex values appear **nowhere** in `App.jsx`: not
+even correct copies, because a correct copy still drifts at the next edit, which
+is how 0/8 happened.
+
+*The OSM-only three (`unpaved_dirt_road`, `open_drainage_channel`,
+`open_waste`) are included in the emitted palette, so the frontend needs no
+private map for them either. Without that, the single source of truth would
+have been only three-quarters true.*
+
+**Legacy runs still render.** `palette.js` keeps a frozen shim of the OLD
+frontend values for results predating this item — deliberately the *wrong*
+values, since that is what those runs were rendered with when produced. A test
+asserts it never mirrors the canonical values, so it cannot be "fixed" into a
+second live source.
+
+**⚠️ A third copy exists and is deliberately untouched.** `annotate.py`'s
+`CATEGORY_COLORS` also disagrees (`dense_informal_roofing` 220 vs 224). It is a
+standalone annotation tool, not on the pipeline → `result.json` → frontend path
+C31 measured, so changing it under an item that did not scope it would be a
+silent behaviour change to a tool with no tests. **Worth its own item.** A test
+asserts the disagreement still exists, so the note cannot rot.
+
+---
+
+**Second half: the `X-API-Key` header, closing live breakage.**
+
+Item 70 put an API-key check at the perimeter of `api.py`. This frontend sent no
+header on any request, so **every call had been returning 401 since that
+shipped** — analysis, OSM overlays, and the landcover image alike. Verified
+against a live server: without the header `/api/runs` and `/runs/*` both 401;
+with it, 200 and 404-from-StaticFiles respectively. CORS preflight was also
+verified to admit the custom header.
+
+*The landcover overlay needed more than a header.* Leaflet's `<ImageOverlay>`
+loads a plain `<img>`, which **cannot carry a custom header**, and `/runs` is
+behind the key. The bytes are now fetched with credentials and handed over as a
+blob URL (revoked on unmount). The alternatives were rejected on the record: a
+key in the query string puts the secret into URLs, history and logs; exempting
+the mount reopens exactly the hole item 70 closed, since `/runs` serves
+`data/pipeline_runs/` — the same data C34 would have disclosed.
+
+*Every request now routes through `apiFetch`*, so a newly added call is
+authenticated by construction rather than by someone remembering — the same
+argument item 70 used for middleware over per-endpoint checks.
+
+**⚠️ Honest limit, recorded in `api.js` and `.env.example`:** Vite **inlines**
+`VITE_*` values into the built bundle, so anyone who loads the page can read the
+key. That is a property of shipping a secret to a browser, not a defect here.
+This is a **development shared secret for a localhost tool, not client
+authentication** — adequate because the API binds to `127.0.0.1` and CORS admits
+only localhost, and *not* adequate if this is ever deployed, which would need a
+server-side session or per-user tokens.
 
 ### 44. C4 — assert band order at runtime
 Verify against the file's actual band descriptions at load time, not a
