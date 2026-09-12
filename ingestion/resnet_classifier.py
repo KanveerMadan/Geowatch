@@ -7,102 +7,23 @@ from PIL import Image
 
 # ── Model + threshold loading ──────────────────────────────────────────────
 
-def load_production_model(
-    checkpoint_path: str,
-    caat_path: str,
-    device: str = None,
-):
-    """
-    Loads the production checkpoint and its matching CAAT thresholds.
-
-    Returns a dict bundling everything inference needs:
-        model, categories, num_classes, ignore_index, caat_thresholds,
-        device, checkpoint_metadata (for logging/provenance)
-
-    IMPORTANT: caat_path must be the CAAT file generated FOR this exact
-    checkpoint (check 'source_checkpoint' inside it matches
-    checkpoint_path) — CAAT thresholds computed against a different
-    model's confidence distribution will silently miscalibrate the
-    unknown/confident-prediction boundary. This was a real bug caught
-    during development; don't skip this check.
-    """
-    if device is None:
-        device = "cuda" if torch.cuda.is_available() else "cpu"
-        # CPU-only note: this model is much heavier than RemoteCLIP's
-        # forward pass and runs sliding-window inference (many crops per
-        # tile) — expect this to be slow on the Mac M3 CPU. Consider
-        # keeping inference on a GPU-backed environment if latency matters,
-        # or reducing tile resolution / increasing stride as a tradeoff.
-
-    checkpoint = torch.load(checkpoint_path, map_location=device)
-
-    with open(caat_path) as f:
-        caat_data = json.load(f)
-
-    if "source_checkpoint" not in caat_data or "thresholds" not in caat_data:
-        raise ValueError(
-            f"'{caat_path}' does not look like a verified CAAT file — missing "
-            f"'source_checkpoint' and/or 'thresholds' keys. This is likely a stale "
-            f"file from before the reload-and-verify fix (e.g. an old flat "
-            f"{{category: threshold}} dict with no provenance). Recompute CAAT using "
-            f"the self-contained reload cell, which tags its output with the "
-            f"checkpoint it was verified against — never use an untagged CAAT file "
-            f"in production, there's no way to confirm it matches this model."
-        )
-
-    if os.path.basename(caat_data["source_checkpoint"]) != os.path.basename(checkpoint_path):
-        raise ValueError(
-            f"CAAT thresholds file was computed for a different checkpoint "
-            f"({caat_data['source_checkpoint']}) than the one being loaded "
-            f"({checkpoint_path}). Recompute CAAT against this checkpoint before "
-            f"using it in production — mismatched thresholds silently miscalibrate "
-            f"confidence, they don't throw an obvious error at inference time."
-        )
-
-    caat_thresholds = caat_data["thresholds"]
-
-    # Import here, not at module top, to avoid a hard dependency for any
-    # code that only needs e.g. load_production_model for inspection
-    from .resnet_model import GeoWatchResNetSeg  # adjust import path to
-                                                   # wherever GeoWatchResNetSeg
-                                                   # actually lives in your repo
-
-    model = GeoWatchResNetSeg(num_classes=checkpoint["num_classes"], freeze_encoder=False)
-    model.load_state_dict(checkpoint["model_state_dict"])
-    model.to(device)
-    model.eval()
-
-    print(f"Loaded production model: {checkpoint.get('architecture', 'unknown')}")
-    print(f"  Trained on: {checkpoint.get('training_cities')}")
-    print(f"  LOCO validated: mean mIoU {checkpoint.get('loco_mean_miou')} "
-          f"+/- {checkpoint.get('loco_std_miou')} ({checkpoint.get('loco_n_folds')} folds)")
-    print(f"  CAAT thresholds loaded, source-verified against this checkpoint.")
-
-    return {
-        "model": model,
-        "categories": checkpoint["categories"],
-        "num_classes": checkpoint["num_classes"],
-        "ignore_index": checkpoint["ignore_index"],
-        "caat_thresholds": caat_thresholds,
-        "device": device,
-        "checkpoint_metadata": {
-            "training_cities": checkpoint.get("training_cities"),
-            "loco_mean_miou": checkpoint.get("loco_mean_miou"),
-            "loco_std_miou": checkpoint.get("loco_std_miou"),
-            "loco_n_folds": checkpoint.get("loco_n_folds"),
-            "monitor_miou_at_save": checkpoint.get("monitor_miou_at_save"),
-        },
-    }
-
-
-# ── Sliding-window per-pixel inference ─────────────────────────────────────
-
-# Reserved value for "below CAAT threshold" / no confident prediction.
-# Matches IGNORE_INDEX convention used throughout training — this is NOT
-# the same as the model predicting a class, it means the prediction was
-# rejected for being insufficiently confident in that specific class.
-UNKNOWN_INDEX = 255
-
+# ── load_production_model() was DELETED here — C10 / build item 45 ─────────
+#
+# It was the stricter of two CAAT loaders: it required a `source_checkpoint` key
+# and compared it against the checkpoint being loaded, and it would have
+# rejected the deployed thresholds file. It was also dead code that nothing
+# imported, while pipeline.py called the weaker loader in inference.py which
+# printed `source_checkpoint=?` and proceeded.
+#
+# Item 45's decided fork was to promote the strict one and delete the weak one,
+# not to maintain both — two validators is how a run logs source_checkpoint=? in
+# the first place. The provenance checks now live in
+# ingestion/inference.py:_verify_caat_provenance(), on the live path, and are
+# strengthened from a basename comparison to a checkpoint content hash.
+#
+# NOTE: run_pixel_inference() and save_landcover_map() below are also dead —
+# nothing imports this module. They are left alone here because deleting them is
+# Part 12 item 57 (delete dead code), not this item.
 
 def run_pixel_inference(
     tile_path: str,

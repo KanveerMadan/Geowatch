@@ -259,7 +259,12 @@ def run_pipeline(
 
     device = get_device()
     model, categories, num_classes = load_production_model(PRODUCTION_MODEL_PATH, device=device)
-    caat_thresholds = load_caat_thresholds(CAAT_THRESHOLDS_PATH, categories)
+    # C10 / item 45: the checkpoint path is passed so the loader can PROVE these
+    # thresholds were computed for this model. Without it the loader warns and
+    # skips, which is the unvalidated load C10 described.
+    caat_thresholds = load_caat_thresholds(
+        CAAT_THRESHOLDS_PATH, categories, checkpoint_path=PRODUCTION_MODEL_PATH
+    )
     mask_generator = load_sam("models/sam/sam_vit_b.pth")
 
     landcover_map_full = np.full((full_height, full_width), 255, dtype=np.uint8)  # UNKNOWN_INDEX

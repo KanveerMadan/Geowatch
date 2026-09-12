@@ -920,8 +920,8 @@ extended, not replaced.
 
 # PART 8 — Contract enforcement 🔓
 
-*Six items. Rules that comments cannot enforce. Four are done (43, 44, 47, 70);
-two remain: 45, 46.*
+*Six items. Rules that comments cannot enforce. Five are done (43, 44, 45, 47,
+70); one remains: 46.*
 
 ### 43. C31 — single-source palette ✅
 **The quick fix is copying values across. The correct fix is a single source of
@@ -1057,9 +1057,53 @@ bands are `["Red","Green","Blue",...]` was read with `Red` taken from index 2
 **R and B swapped, `generate_rgb_preview_tiles()` completing without complaint.**
 The same file now raises `BandOrderError` naming both orders.
 
-### 45. C10 — enforce `source_checkpoint`
+### 45. C10 — enforce `source_checkpoint` ✅
 Make the loader **refuse** thresholds whose source does not match the loaded
 model. **Delete the dead stricter validator or promote it — do not leave two.**
+
+**Built.** `tests/test_caat_provenance.py`, 19 tests, all passing.
+
+> ### ⚠️ THIS TAKES THE PIPELINE OFFLINE UNTIL CAAT IS RECALIBRATED
+>
+> `run_pipeline()` now **raises** on the deployed thresholds file. That is the
+> item's intent, not a regression — but it is a hard stop on real runs, so it is
+> stated here rather than discovered.
+>
+> `models/production/caat_thresholds.json` carries **no `source_checkpoint` key
+> at all**, and its own caveat records that it *"derived from 11 separate LOCO
+> fold models (each missing one city), NOT from the production checkpoint."* It
+> has never had provenance.
+>
+> **To restore runs:** `python recalibrate_caat.py` against the production
+> checkpoint, review the old-vs-new comparison it prints, then swap its output
+> into `models/production/caat_thresholds.json`. It now records the checkpoint's
+> sha256, so its output loads. **Do not weaken the validator instead** — a test
+> asserts the refusal, so relaxing it fails the suite.
+
+**Promoted, and the duplicate deleted.** 97 lines of dead
+`load_production_model` are gone from `resnet_classifier.py`, with the deletion
+recorded in place. The provenance checks now live on the live path in
+`ingestion/inference.py:_verify_caat_provenance()`. One loader, per the fork.
+
+**Strengthened from a filename to a content hash.** The dead validator compared
+`os.path.basename(source_checkpoint)` — which passes for any file sharing a
+name, *including a retrained checkpoint written to the same path*, which is the
+realistic failure. A test proves the point using two different checkpoints both
+named `model.pth`. Hashing the 133 MB checkpoint costs **0.07s**, and the result
+cross-checks byte-for-byte against `ARTIFACT_HASHES.txt`.
+
+**`source_checkpoint=?` is gone.** That log line came from
+`data.get('source_checkpoint', '?')` — a missing provenance record rendering as a
+cosmetic gap. There is no `?` path now: either provenance verified, or the load
+raised.
+
+*A same-bytes-different-path checkpoint is noted, not refused: the hash settles
+identity, so a basename difference only means the file moved. The dead validator
+would have raised there, wrongly.*
+
+*Omitting `checkpoint_path` skips the check and says so loudly. A silent skip is
+exactly what C10 was — an unvalidated load indistinguishable from a validated
+one.*
 
 ### 46. C13 — full-AOI basemap, or remove the field
 Either write a full-AOI RGB basemap (nothing correct currently exists for
