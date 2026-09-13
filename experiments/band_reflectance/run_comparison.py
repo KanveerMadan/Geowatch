@@ -151,16 +151,25 @@ def mask_digest(patches: list) -> str:
 
 
 def run_arm(name: str, mode: str, in_chans: int, patches: list, val_city: str,
-            device: str, epochs: int, ref_digest: str) -> dict:
-    print(f"\n{'=' * 70}\nARM {name}  ({mode}, {in_chans} channels)\n{'=' * 70}")
+            device: str, epochs: int, ref_digest: str, seed: int,
+            images: list, patience: int = 0) -> dict:
+    """
+    One arm, one seed, FIXED epoch budget.
 
-    set_determinism(SEED)
-    images = build_arm_images(patches, mode)
-    masks = [p["mask"] for p in patches]
+    patience <= 0 disables early stopping, which is the point: in the first
+    comparison the 6-band arms peaked on an epoch-4/5 spike and patience=8
+    terminated them at 12-13 with train loss still at 0.41-0.46, while the RGB
+    arms ran all 30 down to 0.16-0.18. The stopping rule was a free variable
+    correlated with the factor under test.
 
-    # Real invariant, not a self-comparison: the labels this arm is about to
-    # train on must hash to the same value every other arm trains on. Catches
-    # any future change that rebuilds masks per arm.
+    `best_miou` is also biased by epoch count -- it is a max over a noisy
+    trajectory, so an arm that runs 30 epochs draws 30 samples and an arm that
+    runs 12 draws 12. The primary statistic here is therefore the MEAN OF THE
+    LAST 5 EPOCHS: a plateau estimate that does not reward extra draws. best
+    and final are reported alongside for continuity, not for inference.
+    """
+    print(f"\n{'=' * 70}\nARM {name}  ({mode}, {in_chans} channels)  seed {seed}\n{'=' * 70}")
+
     got = mask_digest(patches)
     if got != ref_digest:
         raise AssertionError(
@@ -169,9 +178,8 @@ def run_arm(name: str, mode: str, in_chans: int, patches: list, val_city: str,
     shapes = {img.shape for img in images}
     if shapes != {(64, 64, in_chans)}:
         raise AssertionError(f"arm {name}: unexpected image shapes {shapes}")
-    print(f"  labels verified against reference digest {ref_digest[:16]}; "
-          f"images {len(images)} x {(64, 64, in_chans)}")
 
+    masks = [p["mask"] for p in patches]
     tr_idx = [i for i, p in enumerate(patches) if p["city"] != val_city]
     va_idx = [i for i, p in enumerate(patches) if p["city"] == val_city]
 
@@ -182,7 +190,7 @@ def run_arm(name: str, mode: str, in_chans: int, patches: list, val_city: str,
     fold_weights = fold_weights / fold_weights.sum() * NUM_CLASSES
     fold_class_weights = torch.tensor(fold_weights, dtype=torch.float32).to(device)
 
-    set_determinism(SEED)
+    set_determinism(seed)
     train_loader = DataLoader(
         ArmDataset([images[i] for i in tr_idx], [masks[i] for i in tr_idx], augment=True),
         batch_size=16, shuffle=True, num_workers=0, drop_last=True)
@@ -203,9 +211,8 @@ def run_arm(name: str, mode: str, in_chans: int, patches: list, val_city: str,
     ], weight_decay=1e-4)
     scheduler = CosineAnnealingLR(optimizer, T_max=epochs, eta_min=1e-6)
 
-    best_miou, best_epoch, best_state = 0.0, 0, None
-    since_improve = 0
-    history = {"train_loss": [], "val_miou": []}
+    history = {"train_loss": [], "val_miou": [], "per_class": []}
+    best_miou, best_epoch = 0.0, 0
 
     for epoch in range(1, epochs + 1):
         t0 = time.time()
@@ -231,106 +238,140 @@ def run_arm(name: str, mode: str, in_chans: int, patches: list, val_city: str,
             for imgs, msks in val_loader:
                 lg.append(model(imgs.to(device)).cpu())
                 mk.append(msks.cpu())
-        val_miou = compute_miou(torch.cat(lg), torch.cat(mk), NUM_CLASSES, IGNORE_INDEX)
+        logits_cat, masks_cat = torch.cat(lg), torch.cat(mk)
+        pc = compute_per_class_iou(logits_cat, masks_cat, NUM_CLASSES, IGNORE_INDEX)
+        val_miou = float(np.mean([v for v in pc.values() if v is not None]))
         history["val_miou"].append(val_miou)
+        history["per_class"].append({CATEGORIES[c]: v for c, v in pc.items()})
 
         if val_miou > best_miou:
             best_miou, best_epoch = val_miou, epoch
-            best_state = copy.deepcopy(model.state_dict())
-            since_improve = 0
-        else:
-            since_improve += 1
 
         print(f"  epoch {epoch:3d}/{epochs} | loss={ep_loss / n:.4f} | "
               f"val_mIoU={val_miou:.4f}{' best' if epoch == best_epoch else ''} "
               f"| {time.time() - t0:.1f}s", flush=True)
 
-        if since_improve >= 8:
+        if patience > 0 and epoch - best_epoch >= patience:
             print(f"  Early stop at epoch {epoch}")
             break
 
-    model.load_state_dict(best_state)
-    model.eval()
-    lg, mk = [], []
-    with torch.no_grad():
-        for imgs, msks in val_loader:
-            lg.append(model(imgs.to(device)).cpu())
-            mk.append(msks)
-    logits_cat, masks_cat = torch.cat(lg), torch.cat(mk)
-    per_class = {CATEGORIES[c]: v for c, v in
-                 compute_per_class_iou(logits_cat, masks_cat, NUM_CLASSES,
-                                       IGNORE_INDEX).items()}
+    tail = min(5, len(history["val_miou"]))
+    plateau_miou = float(np.mean(history["val_miou"][-tail:]))
+    plateau_per_class = {}
+    for cls in CATEGORIES:
+        vals = [h[cls] for h in history["per_class"][-tail:] if h[cls] is not None]
+        plateau_per_class[cls] = float(np.mean(vals)) if vals else None
 
     del model
-    return {"arm": name, "mode": mode, "in_chans": in_chans,
+    return {"arm": name, "mode": mode, "in_chans": in_chans, "seed": seed,
+            "epochs_run": len(history["val_miou"]), "tail": tail,
+            "plateau_miou": plateau_miou, "plateau_per_class": plateau_per_class,
             "best_miou": best_miou, "best_epoch": best_epoch,
+            "final_miou": history["val_miou"][-1],
+            "final_train_loss": history["train_loss"][-1],
             "n_train": len(tr_idx), "n_val": len(va_idx),
-            "per_class_iou": per_class, "history": history}
+            "history": history}
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--city", default="accra")
-    ap.add_argument("--epochs", type=int, default=30)
+    ap.add_argument("--epochs", type=int, default=40)
+    ap.add_argument("--seeds", default="1337,7,2024")
+    ap.add_argument("--patience", type=int, default=0,
+                    help="0 disables early stopping (the fixed-budget protocol)")
+    ap.add_argument("--tag", default="fixed")
     args = ap.parse_args()
 
+    seeds = [int(x) for x in args.seeds.split(",") if x.strip()]
     device = pick_device()
     print("=" * 70)
-    print("COMPARISON RUNS -- four arms, one fold, NO separation loss")
-    print(f"device {device} | seed {SEED} | held-out {args.city}")
+    print("COMPARISON -- four arms, one fold, NO separation loss, FIXED budget")
+    print(f"device {device} | held-out {args.city} | epochs {args.epochs} "
+          f"(patience {args.patience or 'disabled'}) | seeds {seeds}")
     print("=" * 70)
 
-    set_determinism(SEED)
+    set_determinism(seeds[0])
     patches = build_all_patches(verbose=False)
     print(f"rebuilt {len(patches)} patches")
 
-    # The check the previous probe needed, as a real invariant: every arm must
-    # train against labels hashing to this one value.
     ref_digest = mask_digest(patches)
     print(f"reference label digest {ref_digest[:16]} over {len(patches)} masks")
 
-    results = {}
+    # Arm images depend only on the mode, so build each once and reuse across
+    # seeds. This also guarantees every seed of an arm sees identical pixels.
+    print("building arm images once per mode ...", flush=True)
+    arm_images = {}
     for name, (mode, ch) in ARMS.items():
-        results[name] = run_arm(name, mode, ch, patches, args.city, device,
-                                args.epochs, ref_digest)
+        arm_images[name] = build_arm_images(patches, mode)
+        print(f"  {name}: {len(arm_images[name])} x {arm_images[name][0].shape}", flush=True)
+
+    runs = []
+    for seed in seeds:
+        for name, (mode, ch) in ARMS.items():
+            runs.append(run_arm(name, mode, ch, patches, args.city, device,
+                                args.epochs, ref_digest, seed, arm_images[name],
+                                patience=args.patience))
+
+    # --- aggregate -----------------------------------------------------------
+    by_arm = {name: [r for r in runs if r["arm"] == name] for name in ARMS}
+
+    def agg(name, key):
+        return np.array([r[key] for r in by_arm[name]], dtype=float)
 
     print("\n" + "=" * 70)
-    print(f"RESULTS -- held-out {args.city}, one fold, one seed, no separation loss")
+    print(f"RESULTS -- held-out {args.city}, {args.epochs} epochs fixed, "
+          f"{len(seeds)} seeds, no separation loss")
     print("=" * 70)
-    print(f"  {'arm':<18}{'bands':>6}{'scaling':>12}{'mIoU':>9}{'epoch':>7}")
-    for name, r in results.items():
-        bands = "6" if r["in_chans"] == 6 else "RGB"
-        scaling = "stretch" if "stretch" in r["mode"] else "absolute"
-        print(f"  {name:<18}{bands:>6}{scaling:>12}{r['best_miou']:>9.4f}{r['best_epoch']:>7}")
+    print(f"  {'arm':<18}{'plateau (last5)':>18}{'best':>16}{'final loss':>13}")
+    for name in ARMS:
+        pl, bt = agg(name, "plateau_miou"), agg(name, "best_miou")
+        fl = agg(name, "final_train_loss")
+        print(f"  {name:<18}{pl.mean():>11.4f} +/-{pl.std(ddof=1) if len(pl) > 1 else 0:.4f}"
+              f"{bt.mean():>11.4f} +/-{bt.std(ddof=1) if len(bt) > 1 else 0:.4f}"
+              f"{fl.mean():>13.4f}")
 
-    a, b = results["A_rgb_stretch"]["best_miou"], results["B_rgb_abs"]["best_miou"]
-    c, d = results["C_6band_stretch"]["best_miou"], results["D_6band_abs"]["best_miou"]
-    print("\n  Factor effects (one fold -- direction only, no significance):")
-    print(f"    6 bands at absolute reflectance   D - B = {d - b:+.4f}")
-    print(f"    6 bands under the stretch         C - A = {c - a:+.4f}")
-    print(f"    absolute vs stretch, RGB          B - A = {b - a:+.4f}")
-    print(f"    absolute vs stretch, 6 band       D - C = {d - c:+.4f}")
+    print("\n  Per-seed plateau mIoU:")
+    print(f"    {'arm':<18}" + "".join(f"{s:>10}" for s in seeds))
+    for name in ARMS:
+        row = {r["seed"]: r["plateau_miou"] for r in by_arm[name]}
+        print(f"    {name:<18}" + "".join(f"{row.get(s, float('nan')):>10.4f}" for s in seeds))
 
-    print("\n  Per-class IoU:")
-    print(f"    {'class':<26}" + "".join(f"{n.split('_')[0]:>10}" for n in results))
+    print("\n  Factor effects on the plateau statistic, paired within seed:")
+    for label, a, b in (("6 bands at absolute reflectance  D - B", "D_6band_abs", "B_rgb_abs"),
+                        ("6 bands under the stretch        C - A", "C_6band_stretch", "A_rgb_stretch"),
+                        ("absolute vs stretch, RGB         B - A", "B_rgb_abs", "A_rgb_stretch"),
+                        ("absolute vs stretch, 6 band      D - C", "D_6band_abs", "C_6band_stretch")):
+        da = {r["seed"]: r["plateau_miou"] for r in by_arm[a]}
+        db = {r["seed"]: r["plateau_miou"] for r in by_arm[b]}
+        d = np.array([da[s] - db[s] for s in seeds if s in da and s in db])
+        print(f"    {label} = {d.mean():+.4f} "
+              f"(per seed: {', '.join(f'{x:+.4f}' for x in d)})")
+
+    print("\n  Per-class plateau IoU, mean over seeds (sd in brackets):")
+    print(f"    {'class':<26}" + "".join(f"{n.split('_')[0]:>18}" for n in ARMS))
     for cls in CATEGORIES:
-        row = "".join(
-            f"{(results[n]['per_class_iou'][cls] if results[n]['per_class_iou'][cls] is not None else float('nan')):>10.4f}"
-            for n in results)
-        print(f"    {cls:<26}{row}")
+        cells = []
+        for name in ARMS:
+            v = np.array([r["plateau_per_class"][cls] for r in by_arm[name]
+                          if r["plateau_per_class"][cls] is not None], dtype=float)
+            cells.append(f"{v.mean():>11.4f}[{v.std(ddof=1) if len(v) > 1 else 0:.3f}]"
+                         if len(v) else f"{'n/a':>18}")
+        print(f"    {cls:<26}" + "".join(cells))
 
-    print("\n  One fold, one seed, on a city that is not representative. Per the")
-    print("  working rules this needs 11 paired folds and a Wilcoxon on the")
-    print("  deltas before it means anything; SE on the mean is 0.017, so any")
-    print("  effect under ~0.035 is invisible unpaired.")
+    print("\n  One fold on a city that is not representative. Seeds bound the")
+    print("  noise, not the city effect. The 11-fold paired run is still the")
+    print("  standard and is still unrun.")
     print("=" * 70)
 
-    out = Path(__file__).resolve().parent / "results" / f"comparison_{args.city}.json"
+    out = Path(__file__).resolve().parent / "results" / f"comparison_{args.city}_{args.tag}.json"
     out.parent.mkdir(exist_ok=True)
     out.write_text(json.dumps({
-        "val_city": args.city, "device": device, "seed": SEED,
+        "val_city": args.city, "device": device, "seeds": seeds,
+        "epochs": args.epochs, "patience": args.patience,
         "separation_loss": False, "n_all_patches": len(patches),
-        "arms": results,
+        "primary_statistic": "mean val mIoU over the last 5 epochs",
+        "runs": runs,
     }, indent=2))
     print(f"  wrote {out}")
     return 0

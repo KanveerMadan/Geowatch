@@ -278,3 +278,122 @@ def format_comparison(cmp: dict) -> str:
     if "ttest_p" in cmp:
         lines.append(f"    paired t-test p  : {cmp['ttest_p']:.4f}  (secondary)")
     return "\n".join(lines)
+
+
+# ── Per-class paired comparison ──────────────────────────────────────────────
+
+def min_achievable_wilcoxon_p(n: int) -> float:
+    """
+    The smallest two-sided Wilcoxon signed-rank p reachable with n pairs.
+
+    With n pairs the most extreme outcome is all deltas sharing a sign, which
+    has exact two-sided probability 2 / 2**n. Below n=6 that floor sits above
+    0.05, so the test CANNOT return a significant result however consistent the
+    effect is. Reporting it next to the p-value stops an underpowered class
+    being read as evidence of no effect.
+    """
+    if n < 1:
+        return 1.0
+    return min(1.0, 2.0 ** (1 - n))
+
+
+def holm_bonferroni(pvalues: dict, alpha: float = 0.05) -> dict:
+    """
+    Holm-Bonferroni step-down over a family of tests.
+
+    Returns {key: {"p", "adjusted", "reject"}}. Comparing 7 classes across
+    several arm pairs is a family; reporting 28 uncorrected p-values and
+    picking the small ones is how a null result becomes a finding.
+    """
+    items = sorted(((k, v) for k, v in pvalues.items() if v is not None),
+                   key=lambda kv: kv[1])
+    m = len(items)
+    out, running = {}, 0.0
+    for i, (k, p) in enumerate(items):
+        adj = min(1.0, max(running, (m - i) * p))
+        running = adj
+        out[k] = {"p": p, "adjusted": adj, "reject": adj <= alpha}
+    for k, v in pvalues.items():
+        if v is None:
+            out[k] = {"p": None, "adjusted": None, "reject": False}
+    return out
+
+
+def paired_compare_per_class(a: ArmResult, b: ArmResult, alpha: float = 0.05) -> dict:
+    """
+    Per-class paired deltas (b − a), one Wilcoxon per class.
+
+    A class absent from a held-out city has IoU None for that fold, and the
+    fold drops out of THAT class's pairing only. So n varies by class, and the
+    mIoU-level comparison cannot stand in for this: a 7-class unweighted mean
+    can hold still while large per-class movements cancel.
+
+    Each class reports its own n, its own p, and the floor that n imposes.
+    Holm-Bonferroni runs across the classes as one family.
+    """
+    cities_a = [f.city for f in a.folds]
+    cities_b = [f.city for f in b.folds]
+    if cities_a != cities_b:
+        raise ValueError(
+            f"arms evaluated on different folds — pairing is invalid.\n"
+            f"  {a.name}: {cities_a}\n  {b.name}: {cities_b}")
+    if a.class_names != b.class_names:
+        raise ValueError("arms report different class names — pairing is invalid.")
+
+    per_class, raw_p = {}, {}
+    for c in a.class_names:
+        pairs = [(fa.per_class_iou.get(c), fb.per_class_iou.get(c), fa.city)
+                 for fa, fb in zip(a.folds, b.folds)]
+        usable = [(x, y, city) for x, y, city in pairs if x is not None and y is not None]
+        deltas = np.array([y - x for x, y, _ in usable], dtype=float)
+        n = len(deltas)
+        entry = {
+            "n_folds": n,
+            "cities": [city for _, _, city in usable],
+            "deltas": deltas.tolist(),
+            "mean_delta": float(np.mean(deltas)) if n else None,
+            "median_delta": float(np.median(deltas)) if n else None,
+            "n_improved": int((deltas > 0).sum()),
+            "n_worsened": int((deltas < 0).sum()),
+            "min_achievable_p": min_achievable_wilcoxon_p(n),
+            "underpowered": min_achievable_wilcoxon_p(n) > alpha,
+            "wilcoxon_p": None,
+        }
+        if n >= 5 and np.any(deltas != 0):
+            try:
+                from scipy import stats
+                entry["wilcoxon_p"] = float(stats.wilcoxon(deltas).pvalue)
+            except ImportError:
+                entry["note"] = "scipy unavailable"
+        per_class[c] = entry
+        raw_p[c] = entry["wilcoxon_p"]
+
+    corrected = holm_bonferroni(raw_p, alpha=alpha)
+    for c, v in corrected.items():
+        per_class[c]["holm_adjusted_p"] = v["adjusted"]
+        per_class[c]["significant_after_holm"] = v["reject"]
+
+    return {"arm_a": a.name, "arm_b": b.name, "alpha": alpha,
+            "class_names": list(a.class_names), "per_class": per_class,
+            "complete": bool(a.meta.get("complete") and b.meta.get("complete"))}
+
+
+def format_per_class_comparison(cmp: dict) -> str:
+    lines = [
+        f"  per-class paired comparison: {cmp['arm_b']} vs {cmp['arm_a']}"
+        + ("" if cmp["complete"] else "   *** PARTIAL — not a LOCO result ***"),
+        f"    {'class':<26}{'n':>4}{'mean Δ':>10}{'+/-':>8}{'p':>9}{'holm':>9}{'floor':>8}",
+        "    " + "-" * 74,
+    ]
+    for c in cmp["class_names"]:
+        e = cmp["per_class"][c]
+        p = "n/a" if e["wilcoxon_p"] is None else f"{e['wilcoxon_p']:.4f}"
+        h = "n/a" if e["holm_adjusted_p"] is None else f"{e['holm_adjusted_p']:.4f}"
+        md = "n/a" if e["mean_delta"] is None else f"{e['mean_delta']:+.4f}"
+        flag = "  UNDERPOWERED" if e["underpowered"] else (
+            "  *" if e["significant_after_holm"] else "")
+        lines.append(
+            f"    {c:<26}{e['n_folds']:>4}{md:>10}"
+            f"{str(e['n_improved']) + '/' + str(e['n_worsened']):>8}"
+            f"{p:>9}{h:>9}{e['min_achievable_p']:>8.4f}{flag}")
+    return "\n".join(lines)

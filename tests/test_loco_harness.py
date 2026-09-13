@@ -12,9 +12,10 @@ import numpy as np
 import pytest
 
 from experiments.harness.loco import (
-    ArmResult, FoldResult, LOCO_CITIES, confusion, folds, iou_from_confusion,
-    miou, paired_compare, per_city_table, per_class_table, run_arm,
-    set_determinism,
+    ArmResult, FoldResult, LOCO_CITIES, confusion, folds, format_per_class_comparison,
+    holm_bonferroni, iou_from_confusion, min_achievable_wilcoxon_p, miou,
+    paired_compare, paired_compare_per_class, per_city_table, per_class_table,
+    run_arm, set_determinism,
 )
 
 
@@ -184,3 +185,95 @@ def test_set_determinism_seeds_numpy():
     set_determinism(5); x = np.random.rand(3)
     set_determinism(5); y = np.random.rand(3)
     assert x.tolist() == y.tolist()
+
+
+# ── Per-class paired comparison ──
+
+def _arm_from_per_class(name, per_class_by_fold, class_names, cities=None):
+    """Build an ArmResult directly from per-class IoU dicts, one per fold."""
+    cities = list(cities or LOCO_CITIES)
+    arm = ArmResult(name=name, seed=0, class_names=list(class_names),
+                    meta={"complete": True, "n_folds_run": len(per_class_by_fold)})
+    for i, pc in enumerate(per_class_by_fold):
+        vals = [v for v in pc.values() if v is not None]
+        arm.folds.append(FoldResult(
+            fold=i, city=cities[i], miou=float(np.mean(vals)) if vals else 0.0,
+            per_class_iou=dict(pc), n_labeled_px=1000, seconds=0.0))
+    return arm
+
+
+def test_min_achievable_p_floor_below_six_folds():
+    """Under six pairs the Wilcoxon cannot reach 0.05 however consistent the effect."""
+    assert min_achievable_wilcoxon_p(5) == pytest.approx(0.0625)
+    assert min_achievable_wilcoxon_p(6) == pytest.approx(0.03125)
+    assert min_achievable_wilcoxon_p(11) == pytest.approx(0.0009765625)
+    assert min_achievable_wilcoxon_p(5) > 0.05
+    assert min_achievable_wilcoxon_p(6) < 0.05
+
+
+def test_a_class_absent_from_a_fold_drops_only_that_class():
+    names = ["x", "y"]
+    a = _arm_from_per_class("A", [{"x": 0.5, "y": None if i < 4 else 0.4}
+                                  for i in range(11)], names)
+    b = _arm_from_per_class("B", [{"x": 0.6, "y": None if i < 4 else 0.5}
+                                  for i in range(11)], names)
+    cmp = paired_compare_per_class(a, b)
+    assert cmp["per_class"]["x"]["n_folds"] == 11
+    assert cmp["per_class"]["y"]["n_folds"] == 7
+    assert "accra" not in cmp["per_class"]["y"]["cities"]
+
+
+def test_underpowered_class_is_flagged_not_called_null():
+    """A class present in only five folds must be marked, never read as no-effect."""
+    names = ["thin"]
+    a = _arm_from_per_class("A", [{"thin": 0.2 if i < 5 else None} for i in range(11)], names)
+    b = _arm_from_per_class("B", [{"thin": 0.9 if i < 5 else None} for i in range(11)], names)
+    cmp = paired_compare_per_class(a, b)
+    e = cmp["per_class"]["thin"]
+    assert e["n_folds"] == 5
+    assert e["underpowered"] is True
+    assert e["mean_delta"] == pytest.approx(0.7)      # a huge, perfectly consistent effect
+    assert not e["significant_after_holm"]            # and still not significant
+
+
+def test_offsetting_per_class_movements_cancel_in_the_mean():
+    """The measurement-design case: mIoU still, classes moving hard in opposite directions."""
+    names = ["up", "down"]
+    a = _arm_from_per_class("A", [{"up": 0.30, "down": 0.70} for _ in range(11)], names)
+    b = _arm_from_per_class("B", [{"up": 0.70, "down": 0.30} for _ in range(11)], names)
+    assert paired_compare(a, b)["mean_delta"] == pytest.approx(0.0, abs=1e-9)
+    cmp = paired_compare_per_class(a, b)
+    assert cmp["per_class"]["up"]["mean_delta"] == pytest.approx(+0.4)
+    assert cmp["per_class"]["down"]["mean_delta"] == pytest.approx(-0.4)
+
+
+def test_holm_is_stricter_than_raw_p():
+    raw = {"a": 0.01, "b": 0.02, "c": 0.04}
+    out = holm_bonferroni(raw, alpha=0.05)
+    assert out["a"]["adjusted"] >= raw["a"]
+    assert out["c"]["adjusted"] >= raw["c"]
+    assert out["a"]["adjusted"] == pytest.approx(0.03)     # 3 * 0.01
+    assert out["b"]["adjusted"] == pytest.approx(0.04)     # 2 * 0.02
+    assert out["c"]["adjusted"] == pytest.approx(0.04)     # monotone, held up by b
+
+
+def test_holm_is_monotone_and_handles_missing_p():
+    out = holm_bonferroni({"a": 0.001, "b": None, "c": 0.5}, alpha=0.05)
+    assert out["b"]["adjusted"] is None and out["b"]["reject"] is False
+    assert out["a"]["adjusted"] <= out["c"]["adjusted"]
+
+
+def test_per_class_pairing_refuses_mismatched_class_names():
+    a = _arm_from_per_class("A", [{"x": 0.5} for _ in range(11)], ["x"])
+    b = _arm_from_per_class("B", [{"z": 0.5} for _ in range(11)], ["z"])
+    with pytest.raises(ValueError, match="different class names"):
+        paired_compare_per_class(a, b)
+
+
+def test_format_per_class_comparison_marks_underpowered():
+    names = ["thin"]
+    a = _arm_from_per_class("A", [{"thin": 0.2 if i < 5 else None} for i in range(11)], names)
+    b = _arm_from_per_class("B", [{"thin": 0.9 if i < 5 else None} for i in range(11)], names)
+    txt = format_per_class_comparison(paired_compare_per_class(a, b))
+    assert "UNDERPOWERED" in txt
+    assert "thin" in txt
