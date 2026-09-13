@@ -7,6 +7,12 @@ Read `01_DIAGNOSIS.md` and `02_ARCHITECTURE.md` first. Check
 `04_FINDINGS_LEDGER.md` before starting any item — roughly a third of the
 original findings are deleted rather than fixed.
 
+**Check `08_STATE.md` before picking an item.** Several items marked 🔓 here are
+already complete on an unmerged branch — Part 7 (40–42) and Part 8's 43, 44 and
+45 all landed on `applicability-gating` — and item 46's fork is already decided.
+Statuses in this file reflect `master` only. For item 21, read `07_ITEM_21.md`
+first: it ran, and it did not pass in the form specified below.
+
 ---
 
 ## How this is sequenced

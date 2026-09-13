@@ -6,6 +6,12 @@ This document exists so nothing gets re-investigated. When a question arises tha
 was already settled, it should be answered from here rather than researched
 again.
 
+Companion documents: `01_DIAGNOSIS.md` and `02_ARCHITECTURE.md` for the why and
+the what; `04_FINDINGS_LEDGER.md` for fates; `05_BUILD_MANUAL.md` for the work
+plan; `06_UNMIXING_CEILING.md` *(unmerged)* and `07_ITEM_21.md` for the unmixing
+ceiling; **`08_STATE.md` for where everything stands right now** — including a
+consolidated form of PART C's ruled-out sources and the scope boundaries.
+
 Confidence markers used throughout:
 - **[E]** empirical — measured or executed first-hand
 - **[S]** static — verified by code or artifact inspection

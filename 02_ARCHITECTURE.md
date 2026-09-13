@@ -5,6 +5,14 @@
 Read `01_DIAGNOSIS.md` first — this document assumes the conclusions reached
 there.
 
+**Two claims in this document are falsified by the item 21 investigation** —
+§"the classes are no longer sub-pixel" and §"misallocation between `built` and
+`paved` leaves `impervious_total` unchanged". Both are recorded in
+`07_ITEM_21.md`, with the full measurements in `06_UNMIXING_CEILING.md` on the
+unmerged `unmixing-ceiling-investigation` branch. They stand uncorrected here
+pending sign-off; do not build against them. `08_STATE.md` has the current
+state of that sign-off and of every branch.
+
 ---
 
 ## 1. What GeoWatch is now
