@@ -29,7 +29,7 @@ Fate categories:
 | DELETED | 13 | Architecture change removes the code |
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SURVIVES | 22 | The irreducible cluster — real work (C40 added by the pre-push audit) |
-| NEEDS FATE | 6 | C36–C38, plus C41, C42 and C43 from the reproduction work |
+| NEEDS FATE | 7 | C36–C38, plus C41–C43 from the reproduction work and C44 from the city-selection measurement |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
@@ -672,6 +672,65 @@ untriaged** and still need a fate.*
 ***C41 added** during the encoder band-mapping verification. Also untriaged.*
 
 ***C42 added** during the training-reproduction attempt. Also untriaged.*
+
+***C44 added** during the city-selection measurement, from live probing of the
+Overpass endpoints the ingestion path depends on. Also untriaged.*
+
+### C44 — Two of the three Overpass endpoints are unreachable, and failures are logged without their status code [E]
+Measured 2026-09-14 by `GET /api/status` against each host, one lightweight
+request each:
+
+| endpoint | result |
+|---|---|
+| `overpass-api.de` | **HTTP 200**, healthy, reports `Rate limit: 2` |
+| `overpass.kumi.systems` | **ReadTimeout** |
+| `overpass.openstreetmap.ru` | **ConnectTimeout** |
+
+**The cost depends on which of two patterns a caller uses, and they are not
+equally affected.**
+
+*Round-robin — real waste on every retry:*
+`generate_osm_road_masks.py:110` and `generate_osm_water_masks.py:103` both do
+`OVERPASS_URLS[attempt % len(OVERPASS_URLS)]` over a 3-host list with
+`retries=4`. The attempt sequence is therefore **de → kumi → ru → de**, so
+**two of every four attempts go to hosts that cannot answer**, and the
+15/30/45 s backoff is paid in full for each. A query needing two real tries
+waits ~45 s in dead-host backoff to get there.
+
+*Nested fallback — wasteful only on the failure path:*
+`ingestion/exposure_sources.py:296` and `ingestion/osm_dem.py:45` loop
+`for endpoint: for attempt in range(3)` over a 2-host list. The dead host is
+reached only after the live one has already failed three times, so the cost is
+3 dead attempts plus a 5 s inter-endpoint sleep, and only when the run was
+failing anyway. **These two are not "two-thirds wasted"** — the distinction
+matters for how urgent the fix is.
+
+Both `ingestion/` callers additionally back off `2 ** attempt` = **1 s, 2 s,
+4 s**, which is short against a server advertising two concurrent slots.
+
+**The second half of the finding: the logging cannot tell failures apart.**
+All four callers catch bare `Exception` and log `{e}` or the type name, never
+`response.status_code`. `raise_for_status()` collapses 429, 502, 503 and 504
+into one `HTTPError`. Measured consequence during this work: what looked like
+a uniform wall of `HTTPError` turned out, once the status and body were
+logged, to be **HTTP 504 carrying `runtime error: open64: 0 Success
+/osm3s_osm_base Dispatcher_Client::req`** — a transient Overpass *dispatcher*
+fault, not a query-too-heavy timeout. An unchanged retry 10 s later succeeded
+every time. The remedies diverge sharply: a 429 needs a long backoff, a
+genuine query-timeout 504 needs the query split, and a dispatcher 504 needs
+only a short retry. Without the status code, none of those can be chosen, and
+the natural reading — "504 means my query is too heavy" — is wrong here.
+
+**Not fixed, deliberately.** Endpoint liveness is environment- and
+time-dependent, so hardcoding the current list into the production path would
+encode today's network conditions as a permanent fact; the right fix is
+probably a liveness probe or configuration rather than a deletion, and that is
+a design decision. `experiments/city_selection/test2_osm.py` works around it
+locally for the measurement run only, and says so in its docstring.
+
+*Same shape as **C6** (`get_osm_features` returning `None` for both "no roads"
+and "API failed") — an external dependency whose failure modes are collapsed
+into one indistinguishable signal.*
 
 ***C43 added** once the reproduction succeeded and the rebuilt patch set could
 be measured directly. Also untriaged.*
