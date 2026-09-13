@@ -140,6 +140,10 @@ inherits C43's qualification exactly as 0.313 does.
 ## Status
 
 Gate passed. Fidelity run done. The four-arm comparison on production patch
-geometry, without the separation loss, runs next
-(`run_comparison.py`, results to `comparison_accra.json`). The 11-fold paired
-run remains unrun.
+geometry, without the separation loss, is in `comparison_accra.md` — D − B =
+−0.0033, replicating the broken probe's only surviving signal on a working
+control, with a per-class reshuffle the mean hides and an early-stopping
+asymmetry to fix before scaling up.
+
+The 11-fold paired run remains unrun, as does the
+`experiments/harness/loco.py` validation run.
