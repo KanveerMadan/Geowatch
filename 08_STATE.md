@@ -232,6 +232,110 @@ Two failures are diagnostic:
 
 ---
 
+## Ruled out — data sources, with reasons
+
+This section exists so a new session does not re-propose something already
+investigated and rejected. Several of these are attractive-sounding and were
+proposed more than once. **Full evidence is `03_EVIDENCE.md` §C.1–C.3**; the
+verdicts are consolidated here because that is where they get re-litigated.
+
+**The governing bar** (§C.2, applied retroactively to every candidate): the
+deployment scope is global, so a source must be **free, systematic, and globally
+uniform** — the operating model Sentinel-2 itself provides. Under that bar,
+commercial VHR fails outright (tasking-based, not standing archive) and
+hyperspectral fails (opportunistic revisit). Only **Landsat thermal (TIRS)** and
+**VIIRS nighttime lights** pass — and both add a new information axis rather
+than fixing the sub-pixel resolution ceiling, which **no source meeting the bar
+can do at any price point available to this project.**
+
+| Source | Verdict |
+|---|---|
+| **NICFI Planet basemaps** | **Dead.** [E] `EEException: not found` on every asset path (`asia`, `africa`, `americas`, and the parent), against a healthy EE session. Program phase-out began January 2025; Norway cancelled the next-phase procurement September 2025. *Honest limit: GEE returns the same error for "does not exist" and "caller lacks access," so deleted-vs-permission-gated is undetermined.* **Any note describing NICFI as live 30°N–30°S coverage is stale.** |
+| **Sentinel-1 for road/alley detection** | **Ruled out on resolution, not geometry.** [X/R] IW GRDH is **20.4 × 22.5 m** — the universally quoted "10 m" is *pixel spacing*, so it is twice as coarse as Sentinel-2, not equal. A 3 m alley is **15–20× below the resolution cell in azimuth**; one cell integrates several structures, several alleys and their layover together. Layover is real (`L = h·cot θ`; break-even at θ=45°, S1 operates at ~29–46°) but is *not* the binding constraint, and the resolution framing is the defensible one. Double-bounce at 2–4 m structure height is weak and unvalidated. No published S1 road detection in informal settlements exists at all. |
+| **Sentinel-2 super-resolution** | **Recommended against.** [X] GeoSR-Bench: *"improvements in traditional SR metrics often do not correlate with gains in task performance, and the correlations can be negative."* On MODIS→Landsat rivers, SR recovered ~10% of the gap to real Landsat-8 (0.68 → 0.74–0.75 vs 0.95). ESA's own OpenSR funds a dedicated **hallucination** metric, rates 0.0610–0.5963. That the field needs a dedicated instrument to police SR answers how it understands it. |
+| **ESA Earthnet Third Party Mission** | **India ineligible.** [X] Would otherwise be the best option available — free PlanetScope (3.7 m) *and* SkySat (0.65 m) for non-commercial research. Restricted to ESA Member States, EC Member States, and China via Dragon. |
+| **ISRO Cartosat sub-metre** | **Not free to non-government entities.** [X] Under the Indian Space Policy 2023, data finer than 5 m is free only to Government Entities; NGEs purchase commercially via NSIL. |
+| **Planet Education & Research Basic** | **Applied for, non-publishable.** [X] Free, 3,000 km²/month, PlanetScope ~3 m — scale is not the constraint (a 15-city expansion is one-eighth of one month's quota). The terms are: non-commercial only, and **raw imagery cannot be made publicly accessible**. So imagery annotated under it cannot be published as half of an open benchmark — which would be a stronger contribution than another model. Sentinel-2 has no such problem. Tracked as build item 68. |
+| **Google Open Buildings road layer** | **Does not exist.** [E] Namespace enumerated via `listAssets`: v1/v2/v3, each holding only `polygons` and `polygons_FeatureView`. Sirko et al. §7 states directly that road detection metrics are not reported. The word "road" appears only inside the citation of the paper title. |
+| **Multi-temporal sub-pixel shift exploitation** | **Not viable.** [R] Sentinel-2's sun-synchronous orbit gives near-identical repeat geometry, so the shift diversity the technique needs is minimal to absent. What remains is compositing — better SNR, less cloud/shadow noise, genuinely useful — but not resolution recovery. |
+| **Commercial VHR (Maxar/Vantor, Airbus, SkySat)** | Fails the systematic-global bar. Legitimate narrow role: a **validation ruler**, which is exactly how Phase 0 used VHR. Vantor Open Data is additionally **disaster-triggered only**, and CC BY-NC. |
+| **Overture buildings** | **Not a third opinion.** Overture's own documentation states many buildings derive from Microsoft and Google Open Buildings, explicitly citing the Global South. OSM wins conflation and OSM is ~9% complete in South Asia, so in dense informal fabric it is ML output with a thin OSM veneer. |
+
+**Bottom line, verified across every channel checked:** there is **no new free
+sub-10 m source over Dharavi** — which is also the primary AOI, the demo AOI,
+and the worst-covered city in the entire training set (zero across
+OpenAerialMap, Umbra and Capella). Continued searching has negative expected
+value against digitising OSM ground truth for the bounded area that matters.
+
+### OpenAerialMap — audited, and it is a ruler, not a base layer
+
+Audited as a candidate higher-resolution source. It is the best free
+centimetre-scale optical archive that exists, and it still cannot be a base
+layer.
+
+| | |
+|---|---|
+| scenes | 21,359 |
+| at ≤2 m GSD | **98.2%** |
+| **usable coverage of global land** | **~0.03–0.22%** |
+
+Coverage is the whole story. **Dharavi returns zero** — and so do Delhi,
+Karachi, Cairo and Khartoum, metro-wide. Of **47 named informal settlements**
+tested: **19** have dedicated ≤15 cm imagery (Tier A), **8** have satellite
+mosaic only (Tier B), **20** have nothing usable.
+
+**Verdict: validation and calibration reference only, never a base layer.** A
+source covering 0.2% of land cannot underpin a globally uniform pipeline; it can
+measure one.
+
+**Licensing caution on Tier B.** The Maxar/Vantor mosaics over Kibera, Mukuru,
+Ajegunle and Petare likely carry **CC BY-NC** terms under an OSM-scoped waiver.
+**Treat Tier B as restricted for model training until verified per scene** — the
+waiver's scope is to OSM mapping, which is not the same permission as training a
+model on the pixels.
+
+**The recommended use, and it is a good one:** downsample the ~19 Tier A sites'
+5 cm orthophotos to 10 m and measure classification error **as a function of
+alley width**. That yields an **error budget for the resolution ceiling** —
+turning "10 m cannot resolve this" from an argument into a curve. It uses
+OpenAerialMap for exactly what it is good for, needs no new data, and is
+unblocked today.
+
+---
+
+## Scope boundaries, stated once
+
+More than one discussion has drifted past these. They are limits of what this
+architecture claims, not open problems.
+
+1. **The five fractions answer land-cover proportion and imperviousness — and
+   nothing else.** Not land-use, not vegetation type, not building condition,
+   not anything demographic or administrative. A full urban planning tool needs
+   those as separate layers on top. **This is the physical land-cover layer of
+   such a system, not the system.**
+2. **The sensor limit stands.** Fractions and vector geometry are honest
+   accommodations to 10 m, not a resolution fix. If the actual need is
+   street-level surface material in informal settlements, 10 m optical cannot
+   deliver it — see the ruled-out table for why nothing else free can either.
+3. **Gate C closes only in its narrow, research-audience form** (Decision 17,
+   via advisor review against D.7). The planner-usefulness question is
+   **genuinely open**, disclosed as future work — build item 64 is the protocol,
+   written and deliberately unrun. Do not cite Decision 17 as though it settled
+   usefulness to planners.
+4. **Morphological characterisation is OSM-coverage-dependent.** Formal/informal
+   rests on network geometry, so it degrades exactly where OSM is thin — which
+   is disproportionately in informal settlements, the target. The failure mode
+   is correlated with the use case.
+5. **Past provenance is permanently lost.** Everything before the first commit
+   is unreproducible. Build item 62 documents the reconstruction; it does not
+   recover it. C42 is this same gap reaching the production checkpoint.
+6. **No global independent gold set exists.** Confirmed dead end. The held-out
+   firewall (item 27) and intra-annotator test-retest (item 32) mitigate
+   single-annotator risk; **neither eliminates it**, and test-retest is not
+   Cohen's kappa and does not mean the same thing.
+
+---
+
 ## Working rules
 
 These are not style preferences. Each exists because breaking it produced a
