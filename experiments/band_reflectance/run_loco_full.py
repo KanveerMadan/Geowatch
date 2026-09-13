@@ -107,6 +107,8 @@ def train_one_fold(images, patches, held_city, in_chans, device, epochs):
     scheduler = CosineAnnealingLR(optimizer, T_max=epochs, eta_min=1e-6)
 
     tail_probs, target, losses = [], None, []
+    best_miou, best_epoch, best_pred = -1.0, 0, None
+    val_curve = []
     for epoch in range(1, epochs + 1):
         model.train()
         freeze_bn_stats(model.encoder)
@@ -123,20 +125,37 @@ def train_one_fold(images, patches, held_city, in_chans, device, epochs):
         scheduler.step()
         losses.append(ep / len(train_loader))
 
+        # Evaluated EVERY epoch, because the arms overfit at different rates and
+        # the conclusion turns out to depend on where you stop. Accra, seed 1337:
+        # D peaks at ~0.43 by epoch 5 and decays to ~0.30 by 40 while its train
+        # loss keeps falling, while B holds its peak. So "6 bands vs RGB" reads
+        # +0.0002 at peak and -0.1120 at epoch 40 -- the same runs, two rules.
+        # Both are recorded; neither is quietly chosen.
+        model.eval()
+        lg, mk = [], []
+        with torch.no_grad():
+            for imgs, msks in val_loader:
+                lg.append(torch.softmax(model(imgs.to(device)), dim=1).cpu())
+                mk.append(msks)
+        probs = torch.cat(lg).numpy()
+        target = torch.cat(mk).numpy()
+
+        cm = confusion(probs.argmax(axis=1).ravel(), target.ravel(), NUM_CLASSES)
+        m = _miou(iou_from_confusion(cm))
+        val_curve.append(m)
+        if m > best_miou:
+            best_miou, best_epoch = m, epoch
+            best_pred = probs.argmax(axis=1).ravel()
+
         if epoch > epochs - TAIL:
-            model.eval()
-            lg, mk = [], []
-            with torch.no_grad():
-                for imgs, msks in val_loader:
-                    lg.append(torch.softmax(model(imgs.to(device)), dim=1).cpu())
-                    mk.append(msks)
-            tail_probs.append(torch.cat(lg).numpy())
-            target = torch.cat(mk).numpy()
+            tail_probs.append(probs)
 
     del model
     final_pred = tail_probs[-1].argmax(axis=1)
     avg_pred = np.mean(tail_probs, axis=0).argmax(axis=1)
     return {"final_pred": final_pred.ravel(), "avg_pred": avg_pred.ravel(),
+            "best_pred": best_pred, "best_epoch": best_epoch, "best_miou": best_miou,
+            "val_curve": val_curve,
             "target": target.ravel(), "n_train_patches": len(tr),
             "final_loss": losses[-1]}
 
@@ -169,7 +188,7 @@ def main() -> int:
     outdir = Path(__file__).resolve().parent / "results" / args.tag
     outdir.mkdir(parents=True, exist_ok=True)
 
-    results_final, results_avg = {}, {}
+    results_final, results_avg, results_best = {}, {}, {}
     cache: dict = {}
 
     for name, (mode, ch) in ARMS.items():
@@ -181,6 +200,7 @@ def main() -> int:
             out = train_one_fold(arm_images[_name], patches, held, _ch, device, args.epochs)
             cache[(_name, held)] = out
             print(f"  [{_name}] fold {i} {held:<11} loss={out['final_loss']:.4f} "
+                  f"best={out['best_miou']:.4f}@{out['best_epoch']} "
                   f"{time.time() - t0:.0f}s", flush=True)
             return {"pred": out["final_pred"], "target": out["target"],
                     "n_classes": NUM_CLASSES, "n_train_patches": out["n_train_patches"]}
@@ -195,25 +215,33 @@ def main() -> int:
         results_final[name] = res
         res.save(str(outdir / f"{name}_final.json"))
 
-        # Same folds, last-TAIL averaged softmax. No extra training.
-        avg = ArmResult(name=name + "_avg", seed=SEED, class_names=CATEGORIES,
-                        meta=dict(res.meta, selection=f"softmax averaged over last {TAIL} epochs"))
-        for f in res.folds:
-            o = cache[(name, f.city)]
-            cm = confusion(o["avg_pred"], o["target"], NUM_CLASSES)
-            iou = iou_from_confusion(cm)
-            avg.folds.append(FoldResult(
-                fold=f.fold, city=f.city, miou=_miou(iou),
-                per_class_iou={c: (None if np.isnan(v) else float(v))
-                               for c, v in zip(CATEGORIES, iou)},
-                n_labeled_px=f.n_labeled_px, seconds=0.0,
-                n_train_patches=f.n_train_patches))
-        results_avg[name] = avg
-        avg.save(str(outdir / f"{name}_avg.json"))
+        # Same folds, re-scored under the other two selection rules. No extra
+        # training -- only the choice of which epoch's predictions to score.
+        for key, sel, store in (
+                ("avg_pred", f"softmax averaged over last {TAIL} epochs", results_avg),
+                ("best_pred", "best epoch by held-out mIoU -- SELECTED ON TEST, biased",
+                 results_best)):
+            alt = ArmResult(name=f"{name}_{'avg' if key == 'avg_pred' else 'best'}",
+                            seed=SEED, class_names=CATEGORIES,
+                            meta=dict(res.meta, selection=sel))
+            for f in res.folds:
+                o = cache[(name, f.city)]
+                iou = iou_from_confusion(confusion(o[key], o["target"], NUM_CLASSES))
+                alt.folds.append(FoldResult(
+                    fold=f.fold, city=f.city, miou=_miou(iou),
+                    per_class_iou={c: (None if np.isnan(v) else float(v))
+                                   for c, v in zip(CATEGORIES, iou)},
+                    n_labeled_px=f.n_labeled_px, seconds=0.0,
+                    n_train_patches=f.n_train_patches))
+            store[name] = alt
+            alt.save(str(outdir / f"{name}_{'avg' if key == 'avg_pred' else 'best'}.json"))
 
     # --- reporting -----------------------------------------------------------
-    for label, results in (("FINAL EPOCH (primary)", results_final),
-                           (f"LAST-{TAIL} AVERAGED SOFTMAX (secondary)", results_avg)):
+    for label, results in (
+            ("FINAL EPOCH, fixed budget (primary -- no selection)", results_final),
+            (f"LAST-{TAIL} AVERAGED SOFTMAX (secondary -- no selection)", results_avg),
+            ("BEST EPOCH (comparison only -- SELECTED ON TEST, optimistically biased)",
+             results_best)):
         arms = list(results.values())
         print("\n" + "=" * 78)
         print(f"{label}")
@@ -235,6 +263,8 @@ def main() -> int:
         "limit_folds": args.limit_folds,
         "selection_primary": "final epoch, fixed budget, no early stop",
         "selection_secondary": f"softmax averaged over last {TAIL} epochs",
+        "selection_third": "best epoch by held-out mIoU -- selected on test, biased",
+        "val_curves": {f"{a}|{c}": cache[(a, c)]["val_curve"] for a, c in cache},
         "pairs": {},
     }
     for a_name, b_name, desc in PAIRS:
@@ -249,6 +279,11 @@ def main() -> int:
                 "miou": paired_compare(results_avg[a_name], results_avg[b_name]),
                 "per_class": paired_compare_per_class(results_avg[a_name],
                                                       results_avg[b_name]),
+            },
+            "best_selected_on_test": {
+                "miou": paired_compare(results_best[a_name], results_best[b_name]),
+                "per_class": paired_compare_per_class(results_best[a_name],
+                                                      results_best[b_name]),
             },
         }
     (outdir / "summary.json").write_text(json.dumps(summary, indent=2))
