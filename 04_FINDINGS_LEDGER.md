@@ -29,7 +29,7 @@ Fate categories:
 | DELETED | 13 | Architecture change removes the code |
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SURVIVES | 22 | The irreducible cluster — real work (C40 added by the pre-push audit) |
-| NEEDS FATE | 3 | C36–C38; C34 and C35 triaged and CLOSED via item 47 |
+| NEEDS FATE | 4 | C36–C38, plus C41 from the band-mapping verification |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
@@ -668,6 +668,56 @@ attention every other finding in this document received.*
 ***Partially resolved.** C34 and C35 were scheduled as `05_BUILD_MANUAL.md` item
 47, built, and have moved to **CLOSED** above. **C36, C37 and C38 remain
 untriaged** and still need a fate.*
+
+***C41 added** during the encoder band-mapping verification. Also untriaged.*
+
+### C41 — The classifier is RGB-only, on tile-relative values [E]
+Two measured facts about what the production model actually consumes, both
+found while verifying a *different* suspected defect (a 13-band → 6-band
+`conv1` slice with wrong indices). **That defect does not exist** — there is no
+slicing code in the repository, and `conv1.weight` is `(64, 3, 7, 7)` in both a
+fresh load and the deployed checkpoint. The verification returned a clean
+negative and this finding instead.
+
+**1. Three bands reach the model, not six.**
+`resnet_model.py` loads `ResNet50_Weights.SENTINEL2_RGB_MOCO` — `in_chans=3`,
+`bands=['B4','B3','B2']` (Red, Green, Blue). NIR, SWIR1 and SWIR2 are exported
+into `raw.tif` and written to `.npy` by `generate_tiles()`, then **discarded
+before inference**: `run_inference()` reads the 8-bit RGB PNG
+(`inference.py:390`). Band order is correct; the bands are simply absent.
+
+**2. The values are tile-relative, not absolute reflectance.**
+The checkpoint's own transform is `Normalize(mean=[0], std=[10000])` — DN ÷
+10,000, absolute reflectance — and `raw.tif` is already on that scale. The model
+instead consumes a **per-tile 2nd/98th percentile stretch** ÷ 255:
+Dharavi **0.089 → 0.212** (2.4×), Accra **0.124 → 0.389** (3.1×), Jakarta
+0.187 → 0.204 (1.1×), Cape Town 0.175 → 0.400 (2.3×). The same physical surface
+yields different input depending on its tile, and the distortion is
+city-dependent.
+
+*Not train/serve skew* — both paths apply `/255.0` with no mean/std, which
+re-confirms **C5**'s refutation. The concern is pretraining transfer and
+cross-city generalisation, which is what LOCO measures.
+
+**What it qualifies.** The **0.313 ± 0.056 LOCO baseline** is an RGB-only,
+tile-relative number, not a measurement of this architecture on Sentinel-2's
+full signal. Every prior conclusion about spectral separability *in the
+classifier* is bounded the same way, including `paved_road`'s magnet-class
+behaviour and the failure of the paved/roofing separation loss — all observed
+in RGB.
+
+**Cross-reference to item 21 — the two are not comparable.** Item 21's
+**1.70°** built/paved spectral angle, its ~0.7° noise floor, and its R² ceilings
+(built 0.490, `impervious_total` 0.822, impervious+bare 0.964) were computed in
+**6-band** space. **The classifier does not operate in that space.** Item 21
+describes the signal available to a 6-band solver; the classifier sees three
+bands after a tile-relative rescaling. Neither result predicts the other, and
+treating item 21's ceilings as bounds on classifier performance — or classifier
+confusion as evidence about item 21's ceilings — would overstate both.
+
+*Full measurements in `03_EVIDENCE.md` §A.14. Enforced by
+`assert_encoder_band_contract()`, which refuses a checkpoint whose bands,
+channel count or order stop matching what the pipeline supplies.*
 
 ### C36 — `GHSL_BUILTUP_ASSET` pins the epoch in the asset string [E]
 `configs/exposure_constants.py:58` hardcodes `.../GHS_BUILT_S/2020`.
