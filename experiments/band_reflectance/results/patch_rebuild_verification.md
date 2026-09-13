@@ -1,5 +1,15 @@
 # Patch rebuild verification — the reconstruction is still wrong, and why
 
+> **SUPERSEDED by `patch_rebuild_v2.md`.** Porting the 5-builder notebook this
+> document recommends did reconstruct the checkpoint — 1,414 patches against
+> 1,413, weights to 0.0083 under an achievable split. Its recommendation was
+> right. **One diagnosis below was wrong:** the `paved_road` over-generation is
+> not `sample_stride` interacting with tile size. The stride expression is
+> byte-identical between the two notebooks; `PAVED_ROAD_CAP_PER_CITY` is 180 in
+> `_UPDATED` and 25 in the training notebook, and the cap binds in all 11
+> cities before stride can matter. The tile-size observation is separately true
+> and is a real data-availability gap — see `patch_rebuild_v2.md`.
+
 Ported the three patch builders and the assembly step from
 `notebooks/archive/geowatch_segformer_finetune_UPDATED.ipynb` at `ecfe370` — the
 notebook `ingestion/resnet_model.py` cites. Result: **the rebuild does not match

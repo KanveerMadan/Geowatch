@@ -29,7 +29,7 @@ Fate categories:
 | DELETED | 13 | Architecture change removes the code |
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SURVIVES | 22 | The irreducible cluster — real work (C40 added by the pre-push audit) |
-| NEEDS FATE | 5 | C36–C38, plus C41 and C42 from the reproduction work |
+| NEEDS FATE | 6 | C36–C38, plus C41, C42 and C43 from the reproduction work |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
@@ -672,6 +672,66 @@ untriaged** and still need a fate.*
 ***C41 added** during the encoder band-mapping verification. Also untriaged.*
 
 ***C42 added** during the training-reproduction attempt. Also untriaged.*
+
+***C43 added** once the reproduction succeeded and the rebuilt patch set could
+be measured directly. Also untriaged.*
+
+### C43 — 0.313 was measured on a materially easier task than the pipeline runs [E]
+The headline LOCO number does not describe dense multi-class per-pixel
+segmentation. It describes a set of mostly single-class, mostly pre-cropped
+patches, and the gap between those two tasks is never stated anywhere the
+number is quoted.
+
+**What a production training patch actually is.** Measured on the reconstructed
+1,414-patch set (the 5-builder rebuild that reproduces the checkpoint's class
+weights — see C42):
+
+| source | n | labelled px | single-class | what it is |
+|---|---:|---:|---:|---|
+| `sam` | 268 | **72.1%** | **100%** | one annotated segment, bbox-cropped and resized to 64×64 |
+| `osm` | 275 | 25.7% | **100%** | road centreline buffered 2 px; everything else IGNORE |
+| `osm_generated` | 274 | 24.4% | **100%** | one road's real geometry, bbox-cropped and resized |
+| `osm_generated_water` | 95 | 43.7% | **100%** | one water body, same construction |
+| `sliding_window` | 502 | 29.4% | 58.8% | window off the label canvas, keyed by dominant label |
+| **all** | **1414** | **36.7%** | **85.4%** | |
+
+**85.4% of training patches contain exactly one class.** Four of the five
+builders are single-class by construction — they paint one segment's mask and
+set every other pixel to IGNORE, so no loss is ever computed on a second class
+in the same patch. Only `sliding_window` is genuinely multi-class, and even
+there 58.8% carry one class and the mean is 1.51.
+
+Two further simplifications compound it. The SAM and OSM-generated builders
+**bbox-crop and resize to 64×64**, which normalises scale away — the model
+never has to find the object or judge its size, because the object fills the
+frame at a canonical scale. And the OSM builders label **only** the road or
+water pixels, so the hard part — deciding what the surrounding fabric is — is
+marked IGNORE and never scored.
+
+**What inference does instead.** `run_inference()` (`inference.py:335-469`)
+slides a 64×64 window at stride 32 across the whole raster at native
+resolution, averages the softmax across overlapping windows, and argmaxes
+**every** pixel into one of 7 classes — `predicted_idx = np.argmax(mean_probs,
+axis=0)`, shape `(H, W)`. No bbox, no resize, no IGNORE, no dominant-label
+shortcut. The neighbouring-class decisions that training marked IGNORE are
+exactly the ones that produce the `paved_road`/`dense_informal_roofing`
+confusion the project has been chasing — and training never scored them.
+
+**So 0.313 is an upper bound on a different task.** It is a real number, and the
+LOCO protocol behind it is sound — held-out city, 11 folds. But validation is
+scored on the held-out city's *patches*, built the same easy way, so both sides
+of the measurement share the simplification. Quoting it as the pipeline's
+per-pixel segmentation accuracy overstates what was measured, in an unknown
+direction and by an unmeasured amount.
+
+**Same class of gap as C41**, and the two compound: C41 says the number was
+measured on three bands after a tile-relative rescaling; C43 says it was
+measured on a task the deployed pipeline does not perform. Neither is a defect
+in the training code — both are defects in what the number is taken to mean.
+
+*Measured by `experiments/band_reflectance/production_patches_v2.py`. The
+reconstruction that makes this measurable is recorded in
+`results/patch_rebuild_v2.md`.*
 
 ### C42 — The production checkpoint's training source is ambiguous, and the code cites the wrong notebook [E]
 Same class of provenance gap as **C5** (a wrong conclusion drawn from not
