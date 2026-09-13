@@ -29,7 +29,7 @@ Fate categories:
 | DELETED | 13 | Architecture change removes the code |
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SURVIVES | 22 | The irreducible cluster — real work (C40 added by the pre-push audit) |
-| NEEDS FATE | 4 | C36–C38, plus C41 from the band-mapping verification |
+| NEEDS FATE | 5 | C36–C38, plus C41 and C42 from the reproduction work |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
@@ -670,6 +670,58 @@ attention every other finding in this document received.*
 untriaged** and still need a fate.*
 
 ***C41 added** during the encoder band-mapping verification. Also untriaged.*
+
+***C42 added** during the training-reproduction attempt. Also untriaged.*
+
+### C42 — The production checkpoint's training source is ambiguous, and the code cites the wrong notebook [E]
+Same class of provenance gap as **C5** (a wrong conclusion drawn from not
+locating the training notebook) and **C10**/item 45 (calibration artifacts with
+no verifiable source). Here the artifact is the production checkpoint itself.
+
+**Two different notebooks are cited for one checkpoint.**
+`ingestion/resnet_model.py:7-8` states the architecture was "extracted directly
+from the training notebook (`geowatch_segformer_finetune_UPDATED.ipynb`, the
+'Encoder swap' cell)". `archive/AUDIT_FINDINGS.md:689` independently identifies
+**`geowatch_water_loco_with_diagnostics (2).ipynb`** as the notebook that
+produced the checkpoint, by mtime plus a four-way fingerprint match against the
+checkpoint's stored metadata.
+
+**Measured: they are not the same training pipeline.** Across the 54 archived
+notebooks at `ecfe370`, the patch builders split cleanly into two families:
+
+| notebook family | patch builders | separation loss |
+|---|---:|---|
+| `..._UPDATED.ipynb` (cited by `resnet_model.py`) | **3** — `sam`, `osm`, `sliding_window` | **none** |
+| `..._water_loco_with_diagnostics.ipynb` | **5** — adds `osm_generated`, `osm_generated_water` | **present** |
+
+The checkpoint's own `architecture` string reads
+`"GeoWatchResNetSeg (... + paved_road/dense_informal_roofing separation loss)"`.
+Only the 5-builder family implements a separation loss; the notebook
+`resnet_model.py` cites has none anywhere. The 5-builder family also contains
+the LOCO loop that the 0.313 ± 0.056 figure requires.
+
+**So the evidence points to `water_loco_with_diagnostics` as the training source,
+and `resnet_model.py`'s citation being architecture-only while reading as though
+it were the whole provenance.** Both claims can be true at once — the encoder
+swap defined in one notebook, the training run executed in another — but nothing
+in the repository says so, and a reader following the code's own pointer
+reconstructs the wrong pipeline.
+
+**Cost already incurred, which is why this is a finding and not a note.** A
+reconstruction built from the cited notebook produced **2,359 patches** against
+the checkpoint's recorded `n_train_patches=1272 + n_monitor_patches=141 = 1413`,
+and class weights recomputed from it diverge from the checkpoint's stored values
+by up to 0.83 — `paved_road` 0.0666 vs 0.1707 (2.75× too many patches) and
+`standing_water` 1.3261 vs 0.4915 (~2.5× too few). The `standing_water` shortfall
+is directly explained by the missing `osm_generated_water` builder, which the
+cited notebook does not have. The weights are a usable provenance test precisely
+because the notebook computes them *from the built dataset* — a property it
+documents as the fix for an earlier real bug.
+
+*Related: `03_EVIDENCE.md` §A.14 / **C41** established what the classifier
+consumes. This entry is about not being able to reconstruct how it was trained.
+Between them, neither the input contract nor the training pipeline of the
+deployed model was documented in a form a reader could follow.*
 
 ### C41 — The classifier is RGB-only, on tile-relative values [E]
 Two measured facts about what the production model actually consumes, both
