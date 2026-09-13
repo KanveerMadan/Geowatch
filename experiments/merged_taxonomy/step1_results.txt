@@ -1,0 +1,61 @@
+==========================================================================
+ORIGINAL 7-CLASS SUPERVISION  (compare to 03_EVIDENCE.md §A.5)
+  class                        anns    ann%    pixels   pixel%  human    osm
+  paved_road                    987  73.38%     86349   17.81%     11    976
+  standing_water                133   9.89%    238265   49.15%     32    101
+  dense_vegetation               94   6.99%     82695   17.06%     94      0
+  dense_informal_roofing         53   3.94%     43230    8.92%     53      0
+  vegetation_clearing            38   2.83%     12723    2.62%     38      0
+  active_construction            25   1.86%     14360    2.96%     25      0
+  sparse_informal_roofing        15   1.12%      7174    1.48%     15      0
+  TOTAL                        1345            484796
+
+  Labels present in the files but OUTSIDE the 7 model classes (already excluded from training):
+    'unknown': 36
+    'unpaved_dirt_road': 13
+    'open_drainage_channel': 8
+    'open_waste': 4
+    'data/annotation_queues/_current_candidate_preview.png': 1
+    'python annotate_queue.py capetown': 1
+
+==========================================================================
+MERGED SUPERVISION, mapping A — as proposed
+  class                    anns    ann%    pixels   pixel%
+  impervious               1080  80.30%    151113   31.17%
+  vegetation                132   9.81%     95418   19.68%
+  water                     133   9.89%    238265   49.15%
+
+==========================================================================
+MERGED SUPERVISION, mapping B — active_construction held out
+  class                    anns    ann%    pixels   pixel%
+  impervious               1055  78.44%    136753   28.21%
+  vegetation                132   9.81%     95418   19.68%
+  water                     133   9.89%    238265   49.15%
+  active_construction        25   1.86%     14360    2.96%
+
+==========================================================================
+WHAT 'impervious' IS ACTUALLY MADE OF  (mapping A)
+  source class                 anns    share    pixels    share
+  dense_informal_roofing         53    4.91%     43230   28.61%
+  sparse_informal_roofing        15    1.39%      7174    4.75%
+  paved_road                    987   91.39%     86349   57.14%
+  active_construction            25    2.31%     14360    9.50%
+
+  paved_road share of 'impervious' annotations : 91.4%
+  OSM-generated share of those annotations     : 976/1080 = 90.4%
+
+==========================================================================
+MERGED PIXEL DISTRIBUTION PER CITY  (mapping A)
+  city           impervious    vegetation         water     total
+  accra           8816 40.9%     1097  5.1%    11630 54.0%     21543
+  capetown       19060 29.0%    40604 61.8%     6055  9.2%     65719
+  dhaka          10908 38.9%     2832 10.1%    14320 51.0%     28060
+  dharavi        12842 47.9%    10973 40.9%     2989 11.2%     26804
+  guatemala      17577 79.0%     4379 19.7%      290  1.3%     22246
+  hcmc           14014 65.6%     7007 32.8%      350  1.6%     21371
+  jakarta        24297 12.2%      150  0.1%   174810 87.7%    199257
+  kigali          3084 37.2%     5214 62.8%        0  0.0%      8298
+  lagos          24228 50.6%     2678  5.6%    20973 43.8%     47879
+  nairobi         6020 33.0%    11339 62.2%      871  4.8%     18230
+  nusantara      10267 40.4%     9145 36.0%     5977 23.5%     25389
+  ALL           151113 31.2%    95418 19.7%   238265 49.1%    484796
