@@ -1,0 +1,83 @@
+{
+  "status": "STOPPED DELIBERATELY \u2014 incomplete, NOT a LOCO result",
+  "arms_completed": 0,
+  "folds_completed": 8,
+  "folds_required": 44,
+  "only_statistic_salvageable": "best-epoch mIoU, which is SELECTED ON TEST and optimistically biased",
+  "partial_mean_of_biased_stat": 0.32384999999999997,
+  "partial_std": 0.05457681349647093,
+  "folds": [
+    {
+      "arm": "A_rgb_stretch",
+      "fold": 0,
+      "city": "dharavi",
+      "final_train_loss": 0.0964,
+      "best_miou_SELECTED_ON_TEST": 0.3406,
+      "best_epoch": 15,
+      "seconds": 589
+    },
+    {
+      "arm": "A_rgb_stretch",
+      "fold": 1,
+      "city": "accra",
+      "final_train_loss": 0.1149,
+      "best_miou_SELECTED_ON_TEST": 0.4447,
+      "best_epoch": 14,
+      "seconds": 914
+    },
+    {
+      "arm": "A_rgb_stretch",
+      "fold": 2,
+      "city": "nairobi",
+      "final_train_loss": 0.1235,
+      "best_miou_SELECTED_ON_TEST": 0.3322,
+      "best_epoch": 16,
+      "seconds": 602
+    },
+    {
+      "arm": "A_rgb_stretch",
+      "fold": 3,
+      "city": "jakarta",
+      "final_train_loss": 0.1335,
+      "best_miou_SELECTED_ON_TEST": 0.3214,
+      "best_epoch": 9,
+      "seconds": 23338
+    },
+    {
+      "arm": "A_rgb_stretch",
+      "fold": 4,
+      "city": "hcmc",
+      "final_train_loss": 0.1125,
+      "best_miou_SELECTED_ON_TEST": 0.2738,
+      "best_epoch": 4,
+      "seconds": 664
+    },
+    {
+      "arm": "A_rgb_stretch",
+      "fold": 5,
+      "city": "kigali",
+      "final_train_loss": 0.1272,
+      "best_miou_SELECTED_ON_TEST": 0.2866,
+      "best_epoch": 12,
+      "seconds": 756
+    },
+    {
+      "arm": "A_rgb_stretch",
+      "fold": 6,
+      "city": "dhaka",
+      "final_train_loss": 0.1259,
+      "best_miou_SELECTED_ON_TEST": 0.2813,
+      "best_epoch": 7,
+      "seconds": 716
+    },
+    {
+      "arm": "A_rgb_stretch",
+      "fold": 7,
+      "city": "lagos",
+      "final_train_loss": 0.1328,
+      "best_miou_SELECTED_ON_TEST": 0.3102,
+      "best_epoch": 5,
+      "seconds": 676
+    }
+  ]
+}
