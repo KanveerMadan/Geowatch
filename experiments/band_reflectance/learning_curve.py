@@ -39,6 +39,37 @@ final-epoch is the one that suffers most from it. Train loss per point is
 recorded so convergence can be compared rather than assumed.
 
 ────────────────────────────────────────────────────────────────────────────
+BUDGET: 3,200 STEPS, BECAUSE 1,600 UNDERTRAINS THE TOP OF THE CURVE
+────────────────────────────────────────────────────────────────────────────
+The first attempt used 1,600 steps. That is ~19.5 epochs at 100%, and the
+fixed-budget arm runs on this same data peaked at epoch 37 (arm A) and 24
+(arm B) -- both past it. `budget_probe.py` measured the consequence on one
+fold (accra, seed 1337, 100%, trained once to 3,200 and read at both points):
+
+    step 1600 (epoch 20)   val 0.3396   train loss 0.2437, still falling
+    step 3200 (epoch 39)   val 0.3764   train loss 0.1207
+    best 0.3866 @38 [ON TEST]          last-5 0.3670
+
+So 1,600 steps cost the 100% point 0.0368 of mIoU, and its train loss was
+still dropping 0.006/epoch when the budget ran out. Meanwhile the 25% point
+had bottomed out at train loss 0.039-0.045 by the same step count -- fully
+converged, heavily overfit.
+
+Both endpoints were being pushed DOWN by different mechanisms, which leaves
+the slope biased in an unknown direction. At 3,200 steps the probe reproduces
+the independent 3-seed arm A reference on the same fold (plateau 0.3503
++/-0.0305, best 0.3808 +/-0.0137), so the budget is adequate there.
+
+The 25% point will overfit further at 3,200 steps. That is accepted
+deliberately: overfitting at low data is a real property of having less data,
+while undertraining at high data is a protocol artefact of our own making.
+Given the choice, take the artefact you did not introduce.
+
+Because `run_fold` returns the full trajectories, the 1,600-step curve can be
+re-derived from this run for free -- so the budget's effect on the curve's
+SHAPE is measurable rather than assumed.
+
+────────────────────────────────────────────────────────────────────────────
 STRATIFIED SUBSAMPLING, BY CITY AND CLASS
 ────────────────────────────────────────────────────────────────────────────
 A plain random 25% draw can delete a thin class from a city outright, and the
@@ -98,7 +129,9 @@ from experiments.band_reflectance.production_patches_v2 import (  # noqa: E402
 )
 from experiments.band_reflectance.run_comparison import ArmDataset, ArmSeg  # noqa: E402
 
-TARGET_STEPS = 1600         # identical optimizer steps at every point
+# Identical optimizer steps at every point. 3200, NOT 1600 -- measured, see the
+# BUDGET note below.
+TARGET_STEPS = 3200
 BATCH = 16
 TAIL = 5
 MODE, IN_CHANS = "rgb_stretch", 3      # production configuration
@@ -198,16 +231,29 @@ def run_fold(images, patches, keep_idx, held_city, device, seed):
         "best_ON_TEST": best, "best_epoch_ON_TEST": best_ep,
         "final_train_loss": losses[-1],
         "per_class_last5": pc_tail,
+        # Additive: the full trajectories, so a budget probe can read the
+        # value at an intermediate step off the same run that continues past
+        # it, instead of training twice to compare two budgets.
+        "val_curve": curve,
+        "loss_curve": losses,
     }
+
+
+# Same function; the name documents intent at the call site in budget_probe.py.
+run_fold_verbose = run_fold
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--fractions", default="0.25,0.5,0.75,1.0")
     ap.add_argument("--seeds", default="1337,7,2024")
+    ap.add_argument("--steps", type=int, default=TARGET_STEPS,
+                    help="equal optimizer steps at every point (see BUDGET note)")
     args = ap.parse_args()
     fractions = [float(x) for x in args.fractions.split(",")]
     seeds = [int(x) for x in args.seeds.split(",")]
+    global TARGET_STEPS
+    TARGET_STEPS = args.steps
 
     device = pick_device()
     OUTDIR.mkdir(parents=True, exist_ok=True)
