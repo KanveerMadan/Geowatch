@@ -6,6 +6,15 @@ This is the triage index. Before building anything, check here — roughly a thi
 of the original findings are **deleted** by the architecture change rather than
 fixed, and building them would be wasted work.
 
+Companion documents: `01_DIAGNOSIS.md`, `02_ARCHITECTURE.md`, `03_EVIDENCE.md`,
+`05_BUILD_MANUAL.md`; `06_UNMIXING_CEILING.md` *(unmerged)* and `07_ITEM_21.md`
+for the unmixing ceiling; `08_STATE.md` for current state.
+
+**This document is not authoritative on findings closed by unmerged work.**
+Eight findings — C4, C10, C14, C20, C23, C24, C31, C32 — have working fixes on
+`applicability-gating` and still carry no fate here, because assigning one is a
+human triage act by this document's own rules. `08_STATE.md` lists them.
+
 Confidence: **[E]** empirical · **[S]** static · **[R]** reasoned
 
 Fate categories:

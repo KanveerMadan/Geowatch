@@ -11,6 +11,10 @@ Companion documents:
 - `03_EVIDENCE.md` — the research and verification behind these conclusions
 - `04_FINDINGS_LEDGER.md` — every finding and its fate
 - `05_BUILD_MANUAL.md` — what to build, in order
+- `06_UNMIXING_CEILING.md` — the item 21 investigation in full *(on
+  `unmixing-ceiling-investigation`, not merged)*
+- `07_ITEM_21.md` — item 21's standing summary: the ceiling and what it licenses
+- `08_STATE.md` — where everything stands right now, across all branches
 
 ---
 
