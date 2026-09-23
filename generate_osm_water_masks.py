@@ -76,11 +76,11 @@ from shapely.ops import transform as shapely_transform
 import pyproj
 
 PIPELINE_RUNS_DIR = "data/pipeline_runs"
-OVERPASS_URLS = [
-    "https://overpass-api.de/api/interpreter",
-    "https://overpass.kumi.systems/api/interpreter",
-    "https://overpass.openstreetmap.ru/api/interpreter",
-]
+# Shared endpoint list + retry policy (C44). This module previously kept its
+# OWN copy of the URL list, which is how the two drifted apart.
+from ingestion.overpass import (            # noqa: E402
+    OVERPASS_URLS, run_query, OverpassQueryTooHeavy,
+)
 
 WATERWAY_WIDTH_M = {
     "river": 15, "canal": 8, "stream": 3, "drain": 2, "ditch": 1.5,
@@ -94,25 +94,14 @@ def find_run_dir(city):
     return matches[-1] if matches else None
 
 
-def query_overpass(query, retries=4):
-    headers = {
-        "User-Agent": "GeoWatchCopilot/1.0 (research project, contact: local dev)",
-        "Content-Type": "application/x-www-form-urlencoded",
-    }
-    for attempt in range(retries):
-        url = OVERPASS_URLS[attempt % len(OVERPASS_URLS)]
-        try:
-            print(f"  trying {url} ...")
-            resp = requests.post(url, data={"data": query},
-                                  headers=headers, timeout=90)
-            resp.raise_for_status()
-            return resp.json()["elements"]
-        except Exception as e:
-            wait = 15 * (attempt + 1)
-            print(f"  Overpass query failed (attempt {attempt+1}/{retries}): {e}")
-            print(f"  waiting {wait}s before retry...")
-            time.sleep(wait)
-    raise RuntimeError("Overpass query failed after retries.")
+def query_overpass(query, retries=None):
+    """See `ingestion.overpass.run_query`. `retries` kept for compatibility."""
+    try:
+        return run_query(query)
+    except OverpassQueryTooHeavy:
+        print("  Overpass hit its own time limit on this bbox -- split the AOI "
+              "or raise the [timeout:] value. Retrying as-is will not help.")
+        raise
 
 
 def query_overpass_waterway_lines(min_lon, min_lat, max_lon, max_lat):

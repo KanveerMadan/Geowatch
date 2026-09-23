@@ -33,12 +33,12 @@ Fate categories:
 
 | Fate | Count | Meaning |
 |---|---:|---|
-| CLOSED | 16 | 5 during Part 1; C34/C35 via item 47; C43 via the patch-construction investigation; **C4, C10, C14, C20, C23, C24, C31, C32 via the `applicability-gating` merge** |
+| CLOSED | 17 | 5 during Part 1; C34/C35 via item 47; C43 via the patch-construction investigation; **C4, C10, C14, C20, C23, C24, C31, C32 via the `applicability-gating` merge; C44 via the shared Overpass client** |
 | REFUTED | 2 | Disproven |
 | DELETED | 13 | Architecture change removes the code |
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SUPERSEDED | 2 | **C42, C45** — the pivot retires the code they describe |
-| SURVIVES | 26 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed, C44 elevated** by the 2026-09-23 triage) |
+| SURVIVES | 25 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed** by the 2026-09-23 triage; C44 was elevated the same day and then **FIXED**) |
 | NEEDS FATE | 0 | **Cleared 2026-09-23.** |
 
 **This is the authoritative list for the "irreducible cluster."**
@@ -108,13 +108,14 @@ item 21 will ship, whose provenance requirement is already in its acceptance
 criteria.
 
 **C44 — two of three Overpass endpoints dead, failures logged without status
-codes → SURVIVES, and is ELEVATED.** The city-selection run worked around it
+codes → ✅ FIXED (was SURVIVES/ELEVATED).** The city-selection run worked around it
 locally, which made it look like a measurement-time nuisance. The C45 audit
 below shows it is not: `diagnose_pure_pixels_paved.py` imports `OVERPASS_URLS`
 from `generate_osm_road_masks`, so **the impervious endmember extraction —
 the highest-risk item in the plan — runs over the same two-thirds-dead
-endpoint list, with the same status-code-collapsing error handling.** Fix this
-before item 21's extraction runs, not after.
+endpoint list, with the same status-code-collapsing error handling.** Fixed the
+same day, before any extraction ran on it — see C44's entry for what was
+actually broken (including a fast endpoint that silently returns nothing).
 
 **C45 — OSM builders overwrite human labels → SUPERSEDED, after audit.** See
 the audit result recorded under C45's own entry. The defect is real and
@@ -1218,7 +1219,99 @@ is a human act by this document's own rules.** Note that fixing it costs
 `c43/fix_build.py` (arms B/C), `c43/fix_build_d.py` (arm D), `c43/fix_build_e.py`
 (arm E). Raw: `results/c43/`.*
 
-### C44 — Two of the three Overpass endpoints are unreachable, and failures are logged without their status code [E]
+### C44 — Two of the three Overpass endpoints are unreachable, and failures are logged without their status code [E] ✅ FIXED
+
+*Closed 2026-09-23. Was elevated on 2026-09-23 when the C45 audit found the
+impervious endmember extraction imports this same endpoint list; fixed the same
+day, before item 21's extraction runs on it.*
+
+**What was actually broken, versus what was assumed.**
+
+The original finding said two of three endpoints were unreachable. Re-probed
+live, that held — but the picture was worse and more interesting than "two are
+dead":
+
+| endpoint | measured 2026-09-23 | verdict |
+|---|---|---|
+| `overpass-api.de` | 200, 50 elements, 0.8–7.2 s | **kept — primary** |
+| `overpass.openstreetmap.ru` | ConnectTimeout, both attempts | **removed — dead** |
+| `overpass.kumi.systems` | 200/50 elements at **66 s**, ReadTimeout on the second query | **kept — last resort** |
+| `maps.mail.ru` | 200, 50 elements, 12–22 s | **added — secondary** |
+| `overpass.private.coffee` | ReadTimeout, both attempts | rejected |
+| `overpass.osm.jp` | SSLError, both attempts | rejected |
+| **`overpass.osm.ch`** | **200 in 0.6 s with ZERO elements** on a query that has 50 | **rejected — see below** |
+
+**The finding the probe added: a fast, healthy-looking endpoint that silently
+returns nothing.** `overpass.osm.ch` answers 200 in under a second, so any
+liveness check that reads the status code alone marks it healthy. It is a
+regional mirror carrying only Swiss data, so every query outside Switzerland
+returns an empty element list. **That is strictly worse than a dead host** — a
+dead host fails loudly, while this one would have yielded an endmember library
+built on zero paved polygons with nothing raising. Had the fix been "probe for
+HTTP 200 and add whatever responds", it would have introduced a silent
+data-loss path while closing a noisy one.
+
+Consequently the endpoint check tests for a **non-empty result on a
+known-non-empty query**, never for 200 alone, and that rule is recorded where
+the next person will add an endpoint.
+
+**Also corrected: `kumi.systems` was not dead.** The original finding recorded
+it as ReadTimeout. At a 90 s timeout it answered correctly once, in 66 s, then
+timed out on the next query. It is slow and unreliable rather than unreachable,
+so it is kept as the third and last option rather than removed.
+
+**The second half — indistinguishable failures — is fixed at the cause.**
+All three call sites (`generate_osm_road_masks.py`,
+`generate_osm_water_masks.py`, `diagnose_pure_pixels_paved.py`) carried a
+byte-similar copy of the same loop: `raise_for_status()` inside
+`except Exception`, a flat 15/30/45 s backoff, and `OVERPASS_URLS[attempt % 3]`
+round-robin. `generate_osm_water_masks.py` kept its **own second copy of the
+URL list**, which is how the two drifted.
+
+They now share `ingestion/overpass.py`, which classifies by cause:
+
+| cause | behaviour | why it differs |
+|---|---|---|
+| **400** malformed query | raise immediately, **no retry, no rotation** | rotating reissues the same broken query to every host and reports the same failure three attempts later |
+| **504** genuine query timeout | raise `OverpassQueryTooHeavy` immediately | only a smaller bbox fixes it; spinning cannot |
+| **504** dispatcher fault | rotate, short pause | the exact body this project saw (`open64: 0 Success … Dispatcher_Client::req`) — a plain retry cleared it every time, and calling it "too heavy" would have sent someone to split a bbox that was fine |
+| **429** rate limited | honour `Retry-After`, else 20/40/80 s with jitter, then retry | the one case that genuinely needs a long wait |
+| transport failure | rotate **immediately, no sleep** | a dead host is not busy; sleeping on it is the waste this finding measured |
+
+Every error carries the endpoint, the HTTP status and a body excerpt in its
+message — the specific thing the original finding said was missing.
+
+The list is also no longer a round robin. `OVERPASS_URLS[attempt % len(...)]`
+skipped a healthy primary on every retry; requests now start at the primary
+each round and only walk down on failure.
+
+**Verified, not assumed.**
+
+- `tests/test_overpass_client.py` — **13 tests**, each asserting a *different*
+  cause produces a *different* outcome, plus guards that the dead endpoints and
+  the silently-empty mirror stay out of the list and that both generators share
+  one list object. One of these caught a real bug in the fix before it shipped:
+  Overpass writes "Query **timed out**", and the classifier only matched
+  "timeout", so a genuine heavy-query timeout was being reported as a generic
+  server error.
+- **End-to-end on a real AOI.** `diagnose_pure_pixels_paved.py --aoi dharavi`
+  ran against the live list and exercised every branch by chance: a 429 on the
+  primary (backed off 22 s, retried, succeeded), a 504 on the secondary
+  (classified as a server error, rotated), a ReadTimeout on the third (rotated
+  with no backoff), and a second 429 satisfied by the fallback. It completed:
+  5 paved polygons, 165 overlapping pixels, 62 pure.
+
+**Item 21's extraction is unblocked on this front.**
+
+*Fix: `ingestion/overpass.py`. Probe it any time with
+`python ingestion/overpass.py` — exit 0 when at least two endpoints return a
+non-empty result.*
+
+---
+
+*Original finding follows.*
+
+### C44 — Two of the three Overpass endpoints are unreachable, and failures are logged without their status code [E] *(entry)*
 Measured 2026-09-14 by `GET /api/status` against each host, one lightweight
 request each:
 

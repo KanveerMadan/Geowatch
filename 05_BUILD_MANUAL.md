@@ -717,8 +717,29 @@ endmember comes from a *fresh* Overpass polygon query
 `roads.geojson` or `waterways.geojson`. **C45 is therefore not a blocker to
 this item.** The one real inheritance is `OVERPASS_URLS`, imported by
 `diagnose_pure_pixels_paved.py` from `generate_osm_road_masks` — that is
-**C44** (two of three endpoints dead, failures logged without status codes),
-and it *does* gate this item's extraction runs.
+**C44** (two of three endpoints dead, failures logged without status codes).
+
+**C44 is now FIXED (2026-09-23) and this item is unblocked on that front.**
+All Overpass access goes through `ingestion/overpass.py`, which classifies
+failures by cause — a malformed query fails immediately rather than being
+reissued to every host, a genuine query timeout is distinguished from the
+transient dispatcher fault, a 429 backs off and retries, and a dead host is
+rotated past with no backoff. The endpoint list is re-measured: `openstreetmap.ru`
+removed (dead), `maps.mail.ru` added (200/50 elements, 12–22 s),
+`overpass.osm.ch` **deliberately excluded** because it answers 200 in 0.6 s with
+zero elements outside Switzerland — a silently-empty endpoint would have built
+this item's endmember library on no polygons at all. Verified end-to-end:
+`diagnose_pure_pixels_paved.py --aoi dharavi` completed against the live list
+(5 paved polygons, 62 pure pixels), having hit and recovered from a 429, a 504
+and a ReadTimeout in the same run. Probe the list any time with
+`python ingestion/overpass.py`.
+
+**Sparse-paved caveat surfaced by that run, for whoever builds this:** Dharavi
+yielded only **5** unroofed paved polygons across 4.68 km², 3 of which
+contributed a pure pixel. That is a real signal about informal fabric, not an
+extraction bug, and it means the impervious endmember for informal AOIs may
+have to be drawn from a wider region than the AOI itself. Size it before
+committing to the per-region extraction.
 
 **Shadow handling:** solve as a sixth term; renormalize the five reported
 fractions over the illuminated portion only; report shadow fraction as its

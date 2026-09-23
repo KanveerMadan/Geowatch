@@ -49,15 +49,18 @@ import json
 import os
 import time
 
-import requests
 
 import diagnose_open_buildings_aoi as diag
 import diagnose_pure_pixels as pure_diag
 import ee
 
-# Reuse the road generator's Overpass endpoints and retry posture rather than
-# inventing a second set.
-from generate_osm_road_masks import OVERPASS_URLS
+# Endpoints, per-status-code error handling and backoff come from the shared
+# client (C44). This used to import OVERPASS_URLS from generate_osm_road_masks
+# and reimplement the retry loop -- which is how the impervious endmember
+# extraction inherited a list in which two of three endpoints were dead.
+from ingestion.overpass import (
+    run_query, OverpassQueryError, OverpassQueryTooHeavy, OverpassError,
+)
 
 CACHE_DIR = os.path.join("cache", "paved_polygons")
 
@@ -96,27 +99,22 @@ def _overpass_one(tag_query, bbox, retries=5):
         "User-Agent": "GeoWatchCopilot/1.0 (research project, contact: local dev)",
         "Content-Type": "application/x-www-form-urlencoded",
     }
-    for attempt in range(retries):
-        url = OVERPASS_URLS[attempt % len(OVERPASS_URLS)]
-        try:
-            resp = requests.post(url, data={"data": query},
-                                 headers=headers, timeout=90)
-            resp.raise_for_status()
-            return resp.json()["elements"]
-        except Exception as e:
-            # 429 means we are being throttled -- back off hard rather than
-            # hammering a second endpoint immediately.
-            is_throttle = "429" in str(e) or "Too Many Requests" in str(e)
-            wait = (30 if is_throttle else 10) * (attempt + 1)
-            print(f"    {tag_query}: attempt {attempt+1}/{retries} failed "
-                  f"({str(e)[:90]}) -- waiting {wait}s")
-            time.sleep(wait)
-
-    # One flaky tag must not discard the other six. Signal unavailability so
-    # it can be reported as "not retrieved" rather than silently counted as
-    # zero -- those are different claims and only one of them is honest.
-    print(f"    {tag_query}: UNAVAILABLE after {retries} attempts")
-    return None
+    try:
+        return run_query(query)
+    except (OverpassQueryError, OverpassQueryTooHeavy) as e:
+        # The query is at fault, not the network. Retrying or rotating would
+        # reissue the same broken query and report the same failure later --
+        # and for the endmember extraction, a malformed tag clause silently
+        # yielding "no paved polygons here" is exactly the failure that must
+        # never be mistaken for a real zero.
+        print(f"    {tag_query}: QUERY REJECTED -- {e}")
+        raise
+    except OverpassError as e:
+        # Every endpoint exhausted. Report unavailable rather than zero: one
+        # flaky tag must not discard the other six, and "not retrieved" and
+        # "none exist" are different claims of which only one is honest.
+        print(f"    {tag_query}: UNAVAILABLE -- {e}")
+        return None
 
 
 def overpass_paved(min_lon, min_lat, max_lon, max_lat, cache_key):
