@@ -39,10 +39,149 @@ BYTES_PER_SAMPLE = 4
 # recomputing it in float drifts by 1 ULP.
 DEGREES_PER_PIXEL_AT_SCALE_10 = 8.983152841195215e-05
 
-# Must match S2_BAND_NAMES order in sentinel2.py:
-# ["Blue", "Green", "Red", "NIR", "SWIR1", "SWIR2"]
-BAND_NAMES = ["Blue", "Green", "Red", "NIR", "SWIR1", "SWIR2"]
-RGB_BAND_INDICES = {"Red": 2, "Green": 1, "Blue": 0}  # indices into BAND_NAMES
+# ── Band order — C4 / build item 44 ────────────────────────────────────
+#
+# This used to be two literals under a comment reading "Must match
+# S2_BAND_NAMES order in sentinel2.py". That comment was the ONLY thing holding
+# the contract, and C4 is what happens when it drifts: RGB_BAND_INDICES pinned
+# 2/1/0, so a reordered export would silently swap R and B into both the SAM
+# segmentation input and the classifier input. Nothing would error; the model
+# would simply be fed a different image than the one it was trained on.
+#
+# 01_DIAGNOSIS.md §4 S3: "a rule enforced only by prose fails at the first edit
+# made by someone who did not read the prose." Three things replace the prose.
+from ingestion.sentinel2 import S2_BAND_NAMES
+
+BAND_NAMES = list(S2_BAND_NAMES)
+
+# 1. THE CROSS-MODULE CONTRACT IS NOW CODE. BAND_NAMES is derived from
+#    sentinel2.py rather than retyped, so the two cannot disagree at all. The
+#    assertion below is belt-and-braces against someone reassigning BAND_NAMES
+#    later, and it fires at import -- before any pixel is read.
+assert BAND_NAMES == list(S2_BAND_NAMES), (
+    f"BAND_NAMES {BAND_NAMES} has diverged from sentinel2.py's S2_BAND_NAMES "
+    f"{list(S2_BAND_NAMES)}. These describe the same exported GeoTIFF and must "
+    f"be identical."
+)
+
+# 2. THE INDICES ARE DERIVED, NOT PINNED. If the band order ever changes, these
+#    follow it automatically. This is the half that makes the silent R/B swap
+#    structurally impossible rather than merely detectable -- a hardcoded 2/1/0
+#    is correct only by coincidence of the current order.
+RGB_BAND_INDICES = {name: BAND_NAMES.index(name) for name in ("Red", "Green", "Blue")}
+
+# 3. The read boundary verifies against the FILE, not the constant. See
+#    assert_band_order() below.
+
+# Set GEOWATCH_STRICT_BAND_ORDER=1 to make an unverifiable file an error rather
+# than a warning. Off by default because every GeoTIFF this pipeline has
+# produced so far carries no band descriptions at all (measured: 150 of 150), so
+# defaulting to strict would refuse every existing run. See assert_band_order().
+BAND_ORDER_STRICT_ENV = "GEOWATCH_STRICT_BAND_ORDER"
+
+
+class BandOrderError(ValueError):
+    """Raised when a GeoTIFF's bands are not the order this pipeline assumes."""
+
+
+def stamp_band_descriptions(path: str, band_names=None) -> bool:
+    """
+    Write BAND_NAMES into the GeoTIFF's band descriptions, in place.
+
+    WHY THIS EXISTS. Item 44 asks for the read boundary to check the file's
+    actual band descriptions. Measured first: every raw.tif this pipeline has
+    produced reports `descriptions == (None,) * 6` -- GEE's export path
+    (geemap.ee_export_image / getDownloadURL) does not write them, and neither
+    did the chunked stitcher. So the check the item describes had nothing to
+    read, and would have been decoration: a test that cannot fail.
+
+    This is the half that makes the check real. Once the export stamps the
+    names, the file carries its own contract and a future reordering is caught
+    by comparing the file against BAND_NAMES rather than by trusting a comment.
+
+    Returns True if descriptions were written, False if the file could not be
+    opened for update. Never raises on a read-only or missing file: failing to
+    ANNOTATE a good export must not fail the export.
+    """
+    import rasterio
+
+    names = list(band_names or BAND_NAMES)
+    try:
+        with rasterio.open(path, "r+") as dst:
+            if dst.count != len(names):
+                print(
+                    f"WARNING: not stamping band descriptions on {path}: file "
+                    f"has {dst.count} bands, expected {len(names)} {names}."
+                )
+                return False
+            dst.descriptions = tuple(names)
+        return True
+    except Exception as e:
+        print(f"WARNING: could not stamp band descriptions on {path}: {e}")
+        return False
+
+
+def assert_band_order(src, path: str = "<unknown>", strict: bool = None) -> str:
+    """
+    Verify a GeoTIFF's bands are the order this pipeline assumes.
+
+    Three outcomes, kept distinct on purpose. Collapsing the third into the
+    first is the whole bug class: "nobody checked" must never render as
+    "checked and fine" (the same collapse C23 made with Gate C's waiver).
+
+        "verified"     descriptions present and equal to BAND_NAMES
+        "mismatch"     descriptions present and different  -> ALWAYS raises
+        "unverifiable" descriptions absent -- the file carries no contract
+
+    A wrong band COUNT always raises regardless: it means the export did not
+    produce the six-band image the rest of the pipeline is written against, and
+    every index into it is meaningless. This was previously a print() that
+    execution continued straight past.
+
+    `strict` promotes "unverifiable" to an error. Defaults to the
+    GEOWATCH_STRICT_BAND_ORDER env var, off unless set, because 150 of 150
+    existing files are unverifiable and refusing them would break every
+    reprocessing run. New exports are stamped, so this default decays toward
+    strict on its own as files are regenerated.
+
+    Returns the verdict string so callers can record it.
+    """
+    if strict is None:
+        strict = os.getenv(BAND_ORDER_STRICT_ENV, "").strip().lower() in ("1", "true", "yes")
+
+    if src.count != len(BAND_NAMES):
+        raise BandOrderError(
+            f"{path}: expected {len(BAND_NAMES)} bands {BAND_NAMES}, found "
+            f"{src.count}. Every band index in this pipeline (including "
+            f"RGB_BAND_INDICES={RGB_BAND_INDICES}) assumes the full band set; "
+            f"check the export included all S2_BANDS from sentinel2.py, not "
+            f"just RGB."
+        )
+
+    descriptions = list(src.descriptions or [])
+    if not descriptions or all(d is None for d in descriptions):
+        message = (
+            f"{path}: band order UNVERIFIED -- the file carries no band "
+            f"descriptions, so the assumed order {BAND_NAMES} could not be "
+            f"checked against it. Exports written before build item 44 are not "
+            f"stamped; re-export, or run stamp_band_descriptions() on the file, "
+            f"to make this checkable."
+        )
+        if strict:
+            raise BandOrderError(message)
+        print(f"WARNING: {message}")
+        return "unverifiable"
+
+    if descriptions != BAND_NAMES:
+        raise BandOrderError(
+            f"{path}: BAND ORDER MISMATCH. File reports {descriptions}; this "
+            f"pipeline assumes {BAND_NAMES}. Reading it would feed the wrong "
+            f"channels to both the SAM segmentation input and the classifier "
+            f"input -- silently, because the arrays are the same shape either "
+            f"way. Refusing rather than guessing (C4)."
+        )
+
+    return "verified"
 
 
 def export_image_to_drive(
@@ -233,6 +372,16 @@ def export_image_local(
     else:
         _export_image_local_chunked(image, grid, n_bands, output_path, scale)
 
+    # C4 / item 44: write the band names INTO the file, so the read boundary has
+    # something real to check. Measured before building this: 150 of 150
+    # existing raw.tif files report descriptions == (None,) * 6, because neither
+    # geemap's export nor the chunked stitcher writes them. Without this stamp,
+    # assert_band_order() could only ever return "unverifiable" and the item
+    # would be decoration. Stamping is best-effort and never fails the export --
+    # failing to annotate a good file must not discard it.
+    if os.path.exists(output_path):
+        stamp_band_descriptions(output_path)
+
     # geemap.ee_export_image() CATCHES its own download failures: it prints
     # "An error occurred while downloading." and returns normally, writing
     # nothing. Without this check the function then printed "Image saved
@@ -419,17 +568,20 @@ def generate_tiles(image_path: str, output_dir: str, tile_size: int = TILE_SIZE)
     tile_paths = []
 
     with rasterio.open(image_path) as src:
+        # C4 / item 44: verify against the FILE before reading a single pixel.
+        # This is the training data path, so a wrong band order here would be
+        # baked into every .npy tile the model is trained on. The previous
+        # band-count check was a print() that execution ran straight past;
+        # assert_band_order() raises on a wrong count and on a genuine order
+        # mismatch, and reports "unverifiable" for files that carry no
+        # descriptions rather than implying they were checked.
+        band_order_verdict = assert_band_order(src, image_path)
+
         width = src.width
         height = src.height
         bands = src.count
-        print(f"Image size: {width}x{height}, bands: {bands}")
-
-        if bands < len(BAND_NAMES):
-            print(
-                f"WARNING: expected {len(BAND_NAMES)} bands ({BAND_NAMES}) "
-                f"but GeoTIFF only has {bands}. Check that the exported "
-                f"image included all S2_BANDS from sentinel2.py, not just RGB."
-            )
+        print(f"Image size: {width}x{height}, bands: {bands} "
+              f"(band order: {band_order_verdict})")
 
         for row in range(0, height, tile_size):
             for col in range(0, width, tile_size):
@@ -479,6 +631,12 @@ def generate_rgb_preview_tiles(image_path: str, output_dir: str, tile_size: int 
     tiles = []
 
     with rasterio.open(image_path) as src:
+        # C4 / item 44: this is the function that actually indexes with
+        # RGB_BAND_INDICES, so it is the sharpest consumer of the assumption.
+        # A silent R/B swap here reaches the frontend overlay and the
+        # classifier input alike.
+        band_order_verdict = assert_band_order(src, image_path)
+
         width = src.width
         height = src.height
         bands = src.count
@@ -489,6 +647,10 @@ def generate_rgb_preview_tiles(image_path: str, output_dir: str, tile_size: int 
             "height": height,
             "bounds": (bounds.left, bounds.bottom, bounds.right, bounds.top),
             "crs": str(src.crs),
+            # Carried so a consumer can tell a verified read from an
+            # unverifiable one, rather than assuming the check happened.
+            "band_order": band_order_verdict,
+            "band_names": list(BAND_NAMES),
         }
 
         for row in range(0, height, tile_size):

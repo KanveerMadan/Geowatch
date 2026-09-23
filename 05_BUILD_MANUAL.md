@@ -740,11 +740,14 @@ asserted ahead of it. Same shape as C37.
 
 ---
 
-# PART 7 — Gating architecture 🔓
+# PART 7 — Gating architecture ✅ **COMPLETE**
 
-*Three items. One signal that currently dies three times.*
+*Three items, all done. Two signals that were computed correctly and then
+discarded: `applicability` died three times (C14 → C20 → C32, items 40 and 41)
+and the Gate C waiver died twice (C23 → C24, item 42). Both are now carried
+from the point of computation through to the screen.*
 
-### 40. C14 / C20 — `applicability` gates downstream
+### 40. C14 / C20 — `applicability` gates downstream ✅
 1. Move the computation **before** `hydrological_surfaces` (currently
    `pipeline.py:412` then `:413` — backwards)
 2. Pass it into every downstream consumer — susceptibility ×5, exposure, risk
@@ -757,14 +760,118 @@ asserted ahead of it. Same shape as C37.
 **Acceptance:** given a synthetic result with `out_of_distribution: true`, assert
 **every** susceptibility/exposure/risk block contains the flag.
 
-### 41. C32 — render it
+**Built.** `tests/test_applicability_gating.py`, 23 tests, all passing. The
+acceptance assertion is `test_every_block_carries_the_flag`: 11 blocks — five
+susceptibility, exposure, and five risk — every one carrying a flag, with the
+gate reporting something other than `not_wired`.
+
+**The ordering was a real cycle, not a simple mis-ordering.**
+`compute_applicability()` *read* `hydrological_surfaces`, for one check: whether
+`waterlogging` has a usable input. So the call could not just be moved. Split
+into two stages — stage 1 decides everything depending only on inference output
+and external context and runs first; `finalize_applicability()` runs after the
+surfaces exist and resolves the single status that needed them. Proved
+behaviour-preserving across **all 192 input combinations** before the reorder
+landed, and that equivalence is pinned by a test.
+
+*Noted while there: the resolved check is **vacuous**. It asks whether
+`impervious_fraction_pct is not None`, and `compute_hydrological_surfaces()`
+always returns a float on every path because it has no failure path at all —
+C21/S1 at this exact site. The guard is preserved exactly as written rather than
+"fixed", because making it meaningful means giving that module a real failure
+path, which is C21's item, not this one.*
+
+**Compute-and-flag, per rule 3.** No value is ever withheld; a test asserts the
+score survives an OOD verdict. Withholding would have invented a fourth
+ambiguous state for downstream code to guess about — S1 again, in a new costume.
+
+**The dependency chain is modelled, per rule 4, and blanket-flagging is
+explicitly rejected.** Traced through the code: `pluvial` consumes the
+classified raster, `waterlogging` consumes `hydrological_surfaces` (a weighted
+sum of `category_area_pct`), and `exposure` consumes `landcover_builtup_pct` —
+so those three inherit the land-cover verdict. `fluvial` reads MERIT Hydro,
+`coastal` a GEE shoreline dataset, `flash_flood` slope and upstream catchment —
+**none touch the semantic model, so none is marked OOD by it.** Marking them
+anyway would be false, and would train a reader to ignore the flag the way
+C33's `{pct ? ... : '0.0%'}` taught readers that "0.0%" means nothing. A test
+asserts each direction, so a later "simplification" into blanket-flagging fails.
+
+`compute_risk()` inherits instead: it has no applicability entry of its own, so
+it takes the worst trust of the hazard and exposure it consumed and carries
+their `degraded_by` forward.
+
+**Enforcement is a decorator at the function boundary**, not edits to ~15
+individual `return` statements. These consumers have several early returns each
+(`insufficient_evidence`, `not_applicable`, the success path) and the acceptance
+criterion is *every* block — a rule applied at the boundary cannot miss a path.
+Same argument that made item 70's auth middleware rather than per-endpoint.
+
+A consumer called without the gate reports `gate: "not_wired"` rather than
+presenting itself as trusted — silently implying trust is precisely C14.
+
+*Does not close C32 (the frontend still never renders it) — that is item 41.*
+
+### 41. C32 — render it ✅
 Surface `applicability` as a prominent banner, not a buried field. Add to
 `NAV_SECTIONS`.
 
 **Acceptance:** an AOI that trips `out_of_distribution` produces a UI where the
 user cannot miss it.
 
-### 42. C23 / C24 — Gate C waiver on all paths, rendered
+**Built.** `tests/test_applicability_ui.mjs`, 15 tests, all passing
+(`node tests/test_applicability_ui.mjs`). C32's three specific claims are now
+all false — measured before and after:
+
+| C32's claim | before | after |
+|---|---:|---:|
+| `applicability` occurrences in `App.jsx` | 1 | 12 |
+| `NAV_SECTIONS` entries | 6 | 7 |
+| `result.applicability` ever read | no | yes |
+
+**Three surfaces, because "cannot miss it" is not one thing.** A banner above
+every section, so a flagged run cannot be read without meeting it first; the
+`Reliability` nav entry itself turns coral with a dot and an `OOD`/`WEAK` tag,
+because the sidebar is always on screen and the banner is not; and a
+`BlockTrustNote` beside each affected number in Hazard, Exposure and Risk,
+because "not a buried field" has to mean the warning travels *with the value*,
+not merely that a banner exists somewhere above it.
+
+**Loud only when there is something to be loud about.** On a clean run the
+banner collapses to one quiet confirmation line. A banner that fires on every
+run trains readers to scroll past it — the same mechanism that made C33's
+`{pct ? ... : '0.0%'}` meaningless. The quiet line still appears, because
+silence would leave a reader unable to tell *checked and fine* from *never
+checked*, and that collapse is S1.
+
+**The UI reads, it never re-derives.** Trust comes from the flag item 40 emits
+on every block. Recomputing it in JavaScript from `unknown_pct` and a threshold
+would recreate C31 exactly — a Python rule restated in JS, drifting silently.
+A test forges a block whose status contradicts any threshold rule and asserts
+the UI follows the block, plus greps the module to assert the threshold is not
+reimplemented.
+
+**Absence does not read as approval.** A run predating item 40 carries no
+`applicability` block; it renders as *not checked*, and its blocks are counted
+`ungated` rather than `unaffected`. Asserted by a fixture with every flag
+stripped.
+
+*Fixtures are generated from the real backend, not hand-written — a
+hand-written fixture lets the UI test keep passing while the emitted shape
+moves underneath it, which is C31's failure mode applied to tests.*
+
+**Verification note:** `geowatch-ui` has no test runner installed, so the
+reliability logic lives in a plain module (`geowatch-ui/src/applicability.js`)
+that `node` imports directly, with no new dependencies. JSX validity is covered
+by `vite build` (passes, 41 modules) and `oxlint` (passes, **no new findings** —
+the 3 reported are pre-existing and identical on the unmodified file).
+
+*Separate finding, not fixed here: `tests/FloodAssessmentPanel.test.jsx` cannot
+run. It imports `vitest` and `@testing-library/react`, neither installed, and
+`../src/FloodAssessmentPanel`, which does not exist in `src/`. A test that
+cannot fail is decoration — the same standard C16 and item 47 were held to.
+Worth its own item.*
+
+### 42. C23 / C24 — Gate C waiver on all paths, rendered ✅
 `product_validation_status` must be present on the `not_calculated` path too, and
 the frontend must read it.
 
@@ -776,14 +883,53 @@ against D.7). This item fixes how the waiver *status field* propagates through
 code; Decision 17 settles how Gate C itself is *validated*. Both are needed;
 neither substitutes for the other.
 
+**Built.** `tests/test_gate_c_waiver.py` (22 tests) and
+`tests/test_gate_c_ui.mjs` (11 tests), all passing. C23 and C24 reproduced
+against the unmodified code first:
+
+| | before | after |
+|---|---|---|
+| exposure `not_calculated` keys | `['label','layer_id','reason','status']` | `+ product_validation_status` |
+| `.get('product_validation_status')` | `None` | `'waived_pending_real_user_validation'` |
+| `product_validation_status` in `App.jsx` | 0 | 6 |
+
+**Why `None` was the bug, not merely untidy.** `None` is also what a caller sees
+once Gate C is **passed** and the waiver field is removed. So *"never reviewed
+by a real user"* and *"reviewed and cleared"* arrived as the same value — the
+waiver did not weaken, it **inverted**, on the one path nobody exercised.
+
+**The same defect, one level up, was fixed in the same pass.** `compute_risk()`
+has four return paths and carried `exposure_product_validation_status` on only
+the last. The three early returns are the ones that actually fire in Phase 10A,
+since the fusion methodology is deliberately undefined — so the waiver vanished
+on *every real run*, at the layer `risk/compute.py`'s own docstring calls "the
+most consequential output this system produces", in the very field that
+docstring demands be propagated "rather than silently disappearing two layers up
+the stack." All four paths now route through one helper.
+
+**A third state was needed.** "Waived", "no product to validate", and "passed"
+are three different things; C23 collapsed the first and third. `GATE_C_STATUS`
+and the new `GATE_C_STATUS_NO_PRODUCT` sit together in `exposure/compute.py`,
+keeping that module's "single source of truth — do not hardcode the string"
+rule. A test asserts the literal is not re-hardcoded inside the function.
+
+**The frontend copies the susceptibility panel, verbatim.** Same
+`status=` prop on `ReportCard` → `StatusPill` in the header; and `GateCNote`
+reuses that panel's caveat-span style object *unchanged*
+(`FONTS.body, fontSize: 11, color: C.textDim`), asserted by a test that greps
+both. `waived_pending_real_user_validation` was **already** in `STATUS_META`
+before this item — the vocabulary existed with nothing feeding it, which is
+precisely C24's "the discipline exists; it just was not applied here." It is
+extended, not replaced.
+
 ---
 
 # PART 8 — Contract enforcement 🔓
 
-*Six items. Rules that comments cannot enforce. Two are done (47, 70 — the
-trust-boundary pass); four remain: 43, 44, 45, 46.*
+*Six items. Rules that comments cannot enforce. Five are done (43, 44, 45, 47,
+70); one remains: 46.*
 
-### 43. C31 — single-source palette
+### 43. C31 — single-source palette ✅
 **The quick fix is copying values across. The correct fix is a single source of
 truth** — emit the palette into `result.json` from the backend and have the
 frontend read it, so drift becomes structurally impossible.
@@ -791,13 +937,179 @@ frontend read it, so drift becomes structurally impossible.
 **Acceptance:** changing a colour in the backend changes the legend with **no
 frontend edit.**
 
-### 44. C4 — assert band order at runtime
+**Built.** `tests/test_palette_single_source.py` (20 tests) and
+`tests/test_palette_ui.mjs` (14 tests), all passing. The 0/8 drift was
+reproduced numerically first, matching the ledger including its worst case:
+
+| category | backend | frontend | Δ |
+|---|---|---|---|
+| `dense_informal_roofing` | `#e03c3c` | `#e0625a` | (0, 38, 30) |
+| `sparse_informal_roofing` | `#f08c50` | `#e8a35a` | (8, 23, 10) |
+| `paved_road` | `#7878b4` | `#8888c8` | (16, 16, 20) |
+| `standing_water` | `#2864c8` | `#4a90e2` | (34, 44, 26) |
+| `vegetation_clearing` | `#d2c850` | `#d8c85a` | (6, 0, 10) |
+| `active_construction` | `#c850c8` | `#c878d0` | (0, 40, 8) |
+| `dense_vegetation` | `#3cb450` | `#5ed99b` | **(34, 37, 75)** |
+| `unknown` | `#606080` | `#716fa0` | (17, 15, 32) |
+
+**The acceptance test is behavioural, not structural.** It mutates the backend
+palette, re-emits it through the real `palette_for_result()`, reads what the
+frontend resolver returns — and asserts `App.jsx` is byte-identical before and
+after, so "no frontend edit" is verified rather than asserted.
+
+**One definition, in `configs/palette.py`.** `inference.py` now re-exports it,
+and the comment that made the unenforceable promise — *"must match App.jsx's
+CAT_COLORS ... exactly"*, a Python comment asserting a JavaScript constant, S3
+in one line — is gone. `App.jsx`'s `CAT_COLORS` literal is deleted outright.
+A test asserts the canonical hex values appear **nowhere** in `App.jsx`: not
+even correct copies, because a correct copy still drifts at the next edit, which
+is how 0/8 happened.
+
+*The OSM-only three (`unpaved_dirt_road`, `open_drainage_channel`,
+`open_waste`) are included in the emitted palette, so the frontend needs no
+private map for them either. Without that, the single source of truth would
+have been only three-quarters true.*
+
+**Legacy runs still render.** `palette.js` keeps a frozen shim of the OLD
+frontend values for results predating this item — deliberately the *wrong*
+values, since that is what those runs were rendered with when produced. A test
+asserts it never mirrors the canonical values, so it cannot be "fixed" into a
+second live source.
+
+**⚠️ A third copy exists and is deliberately untouched.** `annotate.py`'s
+`CATEGORY_COLORS` also disagrees (`dense_informal_roofing` 220 vs 224). It is a
+standalone annotation tool, not on the pipeline → `result.json` → frontend path
+C31 measured, so changing it under an item that did not scope it would be a
+silent behaviour change to a tool with no tests. **Worth its own item.** A test
+asserts the disagreement still exists, so the note cannot rot.
+
+---
+
+**Second half: the `X-API-Key` header, closing live breakage.**
+
+Item 70 put an API-key check at the perimeter of `api.py`. This frontend sent no
+header on any request, so **every call had been returning 401 since that
+shipped** — analysis, OSM overlays, and the landcover image alike. Verified
+against a live server: without the header `/api/runs` and `/runs/*` both 401;
+with it, 200 and 404-from-StaticFiles respectively. CORS preflight was also
+verified to admit the custom header.
+
+*The landcover overlay needed more than a header.* Leaflet's `<ImageOverlay>`
+loads a plain `<img>`, which **cannot carry a custom header**, and `/runs` is
+behind the key. The bytes are now fetched with credentials and handed over as a
+blob URL (revoked on unmount). The alternatives were rejected on the record: a
+key in the query string puts the secret into URLs, history and logs; exempting
+the mount reopens exactly the hole item 70 closed, since `/runs` serves
+`data/pipeline_runs/` — the same data C34 would have disclosed.
+
+*Every request now routes through `apiFetch`*, so a newly added call is
+authenticated by construction rather than by someone remembering — the same
+argument item 70 used for middleware over per-endpoint checks.
+
+**⚠️ Honest limit, recorded in `api.js` and `.env.example`:** Vite **inlines**
+`VITE_*` values into the built bundle, so anyone who loads the page can read the
+key. That is a property of shipping a secret to a browser, not a defect here.
+This is a **development shared secret for a localhost tool, not client
+authentication** — adequate because the API binds to `127.0.0.1` and CORS admits
+only localhost, and *not* adequate if this is ever deployed, which would need a
+server-side session or per-user tokens.
+
+### 44. C4 — assert band order at runtime ✅
 Verify against the file's actual band descriptions at load time, not a
 top-of-file comment.
 
-### 45. C10 — enforce `source_checkpoint`
+**Built.** `tests/test_band_order.py`, 30 tests, all passing.
+
+**⚠️ The item as specified could not work, and the fix is larger because of it.**
+Measured before building: **150 of 150** GeoTIFFs this project has produced
+report `descriptions == (None,) * 6`. Neither `geemap.ee_export_image` nor the
+chunked stitcher writes band descriptions. So "check the file's actual band
+descriptions" had nothing to read — asserting equality would have failed every
+existing run, and asserting only-when-present would never have fired. A check
+that cannot fail is decoration, which is the standard C16 and item 47 were held
+to.
+
+Four parts, because the contract had to be *created* before it could be checked:
+
+1. **`BAND_NAMES` is derived from `sentinel2.py`**, not retyped, plus an
+   import-time assertion. The comment said the two must match; now they are the
+   same list and cannot disagree.
+2. **`RGB_BAND_INDICES` is derived from `BAND_NAMES`** rather than pinned to
+   2/1/0. *This is the half that kills C4 at the root* — a reorder now moves the
+   indices with it, so the swap is impossible rather than merely detectable.
+   Values are unchanged today (`Red: 2, Green: 1, Blue: 0`).
+3. **Exports stamp the band names into the file**, so the contract travels with
+   the data. Best-effort: failing to annotate a good export must not discard it.
+4. **Both read boundaries verify against the file** — `generate_tiles` (the
+   training path, where a wrong order is baked into every `.npy`) and
+   `generate_rgb_preview_tiles` (which actually indexes with
+   `RGB_BAND_INDICES`).
+
+**Three verdicts, kept distinct:** `verified`, `mismatch` (always raises), and
+`unverifiable` — descriptions absent, the state all 150 existing files are in.
+Letting that third state read as "verified" would be the same collapse C23 made
+with Gate C's waiver: *nobody checked* rendering as *checked and fine*. It warns
+by default and tells the reader how to fix it; `GEOWATCH_STRICT_BAND_ORDER=1`
+promotes it to an error. The default decays toward strict on its own as files
+are re-exported.
+
+*A wrong band **count** now raises too. It was previously a `print()` that
+execution ran straight past — and a wrong count makes every index into the
+array meaningless, `RGB_BAND_INDICES` included.*
+
+**Demonstrated, not just asserted.** Against the pre-fix code, a GeoTIFF whose
+bands are `["Red","Green","Blue",...]` was read with `Red` taken from index 2
+(value 9000, actually blue) and `Blue` from index 0 (value 1000, actually red) —
+**R and B swapped, `generate_rgb_preview_tiles()` completing without complaint.**
+The same file now raises `BandOrderError` naming both orders.
+
+### 45. C10 — enforce `source_checkpoint` ✅
 Make the loader **refuse** thresholds whose source does not match the loaded
 model. **Delete the dead stricter validator or promote it — do not leave two.**
+
+**Built.** `tests/test_caat_provenance.py`, 19 tests, all passing.
+
+> ### ⚠️ THIS TAKES THE PIPELINE OFFLINE UNTIL CAAT IS RECALIBRATED
+>
+> `run_pipeline()` now **raises** on the deployed thresholds file. That is the
+> item's intent, not a regression — but it is a hard stop on real runs, so it is
+> stated here rather than discovered.
+>
+> `models/production/caat_thresholds.json` carries **no `source_checkpoint` key
+> at all**, and its own caveat records that it *"derived from 11 separate LOCO
+> fold models (each missing one city), NOT from the production checkpoint."* It
+> has never had provenance.
+>
+> **To restore runs:** `python recalibrate_caat.py` against the production
+> checkpoint, review the old-vs-new comparison it prints, then swap its output
+> into `models/production/caat_thresholds.json`. It now records the checkpoint's
+> sha256, so its output loads. **Do not weaken the validator instead** — a test
+> asserts the refusal, so relaxing it fails the suite.
+
+**Promoted, and the duplicate deleted.** 97 lines of dead
+`load_production_model` are gone from `resnet_classifier.py`, with the deletion
+recorded in place. The provenance checks now live on the live path in
+`ingestion/inference.py:_verify_caat_provenance()`. One loader, per the fork.
+
+**Strengthened from a filename to a content hash.** The dead validator compared
+`os.path.basename(source_checkpoint)` — which passes for any file sharing a
+name, *including a retrained checkpoint written to the same path*, which is the
+realistic failure. A test proves the point using two different checkpoints both
+named `model.pth`. Hashing the 133 MB checkpoint costs **0.07s**, and the result
+cross-checks byte-for-byte against `ARTIFACT_HASHES.txt`.
+
+**`source_checkpoint=?` is gone.** That log line came from
+`data.get('source_checkpoint', '?')` — a missing provenance record rendering as a
+cosmetic gap. There is no `?` path now: either provenance verified, or the load
+raised.
+
+*A same-bytes-different-path checkpoint is noted, not refused: the hash settles
+identity, so a basename difference only means the file moved. The dead validator
+would have raised there, wrongly.*
+
+*Omitting `checkpoint_path` skips the check and says so loudly. A silent skip is
+exactly what C10 was — an unvalidated load indistinguishable from a validated
+one.*
 
 ### 46. C13 — full-AOI basemap, or remove the field
 Either write a full-AOI RGB basemap (nothing correct currently exists for

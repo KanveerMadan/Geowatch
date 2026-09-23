@@ -33,6 +33,10 @@ def _classify(score):
     return "very_high"
 
 
+from perception.applicability_gate import gated
+
+
+@gated("coastal")
 def compute_coastal_susceptibility(coastal_context: dict, fabdem_elevation: dict = None) -> dict:
     """
     Args:

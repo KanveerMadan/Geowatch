@@ -1,0 +1,478 @@
+{
+  "run_id": "fixture_unknown60",
+  "applicability": {
+    "urban_landcover_model": {
+      "status": "out_of_distribution",
+      "reason": "unknown_pct (60%) exceeds OOD threshold (45.0%) -- semantic model output is unreliable for this scene."
+    },
+    "pluvial": {
+      "status": "applicable",
+      "reason": "Pluvial flooding can occur in any urban/peri-urban setting; no exclusion criteria implemented yet."
+    },
+    "fluvial": {
+      "status": "applicable",
+      "reason": "River-connected: max upstream drainage area 120.0 km^2 found within 2km buffer (MERIT Hydro)."
+    },
+    "coastal": {
+      "status": "applicable",
+      "reason": "AOI is 3.0km from the nearest mapped coastline."
+    },
+    "flash_flood": {
+      "status": "applicable",
+      "reason": "At least one of slope or upstream-catchment context is available."
+    },
+    "waterlogging": {
+      "status": "applicable",
+      "reason": "At least one of HAND or impervious-fraction context is available."
+    }
+  },
+  "hydrological_surfaces": {
+    "impervious_fraction_pct": 36.0,
+    "impervious_contributions_by_class": {
+      "paved_road": 0.0,
+      "dense_informal_roofing": 36.0,
+      "sparse_informal_roofing": 0.0
+    },
+    "infiltration_proxy_pct": 0.0,
+    "infiltration_contributions_by_class": {
+      "dense_vegetation": 0.0,
+      "vegetation_clearing": 0.0
+    },
+    "method": "weighted_sum_of_category_area_pct",
+    "validated": false,
+    "limitations": [
+      "Weights are provisional/uncalibrated against any real runoff measurement.",
+      "Uses aggregate category_area_pct, not per-pixel fractional probabilities -- a coarser approximation than the model's actual per-pixel confidence would allow.",
+      "active_construction is deliberately excluded from both surfaces -- its imperviousness is genuinely variable (bare soil early-stage vs. impervious late-stage) and guessing a fixed weight would be worse than omitting it."
+    ],
+    "applicability": {
+      "status": "applicable",
+      "reason": "At least one of HAND or impervious-fraction context is available.",
+      "trust": "out_of_distribution",
+      "out_of_distribution": true,
+      "degraded": false,
+      "depends_on": {
+        "urban_landcover_model": "out_of_distribution"
+      },
+      "degraded_by": [
+        "urban_landcover_model"
+      ],
+      "gate": "compute_and_flag"
+    }
+  },
+  "susceptibility": {
+    "pluvial": {
+      "status": "experimental",
+      "aoi_mean_score": 1.0,
+      "aoi_mean_class": "very_high",
+      "components_used": [
+        "impervious",
+        "infiltration_deficit",
+        "drainage_distance",
+        "rainfall_climatology",
+        "relative_elevation"
+      ],
+      "components_excluded": [],
+      "method": "weighted_mean_fusion_provisional_weights",
+      "validated": false,
+      "limitations": [
+        "Weights and quality-confidence values are provisional, NOT calibrated against any real flood outcome.",
+        "rainfall_climatology and relative_elevation are AOI-WIDE SCALARS applied uniformly -- they shift the overall level of the map but contribute NO spatial pattern. Only land-cover (impervious/infiltration) and drainage distance vary spatially in this baseline.",
+        "drainage_distance uses OSM waterway proximity as a rough proxy for drainage access, NOT real drainage capacity.",
+        "relative_elevation_score is the AOI-relative p10/p90 proxy, NOT true HAND.",
+        "This is a screening baseline, not a calibrated hydraulic model. Do not use for engineering or parcel-level decisions."
+      ],
+      "applicability": {
+        "status": "applicable",
+        "reason": "Pluvial flooding can occur in any urban/peri-urban setting; no exclusion criteria implemented yet.",
+        "trust": "out_of_distribution",
+        "out_of_distribution": true,
+        "degraded": false,
+        "depends_on": {
+          "urban_landcover_model": "out_of_distribution"
+        },
+        "degraded_by": [
+          "urban_landcover_model"
+        ],
+        "gate": "compute_and_flag"
+      }
+    },
+    "fluvial": {
+      "status": "experimental",
+      "aoi_mean_score": 0.8667,
+      "aoi_mean_class": "very_high",
+      "mean_hnd_m": 4.0,
+      "min_hnd_m": 0.5,
+      "max_hnd_m": 20.0,
+      "river_connectivity": true,
+      "max_upstream_area_km2": 120.0,
+      "method": "merit_hydro_hand_direct_threshold",
+      "true_hand": true,
+      "validated": false,
+      "spatial": false,
+      "limitations": [
+        "AOI-WIDE SCALAR only -- mean HAND over the AOI, not a per-pixel spatial raster. Does not show WHERE within the AOI susceptibility is higher or lower.",
+        "MERIT Hydro is ~90m resolution -- too coarse for street-level or parcel-level claims.",
+        "HAND_NORMALIZATION_MAX_M (30m) is a provisional ceiling, not calibrated against real flood outcomes.",
+        "This HAND is computed from MERIT Hydro's own terrain/routing, NOT from FABDEM elevation -- the two must not be conflated even though both are reported in this pipeline run."
+      ],
+      "applicability": {
+        "status": "applicable",
+        "reason": "River-connected: max upstream drainage area 120.0 km^2 found within 2km buffer (MERIT Hydro).",
+        "trust": "in_distribution",
+        "out_of_distribution": false,
+        "degraded": false,
+        "depends_on": {},
+        "degraded_by": [],
+        "gate": "compute_and_flag"
+      }
+    },
+    "coastal": {
+      "status": "experimental",
+      "aoi_mean_score": 0.8,
+      "aoi_mean_class": "very_high",
+      "distance_to_coast_km": 3.0,
+      "coastal_connectivity": true,
+      "components_used": [
+        "distance_to_coast"
+      ],
+      "components_excluded": [
+        "bare_earth_elevation (FABDEM unavailable)"
+      ],
+      "method": "distance_and_elevation_unweighted_average",
+      "validated": false,
+      "spatial": false,
+      "limitations": [
+        "AOI-WIDE SCALAR only -- not a per-pixel spatial raster. Does not show WHERE within the AOI susceptibility is higher or lower.",
+        "STATIC/SCREENING SLICE ONLY -- does NOT include tide, storm surge, wave setup, or cyclone forcing. This is proximity + elevation screening, not event hazard. Do not present this as coastal flood risk.",
+        "distance_to_coast is measured to the nearest mapped coastline polygon boundary in a global dataset -- local coastal defenses, seawalls, or engineered protection are NOT accounted for.",
+        "COASTAL_DISTANCE_NORMALIZATION_MAX_KM / COASTAL_ELEVATION_NORMALIZATION_MAX_M are provisional ceilings, not calibrated against real coastal flood outcomes.",
+        "Unweighted two-component average -- no quality-confidence weighting applied yet (unlike pluvial's fusion), since neither component has been independently validated enough to justify a non-uniform weight."
+      ],
+      "applicability": {
+        "status": "applicable",
+        "reason": "AOI is 3.0km from the nearest mapped coastline.",
+        "trust": "in_distribution",
+        "out_of_distribution": false,
+        "degraded": false,
+        "depends_on": {},
+        "degraded_by": [],
+        "gate": "compute_and_flag"
+      }
+    },
+    "flash_flood": {
+      "status": "experimental",
+      "aoi_mean_score": 0.3111,
+      "aoi_mean_class": "low",
+      "mean_slope_deg": 3.2,
+      "max_upstream_area_km2": 120.0,
+      "rainfall_mean_annual_mm": 1800.0,
+      "components_used": [
+        "terrain_slope",
+        "small_catchment_upstream_area",
+        "rainfall_climatology_proxy"
+      ],
+      "components_excluded": [],
+      "method": "slope_catchment_rainfall_unweighted_average",
+      "validated": false,
+      "spatial": false,
+      "limitations": [
+        "AOI-WIDE SCALAR only -- not a per-pixel spatial raster.",
+        "RAINFALL COMPONENT IS A WEAK PROXY: CHIRPS mean_annual_mm is a long-term climatology mean, NOT an extreme-rainfall-intensity statistic. Flash floods are driven by short-duration intensity, not annual totals -- this cannot distinguish 'high annual, evenly distributed rainfall' from 'lower annual, violent bursts'. A real fix (GPM IMERG intensity percentiles) is deferred to Phase 9.",
+        "Upstream catchment area reused from MERIT Hydro (~90m resolution) -- too coarse for small urban micro-catchments.",
+        "All normalization ceilings (slope 15deg, catchment 50km^2, rainfall 2500mm) are provisional, not calibrated against real flash-flood outcomes.",
+        "Does not account for drainage infrastructure, culvert capacity, or channel confinement."
+      ],
+      "applicability": {
+        "status": "applicable",
+        "reason": "At least one of slope or upstream-catchment context is available.",
+        "trust": "in_distribution",
+        "out_of_distribution": false,
+        "degraded": false,
+        "depends_on": {},
+        "degraded_by": [],
+        "gate": "compute_and_flag"
+      }
+    },
+    "waterlogging": {
+      "status": "experimental",
+      "aoi_mean_score": 0.6559,
+      "aoi_mean_class": "high",
+      "mean_hnd_m": 4.0,
+      "impervious_fraction_pct": 36.0,
+      "rainfall_mean_annual_mm": 1800.0,
+      "components_used": [
+        "low_relief_hand_proxy",
+        "impervious_fraction",
+        "rainfall_climatology_proxy"
+      ],
+      "components_excluded": [],
+      "method": "relief_imperviousness_rainfall_unweighted_average",
+      "validated": false,
+      "spatial": false,
+      "limitations": [
+        "AOI-WIDE SCALAR only -- not a per-pixel spatial raster.",
+        "Reuses fluvial susceptibility's mean_hnd_m value under a DIFFERENT physical interpretation (low-relief/poor-drainage, not river-overflow-proximity) -- see module docstring.",
+        "Does not account for actual drainage infrastructure capacity, groundwater level, or soil permeability.",
+        "Rainfall component (if included) is a coarse annual-mean proxy, not an event-specific accumulation statistic -- same caveat as flash_flood.py's rainfall component.",
+        "All normalization ceilings are provisional, not calibrated against real waterlogging/persistent-inundation outcomes."
+      ],
+      "applicability": {
+        "status": "applicable",
+        "reason": "At least one of HAND or impervious-fraction context is available.",
+        "trust": "out_of_distribution",
+        "out_of_distribution": true,
+        "degraded": false,
+        "depends_on": {
+          "urban_landcover_model": "out_of_distribution"
+        },
+        "degraded_by": [
+          "urban_landcover_model"
+        ],
+        "gate": "compute_and_flag"
+      }
+    }
+  },
+  "exposure": {
+    "status": "available",
+    "by_evidence_layer": {
+      "pluvial": {
+        "status": "available",
+        "intersection_type": "aoi_total_given_layer_applicability",
+        "components": {},
+        "applicability": {
+          "status": "unknown",
+          "reason": null,
+          "trust": "out_of_distribution",
+          "out_of_distribution": true,
+          "degraded": false,
+          "depends_on": {
+            "urban_landcover_model": "out_of_distribution"
+          },
+          "degraded_by": [
+            "urban_landcover_model"
+          ],
+          "gate": "compute_and_flag"
+        }
+      },
+      "fluvial": {
+        "status": "available",
+        "intersection_type": "aoi_total_given_layer_applicability",
+        "components": {},
+        "applicability": {
+          "status": "unknown",
+          "reason": null,
+          "trust": "out_of_distribution",
+          "out_of_distribution": true,
+          "degraded": false,
+          "depends_on": {
+            "urban_landcover_model": "out_of_distribution"
+          },
+          "degraded_by": [
+            "urban_landcover_model"
+          ],
+          "gate": "compute_and_flag"
+        }
+      },
+      "coastal": {
+        "status": "available",
+        "intersection_type": "aoi_total_given_layer_applicability",
+        "components": {},
+        "applicability": {
+          "status": "unknown",
+          "reason": null,
+          "trust": "out_of_distribution",
+          "out_of_distribution": true,
+          "degraded": false,
+          "depends_on": {
+            "urban_landcover_model": "out_of_distribution"
+          },
+          "degraded_by": [
+            "urban_landcover_model"
+          ],
+          "gate": "compute_and_flag"
+        }
+      },
+      "flash_flood": {
+        "status": "available",
+        "intersection_type": "aoi_total_given_layer_applicability",
+        "components": {},
+        "applicability": {
+          "status": "unknown",
+          "reason": null,
+          "trust": "out_of_distribution",
+          "out_of_distribution": true,
+          "degraded": false,
+          "depends_on": {
+            "urban_landcover_model": "out_of_distribution"
+          },
+          "degraded_by": [
+            "urban_landcover_model"
+          ],
+          "gate": "compute_and_flag"
+        }
+      },
+      "waterlogging": {
+        "status": "available",
+        "intersection_type": "aoi_total_given_layer_applicability",
+        "components": {},
+        "applicability": {
+          "status": "unknown",
+          "reason": null,
+          "trust": "out_of_distribution",
+          "out_of_distribution": true,
+          "degraded": false,
+          "depends_on": {
+            "urban_landcover_model": "out_of_distribution"
+          },
+          "degraded_by": [
+            "urban_landcover_model"
+          ],
+          "gate": "compute_and_flag"
+        }
+      }
+    }
+  },
+  "risk": {
+    "status": "not_calculated",
+    "by_evidence_layer": {
+      "pluvial": {
+        "status": "not_calculated",
+        "reason": "No validated, geographically appropriate, ethically governed vulnerability dataset is currently configured. Risk = Hazard x Exposure x Vulnerability requires a real vulnerability input; this project does not use V=1.0 fallbacks or imagery-derived vulnerability proxies.",
+        "applicability": {
+          "status": "not_calculated",
+          "reason": null,
+          "trust": "out_of_distribution",
+          "out_of_distribution": true,
+          "degraded": false,
+          "depends_on": {
+            "urban_landcover_model": "out_of_distribution"
+          },
+          "degraded_by": [
+            "urban_landcover_model"
+          ],
+          "gate": "inherited"
+        }
+      },
+      "fluvial": {
+        "status": "not_calculated",
+        "reason": "No validated, geographically appropriate, ethically governed vulnerability dataset is currently configured. Risk = Hazard x Exposure x Vulnerability requires a real vulnerability input; this project does not use V=1.0 fallbacks or imagery-derived vulnerability proxies.",
+        "applicability": {
+          "status": "not_calculated",
+          "reason": null,
+          "trust": "out_of_distribution",
+          "out_of_distribution": true,
+          "degraded": false,
+          "depends_on": {
+            "urban_landcover_model": "out_of_distribution"
+          },
+          "degraded_by": [
+            "urban_landcover_model"
+          ],
+          "gate": "inherited"
+        }
+      },
+      "coastal": {
+        "status": "not_calculated",
+        "reason": "No validated, geographically appropriate, ethically governed vulnerability dataset is currently configured. Risk = Hazard x Exposure x Vulnerability requires a real vulnerability input; this project does not use V=1.0 fallbacks or imagery-derived vulnerability proxies.",
+        "applicability": {
+          "status": "not_calculated",
+          "reason": null,
+          "trust": "out_of_distribution",
+          "out_of_distribution": true,
+          "degraded": false,
+          "depends_on": {
+            "urban_landcover_model": "out_of_distribution"
+          },
+          "degraded_by": [
+            "urban_landcover_model"
+          ],
+          "gate": "inherited"
+        }
+      },
+      "flash_flood": {
+        "status": "not_calculated",
+        "reason": "No validated, geographically appropriate, ethically governed vulnerability dataset is currently configured. Risk = Hazard x Exposure x Vulnerability requires a real vulnerability input; this project does not use V=1.0 fallbacks or imagery-derived vulnerability proxies.",
+        "applicability": {
+          "status": "not_calculated",
+          "reason": null,
+          "trust": "out_of_distribution",
+          "out_of_distribution": true,
+          "degraded": false,
+          "depends_on": {
+            "urban_landcover_model": "out_of_distribution"
+          },
+          "degraded_by": [
+            "urban_landcover_model"
+          ],
+          "gate": "inherited"
+        }
+      },
+      "waterlogging": {
+        "status": "not_calculated",
+        "reason": "No validated, geographically appropriate, ethically governed vulnerability dataset is currently configured. Risk = Hazard x Exposure x Vulnerability requires a real vulnerability input; this project does not use V=1.0 fallbacks or imagery-derived vulnerability proxies.",
+        "applicability": {
+          "status": "not_calculated",
+          "reason": null,
+          "trust": "out_of_distribution",
+          "out_of_distribution": true,
+          "degraded": false,
+          "depends_on": {
+            "urban_landcover_model": "out_of_distribution"
+          },
+          "degraded_by": [
+            "urban_landcover_model"
+          ],
+          "gate": "inherited"
+        }
+      }
+    }
+  },
+  "landcover": {
+    "palette": {
+      "format": "hex_rgb",
+      "source": "configs/palette.py",
+      "unknown_index": 255,
+      "ml_categories": [
+        "active_construction",
+        "dense_informal_roofing",
+        "dense_vegetation",
+        "paved_road",
+        "sparse_informal_roofing",
+        "standing_water",
+        "vegetation_clearing"
+      ],
+      "osm_only_categories": [
+        "open_drainage_channel",
+        "open_waste",
+        "unpaved_dirt_road"
+      ],
+      "colors": {
+        "dense_informal_roofing": "#e03c3c",
+        "sparse_informal_roofing": "#f08c50",
+        "paved_road": "#7878b4",
+        "standing_water": "#2864c8",
+        "vegetation_clearing": "#d2c850",
+        "active_construction": "#c850c8",
+        "dense_vegetation": "#3cb450",
+        "unpaved_dirt_road": "#b48c50",
+        "open_drainage_channel": "#50a0dc",
+        "open_waste": "#8c643c",
+        "unknown": "#606080"
+      }
+    },
+    "categories": [
+      "active_construction",
+      "dense_informal_roofing",
+      "dense_vegetation",
+      "open_drainage_channel",
+      "open_waste",
+      "paved_road",
+      "sparse_informal_roofing",
+      "standing_water",
+      "unknown",
+      "unpaved_dirt_road",
+      "vegetation_clearing"
+    ]
+  }
+}

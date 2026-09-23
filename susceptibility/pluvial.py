@@ -29,6 +29,10 @@ def _classify(score):
     return "very_high"
 
 
+from perception.applicability_gate import gated
+
+
+@gated("pluvial")
 def compute_pluvial_susceptibility(
     landcover_map: np.ndarray,
     categories: list,

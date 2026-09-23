@@ -20,6 +20,61 @@ from configs.applicability_constants import (
 )
 
 
+def finalize_applicability(applicability: dict, hydrological_surfaces: dict) -> dict:
+    """
+    Resolve the one status that genuinely needs `hydrological_surfaces`.
+
+    WHY THIS EXISTS (build item 40, C14). Item 40 requires applicability to be
+    computed BEFORE `hydrological_surfaces`, because the land-cover verdict is
+    what says whether the surfaces derived from that model can be trusted --
+    `compute_hydrological_surfaces()` is a weighted sum of the model's own
+    `category_area_pct`. Computing the gate after the thing it gates is the
+    "designed as a router, wired as a report" inversion S2 describes.
+
+    But `compute_applicability()` also READ `hydrological_surfaces`, for exactly
+    one check: whether `waterlogging` has any usable input. So the original
+    ordering was not simply backwards -- there was a real back-reference, and
+    moving the call without addressing it would have changed behaviour.
+
+    Splitting it resolves the cycle honestly. Stage 1 decides everything that
+    depends only on inference output and external context, and runs first.
+    Stage 2 -- this function -- runs after `hydrological_surfaces` exists and
+    fills in the single status that needed it.
+
+    WORTH KNOWING: the check being resolved here is currently vacuous. It asks
+    whether `impervious_fraction_pct is not None`, and
+    `compute_hydrological_surfaces()` always returns
+    `round(impervious_total, 2)` -- a float, on every path, because that module
+    has no failure path at all. That is C21/S1 ("the only module in the analysis
+    chain with no status field and no failure path") observed at this specific
+    site. The guard is therefore preserved exactly as written rather than
+    "fixed": making it meaningful requires giving
+    `compute_hydrological_surfaces()` a real failure path, which is C21's own
+    item and not item 40's scope. Written down here so the vacuity is a known
+    property rather than a rediscovery.
+    """
+    if not applicability:
+        return applicability
+
+    waterlogging_data_available = (
+        applicability.get("_hand_context_available", False)
+        or (hydrological_surfaces is not None
+            and hydrological_surfaces.get("impervious_fraction_pct") is not None)
+    )
+    if waterlogging_data_available:
+        applicability["waterlogging"] = {
+            "status": "applicable",
+            "reason": "At least one of HAND or impervious-fraction context is available.",
+        }
+    else:
+        applicability["waterlogging"] = {
+            "status": "not_calculated",
+            "reason": "Neither HAND nor impervious-fraction context is available.",
+        }
+    applicability.pop("_hand_context_available", None)
+    return applicability
+
+
 def compute_applicability(unknown_pct: float, ambiguous_pct: float, hand_context: dict = None,
                            coastal_context: dict = None, slope_context: dict = None,
                            hydrological_surfaces: dict = None) -> dict:
@@ -40,6 +95,19 @@ def compute_applicability(unknown_pct: float, ambiguous_pct: float, hand_context
 
     Returns:
         dict matching the master spec's applicability block shape.
+
+    STAGE 1 OF TWO (build item 40). This runs BEFORE
+    `compute_hydrological_surfaces()`, because the `urban_landcover_model`
+    verdict it produces is what tells every downstream consumer whether
+    surfaces derived from that model can be trusted. Call
+    `finalize_applicability()` afterwards to resolve `waterlogging`, the one
+    status that genuinely needs `hydrological_surfaces`; see that function for
+    why the back-reference exists and why it is not simply deleted.
+
+    `hydrological_surfaces` remains accepted so that existing single-call
+    callers keep their exact previous behaviour. When it is passed, this
+    function is self-contained as before. When it is None -- the pipeline's
+    path now -- `waterlogging` is provisional until stage 2 runs.
     """
     if unknown_pct > OOD_UNKNOWN_PCT_THRESHOLD:
         landcover_status = "out_of_distribution"
@@ -143,6 +211,13 @@ def compute_applicability(unknown_pct: float, ambiguous_pct: float, hand_context
         waterlogging_reason = "Neither HAND nor impervious-fraction context is available."
 
     return {
+        # Consumed and removed by finalize_applicability() (build item 40).
+        # Carries stage 1's view of hand_context forward so stage 2 can
+        # reproduce the original OR exactly, without re-reading hand_context
+        # and risking the two stages disagreeing about it.
+        "_hand_context_available": (
+            hand_context is not None and hand_context.get("status") == "available"
+        ),
         "urban_landcover_model": {
             "status": landcover_status,
             "reason": landcover_reason,

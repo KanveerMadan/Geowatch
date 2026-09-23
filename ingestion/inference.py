@@ -162,22 +162,25 @@ class GeoWatchResNetSeg(nn.Module):
 
 
 # ============================================================
-# Category color palette — must match App.jsx's CAT_COLORS for the
-# 7 ML-resolvable categories exactly, so the frontend legend and the
-# PNG overlay agree visually.
+# Category color palette — C31 / build item 43.
+#
+# This used to be a literal dict here, above a comment reading "must match
+# App.jsx's CAT_COLORS ... exactly, so the frontend legend and the PNG overlay
+# agree visually." A Python comment asserting a JavaScript constant: S3, "a rule
+# enforced only by prose fails at the first edit made by someone who did not
+# read the prose." It failed on all 8 of 8, worst case Δ(34, 37, 75).
+#
+# The values now live in configs/palette.py and reach the frontend by being
+# emitted into result.json, not by being retyped. The names below are re-exported
+# unchanged so existing callers (generate_rgb_preview_tiles, the PNG writer)
+# keep working untouched.
 # ============================================================
 
-CATEGORY_COLORS_RGB = {
-    "dense_informal_roofing":  (224, 60, 60),
-    "sparse_informal_roofing": (240, 140, 80),
-    "paved_road":              (120, 120, 180),
-    "standing_water":          (40, 100, 200),
-    "vegetation_clearing":     (210, 200, 80),
-    "active_construction":     (200, 80, 200),
-    "dense_vegetation":        (60, 180, 80),
-}
-UNKNOWN_COLOR_RGB = (96, 96, 128)
-UNKNOWN_INDEX = 255
+from configs.palette import (  # noqa: E402
+    CATEGORY_COLORS_RGB,
+    UNKNOWN_COLOR_RGB,
+    UNKNOWN_INDEX,
+)
 
 PATCH_SIZE = 64   # must match training patch size (build_sam_patches / GeoWatchDatasetResNet)
 
@@ -251,21 +254,171 @@ def load_production_model(checkpoint_path: str, device: str = None):
     return model, categories, num_classes
 
 
-def load_caat_thresholds(thresholds_path: str, categories: list) -> np.ndarray:
-    """
-    Load per-class CAAT confidence thresholds and return them as a numpy
-    array in the SAME index order as `categories`, so array indexing
-    lines up directly with model output channels.
+CAAT_SOURCE_HASH_KEY = "source_checkpoint_sha256"
 
-    Raises if a category is missing from the thresholds file, or if the
-    thresholds file has extra/unexpected categories — a silent order
-    mismatch here would misapply every threshold.
+
+def _verify_caat_provenance(data: dict, thresholds_path: str,
+                            checkpoint_path: str) -> None:
+    """
+    Prove the CAAT file was computed for `checkpoint_path`, or refuse.
+
+    Promoted from the dead validator in resnet_classifier.py (C10, item 45),
+    strengthened from a basename comparison to a content hash.
+    """
+    if checkpoint_path is None:
+        # Not silent. C10 existed because an unvalidated load was
+        # indistinguishable from a validated one.
+        print(
+            f"WARNING: CAAT provenance NOT CHECKED for {thresholds_path} — no "
+            f"checkpoint_path was supplied to load_caat_thresholds(). The "
+            f"thresholds may belong to a different model, which silently "
+            f"miscalibrates the unknown/confident boundary (C10)."
+        )
+        return
+
+    if "source_checkpoint" not in data:
+        raise CaatProvenanceError(
+            f"'{thresholds_path}' records no 'source_checkpoint', so there is no "
+            f"way to confirm it matches '{checkpoint_path}'.\n"
+            f"\n"
+            f"This is the deployed file's actual state, and refusing it is "
+            f"build item 45's intent rather than a regression: its own caveat "
+            f"records that it derives from 11 separate LOCO fold models, not "
+            f"from the production checkpoint. Mismatched CAAT thresholds do not "
+            f"error at inference time — they shift the unknown/confident "
+            f"boundary silently, so the damage looks like a property of the "
+            f"scene.\n"
+            f"\n"
+            f"To fix: run recalibrate_caat.py against this checkpoint, review "
+            f"the old-vs-new comparison it prints, then swap its output into "
+            f"models/production/caat_thresholds.json. Do NOT weaken this check "
+            f"to load the current file."
+        )
+
+    if not os.path.exists(checkpoint_path):
+        raise FileNotFoundError(
+            f"Cannot verify CAAT provenance: checkpoint not found at "
+            f"{checkpoint_path}."
+        )
+
+    recorded_hash = data.get(CAAT_SOURCE_HASH_KEY)
+    if not recorded_hash:
+        raise CaatProvenanceError(
+            f"'{thresholds_path}' records source_checkpoint="
+            f"{data['source_checkpoint']!r} but no '{CAAT_SOURCE_HASH_KEY}'.\n"
+            f"\n"
+            f"A filename is not provenance. The dead validator this replaces "
+            f"compared basenames, which passes for any file sharing a name — "
+            f"including a RETRAINED checkpoint written to the same path, which "
+            f"is the realistic failure. Recompute with recalibrate_caat.py, "
+            f"which now records the checkpoint's sha256."
+        )
+
+    actual_hash = sha256_file(checkpoint_path)
+    if recorded_hash != actual_hash:
+        raise CaatProvenanceError(
+            f"CAAT/checkpoint MISMATCH — these thresholds were not computed for "
+            f"this model.\n"
+            f"  thresholds file : {thresholds_path}\n"
+            f"  records         : {data['source_checkpoint']}\n"
+            f"                    sha256 {recorded_hash}\n"
+            f"  loaded model    : {checkpoint_path}\n"
+            f"                    sha256 {actual_hash}\n"
+            f"\n"
+            f"Refusing to proceed. CAAT thresholds are quantiles of ONE model's "
+            f"confidence distribution; applied to another they still produce "
+            f"plausible numbers and never throw, so this cannot be caught "
+            f"downstream. Recompute with recalibrate_caat.py against the "
+            f"checkpoint actually being loaded."
+        )
+
+    # A secondary, cheaper signal, reported rather than raised: the hash already
+    # settled identity, so a basename difference only means the file moved or was
+    # renamed. Worth saying, not worth refusing.
+    if os.path.basename(data["source_checkpoint"]) != os.path.basename(checkpoint_path):
+        print(
+            f"NOTE: CAAT provenance hash matches, but the recorded filename "
+            f"({os.path.basename(data['source_checkpoint'])}) differs from the "
+            f"loaded one ({os.path.basename(checkpoint_path)}). Same bytes, "
+            f"different path — the checkpoint was moved or renamed."
+        )
+
+
+class CaatProvenanceError(ValueError):
+    """Raised when CAAT thresholds cannot be proved to match the loaded model."""
+
+
+def sha256_file(path: str, chunk_size: int = 1 << 20) -> str:
+    """Streaming sha256, so a large checkpoint is not read into memory."""
+    import hashlib
+
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(chunk_size), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def load_caat_thresholds(thresholds_path: str, categories: list,
+                         checkpoint_path: str = None) -> np.ndarray:
+    """
+    Load per-class CAAT confidence thresholds, PROVING they were computed for
+    the checkpoint being loaded, and return them as a numpy array in the SAME
+    index order as `categories`.
+
+    C10 / build item 45. Two loaders used to exist. This one checked category
+    alignment but not provenance — it merely PRINTED
+    `source_checkpoint=data.get('source_checkpoint', '?')`, which is why a live
+    run logged `source_checkpoint=?`. A stricter validator sat in
+    resnet_classifier.py as dead code that nothing imported, and would have
+    rejected the deployed file. Item 45's decided fork: promote the strict one,
+    delete the weak one, do not maintain both. This is the promotion; the dead
+    duplicate is deleted.
+
+    WHY MISMATCHED THRESHOLDS ARE DANGEROUS RATHER THAN MERELY WRONG. CAAT
+    thresholds are quantiles of a specific model's confidence distribution.
+    Applied to a different model they still produce plausible per-class numbers
+    and never throw — they silently move the unknown/confident boundary, so the
+    failure appears as a shifted unknown_pct that looks like a property of the
+    scene. Nothing downstream can detect it.
+
+    THE CHECK IS A HASH, NOT A FILENAME. The dead validator compared
+    `os.path.basename(source_checkpoint)` against the checkpoint path, which
+    passes for any file that happens to share a name — including a retrained
+    checkpoint written to the same path, which is the realistic case. The hash
+    is cheap: 0.07s for the 133 MB production checkpoint, once per run.
+
+    THE CURRENTLY DEPLOYED FILE FAILS THIS, CORRECTLY. models/production/
+    caat_thresholds.json carries no `source_checkpoint` key at all, and its own
+    caveat records that it "derived from 11 separate LOCO fold models (each
+    missing one city), NOT from the production checkpoint." It has never had
+    provenance. Refusing it is the point of the item, not a regression — see
+    recalibrate_caat.py, which produces a compliant file.
+
+    Args:
+        thresholds_path: path to the CAAT JSON.
+        categories: the loaded checkpoint's category list, in model output order.
+        checkpoint_path: the checkpoint these thresholds must belong to. Required
+            for provenance checking; when None the provenance check is SKIPPED and
+            said out loud, because a silent skip is what C10 was.
+
+    Raises:
+        CaatProvenanceError: no provenance recorded, or it does not match.
+        ValueError: category mismatch.
     """
     if not os.path.exists(thresholds_path):
         raise FileNotFoundError(f"CAAT thresholds file not found: {thresholds_path}")
 
     with open(thresholds_path) as f:
         data = json.load(f)
+
+    if "thresholds" not in data:
+        raise CaatProvenanceError(
+            f"'{thresholds_path}' has no 'thresholds' key — this does not look "
+            f"like a CAAT file at all."
+        )
+
+    _verify_caat_provenance(data, thresholds_path, checkpoint_path)
 
     raw_thresholds = data["thresholds"]
 
@@ -286,8 +439,12 @@ def load_caat_thresholds(thresholds_path: str, categories: list) -> np.ndarray:
         )
 
     thresholds_arr = np.array([raw_thresholds[c] for c in categories], dtype=np.float32)
-    print(f"Loaded CAAT thresholds (source_checkpoint={data.get('source_checkpoint', '?')}, "
-          f"verified_sanity_check_miou={data.get('verified_sanity_check_miou', '?')}):")
+    # C10: the old line here printed `source_checkpoint=?` when the key was
+    # absent, which is how a missing provenance record read as a cosmetic gap
+    # rather than an unvalidated load. There is no '?' path any more: either
+    # provenance verified above, or this line was never reached.
+    provenance = data.get("source_checkpoint", "(not recorded)")
+    print(f"Loaded CAAT thresholds — provenance VERIFIED against {provenance}:")
     for cat, t in zip(categories, thresholds_arr):
         print(f"  {cat:28s} {t:.4f}")
 

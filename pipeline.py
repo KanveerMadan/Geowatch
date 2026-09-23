@@ -8,7 +8,9 @@ from ingestion.gee_client import initialize_gee
 from ingestion.sentinel2 import aoi_from_bbox, get_sentinel2_median_composite, get_latest_image
 from ingestion.tiler import export_image_local, generate_rgb_preview_tiles
 from ingestion.segmentation import load_sam, segment_tile, encode_mask_rle
-from perception.applicability import compute_applicability
+from perception.applicability import compute_applicability, finalize_applicability
+from perception.applicability_gate import annotate as annotate_applicability
+from configs.palette import palette_for_result
 from perception.hydrological_surfaces import compute_hydrological_surfaces
 from ingestion.rainfall import get_rainfall_climatology
 from susceptibility.pluvial import compute_pluvial_susceptibility, save_pluvial_susceptibility_output
@@ -257,7 +259,12 @@ def run_pipeline(
 
     device = get_device()
     model, categories, num_classes = load_production_model(PRODUCTION_MODEL_PATH, device=device)
-    caat_thresholds = load_caat_thresholds(CAAT_THRESHOLDS_PATH, categories)
+    # C10 / item 45: the checkpoint path is passed so the loader can PROVE these
+    # thresholds were computed for this model. Without it the loader warns and
+    # skips, which is the unvalidated load C10 described.
+    caat_thresholds = load_caat_thresholds(
+        CAAT_THRESHOLDS_PATH, categories, checkpoint_path=PRODUCTION_MODEL_PATH
+    )
     mask_generator = load_sam("models/sam/sam_vit_b.pth")
 
     landcover_map_full = np.full((full_height, full_width), 255, dtype=np.uint8)  # UNKNOWN_INDEX
@@ -409,15 +416,38 @@ def run_pipeline(
     }
     landcover_paths = save_landcover_outputs(inference_result, categories, run_dir)
 
-    hydrological_surfaces = compute_hydrological_surfaces(inference_result["category_area_pct"])
+    # ── C14/C20 (build item 40): the gate runs BEFORE the thing it gates ──
+    #
+    # Previously hydrological_surfaces was computed first and applicability
+    # second, which is backwards: hydrological_surfaces is a weighted sum of
+    # the semantic model's own category_area_pct, and applicability is what
+    # says whether that model can be trusted for this scene. Computing the
+    # router after the thing it routes is 01_DIAGNOSIS.md §4 S2 exactly --
+    # "designed as a router, wired as a report."
+    #
+    # compute_applicability() also read hydrological_surfaces, for one check
+    # (does waterlogging have any usable input), so this is a real cycle rather
+    # than a simple mis-ordering. It is broken in two stages; see
+    # finalize_applicability(). Verified behaviour-preserving across all 192
+    # input combinations before the reorder landed.
     applicability = compute_applicability(
-    unknown_pct=inference_result["unknown_pct"],
-    ambiguous_pct=inference_result["ambiguous_pct"],
-    hand_context=hand_context,
-    coastal_context=coastal_context,
-    slope_context=slope_context,
-    hydrological_surfaces=hydrological_surfaces,
+        unknown_pct=inference_result["unknown_pct"],
+        ambiguous_pct=inference_result["ambiguous_pct"],
+        hand_context=hand_context,
+        coastal_context=coastal_context,
+        slope_context=slope_context,
+        hydrological_surfaces=None,   # stage 2 resolves the one status needing it
     )
+
+    hydrological_surfaces = compute_hydrological_surfaces(inference_result["category_area_pct"])
+    # Surfaces are derived from the model applicability just judged, so they
+    # carry that verdict rather than being presented as unconditional fact.
+    annotate_applicability(hydrological_surfaces, applicability, "waterlogging")
+
+    # Stage 2: resolve waterlogging, the only status that genuinely needed
+    # hydrological_surfaces to exist.
+    applicability = finalize_applicability(applicability, hydrological_surfaces)
+
     
     print("\nComputing pluvial susceptibility baseline...")
     pluvial_result = compute_pluvial_susceptibility(
@@ -426,6 +456,7 @@ def run_pipeline(
         waterway_dist_map=full_waterway_dist_map,
         relative_elevation_score=relative_elevation.get("score"),
         rainfall_mean_annual_mm=rainfall_climatology.get("mean_annual_mm"),
+        applicability=applicability,
     )
     pluvial_map_filename = None
     if pluvial_result.get("susceptibility_map") is not None:
@@ -436,10 +467,13 @@ def run_pipeline(
     if pluvial_map_filename:
         pluvial_result_serializable["map_path"] = pluvial_map_filename
 
-    fluvial_result = compute_fluvial_susceptibility(hand_context)
-    coastal_result = compute_coastal_susceptibility(coastal_context, fabdem_elevation)
-    flash_flood_result = compute_flash_flood_susceptibility(slope_context, hand_context, rainfall_climatology)
-    waterlogging_result = compute_waterlogging_susceptibility(hand_context, hydrological_surfaces, rainfall_climatology)
+    # C14/C20: every consumer now receives the gate. compute-and-flag, not
+    # refuse-to-compute -- each still returns its real value, with the trust
+    # verdict attached rather than the value withheld.
+    fluvial_result = compute_fluvial_susceptibility(hand_context, applicability=applicability)
+    coastal_result = compute_coastal_susceptibility(coastal_context, fabdem_elevation, applicability=applicability)
+    flash_flood_result = compute_flash_flood_susceptibility(slope_context, hand_context, rainfall_climatology, applicability=applicability)
+    waterlogging_result = compute_waterlogging_susceptibility(hand_context, hydrological_surfaces, rainfall_climatology, applicability=applicability)
     susceptibility_block = {
         "pluvial": pluvial_result_serializable,
         "fluvial": fluvial_result,
@@ -512,6 +546,7 @@ def run_pipeline(
             road_length_context=road_length_context,
             facilities_context=facilities_context,
             landcover_builtup_pct=landcover_builtup_pct,
+            applicability=applicability,
         )
         exposure_layers[layer_key] = exposure_result
         risk_layers[layer_key] = compute_risk(
@@ -591,6 +626,12 @@ def run_pipeline(
         "confidence_map_path": landcover_paths["confidence_map_path"],
         "categories": categories,
         "unknown_index": 255,
+        # C31 / build item 43: the palette travels WITH the result, so the
+        # frontend has no colour map of its own to drift from. This is the
+        # mechanism that makes the drift structurally impossible rather than
+        # merely currently-absent -- changing a colour in configs/palette.py
+        # changes the rendered legend with zero frontend edits.
+        "palette": palette_for_result(),
         "category_area_pct": inference_result["category_area_pct"],
         "unknown_pct": inference_result["unknown_pct"],
         "ambiguous_pct": inference_result["ambiguous_pct"],

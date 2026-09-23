@@ -32,6 +32,10 @@ def _classify(score):
     return "very_high"
 
 
+from perception.applicability_gate import gated
+
+
+@gated("flash_flood")
 def compute_flash_flood_susceptibility(slope_context: dict, hand_context: dict,
                                         rainfall_climatology: dict) -> dict:
     """

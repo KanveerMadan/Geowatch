@@ -270,9 +270,19 @@ def main():
                   f"correct predictions across {len(cities_used)} cities)")
         new_thresholds[cat_name] = thresh
 
+    # C10 / build item 45: record the checkpoint's CONTENT HASH, not just its
+    # path. The loader verifies against this. A path alone is not provenance --
+    # a retrained checkpoint written to the same filename would pass a basename
+    # comparison while being a different model.
+    from ingestion.inference import sha256_file
+    checkpoint_sha256 = sha256_file(checkpoint_path)
+    print(f"\nRecording provenance: {checkpoint_path}")
+    print(f"  sha256 {checkpoint_sha256}")
+
     output = {
         "thresholds": new_thresholds,
         "source_checkpoint": checkpoint_path,
+        "source_checkpoint_sha256": checkpoint_sha256,
         "methodology": (
             "Recalibrated against production sliding-window-averaged inference "
             "(patch=64, stride=32) on rasterized sparse segment annotations, "
