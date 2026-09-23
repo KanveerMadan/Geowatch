@@ -120,7 +120,7 @@ def run_pipeline(
     result.json contract (SCHEMA v2.0 — do not change without updating
     all consumers: App.jsx, any other result.json readers):
         schema_version, run_id, aoi, date_range, status,
-        imagery, observation_quality, primary_tile, tile_dimensions,
+        imagery, observation_quality, tile_dimensions,
         total_tiles, landcover, segments, summary, elevation,
         relative_elevation_proxy, flood_assessment, osm_context
 
@@ -334,8 +334,15 @@ def run_pipeline(
         # Offset bboxes to GLOBAL (full-raster) pixel space and assign
         # globally-unique segment_ids, so the frontend's existing
         # tile_dimensions-based lon/lat projection (now set to the FULL
-        # raster's width/height below) works unchanged regardless of how
-        # many tiles were actually processed.
+        # raster's width/height below) stays correct across tile counts.
+        #
+        # This applies to SEGMENT GEOMETRY ONLY. The base image does NOT
+        # come along: there is no full-AOI RGB raster on disk, only the
+        # per-tile PNGs, so a viewer that draws one tile under full-raster
+        # coordinates misplaces everything outside it. That mismatch was
+        # C13, and item 46 resolved it by REMOVING the `primary_tile`
+        # field rather than by manufacturing a basemap -- so do not
+        # reintroduce a single-tile base-image pointer here.
         for seg in tile_segments:
             x, y, w, h = seg["bbox"]
             seg["bbox"] = [x + col_off, y + row_off, w, h]
@@ -565,7 +572,6 @@ def run_pipeline(
         "by_evidence_layer": risk_layers,
     }
     tile_width, tile_height = full_width, full_height
-    primary_tile = tiles[0]["path"]
 
     # ── Step 7: Assemble structured output (NEW SCHEMA) ──
     print("\n[7/7] Assembling structured output...")
@@ -649,7 +655,6 @@ def run_pipeline(
     result.update({
         "schema_version": "2.0",
         "status": "complete",
-        "primary_tile": primary_tile,
         "tile_dimensions": {"width": tile_width, "height": tile_height},
         "total_tiles": len(tiles),
         "landcover": landcover_block,

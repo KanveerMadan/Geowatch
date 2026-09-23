@@ -59,19 +59,44 @@ Disjoint. Sum to approximately 1 per unit area.
 
 | Fraction | Definition |
 |---|---|
-| **built** | Roofed structure — has a footprint |
-| **paved** | Hard surface, unroofed — paving, hardstanding, courtyard, compacted yard |
+| **built** | Roofed structure — has a footprint. **Taken from vector footprints, not measured spectrally** (see below) |
+| **paved** | Hard surface, unroofed — paving, hardstanding, courtyard, compacted yard. **Derived: `impervious_total − built`**, carried with explicit uncertainty |
 | **vegetation** | |
 | **water** | |
 | **bare** | Permeable unpaved ground, exposed soil |
 
-### The derived quantity
+### The measured quantity, and the derived one (INVERTED — signed off 2026-09-23)
 
-impervious_total = built + paved
+    impervious_total  = measured spectrally          (ceiling 0.822)
+    built             = taken from vector footprints
+    paved             = impervious_total − built     (derived, with uncertainty)
 
+**This is the reverse of what this document originally specified**, which
+measured `built` and `paved` and derived `impervious_total = built + paved`.
+The inversion is signed off; the reasoning and the measurements behind it are
+`06_UNMIXING_CEILING.md` and `07_ITEM_21.md`.
 
-This is what the flood model consumes. It is **computed, not measured** — a
-derived quantity naming its own inputs, not a sixth fraction.
+**Why it had to invert.** `built` and `paved` are not separably measurable at
+10 m from Sentinel-2. Spectral angle between a realistic informal `built`
+endmember and `paved` is **1.66°** — the institutional `built` candidate shows
+4.69°, but using it *manufactures a separability that does not physically
+exist*. Meanwhile `impervious_total` — the quantity the flood model actually
+consumes — is measurable to a ceiling of 0.822. So the architecture now
+measures the thing it can measure and derives the thing it cannot.
+
+`bare` becomes the residual, absorbing the impervious/bare confusion where it
+belongs rather than hiding it inside `paved`.
+
+**This preserves the governing principle below — measure disjoint things,
+derive overlapping ones — and corrects which quantity is which.** `paved` must
+never be presented as measured.
+
+**Downstream cost is small.** Flood risk consumes `impervious_total`, so it is
+unaffected — in fact it now consumes a measured quantity instead of a sum of
+two unreliable ones. Morphological characterisation (item 23) is explicitly
+non-spectral, so it is unaffected. Change-over-time improves. The only genuine
+loss is *roofing material per building*, which was never deliverable from this
+data.
 
 ### Why disjoint, and why this matters
 
@@ -175,15 +200,32 @@ Three further differences:
 - **They do not compete for the same physical space.** Roads and roofs were
   interleaved at sub-pixel scale within the same square metre. Roofs and
   courtyards are adjacent but distinct areas.
-- **The error is bounded where it matters most.** Misallocation between `built`
-  and `paved` leaves `impervious_total` unchanged — the flood model, the primary
-  consumer, is unaffected. The error surfaces only in morphology, which is
-  exactly where the footprint layer independently checks it.
+- **The error is bounded where it matters most.** ~~Misallocation between
+  `built` and `paved` leaves `impervious_total` unchanged.~~ **FALSE — measured,
+  and corrected by the inversion above.**
 
-**The residual risk, stated honestly:** if `built` systematically absorbs `paved`
-in dense fabric, morphology metrics distort — density reads higher,
-footprint-derived characterization skews. Real, not hypothetical. Which is why
-the cross-check below is a deliberate build item, not an afterthought.
+> **This claim was wrong, and it was load-bearing.** It is valid only for a
+> *swap* between two classes, which cancels in the sum. The measured failure is
+> not a swap. `test_endmember_sensitivity.py` unmixed the same AOI and composite
+> twice, changing **only** the `built` endmember between two defensible choices:
+>
+> | AOI | built Δ | paved Δ | **impervious Δ** | **relative** |
+> |---|---|---|---|---|
+> | Dharavi | +0.1342 | +0.1330 | **+0.2672** | **+81.6%** |
+> | Khayelitsha | +0.1845 | −0.3126 | **−0.1281** | **−27.1%** |
+> | CT formal | −0.0085 | +0.0293 | **+0.0208** | **+16.2%** |
+>
+> In Dharavi both fractions rose and **compounded** — nothing cancelled. **The
+> direction is not even consistent across AOIs**, so no calibration constant can
+> correct it. The flood model, the primary consumer, was *not* protected.
+>
+> This is exactly why `impervious_total` is now measured directly rather than
+> summed from two quantities whose errors compound unpredictably.
+
+**The residual risk under the inversion:** `paved` is a difference of two
+quantities with independent error, so its uncertainty is the larger of the two
+and it can go negative in dense fabric where footprints over-cover. It must be
+reported with that uncertainty attached and clamped explicitly, never silently.
 
 ### The built-vs-footprint cross-check
 
@@ -291,25 +333,40 @@ Model each 10 m pixel as a linear mixture of endmembers; solve for per-pixel
 abundance fractions via constrained least-squares (non-negativity,
 sum-to-one). `pysptools`, or Earth Engine's own unmixing tools.
 
-**Chosen strategy: Option D, constrained.** Not five endmembers of equal
-difficulty — three spectrally stable fractions extracted from a global
-library directly (vegetation, water, bare), and two contested ones (`built`,
-`paved`) extracted from the same global-library approach but with extraction
-*constrained* by non-spectral priors already built for exactly this pair.
+**Chosen strategy: Option D, constrained — AS AMENDED BY THE INVERSION
+(signed off 2026-09-23).** The original spec extracted `built` *and* `paved`
+as separate spectral endmembers. Item 21 measured that this is not achievable
+at 10 m, and §3 now inverts it. What unmixing solves for is:
 
-**`built` extraction:** pixels inside a building footprint (Open Buildings /
-Microsoft / Overture, inward margin to exclude edge-mixed pixels), further
-filtered to low-temporal-variance pixels within that set (stable roofs, not
-degrading or under-construction ones). Endmembers extracted from this
-filtered pool per region — labeled by construction.
+| fraction | how it is obtained |
+|---|---|
+| vegetation, water, bare | spectrally, from a global library directly |
+| **impervious_total** | **spectrally, as ONE endmember** — ceiling 0.822 |
+| **built** | **from vector footprints. Not unmixed at all.** |
+| **paved** | **derived: `impervious_total − built`.** Not unmixed at all. |
 
-**`paved` extraction — must not use OSM road centerlines.** A pixel on a
-centerline at 10 m is ~45% road / 55% roof — that is C29, the exact
+**`built` is footprint-derived, not spectrally derived.** Open Buildings /
+Microsoft / Overture footprints rasterised to the 10 m grid. The
+low-temporal-variance filter is retained, but its job changes: it no longer
+selects endmember pixels, it flags footprints whose surface is unstable
+(under construction, degrading) so they can be down-weighted. **Any statement
+that `built` is spectrally derived is obsolete.**
+
+**Why `built` and `paved` are not separately unmixed.** Spectral angle between
+a realistic informal `built` endmember and `paved` is **1.66°**. The
+institutional `built` candidate reaches 4.69°, but choosing it manufactures a
+separability that does not physically exist, and swapping between the two
+defensible choices moved `impervious_total` by +81.6% / −27.1% / +16.2% across
+three AOIs — compounding, with inconsistent sign. See §3.
+
+**The impervious endmember must still not use OSM road centerlines.** A pixel
+on a centerline at 10 m is ~45% road / 55% roof — that is C29, the exact
 contamination this rebuild exists to escape. Source instead from wide,
-unambiguously unroofed OSM *polygons*: `landuse`, `amenity=parking`,
-`aeroway=apron` — parking lots, airport aprons, plazas, industrial
-hardstanding. Many pixels across, spectrally pure by construction, globally
-available.
+unambiguously unroofed OSM *polygons*: `amenity=parking`, `aeroway=apron`,
+`highway=pedestrian`+`area=yes`, `place=square`, `landuse=garages` — parking
+lots, airport aprons, plazas, hardstanding. **Bare `landuse=industrial` /
+`retail` / `commercial` are excluded**: those polygons enclose buildings, so
+using them would measure roof purity and label it impervious.
 
 **Shadow — solved as a sixth term, not redistributed.** Under sum-to-one with
 no shadow term, shadow energy is forced into the darkest available fraction —
@@ -409,19 +466,31 @@ Full reasoning for every decision lives in `05_BUILD_MANUAL.md`, Part 3. This
 section is a pointer, not a duplicate, so the two documents cannot drift out
 of sync with each other.
 
-- **Decision 11 — Fraction taxonomy.** Settled. §3 above.
+- **Decision 11 — Fraction taxonomy.** Settled, **and AMENDED 2026-09-23 by
+  the signed-off inversion**: the five fractions stand, but `impervious_total`
+  is measured, `built` is footprint-derived, and `paved` is the difference.
+  §3 above. The original "measure `built` and `paved`, derive
+  `impervious_total`" formulation is superseded.
 - **Decision 12 — Does SAM survive?** Settled: deleted. Nothing in §6's
   outputs table consumes a segment. The one genuine gap found under
   stress-testing — object-level tracking of non-building features, e.g. water
   bodies — is answered by connected-component labeling on thresholded
   unmixing rasters, named as a deferred, unbuilt forward reference, not by
   keeping SAM.
-- **Decision 13 — Global endmember strategy.** Settled: Option D, constrained.
-  §5.1 above.
+- **Decision 13 — Global endmember strategy.** Settled: Option D, constrained,
+  **AMENDED 2026-09-23**: one impervious endmember rather than separate `built`
+  and `paved` endmembers, because the pair is not separable at 10 m (1.66°).
+  §5.1 above. **Item 21's ceiling result is signed off** — it is no longer an
+  unsigned investigation premise, and `unmixing-ceiling-investigation` is
+  unblocked for merge.
 - **Decision 14 — The `category_area_pct` denominator.** Settled: known-pixel
   denominator, mandatory observed-fraction field, shadow / cloud-nodata /
   low-confidence unmixing reported as three separate fields, never merged
   into one "unknown."
+  **Confirmed 2026-09-23 under the inversion**: `paved`'s derivation
+  uncertainty is a fourth thing that must be reported separately and never
+  folded into "unknown" — it is a *derived-quantity* uncertainty, not an
+  observability one.
 - **Decision 15 — Severity re-rating rule.** Settled: downgrade only on
   confirmed unreachability or confirmed absence of a consumer, never on
   "never observed to fire" alone. Severity and fix priority are separate

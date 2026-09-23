@@ -10,7 +10,8 @@ for s in result["segments"][:5]:
     print(f"  bbox=({x},{y},{w},{h})  area={s['area']}")
 
 # Save a crop to visually inspect
-tile_path = result["primary_tile"]
+# `primary_tile` was removed by item 46 (C13); resolve from the run dir.
+tile_path = "data/pipeline_runs/dharavi_20260620_150817/tiles/tile_0_0.png"
 img = Image.open(tile_path)
 print(f"\nFull tile size: {img.size}")
 

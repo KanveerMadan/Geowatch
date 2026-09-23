@@ -263,14 +263,16 @@ class AnnotationApp:
         # Load data
         self.run_data, self.run_dir, raw_segments = load_run(result_json_path)
         self.run_id = self.run_data.get("run_id", "unknown")
-        self.tile_path = self.run_data.get("primary_tile", "")
+        # `primary_tile` was removed from result.json by item 46 (C13): it
+        # named one tile while `tile_dimensions` described the whole raster,
+        # so anything drawing it under full-raster coordinates was wrong for
+        # multi-tile AOIs. Resolve the tile from the run directory instead.
+        self.tile_path = os.path.join(self.run_dir, "tiles", "tile_0_0.png")
 
         if not os.path.exists(self.tile_path):
-            # Try path relative to run_dir
-            tile_basename = os.path.basename(self.tile_path)
-            alt_path = os.path.join(self.run_dir, "tiles", tile_basename)
-            if os.path.exists(alt_path):
-                self.tile_path = alt_path
+            legacy = self.run_data.get("primary_tile", "")   # pre-item-46 runs
+            if legacy and os.path.exists(legacy):
+                self.tile_path = legacy
             else:
                 messagebox.showerror("Error", f"Tile not found:\n{self.tile_path}")
                 root.destroy()

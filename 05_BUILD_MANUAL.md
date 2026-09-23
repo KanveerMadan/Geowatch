@@ -114,7 +114,17 @@ into a real number for one city.
 *Seven decisions. All settled. Twelve technical items were blocked behind
 these; none of this was typing.*
 
-### 11. Fraction taxonomy ✅ **SETTLED**
+### 11. Fraction taxonomy ✅ **SETTLED — AMENDED 2026-09-23 (inversion signed off)**
+
+> **The five fractions stand. Which are measured and which are derived has
+> inverted.** `impervious_total` is now measured spectrally (ceiling 0.822),
+> `built` comes from vector footprints, and `paved = impervious_total − built`
+> is derived and carried with explicit uncertainty. The original formulation —
+> measure `built` and `paved`, derive `impervious_total = built + paved` — is
+> superseded, because changing only the `built` endmember between two
+> defensible choices moved `impervious_total` by +81.6% (Dharavi), −27.1%
+> (Khayelitsha), +16.2% (CT formal): compounding, with inconsistent sign.
+> Evidence: `06_UNMIXING_CEILING.md`, `07_ITEM_21.md`. Spec: `02_ARCHITECTURE.md` §3.
 Fractions (disjoint, sum to ~1):
 built — roofed structure
 paved — hard surface, unroofed
@@ -190,7 +200,15 @@ engineering, not a research problem.
 
 ---
 
-### 13. Global endmember strategy ✅ **SETTLED — Option D, constrained**
+### 13. Global endmember strategy ✅ **SETTLED — Option D, AMENDED 2026-09-23**
+
+> **One impervious endmember, not a `built`/`paved` pair.** The pair is not
+> separable at 10 m: spectral angle 1.66° for a realistic informal `built`
+> candidate. The institutional candidate reaches 4.69° but manufactures a
+> separability that does not physically exist. `built` is no longer extracted
+> spectrally at all — it is footprint-derived. **Item 21's ceiling result is
+> signed off**, so this is settled spec rather than an unsigned investigation
+> premise. Spec: `02_ARCHITECTURE.md` §5.1.
 
 **The split:**
 
@@ -269,7 +287,12 @@ validate the method before scaling it.
 
 ---
 
-### 14. `category_area_pct` denominator ✅ **SETTLED**
+### 14. `category_area_pct` denominator ✅ **SETTLED — CONFIRMED 2026-09-23**
+
+> **Unchanged by the inversion, with one addition:** `paved`'s derivation
+> uncertainty is a *fourth* separately-reported quantity. It is a
+> derived-quantity uncertainty, not an observability one, and must never be
+> folded into "unknown" alongside shadow / cloud-nodata / low-confidence.
 
 **Chosen: known-pixel denominator. Observability reported as a mandatory
 companion field. Non-observation reported as three separate fields, never
@@ -506,10 +529,29 @@ tile path — never the per-tile percentile-stretched 8-bit PNG preview.** The
 only the dual-stem classifier that used to consume its output is dead.
 
 **How:** constrained least squares (sum-to-one, non-negativity), or
-`pysptools`, or Earth Engine's own unmixing. Endmembers per Decision 13:
-three stable fractions from a global library directly; `built` from
-footprint-prior-filtered, low-temporal-variance pixels; `paved` from wide
-unroofed OSM polygons (parking, aprons, plazas) — never road centerlines.
+`pysptools`, or Earth Engine's own unmixing. Endmembers per Decision 13
+**as amended 2026-09-23**: three stable fractions (vegetation, water, bare)
+from a global library directly, plus **one `impervious_total` endmember** from
+wide unroofed OSM polygons (parking, aprons, plazas) — never road centerlines.
+**`built` is not unmixed**: it is rasterised from vector footprints, and
+`paved` is `impervious_total − built`, reported with its derivation
+uncertainty and explicitly clamped if negative.
+
+**Annotation-provenance check — done, clean (2026-09-23).** The endmember
+sources were audited against **C45** (the OSM builders that overwrite human
+labels). They do **not** share a source: `built` comes from Google Open
+Buildings v3 (`confidence ≥ 0.7`) plus S2 temporal variance, and the impervious
+endmember comes from a *fresh* Overpass polygon query
+(`amenity=parking`, `aeroway=apron`, `highway=pedestrian`+`area=yes`,
+`place=square`, `landuse=garages`) that deliberately reuses neither
+`generate_osm_road_masks.py`'s centreline query nor
+`generate_osm_water_masks.py`'s. No extraction script reads
+`annotations.json`, `osm_generated_annotations*.json`, `mask_rle`,
+`roads.geojson` or `waterways.geojson`. **C45 is therefore not a blocker to
+this item.** The one real inheritance is `OVERPASS_URLS`, imported by
+`diagnose_pure_pixels_paved.py` from `generate_osm_road_masks` — that is
+**C44** (two of three endpoints dead, failures logged without status codes),
+and it *does* gate this item's extraction runs.
 
 **Shadow handling:** solve as a sixth term; renormalize the five reported
 fractions over the illuminated portion only; report shadow fraction as its
@@ -625,20 +667,20 @@ cause. Delete or promote; do not maintain two.
 **Acceptance:** loading a mismatched artifact raises; the current deployed CAAT
 file fails this check until recalibrated.
 
-### 30. Test logit adjustment *(conditional)*
-**Only if any discrete classification step remains.** If any class has both a
-large prior and a spectrally generic feature, the magnet returns. Under
-Decision 11, fractions have no argmax step, so this is not expected to apply —
-retained as a conditional item, not deleted, since the condition is about
-future code, not current design.
+### 30. ~~Test logit adjustment~~ ❌ **DELETED 2026-09-23**
+**Deleted, not conditional.** This item existed only for a discrete
+classification step ("subtract `τ·log(π_y)` before softmax"). There is no
+softmax and no argmax anywhere in the fraction architecture, and the 4-class
+discrete taxonomy that was the last possible host for one is **retired** (see
+`09_TAXONOMY_MIGRATION_PLAN.md`). The condition it was held open against —
+"only if any discrete classification step remains" — can no longer be met.
 
-If it applies: subtract `τ·log(π_y)` before softmax, tune `τ` on a held-out city.
-**Check per-city prevalence first** — a single global `τ` under- or over-corrects
-if cities differ substantially.
-
-**The ablation worth running regardless:** correct the prior, then check whether
-precision improves. If it does not, the residual is feature genericness — direct
-evidence for the sub-pixel argument.
+The one part worth keeping was the ablation ("correct the prior, then check
+whether precision improves; if it does not, the residual is feature
+genericness"). **That question has since been answered directly and more
+strongly**: item 21 measured the `built`/`paved` spectral angle at 1.66°, which
+is the feature-genericness argument established by measurement rather than
+inferred from a prior-correction ablation. Nothing is lost by deleting this.
 
 ### 31. Build the gold set
 300–500 stratified points labelled against the highest-resolution imagery
@@ -1111,7 +1153,7 @@ would have raised there, wrongly.*
 exactly what C10 was — an unvalidated load indistinguishable from a validated
 one.*
 
-### 46. C13 — full-AOI basemap, or remove the field
+### 46. C13 — full-AOI basemap, or remove the field ✅
 Either write a full-AOI RGB basemap (nothing correct currently exists for
 `primary_tile` to point at), or remove the field. And correct the in-code comment
 claiming the projection "works unchanged regardless of how many tiles" — false
@@ -1120,6 +1162,28 @@ for the base image.
 **Note on severity:** downgraded under Decision 15 (confirmed no live
 consumer), but the downgrade does not remove this item — severity and fix
 priority are separate axes.
+
+**Built — the field is removed, not backfilled.** Taking the fork already
+decided: no basemap was manufactured.
+
+- `pipeline.py` — `primary_tile` dropped from the schema v2.0 contract comment,
+  from the assignment (`tiles[0]["path"]`), and from the `result.update()`
+  block. No writer remains.
+- `pipeline.py:337` — the false comment is corrected. It now says the
+  full-raster projection holds for **segment geometry only**, states plainly
+  that no full-AOI RGB raster exists on disk, and records why a single-tile
+  base-image pointer must not be reintroduced.
+- **Two readers existed** beyond the frontend, which the C13 note missed
+  because it only verified `App.jsx`: `annotate.py:266` and
+  `debug_segments.py:13`. Both now resolve `tiles/tile_0_0.png` from the run
+  directory. `annotate.py` keeps a `primary_tile` *read* as a fallback for
+  pre-item-46 runs on disk — reading a legacy field is not the same as
+  depending on it.
+
+**Verified:** no `"primary_tile":` writer anywhere in the tree; all three files
+compile; full suite **369 passed**, identical to the pre-change baseline (the
+2 failures / 3 errors in `test_coastal_context`, `test_one_tile_guard` and
+`test_flood_flag_combination` predate this work — confirmed on `f69b40e`).
 
 ### 47. C34 — validate `run_id` at the read boundary ✅ *(new, added during consolidation)*
 `GET /api/runs/{run_id}` constructs a path from an unvalidated parameter — same
