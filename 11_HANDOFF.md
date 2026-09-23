@@ -22,7 +22,18 @@ that is **running right now**.
 
 ## 2. Blocking issues
 
-### 2.1 The pipeline is offline — CAAT
+### 2.1 ~~The pipeline is offline — CAAT~~ ❌ DROPPED 2026-09-23
+
+> **No longer a blocker: the pipeline it blocks is retired.** CAAT is a
+> per-class confidence-threshold mechanism for discrete 7-class inference, and
+> the fraction architecture has no argmax to threshold. The recalibration
+> question, the 45.0 OOD gate re-derivation, and **C11** are all dropped with
+> it rather than deprioritised — there is nothing left for them to gate. See
+> `08_STATE.md`. The reasoning below is kept only as the record of why
+> calibrating on annotator-selected segments fails, which is a lesson the
+> fraction validation set must not repeat.
+
+#### Original entry
 
 Item 45's provenance enforcement correctly rejects the deployed
 `models/production/caat_thresholds.json` (no `source_checkpoint`; derived from 11
@@ -106,7 +117,13 @@ transfer cross-city in the Phase 0 VHR test (within-city 0.705–0.821, **negati
 R²** on an unseen city, at every scale). That is the data-volume problem, and it
 is what the annotation plan addresses.
 
-### 5.2 New taxonomy: four classes
+### 5.2 New taxonomy: four classes ❌ RETIRED 2026-09-23
+
+> **Superseded by the five continuous fractions** (Decision 11,
+> `02_ARCHITECTURE.md` §3). Retired, not conditional: the fraction output has
+> no argmax, so a discrete per-pixel assignment is not something it can
+> produce. `09_TAXONOMY_MIGRATION_PLAN.md` §1 records the mapping. The
+> migration below was never run and will not be.
 
 `impervious` (buildings + roads + all hardstanding) · `vegetation` · `water` ·
 `bare`
@@ -252,25 +269,30 @@ the same way.
 ## 7. Sequence from here
 
 ```
-learning-curve gate (running)              ~20-22 h
+learning-curve gate                        RETURNED 2026-09-17
    │
-   ├── flattens ──→ STOP the annotation plan. Re-plan around label
-   │                 quality and patch construction (C43), not volume.
-   │
-   └── climbs ──→ 1. labelling guide (build item 63)          2-3 days
-                  2. migrate existing labels to 4-class       2-3 days
-                     + inspect vegetation_clearing
-                  3. re-baseline on migrated data             1 day
-                     ← THIS is the new reference number
-                  4. annotation campaign                      weeks-months
-                     breadth over depth, firewall sealed first
-                  5. re-evaluate, paired, per-class           2 days
+   └── FLATTENED ──→ annotation plan STOPPED. Patch construction then
+                     investigated to completion (C43) and also failed:
+                     four correction arms, all zero-to-negative.
+                     ──→ ARCHITECTURE PIVOT. See 08_STATE.md.
 
-independent of all of the above:
-   CAAT blocker + C11          ← pipeline can't run until resolved
-   item 46                     ← last of Part 8
-   merge applicability-gating
-   ledger triage (13 findings)
+resolved 2026-09-23:
+   inversion signed off        Decisions 11/13/14 + item 21
+   4-class taxonomy            RETIRED (fractions supersede it)
+   old 7-class pipeline        RETIRED -> CAAT blocker and C11 DROPPED
+   item 46                     DONE (primary_tile removed)
+   applicability-gating        MERGED to master (a98b529)
+   ledger triage               CLEARED -- NEEDS FATE is empty
+
+the live decision, unsigned:
+   (a) targeted dense annotation on the four lowest-ceiling tiles
+       (hcmc, guatemala, jakarta, nusantara), gated by a one-tile pilot
+   (b) build Part 4 -- items 19-21, the vector/temporal architecture
+
+blocking (a) or (b) either way:
+   C44   two of three Overpass endpoints dead, statuses collapsed.
+         The impervious endmember extraction imports that same list.
+         Fix before item 21's extraction runs.
 ```
 
 ---
@@ -278,8 +300,14 @@ independent of all of the above:
 ## 8. Working rules — carry these forward
 
 - **Never compare a 4-class or merged-taxonomy mIoU against 0.313.** Collapsing
-  classes raises mIoU by construction. A fresh baseline on migrated data is
-  mandatory before anything is called an improvement.
+  classes raises mIoU by construction. *(Now mostly historical — the discrete
+  taxonomy is retired — but the rule generalises: **never compare a number
+  across a change in what is being measured.** It applies unchanged to
+  comparing a fraction RMSE against any mIoU.)*
+- **`paved` is derived, never measured.** It is `impervious_total − built` and
+  must carry its derivation uncertainty everywhere it is reported. Anyone
+  presenting it as a measured quantity has reintroduced the error that the
+  2026-09-23 inversion exists to correct.
 - **Never round a within-±0.056 result up into "it worked."**
 - **Paired per-fold comparison always** — Wilcoxon on the 11 deltas, never
   comparing means. SE on the mean is 0.017, so anything under ~0.035 is invisible

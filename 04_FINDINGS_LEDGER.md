@@ -33,17 +33,94 @@ Fate categories:
 
 | Fate | Count | Meaning |
 |---|---:|---|
-| CLOSED | 8 | 5 during Part 1; C34 and C35 added by item 47; C43 closed by the patch-construction investigation |
+| CLOSED | 16 | 5 during Part 1; C34/C35 via item 47; C43 via the patch-construction investigation; **C4, C10, C14, C20, C23, C24, C31, C32 via the `applicability-gating` merge** |
 | REFUTED | 2 | Disproven |
 | DELETED | 13 | Architecture change removes the code |
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
-| SURVIVES | 22 | The irreducible cluster — real work (C40 added by the pre-push audit) |
-| NEEDS FATE | 7 | C36–C38, plus C41/C42 from the reproduction work, C44 from the city-selection measurement, and C45 from the patch-construction investigation |
+| SUPERSEDED | 2 | **C42, C45** — the pivot retires the code they describe |
+| SURVIVES | 26 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed, C44 elevated** by the 2026-09-23 triage) |
+| NEEDS FATE | 0 | **Cleared 2026-09-23.** |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
 duplicating the enumeration, specifically so the two documents cannot drift
 out of agreement with each other the way they previously did.
+
+---
+
+## FATES ASSIGNED — 2026-09-23 triage pass
+
+*The NEEDS FATE backlog is cleared. Every finding below was judged
+individually against the architecture pivot; nothing was blanket-closed.
+Each entry's own section is unchanged and remains the evidence — this is the
+fate record.*
+
+### Closed by the `applicability-gating` merge (`a98b529`)
+
+Eight findings had working, demonstrated fixes sitting on an unmerged branch
+and therefore carried no fate. The branch is merged to `master`; they are
+**CLOSED**, resolution = that merge. 369 tests pass, unchanged from the
+pre-merge baseline.
+
+| finding | item | what closed it |
+|---|---|---|
+| **C14**, **C20** | 40 | applicability gates downstream computation |
+| **C32** | 41 | applicability rendered as a banner, not a buried field |
+| **C23**, **C24** | 42 | Gate C waiver on all output paths |
+| **C31** | 43 | single-source palette + `X-API-Key` header |
+| **C4** | 44 | band order asserted at runtime |
+| **C10** | 45 | `source_checkpoint` provenance enforced |
+
+### Reviewed against the pivot, individually
+
+**C36 — `GHSL_BUILTUP_ASSET` pins the epoch → SURVIVES.** Not moot, and the
+pivot makes it *more* live: GHS-BUILT-S is the weaker reference in Decision
+13's built-fraction validation gate (item 21's pilot). A reference pinned to
+2020 regardless of the Sentinel-2 composite date is a temporal-mismatch caveat
+on the pilot that gates all of Part 4.
+
+**C37 — `limitations` built before the query it describes → SURVIVES.** Lives
+in `exposure_sources.py`, the WorldPop/exposure path. The pivot replaces the
+classifier, not exposure. Untouched, still wrong.
+
+**C38 — stale `UNVERIFIED` label → SURVIVES.** Same module, same reasoning.
+Small, real, and cheap.
+
+**C41 — classifier is RGB-only, on tile-relative values → SURVIVES (narrowed).**
+Deliberately *not* closed. Its two halves diverge:
+
+- *"Three bands reach the model, not six"* — **moot.** That model is retired.
+- *"The values are tile-relative, not absolute reflectance"* — **live, and now
+  load-bearing.** This is precisely why item 21 carries the precondition that
+  unmixing must read the float32 multi-band tile path and never the per-tile
+  percentile-stretched 8-bit PNG. Closing C41 would delete the recorded reason
+  for that precondition and invite someone to point the unmixer at the PNG.
+
+Narrowed to the reflectance half; the band-count half is struck.
+
+**C42 — checkpoint training source ambiguous → SUPERSEDED.** The artifact it
+describes (`geowatch_production_model.pth`) and the module carrying the wrong
+citation (`ingestion/resnet_model.py`) are both retired with the 7-class
+pipeline. **The rule it produced is carried forward, not retired:** a deployed
+artifact must record the pipeline that produced it, not merely the one that
+defined its architecture. That applies directly to the endmember libraries
+item 21 will ship, whose provenance requirement is already in its acceptance
+criteria.
+
+**C44 — two of three Overpass endpoints dead, failures logged without status
+codes → SURVIVES, and is ELEVATED.** The city-selection run worked around it
+locally, which made it look like a measurement-time nuisance. The C45 audit
+below shows it is not: `diagnose_pure_pixels_paved.py` imports `OVERPASS_URLS`
+from `generate_osm_road_masks`, so **the impervious endmember extraction —
+the highest-risk item in the plan — runs over the same two-thirds-dead
+endpoint list, with the same status-code-collapsing error handling.** Fix this
+before item 21's extraction runs, not after.
+
+**C45 — OSM builders overwrite human labels → SUPERSEDED, after audit.** See
+the audit result recorded under C45's own entry. The defect is real and
+confirmed, but confined to the training-patch builders feeding the discrete
+7-class classifier, which is retired. **It is not a blocker to endmember
+extraction** — audited, not assumed.
 
 ---
 
@@ -972,7 +1049,104 @@ untriaged** and still need a fate.*
 ***C44 added** during the city-selection measurement, from live probing of the
 Overpass endpoints the ingestion path depends on. Also untriaged.*
 
-### C45 — The OSM patch builders overwrite human labels with their own class [E]
+### C45 — The OSM patch builders overwrite human labels with their own class [E] ⤴ SUPERSEDED
+
+*Fate assigned 2026-09-23, **after** running the audit below rather than by
+inspection. The defect is confirmed real; it is superseded because the code it
+lives in is retired, and — the question that actually mattered — it does **not**
+reach the endmember extraction that replaces it.*
+
+#### Audit: does item 21's endmember extraction inherit this defect?
+
+**The question.** Decision 13 draws `built` from footprint-prior-filtered,
+low-temporal-variance pixels and the impervious endmember from OSM polygons.
+Both phrases name OSM and footprint priors, which is also what the C45-defective
+builders use. If the pixel sets share a source, the overwrite defect would
+propagate into the endmember libraries — and a contaminated endmember is
+unrecoverable downstream, so this had to be settled *before* extraction, not
+after.
+
+**Method.** Grepped every endmember/pure-pixel script on
+`unmixing-ceiling-investigation` for the tainted sources — `annotations.json`,
+`osm_generated_annotations*.json`, `mask_rle`, `roads.geojson`,
+`waterways.geojson`, and the builder functions themselves — then read the two
+extraction scripts directly to confirm what they actually query.
+
+**Result: no shared source. C45 does not reach item 21.**
+
+| script | reads a C45-tainted source? |
+|---|---|
+| `diagnose_pure_pixels.py` (`built`) | **no** |
+| `diagnose_pure_pixels_paved.py` (impervious) | **no** — mentions the road/water generators only in a docstring explaining why it does *not* use them |
+| `extract_endmembers_vca.py` | **no** |
+| `extract_endmembers_sisal.py` | **no** |
+| `test_endmember_sensitivity.py` | **no** |
+| `ceiling_built_fraction.py` | **no** |
+| `diagnose_open_buildings_aoi.py` | **no** |
+
+What they use instead:
+
+- **`built`** — `GOOGLE/Research/open-buildings/v3/polygons` at
+  `confidence ≥ 0.7`, painted onto the real Sentinel-2 UTM grid, plus temporal
+  variance from `COPERNICUS/S2_SR_HARMONIZED`. No annotation file is read at any
+  point. The footprints are a *third-party vector product*, not this project's
+  annotations — the phrase "footprint-prior-filtered" never meant the
+  annotation set.
+- **impervious** — a **fresh Overpass query** for seven unroofed-polygon tags
+  (`amenity=parking`, `aeroway=apron`, `highway=pedestrian`+`area=yes`,
+  `highway=service`+`area=yes`, `place=square`, `amenity=bus_station`,
+  `landuse=garages`). `diagnose_pure_pixels_paved.py` states explicitly that
+  `generate_osm_road_masks.py` queries centrelines and
+  `generate_osm_water_masks.py` queries waterways, and that **neither is the
+  source Decision 13 specifies** — so it writes its own query. It also excludes
+  bare `landuse=industrial`/`retail`/`commercial` because those enclose
+  buildings, which would launder roof purity as impervious: the same class of
+  contamination C45 describes, avoided deliberately.
+
+The files that *do* touch `osm_generated_annotations*` —
+`generate_osm_water_masks.py`, `merge_osm_*.py`, `push_water_annotations_to_drive.py`,
+`check_waterways_coverage.py` — are the defect's producers, and **none is
+imported by any extraction script.**
+
+**One real inheritance, and it is C44 not C45.**
+`diagnose_pure_pixels_paved.py` does import one thing from the road generator:
+
+    from generate_osm_road_masks import OVERPASS_URLS
+
+That is the *endpoint list*, not a query — so it carries no annotation
+contamination. But it means the impervious extraction runs over the same list
+in which **two of three endpoints are unreachable**, with the same handler that
+collapses 429 / 502 / 503 / 504 into one indistinguishable `HTTPError`. **That
+is C44, it gates the highest-risk item in the plan, and it should be fixed
+before extraction runs.** C44 is elevated accordingly.
+
+#### Why SUPERSEDED rather than SURVIVES
+
+The defect is confined to the training-patch builders that feed the discrete
+7-class classifier. That pipeline is retired (`08_STATE.md`), and the four
+correction arms in **C43** showed repairing the overwrites does not move the
+retired model's mIoU anyway (−0.0096, −0.0021, −0.0055, −0.1041).
+
+**Two guards retained, because superseded is not the same as harmless:**
+
+1. The corrupted artifacts are still **on disk** —
+   `data/pipeline_runs/*/osm_generated_annotations*.json` contain
+   `paved_road` over human `dense_informal_roofing` and `standing_water` over
+   human `dense_vegetation`. Anything that reads them inherits the defect.
+   They must be treated as **retired inputs, not reference data**, and if the
+   label canvases are ever reused for annotation the overwrites must be
+   stripped first — `experiments/band_reflectance/c43/fix_build.py` already
+   implements both repair rules.
+2. The generating rule is the transferable lesson: **a derived-geometry source
+   must never overwrite a human label.** Where they disagree the human label
+   wins, or the pixel is excluded. That rule belongs in the endmember
+   extraction spec too, even though it is not violated there today.
+
+---
+
+*Original finding follows.*
+
+### C45 — The OSM patch builders overwrite human labels with their own class [E] *(entry)*
 Found while investigating **C43**, and unlike C43 this is a **live data defect**,
 not a statement about what a number means. Two of the five patch builders paint
 their own class over pixels a human annotator had already labelled as something
@@ -1077,8 +1251,13 @@ and "API failed") — an external dependency whose failure modes are collapsed
 into one indistinguishable signal.*
 
 ***C43 closed** by the patch-construction investigation — moved to **CLOSED**
-above. **C45 added** by the same investigation, and untriaged: it is a live
-data defect, not a description of what a number means.*
+above. **C45 added** by the same investigation and triaged **SUPERSEDED** on
+2026-09-23 after the endmember-provenance audit recorded in its entry.*
+
+> **This section is now empty of untriaged findings.** Every entry below
+> carries a fate, assigned in the 2026-09-23 pass recorded near the top of this
+> document. The headings are kept where they are so existing cross-references
+> do not break.
 
 ### C42 — The production checkpoint's training source is ambiguous, and the code cites the wrong notebook [E]
 Same class of provenance gap as **C5** (a wrong conclusion drawn from not

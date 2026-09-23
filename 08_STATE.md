@@ -1,6 +1,6 @@
 # GeoWatch — Current State
 
-**Where the project actually is, across all branches, as of 2026-09-18.**
+**Where the project actually is, across all branches, as of 2026-09-23.**
 
 This document exists because the same facts kept being rediscovered. The branch
 layout, the reason the pipeline is offline, and the state of the classifier
@@ -73,7 +73,44 @@ is false for the base image and must be corrected in the same change.
 
 ---
 
-## BLOCKING — the pipeline is offline
+## RETIRED — the 7-class pipeline, and the CAAT blocker with it
+
+**Status: closed 2026-09-23. Not deprioritised — dropped.**
+
+> **The old per-pixel 7-class pipeline is retired.** The learning-curve gate
+> (**G1**) showed its data axis is exhausted, the patch-construction
+> investigation (**C43**) showed its construction axis is exhausted, and the
+> architecture that replaces it produces continuous fractions with no argmax.
+>
+> **The CAAT blocker is dropped, not solved.** CAAT is a per-class
+> confidence-threshold mechanism applied to a discrete argmax. There is no
+> argmax in the fraction architecture, so there is nothing left to threshold:
+> the deployed-vs-recalibrated threshold decision, the 45.0 OOD gate
+> re-derivation, and **C11** (penalties applied at inference but not during
+> calibration) all evaporate with the mechanism. None of them needs a human
+> decision any more.
+>
+> **Two things from it are carried forward, because they are about
+> methodology, not about CAAT:**
+>
+> 1. **Calibrating on annotator-selected segments does not transfer to the
+>    full raster.** Those segments cover 4.8%–68.4% of the raster and are
+>    biased toward easy pixels; a 10th-percentile threshold learned there
+>    over-rejects everywhere else, and stratified pooling recovered only 10.5
+>    of the 34 pp gap. **The fraction validation set must be drawn from the
+>    full raster, not from annotated segments.** This is the same selection
+>    bias the C43 scarcity work measured from the other direction.
+> 2. **Applicability gating replaces confidence thresholding as the
+>    out-of-distribution mechanism** — items 40–42, now merged to `master`
+>    (`a98b529`). That is a per-AOI gate on whether output is trustworthy at
+>    all, which is what CAAT was being asked to do and was the wrong tool for.
+>
+> **The deployed artifacts** — `geowatch_production_model.pth`,
+> `caat_thresholds.json` — are **retired inputs, not reference data.** Do not
+> recalibrate them, and do not quote 0.313 as a current capability number
+> (see C43 for what it measures).
+
+#### Original entry, retained as the record
 
 **Status: unresolved. Awaiting a decision.**
 
@@ -496,13 +533,19 @@ The data-volume axis is exhausted (G1) and the construction axis is exhausted
 is chosen it should be gated the same way Phase 0 gated the original campaign —
 a small dense-annotation pilot on one tile, measured before the rest is funded.
 
-**2. Decide the CAAT threshold question** (human). The pipeline stays offline
-until then. C11 makes both candidate threshold sets wrong, so the decision is
-between two known-wrong artifacts.
+**2. Fix C44 before item 21's extraction runs** (engineering, not a decision).
+Two of three Overpass endpoints are unreachable and the handler collapses
+429/502/503/504 into one `HTTPError`. `diagnose_pure_pixels_paved.py` imports
+that same `OVERPASS_URLS` list, so **the impervious endmember extraction — the
+highest-risk item in the plan — depends on it.** This is true under either
+branch of the decision above.
 
-**3. Triage the code-fixed findings and those under NEEDS FATE** (human).
-C4, C10, C14, C20, C23, C24, C31, C32; plus C36, C37, C38, C41, C42, C44, C45.
+**Resolved 2026-09-23, no longer open:** the CAAT threshold question and C11
+(dropped with the retired pipeline, §RETIRED above); the NEEDS FATE backlog
+(cleared — see `04_FINDINGS_LEDGER.md` § *Fates assigned*); item 46
+(`primary_tile` removed); the item 21 / Decisions 11-13-14 sign-off, which
+**unblocks `unmixing-ceiling-investigation` for merge**; and
+`applicability-gating`, merged to `master` at `a98b529`.
 
-**Also open, unscheduled:** item 46 (remove `primary_tile`), the item 21
-sign-off that gates `unmixing-ceiling-investigation`, merging
-`applicability-gating`, and the `loco.py` harness validation run.
+**Also open, unscheduled:** merging `unmixing-ceiling-investigation` (now
+sign-off-clear), and the `loco.py` harness validation run.

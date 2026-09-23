@@ -32,9 +32,14 @@ Written 2026-09-14. Companion to `08_STATE.md` (current state), `05_BUILD_MANUAL
 > **So construction is eliminated too, and what §3.2 called "re-annotate a
 > small set densely" is the only surviving form of the idea.** See §8.
 >
-> §§1–2 (the taxonomy and the migration) are **unaffected** — they never
-> depended on the campaign, and the 7→4 class merge stands on its own
-> reasoning.
+> **§§1–2 (the taxonomy and the migration) are RETIRED as of 2026-09-23** —
+> not by the gate, but by the architecture pivot. The 7→4 discrete merge is
+> superseded by the five continuous fractions; see §1. Item 30 (logit
+> adjustment), the last build item that assumed a discrete argmax anywhere,
+> is **deleted** rather than held conditional.
+>
+> **This document is now wholly historical.** It is retained because the gate
+> reasoning in §3 is reusable and because §8 records what survives.
 
 ---
 
@@ -63,7 +68,31 @@ one impervious class, per Decision on record. Nothing below revisits it.
 
 ---
 
-## 1. The new taxonomy
+## 1. The new taxonomy ❌ RETIRED 2026-09-23
+
+> **RETIRED, not conditional.** This 4-class *discrete* taxonomy is superseded
+> by the **five continuous fractions** of Decision 11 (`02_ARCHITECTURE.md` §3).
+> Those fractions are not a finer-grained version of this scheme — they are a
+> different kind of output. A fraction vector has no argmax and assigns no
+> pixel to one class, so "every pixel gets exactly one, or `IGNORE`" is not a
+> rule the new architecture can express.
+>
+> **What carried over, and what did not:**
+>
+> | this scheme | fraction architecture |
+> |---|---|
+> | `impervious` (one class) | `impervious_total` — **measured spectrally**, the quantity the flood model consumes |
+> | `vegetation`, `water`, `bare` | the same three, as continuous fractions from a global library |
+> | — | `built` (footprint-derived) and `paved` (derived by difference) |
+> | `IGNORE` | replaced by Decision 14's separated observability fields |
+>
+> The §1.1 warning that `impervious`-vs-`bare` would be the hardest boundary
+> was **right, and is now handled structurally rather than by classification**:
+> `bare` is the residual, so the impervious/bare confusion lands where it is
+> visible instead of being baked into a hard class assignment.
+>
+> Sections 1–2 are kept as the record of the migration that was planned.
+> **Do not build against them.**
 
 Four classes. Every pixel gets exactly one, or `IGNORE`.
 
