@@ -51,7 +51,15 @@ the old architecture was least equipped to deliver.
 
 ---
 
-## 3. The fraction taxonomy (Decision 11 — SETTLED)
+## 3. The fraction taxonomy (Decision 11 — SETTLED; amendment proposed)
+
+*The governing principle below — measure disjoint things, derive overlapping
+ones — is settled and, per the item 21 pilot, vindicated. What the pilot
+contradicts is **which** quantities are measured and which derived: it proposes
+measuring `impervious_total`, taking `built` from vector footprints directly,
+and deriving `paved`. Same principle, reversed assignment. Proposed, not
+settled — see `05_BUILD_MANUAL.md` Decision 11 and item 21, and
+`06_UNMIXING_CEILING.md` §4.3.*
 
 ### The five fractions
 
@@ -192,40 +200,68 @@ is not an error; it is the correct answer for a pixel that genuinely contains
 both. There is no argmax, no winner, nothing to be a magnet *of*. Ambiguity stays
 proportional instead of amplifying.
 
-Three further differences:
+**This argument survives, with one part of it removed.** Eliminating argmax does
+eliminate the magnet failure mode, and that reasoning is untouched. But the
+worked example presupposes that the `built`/`paved` split *can* be resolved into
+those numbers. Measurement has since shown it cannot at 10 m — see the corrected
+bullets below and `06_UNMIXING_CEILING.md`. Proportional ambiguity is still
+better than a coin-flip label; it is not the same as a correct decomposition.
 
-- **The classes are no longer sub-pixel.** A roof is 3–6 m, a courtyard often
-  5–15 m — comparable to or larger than a 10 m cell. Roads at 4.5 m were the
-  pathological case, and that class is gone.
-- **They do not compete for the same physical space.** Roads and roofs were
-  interleaved at sub-pixel scale within the same square metre. Roofs and
-  courtyards are adjacent but distinct areas.
-- **The error is bounded where it matters most.** ~~Misallocation between
-  `built` and `paved` leaves `impervious_total` unchanged.~~ **FALSE — measured,
-  and corrected by the inversion above.**
+Three further differences were claimed here. **Two of them have since been
+falsified by measurement** — see `06_UNMIXING_CEILING.md`. They are corrected in
+place below rather than deleted, because the original wording is load-bearing
+for arguments made elsewhere in this document and in Decision 13.
 
-> **This claim was wrong, and it was load-bearing.** It is valid only for a
-> *swap* between two classes, which cancels in the sum. The measured failure is
-> not a swap. `test_endmember_sensitivity.py` unmixed the same AOI and composite
-> twice, changing **only** the `built` endmember between two defensible choices:
->
-> | AOI | built Δ | paved Δ | **impervious Δ** | **relative** |
-> |---|---|---|---|---|
-> | Dharavi | +0.1342 | +0.1330 | **+0.2672** | **+81.6%** |
-> | Khayelitsha | +0.1845 | −0.3126 | **−0.1281** | **−27.1%** |
-> | CT formal | −0.0085 | +0.0293 | **+0.0208** | **+16.2%** |
->
-> In Dharavi both fractions rose and **compounded** — nothing cancelled. **The
-> direction is not even consistent across AOIs**, so no calibration constant can
-> correct it. The flood model, the primary consumer, was *not* protected.
->
-> This is exactly why `impervious_total` is now measured directly rather than
-> summed from two quantities whose errors compound unpredictably.
+- **The classes are no longer sub-pixel — CORRECTED, this was wrong.** The
+  original read: *"A roof is 3–6 m, a courtyard often 5–15 m — comparable to or
+  larger than a 10 m cell."* A 3–6 m roof is **smaller** than a 10 m cell; the
+  sentence conceded the problem and then concluded the opposite. Measured
+  square-equivalent footprint sizes are **6.9 m (Khayelitsha), 10.6 m
+  (Dharavi), 12.4 m (formal Cape Town)**. And "comparable to a 10 m cell" is not
+  sufficient: with arbitrary grid phase, the formal suburbs' 12.4 m buildings
+  still yield only **4.97%** fully-covered pixels. Roads at 4.5 m were the
+  pathological case, but removing that class did not remove the pathology.
+- **They do not compete for the same physical space — geometrically true, and it
+  does not help.** Roofs and courtyards genuinely are adjacent distinct areas
+  rather than interleaved within a square metre. But at 10 m a *single cell
+  spans both*, so the mixing is sub-pixel whether or not the surfaces are.
+  Measured pure-pixel yield across three AOIs: **1.02–5.43%**.
+- **The error is bounded where it matters most — CORRECTED, this was wrong.**
+  The original claim was that misallocation between `built` and `paved` leaves
+  `impervious_total` unchanged, so the flood model is unaffected. That holds for
+  a **swap**, which cancels in the sum. The measured error is not a swap.
+  Changing only the `built` endmember between two defensible choices moves
+  `impervious_total` by **+81.6% (Dharavi), −27.1% (Khayelitsha), +16.2% (formal
+  Cape Town)**. In Dharavi both fractions rose and *compounded*; nothing
+  cancelled. The direction is not even consistent across AOIs, so no calibration
+  constant can correct it. **The primary consumer is affected.**
 
-**The residual risk under the inversion:** `paved` is a difference of two
-quantities with independent error, so its uncertainty is the larger of the two
-and it can go negative in dense fabric where footprints over-cover. It must be
-reported with that uncertainty attached and clamped explicitly, never silently.
+**The residual risk is no longer a risk — it is a measurement.** The original
+text said that if `built` systematically absorbs `paved` in dense fabric,
+morphology metrics distort, and called this "real, not hypothetical." It is now
+quantified, and it is worse than the framing suggested: `built` and `paved` are
+separated by **1.70°** of spectral angle against a sensor noise floor of ~0.7°,
+so the split is not low-confidence — it is **unidentifiable**. Worse, the
+institutional-roof endmember that Decision 13's spec would actually produce sits
+4.69° from `paved`, versus 1.66° for a realistic informal-roof endmember:
+**using it manufactures separability that does not physically exist**, yielding
+a confident-looking split that is an artifact.
+
+The cross-check below remains a deliberate build item, and becomes more
+important rather than less.
+
+**Resolved 2026-09-23: the inversion is signed off.** Everything above is now
+the *reason* for the architecture in §3 rather than an open problem — the
+`built`/`paved` split is no longer attempted, so an unidentifiable 1.70°
+separation stops being a defect and becomes a design constraint that is
+respected. `impervious_total` is measured; `built` comes from the footprints;
+`paved` is the difference.
+
+**One residual risk the inversion introduces, stated plainly:** `paved` is a
+difference of two independently-estimated quantities, so its uncertainty is at
+least the larger of the two and it **can go negative** in dense fabric where
+footprint coverage over-calls. It must be reported with that uncertainty
+attached and clamped explicitly, never silently.
 
 ### The built-vs-footprint cross-check
 
@@ -327,7 +363,20 @@ already supply more cleanly. **Do not build it.**
 
 ## 5. Component detail
 
-### 5.1 Spectral unmixing → continuous fractions (Decision 13 — SETTLED)
+### 5.1 Spectral unmixing → continuous fractions (Decision 13 — REOPENED BY EVIDENCE)
+
+> **The 2–3 city pilot this section required has run, and it falsified the
+> central assumption.** Both risks left explicitly open below have fired.
+> `built` and `paved` are separated by **1.70°** of spectral angle against a
+> ~0.7° sensor noise floor, so the constrained extraction cannot produce a
+> usable `built` endmember for informal fabric by any method — three extraction
+> families were tried and failed, and the failure is an information limit, not
+> a method problem. Worse, the institutional-roof endmember this spec would
+> produce sits **4.69°** from `paved` versus **1.66°** for a realistic
+> informal-roof endmember, so following the spec manufactures separability that
+> does not physically exist. The text below is preserved for provenance. See
+> item 21 in `05_BUILD_MANUAL.md` for the proposed re-scope (awaiting decision)
+> and `06_UNMIXING_CEILING.md` for the evidence. **Not re-settled.**
 
 Model each 10 m pixel as a linear mixture of endmembers; solve for per-pixel
 abundance fractions via constrained least-squares (non-negativity,
@@ -460,11 +509,15 @@ screening-scale answers, not a limitation that went unsolved.
 
 ---
 
-## 7. Decisions — Part 3, all SETTLED
+## 7. Decisions — Part 3
 
 Full reasoning for every decision lives in `05_BUILD_MANUAL.md`, Part 3. This
 section is a pointer, not a duplicate, so the two documents cannot drift out
 of sync with each other.
+
+Decisions 12, 15, 16 and 17 are settled. **Decisions 11, 13 and 14 carried
+amendments proposed by the item 21 pilot; all three were SIGNED OFF on
+2026-09-23** and are settled again as amended.
 
 - **Decision 11 — Fraction taxonomy.** Settled, **and AMENDED 2026-09-23 by
   the signed-off inversion**: the five fractions stand, but `impervious_total`
@@ -478,11 +531,14 @@ of sync with each other.
   unmixing rasters, named as a deferred, unbuilt forward reference, not by
   keeping SAM.
 - **Decision 13 — Global endmember strategy.** Settled: Option D, constrained,
-  **AMENDED 2026-09-23**: one impervious endmember rather than separate `built`
-  and `paved` endmembers, because the pair is not separable at 10 m (1.66°).
-  §5.1 above. **Item 21's ceiling result is signed off** — it is no longer an
-  unsigned investigation premise, and `unmixing-ceiling-investigation` is
-  unblocked for merge.
+  **AMENDED 2026-09-23 (signed off)**. The pilot falsified the original central
+  assumption — `built`/`paved` is **unidentifiable at 1.70° against a ~0.7°
+  sensor noise floor**, and the institutional-roof endmember the original spec
+  would have produced sits 4.69° from `paved` versus 1.66° for a realistic
+  informal one, so choosing it manufactures separability that does not
+  physically exist. The amendment: **one impervious endmember**, `built` from
+  footprints, `paved` derived. §5.1 above. Item 21's ceiling result is signed
+  off, so this is settled spec rather than an unsigned investigation premise.
 - **Decision 14 — The `category_area_pct` denominator.** Settled: known-pixel
   denominator, mandatory observed-fraction field, shadow / cloud-nodata /
   low-confidence unmixing reported as three separate fields, never merged
@@ -491,6 +547,8 @@ of sync with each other.
   uncertainty is a fourth thing that must be reported separately and never
   folded into "unknown" — it is a *derived-quantity* uncertainty, not an
   observability one.
+  The four field-spec changes that followed from the Decision 13 reopen are
+  signed off with it.
 - **Decision 15 — Severity re-rating rule.** Settled: downgrade only on
   confirmed unreachability or confirmed absence of a consumer, never on
   "never observed to fire" alone. Severity and fix priority are separate
@@ -533,9 +591,13 @@ field specs) — see `05_BUILD_MANUAL.md` Part 6's translation note.
 - **The sensor limit remains.** Fractions and vector are honest accommodations,
   not a resolution fix. If the actual need is street-level surface material in
   informal settlements, 10 m optical cannot deliver it.
-- **Decision 13's endmember strategy is unvalidated until the pilot runs.** If
-  global endmembers cannot be made to work even in constrained form, that
-  component weakens substantially and the plan needs revisiting.
+- **Decision 13's endmember strategy did not survive its pilot.** The 2–3 city
+  pilot ran; global endmembers could not be made to work even in constrained
+  form, because `built`/`paved` is unidentifiable at 10 m (1.70° against a
+  ~0.7° noise floor). Decision 13 is reopened and item 21's re-scope — measure
+  `impervious_total`, take `built` from vector footprints, derive `paved` — is
+  proposed and awaiting decision. See `05_BUILD_MANUAL.md` items 13 and 21 and
+  `06_UNMIXING_CEILING.md`.
 - **No global independent gold set exists.** Confirmed dead end. The held-out
   firewall and intra-annotator test-retest mitigate single-annotator risk; neither
   eliminates it, and neither produces a number meaning what Cohen's kappa means.

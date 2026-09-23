@@ -565,10 +565,13 @@ TRAINING data path" and the preview path "is explicitly NOT the training data
 source anymore" — aspirational and wrong, describing a migration the training
 code never adopted.
 
-**Relevant to Decision 13's reflectance precondition:** the 6-band float32
-tiler is a prerequisite for unmixing (item 21), not a retired path — the
+**Relevant to the float32 reflectance path (Decision 13 — REOPENED BY EVIDENCE):**
+the 6-band float32 tiler is a prerequisite for item 21, not a retired path — the
 dual-stem classifier that consumed it is dead, but the tiler itself produces
-exactly the physical-reflectance input the new architecture requires.
+exactly the physical-reflectance input the new architecture requires. This holds
+independent of how item 21's re-scope resolves: both the original unmixing solve
+and the proposed `impervious_total` regression read the float32 multi-band tile,
+never the stretched 8-bit preview.
 
 ### C22's consequence claim [E] ❌ REFUTED
 Predicted no-data pixels would render as *maximum* susceptibility. Measured: mean
@@ -671,10 +674,12 @@ imports only `generate_rgb_preview_tiles`. Can only fire if
 
 **Deleted** — the training path is being rebuilt. **Correction from
 consolidation pass:** the 6-band float32 tiler itself is not being retired —
-it is a prerequisite for Decision 13's unmixing (item 21), which requires the
-float32 reflectance path rather than the stretched-preview path. What is
-deleted is the dual-stem classifier that used to consume the tiler's output,
-not the tiler.
+it is a prerequisite for item 21, which requires the float32 reflectance path
+rather than the stretched-preview path. What is deleted is the dual-stem
+classifier that used to consume the tiler's output, not the tiler. Decision 13
+is now REOPENED BY EVIDENCE and item 21's re-scope is awaiting decision, but
+this correction is unaffected: the re-scope's `impervious_total` regression
+needs the same float32 path, and C3's fate stays DELETED either way.
 
 ### C6 — `get_osm_features` returns `None` for both "no roads" and "API failed" [S]
 The docstring claims `None` means the request failed; false. A confirmed-zero AOI
@@ -763,7 +768,19 @@ epistemic-contract cluster below) are rewritten by Decision 14, not merely
 carried forward unchanged. See the Part 6 translation note at the end of this
 section.*
 
-### The epistemic contract (Decision 14 — SETTLED, spec rewritten below)
+### The epistemic contract (Decision 14 — SETTLED, reasoning intact; ⚠️ amendment PROPOSED, awaiting sign-off)
+
+*The core of Decision 14 — known-pixel denominator, mandatory `observed_fraction`
+sibling, and the rule that distinct causes are never merged — is settled and, per
+the item 21 pilot, strengthened. What is proposed (not settled) is four
+field-spec changes that follow from the Decision 13 reopen: a standalone shadow
+estimator (the sixth-endmember mechanism it delegated to no longer exists);
+renaming "low unmixing confidence" to a regression prediction interval; splitting
+the three fields into an observability group (shadow, cloud/nodata — define the
+denominator) and an estimate-quality group (per-fraction confidence — never
+touches it); and carrying the impervious/bare boundary as a confidence marker on
+`impervious_total`. See `05_BUILD_MANUAL.md` Decision 14 and `06_UNMIXING_CEILING.md`.
+None of this changes the fate of the findings below — they SURVIVE regardless.*
 
 **C19 — Imperviousness deflated by the unknown rate** [E]
 Emitted 41.68; recomputed with known-pixel denominator **56.13**. Factor
@@ -1038,9 +1055,16 @@ corresponding build item. This is a real gap, flagged during the Part 3
 consolidation pass — it does not resolve on its own and needs the same triage
 attention every other finding in this document received.*
 
-***Partially resolved.** C34 and C35 were scheduled as `05_BUILD_MANUAL.md` item
-47, built, and have moved to **CLOSED** above. **C36, C37 and C38 remain
-untriaged** and still need a fate.*
+***Resolved.** C34 and C35 were scheduled as `05_BUILD_MANUAL.md` item 47,
+built, and have moved to **CLOSED** above. **C36, C37 and C38 were triaged
+SURVIVES on 2026-09-23** — see § *Fates assigned* near the top.*
+
+*Relevant to C36 and C38: the GHS-BUILT-S audit (commit `5331f0a`, merged from
+`unmixing-ceiling-investigation`) verified the asset those two concern. It
+confirms existence, bands and load behaviour — which is exactly C38's point
+that the blanket `UNVERIFIED` label overstates what is outstanding — while
+leaving C36's pinned-2020 epoch untouched, since the audit read the same
+hardcoded constant.*
 
 ***C41 added** during the encoder band-mapping verification. Also untriaged.*
 
@@ -1357,6 +1381,10 @@ confusion as evidence about item 21's ceilings — would overstate both.
 `assert_encoder_band_contract()`, which refuses a checkpoint whose bands,
 channel count or order stop matching what the pipeline supplies.*
 
+*Scheduled with C34 as `05_BUILD_MANUAL.md` item 47 ("address C35 in the same
+pass"): the boundary check must be confirmed everywhere `run_pipeline` or path
+construction from a label can be reached, not only at the two known sinks.*
+
 ### C36 — `GHSL_BUILTUP_ASSET` pins the epoch in the asset string [E]
 `configs/exposure_constants.py:58` hardcodes `.../GHS_BUILT_S/2020`.
 `ee.Image(...)` with no collection query, no `aggregate_max`, no dynamic
@@ -1367,12 +1395,26 @@ selection. **Cannot reach another epoch without editing the constant** — while
 `aggregate_max("year")` then filter. It would pick up newer epochs
 automatically.*
 
-**Relevant to Decision 13's validation gate:** GHS-BUILT-S is used there as a
-(weaker, non-independent) reference for `built` fraction validation. This
-finding means the reference is pinned to a 2020 epoch regardless of which
-Sentinel-2 composite date the unmixing solve uses — a real, separate
-temporal-mismatch caveat for that validation step, distinct from the
-lineage-independence caveat already noted there.
+**Relevant to Decision 13's validation gate (Decision 13 — REOPENED BY
+EVIDENCE):** as originally specified, GHS-BUILT-S is a (weaker, non-independent)
+reference for `built` fraction validation, and this finding means that reference
+is pinned to a 2020 epoch regardless of the Sentinel-2 composite date — a real
+temporal-mismatch caveat, distinct from the lineage-independence caveat already
+noted there. **This role is conditional on the item 21 decision, awaiting
+sign-off:** the proposed re-scope takes `built` from vector footprints and does
+not spectrally estimate or GHS-validate it, in which case GHS-BUILT-S is an audit
+target (as in commit `5331f0a`) rather than a validation reference. The
+epoch-pin caveat applies wherever GHS is used as a reference under either
+outcome.
+
+*Update (commit `5331f0a`, GHS-BUILT-S audit): the collection was verified live
+— twelve epochs (1975–2030 by 5) are present, at 100 m Mollweide. The pin is
+real, but dynamic selection would not close the temporal gap: post-2020 epochs
+are extrapolated, and GHS 2025 is bit-identical to 2020 across all 115 Accra
+comparison cells (0 differing). For a recent Sentinel-2 composite the mismatch
+is irreducible with this product. So the fix here is dynamic epoch selection
+for pre-2020 comparisons and a projected/observed flag, not a route to a
+current-date reference.*
 
 ### C37 — `limitations` constructed before the query it describes [S/R]
 `exposure_sources.py:53` builds the limitations list; `:63` runs the GEE query. If
@@ -1395,6 +1437,17 @@ Labelled UNVERIFIED in the constant, the docstring, and a runtime print at
 behaviour confirmed; no pixel-level agreement comparison exists
 (`agreement_status: "not_yet_compared"`); licence and resolution not re-checked.
 The finding is that the blanket label overstates what is outstanding.*
+
+*Update (commit `5331f0a`, GHS-BUILT-S audit): resolution is now confirmed —
+100 m Mollweide, `crs_transform [100,0,-18041000,0,-100,9000000]`, and
+`built_surface` is a per-cell area in m² (fraction = `built_surface/10000`),
+matching the existing `GHSL_RESOLUTION_M = 100`. All twelve epochs resolve. A
+pixel-level agreement comparison against VHR impervious labels now exists
+(Nairobi, 567 cells: r 0.921, R² 0.394, MAE 0.178, bias −0.171 — right ranking,
+systematic ~17-point under-call, worse in informal fabric). What the audit did
+not do: re-check the licence, or compare GHS against the unmixing output
+specifically. The residual is that `configs/exposure_constants.py:58`, its
+docstring, and the `pipeline.py:704` runtime print still say `UNVERIFIED`.*
 
 ---
 

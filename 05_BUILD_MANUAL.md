@@ -114,17 +114,24 @@ into a real number for one city.
 *Seven decisions. All settled. Twelve technical items were blocked behind
 these; none of this was typing.*
 
-### 11. Fraction taxonomy ✅ **SETTLED — AMENDED 2026-09-23 (inversion signed off)**
+### 11. Fraction taxonomy ✅ **SETTLED — AMENDED 2026-09-23, signed off**
 
-> **The five fractions stand. Which are measured and which are derived has
-> inverted.** `impervious_total` is now measured spectrally (ceiling 0.822),
-> `built` comes from vector footprints, and `paved = impervious_total − built`
-> is derived and carried with explicit uncertainty. The original formulation —
-> measure `built` and `paved`, derive `impervious_total = built + paved` — is
-> superseded, because changing only the `built` endmember between two
-> defensible choices moved `impervious_total` by +81.6% (Dharavi), −27.1%
-> (Khayelitsha), +16.2% (CT formal): compounding, with inconsistent sign.
-> Evidence: `06_UNMIXING_CEILING.md`, `07_ITEM_21.md`. Spec: `02_ARCHITECTURE.md` §3.
+> **Amendment adopted 2026-09-23.** The governing principle below — *measure
+> disjoint things, derive overlapping ones* — survives the item 21 pilot
+> unchanged and is if anything vindicated by it. What the evidence contradicts is
+> **which** quantities are measured and which derived: this decision measures
+> `built` and `paved` and derives `impervious_total`, but `built` vs `paved` is
+> separated by only **1.70°** of spectral angle against a ~0.7° noise floor and
+> is therefore unidentifiable, while `impervious_total` is recoverable
+> (ceiling R² 0.822 vs 0.490). The proposal is to measure `impervious_total`,
+> take `built` from vector footprints directly, and derive `paved` — same
+> principle, reversed assignment. See item 21 and `06_UNMIXING_CEILING.md`.
+>
+> The note below that "`built` vs. `paved` is the weakest boundary of the five"
+> was directionally right and understated: it is not weak, it is unidentifiable.
+> **SIGNED OFF 2026-09-23.** The amendment described above is adopted; this
+> decision is settled again as amended. `02_ARCHITECTURE.md` is corrected to
+> match.
 Fractions (disjoint, sum to ~1):
 built — roofed structure
 paved — hard surface, unroofed
@@ -200,15 +207,29 @@ engineering, not a research problem.
 
 ---
 
-### 13. Global endmember strategy ✅ **SETTLED — Option D, AMENDED 2026-09-23**
+### 13. Global endmember strategy ✅ **SETTLED — Option D, AMENDED 2026-09-23 (signed off)**
 
-> **One impervious endmember, not a `built`/`paved` pair.** The pair is not
-> separable at 10 m: spectral angle 1.66° for a realistic informal `built`
-> candidate. The institutional candidate reaches 4.69° but manufactures a
-> separability that does not physically exist. `built` is no longer extracted
-> spectrally at all — it is footprint-derived. **Item 21's ceiling result is
-> signed off**, so this is settled spec rather than an unsigned investigation
-> premise. Spec: `02_ARCHITECTURE.md` §5.1.
+> **The pilot this decision required has run, and it falsified the decision's
+> central assumption.** Both risks this decision left explicitly open (below)
+> have now fired. `built` and `paved` are separated by **1.70°** of spectral
+> angle against a ~0.7° sensor noise floor, so the constrained extraction cannot
+> produce a usable `built` endmember for informal fabric by any method — three
+> extraction families were tried and failed, and the failure was then shown to
+> be an information limit rather than a method problem.
+>
+> Worse than a null result: the institutional-roof endmember this spec would
+> actually produce sits **4.69°** from `paved`, versus **1.66°** for a realistic
+> informal-roof endmember. **Following this spec manufactures separability that
+> does not physically exist**, yielding a confident-looking split that is an
+> artifact.
+>
+> The text below is preserved for provenance. Evidence:
+> `06_UNMIXING_CEILING.md`, `07_ITEM_21.md`.
+>
+> **RE-SETTLED 2026-09-23 as amended:** one `impervious_total` endmember rather
+> than a `built`/`paved` pair; `built` from vector footprints, not unmixed at
+> all; `paved` derived by difference with explicit uncertainty. The re-scope is
+> adopted, not merely proposed, and `unmixing-ceiling-investigation` is merged.
 
 **The split:**
 
@@ -287,12 +308,78 @@ validate the method before scaling it.
 
 ---
 
-### 14. `category_area_pct` denominator ✅ **SETTLED — CONFIRMED 2026-09-23**
+### 14. `category_area_pct` denominator ✅ **SETTLED — reasoning intact; amendment SIGNED OFF 2026-09-23**
 
-> **Unchanged by the inversion, with one addition:** `paved`'s derivation
-> uncertainty is a *fourth* separately-reported quantity. It is a
-> derived-quantity uncertainty, not an observability one, and must never be
-> folded into "unknown" alongside shadow / cloud-nodata / low-confidence.
+> **Amendment adopted 2026-09-23.** The core of this decision — known-pixel
+> denominator, mandatory `observed_fraction` sibling, and above all the rule
+> that distinct causes are never merged — survives the item 21 pilot untouched,
+> and the anti-merging rule is *strengthened* by it. What breaks is narrower:
+> **two of the three named components delegate to mechanisms that no longer
+> exist**, because Decision 13 is reopened. Four changes follow, and all four are
+> **signed off**. Evidence: `06_UNMIXING_CEILING.md`.
+>
+> A fifth, added at sign-off: **`paved`'s derivation uncertainty is its own
+> reported quantity.** It belongs in the *estimate quality* group of (c), never
+> in the observability group — a derived value is not an unobserved one.
+>
+> **(a) Shadow's mechanism is orphaned.** This decision delegates shadow to
+> Decision 13 — *"solved as a sixth endmember term; five fractions renormalize
+> over the illuminated portion."* Under the item 21 re-scope there is no
+> unmixing solve and therefore no sixth term, so the field has no producer and
+> "illuminated portion" has no definition. A standalone shadow estimator is
+> needed (SCL class 3 plus solar geometry is the obvious candidate). Note also
+> that shadow is shakier than this decision assumes: the B-decomposition test
+> asked directly whether a dark spectrum was material or material-plus-shadow
+> and returned **indeterminate at 6.5–9.7% residual** across three independent
+> shadow references. Whatever produces this field should carry that caveat.
+>
+> **(b) "Low unmixing confidence" needs redefinition — and improves.** It is
+> currently specified as *"pixels where the solve is poorly constrained against
+> the endmember model."* With no solve and no endmember model, the field has no
+> definition at all. Under regression it becomes a genuine **prediction
+> interval** (quantile regression or ensemble spread), which is better founded
+> than a residual against a simplex. Rename accordingly; the concept survives
+> and strengthens.
+>
+> **(c) The taxonomy should split into two groups, along an axis already latent
+> in it.** This decision is fundamentally about **the denominator**: what counts
+> as observed. Shadow and cloud/nodata *remove a pixel from the denominator* —
+> that is what makes them observability. Estimate quality does not: such a pixel
+> was validly observed, stays in the denominator, and merely carries wide
+> uncertainty. The seam already exists here — the third field explicitly says it
+> is *"not folded into either the fractions or the coverage number"*, i.e. it is
+> already an estimate-quality field listed among two denominator-defining ones.
+>
+> | group | fields | touches the denominator? |
+> |---|---|---|
+> | **Observability** | shadow, cloud/nodata → feed `observed_fraction` | **yes — these define it** |
+> | **Estimate quality** | per-fraction confidence / prediction interval | **no — never** |
+>
+> Keeping them in one list invites a consumer to subtract ambiguity from
+> coverage, shrinking the denominator and reintroducing **exactly the C19 bias
+> direction** (less observed area silently reading as less flood-prone). That is
+> this decision's own founding failure, recreated one level up.
+>
+> **(d) The impervious/bare finding enters as a confidence marker on
+> `impervious_total` — NOT as a member of the observability list.** Measured
+> directly rather than inferred: ceiling R² **0.822** at documented S2 noise,
+> and **0.737** even in a bare-dominated arid scene. That is the **weakest
+> remaining boundary, recoverable**, and it inherits Decision 11's treatment of
+> the weakest boundary — its own confidence marker, never presented at the same
+> confidence as vegetation or water. It is explicitly **not** the
+> "unidentifiable in principle" case; that claim is earned only by `built`/
+> `paved` at 0.490. One conditional caveat carries with it: at 2× noise the arid
+> scene falls to 0.477, so the recoverability is contingent on radiometric
+> quality. Because regression emits prediction intervals natively, and those
+> widen precisely where impervious/bare ambiguity bites, this likely needs **no
+> new field at all** — the interval on `impervious_total` encodes it.
+>
+> **Downstream, flagged but deliberately NOT yet edited:** item 33's acceptance
+> criterion reads *"the three non-observation components are independently
+> readable"*, and the Part 6 header note at §"Part 6" describes the same
+> three-field contract. If (c) is accepted, both need rewording to the
+> two-group structure. **Left for a separate pass once this decision's wording
+> is confirmed.**
 
 **Chosen: known-pixel denominator. Observability reported as a mandatory
 companion field. Non-observation reported as three separate fields, never
@@ -423,10 +510,10 @@ decision's text.
 
 | # | Decision | Outcome |
 |---|---|---|
-| 11 | Fraction taxonomy | Five disjoint fractions; `impervious_total` derived; scope boundary stated |
+| 11 | Fraction taxonomy | Five disjoint fractions; `impervious_total` derived; scope boundary stated. ⚠️ *Amendment proposed: measure `impervious_total`, derive `paved` — principle intact, assignment reversed* |
 | 12 | SAM | Deleted; connected-components on fraction rasters deferred, named, unbuilt |
-| 13 | Endmembers | Option D constrained; corrected `paved` source; shadow as 6th term, renormalized |
-| 14 | Denominator | Known-pixel; mandatory coverage field; shadow/cloud/low-confidence reported separately |
+| 13 | Endmembers | Option D constrained; corrected `paved` source; shadow as 6th term, renormalized. ⚠️ **REOPENED — pilot falsified the central assumption; `built`/`paved` unidentifiable at 1.70°** |
+| 14 | Denominator | Known-pixel; mandatory coverage field; shadow/cloud/low-confidence reported separately. ⚠️ *Amendment proposed: shadow mechanism re-pointed, low-confidence → prediction interval, taxonomy split into observability vs estimate-quality* |
 | 15 | Severity rule | Strong bar (confirmed unreachable/no consumer only); severity ≠ fix priority |
 | 16 | Planning user | Research audience |
 | 17 | Gate C | Closed via advisor review against D.7; planner protocol filed as unrun future work |
@@ -517,7 +604,87 @@ Khayelitsha's 8.35 km/km².
 low-coverage AOI is visibly flagged end-to-end through to the UI; Lagos (0.19)
 and Khayelitsha (8.35) produce visibly different scores.
 
-### 21. Spectral unmixing → fractions 🔓 *(needs 11 ✅ and 13 ✅ — both settled)*
+### 21. Spectral unmixing → fractions ⚠️ **PILOT COMPLETE — RE-SCOPE PROPOSED, AWAITING DECISION**
+
+> **The sequencing requirement below was honoured, and the pilot returned a
+> negative result.** This item as originally specified is not buildable. The
+> original text is preserved below the rule for provenance; the re-scope
+> proposed above it has **not** been signed off and this item is not settled.
+> Full evidence: `06_UNMIXING_CEILING.md`.
+
+#### What the pilot established
+
+Seven pre-registered methods failed to recover per-pixel `built` fraction for
+small-structure informal fabric. Measured pairwise spectral angles put every
+hard surface — institutional roof, informal roof, asphalt, bare soil — inside a
+cone **under 5° wide**, against a Sentinel-2 L2A noise floor of ~0.7°.
+`built` vs `paved` is **1.70°**.
+
+Simulating from those measured endmembers under conditions strictly *more
+favourable* than reality (exact labels, linear mixing, fixed endmembers, no
+shadow, no cross-city transfer), the best achievable R² for `built` fraction is
+**0.49–0.56** — against a success bar of 0.50. Observed real values were
+0.35–0.41 within-AOI and 0.08–0.18 cross-city.
+
+**This is an information limit, not a method-selection problem.** No unmixing
+solver, endmember library or feature set can exceed it.
+
+#### Proposed re-scope
+
+**1. Retire the `built`/`paved` split as a measured product.** State it as a
+non-goal with the ceiling as its justification. Decision 11 already calls this
+"the weakest boundary of the five"; the measurement shows it is not weak but
+*unidentifiable*.
+
+**2. Invert where each quantity is estimated.** Decision 11 measures `built`
+and `paved` and derives `impervious_total`. The evidence says reverse it, while
+keeping Decision 11's governing principle — *measure disjoint things, derive
+overlapping ones* — fully intact:
+
+| Fraction | Source | Ceiling R² |
+|---|---|---|
+| **built** | **vector footprints, directly** | n/a — not estimated from spectra |
+| **impervious_total** | spectral regression | 0.822 |
+| **paved** | derived: `impervious_total − built`, with explicit uncertainty | — |
+| **vegetation** | spectral regression | 0.974 |
+| **water** | spectral regression | 0.965 |
+| **bare** | residual | — |
+
+The first row is the substantive move. Open Buildings coverage **is** a `built`
+estimate — VHR-derived, Sentinel-2-independent, and it served as the regression
+*label* throughout the pilot. Predicting it from spectra re-derives, badly, what
+the vector layer already supplies well.
+
+**3. Revised acceptance.** Fractions produced for at least one formal and one
+informal AOI; sum to ~1 within tolerance over the observed portion; documented
+**provenance per fraction** (training-data provenance where regression replaces
+an endmember); per-fraction confidence with **`paved` explicitly marked derived,
+never measured**; and `impervious_total` validated against a held-out AOI rather
+than against a same-AOI split.
+
+**4. Blocking gap, stated plainly.** The 0.822 `impervious_total` ceiling is
+*simulated, not achieved*. Testing it needs a real impervious label, and the
+only available paved source — unroofed OSM polygons — covers **0.23–1.82%** of
+the pilot AOIs against a built mean of 19–30%. **This item cannot be closed
+until that label exists.** It is a data-sourcing problem (VHR-derived or
+hand-annotated paved labels on a sample), not a method problem.
+
+#### What this costs downstream
+
+- **Flood risk** — unaffected. Its stated input is `impervious_total` plus
+  vector conduits (§6 outputs table; item 26).
+- **Morphological characterisation** — unaffected. Item 23 separates formal from
+  informal *without any spectral input*.
+- **Change over time** — improved. A stable estimator of a recoverable quantity
+  yields more defensible deltas than an unstable estimator of an unrecoverable
+  one.
+- **Roofing material per building** — was never deliverable from this data.
+  Should be stated out of scope explicitly.
+
+---
+
+*Original specification, preserved for provenance. Superseded by the pilot
+result above.*
 
 **What:** linear unmixing per 10 m pixel into the five fractions, per Decision
 13's constrained-extraction spec in full.
