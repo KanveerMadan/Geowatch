@@ -244,16 +244,17 @@ run_fold_verbose = run_fold
 
 
 def main() -> int:
+    global TARGET_STEPS
     ap = argparse.ArgumentParser()
     ap.add_argument("--fractions", default="0.25,0.5,0.75,1.0")
     ap.add_argument("--seeds", default="1337,7,2024")
-    ap.add_argument("--steps", type=int, default=TARGET_STEPS,
+    ap.add_argument("--steps", type=int, default=None,
                     help="equal optimizer steps at every point (see BUDGET note)")
     args = ap.parse_args()
     fractions = [float(x) for x in args.fractions.split(",")]
     seeds = [int(x) for x in args.seeds.split(",")]
-    global TARGET_STEPS
-    TARGET_STEPS = args.steps
+    if args.steps is not None:
+        TARGET_STEPS = args.steps
 
     device = pick_device()
     OUTDIR.mkdir(parents=True, exist_ok=True)

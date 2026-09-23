@@ -1,6 +1,6 @@
 # GeoWatch — Current State
 
-**Where the project actually is, across all branches, as of 2026-09-13.**
+**Where the project actually is, across all branches, as of 2026-09-18.**
 
 This document exists because the same facts kept being rediscovered. The branch
 layout, the reason the pipeline is offline, and the state of the classifier
@@ -24,6 +24,7 @@ anything. Where a finding or a decision is unsigned, it says so.
 | `06_UNMIXING_CEILING.md` | The item 21 investigation in full. **Lives on `unmixing-ceiling-investigation`, not on `master`.** |
 | `07_ITEM_21.md` | Item 21's standing summary — the ceiling result and what it does and does not license. |
 | `08_STATE.md` | This document. Where everything is right now. |
+| `09_TAXONOMY_MIGRATION_PLAN.md` | The 4-class migration and annotation plan. **Phase 1 is closed by the gate — see §Gate result below before reading §4.** |
 | `CONTRIBUTING.md` | Branch, commit and push discipline. |
 
 **Start here if you are new:** 01 → 02 → this document → 04. The build manual
@@ -127,7 +128,20 @@ Earlier notes describing this as live breakage are stale — the API perimeter
 
 ### New, under NEEDS FATE
 
-Both were filed on `band-mapping-verification` and are untriaged.
+Filed on `band-mapping-verification` and untriaged. **C43 is no longer here —
+it was investigated to completion and moved to CLOSED (see §Gate result and
+§The patch-construction investigation below). C45 replaced it.**
+
+**C45 — the OSM patch builders overwrite human labels with their own class.**
+[E] `osm_generated` paints `paved_road` over 7,715 px the annotator called
+`dense_informal_roofing` (60.2% of its overwrites); `osm_generated_water`
+paints `standing_water` over 32,553 px the annotator called `dense_vegetation`
+(92.3% of its overwrites, 4× more than it agrees). 369 of 1,414 patches come
+from these builders; 63 patches / 48,101 px carry a real conflict. **Four
+correction arms were built and none improved mIoU**, but a builder that
+silently overwrites ground truth is a defect regardless — it corrupts what
+every future experiment reads. Fixing it costs `paved_road` and
+`standing_water` supervision, so it is not free.
 
 **C41 — the classifier is RGB-only, on tile-relative values.** [E]
 `SENTINEL2_RGB_MOCO`, `in_chans=3`, `bands=['B4','B3','B2']`. NIR, SWIR1 and
@@ -229,6 +243,99 @@ Two failures are diagnostic:
   many pixels a road traverses. If the notebook assumed full rasters that only
   exist here as crops, that is a **data-availability gap, not a porting bug**,
   and it may cap how exactly the set can ever reconstruct.
+
+---
+
+## Gate result — the annotation campaign is closed as originally scoped
+
+**The learning-curve gate returned on 2026-09-17: 132/132 folds, flat curve,
+STOP.** Full numbers in `04_FINDINGS_LEDGER.md` → **G1**.
+
+A 4× increase in data moved final-epoch LOCO mIoU by **+0.0075** against a
+pre-registered detection threshold of **±0.035**; measured slope **+0.0029 per
+doubling**, ~19× smaller than the +0.055 the plan's sizing assumed. All three
+statistics agree (final +0.0075, last5 +0.0048, best\* −0.0335). The harness
+is sound: the 100% `best_ON_TEST` point is **0.3118 ±0.0047** against the
+shipped checkpoint's **0.313**, an independent 11-fold reproduction from a
+rebuilt patch set. Per-class gains appear only in classes that were already
+easy, and **none of the per-class movements is significant** when paired by
+(city, seed).
+
+This is the "flattening" branch of `09_TAXONOMY_MIGRATION_PLAN.md` §3's own
+decision table. Per §3.2 that is the plan working, not failing. **Phase 1 as
+scoped there — annotate a large set the same way — does not proceed.**
+
+---
+
+## The patch-construction investigation — C43, closed
+
+The gate said the bottleneck is not data volume, which pointed at label
+*construction*. That was investigated to completion on 2026-09-17/18 and
+**C43 is now CLOSED**. Summary; full record in `04_FINDINGS_LEDGER.md`.
+
+**Verified structure.** 85.4% of training patches are single-class; **63.3% of
+all training pixels are IGNORE**; **0.14% of scored pixels sit on a
+class-to-class boundary**. 45% of patches are bbox-cropped from a median ~16 px
+and magnified (crop/64 spans 123×, 93.1% upsampled, aspect stretched up to
+36×), and **89.5% of those fall outside the ground-scale range inference ever
+produces** — 40.3% of the whole set. There is no scale augmentation to bridge it.
+
+**Four corrections built and measured, all negative** (paired LOCO, identical
+seed/order/weights, arms differ only in pixels):
+
+| arm | change | ΔmIoU | p |
+|---|---|---:|---:|
+| B | delete the bad OSM overwrites | −0.0096 | — |
+| C | restore the human labels | −0.0021 | — |
+| D | restore them at native scale | −0.0055 | — |
+| E | full native multi-class rebuild (85.4% → **47.7%** single-class) | **−0.1041** | **0.013** |
+
+Arms B–D are 3 cities × 1 seed at 1,600 steps; arm E is 3,200 steps, **5 of 8
+planned pairs completed** (seed 1337 × 4 cities, plus dharavi seed 7 — the run
+was stopped before the rest and `fix_probe3.py` will resume it). The arm E
+`val_base` result reproduces across both seeds on dharavi.
+
+Arm E is the important one: it *achieved* the construction fix and made things
+significantly worse, because removing magnification cost **31% of the
+supervised pixel budget** (2.13M → 1.47M px). Structure was bought by paying in
+volume, and volume won.
+
+**The decomposition that explains why.** Exact integral-image counts over every
+native 64×64 window position on all 11 canvases (633,571 usable windows):
+85.4% single-class splits into **≈21.9 pp construction artifact** (309 patches,
+recoverable by re-cropping — this is what arm E recovered, and it backfired)
+and **≈63.6 pp genuine annotation scarcity** (899 patches). Roughly **26%
+artifact, 74% real**. The binding limit is that **81.3% of the imaged area
+carries no label at all**, and the native-window pool is only **703 usable
+windows at stride 32 across all 11 tiles** — finer strides add overlap, not
+diversity.
+
+**Conclusion: every patch-construction-side fix available without new
+annotation has been tested and has failed or backfired.** The remaining lever
+is annotation *density*, not construction — which is the same resolution and
+taxonomy-ceiling argument `01_DIAGNOSIS.md` already makes, now with the
+alternative explanations measured and eliminated.
+
+**Per-tile ceiling, for anyone scoping targeted annotation** (multi-class rate
+over usable native 64×64 windows):
+
+| tile | labelled | multi-class ceiling |
+|---|---:|---:|
+| dharavi | 22.8% | 87.5% |
+| accra | 7.7% | 68.3% |
+| kigali | 9.6% | 63.1% |
+| dhaka | 7.3% | 50.4% |
+| lagos | 24.4% | 41.6% |
+| nairobi | 8.3% | 33.0% |
+| capetown | 20.2% | 31.0% |
+| **nusantara** | 7.1% | **29.4%** |
+| **jakarta** | 68.4% | **28.5%** |
+| **guatemala** | 5.1% | **22.8%** |
+| **hcmc** | 4.8% | **21.3%** |
+
+The four in bold are the lowest-ceiling tiles. jakarta is the instructive one:
+68.4% labelled but 90.8% of that is a single class, so coverage is not the
+lever — **class mixing is**.
 
 ---
 
@@ -362,37 +469,40 @@ wrong conclusion at least once.
 
 ## Immediate next action
 
-Ordered. Items 1 and 2 are the live thread; 3 and 4 are blocked on human
-decisions and do not move on their own.
+**The classifier thread has reached a decision point, not a next task.** The
+two work items that were live here (port the 5-builder notebook; run fidelity
+and comparison) are **done** — the rebuild reproduces (C42), the gate ran to
+132/132 folds, and C43 was investigated and closed. What remains is a human
+decision and three unrelated blockers.
 
-**1. Port the 5-builder `water_loco_with_diagnostics` notebook**
-(recoverable at `ecfe370`), not `_UPDATED`. It carries
-`build_osm_generated_patches`, `build_osm_generated_water_patches`, the
-separation loss, and the LOCO loop behind 0.313.
+**1. THE DECISION (human). Targeted annotation, or the architecture pivot?**
 
-> **Gate before any training.** Recompute class weights from the rebuilt patch
-> set using the notebook's own formula. **Pass** = the checkpoint weights above,
-> with a total near 1413. If either misses, report and stop — do not train on a
-> set that does not reconstruct.
+The data-volume axis is exhausted (G1) and the construction axis is exhausted
+(C43). Two options remain and they are not compatible in the near term:
+
+> **(a) Targeted new annotation on the four lowest-ceiling tiles** — hcmc,
+> guatemala, jakarta, nusantara. Not "more patches": *densely* annotated
+> multi-class fabric on tiles whose current ceiling is 21–29%, aimed at class
+> *mixing* rather than coverage. This is the only lever the measurements leave
+> open on the current architecture. It is untested — no gate has been run on
+> it, and G1 only rules out more of the *same kind* of data.
 >
-> Investigate the `paved_road` over-generation separately, per the stride/tile-
-> size suspicion above. If it lands on a data-availability gap, say so plainly.
+> **(b) Accept the resolution-limit diagnosis and pivot** to the vector /
+> temporal architecture, `05_BUILD_MANUAL.md` items 19–21. This is what
+> `01_DIAGNOSIS.md` argues for, and C43 + G1 strengthen it by eliminating the
+> two cheapest alternative explanations.
 
-**2. If the gate passes, two runs, in this order:**
-   1. **Fidelity run** — Arm A **with** the separation loss, one fold. This
-      exists only to validate the rebuild against 0.313.
-   2. **Comparison runs** — all four arms **without** the separation loss,
-      uniformly. It targets the exact paved/roofing pair the 6-band arms test,
-      so leaving it in would mask the effect. Separating the two runs means
-      fidelity and clean comparison do not have to trade against each other.
+**Neither is signed off. Do not start either without a human decision.** If (a)
+is chosen it should be gated the same way Phase 0 gated the original campaign —
+a small dense-annotation pilot on one tile, measured before the rest is funded.
 
-**3. Decide the CAAT threshold question** (human). The pipeline stays offline
-until then. Note that C11 makes both candidate threshold sets wrong, so the
-decision is between two known-wrong artifacts, not between right and wrong.
+**2. Decide the CAAT threshold question** (human). The pipeline stays offline
+until then. C11 makes both candidate threshold sets wrong, so the decision is
+between two known-wrong artifacts.
 
-**4. Triage the eight code-fixed findings and the five under NEEDS FATE**
-(human). C4, C10, C14, C20, C23, C24, C31, C32; plus C36, C37, C38, C41, C42.
+**3. Triage the code-fixed findings and those under NEEDS FATE** (human).
+C4, C10, C14, C20, C23, C24, C31, C32; plus C36, C37, C38, C41, C42, C44, C45.
 
 **Also open, unscheduled:** item 46 (remove `primary_tile`), the item 21
-sign-off that gates `unmixing-ceiling-investigation`, and the `loco.py`
-harness validation run.
+sign-off that gates `unmixing-ceiling-investigation`, merging
+`applicability-gating`, and the `loco.py` harness validation run.
