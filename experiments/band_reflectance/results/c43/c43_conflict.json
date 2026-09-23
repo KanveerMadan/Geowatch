@@ -1,0 +1,67 @@
+{
+ "deleted": {
+  "osm_generated_water": {
+   "dense_informal_roofing": 5750,
+   "sparse_informal_roofing": 1333,
+   "paved_road": 1931,
+   "standing_water": 2461,
+   "vegetation_clearing": 20,
+   "active_construction": 227,
+   "dense_vegetation": 29687
+  },
+  "osm_generated": {
+   "dense_informal_roofing": 32121,
+   "sparse_informal_roofing": 10667,
+   "paved_road": 1418,
+   "standing_water": 3678,
+   "vegetation_clearing": 3866,
+   "active_construction": 2764,
+   "dense_vegetation": 22029
+  },
+  "osm": {
+   "dense_informal_roofing": 21294,
+   "sparse_informal_roofing": 2675,
+   "paved_road": 5010,
+   "standing_water": 14186,
+   "vegetation_clearing": 3980,
+   "active_construction": 6868,
+   "dense_vegetation": 18673
+  }
+ },
+ "conflict": {
+  "osm_generated_water": {
+   "dense_informal_roofing": 1065,
+   "sparse_informal_roofing": 1570,
+   "paved_road": 9,
+   "vegetation_clearing": 0,
+   "active_construction": 79,
+   "dense_vegetation": 32553
+  },
+  "osm_generated": {
+   "dense_informal_roofing": 7715,
+   "sparse_informal_roofing": 1858,
+   "standing_water": 64,
+   "vegetation_clearing": 744,
+   "active_construction": 228,
+   "dense_vegetation": 2216
+  },
+  "osm": {
+   "dense_informal_roofing": 3257,
+   "sparse_informal_roofing": 827,
+   "standing_water": 3064,
+   "vegetation_clearing": 814,
+   "active_construction": 1244,
+   "dense_vegetation": 1299
+  }
+ },
+ "agree": {
+  "osm_generated_water": 3745,
+  "osm_generated": 29,
+  "osm": 4439
+ },
+ "n": {
+  "osm_generated_water": 95,
+  "osm_generated": 274,
+  "osm": 275
+ }
+}

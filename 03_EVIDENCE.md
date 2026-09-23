@@ -332,6 +332,82 @@ catch this class of problem before it propagates into the unmixing solve.
 
 ---
 
+### A.14 The classifier is RGB-only, on tile-relative values [E]
+
+Two measured facts about what the production classifier actually consumes. Both
+were established while verifying a *different* concern (a suspected 13-band →
+6-band `conv1` slice with wrong indices), which does not exist — there is no
+slicing code in the repository at all.
+
+**1. Three bands reach the model, not six.**
+
+`ingestion/resnet_model.py` loads `ResNet50_Weights.SENTINEL2_RGB_MOCO`:
+
+| property | value |
+|---|---|
+| `in_chans` | **3** |
+| `bands` | `['B4', 'B3', 'B2']` — Red, Green, Blue |
+| checkpoint | `resnet50_sentinel2_rgb_moco-2b57ba8b.pth` |
+| `conv1.weight`, fresh load | `(64, 3, 7, 7)` |
+| `conv1.weight`, **deployed** checkpoint | `(64, 3, 7, 7)` |
+
+NIR, SWIR1 and SWIR2 are exported into `raw.tif` and written to `.npy` by
+`generate_tiles()`, then **discarded before inference**: `run_inference()` reads
+the 8-bit RGB PNG produced by `generate_rgb_preview_tiles()`
+(`inference.py:390`). Band *order* is correct — `['B4','B3','B2']` matches the
+`[Red, Green, Blue]` stacking order — so nothing is transposed. The bands are
+simply not there.
+
+**2. The values are tile-relative, not absolute reflectance.**
+
+The checkpoint's own documented transform is `Normalize(mean=[0], std=[10000])`
+— Sentinel-2 DN ÷ 10,000, i.e. absolute surface reflectance. Measured, `raw.tif`
+is *already* float reflectance on exactly that scale. But the model consumes a
+**per-tile 2nd/98th percentile stretch** to uint8 ÷ 255 instead:
+
+| AOI | raw reflectance (mean) | value fed to model | inflation |
+|---|---:|---:|---:|
+| Dharavi | 0.089 | **0.212** | 2.4× |
+| Accra | 0.124 | **0.389** | 3.1× |
+| Jakarta | 0.187 | 0.204 | 1.1× |
+| Cape Town | 0.175 | 0.400 | 2.3× |
+
+Both land in [0, 1], so nothing errors. But the stretch is computed **per tile**,
+so the same physical surface produces different model input depending on what
+else shares its tile — and the distortion is city-dependent, from 1.1× to 3.1×
+across four AOIs.
+
+*Not a train/serve skew.* Training and inference apply the identical transform
+(`/255.0`, no mean/std — `inference.py:391` and the training notebook), which
+independently re-confirms **C5**'s refutation. The concern is pretraining
+transfer and **cross-city generalisation**, which is exactly what LOCO measures.
+
+**What this qualifies.**
+
+- **The 0.313 ± 0.056 LOCO baseline** is an RGB-only, tile-relative number. It
+  is not a measurement of what this architecture can do with Sentinel-2's full
+  6-band signal, and should not be quoted as one.
+- **Every prior conclusion about spectral separability *in the classifier*** is
+  bounded the same way — including the `paved_road` magnet-class behaviour
+  (§01_DIAGNOSIS §6) and the failure of the paved/roofing separation loss. Those
+  were observed in RGB.
+- **Item 21 measured a different space.** Its 1.70° built/paved spectral angle,
+  the ~0.7° noise floor, and the R² ceilings (built 0.490, `impervious_total`
+  0.822, impervious+bare 0.964) were all computed in **6-band** space. **The
+  classifier does not operate in that space.** Item 21's ceilings therefore
+  neither predict nor are predicted by classifier performance — they describe
+  the signal available to a 6-band solver, while the classifier sees three
+  bands after a tile-relative rescaling. Conflating the two would overstate what
+  either result says about the other.
+
+*Enforced going forward:* `assert_encoder_band_contract()` runs at every
+encoder construction and refuses a checkpoint whose band list, channel count or
+ordering stops matching what the pipeline supplies — so a move to the 13-band
+`SENTINEL2_ALL_MOCO` checkpoint must add a deliberate, verified channel
+selection rather than silently working.
+
+---
+
 ## PART B — OSM coverage baseline [E]
 
 Measured across all 11 training AOIs. Lengths clipped to AOI before measuring,
