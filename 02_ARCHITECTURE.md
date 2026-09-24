@@ -173,7 +173,7 @@ it.
 |---|---|---|
 | Sports fields, golf courses, parks, farmland | `vegetation` | OSM sub-type flag. Sports fields also get a **secondary, confidence-flagged synthetic-turf spectral check** |
 | Sand, salt flats, rock / bedrock / volcanic rock, dry lakebeds, dirt tracks / unpaved parking, landfills, quarries | `bare` | OSM or geographic-plausibility flag |
-| Docks | `built` | — |
+| ~~Docks~~ | ~~`built`~~ | ~~—~~ *Struck 2026-09-25.* Piers and quays are unroofed sealed decks: by the top-surface rule (`LABELLING_GUIDE.md` §4) they are `paved`, not `built`. Roofed dock buildings already arrive via footprints. `man_made=pier` / `man_made=quay` is kept as a **context flag only** — it touches no fraction |
 
 **Occlusion — never a fraction.** Cloud, shadow, transient snow, fire/smoke of
 all kinds, ships. All sit in Decision 14's **observability** group and remove

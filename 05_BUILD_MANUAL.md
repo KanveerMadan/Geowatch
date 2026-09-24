@@ -226,7 +226,7 @@ sports fields / golf courses / parks / farmland → `vegetation` with OSM sub-ty
 flags (sports fields also get a secondary, confidence-flagged synthetic-turf
 spectral check); sand, salt flats, rock / bedrock / volcanic rock, dry lakebeds,
 dirt tracks / unpaved parking, landfills, quarries → `bare` with OSM or
-geographic-plausibility flags; docks → `built`.
+geographic-plausibility flags; ~~docks → `built`~~ *(struck 2026-09-25: piers and quays are unroofed sealed decks, so by the labelling guide's top-surface rule they are `paved`; roofed dock buildings already arrive via footprints. `man_made=pier` / `man_made=quay` is kept as a context flag only)*.
 
 **Occlusion — no fraction:** cloud, shadow, transient snow, fire/smoke of all
 kinds, ships. Decision 14's observability group.
@@ -1143,11 +1143,62 @@ per-class agreement bars (guide §9).
 
 **Also in scope from the same session, recorded in `02_ARCHITECTURE.md` §3:**
 the metadata-flag foldings (sports fields / parks / farmland → `vegetation`;
-sand, rock, dry lakebeds, landfills, quarries etc. → `bare`; docks → `built`),
+sand, rock, dry lakebeds, landfills, quarries etc. → `bare`; ~~docks → `built`~~ *(struck 2026-09-25; see Decision 11)*),
 the extended occlusion list (Decision 14), the volcano and terrain context
 layers, the new datasets (including a second footprint source — Microsoft or
 OSM buildings — for `built` confidence), and the volcanic hazard module parked
 as a future sixth hazard module.
+
+#### Phase A — build rulings, decided 2026-09-25
+
+*Phase A is everything in this item that needs no training labels. It trains
+nothing and builds nothing past item 21 (validation-first mandate). These
+rulings were made when the Phase A build plan surfaced gaps in the specs above;
+they are recorded here so the code has a written source.*
+
+- **Grid.** Fractions and label fractions share the **native Sentinel-2 UTM
+  grid**. `export_image_local` gains optional `crs` / `crs_transform`; its
+  default EPSG:4326 path stays byte-identical.
+- **Full shadow.** The full/partial boundary is still open, so the full-shadow
+  producer exists as an interface with its criterion **UNSET**, and the field
+  is emitted as `status: "not_computed"` — never as 0. **SCL = 3 is NOT full
+  shadow**: it is cloud shadow only.
+- **Occlusion attribution in a composite.** Masking is per scene, one cause at
+  a time. A pixel is occluded when it has zero valid observations; it is
+  attributed to one cause only if every removal had that cause, otherwise to a
+  separate `occluded_multiple_causes` field. Per-cause shares of removed
+  *observations* are reported alongside.
+- **Occlusion producers.** Transient snow = SCL 11 excluding `snow_ice`
+  pixels. Fire = FIRMS active fire matched to scene dates. **Smoke and ships:
+  `status: "no_producer"`.**
+- **Negative `paved`.** Clamped to 0, **flagged**, with the unclamped value and
+  the resulting sum excess emitted beside it.
+- **Remainder split.** The (placeholder) impervious regressor predicts
+  `impervious_total` as a **share of the hard-surface remainder**. All
+  over-subscription (non-hard producers summing above 1, `built` above the
+  remainder) is **flagged, never rescaled**.
+- **Detector fractions and precedence — a Phase A simplification, to be
+  revisited after each detector's own validation case.** A detected pixel has
+  fraction 1.0. Detectors (`snow_ice`, `solar`, `mixed_water_vegetation`)
+  override the vegetation and water regressors on the same pixel; a
+  `mixed_water_vegetation` pixel is not also counted as vegetation or water.
+- **Thresholds.** Every threshold is either cited or measured, lives in
+  config, and is marked UNVALIDATED; an uncited one is **UNSET** and its
+  detector emits `status: "not_computed"`. In any run other than the Dharavi
+  smoke test, a remainder with a `not_computed` input is itself
+  `not_computed`. Placeholder substitution for a `not_computed` detector is
+  allowed **only** in the smoke test, marked `provenance: "placeholder"`.
+- **`built`.** Open Buildings v3, `confidence ≥ 0.7`, only. The second source
+  is **Microsoft Global ML Building Footprints (sat-io)**, used only for the
+  disagreement signal: both coverage totals, per-pixel fraction MAE, and 10 m
+  IoU are emitted, and **none is named the confidence score** until the
+  hand-digitised check calibrates one.
+- **Docks.** The "docks → `built`" folding is struck (Decision 11, 2026-09-25).
+  `man_made=pier` / `quay` is a context flag only.
+- **Fabric strata** for tile sampling come from a **hand-drawn GeoJSON per
+  site**; nothing derives them (morphology is item 23, past the mandate).
+
+**Phase A progress** *(one line per part as it lands)*:
 
 ---
 
