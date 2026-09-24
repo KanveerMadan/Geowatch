@@ -1,6 +1,8 @@
 # GeoWatch — Current State
 
 **Where the project actually is, across all branches, as of 2026-09-23.**
+*(§"Decisions recorded 2026-09-24" added 2026-09-24; the rest of this document
+has not been re-audited since 2026-09-23.)*
 
 This document exists because the same facts kept being rediscovered. The branch
 layout, the reason the pipeline is offline, and the state of the classifier
@@ -452,8 +454,10 @@ unblocked today.
 More than one discussion has drifted past these. They are limits of what this
 architecture claims, not open problems.
 
-1. **The five fractions answer land-cover proportion and imperviousness — and
-   nothing else.** Not land-use, not vegetation type, not building condition,
+1. **The ~~five~~ eight fractions answer land-cover proportion and
+   imperviousness — and nothing else.** *(Eight since 2026-09-24; the new
+   context layers — volcano, terrain, OSM sub-type flags — are context, not
+   land-use.)* Not land-use, not vegetation type, not building condition,
    not anything demographic or administrative. A full urban planning tool needs
    those as separate layers on top. **This is the physical land-cover layer of
    such a system, not the system.**
@@ -501,6 +505,32 @@ wrong conclusion at least once.
    fate is a human call.
 8. **One commit per build-manual item, item number in the subject** — see
    `CONTRIBUTING.md`.
+
+---
+
+## Decisions recorded 2026-09-24 — taxonomy expansion and regressor training
+
+Made in a planning session and, until this entry, written down nowhere. Full
+text: `02_ARCHITECTURE.md` §3 "The taxonomy expansion"; `05_BUILD_MANUAL.md`
+Decision 11 (second amendment), Decision 14 (2026-09-24 extension), item 21
+("Recorded 2026-09-24"). This is a pointer, not a restatement.
+
+| What | Decided |
+|---|---|
+| **Taxonomy** | Eight disjoint fractions on the known-pixel denominator: built, paved, vegetation, water, bare + **snow_ice** (permanent only), **solar**, **mixed_water_vegetation** |
+| **`impervious_total`** | Still `built + paved`. **Solar inclusion DEFERRED** until solar prevalence is measured in validation data |
+| **Hard-surface remainder** | Now also subtracts snow_ice, solar, mixed_water_vegetation (besides vegetation, water, shadow) |
+| **Folded, flags only** | Sports fields/golf/parks/farmland → vegetation; sand/salt flats/rock/dry lakebeds/dirt tracks/landfills/quarries → bare; docks → built |
+| **Occlusion** | Cloud, shadow, transient snow, fire/smoke, ships — no fraction |
+| **Context layers** | Volcano (Smithsonian GVP + Copernicus DEM), terrain distribution per AOI. Named mountain ranges not built |
+| **New datasets** | Global Mangrove Watch, GLWD, Smithsonian GVP, second footprint source (Microsoft or OSM), regional geology, expanded OSM landuse |
+| **Regressor training** | Hand-labelled core at Delhi, Lima, Cape Town, Jakarta (Cairo optional), weighted to bare ground; GISA/GAIA weak labels only if LOCO shows gain; **no training in Lagos, Nairobi, Rio**; LOCO before any validation contact; label count set by when LOCO stops improving |
+| **Validation additions** | Shadow accuracy in the Makoko/Kibera/Rocinha hand-digitisation pass; own validation case each for snow_ice, solar, mixed_water_vegetation against independent references |
+| **Volcanic hazard module** | Parked — future sixth hazard module, unspecified |
+
+**Status:** these are recorded decisions. **Nothing is built.** No code,
+dataset ingestion, or labelling for any of the above exists yet. Per working
+rule 6, no build-manual status was flipped by recording them.
 
 ---
 

@@ -51,7 +51,15 @@ the old architecture was least equipped to deliver.
 
 ---
 
-## 3. The fraction taxonomy (Decision 11 — SETTLED; amendment proposed)
+## 3. The fraction taxonomy (Decision 11 — SETTLED; amended 2026-09-23 and 2026-09-24)
+
+> **AMENDED 2026-09-24 — five fractions become eight.** A planning session
+> decided three new fractions (`snow_ice`, `solar`, `mixed_water_vegetation`),
+> an explicit occlusion list, a set of per-pixel feature/context layers that
+> are *not* fractions, and a list of surface types folded into existing
+> fractions as metadata flags. The full record is §"The taxonomy expansion"
+> below; `05_BUILD_MANUAL.md` Decision 11 and item 21 carry the same. Where
+> this section still says "five", read it as the pre-2026-09-24 taxonomy.
 
 *The governing principle below — measure disjoint things, derive overlapping
 ones — is settled and, per the item 21 pilot, vindicated. What the pilot
@@ -61,9 +69,11 @@ and deriving `paved`. Same principle, reversed assignment. Proposed, not
 settled — see `05_BUILD_MANUAL.md` Decision 11 and item 21, and
 `06_UNMIXING_CEILING.md` §4.3.*
 
-### The five fractions
+### ~~The five fractions~~ The eight fractions *(amended 2026-09-24)*
 
-Disjoint. Sum to approximately 1 per unit area.
+Disjoint. Sum to approximately 1 per unit area **on the known-pixel
+denominator** (Decision 14). The first five rows are the original taxonomy; the
+last three are new — see §"The taxonomy expansion" below.
 
 | Fraction | Definition |
 |---|---|
@@ -71,7 +81,73 @@ Disjoint. Sum to approximately 1 per unit area.
 | **paved** | Hard surface, unroofed — paving, hardstanding, courtyard, compacted yard. **Derived: `impervious_total − built`**, carried with explicit uncertainty |
 | **vegetation** | |
 | **water** | |
-| **bare** | Permeable unpaved ground, exposed soil |
+| **bare** | Permeable unpaved ground, exposed soil. The residual |
+| **snow_ice** *(new)* | **Permanent** snow and ice only — spectral signature *plus* low temporal variance. Transient snow is occlusion, like cloud |
+| **solar** *(new)* | Solar panels / arrays, as their own fraction |
+| **mixed_water_vegetation** *(new)* | Wetlands, mangroves, mudflats / tidal zones, water hyacinth. Sub-typed from datasets; feeds the flood model as its own hydrological input, weighted by sub-type |
+
+### The taxonomy expansion (DECIDED 2026-09-24)
+
+Recorded from a planning session; not previously written down anywhere.
+
+**Three new fractions.**
+
+- **`snow_ice`** — permanent only. Identified spectrally *and* by low temporal
+  variance (§5.2). Seasonal or transient snow does not get a fraction; it is
+  occlusion (below).
+- **`solar`** — its own fraction. **Whether `solar` enters `impervious_total`
+  is DEFERRED** until real-world solar prevalence is measured in the
+  validation data. Until then `impervious_total = built + paved`, unchanged.
+- **`mixed_water_vegetation`** — wetlands, mangroves, mudflats/tidal zones,
+  water hyacinth. Sub-typed using Global Mangrove Watch and the Global Lakes
+  and Wetlands Database. Enters the flood model (item 26) as **its own
+  hydrological input, weighted by sub-type** — not folded into `water` or
+  `vegetation`.
+
+**The hard-surface remainder.** The impervious/bare regressor (item 21) splits
+whatever is left after the non-hard fractions and shadow are taken out:
+
+    hard_surface_remainder = 1 − (vegetation + water + snow_ice + solar
+                                  + mixed_water_vegetation + shadow)
+    impervious_total, bare  = regressor split of hard_surface_remainder
+    built                   = vector footprints
+    paved                   = impervious_total − built
+
+Before this amendment the remainder subtracted only vegetation, water and
+shadow. **It must now also subtract `snow_ice`, `solar` and
+`mixed_water_vegetation`**, or those surfaces leak into `impervious_total` or
+`bare`.
+
+**Folded into existing fractions as metadata flags — no new fraction.**
+
+| Surface | Fraction | Flag |
+|---|---|---|
+| Sports fields, golf courses, parks, farmland | `vegetation` | OSM sub-type flag. Sports fields also get a **secondary, confidence-flagged synthetic-turf spectral check** |
+| Sand, salt flats, rock / bedrock / volcanic rock, dry lakebeds, dirt tracks / unpaved parking, landfills, quarries | `bare` | OSM or geographic-plausibility flag |
+| Docks | `built` | — |
+
+**Occlusion — never a fraction.** Cloud, shadow, transient snow, fire/smoke of
+all kinds, ships. All sit in Decision 14's **observability** group and remove
+the pixel from the denominator.
+
+**Feature / context layers — not fractions.** Per-pixel, and one AOI can carry
+many flags at once.
+
+- **Volcano** — named identification by matching the Smithsonian Global
+  Volcanism Program. **No confidence flag on a database match.** Copernicus
+  DEM is secondary shape confirmation. The surface underneath is still counted
+  in its real fraction; the volcano flag never replaces it.
+- **Terrain** — flat / hilly / mountainous from Copernicus DEM slope and
+  elevation, per pixel, reported **as a distribution per AOI**.
+- **Named mountain ranges** — not built. Possibly a cosmetic label later.
+
+**New datasets:** Global Mangrove Watch; Global Lakes and Wetlands Database;
+Smithsonian GVP; a **second building-footprint source** (Microsoft or OSM
+buildings) to give `built` a confidence; regional geological data where
+available; expanded OSM `landuse` tags.
+
+**Volcanic hazard module:** parked as a future sixth hazard module. Not
+specified.
 
 ### The measured quantity, and the derived one (INVERTED — signed off 2026-09-23)
 
@@ -274,8 +350,9 @@ the fraction is over-calling `built`. Either way you know, and you know *where*.
 Contrast with the old architecture: nothing could reveal that `paved_road` was
 2.4× over-predicted until a bespoke analysis was run months later.
 
-**Known scope boundary, stated explicitly:** these five fractions answer
-land-cover proportion and imperviousness. They do not answer land-use,
+**Known scope boundary, stated explicitly:** these ~~five~~ eight fractions
+answer land-cover proportion and imperviousness. The 2026-09-24 metadata flags
+(OSM sub-types, volcano, terrain) add *context*, not land-use classification. They do not answer land-use,
 vegetation type, building condition, or anything demographic/administrative.
 A "full" urban planning tool would need those as separate data layers (census,
 cadastral, infrastructure records) on top of this one. This architecture is the
@@ -504,7 +581,8 @@ screening-scale answers, not a limitation that went unsolved.
 | Access / service indicators | Vector network analysis | Degrades with OSM coverage — score emitted |
 | Morphological characterization (formal / informal) | Vector footprint + network statistics | Degrades with OSM coverage — score emitted |
 | Change over time | Fraction deltas across composites | Yes — the strongest capability |
-| Flood risk | `impervious_total` + vector conduits | Yes |
+| Flood risk | `impervious_total` + vector conduits + `mixed_water_vegetation` (own hydrological input, weighted by sub-type — added 2026-09-24) | Yes |
+| Context layers *(added 2026-09-24)* | Volcano (Smithsonian GVP + Copernicus DEM), terrain distribution (DEM slope + elevation), OSM sub-type flags | Yes — per-pixel flags, not fractions |
 | **Coverage / reliability score** | Per-area, mandatory | Yes — keeps all of the above honest |
 
 ---
@@ -524,6 +602,11 @@ amendments proposed by the item 21 pilot; all three were SIGNED OFF on
   is measured, `built` is footprint-derived, and `paved` is the difference.
   §3 above. The original "measure `built` and `paved`, derive
   `impervious_total`" formulation is superseded.
+  **AMENDED AGAIN 2026-09-24 (planning session):** ~~the five fractions
+  stand~~ eight fractions — `snow_ice` (permanent only), `solar` and
+  `mixed_water_vegetation` added; the hard-surface remainder subtracts them;
+  whether `solar` joins `impervious_total` is deferred. §3 "The taxonomy
+  expansion".
 - **Decision 12 — Does SAM survive?** Settled: deleted. Nothing in §6's
   outputs table consumes a segment. The one genuine gap found under
   stress-testing — object-level tracking of non-building features, e.g. water
@@ -549,6 +632,9 @@ amendments proposed by the item 21 pilot; all three were SIGNED OFF on
   observability one.
   The four field-spec changes that followed from the Decision 13 reopen are
   signed off with it.
+  **Extended 2026-09-24:** the observability (occlusion) group is now cloud,
+  shadow, transient snow, fire/smoke of all kinds, and ships. None is a
+  fraction; all remove the pixel from the denominator.
 - **Decision 15 — Severity re-rating rule.** Settled: downgrade only on
   confirmed unreachability or confirmed absence of a consumer, never on
   "never observed to fire" alone. Severity and fix priority are separate
@@ -612,7 +698,10 @@ field specs) — see `05_BUILD_MANUAL.md` Part 6's translation note.
   rests on network geometry, so it degrades exactly where OSM is thin — which is
   disproportionately in informal settlements.
 - **Land-use, vegetation type, building condition, and demographic/
-  administrative questions are out of scope entirely.** The five fractions
-  answer land-cover proportion and imperviousness only. A "full" urban
+  administrative questions are out of scope entirely.** The ~~five~~ eight
+  fractions answer land-cover proportion and imperviousness only. A "full" urban
   planning tool needs these as additional, separate data layers on top of
   this one — see §3's scope boundary.
+- **Volcanic hazard is not assessed.** Volcanoes are identified as a context
+  layer (§3); a volcanic hazard module is parked as a future sixth hazard
+  module and is not specified.

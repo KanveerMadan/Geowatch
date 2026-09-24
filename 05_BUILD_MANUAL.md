@@ -132,15 +132,78 @@ these; none of this was typing.*
 > **SIGNED OFF 2026-09-23.** The amendment described above is adopted; this
 > decision is settled again as amended. `02_ARCHITECTURE.md` is corrected to
 > match.
-Fractions (disjoint, sum to ~1):
-built — roofed structure
-paved — hard surface, unroofed
-vegetation
-water
-bare — permeable unpaved ground
+>
+> **Second amendment, DECIDED 2026-09-24 (planning session): five fractions
+> become eight.** Recorded here for the first time. The block below the rule is
+> the pre-2026-09-24 list, kept for provenance; the current list follows it.
+> Full record: `02_ARCHITECTURE.md` §3 "The taxonomy expansion".
 
-Derived:
-impervious_total = built + paved
+*Superseded 2026-09-24 — the original five:*
+
+    Fractions (disjoint, sum to ~1):
+    built — roofed structure
+    paved — hard surface, unroofed
+    vegetation
+    water
+    bare — permeable unpaved ground
+
+    Derived:
+    impervious_total = built + paved
+
+**Current — eight fractions, disjoint, summing to ~1 on the known-pixel
+denominator (Decision 14):**
+
+    built                  — building footprints (vector)
+    paved                  — derived: impervious_total − built
+    vegetation
+    water
+    bare                   — residual
+    snow_ice               — NEW: permanent only (spectral + low temporal variance)
+    solar                  — NEW: own fraction
+    mixed_water_vegetation — NEW: wetlands, mangroves, mudflats/tidal, water hyacinth
+
+    Derived:
+    impervious_total = built + paved        (unchanged; solar DEFERRED — see below)
+
+    hard_surface_remainder = 1 − (vegetation + water + snow_ice + solar
+                                  + mixed_water_vegetation + shadow)
+      → split by the item 21 regressor into impervious_total and bare
+
+- **`snow_ice`** is permanent snow/ice only. Transient snow is occlusion, like
+  cloud.
+- **`solar`** is its own fraction. **Whether it is added to
+  `impervious_total` is DEFERRED** until real-world solar prevalence is
+  measured in the validation data.
+- **`mixed_water_vegetation`** is sub-typed via Global Mangrove Watch and the
+  Global Lakes and Wetlands Database, and feeds the flood model (item 26) as
+  **its own hydrological input, weighted by sub-type**.
+- **The hard-surface remainder now subtracts `snow_ice`, `solar` and
+  `mixed_water_vegetation`** in addition to vegetation, water and shadow.
+
+**Folded into existing fractions — metadata flags only, no new fraction:**
+sports fields / golf courses / parks / farmland → `vegetation` with OSM sub-type
+flags (sports fields also get a secondary, confidence-flagged synthetic-turf
+spectral check); sand, salt flats, rock / bedrock / volcanic rock, dry lakebeds,
+dirt tracks / unpaved parking, landfills, quarries → `bare` with OSM or
+geographic-plausibility flags; docks → `built`.
+
+**Occlusion — no fraction:** cloud, shadow, transient snow, fire/smoke of all
+kinds, ships. Decision 14's observability group.
+
+**Feature / context layers — not fractions, all per-pixel, many per AOI:**
+volcano (named via Smithsonian GVP match — no confidence flag on a database
+match; Copernicus DEM as secondary shape confirmation; the underlying surface
+still counted in its real fraction); terrain (flat / hilly / mountainous from
+DEM slope + elevation, reported as a distribution per AOI). Named mountain
+ranges: not built (optional cosmetic later).
+
+**New datasets:** Global Mangrove Watch, Global Lakes and Wetlands Database,
+Smithsonian GVP, a second building-footprint source (Microsoft or OSM
+buildings) for `built` confidence, regional geological data where available,
+expanded OSM `landuse` tags.
+
+**Volcanic hazard module:** parked as a future sixth hazard module, not
+specified.
 
 
 Governing principle: **measure disjoint things, derive overlapping ones.** A
@@ -159,7 +222,7 @@ not). Must carry its own confidence marker downstream; never presented at the
 same confidence as the other three.
 
 **Known scope boundary, stated explicitly so it is never assumed away:** these
-five fractions answer land-cover proportion and imperviousness. They do not
+~~five~~ eight fractions answer land-cover proportion and imperviousness. They do not
 answer land-use, vegetation type, building condition, or anything
 demographic/administrative. A "full" urban planning tool would need those as
 separate data layers (census, cadastral, infrastructure records) — this
@@ -380,6 +443,28 @@ validate the method before scaling it.
 > three-field contract. If (c) is accepted, both need rewording to the
 > two-group structure. **Left for a separate pass once this decision's wording
 > is confirmed.**
+>
+> **Extended 2026-09-24 (planning session) — the occlusion list, and eight
+> fractions.** Recorded here for the first time:
+>
+> - **The observability group is now five causes:** cloud, shadow, **transient
+>   snow**, **fire/smoke of all kinds**, **ships**. None is a fraction. All
+>   remove the pixel from the denominator. The anti-merging rule applies to the
+>   new ones as it does to the old: each is reported separately, never folded
+>   into one "unknown". *Permanent* snow is not occlusion — it is the
+>   `snow_ice` fraction (Decision 11).
+> - **The fractions summing to ~1 on the known-pixel denominator are now
+>   eight** (Decision 11 second amendment), not five. The field-naming
+>   discipline below applies unchanged: a consumer summing the eight gets ~1
+>   over the observed portion.
+> - **Context layers (volcano, terrain, OSM sub-type flags) belong to neither
+>   group.** They are not observability and not estimate quality; they touch
+>   neither the denominator nor any fraction's uncertainty — with one
+>   exception: the sports-field synthetic-turf spectral check carries its own
+>   confidence flag, which is estimate quality.
+> - **Shadow gets a measured accuracy.** Its accuracy is measured in the same
+>   hand-digitisation pass at Makoko / Kibera / Rocinha (item 21, "Validation
+>   additions") — this is the first direct measurement of the caveat in (a).
 
 **Chosen: known-pixel denominator. Observability reported as a mandatory
 companion field. Non-observation reported as three separate fields, never
@@ -416,8 +501,9 @@ Keeping them separate lets a consumer reconstruct *why* coverage is low
 surface) rather than only *that* it is.
 
 **Field-naming discipline for Part 6:** the three non-observation fields must
-be structurally distinct from the five land-cover fractions, so a consumer
-summing built+paved+vegetation+water+bare gets ~1 over the observed portion
+be structurally distinct from the ~~five~~ eight land-cover fractions, so a
+consumer summing built+paved+vegetation+water+bare *(+snow_ice+solar+
+mixed_water_vegetation since 2026-09-24)* gets ~1 over the observed portion
 and never mistakes a coverage/shadow/cloud field for a sixth land-cover class
 — the same discipline already applied to `impervious_total` in Decision 11.
 
@@ -680,6 +766,65 @@ hand-annotated paved labels on a sample), not a method problem.
   one.
 - **Roofing material per building** — was never deliverable from this data.
   Should be stated out of scope explicitly.
+
+#### Recorded 2026-09-24 — eight fractions, regressor training, validation additions
+
+*Decided in a planning session; written down here for the first time. The
+taxonomy change itself is Decision 11's second amendment — this subsection is
+what it means for item 21.*
+
+**The re-scope table above gains three rows, and the remainder changes.**
+
+| Fraction | Source |
+|---|---|
+| **snow_ice** | spectral + low temporal variance (item 18). Permanent only; transient snow → occlusion |
+| **solar** | own fraction. Inclusion in `impervious_total` **DEFERRED** until solar prevalence is measured in the validation data |
+| **mixed_water_vegetation** | spectral, sub-typed via Global Mangrove Watch + Global Lakes and Wetlands Database; own flood-model input (item 26), weighted by sub-type |
+
+The regressor no longer splits "everything that is not vegetation, water or
+shadow". It splits the **hard-surface remainder**:
+
+    hard_surface_remainder = 1 − (vegetation + water + snow_ice + solar
+                                  + mixed_water_vegetation + shadow)
+
+into `impervious_total` and `bare`. Omitting any of the three new subtractions
+lets that surface leak into `impervious_total` or `bare`.
+
+**Regressor training — the impervious vs bare split.**
+
+- **Core:** a small hand-labelled set at **Delhi, Lima, Cape Town, Jakarta**
+  (Cairo optional), **weighted toward genuine bare ground** — the boundary
+  Decision 14 (d) names as the weakest recoverable one.
+- **Optional bulk weak labels** from external impervious products (GISA /
+  GAIA) — **only if LOCO shows they help**. Default is off.
+- **Firewall:** no training in any city containing a validation site —
+  **Lagos, Nairobi and Rio are excluded** from training entirely.
+- **Leave-one-city-out within the training cities before any contact with
+  validation.** Validation sites are touched once, after LOCO.
+- **How many labelled areas:** determined empirically — keep adding until LOCO
+  stops improving, then stop. No number is fixed in advance. Working rules 2–4
+  in `08_STATE.md` apply (paired per-fold comparison, per-city and per-class
+  reporting, no rounding a within-noise result up).
+
+**Validation additions.**
+
+- **Shadow accuracy** is measured in the **same hand-digitisation pass** at
+  Makoko (Lagos), Kibera (Nairobi) and Rocinha (Rio) — not a separate
+  campaign. It gives Decision 14 (a)'s "indeterminate at 6.5–9.7% residual"
+  caveat a direct measurement.
+- **`snow_ice`, `solar` and `mixed_water_vegetation` each get their own
+  validation case** at a site where they actually occur, against an
+  **independent reference dataset**. The `solar` case is also where the
+  prevalence measurement that settles the deferred `impervious_total`
+  question comes from.
+
+**Also in scope from the same session, recorded in `02_ARCHITECTURE.md` §3:**
+the metadata-flag foldings (sports fields / parks / farmland → `vegetation`;
+sand, rock, dry lakebeds, landfills, quarries etc. → `bare`; docks → `built`),
+the extended occlusion list (Decision 14), the volcano and terrain context
+layers, the new datasets (including a second footprint source — Microsoft or
+OSM buildings — for `built` confidence), and the volcanic hazard module parked
+as a future sixth hazard module.
 
 ---
 
