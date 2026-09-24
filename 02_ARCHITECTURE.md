@@ -105,18 +105,40 @@ Recorded from a planning session; not previously written down anywhere.
   `vegetation`.
 
 **The hard-surface remainder.** The impervious/bare regressor (item 21) splits
-whatever is left after the non-hard fractions and shadow are taken out:
+whatever is left after the non-hard fractions are taken out:
 
     hard_surface_remainder = 1 − (vegetation + water + snow_ice + solar
-                                  + mixed_water_vegetation + shadow)
+                                  + mixed_water_vegetation)
+        — computed on the known-pixel, shadow-renormalised share only
     impervious_total, bare  = regressor split of hard_surface_remainder
     built                   = vector footprints
     paved                   = impervious_total − built
 
-Before this amendment the remainder subtracted only vegetation, water and
-shadow. **It must now also subtract `snow_ice`, `solar` and
-`mixed_water_vegetation`**, or those surfaces leak into `impervious_total` or
-`bare`.
+~~`+ shadow)`~~ — **struck 2026-09-24.** As first recorded, the formula also
+subtracted `shadow`, while Decision 14 separately removed shadow from the
+known-pixel denominator. That counted shadow twice. The shadow rule below
+replaces it.
+
+Before the 2026-09-24 taxonomy amendment the remainder subtracted only
+vegetation, water ~~and shadow~~. **It must now also subtract `snow_ice`,
+`solar` and `mixed_water_vegetation`**, or those surfaces leak into
+`impervious_total` or `bare`.
+
+**The shadow rule (LOCKED 2026-09-24).** Each pixel is handled one way, never
+both:
+
+| Pixel | Treatment | Reported as |
+|---|---|---|
+| **Fully shadowed** | **Occlusion.** Removed from the known-pixel denominator (Decision 14, observability group). **Not** subtracted in the remainder | The shadow observability field |
+| **Partially shadowed** | **A sub-pixel shadow term** in the solve, renormalised out so the fractions sum to ~1 over the illuminated share (§5.1, Decision 13's sixth term) | **Never reported as a fraction**, and never counted in the denominator |
+| **Unshadowed** | Normal | — |
+
+So shadow no longer appears as a subtracted term anywhere. By the time the
+remainder is computed, fully shadowed pixels have already left the denominator
+and the partial-shadow share has already been renormalised out. **Open, not
+decided:** where the full/partial boundary sits. The hand-digitisation pass
+labels both cases (item 21, "Validation additions"), and that is the evidence
+that can set it.
 
 **Folded into existing fractions as metadata flags — no new fraction.**
 
@@ -498,8 +520,11 @@ using them would measure roof purity and label it impervious.
 no shadow term, shadow energy is forced into the darkest available fraction —
 `water` — the worst possible direction for a flood-model consumer. Solve
 shadow as a sixth endmember, then renormalize the other five to sum to 1 over
-the illuminated portion only. Shadow fraction reported as its own coverage
-field. Do not redistribute proportionally across the five — that assumes
+the illuminated portion only. ~~Shadow fraction reported as its own coverage
+field.~~ *Amended 2026-09-24 by the shadow rule (§3):* the sixth term applies
+to **partially shadowed pixels only** and is never reported. **Fully shadowed
+pixels are occlusion.** Only they feed the shadow coverage field and leave the
+denominator. No pixel goes through both routes. Do not redistribute proportionally across the five — that assumes
 knowledge of what's under the shadow, and not having that knowledge is what
 shadow means. This is structurally the same problem as Decision 14's
 observability denominator — see `05_BUILD_MANUAL.md` Part 3, Decision 14.
@@ -604,7 +629,8 @@ amendments proposed by the item 21 pilot; all three were SIGNED OFF on
   `impervious_total`" formulation is superseded.
   **AMENDED AGAIN 2026-09-24 (planning session):** ~~the five fractions
   stand~~ eight fractions — `snow_ice` (permanent only), `solar` and
-  `mixed_water_vegetation` added; the hard-surface remainder subtracts them;
+  `mixed_water_vegetation` added; the hard-surface remainder subtracts them
+  (and, per the shadow rule locked the same day, no longer subtracts shadow);
   whether `solar` joins `impervious_total` is deferred. §3 "The taxonomy
   expansion".
 - **Decision 12 — Does SAM survive?** Settled: deleted. Nothing in §6's
@@ -634,7 +660,9 @@ amendments proposed by the item 21 pilot; all three were SIGNED OFF on
   signed off with it.
   **Extended 2026-09-24:** the observability (occlusion) group is now cloud,
   shadow, transient snow, fire/smoke of all kinds, and ships. None is a
-  fraction; all remove the pixel from the denominator.
+  fraction; all remove the pixel from the denominator. **Shadow here means
+  fully shadowed pixels only.** Partial shadow is renormalised out in the
+  solve, never removed from the denominator (§3, the shadow rule).
 - **Decision 15 — Severity re-rating rule.** Settled: downgrade only on
   confirmed unreachability or confirmed absence of a consumer, never on
   "never observed to fire" alone. Severity and fix priority are separate

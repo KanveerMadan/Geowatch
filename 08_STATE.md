@@ -519,7 +519,8 @@ Decision 11 (second amendment), Decision 14 (2026-09-24 extension), item 21
 |---|---|
 | **Taxonomy** | Eight disjoint fractions on the known-pixel denominator: built, paved, vegetation, water, bare + **snow_ice** (permanent only), **solar**, **mixed_water_vegetation** |
 | **`impervious_total`** | Still `built + paved`. **Solar inclusion DEFERRED** until solar prevalence is measured in validation data |
-| **Hard-surface remainder** | Now also subtracts snow_ice, solar, mixed_water_vegetation (besides vegetation, water, shadow) |
+| **Hard-surface remainder** | Now also subtracts snow_ice, solar, mixed_water_vegetation (besides vegetation and water ~~and shadow~~). Computed on the known-pixel, shadow-renormalised share |
+| **Shadow rule** *(locked 2026-09-24)* | Fully shadowed pixels → occlusion, leave the denominator. Partially shadowed → sub-pixel term, renormalised out, never a fraction. Never both, and never subtracted in the remainder. Full/partial boundary still open; the Makoko/Kibera/Rocinha pass labels both cases |
 | **Folded, flags only** | Sports fields/golf/parks/farmland → vegetation; sand/salt flats/rock/dry lakebeds/dirt tracks/landfills/quarries → bare; docks → built |
 | **Occlusion** | Cloud, shadow, transient snow, fire/smoke, ships — no fraction |
 | **Context layers** | Volcano (Smithsonian GVP + Copernicus DEM), terrain distribution per AOI. Named mountain ranges not built |
