@@ -727,6 +727,48 @@ placement.
 
 *Nine items. The core rebuild. Unblocked — Part 3 is complete.*
 
+> ### ⛔ Validation-first mandate — decided 2026-09-24
+>
+> **No further architecture or build progression past item 21** until two
+> things are tested against **independent reference data**, with **criteria
+> fixed in advance**:
+>
+> 1. **The land-classification architecture** — item 21's fractions, and
+>    `built`.
+> 2. **All five flood/hazard calculations.** These are the five
+>    susceptibility modules in `susceptibility/`: pluvial, fluvial, coastal,
+>    flash flood, waterlogging. `event_hazard.py` conditions some of them on
+>    event forcing; it is not a sixth calculation.
+>
+> **Until then, every result is proposed research design, not an established
+> claim.** That covers this manual, `02_ARCHITECTURE.md`, and any output.
+>
+> **Also decided 2026-09-24, under this mandate:**
+>
+> - **Land-classification criteria and guardrails** — the `impervious_total`
+>   pass/fail bars, `built` validation, and regressor guardrails. See item 21,
+>   "Validation criteria and guardrails".
+> - **Flood validation approach (Tier 2; sites not yet chosen).**
+>   - Each of the five hazard calculations is validated by
+>     **discrimination**: does its score rank **observed-flooded cells above
+>     dry ones, across many cells**?
+>   - Reference: observed inundation extents — JRC Global Surface Water and
+>     Sentinel-1 flood mapping.
+>   - **Single-event anecdotes are sanity checks only**, never evidence of
+>     validity.
+>   - **Each hazard gets its own site or sites.** Pass criteria are fixed
+>     before any run, as for item 21.
+> - **Low-coverage policy for vector-dependent outputs** — tiered by output
+>   type:
+>   - **Outputs that stay meaningful at low coverage** (footprint density,
+>     coarse `built`) are **computed with a confidence flag**.
+>   - **Outputs that become misleading** (network-topology metrics:
+>     orthogonality, dead-end ratio, fine connectivity) are **suppressed below
+>     a threshold**.
+>   - **Thresholds are set when item 20 is built.**
+> - **Volcanic hazard module:** parked. The user has a specific idea to
+>   discuss later. **Not specified — do not specify it.**
+
 ### 18. Temporal-variance layer 🔓 *(sequencing corrected — see below)*
 
 **What:** standard deviation of spectral indices (NDVI, NDBI, and the raw bands)
@@ -795,6 +837,12 @@ Global-South, informal-heavy. Item 19's acceptance requires testing on formal
 European and formal Asian AOIs too — the baseline needs formal-city anchors
 before the score is emitted globally, or Paris will saturate a scale built for
 Khayelitsha's 8.35 km/km².
+
+**Low-coverage policy (decided 2026-09-24; see the Part 4 mandate note):**
+outputs that stay meaningful at low coverage (footprint density, coarse
+`built`) are computed with a confidence flag. Network-topology metrics
+(orthogonality, dead-end ratio, fine connectivity) are suppressed below a
+threshold. **This item sets those thresholds.**
 
 **Acceptance:** score emitted for every AOI, **never optional, never null**; a
 low-coverage AOI is visibly flagged end-to-end through to the UI; Lagos (0.19)
@@ -1017,6 +1065,45 @@ masked composite can still work where the count is low.
 3. **Coverage areas overstate usable ground.** Drone mosaics have internal
    no-data gaps; the Old Fadama rectangle was ~36% nodata. **Real pixel
    coverage must be checked per site before labelling time is committed.**
+
+**Validation criteria and guardrails — decided 2026-09-24, fixed before any
+run.** This item is under Part 4's validation-first mandate: nothing past
+item 21 progresses until these are met, and until then item 21's outputs are
+proposed research design, not claims.
+
+**`impervious_total` pass/fail:**
+
+| Metric | Floor | Target | Role |
+|---|---|---|---|
+| **MAE** | ≤ 15 pp | ≤ 10 pp | **Hard gate** — failing the floor fails the item |
+| **R²** | ≥ 0.3 | ≥ 0.6 | **Hard gate** — failing the floor fails the item |
+| **IoU** | ≥ 0.45 | ≥ 0.6 | **Diagnostic only.** Reported, never disqualifying |
+
+These are fixed now and may not be moved after a result is seen. Scoring uses
+the sealed validation batches (`LABELLING_GUIDE.md` §8) and follows the
+working rules in `08_STATE.md`: per-city and per-class reporting, no rounding
+a within-noise result up.
+
+**`built` validation.**
+
+- **Hand-digitised buildings** at Makoko, Kibera and Rocinha are compared
+  against **Open Buildings** and a **second footprint source** (Microsoft or
+  OSM buildings, per Decision 11's new datasets).
+- **Ongoing, everywhere:** the **per-AOI disagreement between the two
+  footprint sources** is reported as `built` confidence. That signal is
+  **calibrated by the hand-digitised check**, which ties a given disagreement
+  level to a measured error.
+
+**Regressor guardrails.**
+
+- **Deliberately low capacity.** The training set is small (hand labels,
+  four cities), and a high-capacity model would memorise cities rather than
+  transfer.
+- **Mandatory LOCO with a predefined bar.** The bar is fixed before the first
+  LOCO run, like the criteria above.
+- **Fallback if the impervious/bare split fails LOCO:** report **hard surface
+  unsplit** rather than a bad split. That is the hard-surface remainder
+  (Decision 11) reported as one quantity.
 
 **Labelling guide — decided 2026-09-24: [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md)
 (v1.0).** It is the protocol for every training and validation label above:
@@ -1323,6 +1410,11 @@ observation quality is carried alongside so a cloud-affected epoch cannot
 masquerade as change.
 
 ### 26. Rewire flood risk 🔓
+
+*Validation (decided 2026-09-24; see the Part 4 mandate note): each of the
+five hazard calculations is validated by discrimination against observed
+inundation (JRC Global Surface Water, Sentinel-1), on its own site(s), with
+criteria fixed in advance. Sites are not yet chosen.*
 Susceptibility consumes ~~`impervious_total`~~ **fractions, through a runoff
 coefficient per fraction** *(amended 2026-09-24)* rather than a discrete
 class; roads enter as rasterized vector conduits at hydrology resolution.

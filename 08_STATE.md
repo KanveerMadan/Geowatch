@@ -542,6 +542,27 @@ Decision 11 (second amendment), Decision 14 (2026-09-24 extension), item 21
 dataset ingestion, or labelling for any of the above exists yet. Per working
 rule 6, no build-manual status was flipped by recording them.
 
+### ⛔ Validation-first mandate and criteria — decided 2026-09-24
+
+Full text: `05_BUILD_MANUAL.md`, the Part 4 mandate note, plus item 21,
+"Validation criteria and guardrails".
+
+| What | Decided |
+|---|---|
+| **Mandate** | **No architecture or build progression past item 21** until the land-classification architecture **and all five flood/hazard calculations** (pluvial, fluvial, coastal, flash flood, waterlogging) are tested against independent reference data with predefined criteria. Until then, results are **proposed research design, not established claims** |
+| **`impervious_total` pass/fail** | MAE floor ≤15 pp (target ≤10); R² floor ≥0.3 (target ≥0.6) — **hard gates**. IoU floor ≥0.45 (target ≥0.6) — **diagnostic only** |
+| **`built` validation** | Hand-digitised buildings at Makoko/Kibera/Rocinha vs Open Buildings and a second footprint source. Per-AOI two-source disagreement reported everywhere as `built` confidence, calibrated by the hand check |
+| **Regressor guardrails** | Deliberately low capacity; mandatory LOCO with a predefined bar; if the impervious/bare split fails LOCO, **report hard surface unsplit** |
+| **Low-coverage policy** | Meaningful-at-low-coverage outputs (footprint density, coarse `built`) computed with a flag; network-topology metrics (orthogonality, dead-end ratio, fine connectivity) suppressed below a threshold. Thresholds set in item 20 |
+| **Flood validation (Tier 2)** | Discrimination — do scores rank observed-flooded cells above dry ones across many cells — against JRC surface water and Sentinel-1 flood maps. Anecdotes are sanity checks only. Each hazard gets its own site(s); **sites not yet chosen** |
+| **Volcanic hazard module** | Parked; the user has a specific idea to discuss later. **Do not specify** |
+
+**Still to fix before any run:** the LOCO bar, the flood discrimination
+criteria and sites, the item 20 thresholds, and the labelling guide's open
+numbers. Nothing is built.
+
+---
+
 ### Item 21 site list — FINAL, recorded 2026-09-24
 
 **Labelling guide:** [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md), v1.0, decided
