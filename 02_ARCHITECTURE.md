@@ -486,7 +486,15 @@ already supply more cleanly. **Do not build it.**
 
 ## 5. Component detail
 
-### 5.1 Spectral unmixing → continuous fractions (Decision 13 — REOPENED BY EVIDENCE)
+### 5.1 Spectral regression → continuous fractions (Decisions 11 / 13, as amended)
+
+*Heading was "~~Spectral unmixing → continuous fractions (Decision 13 —
+REOPENED BY EVIDENCE)~~". Renamed 2026-09-24: the method is spectral
+regression (item 21 table, signed off 2026-09-23), and there is no unmixing
+endmember. The local paved endmember survives only as an optional regressor
+feature, kept if a LOCO ablation shows it helps (Decision 13 as amended
+2026-09-24). The unmixing text below is preserved for provenance, with
+superseded parts struck.*
 
 > **The 2–3 city pilot this section required has run, and it falsified the
 > central assumption.** Both risks left explicitly open below have fired.
@@ -691,8 +699,12 @@ amendments proposed by the item 21 pilot; all three were SIGNED OFF on
   sensor noise floor**, and the institutional-roof endmember the original spec
   would have produced sits 4.69° from `paved` versus 1.66° for a realistic
   informal one, so choosing it manufactures separability that does not
-  physically exist. The amendment: **one impervious endmember**, `built` from
-  footprints, `paved` derived. §5.1 above. Item 21's ceiling result is signed
+  physically exist. The amendment: ~~**one impervious endmember**,~~ `built` from
+  footprints, `paved` derived. **Amended 2026-09-24:** there is no unmixing
+  endmember, because the method is regression. The local paved endmember is
+  an **optional regressor feature** (spectral angle to the AOI's own local
+  paved endmember). It is off by default and kept only if a LOCO ablation
+  shows better cross-city transfer. §5.1 above. Item 21's ceiling result is signed
   off, so this is settled spec rather than an unsigned investigation premise.
 - **Decision 14 — The `category_area_pct` denominator.** Settled: known-pixel
   denominator, mandatory observed-fraction field, shadow / cloud-nodata /

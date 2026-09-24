@@ -311,7 +311,7 @@ engineering, not a research problem.
 
 ---
 
-### 13. Global endmember strategy ✅ **SETTLED — Option D, AMENDED 2026-09-23 (signed off)**
+### 13. Global endmember strategy ✅ **SETTLED — Option D, AMENDED 2026-09-23 (signed off); AMENDED 2026-09-24: no unmixing endmember — optional regressor feature, gated by LOCO ablation**
 
 > **The pilot this decision required has run, and it falsified the decision's
 > central assumption.** Both risks this decision left explicitly open (below)
@@ -330,10 +330,36 @@ engineering, not a research problem.
 > The text below is preserved for provenance. Evidence:
 > `06_UNMIXING_CEILING.md`, `07_ITEM_21.md`.
 >
-> **RE-SETTLED 2026-09-23 as amended:** one `impervious_total` endmember rather
-> than a `built`/`paved` pair; `built` from vector footprints, not unmixed at
+> **RE-SETTLED 2026-09-23 as amended:** ~~one `impervious_total` endmember rather
+> than a `built`/`paved` pair;~~ `built` from vector footprints, not unmixed at
 > all; `paved` derived by difference with explicit uncertainty. The re-scope is
 > adopted, not merely proposed, and `unmixing-ceiling-investigation` is merged.
+>
+> **AMENDED 2026-09-24 — there is no unmixing endmember.** Under the recorded
+> design, vegetation, water and `impervious_total` are **spectral regression**
+> (item 21 table, signed off 2026-09-23). No unmixing solve exists, so no
+> endmember enters one. The "one `impervious_total` endmember" clause above is
+> struck.
+>
+> **The local paved endmember is repurposed as an OPTIONAL regressor
+> feature.** The feature is the per-pixel spectral angle to the AOI's *own*
+> local paved endmember. It acts as a per-city calibration reference.
+>
+> - **Default: the regressor is built WITHOUT it.**
+> - **Ablation:** during leave-one-city-out on the training cities, train with
+>   and without the feature. **Keep it only if it measurably improves
+>   cross-city transfer; otherwise retire it.** "Measurably" follows the
+>   working rules in `08_STATE.md`: paired per-fold comparison, per-city
+>   reporting, and no rounding a within-noise result up.
+> - **If kept,** the 2026-09-24 endmember-stability findings (item 21) define
+>   how it is built: extraction is local, buffer radius 0, n\* measured per
+>   AOI, bootstrap with independent pairs.
+> - **If retired,** that apparatus becomes historical record, and Decision 13
+>   has no live subject beyond `built` from footprints and `paved` by
+>   difference.
+>
+> Everything below the rule, including "The split" table, is the original
+> unmixing spec, preserved for provenance.
 
 **The split:**
 
@@ -767,12 +793,14 @@ Khayelitsha's 8.35 km/km².
 low-coverage AOI is visibly flagged end-to-end through to the UI; Lagos (0.19)
 and Khayelitsha (8.35) produce visibly different scores.
 
-### 21. Spectral unmixing → fractions ⚠️ **PILOT COMPLETE — RE-SCOPE PROPOSED, AWAITING DECISION**
+### 21. ~~Spectral unmixing~~ Spectral regression → fractions 🔓 **PILOT COMPLETE — RE-SCOPE SIGNED OFF 2026-09-23; not yet built** *(heading was "⚠️ PILOT COMPLETE — RE-SCOPE PROPOSED, AWAITING DECISION"; corrected 2026-09-24)*
 
 > **The sequencing requirement below was honoured, and the pilot returned a
 > negative result.** This item as originally specified is not buildable. The
 > original text is preserved below the rule for provenance; the re-scope
-> proposed above it has **not** been signed off and this item is not settled.
+> proposed above it ~~has **not** been signed off and this item is not
+> settled~~ **was signed off 2026-09-23** (see Decisions 11/13/14 and
+> `08_STATE.md`). The item is open to build, not awaiting a decision.
 > Full evidence: `06_UNMIXING_CEILING.md`.
 
 #### What the pilot established
@@ -904,6 +932,12 @@ See Decision 11.
   Decision 14 (d) names as the weakest recoverable one.
 - **Optional bulk weak labels** from external impervious products (GISA /
   GAIA) — **only if LOCO shows they help**. Default is off.
+- **Optional endmember feature** *(added 2026-09-24, Decision 13)*: per-pixel
+  spectral angle to the AOI's own local paved endmember. **Default off.**
+  Ablate with vs without during LOCO; keep only if it measurably improves
+  cross-city transfer, otherwise retire it. If kept, build it per the
+  endmember-stability findings below: local extraction, buffer 0, per-AOI n\*,
+  independent bootstrap pairs.
 - **Firewall:** no training in any city containing a validation site —
   **Lagos, Nairobi and Rio are excluded** from training entirely.
 - **Leave-one-city-out within the training cities before any contact with
@@ -1048,7 +1082,35 @@ uncertainty and explicitly clamped if negative.
 > as the residual, and the three new fractions from the producers listed
 > under "Recorded 2026-09-24". The `built` and `paved` sentence stands.
 
-**Annotation-provenance check — done, clean (2026-09-23).** The endmember
+> **STATUS OF THE ENDMEMBER MATERIAL BELOW — conditional (2026-09-24).** The
+> next several blocks are dated 2026-09-23/24 and were written as live spec
+> for an unmixing endmember:
+>
+> - the annotation-provenance check
+> - the C44 rationale
+> - the sparse-paved observation
+> - the stability findings (local extraction, buffer 0, per-AOI n\*,
+>   independent bootstrap pairs)
+> - the endmember-uncertainty field
+>
+> **Decision 13 as amended 2026-09-24 removes the unmixing endmember.** The
+> local paved endmember survives only as an **optional regressor feature**:
+> per-pixel spectral angle to the AOI's own local paved endmember. It is built
+> **without** by default and **kept only if the LOCO ablation shows it
+> measurably improves cross-city transfer**. So:
+>
+> - **If the ablation keeps the feature,** this material is the live spec for
+>   building it. "Endmember" below then means *the feature's reference
+>   spectrum*, not an unmixing endmember.
+> - **If the ablation retires it,** this material is historical record,
+>   kept for the measurements.
+>
+> Until the ablation runs, read it as conditional. The C44 fix itself is
+> unconditional (see its note).
+
+**Annotation-provenance check — done, clean (2026-09-23).** *(Conditional as
+of 2026-09-24: it matters only if the endmember feature is kept. The `built`
+half — Open Buildings, not C45-affected — holds regardless.)* The endmember
 sources were audited against **C45** (the OSM builders that overwrite human
 labels). They do **not** share a source: `built` comes from Google Open
 Buildings v3 (`confidence ≥ 0.7`) plus S2 temporal variance, and the impervious
@@ -1064,6 +1126,9 @@ this item.** The one real inheritance is `OVERPASS_URLS`, imported by
 **C44** (two of three endpoints dead, failures logged without status codes).
 
 **C44 is now FIXED (2026-09-23) and this item is unblocked on that front.**
+*(2026-09-24: the fix stands unconditionally — it is the project's single
+Overpass client. Its rationale here, protecting "this item's endmember
+library", applies only if the LOCO ablation keeps the endmember feature.)*
 All Overpass access goes through `ingestion/overpass.py`, which classifies
 failures by cause — a malformed query fails immediately rather than being
 reissued to every host, a genuine query timeout is distinguished from the
@@ -1091,7 +1156,9 @@ That is a real signal about informal fabric, not an extraction bug.
 > Evidence: `diagnose_endmember_stability.py`, results in
 > `experiments/endmember_stability/results/stability.json`.
 
-**Extraction is LOCAL. Buffer radius = 0.**
+**Extraction is LOCAL. Buffer radius = 0.** *(2026-09-24: this and the n\*
+findings below define how the optional feature's reference spectrum is built
+**if the LOCO ablation keeps it**. The measurements stand either way.)*
 
 Widening the draw region reduces sampling noise and increases spectral drift,
 and drift wins immediately. Total endmember error — `hypot(sampling, drift)` —
@@ -1156,14 +1223,21 @@ projecting past the available pixel count is interpolation of a validated
 model. Report the exponent alongside n\* — a curve that is *not* near −0.5 is
 not behaving like sampling noise and its projection should not be trusted.
 
-**Endmember uncertainty is a first-class reported field**, in Decision 14's
+~~**Endmember uncertainty is a first-class reported field**~~ **Endmember
+uncertainty is reported ONLY IF the LOCO ablation keeps the endmember
+feature** *(amended 2026-09-24)*. If it is retired, there is no endmember and
+no such field. When reported, it belongs in Decision 14's
 **estimate-quality** group (never the observability group — a wide endmember is
 not an unobserved pixel). Two of the four AOIs clear the 0.7° noise floor
 locally; the other two do not and must ship at their measured local error
 (Dharavi 1.68°, Cape Town formal 1.20°) **with that number disclosed**, rather
 than being buffered into a smaller-looking but genuinely worse endmember.
-Propagate it into `paved`'s derivation uncertainty, which is already required
-by Decision 14 as amended.
+~~Propagate it into `paved`'s derivation uncertainty, which is already required
+by Decision 14 as amended.~~ If kept, it propagates into the prediction
+interval of `impervious_total` — the quantity the feature feeds — and from
+there into `paved`'s derivation uncertainty. *(Decision 14 itself never listed
+an endmember-uncertainty field; this paragraph was the only place it was
+defined.)*
 
 **Shadow handling:** ~~solve as a sixth term; renormalize the five reported
 fractions over the illuminated portion only;~~ ~~report shadow fraction as its
