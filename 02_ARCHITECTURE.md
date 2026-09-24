@@ -78,10 +78,10 @@ last three are new — see §"The taxonomy expansion" below.
 | Fraction | Definition |
 |---|---|
 | **built** | Roofed structure — has a footprint. **Taken from vector footprints, not measured spectrally** (see below) |
-| **paved** | Hard surface, unroofed — paving, hardstanding, courtyard, compacted yard. **Derived: `impervious_total − built`**, carried with explicit uncertainty |
+| **paved** | ~~Hard surface, unroofed — paving, hardstanding, courtyard, compacted yard.~~ **Sealed surface, unroofed** — asphalt, concrete, tiles, laid stone (sealed courtyards and hardstanding included). **Unsealed ground, even if compacted, is `bare`** *(amended 2026-09-24; see `LABELLING_GUIDE.md` §4)*. **Derived: `impervious_total − built`**, carried with explicit uncertainty |
 | **vegetation** | |
 | **water** | |
-| **bare** | Permeable unpaved ground, exposed soil. The residual |
+| **bare** | ~~Permeable unpaved ground, exposed soil.~~ **Unsealed ground, including compacted ground** (dirt roads, gravel, compacted yards, dirt parking) and exposed soil *(amended 2026-09-24 with `paved`)*. The residual. Note: "permeable" was struck because compacted earth often is not; see `LABELLING_GUIDE.md` §4 |
 | **snow_ice** *(new)* | **Permanent** snow and ice only — spectral signature *plus* low temporal variance. Transient snow is occlusion, like cloud |
 | **solar** *(new)* | Solar panels / arrays, as their own fraction |
 | **mixed_water_vegetation** *(new)* | Wetlands, mangroves, mudflats / tidal zones, water hyacinth. Sub-typed from datasets; feeds the flood model as its own hydrological input, weighted by sub-type |

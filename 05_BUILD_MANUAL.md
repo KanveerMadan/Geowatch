@@ -154,10 +154,13 @@ these; none of this was typing.*
 denominator (Decision 14):**
 
     built                  — building footprints (vector)
-    paved                  — derived: impervious_total − built
+    paved                  — derived: impervious_total − built.
+                             SEALED unroofed surface only: asphalt,
+                             concrete, tiles, laid stone
     vegetation
     water
-    bare                   — residual
+    bare                   — residual. Unsealed ground, INCLUDING compacted
+                             ground (dirt roads, gravel, compacted yards)
     snow_ice               — NEW: permanent only (spectral + low temporal variance)
     solar                  — NEW: own fraction
     mixed_water_vegetation — NEW: wetlands, mangroves, mudflats/tidal, water hyacinth
@@ -181,6 +184,11 @@ denominator (Decision 14):**
 term is ~~struck~~ because it counted shadow twice: subtracted here, and
 removed from the denominator by Decision 14. See the shadow rule below.*
 
+- **`paved` is sealed surfaces only** *(amended 2026-09-24)*. The definition
+  in `02_ARCHITECTURE.md` §3 read *"Hard surface, unroofed — paving,
+  hardstanding, courtyard, ~~compacted yard~~"*. Compacted yard is struck.
+  **Unsealed ground, even if compacted, is `bare`.** Hard-case rules:
+  `LABELLING_GUIDE.md` §4.
 - **`snow_ice`** is permanent snow/ice only. Transient snow is occlusion, like
   cloud.
 - **`solar`** is its own fraction. **Whether it is added to
@@ -965,6 +973,20 @@ masked composite can still work where the count is low.
 3. **Coverage areas overstate usable ground.** Drone mosaics have internal
    no-data gaps; the Old Fadama rectangle was ~36% nodata. **Real pixel
    coverage must be checked per site before labelling time is committed.**
+
+**Labelling guide — decided 2026-09-24: [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md)
+(v1.0).** It is the protocol for every training and validation label above:
+- the label set, including `shadow_full` / `shadow_partial` and `unsure`
+- polygon labels, with fractions computed from area and never eyeballed
+- stratified random ~200 m tiles
+- hard cases: sealed = `paved`, compacted = `bare`
+- the time-gap and change-test rules
+- QC: ~15% blind re-labels, and agreement bars fixed before evaluation
+- sealed validation in two batches
+
+**Labelling may not start until its open numbers are set:** change-test
+method and threshold, maximum date gap per site, starting tile count, and
+per-class agreement bars (guide §9).
 
 **Validation additions.**
 
