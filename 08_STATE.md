@@ -426,7 +426,9 @@ layer.
 | **usable coverage of global land** | **~0.03–0.22%** |
 
 Coverage is the whole story. **Dharavi returns zero** — and so do Delhi,
-Karachi, Cairo and Khartoum, metro-wide. Of **47 named informal settlements**
+Karachi, Cairo and Khartoum, metro-wide *(OpenAerialMap itself. Karachi does
+have Maxar open-data scenes, in a separate catalogue; it is an item 21
+training site as of 2026-09-24 — see below)*. Of **47 named informal settlements**
 tested: **19** have dedicated ≤15 cm imagery (Tier A), **8** have satellite
 mosaic only (Tier B), **20** have nothing usable.
 
@@ -525,13 +527,44 @@ Decision 11 (second amendment), Decision 14 (2026-09-24 extension), item 21
 | **Occlusion** | Cloud, shadow, transient snow, fire/smoke, ships — no fraction |
 | **Context layers** | Volcano (Smithsonian GVP + Copernicus DEM), terrain distribution per AOI. Named mountain ranges not built |
 | **New datasets** | Global Mangrove Watch, GLWD, Smithsonian GVP, second footprint source (Microsoft or OSM), regional geology, expanded OSM landuse |
-| **Regressor training** | Hand-labelled core at Delhi, Lima, Cape Town, Jakarta (Cairo optional), weighted to bare ground; GISA/GAIA weak labels only if LOCO shows gain; **no training in Lagos, Nairobi, Rio**; LOCO before any validation contact; label count set by when LOCO stops improving |
+| **Regressor training** | Hand-labelled core at ~~Delhi, Lima, Cape Town, Jakarta (Cairo optional)~~ **Cape Town, Lima, Karachi, Monrovia (Marrakech optional)** — *replaced 2026-09-24, see "Item 21 site list" below*, weighted to bare ground; GISA/GAIA weak labels only if LOCO shows gain; **no training in Lagos, Nairobi, Rio**; LOCO before any validation contact; label count set by when LOCO stops improving |
 | **Validation additions** | Shadow accuracy in the Makoko/Kibera/Rocinha hand-digitisation pass; own validation case each for snow_ice, solar, mixed_water_vegetation against independent references |
 | **Volcanic hazard module** | Parked — future sixth hazard module, unspecified |
 
 **Status:** these are recorded decisions. **Nothing is built.** No code,
 dataset ingestion, or labelling for any of the above exists yet. Per working
 rule 6, no build-manual status was flipped by recording them.
+
+### Item 21 site list — FINAL, recorded 2026-09-24
+
+Full table (source, resolution, date, licence, Sentinel-2 overlap per site):
+`05_BUILD_MANUAL.md` item 21, "Site list". Recorded only — **nothing
+downloaded, nothing built.**
+
+| Role | Site | Imagery (date) | Licence |
+|---|---|---|---|
+| Validation | Makoko (Lagos) | Uhuru Labs drone, 5.4–6.4 cm (2019-10-02). Weak Sentinel-2 overlap, needs a ~6-month composite window | CC BY 4.0 |
+| Validation | Kibera (Nairobi) | Maxar Kenya floods, 0.30–0.32 m (**2023-11-30 pre-flood only**) | CC BY-NC 4.0 |
+| Validation | Rocinha (Rio) | IPP true orthophoto, 15 cm (2024) | Non-commercial |
+| Training | Cape Town | City of Cape Town aerial, 5 cm (2026-01) | Non-commercial |
+| Training | Lima | OpenAerialMap drone, 3–8 cm. Prioritise Candelaria and Santuario de las Vizcachas; exclude Cajamarquilla (no licence) | CC BY 4.0 |
+| Training | **Karachi** (replaces ~~Delhi~~) | Maxar Pakistan floods, 0.53 m (**2022-03-29 pre-flood only**) | CC BY-NC 4.0 |
+| Training | **Monrovia** (replaces ~~Jakarta~~) | Uhuru Labs / HOT drone, 5 cm (2020-02-23) | CC BY 4.0 |
+| Optional | **Marrakech** (replaces ~~Cairo~~) | Maxar Morocco earthquake, 0.31–0.55 m (pre-quake 2023). Only if LOCO shows four cities are too narrow | CC BY-NC 4.0 |
+
+**Why it changed:** Delhi, Jakarta and Cairo had no usable free imagery with a
+licence permitting derived labels. Bhuvan, Google and Esri terms all forbid it.
+Delhi may be re-added via academic access to commercial imagery (ESA Third
+Party Missions, Airbus academic). That is not a blocker.
+
+**Caveats:**
+1. **Most sources are non-commercial.** If GeoWatch or its labels are ever
+   used commercially, the labels must be re-sourced.
+2. **Regional overlap.** Monrovia–Makoko (West Africa) and Lima–Rocinha (South
+   America). The city-level firewall holds, but validation reporting must say
+   so. Kibera is the coldest transfer test.
+3. **Reported areas overstate usable ground.** Check real pixel coverage per
+   site before committing labelling time.
 
 ---
 

@@ -847,8 +847,10 @@ See Decision 11.
 
 **Regressor training — the impervious vs bare split.**
 
-- **Core:** a small hand-labelled set at **Delhi, Lima, Cape Town, Jakarta**
-  (Cairo optional), **weighted toward genuine bare ground** — the boundary
+- **Core:** a small hand-labelled set at ~~**Delhi, Lima, Cape Town,
+  Jakarta** (Cairo optional)~~ **Cape Town, Lima, Karachi, Monrovia**
+  (Marrakech optional) — *city list replaced 2026-09-24, see "Site list"
+  below*. It is **weighted toward genuine bare ground**, the boundary
   Decision 14 (d) names as the weakest recoverable one.
 - **Optional bulk weak labels** from external impervious products (GISA /
   GAIA) — **only if LOCO shows they help**. Default is off.
@@ -860,6 +862,67 @@ See Decision 11.
   stops improving, then stop. No number is fixed in advance. Working rules 2–4
   in `08_STATE.md` apply (paired per-fold comparison, per-city and per-class
   reporting, no rounding a within-noise result up).
+
+**Site list — FINAL, recorded 2026-09-24.** Recorded decisions only: no
+imagery has been downloaded and nothing is built.
+
+> **Why the training list changed.** The list first recorded was ~~Delhi,
+> Lima, Cape Town, Jakarta, Cairo (optional)~~. A per-site imagery check on
+> 2026-09-24 found that **Delhi, Jakarta and Cairo had no free sub-2 m imagery
+> whose licence permits deriving labels.** Across OpenAerialMap and the
+> Maxar/Vantor open-data catalogues:
+>
+> - **Delhi and Cairo:** zero scenes metro-wide.
+> - **Jakarta:** one 8.6 km² scene at 0.5 m, with 0 / 1 / 2 clear Sentinel-2
+>   scenes within ±30 / 60 / 90 days.
+> - **Basemap fallbacks are forbidden by their terms:**
+>   - Bhuvan's 1 m imagery is view-only, and its terms forbid derivative
+>     works.
+>   - Google's terms forbid tracing and training, testing or validating
+>     models.
+>   - Esri restricts derived data to non-commercial use within ArcGIS and
+>     forbids programmatic requests.
+>
+> Karachi replaces Delhi (arid, South Asia), Monrovia replaces Jakarta (humid
+> tropical, informal and formal fabric), and Marrakech replaces Cairo as the
+> optional city (semi-arid, North Africa). **Delhi may be re-added later**
+> through academic access to commercial imagery (ESA Third Party Missions,
+> Airbus academic). That is not a blocker.
+
+**Validation sites — unchanged, imagery confirmed:**
+
+| Site | Imagery | Resolution | Date | Licence | Sentinel-2 overlap (clear scenes, ±30 / 60 / 90 d) |
+|---|---|---|---|---|---|
+| **Makoko** (Lagos) | Uhuru Labs drone survey | 5.4–6.4 cm | 2019-10-02 | CC BY 4.0 | **Weak: 0 / 2 / 4.** Needs a wide (~6-month) composite window, as for Old Fadama in `06_UNMIXING_CEILING.md` §7.1 |
+| **Kibera** (Nairobi) | Maxar Kenya floods open data | 0.30–0.32 m | **2023-11-30, the PRE-flood scene only** | CC BY-NC 4.0 | 2 / 4 / 9 |
+| **Rocinha** (Rio) | IPP city true-orthophoto mosaic (`Imagens/Mosaico_2024`) | 15 cm | first half of 2024 | Non-commercial; commercial use needs IPP's prior written authorisation | 3 / 8 / 15 (checked against 2024-04-01) |
+
+**Training sites — final:**
+
+| Site | Imagery | Resolution | Date | Licence | Sentinel-2 overlap | Notes |
+|---|---|---|---|---|---|---|
+| **Cape Town** | City of Cape Town aerial imagery (`Aerial Imagery 2026Jan`) | 5 cm | 2026-01 | Non-commercial ("no restrictions on the digital file for non-commercial purposes") | 9 / 16 / 24 | — |
+| **Lima** | OpenAerialMap drone scenes | 3–8 cm | 2017–2025 | CC BY 4.0 | varies by scene (UNI 2025-03-17: 11 / 12 / 14; Caritas 2025-01-05: 1 / 2 / 9) | **Prioritise the desert-hillside scenes, Candelaria and Santuario de las Vizcachas** (genuine bare ground). **Exclude Cajamarquilla** (no licence) |
+| **Karachi** *(replaces Delhi)* | Maxar Pakistan floods open data | 0.53 m | **2022-03-29 only** | CC BY-NC 4.0 | 66 / 127 / 169 | **Pre-flood scene only.** Later scenes contain flood water that would pass for bare ground or water |
+| **Monrovia** *(replaces Jakarta)* | Uhuru Labs / HOT drone surveys | 5 cm | 2020-02-23 | CC BY 4.0 | 22 / 43 / 53 | — |
+| **Marrakech** *(optional, replaces Cairo)* | Maxar Morocco earthquake open data | 0.31–0.55 m | pre-quake 2023 scenes (e.g. 2023-03-28, 2023-08-06) | CC BY-NC 4.0 | 20 / 39 / 49 (08-06) | **Add only if LOCO shows four training cities are too narrow** |
+
+The Sentinel-2 counts are whole scenes under 20% cloud, not per-pixel. A
+masked composite can still work where the count is low.
+
+**Caveats — recorded with the list:**
+
+1. **Licence assumption.** Most of these sources are non-commercial (CC BY-NC
+   or equivalent): Kibera, Rocinha, Cape Town, Karachi, Marrakech. That is fine
+   for academic use. **If GeoWatch or its labels are ever used commercially,
+   these labels must be re-sourced.**
+2. **Regional overlap.** The firewall is city-level and is not broken. But
+   Monrovia shares a region with Makoko (West Africa), and Lima shares one with
+   Rocinha (South America). **Validation reporting must note this.**
+   **Kibera (East Africa) is the coldest transfer test.**
+3. **Coverage areas overstate usable ground.** Drone mosaics have internal
+   no-data gaps; the Old Fadama rectangle was ~36% nodata. **Real pixel
+   coverage must be checked per site before labelling time is committed.**
 
 **Validation additions.**
 
