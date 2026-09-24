@@ -167,8 +167,15 @@ denominator (Decision 14):**
 
     hard_surface_remainder = 1 − (vegetation + water + snow_ice + solar
                                   + mixed_water_vegetation)
-      — on the known-pixel, shadow-renormalised share only
+      — on the known-pixel share only (~~shadow-renormalised~~, struck
+        2026-09-24: there is no shadow term to renormalise out)
       → split by the item 21 regressor into impervious_total and bare
+
+    Producers, all run BEFORE the remainder is computed (added 2026-09-24):
+    vegetation, water      — spectral regression (item 21, signed off 2026-09-23)
+    snow_ice               — spectral signature + low temporal variance
+    solar                  — spectral-signature detector
+    mixed_water_vegetation — spectral + dataset sub-typing (GMW, GLWD)
 
 *Amended 2026-09-24: the formula as first recorded ended `+ shadow)`. That
 term is ~~struck~~ because it counted shadow twice: subtracted here, and
@@ -190,13 +197,21 @@ removed from the denominator by Decision 14. See the shadow rule below.*
   - **Fully shadowed pixels are occlusion.** They are removed from the
     known-pixel denominator (Decision 14's observability group) and are
     **not** subtracted in the remainder.
-  - **Partially shadowed pixels get a sub-pixel shadow term** in the solve,
+  - ~~**Partially shadowed pixels get a sub-pixel shadow term** in the solve,
     renormalised out (Decision 13's sixth term). It is **never reported as a
-    fraction** and never touches the denominator.
+    fraction** and never touches the denominator.~~ **Amended 2026-09-24:**
+    partially shadowed pixels **stay in the known-pixel denominator with no
+    explicit shadow term.** The regressors are trained on hand labels that
+    include partially shadowed pixels, so robustness to partial shadow is
+    learned. (The struck version needed an unmixing solve; the design is
+    regression, and a proposed "layered" stage-1 solve to host the term was
+    withdrawn without being decided.)
   - Shadow therefore appears nowhere in the remainder formula.
+  - **Partial shadow is tested, not assumed.** The Makoko/Kibera/Rocinha
+    labelling pass marks it separately. **If validation shows learned
+    robustness fails, a dedicated fix is added then, with evidence.**
   - **Open:** where the full/partial boundary sits is not yet decided. The
-    Makoko/Kibera/Rocinha labelling pass labels both cases (item 21) to supply
-    the evidence.
+    same labels supply the evidence.
 
 **Folded into existing fractions — metadata flags only, no new fraction:**
 sports fields / golf courses / parks / farmland → `vegetation` with OSM sub-type
@@ -492,19 +507,27 @@ validate the method before scaling it.
 >
 > - **Fully shadowed pixel:** occlusion. It leaves the denominator and is
 >   reported in this group's shadow field.
-> - **Partially shadowed pixel:** stays in the denominator. Its shadow share
+> - **Partially shadowed pixel:** stays in the denominator. ~~Its shadow share
 >   is a sub-pixel term renormalised out in the solve (Decision 13's sixth
->   term). It is **never reported as a fraction** and never feeds
->   `observed_fraction`.
+>   term).~~ **Amended 2026-09-24: no explicit shadow term.** Robustness to
+>   partial shadow is learned by the regressors from hand labels that include
+>   partially shadowed pixels. It is **never reported as a fraction** and
+>   never feeds `observed_fraction`.
 > - **No pixel is handled both ways.** This fixes a double count: as first
 >   recorded, Decision 11's hard-surface remainder also subtracted shadow.
 >   That term is struck.
 >
-> Two points remain open. Where the full/partial boundary sits is not yet
+> ~~Two points remain open. Where the full/partial boundary sits is not yet
 > decided; the labelled pass supplies the evidence. And what produces the
 > partial term still inherits (a)'s question — under regression there is no
 > unmixing solve to host a sixth term — so the rule fixes *routing*, not the
-> producer.
+> producer.~~ **Amended 2026-09-24:** the producer question is closed by
+> having no partial-shadow term at all, so (a) stands unchanged. Its "no
+> unmixing solve under regression" is correct for the recorded design. One
+> point stays open: **where the full/partial boundary sits.** The labelled
+> pass supplies the evidence. Partial shadow is validated separately, and
+> **if learned robustness fails, a dedicated fix is added then, with
+> evidence.**
 
 **Chosen: known-pixel denominator. Observability reported as a mandatory
 companion field. Non-observation reported as three separate fields, never
@@ -528,9 +551,12 @@ flood-prone).
 - **Shadow** — handled by Decision 13. Solved as a sixth endmember term; five
   fractions renormalize over the illuminated portion; reported as its own
   field. *Amended 2026-09-24 (shadow rule):* ~~reported as its own field~~ —
-  the field covers **fully shadowed pixels only**, which are occlusion. The
-  sixth-term renormalisation applies to partially shadowed pixels, which are
-  never reported and never leave the denominator.
+  the field covers **fully shadowed pixels only**, which are occlusion. ~~The
+  sixth-term renormalisation applies to partially shadowed pixels~~ Partially
+  shadowed pixels have no explicit term (amended again 2026-09-24): they stay
+  in the denominator, are never reported, and robustness to them is learned
+  by the regressors. The "sixth endmember term" in this bullet's first
+  sentence is superseded with Decision 13's unmixing spec; see item 21.
 - **Cloud / nodata** — genuine gaps in the composite for the observation
   window. Requires the SCL-based masking fix (item 51, C1) to be trustworthy.
 - **Low unmixing confidence** — pixels where the solve is poorly constrained
@@ -829,19 +855,35 @@ shadow". It splits the **hard-surface remainder**:
 
     hard_surface_remainder = 1 − (vegetation + water + snow_ice + solar
                                   + mixed_water_vegetation)
-        — on the known-pixel, shadow-renormalised share only
+        — on the known-pixel share only (~~shadow-renormalised~~, struck
+          2026-09-24)
 
 into `impervious_total` and `bare`. Omitting any of the three new subtractions
 lets that surface leak into `impervious_total` or `bare`.
+
+**Producers for the three new fractions (recorded 2026-09-24),** all run
+before the remainder is computed:
+
+| Fraction | Producer |
+|---|---|
+| `snow_ice` | spectral signature + low temporal variance (item 18) |
+| `solar` | spectral-signature detector |
+| `mixed_water_vegetation` | spectral + dataset sub-typing (Global Mangrove Watch, GLWD) |
+
+Vegetation and water stay spectral regression, as in the table above.
 
 *Amended 2026-09-24:* ~~`+ shadow)`~~ is struck from the formula as first
 recorded. **Shadow rule, locked:**
 - **Fully shadowed pixels** are occlusion and leave the denominator
   (Decision 14).
-- **Partially shadowed pixels** get a sub-pixel shadow term in the solve,
-  renormalised out and never reported as a fraction.
-- **No pixel is handled both ways.** By the time the remainder is computed,
-  shadow has already been dealt with, so it is not subtracted again.
+- **Partially shadowed pixels** ~~get a sub-pixel shadow term in the solve,
+  renormalised out and never reported as a fraction~~ — *amended 2026-09-24:*
+  stay in the known-pixel denominator with **no explicit term**. The
+  regressors are trained on hand labels that include partially shadowed
+  pixels, so robustness is learned. They are never reported as a fraction.
+- **No pixel is handled both ways.** Fully shadowed pixels have left the
+  denominator before the remainder is computed, and shadow is not subtracted
+  again.
 
 See Decision 11.
 
@@ -932,9 +974,14 @@ masked composite can still work where the count is low.
   caveat a direct measurement. **Added 2026-09-24: the pass must label full
   and partial shadow as separate cases**, because the shadow rule routes them
   differently. Full shadow is checked against the occlusion mask; partial
-  shadow is checked against the sub-pixel term. A single "shadow" label
-  cannot check either. The same labels are the evidence for setting the
-  full/partial boundary.
+  shadow is checked ~~against the sub-pixel term~~ *(amended 2026-09-24)* as
+  the **regressors' error on partially shadowed pixels compared with
+  unshadowed ones**. That includes whether shadow drifts into `water`. This
+  is the test of learned robustness; **if it fails, a dedicated fix is added
+  then, with evidence.** A single "shadow" label cannot check either case.
+  The same labels are the evidence for setting the full/partial boundary.
+  **Partially shadowed pixels must also appear in the *training* labels**
+  (Cape Town, Lima, Karachi, Monrovia), or there is nothing to learn from.
 - **`snow_ice`, `solar` and `mixed_water_vegetation` each get their own
   validation case** at a site where they actually occur, against an
   **independent reference dataset**. The `solar` case is also where the
@@ -963,14 +1010,21 @@ tile path — never the per-tile percentile-stretched 8-bit PNG preview.** The
 6-band float32 tiler is a *prerequisite* for this item, not a retired path;
 only the dual-stem classifier that used to consume its output is dead.
 
-**How:** constrained least squares (sum-to-one, non-negativity), or
+~~**How:** constrained least squares (sum-to-one, non-negativity), or
 `pysptools`, or Earth Engine's own unmixing. Endmembers per Decision 13
 **as amended 2026-09-23**: three stable fractions (vegetation, water, bare)
 from a global library directly, plus **one `impervious_total` endmember** from
-wide unroofed OSM polygons (parking, aprons, plazas) — never road centerlines.
+wide unroofed OSM polygons (parking, aprons, plazas) — never road centerlines.~~
 **`built` is not unmixed**: it is rasterised from vector footprints, and
 `paved` is `impervious_total − built`, reported with its derivation
 uncertainty and explicitly clamped if negative.
+
+> **Superseded 2026-09-24 — one method, not two.** The struck "How" described
+> a single constrained unmixing solve. It conflicts with the **spectral
+> regression** table signed off 2026-09-23 (re-scope step 2 above), which is
+> the method: vegetation, water and `impervious_total` by regression, `bare`
+> as the residual, and the three new fractions from the producers listed
+> under "Recorded 2026-09-24". The `built` and `paved` sentence stands.
 
 **Annotation-provenance check — done, clean (2026-09-23).** The endmember
 sources were audited against **C45** (the OSM builders that overwrite human
@@ -1089,12 +1143,14 @@ than being buffered into a smaller-looking but genuinely worse endmember.
 Propagate it into `paved`'s derivation uncertainty, which is already required
 by Decision 14 as amended.
 
-**Shadow handling:** solve as a sixth term; renormalize the five reported
-fractions over the illuminated portion only; ~~report shadow fraction as its
+**Shadow handling:** ~~solve as a sixth term; renormalize the five reported
+fractions over the illuminated portion only;~~ ~~report shadow fraction as its
 own field~~, per Decision 14's separated-reporting convention. *Superseded
-2026-09-24 by the shadow rule (Decision 11):* the sixth term covers partially
-shadowed pixels only and is never reported. Fully shadowed pixels are
-occlusion, and only they populate Decision 14's shadow field.
+2026-09-24 by the shadow rule (Decision 11):* ~~the sixth term covers partially
+shadowed pixels only and is never reported~~ there is no sixth term; partially
+shadowed pixels carry no explicit term and are handled by learned robustness
+(amended again 2026-09-24). Fully shadowed pixels are occlusion, and only they
+populate Decision 14's shadow field.
 
 **Acceptance:** fractions produced for at least one formal and one informal AOI;
 sum to ~1 within tolerance over the observed portion; documented endmember

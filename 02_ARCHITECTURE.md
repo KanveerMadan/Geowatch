@@ -109,7 +109,8 @@ whatever is left after the non-hard fractions are taken out:
 
     hard_surface_remainder = 1 − (vegetation + water + snow_ice + solar
                                   + mixed_water_vegetation)
-        — computed on the known-pixel, shadow-renormalised share only
+        — computed on the known-pixel share only (~~shadow-renormalised~~,
+          struck 2026-09-24: there is no shadow term to renormalise out)
     impervious_total, bare  = regressor split of hard_surface_remainder
     built                   = vector footprints
     paved                   = impervious_total − built
@@ -124,21 +125,44 @@ vegetation, water ~~and shadow~~. **It must now also subtract `snow_ice`,
 `solar` and `mixed_water_vegetation`**, or those surfaces leak into
 `impervious_total` or `bare`.
 
-**The shadow rule (LOCKED 2026-09-24).** Each pixel is handled one way, never
-both:
+**Producers of the three new fractions.** Each runs **before** the
+hard-surface remainder is computed, because the remainder subtracts it:
+
+| Fraction | Producer |
+|---|---|
+| `snow_ice` | spectral signature + low temporal variance (§5.2) |
+| `solar` | spectral-signature detector |
+| `mixed_water_vegetation` | spectral, sub-typed from datasets (Global Mangrove Watch, GLWD) |
+
+Vegetation, water and `impervious_total` are **spectral regression**, per the
+item 21 table signed off 2026-09-23 (§5.1).
+
+**The shadow rule (LOCKED 2026-09-24; amended the same day).** Each pixel is
+handled one way, never both:
 
 | Pixel | Treatment | Reported as |
 |---|---|---|
 | **Fully shadowed** | **Occlusion.** Removed from the known-pixel denominator (Decision 14, observability group). **Not** subtracted in the remainder | The shadow observability field |
-| **Partially shadowed** | **A sub-pixel shadow term** in the solve, renormalised out so the fractions sum to ~1 over the illuminated share (§5.1, Decision 13's sixth term) | **Never reported as a fraction**, and never counted in the denominator |
+| **Partially shadowed** | ~~A sub-pixel shadow term in the solve, renormalised out so the fractions sum to ~1 over the illuminated share (§5.1, Decision 13's sixth term)~~ **Stays in the known-pixel denominator. No explicit shadow term.** The regressors are trained on hand labels that include partially shadowed pixels, so robustness to partial shadow is *learned* | Nothing. Never a fraction, never a coverage field |
 | **Unshadowed** | Normal | — |
 
-So shadow no longer appears as a subtracted term anywhere. By the time the
-remainder is computed, fully shadowed pixels have already left the denominator
-and the partial-shadow share has already been renormalised out. **Open, not
-decided:** where the full/partial boundary sits. The hand-digitisation pass
-labels both cases (item 21, "Validation additions"), and that is the evidence
-that can set it.
+> **Amended 2026-09-24.** The partial-shadow row first named a sub-pixel term
+> in "the solve". The design has no unmixing solve: vegetation, water and
+> `impervious_total` are regression (item 21, 2026-09-23), so that term had no
+> host. A "layered" stage-1 unmixing design was proposed to host it and was
+> **withdrawn without being decided**. The partial-shadow row is struck and
+> replaced.
+
+So shadow appears as a subtracted term nowhere. Fully shadowed pixels have left
+the denominator before the remainder is computed, and partially shadowed
+pixels go through the regressors like any other known pixel.
+
+**Partial shadow is tested, not assumed.** The hand-digitisation pass labels
+partial shadow separately (item 21, "Validation additions"), so validation can
+measure whether learned robustness holds. **If it fails, a dedicated fix is
+added then, with evidence** — not now, in advance. **Open, not decided:** where
+the full/partial boundary sits; the same labels are the evidence that can set
+it.
 
 **Folded into existing fractions as metadata flags — no new fraction.**
 
@@ -484,12 +508,19 @@ sum-to-one). `pysptools`, or Earth Engine's own unmixing tools.
 **Chosen strategy: Option D, constrained — AS AMENDED BY THE INVERSION
 (signed off 2026-09-23).** The original spec extracted `built` *and* `paved`
 as separate spectral endmembers. Item 21 measured that this is not achievable
-at 10 m, and §3 now inverts it. What unmixing solves for is:
+at 10 m, and §3 now inverts it. ~~What unmixing solves for is:~~
+
+> **Superseded 2026-09-24 — one method, not two.** The first two rows below
+> described a single unmixing solve: vegetation, water and bare from a global
+> library, plus one `impervious_total` endmember. That conflicts with the
+> **spectral regression** table signed off 2026-09-23 in item 21 (step 2 of
+> the re-scope), which is the method. The two rows are struck. The `built` and
+> `paved` rows are unchanged and hold under either method.
 
 | fraction | how it is obtained |
 |---|---|
-| vegetation, water, bare | spectrally, from a global library directly |
-| **impervious_total** | **spectrally, as ONE endmember** — ceiling 0.822 |
+| ~~vegetation, water, bare~~ | ~~spectrally, from a global library directly~~ → vegetation, water: **spectral regression**; bare: **residual** of the impervious/bare split (§3) |
+| ~~**impervious_total**~~ | ~~**spectrally, as ONE endmember** — ceiling 0.822~~ → **spectral regression**, splitting the hard-surface remainder (§3) — ceiling 0.822 |
 | **built** | **from vector footprints. Not unmixed at all.** |
 | **paved** | **derived: `impervious_total − built`.** Not unmixed at all. |
 
@@ -516,18 +547,33 @@ lots, airport aprons, plazas, hardstanding. **Bare `landuse=industrial` /
 `retail` / `commercial` are excluded**: those polygons enclose buildings, so
 using them would measure roof purity and label it impervious.
 
-**Shadow — solved as a sixth term, not redistributed.** Under sum-to-one with
+~~**Shadow — solved as a sixth term, not redistributed.**~~ ~~Under sum-to-one with
 no shadow term, shadow energy is forced into the darkest available fraction —
 `water` — the worst possible direction for a flood-model consumer. Solve
 shadow as a sixth endmember, then renormalize the other five to sum to 1 over
-the illuminated portion only. ~~Shadow fraction reported as its own coverage
-field.~~ *Amended 2026-09-24 by the shadow rule (§3):* the sixth term applies
-to **partially shadowed pixels only** and is never reported. **Fully shadowed
-pixels are occlusion.** Only they feed the shadow coverage field and leave the
-denominator. No pixel goes through both routes. Do not redistribute proportionally across the five — that assumes
-knowledge of what's under the shadow, and not having that knowledge is what
-shadow means. This is structurally the same problem as Decision 14's
-observability denominator — see `05_BUILD_MANUAL.md` Part 3, Decision 14.
+the illuminated portion only. Shadow fraction reported as its own coverage
+field.~~ ~~*Amended 2026-09-24 by the shadow rule (§3):* the sixth term applies
+to **partially shadowed pixels only** and is never reported.~~
+
+> **Superseded 2026-09-24.** There is no unmixing solve, so there is no sixth
+> term. Current rule (§3):
+>
+> - **Fully shadowed pixels are occlusion.** Only they feed the shadow
+>   coverage field and leave the denominator.
+> - **Partially shadowed pixels** stay in the denominator with no explicit
+>   term; the regressors learn robustness from hand labels that include them.
+> - No pixel goes through both routes.
+>
+> **The struck paragraph's warning still applies, in a new form.** Shadow
+> energy drifting into `water`, the worst direction for a flood-model
+> consumer, is now a failure mode a *learned* model can show. It is exactly
+> what the partial-shadow validation labels must test.
+
+Do not redistribute fully shadowed area proportionally across the fractions.
+That assumes knowledge of what's under the shadow, and not having that
+knowledge is what shadow means. This is structurally the same problem as
+Decision 14's observability denominator — see `05_BUILD_MANUAL.md` Part 3,
+Decision 14.
 
 **Reflectance precondition:** BOA surface reflectance is already available via
 `COPERNICUS/S2_SR_HARMONIZED`. The precondition is not "obtain reflectance,"
@@ -661,8 +707,10 @@ amendments proposed by the item 21 pilot; all three were SIGNED OFF on
   **Extended 2026-09-24:** the observability (occlusion) group is now cloud,
   shadow, transient snow, fire/smoke of all kinds, and ships. None is a
   fraction; all remove the pixel from the denominator. **Shadow here means
-  fully shadowed pixels only.** Partial shadow is renormalised out in the
-  solve, never removed from the denominator (§3, the shadow rule).
+  fully shadowed pixels only.** Partial shadow ~~is renormalised out in the
+  solve~~ stays in the denominator with no explicit term, and robustness to
+  it is learned by the regressors (§3, the shadow rule, amended
+  2026-09-24).
 - **Decision 15 — Severity re-rating rule.** Settled: downgrade only on
   confirmed unreachability or confirmed absence of a consumer, never on
   "never observed to fire" alone. Severity and fix priority are separate
