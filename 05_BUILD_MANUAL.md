@@ -734,12 +734,92 @@ this item's endmember library on no polygons at all. Verified end-to-end:
 and a ReadTimeout in the same run. Probe the list any time with
 `python ingestion/overpass.py`.
 
-**Sparse-paved caveat surfaced by that run, for whoever builds this:** Dharavi
-yielded only **5** unroofed paved polygons across 4.68 km², 3 of which
-contributed a pure pixel. That is a real signal about informal fabric, not an
-extraction bug, and it means the impervious endmember for informal AOIs may
-have to be drawn from a wider region than the AOI itself. Size it before
-committing to the per-region extraction.
+**Sparse-paved observation from that run:** Dharavi yielded only **5**
+unroofed paved polygons across 4.68 km², 3 of which contributed a pure pixel.
+That is a real signal about informal fabric, not an extraction bug.
+
+> **CORRECTION 2026-09-24 — do not buffer.** This caveat originally continued
+> *"…it means the impervious endmember for informal AOIs may have to be drawn
+> from a wider region than the AOI itself."* **That guess was tested and is
+> wrong.** It is struck rather than deleted because it is the kind of
+> reasonable-sounding inference someone will re-derive from the sparse-polygon
+> count above, and the measurement against it should be findable from here.
+> Evidence: `diagnose_endmember_stability.py`, results in
+> `experiments/endmember_stability/results/stability.json`.
+
+**Extraction is LOCAL. Buffer radius = 0.**
+
+Widening the draw region reduces sampling noise and increases spectral drift,
+and drift wins immediately. Total endmember error — `hypot(sampling, drift)` —
+is minimised at 0 km in every AOI tested:
+
+| AOI | radius | pure px | sampling | drift | total |
+|---|---:|---:|---:|---:|---:|
+| Dharavi | **0 km** | 62 | 1.68° | — | **1.68°** |
+| Dharavi | 1 km | 306 | 0.76° | 1.86° | 2.01° |
+| Dharavi | 2 km | 1,067 | 0.41° | 2.87° | 2.90° |
+| Dharavi | 5 km | 3,000* | 0.24° | 3.01° | 3.02° |
+| Khayelitsha | **0 km** | 251 | 0.58° | — | **0.58°** |
+| Khayelitsha | 1 km | 396 | 0.46° | 1.56° | 1.62° |
+
+\* sampling cap, so a floor not a count.
+
+One kilometre of reach at Dharavi buys 4.9× more samples (−0.92° of noise) and
+costs **1.86° of drift** — already past the **1.70°** built-vs-paved separation
+the endmember exists to support. Sparse local pixels beat plentiful distant
+ones.
+
+**Confidence: strongly suggested, not universally confirmed.** The buffer sweep
+ran on **2 of the 4** AOIs tested — Dharavi and Khayelitsha, which agree in
+both direction and magnitude (drift 1.56–1.86° at 1 km). Cape Town formal and
+Jakarta have Part A (the n\* threshold) but **no buffer sweep**. The result is
+consistent with the underlying model — drift is a *bias* that grows with
+distance while sampling error is *noise* that falls only as 1/√n, so bias
+overtakes quickly — but it has not been demonstrated on a formal-suburban or
+dense-mixed AOI. Run those two sweeps before treating buffer=0 as settled.
+
+**n\* is per-AOI and must be measured, not assumed.**
+
+The number of pure pixels needed for a stable endmember spans **21×** across
+the four AOIs, and it does **not** track sample availability or city density —
+it tracks the **material heterogeneity of the paved surface itself**:
+
+| AOI | pure px | px/km² | n @1.70° | **n\* @0.7°** | local error | verdict |
+|---|---:|---:|---:|---:|---:|---|
+| Khayelitsha (informal) | 251 | 10.9 | 29 | **172** | 0.58° | clears noise floor locally |
+| Dharavi (sparse informal) | 62 | 13.3 | 60 | **358** | 1.68° | ship with disclosed uncertainty |
+| Jakarta (dense mixed) | 1,585 | 36.8 | 154 | **868** | 0.51° | clears noise floor locally |
+| Cape Town formal | 1,107 | 77.1 | 530 | **3,532** | 1.20° | ship with disclosed uncertainty |
+
+**Counterintuitively, the denser formal AOI is the harder problem.** Cape Town
+formal has 6× Dharavi's pure-pixel density and needs ~10× more samples: its
+between-draw spread starts at 18.41° against Khayelitsha's 5.49°, because
+"paved" there is asphalt car parks, concrete plazas, aprons and garage courts
+of differing age and wear under one label. Informal fabric is more uniform. So
+**do not size n\* from city density or from how many polygons OSM returns.**
+
+**How to compute it:** bootstrap the AOI's own pure-pixel spectra — draw B
+independent subsample *pairs* at each n and take the p90 spectral angle between
+them. Cheap: one GEE sampling pass per AOI, then pure numpy. Use **independent
+pairs, never a nested growing sample** — a nested sequence shares n of its n+1
+pixels and is correlated by construction, which understated the true spread by
+**9.9×** at Dharavi (0.30° vs 2.92° at n=20) and would have declared every AOI
+stable at n≈20.
+
+The fitted exponent came out −0.47 to −0.51 across all four AOIs, i.e. clean
+1/√n sampling noise, so the curves differ in height rather than shape and
+projecting past the available pixel count is interpolation of a validated
+model. Report the exponent alongside n\* — a curve that is *not* near −0.5 is
+not behaving like sampling noise and its projection should not be trusted.
+
+**Endmember uncertainty is a first-class reported field**, in Decision 14's
+**estimate-quality** group (never the observability group — a wide endmember is
+not an unobserved pixel). Two of the four AOIs clear the 0.7° noise floor
+locally; the other two do not and must ship at their measured local error
+(Dharavi 1.68°, Cape Town formal 1.20°) **with that number disclosed**, rather
+than being buffered into a smaller-looking but genuinely worse endmember.
+Propagate it into `paved`'s derivation uncertainty, which is already required
+by Decision 14 as amended.
 
 **Shadow handling:** solve as a sixth term; renormalize the five reported
 fractions over the illuminated portion only; report shadow fraction as its
