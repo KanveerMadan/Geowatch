@@ -8,10 +8,13 @@ there.
 **Two claims in this document are falsified by the item 21 investigation** —
 §"the classes are no longer sub-pixel" and §"misallocation between `built` and
 `paved` leaves `impervious_total` unchanged". Both are recorded in
-`07_ITEM_21.md`, with the full measurements in `06_UNMIXING_CEILING.md` on the
+`07_ITEM_21.md`, with the full measurements in `06_UNMIXING_CEILING.md` ~~on the
 unmerged `unmixing-ceiling-investigation` branch. They stand uncorrected here
-pending sign-off; do not build against them. `08_STATE.md` has the current
-state of that sign-off and of every branch.
+pending sign-off; do not build against them.~~ **Updated 2026-09-25:** both
+claims were corrected in place in §3 ("Does the old confusion return?"),
+signed off, and merged — `unmixing-ceiling-investigation` merged 2026-09-23.
+The corrected text is buildable. `08_STATE.md` has the current state of every
+branch.
 
 ---
 
@@ -39,7 +42,7 @@ Each does what it is physically capable of, and nothing more.
 
 | Source | Provides | Why it can |
 |---|---|---|
-| **Spectral unmixing** | Continuous fractions per area | A 4.5 m road contributes its correct *proportional* share to a block even though it cannot be resolved as an object. Aggregates survive sub-pixel mixing; labels do not. |
+| ~~**Spectral unmixing**~~ **Spectral regression** *(corrected 2026-09-25; the method per item 21, signed off 2026-09-23)* | Continuous fractions per area | A 4.5 m road contributes its correct *proportional* share to a block even though it cannot be resolved as an object. Aggregates survive sub-pixel mixing; labels do not. |
 | **Vector geometry** (OSM + building footprints) | Network connectivity, road length, footprint density, access distances, morphology | Vector has no ground sample distance. Works identically at any scale, anywhere. |
 | **Temporal signal** | Surface permanence; change over time | Sentinel-2's actual advantage — 5-day revisit, decade-long free archive. Nobody holds a decade of sub-metre imagery over Kampala. |
 
@@ -223,7 +226,10 @@ never be presented as measured.
 
 **Downstream cost is small.** Flood risk consumes `impervious_total`, so it is
 unaffected — in fact it now consumes a measured quantity instead of a sum of
-two unreliable ones. Morphological characterisation (item 23) is explicitly
+two unreliable ones. *(Qualified 2026-09-24: true of the inversion, but once
+`paved` became sealed-only, compacted earth counts as `bare`, so
+`impervious_total` alone misses its runoff. Item 26 now uses runoff
+coefficients per fraction.)* Morphological characterisation (item 23) is explicitly
 non-spectral, so it is unaffected. Change-over-time improves. The only genuine
 loss is *roofing material per building*, which was never deliverable from this
 data.
@@ -506,8 +512,10 @@ superseded parts struck.*
 > produce sits **4.69°** from `paved` versus **1.66°** for a realistic
 > informal-roof endmember, so following the spec manufactures separability that
 > does not physically exist. The text below is preserved for provenance. See
-> item 21 in `05_BUILD_MANUAL.md` for the proposed re-scope (awaiting decision)
-> and `06_UNMIXING_CEILING.md` for the evidence. **Not re-settled.**
+> item 21 in `05_BUILD_MANUAL.md` for the ~~proposed~~ re-scope ~~(awaiting
+> decision)~~ and `06_UNMIXING_CEILING.md` for the evidence. ~~**Not
+> re-settled.**~~ *(Struck 2026-09-25: the re-scope was signed off
+> 2026-09-23 and is settled — see the heading note above.)*
 
 Model each 10 m pixel as a linear mixture of endmembers; solve for per-pixel
 abundance fractions via constrained least-squares (non-negativity,
@@ -585,8 +593,9 @@ Decision 14.
 
 **Reflectance precondition:** BOA surface reflectance is already available via
 `COPERNICUS/S2_SR_HARMONIZED`. The precondition is not "obtain reflectance,"
-it is: unmixing must read the float32 multi-band tile path, never the
-per-tile percentile-stretched 8-bit PNG preview. The reflectance exists
+it is: ~~unmixing~~ **the regression inputs** *(2026-09-25)* must read the
+float32 multi-band tile path, never the per-tile percentile-stretched 8-bit
+PNG preview. The reflectance exists
 upstream; the risk is destroying it downstream at tiling.
 
 **Output shape:** *"this cell is ~35% built, ~5% paved, ~40% vegetation, ~20%
@@ -660,7 +669,7 @@ screening-scale answers, not a limitation that went unsolved.
 | Access / service indicators | Vector network analysis | Degrades with OSM coverage — score emitted |
 | Morphological characterization (formal / informal) | Vector footprint + network statistics | Degrades with OSM coverage — score emitted |
 | Change over time | Fraction deltas across composites | Yes — the strongest capability |
-| Flood risk | `impervious_total` + vector conduits + `mixed_water_vegetation` (own hydrological input, weighted by sub-type — added 2026-09-24) | Yes |
+| Flood risk | ~~`impervious_total`~~ **runoff coefficients per fraction** *(item 26, decided 2026-09-24: `impervious_total` is no longer the only runoff signal; `bare` gets a non-zero coefficient)* + vector conduits + `mixed_water_vegetation` (own hydrological input, weighted by sub-type — added 2026-09-24) | Yes |
 | Context layers *(added 2026-09-24)* | Volcano (Smithsonian GVP + Copernicus DEM), terrain distribution (DEM slope + elevation), OSM sub-type flags | Yes — per-pixel flags, not fractions |
 | **Coverage / reliability score** | Per-area, mandatory | Yes — keeps all of the above honest |
 
@@ -691,7 +700,7 @@ amendments proposed by the item 21 pilot; all three were SIGNED OFF on
   outputs table consumes a segment. The one genuine gap found under
   stress-testing — object-level tracking of non-building features, e.g. water
   bodies — is answered by connected-component labeling on thresholded
-  unmixing rasters, named as a deferred, unbuilt forward reference, not by
+  ~~unmixing~~ fraction rasters *(2026-09-25; mechanism unchanged)*, named as a deferred, unbuilt forward reference, not by
   keeping SAM.
 - **Decision 13 — Global endmember strategy.** Settled: Option D, constrained,
   **AMENDED 2026-09-23 (signed off)**. The pilot falsified the original central
@@ -708,8 +717,9 @@ amendments proposed by the item 21 pilot; all three were SIGNED OFF on
   off, so this is settled spec rather than an unsigned investigation premise.
 - **Decision 14 — The `category_area_pct` denominator.** Settled: known-pixel
   denominator, mandatory observed-fraction field, shadow / cloud-nodata /
-  low-confidence unmixing reported as three separate fields, never merged
-  into one "unknown."
+  ~~low-confidence unmixing~~ **regression prediction interval** *(renamed
+  2026-09-25, per Decision 14 (b))* reported as three separate fields, never
+  merged into one "unknown."
   **Confirmed 2026-09-23 under the inversion**: `paved`'s derivation
   uncertainty is a fourth thing that must be reported separately and never
   folded into "unknown" — it is a *derived-quantity* uncertainty, not an

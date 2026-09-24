@@ -37,20 +37,24 @@ is a reference, not a read-through.
 
 ## Branches
 
-All three work branches are cut from `master` and **none is merged**.
+~~All three work branches are cut from `master` and **none is merged**.~~
+*Table updated 2026-09-25 from `git merge-base`; the old rows are struck
+below.*
 
 | Branch | Head | Carries | State |
 |---|---|---|---|
-| `master` | `71f31fa` | Parts 1–3 complete; Part 8 items 47 and 70 | The stable line. Default branch on GitHub. |
-| `applicability-gating` | `b69cd92` | Items 40, 41, 42, 43, 44, 45 | Part 7 complete. Part 8: 43, 44, 45 done; **46 remains**. |
-| `merged-taxonomy-retrain` | `5a67b60` | Step 1 only — label mapping plus two blocking findings | **PAUSED.** |
-| `band-mapping-verification` | `0d6e7ce` | C41, C42, the LOCO harness, the four-arm probe, the patch-builder port | Active working branch. |
-| `unmixing-ceiling-investigation` | `9715c7d` | Item 21 in full, `06_UNMIXING_CEILING.md`, Decisions 11/13/14 amendments | **Awaiting human sign-off. Does not merge until signed.** |
+| `master` | ~~`71f31fa`~~ `a98b529` | Parts 1–3; Part 8 items 47 and 70; `applicability-gating` merged | The stable line. Default branch on GitHub. **Does not yet contain the signed-off item 21 / Decisions 11-13-14 work** — that lives on `architecture-pivot-signoff` |
+| `architecture-pivot-signoff` | *(this branch — see `git log`)* | Merges of `band-mapping-verification` (`4bd0d85`) and `unmixing-ceiling-investigation` (`32d066d`, 2026-09-23), C44 fix, endmember stability, and all 2026-09-24/25 decision records | **Active working branch.** Ahead of `master`; not yet merged to it |
+| `applicability-gating` | `b69cd92` | Items 40, 41, 42, 43, 44, 45 | ~~Part 7 complete. Part 8: 43, 44, 45 done; **46 remains**.~~ **Merged to `master` at `a98b529`.** Item 46 done (`primary_tile` removed) |
+| `merged-taxonomy-retrain` | `5a67b60` | Step 1 only — label mapping plus two blocking findings | **PAUSED.** Not merged. The 4-class taxonomy it serves was retired 2026-09-23 |
+| `band-mapping-verification` | ~~`0d6e7ce`~~ `4b05a29` | C41, C42, the LOCO harness, the four-arm probe, the patch-builder port | ~~Active working branch.~~ **Merged into `architecture-pivot-signoff` at `4bd0d85`** |
+| `unmixing-ceiling-investigation` | `9715c7d` | Item 21 in full, `06_UNMIXING_CEILING.md`, Decisions 11/13/14 amendments | ~~**Awaiting human sign-off. Does not merge until signed.**~~ **Signed off and merged into `architecture-pivot-signoff` at `32d066d`, 2026-09-23.** Decision 13 was amended again 2026-09-24 (no unmixing endmember) |
 | `part8-trust-boundaries` | `b4b410a` | Items 70 and 47 | Already merged into `master` at `42c1545`; branch retained. |
 
 `unmixing-ceiling-investigation` is the standing example in `CONTRIBUTING.md` of
-why investigation branches stay separate: it carries four unsigned decisions,
-and building on it silently inherits them.
+why investigation branches stay separate: it carried four unsigned decisions,
+and building on it would have silently inherited them. *(Past tense
+2026-09-25: they were signed off before it merged.)*
 
 ---
 
@@ -60,12 +64,12 @@ and building on it silently inherits them.
 |---|---|
 | **Part 1 — Unblock** | ✅ Complete |
 | **Part 2 — Verify** | ✅ Mostly complete (item 10 partially done) |
-| **Part 3 — Decide (the gate)** | ✅ Complete. All seven decisions settled — though Decision 13 was subsequently **reopened** by the item 21 investigation, on `unmixing-ceiling-investigation` and unsigned. |
-| **Part 4 — Build the architecture** | 🔓 Not started. Item 21's pilot ran ahead of it as its own gate; see `07_ITEM_21.md`. |
+| **Part 3 — Decide (the gate)** | ✅ Complete. All seven decisions settled. ~~— though Decision 13 was subsequently **reopened** by the item 21 investigation, on `unmixing-ceiling-investigation` and unsigned.~~ Decision 13 was reopened by the item 21 investigation, **signed off as amended 2026-09-23**, and **amended again 2026-09-24** (no unmixing endmember; optional LOCO-gated feature). Decisions 11 and 14 were also amended 2026-09-23/24. *(Updated 2026-09-25)* |
+| **Part 4 — Build the architecture** | 🔓 Not started. Item 21's pilot ran ahead of it as its own gate; see `07_ITEM_21.md`. Item 21's re-scope is signed off; its site list and labelling guide are recorded, **labelling is blocked on the guide's open numbers**, and nothing is built. Item 26 gained a runoff-coefficient requirement 2026-09-24. |
 | **Part 5 — Validation discipline** | 🔓 Not started |
 | **Part 6 — Epistemic contract** | 🔓 Not started |
-| **Part 7 — Gating architecture** | ✅ **Complete** on `applicability-gating` — items 40, 41, 42 all landed. Not on `master`. |
-| **Part 8 — Contract enforcement** | Items 43, 44, 45 done on `applicability-gating`; 47 and 70 merged to `master`. **Only item 46 remains.** |
+| **Part 7 — Gating architecture** | ✅ **Complete** — items 40, 41, 42 all landed. ~~Not on `master`.~~ On `master` via the `applicability-gating` merge (`a98b529`). *(2026-09-25)* |
+| **Part 8 — Contract enforcement** | Items 43, 44, 45 done on `applicability-gating`; 47 and 70 merged to `master`. ~~**Only item 46 remains.**~~ Item 46 done 2026-09-23 (`primary_tile` removed). *(2026-09-25)* |
 | **Parts 9–13** | 🔓 Not started (Part 9 deleted per Decision 12) |
 
 **Item 46 — the remaining Part 8 item — has a decided fork:** *remove the
@@ -606,12 +610,15 @@ The data-volume axis is exhausted (G1) and the construction axis is exhausted
 is chosen it should be gated the same way Phase 0 gated the original campaign —
 a small dense-annotation pilot on one tile, measured before the rest is funded.
 
-**2. Fix C44 before item 21's extraction runs** (engineering, not a decision).
+~~**2. Fix C44 before item 21's extraction runs** (engineering, not a decision).
 Two of three Overpass endpoints are unreachable and the handler collapses
 429/502/503/504 into one `HTTPError`. `diagnose_pure_pixels_paved.py` imports
 that same `OVERPASS_URLS` list, so **the impervious endmember extraction — the
 highest-risk item in the plan — depends on it.** This is true under either
-branch of the decision above.
+branch of the decision above.~~ **Removed 2026-09-25: C44 was fixed
+2026-09-23** (`ingestion/overpass.py`, commit `24d16e1`). The impervious
+endmember is also no longer required: it is an optional, LOCO-gated feature
+(Decision 13 as amended 2026-09-24).
 
 **Resolved 2026-09-23, no longer open:** the CAAT threshold question and C11
 (dropped with the retired pipeline, §RETIRED above); the NEEDS FATE backlog
@@ -620,5 +627,8 @@ branch of the decision above.
 **unblocks `unmixing-ceiling-investigation` for merge**; and
 `applicability-gating`, merged to `master` at `a98b529`.
 
-**Also open, unscheduled:** merging `unmixing-ceiling-investigation` (now
-sign-off-clear), and the `loco.py` harness validation run.
+**Also open, unscheduled:** ~~merging `unmixing-ceiling-investigation` (now
+sign-off-clear), and~~ the `loco.py` harness validation run. *(2026-09-25:
+`unmixing-ceiling-investigation` was merged into `architecture-pivot-signoff`
+at `32d066d`. Merging `architecture-pivot-signoff` to `master` is not yet
+done.)*

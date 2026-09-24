@@ -286,14 +286,14 @@ segments for network.
 (specifically water bodies) have a plausible future need for object-level
 change tracking — "this water body grew toward the settlement" is a per-object
 claim a grid answers badly. This does **not** argue for SAM. It argues for
-**connected-component labeling on thresholded unmixing-fraction rasters** —
+**connected-component labeling on thresholded ~~unmixing-~~fraction rasters** *(2026-09-25; mechanism unchanged)* —
 threshold the `water` fraction, run connected components, get labeled,
 pre-typed objects with no separate mask-vs-segment ID synchronization problem
 to fail (the exact failure mode that produced C9).
 
 **Named as a deferred, unbuilt forward reference — not scope now:** if
 per-object tracking of non-building features becomes a stated requirement, the
-mechanism is connected-component extraction on unmixing rasters. Not SAM. Not
+mechanism is connected-component extraction on ~~unmixing~~ fraction rasters. Not SAM. Not
 built until §6's outputs table actually grows to require it.
 
 **Deleted with SAM:** C9 (segment-ID mis-join), C28 (annotation bakes the
@@ -404,11 +404,11 @@ shadow, and not having that knowledge is what shadow means.
 **Structural connection to Decision 14, carried forward:** shadow fraction and
 the observability denominator are the same underlying question — what
 fraction of this area could actually be observed. Decision 14 extends this
-same separated-reporting logic to cloud/nodata and low-confidence unmixing.
+same separated-reporting logic to cloud/nodata and ~~low-confidence unmixing~~ the regression prediction interval *(renamed 2026-09-25, Decision 14 (b))*.
 
 **Reflectance precondition — tightened.** BOA surface reflectance is already
 available via `COPERNICUS/S2_SR_HARMONIZED`. The precondition is not
-"obtain reflectance," it is: **unmixing must read the float32 multi-band tile
+"obtain reflectance," it is: **~~unmixing~~ the regression inputs *(2026-09-25)* must read the float32 multi-band tile
 path. It must never read the per-tile percentile-stretched 8-bit PNG preview.**
 The reflectance exists upstream; the risk is destroying it downstream at
 tiling.
@@ -508,8 +508,10 @@ validate the method before scaling it.
 > criterion reads *"the three non-observation components are independently
 > readable"*, and the Part 6 header note at §"Part 6" describes the same
 > three-field contract. If (c) is accepted, both need rewording to the
-> two-group structure. **Left for a separate pass once this decision's wording
-> is confirmed.**
+> two-group structure. ~~**Left for a separate pass once this decision's wording
+> is confirmed.**~~ **Done 2026-09-25:** item 33 and the Part 6 note are
+> reworded to the two-group structure, with (b)'s prediction-interval rename
+> applied.
 >
 > **Extended 2026-09-24 (planning session) — the occlusion list, and eight
 > fractions.** Recorded here for the first time:
@@ -593,15 +595,20 @@ flood-prone).
   sentence is superseded with Decision 13's unmixing spec; see item 21.
 - **Cloud / nodata** — genuine gaps in the composite for the observation
   window. Requires the SCL-based masking fix (item 51, C1) to be trustworthy.
-- **Low unmixing confidence** — pixels where the solve is poorly constrained
-  against the endmember model. Reported as its own field, not folded into
-  either the fractions or the coverage number.
+- ~~**Low unmixing confidence** — pixels where the solve is poorly constrained
+  against the endmember model.~~ **Regression prediction interval**
+  *(renamed 2026-09-25, applying Decision 14 (b) as signed off)* —
+  per-fraction prediction interval from the regressors (quantile regression
+  or ensemble spread). Reported as its own field, not folded into either the
+  fractions or the coverage number. Per (c), it belongs to the
+  **estimate-quality** group: it never touches the denominator, unlike
+  shadow and cloud/nodata.
 
 Merging these three was the CAAT-era pathology — the same S1 collapse
 (`01_DIAGNOSIS.md` §4) that produced nine findings from one design gap.
 Keeping them separate lets a consumer reconstruct *why* coverage is low
-(seasonal shadow vs. a cloudy acquisition vs. a genuinely hard-to-unmix
-surface) rather than only *that* it is.
+(seasonal shadow vs. a cloudy acquisition vs. a genuinely ~~hard-to-unmix~~
+hard-to-estimate surface) rather than only *that* it is.
 
 **Field-naming discipline for Part 6:** the three non-observation fields must
 be structurally distinct from the ~~five~~ eight land-cover fractions, so a
@@ -863,7 +870,10 @@ hand-annotated paved labels on a sample), not a method problem.
 #### What this costs downstream
 
 - **Flood risk** — unaffected. Its stated input is `impervious_total` plus
-  vector conduits (§6 outputs table; item 26).
+  vector conduits (§6 outputs table; item 26). *(Qualified 2026-09-24:
+  unaffected by the inversion, but the sealed-only `paved` definition moves
+  compacted earth into `bare`. Item 26 now uses runoff coefficients per
+  fraction; see item 26.)*
 - **Morphological characterisation** — unaffected. Item 23 separates formal from
   informal *without any spectral input*.
 - **Change over time** — improved. A stable estimator of a recoverable quantity
@@ -1061,7 +1071,7 @@ result above.*
 13's constrained-extraction spec in full.
 
 **Precondition — tightened:** BOA surface reflectance is already available via
-`COPERNICUS/S2_SR_HARMONIZED`. **Unmixing must read the float32 multi-band
+`COPERNICUS/S2_SR_HARMONIZED`. **~~Unmixing~~ The regression inputs *(2026-09-25)* must read the float32 multi-band
 tile path — never the per-tile percentile-stretched 8-bit PNG preview.** The
 6-band float32 tiler is a *prerequisite* for this item, not a retired path;
 only the dual-stem classifier that used to consume its output is dead.
@@ -1313,13 +1323,29 @@ observation quality is carried alongside so a cloud-affected epoch cannot
 masquerade as change.
 
 ### 26. Rewire flood risk 🔓
-Susceptibility consumes `impervious_total` rather than a discrete class; roads
-enter as rasterized vector conduits at hydrology resolution.
+Susceptibility consumes ~~`impervious_total`~~ **fractions, through a runoff
+coefficient per fraction** *(amended 2026-09-24)* rather than a discrete
+class; roads enter as rasterized vector conduits at hydrology resolution.
+
+**Requirement, decided 2026-09-24 — runoff coefficients per fraction.**
+Compacted earth is now labelled `bare`, because `paved` is sealed surfaces
+only (Decision 11; `LABELLING_GUIDE.md` §4). So **`impervious_total` no longer
+captures compacted earth's runoff**, and it cannot be the only runoff signal.
+
+- Item 26 assigns a runoff coefficient to each fraction instead of treating
+  `impervious_total` as the sole runoff input.
+- **`bare` gets a non-zero coefficient.** It **may be higher in dense
+  informal fabric**, where unsealed ground is typically heavily compacted.
+- `mixed_water_vegetation` keeps its own sub-type-weighted hydrological input
+  (Decision 11).
+- **The exact coefficients are set when item 26 is designed.** Not now.
 
 **Deleted in this item:** the road-proximity penalty (C7, C11) ceases to exist.
 
 **Acceptance:** susceptibility runs end-to-end on fraction input; no reference to
-`paved_road` as a class remains anywhere in the flood path.
+`paved_road` as a class remains anywhere in the flood path; **every fraction's
+runoff coefficient is documented with its source, and `bare`'s is non-zero**
+*(added 2026-09-24)*.
 
 ---
 
@@ -1409,9 +1435,17 @@ convention.*
 below were originally specified in the vocabulary of the deleted CAAT-era
 pipeline (`category_area_pct`, `unknown_pct`, discrete-class language).
 Decision 14 replaces that with: known-pixel denominator, mandatory
-`observed_fraction` field, and three separately-reported non-observation
-fields (shadow, cloud/nodata, low-confidence unmixing) rather than one merged
-"unknown." Read each item below against that fraction-pipeline vocabulary,
+`observed_fraction` field, and ~~three separately-reported non-observation
+fields (shadow, cloud/nodata, low-confidence unmixing)~~ separately-reported
+fields in **two groups** rather than one merged "unknown":
+
+- **Observability**, which defines the denominator: cloud/nodata, fully
+  shadowed pixels, transient snow, fire/smoke, ships.
+- **Estimate quality**, which never touches the denominator: the per-fraction
+  **regression prediction interval**, plus `paved`'s derivation uncertainty.
+
+*(Reworded 2026-09-25, applying Decision 14 (b) and (c) as signed off
+2026-09-23, and the 2026-09-24 occlusion list and shadow rule.)* Read each item below against that fraction-pipeline vocabulary,
 not the classification-pipeline vocabulary the original text may still
 suggest. See `04_FINDINGS_LEDGER.md`'s Part 6 translation note for the full
 mapping.
@@ -1419,12 +1453,17 @@ mapping.
 ### 33. C19 — denominator + `observed_fraction`
 Apply Decision 14's convention. **Emit `observed_fraction` as a mandatory
 sibling field** — fixing the denominator alone just moves the bias. Emit
-shadow / cloud-nodata / low-confidence-unmixing as three separate fields,
-never merged.
+~~shadow / cloud-nodata / low-confidence-unmixing as three separate fields~~
+each observability cause (cloud/nodata, fully shadowed, transient snow,
+fire/smoke, ships) as its own field, and the per-fraction **regression
+prediction interval** as a separate estimate-quality field — never merged
+*(reworded 2026-09-25 per Decision 14 (b)/(c))*.
 
 **Acceptance:** no derived physical quantity is emitted without its coverage
-sibling; the three non-observation components are independently readable, not
-summed into one number by the producer.
+sibling; ~~the three non-observation components are independently readable~~
+every observability field and every estimate-quality field is independently
+readable, not summed into one number by the producer, and **no
+estimate-quality field reduces the denominator** *(reworded 2026-09-25)*.
 
 ### 34. C21 — `hydrological_surfaces.py` status field and failure path
 The only module in the analysis chain with neither. That single omission produces
@@ -2035,8 +2074,8 @@ retired and must not be reused.
 **What replaces the one real gap this part would have addressed:** if
 per-object tracking of non-building features (primarily standing water, for
 flood-relevant directional growth) becomes a stated requirement later, the
-mechanism is **connected-component labeling on thresholded unmixing-fraction
-rasters** — not SAM, not the items below. Not built now; named here so the
+mechanism is **connected-component labeling on thresholded ~~unmixing-~~fraction
+rasters** *(2026-09-25)* — not SAM, not the items below. Not built now; named here so the
 gap in this part isn't mistaken for an oversight.
 
 ~~### C9 — stable IDs at mask creation~~ — deleted with SAM. *(was item 47 in the pre-Decision-12 numbering; the live item 47 is C34 in Part 8)*
