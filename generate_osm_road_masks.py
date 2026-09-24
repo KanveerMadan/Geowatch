@@ -61,11 +61,13 @@ from shapely.ops import transform as shapely_transform
 import pyproj
 
 PIPELINE_RUNS_DIR = "data/pipeline_runs"
-OVERPASS_URLS = [
-    "https://overpass-api.de/api/interpreter",
-    "https://overpass.kumi.systems/api/interpreter",
-    "https://overpass.openstreetmap.ru/api/interpreter",
-]
+# Endpoints and retry policy now live in ingestion/overpass.py -- one list, one
+# policy, shared by both generators and by the endmember extraction (C44).
+# Re-exported here because existing callers import OVERPASS_URLS from this
+# module; prefer `from ingestion.overpass import run_query` in new code.
+from ingestion.overpass import (            # noqa: E402
+    OVERPASS_URLS, run_query, OverpassError, OverpassQueryTooHeavy,
+)
 
 # Realistic real-world road width in meters, by OSM highway tag.
 # Conservative middle-of-range values -- err slightly narrow rather than
@@ -94,7 +96,15 @@ def find_run_dir(city):
     return matches[-1] if matches else None
 
 
-def query_overpass_roads(min_lon, min_lat, max_lon, max_lat, retries=4):
+def query_overpass_roads(min_lon, min_lat, max_lon, max_lat, retries=None):
+    """Road centrelines for a bbox.
+
+    Endpoint rotation, per-status-code error handling and backoff are handled
+    by `ingestion.overpass.run_query` (C44). `retries` is accepted and ignored
+    for backward compatibility -- the shared client decides how many rounds to
+    make, because "how many times to retry" depends on WHY it failed and the
+    caller does not know that.
+    """
     query = f"""
     [out:json][timeout:60];
     (
@@ -102,24 +112,14 @@ def query_overpass_roads(min_lon, min_lat, max_lon, max_lat, retries=4):
     );
     out geom;
     """
-    headers = {
-        "User-Agent": "GeoWatchCopilot/1.0 (research project, contact: local dev)",
-        "Content-Type": "application/x-www-form-urlencoded",
-    }
-    for attempt in range(retries):
-        url = OVERPASS_URLS[attempt % len(OVERPASS_URLS)]
-        try:
-            print(f"  trying {url} ...")
-            resp = requests.post(url, data={"data": query},
-                                  headers=headers, timeout=90)
-            resp.raise_for_status()
-            return resp.json()["elements"]
-        except Exception as e:
-            wait = 15 * (attempt + 1)  # longer backoff: 15s, 30s, 45s
-            print(f"  Overpass query failed (attempt {attempt+1}/{retries}): {e}")
-            print(f"  waiting {wait}s before retry...")
-            time.sleep(wait)
-    raise RuntimeError("Overpass query failed after retries.")
+    try:
+        return run_query(query)
+    except OverpassQueryTooHeavy:
+        # A genuine server-side query timeout is the one failure that a smaller
+        # bbox actually fixes, so say so rather than reporting "Overpass failed".
+        print("  Overpass hit its own time limit on this bbox -- split the AOI "
+              "or raise the [timeout:] value. Retrying as-is will not help.")
+        raise
 
 
 def get_utm_crs(lon, lat):

@@ -114,16 +114,137 @@ into a real number for one city.
 *Seven decisions. All settled. Twelve technical items were blocked behind
 these; none of this was typing.*
 
-### 11. Fraction taxonomy ✅ **SETTLED**
-Fractions (disjoint, sum to ~1):
-built — roofed structure
-paved — hard surface, unroofed
-vegetation
-water
-bare — permeable unpaved ground
+### 11. Fraction taxonomy ✅ **SETTLED — AMENDED 2026-09-23, signed off**
 
-Derived:
-impervious_total = built + paved
+> **Amendment adopted 2026-09-23.** The governing principle below — *measure
+> disjoint things, derive overlapping ones* — survives the item 21 pilot
+> unchanged and is if anything vindicated by it. What the evidence contradicts is
+> **which** quantities are measured and which derived: this decision measures
+> `built` and `paved` and derives `impervious_total`, but `built` vs `paved` is
+> separated by only **1.70°** of spectral angle against a ~0.7° noise floor and
+> is therefore unidentifiable, while `impervious_total` is recoverable
+> (ceiling R² 0.822 vs 0.490). The proposal is to measure `impervious_total`,
+> take `built` from vector footprints directly, and derive `paved` — same
+> principle, reversed assignment. See item 21 and `06_UNMIXING_CEILING.md`.
+>
+> The note below that "`built` vs. `paved` is the weakest boundary of the five"
+> was directionally right and understated: it is not weak, it is unidentifiable.
+> **SIGNED OFF 2026-09-23.** The amendment described above is adopted; this
+> decision is settled again as amended. `02_ARCHITECTURE.md` is corrected to
+> match.
+>
+> **Second amendment, DECIDED 2026-09-24 (planning session): five fractions
+> become eight.** Recorded here for the first time. The block below the rule is
+> the pre-2026-09-24 list, kept for provenance; the current list follows it.
+> Full record: `02_ARCHITECTURE.md` §3 "The taxonomy expansion".
+
+*Superseded 2026-09-24 — the original five:*
+
+    Fractions (disjoint, sum to ~1):
+    built — roofed structure
+    paved — hard surface, unroofed
+    vegetation
+    water
+    bare — permeable unpaved ground
+
+    Derived:
+    impervious_total = built + paved
+
+**Current — eight fractions, disjoint, summing to ~1 on the known-pixel
+denominator (Decision 14):**
+
+    built                  — building footprints (vector)
+    paved                  — derived: impervious_total − built.
+                             SEALED unroofed surface only: asphalt,
+                             concrete, tiles, laid stone
+    vegetation
+    water
+    bare                   — residual. Unsealed ground, INCLUDING compacted
+                             ground (dirt roads, gravel, compacted yards)
+    snow_ice               — NEW: permanent only (spectral + low temporal variance)
+    solar                  — NEW: own fraction
+    mixed_water_vegetation — NEW: wetlands, mangroves, mudflats/tidal, water hyacinth
+
+    Derived:
+    impervious_total = built + paved        (unchanged; solar DEFERRED — see below)
+
+    hard_surface_remainder = 1 − (vegetation + water + snow_ice + solar
+                                  + mixed_water_vegetation)
+      — on the known-pixel share only (~~shadow-renormalised~~, struck
+        2026-09-24: there is no shadow term to renormalise out)
+      → split by the item 21 regressor into impervious_total and bare
+
+    Producers, all run BEFORE the remainder is computed (added 2026-09-24):
+    vegetation, water      — spectral regression (item 21, signed off 2026-09-23)
+    snow_ice               — spectral signature + low temporal variance
+    solar                  — spectral-signature detector
+    mixed_water_vegetation — spectral + dataset sub-typing (GMW, GLWD)
+
+*Amended 2026-09-24: the formula as first recorded ended `+ shadow)`. That
+term is ~~struck~~ because it counted shadow twice: subtracted here, and
+removed from the denominator by Decision 14. See the shadow rule below.*
+
+- **`paved` is sealed surfaces only** *(amended 2026-09-24)*. The definition
+  in `02_ARCHITECTURE.md` §3 read *"Hard surface, unroofed — paving,
+  hardstanding, courtyard, ~~compacted yard~~"*. Compacted yard is struck.
+  **Unsealed ground, even if compacted, is `bare`.** Hard-case rules:
+  `LABELLING_GUIDE.md` §4.
+- **`snow_ice`** is permanent snow/ice only. Transient snow is occlusion, like
+  cloud.
+- **`solar`** is its own fraction. **Whether it is added to
+  `impervious_total` is DEFERRED** until real-world solar prevalence is
+  measured in the validation data.
+- **`mixed_water_vegetation`** is sub-typed via Global Mangrove Watch and the
+  Global Lakes and Wetlands Database, and feeds the flood model (item 26) as
+  **its own hydrological input, weighted by sub-type**.
+- **The hard-surface remainder now subtracts `snow_ice`, `solar` and
+  `mixed_water_vegetation`** in addition to vegetation and water ~~and
+  shadow~~.
+- **Shadow rule (LOCKED 2026-09-24): each pixel is handled one way, never
+  both.**
+  - **Fully shadowed pixels are occlusion.** They are removed from the
+    known-pixel denominator (Decision 14's observability group) and are
+    **not** subtracted in the remainder.
+  - ~~**Partially shadowed pixels get a sub-pixel shadow term** in the solve,
+    renormalised out (Decision 13's sixth term). It is **never reported as a
+    fraction** and never touches the denominator.~~ **Amended 2026-09-24:**
+    partially shadowed pixels **stay in the known-pixel denominator with no
+    explicit shadow term.** The regressors are trained on hand labels that
+    include partially shadowed pixels, so robustness to partial shadow is
+    learned. (The struck version needed an unmixing solve; the design is
+    regression, and a proposed "layered" stage-1 solve to host the term was
+    withdrawn without being decided.)
+  - Shadow therefore appears nowhere in the remainder formula.
+  - **Partial shadow is tested, not assumed.** The Makoko/Kibera/Rocinha
+    labelling pass marks it separately. **If validation shows learned
+    robustness fails, a dedicated fix is added then, with evidence.**
+  - **Open:** where the full/partial boundary sits is not yet decided. The
+    same labels supply the evidence.
+
+**Folded into existing fractions — metadata flags only, no new fraction:**
+sports fields / golf courses / parks / farmland → `vegetation` with OSM sub-type
+flags (sports fields also get a secondary, confidence-flagged synthetic-turf
+spectral check); sand, salt flats, rock / bedrock / volcanic rock, dry lakebeds,
+dirt tracks / unpaved parking, landfills, quarries → `bare` with OSM or
+geographic-plausibility flags; docks → `built`.
+
+**Occlusion — no fraction:** cloud, shadow, transient snow, fire/smoke of all
+kinds, ships. Decision 14's observability group.
+
+**Feature / context layers — not fractions, all per-pixel, many per AOI:**
+volcano (named via Smithsonian GVP match — no confidence flag on a database
+match; Copernicus DEM as secondary shape confirmation; the underlying surface
+still counted in its real fraction); terrain (flat / hilly / mountainous from
+DEM slope + elevation, reported as a distribution per AOI). Named mountain
+ranges: not built (optional cosmetic later).
+
+**New datasets:** Global Mangrove Watch, Global Lakes and Wetlands Database,
+Smithsonian GVP, a second building-footprint source (Microsoft or OSM
+buildings) for `built` confidence, regional geological data where available,
+expanded OSM `landuse` tags.
+
+**Volcanic hazard module:** parked as a future sixth hazard module, not
+specified.
 
 
 Governing principle: **measure disjoint things, derive overlapping ones.** A
@@ -142,7 +263,7 @@ not). Must carry its own confidence marker downstream; never presented at the
 same confidence as the other three.
 
 **Known scope boundary, stated explicitly so it is never assumed away:** these
-five fractions answer land-cover proportion and imperviousness. They do not
+~~five~~ eight fractions answer land-cover proportion and imperviousness. They do not
 answer land-use, vegetation type, building condition, or anything
 demographic/administrative. A "full" urban planning tool would need those as
 separate data layers (census, cadastral, infrastructure records) — this
@@ -165,14 +286,14 @@ segments for network.
 (specifically water bodies) have a plausible future need for object-level
 change tracking — "this water body grew toward the settlement" is a per-object
 claim a grid answers badly. This does **not** argue for SAM. It argues for
-**connected-component labeling on thresholded unmixing-fraction rasters** —
+**connected-component labeling on thresholded ~~unmixing-~~fraction rasters** *(2026-09-25; mechanism unchanged)* —
 threshold the `water` fraction, run connected components, get labeled,
 pre-typed objects with no separate mask-vs-segment ID synchronization problem
 to fail (the exact failure mode that produced C9).
 
 **Named as a deferred, unbuilt forward reference — not scope now:** if
 per-object tracking of non-building features becomes a stated requirement, the
-mechanism is connected-component extraction on unmixing rasters. Not SAM. Not
+mechanism is connected-component extraction on ~~unmixing~~ fraction rasters. Not SAM. Not
 built until §6's outputs table actually grows to require it.
 
 **Deleted with SAM:** C9 (segment-ID mis-join), C28 (annotation bakes the
@@ -190,7 +311,55 @@ engineering, not a research problem.
 
 ---
 
-### 13. Global endmember strategy ✅ **SETTLED — Option D, constrained**
+### 13. Global endmember strategy ✅ **SETTLED — Option D, AMENDED 2026-09-23 (signed off); AMENDED 2026-09-24: no unmixing endmember — optional regressor feature, gated by LOCO ablation**
+
+> **The pilot this decision required has run, and it falsified the decision's
+> central assumption.** Both risks this decision left explicitly open (below)
+> have now fired. `built` and `paved` are separated by **1.70°** of spectral
+> angle against a ~0.7° sensor noise floor, so the constrained extraction cannot
+> produce a usable `built` endmember for informal fabric by any method — three
+> extraction families were tried and failed, and the failure was then shown to
+> be an information limit rather than a method problem.
+>
+> Worse than a null result: the institutional-roof endmember this spec would
+> actually produce sits **4.69°** from `paved`, versus **1.66°** for a realistic
+> informal-roof endmember. **Following this spec manufactures separability that
+> does not physically exist**, yielding a confident-looking split that is an
+> artifact.
+>
+> The text below is preserved for provenance. Evidence:
+> `06_UNMIXING_CEILING.md`, `07_ITEM_21.md`.
+>
+> **RE-SETTLED 2026-09-23 as amended:** ~~one `impervious_total` endmember rather
+> than a `built`/`paved` pair;~~ `built` from vector footprints, not unmixed at
+> all; `paved` derived by difference with explicit uncertainty. The re-scope is
+> adopted, not merely proposed, and `unmixing-ceiling-investigation` is merged.
+>
+> **AMENDED 2026-09-24 — there is no unmixing endmember.** Under the recorded
+> design, vegetation, water and `impervious_total` are **spectral regression**
+> (item 21 table, signed off 2026-09-23). No unmixing solve exists, so no
+> endmember enters one. The "one `impervious_total` endmember" clause above is
+> struck.
+>
+> **The local paved endmember is repurposed as an OPTIONAL regressor
+> feature.** The feature is the per-pixel spectral angle to the AOI's *own*
+> local paved endmember. It acts as a per-city calibration reference.
+>
+> - **Default: the regressor is built WITHOUT it.**
+> - **Ablation:** during leave-one-city-out on the training cities, train with
+>   and without the feature. **Keep it only if it measurably improves
+>   cross-city transfer; otherwise retire it.** "Measurably" follows the
+>   working rules in `08_STATE.md`: paired per-fold comparison, per-city
+>   reporting, and no rounding a within-noise result up.
+> - **If kept,** the 2026-09-24 endmember-stability findings (item 21) define
+>   how it is built: extraction is local, buffer radius 0, n\* measured per
+>   AOI, bootstrap with independent pairs.
+> - **If retired,** that apparatus becomes historical record, and Decision 13
+>   has no live subject beyond `built` from footprints and `paved` by
+>   difference.
+>
+> Everything below the rule, including "The split" table, is the original
+> unmixing spec, preserved for provenance.
 
 **The split:**
 
@@ -235,11 +404,11 @@ shadow, and not having that knowledge is what shadow means.
 **Structural connection to Decision 14, carried forward:** shadow fraction and
 the observability denominator are the same underlying question — what
 fraction of this area could actually be observed. Decision 14 extends this
-same separated-reporting logic to cloud/nodata and low-confidence unmixing.
+same separated-reporting logic to cloud/nodata and ~~low-confidence unmixing~~ the regression prediction interval *(renamed 2026-09-25, Decision 14 (b))*.
 
 **Reflectance precondition — tightened.** BOA surface reflectance is already
 available via `COPERNICUS/S2_SR_HARMONIZED`. The precondition is not
-"obtain reflectance," it is: **unmixing must read the float32 multi-band tile
+"obtain reflectance," it is: **~~unmixing~~ the regression inputs *(2026-09-25)* must read the float32 multi-band tile
 path. It must never read the per-tile percentile-stretched 8-bit PNG preview.**
 The reflectance exists upstream; the risk is destroying it downstream at
 tiling.
@@ -269,7 +438,132 @@ validate the method before scaling it.
 
 ---
 
-### 14. `category_area_pct` denominator ✅ **SETTLED**
+### 14. `category_area_pct` denominator ✅ **SETTLED — reasoning intact; amendment SIGNED OFF 2026-09-23**
+
+> **Amendment adopted 2026-09-23.** The core of this decision — known-pixel
+> denominator, mandatory `observed_fraction` sibling, and above all the rule
+> that distinct causes are never merged — survives the item 21 pilot untouched,
+> and the anti-merging rule is *strengthened* by it. What breaks is narrower:
+> **two of the three named components delegate to mechanisms that no longer
+> exist**, because Decision 13 is reopened. Four changes follow, and all four are
+> **signed off**. Evidence: `06_UNMIXING_CEILING.md`.
+>
+> A fifth, added at sign-off: **`paved`'s derivation uncertainty is its own
+> reported quantity.** It belongs in the *estimate quality* group of (c), never
+> in the observability group — a derived value is not an unobserved one.
+>
+> **(a) Shadow's mechanism is orphaned.** This decision delegates shadow to
+> Decision 13 — *"solved as a sixth endmember term; five fractions renormalize
+> over the illuminated portion."* Under the item 21 re-scope there is no
+> unmixing solve and therefore no sixth term, so the field has no producer and
+> "illuminated portion" has no definition. A standalone shadow estimator is
+> needed (SCL class 3 plus solar geometry is the obvious candidate). Note also
+> that shadow is shakier than this decision assumes: the B-decomposition test
+> asked directly whether a dark spectrum was material or material-plus-shadow
+> and returned **indeterminate at 6.5–9.7% residual** across three independent
+> shadow references. Whatever produces this field should carry that caveat.
+>
+> **(b) "Low unmixing confidence" needs redefinition — and improves.** It is
+> currently specified as *"pixels where the solve is poorly constrained against
+> the endmember model."* With no solve and no endmember model, the field has no
+> definition at all. Under regression it becomes a genuine **prediction
+> interval** (quantile regression or ensemble spread), which is better founded
+> than a residual against a simplex. Rename accordingly; the concept survives
+> and strengthens.
+>
+> **(c) The taxonomy should split into two groups, along an axis already latent
+> in it.** This decision is fundamentally about **the denominator**: what counts
+> as observed. Shadow and cloud/nodata *remove a pixel from the denominator* —
+> that is what makes them observability. Estimate quality does not: such a pixel
+> was validly observed, stays in the denominator, and merely carries wide
+> uncertainty. The seam already exists here — the third field explicitly says it
+> is *"not folded into either the fractions or the coverage number"*, i.e. it is
+> already an estimate-quality field listed among two denominator-defining ones.
+>
+> | group | fields | touches the denominator? |
+> |---|---|---|
+> | **Observability** | shadow, cloud/nodata → feed `observed_fraction` | **yes — these define it** |
+> | **Estimate quality** | per-fraction confidence / prediction interval | **no — never** |
+>
+> Keeping them in one list invites a consumer to subtract ambiguity from
+> coverage, shrinking the denominator and reintroducing **exactly the C19 bias
+> direction** (less observed area silently reading as less flood-prone). That is
+> this decision's own founding failure, recreated one level up.
+>
+> **(d) The impervious/bare finding enters as a confidence marker on
+> `impervious_total` — NOT as a member of the observability list.** Measured
+> directly rather than inferred: ceiling R² **0.822** at documented S2 noise,
+> and **0.737** even in a bare-dominated arid scene. That is the **weakest
+> remaining boundary, recoverable**, and it inherits Decision 11's treatment of
+> the weakest boundary — its own confidence marker, never presented at the same
+> confidence as vegetation or water. It is explicitly **not** the
+> "unidentifiable in principle" case; that claim is earned only by `built`/
+> `paved` at 0.490. One conditional caveat carries with it: at 2× noise the arid
+> scene falls to 0.477, so the recoverability is contingent on radiometric
+> quality. Because regression emits prediction intervals natively, and those
+> widen precisely where impervious/bare ambiguity bites, this likely needs **no
+> new field at all** — the interval on `impervious_total` encodes it.
+>
+> **Downstream, flagged but deliberately NOT yet edited:** item 33's acceptance
+> criterion reads *"the three non-observation components are independently
+> readable"*, and the Part 6 header note at §"Part 6" describes the same
+> three-field contract. If (c) is accepted, both need rewording to the
+> two-group structure. ~~**Left for a separate pass once this decision's wording
+> is confirmed.**~~ **Done 2026-09-25:** item 33 and the Part 6 note are
+> reworded to the two-group structure, with (b)'s prediction-interval rename
+> applied.
+>
+> **Extended 2026-09-24 (planning session) — the occlusion list, and eight
+> fractions.** Recorded here for the first time:
+>
+> - **The observability group is now five causes:** cloud, shadow *(fully
+>   shadowed pixels only — see the shadow rule below)*, **transient
+>   snow**, **fire/smoke of all kinds**, **ships**. None is a fraction. All
+>   remove the pixel from the denominator. The anti-merging rule applies to the
+>   new ones as it does to the old: each is reported separately, never folded
+>   into one "unknown". *Permanent* snow is not occlusion — it is the
+>   `snow_ice` fraction (Decision 11).
+> - **The fractions summing to ~1 on the known-pixel denominator are now
+>   eight** (Decision 11 second amendment), not five. The field-naming
+>   discipline below applies unchanged: a consumer summing the eight gets ~1
+>   over the observed portion.
+> - **Context layers (volcano, terrain, OSM sub-type flags) belong to neither
+>   group.** They are not observability and not estimate quality; they touch
+>   neither the denominator nor any fraction's uncertainty — with one
+>   exception: the sports-field synthetic-turf spectral check carries its own
+>   confidence flag, which is estimate quality.
+> - **Shadow gets a measured accuracy.** Its accuracy is measured in the same
+>   hand-digitisation pass at Makoko / Kibera / Rocinha (item 21, "Validation
+>   additions") — this is the first direct measurement of the caveat in (a).
+>   Full and partial shadow are labelled as separate cases so each can be
+>   checked.
+>
+> **Shadow rule, LOCKED 2026-09-24 — the observability shadow field covers
+> fully shadowed pixels only.**
+>
+> - **Fully shadowed pixel:** occlusion. It leaves the denominator and is
+>   reported in this group's shadow field.
+> - **Partially shadowed pixel:** stays in the denominator. ~~Its shadow share
+>   is a sub-pixel term renormalised out in the solve (Decision 13's sixth
+>   term).~~ **Amended 2026-09-24: no explicit shadow term.** Robustness to
+>   partial shadow is learned by the regressors from hand labels that include
+>   partially shadowed pixels. It is **never reported as a fraction** and
+>   never feeds `observed_fraction`.
+> - **No pixel is handled both ways.** This fixes a double count: as first
+>   recorded, Decision 11's hard-surface remainder also subtracted shadow.
+>   That term is struck.
+>
+> ~~Two points remain open. Where the full/partial boundary sits is not yet
+> decided; the labelled pass supplies the evidence. And what produces the
+> partial term still inherits (a)'s question — under regression there is no
+> unmixing solve to host a sixth term — so the rule fixes *routing*, not the
+> producer.~~ **Amended 2026-09-24:** the producer question is closed by
+> having no partial-shadow term at all, so (a) stands unchanged. Its "no
+> unmixing solve under regression" is correct for the recorded design. One
+> point stays open: **where the full/partial boundary sits.** The labelled
+> pass supplies the evidence. Partial shadow is validated separately, and
+> **if learned robustness fails, a dedicated fix is added then, with
+> evidence.**
 
 **Chosen: known-pixel denominator. Observability reported as a mandatory
 companion field. Non-observation reported as three separate fields, never
@@ -292,22 +586,34 @@ flood-prone).
 
 - **Shadow** — handled by Decision 13. Solved as a sixth endmember term; five
   fractions renormalize over the illuminated portion; reported as its own
-  field.
+  field. *Amended 2026-09-24 (shadow rule):* ~~reported as its own field~~ —
+  the field covers **fully shadowed pixels only**, which are occlusion. ~~The
+  sixth-term renormalisation applies to partially shadowed pixels~~ Partially
+  shadowed pixels have no explicit term (amended again 2026-09-24): they stay
+  in the denominator, are never reported, and robustness to them is learned
+  by the regressors. The "sixth endmember term" in this bullet's first
+  sentence is superseded with Decision 13's unmixing spec; see item 21.
 - **Cloud / nodata** — genuine gaps in the composite for the observation
   window. Requires the SCL-based masking fix (item 51, C1) to be trustworthy.
-- **Low unmixing confidence** — pixels where the solve is poorly constrained
-  against the endmember model. Reported as its own field, not folded into
-  either the fractions or the coverage number.
+- ~~**Low unmixing confidence** — pixels where the solve is poorly constrained
+  against the endmember model.~~ **Regression prediction interval**
+  *(renamed 2026-09-25, applying Decision 14 (b) as signed off)* —
+  per-fraction prediction interval from the regressors (quantile regression
+  or ensemble spread). Reported as its own field, not folded into either the
+  fractions or the coverage number. Per (c), it belongs to the
+  **estimate-quality** group: it never touches the denominator, unlike
+  shadow and cloud/nodata.
 
 Merging these three was the CAAT-era pathology — the same S1 collapse
 (`01_DIAGNOSIS.md` §4) that produced nine findings from one design gap.
 Keeping them separate lets a consumer reconstruct *why* coverage is low
-(seasonal shadow vs. a cloudy acquisition vs. a genuinely hard-to-unmix
-surface) rather than only *that* it is.
+(seasonal shadow vs. a cloudy acquisition vs. a genuinely ~~hard-to-unmix~~
+hard-to-estimate surface) rather than only *that* it is.
 
 **Field-naming discipline for Part 6:** the three non-observation fields must
-be structurally distinct from the five land-cover fractions, so a consumer
-summing built+paved+vegetation+water+bare gets ~1 over the observed portion
+be structurally distinct from the ~~five~~ eight land-cover fractions, so a
+consumer summing built+paved+vegetation+water+bare *(+snow_ice+solar+
+mixed_water_vegetation since 2026-09-24)* gets ~1 over the observed portion
 and never mistakes a coverage/shadow/cloud field for a sixth land-cover class
 — the same discipline already applied to `impervious_total` in Decision 11.
 
@@ -400,10 +706,10 @@ decision's text.
 
 | # | Decision | Outcome |
 |---|---|---|
-| 11 | Fraction taxonomy | Five disjoint fractions; `impervious_total` derived; scope boundary stated |
+| 11 | Fraction taxonomy | Five disjoint fractions; `impervious_total` derived; scope boundary stated. ⚠️ *Amendment proposed: measure `impervious_total`, derive `paved` — principle intact, assignment reversed* |
 | 12 | SAM | Deleted; connected-components on fraction rasters deferred, named, unbuilt |
-| 13 | Endmembers | Option D constrained; corrected `paved` source; shadow as 6th term, renormalized |
-| 14 | Denominator | Known-pixel; mandatory coverage field; shadow/cloud/low-confidence reported separately |
+| 13 | Endmembers | Option D constrained; corrected `paved` source; shadow as 6th term, renormalized. ⚠️ **REOPENED — pilot falsified the central assumption; `built`/`paved` unidentifiable at 1.70°** |
+| 14 | Denominator | Known-pixel; mandatory coverage field; shadow/cloud/low-confidence reported separately. ⚠️ *Amendment proposed: shadow mechanism re-pointed, low-confidence → prediction interval, taxonomy split into observability vs estimate-quality* |
 | 15 | Severity rule | Strong bar (confirmed unreachable/no consumer only); severity ≠ fix priority |
 | 16 | Planning user | Research audience |
 | 17 | Gate C | Closed via advisor review against D.7; planner protocol filed as unrun future work |
@@ -420,6 +726,48 @@ placement.
 # PART 4 — Build the architecture 🔓
 
 *Nine items. The core rebuild. Unblocked — Part 3 is complete.*
+
+> ### ⛔ Validation-first mandate — decided 2026-09-24
+>
+> **No further architecture or build progression past item 21** until two
+> things are tested against **independent reference data**, with **criteria
+> fixed in advance**:
+>
+> 1. **The land-classification architecture** — item 21's fractions, and
+>    `built`.
+> 2. **All five flood/hazard calculations.** These are the five
+>    susceptibility modules in `susceptibility/`: pluvial, fluvial, coastal,
+>    flash flood, waterlogging. `event_hazard.py` conditions some of them on
+>    event forcing; it is not a sixth calculation.
+>
+> **Until then, every result is proposed research design, not an established
+> claim.** That covers this manual, `02_ARCHITECTURE.md`, and any output.
+>
+> **Also decided 2026-09-24, under this mandate:**
+>
+> - **Land-classification criteria and guardrails** — the `impervious_total`
+>   pass/fail bars, `built` validation, and regressor guardrails. See item 21,
+>   "Validation criteria and guardrails".
+> - **Flood validation approach (Tier 2; sites not yet chosen).**
+>   - Each of the five hazard calculations is validated by
+>     **discrimination**: does its score rank **observed-flooded cells above
+>     dry ones, across many cells**?
+>   - Reference: observed inundation extents — JRC Global Surface Water and
+>     Sentinel-1 flood mapping.
+>   - **Single-event anecdotes are sanity checks only**, never evidence of
+>     validity.
+>   - **Each hazard gets its own site or sites.** Pass criteria are fixed
+>     before any run, as for item 21.
+> - **Low-coverage policy for vector-dependent outputs** — tiered by output
+>   type:
+>   - **Outputs that stay meaningful at low coverage** (footprint density,
+>     coarse `built`) are **computed with a confidence flag**.
+>   - **Outputs that become misleading** (network-topology metrics:
+>     orthogonality, dead-end ratio, fine connectivity) are **suppressed below
+>     a threshold**.
+>   - **Thresholds are set when item 20 is built.**
+> - **Volcanic hazard module:** parked. The user has a specific idea to
+>   discuss later. **Not specified — do not specify it.**
 
 ### 18. Temporal-variance layer 🔓 *(sequencing corrected — see below)*
 
@@ -490,30 +838,512 @@ European and formal Asian AOIs too — the baseline needs formal-city anchors
 before the score is emitted globally, or Paris will saturate a scale built for
 Khayelitsha's 8.35 km/km².
 
+**Low-coverage policy (decided 2026-09-24; see the Part 4 mandate note):**
+outputs that stay meaningful at low coverage (footprint density, coarse
+`built`) are computed with a confidence flag. Network-topology metrics
+(orthogonality, dead-end ratio, fine connectivity) are suppressed below a
+threshold. **This item sets those thresholds.**
+
 **Acceptance:** score emitted for every AOI, **never optional, never null**; a
 low-coverage AOI is visibly flagged end-to-end through to the UI; Lagos (0.19)
 and Khayelitsha (8.35) produce visibly different scores.
 
-### 21. Spectral unmixing → fractions 🔓 *(needs 11 ✅ and 13 ✅ — both settled)*
+### 21. ~~Spectral unmixing~~ Spectral regression → fractions 🔓 **PILOT COMPLETE — RE-SCOPE SIGNED OFF 2026-09-23; not yet built** *(heading was "⚠️ PILOT COMPLETE — RE-SCOPE PROPOSED, AWAITING DECISION"; corrected 2026-09-24)*
+
+> **The sequencing requirement below was honoured, and the pilot returned a
+> negative result.** This item as originally specified is not buildable. The
+> original text is preserved below the rule for provenance; the re-scope
+> proposed above it ~~has **not** been signed off and this item is not
+> settled~~ **was signed off 2026-09-23** (see Decisions 11/13/14 and
+> `08_STATE.md`). The item is open to build, not awaiting a decision.
+> Full evidence: `06_UNMIXING_CEILING.md`.
+
+#### What the pilot established
+
+Seven pre-registered methods failed to recover per-pixel `built` fraction for
+small-structure informal fabric. Measured pairwise spectral angles put every
+hard surface — institutional roof, informal roof, asphalt, bare soil — inside a
+cone **under 5° wide**, against a Sentinel-2 L2A noise floor of ~0.7°.
+`built` vs `paved` is **1.70°**.
+
+Simulating from those measured endmembers under conditions strictly *more
+favourable* than reality (exact labels, linear mixing, fixed endmembers, no
+shadow, no cross-city transfer), the best achievable R² for `built` fraction is
+**0.49–0.56** — against a success bar of 0.50. Observed real values were
+0.35–0.41 within-AOI and 0.08–0.18 cross-city.
+
+**This is an information limit, not a method-selection problem.** No unmixing
+solver, endmember library or feature set can exceed it.
+
+#### Proposed re-scope
+
+**1. Retire the `built`/`paved` split as a measured product.** State it as a
+non-goal with the ceiling as its justification. Decision 11 already calls this
+"the weakest boundary of the five"; the measurement shows it is not weak but
+*unidentifiable*.
+
+**2. Invert where each quantity is estimated.** Decision 11 measures `built`
+and `paved` and derives `impervious_total`. The evidence says reverse it, while
+keeping Decision 11's governing principle — *measure disjoint things, derive
+overlapping ones* — fully intact:
+
+| Fraction | Source | Ceiling R² |
+|---|---|---|
+| **built** | **vector footprints, directly** | n/a — not estimated from spectra |
+| **impervious_total** | spectral regression | 0.822 |
+| **paved** | derived: `impervious_total − built`, with explicit uncertainty | — |
+| **vegetation** | spectral regression | 0.974 |
+| **water** | spectral regression | 0.965 |
+| **bare** | residual | — |
+
+The first row is the substantive move. Open Buildings coverage **is** a `built`
+estimate — VHR-derived, Sentinel-2-independent, and it served as the regression
+*label* throughout the pilot. Predicting it from spectra re-derives, badly, what
+the vector layer already supplies well.
+
+**3. Revised acceptance.** Fractions produced for at least one formal and one
+informal AOI; sum to ~1 within tolerance over the observed portion; documented
+**provenance per fraction** (training-data provenance where regression replaces
+an endmember); per-fraction confidence with **`paved` explicitly marked derived,
+never measured**; and `impervious_total` validated against a held-out AOI rather
+than against a same-AOI split.
+
+**4. Blocking gap, stated plainly.** The 0.822 `impervious_total` ceiling is
+*simulated, not achieved*. Testing it needs a real impervious label, and the
+only available paved source — unroofed OSM polygons — covers **0.23–1.82%** of
+the pilot AOIs against a built mean of 19–30%. **This item cannot be closed
+until that label exists.** It is a data-sourcing problem (VHR-derived or
+hand-annotated paved labels on a sample), not a method problem.
+
+#### What this costs downstream
+
+- **Flood risk** — unaffected. Its stated input is `impervious_total` plus
+  vector conduits (§6 outputs table; item 26). *(Qualified 2026-09-24:
+  unaffected by the inversion, but the sealed-only `paved` definition moves
+  compacted earth into `bare`. Item 26 now uses runoff coefficients per
+  fraction; see item 26.)*
+- **Morphological characterisation** — unaffected. Item 23 separates formal from
+  informal *without any spectral input*.
+- **Change over time** — improved. A stable estimator of a recoverable quantity
+  yields more defensible deltas than an unstable estimator of an unrecoverable
+  one.
+- **Roofing material per building** — was never deliverable from this data.
+  Should be stated out of scope explicitly.
+
+#### Recorded 2026-09-24 — eight fractions, regressor training, validation additions
+
+*Decided in a planning session; written down here for the first time. The
+taxonomy change itself is Decision 11's second amendment — this subsection is
+what it means for item 21.*
+
+**The re-scope table above gains three rows, and the remainder changes.**
+
+| Fraction | Source |
+|---|---|
+| **snow_ice** | spectral + low temporal variance (item 18). Permanent only; transient snow → occlusion |
+| **solar** | own fraction. Inclusion in `impervious_total` **DEFERRED** until solar prevalence is measured in the validation data |
+| **mixed_water_vegetation** | spectral, sub-typed via Global Mangrove Watch + Global Lakes and Wetlands Database; own flood-model input (item 26), weighted by sub-type |
+
+The regressor no longer splits "everything that is not vegetation, water or
+shadow". It splits the **hard-surface remainder**:
+
+    hard_surface_remainder = 1 − (vegetation + water + snow_ice + solar
+                                  + mixed_water_vegetation)
+        — on the known-pixel share only (~~shadow-renormalised~~, struck
+          2026-09-24)
+
+into `impervious_total` and `bare`. Omitting any of the three new subtractions
+lets that surface leak into `impervious_total` or `bare`.
+
+**Producers for the three new fractions (recorded 2026-09-24),** all run
+before the remainder is computed:
+
+| Fraction | Producer |
+|---|---|
+| `snow_ice` | spectral signature + low temporal variance (item 18) |
+| `solar` | spectral-signature detector |
+| `mixed_water_vegetation` | spectral + dataset sub-typing (Global Mangrove Watch, GLWD) |
+
+Vegetation and water stay spectral regression, as in the table above.
+
+*Amended 2026-09-24:* ~~`+ shadow)`~~ is struck from the formula as first
+recorded. **Shadow rule, locked:**
+- **Fully shadowed pixels** are occlusion and leave the denominator
+  (Decision 14).
+- **Partially shadowed pixels** ~~get a sub-pixel shadow term in the solve,
+  renormalised out and never reported as a fraction~~ — *amended 2026-09-24:*
+  stay in the known-pixel denominator with **no explicit term**. The
+  regressors are trained on hand labels that include partially shadowed
+  pixels, so robustness is learned. They are never reported as a fraction.
+- **No pixel is handled both ways.** Fully shadowed pixels have left the
+  denominator before the remainder is computed, and shadow is not subtracted
+  again.
+
+See Decision 11.
+
+**Regressor training — the impervious vs bare split.**
+
+- **Core:** a small hand-labelled set at ~~**Delhi, Lima, Cape Town,
+  Jakarta** (Cairo optional)~~ **Cape Town, Lima, Karachi, Monrovia**
+  (Marrakech optional) — *city list replaced 2026-09-24, see "Site list"
+  below*. It is **weighted toward genuine bare ground**, the boundary
+  Decision 14 (d) names as the weakest recoverable one.
+- **Optional bulk weak labels** from external impervious products (GISA /
+  GAIA) — **only if LOCO shows they help**. Default is off.
+- **Optional endmember feature** *(added 2026-09-24, Decision 13)*: per-pixel
+  spectral angle to the AOI's own local paved endmember. **Default off.**
+  Ablate with vs without during LOCO; keep only if it measurably improves
+  cross-city transfer, otherwise retire it. If kept, build it per the
+  endmember-stability findings below: local extraction, buffer 0, per-AOI n\*,
+  independent bootstrap pairs.
+- **Firewall:** no training in any city containing a validation site —
+  **Lagos, Nairobi and Rio are excluded** from training entirely.
+- **Leave-one-city-out within the training cities before any contact with
+  validation.** Validation sites are touched once, after LOCO.
+- **How many labelled areas:** determined empirically — keep adding until LOCO
+  stops improving, then stop. No number is fixed in advance. Working rules 2–4
+  in `08_STATE.md` apply (paired per-fold comparison, per-city and per-class
+  reporting, no rounding a within-noise result up).
+
+**Site list — FINAL, recorded 2026-09-24.** Recorded decisions only: no
+imagery has been downloaded and nothing is built.
+
+> **Why the training list changed.** The list first recorded was ~~Delhi,
+> Lima, Cape Town, Jakarta, Cairo (optional)~~. A per-site imagery check on
+> 2026-09-24 found that **Delhi, Jakarta and Cairo had no free sub-2 m imagery
+> whose licence permits deriving labels.** Across OpenAerialMap and the
+> Maxar/Vantor open-data catalogues:
+>
+> - **Delhi and Cairo:** zero scenes metro-wide.
+> - **Jakarta:** one 8.6 km² scene at 0.5 m, with 0 / 1 / 2 clear Sentinel-2
+>   scenes within ±30 / 60 / 90 days.
+> - **Basemap fallbacks are forbidden by their terms:**
+>   - Bhuvan's 1 m imagery is view-only, and its terms forbid derivative
+>     works.
+>   - Google's terms forbid tracing and training, testing or validating
+>     models.
+>   - Esri restricts derived data to non-commercial use within ArcGIS and
+>     forbids programmatic requests.
+>
+> Karachi replaces Delhi (arid, South Asia), Monrovia replaces Jakarta (humid
+> tropical, informal and formal fabric), and Marrakech replaces Cairo as the
+> optional city (semi-arid, North Africa). **Delhi may be re-added later**
+> through academic access to commercial imagery (ESA Third Party Missions,
+> Airbus academic). That is not a blocker.
+
+**Validation sites — unchanged, imagery confirmed:**
+
+| Site | Imagery | Resolution | Date | Licence | Sentinel-2 overlap (clear scenes, ±30 / 60 / 90 d) |
+|---|---|---|---|---|---|
+| **Makoko** (Lagos) | Uhuru Labs drone survey | 5.4–6.4 cm | 2019-10-02 | CC BY 4.0 | **Weak: 0 / 2 / 4.** Needs a wide (~6-month) composite window, as for Old Fadama in `06_UNMIXING_CEILING.md` §7.1 |
+| **Kibera** (Nairobi) | Maxar Kenya floods open data | 0.30–0.32 m | **2023-11-30, the PRE-flood scene only** | CC BY-NC 4.0 | 2 / 4 / 9 |
+| **Rocinha** (Rio) | IPP city true-orthophoto mosaic (`Imagens/Mosaico_2024`) | 15 cm | first half of 2024 | Non-commercial; commercial use needs IPP's prior written authorisation | 3 / 8 / 15 (checked against 2024-04-01) |
+
+**Training sites — final:**
+
+| Site | Imagery | Resolution | Date | Licence | Sentinel-2 overlap | Notes |
+|---|---|---|---|---|---|---|
+| **Cape Town** | City of Cape Town aerial imagery (`Aerial Imagery 2026Jan`) | 5 cm | 2026-01 | Non-commercial ("no restrictions on the digital file for non-commercial purposes") | 9 / 16 / 24 | — |
+| **Lima** | OpenAerialMap drone scenes | 3–8 cm | 2017–2025 | CC BY 4.0 | varies by scene (UNI 2025-03-17: 11 / 12 / 14; Caritas 2025-01-05: 1 / 2 / 9) | **Prioritise the desert-hillside scenes, Candelaria and Santuario de las Vizcachas** (genuine bare ground). **Exclude Cajamarquilla** (no licence) |
+| **Karachi** *(replaces Delhi)* | Maxar Pakistan floods open data | 0.53 m | **2022-03-29 only** | CC BY-NC 4.0 | 66 / 127 / 169 | **Pre-flood scene only.** Later scenes contain flood water that would pass for bare ground or water |
+| **Monrovia** *(replaces Jakarta)* | Uhuru Labs / HOT drone surveys | 5 cm | 2020-02-23 | CC BY 4.0 | 22 / 43 / 53 | — |
+| **Marrakech** *(optional, replaces Cairo)* | Maxar Morocco earthquake open data | 0.31–0.55 m | pre-quake 2023 scenes (e.g. 2023-03-28, 2023-08-06) | CC BY-NC 4.0 | 20 / 39 / 49 (08-06) | **Add only if LOCO shows four training cities are too narrow** |
+
+The Sentinel-2 counts are whole scenes under 20% cloud, not per-pixel. A
+masked composite can still work where the count is low.
+
+**Caveats — recorded with the list:**
+
+1. **Licence assumption.** Most of these sources are non-commercial (CC BY-NC
+   or equivalent): Kibera, Rocinha, Cape Town, Karachi, Marrakech. That is fine
+   for academic use. **If GeoWatch or its labels are ever used commercially,
+   these labels must be re-sourced.**
+2. **Regional overlap.** The firewall is city-level and is not broken. But
+   Monrovia shares a region with Makoko (West Africa), and Lima shares one with
+   Rocinha (South America). **Validation reporting must note this.**
+   **Kibera (East Africa) is the coldest transfer test.**
+3. **Coverage areas overstate usable ground.** Drone mosaics have internal
+   no-data gaps; the Old Fadama rectangle was ~36% nodata. **Real pixel
+   coverage must be checked per site before labelling time is committed.**
+
+**Validation criteria and guardrails — decided 2026-09-24, fixed before any
+run.** This item is under Part 4's validation-first mandate: nothing past
+item 21 progresses until these are met, and until then item 21's outputs are
+proposed research design, not claims.
+
+**`impervious_total` pass/fail:**
+
+| Metric | Floor | Target | Role |
+|---|---|---|---|
+| **MAE** | ≤ 15 pp | ≤ 10 pp | **Hard gate** — failing the floor fails the item |
+| **R²** | ≥ 0.3 | ≥ 0.6 | **Hard gate** — failing the floor fails the item |
+| **IoU** | ≥ 0.45 | ≥ 0.6 | **Diagnostic only.** Reported, never disqualifying |
+
+These are fixed now and may not be moved after a result is seen. Scoring uses
+the sealed validation batches (`LABELLING_GUIDE.md` §8) and follows the
+working rules in `08_STATE.md`: per-city and per-class reporting, no rounding
+a within-noise result up.
+
+**`built` validation.**
+
+- **Hand-digitised buildings** at Makoko, Kibera and Rocinha are compared
+  against **Open Buildings** and a **second footprint source** (Microsoft or
+  OSM buildings, per Decision 11's new datasets).
+- **Ongoing, everywhere:** the **per-AOI disagreement between the two
+  footprint sources** is reported as `built` confidence. That signal is
+  **calibrated by the hand-digitised check**, which ties a given disagreement
+  level to a measured error.
+
+**Regressor guardrails.**
+
+- **Deliberately low capacity.** The training set is small (hand labels,
+  four cities), and a high-capacity model would memorise cities rather than
+  transfer.
+- **Mandatory LOCO with a predefined bar.** The bar is fixed before the first
+  LOCO run, like the criteria above.
+- **Fallback if the impervious/bare split fails LOCO:** report **hard surface
+  unsplit** rather than a bad split. That is the hard-surface remainder
+  (Decision 11) reported as one quantity.
+
+**Labelling guide — decided 2026-09-24: [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md)
+(v1.0).** It is the protocol for every training and validation label above:
+- the label set, including `shadow_full` / `shadow_partial` and `unsure`
+- polygon labels, with fractions computed from area and never eyeballed
+- stratified random ~200 m tiles
+- hard cases: sealed = `paved`, compacted = `bare`
+- the time-gap and change-test rules
+- QC: ~15% blind re-labels, and agreement bars fixed before evaluation
+- sealed validation in two batches
+
+**Labelling may not start until its open numbers are set:** change-test
+method and threshold, maximum date gap per site, starting tile count, and
+per-class agreement bars (guide §9).
+
+**Validation additions.**
+
+- **Shadow accuracy** is measured in the **same hand-digitisation pass** at
+  Makoko (Lagos), Kibera (Nairobi) and Rocinha (Rio) — not a separate
+  campaign. It gives Decision 14 (a)'s "indeterminate at 6.5–9.7% residual"
+  caveat a direct measurement. **Added 2026-09-24: the pass must label full
+  and partial shadow as separate cases**, because the shadow rule routes them
+  differently. Full shadow is checked against the occlusion mask; partial
+  shadow is checked ~~against the sub-pixel term~~ *(amended 2026-09-24)* as
+  the **regressors' error on partially shadowed pixels compared with
+  unshadowed ones**. That includes whether shadow drifts into `water`. This
+  is the test of learned robustness; **if it fails, a dedicated fix is added
+  then, with evidence.** A single "shadow" label cannot check either case.
+  The same labels are the evidence for setting the full/partial boundary.
+  **Partially shadowed pixels must also appear in the *training* labels**
+  (Cape Town, Lima, Karachi, Monrovia), or there is nothing to learn from.
+- **`snow_ice`, `solar` and `mixed_water_vegetation` each get their own
+  validation case** at a site where they actually occur, against an
+  **independent reference dataset**. The `solar` case is also where the
+  prevalence measurement that settles the deferred `impervious_total`
+  question comes from.
+
+**Also in scope from the same session, recorded in `02_ARCHITECTURE.md` §3:**
+the metadata-flag foldings (sports fields / parks / farmland → `vegetation`;
+sand, rock, dry lakebeds, landfills, quarries etc. → `bare`; docks → `built`),
+the extended occlusion list (Decision 14), the volcano and terrain context
+layers, the new datasets (including a second footprint source — Microsoft or
+OSM buildings — for `built` confidence), and the volcanic hazard module parked
+as a future sixth hazard module.
+
+---
+
+*Original specification, preserved for provenance. Superseded by the pilot
+result above.*
 
 **What:** linear unmixing per 10 m pixel into the five fractions, per Decision
 13's constrained-extraction spec in full.
 
 **Precondition — tightened:** BOA surface reflectance is already available via
-`COPERNICUS/S2_SR_HARMONIZED`. **Unmixing must read the float32 multi-band
+`COPERNICUS/S2_SR_HARMONIZED`. **~~Unmixing~~ The regression inputs *(2026-09-25)* must read the float32 multi-band
 tile path — never the per-tile percentile-stretched 8-bit PNG preview.** The
 6-band float32 tiler is a *prerequisite* for this item, not a retired path;
 only the dual-stem classifier that used to consume its output is dead.
 
-**How:** constrained least squares (sum-to-one, non-negativity), or
-`pysptools`, or Earth Engine's own unmixing. Endmembers per Decision 13:
-three stable fractions from a global library directly; `built` from
-footprint-prior-filtered, low-temporal-variance pixels; `paved` from wide
-unroofed OSM polygons (parking, aprons, plazas) — never road centerlines.
+~~**How:** constrained least squares (sum-to-one, non-negativity), or
+`pysptools`, or Earth Engine's own unmixing. Endmembers per Decision 13
+**as amended 2026-09-23**: three stable fractions (vegetation, water, bare)
+from a global library directly, plus **one `impervious_total` endmember** from
+wide unroofed OSM polygons (parking, aprons, plazas) — never road centerlines.~~
+**`built` is not unmixed**: it is rasterised from vector footprints, and
+`paved` is `impervious_total − built`, reported with its derivation
+uncertainty and explicitly clamped if negative.
 
-**Shadow handling:** solve as a sixth term; renormalize the five reported
-fractions over the illuminated portion only; report shadow fraction as its
-own field, per Decision 14's separated-reporting convention.
+> **Superseded 2026-09-24 — one method, not two.** The struck "How" described
+> a single constrained unmixing solve. It conflicts with the **spectral
+> regression** table signed off 2026-09-23 (re-scope step 2 above), which is
+> the method: vegetation, water and `impervious_total` by regression, `bare`
+> as the residual, and the three new fractions from the producers listed
+> under "Recorded 2026-09-24". The `built` and `paved` sentence stands.
+
+> **STATUS OF THE ENDMEMBER MATERIAL BELOW — conditional (2026-09-24).** The
+> next several blocks are dated 2026-09-23/24 and were written as live spec
+> for an unmixing endmember:
+>
+> - the annotation-provenance check
+> - the C44 rationale
+> - the sparse-paved observation
+> - the stability findings (local extraction, buffer 0, per-AOI n\*,
+>   independent bootstrap pairs)
+> - the endmember-uncertainty field
+>
+> **Decision 13 as amended 2026-09-24 removes the unmixing endmember.** The
+> local paved endmember survives only as an **optional regressor feature**:
+> per-pixel spectral angle to the AOI's own local paved endmember. It is built
+> **without** by default and **kept only if the LOCO ablation shows it
+> measurably improves cross-city transfer**. So:
+>
+> - **If the ablation keeps the feature,** this material is the live spec for
+>   building it. "Endmember" below then means *the feature's reference
+>   spectrum*, not an unmixing endmember.
+> - **If the ablation retires it,** this material is historical record,
+>   kept for the measurements.
+>
+> Until the ablation runs, read it as conditional. The C44 fix itself is
+> unconditional (see its note).
+
+**Annotation-provenance check — done, clean (2026-09-23).** *(Conditional as
+of 2026-09-24: it matters only if the endmember feature is kept. The `built`
+half — Open Buildings, not C45-affected — holds regardless.)* The endmember
+sources were audited against **C45** (the OSM builders that overwrite human
+labels). They do **not** share a source: `built` comes from Google Open
+Buildings v3 (`confidence ≥ 0.7`) plus S2 temporal variance, and the impervious
+endmember comes from a *fresh* Overpass polygon query
+(`amenity=parking`, `aeroway=apron`, `highway=pedestrian`+`area=yes`,
+`place=square`, `landuse=garages`) that deliberately reuses neither
+`generate_osm_road_masks.py`'s centreline query nor
+`generate_osm_water_masks.py`'s. No extraction script reads
+`annotations.json`, `osm_generated_annotations*.json`, `mask_rle`,
+`roads.geojson` or `waterways.geojson`. **C45 is therefore not a blocker to
+this item.** The one real inheritance is `OVERPASS_URLS`, imported by
+`diagnose_pure_pixels_paved.py` from `generate_osm_road_masks` — that is
+**C44** (two of three endpoints dead, failures logged without status codes).
+
+**C44 is now FIXED (2026-09-23) and this item is unblocked on that front.**
+*(2026-09-24: the fix stands unconditionally — it is the project's single
+Overpass client. Its rationale here, protecting "this item's endmember
+library", applies only if the LOCO ablation keeps the endmember feature.)*
+All Overpass access goes through `ingestion/overpass.py`, which classifies
+failures by cause — a malformed query fails immediately rather than being
+reissued to every host, a genuine query timeout is distinguished from the
+transient dispatcher fault, a 429 backs off and retries, and a dead host is
+rotated past with no backoff. The endpoint list is re-measured: `openstreetmap.ru`
+removed (dead), `maps.mail.ru` added (200/50 elements, 12–22 s),
+`overpass.osm.ch` **deliberately excluded** because it answers 200 in 0.6 s with
+zero elements outside Switzerland — a silently-empty endpoint would have built
+this item's endmember library on no polygons at all. Verified end-to-end:
+`diagnose_pure_pixels_paved.py --aoi dharavi` completed against the live list
+(5 paved polygons, 62 pure pixels), having hit and recovered from a 429, a 504
+and a ReadTimeout in the same run. Probe the list any time with
+`python ingestion/overpass.py`.
+
+**Sparse-paved observation from that run:** Dharavi yielded only **5**
+unroofed paved polygons across 4.68 km², 3 of which contributed a pure pixel.
+That is a real signal about informal fabric, not an extraction bug.
+
+> **CORRECTION 2026-09-24 — do not buffer.** This caveat originally continued
+> *"…it means the impervious endmember for informal AOIs may have to be drawn
+> from a wider region than the AOI itself."* **That guess was tested and is
+> wrong.** It is struck rather than deleted because it is the kind of
+> reasonable-sounding inference someone will re-derive from the sparse-polygon
+> count above, and the measurement against it should be findable from here.
+> Evidence: `diagnose_endmember_stability.py`, results in
+> `experiments/endmember_stability/results/stability.json`.
+
+**Extraction is LOCAL. Buffer radius = 0.** *(2026-09-24: this and the n\*
+findings below define how the optional feature's reference spectrum is built
+**if the LOCO ablation keeps it**. The measurements stand either way.)*
+
+Widening the draw region reduces sampling noise and increases spectral drift,
+and drift wins immediately. Total endmember error — `hypot(sampling, drift)` —
+is minimised at 0 km in every AOI tested:
+
+| AOI | radius | pure px | sampling | drift | total |
+|---|---:|---:|---:|---:|---:|
+| Dharavi | **0 km** | 62 | 1.68° | — | **1.68°** |
+| Dharavi | 1 km | 306 | 0.76° | 1.86° | 2.01° |
+| Dharavi | 2 km | 1,067 | 0.41° | 2.87° | 2.90° |
+| Dharavi | 5 km | 3,000* | 0.24° | 3.01° | 3.02° |
+| Khayelitsha | **0 km** | 251 | 0.58° | — | **0.58°** |
+| Khayelitsha | 1 km | 396 | 0.46° | 1.56° | 1.62° |
+
+\* sampling cap, so a floor not a count.
+
+One kilometre of reach at Dharavi buys 4.9× more samples (−0.92° of noise) and
+costs **1.86° of drift** — already past the **1.70°** built-vs-paved separation
+the endmember exists to support. Sparse local pixels beat plentiful distant
+ones.
+
+**Confidence: strongly suggested, not universally confirmed.** The buffer sweep
+ran on **2 of the 4** AOIs tested — Dharavi and Khayelitsha, which agree in
+both direction and magnitude (drift 1.56–1.86° at 1 km). Cape Town formal and
+Jakarta have Part A (the n\* threshold) but **no buffer sweep**. The result is
+consistent with the underlying model — drift is a *bias* that grows with
+distance while sampling error is *noise* that falls only as 1/√n, so bias
+overtakes quickly — but it has not been demonstrated on a formal-suburban or
+dense-mixed AOI. Run those two sweeps before treating buffer=0 as settled.
+
+**n\* is per-AOI and must be measured, not assumed.**
+
+The number of pure pixels needed for a stable endmember spans **21×** across
+the four AOIs, and it does **not** track sample availability or city density —
+it tracks the **material heterogeneity of the paved surface itself**:
+
+| AOI | pure px | px/km² | n @1.70° | **n\* @0.7°** | local error | verdict |
+|---|---:|---:|---:|---:|---:|---|
+| Khayelitsha (informal) | 251 | 10.9 | 29 | **172** | 0.58° | clears noise floor locally |
+| Dharavi (sparse informal) | 62 | 13.3 | 60 | **358** | 1.68° | ship with disclosed uncertainty |
+| Jakarta (dense mixed) | 1,585 | 36.8 | 154 | **868** | 0.51° | clears noise floor locally |
+| Cape Town formal | 1,107 | 77.1 | 530 | **3,532** | 1.20° | ship with disclosed uncertainty |
+
+**Counterintuitively, the denser formal AOI is the harder problem.** Cape Town
+formal has 6× Dharavi's pure-pixel density and needs ~10× more samples: its
+between-draw spread starts at 18.41° against Khayelitsha's 5.49°, because
+"paved" there is asphalt car parks, concrete plazas, aprons and garage courts
+of differing age and wear under one label. Informal fabric is more uniform. So
+**do not size n\* from city density or from how many polygons OSM returns.**
+
+**How to compute it:** bootstrap the AOI's own pure-pixel spectra — draw B
+independent subsample *pairs* at each n and take the p90 spectral angle between
+them. Cheap: one GEE sampling pass per AOI, then pure numpy. Use **independent
+pairs, never a nested growing sample** — a nested sequence shares n of its n+1
+pixels and is correlated by construction, which understated the true spread by
+**9.9×** at Dharavi (0.30° vs 2.92° at n=20) and would have declared every AOI
+stable at n≈20.
+
+The fitted exponent came out −0.47 to −0.51 across all four AOIs, i.e. clean
+1/√n sampling noise, so the curves differ in height rather than shape and
+projecting past the available pixel count is interpolation of a validated
+model. Report the exponent alongside n\* — a curve that is *not* near −0.5 is
+not behaving like sampling noise and its projection should not be trusted.
+
+~~**Endmember uncertainty is a first-class reported field**~~ **Endmember
+uncertainty is reported ONLY IF the LOCO ablation keeps the endmember
+feature** *(amended 2026-09-24)*. If it is retired, there is no endmember and
+no such field. When reported, it belongs in Decision 14's
+**estimate-quality** group (never the observability group — a wide endmember is
+not an unobserved pixel). Two of the four AOIs clear the 0.7° noise floor
+locally; the other two do not and must ship at their measured local error
+(Dharavi 1.68°, Cape Town formal 1.20°) **with that number disclosed**, rather
+than being buffered into a smaller-looking but genuinely worse endmember.
+~~Propagate it into `paved`'s derivation uncertainty, which is already required
+by Decision 14 as amended.~~ If kept, it propagates into the prediction
+interval of `impervious_total` — the quantity the feature feeds — and from
+there into `paved`'s derivation uncertainty. *(Decision 14 itself never listed
+an endmember-uncertainty field; this paragraph was the only place it was
+defined.)*
+
+**Shadow handling:** ~~solve as a sixth term; renormalize the five reported
+fractions over the illuminated portion only;~~ ~~report shadow fraction as its
+own field~~, per Decision 14's separated-reporting convention. *Superseded
+2026-09-24 by the shadow rule (Decision 11):* ~~the sixth term covers partially
+shadowed pixels only and is never reported~~ there is no sixth term; partially
+shadowed pixels carry no explicit term and are handled by learned robustness
+(amended again 2026-09-24). Fully shadowed pixels are occlusion, and only they
+populate Decision 14's shadow field.
 
 **Acceptance:** fractions produced for at least one formal and one informal AOI;
 sum to ~1 within tolerance over the observed portion; documented endmember
@@ -580,13 +1410,34 @@ observation quality is carried alongside so a cloud-affected epoch cannot
 masquerade as change.
 
 ### 26. Rewire flood risk 🔓
-Susceptibility consumes `impervious_total` rather than a discrete class; roads
-enter as rasterized vector conduits at hydrology resolution.
+
+*Validation (decided 2026-09-24; see the Part 4 mandate note): each of the
+five hazard calculations is validated by discrimination against observed
+inundation (JRC Global Surface Water, Sentinel-1), on its own site(s), with
+criteria fixed in advance. Sites are not yet chosen.*
+Susceptibility consumes ~~`impervious_total`~~ **fractions, through a runoff
+coefficient per fraction** *(amended 2026-09-24)* rather than a discrete
+class; roads enter as rasterized vector conduits at hydrology resolution.
+
+**Requirement, decided 2026-09-24 — runoff coefficients per fraction.**
+Compacted earth is now labelled `bare`, because `paved` is sealed surfaces
+only (Decision 11; `LABELLING_GUIDE.md` §4). So **`impervious_total` no longer
+captures compacted earth's runoff**, and it cannot be the only runoff signal.
+
+- Item 26 assigns a runoff coefficient to each fraction instead of treating
+  `impervious_total` as the sole runoff input.
+- **`bare` gets a non-zero coefficient.** It **may be higher in dense
+  informal fabric**, where unsealed ground is typically heavily compacted.
+- `mixed_water_vegetation` keeps its own sub-type-weighted hydrological input
+  (Decision 11).
+- **The exact coefficients are set when item 26 is designed.** Not now.
 
 **Deleted in this item:** the road-proximity penalty (C7, C11) ceases to exist.
 
 **Acceptance:** susceptibility runs end-to-end on fraction input; no reference to
-`paved_road` as a class remains anywhere in the flood path.
+`paved_road` as a class remains anywhere in the flood path; **every fraction's
+runoff coefficient is documented with its source, and `bare`'s is non-zero**
+*(added 2026-09-24)*.
 
 ---
 
@@ -625,20 +1476,20 @@ cause. Delete or promote; do not maintain two.
 **Acceptance:** loading a mismatched artifact raises; the current deployed CAAT
 file fails this check until recalibrated.
 
-### 30. Test logit adjustment *(conditional)*
-**Only if any discrete classification step remains.** If any class has both a
-large prior and a spectrally generic feature, the magnet returns. Under
-Decision 11, fractions have no argmax step, so this is not expected to apply —
-retained as a conditional item, not deleted, since the condition is about
-future code, not current design.
+### 30. ~~Test logit adjustment~~ ❌ **DELETED 2026-09-23**
+**Deleted, not conditional.** This item existed only for a discrete
+classification step ("subtract `τ·log(π_y)` before softmax"). There is no
+softmax and no argmax anywhere in the fraction architecture, and the 4-class
+discrete taxonomy that was the last possible host for one is **retired** (see
+`09_TAXONOMY_MIGRATION_PLAN.md`). The condition it was held open against —
+"only if any discrete classification step remains" — can no longer be met.
 
-If it applies: subtract `τ·log(π_y)` before softmax, tune `τ` on a held-out city.
-**Check per-city prevalence first** — a single global `τ` under- or over-corrects
-if cities differ substantially.
-
-**The ablation worth running regardless:** correct the prior, then check whether
-precision improves. If it does not, the residual is feature genericness — direct
-evidence for the sub-pixel argument.
+The one part worth keeping was the ablation ("correct the prior, then check
+whether precision improves; if it does not, the residual is feature
+genericness"). **That question has since been answered directly and more
+strongly**: item 21 measured the `built`/`paved` spectral angle at 1.66°, which
+is the feature-genericness argument established by measurement rather than
+inferred from a prior-correction ablation. Nothing is lost by deleting this.
 
 ### 31. Build the gold set
 300–500 stratified points labelled against the highest-resolution imagery
@@ -676,9 +1527,17 @@ convention.*
 below were originally specified in the vocabulary of the deleted CAAT-era
 pipeline (`category_area_pct`, `unknown_pct`, discrete-class language).
 Decision 14 replaces that with: known-pixel denominator, mandatory
-`observed_fraction` field, and three separately-reported non-observation
-fields (shadow, cloud/nodata, low-confidence unmixing) rather than one merged
-"unknown." Read each item below against that fraction-pipeline vocabulary,
+`observed_fraction` field, and ~~three separately-reported non-observation
+fields (shadow, cloud/nodata, low-confidence unmixing)~~ separately-reported
+fields in **two groups** rather than one merged "unknown":
+
+- **Observability**, which defines the denominator: cloud/nodata, fully
+  shadowed pixels, transient snow, fire/smoke, ships.
+- **Estimate quality**, which never touches the denominator: the per-fraction
+  **regression prediction interval**, plus `paved`'s derivation uncertainty.
+
+*(Reworded 2026-09-25, applying Decision 14 (b) and (c) as signed off
+2026-09-23, and the 2026-09-24 occlusion list and shadow rule.)* Read each item below against that fraction-pipeline vocabulary,
 not the classification-pipeline vocabulary the original text may still
 suggest. See `04_FINDINGS_LEDGER.md`'s Part 6 translation note for the full
 mapping.
@@ -686,12 +1545,17 @@ mapping.
 ### 33. C19 — denominator + `observed_fraction`
 Apply Decision 14's convention. **Emit `observed_fraction` as a mandatory
 sibling field** — fixing the denominator alone just moves the bias. Emit
-shadow / cloud-nodata / low-confidence-unmixing as three separate fields,
-never merged.
+~~shadow / cloud-nodata / low-confidence-unmixing as three separate fields~~
+each observability cause (cloud/nodata, fully shadowed, transient snow,
+fire/smoke, ships) as its own field, and the per-fraction **regression
+prediction interval** as a separate estimate-quality field — never merged
+*(reworded 2026-09-25 per Decision 14 (b)/(c))*.
 
 **Acceptance:** no derived physical quantity is emitted without its coverage
-sibling; the three non-observation components are independently readable, not
-summed into one number by the producer.
+sibling; ~~the three non-observation components are independently readable~~
+every observability field and every estimate-quality field is independently
+readable, not summed into one number by the producer, and **no
+estimate-quality field reduces the denominator** *(reworded 2026-09-25)*.
 
 ### 34. C21 — `hydrological_surfaces.py` status field and failure path
 The only module in the analysis chain with neither. That single omission produces
@@ -1111,7 +1975,7 @@ would have raised there, wrongly.*
 exactly what C10 was — an unvalidated load indistinguishable from a validated
 one.*
 
-### 46. C13 — full-AOI basemap, or remove the field
+### 46. C13 — full-AOI basemap, or remove the field ✅
 Either write a full-AOI RGB basemap (nothing correct currently exists for
 `primary_tile` to point at), or remove the field. And correct the in-code comment
 claiming the projection "works unchanged regardless of how many tiles" — false
@@ -1120,6 +1984,28 @@ for the base image.
 **Note on severity:** downgraded under Decision 15 (confirmed no live
 consumer), but the downgrade does not remove this item — severity and fix
 priority are separate axes.
+
+**Built — the field is removed, not backfilled.** Taking the fork already
+decided: no basemap was manufactured.
+
+- `pipeline.py` — `primary_tile` dropped from the schema v2.0 contract comment,
+  from the assignment (`tiles[0]["path"]`), and from the `result.update()`
+  block. No writer remains.
+- `pipeline.py:337` — the false comment is corrected. It now says the
+  full-raster projection holds for **segment geometry only**, states plainly
+  that no full-AOI RGB raster exists on disk, and records why a single-tile
+  base-image pointer must not be reintroduced.
+- **Two readers existed** beyond the frontend, which the C13 note missed
+  because it only verified `App.jsx`: `annotate.py:266` and
+  `debug_segments.py:13`. Both now resolve `tiles/tile_0_0.png` from the run
+  directory. `annotate.py` keeps a `primary_tile` *read* as a fallback for
+  pre-item-46 runs on disk — reading a legacy field is not the same as
+  depending on it.
+
+**Verified:** no `"primary_tile":` writer anywhere in the tree; all three files
+compile; full suite **369 passed**, identical to the pre-change baseline (the
+2 failures / 3 errors in `test_coastal_context`, `test_one_tile_guard` and
+`test_flood_flag_combination` predate this work — confirmed on `f69b40e`).
 
 ### 47. C34 — validate `run_id` at the read boundary ✅ *(new, added during consolidation)*
 `GET /api/runs/{run_id}` constructs a path from an unvalidated parameter — same
@@ -1280,8 +2166,8 @@ retired and must not be reused.
 **What replaces the one real gap this part would have addressed:** if
 per-object tracking of non-building features (primarily standing water, for
 flood-relevant directional growth) becomes a stated requirement later, the
-mechanism is **connected-component labeling on thresholded unmixing-fraction
-rasters** — not SAM, not the items below. Not built now; named here so the
+mechanism is **connected-component labeling on thresholded ~~unmixing-~~fraction
+rasters** *(2026-09-25)* — not SAM, not the items below. Not built now; named here so the
 gap in this part isn't mistaken for an oversight.
 
 ~~### C9 — stable IDs at mask creation~~ — deleted with SAM. *(was item 47 in the pre-Decision-12 numbering; the live item 47 is C34 in Part 8)*

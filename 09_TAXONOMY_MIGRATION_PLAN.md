@@ -4,7 +4,44 @@
 annotation campaign is worth running.**
 
 Written 2026-09-14. Companion to `08_STATE.md` (current state), `05_BUILD_MANUAL.md`
-(item list), `04_FINDINGS_LEDGER.md` (C41/C42/C43 qualify everything below).
+(item list), `04_FINDINGS_LEDGER.md` (C41/C42/C45 qualify everything below).
+
+---
+
+> ## ⛔ STATUS 2026-09-18 — THE GATE RAN. PHASE 1 IS CLOSED.
+>
+> **§3's gate returned on 2026-09-17 and the answer is "flattening": stop.**
+> 132/132 folds. A 4× increase in data moved final-epoch LOCO mIoU by
+> **+0.0075** against a ±0.035 detection threshold; slope **+0.0029 per
+> doubling**, ~19× below the +0.055 this document's §4.1 sizing assumed.
+> Full numbers: `04_FINDINGS_LEDGER.md` → **G1**.
+>
+> **§4 (Phase 1 — annotation campaign) does not proceed as written.** Its
+> sizing, breadth-over-depth rule and cost estimate were all derived from a
+> slope that does not exist. Read §4 as *record*, not as *plan*.
+>
+> **§3.2 predicted this outcome and named the follow-up** — "the bottleneck is
+> label quality or construction, not volume... re-annotate a small set densely
+> and correctly rather than annotate a large set the same way." **The first
+> half of that follow-up has now been tested and failed.** Four
+> patch-construction corrections were built and measured (C43, arms B/C/D/E),
+> including a full native multi-class rebuild that took single-class from
+> 85.4% to 47.7% — it was **significantly worse**, −0.1041 mIoU, p=0.013,
+> because removing bbox magnification cost 31% of the supervised pixel budget.
+>
+> **So construction is eliminated too, and what §3.2 called "re-annotate a
+> small set densely" is the only surviving form of the idea.** See §8.
+>
+> **§§1–2 (the taxonomy and the migration) are RETIRED as of 2026-09-23** —
+> not by the gate, but by the architecture pivot. The 7→4 discrete merge is
+> superseded by the five continuous fractions; see §1. Item 30 (logit
+> adjustment), the last build item that assumed a discrete argmax anywhere,
+> is **deleted** rather than held conditional.
+>
+> **This document is now wholly historical.** It is retained because the gate
+> reasoning in §3 is reusable and because §8 records what survives.
+
+---
 
 ---
 
@@ -31,7 +68,31 @@ one impervious class, per Decision on record. Nothing below revisits it.
 
 ---
 
-## 1. The new taxonomy
+## 1. The new taxonomy ❌ RETIRED 2026-09-23
+
+> **RETIRED, not conditional.** This 4-class *discrete* taxonomy is superseded
+> by the **five continuous fractions** of Decision 11 (`02_ARCHITECTURE.md` §3).
+> Those fractions are not a finer-grained version of this scheme — they are a
+> different kind of output. A fraction vector has no argmax and assigns no
+> pixel to one class, so "every pixel gets exactly one, or `IGNORE`" is not a
+> rule the new architecture can express.
+>
+> **What carried over, and what did not:**
+>
+> | this scheme | fraction architecture |
+> |---|---|
+> | `impervious` (one class) | `impervious_total` — **measured spectrally**, the quantity the flood model consumes |
+> | `vegetation`, `water`, `bare` | the same three, as continuous fractions from a global library |
+> | — | `built` (footprint-derived) and `paved` (derived by difference) |
+> | `IGNORE` | replaced by Decision 14's separated observability fields |
+>
+> The §1.1 warning that `impervious`-vs-`bare` would be the hardest boundary
+> was **right, and is now handled structurally rather than by classification**:
+> `bare` is the residual, so the impervious/bare confusion lands where it is
+> visible instead of being baked into a hard class assignment.
+>
+> Sections 1–2 are kept as the record of the migration that was planned.
+> **Do not build against them.**
 
 Four classes. Every pixel gets exactly one, or `IGNORE`.
 
@@ -166,9 +227,20 @@ set densely and correctly rather than annotate a large set the same way.
 **That outcome is not a failure of this plan. It is the plan working — a
 two-day test that prevents six weeks of wasted annotation.**
 
+> **This is what happened.** The curve flattened, the campaign was stopped, and
+> the "label quality or construction" hypothesis this section names was then
+> tested directly. **Construction was eliminated** — see §8 and C43. Quality,
+> in the specific sense of *denser multi-class annotation on the lowest-ceiling
+> tiles*, is the only branch left standing.
+
 ---
 
 ## 4. Phase 1 — annotation campaign (only if Phase 0 says go)
+
+> **⛔ Phase 0 said stop. This section did not trigger.** Retained as the record
+> of what was planned and costed, so the decision not to run it is auditable.
+> Its sizing assumed a slope of +0.055 per doubling; the measured slope is
+> +0.0029. Do not cost new work from these numbers.
 
 ### 4.1 Sizing
 
@@ -322,3 +394,65 @@ touched by this plan, and the pipeline cannot run until they are resolved.
 5. **Task mismatch is scaled up rather than fixed** if new patches are built the
    old way. §4.3 addresses this directly and it is the easiest of these risks to
    get wrong by accident.
+
+
+---
+
+## 8. What is left after the gate (added 2026-09-18)
+
+**Both cheap explanations are now eliminated by measurement.** Data volume:
+**G1** (flat curve, 132/132 folds). Patch construction: **C43** (four
+corrections built, all failed; the full native multi-class rebuild was
+significantly worse). What remains is annotation *density*, and the choice
+between pursuing it and accepting the resolution-limit diagnosis.
+
+### 8.1 Why "annotate more" and "annotate better-cropped" both failed
+
+85.4% of training patches are single-class. Decomposed over 633,571 native
+64×64 window positions on the 11 canvases, that splits into:
+
+- **≈21.9 pp construction artifact** — 309 patches, recoverable by re-cropping
+  existing annotation. **Arm E recovered it** (85.4% → 47.7% single-class) and
+  mIoU fell 0.104. Recovering it costs 31% of the supervised pixel budget,
+  because a segment at native scale occupies far fewer pixels than one
+  magnified to fill the frame. **This route is closed.**
+- **≈63.6 pp genuine scarcity** — 899 patches. **81.3% of the imaged area
+  carries no label at all**, and the native-window pool is only 703 usable
+  windows at stride 32 across all 11 tiles.
+
+### 8.2 If annotation is pursued, this is the shape it must take
+
+Not the §4 campaign. The measurements say breadth is worthless and coverage is
+not the variable — **class mixing is**. jakarta is 68.4% labelled and still has
+a 28.5% multi-class ceiling, because 90.8% of its labelled area is one class.
+
+**Target the four lowest-ceiling tiles:**
+
+| tile | labelled | multi-class ceiling |
+|---|---:|---:|
+| hcmc | 4.8% | 21.3% |
+| guatemala | 5.1% | 22.8% |
+| jakarta | 68.4% | 28.5% |
+| nusantara | 7.1% | 29.4% |
+
+**Dense contiguous multi-class fabric**, annotated so that adjacent classes and
+their boundaries are labelled — not more isolated segments. Training scores
+boundary decisions on **0.14% of its pixels** today while inference argmaxes
+every pixel; that is the gap new annotation would have to close.
+
+**Gate it the same way.** G1 rules out more of the *same kind* of data; it does
+not test densely-annotated data, which has never existed here. So: **a
+single-tile dense-annotation pilot, measured before the rest is funded** —
+same discipline as Phase 0, and for the same reason.
+
+### 8.3 The alternative, which has the stronger prior
+
+**Accept the resolution-limit diagnosis and pivot to the vector / temporal
+architecture** (`05_BUILD_MANUAL.md` items 19–21), which is what
+`01_DIAGNOSIS.md` argues for. G1 and C43 strengthen that argument rather than
+weakening it: the two cheapest competing explanations — not enough data, badly
+cropped data — have now been measured and eliminated, which is exactly the
+evidence a resolution-ceiling claim needs.
+
+**Neither 8.2 nor 8.3 is signed off.** This is the live decision; see
+`08_STATE.md` → *Immediate next action*.

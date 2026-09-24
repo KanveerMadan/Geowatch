@@ -1,0 +1,80 @@
+[
+  {
+    "city": "dharavi",
+    "n_train": 318,
+    "n_val": 35,
+    "epochs": 84,
+    "n_batches": 19,
+    "steps": 1596,
+    "final": 0.27212044979347566,
+    "last5": 0.2734441924193773,
+    "best_ON_TEST": 0.31188321452211515,
+    "best_epoch_ON_TEST": 61,
+    "final_train_loss": 0.03893799063945679,
+    "per_class_last5": {
+      "dense_informal_roofing": 0.7332112101223535,
+      "sparse_informal_roofing": 0.0,
+      "paved_road": 0.5613939918081164,
+      "standing_water": 0.18472644357324225,
+      "vegetation_clearing": 0.0,
+      "active_construction": 0.0,
+      "dense_vegetation": 0.43477770143192884
+    },
+    "fraction": 0.25,
+    "seed": 1337,
+    "n_patches_total": 353,
+    "cells_lost": 0
+  },
+  {
+    "city": "accra",
+    "n_train": 328,
+    "n_val": 25,
+    "epochs": 80,
+    "n_batches": 20,
+    "steps": 1600,
+    "final": 0.255513703339545,
+    "last5": 0.2587855263855299,
+    "best_ON_TEST": 0.32437396408756464,
+    "best_epoch_ON_TEST": 55,
+    "final_train_loss": 0.04506882552523166,
+    "per_class_last5": {
+      "dense_informal_roofing": 0.17662234862674892,
+      "sparse_informal_roofing": 0.0024139349941431467,
+      "paved_road": 0.6864148394487732,
+      "standing_water": 0.0,
+      "vegetation_clearing": 0.8306281947983425,
+      "active_construction": 0.02870234031029731,
+      "dense_vegetation": 0.08671702652040396
+    },
+    "fraction": 0.25,
+    "seed": 1337,
+    "n_patches_total": 353,
+    "cells_lost": 0
+  },
+  {
+    "city": "nairobi",
+    "n_train": 326,
+    "n_val": 27,
+    "epochs": 80,
+    "n_batches": 20,
+    "steps": 1600,
+    "final": 0.25636359446067863,
+    "last5": 0.2477829211325404,
+    "best_ON_TEST": 0.3346771188004534,
+    "best_epoch_ON_TEST": 5,
+    "final_train_loss": 0.04774533897871151,
+    "per_class_last5": {
+      "dense_informal_roofing": 0.0,
+      "sparse_informal_roofing": null,
+      "paved_road": 0.3199413002412503,
+      "standing_water": 0.0,
+      "vegetation_clearing": 0.7579245016259014,
+      "active_construction": 0.0,
+      "dense_vegetation": 0.4088317249280908
+    },
+    "fraction": 0.25,
+    "seed": 1337,
+    "n_patches_total": 353,
+    "cells_lost": 0
+  }
+]

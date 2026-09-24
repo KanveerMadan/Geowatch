@@ -1,6 +1,8 @@
 # GeoWatch — Current State
 
-**Where the project actually is, across all branches, as of 2026-09-13.**
+**Where the project actually is, across all branches, as of 2026-09-23.**
+*(§"Decisions recorded 2026-09-24" added 2026-09-24; the rest of this document
+has not been re-audited since 2026-09-23.)*
 
 This document exists because the same facts kept being rediscovered. The branch
 layout, the reason the pipeline is offline, and the state of the classifier
@@ -24,6 +26,8 @@ anything. Where a finding or a decision is unsigned, it says so.
 | `06_UNMIXING_CEILING.md` | The item 21 investigation in full. **Lives on `unmixing-ceiling-investigation`, not on `master`.** |
 | `07_ITEM_21.md` | Item 21's standing summary — the ceiling result and what it does and does not license. |
 | `08_STATE.md` | This document. Where everything is right now. |
+| `LABELLING_GUIDE.md` | The item 21 hand-labelling protocol (v1.0, decided 2026-09-24). **Read before labelling any tile.** |
+| `09_TAXONOMY_MIGRATION_PLAN.md` | The 4-class migration and annotation plan. **Phase 1 is closed by the gate — see §Gate result below before reading §4.** |
 | `CONTRIBUTING.md` | Branch, commit and push discipline. |
 
 **Start here if you are new:** 01 → 02 → this document → 04. The build manual
@@ -33,20 +37,24 @@ is a reference, not a read-through.
 
 ## Branches
 
-All three work branches are cut from `master` and **none is merged**.
+~~All three work branches are cut from `master` and **none is merged**.~~
+*Table updated 2026-09-25 from `git merge-base`; the old rows are struck
+below.*
 
 | Branch | Head | Carries | State |
 |---|---|---|---|
-| `master` | `71f31fa` | Parts 1–3 complete; Part 8 items 47 and 70 | The stable line. Default branch on GitHub. |
-| `applicability-gating` | `b69cd92` | Items 40, 41, 42, 43, 44, 45 | Part 7 complete. Part 8: 43, 44, 45 done; **46 remains**. |
-| `merged-taxonomy-retrain` | `5a67b60` | Step 1 only — label mapping plus two blocking findings | **PAUSED.** |
-| `band-mapping-verification` | `0d6e7ce` | C41, C42, the LOCO harness, the four-arm probe, the patch-builder port | Active working branch. |
-| `unmixing-ceiling-investigation` | `9715c7d` | Item 21 in full, `06_UNMIXING_CEILING.md`, Decisions 11/13/14 amendments | **Awaiting human sign-off. Does not merge until signed.** |
+| `master` | ~~`71f31fa`~~ `a98b529` | Parts 1–3; Part 8 items 47 and 70; `applicability-gating` merged | The stable line. Default branch on GitHub. **Does not yet contain the signed-off item 21 / Decisions 11-13-14 work** — that lives on `architecture-pivot-signoff` |
+| `architecture-pivot-signoff` | *(this branch — see `git log`)* | Merges of `band-mapping-verification` (`4bd0d85`) and `unmixing-ceiling-investigation` (`32d066d`, 2026-09-23), C44 fix, endmember stability, and all 2026-09-24/25 decision records | **Active working branch.** Ahead of `master`; not yet merged to it |
+| `applicability-gating` | `b69cd92` | Items 40, 41, 42, 43, 44, 45 | ~~Part 7 complete. Part 8: 43, 44, 45 done; **46 remains**.~~ **Merged to `master` at `a98b529`.** Item 46 done (`primary_tile` removed) |
+| `merged-taxonomy-retrain` | `5a67b60` | Step 1 only — label mapping plus two blocking findings | **PAUSED.** Not merged. The 4-class taxonomy it serves was retired 2026-09-23 |
+| `band-mapping-verification` | ~~`0d6e7ce`~~ `4b05a29` | C41, C42, the LOCO harness, the four-arm probe, the patch-builder port | ~~Active working branch.~~ **Merged into `architecture-pivot-signoff` at `4bd0d85`** |
+| `unmixing-ceiling-investigation` | `9715c7d` | Item 21 in full, `06_UNMIXING_CEILING.md`, Decisions 11/13/14 amendments | ~~**Awaiting human sign-off. Does not merge until signed.**~~ **Signed off and merged into `architecture-pivot-signoff` at `32d066d`, 2026-09-23.** Decision 13 was amended again 2026-09-24 (no unmixing endmember) |
 | `part8-trust-boundaries` | `b4b410a` | Items 70 and 47 | Already merged into `master` at `42c1545`; branch retained. |
 
 `unmixing-ceiling-investigation` is the standing example in `CONTRIBUTING.md` of
-why investigation branches stay separate: it carries four unsigned decisions,
-and building on it silently inherits them.
+why investigation branches stay separate: it carried four unsigned decisions,
+and building on it would have silently inherited them. *(Past tense
+2026-09-25: they were signed off before it merged.)*
 
 ---
 
@@ -56,12 +64,12 @@ and building on it silently inherits them.
 |---|---|
 | **Part 1 — Unblock** | ✅ Complete |
 | **Part 2 — Verify** | ✅ Mostly complete (item 10 partially done) |
-| **Part 3 — Decide (the gate)** | ✅ Complete. All seven decisions settled — though Decision 13 was subsequently **reopened** by the item 21 investigation, on `unmixing-ceiling-investigation` and unsigned. |
-| **Part 4 — Build the architecture** | 🔓 Not started. Item 21's pilot ran ahead of it as its own gate; see `07_ITEM_21.md`. |
+| **Part 3 — Decide (the gate)** | ✅ Complete. All seven decisions settled. ~~— though Decision 13 was subsequently **reopened** by the item 21 investigation, on `unmixing-ceiling-investigation` and unsigned.~~ Decision 13 was reopened by the item 21 investigation, **signed off as amended 2026-09-23**, and **amended again 2026-09-24** (no unmixing endmember; optional LOCO-gated feature). Decisions 11 and 14 were also amended 2026-09-23/24. *(Updated 2026-09-25)* |
+| **Part 4 — Build the architecture** | 🔓 Not started. Item 21's pilot ran ahead of it as its own gate; see `07_ITEM_21.md`. Item 21's re-scope is signed off; its site list and labelling guide are recorded, **labelling is blocked on the guide's open numbers**, and nothing is built. Item 26 gained a runoff-coefficient requirement 2026-09-24. |
 | **Part 5 — Validation discipline** | 🔓 Not started |
 | **Part 6 — Epistemic contract** | 🔓 Not started |
-| **Part 7 — Gating architecture** | ✅ **Complete** on `applicability-gating` — items 40, 41, 42 all landed. Not on `master`. |
-| **Part 8 — Contract enforcement** | Items 43, 44, 45 done on `applicability-gating`; 47 and 70 merged to `master`. **Only item 46 remains.** |
+| **Part 7 — Gating architecture** | ✅ **Complete** — items 40, 41, 42 all landed. ~~Not on `master`.~~ On `master` via the `applicability-gating` merge (`a98b529`). *(2026-09-25)* |
+| **Part 8 — Contract enforcement** | Items 43, 44, 45 done on `applicability-gating`; 47 and 70 merged to `master`. ~~**Only item 46 remains.**~~ Item 46 done 2026-09-23 (`primary_tile` removed). *(2026-09-25)* |
 | **Parts 9–13** | 🔓 Not started (Part 9 deleted per Decision 12) |
 
 **Item 46 — the remaining Part 8 item — has a decided fork:** *remove the
@@ -72,7 +80,44 @@ is false for the base image and must be corrected in the same change.
 
 ---
 
-## BLOCKING — the pipeline is offline
+## RETIRED — the 7-class pipeline, and the CAAT blocker with it
+
+**Status: closed 2026-09-23. Not deprioritised — dropped.**
+
+> **The old per-pixel 7-class pipeline is retired.** The learning-curve gate
+> (**G1**) showed its data axis is exhausted, the patch-construction
+> investigation (**C43**) showed its construction axis is exhausted, and the
+> architecture that replaces it produces continuous fractions with no argmax.
+>
+> **The CAAT blocker is dropped, not solved.** CAAT is a per-class
+> confidence-threshold mechanism applied to a discrete argmax. There is no
+> argmax in the fraction architecture, so there is nothing left to threshold:
+> the deployed-vs-recalibrated threshold decision, the 45.0 OOD gate
+> re-derivation, and **C11** (penalties applied at inference but not during
+> calibration) all evaporate with the mechanism. None of them needs a human
+> decision any more.
+>
+> **Two things from it are carried forward, because they are about
+> methodology, not about CAAT:**
+>
+> 1. **Calibrating on annotator-selected segments does not transfer to the
+>    full raster.** Those segments cover 4.8%–68.4% of the raster and are
+>    biased toward easy pixels; a 10th-percentile threshold learned there
+>    over-rejects everywhere else, and stratified pooling recovered only 10.5
+>    of the 34 pp gap. **The fraction validation set must be drawn from the
+>    full raster, not from annotated segments.** This is the same selection
+>    bias the C43 scarcity work measured from the other direction.
+> 2. **Applicability gating replaces confidence thresholding as the
+>    out-of-distribution mechanism** — items 40–42, now merged to `master`
+>    (`a98b529`). That is a per-AOI gate on whether output is trustworthy at
+>    all, which is what CAAT was being asked to do and was the wrong tool for.
+>
+> **The deployed artifacts** — `geowatch_production_model.pth`,
+> `caat_thresholds.json` — are **retired inputs, not reference data.** Do not
+> recalibrate them, and do not quote 0.313 as a current capability number
+> (see C43 for what it measures).
+
+#### Original entry, retained as the record
 
 **Status: unresolved. Awaiting a decision.**
 
@@ -127,7 +172,20 @@ Earlier notes describing this as live breakage are stale — the API perimeter
 
 ### New, under NEEDS FATE
 
-Both were filed on `band-mapping-verification` and are untriaged.
+Filed on `band-mapping-verification` and untriaged. **C43 is no longer here —
+it was investigated to completion and moved to CLOSED (see §Gate result and
+§The patch-construction investigation below). C45 replaced it.**
+
+**C45 — the OSM patch builders overwrite human labels with their own class.**
+[E] `osm_generated` paints `paved_road` over 7,715 px the annotator called
+`dense_informal_roofing` (60.2% of its overwrites); `osm_generated_water`
+paints `standing_water` over 32,553 px the annotator called `dense_vegetation`
+(92.3% of its overwrites, 4× more than it agrees). 369 of 1,414 patches come
+from these builders; 63 patches / 48,101 px carry a real conflict. **Four
+correction arms were built and none improved mIoU**, but a builder that
+silently overwrites ground truth is a defect regardless — it corrupts what
+every future experiment reads. Fixing it costs `paved_road` and
+`standing_water` supervision, so it is not free.
 
 **C41 — the classifier is RGB-only, on tile-relative values.** [E]
 `SENTINEL2_RGB_MOCO`, `in_chans=3`, `bands=['B4','B3','B2']`. NIR, SWIR1 and
@@ -232,6 +290,99 @@ Two failures are diagnostic:
 
 ---
 
+## Gate result — the annotation campaign is closed as originally scoped
+
+**The learning-curve gate returned on 2026-09-17: 132/132 folds, flat curve,
+STOP.** Full numbers in `04_FINDINGS_LEDGER.md` → **G1**.
+
+A 4× increase in data moved final-epoch LOCO mIoU by **+0.0075** against a
+pre-registered detection threshold of **±0.035**; measured slope **+0.0029 per
+doubling**, ~19× smaller than the +0.055 the plan's sizing assumed. All three
+statistics agree (final +0.0075, last5 +0.0048, best\* −0.0335). The harness
+is sound: the 100% `best_ON_TEST` point is **0.3118 ±0.0047** against the
+shipped checkpoint's **0.313**, an independent 11-fold reproduction from a
+rebuilt patch set. Per-class gains appear only in classes that were already
+easy, and **none of the per-class movements is significant** when paired by
+(city, seed).
+
+This is the "flattening" branch of `09_TAXONOMY_MIGRATION_PLAN.md` §3's own
+decision table. Per §3.2 that is the plan working, not failing. **Phase 1 as
+scoped there — annotate a large set the same way — does not proceed.**
+
+---
+
+## The patch-construction investigation — C43, closed
+
+The gate said the bottleneck is not data volume, which pointed at label
+*construction*. That was investigated to completion on 2026-09-17/18 and
+**C43 is now CLOSED**. Summary; full record in `04_FINDINGS_LEDGER.md`.
+
+**Verified structure.** 85.4% of training patches are single-class; **63.3% of
+all training pixels are IGNORE**; **0.14% of scored pixels sit on a
+class-to-class boundary**. 45% of patches are bbox-cropped from a median ~16 px
+and magnified (crop/64 spans 123×, 93.1% upsampled, aspect stretched up to
+36×), and **89.5% of those fall outside the ground-scale range inference ever
+produces** — 40.3% of the whole set. There is no scale augmentation to bridge it.
+
+**Four corrections built and measured, all negative** (paired LOCO, identical
+seed/order/weights, arms differ only in pixels):
+
+| arm | change | ΔmIoU | p |
+|---|---|---:|---:|
+| B | delete the bad OSM overwrites | −0.0096 | — |
+| C | restore the human labels | −0.0021 | — |
+| D | restore them at native scale | −0.0055 | — |
+| E | full native multi-class rebuild (85.4% → **47.7%** single-class) | **−0.1041** | **0.013** |
+
+Arms B–D are 3 cities × 1 seed at 1,600 steps; arm E is 3,200 steps, **5 of 8
+planned pairs completed** (seed 1337 × 4 cities, plus dharavi seed 7 — the run
+was stopped before the rest and `fix_probe3.py` will resume it). The arm E
+`val_base` result reproduces across both seeds on dharavi.
+
+Arm E is the important one: it *achieved* the construction fix and made things
+significantly worse, because removing magnification cost **31% of the
+supervised pixel budget** (2.13M → 1.47M px). Structure was bought by paying in
+volume, and volume won.
+
+**The decomposition that explains why.** Exact integral-image counts over every
+native 64×64 window position on all 11 canvases (633,571 usable windows):
+85.4% single-class splits into **≈21.9 pp construction artifact** (309 patches,
+recoverable by re-cropping — this is what arm E recovered, and it backfired)
+and **≈63.6 pp genuine annotation scarcity** (899 patches). Roughly **26%
+artifact, 74% real**. The binding limit is that **81.3% of the imaged area
+carries no label at all**, and the native-window pool is only **703 usable
+windows at stride 32 across all 11 tiles** — finer strides add overlap, not
+diversity.
+
+**Conclusion: every patch-construction-side fix available without new
+annotation has been tested and has failed or backfired.** The remaining lever
+is annotation *density*, not construction — which is the same resolution and
+taxonomy-ceiling argument `01_DIAGNOSIS.md` already makes, now with the
+alternative explanations measured and eliminated.
+
+**Per-tile ceiling, for anyone scoping targeted annotation** (multi-class rate
+over usable native 64×64 windows):
+
+| tile | labelled | multi-class ceiling |
+|---|---:|---:|
+| dharavi | 22.8% | 87.5% |
+| accra | 7.7% | 68.3% |
+| kigali | 9.6% | 63.1% |
+| dhaka | 7.3% | 50.4% |
+| lagos | 24.4% | 41.6% |
+| nairobi | 8.3% | 33.0% |
+| capetown | 20.2% | 31.0% |
+| **nusantara** | 7.1% | **29.4%** |
+| **jakarta** | 68.4% | **28.5%** |
+| **guatemala** | 5.1% | **22.8%** |
+| **hcmc** | 4.8% | **21.3%** |
+
+The four in bold are the lowest-ceiling tiles. jakarta is the instructive one:
+68.4% labelled but 90.8% of that is a single class, so coverage is not the
+lever — **class mixing is**.
+
+---
+
 ## Ruled out — data sources, with reasons
 
 This section exists so a new session does not re-propose something already
@@ -280,7 +431,9 @@ layer.
 | **usable coverage of global land** | **~0.03–0.22%** |
 
 Coverage is the whole story. **Dharavi returns zero** — and so do Delhi,
-Karachi, Cairo and Khartoum, metro-wide. Of **47 named informal settlements**
+Karachi, Cairo and Khartoum, metro-wide *(OpenAerialMap itself. Karachi does
+have Maxar open-data scenes, in a separate catalogue; it is an item 21
+training site as of 2026-09-24 — see below)*. Of **47 named informal settlements**
 tested: **19** have dedicated ≤15 cm imagery (Tier A), **8** have satellite
 mosaic only (Tier B), **20** have nothing usable.
 
@@ -308,8 +461,10 @@ unblocked today.
 More than one discussion has drifted past these. They are limits of what this
 architecture claims, not open problems.
 
-1. **The five fractions answer land-cover proportion and imperviousness — and
-   nothing else.** Not land-use, not vegetation type, not building condition,
+1. **The ~~five~~ eight fractions answer land-cover proportion and
+   imperviousness — and nothing else.** *(Eight since 2026-09-24; the new
+   context layers — volcano, terrain, OSM sub-type flags — are context, not
+   land-use.)* Not land-use, not vegetation type, not building condition,
    not anything demographic or administrative. A full urban planning tool needs
    those as separate layers on top. **This is the physical land-cover layer of
    such a system, not the system.**
@@ -360,39 +515,141 @@ wrong conclusion at least once.
 
 ---
 
+## Decisions recorded 2026-09-24 — taxonomy expansion and regressor training
+
+Made in a planning session and, until this entry, written down nowhere. Full
+text: `02_ARCHITECTURE.md` §3 "The taxonomy expansion"; `05_BUILD_MANUAL.md`
+Decision 11 (second amendment), Decision 14 (2026-09-24 extension), item 21
+("Recorded 2026-09-24"). This is a pointer, not a restatement.
+
+| What | Decided |
+|---|---|
+| **Taxonomy** | Eight disjoint fractions on the known-pixel denominator: built, paved, vegetation, water, bare + **snow_ice** (permanent only), **solar**, **mixed_water_vegetation** |
+| **`impervious_total`** | Still `built + paved`. **Solar inclusion DEFERRED** until solar prevalence is measured in validation data |
+| **Hard-surface remainder** | Now also subtracts snow_ice, solar, mixed_water_vegetation (besides vegetation and water ~~and shadow~~). Computed on the known-pixel ~~, shadow-renormalised~~ share |
+| **Shadow rule** *(locked 2026-09-24, amended same day)* | Fully shadowed pixels → occlusion, leave the denominator. Partially shadowed → ~~sub-pixel term, renormalised out~~ stay in the denominator with **no explicit term**; regressors learn robustness from hand labels that include them; never a fraction. Never both, and never subtracted in the remainder. The Makoko/Kibera/Rocinha pass labels partial shadow separately to test it; if it fails, a fix is added then, with evidence. Full/partial boundary still open |
+| **Impervious endmember** *(Decision 13 amended 2026-09-24)* | No unmixing endmember. Repurposed as an **optional regressor feature** (spectral angle to the AOI's own local paved endmember), default off, kept only if a LOCO ablation shows better cross-city transfer. The stability findings define how to build it if kept. Endmember uncertainty is reported only in that case |
+| **Producers** *(recorded 2026-09-24)* | Vegetation, water, impervious_total: spectral regression (item 21, 2026-09-23). snow_ice: spectral + low temporal variance. solar: spectral-signature detector. mixed_water_vegetation: spectral + GMW/GLWD sub-typing. All run before the remainder. The single-unmixing-solve spec is struck as superseded. A "layered" stage-1 unmixing proposal was withdrawn, never decided |
+| **Folded, flags only** | Sports fields/golf/parks/farmland → vegetation; sand/salt flats/rock/dry lakebeds/dirt tracks/landfills/quarries → bare; docks → built |
+| **Occlusion** | Cloud, shadow, transient snow, fire/smoke, ships — no fraction |
+| **Context layers** | Volcano (Smithsonian GVP + Copernicus DEM), terrain distribution per AOI. Named mountain ranges not built |
+| **New datasets** | Global Mangrove Watch, GLWD, Smithsonian GVP, second footprint source (Microsoft or OSM), regional geology, expanded OSM landuse |
+| **Regressor training** | Hand-labelled core at ~~Delhi, Lima, Cape Town, Jakarta (Cairo optional)~~ **Cape Town, Lima, Karachi, Monrovia (Marrakech optional)** — *replaced 2026-09-24, see "Item 21 site list" below*, weighted to bare ground; GISA/GAIA weak labels only if LOCO shows gain; **no training in Lagos, Nairobi, Rio**; LOCO before any validation contact; label count set by when LOCO stops improving |
+| **Validation additions** | Shadow accuracy in the Makoko/Kibera/Rocinha hand-digitisation pass; own validation case each for snow_ice, solar, mixed_water_vegetation against independent references |
+| **Volcanic hazard module** | Parked — future sixth hazard module, unspecified |
+
+**Status:** these are recorded decisions. **Nothing is built.** No code,
+dataset ingestion, or labelling for any of the above exists yet. Per working
+rule 6, no build-manual status was flipped by recording them.
+
+### ⛔ Validation-first mandate and criteria — decided 2026-09-24
+
+Full text: `05_BUILD_MANUAL.md`, the Part 4 mandate note, plus item 21,
+"Validation criteria and guardrails".
+
+| What | Decided |
+|---|---|
+| **Mandate** | **No architecture or build progression past item 21** until the land-classification architecture **and all five flood/hazard calculations** (pluvial, fluvial, coastal, flash flood, waterlogging) are tested against independent reference data with predefined criteria. Until then, results are **proposed research design, not established claims** |
+| **`impervious_total` pass/fail** | MAE floor ≤15 pp (target ≤10); R² floor ≥0.3 (target ≥0.6) — **hard gates**. IoU floor ≥0.45 (target ≥0.6) — **diagnostic only** |
+| **`built` validation** | Hand-digitised buildings at Makoko/Kibera/Rocinha vs Open Buildings and a second footprint source. Per-AOI two-source disagreement reported everywhere as `built` confidence, calibrated by the hand check |
+| **Regressor guardrails** | Deliberately low capacity; mandatory LOCO with a predefined bar; if the impervious/bare split fails LOCO, **report hard surface unsplit** |
+| **Low-coverage policy** | Meaningful-at-low-coverage outputs (footprint density, coarse `built`) computed with a flag; network-topology metrics (orthogonality, dead-end ratio, fine connectivity) suppressed below a threshold. Thresholds set in item 20 |
+| **Flood validation (Tier 2)** | Discrimination — do scores rank observed-flooded cells above dry ones across many cells — against JRC surface water and Sentinel-1 flood maps. Anecdotes are sanity checks only. Each hazard gets its own site(s); **sites not yet chosen** |
+| **Volcanic hazard module** | Parked; the user has a specific idea to discuss later. **Do not specify** |
+
+**Still to fix before any run:** the LOCO bar, the flood discrimination
+criteria and sites, the item 20 thresholds, and the labelling guide's open
+numbers. Nothing is built.
+
+---
+
+### Item 21 site list — FINAL, recorded 2026-09-24
+
+**Labelling guide:** [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md), v1.0, decided
+2026-09-24. Nothing has been labelled yet. **Blocked on its open numbers:**
+change-test method and threshold, maximum date gap per site, starting tile
+count, and per-class agreement bars (guide §9). The same decision narrowed
+`paved` to sealed surfaces; compacted ground is `bare`.
+
+Full table (source, resolution, date, licence, Sentinel-2 overlap per site):
+`05_BUILD_MANUAL.md` item 21, "Site list". Recorded only — **nothing
+downloaded, nothing built.**
+
+| Role | Site | Imagery (date) | Licence |
+|---|---|---|---|
+| Validation | Makoko (Lagos) | Uhuru Labs drone, 5.4–6.4 cm (2019-10-02). Weak Sentinel-2 overlap, needs a ~6-month composite window | CC BY 4.0 |
+| Validation | Kibera (Nairobi) | Maxar Kenya floods, 0.30–0.32 m (**2023-11-30 pre-flood only**) | CC BY-NC 4.0 |
+| Validation | Rocinha (Rio) | IPP true orthophoto, 15 cm (2024) | Non-commercial |
+| Training | Cape Town | City of Cape Town aerial, 5 cm (2026-01) | Non-commercial |
+| Training | Lima | OpenAerialMap drone, 3–8 cm. Prioritise Candelaria and Santuario de las Vizcachas; exclude Cajamarquilla (no licence) | CC BY 4.0 |
+| Training | **Karachi** (replaces ~~Delhi~~) | Maxar Pakistan floods, 0.53 m (**2022-03-29 pre-flood only**) | CC BY-NC 4.0 |
+| Training | **Monrovia** (replaces ~~Jakarta~~) | Uhuru Labs / HOT drone, 5 cm (2020-02-23) | CC BY 4.0 |
+| Optional | **Marrakech** (replaces ~~Cairo~~) | Maxar Morocco earthquake, 0.31–0.55 m (pre-quake 2023). Only if LOCO shows four cities are too narrow | CC BY-NC 4.0 |
+
+**Why it changed:** Delhi, Jakarta and Cairo had no usable free imagery with a
+licence permitting derived labels. Bhuvan, Google and Esri terms all forbid it.
+Delhi may be re-added via academic access to commercial imagery (ESA Third
+Party Missions, Airbus academic). That is not a blocker.
+
+**Caveats:**
+1. **Most sources are non-commercial.** If GeoWatch or its labels are ever
+   used commercially, the labels must be re-sourced.
+2. **Regional overlap.** Monrovia–Makoko (West Africa) and Lima–Rocinha (South
+   America). The city-level firewall holds, but validation reporting must say
+   so. Kibera is the coldest transfer test.
+3. **Reported areas overstate usable ground.** Check real pixel coverage per
+   site before committing labelling time.
+
+---
+
 ## Immediate next action
 
-Ordered. Items 1 and 2 are the live thread; 3 and 4 are blocked on human
-decisions and do not move on their own.
+**The classifier thread has reached a decision point, not a next task.** The
+two work items that were live here (port the 5-builder notebook; run fidelity
+and comparison) are **done** — the rebuild reproduces (C42), the gate ran to
+132/132 folds, and C43 was investigated and closed. What remains is a human
+decision and three unrelated blockers.
 
-**1. Port the 5-builder `water_loco_with_diagnostics` notebook**
-(recoverable at `ecfe370`), not `_UPDATED`. It carries
-`build_osm_generated_patches`, `build_osm_generated_water_patches`, the
-separation loss, and the LOCO loop behind 0.313.
+**1. THE DECISION (human). Targeted annotation, or the architecture pivot?**
 
-> **Gate before any training.** Recompute class weights from the rebuilt patch
-> set using the notebook's own formula. **Pass** = the checkpoint weights above,
-> with a total near 1413. If either misses, report and stop — do not train on a
-> set that does not reconstruct.
+The data-volume axis is exhausted (G1) and the construction axis is exhausted
+(C43). Two options remain and they are not compatible in the near term:
+
+> **(a) Targeted new annotation on the four lowest-ceiling tiles** — hcmc,
+> guatemala, jakarta, nusantara. Not "more patches": *densely* annotated
+> multi-class fabric on tiles whose current ceiling is 21–29%, aimed at class
+> *mixing* rather than coverage. This is the only lever the measurements leave
+> open on the current architecture. It is untested — no gate has been run on
+> it, and G1 only rules out more of the *same kind* of data.
 >
-> Investigate the `paved_road` over-generation separately, per the stride/tile-
-> size suspicion above. If it lands on a data-availability gap, say so plainly.
+> **(b) Accept the resolution-limit diagnosis and pivot** to the vector /
+> temporal architecture, `05_BUILD_MANUAL.md` items 19–21. This is what
+> `01_DIAGNOSIS.md` argues for, and C43 + G1 strengthen it by eliminating the
+> two cheapest alternative explanations.
 
-**2. If the gate passes, two runs, in this order:**
-   1. **Fidelity run** — Arm A **with** the separation loss, one fold. This
-      exists only to validate the rebuild against 0.313.
-   2. **Comparison runs** — all four arms **without** the separation loss,
-      uniformly. It targets the exact paved/roofing pair the 6-band arms test,
-      so leaving it in would mask the effect. Separating the two runs means
-      fidelity and clean comparison do not have to trade against each other.
+**Neither is signed off. Do not start either without a human decision.** If (a)
+is chosen it should be gated the same way Phase 0 gated the original campaign —
+a small dense-annotation pilot on one tile, measured before the rest is funded.
 
-**3. Decide the CAAT threshold question** (human). The pipeline stays offline
-until then. Note that C11 makes both candidate threshold sets wrong, so the
-decision is between two known-wrong artifacts, not between right and wrong.
+~~**2. Fix C44 before item 21's extraction runs** (engineering, not a decision).
+Two of three Overpass endpoints are unreachable and the handler collapses
+429/502/503/504 into one `HTTPError`. `diagnose_pure_pixels_paved.py` imports
+that same `OVERPASS_URLS` list, so **the impervious endmember extraction — the
+highest-risk item in the plan — depends on it.** This is true under either
+branch of the decision above.~~ **Removed 2026-09-25: C44 was fixed
+2026-09-23** (`ingestion/overpass.py`, commit `24d16e1`). The impervious
+endmember is also no longer required: it is an optional, LOCO-gated feature
+(Decision 13 as amended 2026-09-24).
 
-**4. Triage the eight code-fixed findings and the five under NEEDS FATE**
-(human). C4, C10, C14, C20, C23, C24, C31, C32; plus C36, C37, C38, C41, C42.
+**Resolved 2026-09-23, no longer open:** the CAAT threshold question and C11
+(dropped with the retired pipeline, §RETIRED above); the NEEDS FATE backlog
+(cleared — see `04_FINDINGS_LEDGER.md` § *Fates assigned*); item 46
+(`primary_tile` removed); the item 21 / Decisions 11-13-14 sign-off, which
+**unblocks `unmixing-ceiling-investigation` for merge**; and
+`applicability-gating`, merged to `master` at `a98b529`.
 
-**Also open, unscheduled:** item 46 (remove `primary_tile`), the item 21
-sign-off that gates `unmixing-ceiling-investigation`, and the `loco.py`
-harness validation run.
+**Also open, unscheduled:** ~~merging `unmixing-ceiling-investigation` (now
+sign-off-clear), and~~ the `loco.py` harness validation run. *(2026-09-25:
+`unmixing-ceiling-investigation` was merged into `architecture-pivot-signoff`
+at `32d066d`. Merging `architecture-pivot-signoff` to `master` is not yet
+done.)*

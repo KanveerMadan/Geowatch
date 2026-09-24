@@ -1,0 +1,57 @@
+{
+  "name": "D_6band_abs",
+  "seed": 1337,
+  "class_names": [
+    "dense_informal_roofing",
+    "sparse_informal_roofing",
+    "paved_road",
+    "standing_water",
+    "vegetation_clearing",
+    "active_construction",
+    "dense_vegetation"
+  ],
+  "summary": {
+    "mean": 0.22985037167652814,
+    "std": NaN,
+    "n_folds": 1
+  },
+  "meta": {
+    "mode": "6band_abs",
+    "in_chans": 6,
+    "epochs": 50,
+    "device": "mps",
+    "channel_indices": [
+      1,
+      2,
+      3,
+      7,
+      11,
+      12
+    ],
+    "complete": false,
+    "n_folds_run": 1
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-14.6.1-arm64-arm-64bit"
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "city": "accra",
+      "miou": 0.22985037167652814,
+      "per_class_iou": {
+        "dense_informal_roofing": 0.13274660799413274,
+        "sparse_informal_roofing": 0.0,
+        "paved_road": 0.0,
+        "standing_water": 0.45901639344262296,
+        "vegetation_clearing": 0.0,
+        "active_construction": 0.13047487321346243,
+        "dense_vegetation": 0.8867147270854789
+      },
+      "n_labeled_px": 10077,
+      "seconds": 449.4377782344818,
+      "n_train_patches": 1200
+    }
+  ]
+}

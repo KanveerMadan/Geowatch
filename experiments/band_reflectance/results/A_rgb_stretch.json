@@ -1,0 +1,50 @@
+{
+  "name": "A_rgb_stretch",
+  "seed": 1337,
+  "class_names": [
+    "dense_informal_roofing",
+    "sparse_informal_roofing",
+    "paved_road",
+    "standing_water",
+    "vegetation_clearing",
+    "active_construction",
+    "dense_vegetation"
+  ],
+  "summary": {
+    "mean": 0.02212552378321131,
+    "std": NaN,
+    "n_folds": 1
+  },
+  "meta": {
+    "mode": "rgb_stretch",
+    "in_chans": 3,
+    "epochs": 50,
+    "device": "mps",
+    "channel_indices": null,
+    "complete": false,
+    "n_folds_run": 1
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-14.6.1-arm64-arm-64bit"
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "city": "accra",
+      "miou": 0.02212552378321131,
+      "per_class_iou": {
+        "dense_informal_roofing": 0.0,
+        "sparse_informal_roofing": 0.0,
+        "paved_road": null,
+        "standing_water": 0.0,
+        "vegetation_clearing": 0.0,
+        "active_construction": 0.0,
+        "dense_vegetation": 0.13275314269926786
+      },
+      "n_labeled_px": 10077,
+      "seconds": 628.458801984787,
+      "n_train_patches": 1200
+    }
+  ]
+}
