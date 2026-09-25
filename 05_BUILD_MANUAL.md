@@ -1241,6 +1241,18 @@ they are recorded here so the code has a written source.*
   carries `contains_placeholder: true`. The writer refuses output that
   breaks either rule. Estimate-quality fields (prediction intervals,
   `paved` derivation uncertainty) are `not_computed`.
+- **Part 6 — flags and context** *(2026-09-25)*: `surface_fractions/context.py`.
+  Per-pixel OSM sub-type flags (any overlap; covered share emitted
+  alongside): vegetation (sports field, golf, park, farmland), bare (sand,
+  rock, landfill, quarry, dirt track, unpaved parking), other (pier/quay,
+  context only). Salt flat and dry lakebed: `no_producer`. Synthetic-turf
+  check and bare geographic plausibility: criteria UNSET, `not_computed`.
+  Volcano: GVP match inside the AOI plus a descriptive DEM summary; **the
+  GVP service refuses programmatic access** (HTTP 403 / reset, 2026-09-25),
+  so the layer reads a hand-supplied official export and is `unavailable`
+  until one exists; per-pixel volcano flag `not_computed` (radius UNSET).
+  Terrain: cut-offs UNSET, class distribution `not_computed`; slope and
+  elevation percentiles reported.
 
 ---
 

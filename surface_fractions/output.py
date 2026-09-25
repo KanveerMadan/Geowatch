@@ -47,7 +47,7 @@ def check_contract(result: dict) -> None:
             raise OutputContractError(
                 f"{name} is placeholder-tainted but its provenance "
                 f"{rec['provenance']!r} does not say so")
-    for group in ("observability", "estimate_quality", "flags"):
+    for group in ("observability", "estimate_quality", "flags", "context"):
         clash = set(result[group]) & set(EIGHT)
         if clash:
             raise OutputContractError(f"{group} reuses fraction names {clash}")

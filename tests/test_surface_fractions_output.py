@@ -26,7 +26,7 @@ def result(**over):
          "fractions": {n: rec() for n in EIGHT},
          "derived": {"impervious_total": rec("regression")},
          "observability": {"observed_fraction": 1.0},
-         "estimate_quality": {}, "flags": {}}
+         "estimate_quality": {}, "flags": {}, "context": {}}
     r.update(over)
     return r
 

@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 
 import numpy as np
 
-from surface_fractions import bookkeeping, built, detectors, occlusion, output
+from surface_fractions import bookkeeping, built, context, detectors, occlusion, output
 from surface_fractions.config import load_config
 from surface_fractions.inputs import assemble_inputs
 from surface_fractions.regressors import placeholder_regressors
@@ -71,6 +71,10 @@ def run(aoi_name: str, cfg: dict | None = None) -> dict:
         known, b["built"], regs, dets, smoke_test=smoke,
         detector_placeholder_value=cfg["placeholders"]["detector_smoke_test_value"])
 
+    # Part 6
+    ctx = context.context_layers(bundle.osm, cfg, known, aoi["bbox"],
+                                 bands["dem_elevation"], bands["dem_slope_deg"])
+
     derived_names = ("impervious_total", "hard_surface_remainder", "paved_unclamped")
     result = {
         "schema": output.SCHEMA,
@@ -101,6 +105,7 @@ def run(aoi_name: str, cfg: dict | None = None) -> dict:
                       for n, d in dets.items()},
         "mixed_water_vegetation_sub_type": {k: v for k, v in mwv_sub.items() if k != "labels"},
         "dataset_context": detectors.dataset_context(bands, legend),
+        "context": ctx["summary"],
         "sources": {"status": bundle.status, "errors": bundle.errors,
                     "provenance": {**bundle.provenance, "observations": obs_prov,
                                    "datasets": ds_prov, "built": b["provenance"]}},
@@ -112,6 +117,7 @@ def run(aoi_name: str, cfg: dict | None = None) -> dict:
     layers.update({f"occluded_{k}": v.astype(np.float32) for k, v in occ["pixels"].items()})
     layers.update({f"flag_{k}": v.astype(np.float32) for k, v in fr["flag_arrays"].items()})
     layers["built_secondary_abs_diff"] = b["built_secondary_abs_diff"]
+    layers.update({f"context_{k}": v.astype(np.float32) for k, v in ctx["arrays"].items()})
     raster, written, skipped = output.write_raster(layers, grid, run_dir)
     result["rasters"] = {"fractions": raster, "bands": written,
                          "not_written_not_computed": skipped,

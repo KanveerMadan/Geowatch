@@ -195,3 +195,36 @@ placeholders:
   # smoke_test: true (Phase A ruling). In any other run, a not_computed
   # detector makes the remainder not_computed.
   detector_smoke_test_value: 0.0
+
+# Part 6 — flags and context layers (Decision 11). Per-pixel, many per AOI.
+# Context touches neither the denominator nor any fraction (Decision 14,
+# 2026-09-24 extension); the synthetic-turf check alone would be estimate
+# quality.
+context:
+  osm_flags:
+    # A pixel is flagged when the OSM layer covers any of it (area layers)
+    # or a line touches it (line layers). "Any overlap" is not a tunable
+    # threshold; the covered fraction is emitted beside the flag.
+    vegetation: [sports_field, golf_course, park, farmland]
+    bare: [sand, rock, landfill, quarry, dirt_track, unpaved_parking, salt_flat, dry_lakebed]
+    other: [pier_quay]            # piers/quays: context only (Decision 11, 2026-09-25)
+  synthetic_turf_check:
+    criterion: {value: null, source: null, status: UNSET}
+  bare_geographic_plausibility:
+    criterion: {value: null, source: null, status: UNSET}
+  volcano:
+    # Smithsonian GVP "Volcanoes of the World" Holocene list. The GVP site
+    # and WFS refused programmatic access on 2026-09-25 (HTTP 403 /
+    # connection reset), and no Earth Engine mirror was found. Export the
+    # official list (GeoJSON or CSV with Volcano_Number, Volcano_Name,
+    # Latitude, Longitude) to this path by hand; until then the layer is
+    # "unavailable". No unofficial copy is used.
+    gvp_path: data/reference/gvp_holocene_volcanoes.geojson
+    # Per-pixel flag needs a radius around the GVP point; none is cited.
+    match_radius_m: {value: null, source: null, status: UNSET}
+  terrain:
+    # flat / hilly / mountainous cut-offs on slope and elevation. None is
+    # cited or measured as of 2026-09-25.
+    slope_deg_hilly_min: {value: null, source: null, status: UNSET}
+    slope_deg_mountainous_min: {value: null, source: null, status: UNSET}
+    elevation_m_mountainous_min: {value: null, source: null, status: UNSET}
