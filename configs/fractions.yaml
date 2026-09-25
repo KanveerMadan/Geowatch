@@ -179,3 +179,19 @@ detectors:
         31: Other coastal wetland
         32: Salt pan, saline/brackish wetland
         33: Paddy rice
+
+# Part 5 — PLACEHOLDERS. ███ NOT MEASUREMENTS. ███
+# Constants that stand in for the untrained item 21 regressors so the
+# pipeline runs end to end. Chosen to be obviously synthetic (uniform over
+# the AOI), not plausible. Every output they touch is marked
+# provenance "placeholder" / placeholder_tainted, and the run carries
+# contains_placeholder: true.
+placeholders:
+  regressors:
+    vegetation: 0.2
+    water: 0.1
+    impervious_share: 0.5       # share of the hard-surface remainder
+  # Stand-in for a not_computed detector. Allowed ONLY in an AOI marked
+  # smoke_test: true (Phase A ruling). In any other run, a not_computed
+  # detector makes the remainder not_computed.
+  detector_smoke_test_value: 0.0

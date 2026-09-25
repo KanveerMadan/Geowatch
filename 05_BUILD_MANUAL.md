@@ -1230,6 +1230,17 @@ they are recorded here so the code has a written source.*
   and reported regardless. **Observation:** at ~464 m, GLWD calls 77% of
   Dharavi "Other coastal wetland" — it can sub-type a spectral detection,
   never stand in for one.
+- **Part 5 — bookkeeping** *(2026-09-25)*: `surface_fractions/bookkeeping.py`,
+  `regressors.py`, `output.py`, `run_fractions.py`. Remainder →
+  `impervious_total` (share of remainder) → `bare` residual → `paved` =
+  `impervious_total − built`, clamped at 0 and flagged, with `paved_unclamped`
+  and `sum_excess` emitted; the eight sum to exactly `1 + sum_excess`
+  (asserted). Over-subscription flagged, never rescaled. Vegetation, water
+  and the impervious share are **PLACEHOLDER constants**; any quantity
+  derived from one has provenance `placeholder:<method>`, and the run
+  carries `contains_placeholder: true`. The writer refuses output that
+  breaks either rule. Estimate-quality fields (prediction intervals,
+  `paved` derivation uncertainty) are `not_computed`.
 
 ---
 
