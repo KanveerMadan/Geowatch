@@ -17,8 +17,9 @@ Two separate verdicts, both None until their numbers exist:
                            built + paved label fractions, against item 21's
                            impervious_total floors (MAE <= 15 pp, R^2 >= 0.3);
                            worse on either -> label-limited
-                         built -- against its validation bar, which has no
-                           number yet (UNSET) -> None
+                         built -- against its pass/fail bar (R5, 2026-09-25):
+                           cell MAE <= 10 pp, cell R^2 >= 0.5, absolute
+                           coverage bias <= 5 pp; worse on any -> label-limited
                          every other class -> None
 """
 
@@ -56,7 +57,9 @@ def compare(features_a: list, features_b: list, grid, cfg: dict) -> dict:
         if label in cfg["labels"]["scored"]:
             x, y = fa["fractions"][label][both], fb["fractions"][label][both]
             rec.update({"fraction_mae": float(np.abs(x - y).mean()) if x.size else None,
-                        "fraction_r2": _r2(x, y), "cells_compared": int(both.sum())})
+                        "fraction_r2": _r2(x, y),
+                        "coverage_bias": float(x.mean() - y.mean()) if x.size else None,
+                        "cells_compared": int(both.sum())})
         rec["meets_agreement_bar"] = None
         if bars_set and label in bars["per_class"]:
             bar = bars["per_class"][label]
@@ -82,7 +85,7 @@ def compare(features_a: list, features_b: list, grid, cfg: dict) -> dict:
             "impervious_total": imp,
             "agreement_bars": "set" if bars_set else "UNSET (guide §9.4): no verdict",
             "label_limited_note": "impervious_total vs item 21 floors; built vs its "
-                                  "validation bar (UNSET -> None); others None"}
+                                  "R5 bar; others None"}
 
 
 def _label_limited(agreement: dict, bar: dict):
@@ -93,4 +96,10 @@ def _label_limited(agreement: dict, bar: dict):
     mae, r2 = agreement.get("fraction_mae"), agreement.get("fraction_r2")
     if mae is None or r2 is None:
         return None
-    return bool(mae > bar["fraction_mae_max"] or r2 < bar["fraction_r2_min"])
+    worse = mae > bar["fraction_mae_max"] or r2 < bar["fraction_r2_min"]
+    if "coverage_bias_abs_max" in bar:
+        bias = agreement.get("coverage_bias")
+        if bias is None:
+            return None
+        worse = worse or abs(bias) > bar["coverage_bias_abs_max"]
+    return bool(worse)

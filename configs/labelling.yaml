@@ -54,6 +54,10 @@ model_pass_bars:
     fraction_mae_max: 0.15
     fraction_r2_min: 0.3
     source: "05_BUILD_MANUAL.md item 21, impervious_total pass/fail floors"
-  # item 21 "`built` validation" defines a comparison (hand-digitised vs Open
-  # Buildings and Microsoft) but NO numeric bar. UNSET until one is fixed.
-  built: {status: UNSET, fraction_mae_max: null, fraction_r2_min: null}
+  # Decided 2026-09-25 (R5), stricter than impervious_total because paved =
+  # impervious_total - built inherits built's error. Polygon IoU diagnostic.
+  built:
+    fraction_mae_max: 0.10          # per 10 m cell
+    fraction_r2_min: 0.5            # per 10 m cell
+    coverage_bias_abs_max: 0.05     # per site, |mean(a) - mean(b)|
+    source: "05_BUILD_MANUAL.md item 21, `built` pass/fail (R5, 2026-09-25)"

@@ -243,7 +243,7 @@ def test_identical_labellings_agree_perfectly():
     assert out["per_class"]["built"]["polygon_iou"] == 1.0
     assert out["per_class"]["built"]["fraction_mae"] == 0.0
     assert out["per_class"]["built"]["meets_agreement_bar"] is None
-    assert out["per_class"]["built"]["label_limited"] is None
+    assert out["per_class"]["built"]["label_limited"] is False      # R5 bar set
     assert "UNSET" in out["agreement_bars"]
 
 
@@ -317,11 +317,28 @@ def test_impervious_label_limited_when_worse_than_floor():
     assert out["impervious_total"]["label_limited"] is True
 
 
-def test_built_label_limited_is_none_while_bar_unset_others_none():
+def test_built_bar_is_r5_and_stricter_than_impervious():
+    b, i = CFG["model_pass_bars"]["built"], CFG["model_pass_bars"]["impervious_total"]
+    assert (b["fraction_mae_max"], b["fraction_r2_min"], b["coverage_bias_abs_max"]) == \
+        (0.10, 0.5, 0.05)
+    assert b["fraction_mae_max"] < i["fraction_mae_max"]
+    assert b["fraction_r2_min"] > i["fraction_r2_min"]
+
+
+def test_built_label_limited_uses_all_three_gates_others_none():
     out = qc.compare(_strips(100, 0), _strips(20, 0), grid(), CFG)
-    assert CFG["model_pass_bars"]["built"]["status"] == "UNSET"
-    assert out["per_class"]["built"]["label_limited"] is None
-    assert all(v["label_limited"] is None for k, v in out["per_class"].items())
+    assert out["per_class"]["built"]["label_limited"] is True        # MAE 0.4
+    assert out["per_class"]["built"]["coverage_bias"] == pytest.approx(0.4)
+    assert all(v["label_limited"] is None for k, v in out["per_class"].items()
+               if k != "built")
+
+
+def test_built_bias_alone_can_make_it_label_limited():
+    from labelling.qc import _label_limited
+    bar = CFG["model_pass_bars"]["built"]
+    ok = {"fraction_mae": 0.05, "fraction_r2": 0.9, "coverage_bias": 0.02}
+    assert _label_limited(ok, bar) is False
+    assert _label_limited({**ok, "coverage_bias": -0.06}, bar) is True
 
 
 def test_impervious_bars_match_item_21_floors():

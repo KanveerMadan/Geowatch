@@ -1099,6 +1099,26 @@ a within-noise result up.
   footprint sources** is reported as `built` confidence. That signal is
   **calibrated by the hand-digitised check**, which ties a given disagreement
   level to a measured error.
+- **`built` pass/fail — decided 2026-09-25, fixed before any run** (Phase A
+  rulings, third round, R5):
+
+  | Metric | Bar | Role |
+  |---|---|---|
+  | Per 10 m cell **MAE** | ≤ 10 pp | **Hard gate** |
+  | Per 10 m cell **R²** | ≥ 0.5 | **Hard gate** |
+  | Per-site **absolute coverage bias** | ≤ 5 pp | **Hard gate** |
+  | Polygon **IoU** | — | **Diagnostic only**, never disqualifying |
+
+  **Why stricter than `impervious_total` (MAE ≤ 15 pp, R² ≥ 0.3):**
+  `paved = impervious_total − built` inherits `built`'s error on top of
+  `impervious_total`'s, so `built` must be measured more tightly than the
+  quantity it is subtracted from or `paved` is unusable by construction.
+
+  **Pre-registered failure branch:** if Open Buildings fails `built`,
+  alternatives (Microsoft; the Open Buildings ∪ Microsoft union) may be
+  evaluated **on TRAINING sites only — never on the sealed validation
+  sites**. Choosing a footprint source by looking at validation results
+  would be the firewall breach item 21 exists to prevent.
 
 **Regressor guardrails.**
 
@@ -1238,6 +1258,29 @@ they are recorded here so the code has a written source.*
 7. **Part 6 context thresholds** (terrain, volcano radius, synthetic turf,
    bare plausibility, salt flat) **stay UNSET, deferred, off the critical
    path.** GLWD class 32 is **not** a salt-flat producer.
+
+#### Phase A — build rulings, third round, decided 2026-09-25
+
+- **R2 — `mixed_water_vegetation` from datasets.** ~~Detected pixel =
+  fraction 1.0, overriding vegetation / water~~ *(amended for dataset
+  producers only)*: **Global Mangrove Watch coverage is kept as a continuous
+  fraction**, with **no 1.0 override** of the vegetation / water regressors;
+  any over-subscription is flagged, never rescaled. The spectral-detector
+  override (fraction 1.0) still applies to `snow_ice` and `solar`.
+  Per AOI, the class has two components:
+  - **mangrove** — Global Mangrove Watch extent, always computed;
+  - **non-mangrove** (wetland, mudflat / tidal, water hyacinth) —
+    **`excluded`** if the Global Lakes and Wetlands Database shows **no
+    wetland class of any kind** in the AOI, otherwise **`not_computed`**,
+    which keeps the remainder blocked.
+
+  **Why GLWD exclusion is conservative:** GLWD over-calls wetland (at
+  ~464 m it labels 77% of Dharavi "Other coastal wetland"), so an AOI where
+  it shows *nothing* is very unlikely to hold unmapped wetland. *Recorded
+  interpretation:* "any wetland class" is read as **any non-Dryland GLWD
+  class (1–33)**, because water hyacinth — part of this class — grows on
+  the lakes and rivers GLWD maps as classes 1–7.
+- **R5 — `built` pass/fail bar:** see "`built` validation" above.
 
 **Phase A progress** *(one line per part as it lands)*:
 
