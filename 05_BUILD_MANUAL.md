@@ -1253,6 +1253,18 @@ they are recorded here so the code has a written source.*
   until one exists; per-pixel volcano flag `not_computed` (radius UNSET).
   Terrain: cut-offs UNSET, class distribution `not_computed`; slope and
   elevation percentiles reported.
+- **Part 7 — labelling tooling** *(2026-09-25)*: `labelling/`,
+  `configs/labelling.yaml`. Stratified tile frame (200 m tiles on the S2
+  lattice, hand-drawn strata, seeded rank per stratum fixed before any
+  count; imagery-footprint eligibility); polygon → 10 m fractions through
+  the pipeline's own rasteriser, with `unsure` + `shadow_full` out of the
+  cell denominator and partial shadow as a flag; per-tile §8 record (all
+  fields mandatory), versioned never-overwritten label store, dropped tiles
+  locked, validation labels sealed by batch with an unseal log; blind
+  re-label QC at polygon (IoU) and 10 m fraction (MAE, R²) level. **All
+  five §9 open numbers are UNSET** and every function needing one refuses
+  to run. Phase A default flagged for review: a tile straddling strata
+  takes the plurality stratum; ties are ineligible.
 
 ---
 

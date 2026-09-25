@@ -1,0 +1,42 @@
+# Item 21 Phase A, part 7 — labelling tooling configuration.
+# Protocol: LABELLING_GUIDE.md (v1.0, decided 2026-09-24). Numbers the guide
+# fixes are copied here with their section; the five numbers the guide
+# leaves OPEN (§9) are UNSET (null). Code that needs an UNSET number refuses
+# to run. None of them may be set after labelling begins or after model
+# results are seen (§9).
+
+guide_version: "1.0"
+
+labels:
+  scored: [built, paved, vegetation, water, bare, mixed_water_vegetation, snow_ice, solar]
+  excluded: [unsure, shadow_full]        # §1, §9.5: out of the cell's denominator
+  # shadow_partial is NOT a label (§1): the underlying class + this flag.
+  partial_shadow_property: shadow_partial
+
+tiles:
+  size_m: 200                 # §3 "~200 m x 200 m"; 20 x 20 Sentinel-2 cells
+  strata: [dense_informal, formal, mixed, fringe]      # §3
+  # A tile straddling strata goes to the stratum with the largest share of
+  # its area; a tie makes it ineligible. Phase A default -- not in the
+  # guide; flagged for review.
+  stratum_assignment: plurality
+  random_seed: 20260925       # recorded in the frame; fixes the order before counts exist
+
+qc:
+  blind_relabel_fraction: 0.15        # §7 "~15% of tiles"
+  same_labeller_min_gap_days: 7       # §7 "at least one week"
+
+sites:                        # 05_BUILD_MANUAL.md item 21, "Site list — FINAL"
+  training: [cape_town, lima, karachi, monrovia, marrakech]
+  validation: [makoko, kibera, rocinha]
+
+# ── §9 OPEN — UNSET. Do not choose these in code. ──────────────────────────
+open:
+  change_test: {method: null, threshold: null, status: UNSET}          # §9.1
+  max_date_gap_days: {status: UNSET, per_site: {}}                     # §9.2
+  starting_tile_count: {status: UNSET, per_stratum: {}}                # §9.3
+  agreement_bars: {status: UNSET, per_class: {}}                       # §9.4
+  max_excluded_share_per_cell: {value: null, status: UNSET}            # §9.5
+  # Not one of the five, and also undecided: how many validation tiles go
+  # in sealed batch 1 vs batch 2 (§8).
+  validation_batch_1_count: {value: null, status: UNSET}
