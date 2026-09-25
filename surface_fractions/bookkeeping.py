@@ -135,8 +135,11 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
 
     flags = {}
     # Rooftop panels are built: solar yields any area a footprint covers.
+    built_ok = known & np.isfinite(base["built"])
     if base["solar"] is not None:
-        cap = np.maximum(1.0 - base["built"], 0.0)
+        # Where built is absent (footprint coverage gap) the rooftop rule
+        # cannot be applied; solar is left as it is there.
+        cap = np.where(built_ok, np.maximum(1.0 - np.nan_to_num(base["built"]), 0.0), 1.0)
         yielded = known & (base["solar"] > cap + SUM_TOLERANCE)
         base["solar"] = mask(np.minimum(base["solar"], cap))
         flags["solar_yielded_to_built"] = yielded
@@ -156,6 +159,12 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
                        for n in NON_HARD if (known & ~input_ok[n]).any()} if n_known else {},
     }
     on = lambda a: np.where(avail, a, np.nan).astype(np.float32)
+    # paved = impervious_total - built also needs built on the pixel: a
+    # footprint coverage gap blocks paved there, never paved = impervious.
+    paved_ok = avail & built_ok
+    on_p = lambda a: np.where(paved_ok, a, np.nan).astype(np.float32)
+    remainder_block["paved_blocked_by_absent_built_share"] = (
+        float((avail & ~built_ok).sum()) / n_known if n_known else None)
     if not avail.any():
         remainder = imp = bare = paved_u = paved = excess = None
     else:
@@ -163,11 +172,11 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
         remainder = on(1.0 - non_hard)
         imp = on(base["impervious_share"] * remainder)
         bare = on(remainder - imp)
-        paved_u = on(imp - base["built"])
-        paved = on(np.maximum(paved_u, 0.0))
-        excess = on(paved - paved_u)
+        paved_u = on_p(imp - base["built"])
+        paved = on_p(np.maximum(paved_u, 0.0))
+        excess = on_p(paved - paved_u)
         flags["nonhard_oversubscribed"] = avail & (non_hard > 1.0 + SUM_TOLERANCE)
-        flags["built_exceeds_remainder"] = avail & (base["built"] > remainder + SUM_TOLERANCE)
+        flags["built_exceeds_remainder"] = paved_ok & (base["built"] > remainder + SUM_TOLERANCE)
         flags["paved_negative"] = avail & (paved_u < -SUM_TOLERANCE)
     det_sum = sum(np.nan_to_num(base[n]) for n in DETECTOR_FRACTIONS if base[n] is not None)
     flags["detector_overlap"] = known & (np.asarray(det_sum) > 1.0 + SUM_TOLERANCE)
@@ -220,12 +229,12 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
                                          f"of known pixels by inputs: {missing}")
 
     sum_check = None
-    if avail.any():
+    if paved_ok.any():
         total = sum(np.nan_to_num(arrays[n]) for n in EIGHT)
-        dev = np.where(avail, np.abs(total - (1.0 + np.nan_to_num(excess))), 0.0)
+        dev = np.where(paved_ok, np.abs(total - (1.0 + np.nan_to_num(excess))), 0.0)
         sum_check = {"max_abs_deviation_from_1_plus_excess": float(dev.max()),
-                     "aoi_mean_sum_excess": _mean(excess, avail),
-                     "over": "pixels with a computed remainder"}
+                     "aoi_mean_sum_excess": _mean(excess, paved_ok),
+                     "over": "pixels with a computed remainder and built"}
         if sum_check["max_abs_deviation_from_1_plus_excess"] > SUM_TOLERANCE:
             raise AssertionError(f"fraction bookkeeping broken: {sum_check}")
 

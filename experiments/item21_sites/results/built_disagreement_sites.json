@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-09-25T06:48:39.181618+00:00",
+ "generated_utc": "2026-09-25T07:32:11.416911+00:00",
  "aois": {
   "makoko": {
    "bbox": [
@@ -22,6 +22,8 @@
     "width": 301,
     "height": 301
    },
+   "built_status": "computed",
+   "built_coverage_mean": 0.2219260185956955,
    "area_km2": 9.0601,
    "microsoft": {
     "asset": "projects/sat-io/open-datasets/MSBuildings/Nigeria",
@@ -41,6 +43,10 @@
     "coverage_total_secondary": 0.14521572609075747,
     "fraction_mae": 0.13675378866733745,
     "weighted_jaccard": 0.4572137387721671,
+    "source_status": {
+     "open_buildings": "available",
+     "microsoft_buildings": "available"
+    },
     "coverage_bias_primary_minus_secondary": 0.07671030123059411,
     "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
    }
@@ -66,6 +72,8 @@
     "width": 301,
     "height": 301
    },
+   "built_status": "computed",
+   "built_coverage_mean": 0.2841924726963043,
    "area_km2": 9.0601,
    "microsoft": {
     "asset": "projects/sat-io/open-datasets/MSBuildings/Kenya",
@@ -85,6 +93,10 @@
     "coverage_total_secondary": 0.2444843876359347,
     "fraction_mae": 0.14298727404545727,
     "weighted_jaccard": 0.5742298213049022,
+    "source_status": {
+     "open_buildings": "available",
+     "microsoft_buildings": "available"
+    },
     "coverage_bias_primary_minus_secondary": 0.03970806057259216,
     "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
    }
@@ -110,6 +122,8 @@
     "width": 301,
     "height": 301
    },
+   "built_status": "computed",
+   "built_coverage_mean": 0.07950904965400696,
    "area_km2": 9.0601,
    "microsoft": {
     "asset": "projects/sat-io/open-datasets/MSBuildings/Brazil",
@@ -129,6 +143,10 @@
     "coverage_total_secondary": 0.053931744681655784,
     "fraction_mae": 0.0637819670476509,
     "weighted_jaccard": 0.3531987434039951,
+    "source_status": {
+     "open_buildings": "available",
+     "microsoft_buildings": "available"
+    },
     "coverage_bias_primary_minus_secondary": 0.025577311470855117,
     "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
    }
@@ -154,6 +172,8 @@
     "width": 301,
     "height": 301
    },
+   "built_status": "computed",
+   "built_coverage_mean": 0.11314477026462555,
    "area_km2": 9.0601,
    "microsoft": {
     "asset": "projects/sat-io/open-datasets/MSBuildings/Peru",
@@ -173,6 +193,10 @@
     "coverage_total_secondary": 0.06330802087115107,
     "fraction_mae": 0.08700433771483418,
     "weighted_jaccard": 0.33951807906999787,
+    "source_status": {
+     "open_buildings": "available",
+     "microsoft_buildings": "available"
+    },
     "coverage_bias_primary_minus_secondary": 0.04983675678764181,
     "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
    }
@@ -198,6 +222,8 @@
     "width": 301,
     "height": 301
    },
+   "built_status": "computed",
+   "built_coverage_mean": 0.15822827816009521,
    "area_km2": 9.0601,
    "microsoft": {
     "asset": "projects/sat-io/open-datasets/MSBuildings/Liberia",
@@ -217,7 +243,99 @@
     "coverage_total_secondary": 0.14892495667536582,
     "fraction_mae": 0.07210152212415369,
     "weighted_jaccard": 0.6197726130910519,
+    "source_status": {
+     "open_buildings": "available",
+     "microsoft_buildings": "available"
+    },
     "coverage_bias_primary_minus_secondary": 0.009303318951416034,
+    "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
+   }
+  },
+  "karachi": {
+   "bbox": [
+    296753.3,
+    2760653.4,
+    299753.3,
+    2763653.4
+   ],
+   "bbox_crs": "EPSG:32642",
+   "grid": {
+    "crs": "EPSG:32642",
+    "transform": [
+     10,
+     0.0,
+     296750,
+     0.0,
+     -10,
+     2763660
+    ],
+    "width": 301,
+    "height": 301
+   },
+   "built_status": "computed",
+   "built_coverage_mean": 0.29298561811447144,
+   "area_km2": 9.0601,
+   "microsoft": {
+    "asset": "projects/sat-io/open-datasets/MSBuildings/Pakistan",
+    "country": "Pakistan",
+    "error": null
+   },
+   "disagreement": {
+    "status": "unavailable",
+    "reason": "second footprint source status: absent_in_aoi",
+    "source_status": {
+     "open_buildings": "available",
+     "microsoft_buildings": "absent_in_aoi"
+    }
+   }
+  },
+  "cape_town": {
+   "bbox": [
+    282308.6,
+    6232511.7,
+    285308.6,
+    6235511.7
+   ],
+   "bbox_crs": "EPSG:32734",
+   "grid": {
+    "crs": "EPSG:32734",
+    "transform": [
+     10,
+     0.0,
+     282300,
+     0.0,
+     -10,
+     6235520
+    ],
+    "width": 301,
+    "height": 301
+   },
+   "built_status": "computed",
+   "built_coverage_mean": 0.18558856844902039,
+   "area_km2": 9.0601,
+   "microsoft": {
+    "asset": "projects/sat-io/open-datasets/MSBuildings/South_Africa",
+    "country": "South Africa",
+    "error": null
+   },
+   "disagreement": {
+    "status": "computed",
+    "is_confidence_score": false,
+    "note": "diagnostic only; calibration against hand-digitised buildings (item 21) decides which measure becomes built confidence",
+    "sources": {
+     "primary": "open_buildings_v3",
+     "secondary": "microsoft_global_ml_building_footprints"
+    },
+    "pixels_compared": 90601,
+    "coverage_total_primary": 0.18558856946482924,
+    "coverage_total_secondary": 0.14381474798417962,
+    "fraction_mae": 0.07960982771849784,
+    "weighted_jaccard": 0.6107224002011254,
+    "source_status": {
+     "open_buildings": "available",
+     "microsoft_buildings": "available"
+    },
+    "coverage_bias_primary_minus_secondary": 0.04177382148064962,
     "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
    }
   }

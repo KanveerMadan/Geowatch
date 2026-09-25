@@ -39,7 +39,8 @@ def run_aoi(name: str, bbox: tuple, cfg: dict, work_dir: str, crs: str | None = 
     from ingestion.tiler import export_image_local
     from surface_fractions.built import compute_built
     from surface_fractions.grid import coverage_fraction, ee_projection, grid_region, native_grid
-    from surface_fractions.inputs import NODATA, microsoft_asset_for, microsoft_fc, read_stack
+    from surface_fractions.inputs import (NODATA, features_present, microsoft_asset_for,
+                                          microsoft_fc, read_stack)
 
     geom = (ee.Geometry.Rectangle(list(bbox), proj=crs, geodesic=False) if crs
             else ee.Geometry.Rectangle(list(bbox)))
@@ -48,25 +49,38 @@ def run_aoi(name: str, bbox: tuple, cfg: dict, work_dir: str, crs: str | None = 
     proj = ee_projection(grid)
     ob = cfg["footprints"]["open_buildings"]
     sub = cfg["footprints"]["subcell_m"]
-    ob_fc = (ee.FeatureCollection(ob["asset"]).filterBounds(region)
-             .filter(ee.Filter.gte("confidence", ob["min_confidence"])))
+    ob_all = ee.FeatureCollection(ob["asset"]).filterBounds(region)
+    ob_fc = ob_all.filter(ee.Filter.gte("confidence", ob["min_confidence"]))
+    ob_present = features_present(ob_all)
     ms_asset, country, ms_err = microsoft_asset_for(region, cfg)
-    ms_img = (coverage_fraction(microsoft_fc(ms_asset).filterBounds(region), proj, sub)
-              if ms_asset else ee.Image.constant(NODATA)).rename("ms_cov")
-    img = ee.Image.cat([coverage_fraction(ob_fc, proj, sub).rename("ob_cov"), ms_img])
+    ms_fc = microsoft_fc(ms_asset).filterBounds(region) if ms_asset else None
+    ms_present = ms_fc is not None and features_present(ms_fc)
+    ms_img = (coverage_fraction(ms_fc, proj, sub) if ms_present
+              else ee.Image.constant(NODATA)).rename("ms_cov")
+    ob_img = (coverage_fraction(ob_fc, proj, sub) if ob_present
+              else ee.Image.constant(NODATA)).rename("ob_cov")
+    img = ee.Image.cat([ob_img, ms_img])
     path = os.path.join(work_dir, f"{name}_footprints.tif")
     export_image_local(img.toFloat().unmask(NODATA), region, path, crs=grid.crs,
                        crs_transform=list(grid.transform), band_names=BANDS)
     bands = read_stack(path, grid, BANDS)
-    status = {"microsoft_buildings": "available" if ms_asset else "unavailable"}
+    status = {"open_buildings": "available" if ob_present else "absent_in_aoi",
+              "microsoft_buildings": ("available" if ms_present
+                                      else "absent_in_aoi" if ms_asset else "unavailable")}
     b = compute_built(bands, status, {"asset": ob["asset"],
                                       "min_confidence": ob["min_confidence"], "subcell_m": sub})
     d = b["disagreement"]
+    d["source_status"] = status
     if d.get("status") == "computed":
         d["coverage_bias_primary_minus_secondary"] = (
             d["coverage_total_primary"] - d["coverage_total_secondary"])
         d["coverage_bias_note"] = "R5 per-site bias metric, descriptive only (not labels)"
+    import numpy as np
     return {"bbox": list(bbox), "bbox_crs": crs or "EPSG:4326", "grid": grid.to_dict(),
+            # built itself, reported even when the disagreement is unavailable.
+            "built_status": b["status"],
+            "built_coverage_mean": (float(np.nanmean(b["built"])) if b["status"] == "computed"
+                                    else None),
             "area_km2": grid.width * grid.height * grid.res ** 2 / 1e6,
             "microsoft": {"asset": ms_asset, "country": country, "error": ms_err},
             "disagreement": b["disagreement"]}

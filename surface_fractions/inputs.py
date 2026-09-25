@@ -109,6 +109,15 @@ def microsoft_fc(asset: str):
     raise ValueError(f"Microsoft asset {asset} has unexpected type {info['type']}")
 
 
+def features_present(fc) -> bool:
+    """Does `fc` hold ANY feature? A footprint source with none in the AOI has
+    no coverage there: its band must be absent (NaN), never 0, or a coverage
+    gap reads as "no buildings" (C33). Found 2026-09-25: Microsoft has 0
+    footprints in all of metro Karachi (19.4 M elsewhere in Pakistan), and
+    Open Buildings v3 has 0 in Morocco."""
+    return fc.limit(1).size().getInfo() > 0
+
+
 def _nodata_bands(names):
     import ee
     return ee.Image.constant([NODATA] * len(names)).rename(names).toFloat()
@@ -153,20 +162,31 @@ def build_ee_stack(aoi_cfg: dict, cfg: dict, grid: Grid, region) -> tuple:
     # Footprints. Open Buildings is `built`; Microsoft is only the second
     # source for the disagreement signal (part 4).
     ob = cfg["footprints"]["open_buildings"]
-    ob_fc = (ee.FeatureCollection(ob["asset"]).filterBounds(region)
-             .filter(ee.Filter.gte("confidence", ob["min_confidence"])))
+    ob_all = ee.FeatureCollection(ob["asset"]).filterBounds(region)
+    ob_fc = ob_all.filter(ee.Filter.gte("confidence", ob["min_confidence"]))
     sub = cfg["footprints"]["subcell_m"]
-    ob_img = coverage_fraction(ob_fc, proj, sub).rename("ob_cov")
-    status["open_buildings"] = "available"
     prov["open_buildings"] = {"asset": ob["asset"], "min_confidence": ob["min_confidence"],
                               "subcell_m": sub}
+    # Presence is tested on the UNFILTERED dataset: footprints that exist but
+    # fall below the confidence cut are a real zero from a covered area.
+    if features_present(ob_all):
+        ob_img = coverage_fraction(ob_fc, proj, sub).rename("ob_cov")
+        status["open_buildings"] = "available"
+    else:
+        ob_img = _nodata_bands(["ob_cov"])
+        status["open_buildings"] = "absent_in_aoi"
+        errors["open_buildings"] = "Open Buildings v3 has no footprints in this AOI (coverage gap)"
 
     ms_asset, country, ms_err = microsoft_asset_for(region, cfg)
     prov["microsoft_buildings"] = {"asset": ms_asset, "country": country, "subcell_m": sub}
-    if ms_asset:
-        ms_fc = microsoft_fc(ms_asset).filterBounds(region)
+    ms_fc = microsoft_fc(ms_asset).filterBounds(region) if ms_asset else None
+    if ms_fc is not None and features_present(ms_fc):
         ms_img = coverage_fraction(ms_fc, proj, sub).rename("ms_cov")
         status["microsoft_buildings"] = "available"
+    elif ms_fc is not None:
+        ms_img = _nodata_bands(["ms_cov"])
+        status["microsoft_buildings"] = "absent_in_aoi"
+        errors["microsoft_buildings"] = f"{ms_asset} has no footprints in this AOI (coverage gap)"
     else:
         ms_img = _nodata_bands(["ms_cov"])
         status["microsoft_buildings"] = "unavailable"

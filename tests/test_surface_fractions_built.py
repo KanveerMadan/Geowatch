@@ -56,3 +56,19 @@ def test_missing_second_source_is_unavailable_not_zero():
     assert out["disagreement"]["status"] == "unavailable"
     assert out["built_secondary_abs_diff"] is None
     np.testing.assert_array_equal(out["built"], ob)
+
+
+def test_absent_secondary_is_unavailable_not_total_disagreement():
+    ob = np.array([0.5, 0.2])
+    d = built.disagreement(ob, np.full(2, np.nan), "absent_in_aoi")
+    assert d["status"] == "unavailable" and "absent_in_aoi" in d["reason"]
+
+
+def test_absent_primary_makes_built_status_absent():
+    out = built.compute_built({"ob_cov": np.full((1, 2), np.nan, np.float32),
+                               "ms_cov": np.array([[0.3, 0.1]], np.float32)},
+                              {"open_buildings": "absent_in_aoi", "microsoft_buildings": "available"},
+                              OB_PROV)
+    assert out["status"] == "absent_in_aoi"
+    assert out["disagreement"]["status"] == "unavailable"
+    assert out["built_secondary_abs_diff"] is None

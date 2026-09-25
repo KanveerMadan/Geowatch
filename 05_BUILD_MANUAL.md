@@ -1085,8 +1085,8 @@ exact in its UTM zone, centred on the named settlement
 | Rocinha | −43.2484, −22.9897 | OSM admin boundary (relation 5520358) centroid | approved |
 | Lima | −76.9286, −12.1336 | **Option B:** midpoint of the two prioritised scenes (Candelaria, Santuario de las Vizcachas) | approved |
 | Monrovia | −10.8064, 6.3259 | West Point (mean of 6 OSM "West Point" features; no boundary) | approved |
-| Karachi | — | Orangi; a new centre toward its western / northern edge is proposed so the box holds undeveloped fringe | **pending** |
-| Cape Town | — | Khayelitsha proposed; the city imagery's extent is not machine-readable | **pending** |
+| Karachi | 67.0016, 24.9614 | Orangi, re-centred 2 km north so the box holds undeveloped fringe (16.4% empty 100 m cells vs 1.9%) | approved 2026-09-25 |
+| Cape Town | 18.6589, −34.0123 | Khayelitsha (OSM relation 1017405 centroid); extent confirmed via the city MapServer. **Labelling source: the 2025Jan city imagery, not 2026Jan** — the service states "This is not the final image for 2026." | approved 2026-09-25 |
 
 **Box vs frame:**
 - **Measurement B runs on the full 3 × 3 km box.**
@@ -1478,8 +1478,17 @@ they are recorded here so the code has a written source.*
   | Rocinha | 0.080 | 0.054 | 0.064 | 0.353 | +0.026 |
   | Lima (B) | 0.113 | 0.063 | 0.087 | 0.340 | +0.050 |
   | Monrovia | 0.158 | 0.149 | 0.072 | 0.620 | +0.009 |
+  | Karachi | 0.293 | **absent** | — | — | — |
+  | Cape Town | 0.186 | 0.144 | 0.080 | 0.611 | +0.042 |
 
-  Karachi (box pending) and Cape Town (extent pending) not run.
+  *Karachi and Cape Town added 2026-09-25 after their boxes were approved.*
+  **Karachi: Microsoft has no footprints anywhere in metro Karachi** (0,
+  against 19.4 M in its Pakistan table, thousands in Lahore and Islamabad),
+  so the disagreement is `unavailable`, not "total disagreement": `built`
+  (Open Buildings) is computed, the second source is absent. The run code
+  now marks a footprint source with no features in the AOI `absent_in_aoi`
+  with a NaN band — never 0 (C33) — and a `built` gap blocks `paved` on
+  those pixels instead of letting `paved = impervious_total`.
   `experiments/item21_sites/results/built_disagreement_sites.json`. Two
   lookup defects found and fixed on the way (`surface_fractions/inputs.py`):
   the Microsoft country was read at the AOI **centroid**, which in Makoko

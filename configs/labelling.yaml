@@ -79,5 +79,12 @@ aois:
   rocinha:  {status: approved, crs: "EPSG:32723", box_utm: [678035.1, 7455053.9, 681035.1, 7458053.9], frame_scene: null}
   lima:     {status: approved, variant: "B (midpoint of the two prioritised scenes)", crs: "EPSG:32718", box_utm: [288620.5, 8656435.0, 291620.5, 8659435.0], frame_scene: null}
   monrovia: {status: approved, crs: "EPSG:32629", box_utm: [298676.1, 698077.6, 301676.1, 701077.6], frame_scene: null}
-  karachi:  {status: pending, note: "new centre toward Orangi's western/northern edge proposed; awaiting approval", crs: "EPSG:32642", box_utm: null, frame_scene: null}
-  cape_town: {status: pending, note: "imagery extent not machine-readable; see manual", crs: "EPSG:32734", box_utm: null, frame_scene: null}
+  karachi:  {status: approved, note: "centre 67.0016, 24.9614 -- 2 km north of the first Orangi box, to include fringe", crs: "EPSG:32642", box_utm: [296753.3, 2760653.4, 299753.3, 2763653.4], frame_scene: null}
+  cape_town:
+    status: approved
+    note: "Khayelitsha; extent checked via the city MapServer (experiments/item21_sites/results/capetown_extent.json)"
+    crs: "EPSG:32734"
+    box_utm: [282308.6, 6232511.7, 285308.6, 6235511.7]
+    # Chosen 2026-09-25: the 2025Jan city imagery, NOT 2026Jan -- the
+    # service states "This is not the final image for 2026."
+    frame_scene: "City of Cape Town 'Aerial Imagery 2025Jan' (0.05 m, cityimg.capetown.gov.za MapServer)"

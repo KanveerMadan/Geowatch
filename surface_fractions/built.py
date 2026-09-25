@@ -28,8 +28,13 @@ import numpy as np
 BUILT_METHOD = "polygon coverage on the native Sentinel-2 10 m grid"
 
 
-def disagreement(ob: np.ndarray, ms: np.ndarray | None, ms_status: str) -> dict:
-    """AOI-level disagreement between the two footprint sources."""
+def disagreement(ob: np.ndarray, ms: np.ndarray | None, ms_status: str,
+                 ob_status: str = "available") -> dict:
+    """AOI-level disagreement between the two footprint sources. Unavailable
+    if either source is absent here -- absence is not disagreement (C33)."""
+    if ob_status != "available" or not np.isfinite(ob).any():
+        return {"status": "unavailable",
+                "reason": f"primary footprint source status: {ob_status}"}
     if ms is None or ms_status != "available" or not np.isfinite(ms).any():
         return {"status": "unavailable",
                 "reason": f"second footprint source status: {ms_status}"}
@@ -58,14 +63,16 @@ def compute_built(bands: dict, status: dict, ob_provenance: dict) -> dict:
     ob = bands["ob_cov"].astype(np.float32)
     ms = bands.get("ms_cov")
     ms_status = status.get("microsoft_buildings", "unavailable")
+    ob_status = status.get("open_buildings", "available")
     diff = (np.abs(ob - ms).astype(np.float32)
-            if ms is not None and ms_status == "available" else None)
+            if ms is not None and ms_status == "available" and ob_status == "available" else None)
     return {
         "built": ob,
         "built_secondary_abs_diff": diff,
         # Asset and confidence cut come from what part 1 actually used, not
         # from a second copy here that could drift from the config.
+        "status": "computed" if ob_status == "available" else ob_status,
         "provenance": {"source": "footprints", "measured_spectrally": False,
                        "method": BUILT_METHOD, **ob_provenance},
-        "disagreement": disagreement(ob, ms, ms_status),
+        "disagreement": disagreement(ob, ms, ms_status, ob_status),
     }

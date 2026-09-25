@@ -305,3 +305,21 @@ def test_smoke_fills_only_the_blocked_pixels():
     assert r["substitutions"][0]["pixels_filled"] == 1
     assert r["fractions"]["mixed_water_vegetation"]["placeholder_tainted"]
     assert r["remainder"]["blocked_pixel_share"] == 0.0
+
+
+# ── footprint coverage gap: built absent is not built = 0 (C33) ─────────────
+
+def test_absent_built_blocks_paved_not_the_remainder():
+    known = np.ones(2, dtype=bool)
+    r = bk.compute_fractions(known, np.array([0.2, np.nan], np.float32),
+                             regs([0.1, 0.1], [0.1, 0.1], [0.5, 0.5], known),
+                             {"snow_ice": _det("excluded", [0, 0], "excluded:x"),
+                              "solar": _det("excluded", [0, 0], "excluded:y"),
+                              "mixed_water_vegetation": _det("computed", [0, 0], "dataset:g")},
+                             smoke_test=False, detector_placeholder_value=0.0)
+    p = r["per_pixel"]
+    assert np.isfinite(p["impervious_total"]).all()          # remainder unaffected
+    assert np.isnan(p["paved"][1]) and np.isfinite(p["paved"][0])
+    assert r["remainder"]["paved_blocked_by_absent_built_share"] == pytest.approx(0.5)
+    assert r["fractions"]["built"]["status"] == "partial"
+    assert r["sum_check"]["max_abs_deviation_from_1_plus_excess"] < 1e-5

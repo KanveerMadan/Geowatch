@@ -425,7 +425,9 @@ def test_approved_site_boxes_are_3km_and_pending_ones_refused():
             crs, b = tiles.site_box(site, CFG)
             w, s_, e, n = b.bounds
             assert (round(e - w, 3), round(n - s_, 3)) == (3000.0, 3000.0), site
-            assert a["frame_scene"] is None            # source choice not made
+            # frame_scene is the imagery-source choice: unset unless made.
+            assert a["frame_scene"] is None or a["frame_scene"].strip(), site
         else:
             with pytest.raises(ValueError, match="not approved"):
                 tiles.site_box(site, CFG)
+    assert "2025Jan" in CFG["aois"]["cape_town"]["frame_scene"]   # not 2026Jan (not final)
