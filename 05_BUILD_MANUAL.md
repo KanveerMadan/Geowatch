@@ -1122,6 +1122,24 @@ The **per-site scored share** — scored cells ÷ labelled cells — is reported
 such. Neither the rule nor the share may be changed after labels or results
 exist.
 
+**What each validation site validates — pre-registered 2026-09-25, before
+any labelling.**
+
+| Site | `built` | `impervious_total` |
+|---|---|---|
+| Makoko | **validated** | **not validated** |
+| Kibera | validated | validated |
+| Rocinha | validated | validated |
+
+**Why Makoko validates `built` only:** 99.3% of Makoko's approved 3 × 3 km box
+lies in non-Dryland GLWD cells, where (R2 as amended) the non-mangrove
+`mixed_water_vegetation` component is `not_computed` and the remainder is
+blocked — so `impervious_total` would be scored on < 1% of the box.
+`built` comes from footprints and does not depend on the remainder, so
+Makoko still tests it. **`impervious_total` is validated on Kibera and
+Rocinha only.** This narrows the validation-site list above for one
+quantity; the firewall and the sealed batches are unchanged.
+
 **`built` validation.**
 
 - **Hand-digitised buildings** at Makoko, Kibera and Rocinha are compared
