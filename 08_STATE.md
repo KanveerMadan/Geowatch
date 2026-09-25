@@ -26,7 +26,7 @@ anything. Where a finding or a decision is unsigned, it says so.
 | `06_UNMIXING_CEILING.md` | The item 21 investigation in full. **Lives on `unmixing-ceiling-investigation`, not on `master`.** |
 | `07_ITEM_21.md` | Item 21's standing summary — the ceiling result and what it does and does not license. |
 | `08_STATE.md` | This document. Where everything is right now. |
-| `LABELLING_GUIDE.md` | The item 21 hand-labelling protocol (~~v1.0, decided 2026-09-24~~ ~~v1.1~~ v1.2, 2026-09-25). **Read before labelling any tile.** |
+| `LABELLING_GUIDE.md` | The item 21 hand-labelling protocol (~~v1.0, decided 2026-09-24~~ ~~v1.1~~ ~~v1.2~~ v1.3, 2026-09-25). **Read before labelling any tile.** |
 | `09_TAXONOMY_MIGRATION_PLAN.md` | The 4-class migration and annotation plan. **Phase 1 is closed by the gate — see §Gate result below before reading §4.** |
 | `CONTRIBUTING.md` | Branch, commit and push discipline. |
 
@@ -535,7 +535,7 @@ Decision 11 (second amendment), Decision 14 (2026-09-24 extension), item 21
 | **Occlusion** | Cloud, shadow, transient snow, fire/smoke, ships — no fraction |
 | **Context layers** | Volcano (Smithsonian GVP + Copernicus DEM), terrain distribution per AOI. Named mountain ranges not built |
 | **New datasets** | Global Mangrove Watch, GLWD, Smithsonian GVP, second footprint source (Microsoft or OSM), regional geology, expanded OSM landuse |
-| **Regressor training** | Hand-labelled core at ~~Delhi, Lima, Cape Town, Jakarta (Cairo optional)~~ **Cape Town, Lima, Karachi, Monrovia (Marrakech optional)** — *replaced 2026-09-24, see "Item 21 site list" below*, weighted to bare ground; GISA/GAIA weak labels only if LOCO shows gain; **no training in Lagos, Nairobi, Rio**; LOCO before any validation contact; label count set by when LOCO stops improving |
+| **Regressor training** | Hand-labelled core at ~~Delhi, Lima, Cape Town, Jakarta (Cairo optional)~~ **Cape Town, Lima, Karachi, Monrovia** ~~(Marrakech optional)~~ *(Marrakech removed 2026-09-25)* — *replaced 2026-09-24, see "Item 21 site list" below*, weighted to bare ground; GISA/GAIA weak labels only if LOCO shows gain; **no training in Lagos, Nairobi, Rio**; LOCO before any validation contact; label count set by when LOCO stops improving |
 | **Validation additions** | Shadow accuracy in the Makoko/Kibera/Rocinha hand-digitisation pass; own validation case each for snow_ice, solar, mixed_water_vegetation against independent references |
 | **Volcanic hazard module** | Parked — future sixth hazard module, unspecified |
 
@@ -566,7 +566,7 @@ numbers. Nothing is built.
 
 ### Item 21 site list — FINAL, recorded 2026-09-24
 
-**Labelling guide:** [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md), ~~v1.0~~ ~~v1.1~~ v1.2 since 2026-09-25 (v1.0 decided
+**Labelling guide:** [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md), ~~v1.0~~ ~~v1.1~~ ~~v1.2~~ v1.3 since 2026-09-25 (v1.0 decided
 2026-09-24). Nothing has been labelled yet. **Blocked on its open numbers:**
 change-test method and threshold, maximum date gap per site, starting tile
 count, and per-class agreement bars (guide §9). The same decision narrowed
@@ -585,7 +585,7 @@ downloaded, nothing built.**
 | Training | Lima | OpenAerialMap drone, 3–8 cm. Prioritise Candelaria and Santuario de las Vizcachas; ~~exclude Cajamarquilla (no licence)~~ Cajamarquilla's OAM record is CC-BY 4.0 (corrected 2026-09-25; use not re-decided) | CC BY 4.0 |
 | Training | **Karachi** (replaces ~~Delhi~~) | Maxar Pakistan floods, 0.53 m (**2022-03-29 pre-flood only**) | CC BY-NC 4.0 |
 | Training | **Monrovia** (replaces ~~Jakarta~~) | Uhuru Labs / HOT drone, 5 cm (2020-02-23) | CC BY 4.0 |
-| Optional | **Marrakech** (replaces ~~Cairo~~) | Maxar Morocco earthquake, 0.31–0.55 m (pre-quake 2023). Only if LOCO shows four cities are too narrow | CC BY-NC 4.0 |
+| ~~Optional~~ | ~~**Marrakech** (replaces Cairo)~~ | **Removed 2026-09-25:** Open Buildings v3 has zero coverage in Morocco, and using Microsoft footprints at one site would mix `built` sources across the training set | — |
 
 **Why it changed:** Delhi, Jakarta and Cairo had no usable free imagery with a
 licence permitting derived labels. Bhuvan, Google and Esri terms all forbid it.

@@ -991,8 +991,8 @@ See Decision 11.
 
 - **Core:** a small hand-labelled set at ~~**Delhi, Lima, Cape Town,
   Jakarta** (Cairo optional)~~ **Cape Town, Lima, Karachi, Monrovia**
-  (Marrakech optional) — *city list replaced 2026-09-24, see "Site list"
-  below*. It is **weighted toward genuine bare ground**, the boundary
+  ~~(Marrakech optional)~~ — *city list replaced 2026-09-24, see "Site list"
+  below; Marrakech removed 2026-09-25*. It is **weighted toward genuine bare ground**, the boundary
   Decision 14 (d) names as the weakest recoverable one.
 - **Optional bulk weak labels** from external impervious products (GISA /
   GAIA) — **only if LOCO shows they help**. Default is off.
@@ -1033,7 +1033,8 @@ imagery has been downloaded and nothing is built.
 >
 > Karachi replaces Delhi (arid, South Asia), Monrovia replaces Jakarta (humid
 > tropical, informal and formal fabric), and Marrakech replaces Cairo as the
-> optional city (semi-arid, North Africa). **Delhi may be re-added later**
+> optional city (semi-arid, North Africa). *(Marrakech removed 2026-09-25 —
+> see its row below.)* **Delhi may be re-added later**
 > through academic access to commercial imagery (ESA Third Party Missions,
 > Airbus academic). That is not a blocker.
 
@@ -1053,7 +1054,7 @@ imagery has been downloaded and nothing is built.
 | **Lima** | OpenAerialMap drone scenes | 3–8 cm | 2017–2025 | CC BY 4.0 | varies by scene (UNI 2025-03-17: 11 / 12 / 14; Caritas 2025-01-05: 1 / 2 / 9) | **Prioritise the desert-hillside scenes, Candelaria and Santuario de las Vizcachas** (genuine bare ground). ~~**Exclude Cajamarquilla** (no licence)~~ *Corrected 2026-09-25:* Cajamarquilla's OpenAerialMap record (`59e62b8f3d6412ef72209f61`) carries **CC-BY 4.0**. The exclusion's only stated reason does not hold; whether to use the scene is **not re-decided here** |
 | **Karachi** *(replaces Delhi)* | Maxar Pakistan floods open data | 0.53 m | **2022-03-29 only** | CC BY-NC 4.0 | 66 / 127 / 169 | **Pre-flood scene only.** Later scenes contain flood water that would pass for bare ground or water |
 | **Monrovia** *(replaces Jakarta)* | Uhuru Labs / HOT drone surveys | 5 cm | 2020-02-23 | CC BY 4.0 | 22 / 43 / 53 | — |
-| **Marrakech** *(optional, replaces Cairo)* | Maxar Morocco earthquake open data | 0.31–0.55 m | pre-quake 2023 scenes (e.g. 2023-03-28, 2023-08-06) | CC BY-NC 4.0 | 20 / 39 / 49 (08-06) | **Add only if LOCO shows four training cities are too narrow** |
+| ~~**Marrakech** *(optional, replaces Cairo)*~~ | ~~Maxar Morocco earthquake open data~~ | ~~0.31–0.55 m~~ | ~~pre-quake 2023 scenes (e.g. 2023-03-28, 2023-08-06)~~ | ~~CC BY-NC 4.0~~ | ~~20 / 39 / 49 (08-06)~~ | **REMOVED 2026-09-25:** Open Buildings v3 has zero coverage in Morocco, and using Microsoft footprints at one site would mix `built` sources across the training set (measured: 0 footprints at any confidence in Marrakech, Casablanca, Rabat) |
 
 The Sentinel-2 counts are whole scenes under 20% cloud, not per-pixel. A
 masked composite can still work where the count is low.
@@ -1061,7 +1062,7 @@ masked composite can still work where the count is low.
 **Caveats — recorded with the list:**
 
 1. **Licence assumption.** Most of these sources are non-commercial (CC BY-NC
-   or equivalent): Kibera, Rocinha, Cape Town, Karachi, Marrakech. That is fine
+   or equivalent): Kibera, Rocinha, Cape Town, Karachi~~, Marrakech~~. That is fine
    for academic use. **If GeoWatch or its labels are ever used commercially,
    these labels must be re-sourced.**
 2. **Regional overlap.** The firewall is city-level and is not broken. But
@@ -1141,7 +1142,7 @@ exist.
   (Decision 11) reported as one quantity.
 
 **Labelling guide — decided 2026-09-24: [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md)
-(~~v1.0~~ ~~v1.1~~ v1.2 since 2026-09-25: `solar` = ground-mounted only; sun geometry measured from ≥ 3 buildings where no acquisition time is published).** It is the protocol for every training and validation label above:
+(~~v1.0~~ ~~v1.1~~ ~~v1.2~~ v1.3 since 2026-09-25: `solar` = ground-mounted only; sun geometry measured from ≥ 3 buildings where no acquisition time is published; Marrakech removed from its site list).** It is the protocol for every training and validation label above:
 - the label set, including `shadow_full` / `shadow_partial` and `unsure`
 - polygon labels, with fractions computed from area and never eyeballed
 - stratified random ~200 m tiles

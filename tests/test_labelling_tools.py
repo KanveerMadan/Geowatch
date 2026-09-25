@@ -171,7 +171,7 @@ def rec(**over):
                 imagery_licence="CC BY 4.0",
                 s2_composite_window={"start": "2025-02-15", "end": "2025-04-15"},
                 date_gap_days=12, change_test_result="not run: method UNSET",
-                labeller="L1", labelling_date="2026-10-01", guide_version="1.2",
+                labeller="L1", labelling_date="2026-10-01", guide_version="1.3",
                 pct_unsure=0.0, pct_shadow_full=0.0, qc_status="pending")
     base.update(over)
     return records.TileRecord(**base)
@@ -272,9 +272,9 @@ def test_agreement_bar_must_name_its_metric():
 
 # ── guide v1.1 (2026-09-25): solar = ground-mounted only ────────────────────
 
-def test_guide_version_is_1_2():
-    assert CFG["guide_version"] == "1.2"
-    assert "Guide version 1.2" in open(
+def test_guide_version_is_1_3():
+    assert CFG["guide_version"] == "1.3"
+    assert "Guide version 1.3" in open(
         pathlib.Path(__file__).resolve().parents[1] / "LABELLING_GUIDE.md").read()
 
 
@@ -392,3 +392,9 @@ def test_sun_angles_range_checked():
         rec(imagery_acquisition_time=None, **{**SUN, "sun_azimuth_deg": 360.0}).validate(CFG)
     with pytest.raises(records.RecordError, match="elevation"):
         rec(imagery_acquisition_time=None, **{**SUN, "sun_elevation_deg": 0.0}).validate(CFG)
+
+
+def test_marrakech_removed_from_site_list():
+    assert "marrakech" not in CFG["sites"]["training"]
+    with pytest.raises(records.RecordError, match="not in the item 21 site list"):
+        records.site_role("marrakech", CFG)

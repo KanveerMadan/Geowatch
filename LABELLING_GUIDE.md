@@ -1,11 +1,11 @@
 # GeoWatch — Labelling Guide (item 21)
 
-**Guide version 1.2 — 2026-09-25** (v1.0 decided 2026-09-24; changelog at
+**Guide version 1.3 — 2026-09-25** (v1.0 decided 2026-09-24; changelog at
 the end). This is the hand-labelling
 protocol for the item 21 regressors and their validation. It applies at every
 site in the item 21 site list (`05_BUILD_MANUAL.md` item 21, "Site list"):
 
-- **Training:** Cape Town, Lima, Karachi, Monrovia; Marrakech optional.
+- **Training:** Cape Town, Lima, Karachi, Monrovia. ~~Marrakech optional.~~ *(Removed 2026-09-25, v1.3.)*
 - **Validation:** Makoko, Kibera, Rocinha.
 
 **Status: decided, not yet used.** No tile has been labelled. Five numbers must
@@ -188,6 +188,9 @@ seeing model results.
 
 ## Changelog
 
+- **v1.3 — 2026-09-25.** Site list only: Marrakech removed (Open Buildings v3 has zero coverage in Morocco, and using Microsoft footprints at one site would mix `built` sources across the training set). No
+  labelling rule changed. **No tile has been labelled, so the §7 recheck has
+  nothing to recheck.**
 - **v1.2 — 2026-09-25.** §5 / §8: where no acquisition time is published,
   sun azimuth and elevation measured from the shadows of ≥ 3 buildings in
   the tile stand in for it, with the method recorded (Cape Town's image
