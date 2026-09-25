@@ -1,11 +1,11 @@
 # Item 21 Phase A, part 7 — labelling tooling configuration.
-# Protocol: LABELLING_GUIDE.md (v1.1, 2026-09-25; v1.0 2026-09-24). Numbers the guide
+# Protocol: LABELLING_GUIDE.md (v1.2, 2026-09-25; v1.0 2026-09-24). Numbers the guide
 # fixes are copied here with their section; the five numbers the guide
 # leaves OPEN (§9) are UNSET (null). Code that needs an UNSET number refuses
 # to run. None of them may be set after labelling begins or after model
 # results are seen (§9).
 
-guide_version: "1.1"          # v1.1 2026-09-25: solar = ground-mounted only
+guide_version: "1.2"          # v1.1: solar ground-mounted only; v1.2: sun geometry
 
 labels:
   scored: [built, paved, vegetation, water, bare, mixed_water_vegetation, snow_ice, solar]
@@ -23,6 +23,10 @@ tiles:
   # guide; flagged for review.
   stratum_assignment: plurality
   random_seed: 20260925       # recorded in the frame; fixes the order before counts exist
+
+# v1.2 (§5/§8): stand-in for an unpublished acquisition time.
+sun_geometry:
+  min_buildings: 3                    # "shadows of >= 3 buildings in the tile"
 
 qc:
   blind_relabel_fraction: 0.15        # §7 "~15% of tiles"

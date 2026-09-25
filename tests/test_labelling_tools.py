@@ -171,7 +171,7 @@ def rec(**over):
                 imagery_licence="CC BY 4.0",
                 s2_composite_window={"start": "2025-02-15", "end": "2025-04-15"},
                 date_gap_days=12, change_test_result="not run: method UNSET",
-                labeller="L1", labelling_date="2026-10-01", guide_version="1.1",
+                labeller="L1", labelling_date="2026-10-01", guide_version="1.2",
                 pct_unsure=0.0, pct_shadow_full=0.0, qc_status="pending")
     base.update(over)
     return records.TileRecord(**base)
@@ -179,6 +179,8 @@ def rec(**over):
 
 def test_every_metadata_field_is_mandatory():
     for f in dataclasses.fields(records.TileRecord):
+        if f.name in records.TileRecord.SUN_FIELDS:
+            continue                      # optional stand-ins, tested below
         bad = rec(**{f.name: "" if f.type == "str" else None})
         with pytest.raises(records.RecordError):
             bad.validate(CFG)
@@ -270,9 +272,10 @@ def test_agreement_bar_must_name_its_metric():
 
 # ── guide v1.1 (2026-09-25): solar = ground-mounted only ────────────────────
 
-def test_guide_version_is_1_1():
-    assert CFG["guide_version"] == "1.1"
-    assert "1.1" in open(pathlib.Path(__file__).resolve().parents[1] / "LABELLING_GUIDE.md").read()
+def test_guide_version_is_1_2():
+    assert CFG["guide_version"] == "1.2"
+    assert "Guide version 1.2" in open(
+        pathlib.Path(__file__).resolve().parents[1] / "LABELLING_GUIDE.md").read()
 
 
 def test_rooftop_solar_is_built_plus_flag():
@@ -351,6 +354,41 @@ def test_frame_saved_with_seed_in_run_metadata_and_never_overwritten(tmp_path):
     p = tiles.save_frame(f, str(tmp_path / "frame.json"), CFG)
     meta = json.load(open(p))["run_metadata"]
     assert meta["tile_sampler_seed"] == CFG["tiles"]["random_seed"]
-    assert meta["guide_version"] == "1.1" and len(meta["labelling_config_sha256"]) == 64
+    assert meta["guide_version"] == CFG["guide_version"] and len(meta["labelling_config_sha256"]) == 64
     with pytest.raises(FileExistsError):
         tiles.save_frame(f, p, CFG)
+
+
+
+# ── guide v1.2: acquisition time OR measured sun geometry ───────────────────
+
+SUN = dict(sun_azimuth_deg=312.0, sun_elevation_deg=58.5,
+           sun_geometry_method="shadow-tip vectors on the VHR mosaic",
+           sun_geometry_n_buildings=4)
+
+
+def test_time_alone_is_enough():
+    rec().validate(CFG)
+
+
+def test_sun_geometry_stands_in_for_unpublished_time():
+    rec(imagery_acquisition_time=None, **SUN).validate(CFG)
+
+
+def test_neither_time_nor_complete_sun_geometry_refused():
+    with pytest.raises(records.RecordError, match="incomplete"):
+        rec(imagery_acquisition_time=None).validate(CFG)
+    with pytest.raises(records.RecordError, match="sun_geometry_method"):
+        rec(imagery_acquisition_time=None, **{**SUN, "sun_geometry_method": " "}).validate(CFG)
+
+
+def test_sun_geometry_needs_three_buildings():
+    with pytest.raises(records.RecordError, match=">= 3"):
+        rec(imagery_acquisition_time=None, **{**SUN, "sun_geometry_n_buildings": 2}).validate(CFG)
+
+
+def test_sun_angles_range_checked():
+    with pytest.raises(records.RecordError, match="azimuth"):
+        rec(imagery_acquisition_time=None, **{**SUN, "sun_azimuth_deg": 360.0}).validate(CFG)
+    with pytest.raises(records.RecordError, match="elevation"):
+        rec(imagery_acquisition_time=None, **{**SUN, "sun_elevation_deg": 0.0}).validate(CFG)

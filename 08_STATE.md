@@ -26,7 +26,7 @@ anything. Where a finding or a decision is unsigned, it says so.
 | `06_UNMIXING_CEILING.md` | The item 21 investigation in full. **Lives on `unmixing-ceiling-investigation`, not on `master`.** |
 | `07_ITEM_21.md` | Item 21's standing summary — the ceiling result and what it does and does not license. |
 | `08_STATE.md` | This document. Where everything is right now. |
-| `LABELLING_GUIDE.md` | The item 21 hand-labelling protocol (~~v1.0, decided 2026-09-24~~ v1.1, 2026-09-25). **Read before labelling any tile.** |
+| `LABELLING_GUIDE.md` | The item 21 hand-labelling protocol (~~v1.0, decided 2026-09-24~~ ~~v1.1~~ v1.2, 2026-09-25). **Read before labelling any tile.** |
 | `09_TAXONOMY_MIGRATION_PLAN.md` | The 4-class migration and annotation plan. **Phase 1 is closed by the gate — see §Gate result below before reading §4.** |
 | `CONTRIBUTING.md` | Branch, commit and push discipline. |
 
@@ -566,7 +566,7 @@ numbers. Nothing is built.
 
 ### Item 21 site list — FINAL, recorded 2026-09-24
 
-**Labelling guide:** [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md), ~~v1.0~~ v1.1 since 2026-09-25 (v1.0 decided
+**Labelling guide:** [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md), ~~v1.0~~ ~~v1.1~~ v1.2 since 2026-09-25 (v1.0 decided
 2026-09-24). Nothing has been labelled yet. **Blocked on its open numbers:**
 change-test method and threshold, maximum date gap per site, starting tile
 count, and per-class agreement bars (guide §9). The same decision narrowed

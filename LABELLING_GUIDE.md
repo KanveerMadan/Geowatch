@@ -1,6 +1,6 @@
 # GeoWatch — Labelling Guide (item 21)
 
-**Guide version 1.1 — 2026-09-25** (v1.0 decided 2026-09-24; changelog at
+**Guide version 1.2 — 2026-09-25** (v1.0 decided 2026-09-24; changelog at
 the end). This is the hand-labelling
 protocol for the item 21 regressors and their validation. It applies at every
 site in the item 21 site list (`05_BUILD_MANUAL.md` item 21, "Site list"):
@@ -85,7 +85,11 @@ amended 2026-09-24. Compacted earth is `bare`, not `paved`.
   as that surface, plus the partial-shadow flag.
 - **When in doubt, `shadow_full`.**
 - **Record the image acquisition time** (time of day, not only date) for every
-  tile. Shadow geometry depends on it.
+  tile. Shadow geometry depends on it. *(v1.2)* **Where the publisher gives
+  no acquisition time**, record instead the **sun azimuth and elevation
+  measured from the shadows of at least 3 buildings in the tile**, and record
+  the method used. A tile record with neither is incomplete under §8
+  (every field mandatory).
 
 **High-resolution shadow labels are a separate shadow-handling check, NOT a
 pixel-level target for Sentinel-2.** The high-resolution image and the
@@ -143,7 +147,7 @@ open (§9) and must be fixed before the first tile is labelled.
 | Field | |
 |---|---|
 | Site, tile ID | |
-| Imagery | source, acquisition date, **acquisition time**, resolution, licence |
+| Imagery | source, acquisition date, **acquisition time — or, where unpublished (v1.2), sun azimuth + elevation measured from the shadows of ≥ 3 buildings in the tile, with the method and building count recorded**, resolution, licence |
 | Sentinel-2 composite window | |
 | Date gap + change-test result | |
 | Labeller, labelling date | |
@@ -184,6 +188,11 @@ seeing model results.
 
 ## Changelog
 
+- **v1.2 — 2026-09-25.** §5 / §8: where no acquisition time is published,
+  sun azimuth and elevation measured from the shadows of ≥ 3 buildings in
+  the tile stand in for it, with the method recorded (Cape Town's image
+  service and Rio IPP's mosaic publish no time; item 21 measurement A).
+  **No tile has been labelled, so the §7 recheck has nothing to recheck.**
 - **v1.1 — 2026-09-25.** `solar` is ground-mounted arrays only; rooftop
   panels are labelled `built` with a rooftop-solar flag (item 21, Phase A
   rulings, second round, 3–4). **No tile has been labelled under v1.0, so the

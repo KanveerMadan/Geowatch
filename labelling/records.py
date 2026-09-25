@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import json
 import os
-from dataclasses import asdict, dataclass, fields
+from dataclasses import asdict, dataclass, field, fields
 from datetime import date, datetime, timezone
 
 from labelling.common import require_open
@@ -31,13 +31,18 @@ class SealedError(PermissionError):
     pass
 
 
+def _has(v) -> bool:
+    return v is not None and not (isinstance(v, str) and not v.strip())
+
+
 @dataclass
 class TileRecord:
     site: str
     tile_id: str
     imagery_source: str
     imagery_acquisition_date: str
-    imagery_acquisition_time: str      # time of day: shadow geometry (§5)
+    imagery_acquisition_time: str | None   # time of day: shadow geometry (§5);
+                                           # None ONLY with measured sun geometry (v1.2)
     imagery_resolution_m: float
     imagery_licence: str
     s2_composite_window: dict          # {"start", "end"}
@@ -49,17 +54,47 @@ class TileRecord:
     pct_unsure: float
     pct_shadow_full: float
     qc_status: str
+    # v1.2 (§5/§8): stand-in where the publisher gives no acquisition time.
+    sun_azimuth_deg: float | None = None
+    sun_elevation_deg: float | None = None
+    sun_geometry_method: str | None = None
+    sun_geometry_n_buildings: int | None = None
+
+    SUN_FIELDS = ("sun_azimuth_deg", "sun_elevation_deg", "sun_geometry_method",
+                  "sun_geometry_n_buildings")
 
     def validate(self, cfg: dict) -> None:
         for f in fields(self):
+            if f.name in self.SUN_FIELDS or f.name == "imagery_acquisition_time":
+                continue
             v = getattr(self, f.name)
             if v is None or (isinstance(v, str) and not v.strip()):
                 raise RecordError(f"{self.tile_id}: mandatory field {f.name!r} is empty (§8)")
+        self._validate_time_or_sun(cfg)
         if set(self.s2_composite_window) != {"start", "end"}:
             raise RecordError(f"{self.tile_id}: s2_composite_window needs start and end")
         if self.guide_version != cfg["guide_version"]:
             raise RecordError(f"{self.tile_id}: guide version {self.guide_version} "
                               f"!= current {cfg['guide_version']} (§7: recheck)")
+
+    def _validate_time_or_sun(self, cfg: dict) -> None:
+        """§5/§8 v1.2: an acquisition time, OR sun azimuth + elevation measured
+        from the shadows of >= min_buildings buildings with the method recorded."""
+        sun = {k: getattr(self, k) for k in self.SUN_FIELDS}
+        if _has(self.imagery_acquisition_time):
+            return
+        missing = [k for k, v in sun.items() if not _has(v)]
+        if missing:
+            raise RecordError(f"{self.tile_id}: no acquisition time, and the sun-geometry "
+                              f"stand-in is incomplete: missing {missing} (§5/§8 v1.2)")
+        n_min = cfg["sun_geometry"]["min_buildings"]
+        if int(sun["sun_geometry_n_buildings"]) < n_min:
+            raise RecordError(f"{self.tile_id}: sun geometry measured from "
+                              f"{sun['sun_geometry_n_buildings']} building(s); needs >= {n_min}")
+        if not 0 <= float(sun["sun_azimuth_deg"]) < 360:
+            raise RecordError(f"{self.tile_id}: sun azimuth outside [0, 360)")
+        if not 0 < float(sun["sun_elevation_deg"]) <= 90:
+            raise RecordError(f"{self.tile_id}: sun elevation outside (0, 90]")
 
 
 def time_gap_decision(site: str, gap_days: int, change_detected: bool | None, cfg: dict) -> str:
