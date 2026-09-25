@@ -107,9 +107,8 @@ that means for the items this section used to list as blockers:
   `04_FINDINGS_LEDGER.md`. The ledger entry still describes the sink in
   detail, as a record of a fixed bug.
 - **C40 — no API authentication: fixed by item 70** (API-key authentication
-  on every endpoint; `api.py` refuses to start without `GEOWATCH_API_KEY`).
-  *Note:* the ledger still files C40 under SURVIVES with its pre-fix
-  wording; its fate has not been updated.
+  on every endpoint; `api.py` refuses to start without `GEOWATCH_API_KEY`);
+  CLOSED in the ledger 2026-09-25.
 - **Personal contact email: moved to an environment variable.** The
   Overpass / Nominatim usage policies require a contact in the User-Agent;
   it is now read from `GEOWATCH_CONTACT_EMAIL` (`ingestion/contact.py`,

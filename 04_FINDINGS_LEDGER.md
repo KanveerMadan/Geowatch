@@ -33,12 +33,12 @@ Fate categories:
 
 | Fate | Count | Meaning |
 |---|---:|---|
-| CLOSED | ~~17~~ 18 | 5 during Part 1; C34/C35 via item 47; C43 via the patch-construction investigation; **C4, C10, C14, C20, C23, C24, C31, C32 via the `applicability-gating` merge; C44 via the shared Overpass client; C47 (2026-09-25) — guard predates Phase A, every call site covered** |
+| CLOSED | ~~17~~ ~~18~~ 19 | 5 during Part 1; C34/C35 via item 47; C43 via the patch-construction investigation; **C4, C10, C14, C20, C23, C24, C31, C32 via the `applicability-gating` merge; C44 via the shared Overpass client; C47 (2026-09-25) — guard predates Phase A, every call site covered; C40 (2026-09-25) — fixed by item 70** |
 | REFUTED | 2 | Disproven |
 | DELETED | 13 | Architecture change removes the code |
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SUPERSEDED | 2 | **C42, C45** — the pivot retires the code they describe |
-| SURVIVES | 25 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed** by the 2026-09-23 triage; C44 was elevated the same day and then **FIXED**) |
+| SURVIVES | ~~25~~ 24 | The irreducible cluster — real work (~~C40 from the pre-push audit;~~ C40 closed 2026-09-25; **C36, C37, C38, C41 narrowed** by the 2026-09-23 triage; C44 was elevated the same day and then **FIXED**) |
 | NEEDS FATE | ~~0~~ ~~2~~ 1 | ~~**Cleared 2026-09-23.**~~ **C46** (added 2026-09-25 during item 21 Phase A); C47 closed the same day |
 
 **This is the authoritative list for the "irreducible cluster."**
@@ -968,7 +968,10 @@ to flag this and are read but never used to gate status.
 `raw_score` directly with no type guard, so an invalid cell displays to the user
 as `x / 10`.*
 
-**C40 — The API has no authentication or authorization of any kind** [S]
+**C40 — The API has no authentication or authorization of any kind** [S] ✅ **CLOSED 2026-09-25**
+*Fate: CLOSED — fixed by build item 70 (API-key authentication on every
+endpoint; `api.py` refuses to start without `GEOWATCH_API_KEY`). The text
+below is the finding as it stood before the fix.*
 `api.py` exposes 8 endpoints with **zero** auth primitives — `Depends`,
 `HTTPBearer`, `HTTPBasic`, `OAuth2`, `APIKeyHeader`, `Security(` all return zero
 matches across the file. Any party who can reach the port has full access to
