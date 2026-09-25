@@ -1349,8 +1349,20 @@ they are recorded here so the code has a written source.*
   hand-digitised check calibrates one.
 - **Docks.** The "docks → `built`" folding is struck (Decision 11, 2026-09-25).
   `man_made=pier` / `quay` is a context flag only.
-- **Fabric strata** for tile sampling come from a **hand-drawn GeoJSON per
-  site**; nothing derives them (morphology is item 23, past the mandate).
+- ~~**Fabric strata** for tile sampling come from a **hand-drawn GeoJSON per
+  site**; nothing derives them (morphology is item 23, past the mandate).~~
+  **Changed 2026-09-25 — drafted by rule, reviewed by hand, then frozen.**
+  Fabric strata are **drafted by one fixed rule** (`labelling/strata_rule.py`:
+  per 200 m tile inside the site's real-data frame, from Open Buildings v3
+  ≥ 0.7 only — building count, median footprint area, footprint-area CV,
+  built coverage; thresholds in `configs/labelling.yaml`, identical for all
+  sites), then **reviewed and corrected by hand** in QGIS, then **frozen
+  before any tile is sampled**. The draft is kept beside the final so the
+  draft → final diff is always visible. **Why:** a consistent baseline
+  across all seven sites; human review catches what footprint metrics miss
+  (e.g. small formal housing that reads like informal fabric).
+  **Scope:** stratification for **sampling only** — not item 23
+  morphology, never published as a result. *Thresholds pending approval.*
 
 #### Phase A — build rulings, second round, decided 2026-09-25
 
