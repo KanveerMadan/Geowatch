@@ -39,7 +39,7 @@ Fate categories:
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SUPERSEDED | 2 | **C42, C45** — the pivot retires the code they describe |
 | SURVIVES | 25 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed** by the 2026-09-23 triage; C44 was elevated the same day and then **FIXED**) |
-| NEEDS FATE | ~~0~~ 2 | ~~**Cleared 2026-09-23.**~~ **C46, C47** added 2026-09-25 during item 21 Phase A |
+| NEEDS FATE | 0 | **Cleared 2026-09-23.** |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
@@ -1073,82 +1073,6 @@ hardcoded constant.*
 
 ***C44 added** during the city-selection measurement, from live probing of the
 Overpass endpoints the ingestion path depends on. Also untriaged.*
-
-***C46 and C47 added 2026-09-25** during item 21 Phase A. Untriaged —
-assigning a fate is a human call.*
-
-### C46 — Every existing float32 export is resampled to an EPSG:4326 lattice, off the native Sentinel-2 grid [E] — NEEDS FATE
-
-**The sink.** `ingestion/tiler.py:242` `_compute_export_grid()` (docstring
-`:245`: *"the exact pixel grid a GEE EPSG:4326 export uses"*), with the pixel
-size pinned at `ingestion/tiler.py:40` `DEGREES_PER_PIXEL_AT_SCALE_10 =
-8.983152841195215e-05`. The default path of `export_image_local()`
-(`ingestion/tiler.py:414-417`, `geemap.ee_export_image(..., scale=scale,
-region=aoi)`) and the chunked path (`:548-551`) both export on that lattice.
-Sentinel-2 L2A is natively on a UTM grid at 10 m; Earth Engine therefore
-**resamples** every pixel onto the degree lattice at export.
-
-**Measured, not inferred.**
-
-- **149 of 149** `data/pipeline_runs/*/raw.tif` are `EPSG:4326` at
-  8.983e-5° (checked 2026-09-25). None is on a native UTM grid.
-- The lattice is not even square in metres. At Dharavi (19.05° N) one pixel
-  is **9.46 m E–W × 9.94 m N–S** (WGS84 geodesic) — so a "10 m cell" in every existing
-  output is a resampled, anisotropic cell.
-- The same AOI exported on the native grid (item 21 Phase A, `b9e0f60`)
-  lands on `EPSG:32643` 278 × 259 at 10 m, origin (272240, 2108880) — a
-  different lattice in a different CRS, not a shifted copy.
-
-**Why it matters.** Anything that compares a raster from this path with a
-quantity defined on the native grid is comparing across a resample:
-hand-label fractions (`LABELLING_GUIDE.md` §2 — "aligned to the exact
-Sentinel-2 grid"), pure-pixel extraction, and any per-pixel validation. The
-C41 float32 path was the *remedy* for the 8-bit PNG; this is a second,
-quieter loss on the same path.
-
-**What exists now.** Item 21 Phase A added an explicit-grid path
-(`export_image_local(..., crs=, crs_transform=)`), used by
-`surface_fractions/`; the default path is unchanged and tested
-byte-identical (`tests/test_surface_fractions_inputs.py::
-test_default_export_call_is_unchanged`). Nothing that already exists was
-re-exported. Whether existing consumers must move, and whether existing
-runs are reprocessed, is the open call.
-
-**Fate: NEEDS FATE.**
-
-### C47 — `geemap.ee_export_image` swallows download failures [E] — NEEDS FATE
-
-**The sink.** geemap 0.38.2 `ee_export_image()` wraps
-`ee_object.getDownloadURL(params)` in `try/except Exception`, prints
-*"An error occurred while downloading."* and the error, and **returns None**
-— no exception, no file. The caller cannot tell a failed export from a
-successful one except by looking for the file. Observed live on the Phase 12B
-full-Mumbai run (943 km²): a hard Earth Engine request-size limit (*"Total
-request size (284642550 bytes) must be less than or equal to 50331648
-bytes"*) surfaced three steps later as an unrelated rasterio
-`FileNotFoundError`.
-
-**Guarded — every call site.** `ee_export_image` is called only from
-`ingestion/tiler.py` (repo-wide search, 2026-09-25):
-
-| Call | Guard |
-|---|---|
-| `:383` explicit-grid path (item 21 Phase A) | `_check_export_written()` (`:449`, test `:462`) |
-| `:414` default single-request path | `_check_export_written()` |
-| `:548` each chunk of the chunked path | inline file check `:556`, then a size check |
-
-The guard itself predates Phase A: the same file-existence check and message
-are in the initial commit `2ac07d5`. Phase A moved it into
-`_check_export_written()` so the new explicit-grid path shares it rather than
-copying it.
-
-**What the guard does not cover.** It detects *no file*. It cannot recover
-geemap's swallowed exception text, so the raised `RuntimeError` names the most
-common cause (request-size ceiling) and points at stdout. Any future caller
-that uses `geemap.ee_export_image` directly, outside `tiler.py`, is
-unguarded by construction.
-
-**Fate: NEEDS FATE.**
 
 ### C45 — The OSM patch builders overwrite human labels with their own class [E] ⤴ SUPERSEDED
 

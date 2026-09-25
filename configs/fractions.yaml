@@ -78,8 +78,6 @@ osm_layers:
   pier_quay:     {geometry: area_or_line, filters: ['["man_made"="pier"]', '["man_made"="quay"]']}
   # natural=salt_flat and natural=salt_pan: 0 uses. landuse=salt_pond is
   # flooded evaporation ponds (water), not a salt flat.
-  # Ruling 2026-09-25 (second round, 7): stays no_producer; GLWD class 32 is
-  # NOT a salt-flat producer. Deferred, off the critical path.
   salt_flat:     {geometry: area, filters: [], status: no_producer}
   # natural=dry_lake: 45 uses worldwide. intermittent=yes marks intermittent
   # water, not a dry bed.
@@ -215,9 +213,6 @@ placeholders:
   detector_smoke_test_value: 0.0
 
 # Part 6 — flags and context layers (Decision 11). Per-pixel, many per AOI.
-# Ruling 2026-09-25 (second round, 7): every UNSET threshold in this section
-# (terrain, volcano radius, synthetic turf, bare plausibility) stays UNSET --
-# DEFERRED, off the item 21 critical path.
 # Context touches neither the denominator nor any fraction (Decision 14,
 # 2026-09-24 extension); the synthetic-turf check alone would be estimate
 # quality.
