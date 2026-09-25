@@ -1090,6 +1090,15 @@ the sealed validation batches (`LABELLING_GUIDE.md` §8) and follows the
 working rules in `08_STATE.md`: per-city and per-class reporting, no rounding
 a within-noise result up.
 
+**Scored cells — pre-registered 2026-09-25, before any labelling.**
+Validation scores **only 10 m cells with a computed remainder** (R2 as
+amended: pixels in non-Dryland GLWD cells, or blocked by any other
+not-computed input, have no `impervious_total` / `bare` / `paved` to score).
+The **per-site scored share** — scored cells ÷ labelled cells — is reported
+**alongside every metric**, so a pass on a small scored share is visible as
+such. Neither the rule nor the share may be changed after labels or results
+exist.
+
 **`built` validation.**
 
 - **Hand-digitised buildings** at Makoko, Kibera and Rocinha are compared
