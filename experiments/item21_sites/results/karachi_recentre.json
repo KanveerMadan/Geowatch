@@ -1,0 +1,880 @@
+{
+ "original_centre": [
+  67.0019,
+  24.9433
+ ],
+ "scene": [
+  "pakistan-flooding22",
+  "10300100D13F6500"
+ ],
+ "candidates": [
+  {
+   "shift_west_km": 0.0,
+   "shift_north_km": 0.0,
+   "centre_lon_lat": [
+    67.0019,
+    24.9433
+   ],
+   "box_utm": [
+    296753.3,
+    2758653.4,
+    299753.3,
+    2761653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 61385,
+   "footprint_area_m2_p10_p50_p90": [
+    24.235591662458322,
+    55.674655300712814,
+    119.21558164921412
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.23200000000013055,
+    0.4629785714286149,
+    0.5725860362353486
+   ],
+   "share_100m_cells_without_buildings": 0.018541487636891632
+  },
+  {
+   "shift_west_km": 0.0,
+   "shift_north_km": 0.5,
+   "centre_lon_lat": [
+    67.001827,
+    24.947813
+   ],
+   "box_utm": [
+    296753.3,
+    2759153.4,
+    299753.3,
+    2762153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 59863,
+   "footprint_area_m2_p10_p50_p90": [
+    24.101953979908245,
+    55.5938871405117,
+    119.0499177843429
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.17712072213477778,
+    0.44718408880673144,
+    0.5639636363637138
+   ],
+   "share_100m_cells_without_buildings": 0.03986402966625463
+  },
+  {
+   "shift_west_km": 0.0,
+   "shift_north_km": 1.0,
+   "centre_lon_lat": [
+    67.001754,
+    24.952326
+   ],
+   "box_utm": [
+    296753.3,
+    2759653.4,
+    299753.3,
+    2762653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 57292,
+   "footprint_area_m2_p10_p50_p90": [
+    24.06002846772141,
+    55.56229112412223,
+    119.06952250542481
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.025813598326302974,
+    0.4313782746683979,
+    0.5601076923074702
+   ],
+   "share_100m_cells_without_buildings": 0.06326488280439742
+  },
+  {
+   "shift_west_km": 0.0,
+   "shift_north_km": 1.5,
+   "centre_lon_lat": [
+    67.001681,
+    24.956838
+   ],
+   "box_utm": [
+    296753.3,
+    2760153.4,
+    299753.3,
+    2763153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 49988,
+   "footprint_area_m2_p10_p50_p90": [
+    24.02212066671607,
+    55.528355793378765,
+    119.09114033327265
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.00028341783560973353,
+    0.3970400000008679,
+    0.5523333333330497
+   ],
+   "share_100m_cells_without_buildings": 0.12825158425439506
+  },
+  {
+   "shift_west_km": 0.0,
+   "shift_north_km": 2.0,
+   "centre_lon_lat": [
+    67.001609,
+    24.961351
+   ],
+   "box_utm": [
+    296753.3,
+    2760653.4,
+    299753.3,
+    2763653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 42784,
+   "footprint_area_m2_p10_p50_p90": [
+    23.993810183517333,
+    55.5177647934614,
+    119.04056955138516
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.00025268011397696374,
+    0.34126666666578404,
+    0.5407239043825424
+   ],
+   "share_100m_cells_without_buildings": 0.16369077855667308
+  },
+  {
+   "shift_west_km": 0.5,
+   "shift_north_km": 0.0,
+   "centre_lon_lat": [
+    66.99695,
+    24.943234
+   ],
+   "box_utm": [
+    296253.3,
+    2758653.4,
+    299253.3,
+    2761653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 63245,
+   "footprint_area_m2_p10_p50_p90": [
+    24.23356634051619,
+    55.605180469861175,
+    119.18784481796187
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.27157954545415963,
+    0.47014666666658245,
+    0.5766000000004544
+   ],
+   "share_100m_cells_without_buildings": 0.006455272370164366
+  },
+  {
+   "shift_west_km": 0.5,
+   "shift_north_km": 0.5,
+   "centre_lon_lat": [
+    66.996877,
+    24.947746
+   ],
+   "box_utm": [
+    296253.3,
+    2759153.4,
+    299253.3,
+    2762153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 62816,
+   "footprint_area_m2_p10_p50_p90": [
+    20.083284408554693,
+    51.8851877461309,
+    115.77221620745607
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.25653333333275835,
+    0.4547478489242506,
+    0.5637857142856834
+   ],
+   "share_100m_cells_without_buildings": 0.005777973434021046
+  },
+  {
+   "shift_west_km": 0.5,
+   "shift_north_km": 1.0,
+   "centre_lon_lat": [
+    66.996804,
+    24.952259
+   ],
+   "box_utm": [
+    296253.3,
+    2759653.4,
+    299253.3,
+    2762653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 61528,
+   "footprint_area_m2_p10_p50_p90": [
+    24.05968708744379,
+    55.52131043814754,
+    119.01294235281043
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.22122692307716546,
+    0.4475195632113621,
+    0.5637000000000297
+   ],
+   "share_100m_cells_without_buildings": 0.01627145046181458
+  },
+  {
+   "shift_west_km": 0.5,
+   "shift_north_km": 1.5,
+   "centre_lon_lat": [
+    66.996731,
+    24.956772
+   ],
+   "box_utm": [
+    296253.3,
+    2760153.4,
+    299253.3,
+    2763153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 55895,
+   "footprint_area_m2_p10_p50_p90": [
+    24.02198254524104,
+    55.51835395904226,
+    119.05028761096995
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.02910688378966155,
+    0.4279926982314318,
+    0.5600416666664613
+   ],
+   "share_100m_cells_without_buildings": 0.060060021926204354
+  },
+  {
+   "shift_west_km": 0.5,
+   "shift_north_km": 2.0,
+   "centre_lon_lat": [
+    66.996658,
+    24.961285
+   ],
+   "box_utm": [
+    296253.3,
+    2760653.4,
+    299253.3,
+    2763653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 50472,
+   "footprint_area_m2_p10_p50_p90": [
+    23.993668989006053,
+    55.51889276235669,
+    119.00545055775478
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.006328661087929313,
+    0.40514999999962886,
+    0.5601444444442141
+   ],
+   "share_100m_cells_without_buildings": 0.08543915343915343
+  },
+  {
+   "shift_west_km": 1.0,
+   "shift_north_km": 0.0,
+   "centre_lon_lat": [
+    66.992001,
+    24.943167
+   ],
+   "box_utm": [
+    295753.3,
+    2758653.4,
+    298753.3,
+    2761653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 63093,
+   "footprint_area_m2_p10_p50_p90": [
+    24.141617454856846,
+    55.55693289194301,
+    119.163347510578
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.25150000000035583,
+    0.4627384160090454,
+    0.5729400000003986
+   ],
+   "share_100m_cells_without_buildings": 0.011504274951324812
+  },
+  {
+   "shift_west_km": 1.0,
+   "shift_north_km": 0.5,
+   "centre_lon_lat": [
+    66.991928,
+    24.94768
+   ],
+   "box_utm": [
+    295753.3,
+    2759153.4,
+    298753.3,
+    2762153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 62742,
+   "footprint_area_m2_p10_p50_p90": [
+    24.102033191175924,
+    55.50806021475928,
+    119.07650329456288
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.2356702247198337,
+    0.4509282760339099,
+    0.5598923076924183
+   ],
+   "share_100m_cells_without_buildings": 0.01158469482773216
+  },
+  {
+   "shift_west_km": 1.0,
+   "shift_north_km": 1.0,
+   "centre_lon_lat": [
+    66.991854,
+    24.952192
+   ],
+   "box_utm": [
+    295753.3,
+    2759653.4,
+    298753.3,
+    2762653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 61068,
+   "footprint_area_m2_p10_p50_p90": [
+    24.114790548709657,
+    55.54895883445653,
+    119.0313952224667
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.1973999999987303,
+    0.4473133015009424,
+    0.5603142857141235
+   ],
+   "share_100m_cells_without_buildings": 0.02028265350608014
+  },
+  {
+   "shift_west_km": 1.0,
+   "shift_north_km": 1.5,
+   "centre_lon_lat": [
+    66.991781,
+    24.956705
+   ],
+   "box_utm": [
+    295753.3,
+    2760153.4,
+    298753.3,
+    2763153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 57209,
+   "footprint_area_m2_p10_p50_p90": [
+    24.07364907780263,
+    55.53682930618092,
+    119.10964870369152
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.06856666666600718,
+    0.4313579183271321,
+    0.5601583333331622
+   ],
+   "share_100m_cells_without_buildings": 0.047552737615548714
+  },
+  {
+   "shift_west_km": 1.0,
+   "shift_north_km": 2.0,
+   "centre_lon_lat": [
+    66.991708,
+    24.961218
+   ],
+   "box_utm": [
+    295753.3,
+    2760653.4,
+    298753.3,
+    2763653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 53507,
+   "footprint_area_m2_p10_p50_p90": [
+    24.086633547041306,
+    55.55432043484132,
+    119.0869536510925
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.033418020917120865,
+    0.42341000000006684,
+    0.5601699999997429
+   ],
+   "share_100m_cells_without_buildings": 0.04984678156638337
+  },
+  {
+   "shift_west_km": 1.5,
+   "shift_north_km": 0.0,
+   "centre_lon_lat": [
+    66.987051,
+    24.9431
+   ],
+   "box_utm": [
+    295253.3,
+    2758653.4,
+    298253.3,
+    2761653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 64086,
+   "footprint_area_m2_p10_p50_p90": [
+    24.13601523323632,
+    55.55756233559597,
+    119.1433686689291
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.25170000000035236,
+    0.458975000000281,
+    0.5678274792639744
+   ],
+   "share_100m_cells_without_buildings": 0.010792371697745875
+  },
+  {
+   "shift_west_km": 1.5,
+   "shift_north_km": 0.5,
+   "centre_lon_lat": [
+    66.986978,
+    24.947613
+   ],
+   "box_utm": [
+    295253.3,
+    2759153.4,
+    298253.3,
+    2762153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 63564,
+   "footprint_area_m2_p10_p50_p90": [
+    24.155979213337563,
+    55.51424959946906,
+    119.09354510773896
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.23595928196168503,
+    0.45107477916547606,
+    0.5598583333334431
+   ],
+   "share_100m_cells_without_buildings": 0.010792280345352971
+  },
+  {
+   "shift_west_km": 1.5,
+   "shift_north_km": 1.0,
+   "centre_lon_lat": [
+    66.986904,
+    24.952126
+   ],
+   "box_utm": [
+    295253.3,
+    2759653.4,
+    298253.3,
+    2762653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 62774,
+   "footprint_area_m2_p10_p50_p90": [
+    20.09817842220542,
+    51.89399197008965,
+    115.80950810985632
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.21366897810224383,
+    0.4477525759578072,
+    0.5566111111112284
+   ],
+   "share_100m_cells_without_buildings": 0.015654956133111565
+  },
+  {
+   "shift_west_km": 1.5,
+   "shift_north_km": 1.5,
+   "centre_lon_lat": [
+    66.986831,
+    24.956638
+   ],
+   "box_utm": [
+    295253.3,
+    2760153.4,
+    298253.3,
+    2763153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 60481,
+   "footprint_area_m2_p10_p50_p90": [
+    24.149827026839247,
+    55.53749500108006,
+    119.1563578008089
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.17858341232169336,
+    0.443623076923071,
+    0.5566111111112284
+   ],
+   "share_100m_cells_without_buildings": 0.019819453790581636
+  },
+  {
+   "shift_west_km": 1.5,
+   "shift_north_km": 2.0,
+   "centre_lon_lat": [
+    66.986758,
+    24.961151
+   ],
+   "box_utm": [
+    295253.3,
+    2760653.4,
+    298253.3,
+    2763653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 57692,
+   "footprint_area_m2_p10_p50_p90": [
+    24.160956711458617,
+    55.568624253165,
+    119.14270944149196
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.132399999999825,
+    0.43455714285667774,
+    0.5601454545453065
+   ],
+   "share_100m_cells_without_buildings": 0.018376035820996593
+  },
+  {
+   "shift_west_km": 2.0,
+   "shift_north_km": 0.0,
+   "centre_lon_lat": [
+    66.982102,
+    24.943033
+   ],
+   "box_utm": [
+    294753.3,
+    2758653.4,
+    297753.3,
+    2761653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 65779,
+   "footprint_area_m2_p10_p50_p90": [
+    20.09013804988804,
+    51.89752857774656,
+    115.80012765542807
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.2601600981771276,
+    0.4513727272725458,
+    0.5567686185331056
+   ],
+   "share_100m_cells_without_buildings": 0.011870805014092614
+  },
+  {
+   "shift_west_km": 2.0,
+   "shift_north_km": 0.5,
+   "centre_lon_lat": [
+    66.982028,
+    24.947546
+   ],
+   "box_utm": [
+    294753.3,
+    2759153.4,
+    297753.3,
+    2762153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 64149,
+   "footprint_area_m2_p10_p50_p90": [
+    20.109243722303177,
+    51.90209647359362,
+    115.82395234132862
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.25189332777285167,
+    0.4352117647059495,
+    0.544677777777867
+   ],
+   "share_100m_cells_without_buildings": 0.011870754776867899
+  },
+  {
+   "shift_west_km": 2.0,
+   "shift_north_km": 1.0,
+   "centre_lon_lat": [
+    66.981955,
+    24.952059
+   ],
+   "box_utm": [
+    294753.3,
+    2759653.4,
+    297753.3,
+    2762653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 62982,
+   "footprint_area_m2_p10_p50_p90": [
+    20.09731325424533,
+    51.90644933834083,
+    115.79947896617082
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.24805121681435557,
+    0.4317662845966658,
+    0.5451444168734564
+   ],
+   "share_100m_cells_without_buildings": 0.011870604067744966
+  },
+  {
+   "shift_west_km": 2.0,
+   "shift_north_km": 1.5,
+   "centre_lon_lat": [
+    66.981881,
+    24.956571
+   ],
+   "box_utm": [
+    294753.3,
+    2760153.4,
+    297753.3,
+    2763153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 61450,
+   "footprint_area_m2_p10_p50_p90": [
+    24.11316264538878,
+    55.5448030072217,
+    119.07233226671963
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.24025964912251993,
+    0.42816430451935955,
+    0.5483000000006957
+   ],
+   "share_100m_cells_without_buildings": 0.007740193568318106
+  },
+  {
+   "shift_west_km": 2.0,
+   "shift_north_km": 2.0,
+   "centre_lon_lat": [
+    66.981807,
+    24.961084
+   ],
+   "box_utm": [
+    294753.3,
+    2760653.4,
+    297753.3,
+    2763653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 58503,
+   "footprint_area_m2_p10_p50_p90": [
+    24.126105239741797,
+    55.578918829095784,
+    119.05154591231562
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.19853104761729803,
+    0.4278499999997683,
+    0.552385714285547
+   ],
+   "share_100m_cells_without_buildings": 0.012784649956199566
+  },
+  {
+   "shift_west_km": 0.0,
+   "shift_north_km": 2.5,
+   "centre_lon_lat": [
+    67.001536,
+    24.965864
+   ],
+   "box_utm": [
+    296753.3,
+    2761153.4,
+    299753.3,
+    2764153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 36286,
+   "footprint_area_m2_p10_p50_p90": [
+    23.94203685518012,
+    55.467552158406285,
+    118.9069835548571
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.00028360058922159405,
+    0.26505000000034773,
+    0.5291375000001405
+   ],
+   "share_100m_cells_without_buildings": 0.17207441742332844
+  },
+  {
+   "shift_west_km": 0.0,
+   "shift_north_km": 3.0,
+   "centre_lon_lat": [
+    67.001463,
+    24.970377
+   ],
+   "box_utm": [
+    296753.3,
+    2761653.4,
+    299753.3,
+    2764653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 32809,
+   "footprint_area_m2_p10_p50_p90": [
+    23.808441856785272,
+    55.425882093550825,
+    118.950080815144
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.0003217539278172693,
+    0.201708771929878,
+    0.5212999999999
+   ],
+   "share_100m_cells_without_buildings": 0.16877965771661507
+  },
+  {
+   "shift_west_km": 0.0,
+   "shift_north_km": 3.5,
+   "centre_lon_lat": [
+    67.00139,
+    24.97489
+   ],
+   "box_utm": [
+    296753.3,
+    2762153.4,
+    299753.3,
+    2765153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 26919,
+   "footprint_area_m2_p10_p50_p90": [
+    23.77893675732637,
+    55.4772961091449,
+    135.320402733185
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.00033980641734031346,
+    0.13520000000021842,
+    0.49860000000040944
+   ],
+   "share_100m_cells_without_buildings": 0.1820121318845058
+  },
+  {
+   "shift_west_km": 0.5,
+   "shift_north_km": 2.5,
+   "centre_lon_lat": [
+    66.996585,
+    24.965798
+   ],
+   "box_utm": [
+    296253.3,
+    2761153.4,
+    299253.3,
+    2764153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 45171,
+   "footprint_area_m2_p10_p50_p90": [
+    23.928120522657625,
+    55.443346316830095,
+    118.99494821400592
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.00031524819948752,
+    0.3647335823679009,
+    0.5450500000000706
+   ],
+   "share_100m_cells_without_buildings": 0.09256257116371995
+  },
+  {
+   "shift_west_km": 0.5,
+   "shift_north_km": 3.0,
+   "centre_lon_lat": [
+    66.996512,
+    24.97031
+   ],
+   "box_utm": [
+    296253.3,
+    2761653.4,
+    299253.3,
+    2764653.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 41849,
+   "footprint_area_m2_p10_p50_p90": [
+    23.79310927531937,
+    55.394934390918884,
+    118.95474781118737
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.0003969531187585593,
+    0.32606666666714257,
+    0.5375195150115527
+   ],
+   "share_100m_cells_without_buildings": 0.08783803803549584
+  },
+  {
+   "shift_west_km": 0.5,
+   "shift_north_km": 3.5,
+   "centre_lon_lat": [
+    66.996439,
+    24.974823
+   ],
+   "box_utm": [
+    296253.3,
+    2762153.4,
+    299253.3,
+    2765153.4
+   ],
+   "crs": "EPSG:32642",
+   "site_list_scene_covered_share": 1.0,
+   "buildings": 36068,
+   "footprint_area_m2_p10_p50_p90": [
+    23.77386467007876,
+    55.416130453643554,
+    118.9839580686942
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.0003875568540208809,
+    0.26423802325561063,
+    0.5262666666668624
+   ],
+   "share_100m_cells_without_buildings": 0.10577175412903062
+  }
+ ]
+}
