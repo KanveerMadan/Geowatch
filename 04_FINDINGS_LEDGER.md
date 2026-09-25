@@ -33,13 +33,13 @@ Fate categories:
 
 | Fate | Count | Meaning |
 |---|---:|---|
-| CLOSED | 17 | 5 during Part 1; C34/C35 via item 47; C43 via the patch-construction investigation; **C4, C10, C14, C20, C23, C24, C31, C32 via the `applicability-gating` merge; C44 via the shared Overpass client** |
+| CLOSED | ~~17~~ 18 | 5 during Part 1; C34/C35 via item 47; C43 via the patch-construction investigation; **C4, C10, C14, C20, C23, C24, C31, C32 via the `applicability-gating` merge; C44 via the shared Overpass client; C47 (2026-09-25) — guard predates Phase A, every call site covered** |
 | REFUTED | 2 | Disproven |
 | DELETED | 13 | Architecture change removes the code |
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SUPERSEDED | 2 | **C42, C45** — the pivot retires the code they describe |
 | SURVIVES | 25 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed** by the 2026-09-23 triage; C44 was elevated the same day and then **FIXED**) |
-| NEEDS FATE | ~~0~~ 2 | ~~**Cleared 2026-09-23.**~~ **C46, C47** added 2026-09-25 during item 21 Phase A |
+| NEEDS FATE | ~~0~~ ~~2~~ 1 | ~~**Cleared 2026-09-23.**~~ **C46** (added 2026-09-25 during item 21 Phase A); C47 closed the same day |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
@@ -1116,7 +1116,10 @@ runs are reprocessed, is the open call.
 
 **Fate: NEEDS FATE.**
 
-### C47 — `geemap.ee_export_image` swallows download failures [E] — NEEDS FATE
+### C47 — `geemap.ee_export_image` swallows download failures [E] ✅ CLOSED
+
+*Fate assigned 2026-09-25: **CLOSED** — the guard predates Phase A and all
+three call sites are covered.*
 
 **The sink.** geemap 0.38.2 `ee_export_image()` wraps
 `ee_object.getDownloadURL(params)` in `try/except Exception`, prints
@@ -1148,7 +1151,7 @@ common cause (request-size ceiling) and points at stdout. Any future caller
 that uses `geemap.ee_export_image` directly, outside `tiler.py`, is
 unguarded by construction.
 
-**Fate: NEEDS FATE.**
+~~**Fate: NEEDS FATE.**~~ **Fate: CLOSED (2026-09-25).**
 
 ### C45 — The OSM patch builders overwrite human labels with their own class [E] ⤴ SUPERSEDED
 
