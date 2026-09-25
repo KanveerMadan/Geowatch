@@ -1,0 +1,185 @@
+{
+ "CONTROL dharavi": {
+  "box": [
+   72.836,
+   19.037,
+   72.862,
+   19.06
+  ],
+  "status": "partial",
+  "blocked_pixel_share": 0.976,
+  "mangrove_mean": 0.0888,
+  "glwd_classes": [
+   6,
+   15,
+   19,
+   28,
+   31
+  ]
+ },
+ "CONTROL east_kolkata_wetlands": {
+  "box": [
+   88.420369,
+   22.521486,
+   88.449631,
+   22.548514
+  ],
+  "status": "not_computed",
+  "blocked_pixel_share": 1.0,
+  "mangrove_mean": 0.0,
+  "glwd_classes": [
+   1,
+   30
+  ]
+ },
+ "CONTROL sahara_libya": {
+  "box": [
+   12.985089,
+   24.986486,
+   13.014911,
+   25.013514
+  ],
+  "status": "computed",
+  "blocked_pixel_share": 0.0,
+  "mangrove_mean": 0.0,
+  "glwd_classes": []
+ },
+ "CONTROL orangi_original": {
+  "box": [
+   66.985097,
+   24.926486,
+   67.014903,
+   24.953514
+  ],
+  "status": "computed",
+  "blocked_pixel_share": 0.0,
+  "mangrove_mean": 0.0,
+  "glwd_classes": []
+ },
+ "CONTROL riyadh_olaya": {
+  "box": [
+   46.668126,
+   24.686486,
+   46.697874,
+   24.713514
+  ],
+  "status": "partial",
+  "blocked_pixel_share": 0.0276,
+  "mangrove_mean": 0.0,
+  "glwd_classes": [
+   15
+  ]
+ },
+ "SITE makoko": {
+  "box": [
+   3.37876,
+   6.482273,
+   3.405914,
+   6.509432
+  ],
+  "status": "partial",
+  "blocked_pixel_share": 0.9934,
+  "mangrove_mean": 0.0002,
+  "glwd_classes": [
+   2,
+   5,
+   27,
+   31
+  ]
+ },
+ "SITE kibera": {
+  "box": [
+   36.775515,
+   -1.324906,
+   36.802485,
+   -1.297761
+  ],
+  "status": "partial",
+  "blocked_pixel_share": 0.0973,
+  "mangrove_mean": 0.0,
+  "glwd_classes": [
+   14,
+   15,
+   18
+  ]
+ },
+ "SITE rocinha": {
+  "box": [
+   -43.263248,
+   -23.003355,
+   -43.233641,
+   -22.975944
+  ],
+  "status": "partial",
+  "blocked_pixel_share": 0.266,
+  "mangrove_mean": 0.0,
+  "glwd_classes": [
+   6,
+   15,
+   31
+  ]
+ },
+ "SITE lima_both_scenes": {
+  "box": [
+   -76.942489,
+   -12.147211,
+   -76.914738,
+   -12.119905
+  ],
+  "status": "computed",
+  "blocked_pixel_share": 0.0,
+  "mangrove_mean": 0.0,
+  "glwd_classes": []
+ },
+ "SITE monrovia": {
+  "box": [
+   -10.820003,
+   6.31229,
+   -10.792798,
+   6.33951
+  ],
+  "status": "partial",
+  "blocked_pixel_share": 0.6312,
+  "mangrove_mean": 0.0109,
+  "glwd_classes": [
+   6,
+   15,
+   26,
+   27,
+   28,
+   31
+  ]
+ },
+ "SITE karachi": {
+  "box": [
+   66.986831,
+   24.929562,
+   67.016966,
+   24.957037
+  ],
+  "status": "computed",
+  "blocked_pixel_share": 0.0,
+  "mangrove_mean": 0.0,
+  "glwd_classes": []
+ },
+ "SITE cape_town": {
+  "box": [
+   18.642248,
+   -34.026099,
+   18.675454,
+   -33.998446
+  ],
+  "status": "partial",
+  "blocked_pixel_share": 0.1753,
+  "mangrove_mean": 0.0,
+  "glwd_classes": [
+   6,
+   7,
+   11,
+   14,
+   15,
+   20,
+   21
+  ]
+ }
+}

@@ -1270,9 +1270,18 @@ they are recorded here so the code has a written source.*
   Per AOI, the class has two components:
   - **mangrove** — Global Mangrove Watch extent, always computed;
   - **non-mangrove** (wetland, mudflat / tidal, water hyacinth) —
-    **`excluded`** if the Global Lakes and Wetlands Database shows **no
+    ~~**`excluded`** if the Global Lakes and Wetlands Database shows **no
     wetland class of any kind** in the AOI, otherwise **`not_computed`**,
-    which keeps the remainder blocked.
+    which keeps the remainder blocked.~~ **Amended 2026-09-25 — per GLWD
+    cell, not per AOI:** pixels inside a Dryland GLWD cell are `excluded`;
+    pixels inside any non-Dryland GLWD cell (classes 1–33, config list
+    unchanged) are `not_computed`, and **the remainder is blocked for those
+    pixels only**. Mangrove still comes from GMW everywhere. Every run emits
+    a per-AOI `blocked_pixel_share`.
+
+    **Why per cell:** GLWD's over-calling only *enlarges* the blocked zone,
+    so the rule stays conservative; blocking whole AOIs made
+    `impervious_total` unscoreable at the validation sites.
 
   **Why GLWD exclusion is conservative:** GLWD over-calls wetland (at
   ~464 m it labels 77% of Dharavi "Other coastal wetland"), so an AOI where
@@ -1396,6 +1405,17 @@ they are recorded here so the code has a written source.*
   site settlements (all but Orangi) GLWD shows some class, so the remainder
   stays blocked there; Riyadh's Olaya district also shows class 15. Reading
   "wetland" as 8–33 instead of 1–33 changes none of these outcomes.
+- **R2 amended — per GLWD cell** *(2026-09-25)*: bookkeeping now blocks
+  the remainder **per pixel** (an input NaN on a known pixel blocks only that
+  pixel) and reports `blocked_pixel_share` with a per-input breakdown;
+  quantities report `computed` / `partial` / `not_computed` and their
+  computed share. Controls (3 × 3 km, real export): Sahara and Orangi 0%
+  blocked; Riyadh Olaya 2.8%; Dharavi 97.6% (mangrove 8.9%); East Kolkata
+  Wetlands 100%. **Site boxes:** Lima B 0%, Karachi (Orangi) 0%, Kibera 9.7%,
+  Cape Town (Khayelitsha) 17.5%, Rocinha 26.6%, Monrovia 63.1%, **Makoko
+  99.3%** — Makoko lies almost wholly in GLWD wetland cells, so even per
+  cell its remainder is computed on < 1% of the box.
+  `experiments/item21_sites/results/r2_per_cell_controls.json`.
 
 ---
 

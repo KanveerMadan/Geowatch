@@ -148,21 +148,29 @@ def _mwv_bands(gmw, glwd):
     return {"gmw_cov": np.asarray(gmw, np.float32), "glwd_class": np.asarray(glwd, np.float32)}
 
 
-def test_mwv_excluded_non_mangrove_when_glwd_shows_nothing():
+def test_mwv_all_dryland_cells_is_computed_mangrove_continuous():
     out = detectors.mixed_water_vegetation(load_config(), _mwv_bands([0.3, 0.0], [0, 0]),
                                            np.array([True, True]))
     assert out["status"] == "computed"
-    assert out["components"]["non_mangrove"]["status"] == "excluded"
     assert out["fraction"].tolist() == pytest.approx([0.3, 0.0])      # continuous, no 1.0
-    assert out["provenance"].startswith("dataset:") and "+excluded:" in out["provenance"]
+    assert out["glwd_evidence"]["blocked_pixel_share"] == 0.0
+    assert "excluded_per_cell" in out["provenance"]
 
 
-def test_mwv_not_computed_when_any_glwd_class_present_mangrove_still_reported():
-    out = detectors.mixed_water_vegetation(load_config(), _mwv_bands([0.3, 0.0], [0, 17]),
+def test_mwv_blocks_only_pixels_inside_wetland_cells():
+    # R2 amended 2026-09-25: per GLWD cell, not per AOI.
+    out = detectors.mixed_water_vegetation(load_config(), _mwv_bands([0.3, 0.4], [0, 17]),
                                            np.array([True, True]))
-    assert out["status"] == "not_computed" and out["fraction"] is None
-    assert out["mangrove_fraction"].tolist() == pytest.approx([0.3, 0.0])
-    assert out["glwd_evidence"]["classes_present"] == {17: "Palustrine, regularly flooded, non-forested"}
+    assert out["status"] == "partial"
+    assert out["fraction"][0] == pytest.approx(0.3)                   # Dryland cell: computed
+    assert np.isnan(out["fraction"][1])                               # wetland cell: blocked
+    assert out["mangrove_fraction"].tolist() == pytest.approx([0.3, 0.4])   # GMW everywhere
+    assert out["glwd_evidence"]["blocked_pixel_share"] == pytest.approx(0.5)
+
+
+def test_mwv_all_wetland_cells_is_not_computed():
+    out = detectors.mixed_water_vegetation(load_config(), _mwv_bands([0.3], [28]), np.array([True]))
+    assert out["status"] == "not_computed" and np.isnan(out["fraction"][0])
 
 
 def test_open_water_classes_block_exclusion_for_hyacinth():

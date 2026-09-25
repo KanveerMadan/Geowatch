@@ -34,6 +34,10 @@ Rules, all from 05_BUILD_MANUAL.md item 21 "Phase A — build rulings":
     2026-09-25, second round).
   - An "excluded" detector (known zero from a dataset) is a real zero and
     does not block the remainder.
+  - Blocking is PER PIXEL (R2 amendment, 2026-09-25): an input that is not
+    computed on a pixel (NaN on a known pixel, or None for the whole AOI)
+    blocks the remainder -- and everything derived from it -- on that pixel
+    only. blocked_pixel_share is reported, with each input's share.
   - Dataset producers (R2: GMW mangrove, provenance "dataset:...") are
     continuous and do NOT override vegetation / water; only a spectral
     detection (provenance "detector") does. Overlap is flagged as
@@ -93,23 +97,27 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
     # Detectors (part 3); smoke-test substitution only.
     for name in DETECTOR_FRACTIONS:
         d = detectors[name]
-        if d["status"] == "computed":
-            base[name] = mask(d["fraction"])
+        frac = None if d.get("fraction") is None else mask(d["fraction"])
+        if d["status"] in ("computed", "partial"):
+            base[name] = frac
             prov[name] = d.get("provenance", "detector")
         elif d["status"] == "excluded":
-            base[name], prov[name] = mask(d["fraction"]), d["provenance"]
-        elif smoke_test:
-            # A computed partial (R2: GMW mangrove) is kept; the placeholder
-            # stands in only for the missing part, and still taints the sum.
-            partial = d.get("mangrove_fraction")
-            base[name] = mask((0.0 if partial is None else np.nan_to_num(partial))
-                              + detector_placeholder_value)
-            prov[name] = PLACEHOLDER
-            substitutions.append({"fraction": name, "value": detector_placeholder_value,
-                                  "kept_computed_part": partial is not None,
-                                  "reason": f"detector {d['status']}; smoke test only"})
+            base[name], prov[name] = frac, d["provenance"]
         else:
             base[name], prov[name] = None, "not_computed"
+        gap = known if base[name] is None else known & ~np.isfinite(base[name])
+        if smoke_test and gap.any():
+            # A computed part (R2: GMW mangrove) is kept; the placeholder
+            # stands in only where the input is missing, and taints the sum.
+            partial = d.get("mangrove_fraction")
+            fill = (0.0 if partial is None else np.nan_to_num(partial)) + detector_placeholder_value
+            cur = np.zeros(known.shape, np.float32) if base[name] is None else base[name]
+            base[name] = mask(np.where(gap, fill, cur))
+            prov[name] = PLACEHOLDER
+            substitutions.append({"fraction": name, "value": detector_placeholder_value,
+                                  "pixels_filled": int(gap.sum()),
+                                  "kept_computed_part": partial is not None,
+                                  "reason": f"detector {d['status']}; smoke test only"})
 
     # Precedence: any detection on the pixel zeroes vegetation and water.
     detected = np.zeros(known.shape, dtype=bool)
@@ -132,20 +140,35 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
         yielded = known & (base["solar"] > cap + SUM_TOLERANCE)
         base["solar"] = mask(np.minimum(base["solar"], cap))
         flags["solar_yielded_to_built"] = yielded
-    missing = [n for n in NON_HARD if base[n] is None]
-    if missing:
+    # Per-pixel availability of every non-hard input.
+    input_ok = {n: (np.zeros(known.shape, bool) if base[n] is None
+                    else known & np.isfinite(base[n])) for n in NON_HARD}
+    avail = known.copy()
+    for ok in input_ok.values():
+        avail &= ok
+    blocked = known & ~avail
+    missing = [n for n in NON_HARD if (known & ~input_ok[n]).any()]
+    n_known = int(known.sum())
+    remainder_block = {
+        "blocked_pixel_share": float(blocked.sum()) / n_known if n_known else None,
+        "blocked_pixels": int(blocked.sum()),
+        "blocked_by": {n: float((known & ~input_ok[n]).sum()) / n_known
+                       for n in NON_HARD if (known & ~input_ok[n]).any()} if n_known else {},
+    }
+    on = lambda a: np.where(avail, a, np.nan).astype(np.float32)
+    if not avail.any():
         remainder = imp = bare = paved_u = paved = excess = None
     else:
-        non_hard = sum(base[n] for n in NON_HARD)
-        remainder = mask(1.0 - non_hard)
-        imp = mask(base["impervious_share"] * remainder)
-        bare = mask(remainder - imp)
-        paved_u = mask(imp - base["built"])
-        paved = mask(np.maximum(paved_u, 0.0))
-        excess = mask(paved - paved_u)
-        flags["nonhard_oversubscribed"] = known & (non_hard > 1.0 + SUM_TOLERANCE)
-        flags["built_exceeds_remainder"] = known & (base["built"] > remainder + SUM_TOLERANCE)
-        flags["paved_negative"] = known & (paved_u < -SUM_TOLERANCE)
+        non_hard = sum(np.nan_to_num(base[n]) for n in NON_HARD)
+        remainder = on(1.0 - non_hard)
+        imp = on(base["impervious_share"] * remainder)
+        bare = on(remainder - imp)
+        paved_u = on(imp - base["built"])
+        paved = on(np.maximum(paved_u, 0.0))
+        excess = on(paved - paved_u)
+        flags["nonhard_oversubscribed"] = avail & (non_hard > 1.0 + SUM_TOLERANCE)
+        flags["built_exceeds_remainder"] = avail & (base["built"] > remainder + SUM_TOLERANCE)
+        flags["paved_negative"] = avail & (paved_u < -SUM_TOLERANCE)
     det_sum = sum(np.nan_to_num(base[n]) for n in DETECTOR_FRACTIONS if base[n] is not None)
     flags["detector_overlap"] = known & (np.asarray(det_sum) > 1.0 + SUM_TOLERANCE)
 
@@ -173,10 +196,15 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
         # read as a real regression / residual / derivation.
         if ph and a is not None and provenance != PLACEHOLDER:
             provenance = f"{PLACEHOLDER}:{provenance}"
-        return {"status": "computed" if a is not None else "not_computed",
+        share = (float((known & np.isfinite(a)).sum()) / n_known
+                 if a is not None and n_known else 0.0)
+        status = ("not_computed" if a is None or share == 0
+                  else "computed" if share == 1.0 else "partial")
+        return {"status": status,
                 "provenance": provenance,
                 "placeholder_inputs": ph,
                 "placeholder_tainted": bool(ph),
+                "computed_share_of_known": share,
                 "aoi_mean_known_pixels": _mean(a, known)}
 
     records = {n: record(n) for n in EIGHT}
@@ -187,16 +215,18 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
     if missing:
         for n in ("hard_surface_remainder", "impervious_total", "bare", "paved",
                   "paved_unclamped"):
-            records[n]["reason"] = f"not_computed inputs: {missing}"
+            records[n]["reason"] = (f"not_computed inputs: {missing}" if not avail.any()
+                                    else f"blocked on {remainder_block['blocked_pixel_share']:.4f} "
+                                         f"of known pixels by inputs: {missing}")
 
     sum_check = None
-    if not missing:
-        total = sum(arrays[n] for n in EIGHT)
-        dev = np.abs(total - (1.0 + excess))
-        sum_check = {"max_abs_deviation_from_1_plus_excess":
-                     float(np.nanmax(dev)) if known.any() else None,
-                     "aoi_mean_sum_excess": _mean(excess, known)}
-        if known.any() and sum_check["max_abs_deviation_from_1_plus_excess"] > SUM_TOLERANCE:
+    if avail.any():
+        total = sum(np.nan_to_num(arrays[n]) for n in EIGHT)
+        dev = np.where(avail, np.abs(total - (1.0 + np.nan_to_num(excess))), 0.0)
+        sum_check = {"max_abs_deviation_from_1_plus_excess": float(dev.max()),
+                     "aoi_mean_sum_excess": _mean(excess, avail),
+                     "over": "pixels with a computed remainder"}
+        if sum_check["max_abs_deviation_from_1_plus_excess"] > SUM_TOLERANCE:
             raise AssertionError(f"fraction bookkeeping broken: {sum_check}")
 
     return {
@@ -205,6 +235,8 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
         "flags": {k: {"pixel_share_of_known": _share(v, known), "pixels": int(v.sum())}
                   for k, v in flags.items()},
         "flag_arrays": flags,
+        "remainder": remainder_block,
+        "remainder_computed": avail,
         "substitutions": substitutions,
         "sum_check": sum_check,
         "precedence": {"detectors_override_vegetation_water": True,

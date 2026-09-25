@@ -96,6 +96,8 @@ def run(aoi_name: str, cfg: dict | None = None) -> dict:
         "fractions": {n: fr["fractions"][n] for n in bookkeeping.EIGHT},
         "derived": {n: fr["fractions"][n] for n in derived_names},
         "sum_check": fr["sum_check"],
+        # R2 amended: remainder blocked per pixel; share reported per AOI.
+        "remainder": fr["remainder"],
         "substitutions": fr["substitutions"],
         "precedence": fr["precedence"],
         "observability": occ["fields"],
@@ -109,7 +111,7 @@ def run(aoi_name: str, cfg: dict | None = None) -> dict:
         },
         "flags": fr["flags"],
         "detectors": {n: {k: v for k, v in d.items()
-                          if k not in ("fraction", "mangrove_fraction")}
+                          if k not in ("fraction", "mangrove_fraction", "blocked_mask")}
                       for n, d in dets.items()},
         "mixed_water_vegetation_sub_type": {k: v for k, v in mwv_sub.items() if k != "labels"},
         "dataset_context": detectors.dataset_context(bands, legend),
@@ -123,6 +125,7 @@ def run(aoi_name: str, cfg: dict | None = None) -> dict:
     layers["mixed_water_vegetation_mangrove"] = dets["mixed_water_vegetation"]["mangrove_fraction"]
     layers.update({n: fr["per_pixel"][n] for n in derived_names + ("sum_excess",)})
     layers["known"] = known.astype(np.float32)
+    layers["remainder_computed"] = fr["remainder_computed"].astype(np.float32)
     layers.update({f"occluded_{k}": v.astype(np.float32) for k, v in occ["pixels"].items()})
     layers.update({f"flag_{k}": v.astype(np.float32) for k, v in fr["flag_arrays"].items()})
     layers["built_secondary_abs_diff"] = b["built_secondary_abs_diff"]

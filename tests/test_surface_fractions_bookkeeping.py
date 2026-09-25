@@ -265,3 +265,43 @@ def test_smoke_keeps_mangrove_and_placeholders_only_the_rest():
     assert r["per_pixel"]["mixed_water_vegetation"][0] == pytest.approx(0.3)
     assert r["fractions"]["mixed_water_vegetation"]["placeholder_tainted"]
     assert r["substitutions"][0]["kept_computed_part"] is True
+
+
+# ── R2 amended: per-pixel remainder blocking ────────────────────────────────
+
+def test_remainder_blocked_only_on_blocked_pixels():
+    known = np.ones(3, dtype=bool)
+    mwv = {"status": "partial", "fraction": np.array([0.2, np.nan, 0.0], np.float32),
+           "provenance": "dataset:GMW+excluded_per_cell:GLWD"}
+    r = bk.compute_fractions(known, np.zeros(3, np.float32),
+                             regs([0.1, 0.1, 0.1], [0.1, 0.1, 0.1], [0.5, 0.5, 0.5], known),
+                             {"snow_ice": _det("excluded", [0, 0, 0], "excluded:x"),
+                              "solar": _det("excluded", [0, 0, 0], "excluded:y"),
+                              "mixed_water_vegetation": mwv},
+                             smoke_test=False, detector_placeholder_value=0.0)
+    p = r["per_pixel"]
+    assert np.isfinite(p["bare"][[0, 2]]).all() and np.isnan(p["bare"][1])
+    assert r["remainder"]["blocked_pixel_share"] == pytest.approx(1 / 3)
+    assert r["remainder"]["blocked_by"] == {"mixed_water_vegetation": pytest.approx(1 / 3)}
+    f = r["fractions"]
+    assert f["bare"]["status"] == "partial"
+    assert f["bare"]["computed_share_of_known"] == pytest.approx(2 / 3)
+    assert "blocked on" in f["bare"]["reason"]
+    assert r["sum_check"]["max_abs_deviation_from_1_plus_excess"] < 1e-5
+    assert r["remainder_computed"].tolist() == [True, False, True]
+
+
+def test_smoke_fills_only_the_blocked_pixels():
+    known = np.ones(2, dtype=bool)
+    mwv = {"status": "partial", "fraction": np.array([0.2, np.nan], np.float32),
+           "mangrove_fraction": np.array([0.2, 0.3], np.float32),
+           "provenance": "dataset:GMW+excluded_per_cell:GLWD"}
+    r = bk.compute_fractions(known, np.zeros(2, np.float32), regs([0.1, 0.1], [0.1, 0.1], [0.5, 0.5], known),
+                             {"snow_ice": _det("excluded", [0, 0], "excluded:x"),
+                              "solar": _det("excluded", [0, 0], "excluded:y"),
+                              "mixed_water_vegetation": mwv},
+                             smoke_test=True, detector_placeholder_value=0.0)
+    assert r["per_pixel"]["mixed_water_vegetation"].tolist() == pytest.approx([0.2, 0.3])
+    assert r["substitutions"][0]["pixels_filled"] == 1
+    assert r["fractions"]["mixed_water_vegetation"]["placeholder_tainted"]
+    assert r["remainder"]["blocked_pixel_share"] == 0.0

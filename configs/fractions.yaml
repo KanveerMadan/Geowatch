@@ -155,8 +155,10 @@ detectors:
     # R2 (2026-09-25, third round). Two components per AOI:
     #   mangrove     -- Global Mangrove Watch coverage (datasets.gmw), kept
     #                   CONTINUOUS; no 1.0 override of vegetation / water.
-    #   non_mangrove -- "excluded" if GLWD shows no wetland class of ANY kind
-    #                   in the AOI, else not_computed (remainder blocked).
+    #   non_mangrove -- PER GLWD CELL (amended 2026-09-25; the AOI-level rule
+    #                   is struck): excluded on pixels in a Dryland GLWD cell,
+    #                   not_computed (remainder blocked for those pixels only)
+    #                   in any blocking-class cell.
     # "Any kind" = every non-Dryland GLWD class, 1-33: water hyacinth grows
     # on the lakes and rivers GLWD maps as classes 1-7. GLWD over-calls
     # wetland, so "none at all" is a conservative exclusion.

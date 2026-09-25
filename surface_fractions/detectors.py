@@ -185,33 +185,48 @@ def glwd_wetland_evidence(glwd_class: np.ndarray, cfg: dict) -> dict:
 
 
 def mixed_water_vegetation(cfg: dict, bands: dict, known: np.ndarray) -> dict:
-    """R2: mangrove from GMW (continuous, always computed); non-mangrove
-    excluded when GLWD shows no wetland of any kind, else not_computed.
+    """R2 as amended 2026-09-25 -- PER GLWD CELL, not per AOI.
 
-    Status "computed" only when non-mangrove is excluded; then the fraction is
-    the mangrove coverage. Otherwise "not_computed", with the mangrove
-    component still reported in `mangrove_fraction` (bookkeeping blocks the
-    remainder; the smoke test adds a placeholder for the missing part)."""
-    gmw_id = cfg["datasets"][cfg["detectors"]["mixed_water_vegetation"]["mangrove_producer"]]
+    mangrove      Global Mangrove Watch coverage, continuous, on every known
+                  pixel.
+    non-mangrove  excluded on pixels inside a Dryland GLWD cell (the 10 m
+                  pixel takes the class of the GLWD cell holding its centre --
+                  nearest-neighbour export); not_computed on pixels inside any
+                  blocking (non-Dryland) cell.
+
+    The class fraction is the mangrove coverage where non-mangrove is
+    excluded, and NaN where it is not computed -- so bookkeeping blocks the
+    remainder on exactly those pixels. Status: computed (no blocked pixel),
+    partial, or not_computed (every known pixel blocked)."""
+    spec = cfg["detectors"]["mixed_water_vegetation"]
+    gmw_id = cfg["datasets"][spec["mangrove_producer"]]
+    lo = spec["non_mangrove_exclusion"]["blocking_classes"]["from"]
+    hi = spec["non_mangrove_exclusion"]["blocking_classes"]["to"]
     mangrove = np.where(known, np.nan_to_num(bands["gmw_cov"]), np.nan).astype(np.float32)
-    evidence = glwd_wetland_evidence(bands["glwd_class"], cfg)
-    components = {
-        "mangrove": {"status": "computed", "provenance": f"dataset:{gmw_id}",
-                     "continuous": True, "overrides_vegetation_water": False},
-        "non_mangrove": ({"status": "excluded", "provenance": f"excluded:{evidence['dataset']}"}
-                         if not evidence["present"] else
-                         {"status": "not_computed",
-                          "reason": "GLWD shows wetland classes in the AOI and no "
-                                    "non-mangrove producer exists"}),
+    cls = np.nan_to_num(bands["glwd_class"], nan=0).astype(int)
+    blocking = known & (cls >= lo) & (cls <= hi)
+    fraction = np.where(known & ~blocking, mangrove, np.nan).astype(np.float32)
+    n_known = int(known.sum())
+    share = float(blocking.sum()) / n_known if n_known else None
+    evidence = {**glwd_wetland_evidence(bands["glwd_class"], cfg),
+                "rule": "per GLWD cell (amended 2026-09-25)",
+                "blocked_pixel_share": share}
+    status = ("not_computed" if n_known and blocking.sum() == n_known
+              else "partial" if blocking.any() else "computed")
+    return {
+        "name": "mixed_water_vegetation", "status": status, "fraction": fraction,
+        "provenance": f"dataset:{gmw_id}+excluded_per_cell:{evidence['dataset']}",
+        "components": {
+            "mangrove": {"status": "computed", "provenance": f"dataset:{gmw_id}",
+                         "continuous": True, "overrides_vegetation_water": False},
+            "non_mangrove": {"excluded_on": "pixels in Dryland GLWD cells",
+                             "not_computed_on": "pixels in non-Dryland GLWD cells",
+                             "blocked_pixel_share": share},
+        },
+        "glwd_evidence": evidence, "mangrove_fraction": mangrove,
+        "blocked_mask": blocking,
+        "thresholds": _threshold_record(spec),
     }
-    base = {"name": "mixed_water_vegetation", "components": components,
-            "glwd_evidence": evidence, "mangrove_fraction": mangrove,
-            "thresholds": _threshold_record(cfg["detectors"]["mixed_water_vegetation"])}
-    if not evidence["present"]:
-        return {**base, "status": "computed", "fraction": mangrove,
-                "provenance": f"dataset:{gmw_id}+excluded:{evidence['dataset']}"}
-    return {**base, "status": "not_computed", "fraction": None,
-            "reason": "non-mangrove component not_computed (GLWD wetland present)"}
 
 
 def run_detectors(cfg: dict, bands: dict, known: np.ndarray,
