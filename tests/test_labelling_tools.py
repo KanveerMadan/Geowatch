@@ -286,3 +286,44 @@ def test_rooftop_solar_is_built_plus_flag():
 def test_rooftop_flag_on_non_built_is_refused():
     with pytest.raises(LabelQCError, match="only valid on `built`"):
         tile_fractions([feat("solar", 0, 0, 200, 200, rooftop_solar=True)], grid(), CFG)
+
+
+# ── ruling 2026-09-25 (second round, 5): label_limited ──────────────────────
+
+def _strips(built_w, paved_w):
+    """Vertical strips: built from x=0, paved next, bare for the rest."""
+    fs = []
+    if built_w:
+        fs.append(feat("built", 0, 0, built_w, 200))
+    if paved_w:
+        fs.append(feat("paved", built_w, 0, built_w + paved_w, 200))
+    fs.append(feat("bare", built_w + paved_w, 0, 200, 200))
+    return fs
+
+
+def test_impervious_agreement_uses_built_plus_paved():
+    # a: 60 m built + 40 m paved; b: 100 m built. Impervious identical.
+    out = qc.compare(_strips(60, 40), _strips(100, 0), grid(), CFG)
+    assert out["impervious_total"]["fraction_mae"] == 0.0
+    assert out["impervious_total"]["fraction_r2"] == pytest.approx(1.0)
+    assert out["impervious_total"]["label_limited"] is False
+    assert out["per_class"]["built"]["fraction_mae"] > 0      # but built disagrees
+
+
+def test_impervious_label_limited_when_worse_than_floor():
+    # a: 100 m impervious; b: 20 m. Most cells swap 1 <-> 0: MAE 0.4 > 0.15.
+    out = qc.compare(_strips(100, 0), _strips(20, 0), grid(), CFG)
+    assert out["impervious_total"]["fraction_mae"] == pytest.approx(0.4)
+    assert out["impervious_total"]["label_limited"] is True
+
+
+def test_built_label_limited_is_none_while_bar_unset_others_none():
+    out = qc.compare(_strips(100, 0), _strips(20, 0), grid(), CFG)
+    assert CFG["model_pass_bars"]["built"]["status"] == "UNSET"
+    assert out["per_class"]["built"]["label_limited"] is None
+    assert all(v["label_limited"] is None for k, v in out["per_class"].items())
+
+
+def test_impervious_bars_match_item_21_floors():
+    b = CFG["model_pass_bars"]["impervious_total"]
+    assert (b["fraction_mae_max"], b["fraction_r2_min"]) == (0.15, 0.3)

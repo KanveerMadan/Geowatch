@@ -12,9 +12,14 @@ Two separate verdicts, both None until their numbers exist:
                        fraction_mae or fraction_r2) and value; the metric
                        choice is part of setting it.
   label_limited        §7: label agreement worse than the MODEL's pass bar
-                       for that class. Model bars exist only for
-                       impervious_total (item 21), which is not a hand label,
-                       so no per-class verdict can be formed yet.
+                       (ruling 2026-09-25, second round, 5):
+                         impervious_total -- agreement of the derived
+                           built + paved label fractions, against item 21's
+                           impervious_total floors (MAE <= 15 pp, R^2 >= 0.3);
+                           worse on either -> label-limited
+                         built -- against its validation bar, which has no
+                           number yet (UNSET) -> None
+                         every other class -> None
 """
 
 from __future__ import annotations
@@ -63,8 +68,29 @@ def compare(features_a: list, features_b: list, grid, cfg: dict) -> dict:
                 rec["meets_agreement_bar"] = not worse
         rec["label_limited"] = None
         per_class[label] = rec
+
+    model_bars = cfg["model_pass_bars"]
+    parts = model_bars["impervious_total"]["derived_from"]
+    ia = sum(fa["fractions"][p] for p in parts)[both]
+    ib = sum(fb["fractions"][p] for p in parts)[both]
+    imp = {"derived_from": parts, "cells_compared": int(both.sum()),
+           "fraction_mae": float(np.abs(ia - ib).mean()) if ia.size else None,
+           "fraction_r2": _r2(ia, ib)}
+    imp["label_limited"] = _label_limited(imp, model_bars["impervious_total"])
+    per_class["built"]["label_limited"] = _label_limited(per_class["built"], model_bars["built"])
     return {"per_class": per_class,
+            "impervious_total": imp,
             "agreement_bars": "set" if bars_set else "UNSET (guide §9.4): no verdict",
-            "label_limited_note": "needs a model pass bar per class; only "
-                                  "impervious_total has one (item 21) and it is "
-                                  "not a hand-labelled class"}
+            "label_limited_note": "impervious_total vs item 21 floors; built vs its "
+                                  "validation bar (UNSET -> None); others None"}
+
+
+def _label_limited(agreement: dict, bar: dict):
+    """True if label agreement is worse than the model pass bar on any of its
+    metrics; None if the bar is UNSET or a metric could not be computed."""
+    if bar.get("status") == "UNSET":
+        return None
+    mae, r2 = agreement.get("fraction_mae"), agreement.get("fraction_r2")
+    if mae is None or r2 is None:
+        return None
+    return bool(mae > bar["fraction_mae_max"] or r2 < bar["fraction_r2_min"])

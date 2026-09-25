@@ -1316,6 +1316,16 @@ they are recorded here so the code has a written source.*
   outlines, MODIS class 15 present) and Bhadla (TZ-SAM 3, GRW 4) are not
   excluded; Dharavi is excluded for both. Solar yields to `built` on
   footprints (`solar ≤ 1 − built`, flagged `solar_yielded_to_built`).
+- **Ruling 4 — guide v1.1** *(2026-09-25)*: `solar` label ground-mounted
+  only; rooftop panels `built` + `rooftop_solar` flag (refused on any other
+  label).
+- **Ruling 5 — `label_limited`** *(2026-09-25)*: `impervious_total` label
+  agreement = the derived `built + paved` label fractions compared between
+  labellings (MAE, R²), label-limited if worse than item 21's floors (MAE
+  ≤ 15 pp, R² ≥ 0.3) on either. **`built` has no numeric validation bar in
+  this manual** (item 21 "`built` validation" defines a comparison, not a
+  number), so its bar is UNSET in `configs/labelling.yaml` and its
+  `label_limited` is `None`. Every other class: `None`.
 
 ---
 
