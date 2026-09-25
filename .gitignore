@@ -36,7 +36,13 @@ id_rsa*
 # Data and model artifacts (hashed separately in ARTIFACT_HASHES.txt,
 # not tracked)
 # ---------------------------------------------------------------------------
-data/
+data/*
+# Item 21 strata-drawing packages: only the empty templates are tracked
+# (strata.geojson, strata.qml); previews and frames are regenerated.
+!data/strata_packages/
+data/strata_packages/*/*
+!data/strata_packages/*/strata.geojson
+!data/strata_packages/*/strata.qml
 models/
 cache/
 
