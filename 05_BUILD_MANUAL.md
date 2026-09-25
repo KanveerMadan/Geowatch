@@ -1385,6 +1385,21 @@ they are recorded here so the code has a written source.*
     Makoko 16/2/4/0/0 · Kibera 36/12/50/15/13 · Rocinha 10/22/37/36/77 ·
     Lima 0/0/18/9/4 · Monrovia 20/21/42/14/33 · Karachi 93/0/47/27/29 ·
     Cape Town 52/3/58/59/24.
+  - **Review finding — Cape Town, recorded 2026-09-25: the draft rule is
+    systematically INVERTED there.** Open Buildings draws **formal government
+    housing as separate small footprints**, so it drafts as `dense_informal`,
+    and **merges packed shack clusters into large polygons**, so they draft as
+    `mixed`. Cape Town is being corrected **by hand** in `strata.gpkg`; the
+    rule is **not** changed and nothing is regenerated. The review continues
+    site by site.
+  - **Known limitation of footprint-based stratification:** the rule reads
+    fabric through Open Buildings' polygon segmentation, and that
+    segmentation behaves differently by building type — it can split
+    regular formal units and merge irregular informal ones, which is the
+    opposite of what footprint size and density are meant to separate. The
+    draft is therefore a starting point only; the hand review is the
+    stratification of record, and the draft → final diff
+    (`strata_io.compare_draft_final`) shows where the rule was overruled.
 
 #### Phase A — build rulings, second round, decided 2026-09-25
 
