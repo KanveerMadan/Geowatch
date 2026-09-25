@@ -82,3 +82,24 @@ osm_layers:
   # natural=dry_lake: 45 uses worldwide. intermittent=yes marks intermittent
   # water, not a dry bed.
   dry_lakebed:   {geometry: area, filters: [], status: no_producer}
+
+# Part 2 — occlusion (Decision 14 observability group; Phase A rulings).
+occlusion:
+  # Sentinel-2 L2A Scene Classification codes, per the ESA L2A product spec
+  # (same codes as ingestion/sentinel2.py SCL_CLASSES). Not thresholds.
+  scl_codes:
+    nodata: [0, 1]
+    cloud: [8, 9, 10]
+    snow: [11]
+  # One category per observation, first match wins. Only matters for an
+  # observation that is two things at once (e.g. cloud over a fire).
+  precedence: [nodata, cloud, fire, snow]
+  fire:
+    collection: FIRMS
+    band: T21
+    native_resolution_m: 1000
+    # FIRMS also carries a `confidence` band. No cut-off is applied: any
+    # value would be an uncited threshold. A detection is T21 present.
+    confidence_min: null        # UNSET
+  shadow_full:
+    criterion: null             # UNSET -- full/partial boundary open (Decisions 11/14)

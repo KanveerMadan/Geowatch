@@ -78,10 +78,13 @@ def mask_s2_clouds(image: ee.Image) -> ee.Image:
     Cloud (SCL_CLOUD_CODES) and no-data (SCL_NODATA_CODES) pixels are
     masked out -- not real reflectance. Cloud SHADOW pixels
     (SCL_SHADOW_CODES) are deliberately LEFT IN: shadow is real (dim)
-    reflectance, not missing data, and Decision 13 treats it as a
-    sixth endmember term for item 21's unmixing solver rather than
-    something to discard upstream. Masking it here would silently
-    starve that solver of the pixels it's meant to see.
+    reflectance, not missing data. *(Updated 2026-09-25: the reason
+    originally given here -- Decision 13's sixth endmember term for an
+    unmixing solver -- is superseded; there is no solve. Under the shadow
+    rule (Decision 11, locked 2026-09-24) partially shadowed pixels stay in
+    the known-pixel denominator and the item 21 regressors learn robustness
+    to them. SCL 3 is cloud shadow only and is NOT the full-shadow
+    occlusion field; see surface_fractions/occlusion.py.)*
 
     PHASE 2: replaces QA60 with SCL. QA60 has been deprecated/
     zero-filled on newer processing baselines (C1), so this now shares

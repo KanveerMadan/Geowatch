@@ -1207,6 +1207,14 @@ they are recorded here so the code has a written source.*
   `ingestion/overpass.py`. `export_image_local` gained `crs` /
   `crs_transform`. OSM has no usable tag for salt flats or dry lakebeds:
   both layers are `no_producer`.
+- **Part 2 — occlusion** *(2026-09-25)*: `surface_fractions/occlusion.py`.
+  Per-scene categories (precedence nodata > cloud > fire > snow), exported
+  as per-pixel counts; attribution in local numpy. Fields: cloud, nodata,
+  transient_snow, fire (FIRMS, same-date, no confidence cut-off),
+  multiple_causes; shadow_full `not_computed`; smoke, ships `no_producer`;
+  the denominator carries an explicit upper-bound caveat naming them. SCL 11
+  where `snow_ice` is not computed is reported as `snow_unresolved`, never
+  guessed. Dharavi 2024-Q1: 31 scenes, observed_fraction 1.0.
 
 ---
 
