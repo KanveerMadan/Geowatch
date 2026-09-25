@@ -1215,6 +1215,11 @@ they are recorded here so the code has a written source.*
   the denominator carries an explicit upper-bound caveat naming them. SCL 11
   where `snow_ice` is not computed is reported as `snow_unresolved`, never
   guessed. Dharavi 2024-Q1: 31 scenes, observed_fraction 1.0.
+- **Part 4 — `built`** *(2026-09-25)*: `surface_fractions/built.py`.
+  `built` = Open Buildings v3 (≥ 0.7) coverage only. Microsoft disagreement
+  emitted as coverage totals, per-pixel fraction MAE and 10 m IoU
+  (area-weighted, threshold-free), explicitly not a confidence score.
+  Dharavi: Open Buildings 22.0% vs Microsoft 16.1%, MAE 0.200, IoU 0.313.
 
 ---
 
