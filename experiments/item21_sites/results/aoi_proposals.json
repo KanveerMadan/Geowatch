@@ -1,0 +1,618 @@
+{
+ "makoko": {
+  "centre_lon_lat": [
+   3.3923367,
+   6.4958525
+  ],
+  "centre_source": "OSM node 13176760049 'Makoko' (place=suburb); no OSM boundary",
+  "utm": "EPSG:32631",
+  "box_utm": [
+   541879.2,
+   716534.5,
+   544879.2,
+   719534.5
+  ],
+  "box_wgs84": [
+   3.37876,
+   6.482273,
+   3.405914,
+   6.509432
+  ],
+  "scenes": [
+   {
+    "scene": "OpenAerialMap: Maxar 2019 Lagos Mosaic [5ea1cb44411bed00056803b8] 2019-06-05",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Makoko [5dd0f6dda7dadc0006433b5b] 2019-10-02",
+    "covered_share": 0.2506,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Task of 2019-10-08T08:14:21.855Z [5dd0f370a7dadc0006433b56] 2019-10-02",
+    "covered_share": 0.1092,
+    "fully_covers": false,
+    "note": null
+   }
+  ],
+  "open_buildings_indicators": {
+   "buildings": 19187,
+   "footprint_area_m2_p10_p50_p90": [
+    23.984032571023057,
+    55.326633218714385,
+    264.1823524182682
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    6.276940724909553e-05,
+    0.2002463768113148,
+    0.5096571428571591
+   ],
+   "share_100m_cells_without_buildings": 0.38258014509288246
+  }
+ },
+ "kibera": {
+  "centre_lon_lat": [
+   36.7890001,
+   -1.3113332
+  ],
+  "centre_source": "OSM node 11007276790 'Kibera' (place=suburb); no OSM boundary",
+  "utm": "EPSG:32737",
+  "box_utm": [
+   252473.7,
+   9853449.4,
+   255473.7,
+   9856449.4
+  ],
+  "box_wgs84": [
+   36.775515,
+   -1.324906,
+   36.802485,
+   -1.297761
+  ],
+  "scenes": [
+   {
+    "scene": "OpenAerialMap: Maxar 2019 Nairobi Mosaic [5ea29a2e411bed00056803c9] 2019-05-14",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Kenya Flooding May 2024 Maxar 105001003B003900 (post-event) [6642a8a66049ef00013b85d7] 2024-05-11",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Kenya Flooding May 2024 (pre-event) [663d16016049ef00013b84b8] 2023-11-30",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": null
+   },
+   {
+    "scene": "Maxar Open Data: Kenya Flooding [105001003B003900] 2024-05-11",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Kenya Flooding [104001008E063C00] 2023-11-30",
+    "covered_share": 0.6345,
+    "fully_covers": false,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   }
+  ],
+  "open_buildings_indicators": {
+   "buildings": 25054,
+   "footprint_area_m2_p10_p50_p90": [
+    20.301587051895734,
+    78.67941747489209,
+    206.8036900726358
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.004896275071110233,
+    0.2435888686102279,
+    0.6268333333326471
+   ],
+   "share_100m_cells_without_buildings": 0.08633685613136687
+  }
+ },
+ "rocinha": {
+  "centre_lon_lat": [
+   -43.2484463,
+   -22.9896502
+  ],
+  "centre_source": "OSM relation 5520358 'Rocinha' (boundary=administrative, admin_level 10) centroid",
+  "utm": "EPSG:32723",
+  "box_utm": [
+   678035.1,
+   7455053.9,
+   681035.1,
+   7458053.9
+  ],
+  "box_wgs84": [
+   -43.263248,
+   -23.003355,
+   -43.233641,
+   -22.975944
+  ],
+  "scenes": [
+   {
+    "scene": "recorded (Rio IPP): IPP city true-orthophoto mosaic, Imagens/Mosaico_2024 first half",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "ImageServer extent rectangle (mosaic nodata not seen)"
+   }
+  ],
+  "open_buildings_indicators": {
+   "buildings": 9610,
+   "footprint_area_m2_p10_p50_p90": [
+    24.433953862782104,
+    55.53675737133104,
+    135.25226433722528
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    4.858018294642417e-05,
+    4.858018294642417e-05,
+    0.2949199999993681
+   ],
+   "share_100m_cells_without_buildings": 0.5551176242748243
+  }
+ },
+ "cape_town": {
+  "centre_lon_lat": [
+   18.6588537,
+   -34.0122734
+  ],
+  "centre_source": "PROPOSED settlement Khayelitsha (the project's Cape Town informal AOI in the endmember-stability work); OSM relation 1017405 centroid",
+  "utm": "EPSG:32734",
+  "box_utm": [
+   282308.6,
+   6232511.7,
+   285308.6,
+   6235511.7
+  ],
+  "box_wgs84": [
+   18.642248,
+   -34.026099,
+   18.675454,
+   -33.998446
+  ],
+  "scenes": [
+   {
+    "scene": "recorded (City of Cape Town): City of Cape Town aerial imagery, 'Aerial Imagery 2026Jan' 2026-01 (m",
+    "covered_share": null,
+    "note": "publisher states city-wide coverage; no extent published"
+   },
+   {
+    "scene": "City of Cape Town image service: City of Cape Town aerial imagery, 'Aerial Imagery 2025Jan' 2025-01 (m",
+    "covered_share": null,
+    "note": "publisher states city-wide coverage; no extent published"
+   }
+  ],
+  "open_buildings_indicators": {
+   "buildings": 45266,
+   "footprint_area_m2_p10_p50_p90": [
+    11.609360487625956,
+    39.669960644582865,
+    71.00277045458019
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.0001980252397421404,
+    0.12282309929438803,
+    0.43552999999977954
+   ],
+   "share_100m_cells_without_buildings": 0.2172954454521206
+  }
+ },
+ "lima_candelaria": {
+  "centre_lon_lat": [
+   -76.9305604,
+   -12.1268455
+  ],
+  "centre_source": "Candelaria is a site-list scene name; OSM node 9057391328 'Virgen de la Candelaria' (place=neighbourhood), inside that scene's footprint",
+  "utm": "EPSG:32718",
+  "box_utm": [
+   288403.2,
+   8657176.2,
+   291403.2,
+   8660176.2
+  ],
+  "box_wgs84": [
+   -76.944437,
+   -12.140498,
+   -76.916686,
+   -12.113192
+  ],
+  "scenes": [
+   {
+    "scene": "OpenAerialMap: Candelaria [601c75ae5ed94000077fc5ed] 2019-12-19",
+    "covered_share": 0.204,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Santuario de las Vizcachas [5fa4dedd73fd1d000512b0d9] 2019-12-19",
+    "covered_share": 0.0559,
+    "fully_covers": false,
+    "note": null
+   }
+  ],
+  "open_buildings_indicators": {
+   "buildings": 13479,
+   "footprint_area_m2_p10_p50_p90": [
+    19.458744565576445,
+    46.647718884486494,
+    142.11891502227346
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.0001521348842223633,
+    0.005703545359747503,
+    0.33346025104780896
+   ],
+   "share_100m_cells_without_buildings": 0.44181748634349494
+  }
+ },
+ "lima_both_scenes": {
+  "centre_lon_lat": [
+   -76.928613,
+   -12.1335585
+  ],
+  "centre_source": "ALTERNATIVE for Lima: midpoint of the two scenes the site list prioritises (Candelaria 601c75ae..., Santuario de las Vizcachas 5fa4dedd...)",
+  "utm": "EPSG:32718",
+  "box_utm": [
+   288620.5,
+   8656435.0,
+   291620.5,
+   8659435.0
+  ],
+  "box_wgs84": [
+   -76.942489,
+   -12.147211,
+   -76.914738,
+   -12.119905
+  ],
+  "scenes": [
+   {
+    "scene": "OpenAerialMap: Candelaria [601c75ae5ed94000077fc5ed] 2019-12-19",
+    "covered_share": 0.204,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Santuario de las Vizcachas [5fa4dedd73fd1d000512b0d9] 2019-12-19",
+    "covered_share": 0.1508,
+    "fully_covers": false,
+    "note": null
+   }
+  ],
+  "open_buildings_indicators": {
+   "buildings": 15712,
+   "footprint_area_m2_p10_p50_p90": [
+    19.488565611437387,
+    46.734302881637205,
+    142.02920500043012
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.0002683607102844641,
+    0.013419999999950007,
+    0.39580844155775785
+   ],
+   "share_100m_cells_without_buildings": 0.3749564813740281
+  }
+ },
+ "karachi": {
+  "centre_lon_lat": [
+   67.0019,
+   24.9433
+  ],
+  "centre_source": "PROPOSED settlement Orangi (experiments/city_selection/aois.py); no OSM boundary; mean of 7 OSM 'Orangi Sector' place=neighbourhood nodes",
+  "utm": "EPSG:32642",
+  "box_utm": [
+   296753.3,
+   2758653.4,
+   299753.3,
+   2761653.4
+  ],
+  "box_wgs84": [
+   66.986831,
+   24.929562,
+   67.016966,
+   24.957037
+  ],
+  "scenes": [
+   {
+    "scene": "Maxar Open Data: Pakistan Flooding [10300100D13F6500] 2022-03-29",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Pakistan Flooding [10300100D404DA00] 2022-06-24",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Pakistan Flooding [105001002DCAC300] 2022-08-11",
+    "covered_share": 0.9365,
+    "fully_covers": false,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   }
+  ],
+  "open_buildings_indicators": {
+   "buildings": 61385,
+   "footprint_area_m2_p10_p50_p90": [
+    24.235591662458322,
+    55.674655300712814,
+    119.21558164921412
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0.23200000000013055,
+    0.4629785714286149,
+    0.5725860362353486
+   ],
+   "share_100m_cells_without_buildings": 0.018541487636891632
+  }
+ },
+ "monrovia": {
+  "centre_lon_lat": [
+   -10.8064,
+   6.3259
+  ],
+  "centre_source": "PROPOSED settlement West Point (experiments/city_selection/aois.py); no OSM boundary or place; mean of 6 OSM features named 'West Point ...'",
+  "utm": "EPSG:32629",
+  "box_utm": [
+   298676.1,
+   698077.6,
+   301676.1,
+   701077.6
+  ],
+  "box_wgs84": [
+   -10.820003,
+   6.31229,
+   -10.792798,
+   6.33951
+  ],
+  "scenes": [
+   {
+    "scene": "OpenAerialMap: Monrovia Pt 3 of 4 [5e679949e82eb700055028ca] 2020-02-23",
+    "covered_share": 0.8373,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Central Monrovia 2 [5e55b345642d040007b7c573] 2020-02-23",
+    "covered_share": 0.6537,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Central Monrovia 2 [5e557ce2642d040007b7c56f] 2020-02-23",
+    "covered_share": 0.6537,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Duala Market [5dee77e79c3b1700059a3593] 2019-10-02",
+    "covered_share": 0.622,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Central Monrovia Orthomosaic [63247b059ee90900078a70ff] 2020-01-24",
+    "covered_share": 0.3773,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Central Monrovia 2 [5e71be79ccc61e00059aedcc] 2020-02-23",
+    "covered_share": 0.343,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Central Monrovia 1 [5e53faa7906c590005ecc5bb] 2020-02-23",
+    "covered_share": 0.2814,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Monrovia gapfill 2 [65c4f080499b4d000186ee76] 2020-01-19",
+    "covered_share": 0.2504,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: OCA Monrovia - River View Community [5bcdcf3ab9e5f20005f7da40] 2018-10-05",
+    "covered_share": 0.0674,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Monrovia Clara 20180822 [5b8182287343a98c3f347d1c] 2018-08-22",
+    "covered_share": 0.0551,
+    "fully_covers": false,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: OCA Monrovia - Hope Community [5c08c36c6918390006b7a8a3] 2018-11-21",
+    "covered_share": 0.0044,
+    "fully_covers": false,
+    "note": null
+   }
+  ],
+  "open_buildings_indicators": {
+   "buildings": 11875,
+   "footprint_area_m2_p10_p50_p90": [
+    34.071896519062726,
+    91.32950531314637,
+    220.6768386458789
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    7.059309942283075e-05,
+    7.059309942283075e-05,
+    0.4893999999999745
+   ],
+   "share_100m_cells_without_buildings": 0.5163647065952232
+  }
+ },
+ "marrakech": {
+  "centre_lon_lat": [
+   -7.9978668,
+   31.6082337
+  ],
+  "centre_source": "PROPOSED settlement: the M\u00e9dina (no settlement is named for Marrakech in any project record); OSM relation 8340819 centroid",
+  "utm": "EPSG:32629",
+  "box_utm": [
+   593559.3,
+   3495948.4,
+   596559.3,
+   3498948.4
+  ],
+  "box_wgs84": [
+   -8.013821,
+   31.594577,
+   -7.981908,
+   31.621888
+  ],
+  "scenes": [
+   {
+    "scene": "OpenAerialMap: Maxar 1040050057DC8500 Morocco Marrakesh [64febc27649d390001c47518] 2023-09-10",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: Marrakesh Morocco Earthquake Maxar pre-event 10300100EB8B4500 [64fca589649d390001c474d7] 2023-08-28",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": null
+   },
+   {
+    "scene": "OpenAerialMap: MAXAR 10300100EBC1A000 Morocco [64fcf1d3649d390001c474e5] 2023-08-06",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": null
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [10300100B33D1000] 2021-01-27",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [10300100B53F9800] 2021-02-23",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [10300100EB8B4500] 2023-08-28",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [10300100EBC1A000] 2023-08-06",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [1040010049981000] 2019-02-27",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [104001006975B600] 2021-05-02",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [1040010084646C00] 2023-03-28",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [10400100846B5A00] 2023-04-28",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [1040050039DC5C00] 2021-10-07",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [1040050046DBE400] 2022-07-31",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [104005004ADBF200] 2022-10-08",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [1040050057DC8500] 2023-09-10",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [105001002FC38300] 2022-11-05",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [1050010031762F00] 2023-02-06",
+    "covered_share": 1.0,
+    "fully_covers": true,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [1040010006B2B200] 2015-01-08",
+    "covered_share": 0.8176,
+    "fully_covers": false,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [104001004D86FB00] 2019-07-21",
+    "covered_share": 0.561,
+    "fully_covers": false,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   },
+   {
+    "scene": "Maxar Open Data: Morocco Earthquake [104001005FC0C600] 2020-08-22",
+    "covered_share": 0.0883,
+    "fully_covers": false,
+    "note": "union of ARD tile boxes (valid-data gaps not seen)"
+   }
+  ],
+  "open_buildings_indicators": {
+   "buildings": 0,
+   "footprint_area_m2_p10_p50_p90": [
+    null,
+    null,
+    null
+   ],
+   "coverage_100m_cells_p10_p50_p90": [
+    0,
+    0,
+    0
+   ],
+   "share_100m_cells_without_buildings": 1
+  }
+ }
+}
