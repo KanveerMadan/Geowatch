@@ -1385,6 +1385,17 @@ they are recorded here so the code has a written source.*
   Kenya acquisition collections say `proprietary` under a CC-BY-NC event;
   neither Cape Town's image service nor Rio IPP's publishes an acquisition
   time.
+- **R2 — `mixed_water_vegetation` from datasets** *(2026-09-25)*: mangrove =
+  GMW coverage, continuous, no override (dataset provenance never zeroes
+  vegetation / water); non-mangrove `excluded` when the AOI's GLWD band holds
+  no class 1–33, else `not_computed`. Live controls (3 × 3 km, real export
+  path): **positive** — East Kolkata Wetlands: GLWD 1 + 30, mangrove 0 →
+  `not_computed`; Dharavi: mangrove 8.9%, GLWD 6/15/19/28/31 →
+  `not_computed`; **negative** — Sahara interior and Orangi (Karachi): no
+  GLWD class → `excluded`. **Consequence:** at 3 × 3 km boxes on 7 of the 8
+  site settlements (all but Orangi) GLWD shows some class, so the remainder
+  stays blocked there; Riyadh's Olaya district also shows class 15. Reading
+  "wetland" as 8–33 instead of 1–33 changes none of these outcomes.
 
 ---
 

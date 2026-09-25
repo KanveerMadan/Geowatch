@@ -28,16 +28,17 @@ def _cfg_with_snow_thresholds():
     return cfg
 
 
-def test_shipped_config_leaves_all_three_detectors_not_computed():
+def test_shipped_config_spectral_detectors_not_computed_mwv_from_datasets():
     cfg = load_config()
     known = np.ones(1, dtype=bool)
     out = detectors.run_detectors(cfg, _bands([.5], [.1], [.3], [.01]) | {
         "gmw_cov": np.zeros(1), "glwd_class": np.zeros(1)}, known)
-    for name in detectors.DETECTORS:
-        assert out[name]["status"] == "not_computed"
-        assert out[name]["fraction"] is None
+    for name in ("snow_ice", "solar"):
+        assert out[name]["status"] == "not_computed" and out[name]["fraction"] is None
     assert "variance_max" in out["snow_ice"]["reason"]
-    assert out["mixed_water_vegetation"]["sub_type"]["status"] == "not_computed"
+    # R2: GLWD all Dryland -> non-mangrove excluded -> class computed from GMW.
+    assert out["mixed_water_vegetation"]["status"] == "computed"
+    assert out["mixed_water_vegetation"]["sub_type"]["status"] == "computed"
 
 
 def test_every_set_threshold_carries_a_source():
@@ -139,3 +140,37 @@ def test_solar_exclusion_uses_both_inventories_and_carries_caveat():
 
 def test_mixed_water_vegetation_has_no_exclusion():
     assert not load_config()["detectors"]["mixed_water_vegetation"].get("exclusion")
+
+
+# ── R2 (2026-09-25, third round): mixed_water_vegetation from datasets ──────
+
+def _mwv_bands(gmw, glwd):
+    return {"gmw_cov": np.asarray(gmw, np.float32), "glwd_class": np.asarray(glwd, np.float32)}
+
+
+def test_mwv_excluded_non_mangrove_when_glwd_shows_nothing():
+    out = detectors.mixed_water_vegetation(load_config(), _mwv_bands([0.3, 0.0], [0, 0]),
+                                           np.array([True, True]))
+    assert out["status"] == "computed"
+    assert out["components"]["non_mangrove"]["status"] == "excluded"
+    assert out["fraction"].tolist() == pytest.approx([0.3, 0.0])      # continuous, no 1.0
+    assert out["provenance"].startswith("dataset:") and "+excluded:" in out["provenance"]
+
+
+def test_mwv_not_computed_when_any_glwd_class_present_mangrove_still_reported():
+    out = detectors.mixed_water_vegetation(load_config(), _mwv_bands([0.3, 0.0], [0, 17]),
+                                           np.array([True, True]))
+    assert out["status"] == "not_computed" and out["fraction"] is None
+    assert out["mangrove_fraction"].tolist() == pytest.approx([0.3, 0.0])
+    assert out["glwd_evidence"]["classes_present"] == {17: "Palustrine, regularly flooded, non-forested"}
+
+
+def test_open_water_classes_block_exclusion_for_hyacinth():
+    # GLWD 1-7 are lakes/rivers; water hyacinth grows there, so they block too.
+    out = detectors.mixed_water_vegetation(load_config(), _mwv_bands([0.0], [1]), np.array([True]))
+    assert out["status"] == "not_computed"
+
+
+def test_mangrove_nan_on_unknown_pixels():
+    out = detectors.mixed_water_vegetation(load_config(), _mwv_bands([0.5], [0]), np.array([False]))
+    assert np.isnan(out["fraction"][0])

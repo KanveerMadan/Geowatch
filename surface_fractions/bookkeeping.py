@@ -34,6 +34,10 @@ Rules, all from 05_BUILD_MANUAL.md item 21 "Phase A — build rulings":
     2026-09-25, second round).
   - An "excluded" detector (known zero from a dataset) is a real zero and
     does not block the remainder.
+  - Dataset producers (R2: GMW mangrove, provenance "dataset:...") are
+    continuous and do NOT override vegetation / water; only a spectral
+    detection (provenance "detector") does. Overlap is flagged as
+    over-subscription, never rescaled.
 """
 
 from __future__ import annotations
@@ -90,13 +94,19 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
     for name in DETECTOR_FRACTIONS:
         d = detectors[name]
         if d["status"] == "computed":
-            base[name], prov[name] = mask(d["fraction"]), "detector"
+            base[name] = mask(d["fraction"])
+            prov[name] = d.get("provenance", "detector")
         elif d["status"] == "excluded":
             base[name], prov[name] = mask(d["fraction"]), d["provenance"]
         elif smoke_test:
-            base[name] = mask(np.full(known.shape, detector_placeholder_value))
+            # A computed partial (R2: GMW mangrove) is kept; the placeholder
+            # stands in only for the missing part, and still taints the sum.
+            partial = d.get("mangrove_fraction")
+            base[name] = mask((0.0 if partial is None else np.nan_to_num(partial))
+                              + detector_placeholder_value)
             prov[name] = PLACEHOLDER
             substitutions.append({"fraction": name, "value": detector_placeholder_value,
+                                  "kept_computed_part": partial is not None,
                                   "reason": f"detector {d['status']}; smoke test only"})
         else:
             base[name], prov[name] = None, "not_computed"

@@ -62,10 +62,11 @@ def run(aoi_name: str, cfg: dict | None = None) -> dict:
     dets = {"snow_ice": snow}
     if snow["fraction"] is not None:
         snow["fraction"] = np.where(known, snow["fraction"], np.nan).astype(np.float32)
-    for name in ("solar", "mixed_water_vegetation"):
-        dets[name] = detectors.run_detector(name, cfg, features, known, exclusions[name])
+    dets["solar"] = detectors.run_detector("solar", cfg, features, known, exclusions["solar"])
+    # R2: mixed_water_vegetation from datasets (GMW mangrove + GLWD exclusion).
+    dets["mixed_water_vegetation"] = detectors.mixed_water_vegetation(cfg, bands, known)
     legend = cfg["detectors"]["mixed_water_vegetation"]["sub_typing"]["glwd_legend"]
-    mwv_sub = detectors.sub_type(dets["mixed_water_vegetation"]["fraction"],
+    mwv_sub = detectors.sub_type(dets["mixed_water_vegetation"]["mangrove_fraction"],
                                  bands["gmw_cov"], bands["glwd_class"], legend)
 
     # Part 4
@@ -107,7 +108,8 @@ def run(aoi_name: str, cfg: dict | None = None) -> dict:
             "built_disagreement": b["disagreement"],
         },
         "flags": fr["flags"],
-        "detectors": {n: {k: v for k, v in d.items() if k != "fraction"}
+        "detectors": {n: {k: v for k, v in d.items()
+                          if k not in ("fraction", "mangrove_fraction")}
                       for n, d in dets.items()},
         "mixed_water_vegetation_sub_type": {k: v for k, v in mwv_sub.items() if k != "labels"},
         "dataset_context": detectors.dataset_context(bands, legend),
@@ -118,6 +120,7 @@ def run(aoi_name: str, cfg: dict | None = None) -> dict:
     }
 
     layers = {n: fr["per_pixel"][n] for n in bookkeeping.EIGHT}
+    layers["mixed_water_vegetation_mangrove"] = dets["mixed_water_vegetation"]["mangrove_fraction"]
     layers.update({n: fr["per_pixel"][n] for n in derived_names + ("sum_excess",)})
     layers["known"] = known.astype(np.float32)
     layers.update({f"occluded_{k}": v.astype(np.float32) for k, v in occ["pixels"].items()})

@@ -234,3 +234,34 @@ def test_built_wins_over_solar_on_footprints():
     assert p["solar"].tolist() == pytest.approx([1.0, 0.7, 0.0])
     assert r["flags"]["solar_yielded_to_built"]["pixels"] == 2
     np.testing.assert_allclose(sum(p[n] for n in bk.EIGHT), 1 + p["sum_excess"], atol=1e-5)
+
+
+# ── R2: dataset producers are continuous and never override ─────────────────
+
+def test_gmw_dataset_fraction_does_not_zero_vegetation_or_water():
+    known = np.ones(1, dtype=bool)
+    r = bk.compute_fractions(known, np.zeros(1, np.float32), regs([0.4], [0.3], [0.5], known),
+                             {"snow_ice": _det("excluded", [0.0], "excluded:x"),
+                              "solar": _det("excluded", [0.0], "excluded:y"),
+                              "mixed_water_vegetation": _det("computed", [0.5],
+                                                             "dataset:GMW+excluded:GLWD")},
+                             smoke_test=False, detector_placeholder_value=0.0)
+    p = r["per_pixel"]
+    assert p["vegetation"][0] == pytest.approx(0.4) and p["water"][0] == pytest.approx(0.3)
+    assert p["mixed_water_vegetation"][0] == pytest.approx(0.5)
+    assert r["flags"]["nonhard_oversubscribed"]["pixels"] == 1      # 1.2 > 1, flagged
+    assert r["precedence"]["detected_pixels"] == 0
+
+
+def test_smoke_keeps_mangrove_and_placeholders_only_the_rest():
+    known = np.ones(1, dtype=bool)
+    mwv = {"status": "not_computed", "fraction": None,
+           "mangrove_fraction": np.array([0.3], np.float32)}
+    r = bk.compute_fractions(known, np.zeros(1, np.float32), regs([0.1], [0.1], [0.5], known),
+                             {"snow_ice": _det("excluded", [0.0], "excluded:x"),
+                              "solar": _det("excluded", [0.0], "excluded:y"),
+                              "mixed_water_vegetation": mwv},
+                             smoke_test=True, detector_placeholder_value=0.0)
+    assert r["per_pixel"]["mixed_water_vegetation"][0] == pytest.approx(0.3)
+    assert r["fractions"]["mixed_water_vegetation"]["placeholder_tainted"]
+    assert r["substitutions"][0]["kept_computed_part"] is True

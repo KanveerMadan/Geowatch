@@ -152,9 +152,21 @@ detectors:
       index: {value: null, source: null, status: UNSET}
       index_min: {value: null, source: null, status: UNSET}
   mixed_water_vegetation:
+    # R2 (2026-09-25, third round). Two components per AOI:
+    #   mangrove     -- Global Mangrove Watch coverage (datasets.gmw), kept
+    #                   CONTINUOUS; no 1.0 override of vegetation / water.
+    #   non_mangrove -- "excluded" if GLWD shows no wetland class of ANY kind
+    #                   in the AOI, else not_computed (remainder blocked).
+    # "Any kind" = every non-Dryland GLWD class, 1-33: water hyacinth grows
+    # on the lakes and rivers GLWD maps as classes 1-7. GLWD over-calls
+    # wetland, so "none at all" is a conservative exclusion.
+    mangrove_producer: gmw
+    non_mangrove_exclusion:
+      dataset: glwd_main_class
+      blocking_classes: {from: 1, to: 33}
     thresholds:
-      # No verified single spectral criterion covering wetlands, mangroves,
-      # mudflats/tidal zones and water hyacinth as of 2026-09-25.
+      # Spectral criterion for the NON-mangrove component: none verified as
+      # of 2026-09-25.
       criterion: {value: null, source: null, status: UNSET}
     sub_typing:
       # Applied only where the detector fires. GMW first (vector,
