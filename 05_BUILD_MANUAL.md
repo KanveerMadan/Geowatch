@@ -1331,6 +1331,17 @@ they are recorded here so the code has a written source.*
   `geowatch.surface_fractions.phase_a/2`. `labelling.tiles.save_frame()`
   writes the frame with run metadata (sampler seed, stratum rule, guide
   version, config SHA-256, git HEAD) and never overwrites.
+- **Measurement A — imagery inventory** *(2026-09-25; measurement, no
+  status change)*: `experiments/item21_sites/results/imagery_inventory.md`.
+  104 candidate scenes ≤ 2 m across the 8 sites (OpenAerialMap, Maxar Open
+  Data, recorded city sources), each with its catalogue acquisition time
+  (on-the-hour OAM times flagged as date-only), resolution, licence and
+  Sentinel-2 L2A clear-scene counts. **No source chosen.** Kibera's pre-flood
+  Maxar scene reproduces the site list's 2 / 4 / 9. Flags: OAM lists
+  Cajamarquilla as CC-BY 4.0 while the site list says "no licence"; Maxar
+  Kenya acquisition collections say `proprietary` under a CC-BY-NC event;
+  neither Cape Town's image service nor Rio IPP's publishes an acquisition
+  time.
 
 ---
 

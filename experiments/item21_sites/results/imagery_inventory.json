@@ -1,0 +1,2619 @@
+{
+ "generated_utc": "2026-09-25T05:46:11.949835Z",
+ "search_bboxes": {
+  "cape_town": [
+   18.3,
+   -34.2,
+   18.95,
+   -33.7
+  ],
+  "lima": [
+   -77.2,
+   -12.3,
+   -76.7,
+   -11.75
+  ],
+  "karachi": [
+   66.85,
+   24.75,
+   67.35,
+   25.1
+  ],
+  "monrovia": [
+   -10.85,
+   6.23,
+   -10.7,
+   6.37
+  ],
+  "marrakech": [
+   -8.1,
+   31.55,
+   -7.9,
+   31.7
+  ],
+  "makoko": [
+   3.37,
+   6.47,
+   3.42,
+   6.52
+  ],
+  "kibera": [
+   36.76,
+   -1.33,
+   36.81,
+   -1.29
+  ],
+  "rocinha": [
+   -43.262,
+   -22.995,
+   -43.238,
+   -22.978
+  ]
+ },
+ "maxar_events_scanned": 55,
+ "sites": {
+  "cape_town": {
+   "role": "training",
+   "scenes": [
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "6939920491e1cc75b4a05d2b",
+     "title": "Khayamandi Drone Imagery",
+     "provider": "Integrated Aerial Systems",
+     "platform": "uav",
+     "sensor": "DJI Matrice 4E",
+     "acquisition_start_utc": "2025-12-01T11:00:00.000Z",
+     "acquisition_end_utc": "2025-12-01T11:00:00.000Z",
+     "resolution_m": 0.032089788204589055,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      18.832649,
+      -33.928066,
+      18.85298,
+      -33.911417
+     ],
+     "date_for_s2": "2025-12-01",
+     "s2": {
+      "clear_scenes_pm30": 12,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 24,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "recorded (City of Cape Town)",
+     "title": "City of Cape Town aerial imagery, 'Aerial Imagery 2026Jan'",
+     "acquisition": "2026-01 (month only, as recorded)",
+     "time_utc": null,
+     "resolution_m": 0.05,
+     "licence": "City of Cape Town: 'no restrictions on the digital file for non-commercial purposes' (as recorded 2026-09-24; not re-verified 2026-09-25)",
+     "footprint_bbox": null,
+     "date_for_s2": "2026-01-15",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 15,
+      "clear_scenes_pm90": 23,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "City of Cape Town image service",
+     "title": "City of Cape Town aerial imagery, 'Aerial Imagery 2025Jan'",
+     "acquisition": "2025-01 (month only, from the service name)",
+     "time_utc": null,
+     "resolution_m": null,
+     "licence": "same portal and terms as 2026Jan (not separately verified)",
+     "footprint_bbox": null,
+     "date_for_s2": "2025-01-15",
+     "s2": {
+      "clear_scenes_pm30": 6,
+      "clear_scenes_pm60": 10,
+      "clear_scenes_pm90": 15,
+      "nearest_clear_gap_days": 4,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    }
+   ]
+  },
+  "lima": {
+   "role": "training",
+   "scenes": [
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "686df2c05857d50b70e1fa3a",
+     "title": "Santa_Anita_-_Ate",
+     "provider": "Sencico",
+     "platform": "uav",
+     "sensor": "Matrice 4E",
+     "acquisition_start_utc": "2025-07-08T05:00:00.000Z",
+     "acquisition_end_utc": "2025-07-09T04:32:47.293Z",
+     "resolution_m": 0.03254130000000243,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -76.973885,
+      -12.064423,
+      -76.971059,
+      -12.061634
+     ],
+     "date_for_s2": "2025-07-08",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 0,
+      "clear_scenes_pm90": 3,
+      "nearest_clear_gap_days": 75,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "59e62b943d6412ef7220a2eb",
+     "title": "Complejo Arqueol\u00f3gico Mateo Salado",
+     "provider": "IntelligentDrone",
+     "platform": "uav",
+     "sensor": "Zemusse X3",
+     "acquisition_start_utc": "2017-05-21T05:00:00.000Z",
+     "acquisition_end_utc": "2017-05-24T04:59:59.000Z",
+     "resolution_m": 0.03336633774360512,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -77.06695239957963,
+      -12.068327529522795,
+      -77.05945200943574,
+      -12.062791441458875
+     ],
+     "date_for_s2": "2017-05-21",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 1,
+      "clear_scenes_pm90": 2,
+      "nearest_clear_gap_days": 17,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "687336e1bef211f37006156a",
+     "title": "Sencico_25_07_12",
+     "provider": "Sencico",
+     "platform": "uav",
+     "sensor": "Matrice 4T",
+     "acquisition_start_utc": "2025-07-08T05:00:00.000Z",
+     "acquisition_end_utc": "2025-07-09T04:35:31.720Z",
+     "resolution_m": 0.03408040000000145,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -77.007756,
+      -12.086198,
+      -77.00562,
+      -12.0843
+     ],
+     "date_for_s2": "2025-07-08",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 0,
+      "clear_scenes_pm90": 3,
+      "nearest_clear_gap_days": 75,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "6a56980bef1a469dcf237ec8",
+     "title": "RRD Caritas Peru",
+     "provider": "Caritas Peru",
+     "platform": "uav",
+     "sensor": "DJI Mini 4 Pro",
+     "acquisition_start_utc": "2025-01-05T06:00:00.000Z",
+     "acquisition_end_utc": "2025-01-05T07:00:00.000Z",
+     "resolution_m": 0.036344223169463445,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -77.015447,
+      -12.072241,
+      -77.01067,
+      -12.06547
+     ],
+     "date_for_s2": "2025-01-05",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 2,
+      "clear_scenes_pm90": 9,
+      "nearest_clear_gap_days": 9,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "6a569856ef1a469dcf237ff3",
+     "title": "RRD Caritas Peru",
+     "provider": "Caritas Peru",
+     "platform": "uav",
+     "sensor": "DJI Mini 4 Pro",
+     "acquisition_start_utc": "2025-01-05T06:00:00.000Z",
+     "acquisition_end_utc": "2025-01-05T07:00:00.000Z",
+     "resolution_m": 0.03784669109352052,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -77.021617,
+      -12.069562,
+      -77.017343,
+      -12.062724
+     ],
+     "date_for_s2": "2025-01-05",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 2,
+      "clear_scenes_pm90": 9,
+      "nearest_clear_gap_days": 9,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "687342acbef211f370061c5a",
+     "title": "Sencico_Thermal_25_07_12",
+     "provider": "Sencico",
+     "platform": "uav",
+     "sensor": "Matrice 4T",
+     "acquisition_start_utc": "2025-07-12T05:00:00.000Z",
+     "acquisition_end_utc": "2025-07-13T04:21:02.797Z",
+     "resolution_m": 0.04644290000000979,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -77.007589,
+      -12.08614,
+      -77.005586,
+      -12.084211
+     ],
+     "date_for_s2": "2025-07-12",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 0,
+      "clear_scenes_pm90": 2,
+      "nearest_clear_gap_days": 79,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "66b585f87f12df0001cdd080",
+     "title": "Yanacoto",
+     "provider": "Openstreetmap Per\u00fa",
+     "platform": "uav",
+     "sensor": "CMOS 48 MP",
+     "acquisition_start_utc": "2024-08-08T05:00:00.000Z",
+     "acquisition_end_utc": "2024-08-09T00:44:09.476Z",
+     "resolution_m": 0.04999543460398,
+     "licence": "CC BY-SA 4.0",
+     "footprint_bbox": [
+      -76.737451,
+      -11.940033,
+      -76.735935,
+      -11.936096
+     ],
+     "date_for_s2": "2024-08-08",
+     "s2": {
+      "clear_scenes_pm30": 11,
+      "clear_scenes_pm60": 18,
+      "clear_scenes_pm90": 26,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "66d43b4411a1ae0001f7b07d",
+     "title": "Sector Guadalupe - Quebrada Quirio",
+     "provider": "Openstreetmap Per\u00fa",
+     "platform": "uav",
+     "sensor": "DJI FC8482",
+     "acquisition_start_utc": "2024-06-17T06:00:48.000Z",
+     "acquisition_end_utc": "2024-06-17T07:00:48.000Z",
+     "resolution_m": 0.049998423888996835,
+     "licence": "CC BY-SA 4.0",
+     "footprint_bbox": [
+      -76.72369,
+      -11.929416,
+      -76.717789,
+      -11.922563
+     ],
+     "date_for_s2": "2024-06-17",
+     "s2": {
+      "clear_scenes_pm30": 12,
+      "clear_scenes_pm60": 21,
+      "clear_scenes_pm90": 27,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "66bfa2f398a7740001cf3d6c",
+     "title": "Posible sitio arqueol\u00f3gico Yanacocto",
+     "provider": "Openstreetmap Per\u00fa",
+     "platform": "uav",
+     "sensor": "CMOS 48 MP",
+     "acquisition_start_utc": "2024-08-16T05:00:00.000Z",
+     "acquisition_end_utc": "2024-08-16T16:41:01.568Z",
+     "resolution_m": 0.04999878252393179,
+     "licence": "CC BY-SA 4.0",
+     "footprint_bbox": [
+      -76.729335,
+      -11.950062,
+      -76.725676,
+      -11.946455
+     ],
+     "date_for_s2": "2024-08-16",
+     "s2": {
+      "clear_scenes_pm30": 11,
+      "clear_scenes_pm60": 18,
+      "clear_scenes_pm90": 26,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5fbb5324fb6d580005a5672f",
+     "title": "Mangomarca 2",
+     "provider": "Asociaci\u00f3n Ecotur\u00edstica Lomas de Mangomarca",
+     "platform": "uav",
+     "sensor": "Phantom 4 Pro",
+     "acquisition_start_utc": "2020-02-16T05:00:00.000Z",
+     "acquisition_end_utc": "2020-02-16T06:00:00.000Z",
+     "resolution_m": 0.0529674000001,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -76.977085,
+      -11.99451,
+      -76.970423,
+      -11.989591
+     ],
+     "date_for_s2": "2020-02-16",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 4,
+      "clear_scenes_pm90": 7,
+      "nearest_clear_gap_days": 24,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5fae0e941d7a180007e702d8",
+     "title": "Mangomarca 1",
+     "provider": "Asociaci\u00f3n Ecotur\u00edstica Lomas de Mangomarca",
+     "platform": "uav",
+     "sensor": "Phantom 4 Pro",
+     "acquisition_start_utc": "2020-02-16T05:00:00.000Z",
+     "acquisition_end_utc": "2020-02-16T06:00:00.000Z",
+     "resolution_m": 0.0532321,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -76.9695,
+      -12.003736,
+      -76.962629,
+      -11.998348
+     ],
+     "date_for_s2": "2020-02-16",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 4,
+      "clear_scenes_pm90": 7,
+      "nearest_clear_gap_days": 24,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "66d40df911a1ae0001f7b076",
+     "title": "Hospital V\u00edctor Larco Herrera - 22/6/2024",
+     "provider": "Openstreetmap Per\u00fa",
+     "platform": "uav",
+     "sensor": "DJI FC8482",
+     "acquisition_start_utc": "2024-06-22T05:44:11.000Z",
+     "acquisition_end_utc": "2024-06-22T06:44:11.000Z",
+     "resolution_m": 0.05473754280288542,
+     "licence": "CC BY-SA 4.0",
+     "footprint_bbox": [
+      -77.068795,
+      -12.100561,
+      -77.062355,
+      -12.094003
+     ],
+     "date_for_s2": "2024-06-22",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 1,
+      "clear_scenes_pm90": 5,
+      "nearest_clear_gap_days": 54,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "67dce2d9d1f1285c00fcb196",
+     "title": "UNI OSM+GRD",
+     "provider": "Openstreetmap Per\u00fa",
+     "platform": "uav",
+     "sensor": "DJI FC8482",
+     "acquisition_start_utc": "2025-03-17T18:33:49.000Z",
+     "acquisition_end_utc": "2025-03-17T19:33:49.000Z",
+     "resolution_m": 0.055789475456667736,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -77.053129,
+      -12.027754,
+      -77.044621,
+      -12.012716
+     ],
+     "date_for_s2": "2025-03-17",
+     "s2": {
+      "clear_scenes_pm30": 9,
+      "clear_scenes_pm60": 10,
+      "clear_scenes_pm90": 12,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5fa4dedd73fd1d000512b0d9",
+     "title": "Santuario de las Vizcachas",
+     "provider": "Geolomera",
+     "platform": "uav",
+     "sensor": "Phantom 4 Pro",
+     "acquisition_start_utc": "2019-12-19T05:00:00.000Z",
+     "acquisition_end_utc": "2019-12-19T06:00:00.000Z",
+     "resolution_m": 0.0638958,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -76.938545,
+      -12.146667,
+      -76.927117,
+      -12.136668
+     ],
+     "date_for_s2": "2019-12-19",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 2,
+      "clear_scenes_pm90": 3,
+      "nearest_clear_gap_days": 18,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5dae503f73c69f000530ee6c",
+     "title": "school",
+     "provider": "Chayi",
+     "platform": "uav",
+     "sensor": "Phantom4",
+     "acquisition_start_utc": "2019-10-21T05:00:00.000Z",
+     "acquisition_end_utc": "2019-10-22T00:39:29.536Z",
+     "resolution_m": 0.0727220605548,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -76.937397,
+      -12.211529,
+      -76.935088,
+      -12.209054
+     ],
+     "date_for_s2": "2019-10-21",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 1,
+      "clear_scenes_pm90": 2,
+      "nearest_clear_gap_days": 7,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "59e62b8f3d6412ef72209f61",
+     "title": "Cajamarquilla, Peru",
+     "provider": "Spacedat.com",
+     "platform": "satellite",
+     "sensor": "Unknown",
+     "acquisition_start_utc": "2017-03-19T23:00:00.000Z",
+     "acquisition_end_utc": "2017-03-20T05:21:17.327Z",
+     "resolution_m": 0.07745,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -76.90125907894799,
+      -11.985206962436177,
+      -76.88762551533276,
+      -11.961248577574876
+     ],
+     "date_for_s2": "2017-03-19",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 1,
+      "clear_scenes_pm90": 1,
+      "nearest_clear_gap_days": 7,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "601c75ae5ed94000077fc5ed",
+     "title": "Candelaria",
+     "provider": "Proyecto EbA LomAS",
+     "platform": "uav",
+     "sensor": "Phantom 4 Pro",
+     "acquisition_start_utc": "2019-12-19T15:30:00.000Z",
+     "acquisition_end_utc": "2019-12-19T16:00:00.000Z",
+     "resolution_m": 0.0795826,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -76.932482,
+      -12.1317,
+      -76.918741,
+      -12.12045
+     ],
+     "date_for_s2": "2019-12-19",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 2,
+      "clear_scenes_pm90": 3,
+      "nearest_clear_gap_days": 18,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "59e62b8f3d6412ef72209f5b",
+     "title": "Pampa Pacta, Punta Hermosa, Peru",
+     "provider": "Spacedat",
+     "platform": "uav",
+     "sensor": "Unknown",
+     "acquisition_start_utc": "2017-03-19T23:00:00.000Z",
+     "acquisition_end_utc": "2017-03-20T11:16:00.371Z",
+     "resolution_m": 0.0844,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -76.77739884025227,
+      -12.304749174575097,
+      -76.75990590821762,
+      -12.28942030806134
+     ],
+     "date_for_s2": "2017-03-19",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 1,
+      "clear_scenes_pm90": 1,
+      "nearest_clear_gap_days": 7,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    }
+   ]
+  },
+  "karachi": {
+   "role": "training",
+   "scenes": [
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "pakistan-flooding22",
+     "id": "10300100CFA70700",
+     "title": "Pakistan Flooding",
+     "platform": "WV02",
+     "acquisition_start_utc": "2022-03-29 06:26:20Z",
+     "acquisition_end_utc": "2022-03-29 06:26:24Z",
+     "resolution_m": 0.53,
+     "sun_elevation_deg": 62.7,
+     "sun_azimuth_deg": 139.3,
+     "off_nadir_deg": 21.9,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      67.07469121594677,
+      24.72937,
+      67.26232172253643,
+      25.084355
+     ],
+     "date_for_s2": "2022-03-29",
+     "s2": {
+      "clear_scenes_pm30": 23,
+      "clear_scenes_pm60": 41,
+      "clear_scenes_pm90": 55,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "pakistan-flooding22",
+     "id": "10300100D13F6500",
+     "title": "Pakistan Flooding",
+     "platform": "WV02",
+     "acquisition_start_utc": "2022-03-29 06:26:33Z",
+     "acquisition_end_utc": "2022-03-29 06:26:37Z",
+     "resolution_m": 0.57,
+     "sun_elevation_deg": 62.6,
+     "sun_azimuth_deg": 139.1,
+     "off_nadir_deg": 27.0,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      66.90132225441228,
+      24.72937,
+      67.09814039108629,
+      25.084355
+     ],
+     "date_for_s2": "2022-03-29",
+     "s2": {
+      "clear_scenes_pm30": 23,
+      "clear_scenes_pm60": 44,
+      "clear_scenes_pm90": 58,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "pakistan-flooding22",
+     "id": "10300100D404DA00",
+     "title": "Pakistan Flooding",
+     "platform": "WV02",
+     "acquisition_start_utc": "2022-06-24 06:22:29Z",
+     "acquisition_end_utc": "2022-06-24 06:22:32Z",
+     "resolution_m": 0.61,
+     "sun_elevation_deg": 73.6,
+     "sun_azimuth_deg": 91.6,
+     "off_nadir_deg": 30.8,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      66.94299476690603,
+      24.72937,
+      67.14099275339632,
+      25.084355
+     ],
+     "date_for_s2": "2022-06-24",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 34,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "pakistan-flooding22",
+     "id": "10300100D5339F00",
+     "title": "Pakistan Flooding",
+     "platform": "WV02",
+     "acquisition_start_utc": "2022-06-24 06:22:17Z",
+     "acquisition_end_utc": "2022-06-24 06:22:20Z",
+     "resolution_m": 0.57,
+     "sun_elevation_deg": 73.4,
+     "sun_azimuth_deg": 91.4,
+     "off_nadir_deg": 27.0,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      66.854553,
+      24.74739000630365,
+      66.96698401969286,
+      25.084355
+     ],
+     "date_for_s2": "2022-06-24",
+     "s2": {
+      "clear_scenes_pm30": 3,
+      "clear_scenes_pm60": 8,
+      "clear_scenes_pm90": 15,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "pakistan-flooding22",
+     "id": "1040010073509D00",
+     "title": "Pakistan Flooding",
+     "platform": "WV03",
+     "acquisition_start_utc": "2022-03-26 06:12:36Z",
+     "acquisition_end_utc": "2022-03-26 06:12:41Z",
+     "resolution_m": 0.34,
+     "sun_elevation_deg": 59.6,
+     "sun_azimuth_deg": 135.0,
+     "off_nadir_deg": 20.0,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      67.24219176018889,
+      24.72937,
+      67.340698,
+      25.084355
+     ],
+     "date_for_s2": "2022-03-26",
+     "s2": {
+      "clear_scenes_pm30": 22,
+      "clear_scenes_pm60": 42,
+      "clear_scenes_pm90": 53,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "pakistan-flooding22",
+     "id": "105001002DCAC300",
+     "title": "Pakistan Flooding",
+     "platform": "GE01",
+     "acquisition_start_utc": "2022-08-11 06:06:41Z",
+     "acquisition_end_utc": "2022-08-11 06:06:43Z",
+     "resolution_m": 0.5,
+     "sun_elevation_deg": 66.7,
+     "sun_azimuth_deg": 109.8,
+     "off_nadir_deg": 27.1,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      66.83417072734,
+      24.848349841411956,
+      67.01492131309027,
+      24.984578989953157
+     ],
+     "date_for_s2": "2022-08-11",
+     "s2": {
+      "clear_scenes_pm30": 2,
+      "clear_scenes_pm60": 6,
+      "clear_scenes_pm90": 15,
+      "nearest_clear_gap_days": 23,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    }
+   ]
+  },
+  "monrovia": {
+   "role": "training",
+   "scenes": [
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5b8182287343a98c3f347d1c",
+     "title": "Monrovia Clara 20180822",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "DJI Phantom",
+     "acquisition_start_utc": "2018-08-22T10:00:00.000Z",
+     "acquisition_end_utc": "2018-08-22T11:00:00.000Z",
+     "resolution_m": 0.04,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.801087,
+      6.324777,
+      -10.791751,
+      6.331315
+     ],
+     "date_for_s2": "2018-08-22",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 0,
+      "clear_scenes_pm90": 0,
+      "nearest_clear_gap_days": null,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5b83a621c8e197000a934041",
+     "title": "Monrovia Doe 20180821",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "DJI Phantom",
+     "acquisition_start_utc": "2018-08-21T10:00:00.000Z",
+     "acquisition_end_utc": "2018-08-21T11:00:00.000Z",
+     "resolution_m": 0.042,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.792193,
+      6.326313,
+      -10.781254,
+      6.334978
+     ],
+     "date_for_s2": "2018-08-21",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 0,
+      "clear_scenes_pm90": 0,
+      "nearest_clear_gap_days": null,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "65e4bdfce6f8d4000128235d",
+     "title": "2024-02-29_New_Kru_Town_Monrovia_Mavic_flights_1-5",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "Mavic 2",
+     "acquisition_start_utc": "2024-02-27T14:00:00.000Z",
+     "acquisition_end_utc": "2024-02-29T17:00:00.000Z",
+     "resolution_m": 0.049849342656685995,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.798219,
+      6.362479,
+      -10.786526,
+      6.379217
+     ],
+     "date_for_s2": "2024-02-27",
+     "s2": {
+      "clear_scenes_pm30": 4,
+      "clear_scenes_pm60": 8,
+      "clear_scenes_pm90": 12,
+      "nearest_clear_gap_days": 15,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5dee77e79c3b1700059a3593",
+     "title": "Duala Market",
+     "provider": "Uhurulabs",
+     "platform": "uav",
+     "sensor": "SenseFly S.O.D.A",
+     "acquisition_start_utc": "2019-10-02T11:00:00.000Z",
+     "acquisition_end_utc": "2019-10-02T14:00:00.000Z",
+     "resolution_m": 0.04987,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.815073,
+      6.318615,
+      -10.768838,
+      6.399833
+     ],
+     "date_for_s2": "2019-10-02",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 1,
+      "clear_scenes_pm90": 4,
+      "nearest_clear_gap_days": 54,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5e53faa7906c590005ecc5bb",
+     "title": "Central Monrovia 1",
+     "provider": "Uhurulabs",
+     "platform": "uav",
+     "sensor": "S.O.D.A",
+     "acquisition_start_utc": "2020-02-23T21:00:00.000Z",
+     "acquisition_end_utc": "2020-02-24T15:53:46.449Z",
+     "resolution_m": 0.0499998525317,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.804636,
+      6.321739,
+      -10.781007,
+      6.360141
+     ],
+     "date_for_s2": "2020-02-23",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 14,
+      "clear_scenes_pm90": 16,
+      "nearest_clear_gap_days": 5,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "65c4dcd4ed310f0001613075",
+     "title": "Monrovia gapfill",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "Hojang",
+     "acquisition_start_utc": "2021-05-31T21:00:00.000Z",
+     "acquisition_end_utc": "2021-06-19T22:00:00.000Z",
+     "resolution_m": 0.049999959366593606,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.77999,
+      6.292569,
+      -10.709642,
+      6.382386
+     ],
+     "date_for_s2": "2021-05-31",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 2,
+      "clear_scenes_pm90": 4,
+      "nearest_clear_gap_days": 17,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "63247b059ee90900078a70ff",
+     "title": "Central Monrovia Orthomosaic",
+     "provider": "World Bank (UAV images by HOT and Uhurulabs)",
+     "platform": "uav",
+     "sensor": "SenseFly eBee",
+     "acquisition_start_utc": "2020-01-24T08:00:00.000Z",
+     "acquisition_end_utc": "2020-01-24T15:00:00.000Z",
+     "resolution_m": 0.05,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.818196,
+      6.300739,
+      -10.792366,
+      6.323327
+     ],
+     "date_for_s2": "2020-01-24",
+     "s2": {
+      "clear_scenes_pm30": 12,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 20,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5e0ef7c515d478000501ea61",
+     "title": "Monrovia Red Light Market",
+     "provider": "Uhurulabs",
+     "platform": "uav",
+     "sensor": "S.O.D.A",
+     "acquisition_start_utc": "2019-12-09T21:00:00.000Z",
+     "acquisition_end_utc": "2019-12-09T22:00:00.000Z",
+     "resolution_m": 0.05,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.712754,
+      6.267924,
+      -10.665387,
+      6.319074
+     ],
+     "date_for_s2": "2019-12-09",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 14,
+      "clear_scenes_pm90": 17,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5b75f9366175253ca55dac59",
+     "title": "Monrovia FT03 Ortho",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "DJI Phantom",
+     "acquisition_start_utc": "2018-08-16T10:00:00.000Z",
+     "acquisition_end_utc": "2018-08-16T11:00:00.000Z",
+     "resolution_m": 0.05,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.70726,
+      6.250419,
+      -10.704171,
+      6.253982
+     ],
+     "date_for_s2": "2018-08-16",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 0,
+      "clear_scenes_pm90": 0,
+      "nearest_clear_gap_days": null,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5e6a8cdb5abd57000732847c",
+     "title": "Monrovia Pt 4 of 4",
+     "provider": "Uhurulabs",
+     "platform": "uav",
+     "sensor": "S.O.D.A",
+     "acquisition_start_utc": "2020-02-23T21:00:00.000Z",
+     "acquisition_end_utc": "2020-02-24T15:53:46.449Z",
+     "resolution_m": 0.05042,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.782467,
+      6.335992,
+      -10.722006,
+      6.413182
+     ],
+     "date_for_s2": "2020-02-23",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 14,
+      "clear_scenes_pm90": 16,
+      "nearest_clear_gap_days": 5,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "65c4f27d499b4d000186ee77",
+     "title": "Monrovia gapfill 2",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "Ebee",
+     "acquisition_start_utc": "2020-01-19T21:00:00.000Z",
+     "acquisition_end_utc": "2020-01-19T21:00:00.000Z",
+     "resolution_m": 0.05056000000000005,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.789895,
+      6.267423,
+      -10.743618,
+      6.295053
+     ],
+     "date_for_s2": "2020-01-19",
+     "s2": {
+      "clear_scenes_pm30": 13,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 20,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5e679949e82eb700055028ca",
+     "title": "Monrovia Pt 3 of 4",
+     "provider": "Uhurulabs",
+     "platform": "uav",
+     "sensor": "S.O.D.A",
+     "acquisition_start_utc": "2020-02-23T21:00:00.000Z",
+     "acquisition_end_utc": "2020-02-24T15:53:46.449Z",
+     "resolution_m": 0.05074,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.816227,
+      6.312873,
+      -10.742624,
+      6.38221
+     ],
+     "date_for_s2": "2020-02-23",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 14,
+      "clear_scenes_pm90": 16,
+      "nearest_clear_gap_days": 5,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5e55b345642d040007b7c573",
+     "title": "Central Monrovia 2",
+     "provider": "Uhurulabs",
+     "platform": "uav",
+     "sensor": "S.O.D.A",
+     "acquisition_start_utc": "2020-02-23T21:00:00.000Z",
+     "acquisition_end_utc": "2020-02-24T15:53:46.449Z",
+     "resolution_m": 0.05077,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.818283,
+      6.268973,
+      -10.740597,
+      6.331473
+     ],
+     "date_for_s2": "2020-02-23",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 15,
+      "clear_scenes_pm90": 20,
+      "nearest_clear_gap_days": 5,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5e557ce2642d040007b7c56f",
+     "title": "Central Monrovia 2",
+     "provider": "Uhurulabs",
+     "platform": "uav",
+     "sensor": "S.O.D.A",
+     "acquisition_start_utc": "2020-02-23T21:00:00.000Z",
+     "acquisition_end_utc": "2020-02-24T15:53:46.449Z",
+     "resolution_m": 0.05077,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.818283,
+      6.268973,
+      -10.740597,
+      6.331473
+     ],
+     "date_for_s2": "2020-02-23",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 15,
+      "clear_scenes_pm90": 20,
+      "nearest_clear_gap_days": 5,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "65c4f013499b4d000186ee73",
+     "title": "Monrovia gapfill 2",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "Ebee",
+     "acquisition_start_utc": "2020-01-19T21:00:00.000Z",
+     "acquisition_end_utc": "2020-01-19T21:00:00.000Z",
+     "resolution_m": 0.05092000000000039,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.768096,
+      6.292335,
+      -10.743633,
+      6.316607
+     ],
+     "date_for_s2": "2020-01-19",
+     "s2": {
+      "clear_scenes_pm30": 13,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 20,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "64d4eaba19cb3a000147a604",
+     "title": "Monrovia",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "Mini2",
+     "acquisition_start_utc": "2023-08-09T22:00:00.000Z",
+     "acquisition_end_utc": "2023-08-10T09:54:23.000Z",
+     "resolution_m": 0.05103999999999995,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.745403,
+      6.216764,
+      -10.63364,
+      6.273035
+     ],
+     "date_for_s2": "2023-08-09",
+     "s2": {
+      "clear_scenes_pm30": 1,
+      "clear_scenes_pm60": 1,
+      "clear_scenes_pm90": 1,
+      "nearest_clear_gap_days": 3,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5e6941c0ce171e0005d341f3",
+     "title": "Monrovia Pt 1 of 4",
+     "provider": "Uhurulabs",
+     "platform": "uav",
+     "sensor": "S.O.D.A",
+     "acquisition_start_utc": "2020-02-23T21:00:00.000Z",
+     "acquisition_end_utc": "2020-02-24T15:53:46.449Z",
+     "resolution_m": 0.05104,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.745403,
+      6.216764,
+      -10.63364,
+      6.273035
+     ],
+     "date_for_s2": "2020-02-23",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 15,
+      "clear_scenes_pm90": 20,
+      "nearest_clear_gap_days": 5,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "65c4f779499b4d000186ee78",
+     "title": "Monrovia gapfill 2",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "Ebee",
+     "acquisition_start_utc": "2020-01-19T21:00:00.000Z",
+     "acquisition_end_utc": "2020-01-19T21:00:00.000Z",
+     "resolution_m": 0.05104999999999953,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.724175,
+      6.26976,
+      -10.710208,
+      6.295409
+     ],
+     "date_for_s2": "2020-01-19",
+     "s2": {
+      "clear_scenes_pm30": 13,
+      "clear_scenes_pm60": 17,
+      "clear_scenes_pm90": 18,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "65c4f013499b4d000186ee74",
+     "title": "Monrovia gapfill 2",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "Ebee",
+     "acquisition_start_utc": "2020-01-19T21:00:00.000Z",
+     "acquisition_end_utc": "2020-01-19T21:00:00.000Z",
+     "resolution_m": 0.05131000000000038,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.791065,
+      6.291798,
+      -10.765169,
+      6.316967
+     ],
+     "date_for_s2": "2020-01-19",
+     "s2": {
+      "clear_scenes_pm30": 13,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 20,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "65c4f03f499b4d000186ee75",
+     "title": "Monrovia gapfill 2",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "Ebee",
+     "acquisition_start_utc": "2020-01-19T21:00:00.000Z",
+     "acquisition_end_utc": "2020-01-19T21:00:00.000Z",
+     "resolution_m": 0.05164000000000013,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.747063,
+      6.270399,
+      -10.721613,
+      6.294536
+     ],
+     "date_for_s2": "2020-01-19",
+     "s2": {
+      "clear_scenes_pm30": 13,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 20,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5e71be79ccc61e00059aedcc",
+     "title": "Central Monrovia 2",
+     "provider": "Uhurulabs",
+     "platform": "uav",
+     "sensor": "S.O.D.A",
+     "acquisition_start_utc": "2020-02-23T21:00:00.000Z",
+     "acquisition_end_utc": "2020-02-24T15:53:46.449Z",
+     "resolution_m": 0.05258,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.818252,
+      6.293306,
+      -10.791394,
+      6.322313
+     ],
+     "date_for_s2": "2020-02-23",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 15,
+      "clear_scenes_pm90": 20,
+      "nearest_clear_gap_days": 5,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "65c4f080499b4d000186ee76",
+     "title": "Monrovia gapfill 2",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "Ebee",
+     "acquisition_start_utc": "2020-01-19T21:00:00.000Z",
+     "acquisition_end_utc": "2020-01-19T21:00:00.000Z",
+     "resolution_m": 0.053149999999999885,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.820219,
+      6.289994,
+      -10.786946,
+      6.323928
+     ],
+     "date_for_s2": "2020-01-19",
+     "s2": {
+      "clear_scenes_pm30": 13,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 20,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5bcdcf3ab9e5f20005f7da40",
+     "title": "OCA Monrovia - River View Community",
+     "provider": "HOT",
+     "platform": "uav",
+     "sensor": "DJI Phantom",
+     "acquisition_start_utc": "2018-10-05T08:00:00.000Z",
+     "acquisition_end_utc": "2018-10-05T10:00:00.000Z",
+     "resolution_m": 0.0565838807707,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.798206,
+      6.324941,
+      -10.787681,
+      6.334207
+     ],
+     "date_for_s2": "2018-10-05",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 0,
+      "clear_scenes_pm90": 4,
+      "nearest_clear_gap_days": 71,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5c08c36c6918390006b7a8a3",
+     "title": "OCA Monrovia - Hope Community",
+     "provider": "OCA Monrovia, YOTAN",
+     "platform": "uav",
+     "sensor": "DJI Phantom 4",
+     "acquisition_start_utc": "2018-11-21T11:00:00.000Z",
+     "acquisition_end_utc": "2018-11-21T14:00:00.000Z",
+     "resolution_m": 0.0573546017957,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.793238,
+      6.330166,
+      -10.78355,
+      6.339079
+     ],
+     "date_for_s2": "2018-11-21",
+     "s2": {
+      "clear_scenes_pm30": 2,
+      "clear_scenes_pm60": 5,
+      "clear_scenes_pm90": 7,
+      "nearest_clear_gap_days": 24,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "6844c99071853678801bd3e2",
+     "title": "Fahnbulleh Neighborhood-2",
+     "provider": "Lake Piso Group",
+     "platform": "uav",
+     "sensor": "DJI FC3411",
+     "acquisition_start_utc": "2024-12-04T11:38:33.000Z",
+     "acquisition_end_utc": "2024-12-04T12:38:33.000Z",
+     "resolution_m": 0.08002374416303766,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.746245,
+      6.275949,
+      -10.742102,
+      6.279571
+     ],
+     "date_for_s2": "2024-12-04",
+     "s2": {
+      "clear_scenes_pm30": 6,
+      "clear_scenes_pm60": 9,
+      "clear_scenes_pm90": 14,
+      "nearest_clear_gap_days": 6,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "6844c95e71853678801bd3d5",
+     "title": "Fahnbulleh Neighborhood-1",
+     "provider": "Lake Piso Group",
+     "platform": "uav",
+     "sensor": "DJI FC3411",
+     "acquisition_start_utc": "2024-12-02T10:41:07.000Z",
+     "acquisition_end_utc": "2024-12-02T11:41:07.000Z",
+     "resolution_m": 0.08385737341977273,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.745508,
+      6.276511,
+      -10.740855,
+      6.280731
+     ],
+     "date_for_s2": "2024-12-02",
+     "s2": {
+      "clear_scenes_pm30": 5,
+      "clear_scenes_pm60": 9,
+      "clear_scenes_pm90": 13,
+      "nearest_clear_gap_days": 4,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5ec65321e3882d00079e72c1",
+     "title": "Block1_1",
+     "provider": "Uhurulabs",
+     "platform": "satellite",
+     "sensor": "S.O.D.A",
+     "acquisition_start_utc": "2020-05-20T21:00:00.000Z",
+     "acquisition_end_utc": "2020-05-21T09:52:09.908Z",
+     "resolution_m": 0.25565,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -10.745403,
+      6.216765,
+      -10.63364,
+      6.273035
+     ],
+     "date_for_s2": "2020-05-20",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 1,
+      "clear_scenes_pm90": 4,
+      "nearest_clear_gap_days": 37,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    }
+   ]
+  },
+  "marrakech": {
+   "role": "training",
+   "scenes": [
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "64febc27649d390001c47518",
+     "title": "Maxar 1040050057DC8500 Morocco Marrakesh",
+     "provider": "Maxar",
+     "platform": "satellite",
+     "sensor": "WV03",
+     "acquisition_start_utc": "2023-09-10T08:00:00.000Z",
+     "acquisition_end_utc": "2023-09-10T08:30:00.000Z",
+     "resolution_m": 0.30517578125,
+     "licence": "CC BY-NC 4.0",
+     "footprint_bbox": [
+      -8.159276,
+      31.494095,
+      -7.942331,
+      31.769139
+     ],
+     "date_for_s2": "2023-09-10",
+     "s2": {
+      "clear_scenes_pm30": 10,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 28,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "64fca589649d390001c474d7",
+     "title": "Marrakesh Morocco Earthquake Maxar pre-event 10300100EB8B4500",
+     "provider": "MAXAR",
+     "platform": "satellite",
+     "sensor": "WV02",
+     "acquisition_start_utc": "2023-08-28T04:00:00.000Z",
+     "acquisition_end_utc": "2023-08-28T05:00:00.000Z",
+     "resolution_m": 0.30517578125,
+     "licence": "CC BY-NC 4.0",
+     "footprint_bbox": [
+      -8.159276,
+      31.493651,
+      -7.890614,
+      31.678926
+     ],
+     "date_for_s2": "2023-08-28",
+     "s2": {
+      "clear_scenes_pm30": 10,
+      "clear_scenes_pm60": 20,
+      "clear_scenes_pm90": 29,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "64fcf1d3649d390001c474e5",
+     "title": "MAXAR 10300100EBC1A000 Morocco",
+     "provider": "MAXAR",
+     "platform": "satellite",
+     "sensor": "WV02",
+     "acquisition_start_utc": "2023-08-06T15:26:00.000Z",
+     "acquisition_end_utc": "2023-08-06T16:26:00.000Z",
+     "resolution_m": 0.30517578125,
+     "licence": "CC BY-NC 4.0",
+     "footprint_bbox": [
+      -8.159679,
+      31.448546,
+      -7.890614,
+      31.678926
+     ],
+     "date_for_s2": "2023-08-06",
+     "s2": {
+      "clear_scenes_pm30": 11,
+      "clear_scenes_pm60": 21,
+      "clear_scenes_pm90": 27,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "6977722e75ce0a997efb6a45",
+     "title": "Barrage Tamesna",
+     "provider": "LEBSIR",
+     "platform": "satellite",
+     "sensor": "Tamesna",
+     "acquisition_start_utc": "2026-01-25T23:00:00.000Z",
+     "acquisition_end_utc": "2026-01-26T13:42:55.719Z",
+     "resolution_m": 277.98770058383224,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -8.668427,
+      18.968269,
+      11.996573,
+      37.088269
+     ],
+     "date_for_s2": "2026-01-25",
+     "s2": {
+      "clear_scenes_pm30": 7,
+      "clear_scenes_pm60": 18,
+      "clear_scenes_pm90": 25,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "67beee2671cdd57ad5e3bf29",
+     "title": "vitess algerie ",
+     "provider": "Vitesse du vent",
+     "platform": "satellite",
+     "sensor": "EPSG:4326 (WGS 84)",
+     "acquisition_start_utc": "2025-02-25T23:00:00.000Z",
+     "acquisition_end_utc": "2025-02-26T10:23:40.881Z",
+     "resolution_m": 277.98770058383224,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      -8.668427,
+      18.968269,
+      11.996573,
+      37.088269
+     ],
+     "date_for_s2": "2025-02-25",
+     "s2": {
+      "clear_scenes_pm30": 7,
+      "clear_scenes_pm60": 15,
+      "clear_scenes_pm90": 21,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "10300100B33D1000",
+     "title": "Morocco Earthquake",
+     "platform": "WV02",
+     "acquisition_start_utc": "2021-01-27 11:17:50Z",
+     "acquisition_end_utc": "2021-01-27 11:17:53Z",
+     "resolution_m": 0.48,
+     "sun_elevation_deg": 36.0,
+     "sun_azimuth_deg": 154.3,
+     "off_nadir_deg": 10.2,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.082049978233295,
+      31.541543233090746,
+      -7.905082561464488,
+      31.83009447676563
+     ],
+     "date_for_s2": "2021-01-27",
+     "s2": {
+      "clear_scenes_pm30": 9,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 27,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "10300100B53F9800",
+     "title": "Morocco Earthquake",
+     "platform": "WV02",
+     "acquisition_start_utc": "2021-02-23 11:22:14Z",
+     "acquisition_end_utc": "2021-02-23 11:22:17Z",
+     "resolution_m": 0.5,
+     "sun_elevation_deg": 44.2,
+     "sun_azimuth_deg": 150.8,
+     "off_nadir_deg": 15.9,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.0861976363924,
+      31.53726363947048,
+      -7.904154423074969,
+      31.833724129489138
+     ],
+     "date_for_s2": "2021-02-23",
+     "s2": {
+      "clear_scenes_pm30": 10,
+      "clear_scenes_pm60": 16,
+      "clear_scenes_pm90": 27,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "10300100DF7ADD00",
+     "title": "Morocco Earthquake",
+     "platform": "WV02",
+     "acquisition_start_utc": "2023-01-24 11:31:43Z",
+     "acquisition_end_utc": "2023-01-24 11:31:46Z",
+     "resolution_m": 0.49,
+     "sun_elevation_deg": 36.3,
+     "sun_azimuth_deg": 158.5,
+     "off_nadir_deg": 12.5,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.212439178042027,
+      31.53964233484701,
+      -8.03191831599626,
+      31.83293522077814
+     ],
+     "date_for_s2": "2023-01-24",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 14,
+      "clear_scenes_pm90": 25,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "10300100EB8B4500",
+     "title": "Morocco Earthquake",
+     "platform": "WV02",
+     "acquisition_start_utc": "2023-08-28 11:20:57Z",
+     "acquisition_end_utc": "2023-08-28 11:20:58Z",
+     "resolution_m": 0.49,
+     "sun_elevation_deg": 62.6,
+     "sun_azimuth_deg": 138.3,
+     "off_nadir_deg": 14.9,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.120946545101015,
+      31.51267205310281,
+      -7.940375468782825,
+      31.648069376491858
+     ],
+     "date_for_s2": "2023-08-28",
+     "s2": {
+      "clear_scenes_pm30": 10,
+      "clear_scenes_pm60": 20,
+      "clear_scenes_pm90": 29,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "10300100EBC1A000",
+     "title": "Morocco Earthquake",
+     "platform": "WV02",
+     "acquisition_start_utc": "2023-08-06 11:26:38Z",
+     "acquisition_end_utc": "2023-08-06 11:26:40Z",
+     "resolution_m": 0.55,
+     "sun_elevation_deg": 68.1,
+     "sun_azimuth_deg": 128.0,
+     "off_nadir_deg": 25.1,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.128549564922277,
+      31.490877002331633,
+      -7.935156278593802,
+      31.64534916527002
+     ],
+     "date_for_s2": "2023-08-06",
+     "s2": {
+      "clear_scenes_pm30": 11,
+      "clear_scenes_pm60": 21,
+      "clear_scenes_pm90": 27,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "10300500C2F93F00",
+     "title": "Morocco Earthquake",
+     "platform": "WV02",
+     "acquisition_start_utc": "2021-11-16 11:20:18Z",
+     "acquisition_end_utc": "2021-11-16 11:20:21Z",
+     "resolution_m": 0.48,
+     "sun_elevation_deg": 37.8,
+     "sun_azimuth_deg": 162.8,
+     "off_nadir_deg": 12.4,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.247468485603411,
+      31.531739432568056,
+      -8.068104260009543,
+      31.836696224716295
+     ],
+     "date_for_s2": "2021-11-16",
+     "s2": {
+      "clear_scenes_pm30": 10,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 27,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "1040010006B2B200",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2015-01-08 11:12:13Z",
+     "acquisition_end_utc": "2015-01-08 11:12:31Z",
+     "resolution_m": 0.31,
+     "sun_elevation_deg": 32.4,
+     "sun_azimuth_deg": 156.3,
+     "off_nadir_deg": 9.3,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.00902442895922,
+      30.970390328475517,
+      -7.863106469944547,
+      32.01377930799142
+     ],
+     "date_for_s2": "2015-01-08",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 0,
+      "clear_scenes_pm90": 0,
+      "nearest_clear_gap_days": null,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "1040010049981000",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2019-02-27 11:44:15Z",
+     "acquisition_end_utc": "2019-02-27 11:44:18Z",
+     "resolution_m": 0.39,
+     "sun_elevation_deg": 47.6,
+     "sun_azimuth_deg": 157.6,
+     "off_nadir_deg": 28.6,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.038909686375707,
+      31.485130519065308,
+      -7.873053401486818,
+      31.797399679036893
+     ],
+     "date_for_s2": "2019-02-27",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 16,
+      "clear_scenes_pm90": 27,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "104001004ACFF200",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2019-04-25 11:50:13Z",
+     "acquisition_end_utc": "2019-04-25 11:50:16Z",
+     "resolution_m": 0.35,
+     "sun_elevation_deg": 69.5,
+     "sun_azimuth_deg": 150.8,
+     "off_nadir_deg": 21.7,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.2387417885095,
+      31.49915158654931,
+      -8.075955344264791,
+      31.70946988412106
+     ],
+     "date_for_s2": "2019-04-25",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 18,
+      "clear_scenes_pm90": 27,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "104001004D86FB00",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2019-07-21 11:33:35Z",
+     "acquisition_end_utc": "2019-07-21 11:33:48Z",
+     "resolution_m": 0.32,
+     "sun_elevation_deg": 71.8,
+     "sun_azimuth_deg": 123.3,
+     "off_nadir_deg": 9.3,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.139323296781763,
+      31.49040546980247,
+      -7.994750136885046,
+      32.229145156850024
+     ],
+     "date_for_s2": "2019-07-21",
+     "s2": {
+      "clear_scenes_pm30": 12,
+      "clear_scenes_pm60": 23,
+      "clear_scenes_pm90": 33,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "104001004E78C700",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2019-07-03 11:47:47Z",
+     "acquisition_end_utc": "2019-07-03 11:47:51Z",
+     "resolution_m": 0.38,
+     "sun_elevation_deg": 76.2,
+     "sun_azimuth_deg": 125.3,
+     "off_nadir_deg": 28.1,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.196358892659509,
+      31.53193867898529,
+      -8.020760999191763,
+      31.821766530344856
+     ],
+     "date_for_s2": "2019-07-03",
+     "s2": {
+      "clear_scenes_pm30": 11,
+      "clear_scenes_pm60": 22,
+      "clear_scenes_pm90": 32,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "104001005FC0C600",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2020-08-22 11:34:58Z",
+     "acquisition_end_utc": "2020-08-22 11:35:02Z",
+     "resolution_m": 0.38,
+     "sun_elevation_deg": 65.7,
+     "sun_azimuth_deg": 142.4,
+     "off_nadir_deg": 26.9,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -7.986519410050549,
+      31.491867024434985,
+      -7.810478789013994,
+      31.801267404236054
+     ],
+     "date_for_s2": "2020-08-22",
+     "s2": {
+      "clear_scenes_pm30": 12,
+      "clear_scenes_pm60": 24,
+      "clear_scenes_pm90": 33,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "104001006800CE00",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2021-05-02 11:17:03Z",
+     "acquisition_end_utc": "2021-05-02 11:17:16Z",
+     "resolution_m": 0.32,
+     "sun_elevation_deg": 67.2,
+     "sun_azimuth_deg": 130.4,
+     "off_nadir_deg": 10.8,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -7.980636476704199,
+      30.950574216772523,
+      -7.834007399144299,
+      31.758842204137792
+     ],
+     "date_for_s2": "2021-05-02",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 17,
+      "clear_scenes_pm90": 27,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "104001006975B600",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2021-05-02 11:17:24Z",
+     "acquisition_end_utc": "2021-05-02 11:17:37Z",
+     "resolution_m": 0.33,
+     "sun_elevation_deg": 67.1,
+     "sun_azimuth_deg": 130.3,
+     "off_nadir_deg": 15.1,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.100654403064182,
+      30.9418248429551,
+      -7.952955538899008,
+      31.763457333038122
+     ],
+     "date_for_s2": "2021-05-02",
+     "s2": {
+      "clear_scenes_pm30": 7,
+      "clear_scenes_pm60": 16,
+      "clear_scenes_pm90": 26,
+      "nearest_clear_gap_days": 4,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "104001007D498500",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2022-10-27 11:19:17Z",
+     "acquisition_end_utc": "2022-10-27 11:19:18Z",
+     "resolution_m": 0.31,
+     "sun_elevation_deg": 43.7,
+     "sun_azimuth_deg": 160.6,
+     "off_nadir_deg": 6.7,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.153544642437625,
+      31.463658997694594,
+      -8.01362410996241,
+      31.565782466167935
+     ],
+     "date_for_s2": "2022-10-27",
+     "s2": {
+      "clear_scenes_pm30": 9,
+      "clear_scenes_pm60": 16,
+      "clear_scenes_pm90": 26,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "1040010084646C00",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2023-03-28 11:17:45Z",
+     "acquisition_end_utc": "2023-03-28 11:17:50Z",
+     "resolution_m": 0.31,
+     "sun_elevation_deg": 55.8,
+     "sun_azimuth_deg": 142.8,
+     "off_nadir_deg": 7.5,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.048052001707308,
+      31.54057509467656,
+      -7.906550621366465,
+      31.82711515650619
+     ],
+     "date_for_s2": "2023-03-28",
+     "s2": {
+      "clear_scenes_pm30": 10,
+      "clear_scenes_pm60": 15,
+      "clear_scenes_pm90": 25,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "10400100846B5A00",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2023-04-28 11:09:06Z",
+     "acquisition_end_utc": "2023-04-28 11:09:09Z",
+     "resolution_m": 0.36,
+     "sun_elevation_deg": 64.7,
+     "sun_azimuth_deg": 128.8,
+     "off_nadir_deg": 24.1,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.06244523979662,
+      31.534684198365543,
+      -7.89332632819167,
+      31.786737692768572
+     ],
+     "date_for_s2": "2023-04-28",
+     "s2": {
+      "clear_scenes_pm30": 9,
+      "clear_scenes_pm60": 18,
+      "clear_scenes_pm90": 26,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "1040010084B2E200",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2023-03-28 11:17:58Z",
+     "acquisition_end_utc": "2023-03-28 11:18:03Z",
+     "resolution_m": 0.31,
+     "sun_elevation_deg": 55.8,
+     "sun_azimuth_deg": 142.8,
+     "off_nadir_deg": 8.0,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.171248124289365,
+      31.54152115820587,
+      -8.029379311241534,
+      31.830434163944716
+     ],
+     "date_for_s2": "2023-03-28",
+     "s2": {
+      "clear_scenes_pm30": 10,
+      "clear_scenes_pm60": 15,
+      "clear_scenes_pm90": 25,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "1040050039DC5C00",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2021-10-07 11:20:41Z",
+     "acquisition_end_utc": "2021-10-07 11:20:45Z",
+     "resolution_m": 0.39,
+     "sun_elevation_deg": 50.3,
+     "sun_azimuth_deg": 156.5,
+     "off_nadir_deg": 28.9,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.18390982140705,
+      31.2950981928649,
+      -7.955108548538799,
+      31.651068979855186
+     ],
+     "date_for_s2": "2021-10-07",
+     "s2": {
+      "clear_scenes_pm30": 10,
+      "clear_scenes_pm60": 21,
+      "clear_scenes_pm90": 29,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "1040050046DBE400",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2022-07-31 11:19:31Z",
+     "acquisition_end_utc": "2022-07-31 11:19:36Z",
+     "resolution_m": 0.31,
+     "sun_elevation_deg": 67.8,
+     "sun_azimuth_deg": 122.2,
+     "off_nadir_deg": 7.5,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.044076127835964,
+      31.477298934231644,
+      -7.903372436068264,
+      31.785969785053897
+     ],
+     "date_for_s2": "2022-07-31",
+     "s2": {
+      "clear_scenes_pm30": 9,
+      "clear_scenes_pm60": 18,
+      "clear_scenes_pm90": 28,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "104005004ADBF200",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2022-10-08 11:19:07Z",
+     "acquisition_end_utc": "2022-10-08 11:19:12Z",
+     "resolution_m": 0.32,
+     "sun_elevation_deg": 49.8,
+     "sun_azimuth_deg": 156.3,
+     "off_nadir_deg": 12.5,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.045625481124539,
+      31.533410979183312,
+      -7.900893467954365,
+      31.80577498028024
+     ],
+     "date_for_s2": "2022-10-08",
+     "s2": {
+      "clear_scenes_pm30": 9,
+      "clear_scenes_pm60": 17,
+      "clear_scenes_pm90": 27,
+      "nearest_clear_gap_days": 0,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "1040050057DC8500",
+     "title": "Morocco Earthquake",
+     "platform": "WV03",
+     "acquisition_start_utc": "2023-09-10 11:25:14Z",
+     "acquisition_end_utc": "2023-09-10 11:25:17Z",
+     "resolution_m": 0.35,
+     "sun_elevation_deg": 59.5,
+     "sun_azimuth_deg": 147.2,
+     "off_nadir_deg": 22.4,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.127075704571029,
+      31.530771186288522,
+      -7.970785347680651,
+      31.729769515270355
+     ],
+     "date_for_s2": "2023-09-10",
+     "s2": {
+      "clear_scenes_pm30": 10,
+      "clear_scenes_pm60": 19,
+      "clear_scenes_pm90": 28,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "105001002FC38300",
+     "title": "Morocco Earthquake",
+     "platform": "GE01",
+     "acquisition_start_utc": "2022-11-05 11:27:18Z",
+     "acquisition_end_utc": "2022-11-05 11:27:20Z",
+     "resolution_m": 0.46,
+     "sun_elevation_deg": 41.4,
+     "sun_azimuth_deg": 164.4,
+     "off_nadir_deg": 21.4,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.123667820807517,
+      31.535463205652256,
+      -7.945830687791378,
+      31.678061253311824
+     ],
+     "date_for_s2": "2022-11-05",
+     "s2": {
+      "clear_scenes_pm30": 8,
+      "clear_scenes_pm60": 17,
+      "clear_scenes_pm90": 25,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "1050010031762F00",
+     "title": "Morocco Earthquake",
+     "platform": "GE01",
+     "acquisition_start_utc": "2023-02-06 11:22:19Z",
+     "acquisition_end_utc": "2023-02-06 11:22:26Z",
+     "resolution_m": 0.43,
+     "sun_elevation_deg": 38.8,
+     "sun_azimuth_deg": 153.8,
+     "off_nadir_deg": 14.1,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.073479297919727,
+      31.539749436011235,
+      -7.902477344827481,
+      31.830895380698642
+     ],
+     "date_for_s2": "2023-02-06",
+     "s2": {
+      "clear_scenes_pm30": 6,
+      "clear_scenes_pm60": 16,
+      "clear_scenes_pm90": 26,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Morocco-Earthquake-Sept-2023",
+     "id": "8c061358-66fa-497f-971e-ff8781108894-inv",
+     "title": "Morocco Earthquake",
+     "platform": "WV04",
+     "acquisition_start_utc": "2018-09-01 11:40:54Z",
+     "acquisition_end_utc": "2018-09-01 11:40:59Z",
+     "resolution_m": 0.34,
+     "sun_elevation_deg": 63.8,
+     "sun_azimuth_deg": 150.1,
+     "off_nadir_deg": 19.5,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "CC-BY-NC-4.0",
+     "footprint_bbox": [
+      -8.19569989491501,
+      31.488787150225626,
+      -8.03970510422608,
+      31.813108493275642
+     ],
+     "date_for_s2": "2018-09-01",
+     "s2": {
+      "clear_scenes_pm30": 11,
+      "clear_scenes_pm60": 20,
+      "clear_scenes_pm90": 28,
+      "nearest_clear_gap_days": 2,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    }
+   ]
+  },
+  "makoko": {
+   "role": "validation",
+   "scenes": [
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5dd0f6dda7dadc0006433b5b",
+     "title": "Makoko",
+     "provider": "Uhurulabs",
+     "platform": "uav",
+     "sensor": " DJI FC220",
+     "acquisition_start_utc": "2019-10-02T11:00:00.000Z",
+     "acquisition_end_utc": "2019-10-02T14:00:00.000Z",
+     "resolution_m": 0.0540456589575,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      3.384854,
+      6.49023,
+      3.397062,
+      6.505367
+     ],
+     "date_for_s2": "2019-10-02",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 2,
+      "clear_scenes_pm90": 4,
+      "nearest_clear_gap_days": 51,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5dd0f370a7dadc0006433b56",
+     "title": "Task of 2019-10-08T08:14:21.855Z",
+     "provider": "Uhurulabs",
+     "platform": "uav",
+     "sensor": "DJI FC220",
+     "acquisition_start_utc": "2019-10-02T16:28:19.000Z",
+     "acquisition_end_utc": "2019-10-02T17:28:19.000Z",
+     "resolution_m": 0.0638414952016,
+     "licence": "CC-BY 4.0",
+     "footprint_bbox": [
+      3.389959,
+      6.492167,
+      3.396427,
+      6.504622
+     ],
+     "date_for_s2": "2019-10-02",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 2,
+      "clear_scenes_pm90": 4,
+      "nearest_clear_gap_days": 51,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5ea1cb44411bed00056803b8",
+     "title": "Maxar 2019 Lagos Mosaic",
+     "provider": "Maxar",
+     "platform": "satellite",
+     "sensor": "Maxar Satellite Sensors",
+     "acquisition_start_utc": "2019-06-05T23:00:00.000Z",
+     "acquisition_end_utc": "2019-06-06T00:00:00.000Z",
+     "resolution_m": 0.5,
+     "licence": "CC BY-NC 4.0",
+     "footprint_bbox": [
+      3.080997,
+      6.350414,
+      3.748394,
+      6.869687
+     ],
+     "date_for_s2": "2019-06-05",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 0,
+      "clear_scenes_pm90": 0,
+      "nearest_clear_gap_days": null,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    }
+   ]
+  },
+  "kibera": {
+   "role": "validation",
+   "scenes": [
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "5ea29a2e411bed00056803c9",
+     "title": "Maxar 2019 Nairobi Mosaic",
+     "provider": "Maxar",
+     "platform": "satellite",
+     "sensor": "Maxar Satellite Sensors",
+     "acquisition_start_utc": "2019-05-14T23:00:00.000Z",
+     "acquisition_end_utc": "2019-05-15T00:00:00.000Z",
+     "resolution_m": 0.3,
+     "licence": "CC BY-NC 4.0",
+     "footprint_bbox": [
+      36.620887,
+      -1.520951,
+      37.062751,
+      -1.120632
+     ],
+     "date_for_s2": "2019-05-14",
+     "s2": {
+      "clear_scenes_pm30": 0,
+      "clear_scenes_pm60": 3,
+      "clear_scenes_pm90": 7,
+      "nearest_clear_gap_days": 45,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "6642a8a66049ef00013b85d7",
+     "title": "Kenya Flooding May 2024 Maxar 105001003B003900 (post-event)",
+     "provider": "MAXAR",
+     "platform": "satellite",
+     "sensor": "ge01",
+     "acquisition_start_utc": "2024-05-11T11:34:00.000Z",
+     "acquisition_end_utc": "2024-05-11T12:34:00.000Z",
+     "resolution_m": 0.30517578125,
+     "licence": "CC BY-NC 4.0",
+     "footprint_bbox": [
+      36.706908,
+      -1.402866,
+      36.979418,
+      -1.128589
+     ],
+     "date_for_s2": "2024-05-11",
+     "s2": {
+      "clear_scenes_pm30": 3,
+      "clear_scenes_pm60": 6,
+      "clear_scenes_pm90": 12,
+      "nearest_clear_gap_days": 16,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "OpenAerialMap",
+     "id": "663d16016049ef00013b84b8",
+     "title": "Kenya Flooding May 2024 (pre-event)",
+     "provider": "MAXAR",
+     "platform": "satellite",
+     "sensor": "WV03",
+     "acquisition_start_utc": "2023-11-30T13:00:00.000Z",
+     "acquisition_end_utc": "2023-11-30T13:01:00.000Z",
+     "resolution_m": 0.30517578125,
+     "licence": "CC BY-NC 4.0",
+     "footprint_bbox": [
+      36.75182,
+      -1.402826,
+      36.934504,
+      -1.128624
+     ],
+     "date_for_s2": "2023-11-30",
+     "s2": {
+      "clear_scenes_pm30": 2,
+      "clear_scenes_pm60": 4,
+      "clear_scenes_pm90": 9,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Kenya-Flooding-May24",
+     "id": "104001008E063C00",
+     "title": "Kenya Flooding",
+     "platform": "WV03",
+     "acquisition_start_utc": "2023-11-30 08:00:58Z",
+     "acquisition_end_utc": "2023-11-30 08:01:02Z",
+     "resolution_m": 0.32,
+     "sun_elevation_deg": 61.8,
+     "sun_azimuth_deg": 137.7,
+     "off_nadir_deg": 10.6,
+     "clouds_percent_first_overlapping_tile": 0,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "proprietary",
+     "footprint_bbox": [
+      36.78466532388211,
+      -1.37956990517013,
+      36.907000119260275,
+      -1.156478492283349
+     ],
+     "date_for_s2": "2023-11-30",
+     "s2": {
+      "clear_scenes_pm30": 2,
+      "clear_scenes_pm60": 4,
+      "clear_scenes_pm90": 9,
+      "nearest_clear_gap_days": 1,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    },
+    {
+     "catalogue": "Maxar Open Data",
+     "event": "Kenya-Flooding-May24",
+     "id": "105001003B003900",
+     "title": "Kenya Flooding",
+     "platform": "GE01",
+     "acquisition_start_utc": "2024-05-11 07:33:59Z",
+     "acquisition_end_utc": "2024-05-11 07:34:02Z",
+     "resolution_m": 0.68,
+     "sun_elevation_deg": 55.7,
+     "sun_azimuth_deg": 54.3,
+     "off_nadir_deg": 40.3,
+     "clouds_percent_first_overlapping_tile": 7,
+     "licence": "CC-BY-NC-4.0",
+     "licence_acquisition_collection": "proprietary",
+     "footprint_bbox": [
+      36.72409341196265,
+      -1.384613283034661,
+      36.973072682788356,
+      -1.14065077830253
+     ],
+     "date_for_s2": "2024-05-11",
+     "s2": {
+      "clear_scenes_pm30": 3,
+      "clear_scenes_pm60": 6,
+      "clear_scenes_pm90": 12,
+      "nearest_clear_gap_days": 16,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    }
+   ]
+  },
+  "rocinha": {
+   "role": "validation",
+   "scenes": [
+    {
+     "catalogue": "recorded (Rio IPP)",
+     "title": "IPP city true-orthophoto mosaic, Imagens/Mosaico_2024",
+     "acquisition": "first half of 2024 (as recorded)",
+     "time_utc": null,
+     "resolution_m": 0.15,
+     "licence": "IPP: non-commercial; commercial use needs IPP's prior written authorisation (as recorded 2026-09-24)",
+     "footprint_bbox": null,
+     "date_for_s2": "2024-04-01",
+     "s2": {
+      "clear_scenes_pm30": 3,
+      "clear_scenes_pm60": 8,
+      "clear_scenes_pm90": 15,
+      "nearest_clear_gap_days": 21,
+      "rule": "scenes with CLOUDY_PIXEL_PERCENTAGE < 20 (scene-level, not per pixel)"
+     }
+    }
+   ]
+  }
+ }
+}
