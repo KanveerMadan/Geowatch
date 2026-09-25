@@ -171,7 +171,7 @@ def rec(**over):
                 imagery_licence="CC BY 4.0",
                 s2_composite_window={"start": "2025-02-15", "end": "2025-04-15"},
                 date_gap_days=12, change_test_result="not run: method UNSET",
-                labeller="L1", labelling_date="2026-10-01", guide_version="1.0",
+                labeller="L1", labelling_date="2026-10-01", guide_version="1.1",
                 pct_unsure=0.0, pct_shadow_full=0.0, qc_status="pending")
     base.update(over)
     return records.TileRecord(**base)
@@ -266,3 +266,23 @@ def test_agreement_bar_must_name_its_metric():
     cfg["open"]["agreement_bars"]["per_class"]["built"]["metric"] = "vibes"
     with pytest.raises(ValueError):
         qc.compare(a, b, grid(), cfg)
+
+
+# ── guide v1.1 (2026-09-25): solar = ground-mounted only ────────────────────
+
+def test_guide_version_is_1_1():
+    assert CFG["guide_version"] == "1.1"
+    assert "1.1" in open(pathlib.Path(__file__).resolve().parents[1] / "LABELLING_GUIDE.md").read()
+
+
+def test_rooftop_solar_is_built_plus_flag():
+    fs = [feat("built", 0, 0, 10, 200, rooftop_solar=True), feat("bare", 10, 0, 200, 200)]
+    r = tile_fractions(fs, grid(), CFG)
+    assert r["fractions"]["built"][0, 0] == pytest.approx(1.0)
+    assert r["fractions"]["solar"][0, 0] == 0.0
+    assert r["rooftop_solar"][0, 0] == pytest.approx(1.0)
+
+
+def test_rooftop_flag_on_non_built_is_refused():
+    with pytest.raises(LabelQCError, match="only valid on `built`"):
+        tile_fractions([feat("solar", 0, 0, 200, 200, rooftop_solar=True)], grid(), CFG)

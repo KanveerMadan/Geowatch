@@ -1112,7 +1112,7 @@ a within-noise result up.
   (Decision 11) reported as one quantity.
 
 **Labelling guide — decided 2026-09-24: [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md)
-(v1.0).** It is the protocol for every training and validation label above:
+(~~v1.0~~ v1.1 since 2026-09-25: `solar` = ground-mounted only).** It is the protocol for every training and validation label above:
 - the label set, including `shadow_full` / `shadow_partial` and `unsure`
 - polygon labels, with fractions computed from area and never eyeballed
 - stratified random ~200 m tiles

@@ -1,17 +1,19 @@
 # Item 21 Phase A, part 7 — labelling tooling configuration.
-# Protocol: LABELLING_GUIDE.md (v1.0, decided 2026-09-24). Numbers the guide
+# Protocol: LABELLING_GUIDE.md (v1.1, 2026-09-25; v1.0 2026-09-24). Numbers the guide
 # fixes are copied here with their section; the five numbers the guide
 # leaves OPEN (§9) are UNSET (null). Code that needs an UNSET number refuses
 # to run. None of them may be set after labelling begins or after model
 # results are seen (§9).
 
-guide_version: "1.0"
+guide_version: "1.1"          # v1.1 2026-09-25: solar = ground-mounted only
 
 labels:
   scored: [built, paved, vegetation, water, bare, mixed_water_vegetation, snow_ice, solar]
   excluded: [unsure, shadow_full]        # §1, §9.5: out of the cell's denominator
   # shadow_partial is NOT a label (§1): the underlying class + this flag.
   partial_shadow_property: shadow_partial
+  # v1.1: rooftop panels are `built` + this flag, never `solar`.
+  rooftop_solar_property: rooftop_solar
 
 tiles:
   size_m: 200                 # §3 "~200 m x 200 m"; 20 x 20 Sentinel-2 cells

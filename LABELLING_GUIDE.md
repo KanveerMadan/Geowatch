@@ -1,6 +1,7 @@
 # GeoWatch — Labelling Guide (item 21)
 
-**Guide version 1.0 — decided 2026-09-24.** This is the hand-labelling
+**Guide version 1.1 — 2026-09-25** (v1.0 decided 2026-09-24; changelog at
+the end). This is the hand-labelling
 protocol for the item 21 regressors and their validation. It applies at every
 site in the item 21 site list (`05_BUILD_MANUAL.md` item 21, "Site list"):
 
@@ -27,7 +28,7 @@ Decision 14), regressor training and firewall (item 21).
 | `water` | |
 | `mixed_water_vegetation` | Wetlands, mangroves, mudflats / tidal zones, water hyacinth |
 | `snow_ice` | Permanent snow and ice |
-| `solar` | Solar panels / arrays |
+| `solar` | ~~Solar panels / arrays~~ **Ground-mounted solar arrays only** *(v1.1)*. Rooftop panels are `built` + the rooftop-solar flag |
 | `shadow_full` | Shadow so deep the underlying surface **cannot** be identified |
 | `shadow_partial` | **Not a class of its own.** Labelled as the underlying class **plus a partial-shadow flag**. Use it when the surface under the shadow *can* be identified |
 | `unsure` | Genuinely ambiguous. **Excluded from scoring. Never guessed** |
@@ -69,6 +70,8 @@ above.**
 | Any channel with water in it | `water` |
 | Construction site | **its current surface**, never its intended use |
 | Any roof, any material | `built` |
+| Solar panels on a roof *(v1.1)* | `built`, **plus the rooftop-solar flag** — never `solar` |
+| Ground-mounted solar array *(v1.1)* | `solar` |
 | Car or other vehicle | **the surface beneath it** |
 | Genuinely ambiguous | `unsure` |
 
@@ -176,3 +179,14 @@ seeing model results.
    area.** Presumably both are excluded from that cell's denominator. A
    maximum excluded share per cell, above which the cell is not scored, still
    needs a number.
+
+---
+
+## Changelog
+
+- **v1.1 — 2026-09-25.** `solar` is ground-mounted arrays only; rooftop
+  panels are labelled `built` with a rooftop-solar flag (item 21, Phase A
+  rulings, second round, 3–4). **No tile has been labelled under v1.0, so the
+  §7 recheck of tiles labelled under an affected rule has nothing to
+  recheck.**
+- **v1.0 — 2026-09-24.** First version.

@@ -10,6 +10,8 @@ Per 10 m cell:
   excluded_share   = unsure + shadow_full area share
   <class>          = class area / (1 - excluded_share)   for the 8 scored labels
   partial_shadow   = share of the cell under polygons flagged shadow_partial
+  rooftop_solar    = share of the cell under `built` polygons flagged
+                     rooftop_solar (guide v1.1; never a `solar` label)
   scored           = False if excluded_share == 1; otherwise decided by the
                      §9.5 max-excluded-share number, which is UNSET -> None
 
@@ -33,10 +35,12 @@ class LabelQCError(ValueError):
 
 
 def parse_features(features: list, cfg: dict) -> list:
-    """GeoJSON features (already in the tile CRS) -> [(label, partial, geom)]."""
+    """GeoJSON features (already in the tile CRS) -> [(label, flags, geom)],
+    flags = {"partial": bool, "rooftop_solar": bool}."""
     lab = cfg["labels"]
     allowed = set(lab["scored"]) | set(lab["excluded"])
     flag = lab["partial_shadow_property"]
+    roof_flag = lab["rooftop_solar_property"]
     out = []
     for i, f in enumerate(features):
         p = f.get("properties", {})
@@ -49,7 +53,12 @@ def parse_features(features: list, cfg: dict) -> list:
         partial = bool(p.get(flag, False))
         if partial and label in lab["excluded"]:
             raise LabelQCError(f"feature {i}: {label} cannot carry {flag}")
-        out.append((label, partial, shape(f["geometry"])))
+        rooftop = bool(p.get(roof_flag, False))
+        if rooftop and label != "built":
+            raise LabelQCError(f"feature {i}: {roof_flag} is only valid on `built` "
+                               f"(guide v1.1: rooftop panels are built)")
+        out.append((label, {"partial": partial, "rooftop_solar": rooftop},
+                    shape(f["geometry"])))
     return out
 
 
@@ -84,7 +93,8 @@ def tile_fractions(features: list, grid: Grid, cfg: dict,
     area = {}
     for label in cfg["labels"]["scored"] + cfg["labels"]["excluded"]:
         area[label] = polygon_coverage([g for l, _, g in polys if l == label], grid)
-    partial = polygon_coverage([g for _, pflag, g in polys if pflag], grid)
+    partial = polygon_coverage([g for _, fl, g in polys if fl["partial"]], grid)
+    rooftop = polygon_coverage([g for _, fl, g in polys if fl["rooftop_solar"]], grid)
 
     excluded = sum(area[l] for l in cfg["labels"]["excluded"])
     denom = 1.0 - excluded
@@ -100,6 +110,7 @@ def tile_fractions(features: list, grid: Grid, cfg: dict,
         "fractions": fr,
         "excluded_share": excluded,
         "partial_shadow": partial,
+        "rooftop_solar": rooftop,
         "scored": scored,
         "scored_rule": ("max_excluded_share UNSET (guide §9.5): scored is None "
                         "except fully excluded cells" if max_excluded_share is None
