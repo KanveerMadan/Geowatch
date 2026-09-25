@@ -1220,6 +1220,16 @@ they are recorded here so the code has a written source.*
   emitted as coverage totals, per-pixel fraction MAE and 10 m IoU
   (area-weighted, threshold-free), explicitly not a confidence score.
   Dharavi: Open Buildings 22.0% vs Microsoft 16.1%, MAE 0.200, IoU 0.313.
+- **Part 3 — detectors** *(2026-09-25)*: `surface_fractions/detectors.py`.
+  All three are **`not_computed`** under the shipped config: `snow_ice`
+  has a cited spectral half (Hall et al. 1995: NDSI ≥ 0.4, NIR > 0.11,
+  UNVALIDATED) but its low-temporal-variance band and cut-off are UNSET;
+  `solar` and `mixed_water_vegetation` have no verified spectral criterion
+  (UNSET). Predicates are implemented where a method is cited (snow) and
+  refuse to run where none is. GMW / GLWD sub-typing layers are exported
+  and reported regardless. **Observation:** at ~464 m, GLWD calls 77% of
+  Dharavi "Other coastal wetland" — it can sub-type a spectral detection,
+  never stand in for one.
 
 ---
 

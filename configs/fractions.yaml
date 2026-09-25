@@ -103,3 +103,79 @@ occlusion:
     confidence_min: null        # UNSET
   shadow_full:
     criterion: null             # UNSET -- full/partial boundary open (Decisions 11/14)
+
+# Part 3 — detectors (Decision 11 producers). Each threshold is
+#   {value, source, status}; status is UNVALIDATED (cited or measured, not yet
+#   validated) or UNSET (value null). Any UNSET threshold -> the detector
+#   emits status "not_computed". Each detector gets its own validation case
+#   later (item 21, "Validation additions").
+# Detected pixel = fraction 1.0, and detectors override the vegetation and
+# water regressors on that pixel: a Phase A simplification, to be revisited
+# after each detector's validation case (Phase A ruling, 2026-09-25).
+detectors:
+  snow_ice:
+    thresholds:
+      ndsi_min:
+        value: 0.4
+        source: "Hall, Riggs & Salomonson (1995), Remote Sensing of Environment 54(2):127-140 -- MODIS snow mapping, NDSI >= 0.4"
+        status: UNVALIDATED
+      nir_min:
+        value: 0.11
+        source: "Hall, Riggs & Salomonson (1995), ibid. -- NIR reflectance > 0.11 to exclude water"
+        status: UNVALIDATED
+      # "Low temporal variance" (Decision 11): no cited or measured cut-off,
+      # and no decision on which item 18 variance band carries it.
+      variance_band: {value: null, source: null, status: UNSET}
+      variance_max: {value: null, source: null, status: UNSET}
+  solar:
+    thresholds:
+      # No verified spectral index or cut-off for photovoltaic panels in
+      # Sentinel-2 as of 2026-09-25.
+      index: {value: null, source: null, status: UNSET}
+      index_min: {value: null, source: null, status: UNSET}
+  mixed_water_vegetation:
+    thresholds:
+      # No verified single spectral criterion covering wetlands, mangroves,
+      # mudflats/tidal zones and water hyacinth as of 2026-09-25.
+      criterion: {value: null, source: null, status: UNSET}
+    sub_typing:
+      # Applied only where the detector fires. GMW first (vector,
+      # mangrove-specific); else the GLWD v2 main class; else "unattributed".
+      # Assets: datasets.gmw and datasets.glwd_main_class above.
+      # Legend copied from the GLWD v2 asset's own `description` property
+      # (read 2026-09-25). 0 = Dryland (non-wetland).
+      glwd_legend:
+        0: Dryland
+        1: Freshwater lake
+        2: Saline lake
+        3: Reservoir
+        4: Large river
+        5: Large estuarine river
+        6: Other permanent waterbody
+        7: Small streams
+        8: Lacustrine, forested
+        9: Lacustrine, non-forested
+        10: Riverine, regularly flooded, forested
+        11: Riverine, regularly flooded, non-forested
+        12: Riverine, seasonally flooded, forested
+        13: Riverine, seasonally flooded, non-forested
+        14: Riverine, seasonally saturated, forested
+        15: Riverine, seasonally saturated, non-forested
+        16: Palustrine, regularly flooded, forested
+        17: Palustrine, regularly flooded, non-forested
+        18: Palustrine, seasonally saturated, forested
+        19: Palustrine, seasonally saturated, non-forested
+        20: Ephemeral, forested
+        21: Ephemeral, non-forested
+        22: Arctic/boreal peatland, forested
+        23: Arctic/boreal peatland, non-forested
+        24: Temperate peatland, forested
+        25: Temperate peatland, non-forested
+        26: Tropical peatland, forested
+        27: Tropical peatland, non-forested
+        28: Mangrove
+        29: Saltmarsh
+        30: Delta
+        31: Other coastal wetland
+        32: Salt pan, saline/brackish wetland
+        33: Paddy rice
