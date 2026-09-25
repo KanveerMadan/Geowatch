@@ -1,0 +1,172 @@
+{
+ "sites": {
+  "makoko": {
+   "sources": {
+    "oam": [
+     "5dd0f6dda7dadc0006433b5b"
+    ]
+   },
+   "box_covered_share": 0.2506,
+   "frame_area_km2": 2.255,
+   "eligible_200m_tiles": 42,
+   "frame_wkt_utm": "POLYGON ((543900.8072398725 719085.7025372927, 543900.7919535665 717413.3485202031, 542552.290715567 717413.4139062196, 542552.2358043708 719085.6548783293, 543900.8072398725 719085.7025372927))",
+   "box_data_share": 0.158,
+   "data_frame_area_km2": 1.422,
+   "eligible_200m_tiles_data": 22,
+   "data_res_m": 5.0
+  },
+  "monrovia": {
+   "sources": {
+    "oam": [
+     "5e53faa7906c590005ecc5bb",
+     "5e557ce2642d040007b7c56f",
+     "5e55b345642d040007b7c573",
+     "5e71be79ccc61e00059aedcc",
+     "5e6941c0ce171e0005d341f3",
+     "5e679949e82eb700055028ca",
+     "5e6a8cdb5abd57000732847c"
+    ]
+   },
+   "box_covered_share": 0.9127,
+   "frame_area_km2": 8.214,
+   "eligible_200m_tiles": 177,
+   "frame_wkt_utm": "POLYGON ((301676.1 701077.6, 301676.1 698077.6, 298863.23594847287 698077.6, 298863.22787603457 699175.2144142569, 298863.2640313194 699175.2144143844, 298863.2746425138 700169.1726700072, 299110.4830977924 700169.1739601967, 299110.4838108204 701077.6, 301676.1 701077.6))",
+   "box_data_share": 0.7155,
+   "data_frame_area_km2": 6.439,
+   "eligible_200m_tiles_data": 130,
+   "data_res_m": 5.0
+  },
+  "lima": {
+   "sources": {
+    "oam": [
+     "601c75ae5ed94000077fc5ed",
+     "5fa4dedd73fd1d000512b0d9"
+    ]
+   },
+   "box_covered_share": 0.3547,
+   "frame_area_km2": 3.193,
+   "eligible_200m_tiles": 50,
+   "frame_wkt_utm": "MULTIPOLYGON (((290285.77235584334 8656485.799417086, 289049.5332478138 8656485.761588397, 289049.55795389984 8657583.339076877, 290285.84281493723 8657583.369848052, 290285.77235584334 8656485.799417086)), ((291185.1233788722 8658148.125714255, 289697.7709787531 8658148.127181772, 289697.73297191854 8659382.342344716, 291185.03832362156 8659382.330601387, 291185.1233788722 8658148.125714255)))",
+   "box_data_share": 0.2396,
+   "data_frame_area_km2": 2.157,
+   "eligible_200m_tiles_data": 31,
+   "data_res_m": 5.0
+  },
+  "kibera": {
+   "sources": {
+    "oam": [
+     "663d16016049ef00013b84b8"
+    ]
+   },
+   "box_covered_share": 1.0,
+   "frame_area_km2": 9.0,
+   "eligible_200m_tiles": 196,
+   "frame_wkt_utm": "POLYGON ((252473.7 9853449.4, 252473.7 9856449.4, 255473.7 9856449.4, 255473.7 9853449.4, 252473.7 9853449.4))",
+   "box_data_share": 0.6299,
+   "data_frame_area_km2": 5.669,
+   "eligible_200m_tiles_data": 124,
+   "data_res_m": 5.0
+  },
+  "rocinha": {
+   "sources": {
+    "extent": [
+     "EPSG:31983",
+     [
+      621720.15,
+      7444172.25,
+      695788.5,
+      7485303.6
+     ]
+    ]
+   },
+   "box_covered_share": 1.0,
+   "frame_area_km2": 9.0,
+   "eligible_200m_tiles": 196,
+   "frame_wkt_utm": "POLYGON ((678035.1 7455053.9, 678035.1 7458053.9, 681035.1 7458053.9, 681035.1 7455053.9, 678035.1 7455053.9))",
+   "box_data_share": 0.9209,
+   "data_frame_area_km2": 8.288,
+   "eligible_200m_tiles_data": 182,
+   "data_res_m": 5.0,
+   "data_method": "server render, border-connected fill = no-data"
+  },
+  "cape_town": {
+   "sources": {
+    "extent": [
+     "ESRI:102562",
+     [
+      -64131.3824,
+      -3803650.65,
+      7000.0176,
+      -3705000.0
+     ]
+    ]
+   },
+   "box_covered_share": 1.0,
+   "frame_area_km2": 9.0,
+   "eligible_200m_tiles": 196,
+   "frame_wkt_utm": "POLYGON ((282308.6 6232511.7, 282308.6 6235511.7, 285308.6 6235511.7, 285308.6 6232511.7, 282308.6 6232511.7))",
+   "box_data_share": 1.0,
+   "data_frame_area_km2": 9.0,
+   "eligible_200m_tiles_data": 196,
+   "data_res_m": 5.0,
+   "data_method": "server render, border-connected fill = no-data"
+  }
+ },
+ "karachi_candidates": {
+  "10300100D13F6500": {
+   "date": "2022-03-29",
+   "box_covered_share": 1.0,
+   "frame_area_km2": 9.0,
+   "eligible_200m_tiles": 196,
+   "gsd_m": 0.57,
+   "off_nadir_deg": 27.0,
+   "sun_elevation_deg": 62.6,
+   "acquisition_utc": "2022-03-29 06:26:33Z",
+   "s2_clear_pm30_60_90": [
+    23,
+    44,
+    58
+   ]
+  },
+  "10300100CFA70700": {
+   "date": "2022-03-29",
+   "box_covered_share": 0.0,
+   "frame_area_km2": 0.0,
+   "eligible_200m_tiles": 0,
+   "gsd_m": 0.53,
+   "off_nadir_deg": 21.9,
+   "sun_elevation_deg": 62.7,
+   "acquisition_utc": "2022-03-29 06:26:20Z",
+   "s2_clear_pm30_60_90": [
+    23,
+    41,
+    55
+   ]
+  },
+  "1040010073509D00": {
+   "date": "2022-03-26",
+   "box_covered_share": 0.0,
+   "frame_area_km2": 0.0,
+   "eligible_200m_tiles": 0,
+   "gsd_m": 0.34,
+   "off_nadir_deg": 20.0,
+   "sun_elevation_deg": 59.6,
+   "acquisition_utc": "2022-03-26 06:12:36Z",
+   "s2_clear_pm30_60_90": [
+    22,
+    42,
+    53
+   ]
+  }
+ },
+ "kibera_ard_104001008E063C00": {
+  "box_covered_share": 0.6345,
+  "frame_area_km2": 5.711,
+  "eligible_200m_tiles": 126,
+  "frame_wkt_utm": "POLYGON ((255473.7 9856449.4, 255473.7 9853449.4, 253581.85484292882 9853449.4, 253580.59995589132 9854842.359023135, 253561.1389418197 9854842.341787226, 253559.74008309035 9856449.4, 255473.7 9856449.4))"
+ },
+ "kibera_oam_vs_ard": {
+  "oam_footprint_km2": 615.7,
+  "ard_union_km2": 330.3
+ }
+}

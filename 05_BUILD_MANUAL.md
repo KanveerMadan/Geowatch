@@ -1088,6 +1088,44 @@ exact in its UTM zone, centred on the named settlement
 | Karachi | 67.0016, 24.9614 | Orangi, re-centred 2 km north so the box holds undeveloped fringe (16.4% empty 100 m cells vs 1.9%) | approved 2026-09-25 |
 | Cape Town | 18.6589, −34.0123 | Khayelitsha (OSM relation 1017405 centroid); extent confirmed via the city MapServer. **Labelling source: the 2025Jan city imagery, not 2026Jan** — the service states "This is not the final image for 2026." | approved 2026-09-25 |
 
+**Imagery source choices — decided 2026-09-25** (the frame scene per site;
+`configs/labelling.yaml` `aois`; measurements in
+`experiments/item21_sites/results/frames.json`).
+
+| Site | Source (one acquisition) | Frame: footprint polygon | Frame: measured data |
+|---|---|---|---|
+| Makoko | OAM "Makoko" drone `5dd0f6dd…` (Uhuru, 2019-10-02, CC-BY) — validates `built` only | 25.1% · 2.26 km² · 42 tiles | **15.8% · 1.42 km² · 22 tiles** |
+| Kibera | OAM `663d1601…` = Maxar `104001008E063C00` (WV03, 2023-11-30) | 100% · 9.00 km² · 196 | **63.0% · 5.67 km² · 124** |
+| Rocinha | Rio IPP `Mosaico_2024` (date range per its pre-registration) | 100% · 9.00 km² · 196 | **92.1% · 8.29 km² · 182** |
+| Lima | OAM Candelaria + Santuario de las Vizcachas (2019-12-19) | 35.5% · 3.19 km² · 50 | **24.0% · 2.16 km² · 31** |
+| Monrovia | OAM 2020-02-23 flight: Pt 1, 3, 4 of 4 + Central Monrovia 1, 2 | 91.3% · 8.21 km² · 177 | **71.6% · 6.44 km² · 130** |
+| Cape Town | City of Cape Town `Aerial Imagery 2025Jan` | 100% · 9.00 km² · 196 | **100% · 9.00 km² · 196** |
+| Karachi | **not locked** — Maxar `10300100D13F6500` proposed; comparison below | — | — |
+
+Tiles = 200 m tiles lying entirely inside the frame (at most 196 in a
+3 × 3 km box, whose edges are off the 200 m lattice).
+
+- **Frame basis — PENDING.** The rule as given is box ∩ footprint, but the
+  published footprint polygons include no-data: Kibera's OAM footprint is
+  615.7 km², yet the file holds data only inside the 330.3 km² of Maxar ARD
+  tiles it repackages (its data stops exactly at their edge). The measured
+  data frame (valid pixels at 5 m; tiles counted only if every cell is
+  valid) is 16–37% smaller at the drone and Maxar sites. Tiles drawn from a
+  footprint frame could land on no imagery.
+- **Kibera verified as the same acquisition:** pixel-identical to Maxar ARD
+  `104001008E063C00` where both exist (r = 1.0000 at two patches; the
+  2024-05-11 acquisition gives 0.50 / 0.12). Recorded: acquisition time
+  **2023-11-30 08:00:58 UTC**; sun elevation 61.8°, azimuth 137.6–137.7°,
+  off-nadir 9.9–10.8° (ARD item metadata over the box).
+- **Lima — known risk:** low Sentinel-2 overlap, 1 / 2 / 3 clear scenes within
+  ±30 / 60 / 90 days of 2019-12-19.
+- **Monrovia:** "Pt 2 of 4" is not on OpenAerialMap; "Central Monrovia 2" is
+  uploaded three times (all included — harmless in a union).
+- **Karachi comparison (the approved box):** `10300100D13F6500` (2022-03-29,
+  0.57 m, off-nadir 27.0°) covers **100%**; `10300100CFA70700` (2022-03-29,
+  off-nadir 21.9°) and `1040010073509D00` (2022-03-26, 0.34 m, off-nadir
+  20.0°) cover **0%**.
+
 **Box vs frame:**
 - **Measurement B runs on the full 3 × 3 km box.**
 - **The labelling frame is box ∩ the chosen scene's footprint.** Tiles are

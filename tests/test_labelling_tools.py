@@ -476,3 +476,28 @@ def test_rocinha_preregistration_in_config():
     assert r["s2_composite_window"] == {"start": "2024-01-01", "end": "2024-06-30"}
     assert r["acquisition_time"] == "sun_geometry_from_shadows"
     assert r["date_gap"] == {"rule": "worst_case_across_range", "computation": "PENDING"}
+
+
+# ── imagery source choices, 2026-09-25 ──────────────────────────────────────
+
+def test_source_choices_recorded_karachi_unlocked():
+    a = CFG["aois"]
+    assert a["karachi"]["frame_scene"] is None                     # user picks
+    for site in ("makoko", "kibera", "rocinha", "lima", "monrovia", "cape_town"):
+        assert a[site]["frame_scene"], site
+        assert a[site]["frame_basis"] == "PENDING", site
+        fp, dt = a[site]["frame_footprint"], a[site]["frame_data"]
+        assert dt["area_km2"] <= fp["area_km2"] and dt["tiles_200m"] <= fp["tiles_200m"], site
+        assert fp["tiles_200m"] <= 196, site
+
+
+def test_kibera_time_and_sun_geometry_from_maxar():
+    k = CFG["aois"]["kibera"]
+    assert k["imagery_acquisition_time_utc"] == "2023-11-30T08:00:58Z"
+    assert k["sun_geometry"]["elevation_deg"] == 61.8
+    assert "104001008E063C00" in k["frame_scene"]
+
+
+def test_lima_low_s2_overlap_flagged_and_makoko_built_only():
+    assert "1 / 2 / 3" in CFG["aois"]["lima"]["known_risk"]
+    assert CFG["aois"]["makoko"]["validates"] == ["built"]
