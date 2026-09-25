@@ -1,0 +1,66 @@
+{
+ "service_crs_interpretation": "wkid 20482 treated as ESRI:102562 (Hartebeesthoek94 / Lo19, E-N)",
+ "proposed_box": {
+  "crs": "EPSG:32734",
+  "box": [
+   282308.6,
+   6232511.7,
+   285308.6,
+   6235511.7
+  ],
+  "in_service_crs": [
+   -33041.0,
+   -3766604.1,
+   -29983.5,
+   -3763546.5
+  ]
+ },
+ "years": {
+  "2026Jan": {
+   "description": "2026 January orthorectified colour mosaic (version 2). Original imagery property of CCT. Imagery captured with digital camera to enable mosaic pixel size of 0.05m. Compressed to ecw 20x compression. Planimetric fidelity expected within 0.3m. No restrictions on the digital file for non-commercial purposes. This is not the final image for 2026.",
+   "full_extent": {
+    "xmin": -64131.38239999954,
+    "ymin": -3803650.649899194,
+    "xmax": 1000.017599989755,
+    "ymax": -3704999.9999
+   },
+   "box_inside_full_extent": true,
+   "render": {
+    "http": 200,
+    "content_type": "image/jpeg",
+    "pixels": 360000,
+    "metres_per_pixel": 5.1,
+    "pure_black_share": 0.0,
+    "pure_white_share": 0.0,
+    "rgb_std": [
+     36.0,
+     36.6,
+     39.1
+    ]
+   }
+  },
+  "2025Jan": {
+   "description": "2025 January orthorectified colour mosaic (version 3). Original imagery property of CCT. Imagery captured with digital camera to enable mosaic pixel size of 0.05m. Compressed to ecw 10x compression. Planimetric fidelity expected within 0.3m. No restrictions on the digital file for non-commercial purposes.",
+   "full_extent": {
+    "xmin": -64131.3824,
+    "ymin": -3803650.65,
+    "xmax": 7000.017600000006,
+    "ymax": -3705000
+   },
+   "box_inside_full_extent": true,
+   "render": {
+    "http": 200,
+    "content_type": "image/jpeg",
+    "pixels": 360000,
+    "metres_per_pixel": 5.1,
+    "pure_black_share": 0.0,
+    "pure_white_share": 0.0,
+    "rgb_std": [
+     28.5,
+     28.3,
+     33.0
+    ]
+   }
+  }
+ }
+}
