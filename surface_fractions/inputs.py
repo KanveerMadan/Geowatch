@@ -66,20 +66,47 @@ class InputBundle:
 
 def microsoft_asset_for(aoi_geom, cfg: dict) -> tuple:
     """(asset id or None, country name, error or None). The sat-io catalogue
-    has one table per country, named with underscores for spaces."""
+    has one table per country, named with underscores for spaces.
+
+    The country is every LSIB polygon INTERSECTING the AOI -- not the one at
+    its centroid, which can fall in water with no polygon (Makoko's centroid
+    is in the Lagos lagoon; the old centroid lookup crashed there, 2026-09-25).
+    More than one country is refused: it would need several tables, and
+    silently using one would under-count the others."""
     import ee
     ms = cfg["footprints"]["microsoft"]
-    feat = (ee.FeatureCollection(ms["country_lookup"])
-            .filterBounds(aoi_geom.centroid(1)).first())
-    country = ee.Feature(feat).get(ms["country_field"]).getInfo()
-    if not country:
-        return None, None, "no LSIB country at AOI centroid"
+    countries = sorted(set(
+        ee.FeatureCollection(ms["country_lookup"]).filterBounds(aoi_geom)
+        .aggregate_array(ms["country_field"]).getInfo()))
+    if not countries:
+        return None, None, "no LSIB country intersects the AOI"
+    if len(countries) > 1:
+        return None, None, f"AOI spans several countries {countries}; one Microsoft table cannot cover it"
+    country = countries[0]
     asset = f"{ms['folder']}/{country.replace(' ', '_')}"
     try:
         ee.data.getAsset(asset)
     except Exception as e:  # noqa: BLE001 -- EE raises a generic exception
         return None, country, f"no Microsoft table {asset}: {e}"
     return asset, country, None
+
+
+def microsoft_fc(asset: str):
+    """The Microsoft footprints for `asset` as ONE FeatureCollection. The
+    sat-io catalogue stores most countries as a single table but splits large
+    ones into a folder of tables (Nigeria: nigeria_1..4, found 2026-09-25);
+    a folder is merged, so no part of the country is silently dropped."""
+    import ee
+    info = ee.data.getAsset(asset)
+    if info["type"] == "TABLE":
+        return ee.FeatureCollection(asset)
+    if info["type"] in ("FOLDER", "INDEXED_FOLDER"):
+        tables = [a["name"] for a in ee.data.listAssets({"parent": info["name"]})["assets"]
+                  if a["type"] == "TABLE"]
+        if not tables:
+            raise ValueError(f"Microsoft folder {asset} holds no tables")
+        return ee.FeatureCollection([ee.FeatureCollection(t) for t in tables]).flatten()
+    raise ValueError(f"Microsoft asset {asset} has unexpected type {info['type']}")
 
 
 def _nodata_bands(names):
@@ -137,7 +164,7 @@ def build_ee_stack(aoi_cfg: dict, cfg: dict, grid: Grid, region) -> tuple:
     ms_asset, country, ms_err = microsoft_asset_for(region, cfg)
     prov["microsoft_buildings"] = {"asset": ms_asset, "country": country, "subcell_m": sub}
     if ms_asset:
-        ms_fc = ee.FeatureCollection(ms_asset).filterBounds(region)
+        ms_fc = microsoft_fc(ms_asset).filterBounds(region)
         ms_img = coverage_fraction(ms_fc, proj, sub).rename("ms_cov")
         status["microsoft_buildings"] = "available"
     else:

@@ -1448,6 +1448,26 @@ they are recorded here so the code has a written source.*
   99.3%** — Makoko lies almost wholly in GLWD wetland cells, so even per
   cell its remainder is computed on < 1% of the box.
   `experiments/item21_sites/results/r2_per_cell_controls.json`.
+- **Measurement B — `built` + two-source disagreement** *(2026-09-25;
+  measurement, no status change)*: full approved 3 × 3 km boxes (9.06 km²
+  after snapping to the 10 m lattice). Descriptive only — two footprint
+  datasets, not labels, so no pass/fail:
+
+  | Site | OB coverage | MS coverage | MAE | weighted_jaccard | bias (OB − MS) |
+  |---|---:|---:|---:|---:|---:|
+  | Makoko | 0.222 | 0.145 | 0.137 | 0.457 | +0.077 |
+  | Kibera | 0.284 | 0.244 | 0.143 | 0.574 | +0.040 |
+  | Rocinha | 0.080 | 0.054 | 0.064 | 0.353 | +0.026 |
+  | Lima (B) | 0.113 | 0.063 | 0.087 | 0.340 | +0.050 |
+  | Monrovia | 0.158 | 0.149 | 0.072 | 0.620 | +0.009 |
+
+  Karachi (box pending) and Cape Town (extent pending) not run.
+  `experiments/item21_sites/results/built_disagreement_sites.json`. Two
+  lookup defects found and fixed on the way (`surface_fractions/inputs.py`):
+  the Microsoft country was read at the AOI **centroid**, which in Makoko
+  falls in the lagoon with no LSIB polygon (crash) — now every intersecting
+  country, refusing multi-country AOIs; and sat-io stores large countries
+  as a **folder of tables** (Nigeria: 4) — now merged.
 
 ---
 

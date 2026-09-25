@@ -8,14 +8,16 @@ Reuses the pipeline path exactly -- native Sentinel-2 grid
 explicit grid and scored by surface_fractions.built.disagreement -- so the
 numbers are the ones the pipeline would emit.
 
-AOIs are given explicitly on the command line. NOT YET RUN ON THE ITEM 21
-SITES (2026-09-25): no spec defines a per-site AOI, and the extent drives the
-result, so the AOIs await a decision. Validated on Dharavi, where it
-reproduces the part 4 numbers exactly
-(results/built_disagreement_dharavi_check.json).
+AOIs: --site NAME uses the APPROVED 3 x 3 km box from configs/labelling.yaml
+(exact, in the site's UTM zone; approved 2026-09-25); --aoi name=W,S,E,N takes
+a lon/lat box. Validated on Dharavi, where it reproduces the part 4 numbers
+exactly (results/built_disagreement_dharavi_check.json).
 
-    python experiments/item21_sites/built_disagreement.py \
-        --aoi makoko=W,S,E,N --aoi kibera=W,S,E,N --label sites
+Also reports R5's per-site coverage bias BETWEEN THE TWO SOURCES
+(Open Buildings mean - Microsoft mean). Descriptive only: these are two
+footprint datasets, not labels, so no pass/fail applies.
+
+    python experiments/item21_sites/built_disagreement.py --site makoko --site kibera --label sites
 """
 
 from __future__ import annotations
@@ -32,14 +34,15 @@ OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
 BANDS = ["ob_cov", "ms_cov"]
 
 
-def run_aoi(name: str, bbox: tuple, cfg: dict, work_dir: str) -> dict:
+def run_aoi(name: str, bbox: tuple, cfg: dict, work_dir: str, crs: str | None = None) -> dict:
     import ee
     from ingestion.tiler import export_image_local
     from surface_fractions.built import compute_built
     from surface_fractions.grid import coverage_fraction, ee_projection, grid_region, native_grid
-    from surface_fractions.inputs import NODATA, microsoft_asset_for, read_stack
+    from surface_fractions.inputs import NODATA, microsoft_asset_for, microsoft_fc, read_stack
 
-    geom = ee.Geometry.Rectangle(list(bbox))
+    geom = (ee.Geometry.Rectangle(list(bbox), proj=crs, geodesic=False) if crs
+            else ee.Geometry.Rectangle(list(bbox)))
     grid = native_grid(geom, cfg["sentinel2"]["collection"])
     region = grid_region(grid)
     proj = ee_projection(grid)
@@ -48,7 +51,7 @@ def run_aoi(name: str, bbox: tuple, cfg: dict, work_dir: str) -> dict:
     ob_fc = (ee.FeatureCollection(ob["asset"]).filterBounds(region)
              .filter(ee.Filter.gte("confidence", ob["min_confidence"])))
     ms_asset, country, ms_err = microsoft_asset_for(region, cfg)
-    ms_img = (coverage_fraction(ee.FeatureCollection(ms_asset).filterBounds(region), proj, sub)
+    ms_img = (coverage_fraction(microsoft_fc(ms_asset).filterBounds(region), proj, sub)
               if ms_asset else ee.Image.constant(NODATA)).rename("ms_cov")
     img = ee.Image.cat([coverage_fraction(ob_fc, proj, sub).rename("ob_cov"), ms_img])
     path = os.path.join(work_dir, f"{name}_footprints.tif")
@@ -58,13 +61,18 @@ def run_aoi(name: str, bbox: tuple, cfg: dict, work_dir: str) -> dict:
     status = {"microsoft_buildings": "available" if ms_asset else "unavailable"}
     b = compute_built(bands, status, {"asset": ob["asset"],
                                       "min_confidence": ob["min_confidence"], "subcell_m": sub})
-    return {"bbox": list(bbox), "grid": grid.to_dict(),
+    d = b["disagreement"]
+    if d.get("status") == "computed":
+        d["coverage_bias_primary_minus_secondary"] = (
+            d["coverage_total_primary"] - d["coverage_total_secondary"])
+        d["coverage_bias_note"] = "R5 per-site bias metric, descriptive only (not labels)"
+    return {"bbox": list(bbox), "bbox_crs": crs or "EPSG:4326", "grid": grid.to_dict(),
             "area_km2": grid.width * grid.height * grid.res ** 2 / 1e6,
             "microsoft": {"asset": ms_asset, "country": country, "error": ms_err},
             "disagreement": b["disagreement"]}
 
 
-def main(aois: dict, label: str):
+def main(aois: dict, label: str, crs_by_aoi: dict | None = None):
     from ingestion.gee_client import initialize_gee
     from surface_fractions.config import load_config
     initialize_gee()
@@ -75,7 +83,7 @@ def main(aois: dict, label: str):
     for name, bbox in aois.items():
         print(f"== {name} {bbox}", flush=True)
         try:
-            rows[name] = run_aoi(name, bbox, cfg, work)
+            rows[name] = run_aoi(name, bbox, cfg, work, (crs_by_aoi or {}).get(name))
         except Exception as e:  # noqa: BLE001 -- recorded per AOI, never silent
             rows[name] = {"bbox": list(bbox), "error": f"{type(e).__name__}: {e}"}
         print(json.dumps(rows[name].get("disagreement") or rows[name]), flush=True)
@@ -90,15 +98,27 @@ def main(aois: dict, label: str):
 def _parse(argv):
     import argparse
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--aoi", action="append", required=True,
-                    help="name=west,south,east,north (repeatable)")
+    ap.add_argument("--aoi", action="append", default=[],
+                    help="name=west,south,east,north in lon/lat (repeatable)")
+    ap.add_argument("--site", action="append", default=[],
+                    help="approved item 21 site from configs/labelling.yaml (repeatable)")
     ap.add_argument("--label", required=True, help="results file suffix")
     a = ap.parse_args(argv)
-    aois = {}
+    aois, crs = {}, {}
     for spec in a.aoi:
         name, box = spec.split("=", 1)
         aois[name] = tuple(float(v) for v in box.split(","))
-    return aois, a.label
+    if a.site:
+        from labelling.common import load_config as load_labelling
+        lcfg = load_labelling()
+        for site in a.site:
+            s = lcfg["aois"][site]
+            if s["status"] != "approved":
+                ap.error(f"{site}: AOI is {s['status']}, not approved")
+            aois[site], crs[site] = tuple(s["box_utm"]), s["crs"]
+    if not aois:
+        ap.error("give --site and/or --aoi")
+    return aois, a.label, crs
 
 
 if __name__ == "__main__":

@@ -295,3 +295,74 @@ def test_stack_band_list_is_complete_and_unique():
     assert inputs.STACK_BANDS[:6] == [f"s2_{b}" for b in tiler.BAND_NAMES]
     assert {"ob_cov", "ms_cov", "dem_elevation", "dem_slope_deg", "s2_observed"} <= \
         set(inputs.STACK_BANDS)
+
+
+# ── Microsoft country lookup: intersecting countries, not the centroid ──────
+
+class _FakeFC:
+    def __init__(self, names, asset_ok=True):
+        self.names = names
+
+    def filterBounds(self, g):
+        return self
+
+    def aggregate_array(self, field):
+        return _FakeEEList(self.names)
+
+
+def _ms_lookup(monkeypatch, names, asset_ok=True):
+    import ee
+    monkeypatch.setattr(ee, "FeatureCollection", lambda _id: _FakeFC(names))
+    if asset_ok:
+        monkeypatch.setattr(ee.data, "getAsset", lambda a: {"name": a})
+    else:
+        def missing(a):
+            raise Exception("not found")
+        monkeypatch.setattr(ee.data, "getAsset", missing)
+    return inputs.microsoft_asset_for(object(), load_config())
+
+
+def test_ms_lookup_single_country_even_if_centroid_is_water(monkeypatch):
+    asset, country, err = _ms_lookup(monkeypatch, ["Nigeria", "Nigeria"])
+    assert (country, err) == ("Nigeria", None) and asset.endswith("/Nigeria")
+
+
+def test_ms_lookup_no_country_is_unavailable_not_a_crash(monkeypatch):
+    assert _ms_lookup(monkeypatch, []) == (None, None, "no LSIB country intersects the AOI")
+
+
+def test_ms_lookup_multiple_countries_refused(monkeypatch):
+    asset, country, err = _ms_lookup(monkeypatch, ["United States", "Mexico"])
+    assert asset is None and "several countries" in err
+
+
+def test_ms_lookup_missing_table_reported(monkeypatch):
+    asset, country, err = _ms_lookup(monkeypatch, ["Atlantis"], asset_ok=False)
+    assert asset is None and country == "Atlantis" and "no Microsoft table" in err
+
+
+def test_microsoft_fc_merges_a_folder_of_tables(monkeypatch):
+    import ee
+    made = []
+    monkeypatch.setattr(ee.data, "getAsset", lambda a: {"name": a, "type": "FOLDER"})
+    monkeypatch.setattr(ee.data, "listAssets", lambda q: {"assets": [
+        {"name": q["parent"] + "/nigeria_1", "type": "TABLE"},
+        {"name": q["parent"] + "/nigeria_2", "type": "TABLE"}]})
+
+    class FC:
+        def __init__(self, x):
+            made.append(x)
+
+        def flatten(self):
+            return ("flattened", made[-1])
+    monkeypatch.setattr(ee, "FeatureCollection", FC)
+    out = inputs.microsoft_fc("MS/Nigeria")
+    assert out[0] == "flattened" and made[:2] == ["MS/Nigeria/nigeria_1", "MS/Nigeria/nigeria_2"]
+
+
+def test_microsoft_fc_rejects_empty_folder(monkeypatch):
+    import ee
+    monkeypatch.setattr(ee.data, "getAsset", lambda a: {"name": a, "type": "FOLDER"})
+    monkeypatch.setattr(ee.data, "listAssets", lambda q: {"assets": []})
+    with pytest.raises(ValueError, match="no tables"):
+        inputs.microsoft_fc("MS/Nowhere")

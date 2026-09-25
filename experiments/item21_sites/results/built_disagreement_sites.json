@@ -1,0 +1,225 @@
+{
+ "generated_utc": "2026-09-25T06:48:39.181618+00:00",
+ "aois": {
+  "makoko": {
+   "bbox": [
+    541879.2,
+    716534.5,
+    544879.2,
+    719534.5
+   ],
+   "bbox_crs": "EPSG:32631",
+   "grid": {
+    "crs": "EPSG:32631",
+    "transform": [
+     10,
+     0.0,
+     541870,
+     0.0,
+     -10,
+     719540
+    ],
+    "width": 301,
+    "height": 301
+   },
+   "area_km2": 9.0601,
+   "microsoft": {
+    "asset": "projects/sat-io/open-datasets/MSBuildings/Nigeria",
+    "country": "Nigeria",
+    "error": null
+   },
+   "disagreement": {
+    "status": "computed",
+    "is_confidence_score": false,
+    "note": "diagnostic only; calibration against hand-digitised buildings (item 21) decides which measure becomes built confidence",
+    "sources": {
+     "primary": "open_buildings_v3",
+     "secondary": "microsoft_global_ml_building_footprints"
+    },
+    "pixels_compared": 90601,
+    "coverage_total_primary": 0.22192602732135158,
+    "coverage_total_secondary": 0.14521572609075747,
+    "fraction_mae": 0.13675378866733745,
+    "weighted_jaccard": 0.4572137387721671,
+    "coverage_bias_primary_minus_secondary": 0.07671030123059411,
+    "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
+   }
+  },
+  "kibera": {
+   "bbox": [
+    252473.7,
+    9853449.4,
+    255473.7,
+    9856449.4
+   ],
+   "bbox_crs": "EPSG:32737",
+   "grid": {
+    "crs": "EPSG:32737",
+    "transform": [
+     10,
+     0.0,
+     252470,
+     0.0,
+     -10,
+     9856450
+    ],
+    "width": 301,
+    "height": 301
+   },
+   "area_km2": 9.0601,
+   "microsoft": {
+    "asset": "projects/sat-io/open-datasets/MSBuildings/Kenya",
+    "country": "Kenya",
+    "error": null
+   },
+   "disagreement": {
+    "status": "computed",
+    "is_confidence_score": false,
+    "note": "diagnostic only; calibration against hand-digitised buildings (item 21) decides which measure becomes built confidence",
+    "sources": {
+     "primary": "open_buildings_v3",
+     "secondary": "microsoft_global_ml_building_footprints"
+    },
+    "pixels_compared": 90601,
+    "coverage_total_primary": 0.28419244820852685,
+    "coverage_total_secondary": 0.2444843876359347,
+    "fraction_mae": 0.14298727404545727,
+    "weighted_jaccard": 0.5742298213049022,
+    "coverage_bias_primary_minus_secondary": 0.03970806057259216,
+    "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
+   }
+  },
+  "rocinha": {
+   "bbox": [
+    678035.1,
+    7455053.9,
+    681035.1,
+    7458053.9
+   ],
+   "bbox_crs": "EPSG:32723",
+   "grid": {
+    "crs": "EPSG:32723",
+    "transform": [
+     10,
+     0.0,
+     678030,
+     0.0,
+     -10,
+     7458060
+    ],
+    "width": 301,
+    "height": 301
+   },
+   "area_km2": 9.0601,
+   "microsoft": {
+    "asset": "projects/sat-io/open-datasets/MSBuildings/Brazil",
+    "country": "Brazil",
+    "error": null
+   },
+   "disagreement": {
+    "status": "computed",
+    "is_confidence_score": false,
+    "note": "diagnostic only; calibration against hand-digitised buildings (item 21) decides which measure becomes built confidence",
+    "sources": {
+     "primary": "open_buildings_v3",
+     "secondary": "microsoft_global_ml_building_footprints"
+    },
+    "pixels_compared": 90601,
+    "coverage_total_primary": 0.0795090561525109,
+    "coverage_total_secondary": 0.053931744681655784,
+    "fraction_mae": 0.0637819670476509,
+    "weighted_jaccard": 0.3531987434039951,
+    "coverage_bias_primary_minus_secondary": 0.025577311470855117,
+    "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
+   }
+  },
+  "lima": {
+   "bbox": [
+    288620.5,
+    8656435.0,
+    291620.5,
+    8659435.0
+   ],
+   "bbox_crs": "EPSG:32718",
+   "grid": {
+    "crs": "EPSG:32718",
+    "transform": [
+     10,
+     0.0,
+     288620,
+     0.0,
+     -10,
+     8659440
+    ],
+    "width": 301,
+    "height": 301
+   },
+   "area_km2": 9.0601,
+   "microsoft": {
+    "asset": "projects/sat-io/open-datasets/MSBuildings/Peru",
+    "country": "Peru",
+    "error": null
+   },
+   "disagreement": {
+    "status": "computed",
+    "is_confidence_score": false,
+    "note": "diagnostic only; calibration against hand-digitised buildings (item 21) decides which measure becomes built confidence",
+    "sources": {
+     "primary": "open_buildings_v3",
+     "secondary": "microsoft_global_ml_building_footprints"
+    },
+    "pixels_compared": 90601,
+    "coverage_total_primary": 0.11314477765879288,
+    "coverage_total_secondary": 0.06330802087115107,
+    "fraction_mae": 0.08700433771483418,
+    "weighted_jaccard": 0.33951807906999787,
+    "coverage_bias_primary_minus_secondary": 0.04983675678764181,
+    "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
+   }
+  },
+  "monrovia": {
+   "bbox": [
+    298676.1,
+    698077.6,
+    301676.1,
+    701077.6
+   ],
+   "bbox_crs": "EPSG:32629",
+   "grid": {
+    "crs": "EPSG:32629",
+    "transform": [
+     10,
+     0.0,
+     298670,
+     0.0,
+     -10,
+     701080
+    ],
+    "width": 301,
+    "height": 301
+   },
+   "area_km2": 9.0601,
+   "microsoft": {
+    "asset": "projects/sat-io/open-datasets/MSBuildings/Liberia",
+    "country": "Liberia",
+    "error": null
+   },
+   "disagreement": {
+    "status": "computed",
+    "is_confidence_score": false,
+    "note": "diagnostic only; calibration against hand-digitised buildings (item 21) decides which measure becomes built confidence",
+    "sources": {
+     "primary": "open_buildings_v3",
+     "secondary": "microsoft_global_ml_building_footprints"
+    },
+    "pixels_compared": 90601,
+    "coverage_total_primary": 0.15822827562678185,
+    "coverage_total_secondary": 0.14892495667536582,
+    "fraction_mae": 0.07210152212415369,
+    "weighted_jaccard": 0.6197726130910519,
+    "coverage_bias_primary_minus_secondary": 0.009303318951416034,
+    "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
+   }
+  }
+ }
+}

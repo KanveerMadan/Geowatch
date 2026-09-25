@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-09-25T05:49:27.210186+00:00",
+ "generated_utc": "2026-09-25T06:49:10.044247+00:00",
  "aois": {
   "dharavi": {
    "bbox": [
@@ -8,6 +8,7 @@
     72.862,
     19.06
    ],
+   "bbox_crs": "EPSG:4326",
    "grid": {
     "crs": "EPSG:32643",
     "transform": [
@@ -39,7 +40,9 @@
     "coverage_total_primary": 0.22045818169207712,
     "coverage_total_secondary": 0.16112496879679028,
     "fraction_mae": 0.19963042698413042,
-    "weighted_jaccard": 0.3130565605432543
+    "weighted_jaccard": 0.3130565605432543,
+    "coverage_bias_primary_minus_secondary": 0.05933321289528684,
+    "coverage_bias_note": "R5 per-site bias metric, descriptive only (not labels)"
    }
   }
  }
