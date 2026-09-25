@@ -25,6 +25,11 @@ def get_osm_features(
     import time
     from shapely.geometry import LineString
 
+    from ingestion.contact import contact_user_agent
+
+    # Resolved BEFORE the retry loop: its `except Exception` would otherwise
+    # swallow a missing contact and fall through to "features unavailable".
+    user_agent = contact_user_agent()
     os.makedirs(output_dir, exist_ok=True)
     result = {"roads": None, "waterways": None}
 
@@ -52,7 +57,7 @@ def get_osm_features(
 
                 print(f"Querying Overpass API ({endpoint})...")
                 headers = {
-                    "User-Agent": "GeoWatchCopilot/1.0 (kanveermadan@gmail.com)",
+                    "User-Agent": user_agent,
                     "Content-Type": "application/x-www-form-urlencoded",
                 }
                 response = requests.post(

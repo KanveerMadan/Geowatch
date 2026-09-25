@@ -292,6 +292,10 @@ def get_osm_facilities(west: float, south: float, east: float, north: float,
         "https://overpass.kumi.systems/api/interpreter",
     ]
 
+    from ingestion.contact import contact_user_agent
+
+    # Resolved BEFORE the retry loop, whose `except Exception` would swallow it.
+    user_agent = contact_user_agent()
     data = None
     for endpoint in ENDPOINTS:
         for attempt in range(3):
@@ -305,7 +309,7 @@ def get_osm_facilities(west: float, south: float, east: float, north: float,
                     endpoint,
                     data={"data": query},
                     headers={
-                        "User-Agent": "GeoWatchCopilot/1.0 (kanveermadan@gmail.com)",
+                        "User-Agent": user_agent,
                         "Content-Type": "application/x-www-form-urlencoded",
                     },
                     timeout=60,
