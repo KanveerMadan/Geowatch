@@ -86,7 +86,7 @@ last three are new — see §"The taxonomy expansion" below.
 | **water** | |
 | **bare** | ~~Permeable unpaved ground, exposed soil.~~ **Unsealed ground, including compacted ground** (dirt roads, gravel, compacted yards, dirt parking) and exposed soil *(amended 2026-09-24 with `paved`)*. The residual. Note: "permeable" was struck because compacted earth often is not; see `LABELLING_GUIDE.md` §4 |
 | **snow_ice** *(new)* | **Permanent** snow and ice only — spectral signature *plus* low temporal variance. Transient snow is occlusion, like cloud |
-| **solar** *(new)* | Solar panels / arrays, as their own fraction |
+| **solar** *(new)* | Solar panels / arrays, as their own fraction. **Ground-mounted arrays only** *(amended 2026-09-25)*: rooftop panels are `built`, and where a solar detection intersects a footprint, `built` wins |
 | **mixed_water_vegetation** *(new)* | Wetlands, mangroves, mudflats / tidal zones, water hyacinth. Sub-typed from datasets; feeds the flood model as its own hydrological input, weighted by sub-type |
 
 ### The taxonomy expansion (DECIDED 2026-09-24)
@@ -134,8 +134,8 @@ hard-surface remainder is computed, because the remainder subtracts it:
 | Fraction | Producer |
 |---|---|
 | `snow_ice` | spectral signature + low temporal variance (§5.2) |
-| `solar` | spectral-signature detector |
-| `mixed_water_vegetation` | spectral, sub-typed from datasets (Global Mangrove Watch, GLWD) |
+| `solar` | spectral-signature detector; `excluded` per AOI when a global solar-installation dataset shows none *(2026-09-25)* |
+| `mixed_water_vegetation` | spectral, sub-typed from datasets (Global Mangrove Watch, GLWD). *Amended 2026-09-25:* the **mangrove** producer is Global Mangrove Watch extent directly; the other sub-types are `not_computed` |
 
 Vegetation, water and `impervious_total` are **spectral regression**, per the
 item 21 table signed off 2026-09-23 (§5.1).

@@ -162,7 +162,8 @@ denominator (Decision 14):**
     bare                   — residual. Unsealed ground, INCLUDING compacted
                              ground (dirt roads, gravel, compacted yards)
     snow_ice               — NEW: permanent only (spectral + low temporal variance)
-    solar                  — NEW: own fraction
+    solar                  — NEW: own fraction. GROUND-MOUNTED arrays only
+                             (amended 2026-09-25); rooftop panels are built
     mixed_water_vegetation — NEW: wetlands, mangroves, mudflats/tidal, water hyacinth
 
     Derived:
@@ -177,8 +178,13 @@ denominator (Decision 14):**
     Producers, all run BEFORE the remainder is computed (added 2026-09-24):
     vegetation, water      — spectral regression (item 21, signed off 2026-09-23)
     snow_ice               — spectral signature + low temporal variance
-    solar                  — spectral-signature detector
-    mixed_water_vegetation — spectral + dataset sub-typing (GMW, GLWD)
+    solar                  — spectral-signature detector; per AOI "excluded"
+                             when a global solar-installation dataset shows
+                             none (amended 2026-09-25)
+    mixed_water_vegetation — spectral + dataset sub-typing (GMW, GLWD).
+                             Amended 2026-09-25: MANGROVE producer = Global
+                             Mangrove Watch extent directly; other sub-types
+                             not_computed
 
 *Amended 2026-09-24: the formula as first recorded ended `+ shadow)`. That
 term is ~~struck~~ because it counted shadow twice: subtracted here, and
@@ -1167,7 +1173,10 @@ they are recorded here so the code has a written source.*
   a time. A pixel is occluded when it has zero valid observations; it is
   attributed to one cause only if every removal had that cause, otherwise to a
   separate `occluded_multiple_causes` field. Per-cause shares of removed
-  *observations* are reported alongside.
+  *observations* are reported alongside. *(Recorded 2026-09-25, second
+  round:)* each observation gets exactly one category, by the precedence
+  **nodata > cloud > fire > snow**; it only matters for an observation that is
+  two things at once (e.g. cloud over a fire).
 - **Occlusion producers.** Transient snow = SCL 11 excluding `snow_ice`
   pixels. Fire = FIRMS active fire matched to scene dates. **Smoke and ships:
   `status: "no_producer"`.**
@@ -1182,21 +1191,53 @@ they are recorded here so the code has a written source.*
   fraction 1.0. Detectors (`snow_ice`, `solar`, `mixed_water_vegetation`)
   override the vegetation and water regressors on the same pixel; a
   `mixed_water_vegetation` pixel is not also counted as vegetation or water.
+  *(Added 2026-09-25, second round:)* where a `solar` detection intersects an
+  Open Buildings footprint, **`built` wins** — rooftop panels are `built`.
 - **Thresholds.** Every threshold is either cited or measured, lives in
   config, and is marked UNVALIDATED; an uncited one is **UNSET** and its
   detector emits `status: "not_computed"`. In any run other than the Dharavi
   smoke test, a remainder with a `not_computed` input is itself
-  `not_computed`. Placeholder substitution for a `not_computed` detector is
+  `not_computed`. *(Amended 2026-09-25, second round:)* an **`excluded`**
+  input — known to be zero in the AOI from a dataset — does **not** make the
+  remainder `not_computed`. Placeholder substitution for a `not_computed` detector is
   allowed **only** in the smoke test, marked `provenance: "placeholder"`.
 - **`built`.** Open Buildings v3, `confidence ≥ 0.7`, only. The second source
   is **Microsoft Global ML Building Footprints (sat-io)**, used only for the
-  disagreement signal: both coverage totals, per-pixel fraction MAE, and 10 m
-  IoU are emitted, and **none is named the confidence score** until the
+  disagreement signal: both coverage totals, per-pixel fraction MAE, and ~~10 m
+  IoU~~ `weighted_jaccard` *(renamed 2026-09-25)* are emitted, and **none is named the confidence score** until the
   hand-digitised check calibrates one.
 - **Docks.** The "docks → `built`" folding is struck (Decision 11, 2026-09-25).
   `man_made=pier` / `quay` is a context flag only.
 - **Fabric strata** for tile sampling come from a **hand-drawn GeoJSON per
   site**; nothing derives them (morphology is item 23, past the mandate).
+
+#### Phase A — build rulings, second round, decided 2026-09-25
+
+1. **Detector status `excluded`.** A detector *known to be zero in the AOI
+   from a dataset* has status `excluded` and provenance
+   `excluded:<dataset>`. An excluded input does **not** make the remainder
+   `not_computed`. **`snow_ice`** is excluded per AOI from a global
+   permanent-snow / glacier dataset. The low-temporal-variance threshold
+   stays UNSET.
+2. **`mixed_water_vegetation` mangrove producer = Global Mangrove Watch
+   extent, directly** (Decision 11 producer table amended). The other
+   sub-types (wetland, mudflat / tidal, water hyacinth) stay `not_computed`.
+3. **`solar` = ground-mounted arrays only.** Rooftop panels are `built`.
+   Where a `solar` detection intersects an Open Buildings footprint, `built`
+   wins. Per AOI, `solar` is `excluded` if a global solar-installation
+   dataset shows none.
+4. **`LABELLING_GUIDE.md` → v1.1:** the `solar` label is ground-mounted arrays
+   only; rooftop panels are `built` plus a solar flag.
+5. **`label_limited`.** For `impervious_total`: agreement of the derived
+   (`built` ∪ `paved`) label fractions between labellings, against the
+   model's `impervious_total` pass bar. For `built`: against its validation
+   bar. Every other class: `None`.
+6. **Naming and records.** The Open Buildings / Microsoft "10 m IoU" is
+   renamed **`weighted_jaccard`** everywhere. The occlusion precedence is
+   recorded above. The tile-sampler seed is stored in run metadata.
+7. **Part 6 context thresholds** (terrain, volcano radius, synthetic turf,
+   bare plausibility, salt flat) **stay UNSET, deferred, off the critical
+   path.** GLWD class 32 is **not** a salt-flat producer.
 
 **Phase A progress** *(one line per part as it lands)*:
 
@@ -1217,9 +1258,10 @@ they are recorded here so the code has a written source.*
   guessed. Dharavi 2024-Q1: 31 scenes, observed_fraction 1.0.
 - **Part 4 — `built`** *(2026-09-25)*: `surface_fractions/built.py`.
   `built` = Open Buildings v3 (≥ 0.7) coverage only. Microsoft disagreement
-  emitted as coverage totals, per-pixel fraction MAE and 10 m IoU
-  (area-weighted, threshold-free), explicitly not a confidence score.
-  Dharavi: Open Buildings 22.0% vs Microsoft 16.1%, MAE 0.200, IoU 0.313.
+  emitted as coverage totals, per-pixel fraction MAE and ~~10 m IoU~~
+  `weighted_jaccard` (area-weighted, threshold-free), explicitly not a
+  confidence score. Dharavi: Open Buildings 22.0% vs Microsoft 16.1%, MAE
+  0.200, ~~IoU~~ weighted_jaccard 0.313.
 - **Part 3 — detectors** *(2026-09-25)*: `surface_fractions/detectors.py`.
   All three are **`not_computed`** under the shipped config: `snow_ice`
   has a cited spectral half (Hall et al. 1995: NDSI ≥ 0.4, NIR > 0.11,
