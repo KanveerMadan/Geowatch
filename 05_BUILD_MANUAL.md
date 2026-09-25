@@ -1140,6 +1140,27 @@ Makoko still tests it. **`impervious_total` is validated on Kibera and
 Rocinha only.** This narrows the validation-site list above for one
 quantity; the firewall and the sealed batches are unchanged.
 
+**Rocinha imagery dating — pre-registered 2026-09-25, before any labelling.**
+The Rio IPP `Mosaico_2024` publishes only "Aquisição 1º semestre de 2024"
+(measurement A; the ImageServer has no per-raster date or time). So:
+
+- **Acquisition date is recorded as the range 2024-01-01 → 2024-06-30**, with
+  that reason, in the tile record (`LABELLING_GUIDE.md` v1.4 §8).
+- **Sun geometry is measured from building shadows** (guide v1.2 §5 / §8: ≥ 3
+  buildings per tile, method recorded) in place of the unpublished time.
+- **The Sentinel-2 composite for Rocinha spans the full window,
+  2024-01-01 → 2024-06-30.**
+- **§6 date-gap check: the gap is the worst case across the range.**
+  *Definition pending (2026-09-25):* no per-date gap between an acquisition
+  date and a composite window is defined anywhere, and the two natural
+  readings disagree — distance to the window gives **0 days** for every date
+  in a range the composite fully spans; the longest distance to any date in
+  the composite gives **181 days**. The rule is recorded; the computation
+  waits for that definition.
+- **Why a whole half-year is acceptable here:** Rocinha is consolidated
+  fabric — a long-established, densely built favela — so the change risk
+  across six months is low.
+
 **`built` validation.**
 
 - **Hand-digitised buildings** at Makoko, Kibera and Rocinha are compared
@@ -1182,7 +1203,7 @@ quantity; the firewall and the sealed batches are unchanged.
   (Decision 11) reported as one quantity.
 
 **Labelling guide — decided 2026-09-24: [`LABELLING_GUIDE.md`](LABELLING_GUIDE.md)
-(~~v1.0~~ ~~v1.1~~ ~~v1.2~~ v1.3 since 2026-09-25: `solar` = ground-mounted only; sun geometry measured from ≥ 3 buildings where no acquisition time is published; Marrakech removed from its site list).** It is the protocol for every training and validation label above:
+(~~v1.0~~ ~~v1.1~~ ~~v1.2~~ ~~v1.3~~ v1.4 since 2026-09-25: `solar` = ground-mounted only; sun geometry measured from ≥ 3 buildings where no acquisition time is published; Marrakech removed from its site list; acquisition date may be a range with a reason).** It is the protocol for every training and validation label above:
 - the label set, including `shadow_full` / `shadow_partial` and `unsure`
 - polygon labels, with fractions computed from area and never eyeballed
 - stratified random ~200 m tiles

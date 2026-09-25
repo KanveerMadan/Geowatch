@@ -171,7 +171,7 @@ def rec(**over):
                 imagery_licence="CC BY 4.0",
                 s2_composite_window={"start": "2025-02-15", "end": "2025-04-15"},
                 date_gap_days=12, change_test_result="not run: method UNSET",
-                labeller="L1", labelling_date="2026-10-01", guide_version="1.3",
+                labeller="L1", labelling_date="2026-10-01", guide_version="1.4",
                 pct_unsure=0.0, pct_shadow_full=0.0, qc_status="pending")
     base.update(over)
     return records.TileRecord(**base)
@@ -179,8 +179,8 @@ def rec(**over):
 
 def test_every_metadata_field_is_mandatory():
     for f in dataclasses.fields(records.TileRecord):
-        if f.name in records.TileRecord.SUN_FIELDS:
-            continue                      # optional stand-ins, tested below
+        if f.name in records.TileRecord.SUN_FIELDS + records.TileRecord.RANGE_FIELDS:
+            continue                      # optional, tested below
         bad = rec(**{f.name: "" if f.type == "str" else None})
         with pytest.raises(records.RecordError):
             bad.validate(CFG)
@@ -272,9 +272,9 @@ def test_agreement_bar_must_name_its_metric():
 
 # ── guide v1.1 (2026-09-25): solar = ground-mounted only ────────────────────
 
-def test_guide_version_is_1_3():
-    assert CFG["guide_version"] == "1.3"
-    assert "Guide version 1.3" in open(
+def test_guide_version_is_1_4():
+    assert CFG["guide_version"] == "1.4"
+    assert "Guide version 1.4" in open(
         pathlib.Path(__file__).resolve().parents[1] / "LABELLING_GUIDE.md").read()
 
 
@@ -431,3 +431,48 @@ def test_approved_site_boxes_are_3km_and_pending_ones_refused():
             with pytest.raises(ValueError, match="not approved"):
                 tiles.site_box(site, CFG)
     assert "2025Jan" in CFG["aois"]["cape_town"]["frame_scene"]   # not 2026Jan (not final)
+
+
+
+# ── guide v1.4: acquisition date may be a range with a recorded reason ──────
+
+IPP = dict(imagery_acquisition_date="2024-01-01", imagery_acquisition_date_end="2024-06-30",
+           imagery_acquisition_date_range_reason="IPP Mosaico_2024 publishes only '1st half 2024'",
+           imagery_acquisition_time=None, **SUN)
+
+
+def test_single_date_still_valid_and_range_is_a_point():
+    r = rec()
+    r.validate(CFG)
+    assert r.acquisition_range[0] == r.acquisition_range[1]
+
+
+def test_date_range_with_reason_is_valid():
+    r = rec(site="rocinha", **IPP)
+    r.validate(CFG)
+    from datetime import date
+    assert r.acquisition_range == (date(2024, 1, 1), date(2024, 6, 30))
+
+
+def test_range_needs_both_end_and_reason():
+    with pytest.raises(records.RecordError, match="both its end"):
+        rec(**{**IPP, "imagery_acquisition_date_range_reason": None}).validate(CFG)
+    with pytest.raises(records.RecordError, match="both its end"):
+        rec(**{**IPP, "imagery_acquisition_date_end": None}).validate(CFG)
+
+
+def test_range_end_must_follow_start_and_dates_must_be_iso():
+    with pytest.raises(records.RecordError, match="not after"):
+        rec(**{**IPP, "imagery_acquisition_date_end": "2023-12-31"}).validate(CFG)
+    with pytest.raises(records.RecordError, match="ISO"):
+        rec(imagery_acquisition_date="1st half 2024").validate(CFG)
+
+
+def test_rocinha_preregistration_in_config():
+    r = CFG["aois"]["rocinha"]
+    assert r["imagery_acquisition_range"]["start"] == "2024-01-01"
+    assert r["imagery_acquisition_range"]["end"] == "2024-06-30"
+    assert r["imagery_acquisition_range"]["reason"]
+    assert r["s2_composite_window"] == {"start": "2024-01-01", "end": "2024-06-30"}
+    assert r["acquisition_time"] == "sun_geometry_from_shadows"
+    assert r["date_gap"] == {"rule": "worst_case_across_range", "computation": "PENDING"}

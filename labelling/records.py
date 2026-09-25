@@ -40,7 +40,7 @@ class TileRecord:
     site: str
     tile_id: str
     imagery_source: str
-    imagery_acquisition_date: str
+    imagery_acquisition_date: str          # the date, or the START of a range (v1.4)
     imagery_acquisition_time: str | None   # time of day: shadow geometry (§5);
                                            # None ONLY with measured sun geometry (v1.2)
     imagery_resolution_m: float
@@ -59,23 +59,53 @@ class TileRecord:
     sun_elevation_deg: float | None = None
     sun_geometry_method: str | None = None
     sun_geometry_n_buildings: int | None = None
+    # v1.4 (§8): where the publisher gives only a period, the acquisition date
+    # is a range -- imagery_acquisition_date is its start -- with the reason.
+    imagery_acquisition_date_end: str | None = None
+    imagery_acquisition_date_range_reason: str | None = None
 
     SUN_FIELDS = ("sun_azimuth_deg", "sun_elevation_deg", "sun_geometry_method",
                   "sun_geometry_n_buildings")
+    RANGE_FIELDS = ("imagery_acquisition_date_end", "imagery_acquisition_date_range_reason")
 
     def validate(self, cfg: dict) -> None:
         for f in fields(self):
-            if f.name in self.SUN_FIELDS or f.name == "imagery_acquisition_time":
+            if (f.name in self.SUN_FIELDS or f.name in self.RANGE_FIELDS
+                    or f.name == "imagery_acquisition_time"):
                 continue
             v = getattr(self, f.name)
             if v is None or (isinstance(v, str) and not v.strip()):
                 raise RecordError(f"{self.tile_id}: mandatory field {f.name!r} is empty (§8)")
         self._validate_time_or_sun(cfg)
+        self._validate_date_or_range()
         if set(self.s2_composite_window) != {"start", "end"}:
             raise RecordError(f"{self.tile_id}: s2_composite_window needs start and end")
         if self.guide_version != cfg["guide_version"]:
             raise RecordError(f"{self.tile_id}: guide version {self.guide_version} "
                               f"!= current {cfg['guide_version']} (§7: recheck)")
+
+    @property
+    def acquisition_range(self) -> tuple:
+        """(start, end) as dates; start == end for a single date."""
+        start = date.fromisoformat(self.imagery_acquisition_date)
+        end = (date.fromisoformat(self.imagery_acquisition_date_end)
+               if _has(self.imagery_acquisition_date_end) else start)
+        return start, end
+
+    def _validate_date_or_range(self) -> None:
+        """§8 v1.4: a single ISO date, OR a range (start = the date field, end
+        field) with a recorded reason. Both range fields or neither."""
+        end, reason = self.imagery_acquisition_date_end, self.imagery_acquisition_date_range_reason
+        if _has(end) != _has(reason):
+            raise RecordError(f"{self.tile_id}: an acquisition date range needs both its end "
+                              f"and a recorded reason (§8 v1.4)")
+        try:
+            start, stop = self.acquisition_range
+        except ValueError as e:
+            raise RecordError(f"{self.tile_id}: acquisition date not ISO YYYY-MM-DD: {e}") from None
+        if _has(end) and stop <= start:
+            raise RecordError(f"{self.tile_id}: acquisition range end {stop} is not after "
+                              f"its start {start}")
 
     def _validate_time_or_sun(self, cfg: dict) -> None:
         """§5/§8 v1.2: an acquisition time, OR sun azimuth + elevation measured

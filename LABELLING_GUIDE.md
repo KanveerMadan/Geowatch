@@ -1,6 +1,6 @@
 # GeoWatch — Labelling Guide (item 21)
 
-**Guide version 1.3 — 2026-09-25** (v1.0 decided 2026-09-24; changelog at
+**Guide version 1.4 — 2026-09-25** (v1.0 decided 2026-09-24; changelog at
 the end). This is the hand-labelling
 protocol for the item 21 regressors and their validation. It applies at every
 site in the item 21 site list (`05_BUILD_MANUAL.md` item 21, "Site list"):
@@ -147,7 +147,7 @@ open (§9) and must be fixed before the first tile is labelled.
 | Field | |
 |---|---|
 | Site, tile ID | |
-| Imagery | source, acquisition date, **acquisition time — or, where unpublished (v1.2), sun azimuth + elevation measured from the shadows of ≥ 3 buildings in the tile, with the method and building count recorded**, resolution, licence |
+| Imagery | source, acquisition date — *(v1.4)* **or, where the publisher gives only a period, a date range with the reason recorded** —, **acquisition time — or, where unpublished (v1.2), sun azimuth + elevation measured from the shadows of ≥ 3 buildings in the tile, with the method and building count recorded**, resolution, licence |
 | Sentinel-2 composite window | |
 | Date gap + change-test result | |
 | Labeller, labelling date | |
@@ -188,6 +188,10 @@ seeing model results.
 
 ## Changelog
 
+- **v1.4 — 2026-09-25.** §8: the acquisition date may be a **date range
+  with a recorded reason** where the publisher gives only a period (Rio IPP
+  `Mosaico_2024`: "1st half 2024"). **No tile has been labelled, so the §7
+  recheck has nothing to recheck.**
 - **v1.3 — 2026-09-25.** Site list only: Marrakech removed (Open Buildings v3 has zero coverage in Morocco, and using Microsoft footprints at one site would mix `built` sources across the training set). No
   labelling rule changed. **No tile has been labelled, so the §7 recheck has
   nothing to recheck.**
