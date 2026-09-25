@@ -97,6 +97,46 @@ def build_frame(site: str, crs: str, bounds: tuple, strata: dict, cfg: dict,
             "ineligible": ineligible}
 
 
+def config_sha256(path: str | None = None) -> str:
+    import hashlib
+    from labelling.common import DEFAULT_CONFIG_PATH
+    with open(path or DEFAULT_CONFIG_PATH, "rb") as fh:
+        return hashlib.sha256(fh.read()).hexdigest()
+
+
+def git_head() -> str | None:
+    import subprocess
+    from surface_fractions.config import REPO_ROOT
+    try:
+        return subprocess.run(["git", "-C", REPO_ROOT, "rev-parse", "HEAD"],
+                              capture_output=True, text=True, check=True).stdout.strip()
+    except Exception:  # noqa: BLE001 -- metadata only, never fail a save on it
+        return None
+
+
+def save_frame(frame: dict, path: str, cfg: dict) -> str:
+    """Write the frame with its run metadata, including the sampler seed
+    (ruling 2026-09-25, second round, 6). Refuses to overwrite: a frame, once
+    fixed, is the record the counts are later drawn from."""
+    import json
+    from datetime import datetime, timezone
+    record = {
+        "run_metadata": {
+            "tile_sampler_seed": frame["random_seed"],
+            "stratum_assignment": frame["stratum_assignment"],
+            "tile_size_m": frame["tile_size_m"],
+            "guide_version": cfg["guide_version"],
+            "labelling_config_sha256": config_sha256(),
+            "git_head": git_head(),
+            "created_utc": datetime.now(timezone.utc).isoformat(),
+        },
+        "frame": frame,
+    }
+    with open(path, "x") as fh:
+        json.dump(record, fh, indent=2)
+    return path
+
+
 def select(frame: dict, cfg: dict, counts: dict | None = None) -> list:
     """First N tiles per stratum by rank. N comes from the §9.3 open number
     unless `counts` is given explicitly (e.g. a later LOCO-driven top-up)."""

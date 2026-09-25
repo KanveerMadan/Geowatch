@@ -28,19 +28,19 @@ def test_disagreement_measures():
     assert d["coverage_total_primary"] == pytest.approx(0.375)
     assert d["coverage_total_secondary"] == pytest.approx(0.375)
     assert d["fraction_mae"] == pytest.approx(0.25)
-    assert d["iou_10m"] == pytest.approx(1.0 / 2.0)
+    assert d["weighted_jaccard"] == pytest.approx(1.0 / 2.0)
     assert d["is_confidence_score"] is False
 
 
 def test_identical_sources_iou_one_mae_zero():
     a = np.array([0.2, 0.7, 1.0])
     d = built.disagreement(a, a.copy(), "available")
-    assert d["iou_10m"] == pytest.approx(1.0) and d["fraction_mae"] == 0
+    assert d["weighted_jaccard"] == pytest.approx(1.0) and d["fraction_mae"] == 0
 
 
 def test_no_buildings_in_either_source_iou_undefined_not_one():
     z = np.zeros(4)
-    assert built.disagreement(z, z, "available")["iou_10m"] is None
+    assert built.disagreement(z, z, "available")["weighted_jaccard"] is None
 
 
 def test_nan_pixels_excluded_from_comparison():

@@ -25,7 +25,9 @@ import numpy as np
 
 from surface_fractions.bookkeeping import EIGHT
 
-SCHEMA = "geowatch.surface_fractions.phase_a/1"
+# /2 (2026-09-25): estimate_quality.built_disagreement.iou_10m renamed
+# weighted_jaccard.
+SCHEMA = "geowatch.surface_fractions.phase_a/2"
 CLAIM_STATUS = ("proposed research design, not an established claim -- Part 4 "
                 "validation-first mandate (05_BUILD_MANUAL.md, 2026-09-24)")
 

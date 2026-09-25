@@ -1326,6 +1326,11 @@ they are recorded here so the code has a written source.*
   this manual** (item 21 "`built` validation" defines a comparison, not a
   number), so its bar is UNSET in `configs/labelling.yaml` and its
   `label_limited` is `None`. Every other class: `None`.
+- **Ruling 6 — naming and records** *(2026-09-25)*: `iou_10m` →
+  `weighted_jaccard` in code, tests and docs; result schema bumped to
+  `geowatch.surface_fractions.phase_a/2`. `labelling.tiles.save_frame()`
+  writes the frame with run metadata (sampler seed, stratum rule, guide
+  version, config SHA-256, git HEAD) and never overwrites.
 
 ---
 

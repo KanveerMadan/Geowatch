@@ -14,9 +14,11 @@ validation").
 
   coverage totals   mean covered fraction per source over the AOI
   fraction MAE      mean |ob - ms| per pixel
-  10 m IoU          sum(min(ob, ms)) / sum(max(ob, ms)) over pixels -- the
-                    area-weighted (Ruzicka) IoU of the two coverage rasters.
-                    Threshold-free: no binarisation cut is needed.
+  weighted_jaccard  sum(min(ob, ms)) / sum(max(ob, ms)) over pixels -- the
+                    weighted Jaccard (Ruzicka) similarity of the two coverage
+                    rasters. Threshold-free: no binarisation cut is needed.
+                    (Named "10 m IoU" until 2026-09-25; renamed because it is
+                    not an IoU of binary masks.)
 """
 
 from __future__ import annotations
@@ -46,7 +48,7 @@ def disagreement(ob: np.ndarray, ms: np.ndarray | None, ms_status: str) -> dict:
         "coverage_total_primary": float(a.mean()) if a.size else None,
         "coverage_total_secondary": float(b.mean()) if b.size else None,
         "fraction_mae": float(np.abs(a - b).mean()) if a.size else None,
-        "iou_10m": float(np.minimum(a, b).sum()) / denom if denom > 0 else None,
+        "weighted_jaccard": float(np.minimum(a, b).sum()) / denom if denom > 0 else None,
     }
 
 

@@ -327,3 +327,13 @@ def test_built_label_limited_is_none_while_bar_unset_others_none():
 def test_impervious_bars_match_item_21_floors():
     b = CFG["model_pass_bars"]["impervious_total"]
     assert (b["fraction_mae_max"], b["fraction_r2_min"]) == (0.15, 0.3)
+
+
+def test_frame_saved_with_seed_in_run_metadata_and_never_overwritten(tmp_path):
+    f = tiles.build_frame("lima", CRS, (0, 0, 400, 200), {"formal": box(0, 0, 400, 200)}, CFG)
+    p = tiles.save_frame(f, str(tmp_path / "frame.json"), CFG)
+    meta = json.load(open(p))["run_metadata"]
+    assert meta["tile_sampler_seed"] == CFG["tiles"]["random_seed"]
+    assert meta["guide_version"] == "1.1" and len(meta["labelling_config_sha256"]) == 64
+    with pytest.raises(FileExistsError):
+        tiles.save_frame(f, p, CFG)
