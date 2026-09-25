@@ -187,3 +187,50 @@ def test_placeholder_regressor_is_constant_and_marked():
 def test_placeholder_regressor_rejects_out_of_range():
     with pytest.raises(ValueError):
         PlaceholderRegressor("vegetation", 1.5)
+
+
+# ── ruling 2026-09-25 (second round) ────────────────────────────────────────
+
+def _det(status, frac, prov=None):
+    d = {"status": status, "fraction": None if frac is None else np.asarray(frac, np.float32)}
+    if prov:
+        d["provenance"] = prov
+    return d
+
+
+def test_excluded_inputs_do_not_block_the_remainder():
+    known = np.ones(1, dtype=bool)
+    r = bk.compute_fractions(known, np.zeros(1, np.float32), regs([0.2], [0.1], [0.5], known),
+                             {"snow_ice": _det("excluded", [0.0], "excluded:GLIMS/current"),
+                              "solar": _det("excluded", [0.0], "excluded:TZ+GRW"),
+                              "mixed_water_vegetation": _det("computed", [0.0])},
+                             smoke_test=False, detector_placeholder_value=0.0)
+    f = r["fractions"]
+    assert f["snow_ice"]["provenance"] == "excluded:GLIMS/current"
+    assert f["bare"]["status"] == "computed"
+    assert not f["snow_ice"]["placeholder_tainted"]
+
+
+def test_excluded_plus_not_computed_still_blocks_outside_smoke():
+    known = np.ones(1, dtype=bool)
+    r = bk.compute_fractions(known, np.zeros(1, np.float32), regs([0.2], [0.1], [0.5], known),
+                             {"snow_ice": _det("excluded", [0.0], "excluded:x"),
+                              "solar": _det("excluded", [0.0], "excluded:y"),
+                              "mixed_water_vegetation": _det("not_computed", None)},
+                             smoke_test=False, detector_placeholder_value=0.0)
+    assert r["fractions"]["bare"]["status"] == "not_computed"
+    assert "mixed_water_vegetation" in r["fractions"]["bare"]["reason"]
+
+
+def test_built_wins_over_solar_on_footprints():
+    known = np.ones(3, dtype=bool)
+    r = bk.compute_fractions(known, np.array([0.0, 0.3, 1.0], np.float32),
+                             regs([0, 0, 0], [0, 0, 0], [0, 0, 0], known),
+                             {"snow_ice": _det("computed", [0, 0, 0]),
+                              "solar": _det("computed", [1, 1, 1]),
+                              "mixed_water_vegetation": _det("computed", [0, 0, 0])},
+                             smoke_test=False, detector_placeholder_value=0.0)
+    p = r["per_pixel"]
+    assert p["solar"].tolist() == pytest.approx([1.0, 0.7, 0.0])
+    assert r["flags"]["solar_yielded_to_built"]["pixels"] == 2
+    np.testing.assert_allclose(sum(p[n] for n in bk.EIGHT), 1 + p["sum_excess"], atol=1e-5)

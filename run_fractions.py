@@ -38,10 +38,16 @@ def run(aoi_name: str, cfg: dict | None = None) -> dict:
     bands = {**bundle.bands, **obs, **ds}
     counts = {k: np.nan_to_num(obs[k]).astype(np.int64) for k in occlusion.COUNT_BANDS}
 
+    # Per-AOI exclusions from global datasets (ruling 2026-09-25, 1 and 3).
+    from surface_fractions.grid import grid_region
+    region = grid_region(grid)
+    exclusions = {n: detectors.check_exclusion(n, cfg, region)
+                  for n in detectors.DETECTORS}
+
     # snow_ice first: occlusion needs it to split permanent from transient
     # snow. It runs on every pixel with any valid-or-snow observation.
     pre_known = (counts["n_valid"] + counts["n_snow"]) > 0
-    snow = detectors.run_detector("snow_ice", cfg, bands, pre_known)
+    snow = detectors.run_detector("snow_ice", cfg, bands, pre_known, exclusions["snow_ice"])
     snow_mask = None if snow["fraction"] is None else np.nan_to_num(snow["fraction"]) > 0
 
     # Part 2
@@ -57,7 +63,7 @@ def run(aoi_name: str, cfg: dict | None = None) -> dict:
     if snow["fraction"] is not None:
         snow["fraction"] = np.where(known, snow["fraction"], np.nan).astype(np.float32)
     for name in ("solar", "mixed_water_vegetation"):
-        dets[name] = detectors.run_detector(name, cfg, features, known)
+        dets[name] = detectors.run_detector(name, cfg, features, known, exclusions[name])
     legend = cfg["detectors"]["mixed_water_vegetation"]["sub_typing"]["glwd_legend"]
     mwv_sub = detectors.sub_type(dets["mixed_water_vegetation"]["fraction"],
                                  bands["gmw_cov"], bands["glwd_class"], legend)

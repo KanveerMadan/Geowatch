@@ -13,6 +13,13 @@ all-zero array, which would read as "measured, none present" (C33).
 
 A detected pixel has fraction 1.0 (Phase A simplification, ruled
 2026-09-25, to be revisited after each detector's own validation case).
+
+Status "excluded" (ruling 2026-09-25, second round): the detector is known to
+be zero in this AOI from a dataset -- snow_ice from a global permanent-snow /
+glacier dataset, solar from global solar-installation inventories. The
+fraction is 0 on every known pixel with provenance "excluded:<datasets>", and
+it does not block the remainder. Excluded only if EVERY configured dataset
+shows none.
 Precedence over the vegetation / water regressors is applied in part 5's
 bookkeeping, not here.
 """
@@ -77,17 +84,60 @@ PREDICATES = {
 }
 
 
-def run_detector(name: str, cfg: dict, bands: dict, known: np.ndarray) -> dict:
+def exclusion_provenance(spec: dict) -> str:
+    return "excluded:" + "+".join(d["id"] for d in spec["exclusion"])
+
+
+def check_exclusion(name: str, cfg: dict, region) -> dict | None:
+    """Earth Engine: does any configured dataset show this surface in
+    `region`? -> {"excluded", "datasets": {id: {...}}} or None if the
+    detector has no exclusion datasets."""
+    import ee
     spec = cfg["detectors"][name]
+    if not spec.get("exclusion"):
+        return None
+    evidence = {}
+    for d in spec["exclusion"]:
+        if d["kind"] == "features":
+            n = ee.FeatureCollection(d["id"]).filterBounds(region).size().getInfo()
+            evidence[d["id"]] = {"present": n > 0, "features_intersecting": n}
+        elif d["kind"] == "class_image":
+            col = ee.ImageCollection(d["id"]).sort("system:time_start", False)
+            img = ee.Image(col.first())
+            year = img.date().format("YYYY").getInfo()
+            hit = (img.select(d["band"]).eq(d["class_value"])
+                   .reduceRegion(ee.Reducer.max(), region, d["scale_m"], bestEffort=True)
+                   .get(d["band"]).getInfo())
+            evidence[d["id"]] = {"present": bool(hit), "image_year": year,
+                                 "class": f"{d['class_value']} {d['class_name']}"}
+        else:
+            raise ValueError(f"unknown exclusion kind {d['kind']!r}")
+    out = {"excluded": not any(e["present"] for e in evidence.values()),
+           "rule": "excluded only if every dataset shows none",
+           "datasets": evidence}
+    if spec.get("exclusion_caveat"):
+        out["caveat"] = spec["exclusion_caveat"]
+    return out
+
+
+def run_detector(name: str, cfg: dict, bands: dict, known: np.ndarray,
+                 exclusion: dict | None = None) -> dict:
+    spec = cfg["detectors"][name]
+    if exclusion is not None and exclusion["excluded"]:
+        return {"name": name, "status": "excluded",
+                "fraction": np.where(known, 0.0, np.nan).astype(np.float32),
+                "provenance": exclusion_provenance(spec), "exclusion": exclusion,
+                "thresholds": _threshold_record(spec)}
     missing = unset_thresholds(spec)
     if missing:
-        return _not_computed(name, spec, missing)
+        return {**_not_computed(name, spec, missing), "exclusion": exclusion}
     mask = PREDICATES[name](bands, spec["thresholds"])
     # NaN spectra (occluded pixels) compare False above; mask them explicitly
     # as NaN so "not detected" and "not observed" stay distinct.
     frac = np.where(known, np.where(mask, 1.0, 0.0), np.nan).astype(np.float32)
     return {"name": name, "status": "computed", "fraction": frac,
-            "provenance": "detector", "thresholds": _threshold_record(spec)}
+            "provenance": "detector", "thresholds": _threshold_record(spec),
+            "exclusion": exclusion}
 
 
 # ── mixed_water_vegetation sub-typing ───────────────────────────────────────
@@ -119,8 +169,11 @@ def sub_type(detected: np.ndarray | None, gmw_cov: np.ndarray,
             "counts": dict(zip(vals.tolist(), n.tolist()))}
 
 
-def run_detectors(cfg: dict, bands: dict, known: np.ndarray) -> dict:
-    out = {name: run_detector(name, cfg, bands, known) for name in DETECTORS}
+def run_detectors(cfg: dict, bands: dict, known: np.ndarray,
+                  exclusions: dict | None = None) -> dict:
+    exclusions = exclusions or {}
+    out = {name: run_detector(name, cfg, bands, known, exclusions.get(name))
+           for name in DETECTORS}
     mwv = out["mixed_water_vegetation"]
     out["mixed_water_vegetation"]["sub_type"] = sub_type(
         mwv["fraction"], bands.get("gmw_cov"), bands.get("glwd_class"),

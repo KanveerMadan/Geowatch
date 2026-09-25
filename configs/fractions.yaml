@@ -114,6 +114,15 @@ occlusion:
 # after each detector's validation case (Phase A ruling, 2026-09-25).
 detectors:
   snow_ice:
+    # Ruling 2026-09-25 (second round, 1): "excluded" per AOI when a global
+    # permanent-snow / glacier dataset shows none. Union: excluded only if
+    # EVERY listed dataset shows none (a wrong exclusion pins the fraction to
+    # 0, so the conservative direction is to require all to agree).
+    exclusion:
+      - {id: GLIMS/current, kind: features}              # glacier outlines
+      - {id: MODIS/061/MCD12Q1, kind: class_image, band: LC_Type1,
+         class_value: 15, class_name: "Permanent Snow and Ice (IGBP)",
+         image: latest, scale_m: 463}
     thresholds:
       ndsi_min:
         value: 0.4
@@ -128,6 +137,13 @@ detectors:
       variance_band: {value: null, source: null, status: UNSET}
       variance_max: {value: null, source: null, status: UNSET}
   solar:
+    # Ground-mounted arrays only (ruling 2026-09-25, 3). Excluded per AOI when
+    # NEITHER inventory has an installation intersecting it. Both are
+    # utility / commercial scale: small ground-mounted arrays can be missed.
+    exclusion:
+      - {id: projects/sat-io/open-datasets/TZERO/TZ-SOLAR-2025Q3_ANALYSIS_POLYGONS, kind: features}  # pragma: allowlist secret -- public EE asset path
+      - {id: projects/sat-io/open-datasets/GRW/SOLAR_V1, kind: features}
+    exclusion_caveat: "inventories are utility/commercial scale; small ground-mounted arrays may be missed"
     thresholds:
       # No verified spectral index or cut-off for photovoltaic panels in
       # Sentinel-2 as of 2026-09-25.

@@ -29,6 +29,11 @@ Rules, all from 05_BUILD_MANUAL.md item 21 "Phase A — build rulings":
     AOI marked smoke_test, where a placeholder stands in and is marked.
   - solar is subtracted from the remainder but NOT added to
     impervious_total (inclusion DEFERRED, Decision 11).
+  - solar is ground-mounted only: where it meets an Open Buildings footprint,
+    built wins, i.e. solar <= 1 - built on the pixel, flagged (ruling
+    2026-09-25, second round).
+  - An "excluded" detector (known zero from a dataset) is a real zero and
+    does not block the remainder.
 """
 
 from __future__ import annotations
@@ -86,6 +91,8 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
         d = detectors[name]
         if d["status"] == "computed":
             base[name], prov[name] = mask(d["fraction"]), "detector"
+        elif d["status"] == "excluded":
+            base[name], prov[name] = mask(d["fraction"]), d["provenance"]
         elif smoke_test:
             base[name] = mask(np.full(known.shape, detector_placeholder_value))
             prov[name] = PLACEHOLDER
@@ -109,6 +116,12 @@ def compute_fractions(known: np.ndarray, built: np.ndarray, regs: dict,
     prov["built"] = "footprints"
 
     flags = {}
+    # Rooftop panels are built: solar yields any area a footprint covers.
+    if base["solar"] is not None:
+        cap = np.maximum(1.0 - base["built"], 0.0)
+        yielded = known & (base["solar"] > cap + SUM_TOLERANCE)
+        base["solar"] = mask(np.minimum(base["solar"], cap))
+        flags["solar_yielded_to_built"] = yielded
     missing = [n for n in NON_HARD if base[n] is None]
     if missing:
         remainder = imp = bare = paved_u = paved = excess = None

@@ -1307,6 +1307,15 @@ they are recorded here so the code has a written source.*
   five §9 open numbers are UNSET** and every function needing one refuses
   to run. Phase A default flagged for review: a tile straddling strata
   takes the plurality stratum; ties are ineligible.
+- **Rulings 1 + 3 — `excluded`, solar** *(2026-09-25)*: detectors gain
+  status `excluded` (provenance `excluded:<datasets>`, zero on known pixels,
+  does not block the remainder). `snow_ice`: GLIMS `current` + MODIS
+  MCD12Q1 (2024) IGBP class 15; `solar`: TZ-SAM 2025Q3 + Global Renewables
+  Watch v1, with a caveat that both are utility/commercial scale. Excluded
+  only if every dataset shows none. Positive controls: Mont Blanc (GLIMS 86
+  outlines, MODIS class 15 present) and Bhadla (TZ-SAM 3, GRW 4) are not
+  excluded; Dharavi is excluded for both. Solar yields to `built` on
+  footprints (`solar ≤ 1 − built`, flagged `solar_yielded_to_built`).
 
 ---
 

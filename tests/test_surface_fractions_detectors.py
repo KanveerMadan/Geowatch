@@ -110,3 +110,32 @@ def test_dataset_context_reports_shares():
                                      "glwd_class": np.array([0, 28])}, LEGEND)
     assert ctx["gmw_mangrove_coverage_mean"] == pytest.approx(0.25)
     assert ctx["glwd_class_pixel_share"] == {"Dryland": 0.5, "Mangrove": 0.5}
+
+
+# ── ruling 2026-09-25 (second round): "excluded" ────────────────────────────
+
+EXCLUDED = {"excluded": True, "datasets": {"GLIMS/current": {"present": False}}}
+PRESENT = {"excluded": False, "datasets": {"GLIMS/current": {"present": True}}}
+
+
+def test_excluded_detector_is_zero_on_known_nan_elsewhere_with_provenance():
+    cfg = load_config()
+    out = detectors.run_detector("snow_ice", cfg, {}, np.array([True, False]), EXCLUDED)
+    assert out["status"] == "excluded"
+    assert out["fraction"][0] == 0.0 and np.isnan(out["fraction"][1])
+    assert out["provenance"] == "excluded:GLIMS/current+MODIS/061/MCD12Q1"
+
+
+def test_present_in_dataset_falls_through_to_thresholds():
+    out = detectors.run_detector("snow_ice", load_config(), {}, np.array([True]), PRESENT)
+    assert out["status"] == "not_computed" and out["exclusion"] == PRESENT
+
+
+def test_solar_exclusion_uses_both_inventories_and_carries_caveat():
+    spec = load_config()["detectors"]["solar"]
+    assert len(spec["exclusion"]) == 2 and "small" in spec["exclusion_caveat"]
+    assert detectors.exclusion_provenance(spec).count("+") == 1
+
+
+def test_mixed_water_vegetation_has_no_exclusion():
+    assert not load_config()["detectors"]["mixed_water_vegetation"].get("exclusion")
