@@ -173,3 +173,36 @@ aois:
     frame_basis: data      # measured valid pixels, not the footprint polygon (decided 2026-09-25)
     frame_footprint: {box_share: 1.0, area_km2: 9.0, tiles_200m: 196}
     frame_data: {box_share: 1.0, area_km2: 9.0, tiles_200m: 196}
+
+# ── Fabric-strata DRAFT rule (approved 2026-09-25) ─────────────────────────
+# One fixed rule for all sites (labelling/strata_rule.py). Unit: each 200 m
+# tile lying entirely inside the site's real-data frame. Metrics from Open
+# Buildings v3 (confidence >= 0.7) only; buildings assigned to tiles by
+# centroid. Applied in order -- the first matching rule wins. The draft is
+# then reviewed and corrected by hand (strata.gpkg) and FROZEN before any
+# tile is sampled. Sampling stratification only: not item 23 morphology,
+# never published as a result.
+strata_rule:
+  source: {asset: GOOGLE/Research/open-buildings/v3/polygons, min_confidence: 0.7}
+  unassigned_min_buildings:
+    value: 5
+    reason: "fewer than 5 buildings in 4 ha cannot characterise fabric; a median or CV of < 5 values is unstable"
+  fringe_coverage_max:
+    value: 0.10
+    reason: "under 10% built: the tile is mostly open ground with scattered buildings"
+  dense_informal_coverage_min:
+    value: 0.35
+    reason: "tightly packed fabric: about the top quarter of tile coverage across all seven sites"
+  dense_informal_median_area_max_m2:
+    value: 80.0
+    reason: "small structures; 80 not 60 m2 because Open Buildings merges adjoining informal roofs, inflating the median footprint (Kibera core median ~70 m2)"
+  formal_median_area_min_m2:
+    value: 100.0
+    reason: "large buildings: about the top tenth of tile median footprint across all seven sites"
+  formal_area_cv_max:
+    value: 0.5
+    reason: "unusually uniform footprint sizes (about the bottom tenth of CV across sites), as in planned estates"
+  # A stratum with no tiles at a site is skipped for that site; stratum
+  # coverage is required across the TRAINING SET as a whole, not per site
+  # (decided 2026-09-25).
+  empty_stratum_policy: skip_per_site_require_across_training_set

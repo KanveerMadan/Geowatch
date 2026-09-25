@@ -37,12 +37,15 @@ id_rsa*
 # not tracked)
 # ---------------------------------------------------------------------------
 data/*
-# Item 21 strata-drawing packages: only the empty templates are tracked
-# (strata.geojson, strata.qml); previews and frames are regenerated.
+# Item 21 strata-drawing packages: tracked are the style and the strata
+# layers -- strata_draft.gpkg (the rule's draft) and strata.gpkg (hand-
+# corrected final) -- so the draft -> final diff is always in history.
+# Previews, frames and metrics are regenerated.
 !data/strata_packages/
 data/strata_packages/*/*
-!data/strata_packages/*/strata.geojson
 !data/strata_packages/*/strata.qml
+!data/strata_packages/*/strata_draft.gpkg
+!data/strata_packages/*/strata.gpkg
 models/
 cache/
 

@@ -1362,7 +1362,29 @@ they are recorded here so the code has a written source.*
   across all seven sites; human review catches what footprint metrics miss
   (e.g. small formal housing that reads like informal fabric).
   **Scope:** stratification for **sampling only** — not item 23
-  morphology, never published as a result. *Thresholds pending approval.*
+  morphology, never published as a result. ~~*Thresholds pending
+  approval.*~~ **Thresholds approved 2026-09-25** (`configs/labelling.yaml`
+  `strata_rule`, each with its reason), applied in order: < 5 buildings →
+  `unassigned`; coverage < 0.10 → `fringe`; coverage ≥ 0.35 and median
+  footprint < **80 m²** → `dense_informal`; median ≥ 100 m² or area CV ≤ 0.5 →
+  `formal`; otherwise `mixed`. **80 not 60 m²** because Open Buildings merges
+  adjoining informal roofs, inflating the median footprint (Kibera core
+  median ~70 m²).
+  - **Empty strata:** a stratum with no tiles at a site is **skipped for that
+    site**; stratum coverage is required **across the training set as a
+    whole**, not per site.
+  - **Lima** is accepted as **mixed / fringe only** — its drone frame covers
+    hillside fabric.
+  - **Files** (`data/strata_packages/<site>/`, tracked): `strata_draft.gpkg`
+    (the rule) and `strata.gpkg` (edited by hand; identical at draft time),
+    layer `strata`, site UTM CRS, field `stratum`, the QGIS style stored as
+    the layer's default. `unassigned` tiles are kept so a reviewer can
+    promote them; they are never sampled. `strata_io.compare_draft_final`
+    reports what the review changed (tiles changed, from → to).
+  - **Draft** (tiles: dense_informal / formal / mixed / fringe / unassigned):
+    Makoko 16/2/4/0/0 · Kibera 36/12/50/15/13 · Rocinha 10/22/37/36/77 ·
+    Lima 0/0/18/9/4 · Monrovia 20/21/42/14/33 · Karachi 93/0/47/27/29 ·
+    Cape Town 52/3/58/59/24.
 
 #### Phase A — build rulings, second round, decided 2026-09-25
 

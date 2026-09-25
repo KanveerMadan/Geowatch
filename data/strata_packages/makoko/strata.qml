@@ -8,6 +8,7 @@
       <category symbol="1" value="formal" label="formal" render="true"/>
       <category symbol="2" value="mixed" label="mixed" render="true"/>
       <category symbol="3" value="fringe" label="fringe" render="true"/>
+      <category symbol="4" value="unassigned" label="unassigned" render="true"/>
     </categories>
     <symbols>
       <symbol type="fill" name="0" alpha="0.4" clip_to_extent="1" force_rhr="0">
@@ -54,6 +55,17 @@
           </Option>
         </layer>
       </symbol>
+      <symbol type="fill" name="4" alpha="1" clip_to_extent="1" force_rhr="0">
+        <layer class="SimpleFill" enabled="1" locked="0" pass="0">
+          <Option type="Map">
+            <Option name="color" type="QString" value="0,0,0,0"/>
+            <Option name="outline_color" type="QString" value="255,255,255,255"/>
+            <Option name="outline_style" type="QString" value="solid"/>
+            <Option name="outline_width" type="QString" value="0.4"/>
+            <Option name="style" type="QString" value="no"/>
+          </Option>
+        </layer>
+      </symbol>
     </symbols>
   </renderer-v2>
   <fieldConfiguration>
@@ -66,6 +78,7 @@
               <Option type="Map"><Option name="formal" type="QString" value="formal"/></Option>
               <Option type="Map"><Option name="mixed" type="QString" value="mixed"/></Option>
               <Option type="Map"><Option name="fringe" type="QString" value="fringe"/></Option>
+              <Option type="Map"><Option name="unassigned" type="QString" value="unassigned"/></Option>
             </Option>
           </Option>
         </config>

@@ -11,7 +11,7 @@ import pytest
 REPO = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from experiments.item21_sites.build_strata_packages import COLOURS, strata_qml
+from labelling.strata_style import COLOURS, strata_qml
 from labelling.common import load_config
 
 CFG = load_config()
@@ -33,23 +33,26 @@ def _qml(text):
 def test_generated_qml_value_map_and_styles():
     root, cats, alphas, colours, vmap = _qml(strata_qml(STRATA))
     assert root.find("renderer-v2").get("attr") == "stratum"
-    assert cats == STRATA and vmap == STRATA
-    assert set(alphas.values()) == {0.4}
-    assert len(set(colours)) == len(STRATA) == len(COLOURS)
+    assert cats == STRATA + ["unassigned"] and vmap == STRATA + ["unassigned"]
+    assert [alphas[str(i)] for i in range(len(STRATA))] == [0.4] * len(STRATA)
+    fills = colours[:len(STRATA)]
+    assert len(set(fills)) == len(STRATA) == len(COLOURS)
+    assert colours[len(STRATA)] == "0,0,0,0"                   # unassigned: outline only
     c = root.find(".//constraint[@field='stratum']")
     assert c.get("notnull_strength") == "1"
 
 
 @pytest.mark.parametrize("site", SITES)
-def test_committed_templates_match_config(site):
+def test_committed_package_files_match_config(site):
+    import geopandas as gpd
     qml = PKG / site / "strata.qml"
-    tmpl = PKG / site / "strata.geojson"
-    assert qml.exists() and tmpl.exists(), f"{site}: run build_strata_packages.py"
+    assert qml.exists(), f"{site}: run build_strata_packages.py"
     assert qml.read_text() == strata_qml(STRATA)
-    fc = json.loads(tmpl.read_text())
-    assert fc["type"] == "FeatureCollection" and fc["features"] == []
-    want = CFG["aois"][site]["crs"].replace(":", "::")
-    assert fc["crs"]["properties"]["name"] == f"urn:ogc:def:crs:{want}"
+    assert not (PKG / site / "strata.geojson").exists()       # superseded by strata.gpkg
+    for name in ("strata_draft.gpkg", "strata.gpkg"):
+        g = gpd.read_file(PKG / site / name, layer="strata", engine="pyogrio")
+        assert g.crs.to_epsg() == int(CFG["aois"][site]["crs"].split(":")[1]), (site, name)
+        assert set(g["stratum"]) <= set(STRATA) | {"unassigned"}, (site, name)
 
 
 def test_only_templates_are_tracked():
@@ -62,6 +65,6 @@ def test_only_templates_are_tracked():
                           "--exclude-standard", "--", str(pkg)],
                          capture_output=True, text=True, check=True).stdout.split()
     ignored = {pathlib.Path(p).name for p in out}
-    assert ignored == {"preview.tif", "frame.geojson", "box.geojson"}
+    assert ignored == {"preview.tif", "frame.geojson", "box.geojson", "tile_metrics.json"}
     assert subprocess.run(["git", "-C", str(REPO), "check-ignore", "-q",
                            "data/pipeline_runs/x/result.json"]).returncode == 0   # rest of data/ ignored
