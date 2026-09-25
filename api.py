@@ -582,11 +582,20 @@ def scheduler_status():
     }
 
 
+RETIRED_PIPELINE_DETAIL = (
+    "The legacy 7-class pipeline is retired and not validated "
+    "(08_STATE.md; finding C46). POST /api/scheduler/trigger is disabled. "
+    "POST /api/analyze still runs it, and its results are marked "
+    "'legacy_pipeline'."
+)
+
+
 @app.post("/api/scheduler/trigger")
 def trigger_refresh():
-    """Manually trigger a refresh of all watched AOIs (admin use)."""
-    scheduler.modify_job("auto_refresh", next_run_time=datetime.now())
-    return {"status": "refresh triggered", "message": "All watched AOIs queued for refresh."}
+    """DISABLED 2026-09-25 (C46): would fan out a run of the retired 7-class
+    pipeline for every watched AOI. Returns 410 Gone with the reason. The
+    5-day auto-refresh job itself is untouched -- see 08_STATE.md."""
+    raise HTTPException(status_code=410, detail=RETIRED_PIPELINE_DETAIL)
 
 
 @app.on_event("shutdown")

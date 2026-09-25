@@ -118,6 +118,21 @@ is false for the base image and must be corrected in the same change.
 > recalibrate them, and do not quote 0.313 as a current capability number
 > (see C43 for what it measures).
 
+#### Still reachable — C46, recorded 2026-09-25
+
+The pipeline is retired but **not removed**: `api.py` still reaches
+`run_pipeline()` on two paths.
+
+| Path | State |
+|---|---|
+| `POST /api/analyze` | **Kept.** The UI's Analyze button depends on it (`geowatch-ui/src/App.jsx:1242`). Every result carries `legacy_pipeline: {retired: true, validated: false}`, and the UI shows the banner **"Legacy 7-class pipeline — retired, not validated."** on every result — including stored runs from before the marker |
+| `POST /api/scheduler/trigger` | **Disabled** — 410 Gone, detail names the retired pipeline and C46 |
+| 5-day auto-refresh job (`api.py` `scheduler.add_job`) | **Still runs** `run_pipeline()` for the watched AOIs every 5 days; it feeds `/api/demo`. Not changed — only the trigger endpoint was ruled on |
+
+**C46's fate stays open** (`04_FINDINGS_LEDGER.md`, NEEDS FATE) until a
+replacement for these paths exists. Its proposed fate, DELETED, depends on
+every consumer of the EPSG:4326 exports being retired.
+
 #### Original entry, retained as the record
 
 **Status: unresolved. Awaiting a decision.**

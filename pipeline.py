@@ -157,6 +157,13 @@ def run_pipeline(
         "aoi": {"west": west, "south": south, "east": east, "north": north},
         "date_range": date_range_used,
         "status": "running",
+        # C46 (2026-09-25): every result of this pipeline says what it is.
+        # The UI renders `notice` as a banner.
+        "legacy_pipeline": {
+            "retired": True,
+            "validated": False,
+            "notice": "Legacy 7-class pipeline — retired, not validated.",
+        },
     }
 
     # ── Step 1: Sentinel-2 ingestion ──

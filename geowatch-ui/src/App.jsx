@@ -10,6 +10,7 @@ import { categoryColor, legendEntries } from './palette'
 // X-API-Key check at the perimeter; this frontend sent no header on any call,
 // so every request had been 401ing since that shipped.
 import { apiFetch, fetchImageObjectUrl, isKeyMissing } from './api'
+import { legacyPipelineNotice } from './legacyPipeline'
 
 
 /* ============================================================
@@ -1282,6 +1283,15 @@ export default function App() {
           <code style={{ fontFamily: FONTS.mono, fontSize: 11 }}>geowatch-ui/.env</code>, set{' '}
           <code style={{ fontFamily: FONTS.mono, fontSize: 11 }}>VITE_GEOWATCH_API_KEY</code> to the backend&rsquo;s{' '}
           <code style={{ fontFamily: FONTS.mono, fontSize: 11 }}>GEOWATCH_API_KEY</code>, and restart the dev server.
+        </div>
+      )}
+      {legacyPipelineNotice(result) && (
+        <div role="status" data-testid="legacy-pipeline-banner" style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 2000,
+          background: C.coralDim, borderTop: `1px solid ${C.coral}`,
+          padding: '9px 16px', fontFamily: FONTS.body, fontSize: 12, color: C.text,
+        }}>
+          <b style={{ color: C.coral }}>{legacyPipelineNotice(result)}</b>
         </div>
       )}
       <style>{`
