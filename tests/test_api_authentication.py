@@ -273,16 +273,16 @@ def test_scheduler_trigger_requires_auth(anon):
 
 def test_scheduler_trigger_does_not_reschedule_when_unauthenticated(anon, api_module):
     """
-    Stronger than the status code: prove the side effect did not happen. A 401
+    Stronger than the status code: prove the side effect cannot happen. A 401
     that still moved the job would be a fix in name only.
+
+    Since 2026-09-25 (C46) there is no auto-refresh job at all, so the side
+    effect is impossible by construction: the check is that the endpoint
+    still refuses an anonymous caller and that no scheduler exists to move.
     """
-    job = api_module.scheduler.get_job("auto_refresh")
-    before = job.next_run_time if job else None
     assert anon.post("/api/scheduler/trigger").status_code == 401
-    after_job = api_module.scheduler.get_job("auto_refresh")
-    after = after_job.next_run_time if after_job else None
-    assert before == after, (
-        "an unauthenticated request changed the scheduler's next run time"
+    assert not hasattr(api_module, "scheduler"), (
+        "a scheduler object exists again -- the 5-day auto-refresh was removed (C46)"
     )
 
 

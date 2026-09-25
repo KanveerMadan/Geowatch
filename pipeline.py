@@ -11,6 +11,7 @@ from ingestion.segmentation import load_sam, segment_tile, encode_mask_rle
 from perception.applicability import compute_applicability, finalize_applicability
 from perception.applicability_gate import annotate as annotate_applicability
 from configs.palette import palette_for_result
+from configs.legacy_pipeline import legacy_pipeline_marker
 from perception.hydrological_surfaces import compute_hydrological_surfaces
 from ingestion.rainfall import get_rainfall_climatology
 from susceptibility.pluvial import compute_pluvial_susceptibility, save_pluvial_susceptibility_output
@@ -158,12 +159,8 @@ def run_pipeline(
         "date_range": date_range_used,
         "status": "running",
         # C46 (2026-09-25): every result of this pipeline says what it is.
-        # The UI renders `notice` as a banner.
-        "legacy_pipeline": {
-            "retired": True,
-            "validated": False,
-            "notice": "Legacy 7-class pipeline — retired, not validated.",
-        },
+        # The UI renders `notice` as a banner. configs/legacy_pipeline.py.
+        "legacy_pipeline": legacy_pipeline_marker(),
     }
 
     # ── Step 1: Sentinel-2 ingestion ──

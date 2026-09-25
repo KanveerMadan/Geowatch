@@ -19,9 +19,10 @@ from fastapi.responses import JSONResponse
 from fastapi.security import APIKeyHeader
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
 from dotenv import load_dotenv
+
+from configs.legacy_pipeline import legacy_pipeline_marker
 
 # Load .env BEFORE _load_api_key() runs at import, below. Without this the
 # module-level API_KEY read happens against the raw process environment and a
@@ -341,7 +342,12 @@ def get_latest_run(aoi_label: str) -> dict | None:
 
 
 def refresh_all_watched_aois():
-    """Background job — re-runs pipeline for all watched AOIs with latest imagery."""
+    """Re-runs the pipeline for all watched AOIs with latest imagery.
+
+    NOT SCHEDULED since 2026-09-25 (C46): the 5-day APScheduler job that ran
+    it was removed, because run_pipeline is the retired 7-class pipeline.
+    Kept, unscheduled, because the C35 whitelist check lives here and is
+    tested, and a replacement may reuse the loop."""
     print(f"[Scheduler] Starting refresh at {datetime.now().isoformat()}")
     from pipeline import run_pipeline
     for aoi in WATCHED_AOIS:
@@ -403,11 +409,13 @@ def _validate_watched_aois() -> None:
 
 _validate_watched_aois()
 
-# Start background scheduler — refreshes every 5 days
-scheduler = BackgroundScheduler()
-scheduler.add_job(refresh_all_watched_aois, "interval", days=5, id="auto_refresh")
-scheduler.start()
-print("[Scheduler] Auto-refresh scheduler started — interval: 5 days.")
+# The 5-day auto-refresh scheduler that ran refresh_all_watched_aois() was
+# REMOVED 2026-09-25 (C46): it ran the retired 7-class pipeline unattended.
+# Nothing in this process runs run_pipeline() on a timer any more.
+SCHEDULER_DISABLED_REASON = (
+    "Auto-refresh disabled 2026-09-25 (C46): it ran the retired, unvalidated "
+    "7-class pipeline. Stored results are served as they are."
+)
 
 
 class AnalyzeRequest(BaseModel):
@@ -441,22 +449,27 @@ class InundationRequest(BaseModel):
 
 @app.get("/")
 def root():
-    next_run = scheduler.get_job("auto_refresh").next_run_time
     return {
         "status": "GeoWatch Copilot API running",
         "version": "1.0",
-        "scheduler": "active",
-        "next_auto_refresh": next_run.isoformat() if next_run else "unknown",
+        "scheduler": "disabled",
+        "next_auto_refresh": None,
+        "scheduler_note": SCHEDULER_DISABLED_REASON,
     }
 
 
 @app.get("/api/demo")
 def get_demo():
-    """Always serves the most recent Dharavi result — auto-updated by scheduler."""
+    """Serves the most recent STORED Dharavi result. It is no longer
+    auto-refreshed (scheduler removed 2026-09-25, C46), and every result it
+    serves is a legacy 7-class pipeline result: stored runs from before the
+    marker existed get it added here (the file on disk is not modified)."""
     data = get_latest_run("dharavi")
     if not data:
         raise HTTPException(status_code=404, detail="No Dharavi run found. Run pipeline first.")
+    data.setdefault("legacy_pipeline", legacy_pipeline_marker())
     data["_demo_mode"] = True
+    data["_auto_refresh"] = SCHEDULER_DISABLED_REASON
     return data
 
 
@@ -573,18 +586,20 @@ def get_run(run_id: str):
 
 @app.get("/api/scheduler/status")
 def scheduler_status():
-    """Check auto-refresh scheduler status."""
-    job = scheduler.get_job("auto_refresh")
+    """Auto-refresh status: disabled since 2026-09-25 (C46)."""
     return {
-        "scheduler_running": scheduler.running,
-        "next_run": job.next_run_time.isoformat() if job and job.next_run_time else "unknown",
+        "scheduler_running": False,
+        "status": "disabled",
+        "reason": SCHEDULER_DISABLED_REASON,
+        "next_run": None,
         "watched_aois": [a["label"] for a in WATCHED_AOIS],
     }
 
 
 RETIRED_PIPELINE_DETAIL = (
     "The legacy 7-class pipeline is retired and not validated "
-    "(08_STATE.md; finding C46). POST /api/scheduler/trigger is disabled. "
+    "(08_STATE.md; finding C46). POST /api/scheduler/trigger and the 5-day "
+    "auto-refresh are disabled. "
     "POST /api/analyze still runs it, and its results are marked "
     "'legacy_pipeline'."
 )
@@ -594,10 +609,5 @@ RETIRED_PIPELINE_DETAIL = (
 def trigger_refresh():
     """DISABLED 2026-09-25 (C46): would fan out a run of the retired 7-class
     pipeline for every watched AOI. Returns 410 Gone with the reason. The
-    5-day auto-refresh job itself is untouched -- see 08_STATE.md."""
+    5-day auto-refresh job it used to reschedule was removed the same day."""
     raise HTTPException(status_code=410, detail=RETIRED_PIPELINE_DETAIL)
-
-
-@app.on_event("shutdown")
-def shutdown():
-    scheduler.shutdown()

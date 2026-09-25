@@ -120,14 +120,16 @@ is false for the base image and must be corrected in the same change.
 
 #### Still reachable — C46, recorded 2026-09-25
 
-The pipeline is retired but **not removed**: `api.py` still reaches
-`run_pipeline()` on two paths.
+The pipeline is retired but **not removed**. `api.py` reaches
+`run_pipeline()` on ~~two paths~~ **one path** since the auto-refresh was
+removed (2026-09-25): `POST /api/analyze`.
 
 | Path | State |
 |---|---|
 | `POST /api/analyze` | **Kept.** The UI's Analyze button depends on it (`geowatch-ui/src/App.jsx:1242`). Every result carries `legacy_pipeline: {retired: true, validated: false}`, and the UI shows the banner **"Legacy 7-class pipeline — retired, not validated."** on every result — including stored runs from before the marker |
 | `POST /api/scheduler/trigger` | **Disabled** — 410 Gone, detail names the retired pipeline and C46 |
-| 5-day auto-refresh job (`api.py` `scheduler.add_job`) | **Still runs** `run_pipeline()` for the watched AOIs every 5 days; it feeds `/api/demo`. Not changed — only the trigger endpoint was ruled on |
+| 5-day auto-refresh job | ~~**Still runs** `run_pipeline()` for the watched AOIs every 5 days; it feeds `/api/demo`. Not changed — only the trigger endpoint was ruled on~~ **Removed 2026-09-25.** No APScheduler object or job exists; nothing runs `run_pipeline()` on a timer. `GET /` and `GET /api/scheduler/status` report `disabled` with the reason. `refresh_all_watched_aois()` is kept, unscheduled (the C35 whitelist check lives there and is tested) |
+| `GET /api/demo` | Serves the **last stored** Dharavi result, no longer refreshed. Stored runs that predate the marker get `legacy_pipeline` added in the response (the file is not modified), so the banner appears; `_auto_refresh` states that refresh is disabled |
 
 **C46's fate stays open** (`04_FINDINGS_LEDGER.md`, NEEDS FATE) until a
 replacement for these paths exists. Its proposed fate, DELETED, depends on
