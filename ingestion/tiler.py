@@ -121,7 +121,8 @@ def stamp_band_descriptions(path: str, band_names=None) -> bool:
         return False
 
 
-def assert_band_order(src, path: str = "<unknown>", strict: bool = None) -> str:
+def assert_band_order(src, path: str = "<unknown>", strict: bool = None,
+                      expected: list = None) -> str:
     """
     Verify a GeoTIFF's bands are the order this pipeline assumes.
 
@@ -144,14 +145,19 @@ def assert_band_order(src, path: str = "<unknown>", strict: bool = None) -> str:
     reprocessing run. New exports are stamped, so this default decays toward
     strict on its own as files are regenerated.
 
+    `expected` defaults to BAND_NAMES. Item 21 Phase A passes the band list of
+    its multi-band input stack, so that stack goes through this same check
+    rather than a second copy of it.
+
     Returns the verdict string so callers can record it.
     """
+    expected = list(expected or BAND_NAMES)
     if strict is None:
         strict = os.getenv(BAND_ORDER_STRICT_ENV, "").strip().lower() in ("1", "true", "yes")
 
-    if src.count != len(BAND_NAMES):
+    if src.count != len(expected):
         raise BandOrderError(
-            f"{path}: expected {len(BAND_NAMES)} bands {BAND_NAMES}, found "
+            f"{path}: expected {len(expected)} bands {expected}, found "
             f"{src.count}. Every band index in this pipeline (including "
             f"RGB_BAND_INDICES={RGB_BAND_INDICES}) assumes the full band set; "
             f"check the export included all S2_BANDS from sentinel2.py, not "
@@ -162,7 +168,7 @@ def assert_band_order(src, path: str = "<unknown>", strict: bool = None) -> str:
     if not descriptions or all(d is None for d in descriptions):
         message = (
             f"{path}: band order UNVERIFIED -- the file carries no band "
-            f"descriptions, so the assumed order {BAND_NAMES} could not be "
+            f"descriptions, so the assumed order {expected} could not be "
             f"checked against it. Exports written before build item 44 are not "
             f"stamped; re-export, or run stamp_band_descriptions() on the file, "
             f"to make this checkable."
@@ -172,10 +178,10 @@ def assert_band_order(src, path: str = "<unknown>", strict: bool = None) -> str:
         print(f"WARNING: {message}")
         return "unverifiable"
 
-    if descriptions != BAND_NAMES:
+    if descriptions != expected:
         raise BandOrderError(
             f"{path}: BAND ORDER MISMATCH. File reports {descriptions}; this "
-            f"pipeline assumes {BAND_NAMES}. Reading it would feed the wrong "
+            f"pipeline assumes {expected}. Reading it would feed the wrong "
             f"channels to both the SAM segmentation input and the classifier "
             f"input -- silently, because the arrays are the same shape either "
             f"way. Refusing rather than guessing (C4)."
@@ -327,6 +333,9 @@ def export_image_local(
     aoi: ee.Geometry,
     output_path: str,
     scale: int = SCALE,
+    crs: str = None,
+    crs_transform: list = None,
+    band_names: list = None,
 ) -> str:
     """
     Download a GEE image directly to local disk as GeoTIFF.
@@ -337,12 +346,52 @@ def export_image_local(
         aoi: region geometry
         output_path: local file path (include .tif)
         scale: resolution in meters
+        crs, crs_transform: item 21 Phase A. Export on an explicit grid --
+            the native Sentinel-2 UTM grid -- instead of the EPSG:4326
+            lattice. Both or neither. When given, `aoi` should already be
+            the lattice-aligned rectangle (see surface_fractions.grid), and
+            `scale` is ignored because the transform carries it. When
+            omitted, the call below is the original one, unchanged.
+        band_names: names to stamp into the file. Defaults to BAND_NAMES;
+            a multi-band input stack passes its own.
 
     Returns:
         Path to saved file
     """
     import geemap
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    if (crs is None) != (crs_transform is None):
+        raise ValueError("crs and crs_transform must be given together")
+
+    if crs is not None:
+        # Explicit-grid path. No chunking: the stitcher is built on the
+        # EPSG:4326 global lattice and cannot be reused for a UTM grid.
+        # Phase A AOIs (labelling sites, Dharavi) fit in one request; a
+        # larger one fails loudly here rather than being silently resampled
+        # onto the 4326 lattice.
+        n_bands = len(image.bandNames().getInfo())
+        width, height = (round(v) for v in
+                         _explicit_grid_extent(aoi, crs, crs_transform))
+        est = _estimate_request_bytes(width, height, n_bands)
+        if est > GEE_DOWNLOAD_LIMIT_BYTES * CHUNK_BUDGET_FRACTION:
+            raise RuntimeError(
+                f"Explicit-grid export of {width}x{height}px x {n_bands} bands "
+                f"(est. {est/1024/1024:.1f} MiB) exceeds the single-request "
+                f"budget; chunking is only implemented for the EPSG:4326 path."
+            )
+        geemap.ee_export_image(
+            image,
+            filename=output_path,
+            crs=crs,
+            crs_transform=list(crs_transform),
+            region=aoi,
+            file_per_band=False,
+        )
+        _check_export_written(output_path, scale)
+        stamp_band_descriptions(output_path, band_names)
+        print(f"Image saved locally: {output_path}")
+        return output_path
 
     # ── Decide single-request vs chunked ──
     # Bounds + band count come from GEE (two cheap metadata calls), so the
@@ -380,8 +429,24 @@ def export_image_local(
     # would be decoration. Stamping is best-effort and never fails the export --
     # failing to annotate a good file must not discard it.
     if os.path.exists(output_path):
-        stamp_band_descriptions(output_path)
+        stamp_band_descriptions(output_path, band_names)
 
+    _check_export_written(output_path, scale)
+
+    print(f"Image saved locally: {output_path}")
+    return output_path
+
+
+def _explicit_grid_extent(aoi, crs, crs_transform):
+    """(width, height) in pixels of `aoi`'s bounds on an explicit grid."""
+    coords = aoi.bounds(1, crs).getInfo()["coordinates"][0]
+    xs = [c[0] for c in coords]
+    ys = [c[1] for c in coords]
+    return ((max(xs) - min(xs)) / abs(crs_transform[0]),
+            (max(ys) - min(ys)) / abs(crs_transform[4]))
+
+
+def _check_export_written(output_path: str, scale) -> None:
     # geemap.ee_export_image() CATCHES its own download failures: it prints
     # "An error occurred while downloading." and returns normally, writing
     # nothing. Without this check the function then printed "Image saved
@@ -406,9 +471,6 @@ def export_image_local(
             f"(batch export to Drive, or chunked per-tile download), not a "
             f"retry."
         )
-
-    print(f"Image saved locally: {output_path}")
-    return output_path
 
 
 def _export_image_local_chunked(image: "ee.Image", grid: dict, n_bands: int,

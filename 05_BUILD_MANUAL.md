@@ -1200,6 +1200,14 @@ they are recorded here so the code has a written source.*
 
 **Phase A progress** *(one line per part as it lands)*:
 
+- **Part 1 — input assembly** *(2026-09-25)*: `surface_fractions/inputs.py`.
+  One float32 stack on the native Sentinel-2 grid (6-band composite,
+  `s2_observed`, item 18 variance, Open Buildings ≥ 0.7 and Microsoft
+  coverage, Copernicus DEM elevation + slope) plus OSM layers via
+  `ingestion/overpass.py`. `export_image_local` gained `crs` /
+  `crs_transform`. OSM has no usable tag for salt flats or dry lakebeds:
+  both layers are `no_producer`.
+
 ---
 
 *Original specification, preserved for provenance. Superseded by the pilot

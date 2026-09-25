@@ -1,0 +1,84 @@
+# Item 21 Phase A — surface-fraction pipeline configuration.
+#
+# Rules for every number in this file (05_BUILD_MANUAL.md item 21, "Phase A —
+# build rulings", 2026-09-25):
+#   - A threshold is either CITED (source given) or MEASURED (measurement
+#     named), and is marked UNVALIDATED until its own validation case runs.
+#   - A threshold with no verified source is UNSET (value: null). The detector
+#     or flag that needs it emits status "not_computed". It is never filled in
+#     with a guess.
+# Dataset IDs below were verified live against Earth Engine on 2026-09-25.
+
+aois:
+  # The project's canonical apples-to-apples test AOI (tests/conftest.py,
+  # configs/ingestion.yaml test_aoi). Smoke test only -- not a labelling site.
+  dharavi:
+    bbox: {west: 72.836, south: 19.037, east: 72.862, north: 19.060}
+    composite_window: {start: "2024-01-01", end: "2024-03-31"}
+    smoke_test: true
+
+sentinel2:
+  collection: COPERNICUS/S2_SR_HARMONIZED
+  # Scene-level pre-filter, same default as the existing pipeline
+  # (configs/ingestion.yaml sentinel2.cloud_cover_threshold).
+  cloud_cover_threshold: 20
+  # The existing 6-band recipe (ingestion/sentinel2.py S2_BANDS), float32
+  # reflectance, never the 8-bit PNG preview (C41).
+  resolution_m: 10
+
+temporal_variance:
+  # Calendar year of the composite window's end date (Phase A default).
+  year_from: composite_end
+
+footprints:
+  open_buildings:
+    asset: GOOGLE/Research/open-buildings/v3/polygons
+    min_confidence: 0.7          # Decision 13 / item 21, signed off
+  microsoft:
+    # Microsoft Global ML Building Footprints, awesome-gee-community-catalog
+    # (sat-io). One table per country; the country is looked up at the AOI
+    # centroid in LSIB and spaces become underscores.
+    folder: projects/sat-io/open-datasets/MSBuildings
+    country_lookup: USDOS/LSIB_SIMPLE/2017
+    country_field: country_na
+  # Sub-cell size for polygon coverage on the 10 m grid (same as
+  # diagnose_pure_pixels.SUBPIXEL_M): 100 sub-cells per pixel.
+  subcell_m: 1
+
+dem:
+  collection: COPERNICUS/DEM/GLO30_2024_1
+  band: DEM
+
+datasets:
+  gmw: projects/sat-io/open-datasets/GMW/extent/gmw_v3_2020_vec
+  glwd_main_class: projects/sat-io/open-datasets/GLWD/GLWD_V2_DELTA_MAIN_CLASS  # pragma: allowlist secret -- public EE asset path, not a secret
+  firms: FIRMS
+
+# OSM layers, fetched only through ingestion/overpass.py. Each group is a list
+# of raw Overpass tag filters: clauses within one string are ANDed, strings
+# are ORed. `geometry` says how members are rasterised:
+#   area          closed ways / multipolygons -> per-pixel covered fraction
+#   line          ways -> per-pixel "touched" flag (OSM carries no width)
+#   area_or_line  closed -> area, open -> line
+# Usage counts checked on taginfo 2026-09-25. Groups with no usable OSM tag
+# are listed with filters: [] and status no_producer -- not approximated.
+osm_layers:
+  sports_field:  {geometry: area, filters: ['["leisure"="pitch"]']}
+  golf_course:   {geometry: area, filters: ['["leisure"="golf_course"]']}
+  park:          {geometry: area, filters: ['["leisure"="park"]']}
+  farmland:      {geometry: area, filters: ['["landuse"="farmland"]']}
+  sand:          {geometry: area, filters: ['["natural"="sand"]']}
+  rock:          {geometry: area, filters: ['["natural"="bare_rock"]', '["natural"="scree"]']}
+  landfill:      {geometry: area, filters: ['["landuse"="landfill"]']}
+  quarry:        {geometry: area, filters: ['["landuse"="quarry"]']}
+  dirt_track:    {geometry: line, filters: ['["highway"="track"]']}
+  unpaved_parking:
+    geometry: area
+    filters: ['["amenity"="parking"]["surface"~"^(unpaved|dirt|ground|gravel|compacted|earth|sand)$"]']
+  pier_quay:     {geometry: area_or_line, filters: ['["man_made"="pier"]', '["man_made"="quay"]']}
+  # natural=salt_flat and natural=salt_pan: 0 uses. landuse=salt_pond is
+  # flooded evaporation ponds (water), not a salt flat.
+  salt_flat:     {geometry: area, filters: [], status: no_producer}
+  # natural=dry_lake: 45 uses worldwide. intermittent=yes marks intermittent
+  # water, not a dry bed.
+  dry_lakebed:   {geometry: area, filters: [], status: no_producer}

@@ -149,7 +149,10 @@ def test_stamping_never_raises_on_a_bad_path():
 
 def test_export_path_calls_the_stamper():
     src = open("ingestion/tiler.py").read()
-    assert "stamp_band_descriptions(output_path)" in src, (
+    # Prefix match: since item 21 Phase A the call also passes `band_names`
+    # (None on the default path, i.e. BAND_NAMES). Behaviour is tested in
+    # tests/test_surface_fractions_grid.py.
+    assert "stamp_band_descriptions(output_path" in src, (
         "export_image_local must stamp, or the read check can never verify"
     )
 

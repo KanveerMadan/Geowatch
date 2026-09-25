@@ -62,16 +62,16 @@ import argparse
 import diagnose_open_buildings_aoi as diag
 import ee
 
-S2_COLLECTION = "COPERNICUS/S2_SR_HARMONIZED"
-
-# Sub-cell size for the coverage-fraction test. 1m -> 100 sub-cells per 10m
-# pixel. Smaller is more exact but costs quadratically; 1m is enough to make
-# the over-count in note (a) small.
-SUBPIXEL_M = 1
-
-# A 10m pixel counts as pure at this covered fraction. Not exactly 1.0 to
-# absorb floating-point noise in the mean reducer.
-PURE_FRACTION_MIN = 0.999
+# Grid and coverage helpers live in surface_fractions/grid.py since item 21
+# Phase A, which builds on them. Re-exported here so every diagnostic script
+# that reads them as `pure_diag.<name>` keeps working unchanged.
+from surface_fractions.grid import (  # noqa: E402,F401
+    PURE_FRACTION_MIN,
+    S2_COLLECTION,
+    SUBPIXEL_M,
+    pure_pixel_images,
+    s2_grid_for,
+)
 
 # A polygon smaller than one 10m pixel cannot contain one.
 MIN_AREA_FOR_PURE_M2 = 100
@@ -98,46 +98,6 @@ def build_aois(which=None):
                      ee.Geometry.Rectangle(FORMAL_CT_BBOX)))
 
     return aois
-
-
-def s2_grid_for(aoi):
-    """The real Sentinel-2 10m grid over this AOI.
-
-    Taken from an actual S2_SR_HARMONIZED scene's B2 band, so the CRS and
-    crsTransform are the ones the real composite is built on -- not a 10m
-    grid synthesized from the AOI bounds.
-    """
-    scene = (ee.ImageCollection(S2_COLLECTION)
-             .filterBounds(aoi)
-             .first())
-    proj = ee.Image(scene).select("B2").projection()
-    info = proj.getInfo()
-    return proj, info
-
-
-def pure_pixel_images(fc, proj):
-    """(overlap, pure) masks on `proj`'s grid for an arbitrary polygon
-    FeatureCollection.
-
-    Coverage fraction is measured by painting the polygons at a sub-pixel
-    scale derived from `proj` itself (`.atScale`), so sub-cells tile the 10m
-    cells exactly, then averaging back down onto the 10m grid.
-
-    Kept source-agnostic: `built` passes building footprints, `paved` passes
-    unroofed OSM polygons, and both are measured identically.
-    """
-    fine_proj = proj.atScale(SUBPIXEL_M)
-    mask = ee.Image(0).byte().paint(fc, 1).reproject(fine_proj)
-
-    subcells = int((10 / SUBPIXEL_M) ** 2)
-    covered_fraction = (mask
-                        .reduceResolution(ee.Reducer.mean(),
-                                          maxPixels=subcells + 16)
-                        .reproject(proj))
-
-    return (covered_fraction.gt(0).rename("overlap"),
-            covered_fraction.gte(PURE_FRACTION_MIN).rename("pure"),
-            subcells)
 
 
 def count_overlap_and_pure(fc, aoi, proj, proj_info):
