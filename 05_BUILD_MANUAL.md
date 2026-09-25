@@ -1073,6 +1073,28 @@ masked composite can still work where the count is low.
    no-data gaps; the Old Fadama rectangle was ~36% nodata. **Real pixel
    coverage must be checked per site before labelling time is committed.**
 
+**Site AOIs — approved 2026-09-25.** Each site is a **3 km × 3 km box**,
+exact in its UTM zone, centred on the named settlement
+(`experiments/item21_sites/results/aoi_proposals.json`; coordinates in
+`configs/labelling.yaml` `aois`).
+
+| Site | Centre (lon, lat) | Centred on | Status |
+|---|---|---|---|
+| Makoko | 3.3923, 6.4959 | OSM place node "Makoko" | approved |
+| Kibera | 36.7890, −1.3113 | OSM place node "Kibera" | approved |
+| Rocinha | −43.2484, −22.9897 | OSM admin boundary (relation 5520358) centroid | approved |
+| Lima | −76.9286, −12.1336 | **Option B:** midpoint of the two prioritised scenes (Candelaria, Santuario de las Vizcachas) | approved |
+| Monrovia | −10.8064, 6.3259 | West Point (mean of 6 OSM "West Point" features; no boundary) | approved |
+| Karachi | — | Orangi; a new centre toward its western / northern edge is proposed so the box holds undeveloped fringe | **pending** |
+| Cape Town | — | Khayelitsha proposed; the city imagery's extent is not machine-readable | **pending** |
+
+**Box vs frame:**
+- **Measurement B runs on the full 3 × 3 km box.**
+- **The labelling frame is box ∩ the chosen scene's footprint.** Tiles are
+  drawn only inside it: a tile is eligible only if it lies **entirely** in
+  the frame (`labelling.tiles.build_frame`). Which scene defines each frame
+  is the imagery-source choice, **not yet made** (`frame_scene` UNSET).
+
 **Validation criteria and guardrails — decided 2026-09-24, fixed before any
 run.** This item is under Part 4's validation-first mandate: nothing past
 item 21 progresses until these are met, and until then item 21's outputs are

@@ -12,9 +12,10 @@ Sampling is split in two so the random order exists before any count:
   select        the first N per stratum from that frame. N is the §9.3 open
                 number (UNSET until decided), and LOCO decides after that.
 
-A tile is eligible only if it lies entirely inside the imagery footprint
-(every pixel must be labellable, §3) when one is given, and a stratum can be
-assigned to it.
+A tile is eligible only if it lies ENTIRELY inside the LABELLING FRAME --
+the site's approved 3 x 3 km box intersected with the chosen scene's
+footprint (2026-09-25) -- so every pixel is labellable (§3), and a stratum can
+be assigned to it. Measurement B uses the full box; labelling uses the frame.
 """
 
 from __future__ import annotations
@@ -63,21 +64,41 @@ def assign_stratum(tile, strata: dict, rule: str) -> tuple:
     return (winners[0] if len(winners) == 1 else None), shares
 
 
+def labelling_frame(box_geom, scene_footprint):
+    """The labelling frame: approved AOI box ∩ chosen scene footprint (both in
+    the site's UTM CRS). Raises if they do not overlap."""
+    frame = box_geom.intersection(scene_footprint)
+    if frame.is_empty:
+        raise ValueError("the chosen scene does not overlap the approved AOI box")
+    return frame
+
+
+def site_box(site: str, cfg: dict):
+    """The approved 3 x 3 km box for `site`, as a shapely geometry in its CRS."""
+    a = cfg["aois"][site]
+    if a["status"] != "approved" or not a.get("box_utm"):
+        raise ValueError(f"{site}: AOI is {a['status']}, not approved")
+    return a["crs"], box(*a["box_utm"])
+
+
 def build_frame(site: str, crs: str, bounds: tuple, strata: dict, cfg: dict,
-                footprint=None) -> dict:
+                frame) -> dict:
     """strata: {stratum name: shapely geometry in `crs`} from the hand-drawn
-    GeoJSON. footprint: optional imagery coverage geometry in `crs`."""
+    GeoJSON. frame: the labelling frame (see labelling_frame); required --
+    there is no unframed sampling."""
+    if frame is None or frame.is_empty:
+        raise ValueError("a labelling frame (box ∩ chosen scene footprint) is required")
     tcfg = cfg["tiles"]
     unknown = set(strata) - set(tcfg["strata"])
     if unknown:
         raise ValueError(f"strata {sorted(unknown)} are not in the guide's {tcfg['strata']}")
     size = tcfg["size_m"]
     strata = {k: unary_union(v) if isinstance(v, (list, tuple)) else v for k, v in strata.items()}
-    tiles, ineligible = [], {"outside_footprint": 0, "no_stratum": 0, "tied_strata": 0}
+    tiles, ineligible = [], {"outside_frame": 0, "no_stratum": 0, "tied_strata": 0}
     for x0, y1 in tile_origins(bounds, size):
         t = box(x0, y1 - size, x0 + size, y1)
-        if footprint is not None and not footprint.contains(t):
-            ineligible["outside_footprint"] += 1
+        if not frame.contains(t):
+            ineligible["outside_frame"] += 1
             continue
         stratum, shares = assign_stratum(t, strata, tcfg["stratum_assignment"])
         if stratum is None:
@@ -91,6 +112,7 @@ def build_frame(site: str, crs: str, bounds: tuple, strata: dict, cfg: dict,
         for rank, i in enumerate(rng.permutation(len(members))):
             members[i]["rank_in_stratum"] = rank
     return {"site": site, "crs": crs, "tile_size_m": size,
+            "frame_area_m2": float(frame.area),
             "random_seed": tcfg["random_seed"],
             "stratum_assignment": tcfg["stratum_assignment"],
             "tiles": sorted(tiles, key=lambda t: (t["stratum"], t["rank_in_stratum"])),

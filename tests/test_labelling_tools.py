@@ -63,8 +63,8 @@ def test_tile_origins_only_whole_tiles_on_200m_lattice():
 
 def test_frame_stratifies_ranks_and_is_reproducible():
     strata = {"formal": box(0, 0, 1000, 400), "dense_informal": box(0, 400, 1000, 800)}
-    f1 = tiles.build_frame("lima", CRS, (0, 0, 1000, 800), strata, CFG)
-    f2 = tiles.build_frame("lima", CRS, (0, 0, 1000, 800), strata, CFG)
+    f1 = tiles.build_frame("lima", CRS, (0, 0, 1000, 800), strata, CFG, frame=box(0, 0, 1000, 800))
+    f2 = tiles.build_frame("lima", CRS, (0, 0, 1000, 800), strata, CFG, frame=box(0, 0, 1000, 800))
     assert f1 == f2
     by = {s: [t for t in f1["tiles"] if t["stratum"] == s] for s in strata}
     assert len(by["formal"]) == 10 and len(by["dense_informal"]) == 10
@@ -75,28 +75,28 @@ def test_frame_stratifies_ranks_and_is_reproducible():
 def test_frame_plurality_and_tie_rules():
     # Second tile (200-400): formal 0.75 vs fringe 0.25 -> formal.
     strata = {"formal": box(0, 0, 350, 200), "fringe": box(350, 0, 400, 200)}
-    f = tiles.build_frame("lima", CRS, (0, 0, 400, 200), strata, CFG)
+    f = tiles.build_frame("lima", CRS, (0, 0, 400, 200), strata, CFG, frame=box(0, 0, 400, 200))
     assert [t["stratum"] for t in f["tiles"]] == ["formal", "formal"]
     tie = {"formal": box(0, 0, 100, 200), "fringe": box(100, 0, 200, 200)}
-    f = tiles.build_frame("lima", CRS, (0, 0, 200, 200), tie, CFG)
+    f = tiles.build_frame("lima", CRS, (0, 0, 200, 200), tie, CFG, frame=box(0, 0, 200, 200))
     assert f["tiles"] == [] and f["ineligible"]["tied_strata"] == 1
 
 
 def test_frame_excludes_tiles_outside_imagery_footprint():
     strata = {"formal": box(0, 0, 400, 200)}
     f = tiles.build_frame("lima", CRS, (0, 0, 400, 200), strata, CFG,
-                          footprint=box(0, 0, 300, 200))
-    assert len(f["tiles"]) == 1 and f["ineligible"]["outside_footprint"] == 1
+                          frame=box(0, 0, 300, 200))
+    assert len(f["tiles"]) == 1 and f["ineligible"]["outside_frame"] == 1
 
 
 def test_unknown_stratum_refused():
     with pytest.raises(ValueError):
-        tiles.build_frame("lima", CRS, (0, 0, 200, 200), {"slum": box(0, 0, 200, 200)}, CFG)
+        tiles.build_frame("lima", CRS, (0, 0, 200, 200), {"slum": box(0, 0, 200, 200)}, CFG, frame=box(0, 0, 200, 200))
 
 
 def test_select_refuses_while_tile_count_unset_but_takes_explicit_counts():
     strata = {"formal": box(0, 0, 1000, 200)}
-    f = tiles.build_frame("lima", CRS, (0, 0, 1000, 200), strata, CFG)
+    f = tiles.build_frame("lima", CRS, (0, 0, 1000, 200), strata, CFG, frame=box(0, 0, 1000, 200))
     with pytest.raises(OpenNumberUnset):
         tiles.select(f, CFG)
     got = tiles.select(f, CFG, counts={"formal": 2})
@@ -350,7 +350,7 @@ def test_impervious_bars_match_item_21_floors():
 
 
 def test_frame_saved_with_seed_in_run_metadata_and_never_overwritten(tmp_path):
-    f = tiles.build_frame("lima", CRS, (0, 0, 400, 200), {"formal": box(0, 0, 400, 200)}, CFG)
+    f = tiles.build_frame("lima", CRS, (0, 0, 400, 200), {"formal": box(0, 0, 400, 200)}, CFG, frame=box(0, 0, 400, 200))
     p = tiles.save_frame(f, str(tmp_path / "frame.json"), CFG)
     meta = json.load(open(p))["run_metadata"]
     assert meta["tile_sampler_seed"] == CFG["tiles"]["random_seed"]
@@ -398,3 +398,34 @@ def test_marrakech_removed_from_site_list():
     assert "marrakech" not in CFG["sites"]["training"]
     with pytest.raises(records.RecordError, match="not in the item 21 site list"):
         records.site_role("marrakech", CFG)
+
+
+
+# ── labelling frame = approved box ∩ chosen scene footprint (2026-09-25) ────
+
+def test_frame_is_box_intersect_scene_and_tiles_must_be_fully_inside():
+    frame = tiles.labelling_frame(box(0, 0, 3000, 3000), box(1000, 0, 5000, 3000))
+    assert frame.bounds == (1000, 0, 3000, 3000)
+    f = tiles.build_frame("lima", CRS, (0, 0, 3000, 3000), {"formal": box(0, 0, 3000, 3000)},
+                          CFG, frame=frame)
+    assert all(t["x0"] >= 1000 for t in f["tiles"])
+    assert len(f["tiles"]) == 10 * 15 and f["ineligible"]["outside_frame"] == 5 * 15
+
+
+def test_frame_required_and_non_overlapping_scene_refused():
+    with pytest.raises(ValueError, match="frame"):
+        tiles.build_frame("lima", CRS, (0, 0, 400, 200), {"formal": box(0, 0, 400, 200)}, CFG, None)
+    with pytest.raises(ValueError, match="does not overlap"):
+        tiles.labelling_frame(box(0, 0, 10, 10), box(20, 20, 30, 30))
+
+
+def test_approved_site_boxes_are_3km_and_pending_ones_refused():
+    for site, a in CFG["aois"].items():
+        if a["status"] == "approved":
+            crs, b = tiles.site_box(site, CFG)
+            w, s_, e, n = b.bounds
+            assert (round(e - w, 3), round(n - s_, 3)) == (3000.0, 3000.0), site
+            assert a["frame_scene"] is None            # source choice not made
+        else:
+            with pytest.raises(ValueError, match="not approved"):
+                tiles.site_box(site, CFG)
