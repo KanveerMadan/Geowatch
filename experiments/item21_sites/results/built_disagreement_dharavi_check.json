@@ -1,0 +1,46 @@
+{
+ "generated_utc": "2026-09-25T05:49:27.210186+00:00",
+ "aois": {
+  "dharavi": {
+   "bbox": [
+    72.836,
+    19.037,
+    72.862,
+    19.06
+   ],
+   "grid": {
+    "crs": "EPSG:32643",
+    "transform": [
+     10,
+     0.0,
+     272240,
+     0.0,
+     -10,
+     2108880
+    ],
+    "width": 278,
+    "height": 259
+   },
+   "area_km2": 7.2002,
+   "microsoft": {
+    "asset": "projects/sat-io/open-datasets/MSBuildings/India",
+    "country": "India",
+    "error": null
+   },
+   "disagreement": {
+    "status": "computed",
+    "is_confidence_score": false,
+    "note": "diagnostic only; calibration against hand-digitised buildings (item 21) decides which measure becomes built confidence",
+    "sources": {
+     "primary": "open_buildings_v3",
+     "secondary": "microsoft_global_ml_building_footprints"
+    },
+    "pixels_compared": 72002,
+    "coverage_total_primary": 0.22045818169207712,
+    "coverage_total_secondary": 0.16112496879679028,
+    "fraction_mae": 0.19963042698413042,
+    "weighted_jaccard": 0.3130565605432543
+   }
+  }
+ }
+}
