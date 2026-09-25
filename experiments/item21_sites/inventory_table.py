@@ -104,7 +104,8 @@ def main():
             if s["catalogue"] == "Maxar Open Data" and s.get("sun_elevation_deg") is not None:
                 name += f" (sun el. {s['sun_elevation_deg']}°, off-nadir {s['off_nadir_deg']}°)"
             if "cajamarquilla" in name.lower():
-                name += " — **site list says exclude: no licence**"
+                name += (" — site list said \"exclude: no licence\"; corrected "
+                         "2026-09-25 to CC-BY 4.0 per this record, use not re-decided")
             res = "?" if s.get("resolution_m") is None else f"{s['resolution_m']:.3g}"
             lines.append(f"| {src} | {name} | {time_cell(s, lon)} | {res} | "
                          f"{licence_cell(s)} | {s2_cell(s['s2'])} |")

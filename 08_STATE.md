@@ -582,7 +582,7 @@ downloaded, nothing built.**
 | Validation | Kibera (Nairobi) | Maxar Kenya floods, 0.30–0.32 m (**2023-11-30 pre-flood only**) | CC BY-NC 4.0 |
 | Validation | Rocinha (Rio) | IPP true orthophoto, 15 cm (2024) | Non-commercial |
 | Training | Cape Town | City of Cape Town aerial, 5 cm (2026-01) | Non-commercial |
-| Training | Lima | OpenAerialMap drone, 3–8 cm. Prioritise Candelaria and Santuario de las Vizcachas; exclude Cajamarquilla (no licence) | CC BY 4.0 |
+| Training | Lima | OpenAerialMap drone, 3–8 cm. Prioritise Candelaria and Santuario de las Vizcachas; ~~exclude Cajamarquilla (no licence)~~ Cajamarquilla's OAM record is CC-BY 4.0 (corrected 2026-09-25; use not re-decided) | CC BY 4.0 |
 | Training | **Karachi** (replaces ~~Delhi~~) | Maxar Pakistan floods, 0.53 m (**2022-03-29 pre-flood only**) | CC BY-NC 4.0 |
 | Training | **Monrovia** (replaces ~~Jakarta~~) | Uhuru Labs / HOT drone, 5 cm (2020-02-23) | CC BY 4.0 |
 | Optional | **Marrakech** (replaces ~~Cairo~~) | Maxar Morocco earthquake, 0.31–0.55 m (pre-quake 2023). Only if LOCO shows four cities are too narrow | CC BY-NC 4.0 |

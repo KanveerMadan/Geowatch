@@ -24,7 +24,7 @@ Search window [-77.2, -12.3, -76.7, -11.75]. 18 candidate(s).
 
 | Source | Scene | Acquisition (UTC) | Res. (m) | Licence | S2 clear ±30/60/90 d |
 |---|---|---|---:|---|---|
-| OpenAerialMap | Cajamarquilla, Peru `59e62b8f3d6412ef72209f61` — **site list says exclude: no licence** | 2017-03-19 23:00:00 → 05:21:17 UTC — *on the hour: date-only or approximate* | 0.0775 | `CC-BY 4.0` — derivatives allowed, incl. commercial; attribution required | 1 / 1 / 1; nearest 7 d |
+| OpenAerialMap | Cajamarquilla, Peru `59e62b8f3d6412ef72209f61` — site list said "exclude: no licence"; corrected 2026-09-25 to CC-BY 4.0 per this record, use not re-decided | 2017-03-19 23:00:00 → 05:21:17 UTC — *on the hour: date-only or approximate* | 0.0775 | `CC-BY 4.0` — derivatives allowed, incl. commercial; attribution required | 1 / 1 / 1; nearest 7 d |
 | OpenAerialMap | Pampa Pacta, Punta Hermosa, Peru `59e62b8f3d6412ef72209f5b` | 2017-03-19 23:00:00 → 11:16:00 UTC — *on the hour: date-only or approximate* | 0.0844 | `CC-BY 4.0` — derivatives allowed, incl. commercial; attribution required | 1 / 1 / 1; nearest 7 d |
 | OpenAerialMap | Complejo Arqueológico Mateo Salado `59e62b943d6412ef7220a2eb` | 2017-05-21 05:00:00 → 04:59:59 UTC — *on the hour: date-only or approximate* | 0.0334 | `CC-BY 4.0` — derivatives allowed, incl. commercial; attribution required | 1 / 1 / 2; nearest 17 d |
 | OpenAerialMap | school `5dae503f73c69f000530ee6c` | 2019-10-21 05:00:00 → 00:39:29 UTC — *on the hour: date-only or approximate* | 0.0727 | `CC-BY 4.0` — derivatives allowed, incl. commercial; attribution required | 1 / 1 / 2; nearest 7 d |
