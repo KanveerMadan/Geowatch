@@ -64,7 +64,7 @@
    "frame_wkt_utm": "POLYGON ((252473.7 9853449.4, 252473.7 9856449.4, 255473.7 9856449.4, 255473.7 9853449.4, 252473.7 9853449.4))",
    "box_data_share": 0.6299,
    "data_frame_area_km2": 5.669,
-   "eligible_200m_tiles_data": 124,
+   "eligible_200m_tiles_data": 126,
    "data_res_m": 5.0
   },
   "rocinha": {
@@ -110,6 +110,22 @@
    "eligible_200m_tiles_data": 196,
    "data_res_m": 5.0,
    "data_method": "server render, border-connected fill = no-data"
+  },
+  "karachi": {
+   "sources": {
+    "ard": [
+     "pakistan-flooding22",
+     "10300100D13F6500"
+    ]
+   },
+   "box_covered_share": 1.0,
+   "frame_area_km2": 9.0,
+   "eligible_200m_tiles": 196,
+   "frame_wkt_utm": "POLYGON ((296753.3 2760653.4, 296753.3 2763653.4, 299753.3 2763653.4, 299753.3 2760653.4, 296753.3 2760653.4))",
+   "box_data_share": 1.0,
+   "data_frame_area_km2": 9.0,
+   "eligible_200m_tiles_data": 196,
+   "data_res_m": 5.0
   }
  },
  "karachi_candidates": {

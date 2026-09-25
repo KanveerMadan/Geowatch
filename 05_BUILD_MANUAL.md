@@ -1095,23 +1095,27 @@ exact in its UTM zone, centred on the named settlement
 | Site | Source (one acquisition) | Frame: footprint polygon | Frame: measured data |
 |---|---|---|---|
 | Makoko | OAM "Makoko" drone `5dd0f6dd…` (Uhuru, 2019-10-02, CC-BY) — validates `built` only | 25.1% · 2.26 km² · 42 tiles | **15.8% · 1.42 km² · 22 tiles** |
-| Kibera | OAM `663d1601…` = Maxar `104001008E063C00` (WV03, 2023-11-30) | 100% · 9.00 km² · 196 | **63.0% · 5.67 km² · 124** |
+| Kibera | OAM `663d1601…` = Maxar `104001008E063C00` (WV03, 2023-11-30) | 100% · 9.00 km² · 196 | **63.0% · 5.67 km² · 126** |
 | Rocinha | Rio IPP `Mosaico_2024` (date range per its pre-registration) | 100% · 9.00 km² · 196 | **92.1% · 8.29 km² · 182** |
 | Lima | OAM Candelaria + Santuario de las Vizcachas (2019-12-19) | 35.5% · 3.19 km² · 50 | **24.0% · 2.16 km² · 31** |
 | Monrovia | OAM 2020-02-23 flight: Pt 1, 3, 4 of 4 + Central Monrovia 1, 2 | 91.3% · 8.21 km² · 177 | **71.6% · 6.44 km² · 130** |
 | Cape Town | City of Cape Town `Aerial Imagery 2025Jan` | 100% · 9.00 km² · 196 | **100% · 9.00 km² · 196** |
-| Karachi | **not locked** — Maxar `10300100D13F6500` proposed; comparison below | — | — |
+| Karachi | Maxar `10300100D13F6500` (2022-03-29, pre-flood) — *chosen 2026-09-25 after the comparison below* | 100% · 9.00 km² · 196 | **100% · 9.00 km² · 196** |
 
 Tiles = 200 m tiles lying entirely inside the frame (at most 196 in a
 3 × 3 km box, whose edges are off the 200 m lattice).
 
-- **Frame basis — PENDING.** The rule as given is box ∩ footprint, but the
-  published footprint polygons include no-data: Kibera's OAM footprint is
-  615.7 km², yet the file holds data only inside the 330.3 km² of Maxar ARD
-  tiles it repackages (its data stops exactly at their edge). The measured
-  data frame (valid pixels at 5 m; tiles counted only if every cell is
-  valid) is 16–37% smaller at the drone and Maxar sites. Tiles drawn from a
-  footprint frame could land on no imagery.
+- **Frame basis — DECIDED 2026-09-25: the real-data frame, for every
+  site.** The labelling frame is box ∩ the chosen imagery's **measured valid
+  pixels**, not box ∩ its footprint polygon. **Why:** OpenAerialMap
+  footprints are **image outlines, not data extents** — Kibera's OAM
+  footprint covers the whole box, but **37% of it is blank** (the file holds
+  data only inside the 330.3 km² of Maxar ARD tiles it repackages, of a
+  615.7 km² footprint), and the drone sites lose 16–37% the same way. Tiles
+  drawn from a footprint frame would land on no imagery. Valid pixels are
+  read at 5 m from each file's **declared** mask (a tile counts only if every
+  cell in it is valid); an earlier "mask AND non-zero" rule misread 2 dark
+  Karachi pixels and 2 Kibera tiles as no-data and was corrected.
 - **Kibera verified as the same acquisition:** pixel-identical to Maxar ARD
   `104001008E063C00` where both exist (r = 1.0000 at two patches; the
   2024-05-11 acquisition gives 0.50 / 0.12). Recorded: acquisition time
@@ -1124,7 +1128,15 @@ Tiles = 200 m tiles lying entirely inside the frame (at most 196 in a
 - **Karachi comparison (the approved box):** `10300100D13F6500` (2022-03-29,
   0.57 m, off-nadir 27.0°) covers **100%**; `10300100CFA70700` (2022-03-29,
   off-nadir 21.9°) and `1040010073509D00` (2022-03-26, 0.34 m, off-nadir
-  20.0°) cover **0%**.
+  20.0°) cover **0%**. **Chosen: `10300100D13F6500`.** Off-nadir recorded as
+  **27.0°** (the inventory value, from a tile outside the box); the three ARD
+  tiles over the box report **25.7–26.2°**. Acquisition 2022-03-29
+  06:26:35 UTC; sun elevation 62.8°, azimuth 138.9°.
+- **Karachi labelling note:** at ~26° off-nadir, roofs are displaced from
+  their bases. **Trace building footprints at the base (the wall-ground
+  line), not the displaced roof outline.** This is the §4 top-surface rule
+  applied to oblique imagery: the base is where the building stands on the
+  10 m grid.
 
 **Box vs frame:**
 - **Measurement B runs on the full 3 × 3 km box.**

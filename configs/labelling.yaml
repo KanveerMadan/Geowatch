@@ -72,7 +72,11 @@ model_pass_bars:
 #   - measurement B runs on the FULL box;
 #   - the LABELLING FRAME is box ∩ the chosen scene's footprint, and tiles are
 #     drawn only inside it (labelling.tiles.build_frame).
-# frame_scene is the imagery source choice -- not made yet (UNSET).
+# frame_scene is the imagery source choice (all seven made 2026-09-25).
+# frame_basis = data for every site (decided 2026-09-25): the frame is box ∩
+# the chosen imagery's MEASURED VALID PIXELS, not box ∩ its footprint
+# polygon. OpenAerialMap footprints are image outlines that include no-data:
+# Kibera's OAM footprint covers the whole box, but 37% of it is blank.
 aois:
   makoko:
     status: approved
@@ -81,7 +85,7 @@ aois:
     frame_scene: "OpenAerialMap 'Makoko' drone 5dd0f6dda7dadc0006433b5b (Uhuru Labs, 2019-10-02, CC-BY 4.0)"
     frame_sources: {oam: [5dd0f6dda7dadc0006433b5b]}
     validates: [built]                    # built only (pre-registered 2026-09-25)
-    frame_basis: PENDING   # footprint polygon vs measured data extent (2026-09-25)
+    frame_basis: data      # measured valid pixels, not the footprint polygon (decided 2026-09-25)
     frame_footprint: {box_share: 0.2506, area_km2: 2.255, tiles_200m: 42}
     frame_data: {box_share: 0.158, area_km2: 1.422, tiles_200m: 22}
   kibera:
@@ -96,9 +100,9 @@ aois:
     imagery_acquisition_time_utc: "2023-11-30T08:00:58Z"
     sun_geometry: {source: "Maxar ARD item metadata over the box", elevation_deg: 61.8,
                    azimuth_deg: [137.6, 137.7], off_nadir_deg: [9.9, 10.8]}
-    frame_basis: PENDING   # footprint polygon vs measured data extent (2026-09-25)
+    frame_basis: data      # measured valid pixels, not the footprint polygon (decided 2026-09-25)
     frame_footprint: {box_share: 1.0, area_km2: 9.0, tiles_200m: 196}
-    frame_data: {box_share: 0.6299, area_km2: 5.669, tiles_200m: 124}
+    frame_data: {box_share: 0.6299, area_km2: 5.669, tiles_200m: 126}
 
   rocinha:
     status: approved
@@ -106,7 +110,7 @@ aois:
     box_utm: [678035.1, 7455053.9, 681035.1, 7458053.9]
     frame_scene: "Rio IPP Mosaico_2024 true-orthophoto (15 cm; ImageServer pgeo3.rio.rj.gov.br)"
     frame_sources: {service: "Imagens/Mosaico_2024 ImageServer"}
-    frame_basis: PENDING   # footprint polygon vs measured data extent (2026-09-25)
+    frame_basis: data      # measured valid pixels, not the footprint polygon (decided 2026-09-25)
     frame_footprint: {box_share: 1.0, area_km2: 9.0, tiles_200m: 196}
     frame_data: {box_share: 0.9209, area_km2: 8.288, tiles_200m: 182}
     # Pre-registered 2026-09-25 (05_BUILD_MANUAL.md item 21, "Rocinha imagery
@@ -124,7 +128,7 @@ aois:
     frame_scene: "OpenAerialMap Candelaria 601c75ae5ed94000077fc5ed + Santuario de las Vizcachas 5fa4dedd73fd1d000512b0d9 (both 2019-12-19, CC-BY 4.0), one acquisition"
     frame_sources: {oam: [601c75ae5ed94000077fc5ed, 5fa4dedd73fd1d000512b0d9]}
     known_risk: "low Sentinel-2 overlap: 1 / 2 / 3 clear scenes within +-30 / 60 / 90 d"
-    frame_basis: PENDING   # footprint polygon vs measured data extent (2026-09-25)
+    frame_basis: data      # measured valid pixels, not the footprint polygon (decided 2026-09-25)
     frame_footprint: {box_share: 0.3547, area_km2: 3.193, tiles_200m: 50}
     frame_data: {box_share: 0.2396, area_km2: 2.157, tiles_200m: 31}
   monrovia:
@@ -137,7 +141,7 @@ aois:
     frame_sources: {oam: [5e53faa7906c590005ecc5bb, 5e557ce2642d040007b7c56f, 5e55b345642d040007b7c573,
                           5e71be79ccc61e00059aedcc, 5e6941c0ce171e0005d341f3, 5e679949e82eb700055028ca,
                           5e6a8cdb5abd57000732847c]}
-    frame_basis: PENDING   # footprint polygon vs measured data extent (2026-09-25)
+    frame_basis: data      # measured valid pixels, not the footprint polygon (decided 2026-09-25)
     frame_footprint: {box_share: 0.9127, area_km2: 8.214, tiles_200m: 177}
     frame_data: {box_share: 0.7155, area_km2: 6.439, tiles_200m: 130}
   karachi:
@@ -145,9 +149,18 @@ aois:
     note: "centre 67.0016, 24.9614 -- 2 km north of the first Orangi box, to include fringe"
     crs: "EPSG:32642"
     box_utm: [296753.3, 2760653.4, 299753.3, 2763653.4]
-    # NOT LOCKED: Maxar 10300100D13F6500 proposed; the user picks after the
-    # coverage comparison (experiments/item21_sites/results/frames.json).
-    frame_scene: null
+    frame_scene: "Maxar 10300100D13F6500 (WV, 2022-03-29, pre-flood, CC BY-NC 4.0)"
+    frame_sources: {ard: [pakistan-flooding22, 10300100D13F6500]}
+    # Chosen 2026-09-25 after the comparison: the only candidate covering the
+    # box (10300100CFA70700 and 1040010073509D00 cover 0%).
+    off_nadir_deg: {recorded: 27.0, over_box_tiles: [25.7, 26.2],
+                    note: "27.0 is the inventory's first-scanned tile, outside the box; the 3 ARD tiles over the box report 25.7-26.2"}
+    imagery_acquisition_time_utc: "2022-03-29T06:26:35Z"
+    sun_geometry: {source: "Maxar ARD item metadata over the box", elevation_deg: 62.8, azimuth_deg: 138.9}
+    labelling_note: "Off-nadir ~26 deg: roofs are displaced from their bases. Trace building footprints at the BASE (wall-ground line), not the displaced roof outline."
+    frame_basis: data      # measured valid pixels, not the footprint polygon (decided 2026-09-25)
+    frame_footprint: {box_share: 1.0, area_km2: 9.0, tiles_200m: 196}
+    frame_data: {box_share: 1.0, area_km2: 9.0, tiles_200m: 196}
   cape_town:
     status: approved
     note: "Khayelitsha; extent checked via the city MapServer (experiments/item21_sites/results/capetown_extent.json)"
@@ -157,6 +170,6 @@ aois:
     # service states "This is not the final image for 2026."
     frame_scene: "City of Cape Town 'Aerial Imagery 2025Jan' (0.05 m, cityimg.capetown.gov.za MapServer)"
     frame_sources: {service: "Aerial Imagery_Aerial Imagery 2025Jan MapServer"}
-    frame_basis: PENDING   # footprint polygon vs measured data extent (2026-09-25)
+    frame_basis: data      # measured valid pixels, not the footprint polygon (decided 2026-09-25)
     frame_footprint: {box_share: 1.0, area_km2: 9.0, tiles_200m: 196}
     frame_data: {box_share: 1.0, area_km2: 9.0, tiles_200m: 196}

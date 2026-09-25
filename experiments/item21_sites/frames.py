@@ -50,6 +50,8 @@ CHOICES = {
     "kibera": {"oam": ["663d16016049ef00013b84b8"]},  # pragma: allowlist secret -- public OAM record ids
     "rocinha": {"extent": ("EPSG:31983", (621720.15, 7444172.25, 695788.5, 7485303.6))},
     "cape_town": {"extent": ("ESRI:102562", (-64131.3824, -3803650.65, 7000.0176, -3705000.0))},
+    # Chosen 2026-09-25 by the user after the coverage comparison below.
+    "karachi": {"ard": ("pakistan-flooding22", "10300100D13F6500")},
 }
 KARACHI_CANDIDATES = {
     "10300100D13F6500": "2022-03-29",
@@ -91,7 +93,14 @@ def data_mask(urls, crs, b):
     Reads each file's window over the box DECIMATED to ~DATA_RES_M, so GDAL
     serves it from the COG overviews (a full-resolution warp of a 5 cm drone
     mosaic reads ~60 000^2 pixels per box), then reprojects that small array
-    onto the box grid with nearest neighbour."""
+    onto the box grid with nearest neighbour.
+
+    Valid = the file's DECLARED mask (per-dataset mask, alpha or nodata
+    value) when it has one; only a file declaring none falls back to "not
+    all bands zero". Found 2026-09-25: at overview resolution a genuinely
+    dark pixel (deep shadow) can read as 0,0,0 -- the old "mask AND
+    non-zero" rule flagged 2 such Karachi cells as no-data, while the
+    declared mask alone gives identical shares at Kibera and Makoko."""
     import numpy as np
     import rasterio
     from rasterio.enums import Resampling
@@ -118,7 +127,9 @@ def data_mask(urls, crs, b):
                                 resampling=Resampling.nearest, boundless=True, fill_value=0)
                 m = src.read_masks(1, window=win, out_shape=(oh, ow),
                                    resampling=Resampling.nearest, boundless=True) > 0
-                ok = (m & (data.max(axis=0) > 0)).astype(np.uint8)
+                declared = any(f != rasterio.enums.MaskFlags.all_valid
+                               for f in src.mask_flag_enums[0])
+                ok = (m if declared else m & (data.max(axis=0) > 0)).astype(np.uint8)
                 wt = rasterio.windows.transform(win, src.transform) * \
                     rasterio.Affine.scale(win.width / ow, win.height / oh)
                 dst = np.zeros((H, W), np.uint8)
@@ -178,6 +189,24 @@ def data_frame_row(b, valid, t) -> dict:
             "eligible_200m_tiles_data": n_tiles, "data_res_m": DATA_RES_M}
 
 
+def ard_visual_urls(event, acq_id, crs, b):
+    """Visual COG URLs of the acquisition's ARD tiles that touch box `b`."""
+    from shapely.geometry import box as sbox
+    base = f"{MAXAR}{event}/ard/acquisition_collections/"
+    acq = _get(base + f"{acq_id}_collection.json")
+    bw = _to(b, crs, "EPSG:4326")
+    urls = []
+    for il in acq["links"]:
+        if il["rel"] != "item":
+            continue
+        item_url = base + il["href"]
+        it = _get(item_url)
+        if sbox(*it["bbox"]).intersects(bw):
+            href = it["assets"]["visual"]["href"]
+            urls.append(item_url.rsplit("/", 1)[0] + "/" + href.lstrip("./"))
+    return urls
+
+
 def tiles_inside(frame) -> int:
     from shapely.geometry import box
     from labelling.tiles import tile_origins
@@ -204,12 +233,17 @@ def main():
         crs, b = a["crs"], box(*a["box_utm"])
         if "oam" in choice:
             fp = unary_union([oam_footprint(i, crs) for i in choice["oam"]])
+        elif "ard" in choice:
+            fp = ard_union(*choice["ard"], crs)
         else:
             src, ext = choice["extent"]
             fp = _to(box(*ext), src, crs)
         out["sites"][site] = {"sources": choice, **frame_row(b, fp)}
         if "oam" in choice:
             valid, t = data_mask([oam_cog_url(i) for i in choice["oam"]], crs, b)
+            out["sites"][site].update(data_frame_row(b, valid, t))
+        elif "ard" in choice:
+            valid, t = data_mask(ard_visual_urls(*choice["ard"], crs, b), crs, b)
             out["sites"][site].update(data_frame_row(b, valid, t))
         elif site in RENDERS:
             valid, t = render_mask(site, crs, b)

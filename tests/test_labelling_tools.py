@@ -480,12 +480,11 @@ def test_rocinha_preregistration_in_config():
 
 # ── imagery source choices, 2026-09-25 ──────────────────────────────────────
 
-def test_source_choices_recorded_karachi_unlocked():
+def test_source_choices_recorded_all_sites_on_the_data_frame():
     a = CFG["aois"]
-    assert a["karachi"]["frame_scene"] is None                     # user picks
-    for site in ("makoko", "kibera", "rocinha", "lima", "monrovia", "cape_town"):
+    for site in ("makoko", "kibera", "rocinha", "lima", "monrovia", "cape_town", "karachi"):
         assert a[site]["frame_scene"], site
-        assert a[site]["frame_basis"] == "PENDING", site
+        assert a[site]["frame_basis"] == "data", site
         fp, dt = a[site]["frame_footprint"], a[site]["frame_data"]
         assert dt["area_km2"] <= fp["area_km2"] and dt["tiles_200m"] <= fp["tiles_200m"], site
         assert fp["tiles_200m"] <= 196, site
@@ -501,3 +500,19 @@ def test_kibera_time_and_sun_geometry_from_maxar():
 def test_lima_low_s2_overlap_flagged_and_makoko_built_only():
     assert "1 / 2 / 3" in CFG["aois"]["lima"]["known_risk"]
     assert CFG["aois"]["makoko"]["validates"] == ["built"]
+
+
+
+def test_karachi_choice_off_nadir_and_base_tracing_note():
+    k = CFG["aois"]["karachi"]
+    assert "10300100D13F6500" in k["frame_scene"]
+    assert k["off_nadir_deg"]["recorded"] == 27.0
+    assert k["off_nadir_deg"]["over_box_tiles"] == [25.7, 26.2]
+    assert "BASE" in k["labelling_note"] and "wall-ground" in k["labelling_note"]
+    assert k["frame_data"]["tiles_200m"] == 196
+
+
+def test_kibera_data_frame_matches_the_ard_tile_extent():
+    # Two independent routes: valid pixels of the OAM file (126 tiles) and the
+    # Maxar ARD tile boundaries it repackages (126 tiles, frames.json).
+    assert CFG["aois"]["kibera"]["frame_data"]["tiles_200m"] == 126
