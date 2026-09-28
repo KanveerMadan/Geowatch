@@ -1400,6 +1400,46 @@ they are recorded here so the code has a written source.*
     draft is therefore a starting point only; the hand review is the
     stratification of record, and the draft → final diff
     (`strata_io.compare_draft_final`) shows where the rule was overruled.
+  - **Strata review finished and FROZEN — 2026-09-28.** All seven final
+    `strata.gpkg` files validate with `strata_io.load_strata` (no overlaps;
+    no tiles added, removed or reshaped). Draft → final
+    (`strata_io.compare_draft_final`), tiles dense_informal / formal / mixed
+    / fringe / unassigned:
+
+    | Site | Tiles | Draft | Final | Changed | Main transitions |
+    |---|---:|---|---|---:|---|
+    | Makoko | 22 | 16 / 2 / 4 / 0 / 0 | 17 / 2 / 1 / 2 / 0 | 5 | mixed → dense_informal 2, mixed → fringe 2, dense_informal → mixed 1 |
+    | Kibera | 126 | 36 / 12 / 50 / 15 / 13 | 38 / 49 / 8 / 18 / 13 | 49 | mixed → formal 34, mixed → dense_informal 7, dense_informal → formal 3, mixed → fringe 3 |
+    | Rocinha | 182 | 10 / 22 / 37 / 36 / 77 | 31 / 27 / 8 / 43 / 73 | 34 | mixed → dense_informal 21, mixed → fringe 5, mixed → formal 3, unassigned → fringe 3 |
+    | Lima | 31 | 0 / 0 / 18 / 9 / 4 | 0 / 1 / 13 / 13 / 4 | 5 | mixed → fringe 4, mixed → formal 1 |
+    | Monrovia | 130 | 20 / 21 / 42 / 14 / 33 | 23 / 27 / 30 / 17 / 33 | 14 | mixed → formal 6, mixed → dense_informal 4, mixed → fringe 3 |
+    | Karachi | 196 | 93 / 0 / 47 / 27 / 29 | 32 / 75 / 28 / 33 / 28 | 100 | dense_informal → formal 42, mixed → formal 32, dense_informal → mixed 19, mixed → fringe 6 |
+    | Cape Town | 196 | 52 / 3 / 58 / 59 / 24 | 25 / 38 / 49 / 61 / 23 | 60 | dense_informal → formal 25, dense_informal → mixed 12, mixed → formal 11, mixed → dense_informal 9 |
+
+    **Total: 267 of 883 tiles changed by hand review (30.2%).** The main
+    corrections: tiles the rule left as `mixed` or drafted `dense_informal`
+    were moved to `formal` at Karachi (74), Kibera (37) and Cape Town (36);
+    Rocinha's favela core moved `mixed` → `dense_informal` (21). Lima gained
+    one `formal` tile against its earlier "mixed / fringe only" acceptance.
+
+    **Cape Town** — the recorded review finding above: the draft rule was
+    systematically inverted there (Open Buildings draws formal government
+    housing as separate small footprints and merges packed shack clusters
+    into large polygons); corrected by hand.
+
+    **Karachi** — *(verbatim)* At Karachi (Orangi), strata were assigned by
+    visual LAYOUT, not legal status. "formal" there = regular,
+    planned-looking lane grid, densely built; "dense_informal" = organic
+    fabric with lanes in several directions and irregular blocks. Orangi is
+    documented as an informal settlement (katchi abadi) whose grid was laid
+    out by informal subdividers, so "formal" at Karachi is not a claim about
+    planning or legal origin. Strata are sampling-only and must never be
+    reported as a formal/informal classification of any site.
+
+    **FROZEN:** no further edits before or after tile sampling. Each final
+    `strata.gpkg`'s SHA-256 is recorded in `configs/labelling.yaml`
+    `strata_freeze`; `strata_io.load_strata` refuses a changed file and
+    `strata_rule.write_site` refuses to redraft, even with `force`.
 
 #### Phase A — build rulings, second round, decided 2026-09-25
 

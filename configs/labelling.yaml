@@ -206,3 +206,20 @@ strata_rule:
   # coverage is required across the TRAINING SET as a whole, not per site
   # (decided 2026-09-25).
   empty_stratum_policy: skip_per_site_require_across_training_set
+
+# ── Strata FROZEN (2026-09-28) ─────────────────────────────────────────────
+# Hand review finished; the final strata.gpkg per site is frozen -- no further
+# edits before or after tile sampling. labelling.strata_io.load_strata refuses
+# a site's strata.gpkg whose SHA-256 no longer matches, and
+# labelling.strata_rule.write_site refuses to redraft a frozen site.
+strata_freeze:
+  status: FROZEN
+  date: "2026-09-28"
+  sha256:
+    makoko:    6640d6e047e32cc45e5b0009741f209dc24e8902cb255cf5d20ee1ccc0198006  # pragma: allowlist secret -- file hash
+    kibera:    0cbf7d0c1030c301f327b2b849550ccac9fed2f41f82804f6f986849b5090141  # pragma: allowlist secret -- file hash
+    rocinha:   8d5c8eb9a8d8fce81cc43cad398c123bce1071f7d6b680032e514f1ca8577e57  # pragma: allowlist secret -- file hash
+    lima:      d9f51fb5d86ba05bb71ee7849ff69ffbf8d385049d16cf4c4c36f20cf4523dfb  # pragma: allowlist secret -- file hash
+    monrovia:  6dde05bcf5b7f5a01442b61e37c2ce1b2b6598addeb0a6ecbd53b441079c54f2  # pragma: allowlist secret -- file hash
+    karachi:   848957c1e1fff0bd7b357ddb951005b875b61006a0cc06baf13753ae9e8bd0c7  # pragma: allowlist secret -- file hash
+    cape_town: d388ed4b2cacaa1bfda8022fba82b62f34910efc85ca6bc0dbd2ac88acc6bfeb  # pragma: allowlist secret -- file hash

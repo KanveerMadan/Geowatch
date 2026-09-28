@@ -149,5 +149,46 @@ def test_rewrite_refuses_to_clobber_a_hand_edited_final(tmp_path, monkeypatch):
     monkeypatch.setattr(strata_rule, "_package", lambda site: str(tmp_path))
     monkeypatch.setattr(strata_rule, "compute_tile_metrics",
                         lambda *a, **k: pytest.fail("must refuse before recomputing"))
+    unfrozen = {k: v for k, v in CFG.items() if k != "strata_freeze"}   # pre-freeze guard
     with pytest.raises(RuntimeError, match="hand edits"):
-        strata_rule.write_site(SITE, CFG)
+        strata_rule.write_site(SITE, unfrozen)
+
+
+# ── FROZEN 2026-09-28 ───────────────────────────────────────────────────────
+
+REPO = pathlib.Path(__file__).resolve().parents[1]
+
+
+def test_strata_are_frozen_with_a_hash_per_site():
+    fr = CFG["strata_freeze"]
+    assert fr["status"] == "FROZEN" and fr["date"] == "2026-09-28"
+    assert set(fr["sha256"]) == set(CFG["aois"])
+
+
+@pytest.mark.parametrize("site", sorted(CFG["aois"]))
+def test_committed_final_matches_its_frozen_hash_and_loads(site):
+    import hashlib
+    p = REPO / "data" / "strata_packages" / site / "strata.gpkg"
+    assert hashlib.sha256(p.read_bytes()).hexdigest() == CFG["strata_freeze"]["sha256"][site]
+    strata, _ = strata_io.load_strata(str(p), site, CFG)
+    assert strata
+
+
+def test_an_edited_frozen_final_is_refused(tmp_path):
+    import shutil
+    d = tmp_path / SITE
+    d.mkdir()
+    p = d / "strata.gpkg"
+    shutil.copy(REPO / "data" / "strata_packages" / SITE / "strata.gpkg", p)
+    g = gpd.read_file(p, layer="strata", engine="pyogrio")
+    g.loc[0, "stratum"] = "fringe" if g.loc[0, "stratum"] != "fringe" else "mixed"
+    strata_rule.write_strata_gpkg(str(p), g, "")
+    with pytest.raises(strata_io.StrataFrozenError, match="FROZEN"):
+        strata_io.load_strata(str(p), SITE, CFG)
+
+
+def test_frozen_sites_cannot_be_redrafted_even_with_force(monkeypatch):
+    monkeypatch.setattr(strata_rule, "compute_tile_metrics",
+                        lambda *a, **k: pytest.fail("must refuse before recomputing"))
+    with pytest.raises(RuntimeError, match="FROZEN"):
+        strata_rule.write_site(SITE, CFG, force=True)

@@ -170,6 +170,9 @@ def write_site(site: str, cfg: dict, force: bool = False) -> dict:
     from collections import Counter
     from shapely.geometry import shape
     from labelling.strata_style import strata_qml
+    if (cfg.get("strata_freeze") or {}).get("status") == "FROZEN":
+        raise RuntimeError(f"{site}: strata are FROZEN ({cfg['strata_freeze']['date']}); "
+                           f"no redraft, even with force")
     pkg = _package(site)
     draft_path, final_path = os.path.join(pkg, "strata_draft.gpkg"), os.path.join(pkg, "strata.gpkg")
     if os.path.exists(final_path) and os.path.exists(draft_path) and not force:

@@ -52,6 +52,30 @@ class StrataOverlapWarning(UserWarning):
     pass
 
 
+class StrataFrozenError(StrataError):
+    """A frozen site's strata.gpkg no longer matches its recorded hash."""
+
+
+def check_frozen(path: str, site: str, cfg: dict) -> None:
+    """Strata FROZEN 2026-09-28: a site's own strata.gpkg must match the
+    SHA-256 recorded in configs/labelling.yaml `strata_freeze`. Other files
+    (drafts, test copies) are not checked."""
+    import hashlib
+    import os
+    fr = cfg.get("strata_freeze") or {}
+    if fr.get("status") != "FROZEN" or os.path.basename(path) != "strata.gpkg" \
+            or os.path.basename(os.path.dirname(os.path.abspath(path))) != site:
+        return
+    want = fr["sha256"][site]
+    with open(path, "rb") as fh:
+        got = hashlib.sha256(fh.read()).hexdigest()
+    if got != want:
+        raise StrataFrozenError(
+            f"{path}: strata are FROZEN ({fr['date']}) but the file has changed "
+            f"(sha256 {got[:12]}... != recorded {want[:12]}...). No edits are allowed "
+            f"before or after tile sampling.")
+
+
 def _declared_crs(fc: dict) -> str | None:
     crs = fc.get("crs")
     if not crs:
@@ -84,6 +108,7 @@ def _read(path: str) -> tuple[str | None, list]:
 
 
 def load_strata(path: str, site: str, cfg: dict) -> tuple[dict, dict]:
+    check_frozen(path, site, cfg)
     got, feats = _read(path)
     want = cfg["aois"][site]["crs"]
     if got != want:

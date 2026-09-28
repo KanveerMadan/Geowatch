@@ -56,15 +56,20 @@ def test_committed_package_files_match_config(site):
 
 
 def test_only_templates_are_tracked():
-    # `git check-ignore` exits 0 even when the deciding pattern is a negation
-    # (`!...`), so ask git which files in a built package it actually ignores.
-    pkg = PKG / "makoko"
-    if not (pkg / "preview.tif").exists():                  # previews are not tracked
-        pytest.skip("package not built here; run build_strata_packages.py")
-    out = subprocess.run(["git", "-C", str(REPO), "ls-files", "--others", "--ignored",
-                          "--exclude-standard", "--", str(pkg)],
-                         capture_output=True, text=True, check=True).stdout.split()
-    ignored = {pathlib.Path(p).name for p in out}
-    assert ignored == {"preview.tif", "frame.geojson", "box.geojson", "tile_metrics.json"}
+    # The contract: in every package, exactly strata.qml, strata_draft.gpkg and
+    # strata.gpkg are trackable; everything else (previews, frames, metrics,
+    # and whatever QGIS drops, e.g. preview.tif.aux.xml) is ignored.
+    # (`git check-ignore` exits 0 even when the deciding pattern is a
+    # negation, so ask git for the ignored files instead.)
+    for site in SITES:
+        pkg = PKG / site
+        if not (pkg / "preview.tif").exists():               # previews are not tracked
+            pytest.skip("packages not built here; run build_strata_packages.py")
+        out = subprocess.run(["git", "-C", str(REPO), "ls-files", "--others", "--ignored",
+                              "--exclude-standard", "--", str(pkg)],
+                             capture_output=True, text=True, check=True).stdout.split()
+        ignored = {pathlib.Path(p).name for p in out}
+        present = {p.name for p in pkg.iterdir()}
+        assert present - ignored == {"strata.qml", "strata_draft.gpkg", "strata.gpkg"}, site
     assert subprocess.run(["git", "-C", str(REPO), "check-ignore", "-q",
                            "data/pipeline_runs/x/result.json"]).returncode == 0   # rest of data/ ignored
