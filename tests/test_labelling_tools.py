@@ -35,10 +35,20 @@ def full_tile(label="bare"):
 
 # ── open numbers stay UNSET ─────────────────────────────────────────────────
 
-def test_all_five_open_numbers_are_unset():
-    for k in ("change_test", "max_date_gap_days", "starting_tile_count",
-              "agreement_bars", "max_excluded_share_per_cell"):
+def test_open_numbers_status_2026_09_28():
+    # Three still UNSET; two PROVISIONAL (pilot plan, 2026-09-28). None frozen.
+    for k in ("change_test", "max_date_gap_days", "starting_tile_count"):
         assert CFG["open"][k]["status"] == "UNSET", k
+    bars = CFG["open"]["agreement_bars"]
+    assert bars["status"] == "PROVISIONAL"
+    assert {k: v["value"] for k, v in bars["per_class"].items()} == {
+        "built": 0.05, "impervious_total": 0.075, "vegetation": 0.075, "water": 0.075}
+    assert all(v["metric"] == "fraction_mae" for v in bars["per_class"].values())
+    assert CFG["open"]["max_excluded_share_per_cell"] == {"value": 0.25, "status": "PROVISIONAL"}
+    # half the model bars where a model bar exists
+    assert bars["per_class"]["built"]["value"] == CFG["model_pass_bars"]["built"]["fraction_mae_max"] / 2
+    assert bars["per_class"]["impervious_total"]["value"] == \
+        CFG["model_pass_bars"]["impervious_total"]["fraction_mae_max"] / 2
 
 
 def test_decided_numbers_match_the_guide():
@@ -244,9 +254,10 @@ def test_identical_labellings_agree_perfectly():
     out = qc.compare(fs, fs, grid(), CFG)
     assert out["per_class"]["built"]["polygon_iou"] == 1.0
     assert out["per_class"]["built"]["fraction_mae"] == 0.0
-    assert out["per_class"]["built"]["meets_agreement_bar"] is None
+    assert out["per_class"]["built"]["meets_agreement_bar"] is True   # provisional bar, MAE 0
     assert out["per_class"]["built"]["label_limited"] is False      # R5 bar set
-    assert "UNSET" in out["agreement_bars"]
+    assert out["impervious_total"]["meets_agreement_bar"] is True
+    assert out["agreement_bars"] == "PROVISIONAL"
 
 
 def test_disagreement_measured_at_both_levels():
@@ -516,3 +527,10 @@ def test_kibera_data_frame_matches_the_ard_tile_extent():
     # Two independent routes: valid pixels of the OAM file (126 tiles) and the
     # Maxar ARD tile boundaries it repackages (126 tiles, frames.json).
     assert CFG["aois"]["kibera"]["frame_data"]["tiles_200m"] == 126
+
+
+
+def test_impervious_agreement_bar_is_applied():
+    # a: 100 m impervious; b: 20 m -> MAE 0.4, over the 7.5 pp provisional bar
+    out = qc.compare(_strips(100, 0), _strips(20, 0), grid(), CFG)
+    assert out["impervious_total"]["meets_agreement_bar"] is False

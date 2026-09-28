@@ -1266,6 +1266,38 @@ The Rio IPP `Mosaico_2024` publishes only "Aquisição 1º semestre de 2024"
 method and threshold, maximum date gap per site, starting tile count, and
 per-class agreement bars (guide §9).
 
+**§9 pilot — before freezing, planned 2026-09-28.** Nothing in the pilot scores
+labels against a model, and the tile sampler is not run. **Nothing is frozen
+until step 4.**
+
+1. **Provisional now** (`configs/labelling.yaml` `open`, status
+   PROVISIONAL): agreement bars at **half the model bars** — `built` MAE
+   ≤ 5 pp, `impervious_total` MAE ≤ 7.5 pp; `vegetation` and `water` MAE
+   ≤ 7.5 pp (set directly: neither has a model bar in this manual); IoU
+   diagnostic only. **Max excluded share per cell = 0.25**, to be confirmed
+   by the practice tiles.
+2. **Pilot A — change test (label-free).** For every eligible tile in all
+   seven frames, per-cell change between Sentinel-2 composites before vs
+   after the high-resolution date, at 2× / 3× / 5× the noise floor; per site
+   and stratum, the share of tiles that would be dropped at 5 / 10 / 20 %
+   changed cells; six rendered tiles for a visual check (the 3 most flagged,
+   3 near 3× / 10 %). No setting is chosen. *Paused 2026-09-28 at the first
+   step:* the noise floor in `06_UNMIXING_CEILING.md` is **~0.7° of spectral
+   angle, converted** from the documented Sentinel-2 L2A BOA uncertainty
+   (~0.005 reflectance) at Khayelitsha hard-surface magnitude — not
+   measured, brightness-dependent, and a single-observation figure — so the
+   change metric (spectral angle vs per-band reflectance) awaits a decision.
+3. **Pilot B — time window (label-free).** Per site, clear-scene counts
+   (< 20 % cloud) within ±60 and ±90 days of the high-resolution date
+   (Rocinha: worst case over its date range). No window is chosen.
+4. **Pilot C — practice tiles.** Two tiles **outside every frame**, one
+   dense-informal-looking and one formal-looking, prepared for tracing and
+   timing by hand; metadata marked **PRACTICE — never scored, never used in
+   training**.
+5. **Step 4 — decide.** The provisional numbers are confirmed or revised,
+   and the change test, maximum date gap and starting tile count are set,
+   from the pilot results; then §9 is frozen.
+
 **Validation additions.**
 
 - **Shadow accuracy** is measured in the **same hand-digitisation pass** at

@@ -80,10 +80,18 @@ def compare(features_a: list, features_b: list, grid, cfg: dict) -> dict:
            "fraction_mae": float(np.abs(ia - ib).mean()) if ia.size else None,
            "fraction_r2": _r2(ia, ib)}
     imp["label_limited"] = _label_limited(imp, model_bars["impervious_total"])
+    imp["meets_agreement_bar"] = None
+    if bars_set and "impervious_total" in bars["per_class"]:
+        bar = bars["per_class"]["impervious_total"]
+        got = imp.get(bar["metric"])
+        if got is not None:
+            worse = got < bar["value"] if WORSE_IF[bar["metric"]] == "lower" else got > bar["value"]
+            imp["meets_agreement_bar"] = not worse
     per_class["built"]["label_limited"] = _label_limited(per_class["built"], model_bars["built"])
     return {"per_class": per_class,
             "impervious_total": imp,
-            "agreement_bars": "set" if bars_set else "UNSET (guide §9.4): no verdict",
+            "agreement_bars": bars.get("status", "UNSET") if bars_set
+                              else "UNSET (guide §9.4): no verdict",
             "label_limited_note": "impervious_total vs item 21 floors; built vs its "
                                   "R5 bar; others None"}
 

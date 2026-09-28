@@ -41,8 +41,19 @@ open:
   change_test: {method: null, threshold: null, status: UNSET}          # §9.1
   max_date_gap_days: {status: UNSET, per_site: {}}                     # §9.2
   starting_tile_count: {status: UNSET, per_stratum: {}}                # §9.3
-  agreement_bars: {status: UNSET, per_class: {}}                       # §9.4
-  max_excluded_share_per_cell: {value: null, status: UNSET}            # §9.5
+  # §9.4 -- PROVISIONAL 2026-09-28 (confirmed or revised at pilot step 4):
+  # half the model pass bars. built model MAE 10 pp -> 5; impervious_total
+  # 15 pp -> 7.5. vegetation and water have no model bar in the manual: 7.5
+  # pp set directly. IoU is diagnostic only (never a bar).
+  agreement_bars:
+    status: PROVISIONAL
+    per_class:
+      built:            {metric: fraction_mae, value: 0.05}
+      impervious_total: {metric: fraction_mae, value: 0.075}
+      vegetation:       {metric: fraction_mae, value: 0.075}
+      water:            {metric: fraction_mae, value: 0.075}
+  # §9.5 -- PROVISIONAL 2026-09-28, to be confirmed by the practice tiles.
+  max_excluded_share_per_cell: {value: 0.25, status: PROVISIONAL}
   # Not one of the five, and also undecided: how many validation tiles go
   # in sealed batch 1 vs batch 2 (§8).
   validation_batch_1_count: {value: null, status: UNSET}
