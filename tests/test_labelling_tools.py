@@ -36,9 +36,15 @@ def full_tile(label="bare"):
 # ── open numbers stay UNSET ─────────────────────────────────────────────────
 
 def test_open_numbers_status_2026_09_28():
-    # Three still UNSET; two PROVISIONAL (pilot plan, 2026-09-28). None frozen.
-    for k in ("change_test", "max_date_gap_days", "starting_tile_count"):
+    # Two still UNSET; two PROVISIONAL (pilot plan); the max gap decided by
+    # pilot B (2026-09-28). None frozen.
+    for k in ("change_test", "starting_tile_count"):
         assert CFG["open"][k]["status"] == "UNSET", k
+    gap = CFG["open"]["max_date_gap_days"]
+    assert gap["status"] == "DECIDED_BY_PILOT" and gap["half_window_days"] == 90
+    assert gap["min_clear_scenes"] == 3
+    assert set(gap["per_site"]) == set(CFG["sites"]["training"]) | set(CFG["sites"]["validation"])
+    assert {s: d for s, d in gap["per_site"].items() if d != 90} == {"rocinha": 181}
     bars = CFG["open"]["agreement_bars"]
     assert bars["status"] == "PROVISIONAL"
     assert {k: v["value"] for k, v in bars["per_class"].items()} == {
@@ -486,7 +492,9 @@ def test_rocinha_preregistration_in_config():
     assert r["imagery_acquisition_range"]["reason"]
     assert r["s2_composite_window"] == {"start": "2024-01-01", "end": "2024-06-30"}
     assert r["acquisition_time"] == "sun_geometry_from_shadows"
-    assert r["date_gap"] == {"rule": "worst_case_across_range", "computation": "PENDING"}
+    # gap ruled 2026-09-28: worst case 181 d, an explicit exception to +-90 d
+    assert r["date_gap"] == {"rule": "worst_case_across_range", "days": 181, "exception_to_90d_rule": True}
+    assert CFG["open"]["max_date_gap_days"]["per_site"]["rocinha"] == r["date_gap"]["days"]
 
 
 # ── imagery source choices, 2026-09-25 ──────────────────────────────────────

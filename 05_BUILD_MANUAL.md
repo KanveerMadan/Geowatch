@@ -1287,6 +1287,24 @@ until step 4.**
    (~0.005 reflectance) at Khayelitsha hard-surface magnitude — not
    measured, brightness-dependent, and a single-observation figure — so the
    change metric (spectral angle vs per-band reflectance) awaits a decision.
+   *Ruled 2026-09-28:* the converted 0.7° is **not** used. Noise is
+   **measured per site**: the site's clear scenes before the imagery date
+   (within ±90 d) are split into two seeded random halves, each half is
+   composited, and the per-cell differences are the no-change noise
+   distribution (reported as scenes per half and the 50th / 95th / 99th
+   percentiles). A cell is **changed** if **either** its spectral angle
+   **or** its mean-reflectance difference (before vs after composite)
+   exceeds k × that metric's per-site 95th-percentile noise, for k = 2, 3, 5.
+   Drop shares at 5 / 10 / 20 % changed cells go in the 3 × 3 table per site
+   and stratum, with the six rendered tiles. Nothing is chosen.
+   **Lima limitation (recorded as ruled):** only 3 clear scenes in ±90 d, so
+   its before and after composites come from 1–2 scenes each and its change
+   test has low power. Measured 2026-09-28: 1 scene before and 2 after.
+   *Blocked 2026-09-28 (see below):* the clear scenes in the 90 days before
+   the imagery date are Makoko 0, Lima 1, Kibera 4, Rocinha 4 (before its
+   range; 15 inside it), Monrovia 17, Karachi 31 and Cape Town 9 (1 inside
+   January). Makoko has no scene to split and no "before" composite, and
+   Lima's single scene cannot be split into halves.
 3. **Pilot B — time window (label-free).** Per site, clear-scene counts
    (< 20 % cloud) within ±60 and ±90 days of the high-resolution date
    (Rocinha: worst case over its date range). No window is chosen.
@@ -1305,7 +1323,17 @@ until step 4.**
 
    Cape Town's imagery date is also a range (the service gives only
    "2025Jan"), so its worst case over the month is shown the same way as
-   Rocinha's; that treatment was not separately ruled.
+   Rocinha's; ~~that treatment was not separately ruled~~ *(confirmed
+   2026-09-28)*.
+
+   **Decided by pilot 2026-09-28 (not frozen until step 4).** At ±60 d, Lima
+   and Makoko have 2 clear scenes (< 3), so the **window is ±90 d with at
+   least 3 clear scenes**. That makes the maximum date gap 90 d per site.
+   Date ranges take the **worst case across the range**. **Rocinha: gap =
+   worst case 181 d**, an **explicit exception** to the ±90 d rule, justified
+   by its consolidated, slow-changing fabric. The change test still applies
+   at Rocinha. Recorded in `configs/labelling.yaml` `open.max_date_gap_days`
+   (status `DECIDED_BY_PILOT`).
 4. **Pilot C — practice tiles.** Two tiles **outside every frame**, one
    dense-informal-looking and one formal-looking, prepared for tracing and
    timing by hand; metadata marked **PRACTICE — never scored, never used in
