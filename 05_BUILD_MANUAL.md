@@ -1310,6 +1310,22 @@ until step 4.**
    dense-informal-looking and one formal-looking, prepared for tracing and
    timing by hand; metadata marked **PRACTICE — never scored, never used in
    training**.
+   *Prepared 2026-09-28* (`experiments/item21_sites/prepare_practice_tiles.py`
+   → `data/practice_tiles/<tile>/`: `hr.tif` at 0.05 m, `tile.geojson`,
+   `cells.geojson` (the 400 S2 cells), an empty styled `labels.gpkg`,
+   `metadata.json`). Both come from the Cape Town "Aerial Imagery 2025Jan"
+   city imagery **outside the Khayelitsha box**, so outside every frame.
+   They were chosen **by eye**: the draft strata rule is inverted at Cape Town,
+   and a footprint-metric ring search exceeded Earth Engine's size limit.
+
+   | Tile | Tile corner (x0, y1), EPSG:32734 | Distance from box | Looks |
+   |---|---|---:|---|
+   | `PRACTICE_dense_informal` | 286000, 6235400 | 691 m | packed shacks, organic lanes |
+   | `PRACTICE_formal` | 285000, 6236000 | 288 m | regular planned grid (with some backyard shacks) |
+
+   Records use site `practice`, which is not in the item 21 site list, so
+   `LabelStore` refuses them. Their `qc_status` is `PRACTICE`. The tiles are
+   traced and timed by hand; the timing goes in `metadata.json`.
 5. **Step 4 — decide.** The provisional numbers are confirmed or revised,
    and the change test, maximum date gap and starting tile count are set,
    from the pilot results; then §9 is frozen.

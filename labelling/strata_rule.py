@@ -122,33 +122,11 @@ def draft_frame(site: str, cfg: dict, metrics: list):
 
 
 def write_strata_gpkg(path: str, gdf, qml: str) -> str:
-    """Write layer "strata" and store `qml` as its QGIS DEFAULT style (the
-    layer_styles table QGIS reads on open), so the stratum dropdown and
-    colours appear without loading a style by hand."""
-    import os
-    import sqlite3
-    if os.path.exists(path):
-        os.remove(path)
-    gdf.to_file(path, layer=LAYER, driver="GPKG", engine="pyogrio")
-    con = sqlite3.connect(path)
-    try:
-        con.execute("""CREATE TABLE layer_styles (
-            id INTEGER PRIMARY KEY AUTOINCREMENT, f_table_catalog TEXT(256), f_table_schema TEXT(256),
-            f_table_name TEXT(256), f_geometry_column TEXT(256), styleName TEXT(30), styleQML TEXT,
-            styleSLD TEXT, useAsDefault BOOLEAN, description TEXT, owner TEXT(30), ui TEXT(30),
-            update_time DATETIME DEFAULT CURRENT_TIMESTAMP)""")
-        geom_col = con.execute("SELECT column_name FROM gpkg_geometry_columns WHERE table_name = ?",
-                               (LAYER,)).fetchone()[0]
-        con.execute("""INSERT INTO layer_styles (f_table_catalog, f_table_schema, f_table_name,
-            f_geometry_column, styleName, styleQML, styleSLD, useAsDefault, description, owner)
-            VALUES ('', '', ?, ?, 'strata', ?, '', 1, 'item 21 strata style (default)', '')""",
-                    (LAYER, geom_col, qml))
-        con.execute("""INSERT INTO gpkg_contents (table_name, data_type, identifier, description)
-            VALUES ('layer_styles', 'attributes', 'layer_styles', '')""")
-        con.commit()
-    finally:
-        con.close()
-    return path
+    """Write layer "strata" with `qml` stored as its QGIS DEFAULT style, so
+    the stratum dropdown and colours appear without loading a style by hand
+    (labelling/gpkg_style.py)."""
+    from labelling.gpkg_style import write_gpkg
+    return write_gpkg(path, gdf, LAYER, qml)
 
 
 # ── command line: draft every approved site ─────────────────────────────────

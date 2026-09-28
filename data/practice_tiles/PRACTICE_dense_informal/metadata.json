@@ -1,0 +1,37 @@
+{
+ "purpose": "PRACTICE -- never scored, never used in training (LABELLING_GUIDE \u00a79 pilot C, 2026-09-28)",
+ "site": "practice",
+ "tile_id": "PRACTICE_dense_informal",
+ "looks": "dense_informal",
+ "source_site": "cape_town",
+ "tile_utm": {
+  "crs": "EPSG:32734",
+  "x0": 286000.0,
+  "y1": 6235400.0,
+  "size_m": 200
+ },
+ "imagery_source": "City of Cape Town 'Aerial Imagery 2025Jan' (MapServer export)",
+ "imagery_acquisition_date": "2025-01 (month only)",
+ "imagery_acquisition_time": null,
+ "imagery_resolution_m": 0.05,
+ "imagery_licence": "City of Cape Town: no restrictions on the digital file for non-commercial purposes",
+ "sun_geometry": {
+  "azimuth_deg": null,
+  "elevation_deg": null,
+  "method": null,
+  "n_buildings": null,
+  "note": "no acquisition time is published: measure from >= 3 building shadows (guide v1.2)"
+ },
+ "guide_version": "1.4",
+ "labeller": null,
+ "labelling_date": null,
+ "timing": {
+  "start_local": null,
+  "end_local": null,
+  "minutes": null,
+  "note": "trace the whole tile; record wall-clock start/end"
+ },
+ "pct_unsure": null,
+ "pct_shadow_full": null,
+ "qc_status": "PRACTICE"
+}
