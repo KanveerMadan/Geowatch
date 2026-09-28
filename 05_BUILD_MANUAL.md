@@ -1290,6 +1290,22 @@ until step 4.**
 3. **Pilot B — time window (label-free).** Per site, clear-scene counts
    (< 20 % cloud) within ±60 and ±90 days of the high-resolution date
    (Rocinha: worst case over its date range). No window is chosen.
+   *Result 2026-09-28* (distinct dates with a scene < 20 % cloud intersecting
+   the approved box; `experiments/item21_sites/results/pilot_b_time_window.json`):
+
+   | Site | Imagery date | ±60 d | ±90 d |
+   |---|---|---:|---:|
+   | Makoko | 2019-10-02 | 2 | 4 |
+   | Kibera | 2023-11-30 | 4 | 9 |
+   | Rocinha | 2024-01-01 → 06-30 (worst case) | 5 (on 2024-01-14; best 18) | 7 (on 2024-01-01; best 24) |
+   | Lima | 2019-12-19 | 2 | 3 |
+   | Monrovia | 2020-02-23 | 15 | 20 |
+   | Karachi | 2022-03-29 | 44 | 58 |
+   | Cape Town | 2025-01 (month only; worst case) | 9 (on 01-30; best 11) | 14 (on 01-20; best 17) |
+
+   Cape Town's imagery date is also a range (the service gives only
+   "2025Jan"), so its worst case over the month is shown the same way as
+   Rocinha's; that treatment was not separately ruled.
 4. **Pilot C — practice tiles.** Two tiles **outside every frame**, one
    dense-informal-looking and one formal-looking, prepared for tracing and
    timing by hand; metadata marked **PRACTICE — never scored, never used in
