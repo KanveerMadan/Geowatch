@@ -1360,6 +1360,32 @@ until step 4.**
      Karachi at 8e-4 (~4 % of its mean-reflectance noise unit).
    - **Operational:** one run hung 22 h on a dead connection; requests now
      have a deadline and retries (no effect on results).
+
+   *Rerun with the change-test fix, 2026-09-29* (decision 2 below;
+   `experiments/item21_sites/pilot_a_detrended.py` →
+   `results/pilot_a_detrended.json`; from the cached granules, with noise
+   units recomputed and checked equal to the recorded ones). Each metric's
+   site-wide median over the eligible cells is subtracted; k = 3; a tile is
+   dropped above 10 % changed cells.
+
+   | Site | Median removed: angle / mean refl. | Dropped (rule) | By stratum | Without de-trend | Signed-brightness variant |
+   |---|---|---:|---|---:|---:|
+   | Makoko | 2.58° / 0.014 | 0 / 22 | — | 0 % | 0 % |
+   | Kibera | 4.04° / 0.016 | 0 / 113 | — | 0 % | 0 % |
+   | Rocinha | 3.36° / 0.006 | 0 / 109 | — | 0 % | 0 % |
+   | Lima | 1.92° / 0.026 | 0 / 27 | — | 0 % | 0 % |
+   | Monrovia | 2.97° / 0.009 | 0 / 97 | — | 0 % | 0 % |
+   | Karachi | 2.44° / 0.065 | **1 / 168 (0.6 %)** | formal 1 / 75 | 94.6 % | 1.2 % |
+   | Cape Town | 2.25° / 0.012 | **12 / 173 (6.9 %)** | fringe 11 / 61; mixed 1 / 49 | 9.8 % | 8.7 % |
+
+   **No site drops > 30 %, so §9 is frozen** (decision 3). **Makoko and Lima
+   are low-power** (3–4 scenes: the test cannot flag change there).
+   *Recorded, not acted on:* the rule de-trends each metric's **unsigned**
+   magnitude. It therefore lowers every cell by the median even with no
+   trend, and cannot see a cell that changed **against** the site trend (a
+   cell darkening while the site brightens). The signed-brightness variant,
+   |d − median(d)| with d the signed mean-reflectance change, is shown for
+   comparison. It differs little here (Karachi 1.2 %, Cape Town 8.7 %).
 3. **Pilot B — time window (label-free).** Per site, clear-scene counts
    (< 20 % cloud) within ±60 and ±90 days of the high-resolution date
    (Rocinha: worst case over its date range). No window is chosen.
