@@ -1358,6 +1358,73 @@ until step 4.**
    and the change test, maximum date gap and starting tile count are set,
    from the pilot results; then §9 is frozen.
 
+**SAM-assisted tracing — PROPOSAL, 2026-09-29 (guide unchanged; not
+adopted).** Until a §2 amendment is adopted, tiles are traced by hand.
+
+- **Tool** (`labelling/sam_draft.py`). The repo's segment-anything ViT-B
+  checkpoint (`models/sam/sam_vit_b.pth`, sha256 `ec2df627…c912`, matches
+  `ARTIFACT_HASHES.txt`; verified before every run). The labeller clicks
+  points into a `sam_prompts` layer in the tile's `labels.gpkg` in QGIS and
+  runs one command. Each click group becomes a candidate polygon in a
+  separate `sam_candidates` layer (magenta dashed outline). The labeller
+  copies the accepted ones into `labels`, edits them and sets `label` by
+  hand. **SAM never writes to `labels` and never sets a label.** Use is
+  recorded per tile in `metadata.json` (`tracing_method: sam_assisted`, model
+  hash, groups drafted); each candidate carries its score and the model hash.
+- **Why not a QGIS plugin (Geo-SAM style).** It gives live in-QGIS clicking,
+  but needs torch and segment-anything installed into QGIS's bundled Python
+  (QGIS 3.44, which has neither). That was not done, because it modifies the
+  QGIS install. The script runs in the repo venv with the pinned checkpoint.
+- **Test, PRACTICE_formal only** (on a scratch copy; the tracked tile's
+  `labels` layer is untouched and the dense tile is byte-identical). Eleven
+  click groups:
+  - 7 planned-house roofs and 2 shack roofs gave clean roof outlines
+    (40–53 m² for the houses, scores 0.85–0.97, 41–90 vertices);
+  - a click on a lane between shacks produced no candidate, reported as
+    failed (the mask missed the click);
+  - a 2-point road group followed the road but was **cut straight at the SAM
+    window edge** and bled slightly into the verge.
+  An earlier round showed that **a click on a sandy yard gives the yard**, so
+  click placement matters. Speed on Apple MPS: ~12 s for the first click
+  (warm-up), ~2 s for the first click in a new 1024 px window, **0.05–0.3 s**
+  thereafter (window encodings cached in `sam_embeddings/`, not tracked).
+- **Risks to label independence** (for the decision; none acted on):
+  1. **Anchoring.** Labellers tend to accept a plausible SAM edge, so SAM's
+     systematic errors become systematic label errors: window-edge cuts,
+     merged or split shacks with shared walls, yards and verges included.
+  2. **Karachi conflicts with SAM.** Its recorded note requires footprints
+     traced at the **base** (wall-ground line), not the displaced roof
+     outline (off-nadir ~26°). SAM draws the visible roof outline, so every
+     Karachi candidate is wrong by construction unless it is moved to the
+     base.
+  3. **Shared model.** The legacy pipeline (`pipeline.py`,
+     `ingestion/segmentation.py`) uses the **same checkpoint**. Labels
+     drafted with it must never be used to score anything SAM-derived. The
+     item 21 fraction code does not use SAM.
+  4. **The QC signal is mixed.** With fully manual QC re-traces, the
+     agreement compares SAM-assisted with manual, so labeller noise and the
+     SAM effect are not separated. A manual-vs-manual baseline would separate
+     them (for example, the practice tile traced both ways, a week apart).
+  5. **Same-labeller memory.** A labeller who re-traces a tile by hand has
+     seen SAM's shapes; §7's one-week gap reduces this but does not remove
+     it.
+  6. **Scale.** Boundary errors of a few pixels are diluted in 10 m
+     fractions (the scored quantity) and show more in the pixel IoU
+     diagnostic.
+- **Draft §2 amendment — DRAFT, NOT IN THE GUIDE:**
+  > *Polygons may be drafted by SAM (the repo's pinned ViT-B checkpoint)
+  > from the labeller's clicks. Every polygon and every label is accepted or
+  > edited by the labeller; SAM never assigns a label. The method (manual or
+  > SAM-assisted) is recorded per tile. QC re-labels (the ~15% blind
+  > re-traces, §7) are done fully manually, so that SAM-induced bias shows
+  > up in label agreement instead of being hidden.*
+
+  The request's wording "same method for QC re-labels … are done FULLY
+  MANUALLY" contradicts itself ("same method" vs "fully manually"). The
+  draft follows the stated purpose (manual QC) and drops "same method";
+  **to be confirmed**. Items 2 (Karachi) and 4 (baseline) above are not
+  addressed by the draft.
+
 **Validation additions.**
 
 - **Shadow accuracy** is measured in the **same hand-digitisation pass** at

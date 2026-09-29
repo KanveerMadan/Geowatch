@@ -68,8 +68,9 @@ def test_prepared_tile_metadata_and_empty_styled_label_layer(name):
     assert info["crs"] == ppt.CRS
     con = sqlite3.connect(str(d / "labels.gpkg"))
     try:
-        (tbl, default, qml), = con.execute("SELECT f_table_name, useAsDefault, styleQML FROM layer_styles")
-        assert (tbl, default, qml) == (LAYER, 1, labels_qml(LABELS))
+        (default, qml), = con.execute("SELECT useAsDefault, styleQML FROM layer_styles WHERE f_table_name = ?",
+                                      (LAYER,))
+        assert (default, qml) == (1, labels_qml(LABELS))
         assert con.execute("SELECT 1 FROM gpkg_contents WHERE table_name='layer_styles'").fetchone()
     finally:
         con.close()
