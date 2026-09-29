@@ -64,6 +64,23 @@ def test_stage1_stop_rule_fixed_2026_09_28():
     assert r["tile_order"] == "frozen_sampler_order"
     assert (r["quantity"], r["evaluation"]) == ("impervious_total", "loco")
     assert r["stop_if_any"] == {"fraction_mae_gt_pp": 20, "r2_lt": 0.15}
+    d = r["details"]                                      # decided 2026-09-29
+    assert d["evaluate_once_after_tiles"] == 8 and d["decision_on"] == "pooled_held_out_cells"
+    assert sorted(d["loco_sites"]) == sorted(CFG["sites"]["training"])
+    assert d["model"] == {"library": "scikit-learn", "estimator": "RandomForestRegressor",
+                          "params": "defaults", "random_state": 0}
+    assert d["features"][-3:] == ["NDVI", "NDBI", "NDWI_mcfeeters"] and d["osm_used"] is False
+
+
+def test_stage0_skipped_and_stage1_tile_plan_2026_09_29():
+    assert CFG["stage0"]["status"] == "SKIPPED"
+    t = CFG["stage1_tiles"]
+    assert set(t["strata_per_site"]) == set(CFG["sites"]["training"])
+    assert sum(len(v) for v in t["strata_per_site"].values()) == CFG["stage1_stop_rule"]["details"][
+        "evaluate_once_after_tiles"]
+    assert t["strata_per_site"]["lima"] == ["mixed", "fringe"]
+    assert all(v == ["dense_informal", "formal"] for k, v in t["strata_per_site"].items() if k != "lima")
+    assert all(s in CFG["tiles"]["strata"] for v in t["strata_per_site"].values() for s in v)
 
 
 def test_decided_numbers_match_the_guide():

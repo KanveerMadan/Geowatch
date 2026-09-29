@@ -1482,8 +1482,9 @@ Monrovia, Karachi: mirror data 2026-05 to 2026-07). Counts can differ from
 the live server: an earlier live query gave Monrovia 8,753 and Karachi 23.
 **Kibera and Rocinha are validation sites:** this is metadata only.
 
-**SAM-assisted tracing — PROPOSAL, 2026-09-29 (guide unchanged; not
-adopted).** Until a §2 amendment is adopted, tiles are traced by hand.
+**SAM-assisted tracing — PROPOSAL, 2026-09-29. ~~(guide unchanged; not
+adopted)~~ NOT ADOPTED, decided 2026-09-29 (see "Decisions after Pilot A"
+below).** Tiles are traced by hand.
 
 - **Tool** (`labelling/sam_draft.py`). The repo's segment-anything ViT-B
   checkpoint (`models/sam/sam_vit_b.pth`, sha256 `ec2df627…c912`, matches
@@ -1548,6 +1549,51 @@ adopted).** Until a §2 amendment is adopted, tiles are traced by hand.
   draft follows the stated purpose (manual QC) and drops "same method";
   **to be confirmed**. Items 2 (Karachi) and 4 (baseline) above are not
   addressed by the draft.
+
+**Decisions after Pilot A — 2026-09-29.**
+
+1. **Stage 0 is SKIPPED by decision.** The Stage 1 stop rule is the
+   protection, so the road-width question is moot.
+2. **Change-test fix.** Pilot A showed that a seasonal shift dominates
+   (Karachi 95 % dropped). Before thresholding, the **site-wide median
+   per-cell change** of each metric is subtracted from every cell. A cell is
+   changed if its de-trended change exceeds **k × noise unit** on either
+   metric. **k = 3; a tile is dropped if > 10 % of its cells are changed.**
+   Pilot A is rerun this way from the cached data. **If any site drops
+   > 30 % of its tiles: STOP and show the results; otherwise freeze.**
+   Makoko and Lima are recorded as low-power.
+3. **Freeze §9** once the rerun confirms, and bump the guide version:
+   - window ±90 d with ≥ 3 clear scenes, Rocinha 181 d as the exception;
+   - agreement bars as provisionally set;
+   - maximum excluded share per cell 0.25;
+   - the change test as in 2.
+4. **SAM is NOT adopted.** Tracing is fully manual ("cluster-outline
+   method"), and QC re-traces are manual. Reasons: workflow overhead, and a
+   conflict with the Karachi base-tracing rule. The code is kept, unused.
+   *The "cluster-outline method" is not defined in the guide or anywhere in
+   the repository. It is recorded here in the decision's own words, and a
+   definition is needed before it can go in the guide.*
+5. **Stage 1 = 8 tiles.** Per training site, the rank-1 tile (first in the
+   frozen sampler order; `rank_in_stratum == 0` in code) of two strata:
+   `dense_informal` and `formal` where each has ≥ 2 eligible tiles; **Lima
+   uses `mixed` and `fringe`.** The frozen sampler is run with the recorded
+   seed (`tiles.random_seed` = 20260925) and the change test is applied. A
+   dropped tile is replaced by the next rank and is never relabelled.
+   (`configs/labelling.yaml` `stage1_tiles`.)
+6. **Stop-rule details** (resolving the four open points recorded above):
+   - evaluated **once, after all 8 tiles**;
+   - LOCO over the 4 training sites;
+   - the decision is on the **pooled held-out cells** (MAE > 20 pp OR
+     R² < 0.15 ⇒ stop);
+   - model: scikit-learn `RandomForestRegressor`, defaults, seed 0;
+   - features: the 6-band composite + NDVI, NDBI, NDWI (McFeeters);
+   - OSM is not used.
+   (`stage1_stop_rule.details`.)
+7. **Prepare the 8 tiles** like the practice tiles. For sites with no
+   published acquisition time, also prepare a helper that measures sun
+   azimuth and elevation from ≥ 3 building shadows.
+8. `PRACTICE_dense_informal/labels.gpkg` is left untouched until the labeller
+   says to commit it.
 
 **Validation additions.**
 

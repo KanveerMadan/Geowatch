@@ -1,7 +1,9 @@
 """
-SAM-assisted drafting for item 21 tracing -- PROPOSAL, 2026-09-29. The
-guide is unchanged: until a §2 amendment is adopted, tiles are traced by
-hand. Tested on the practice tile PRACTICE_formal only.
+SAM-assisted drafting for item 21 tracing -- NOT ADOPTED (decided
+2026-09-29: workflow overhead, and SAM draws roof outlines where the Karachi
+rule requires the building base). Kept, unused. Tracing is fully manual,
+and so are the QC re-traces. Proposal of 2026-09-29, tested on the practice
+tile PRACTICE_formal only.
 
 Workflow (the labeller in QGIS, this script in the repo venv):
   1. In labels.gpkg, add points to the `sam_prompts` layer on hr.tif: a

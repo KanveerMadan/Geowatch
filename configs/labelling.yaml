@@ -85,6 +85,37 @@ stage1_stop_rule:
   stop_if_any:
     fraction_mae_gt_pp: 20
     r2_lt: 0.15
+  # Details decided 2026-09-29 (resolve the open points recorded 2026-09-29):
+  # evaluated ONCE, after all 8 tiles; LOCO over the 4 training sites; the
+  # decision is on the POOLED held-out cells.
+  details:
+    decided: "2026-09-29"
+    evaluate_once_after_tiles: 8
+    loco_sites: [cape_town, karachi, monrovia, lima]
+    decision_on: pooled_held_out_cells
+    model: {library: scikit-learn, estimator: RandomForestRegressor, params: defaults, random_state: 0}
+    features: [s2_Blue, s2_Green, s2_Red, s2_NIR, s2_SWIR1, s2_SWIR2, NDVI, NDBI, NDWI_mcfeeters]
+    osm_used: false
+
+# Stage 0 (proxy-label signal check): SKIPPED by decision 2026-09-29 -- the
+# Stage 1 stop rule is the protection. The road-width question is moot.
+stage0: {status: SKIPPED, decided: "2026-09-29"}
+
+# Stage 1 tiles, decided 2026-09-29: per training site, the rank-1 tile
+# (first in the frozen sampler order, rank_in_stratum == 0) of two strata --
+# dense_informal and formal where each has >= 2 eligible tiles; Lima uses
+# mixed and fringe. The change test is applied; a dropped tile is replaced by
+# the next rank and is never relabelled.
+stage1_tiles:
+  decided: "2026-09-29"
+  pick: first_in_sampler_order
+  strata_per_site:
+    cape_town: [dense_informal, formal]
+    karachi: [dense_informal, formal]
+    monrovia: [dense_informal, formal]
+    lima: [mixed, fringe]
+  min_eligible_per_stratum: 2
+  on_drop: next_rank_replaces
 
 # Ruling 2026-09-25 (second round, 5): label_limited compares LABEL agreement
 # (between two labellings) with the MODEL's pass bar for the same quantity.
