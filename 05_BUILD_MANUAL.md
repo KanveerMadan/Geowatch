@@ -1305,6 +1305,61 @@ until step 4.**
    range; 15 inside it), Monrovia 17, Karachi 31 and Cape Town 9 (1 inside
    January). Makoko has no scene to split and no "before" composite, and
    Lima's single scene cannot be split into halves.
+   *Redesign ruled 2026-09-28 (replaces the before/after split):*
+   - **Window:** the imagery date ±90 d. For Rocinha and Cape Town, the range
+     is extended by 90 d on each side, with scenes inside it included;
+     Karachi's on-date scene is included like any other. At least 3 clear
+     scenes.
+   - **Noise:** ALL window scenes are split at random into two halves (20
+     seeded splits), each half composited with the existing recipe; the noise
+     unit per metric per site is the median over splits of the 95th-percentile
+     per-cell difference.
+   - **Change:** the earliest half against the latest half (odd count: the
+     middle scene goes earlier). A cell is changed if the spectral angle OR
+     the 6-band mean-reflectance difference exceeds k × its noise unit.
+   - The four readings were confirmed: the composite recipe, the 6-band
+     angle, the 6-band mean brightness, and eligible tiles = the frame tiles
+     excluding `unassigned`.
+   - **Makoko** validates `built` only, which comes from footprints, not
+     Sentinel-2. Its relevant mismatch is therefore between the imagery date
+     and the Open Buildings footprint date; the test is run there for
+     completeness only. **Lima (3 scenes) and Makoko (4) are low-power.**
+
+   *Result 2026-09-29* (`experiments/item21_sites/pilot_a_change_test.py` →
+   `results/pilot_a_change_test.{json,md}`; nothing chosen). Share of eligible
+   tiles that would be dropped, at changed-cell share ≥ 5 / 10 / 20 %:
+
+   | Site | Scenes (granules) | Noise unit: angle / mean refl. | k = 2 | k = 3 | k = 5 |
+   |---|---:|---|---|---|---|
+   | Makoko | 4 (4) | 8.85° / 0.060 | 0 / 0 / 0 % | 0 / 0 / 0 % | 0 / 0 / 0 % |
+   | Kibera | 9 (9) | 10.48° / 0.061 | 4 / 1 / 0 % | 0 / 0 / 0 % | 0 / 0 / 0 % |
+   | Rocinha | 31 (31) | 6.21° / 0.021 | 3 / 2 / 0 % | 1 / 0 / 0 % | 0 / 0 / 0 % |
+   | Lima | 3 (3) | 7.02° / 0.068 | 0 / 0 / 0 % | 0 / 0 / 0 % | 0 / 0 / 0 % |
+   | Monrovia | 20 (53) | 7.34° / 0.018 | 6 / 4 / 2 % | 0 / 0 / 0 % | 0 / 0 / 0 % |
+   | Karachi | 58 (115) | 2.06° / 0.021 | 99 / 99 / 98 % | 98 / 95 / 89 % | 4 / 1 / 0 % |
+   | Cape Town | 18 (19) | 4.69° / 0.021 | 50 / 34 / 12 % | 24 / 10 / 3 % | 5 / 1 / 1 % |
+
+   Per-stratum tables are in the `.md`. Findings (recorded, not acted on):
+   - **The chronological split measures seasonal change.** Karachi's
+     most-flagged tiles brighten uniformly from the earlier half (Dec–Mar) to
+     the later half (Mar–Jun) — every stratum is flagged, including
+     unchanged dense fabric. The three Cape Town tiles near k = 3 / 10 % are
+     flagged along **vegetation strips that dry out** between spring and
+     summer (a road verge, a railway corridor). Wherever the window spans a
+     season change, the test flags that change, not change on the ground.
+   - **Small-n sites cannot flag anything.** With 3–4 scenes there are only 3
+     distinct half-splits, and the chronological split is one of them, so the
+     noise unit partly contains the change being tested. The noise units are
+     large (Makoko 8.8°, Lima 7.0°, Kibera 10.5°).
+   - **Composite check.** A first run mosaicked each date to one observation.
+     Where a date has several granules (Monrovia, Karachi, Cape Town), that
+     departed from the recipe's granule-level median (99th-percentile |diff|
+     0.009–0.018 reflectance, comparable to the noise units), so it was
+     replaced. Now: every site's local median matches Earth Engine's
+     `.median()` over the window to a 99th-percentile |diff| of ≤ 3e-8, except
+     Karachi at 8e-4 (~4 % of its mean-reflectance noise unit).
+   - **Operational:** one run hung 22 h on a dead connection; requests now
+     have a deadline and retries (no effect on results).
 3. **Pilot B — time window (label-free).** Per site, clear-scene counts
    (< 20 % cloud) within ±60 and ±90 days of the high-resolution date
    (Rocinha: worst case over its date range). No window is chosen.
