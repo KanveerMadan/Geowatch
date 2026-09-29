@@ -1358,6 +1358,47 @@ until step 4.**
    and the change test, maximum date gap and starting tile count are set,
    from the pilot results; then §9 is frozen.
 
+**Staged labelling plan — decided 2026-09-28, recorded 2026-09-29, before
+any Stage 0 or Stage 1 result.** The labelling guide is unchanged.
+
+- **Stage 0 — signal check on proxy labels.** No hand labels. **Training
+  sites only** (Cape Town, Karachi, Monrovia, Lima); **the validation sites
+  are never touched.**
+  - Proxy `impervious_total` per 10 m native-grid cell = Open Buildings v3
+    (confidence ≥ 0.7) coverage + OSM paved roads, clipped to [0, 1].
+  - Roads: highway polygons where they exist; otherwise lines buffered by a
+    width per highway class, with the width table and its source recorded.
+    `surface=*` tags are used to exclude unpaved roads.
+  - Features: the existing 6-band S2 composite (float32, native grid) plus
+    NDVI, NDBI and NDWI.
+  - Model: one simple standard regressor (random forest or gradient
+    boosting), default-ish settings, fixed seed. **No tuning on held-out
+    sites.**
+  - LOCO: train on 3 sites and test on the 4th, all 4 rotations. Per held-out
+    site, report MAE (pp), R² and bias, plus two baselines on the same cells:
+    (a) the training sites' mean; (b) Open Buildings coverage alone.
+  - **Stage 0's proxy labels share errors with Open Buildings and OSM.** It
+    is a signal check, **not evidence of success**, and **its results never
+    set any threshold.**
+- **Stage 1 stop rule — DECIDED 2026-09-28, fixed before any Stage 1
+  result.** After **8–10 hand-labelled training tiles**, drawn in the
+  **frozen sampler order** (not hand-picked): if LOCO `impervious_total`
+  **MAE > 20 pp OR R² < 0.15** on the held-out site(s), **labelling stops and
+  the results are reported.** Also in `configs/labelling.yaml`
+  `stage1_stop_rule`, pinned by a test.
+
+  *Points the rule leaves open (recorded, not decided; to be settled before
+  any Stage 1 result):*
+  1. **Which count.** "8–10" does not say whether the rule is applied at 8,
+     at 10, or at every count in between.
+  2. **Sampler order.** No sampler order is frozen yet: the tile sampler has
+     not run, and `starting_tile_count` is UNSET. The rule also does not say
+     how the 8–10 tiles are shared across the four training sites and the
+     strata (~2–3 tiles per site).
+  3. **"Held-out site(s)".** It is not said whether the rule fires if **any**
+     held-out site fails, or on a pooled or all-sites figure.
+  4. **Model and features.** Presumably Stage 0's; not stated.
+
 **SAM-assisted tracing — PROPOSAL, 2026-09-29 (guide unchanged; not
 adopted).** Until a §2 amendment is adopted, tiles are traced by hand.
 

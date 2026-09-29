@@ -69,6 +69,23 @@ open:
   # in sealed batch 1 vs batch 2 (§8).
   validation_batch_1_count: {value: null, status: UNSET}
 
+# Staged plan, DECIDED 2026-09-28, recorded 2026-09-29 before any Stage 1
+# result (05_BUILD_MANUAL.md item 21, "Staged labelling plan"). After 8-10
+# hand-labelled training tiles drawn in the frozen sampler order: if LOCO
+# impervious_total MAE > 20 pp OR R2 < 0.15 on the held-out site(s),
+# labelling stops and the results are reported. Open points (which count,
+# the sampler order, any-vs-pooled site, the model) are listed in the manual.
+stage1_stop_rule:
+  status: DECIDED
+  decided: "2026-09-28"
+  hand_labelled_training_tiles: [8, 10]
+  tile_order: frozen_sampler_order
+  quantity: impervious_total
+  evaluation: loco
+  stop_if_any:
+    fraction_mae_gt_pp: 20
+    r2_lt: 0.15
+
 # Ruling 2026-09-25 (second round, 5): label_limited compares LABEL agreement
 # (between two labellings) with the MODEL's pass bar for the same quantity.
 model_pass_bars:

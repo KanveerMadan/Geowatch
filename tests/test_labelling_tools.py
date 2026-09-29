@@ -57,6 +57,15 @@ def test_open_numbers_status_2026_09_28():
         CFG["model_pass_bars"]["impervious_total"]["fraction_mae_max"] / 2
 
 
+def test_stage1_stop_rule_fixed_2026_09_28():
+    r = CFG["stage1_stop_rule"]
+    assert r["status"] == "DECIDED" and r["decided"] == "2026-09-28"
+    assert r["hand_labelled_training_tiles"] == [8, 10]
+    assert r["tile_order"] == "frozen_sampler_order"
+    assert (r["quantity"], r["evaluation"]) == ("impervious_total", "loco")
+    assert r["stop_if_any"] == {"fraction_mae_gt_pp": 20, "r2_lt": 0.15}
+
+
 def test_decided_numbers_match_the_guide():
     assert CFG["tiles"]["size_m"] == 200
     assert CFG["qc"]["blind_relabel_fraction"] == 0.15
