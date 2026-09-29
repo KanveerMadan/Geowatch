@@ -1621,6 +1621,21 @@ below).** Tiles are traced by hand.
 8. `PRACTICE_dense_informal/labels.gpkg` is left untouched until the labeller
    says to commit it.
 
+**§9 FROZEN — 2026-09-29, guide v1.5.** The de-trended rerun dropped no more
+than 6.9 % of any site's tiles (the stop threshold was 30 %), so the freeze
+went ahead as decided:
+- §9.1 change test (as in decision 2);
+- §9.2 window ±90 d with ≥ 3 clear scenes, Rocinha 181 d;
+- §9.4 agreement bars as provisionally set;
+- §9.5 maximum excluded share 0.25.
+
+The status is `FROZEN` in `configs/labelling.yaml` `open`, pinned by tests;
+the guide's §9 carries the text. **§9.3 (starting tile count) was not in the
+freeze list and stays UNSET.** The guide says no §9 number may be set after
+labelling begins, and Stage 1 begins labelling. **Whether Stage 1's 8 tiles
+are the §9.3 starting count needs a decision before the first Stage 1 tile
+is labelled.**
+
 **Validation additions.**
 
 - **Shadow accuracy** is measured in the **same hand-digitisation pass** at

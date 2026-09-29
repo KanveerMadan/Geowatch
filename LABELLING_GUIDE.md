@@ -1,6 +1,6 @@
 # GeoWatch — Labelling Guide (item 21)
 
-**Guide version 1.4 — 2026-09-25** (v1.0 decided 2026-09-24; changelog at
+**Guide version 1.5 — 2026-09-29** (v1.0 decided 2026-09-24; changelog at
 the end). This is the hand-labelling
 protocol for the item 21 regressors and their validation. It applies at every
 site in the item 21 site list (`05_BUILD_MANUAL.md` item 21, "Site list"):
@@ -8,8 +8,9 @@ site in the item 21 site list (`05_BUILD_MANUAL.md` item 21, "Site list"):
 - **Training:** Cape Town, Lima, Karachi, Monrovia. ~~Marrakech optional.~~ *(Removed 2026-09-25, v1.3.)*
 - **Validation:** Makoko, Kibera, Rocinha.
 
-**Status: decided, not yet used.** No tile has been labelled. Five numbers must
-be set before labelling starts — see §9, *Open*. Any change to this guide bumps
+**Status: decided, not yet used.** No tile has been labelled. Of the five
+numbers that must be set before labelling starts (§9), four were **frozen on
+2026-09-29 (v1.5)**; the starting tile count (§9.3) is still open. Any change to this guide bumps
 the version and triggers the recheck in §7.
 
 Related decisions: taxonomy (Decision 11), shadow rule (Decision 11 and
@@ -122,8 +123,8 @@ have seen.
 - **Dropped tiles are never relabelled.** Dropping is final, so the change
   test cannot be used to shop for tiles.
 
-Both the change-test method and threshold and the per-site maximum gap are
-open (§9) and must be fixed before the first tile is labelled.
+The change-test method and threshold and the per-site maximum gap were
+**frozen on 2026-09-29 (v1.5)**; see §9.1 and §9.2.
 
 ## 7. Quality control
 
@@ -169,24 +170,57 @@ to the labels themselves.
 - **Batch 2** — confirmation of batch 1, or the **fresh test after any
   redesign**. Once batch 1 has been seen, only batch 2 is untouched evidence.
 
-## 9. Open — numbers to set before labelling starts
+## 9. Numbers set before labelling starts — FROZEN 2026-09-29 (v1.5), except 3
 
 None of these may be set after labelling begins, and none may be set after
-seeing model results.
+seeing model results. 1, 2, 4 and 5 were **frozen on 2026-09-29**, after a
+label-free pilot (`05_BUILD_MANUAL.md` item 21, "§9 pilot" and "Decisions
+after Pilot A"). The machine-readable copy is `configs/labelling.yaml`
+`open`.
 
-1. **Change-test method and threshold** (§6).
-2. **Maximum date gap, per site** (§6).
-3. **Starting tile count** (§3). After the start, LOCO decides.
-4. **Per-class label-agreement bars** (§7).
-5. *(Added when this guide was written, not part of the 2026-09-24
-   decision.)* **How a 10 m cell's fractions treat `unsure` and `shadow_full`
-   area.** Presumably both are excluded from that cell's denominator. A
-   maximum excluded share per cell, above which the cell is not scored, still
-   needs a number.
+1. **Change test** (§6). *Frozen.*
+   - **Scenes:** Sentinel-2 L2A scenes under 20 % cloud intersecting the
+     site's box, within the §9.2 window around the imagery date. For a date
+     range, the range is extended by 90 d on each side, with the scenes inside
+     it included.
+   - **Composite:** the existing 6-band median with the SCL cloud mask.
+   - **Per 10 m cell, two metrics:** the spectral angle, and the absolute
+     difference of the 6-band mean reflectance.
+   - **Noise unit per metric per site:** all window scenes are split at
+     random into two halves, 20 times with fixed seeds. Each half is
+     composited, and the unit is the median over the splits of the 95th
+     percentile of the per-cell difference.
+   - **Change:** the earliest half of the scenes against the latest half (an
+     odd middle scene goes to the earlier half). From each metric, **its
+     site-wide median over the eligible cells is subtracted**. A cell is
+     changed if **either** de-trended metric exceeds **3 × its noise unit**.
+   - **A tile is dropped if more than 10 % of its cells are changed.**
+   - Makoko and Lima have 3–4 scenes; there the test is **low-power**.
+2. **Maximum date gap, per site** (§6). *Frozen.* **±90 d** around the
+   imagery date, with **at least 3 clear scenes**. A date range takes the
+   worst case across the range. **Rocinha: 181 d**, an explicit exception
+   (consolidated, slow-changing fabric); the change test still applies
+   there.
+3. **Starting tile count** (§3). **Still open.** After the start, LOCO
+   decides.
+4. **Per-class label-agreement bars** (§7). *Frozen.* 10 m fraction MAE:
+   `built` ≤ 5 pp; `impervious_total` ≤ 7.5 pp; `vegetation` ≤ 7.5 pp;
+   `water` ≤ 7.5 pp (half the model pass bars where one exists). Polygon IoU
+   is a diagnostic, never a bar.
+5. **`unsure` and `shadow_full` in a cell's fractions.** *Frozen.* Both are
+   excluded from the cell's denominator. A cell is scored when its excluded
+   share is **≤ 0.25**, and is not scored above that.
 
 ---
 
 ## Changelog
+
+- **v1.5 — 2026-09-29.** §9: numbers 1 (change test), 2 (maximum date gap),
+  4 (agreement bars) and 5 (maximum excluded share 0.25) are **frozen**;
+  §6 and the status line point to them. §9.3 (starting tile count) was not
+  part of the freeze and stays open. **No tile has been labelled** (the two
+  practice tiles are never scored), so the §7 recheck has nothing to
+  recheck.
 
 - **v1.4 — 2026-09-25.** §8: the acquisition date may be a **date range
   with a recorded reason** where the publisher gives only a period (Rio IPP

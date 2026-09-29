@@ -1,11 +1,11 @@
 # Item 21 Phase A, part 7 — labelling tooling configuration.
-# Protocol: LABELLING_GUIDE.md (v1.4, 2026-09-25; v1.0 2026-09-24). Numbers the guide
+# Protocol: LABELLING_GUIDE.md (v1.5, 2026-09-29; v1.0 2026-09-24). Numbers the guide
 # fixes are copied here with their section; the five numbers the guide
 # leaves OPEN (§9) are UNSET (null). Code that needs an UNSET number refuses
 # to run. None of them may be set after labelling begins or after model
 # results are seen (§9).
 
-guide_version: "1.4"          # v1.1 solar; v1.2 sun geometry; v1.3 Marrakech removed; v1.4 date ranges
+guide_version: "1.5"          # v1.1 solar; v1.2 sun geometry; v1.3 Marrakech removed; v1.4 date ranges; v1.5 §9 frozen
 
 labels:
   scored: [built, paved, vegetation, water, bare, mixed_water_vegetation, snow_ice, solar]
@@ -38,8 +38,27 @@ sites:                        # 05_BUILD_MANUAL.md item 21, "Site list — FINAL
 
 # ── §9 OPEN — UNSET. Do not choose these in code. ──────────────────────────
 open:
-  change_test: {method: null, threshold: null, status: UNSET}          # §9.1
-  # §9.2 -- DECIDED BY PILOT B 2026-09-28, not frozen (frozen at step 4).
+  # §9 FROZEN 2026-09-29 (guide v1.5), after the de-trended change-test rerun
+  # (05_BUILD_MANUAL.md item 21, "Decisions after Pilot A"): 9.1, 9.2, 9.4,
+  # 9.5. 9.3 (starting tile count) was not in the freeze and stays UNSET.
+  change_test:                                                         # §9.1
+    status: FROZEN
+    frozen: "2026-09-29"
+    window: {half_window_days: 90, date_range: extend_range_by_half_window,
+             min_clear_scenes: 3, scene_cloud_max_pct: 20}
+    composite: existing_6band_median_scl_mask          # ingestion/sentinel2.py recipe, granule-level median
+    metrics: [spectral_angle_deg, abs_mean6_reflectance_diff]
+    noise_unit: {random_half_splits: 20, seeded: true, per_split_percentile: 95, over_splits: median}
+    change:
+      split: chronological_halves                      # earliest half vs latest half
+      odd_middle_scene_to: earlier
+      detrend: subtract_site_median_per_metric         # median over the site's eligible cells
+      k: 3
+      cell_changed_if: either_metric_above_k_units
+    drop_tile_if_changed_share_above: 0.10             # of evaluable cells
+    implementation: experiments/item21_sites/pilot_a_detrended.py
+    low_power_sites: [makoko, lima]                    # 3-4 scenes
+  # §9.2 -- DECIDED BY PILOT B 2026-09-28; FROZEN 2026-09-29.
   # +-60 d gives 2 clear scenes at Lima and Makoko (< 3), so the window is
   # +-90 d with >= 3 clear scenes (< 20% cloud) at every site. Date ranges
   # use the worst case across the range (Cape Town "2025Jan" confirmed).
@@ -47,24 +66,31 @@ open:
   # rule, justified by consolidated slow-changing fabric; the change test
   # still applies there.
   max_date_gap_days:
-    status: DECIDED_BY_PILOT
+    status: FROZEN
+    frozen: "2026-09-29"
     half_window_days: 90
     min_clear_scenes: 3
     per_site: {makoko: 90, kibera: 90, rocinha: 181, lima: 90, monrovia: 90, karachi: 90, cape_town: 90}
+  # §9.3 -- NOT in the 2026-09-29 freeze; still UNSET. Stage 1 (8 tiles,
+  # stage1_tiles) is decided separately; whether it is the §9.3 starting
+  # count is not stated.
   starting_tile_count: {status: UNSET, per_stratum: {}}                # §9.3
-  # §9.4 -- PROVISIONAL 2026-09-28 (confirmed or revised at pilot step 4):
+  # §9.4 -- PROVISIONAL 2026-09-28; FROZEN 2026-09-29 as set:
   # half the model pass bars. built model MAE 10 pp -> 5; impervious_total
   # 15 pp -> 7.5. vegetation and water have no model bar in the manual: 7.5
   # pp set directly. IoU is diagnostic only (never a bar).
   agreement_bars:
-    status: PROVISIONAL
+    status: FROZEN
+    frozen: "2026-09-29"
     per_class:
       built:            {metric: fraction_mae, value: 0.05}
       impervious_total: {metric: fraction_mae, value: 0.075}
       vegetation:       {metric: fraction_mae, value: 0.075}
       water:            {metric: fraction_mae, value: 0.075}
-  # §9.5 -- PROVISIONAL 2026-09-28, to be confirmed by the practice tiles.
-  max_excluded_share_per_cell: {value: 0.25, status: PROVISIONAL}
+  # §9.5 -- PROVISIONAL 2026-09-28; FROZEN 2026-09-29 at 0.25 (unsure and
+  # shadow_full leave the cell's denominator; a cell is scored when its
+  # excluded share is <= 0.25 -- labelling/fractions.py).
+  max_excluded_share_per_cell: {value: 0.25, status: FROZEN, frozen: "2026-09-29"}
   # Not one of the five, and also undecided: how many validation tiles go
   # in sealed batch 1 vs batch 2 (§8).
   validation_batch_1_count: {value: null, status: UNSET}

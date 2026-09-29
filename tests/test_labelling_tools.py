@@ -35,22 +35,28 @@ def full_tile(label="bare"):
 
 # ── open numbers stay UNSET ─────────────────────────────────────────────────
 
-def test_open_numbers_status_2026_09_28():
-    # Two still UNSET; two PROVISIONAL (pilot plan); the max gap decided by
-    # pilot B (2026-09-28). None frozen.
-    for k in ("change_test", "starting_tile_count"):
-        assert CFG["open"][k]["status"] == "UNSET", k
+def test_open_numbers_status_2026_09_29():
+    # §9 frozen 2026-09-29 except 9.3 (not in the freeze).
+    for k in ("change_test", "max_date_gap_days", "agreement_bars", "max_excluded_share_per_cell"):
+        assert CFG["open"][k]["status"] == "FROZEN", k
+        assert CFG["open"][k]["frozen"] == "2026-09-29", k
+    assert CFG["open"]["starting_tile_count"]["status"] == "UNSET"
+    ct = CFG["open"]["change_test"]
+    assert ct["change"]["k"] == 3 and ct["drop_tile_if_changed_share_above"] == 0.10
+    assert ct["change"]["detrend"] == "subtract_site_median_per_metric"
+    assert ct["noise_unit"] == {"random_half_splits": 20, "seeded": True, "per_split_percentile": 95,
+                                "over_splits": "median"}
+    assert ct["window"]["half_window_days"] == 90 and ct["window"]["min_clear_scenes"] == 3
     gap = CFG["open"]["max_date_gap_days"]
-    assert gap["status"] == "DECIDED_BY_PILOT" and gap["half_window_days"] == 90
+    assert gap["half_window_days"] == 90
     assert gap["min_clear_scenes"] == 3
     assert set(gap["per_site"]) == set(CFG["sites"]["training"]) | set(CFG["sites"]["validation"])
     assert {s: d for s, d in gap["per_site"].items() if d != 90} == {"rocinha": 181}
     bars = CFG["open"]["agreement_bars"]
-    assert bars["status"] == "PROVISIONAL"
     assert {k: v["value"] for k, v in bars["per_class"].items()} == {
         "built": 0.05, "impervious_total": 0.075, "vegetation": 0.075, "water": 0.075}
     assert all(v["metric"] == "fraction_mae" for v in bars["per_class"].values())
-    assert CFG["open"]["max_excluded_share_per_cell"] == {"value": 0.25, "status": "PROVISIONAL"}
+    assert CFG["open"]["max_excluded_share_per_cell"]["value"] == 0.25
     # half the model bars where a model bar exists
     assert bars["per_class"]["built"]["value"] == CFG["model_pass_bars"]["built"]["fraction_mae_max"] / 2
     assert bars["per_class"]["impervious_total"]["value"] == \
@@ -212,8 +218,8 @@ def rec(**over):
                 imagery_acquisition_time="10:42", imagery_resolution_m=0.05,
                 imagery_licence="CC BY 4.0",
                 s2_composite_window={"start": "2025-02-15", "end": "2025-04-15"},
-                date_gap_days=12, change_test_result="not run: method UNSET",
-                labeller="L1", labelling_date="2026-10-01", guide_version="1.4",
+                date_gap_days=12, change_test_result="kept: 0.0 % changed cells",
+                labeller="L1", labelling_date="2026-10-01", guide_version=CFG["guide_version"],
                 pct_unsure=0.0, pct_shadow_full=0.0, qc_status="pending")
     base.update(over)
     return records.TileRecord(**base)
@@ -263,13 +269,26 @@ def test_validation_labels_are_sealed(tmp_path):
 
 
 def test_time_gap_decision_needs_open_numbers():
+    unset = copy.deepcopy(CFG)
+    unset["open"]["max_date_gap_days"] = {"status": "UNSET", "per_site": {}}
+    unset["open"]["change_test"] = {"status": "UNSET"}
     with pytest.raises(OpenNumberUnset):
-        records.time_gap_decision("lima", 10, False, CFG)
-    cfg = copy.deepcopy(CFG)
+        records.time_gap_decision("lima", 10, False, unset)
+    cfg = copy.deepcopy(unset)
     cfg["open"]["max_date_gap_days"] = {"status": "SET", "per_site": {"lima": 30}}
     assert records.time_gap_decision("lima", 45, None, cfg) == "drop"
     with pytest.raises(OpenNumberUnset):
         records.time_gap_decision("lima", 10, False, cfg)      # change test still UNSET
+
+
+def test_time_gap_decision_with_section_9_frozen():
+    # 2026-09-29: max gap 90 d (Rocinha 181 d), change test frozen
+    assert records.time_gap_decision("lima", 91, None, CFG) == "drop"
+    assert records.time_gap_decision("rocinha", 181, False, CFG) == "keep"
+    assert records.time_gap_decision("lima", 10, False, CFG) == "keep"
+    assert records.time_gap_decision("lima", 10, True, CFG) == "drop"
+    with pytest.raises(records.RecordError, match="change test must be run"):
+        records.time_gap_decision("lima", 10, None, CFG)
 
 
 def test_same_labeller_relabel_waits_a_week():
@@ -286,10 +305,10 @@ def test_identical_labellings_agree_perfectly():
     out = qc.compare(fs, fs, grid(), CFG)
     assert out["per_class"]["built"]["polygon_iou"] == 1.0
     assert out["per_class"]["built"]["fraction_mae"] == 0.0
-    assert out["per_class"]["built"]["meets_agreement_bar"] is True   # provisional bar, MAE 0
+    assert out["per_class"]["built"]["meets_agreement_bar"] is True   # frozen bar, MAE 0
     assert out["per_class"]["built"]["label_limited"] is False      # R5 bar set
     assert out["impervious_total"]["meets_agreement_bar"] is True
-    assert out["agreement_bars"] == "PROVISIONAL"
+    assert out["agreement_bars"] == "FROZEN"
 
 
 def test_disagreement_measured_at_both_levels():
@@ -315,9 +334,9 @@ def test_agreement_bar_must_name_its_metric():
 
 # ── guide v1.1 (2026-09-25): solar = ground-mounted only ────────────────────
 
-def test_guide_version_is_1_4():
-    assert CFG["guide_version"] == "1.4"
-    assert "Guide version 1.4" in open(
+def test_guide_version_is_1_5():
+    assert CFG["guide_version"] == "1.5"
+    assert "Guide version 1.5" in open(
         pathlib.Path(__file__).resolve().parents[1] / "LABELLING_GUIDE.md").read()
 
 
