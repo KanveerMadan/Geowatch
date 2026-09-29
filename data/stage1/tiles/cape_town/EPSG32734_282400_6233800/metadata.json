@@ -1,0 +1,52 @@
+{
+ "purpose": "item 21 Stage 1 training tile (decision 5, 2026-09-29)",
+ "site": "cape_town",
+ "tile_id": "EPSG32734_282400_6233800",
+ "stratum": "formal",
+ "rank_in_stratum": 0,
+ "tile_utm": {
+  "crs": "EPSG:32734",
+  "x0": 282400,
+  "y1": 6233800,
+  "size_m": 200
+ },
+ "imagery_source": "City of Cape Town 'Aerial Imagery 2025Jan' (MapServer export)",
+ "imagery_files": [
+  "2025Jan MapServer"
+ ],
+ "imagery_licence": "City of Cape Town: no restrictions on the digital file for non-commercial purposes",
+ "imagery_acquisition_date": "2025-01-01",
+ "imagery_acquisition_date_end": "2025-01-31",
+ "imagery_acquisition_date_range_reason": "the service publishes only the period '2025Jan'",
+ "imagery_acquisition_time": null,
+ "published_times": [],
+ "time_note": "no acquisition time is published (period '2025Jan' only)",
+ "sun_geometry_required": true,
+ "sun_azimuth_deg": null,
+ "sun_elevation_deg": null,
+ "sun_geometry_method": null,
+ "sun_geometry_n_buildings": null,
+ "imagery_resolution_m": 0.05,
+ "hr_valid_share": 1.0,
+ "labelling_note": null,
+ "s2_composite_window": {
+  "start": "2024-10-03",
+  "end": "2025-05-01"
+ },
+ "s2_clear_scenes": 18,
+ "date_gap_days": 117,
+ "date_gap_definition": "max |clear-scene date - imagery date| over the composite window's scenes; worst case across the imagery date range",
+ "change_test_result": "kept: 0.0% of 400 cells changed (frozen \u00a79.1: de-trended, k=3, drop above 10%)",
+ "guide_version": "1.5",
+ "labeller": null,
+ "labelling_date": null,
+ "timing": {
+  "start_local": null,
+  "end_local": null,
+  "minutes": null
+ },
+ "pct_unsure": null,
+ "pct_shadow_full": null,
+ "qc_status": "pending",
+ "tracing_method": "manual"
+}

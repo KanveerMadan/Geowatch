@@ -1,0 +1,61 @@
+{
+ "purpose": "item 21 Stage 1 training tile (decision 5, 2026-09-29)",
+ "site": "monrovia",
+ "tile_id": "EPSG32629_300800_699600",
+ "stratum": "formal",
+ "rank_in_stratum": 0,
+ "tile_utm": {
+  "crs": "EPSG:32629",
+  "x0": 300800,
+  "y1": 699600,
+  "size_m": 200
+ },
+ "imagery_source": "OpenAerialMap 2020-02-23 flight (Uhuru / HOT)",
+ "imagery_files": [
+  "5e53faa7906c590005ecc5bb"
+ ],
+ "imagery_licence": "CC BY 4.0",
+ "imagery_acquisition_date": "2020-02-23",
+ "imagery_acquisition_date_end": null,
+ "imagery_acquisition_date_range_reason": null,
+ "imagery_acquisition_time": null,
+ "published_times": [
+  {
+   "file": "5e53faa7906c590005ecc5bb",
+   "published_utc": [
+    "2020-02-23T21:00:00.000Z",
+    "2020-02-24T15:53:46.449Z"
+   ],
+   "daylight_at_both_ends": false
+  }
+ ],
+ "time_note": "OpenAerialMap acquisition_start / _end are uploader-entered windows; recorded verbatim. A window with the sun below the horizon at either end is not a usable acquisition time.",
+ "sun_geometry_required": true,
+ "sun_azimuth_deg": null,
+ "sun_elevation_deg": null,
+ "sun_geometry_method": null,
+ "sun_geometry_n_buildings": null,
+ "imagery_resolution_m": 0.05,
+ "hr_valid_share": 1.0,
+ "labelling_note": null,
+ "s2_composite_window": {
+  "start": "2019-11-25",
+  "end": "2020-05-23"
+ },
+ "s2_clear_scenes": 20,
+ "date_gap_days": 90,
+ "date_gap_definition": "max |clear-scene date - imagery date| over the composite window's scenes; worst case across the imagery date range",
+ "change_test_result": "kept: 0.0% of 400 cells changed (frozen \u00a79.1: de-trended, k=3, drop above 10%)",
+ "guide_version": "1.5",
+ "labeller": null,
+ "labelling_date": null,
+ "timing": {
+  "start_local": null,
+  "end_local": null,
+  "minutes": null
+ },
+ "pct_unsure": null,
+ "pct_shadow_full": null,
+ "qc_status": "pending",
+ "tracing_method": "manual"
+}

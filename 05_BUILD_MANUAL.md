@@ -1657,6 +1657,44 @@ the rank-1 tiles**, so no replacement was needed:
 (Rank 1 = first in the sampler order, `rank_in_stratum == 0`. Lima's change
 test is low-power.)
 
+**Stage 1 tiles prepared — 2026-09-29** (decision 7;
+`experiments/item21_sites/prepare_stage1_tiles.py` →
+`data/stage1/tiles/<site>/<tile_id>/`; tracked: `labels.gpkg`,
+`metadata.json`, `sun.gpkg`). Each tile has `hr.tif` on its UTM grid at the
+finest native ground resolution, the tile and cell GeoJSONs, an empty styled
+label layer, and a tile record with the frozen change-test result.
+
+| Site | Resolution | Acquisition time | Sun geometry |
+|---|---|---|---|
+| Cape Town | 0.05 m | not published (period "2025Jan") | required — `sun.gpkg` |
+| Karachi | 0.30 m | 06:26:35 UTC (Maxar); Maxar sun angles recorded | not required |
+| Monrovia | 0.05 m | OAM window 2020-02-23 21:00Z → 02-24 15:53Z: **fails the daylight check** | required — `sun.gpkg` |
+| Lima | 0.08 m | OAM Candelaria window 15:30–16:00Z: passes the daylight check | **pending** — `sun.gpkg` ready |
+
+- **Sun helper** (`labelling/sun_geometry.py`). The labeller draws ≥ 3
+  roof-corner → shadow-corner lines in `sun.gpkg`. Azimuth = the lines'
+  circular-mean bearing + 180°, from grid north to true north by meridian
+  convergence. Elevation is **derived** from that azimuth for the date (or
+  each day of a range) with the NOAA Solar Calculator algorithm; for a range,
+  the midpoint of the elevations is recorded and the range beside it.
+  Checked against Maxar's published Karachi angles: 0.04° azimuth, 0.14°
+  elevation, time recovered within 6 s.
+- **Open: Lima's time.** Whether an uploader-entered OpenAerialMap window
+  that passes the daylight check counts as a published acquisition time is
+  not decided; `sun_geometry_required` is `null` there.
+- **CONFLICT — Cape Town date gap (recorded, not resolved).** §9.1 extends a
+  date range by 90 d on each side for the composite window, and §9.2 takes a
+  range's gap as the worst case across the range. For Cape Town ("2025Jan")
+  that gives a worst-case gap of **117 d**, above its frozen **90 d**
+  maximum. Under §6 that means "dropped regardless", for every Cape Town
+  tile. Rocinha has an explicit exception (181 d); Cape Town has none.
+  Nothing has been dropped or changed. A test pins the conflict until it is
+  decided. Possible readings:
+  - a Cape Town exception like Rocinha's;
+  - a composite window for ranges limited to scenes within 90 d of *every*
+    day of the range (≤ 90 d by construction);
+  - measuring the gap from something other than the worst case.
+
 **Validation additions.**
 
 - **Shadow accuracy** is measured in the **same hand-digitisation pass** at

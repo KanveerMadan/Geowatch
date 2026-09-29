@@ -1,0 +1,64 @@
+{
+ "purpose": "item 21 Stage 1 training tile (decision 5, 2026-09-29)",
+ "site": "karachi",
+ "tile_id": "EPSG32642_297800_2761000",
+ "stratum": "dense_informal",
+ "rank_in_stratum": 0,
+ "tile_utm": {
+  "crs": "EPSG:32642",
+  "x0": 297800,
+  "y1": 2761000,
+  "size_m": 200
+ },
+ "imagery_source": "Maxar Open Data 10300100D13F6500 (WorldView, pakistan-flooding22 ARD visual)",
+ "imagery_files": [
+  "42/031333030333/10300100D13F6500"
+ ],
+ "imagery_licence": "CC BY-NC 4.0",
+ "imagery_acquisition_date": "2022-03-29",
+ "imagery_acquisition_date_end": null,
+ "imagery_acquisition_date_range_reason": null,
+ "imagery_acquisition_time": "06:26:35 UTC",
+ "published_times": [
+  {
+   "file": "42/031333030333/10300100D13F6500",
+   "published_utc": "2022-03-29 06:26:35Z",
+   "daylight_at_both_ends": true
+  }
+ ],
+ "time_note": "Maxar ARD item datetime",
+ "sun_geometry_required": false,
+ "sun_azimuth_deg": null,
+ "sun_elevation_deg": null,
+ "sun_geometry_method": null,
+ "sun_geometry_n_buildings": null,
+ "imagery_resolution_m": 0.3049,
+ "hr_valid_share": 1.0,
+ "labelling_note": "Off-nadir ~26 deg: roofs are displaced from their bases. Trace building footprints at the BASE (wall-ground line), not the displaced roof outline.",
+ "s2_composite_window": {
+  "start": "2021-12-29",
+  "end": "2022-06-27"
+ },
+ "s2_clear_scenes": 58,
+ "date_gap_days": 90,
+ "date_gap_definition": "max |clear-scene date - imagery date| over the composite window's scenes; worst case across the imagery date range",
+ "change_test_result": "kept: 0.0% of 400 cells changed (frozen \u00a79.1: de-trended, k=3, drop above 10%)",
+ "guide_version": "1.5",
+ "labeller": null,
+ "labelling_date": null,
+ "timing": {
+  "start_local": null,
+  "end_local": null,
+  "minutes": null
+ },
+ "pct_unsure": null,
+ "pct_shadow_full": null,
+ "qc_status": "pending",
+ "tracing_method": "manual",
+ "published_sun": {
+  "sun_azimuth_deg": 138.9,
+  "sun_elevation_deg": 62.8,
+  "off_nadir_deg": 26.1,
+  "source": "Maxar ARD item 42/031333030333/10300100D13F6500"
+ }
+}
