@@ -171,6 +171,26 @@ def measure(lines, crs: str, lat: float, lon: float, days: list, min_buildings: 
                        "elevation_range_deg": [lo, hi], "per_day": per_day}}
 
 
+def corroborate(azimuth: float, window_utc: list, lat: float, lon: float, max_diff_deg: float) -> dict:
+    """Compare a shadow-measured azimuth with an uploader-entered acquisition
+    window (decided 2026-09-29, v1.6): the smallest angular difference to the
+    sun's azimuth at any daylight minute of the window; "corroborated" if it
+    is <= max_diff_deg."""
+    t0 = datetime.fromisoformat(window_utc[0].replace("Z", "+00:00"))
+    t1 = datetime.fromisoformat(window_utc[1].replace("Z", "+00:00"))
+    minutes = int((t1 - t0).total_seconds() // 60)
+    pos = [solar_position(t0 + timedelta(minutes=m), lat, lon) for m in range(minutes + 1)]
+    day = [a for a, e in pos if e > 0]
+    if not day:
+        return {"window_utc": window_utc, "status": "not checkable: the sun is below the horizon for the "
+                                                    "whole window"}
+    diff = min(abs(_angdiff(azimuth, a)) for a in day)
+    return {"window_utc": window_utc, "sun_azimuth_in_window_deg": [round(day[0], 1), round(day[-1], 1)],
+            "daylight_minutes": len(day), "measured_azimuth_deg": round(azimuth, 1),
+            "min_difference_deg": round(diff, 2), "max_difference_deg": max_diff_deg,
+            "status": "corroborated" if diff <= max_diff_deg else "not corroborated"}
+
+
 # ── files ────────────────────────────────────────────────────────────────────
 
 def sun_qml() -> str:
@@ -227,6 +247,10 @@ def run(tile_dir: str, cfg: dict) -> dict:
     for k in ("sun_azimuth_deg", "sun_elevation_deg", "sun_geometry_method", "sun_geometry_n_buildings"):
         meta[k] = res[k]
     meta["sun_geometry_detail"] = res["detail"]
+    if meta.get("uploader_window_utc"):
+        meta["uploader_window_check"] = corroborate(
+            res["sun_azimuth_deg"], meta["uploader_window_utc"], lat, lon,
+            cfg["sun_geometry"]["uploader_window_corroboration_max_az_diff_deg"])
     with open(os.path.join(tile_dir, "metadata.json"), "w") as fh:
         json.dump(meta, fh, indent=1)
     return res

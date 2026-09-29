@@ -22,6 +22,7 @@ algorithm). A tile whose contributing scenes have no daylight-plausible
 published time gets sun.gpkg and `sun_geometry_required: true`.
 
     python experiments/item21_sites/prepare_stage1_tiles.py
+    python experiments/item21_sites/prepare_stage1_tiles.py --refresh-metadata   # rule fields only
 """
 
 from __future__ import annotations
@@ -184,37 +185,90 @@ def time_record(site: str, files: list, lat: float, lon: float) -> dict:
         ok = bool(t0 and t1 and is_daylight(t0, t1, lat, lon))
         rows.append({"file": f["id"], "published_utc": f.get("datetime_utc") or f.get("window_utc"),
                      "daylight_at_both_ends": ok})
-    usable = [r for r in rows if r["daylight_at_both_ends"]]
-    rec = {"published_times": rows, "sun_geometry_required": len(usable) < len(rows)}
-    if site != "karachi" and rows and len(usable) == len(rows):
-        # An uploader-entered window that passes the daylight check: whether it
-        # counts as a published acquisition time is not decided (2026-09-29).
-        rec["sun_geometry_required"] = None
     if site == "karachi":
-        rec["imagery_acquisition_time"] = files[0]["datetime_utc"][11:19] + " UTC"
-        rec["time_note"] = "Maxar ARD item datetime"
-    else:
-        rec["imagery_acquisition_time"] = None
-        rec["time_note"] = ("OpenAerialMap acquisition_start / _end are uploader-entered windows; recorded "
-                            "verbatim. A window with the sun below the horizon at either end is not a usable "
-                            "acquisition time.")
-    return rec
+        return {"published_times": rows, "sun_geometry_required": False,
+                "imagery_acquisition_time": files[0]["datetime_utc"][11:19] + " UTC",
+                "time_note": "Maxar ARD item datetime (publisher metadata)"}
+    # Decided 2026-09-29 (v1.6): uploader-entered OpenAerialMap windows are
+    # not publisher metadata -> sun from shadows; the window is kept for the
+    # corroboration check (labelling/sun_geometry.py).
+    return {"published_times": [], "uploader_windows": rows, "sun_geometry_required": True,
+            "imagery_acquisition_time": None,
+            "uploader_window_utc": rows[0]["published_utc"] if len(rows) == 1 else None,
+            "time_note": ("OpenAerialMap acquisition_start / _end are uploader-entered, not publisher "
+                          "metadata: sun geometry is measured from shadows; the window is recorded for "
+                          "corroboration")}
 
 
-def gap_and_window(site: str, pa: dict) -> dict:
-    """Composite window and the worst-case |scene date - imagery date| over the
-    window's clear scenes (worst case across a date range, §9.2)."""
+def gap_and_window(site: str, pa: dict, cfg: dict) -> dict:
+    """Composite window (§9.1/§9.2, v1.6) and the worst-case |scene date -
+    imagery date| over the window's clear scenes. A date range (not an
+    exception) uses [range_end - 90 d, range_start + 90 d]."""
+    from range_window_rule import range_window
     r = pa["sites"][site]
     s = SOURCES[site]
     d0 = date.fromisoformat(s["date"])
     d1 = date.fromisoformat(s.get("date_end") or s["date"])
-    days = [date.fromisoformat(d) for d in r["dates"]]
+    win = cfg["open"]["change_test"]["window"]
+    lo, hi = date.fromisoformat(r["window"][0]), date.fromisoformat(r["window"][1])
+    if d1 > d0 and site not in win["date_range_exceptions"]:
+        lo, hi = range_window(s["date"], s["date_end"], win["half_window_days"])
+    days = [date.fromisoformat(d) for d in r["dates"] if lo <= date.fromisoformat(d) <= hi]
     rng = [d0 + timedelta(days=i) for i in range((d1 - d0).days + 1)]
     worst = max(max(abs((x - h).days) for x in days) for h in rng)
-    return {"s2_composite_window": {"start": r["window"][0], "end": r["window"][1]},
-            "s2_clear_scenes": r["scenes"], "date_gap_days": worst,
+    return {"s2_composite_window": {"start": lo.isoformat(), "end": hi.isoformat()},
+            "s2_clear_scenes": len(days), "date_gap_days": worst,
             "date_gap_definition": "max |clear-scene date - imagery date| over the composite window's scenes; "
                                    "worst case across the imagery date range"}
+
+
+RANGE_RULE = os.path.join(HERE, "results", "range_window_rule.json")
+
+
+def change_test_row(site: str, tile_id: str, det: dict) -> dict:
+    """The frozen change test's result for the tile; for a date-range site
+    under the v1.6 window rule, from range_window_rule.json."""
+    if os.path.exists(RANGE_RULE):
+        with open(RANGE_RULE) as fh:
+            rr = json.load(fh)
+        if rr["site"] == site:
+            return next(r for r in rr["tiles"] if r["tile_id"] == tile_id)
+    return next(r for r in det["sites"][site]["tiles"] if r["tile_id"] == tile_id)
+
+
+def change_test_text(ct: dict, rule: dict) -> str:
+    verdict = "dropped" if ct["dropped"] else "kept"
+    return (f"{verdict}: {ct['share']:.1%} of {ct['evaluable']} cells changed (frozen §9.1: de-trended, "
+            f"k={rule['change']['k']}, drop above {rule['drop_tile_if_changed_share_above']:.0%})")
+
+
+def refresh_metadata(site: str, tile_dir: str, cfg: dict, pa: dict, det: dict) -> dict:
+    """Rewrite only the rule-derived fields of an existing tile record (no
+    imagery refetch; labeller fields untouched)."""
+    from pyproj import Transformer
+    p = os.path.join(tile_dir, "metadata.json")
+    with open(p) as fh:
+        meta = json.load(fh)
+    meta.update(gap_and_window(site, pa, cfg))
+    meta["change_test_result"] = change_test_text(change_test_row(site, meta["tile_id"], det),
+                                                  cfg["open"]["change_test"])
+    meta["guide_version"] = cfg["guide_version"]
+    if site in ("lima", "monrovia"):
+        import frames as fr
+        crs = meta["tile_utm"]["crs"]
+        lon, lat = Transformer.from_crs(crs, "EPSG:4326", always_xy=True).transform(
+            meta["tile_utm"]["x0"] + TILE_M / 2, meta["tile_utm"]["y1"] - TILE_M / 2)
+        files = []
+        for oid in meta["imagery_files"]:
+            m = fr._get(f"https://api.openaerialmap.org/meta/{oid}")
+            m = m.get("results", m)
+            files.append({"id": oid, "window_utc": [m.get("acquisition_start"), m.get("acquisition_end")]})
+        meta.pop("published_times", None)
+        meta.update(time_record(site, files, lat, lon))
+    with open(p, "w") as fh:
+        json.dump(meta, fh, indent=1)
+    return {k: meta.get(k) for k in ("tile_id", "s2_composite_window", "s2_clear_scenes", "date_gap_days",
+                                     "change_test_result", "sun_geometry_required", "uploader_window_utc")}
 
 
 def prepare(site: str, entry: dict, cfg: dict, pa: dict, det: dict) -> dict:
@@ -247,7 +301,7 @@ def prepare(site: str, entry: dict, cfg: dict, pa: dict, det: dict) -> dict:
 
     s = SOURCES[site]
     tr_ = time_record(site, [f for f in files if f["id"] in used], lat, lon)
-    ct = next(r for r in det["sites"][site]["tiles"] if r["tile_id"] == tile_id)
+    ct = change_test_row(site, tile_id, det)
     rule = cfg["open"]["change_test"]
     meta = {
         "purpose": "item 21 Stage 1 training tile (decision 5, 2026-09-29)",
@@ -259,15 +313,14 @@ def prepare(site: str, entry: dict, cfg: dict, pa: dict, det: dict) -> dict:
         "imagery_acquisition_date_range_reason": s.get("date_range_reason"),
         "imagery_acquisition_time": tr_["imagery_acquisition_time"],
         "published_times": tr_["published_times"], "time_note": tr_["time_note"],
+        "uploader_windows": tr_.get("uploader_windows"), "uploader_window_utc": tr_.get("uploader_window_utc"),
         "sun_geometry_required": tr_["sun_geometry_required"],
         "sun_azimuth_deg": None, "sun_elevation_deg": None, "sun_geometry_method": None,
         "sun_geometry_n_buildings": None,
         "imagery_resolution_m": round(res, 4), "hr_valid_share": round(cover, 4),
         "labelling_note": cfg["aois"][site].get("labelling_note"),
-        **gap_and_window(site, pa),
-        "change_test_result": (f"kept: {ct['share']:.1%} of {ct['evaluable']} cells changed "
-                               f"(frozen §9.1: de-trended, k={rule['change']['k']}, drop above "
-                               f"{rule['drop_tile_if_changed_share_above']:.0%})"),
+        **gap_and_window(site, pa, cfg),
+        "change_test_result": change_test_text(ct, rule),
         "guide_version": cfg["guide_version"],
         "labeller": None, "labelling_date": None,
         "timing": {"start_local": None, "end_local": None, "minutes": None},
@@ -280,7 +333,7 @@ def prepare(site: str, entry: dict, cfg: dict, pa: dict, det: dict) -> dict:
                                  "off_nadir_deg": f["off_nadir_deg"], "source": f"Maxar ARD item {f['id']}"}
     with open(os.path.join(out, "metadata.json"), "w") as fh:
         json.dump(meta, fh, indent=1)
-    if meta["sun_geometry_required"] is not False:            # required, or pending a decision
+    if meta["sun_geometry_required"]:
         sun_setup(out, crs)
     return {"tile_id": tile_id, "site": site, "res_m": round(res, 4), "hr_valid_share": round(cover, 4),
             "files": used, "sun_geometry_required": meta["sun_geometry_required"],
@@ -296,9 +349,12 @@ def main():
         pa = json.load(fh)
     with open(DETRENDED) as fh:
         det = json.load(fh)
+    refresh = "--refresh-metadata" in sys.argv
     for site, s in sel["sites"].items():
         for entry in s["strata"].values():
-            print(json.dumps(prepare(site, entry, cfg, pa, det)), flush=True)
+            d = os.path.join(TILES, site, entry["chosen"]["tile_id"])
+            r = refresh_metadata(site, d, cfg, pa, det) if refresh else prepare(site, entry, cfg, pa, det)
+            print(json.dumps(r), flush=True)
 
 
 if __name__ == "__main__":

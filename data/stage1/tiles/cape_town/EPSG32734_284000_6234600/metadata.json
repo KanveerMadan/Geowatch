@@ -30,14 +30,14 @@
  "hr_valid_share": 1.0,
  "labelling_note": null,
  "s2_composite_window": {
-  "start": "2024-10-03",
-  "end": "2025-05-01"
+  "start": "2024-11-02",
+  "end": "2025-04-01"
  },
- "s2_clear_scenes": 18,
- "date_gap_days": 117,
+ "s2_clear_scenes": 12,
+ "date_gap_days": 87,
  "date_gap_definition": "max |clear-scene date - imagery date| over the composite window's scenes; worst case across the imagery date range",
  "change_test_result": "kept: 0.5% of 400 cells changed (frozen \u00a79.1: de-trended, k=3, drop above 10%)",
- "guide_version": "1.5",
+ "guide_version": "1.6",
  "labeller": null,
  "labelling_date": null,
  "timing": {

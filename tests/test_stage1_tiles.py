@@ -38,19 +38,18 @@ def test_prepared_tile(site, chosen):
     assert (meta["tile_utm"]["x0"], meta["tile_utm"]["y1"]) == (chosen["x0"], chosen["y1"])
     assert meta["guide_version"] == CFG["guide_version"] and meta["tracing_method"] == "manual"
     assert meta["change_test_result"].startswith("kept:")
-    if site == "cape_town":
-        # 2026-09-29 CONFLICT, pending a decision: the date range + 90 d window
-        # gives a worst-case gap of 117 d, above Cape Town's frozen 90 d max
-        # (Rocinha has an explicit exception; Cape Town has none).
-        assert meta["date_gap_days"] > CFG["open"]["max_date_gap_days"]["per_site"][site]
-    else:
-        assert meta["date_gap_days"] <= CFG["open"]["max_date_gap_days"]["per_site"][site]
+    assert meta["date_gap_days"] <= CFG["open"]["max_date_gap_days"]["per_site"][site]
+    assert meta["s2_clear_scenes"] >= CFG["open"]["max_date_gap_days"]["min_clear_scenes"]
     assert meta["hr_valid_share"] > 0
-    # time: a published time, or sun.gpkg ready (required, or pending a decision)
-    if meta["sun_geometry_required"] is False:
-        assert meta["imagery_acquisition_time"]
+    # time: publisher metadata (Karachi), else sun from shadows (v1.6: OAM
+    # uploader windows are not publisher metadata)
+    if site == "karachi":
+        assert meta["sun_geometry_required"] is False and meta["imagery_acquisition_time"]
     else:
-        assert (d / "sun.gpkg").exists()
+        assert meta["sun_geometry_required"] is True and (d / "sun.gpkg").exists()
+        assert meta["imagery_acquisition_time"] is None
+    if site in ("lima", "monrovia"):
+        assert meta["uploader_window_utc"] and not meta["published_times"]
     if site == "karachi":
         assert "BASE" in meta["labelling_note"]
     import pyogrio

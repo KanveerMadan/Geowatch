@@ -1,11 +1,11 @@
 # Item 21 Phase A, part 7 — labelling tooling configuration.
-# Protocol: LABELLING_GUIDE.md (v1.5, 2026-09-29; v1.0 2026-09-24). Numbers the guide
+# Protocol: LABELLING_GUIDE.md (v1.6, 2026-09-29; v1.0 2026-09-24). Numbers the guide
 # fixes are copied here with their section; the five numbers the guide
 # leaves OPEN (§9) are UNSET (null). Code that needs an UNSET number refuses
 # to run. None of them may be set after labelling begins or after model
 # results are seen (§9).
 
-guide_version: "1.5"          # v1.1 solar; v1.2 sun geometry; v1.3 Marrakech removed; v1.4 date ranges; v1.5 §9 frozen
+guide_version: "1.6"          # ...; v1.4 date ranges; v1.5 §9 frozen; v1.6 range window, §9.3, cluster outlines, OAM times
 
 labels:
   scored: [built, paved, vegetation, water, bare, mixed_water_vegetation, snow_ice, solar]
@@ -27,6 +27,11 @@ tiles:
 # v1.2 (§5/§8): stand-in for an unpublished acquisition time.
 sun_geometry:
   min_buildings: 3                    # "shadows of >= 3 buildings in the tile"
+  # Decided 2026-09-29 (v1.6): uploader-entered OpenAerialMap windows are not
+  # publisher metadata -- such tiles use sun-from-shadows. The window is
+  # recorded; if the shadow-measured azimuth is within this of the sun's
+  # azimuth during the window, the window is marked "corroborated".
+  uploader_window_corroboration_max_az_diff_deg: 5
 
 qc:
   blind_relabel_fraction: 0.15        # §7 "~15% of tiles"
@@ -44,7 +49,13 @@ open:
   change_test:                                                         # §9.1
     status: FROZEN
     frozen: "2026-09-29"
-    window: {half_window_days: 90, date_range: extend_range_by_half_window,
+    # Date ranges (decided 2026-09-29, v1.6; replaces extend-the-range /
+    # worst case): scenes within 90 d of EVERY day of the range, i.e.
+    # [range_end - 90 d, range_start + 90 d]. Rocinha keeps its 181 d
+    # exception (range > 180 d: the rule gives an empty window) with the
+    # range extended by 90 d on each side.
+    window: {half_window_days: 90, date_range: within_half_window_of_every_day_in_range,
+             date_range_exceptions: {rocinha: extend_range_by_half_window},
              min_clear_scenes: 3, scene_cloud_max_pct: 20}
     composite: existing_6band_median_scl_mask          # ingestion/sentinel2.py recipe, granule-level median
     metrics: [spectral_angle_deg, abs_mean6_reflectance_diff]
@@ -61,7 +72,9 @@ open:
   # §9.2 -- DECIDED BY PILOT B 2026-09-28; FROZEN 2026-09-29.
   # +-60 d gives 2 clear scenes at Lima and Makoko (< 3), so the window is
   # +-90 d with >= 3 clear scenes (< 20% cloud) at every site. Date ranges
-  # use the worst case across the range (Cape Town "2025Jan" confirmed).
+  # ~~use the worst case across the range~~ (replaced 2026-09-29, v1.6): the
+  # window is [range_end - 90 d, range_start + 90 d], so every scene is within
+  # 90 d of every possible date (Cape Town: 12 scenes, worst gap 87 d).
   # Rocinha: gap = worst case 181 d, an explicit exception to the +-90 d
   # rule, justified by consolidated slow-changing fabric; the change test
   # still applies there.
@@ -71,10 +84,18 @@ open:
     half_window_days: 90
     min_clear_scenes: 3
     per_site: {makoko: 90, kibera: 90, rocinha: 181, lima: 90, monrovia: 90, karachi: 90, cape_town: 90}
-  # §9.3 -- NOT in the 2026-09-29 freeze; still UNSET. Stage 1 (8 tiles,
-  # stage1_tiles) is decided separately; whether it is the §9.3 starting
-  # count is not stated.
-  starting_tile_count: {status: UNSET, per_stratum: {}}                # §9.3
+  # §9.3 -- SET 2026-09-29 (v1.6). Training: the 8 Stage 1 tiles
+  # (stage1_tiles); thereafter the stop rule / LOCO decides. Validation: 2 per
+  # stratum per site where the stratum has >= 2 eligible tiles (Kibera 8,
+  # Rocinha 8, Makoko 6). Not selected yet.
+  starting_tile_count:                                                 # §9.3
+    status: FROZEN
+    frozen: "2026-09-29"
+    training: stage1_tiles
+    per_stratum:
+      kibera:   {dense_informal: 2, formal: 2, mixed: 2, fringe: 2}
+      rocinha:  {dense_informal: 2, formal: 2, mixed: 2, fringe: 2}
+      makoko:   {dense_informal: 2, formal: 2, fringe: 2}           # mixed has 1 eligible tile
   # §9.4 -- PROVISIONAL 2026-09-28; FROZEN 2026-09-29 as set:
   # half the model pass bars. built model MAE 10 pp -> 5; impervious_total
   # 15 pp -> 7.5. vegetation and water have no model bar in the manual: 7.5
@@ -91,9 +112,17 @@ open:
   # shadow_full leave the cell's denominator; a cell is scored when its
   # excluded share is <= 0.25 -- labelling/fractions.py).
   max_excluded_share_per_cell: {value: 0.25, status: FROZEN, frozen: "2026-09-29"}
-  # Not one of the five, and also undecided: how many validation tiles go
-  # in sealed batch 1 vs batch 2 (§8).
-  validation_batch_1_count: {value: null, status: UNSET}
+  # §8, decided 2026-09-29: the validation tiles are split into batch 1 /
+  # batch 2 by a seeded split balanced per site per stratum -- with 2 per
+  # stratum, one tile of each site-stratum goes to each batch (11 + 11). The
+  # seed is the recorded sampler seed (tiles.random_seed).
+  validation_batch_1_count:
+    status: FROZEN
+    frozen: "2026-09-29"
+    rule: balanced_per_site_per_stratum
+    per_site_stratum: 1
+    value: 11
+    seed: tiles.random_seed
 
 # Staged plan, DECIDED 2026-09-28, recorded 2026-09-29 before any Stage 1
 # result (05_BUILD_MANUAL.md item 21, "Staged labelling plan"). After 8-10

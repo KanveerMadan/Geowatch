@@ -1695,6 +1695,53 @@ label layer, and a tile record with the frozen change-test result.
     day of the range (≤ 90 d by construction);
   - measuring the gap from something other than the worst case.
 
+**Decisions — 2026-09-29, round 3 (guide v1.6).** No labelling had begun,
+so §9 changes were permitted.
+
+1. **Date-range window** (replaces "worst case over the range" for the §9.2
+   window). For an imagery date known only as a range, the window is the
+   scenes within 90 d of *every* day of the range: [range end − 90 d, range
+   start + 90 d]. **Cape Town needs no exception.** Checked
+   (`experiments/item21_sites/range_window_rule.py` →
+   `results/range_window_rule.json`, from the cached granules):
+   - the window 2024-11-02 → 2025-04-01 has **12 clear scenes** (≥ 3) and a
+     worst-case gap of **87 d**;
+   - the frozen change test on this window keeps **both Cape Town Stage 1
+     tiles** (dense_informal 0.5 %, formal 0.0 % of cells changed);
+   - site-wide, 7 / 173 tiles would drop (4.0 %).
+
+   The Cape Town test for the expected conflict is removed. **Rocinha keeps
+   its 181 d exception**: its range is longer than 180 d, so the rule gives
+   an empty window. This supersedes the "CONFLICT — Cape Town date gap"
+   note above, and Pilot A's Cape Town figures, which used the old window.
+2. **§9.3 set.**
+   - Training: the starting count is the 8 Stage 1 tiles; thereafter the
+     stop rule and LOCO decide.
+   - Validation: 2 per stratum per site where the stratum has ≥ 2 eligible
+     tiles — Kibera 8, Rocinha 8, Makoko 6 (Makoko `mixed` has 1).
+   - The validation tiles are split into batch 1 / batch 2 by a seeded split
+     balanced per site per stratum (1 + 1), using the recorded sampler seed.
+   - **No validation tiles are selected yet.**
+
+   `labelling.tiles.select` now reads the §9.3 counts per site; a training
+   site is refused (its start is the Stage 1 plan).
+3. **Lima's acquisition time.** Uploader-entered OpenAerialMap windows are
+   not publisher metadata (they failed the daylight check at Lima Santuario
+   and Monrovia). Lima therefore uses sun-from-shadows, like Cape Town and
+   Monrovia. The Candelaria window (2019-12-19 15:30–16:00Z) is recorded; if
+   the shadow-measured azimuth is within **5°** of the sun's azimuth at a
+   daylight minute of the window, the helper marks it **corroborated**.
+4. **Cluster-outline method** added to guide §2, as decided:
+   - roofs separated by gaps under ~1 m may be outlined together;
+   - gaps over ~2 m are excluded and labelled by their own surface;
+   - smaller groups are outlined where over ~⅓ of an outline would be
+     non-roof.
+
+   **Known effect:** small inter-roof gaps count as `built`, a systematic
+   upward bias in dense fabric. The same convention applies to QC re-traces.
+   *Not stated:* gaps between ~1 and ~2 m (left to the labeller).
+5. **Signed vs unsigned change test:** no change; the note above stands.
+
 **Validation additions.**
 
 - **Shadow accuracy** is measured in the **same hand-digitisation pass** at

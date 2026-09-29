@@ -19,17 +19,7 @@
  "imagery_acquisition_date_end": null,
  "imagery_acquisition_date_range_reason": null,
  "imagery_acquisition_time": null,
- "published_times": [
-  {
-   "file": "5e53faa7906c590005ecc5bb",
-   "published_utc": [
-    "2020-02-23T21:00:00.000Z",
-    "2020-02-24T15:53:46.449Z"
-   ],
-   "daylight_at_both_ends": false
-  }
- ],
- "time_note": "OpenAerialMap acquisition_start / _end are uploader-entered windows; recorded verbatim. A window with the sun below the horizon at either end is not a usable acquisition time.",
+ "time_note": "OpenAerialMap acquisition_start / _end are uploader-entered, not publisher metadata: sun geometry is measured from shadows; the window is recorded for corroboration",
  "sun_geometry_required": true,
  "sun_azimuth_deg": null,
  "sun_elevation_deg": null,
@@ -46,7 +36,7 @@
  "date_gap_days": 90,
  "date_gap_definition": "max |clear-scene date - imagery date| over the composite window's scenes; worst case across the imagery date range",
  "change_test_result": "kept: 0.0% of 400 cells changed (frozen \u00a79.1: de-trended, k=3, drop above 10%)",
- "guide_version": "1.5",
+ "guide_version": "1.6",
  "labeller": null,
  "labelling_date": null,
  "timing": {
@@ -57,5 +47,20 @@
  "pct_unsure": null,
  "pct_shadow_full": null,
  "qc_status": "pending",
- "tracing_method": "manual"
+ "tracing_method": "manual",
+ "published_times": [],
+ "uploader_windows": [
+  {
+   "file": "5e53faa7906c590005ecc5bb",
+   "published_utc": [
+    "2020-02-23T21:00:00.000Z",
+    "2020-02-24T15:53:46.449Z"
+   ],
+   "daylight_at_both_ends": false
+  }
+ ],
+ "uploader_window_utc": [
+  "2020-02-23T21:00:00.000Z",
+  "2020-02-24T15:53:46.449Z"
+ ]
 }

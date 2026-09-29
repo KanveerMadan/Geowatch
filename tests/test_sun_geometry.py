@@ -114,3 +114,20 @@ def test_setup_and_run_write_the_record_fields(tmp_path):
     for k in ("sun_azimuth_deg", "sun_elevation_deg", "sun_geometry_method", "sun_geometry_n_buildings"):
         assert out[k] is not None
     assert out["sun_azimuth_deg"] == pytest.approx(KARACHI["az"], abs=0.1)
+
+
+def test_uploader_window_corroboration():
+    lat, lon = -12.2, -76.9                                      # Lima, Candelaria window
+    w = ["2019-12-19T15:30:00.000Z", "2019-12-19T16:00:00.000Z"]
+    az_mid = sg.solar_position(datetime(2019, 12, 19, 15, 45, tzinfo=timezone.utc), lat, lon)[0]
+    ok = sg.corroborate(az_mid, w, lat, lon, 5)
+    assert ok["status"] == "corroborated" and ok["min_difference_deg"] < 1
+    far = sg.corroborate((az_mid + 40) % 360, w, lat, lon, 5)
+    assert far["status"] == "not corroborated" and far["min_difference_deg"] > 5
+    night = sg.corroborate(az_mid, ["2019-12-19T05:00:00Z", "2019-12-19T06:00:00Z"], lat, lon, 5)
+    assert night["status"].startswith("not checkable")
+
+
+def test_corroboration_threshold_is_the_decided_one():
+    from labelling.common import load_config
+    assert load_config()["sun_geometry"]["uploader_window_corroboration_max_az_diff_deg"] == 5

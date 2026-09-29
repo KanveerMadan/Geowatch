@@ -1,6 +1,6 @@
 # GeoWatch — Labelling Guide (item 21)
 
-**Guide version 1.5 — 2026-09-29** (v1.0 decided 2026-09-24; changelog at
+**Guide version 1.6 — 2026-09-29** (v1.0 decided 2026-09-24; changelog at
 the end). This is the hand-labelling
 protocol for the item 21 regressors and their validation. It applies at every
 site in the item 21 site list (`05_BUILD_MANUAL.md` item 21, "Site list"):
@@ -8,9 +8,10 @@ site in the item 21 site list (`05_BUILD_MANUAL.md` item 21, "Site list"):
 - **Training:** Cape Town, Lima, Karachi, Monrovia. ~~Marrakech optional.~~ *(Removed 2026-09-25, v1.3.)*
 - **Validation:** Makoko, Kibera, Rocinha.
 
-**Status: decided, not yet used.** No tile has been labelled. Of the five
-numbers that must be set before labelling starts (§9), four were **frozen on
-2026-09-29 (v1.5)**; the starting tile count (§9.3) is still open. Any change to this guide bumps
+**Status: decided, not yet used.** No tile has been labelled. The five
+numbers that must be set before labelling starts (§9) are **all set**: four
+frozen on 2026-09-29 (v1.5), and the starting tile count (§9.3) set the same
+day (v1.6). Any change to this guide bumps
 the version and triggers the recheck in §7.
 
 Related decisions: taxonomy (Decision 11), shadow rule (Decision 11 and
@@ -41,7 +42,14 @@ that does not share its source.
 
 ## 2. Label form
 
-- **Polygons**, traced on the high-resolution imagery.
+- **Polygons**, traced **by hand** on the high-resolution imagery.
+- *(v1.6)* **Cluster outlines.** Adjacent roofs separated by gaps narrower
+  than ~1 m may be outlined together as one `built` polygon. Gaps wider than
+  ~2 m are excluded and labelled by their own surface. Where more than about
+  one third of an outlined area would be non-roof, outline smaller groups.
+  **Known effect:** small inter-roof gaps are counted as `built`, a
+  systematic upward bias in `built` in dense fabric. The same convention
+  applies to QC re-traces (§7).
 - **Fractions per 10 m Sentinel-2 cell are computed from polygon areas —
   never eyeballed.** A labeller never types a percentage.
 - The same polygons are also rasterised to a **pixel-level map** to support
@@ -55,7 +63,8 @@ that does not share its source.
 - **Every pixel in a chosen tile is labelled.** No partial tiles, and no
   picking the easy parts of a tile.
 - **Tile count follows item 21's stopping rule:** keep adding tiles until
-  leave-one-city-out (LOCO) stops improving. The starting count is open (§9).
+  leave-one-city-out (LOCO) stops improving. The starting count is set in
+  §9.3.
 
 ## 4. Hard cases
 
@@ -89,7 +98,11 @@ amended 2026-09-24. Compacted earth is `bare`, not `paved`.
   tile. Shadow geometry depends on it. *(v1.2)* **Where the publisher gives
   no acquisition time**, record instead the **sun azimuth and elevation
   measured from the shadows of at least 3 buildings in the tile**, and record
-  the method used. A tile record with neither is incomplete under §8
+  the method used. *(v1.6)* **An uploader-entered acquisition window (e.g.
+  OpenAerialMap `acquisition_start` / `_end`) is not publisher metadata:**
+  such tiles use sun-from-shadows too. The window is recorded, and marked
+  *corroborated* if the shadow-measured azimuth is within 5° of the sun's
+  azimuth at some daylight minute of the window. A tile record with neither is incomplete under §8
   (every field mandatory).
 
 **High-resolution shadow labels are a separate shadow-handling check, NOT a
@@ -180,9 +193,7 @@ after Pilot A"). The machine-readable copy is `configs/labelling.yaml`
 
 1. **Change test** (§6). *Frozen.*
    - **Scenes:** Sentinel-2 L2A scenes under 20 % cloud intersecting the
-     site's box, within the §9.2 window around the imagery date. For a date
-     range, the range is extended by 90 d on each side, with the scenes inside
-     it included.
+     site's box, within the §9.2 window around the imagery date.
    - **Composite:** the existing 6-band median with the SCL cloud mask.
    - **Per 10 m cell, two metrics:** the spectral angle, and the absolute
      difference of the 6-band mean reflectance.
@@ -197,12 +208,22 @@ after Pilot A"). The machine-readable copy is `configs/labelling.yaml`
    - **A tile is dropped if more than 10 % of its cells are changed.**
    - Makoko and Lima have 3–4 scenes; there the test is **low-power**.
 2. **Maximum date gap, per site** (§6). *Frozen.* **±90 d** around the
-   imagery date, with **at least 3 clear scenes**. A date range takes the
-   worst case across the range. **Rocinha: 181 d**, an explicit exception
-   (consolidated, slow-changing fabric); the change test still applies
+   imagery date, with **at least 3 clear scenes**. *(v1.6, replacing "a date
+   range takes the worst case across the range")* For an imagery date known
+   only as a **range**, the window is the scenes within 90 d of **every** day
+   of the range: **[range end − 90 d, range start + 90 d]**. **Rocinha:
+   181 d**, an explicit exception (consolidated, slow-changing fabric). Its
+   range is longer than 180 d, so the rule gives an empty window; the range
+   is extended by 90 d on each side instead. The change test still applies
    there.
-3. **Starting tile count** (§3). **Still open.** After the start, LOCO
-   decides.
+3. **Starting tile count** (§3). *Set 2026-09-29 (v1.6).*
+   - **Training:** the 8 Stage 1 tiles — per training site, the first tile
+     in the sampler order of two strata (`dense_informal` and `formal`; Lima
+     `mixed` and `fringe`). Thereafter the Stage 1 stop rule and LOCO decide.
+   - **Validation:** 2 tiles per stratum per site, where the stratum has at
+     least 2 eligible tiles (Kibera 8, Rocinha 8, Makoko 6). They are split
+     into batch 1 / batch 2 (§8) by a seeded split balanced per site per
+     stratum: one tile of each site-stratum per batch.
 4. **Per-class label-agreement bars** (§7). *Frozen.* 10 m fraction MAE:
    `built` ≤ 5 pp; `impervious_total` ≤ 7.5 pp; `vegetation` ≤ 7.5 pp;
    `water` ≤ 7.5 pp (half the model pass bars where one exists). Polygon IoU
@@ -214,6 +235,18 @@ after Pilot A"). The machine-readable copy is `configs/labelling.yaml`
 ---
 
 ## Changelog
+
+- **v1.6 — 2026-09-29.**
+  - §2: tracing is by hand, with the **cluster-outline** convention and its
+    known upward `built` bias.
+  - §5: uploader-entered acquisition windows are not publisher metadata;
+    sun-from-shadows, with the window recorded for corroboration.
+  - §9.2: the **date-range window** is [range end − 90 d, range start +
+    90 d], replacing the worst-case rule. Rocinha keeps its 181 d exception.
+  - §9.3: the **starting tile count** is set.
+
+  No tile has been labelled (the practice tiles are never scored), so the §7
+  recheck is empty.
 
 - **v1.5 — 2026-09-29.** §9: numbers 1 (change test), 2 (maximum date gap),
   4 (agreement bars) and 5 (maximum excluded share 0.25) are **frozen**;

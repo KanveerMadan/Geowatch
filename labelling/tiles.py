@@ -161,9 +161,15 @@ def save_frame(frame: dict, path: str, cfg: dict) -> str:
 
 def select(frame: dict, cfg: dict, counts: dict | None = None) -> list:
     """First N tiles per stratum by rank. N comes from the §9.3 open number
-    unless `counts` is given explicitly (e.g. a later LOCO-driven top-up)."""
+    unless `counts` is given explicitly (e.g. a later LOCO-driven top-up).
+    §9.3 (set 2026-09-29) gives per-stratum counts per VALIDATION site; the
+    training start is the Stage 1 plan (configs stage1_tiles), not select()."""
     if counts is None:
-        counts = require_open(cfg, "starting_tile_count", "per_stratum")
+        per_site = require_open(cfg, "starting_tile_count", "per_stratum")
+        if frame["site"] not in per_site:
+            raise ValueError(f"{frame['site']}: no §9.3 per-stratum count -- the training start "
+                             f"is the Stage 1 plan (stage1_tiles)")
+        counts = per_site[frame["site"]]
     out = []
     for stratum, n in counts.items():
         pool = [t for t in frame["tiles"] if t["stratum"] == stratum]

@@ -56,7 +56,7 @@ def test_frames_recorded_with_seed_and_guide(sel):
         assert f["run_metadata"]["tile_sampler_seed"] == CFG["tiles"]["random_seed"]
         ids = {t["tile_id"] for t in f["frame"]["tiles"]}
         assert all(r["chosen"]["tile_id"] in ids for r in s["strata"].values())
-    assert sel["guide_version"] == CFG["guide_version"]
+    assert sel["guide_version"] == "1.5"            # a fixed record: the guide in force when it was made
 
 
 def test_pick_replaces_dropped_with_next_rank():
@@ -73,4 +73,5 @@ def test_pick_replaces_dropped_with_next_rank():
 def test_records_are_tracked():
     tracked = subprocess.run(["git", "ls-files", "data/frames", "data/stage1"], cwd=REPO,
                              capture_output=True, text=True, check=True).stdout.split()
+    tracked = [p for p in tracked if not p.startswith("data/stage1/tiles/")]   # own test
     assert all(p.endswith("_frame.json") or p.endswith("selection.json") for p in tracked)

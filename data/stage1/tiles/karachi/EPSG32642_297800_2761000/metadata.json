@@ -43,7 +43,7 @@
  "date_gap_days": 90,
  "date_gap_definition": "max |clear-scene date - imagery date| over the composite window's scenes; worst case across the imagery date range",
  "change_test_result": "kept: 0.0% of 400 cells changed (frozen \u00a79.1: de-trended, k=3, drop above 10%)",
- "guide_version": "1.5",
+ "guide_version": "1.6",
  "labeller": null,
  "labelling_date": null,
  "timing": {

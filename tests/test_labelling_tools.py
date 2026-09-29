@@ -36,11 +36,20 @@ def full_tile(label="bare"):
 # ── open numbers stay UNSET ─────────────────────────────────────────────────
 
 def test_open_numbers_status_2026_09_29():
-    # §9 frozen 2026-09-29 except 9.3 (not in the freeze).
-    for k in ("change_test", "max_date_gap_days", "agreement_bars", "max_excluded_share_per_cell"):
+    # §9 frozen 2026-09-29; 9.3 set the same day (v1.6).
+    for k in ("change_test", "max_date_gap_days", "agreement_bars", "max_excluded_share_per_cell",
+              "starting_tile_count", "validation_batch_1_count"):
         assert CFG["open"][k]["status"] == "FROZEN", k
         assert CFG["open"][k]["frozen"] == "2026-09-29", k
-    assert CFG["open"]["starting_tile_count"]["status"] == "UNSET"
+    st = CFG["open"]["starting_tile_count"]
+    assert st["training"] == "stage1_tiles"
+    assert {s: sum(v.values()) for s, v in st["per_stratum"].items()} == {"kibera": 8, "rocinha": 8, "makoko": 6}
+    assert set(st["per_stratum"]) == set(CFG["sites"]["validation"])
+    b = CFG["open"]["validation_batch_1_count"]
+    assert b["value"] == 11 == sum(len(v) for v in st["per_stratum"].values()) * b["per_site_stratum"]
+    w = CFG["open"]["change_test"]["window"]
+    assert w["date_range"] == "within_half_window_of_every_day_in_range"
+    assert w["date_range_exceptions"] == {"rocinha": "extend_range_by_half_window"}
     ct = CFG["open"]["change_test"]
     assert ct["change"]["k"] == 3 and ct["drop_tile_if_changed_share_above"] == 0.10
     assert ct["change"]["detrend"] == "subtract_site_median_per_metric"
@@ -145,10 +154,25 @@ def test_unknown_stratum_refused():
 def test_select_refuses_while_tile_count_unset_but_takes_explicit_counts():
     strata = {"formal": box(0, 0, 1000, 200)}
     f = tiles.build_frame("lima", CRS, (0, 0, 1000, 200), strata, CFG, frame=box(0, 0, 1000, 200))
+    unset = copy.deepcopy(CFG)
+    unset["open"]["starting_tile_count"] = {"status": "UNSET", "per_stratum": {}}
     with pytest.raises(OpenNumberUnset):
-        tiles.select(f, CFG)
+        tiles.select(f, unset)
     got = tiles.select(f, CFG, counts={"formal": 2})
     assert [t["rank_in_stratum"] for t in got] == [0, 1]
+
+
+def test_select_uses_the_sites_section_9_3_counts():
+    strata = {"formal": box(0, 0, 1000, 200), "fringe": box(0, 200, 1000, 400)}
+    k = tiles.build_frame("kibera", CRS, (0, 0, 1000, 400), strata, CFG, frame=box(0, 0, 1000, 400))
+    cfg = copy.deepcopy(CFG)
+    cfg["open"]["starting_tile_count"]["per_stratum"]["kibera"] = {"formal": 2, "fringe": 2}
+    got = tiles.select(k, cfg)
+    assert sorted((t["stratum"], t["rank_in_stratum"]) for t in got) == [
+        ("formal", 0), ("formal", 1), ("fringe", 0), ("fringe", 1)]
+    l = tiles.build_frame("lima", CRS, (0, 0, 1000, 400), strata, CFG, frame=box(0, 0, 1000, 400))
+    with pytest.raises(ValueError, match="Stage 1 plan"):
+        tiles.select(l, CFG)                                # training start is stage1_tiles
 
 
 def test_qc_selection_is_about_fifteen_percent():
@@ -334,9 +358,9 @@ def test_agreement_bar_must_name_its_metric():
 
 # ── guide v1.1 (2026-09-25): solar = ground-mounted only ────────────────────
 
-def test_guide_version_is_1_5():
-    assert CFG["guide_version"] == "1.5"
-    assert "Guide version 1.5" in open(
+def test_guide_version_is_1_6():
+    assert CFG["guide_version"] == "1.6"
+    assert "Guide version 1.6" in open(
         pathlib.Path(__file__).resolve().parents[1] / "LABELLING_GUIDE.md").read()
 
 
