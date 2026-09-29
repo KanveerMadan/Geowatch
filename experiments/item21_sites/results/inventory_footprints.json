@@ -1,0 +1,427 @@
+{
+ "source": "OpenStreetMap via Overpass API",
+ "licence": "ODbL 1.0",
+ "sites": {
+  "makoko": {
+   "osm_buildings": 22327,
+   "osm_area_share_of_box": 0.2047,
+   "open_buildings_v3_area_share_of_box": 0.2216,
+   "last_edit": {
+    "min": "2011-05-09",
+    "median": "2024-05-22",
+    "max": "2026-09-14",
+    "by_year": {
+     "2011": 8,
+     "2014": 1,
+     "2016": 62,
+     "2017": 170,
+     "2018": 16,
+     "2019": 3543,
+     "2020": 17,
+     "2021": 352,
+     "2022": 828,
+     "2023": 1,
+     "2024": 17312,
+     "2025": 4,
+     "2026": 13
+    }
+   },
+   "source_tags_top": [
+    [
+     "(no source tag)",
+     22052
+    ],
+    [
+     "microsoft/BuildingFootprints",
+     220
+    ],
+    [
+     "Bing",
+     53
+    ],
+    [
+     "Nigerian Red Cross",
+     1
+    ],
+    [
+     "esri/Google_Africa_Buildings",
+     1
+    ]
+   ],
+   "queried_utc": "2026-09-29T09:19:37Z",
+   "endpoint": "https://overpass-api.de/api/interpreter",
+   "osm_data_as_of": "2026-09-29T09:16:34Z"
+  },
+  "kibera": {
+   "osm_buildings": 17614,
+   "osm_area_share_of_box": 0.2027,
+   "open_buildings_v3_area_share_of_box": 0.2846,
+   "last_edit": {
+    "min": "2010-01-12",
+    "median": "2018-01-10",
+    "max": "2026-03-11",
+    "by_year": {
+     "2010": 17,
+     "2011": 20,
+     "2012": 67,
+     "2013": 17,
+     "2014": 2,
+     "2015": 4,
+     "2016": 1607,
+     "2017": 6787,
+     "2018": 2235,
+     "2019": 430,
+     "2020": 2470,
+     "2021": 80,
+     "2022": 1304,
+     "2023": 208,
+     "2024": 1617,
+     "2025": 712,
+     "2026": 37
+    }
+   },
+   "source_tags_top": [
+    [
+     "(no source tag)",
+     17398
+    ],
+    [
+     "microsoft/BuildingFootprints",
+     198
+    ],
+    [
+     "http://aerial.maps.jsintl.org/tilecache/tilecache.cgi/1.0.0/kibera_july/!/!/!.png",
+     10
+    ],
+    [
+     "Bing",
+     4
+    ],
+    [
+     "bing",
+     1
+    ],
+    [
+     "website",
+     1
+    ],
+    [
+     "map_kibera_trust",
+     1
+    ],
+    [
+     "tags have been copied from node 1864056791",
+     1
+    ]
+   ],
+   "queried_utc": "2026-09-29T09:32:17Z",
+   "endpoint": "https://overpass.kumi.systems/api/interpreter",
+   "osm_data_as_of": "2026-05-06T03:25:00Z"
+  },
+  "rocinha": {
+   "osm_buildings": 4737,
+   "osm_area_share_of_box": 0.0551,
+   "open_buildings_v3_area_share_of_box": 0.0799,
+   "last_edit": {
+    "min": "2014-12-21",
+    "median": "2017-04-19",
+    "max": "2026-08-07",
+    "by_year": {
+     "2014": 1,
+     "2015": 6,
+     "2016": 2170,
+     "2017": 482,
+     "2018": 7,
+     "2019": 6,
+     "2020": 63,
+     "2021": 1292,
+     "2022": 4,
+     "2023": 22,
+     "2024": 436,
+     "2025": 80,
+     "2026": 168
+    }
+   },
+   "source_tags_top": [
+    [
+     "(no source tag)",
+     4727
+    ],
+    [
+     "GPS",
+     5
+    ],
+    [
+     "Bing",
+     3
+    ],
+    [
+     "GPS;local knowledge",
+     1
+    ],
+    [
+     "Yahoo; Wikipedia; survey",
+     1
+    ]
+   ],
+   "queried_utc": "2026-09-29T09:32:34Z",
+   "endpoint": "https://overpass-api.de/api/interpreter",
+   "osm_data_as_of": "2026-09-29T09:29:47Z"
+  },
+  "lima": {
+   "osm_buildings": 652,
+   "osm_area_share_of_box": 0.0098,
+   "open_buildings_v3_area_share_of_box": 0.1135,
+   "last_edit": {
+    "min": "2016-09-12",
+    "median": "2020-05-23",
+    "max": "2026-03-05",
+    "by_year": {
+     "2016": 2,
+     "2018": 3,
+     "2019": 10,
+     "2020": 494,
+     "2021": 110,
+     "2022": 25,
+     "2023": 2,
+     "2024": 1,
+     "2026": 5
+    }
+   },
+   "source_tags_top": [
+    [
+     "(no source tag)",
+     652
+    ]
+   ],
+   "queried_utc": "2026-09-29T09:35:58Z",
+   "endpoint": "https://overpass.private.coffee/api/interpreter",
+   "osm_data_as_of": "2026-05-06T03:25:00Z"
+  },
+  "monrovia": {
+   "osm_buildings": 8052,
+   "osm_area_share_of_box": 0.1456,
+   "open_buildings_v3_area_share_of_box": 0.1585,
+   "last_edit": {
+    "min": "2011-02-18",
+    "median": "2014-10-01",
+    "max": "2026-05-13",
+    "by_year": {
+     "2011": 7,
+     "2012": 3,
+     "2013": 10,
+     "2014": 4817,
+     "2015": 18,
+     "2017": 11,
+     "2018": 1834,
+     "2019": 243,
+     "2020": 747,
+     "2021": 10,
+     "2022": 12,
+     "2023": 213,
+     "2024": 86,
+     "2025": 34,
+     "2026": 7
+    }
+   },
+   "source_tags_top": [
+    [
+     "(no source tag)",
+     6428
+    ],
+    [
+     "Open Cities Monrovia - HOT Field Survey",
+     1467
+    ],
+    [
+     "Bing",
+     108
+    ],
+    [
+     "survey & Bing 10-01-20",
+     32
+    ],
+    [
+     "Ministry of Health and National Public Institite of Liberia",
+     10
+    ],
+    [
+     "Ministry of Health and National Public Health Institute",
+     2
+    ],
+    [
+     "bing",
+     2
+    ],
+    [
+     "Website of Church",
+     1
+    ]
+   ],
+   "queried_utc": "2026-09-29T09:37:44Z",
+   "endpoint": "https://overpass.kumi.systems/api/interpreter",
+   "osm_data_as_of": "2026-05-31T22:37:44Z"
+  },
+  "karachi": {
+   "osm_buildings": 19,
+   "osm_area_share_of_box": 0.001,
+   "open_buildings_v3_area_share_of_box": 0.2932,
+   "last_edit": {
+    "min": "2019-05-09",
+    "median": "2019-05-18",
+    "max": "2021-01-13",
+    "by_year": {
+     "2019": 16,
+     "2020": 2,
+     "2021": 1
+    }
+   },
+   "source_tags_top": [
+    [
+     "(no source tag)",
+     19
+    ]
+   ],
+   "queried_utc": "2026-09-29T09:39:18Z",
+   "endpoint": "https://overpass.kumi.systems/api/interpreter",
+   "osm_data_as_of": "2026-07-15T15:22:01Z"
+  },
+  "cape_town": {
+   "osm_buildings": 27588,
+   "osm_area_share_of_box": 0.1234,
+   "open_buildings_v3_area_share_of_box": 0.1859,
+   "last_edit": {
+    "min": "2013-05-18",
+    "median": "2015-11-10",
+    "max": "2026-08-17",
+    "by_year": {
+     "2013": 3,
+     "2015": 22770,
+     "2016": 523,
+     "2017": 88,
+     "2018": 178,
+     "2019": 1089,
+     "2020": 80,
+     "2021": 34,
+     "2022": 12,
+     "2023": 259,
+     "2024": 110,
+     "2025": 2384,
+     "2026": 58
+    }
+   },
+   "source_tags_top": [
+    [
+     "(no source tag)",
+     27565
+    ],
+    [
+     "microsoft/BuildingFootprints",
+     18
+    ],
+    [
+     "Bing",
+     5
+    ]
+   ],
+   "queried_utc": "2026-09-29T09:39:38Z",
+   "endpoint": "https://overpass-api.de/api/interpreter",
+   "osm_data_as_of": "2026-09-29T09:37:40Z"
+  }
+ },
+ "city_datasets": {
+  "rocinha": {
+   "name": "IPP Rio 'Edificacoes (2013)'",
+   "licence": "CC BY 4.0 (data.rio)",
+   "service": "https://services5.arcgis.com/mgrvZxGU0bSJbVld/arcgis/rest/services/Quadras_Lotes_Edificacoes/FeatureServer/0",
+   "features": 23248,
+   "with_geometry": 23248,
+   "area_share_of_box": 0.128,
+   "attributes": {
+    "Tipo": {
+     "A101 - EDIFICACAO": 17441,
+     "A103 - PROJECAO_1": 4136,
+     "A120 - MARQUISE": 449,
+     "A104 - PROJECAO_2": 417,
+     "A122 - CASA_DE_MAQUINA": 255,
+     "A113 - CONSTRUCAO": 224,
+     "A111 - ENTIDADE_ENCOBERTA": 126,
+     "A105 - PROJECAO_3": 88,
+     "A114 - RUINA": 18,
+     "A106 - PROJECAO_4": 18
+    }
+   }
+  },
+  "cape_town": {
+   "name": "City of Cape Town '2D Building Footprints'",
+   "licence": "City of Cape Town open data terms of use",
+   "service": "https://esapqa.capetown.gov.za/agsext/rest/services/Theme_Based/ODP_SPLIT_6/FeatureServer/2",
+   "features": 4789,
+   "with_geometry": 4789,
+   "area_share_of_box": 0.0335,
+   "attributes": {
+    "ACQS_MTHD": {
+     "Photogrammetry": 4789
+    },
+    "ACQS_PRD": {
+     "201701.0": 2947,
+     "201312.0": 1039,
+     "202501.0": 475,
+     "201802.0": 312,
+     "202001.0": 10,
+     "202301.0": 6
+    },
+    "DATA_SRC": {
+     "None": 4789
+    }
+   }
+  }
+ },
+ "open_cities_monrovia": {
+  "imagery_licence": "CC BY 4.0",
+  "catalog": "https://data.source.coop/open-cities/ai-challenge/",
+  "labels": [
+   {
+    "tier": "train_tier_1",
+    "item": "401175-labels",
+    "datetime": "2018-11-21 00:00:00Z",
+    "labels_licence": "ODbL-1.0",
+    "overlap_km2": 0.011,
+    "share_of_box": 0.0012
+   },
+   {
+    "tier": "train_tier_1",
+    "item": "493701-labels",
+    "datetime": "2018-08-21 00:00:00Z",
+    "labels_licence": "ODbL-1.0",
+    "overlap_km2": 0.0,
+    "share_of_box": 0.0
+   },
+   {
+    "tier": "train_tier_1",
+    "item": "207cc7-labels",
+    "datetime": "2018-10-05 00:00:00Z",
+    "labels_licence": "ODbL-1.0",
+    "overlap_km2": 0.1948,
+    "share_of_box": 0.0216
+   },
+   {
+    "tier": "train_tier_1",
+    "item": "f15272-labels",
+    "datetime": "2018-08-22 00:00:00Z",
+    "labels_licence": "ODbL-1.0",
+    "overlap_km2": 0.3482,
+    "share_of_box": 0.0387
+   },
+   {
+    "tier": "train_tier_2",
+    "monrovia": false
+   },
+   {
+    "tier": "test",
+    "monrovia": false
+   }
+  ],
+  "total_overlap_share_of_box": 0.0615
+ }
+}

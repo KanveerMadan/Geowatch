@@ -1454,6 +1454,34 @@ any Stage 0 or Stage 1 result.** The labelling guide is unchanged.
      held-out site fails, or on a pooled or all-sites figure.
   4. **Model and features.** Presumably Stage 0's; not stated.
 
+**Inventory — existing human-digitised building footprints, 2026-09-29
+(report only; nothing is used, and nothing is compared with a model).**
+`experiments/item21_sites/inventory_footprints.py` →
+`results/inventory_footprints.json`. Area share = footprint area inside the
+approved 3 × 3 km box ÷ box area. For reference, Open Buildings v3
+(confidence ≥ 0.7) is shown on the same basis.
+
+| Site | Dataset | Features | Area share | OB v3 share | Dates | Licence | Source / method |
+|---|---|---:|---:|---:|---|---|---|
+| Makoko | OSM buildings | 22,327 | 20.5 % | 22.2 % | last edits: median 2024-05 (77 % in 2024) | ODbL | 99 % no `source` tag; 220 tagged Microsoft footprints (ML imports) |
+| Kibera | OSM buildings (incl. Map Kibera) | 17,614 | 20.3 % | 28.5 % | last edits: median 2018-01; 2016–18 bulk | ODbL | 99 % untagged; 198 Microsoft imports; 10 traced from the Map Kibera 2009 imagery tiles; 1 `map_kibera_trust` |
+| Rocinha | OSM buildings | 4,737 | 5.5 % | 8.0 % | last edits: median 2017-04 | ODbL | untagged; a few GPS / Bing |
+| Rocinha | **IPP Rio "Edificações (2013)"** | 23,248 | **12.8 %** | 8.0 % | 2013 | CC BY 4.0 | municipal photogrammetry (roof/base elevations, height; 75 % "EDIFICACAO", 20 % projections) |
+| Lima | OSM buildings | 652 | 1.0 % | 11.4 % | last edits: median 2020-05 | ODbL | untagged |
+| Monrovia | OSM buildings | 8,052 | 14.6 % | 15.9 % | last edits: median 2014-10; 2014 bulk | ODbL | 1,467 "Open Cities Monrovia – HOT Field Survey"; ~100 Bing |
+| Monrovia | **Open Cities AI Challenge** (tier 1, 3 scenes) | — | overlap **6.2 %** of box | — | drone imagery 2018-08 to 2018-11 | imagery CC BY 4.0; labels ODbL 1.0 | per STAC items: GeoJSON building labels per drone scene, ODbL (digitisation method not verified); no Monrovia in tier 2 |
+| Karachi | OSM buildings | 19 | 0.1 % | 29.3 % | 2019–2021 | ODbL | untagged — **effectively none** |
+| Cape Town | OSM buildings | 27,588 | 12.3 % | 18.6 % | last edits: median 2015-11 (83 % in 2015) | ODbL | untagged; 18 Microsoft |
+| Cape Town | **City of Cape Town "2D Building Footprints"** | 4,789 | **3.4 %** | 18.6 % | acquisition periods 2017-01 (62 %), 2013-12, 2025-01 (475) | City open-data terms | all "Photogrammetry"; **covers a small fraction of the box** — informal structures largely absent |
+
+Notes. OSM gives only the current version's **last-edit** date, not when
+a building was digitised. Where `source` is untagged, the method is
+unknown. Some Overpass answers came from public mirrors that lag the main
+server; each row records its endpoint and data date (Kibera, Lima,
+Monrovia, Karachi: mirror data 2026-05 to 2026-07). Counts can differ from
+the live server: an earlier live query gave Monrovia 8,753 and Karachi 23.
+**Kibera and Rocinha are validation sites:** this is metadata only.
+
 **SAM-assisted tracing — PROPOSAL, 2026-09-29 (guide unchanged; not
 adopted).** Until a §2 amendment is adopted, tiles are traced by hand.
 
