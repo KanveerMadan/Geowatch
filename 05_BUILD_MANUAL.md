@@ -1636,6 +1636,27 @@ labelling begins, and Stage 1 begins labelling. **Whether Stage 1's 8 tiles
 are the §9.3 starting count needs a decision before the first Stage 1 tile
 is labelled.**
 
+**Stage 1 tiles selected — 2026-09-29** (`experiments/item21_sites/stage1_select.py`
+→ `data/stage1/selection.json`; sampler frames in `data/frames/`; both
+written once and tracked). The frozen sampler (seed 20260925) was run on the
+frozen strata and the real-data frame. Its tiles match the frozen strata and
+the change-test population exactly. The frozen change test **dropped none of
+the rank-1 tiles**, so no replacement was needed:
+
+| Site | Stratum | Tile | Rank | Changed cells |
+|---|---|---|---:|---:|
+| Cape Town | dense_informal | `EPSG32734_284000_6234600` | 1 | 0.5 % |
+| Cape Town | formal | `EPSG32734_282400_6233800` | 1 | 0.0 % |
+| Karachi | dense_informal | `EPSG32642_297800_2761000` | 1 | 0.0 % |
+| Karachi | formal | `EPSG32642_297600_2761800` | 1 | 0.2 % |
+| Monrovia | dense_informal | `EPSG32629_301000_699800` | 1 | 0.0 % |
+| Monrovia | formal | `EPSG32629_300800_699600` | 1 | 0.0 % |
+| Lima | mixed | `EPSG32718_290000_8659000` | 1 | 0.0 % |
+| Lima | fringe | `EPSG32718_290600_8659200` | 1 | 0.0 % |
+
+(Rank 1 = first in the sampler order, `rank_in_stratum == 0`. Lima's change
+test is low-power.)
+
 **Validation additions.**
 
 - **Shadow accuracy** is measured in the **same hand-digitisation pass** at

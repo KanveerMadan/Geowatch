@@ -1,0 +1,296 @@
+{
+  "run_metadata": {
+    "tile_sampler_seed": 20260925,
+    "stratum_assignment": "plurality",
+    "tile_size_m": 200,
+    "guide_version": "1.5",
+    "labelling_config_sha256": "7505623d801288e687eafb14a56ab41286ee350234460621a0f37dc0b347080e",
+    "git_head": "f89c41381ed1f8370729badb83b0956e6489c306",
+    "created_utc": "2026-09-29T10:26:37.392559+00:00"
+  },
+  "frame": {
+    "site": "lima",
+    "crs": "EPSG:32718",
+    "tile_size_m": 200,
+    "frame_area_m2": 2156525.0,
+    "random_seed": 20260925,
+    "stratum_assignment": "plurality",
+    "tiles": [
+      {
+        "tile_id": "EPSG32718_289200_8657200",
+        "x0": 289200,
+        "y1": 8657200,
+        "stratum": "formal",
+        "stratum_shares": {
+          "formal": 1.0
+        },
+        "rank_in_stratum": 0
+      },
+      {
+        "tile_id": "EPSG32718_290600_8659200",
+        "x0": 290600,
+        "y1": 8659200,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 0
+      },
+      {
+        "tile_id": "EPSG32718_289600_8656800",
+        "x0": 289600,
+        "y1": 8656800,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 1
+      },
+      {
+        "tile_id": "EPSG32718_289800_8657000",
+        "x0": 289800,
+        "y1": 8657000,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 2
+      },
+      {
+        "tile_id": "EPSG32718_290200_8659200",
+        "x0": 290200,
+        "y1": 8659200,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 3
+      },
+      {
+        "tile_id": "EPSG32718_289600_8657000",
+        "x0": 289600,
+        "y1": 8657000,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 4
+      },
+      {
+        "tile_id": "EPSG32718_289400_8657400",
+        "x0": 289400,
+        "y1": 8657400,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 5
+      },
+      {
+        "tile_id": "EPSG32718_290400_8659200",
+        "x0": 290400,
+        "y1": 8659200,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 6
+      },
+      {
+        "tile_id": "EPSG32718_290400_8658600",
+        "x0": 290400,
+        "y1": 8658600,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 7
+      },
+      {
+        "tile_id": "EPSG32718_289400_8657000",
+        "x0": 289400,
+        "y1": 8657000,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 8
+      },
+      {
+        "tile_id": "EPSG32718_290600_8658600",
+        "x0": 290600,
+        "y1": 8658600,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 9
+      },
+      {
+        "tile_id": "EPSG32718_290600_8659000",
+        "x0": 290600,
+        "y1": 8659000,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 10
+      },
+      {
+        "tile_id": "EPSG32718_290800_8658800",
+        "x0": 290800,
+        "y1": 8658800,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 11
+      },
+      {
+        "tile_id": "EPSG32718_290000_8659200",
+        "x0": 290000,
+        "y1": 8659200,
+        "stratum": "fringe",
+        "stratum_shares": {
+          "fringe": 1.0
+        },
+        "rank_in_stratum": 12
+      },
+      {
+        "tile_id": "EPSG32718_290000_8659000",
+        "x0": 290000,
+        "y1": 8659000,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 0
+      },
+      {
+        "tile_id": "EPSG32718_289800_8658800",
+        "x0": 289800,
+        "y1": 8658800,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 1
+      },
+      {
+        "tile_id": "EPSG32718_290200_8658800",
+        "x0": 290200,
+        "y1": 8658800,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 2
+      },
+      {
+        "tile_id": "EPSG32718_290000_8658600",
+        "x0": 290000,
+        "y1": 8658600,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 3
+      },
+      {
+        "tile_id": "EPSG32718_290200_8658600",
+        "x0": 290200,
+        "y1": 8658600,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 4
+      },
+      {
+        "tile_id": "EPSG32718_290400_8659000",
+        "x0": 290400,
+        "y1": 8659000,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 5
+      },
+      {
+        "tile_id": "EPSG32718_290600_8658800",
+        "x0": 290600,
+        "y1": 8658800,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 6
+      },
+      {
+        "tile_id": "EPSG32718_290800_8659000",
+        "x0": 290800,
+        "y1": 8659000,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 7
+      },
+      {
+        "tile_id": "EPSG32718_289400_8657200",
+        "x0": 289400,
+        "y1": 8657200,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 8
+      },
+      {
+        "tile_id": "EPSG32718_290000_8658800",
+        "x0": 290000,
+        "y1": 8658800,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 9
+      },
+      {
+        "tile_id": "EPSG32718_290400_8658800",
+        "x0": 290400,
+        "y1": 8658800,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 10
+      },
+      {
+        "tile_id": "EPSG32718_289600_8657200",
+        "x0": 289600,
+        "y1": 8657200,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 11
+      },
+      {
+        "tile_id": "EPSG32718_290200_8659000",
+        "x0": 290200,
+        "y1": 8659000,
+        "stratum": "mixed",
+        "stratum_shares": {
+          "mixed": 1.0
+        },
+        "rank_in_stratum": 12
+      }
+    ],
+    "ineligible": {
+      "outside_frame": 165,
+      "no_stratum": 4,
+      "tied_strata": 0
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+ "decided": "2026-09-29",
+ "guide_version": "1.5",
+ "labelling_config_sha256": "7505623d801288e687eafb14a56ab41286ee350234460621a0f37dc0b347080e",
+ "git_head": "f89c41381ed1f8370729badb83b0956e6489c306",
+ "change_test_source": "experiments/item21_sites/results/pilot_a_detrended.json",
+ "sites": {
+  "cape_town": {
+   "site": "cape_town",
+   "random_seed": 20260925,
+   "frame_file": "data/frames/cape_town_frame.json",
+   "strata": {
+    "dense_informal": {
+     "eligible": 25,
+     "chosen": {
+      "tile_id": "EPSG32734_284000_6234600",
+      "x0": 284000,
+      "y1": 6234600,
+      "stratum": "dense_informal",
+      "rank_in_stratum": 0,
+      "change_test": {
+       "share": 0.005,
+       "changed": 2,
+       "evaluable": 400,
+       "dropped": false
+      }
+     },
+     "dropped_by_change_test": []
+    },
+    "formal": {
+     "eligible": 38,
+     "chosen": {
+      "tile_id": "EPSG32734_282400_6233800",
+      "x0": 282400,
+      "y1": 6233800,
+      "stratum": "formal",
+      "rank_in_stratum": 0,
+      "change_test": {
+       "share": 0.0,
+       "changed": 0,
+       "evaluable": 400,
+       "dropped": false
+      }
+     },
+     "dropped_by_change_test": []
+    }
+   }
+  },
+  "karachi": {
+   "site": "karachi",
+   "random_seed": 20260925,
+   "frame_file": "data/frames/karachi_frame.json",
+   "strata": {
+    "dense_informal": {
+     "eligible": 32,
+     "chosen": {
+      "tile_id": "EPSG32642_297800_2761000",
+      "x0": 297800,
+      "y1": 2761000,
+      "stratum": "dense_informal",
+      "rank_in_stratum": 0,
+      "change_test": {
+       "share": 0.0,
+       "changed": 0,
+       "evaluable": 400,
+       "dropped": false
+      }
+     },
+     "dropped_by_change_test": []
+    },
+    "formal": {
+     "eligible": 75,
+     "chosen": {
+      "tile_id": "EPSG32642_297600_2761800",
+      "x0": 297600,
+      "y1": 2761800,
+      "stratum": "formal",
+      "rank_in_stratum": 0,
+      "change_test": {
+       "share": 0.0025,
+       "changed": 1,
+       "evaluable": 400,
+       "dropped": false
+      }
+     },
+     "dropped_by_change_test": []
+    }
+   }
+  },
+  "monrovia": {
+   "site": "monrovia",
+   "random_seed": 20260925,
+   "frame_file": "data/frames/monrovia_frame.json",
+   "strata": {
+    "dense_informal": {
+     "eligible": 23,
+     "chosen": {
+      "tile_id": "EPSG32629_301000_699800",
+      "x0": 301000,
+      "y1": 699800,
+      "stratum": "dense_informal",
+      "rank_in_stratum": 0,
+      "change_test": {
+       "share": 0.0,
+       "changed": 0,
+       "evaluable": 400,
+       "dropped": false
+      }
+     },
+     "dropped_by_change_test": []
+    },
+    "formal": {
+     "eligible": 27,
+     "chosen": {
+      "tile_id": "EPSG32629_300800_699600",
+      "x0": 300800,
+      "y1": 699600,
+      "stratum": "formal",
+      "rank_in_stratum": 0,
+      "change_test": {
+       "share": 0.0,
+       "changed": 0,
+       "evaluable": 400,
+       "dropped": false
+      }
+     },
+     "dropped_by_change_test": []
+    }
+   }
+  },
+  "lima": {
+   "site": "lima",
+   "random_seed": 20260925,
+   "frame_file": "data/frames/lima_frame.json",
+   "strata": {
+    "mixed": {
+     "eligible": 13,
+     "chosen": {
+      "tile_id": "EPSG32718_290000_8659000",
+      "x0": 290000,
+      "y1": 8659000,
+      "stratum": "mixed",
+      "rank_in_stratum": 0,
+      "change_test": {
+       "share": 0.0,
+       "changed": 0,
+       "evaluable": 400,
+       "dropped": false
+      }
+     },
+     "dropped_by_change_test": []
+    },
+    "fringe": {
+     "eligible": 13,
+     "chosen": {
+      "tile_id": "EPSG32718_290600_8659200",
+      "x0": 290600,
+      "y1": 8659200,
+      "stratum": "fringe",
+      "rank_in_stratum": 0,
+      "change_test": {
+       "share": 0.0,
+       "changed": 0,
+       "evaluable": 400,
+       "dropped": false
+      }
+     },
+     "dropped_by_change_test": []
+    }
+   }
+  }
+ }
+}

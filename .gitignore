@@ -53,6 +53,14 @@ data/strata_packages/*/*
 data/practice_tiles/*/*
 !data/practice_tiles/*/labels.gpkg
 !data/practice_tiles/*/metadata.json
+# Item 21 Stage 1: the frozen sampler frames and the selection record are
+# fixed records (written once, never overwritten), so they are tracked.
+!data/frames/
+data/frames/*
+!data/frames/*_frame.json
+!data/stage1/
+data/stage1/*
+!data/stage1/selection.json
 models/
 cache/
 
