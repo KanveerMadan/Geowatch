@@ -31,25 +31,10 @@ import sys
 # same logic annotate.py and the notebook will use — no reimplementation
 # drift between "what we check" and "what we actually use".
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-try:
-    from ingestion.segmentation import decode_mask_rle
-except ImportError:
-    print("WARNING: could not import decode_mask_rle from ingestion.segmentation — "
-          "falling back to a local copy. Verify this matches your actual encoder.")
-
-    def decode_mask_rle(rle: dict):
-        import numpy as np
-        h, w = rle["size"]
-        counts = rle["counts"]
-        flat = np.zeros(h * w, dtype=bool)
-        idx = 0
-        val = False
-        for c in counts:
-            if val:
-                flat[idx:idx + c] = True
-            idx += c
-            val = not val
-        return flat.reshape(w, h).T
+# Item 57: no local fallback. The fallback that used to sit here decoded
+# with a different layout ((w, h).T) behind a print-only warning, so a
+# failed import silently switched the verifier to a different decoder.
+from ingestion.segmentation import decode_mask_rle
 
 
 def verify_run(run_dir: str) -> dict:

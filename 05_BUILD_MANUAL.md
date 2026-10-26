@@ -2364,13 +2364,35 @@ newest-by-mtime run.
 result shape. If one is ever the newest, `/api/demo` would serve it.
 `/api/runs` still lists in reverse string order.
 
-### 57. Delete dead code
+### 57. Delete dead code ✅ *(partial: two of six targets kept, see below)*
 `resnet_classifier.py`, `resnet_model.py`, `classifier.py`,
 `run_event_hazard_analysis`, the duplicate `decode_mask_rle` in
 `verify_masks.py`, the duplicated `GeoWatchResNetSeg`.
 
 **Removes roughly a dozen Moderates at once**, and removes the trap where the
 correct provenance check lives in a file nothing imports (C10's root cause).
+
+**Built.** Every target was grepped for importers repo-wide first, and on
+every other branch (none imports a deleted name).
+
+| target | result |
+|---|---|
+| `ingestion/resnet_classifier.py` | **deleted**: no importer |
+| `ingestion/classifier.py` | **deleted**, together with root `test_classifier.py`, its only importer. That is a hard-coded RemoteCLIP smoke script outside `tests/` and never collected, which the original audit had already named as the sole importer |
+| `run_event_hazard_analysis` | **deleted** from `pipeline.py`, with the five imports only it used |
+| `verify_masks.py` fallback `decode_mask_rle` | **deleted**. It decoded with a different layout (`(w, h).T`) behind a print-only warning. The import of `segmentation.decode_mask_rle` is now unconditional |
+| `ingestion/resnet_model.py` | **KEPT**: live importers are `tests/test_encoder_band_contract.py` and `experiments/band_reflectance/{run_probe,fidelity_run,run_comparison}.py` |
+| duplicated `GeoWatchResNetSeg` | **KEPT**: the two are not duplicates. `resnet_model.py`'s loads pretrained SSL4EO weights and runs `assert_encoder_band_contract()`. `inference.py`'s uses `weights=None` and runs no contract check. Merging them changes behaviour on one side, so it is a design decision, not a deletion |
+
+`tests/test_dead_code_removed.py`, 12 tests: **6 failed, 6 passed before** (the
+six that pass are the "live modules still import" safety net) and **12 passed
+after**. `test_caat_provenance.py::test_the_dead_duplicate_validator_is_deleted`
+read `resnet_classifier.py` directly. It was restated to keep its property
+(exactly one `load_production_model`, in `inference.py`) without the file.
+
+*Left dead, outside the list:* with `run_event_hazard_analysis` gone,
+`ingestion/event_hazard.py` and `susceptibility/event_hazard.py` have no entry
+point. The Part 4 validation mandate still names `event_hazard.py`.
 
 ### 58. Frontend as pure renderer
 Renders `result.json` and computes nothing. Remove: hardcoded category lists,

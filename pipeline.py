@@ -23,10 +23,6 @@ from susceptibility.flash_flood import compute_flash_flood_susceptibility
 from susceptibility.waterlogging import compute_waterlogging_susceptibility
 from ingestion.inundation import get_permanent_water_context, get_sentinel1_change_context
 from perception.observed_inundation import compute_observed_inundation
-from ingestion.event_hazard import get_event_rainfall, get_discharge_proxy
-from susceptibility.event_hazard import (
-    compute_pluvial_event_hazard, compute_fluvial_event_hazard, compute_coastal_event_hazard,
-)
 from ingestion.exposure_sources import (
     get_population_context, get_builtup_reference, get_osm_road_length, get_osm_facilities,
 )
@@ -844,93 +840,6 @@ def run_inundation_analysis(
 
     return result
 
-def run_event_hazard_analysis(
-    west: float, south: float, east: float, north: float,
-    event_start: str, event_end: str,
-    aoi_label: str = "aoi",
-    output_dir: str = "data/pipeline_runs",
-) -> dict:
-    """
-    Phase 9: event hazard -- conditions susceptibility (from a prior
-    run_pipeline() call) on real event forcing. Requires a susceptibility
-    result already computed over a matching or reasonably contemporaneous
-    period -- pass it in explicitly rather than re-running the full
-    land-cover pipeline here, keeping this function's cost proportional
-    to what it actually adds (rainfall/discharge-proxy fetch + gating),
-    not a full SAM+inference re-run.
-    """
-    run_id = f"{aoi_label}_eventhazard_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-    run_dir = os.path.join(output_dir, run_id)
-    os.makedirs(run_dir, exist_ok=True)
-
-    print(f"\n{'='*60}")
-    print(f"GeoWatch Event-Hazard Run: {run_id}")
-    print(f"AOI: ({west}, {south}) to ({east}, {north})")
-    print(f"Event: {event_start} to {event_end}")
-    print(f"{'='*60}\n")
-
-    initialize_gee()
-    aoi = aoi_from_bbox(west, south, east, north)
-
-    print("[1/2] Fetching event forcing data...")
-    event_rainfall = get_event_rainfall(west, south, east, north, event_start, event_end)
-    discharge_proxy = get_discharge_proxy(west, south, east, north, event_start, event_end)
-
-    print("\n[2/2] Computing susceptibility baseline for gating...")
-    relative_elevation = compute_relative_elevation_proxy(west, south, east, north)
-    hand_context = get_merit_hand_context(west, south, east, north)
-    rainfall_climatology = get_rainfall_climatology(aoi)
-
-    fluvial_susceptibility = compute_fluvial_susceptibility(hand_context)
-    coastal_context = get_coastline_context(west, south, east, north)
-    fabdem_elevation = get_fabdem_elevation_stats(west, south, east, north)
-    coastal_susceptibility = compute_coastal_susceptibility(coastal_context, fabdem_elevation)
-
-    # NOTE: pluvial susceptibility needs a real landcover_map + waterway
-    # distance map, which only exist from a full run_pipeline() call.
-    # Passed as insufficient_evidence here since this standalone function
-    # doesn't re-run segmentation/inference -- callers wanting pluvial
-    # event hazard should compute it by calling
-    # compute_pluvial_event_hazard() directly with a prior run_pipeline()
-    # result's susceptibility.pluvial block.
-    pluvial_stub = {"status": "insufficient_evidence",
-                     "reason": "Requires a prior run_pipeline() landcover result -- "
-                               "call compute_pluvial_event_hazard() directly with it."}
-
-    pluvial_hazard = compute_pluvial_event_hazard(pluvial_stub, event_rainfall)
-    fluvial_hazard = compute_fluvial_event_hazard(fluvial_susceptibility, discharge_proxy)
-    coastal_hazard = compute_coastal_event_hazard(coastal_susceptibility)
-
-    result = {
-        "run_id": run_id,
-        "aoi": {"west": west, "south": south, "east": east, "north": north},
-        "event_period": {"start": event_start, "end": event_end},
-        "status": "complete",
-        "schema_version": "2.0",
-        "event_forcing": {
-            "rainfall": event_rainfall,
-            "discharge_proxy": discharge_proxy,
-        },
-        "event_hazard": {
-            "pluvial": pluvial_hazard,
-            "fluvial": fluvial_hazard,
-            "coastal": coastal_hazard,
-        },
-    }
-
-    output_path = os.path.join(run_dir, "event_hazard_result.json")
-    with open(output_path, "w") as f:
-        json.dump(result, f, indent=2)
-
-    print(f"\n{'='*60}")
-    print(f"Event-hazard analysis complete. Result saved: {output_path}")
-    print(f"Event rainfall: {event_rainfall.get('event_total_mm')}mm (status={event_rainfall.get('status')})")
-    print(f"Discharge proxy (NOT real discharge): {discharge_proxy.get('catchment_rainfall_mm')}mm (status={discharge_proxy.get('status')})")
-    print(f"Fluvial event hazard: {fluvial_hazard.get('aoi_mean_class')} (score={fluvial_hazard.get('aoi_mean_score')}, status={fluvial_hazard.get('status')})")
-    print(f"Coastal event hazard: {coastal_hazard.get('status')}")
-    print(f"{'='*60}\n")
-
-    return result
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="GeoWatch Copilot — Phase 1 pipeline")
