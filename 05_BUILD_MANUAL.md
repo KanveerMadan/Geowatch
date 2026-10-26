@@ -2230,9 +2230,24 @@ distinguishable downstream.
 
 *Four items. Individually cheap, collectively substantial.*
 
-### 56. C17 — sort by timestamp
+### 56. C17 — sort by timestamp ✅
 Parse the timestamp; do not sort strings. **And exclude `*_test_*` runs from the
 demo endpoint entirely.**
+
+**Built.** `api.get_latest_run` orders candidates by `run_dir_timestamp()`, the
+parsed trailing `_%Y%m%d_%H%M%S` that `pipeline.py` writes. It drops every
+`*_test_*` directory before ordering, and drops directories with no parseable
+timestamp instead of guessing a position for them.
+`tests/test_latest_run_ordering.py`, 12 tests: **12 failed before, 12 passed
+after**. It rebuilds the ledger's exact three names. Against the real
+`data/pipeline_runs/` the demo now selects
+`dharavi_phase11_postfix_20260807_125913`, which is the ledger's
+newest-by-mtime run.
+
+*Not changed, outside the item:* `startswith(aoi_label)` still admits
+`dharavi_*_inundation_*` and `*_eventhazard_*` runs, which have a different
+result shape. If one is ever the newest, `/api/demo` would serve it.
+`/api/runs` still lists in reverse string order.
 
 ### 57. Delete dead code
 `resnet_classifier.py`, `resnet_model.py`, `classifier.py`,
