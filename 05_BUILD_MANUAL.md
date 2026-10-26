@@ -2191,12 +2191,48 @@ Two code paths that were never joined. Then feed `observation_quality` into
 independently as originally ordered. Std-dev is maximally sensitive to
 exactly the cloud-leakage outliers this fix prevents.
 
-### 52. C2 — validate the export; reconcile the size gap
+### 52. C2 — validate the export; reconcile the size gap ✅
 Assert dimensions, band count, and CRS against what was requested; fail loudly on
 mismatch. Then reconcile `MAX_AOI_AREA_KM2 = 100.0` against `tiler.py`'s
 documented "< 5 sq km" — **a 20× gap documented in one file and contradicted in
 another.** Raise the tiler's real capability or lower the API cap; do not leave
 both.
+
+**Built.** `tiler.validate_export()` checks the downloaded file for **exact**
+width, height, band count and CRS. The expected values are the
+`_compute_export_grid` grid, `image.bandNames()` and `EXPORT_CRS = "EPSG:4326"`.
+It raises `ExportValidationError` with every mismatch listed. On failure,
+`export_image_local` deletes the bad file so no later step or re-run can pick
+it up. Exact equality is safe here: before building, `_compute_export_grid`
+was checked against every real `raw.tif` with a bbox `aoi`, and it reproduced
+**137 of 137** exactly.
+
+**The size gap: the tiler's docstring was the wrong side.** Measured live on
+real Sentinel-2 composites centred on Dharavi. The pass bar was fixed before
+running: export returns, `validate_export` passes, tiling completes.
+
+| AOI | grid | chunks | time | result |
+|---:|---|---:|---:|---|
+| 99.5 km² | 1059×1001 | 2 | 53 s | PASS |
+| 397.9 km² | 2117×2002 | 6 | 188 s | PASS |
+| 895.2 km² | 3175×3002 | 12 | 354 s | PASS |
+
+The chunked export removed the request-size limit that the "< 5 sq km" note
+and the old 943 km² failure reflected. The note is replaced, and the measured
+figure is now `tiler.MEASURED_MAX_EXPORT_AREA_KM2 = 895.2`. **It is a lower
+bound, because no failure was reached.** It covers export and tiling only, not
+SAM or inference memory downstream. `MAX_AOI_AREA_KM2` stays at 100 because
+that downstream cost was not measured. A test asserts the API cap never
+exceeds the measured tiler figure, so there is one number, not two.
+
+`tests/test_export_validation.py`, 9 tests: **8 failed, 1 passed before** (the
+guard that a correct export still succeeds) and **9 passed after**.
+
+*Observed, not changed:* at 398 and 895 km², the grid computed from the
+client bbox is one row short of the grid computed from GEE's
+`aoi.bounds()`. The export follows GEE's bounds, and validation checks
+against that same grid, so the two agree. Any consumer that predicts raster
+size from the request bbox alone will be off by one row at those sizes.
 
 ### 53. C8 — INFORM validation + frontend guard
 Validate numeric and in-range at read time; an invalid cell yields

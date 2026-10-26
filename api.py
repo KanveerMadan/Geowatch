@@ -163,6 +163,11 @@ WATCHED_AOIS = [
 # the AOI sat. Fixed via pyproj.Geod's geodesic polygon area, which is
 # latitude-correct everywhere.
 MAX_AOI_AREA_KM2 = 100.0  # roughly ~10km x 10km, matches the original intent
+# C2 / item 52: this cap is the ONE AOI size limit. tiler.py used to document
+# "< 5 sq km", 20x below it. Measured live, the tiler exports and validates at
+# least ingestion.tiler.MEASURED_MAX_EXPORT_AREA_KM2 (895 km²), so the
+# tiler's docstring was the wrong side and it was corrected. The cap stays at
+# 100 because the downstream pipeline above that size was not measured.
 
 # ── AOI label validation — AUDIT_FINDINGS_V2 C16 (path traversal) ──
 # `aoi_label` flows from the request body into run_pipeline() /
