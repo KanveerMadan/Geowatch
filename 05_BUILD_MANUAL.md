@@ -2234,11 +2234,45 @@ client bbox is one row short of the grid computed from GEE's
 against that same grid, so the two agree. Any consumer that predicts raster
 size from the request bbox alone will be off by one row at those sizes.
 
-### 53. C8 — INFORM validation + frontend guard
+### 53. C8 — INFORM validation + frontend guard ✅
 Validate numeric and in-range at read time; an invalid cell yields
 `status: "unavailable"`, not `"available"`. **Use the `PCT_MISSING`/`RELIABILITY`
 columns that are already read and currently unused.** And guard the frontend
 render — `App.jsx:568/572` currently renders `raw_score` with no type check.
+
+**Built.** `vulnerability_sources.INFORM_VALID_RANGES` validates all four
+values at read time: both scores, `Lack of Reliability (*)` and
+`% of Missing Indicators`. Each must be a finite number, not bool and not
+text, and inside **the file's own range**. Both scores and reliability are
+0–10 (from the file's units row). Missing indicators is 0–1, because the
+cells use the `0%` number format and so store a fraction. Any invalid cell
+makes the lookup `unavailable`, and the reason names each bad column. The
+two quality columns are now required columns too.
+
+**Reliability is validated and reported, not used as a quality cut-off.**
+INFORM publishes no global threshold for its Lack of Reliability index, so
+none was invented here. Whether a high-but-valid score should suppress the
+output is a decision, and it is not made.
+
+**On the real file** (`INFORM_Risk_2026_v072.xlsx`), **190 of 191 rows
+pass.** The failure is real data: **Tajikistan's reliability cell is the Excel
+error string `'#REF!'`**, so TJK is now `unavailable`. Before this change it was
+`available`, with `'#REF!'` passed through as `lack_of_reliability_score`.
+
+Frontend: the ledger's `App.jsx:568/572` are now at 964/968. All four values go
+through `geowatch-ui/src/inform.js`, a type guard that shows `—` for anything
+that is not a finite number and drops the `/ 10` unit when the value is
+missing. It deliberately has no 0–10 range check, because that would be a
+second copy of the backend rule (the C31 pattern).
+
+Tests: `tests/test_inform_validation.py`, 17 tests: **16 failed, 1 passed
+before** (the valid-row guard) and **17 passed after**.
+`tests/test_inform_ui.mjs`, 12 tests: **0 passed before** (the module did not
+exist) and **12 passed after**.
+
+*Live check:* the JRC results page now offers `INFORM_Risk_Mid_2026_v073.xlsx`,
+so the repo's v072 is one release behind. The source was not switched under
+this item.
 
 ---
 

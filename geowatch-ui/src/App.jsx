@@ -5,6 +5,8 @@ import {
   TRUST_META, blockFlag, isFlagged, reportApplicability, mechanismRows,
 } from './applicability'
 import { categoryColor, legendEntries } from './palette'
+// Build item 53 (C8): INFORM values pass a type guard before display.
+import { formatInformNumber, formatInformFraction, MISSING } from './inform'
 // Build item 43: API base and credentials now live in ./api, so every request
 // is authenticated by construction rather than by remembering. Item 70 put an
 // X-API-Key check at the perimeter; this frontend sent no header on any call,
@@ -961,18 +963,18 @@ function SecVulnerability({ result }) {
             </Explain>
             <div style={{ display: 'flex', gap: 28, marginTop: 6 }}>
               <div>
-                <Metric label="Vulnerability" value={v.dimensions?.vulnerability?.raw_score} unit="/ 10" accent={C.violet} big />
+                <Metric label="Vulnerability" value={formatInformNumber(v.dimensions?.vulnerability?.raw_score)} unit={formatInformNumber(v.dimensions?.vulnerability?.raw_score) === MISSING ? null : '/ 10'} accent={C.violet} big />
                 <Small style={{ marginTop: 6, maxWidth: 220 }}>How exposed the population is to hardship if a disaster hits. Higher means more vulnerable.</Small>
               </div>
               <div>
-                <Metric label="Lack of coping capacity" value={v.dimensions?.lack_of_coping_capacity?.raw_score} unit="/ 10" accent={C.violet} big />
+                <Metric label="Lack of coping capacity" value={formatInformNumber(v.dimensions?.lack_of_coping_capacity?.raw_score)} unit={formatInformNumber(v.dimensions?.lack_of_coping_capacity?.raw_score) === MISSING ? null : '/ 10'} accent={C.violet} big />
                 <Small style={{ marginTop: 6, maxWidth: 220 }}>How much difficulty the country would have responding to and recovering from a disaster. Higher means less capacity to cope.</Small>
               </div>
             </div>
             <Disclosure label="Show data quality details">
               <div style={{ display: 'flex', gap: 20 }}>
-                <Metric label="Reliability score" value={v.data_quality?.lack_of_reliability_score?.toFixed?.(2) ?? '—'} />
-                <Metric label="Missing indicators" value={v.data_quality?.pct_missing_indicators != null ? fmtPct(v.data_quality.pct_missing_indicators * 100) : '—'} />
+                <Metric label="Reliability score" value={formatInformNumber(v.data_quality?.lack_of_reliability_score, 2)} />
+                <Metric label="Missing indicators" value={formatInformFraction(v.data_quality?.pct_missing_indicators)} />
               </div>
               <Small style={{ marginTop: 8 }}>Source: {v.source}, {v.source_edition} edition.</Small>
             </Disclosure>
