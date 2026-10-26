@@ -2264,9 +2264,22 @@ Q1-2024 date window, and **the `?? 291 / ?? 257` fallback — verified as exactl
 Dharavi's `tile_dimensions`. If the field were ever missing, every AOI worldwide
 would be projected through Dharavi's grid, silently.**
 
-### 59. `batch_run_log.json` — append, don't truncate
+### 59. `batch_run_log.json` — append, don't truncate ✅
 Each invocation currently truncates; the 11-city history was clobbered by a later
 single-city run.
+
+**Built.** `run_all_cities.run_batch` reads the existing log before any city
+runs. It writes `history + this batch` after each city, through a temp file and
+`os.replace`. Each entry carries a `batch_id`, so invocations can be told apart,
+and an `exception` entry also records `exception_class`. If an existing log
+cannot be parsed as a JSON list, the run **raises before running anything**.
+Treating that file as empty would overwrite it, which is the defect itself.
+`tests/test_batch_run_log_append.py`, 6 tests: **5 failed, 1 passed before**
+(the guard that the return value stays per-batch) and **6 passed after**.
+
+*The lost history is not recovered.* The on-disk log still holds the single
+`nusantara` entry that clobbered it. The earlier entries are not in git
+(`data/pipeline_runs/` is untracked), so they are gone.
 
 ---
 
