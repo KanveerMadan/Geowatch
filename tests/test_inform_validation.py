@@ -97,10 +97,10 @@ def test_nan_is_invalid():
     assert vs._invalid_inform_value(math.nan, 0.0, 10.0) is not None
 
 
-def test_missing_quality_column_is_unavailable(inform_file):
-    """Without the reliability column there is nothing to qualify the score
-    with, so it cannot be served as available."""
+def test_missing_quality_column_is_never_available(inform_file):
+    """Without the quality columns there is nothing to qualify the score
+    with, so it cannot be served as available. Since items 54/55 a changed
+    header row is a broken integration and raises, naming the column."""
     inform_file(GOOD[:4], headers=HEADERS[:4])
-    r = vs.get_inform_vulnerability_context("IND")
-    assert r["status"] == "unavailable"
-    assert K.INFORM_COL_PCT_MISSING in r["reason"]
+    with pytest.raises(KeyError, match=K.INFORM_COL_PCT_MISSING.replace("%", ".")):
+        vs.get_inform_vulnerability_context("IND")

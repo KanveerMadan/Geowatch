@@ -15,20 +15,15 @@ DHARAVI_BBOX = dict(west=72.836, south=19.037, east=72.862, north=19.06)
 
 class TestMeritHandContext:
 
-    def test_gee_failure_returns_unavailable_not_fabricated(self):
-        """If MERIT Hydro/GEE call fails, status must be 'unavailable' and
-        every numeric field must be None -- never a substituted value."""
+    def test_gee_failure_raises_not_fabricated(self):
+        """If the MERIT Hydro/GEE call fails, it raises -- never a
+        substituted value. (Items 54/55: this used to assert an
+        "unavailable" dict, which a GEE failure no longer produces; genuine
+        no-data is covered in tests/test_error_convention.py.)"""
         with patch("ingestion.hydrology.initialize_gee",
                    side_effect=Exception("simulated GEE failure")):
-            result = get_merit_hand_context(**DHARAVI_BBOX)
-
-        assert result["status"] == "unavailable"
-        assert result["mean_hnd_m"] is None
-        assert result["min_hnd_m"] is None
-        assert result["max_hnd_m"] is None
-        assert result["max_upstream_area_km2"] is None
-        assert result["river_connectivity"] is None
-        assert result["error"] is not None
+            with pytest.raises(Exception, match="simulated GEE failure"):
+                get_merit_hand_context(**DHARAVI_BBOX)
 
     def test_success_path_returns_true_hand_flags(self):
         """When available, must be explicitly labeled true_hand=True and
@@ -100,14 +95,12 @@ class TestMeritHandContext:
 
 class TestFabdemElevationStats:
 
-    def test_gee_failure_returns_unavailable_not_fabricated(self):
+    def test_gee_failure_raises_not_fabricated(self):
+        """Items 54/55: see the MERIT test above."""
         with patch("ingestion.hydrology.initialize_gee",
                    side_effect=Exception("simulated GEE failure")):
-            result = get_fabdem_elevation_stats(**DHARAVI_BBOX)
-
-        assert result["status"] == "unavailable"
-        assert result["mean_elevation_m"] is None
-        assert result["error"] is not None
+            with pytest.raises(Exception, match="simulated GEE failure"):
+                get_fabdem_elevation_stats(**DHARAVI_BBOX)
 
     def test_success_path_reports_bare_earth_flags(self):
         fake_stats = {"b1_mean": 4.859, "b1_min": 0.0, "b1_max": 13.1}

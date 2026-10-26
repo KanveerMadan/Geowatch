@@ -2280,19 +2280,64 @@ this item.
 
 *Two items.*
 
-### 54. C18 — in-band errors detected in-band
+### 54. C18 — in-band errors detected in-band ✅
 Pick one convention and use it consistently across the boundary. **Recommended:**
 raise on programmer error and integration failure; return status dicts only for
 genuine data absence. Then make the scheduler check the thing that is actually
 signalled.
 
-### 55. Distinguish exception classes
+### 55. Distinguish exception classes ✅
 Catch specific types. Where a broad catch is genuinely right, **record the
 exception class in the output** so "broken integration" and "no data here" are
 distinguishable downstream.
 
 *This is the shared root cause behind several individual findings across
 `hydrology.py`, `coastal.py`, `rainfall.py`, and `vulnerability_sources.py`.*
+
+**Built, as one change, because the root cause is shared.** The convention is
+written once, in `ingestion/errors.py`:
+
+- **Raise** on integration and programmer errors. This covers GEE errors,
+  network failures, typos, a matched country boundary with no `country_co`
+  (schema change), the INFORM file not installed, a missing INFORM sheet, and
+  a changed INFORM header row.
+- **`status: "unavailable"` means genuine no-data only.** That covers a
+  reduction that returned no value, no CHIRPS images, a centroid over ocean,
+  an ISO2 code pycountry cannot resolve, an ISO3 not in INFORM, and an INFORM
+  cell that fails item 53's validation. Each such dict is produced by
+  catching `NoDataError` and nothing else, and it carries
+  `exception_class: "NoDataError"`. The old field shapes are kept, plus `error`.
+- All seven `except Exception` blocks in the four modules are gone.
+  `coastal.py` has no genuine no-data case ("far inland" is a real
+  `available` result), so it has no catch at all.
+- **Broad catches remain only where they are right**, and each records the
+  class. The scheduler loop and the `run_all_cities` batch loop do this so
+  one city cannot stop the rest. The `/api/analyze` and
+  `/api/analyze_inundation` 500s now read `EEException: …` rather than a bare
+  message.
+- **C18: the scheduler checks what is signalled.** `refresh_all_watched_aois`
+  checks both the raise and the returned `status`. It prints "refreshed OK"
+  only for `complete`, and returns one outcome per AOI
+  (`complete` / `failed` / `exception` + class).
+
+**Behaviour change, stated plainly:** `run_pipeline` and
+`run_inundation_analysis` call these sources without a guard. A GEE or network
+failure in any context layer therefore **now aborts the run**, where before it
+silently degraded that layer to "unavailable". That is the convention as
+specified. Whether the pipeline should degrade per layer instead is a separate
+question, not decided here.
+
+Tests: `tests/test_error_convention.py`, 46 tests: **46 failed before, 46 passed
+after.** Three existing tests encoded the old convention and were rewritten to
+the new one. They are `test_hydrology_hand.py`'s two
+`test_gee_failure_returns_unavailable_not_fabricated` tests (now
+`..._raises_...`) and item 53's `test_missing_quality_column_...` (now
+expects `KeyError`).
+
+Verified live against GEE for Dharavi: MERIT HAND, FABDEM, slope, coastline,
+CHIRPS and the country lookup all return `available`. An ocean AOI returns
+`unavailable` / `NoDataError`. INFORM returns IND `available`, and TJK (`#REF!`)
+and ATA (not listed) `unavailable` / `NoDataError`.
 
 ---
 

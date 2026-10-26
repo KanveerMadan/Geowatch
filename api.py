@@ -383,9 +383,14 @@ def get_latest_run(aoi_label: str) -> dict | None:
 
 
 def refresh_all_watched_aois():
-    """Background job — re-runs pipeline for all watched AOIs with latest imagery."""
+    """Background job — re-runs pipeline for all watched AOIs with latest imagery.
+
+    Returns one outcome dict per AOI attempted: "complete", "failed" (an
+    in-band status from run_pipeline) or "exception" (with its class).
+    """
     print(f"[Scheduler] Starting refresh at {datetime.now().isoformat()}")
     from pipeline import run_pipeline
+    outcomes = []
     for aoi in WATCHED_AOIS:
         # C35: re-checked at call time, not only at import. WATCHED_AOIS is a
         # module-level list and nothing makes it immutable, so the import-time
@@ -399,16 +404,36 @@ def refresh_all_watched_aois():
                 f"run_pipeline()."
             )
             continue
+        # C18 / item 54: run_pipeline signals failure two ways. It RAISES on
+        # an integration or programmer error, and RETURNS status "failed"
+        # when there is genuinely nothing to process. Both are checked here.
+        # Only checking `except` is what printed "refreshed OK" for a failed
+        # run. The broad catch is the right one at this fan-out loop, so one
+        # city cannot stop the rest, and it records the exception class.
         try:
-            run_pipeline(
+            result = run_pipeline(
                 west=aoi["west"], south=aoi["south"],
                 east=aoi["east"], north=aoi["north"],
                 start_date=None, end_date=None,  # triggers get_latest_image()
                 aoi_label=aoi["label"],
             )
-            print(f"[Scheduler] {aoi['label']} refreshed OK.")
         except Exception as e:
-            print(f"[Scheduler] {aoi['label']} failed: {e}")
+            outcome = {"label": aoi["label"], "outcome": "exception",
+                       "exception_class": type(e).__name__, "error": str(e)}
+            print(f"[Scheduler] {aoi['label']} FAILED with "
+                  f"{type(e).__name__}: {e}")
+        else:
+            status = (result or {}).get("status")
+            if status == "complete":
+                outcome = {"label": aoi["label"], "outcome": "complete"}
+                print(f"[Scheduler] {aoi['label']} refreshed OK.")
+            else:
+                outcome = {"label": aoi["label"], "outcome": "failed",
+                           "error": (result or {}).get("error")}
+                print(f"[Scheduler] {aoi['label']} FAILED in-band "
+                      f"(status={status!r}): {outcome['error']}")
+        outcomes.append(outcome)
+    return outcomes
 
 
 # ── C35 — WATCHED_AOIS bypasses the API boundary (build item 47) ──
@@ -536,7 +561,10 @@ def analyze(req: AnalyzeRequest):
         )
         return result
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        # Items 54/55: the right broad catch at the HTTP boundary, so it
+        # names the class. "EEException: quota" and "KeyError: 'hnd'" are
+        # different failures and must not read the same.
+        raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}")
 
 @app.post("/api/analyze_inundation")
 def analyze_inundation(req: InundationRequest):
@@ -569,7 +597,10 @@ def analyze_inundation(req: InundationRequest):
         )
         return result
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        # Items 54/55: the right broad catch at the HTTP boundary, so it
+        # names the class. "EEException: quota" and "KeyError: 'hnd'" are
+        # different failures and must not read the same.
+        raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}")
 
 
 @app.get("/api/runs")

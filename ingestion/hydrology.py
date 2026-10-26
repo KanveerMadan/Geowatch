@@ -10,6 +10,7 @@ FABDEM.
 
 import ee
 from ingestion.gee_client import initialize_gee
+from ingestion.errors import NoDataError, no_data
 from configs.fluvial_constants import (
     FLUVIAL_BUFFER_KM, MERIT_HYDRO_SCALE_M,
     RIVER_CONNECTIVITY_UPSTREAM_AREA_KM2_THRESHOLD,
@@ -78,7 +79,7 @@ def get_merit_hand_context(west: float, south: float, east: float, north: float,
         max_upstream_area_km2 = upa_stats.get("upa")
 
         if mean_hnd is None:
-            raise ValueError("MERIT Hydro hnd reduction returned no value for this AOI.")
+            raise NoDataError("MERIT Hydro hnd reduction returned no value for this AOI.")
 
         river_connected = (
             max_upstream_area_km2 is not None
@@ -108,23 +109,24 @@ def get_merit_hand_context(west: float, south: float, east: float, north: float,
             "error": None,
         }
 
-    except Exception as e:
-        print(f"MERIT Hydro HAND context computation failed: {e}")
-        return {
-            "status": "unavailable",
-            "mean_hnd_m": None,
-            "min_hnd_m": None,
-            "max_hnd_m": None,
-            "max_upstream_area_km2": None,
-            "river_connectivity": None,
-            "source": "MERIT/Hydro/v1_0_1",
-            "hydrologically_conditioned": True,
-            "true_hand": True,
-            "resolution_m": MERIT_HYDRO_SCALE_M,
-            "buffer_km": buffer_km,
-            "spatial": False,
-            "error": str(e),
-        }
+    # Items 54/55: only a genuine data gap becomes "unavailable". A GEE,
+    # network or programming error propagates (see ingestion/errors.py).
+    except NoDataError as e:
+        print(f"MERIT Hydro HAND context: no data for this AOI: {e}")
+        return no_data(
+            e,
+            mean_hnd_m=None,
+            min_hnd_m=None,
+            max_hnd_m=None,
+            max_upstream_area_km2=None,
+            river_connectivity=None,
+            source="MERIT/Hydro/v1_0_1",
+            hydrologically_conditioned=True,
+            true_hand=True,
+            resolution_m=MERIT_HYDRO_SCALE_M,
+            buffer_km=buffer_km,
+            spatial=False,
+        )
 
 
 def get_fabdem_elevation_stats(west: float, south: float, east: float, north: float) -> dict:
@@ -160,7 +162,7 @@ def get_fabdem_elevation_stats(west: float, south: float, east: float, north: fl
         max_elev = stats.get("b1_max")
 
         if mean_elev is None:
-            raise ValueError("FABDEM reduction returned no value for this AOI.")
+            raise NoDataError("FABDEM reduction returned no value for this AOI.")
 
         print(f"FABDEM bare-earth elevation: mean={mean_elev:.2f}m, "
               f"min={min_elev}m, max={max_elev}m")
@@ -179,21 +181,20 @@ def get_fabdem_elevation_stats(west: float, south: float, east: float, north: fl
             "error": None,
         }
 
-    except Exception as e:
-        print(f"FABDEM elevation computation failed: {e}")
-        return {
-            "status": "unavailable",
-            "mean_elevation_m": None,
-            "min_elevation_m": None,
-            "max_elevation_m": None,
-            "source": "projects/sat-io/open-datasets/FABDEM",
-            "bare_earth": True,
-            "building_bias_reduced": True,
-            "canopy_bias_reduced": True,
-            "resolution_m": 30,
-            "license": "CC BY-NC-SA 4.0 (non-commercial, share-alike)",
-            "error": str(e),
-        }
+    except NoDataError as e:
+        print(f"FABDEM elevation: no data for this AOI: {e}")
+        return no_data(
+            e,
+            mean_elevation_m=None,
+            min_elevation_m=None,
+            max_elevation_m=None,
+            source="projects/sat-io/open-datasets/FABDEM",
+            bare_earth=True,
+            building_bias_reduced=True,
+            canopy_bias_reduced=True,
+            resolution_m=30,
+            license="CC BY-NC-SA 4.0 (non-commercial, share-alike)",
+        )
 
 def get_slope_stats(west: float, south: float, east: float, north: float) -> dict:
     """
@@ -245,7 +246,7 @@ def get_slope_stats(west: float, south: float, east: float, north: float) -> dic
 
         mean_slope_deg = stats.get("slope")
         if mean_slope_deg is None:
-            raise ValueError("Slope reduction returned no value for this AOI.")
+            raise NoDataError("Slope reduction returned no value for this AOI.")
 
         print(f"Mean terrain slope: {mean_slope_deg:.2f} degrees")
 
@@ -259,14 +260,13 @@ def get_slope_stats(west: float, south: float, east: float, north: float) -> dic
             "error": None,
         }
 
-    except Exception as e:
-        print(f"Slope computation failed: {e}")
-        return {
-            "status": "unavailable",
-            "mean_slope_deg": None,
-            "source": "COPERNICUS/DEM/GLO30_2024_1",
-            "dem_type": "DSM",
-            "resolution_m": 30,
-            "spatial": False,
-            "error": str(e),
-        }
+    except NoDataError as e:
+        print(f"Slope: no data for this AOI: {e}")
+        return no_data(
+            e,
+            mean_slope_deg=None,
+            source="COPERNICUS/DEM/GLO30_2024_1",
+            dem_type="DSM",
+            resolution_m=30,
+            spatial=False,
+        )
