@@ -313,8 +313,39 @@ def compute_aoi_geodesics(west: float, south: float, east: float, north: float) 
         "height_km": round(height_m / 1000.0, 4),
     }
 
+# C17 / item 56: run directories are named `<label>_%Y%m%d_%H%M%S` by
+# pipeline.py, and labels may themselves contain underscores, so the timestamp
+# is the trailing pair and nothing else.
+_RUN_DIR_TIMESTAMP = re.compile(r"_(\d{8}_\d{6})$")
+
+# `*_test_*` runs are excluded from "latest" selection outright. C17 was a test
+# artifact served as the demo; out-ranking it by time is not enough, because a
+# test run made later would be served again.
+_TEST_RUN_MARKER = "_test_"
+
+
+def run_dir_timestamp(name: str) -> datetime | None:
+    """Parse the trailing timestamp of a run directory name, or None.
+
+    None means the directory has no position in chronological order. It is
+    never guessed into one -- under string order an undated name like
+    `dharavi_zzz` would have sorted above every real run.
+    """
+    m = _RUN_DIR_TIMESTAMP.search(name)
+    if not m:
+        return None
+    try:
+        return datetime.strptime(m.group(1), "%Y%m%d_%H%M%S")
+    except ValueError:
+        return None
+
+
 def get_latest_run(aoi_label: str) -> dict | None:
-    """Return the most recent result.json for a given AOI label, or None."""
+    """Return the most recent result.json for a given AOI label, or None.
+
+    "Most recent" is by the parsed run timestamp (C17), never by string order,
+    and `*_test_*` runs are never candidates.
+    """
     # C35 sweep (build item 47): a label reaching a filesystem operation, so it
     # is checked here too. Traversal is not reachable through this particular
     # function -- it filters directory names with startswith() rather than
@@ -327,13 +358,19 @@ def get_latest_run(aoi_label: str) -> dict | None:
             detail="Invalid aoi_label.",
         )
     runs_dir = Path("data/pipeline_runs")
-    matching = sorted([
-        d for d in runs_dir.iterdir()
-        if d.is_dir() and d.name.startswith(aoi_label)
-    ])
-    if not matching:
+    dated = []
+    for d in runs_dir.iterdir():
+        if not (d.is_dir() and d.name.startswith(aoi_label)):
+            continue
+        if _TEST_RUN_MARKER in d.name:
+            continue
+        ts = run_dir_timestamp(d.name)
+        if ts is None:
+            continue
+        dated.append((ts, d))
+    if not dated:
         return None
-    result_path = matching[-1] / "result.json"
+    result_path = max(dated)[1] / "result.json"
     if not result_path.exists():
         return None
     with open(result_path) as f:
