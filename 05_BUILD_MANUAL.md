@@ -2394,12 +2394,37 @@ read `resnet_classifier.py` directly. It was restated to keep its property
 `ingestion/event_hazard.py` and `susceptibility/event_hazard.py` have no entry
 point. The Part 4 validation mandate still names `event_hazard.py`.
 
-### 58. Frontend as pure renderer
+### 58. Frontend as pure renderer ✅
 Renders `result.json` and computes nothing. Remove: hardcoded category lists,
 recomputed aggregates, invented thresholds, truncated caveat lists, the hardcoded
 Q1-2024 date window, and **the `?? 291 / ?? 257` fallback — verified as exactly
 Dharavi's `tile_dimensions`. If the field were ever missing, every AOI worldwide
 would be projected through Dharavi's grid, silently.**
+
+**Built.** The helpers live in `geowatch-ui/src/render.js` (plain JS, tested
+under node). Removed from `App.jsx`:
+
+| removed | replaced by |
+|---|---|
+| `?? 291 / ?? 257` | `segmentGrid(result)`. With no valid `tile_dimensions`, segments are **not drawn** and the map says why |
+| `CAT_LABELS` category table | `humanize(key)`. Every old entry was the key in sentence case, so no label changes, and a new category is no longer blank in the legend |
+| `Object.entries(SUSC_INFO)` deciding which hazards render | `hazardKeys(result.susceptibility)`. `SUSC_INFO` is now display text only, so a hazard it does not list still renders |
+| `UNPAVED_HIGHWAY_TYPES`, a copy of `osm_dem.py`'s set | `roads.geojson` now carries the backend's own `unpaved` flag. `osm_dem.UNPAVED_HIGHWAY_TYPES` is one module-level frozenset used by both paths |
+| client-side informal-roofing segment count | removed. No run has ever emitted it, and recomputing it is the defect |
+| `standing_water_segment_count ?? 0`, legend `'0.0%'` for missing, `aoi_mean_class \|\| 'unknown'`, architecture `\|\| 'GeoWatchResNetSeg'` | missing renders as `—` |
+| `unknown_pct > 15` colour threshold | removed |
+| "one of its 11 training cities", "data … from 2020" | read from `loco_n_folds` and `population_year` |
+| `CaveatList` `items.slice(0, 5)` | every caveat renders |
+| hardcoded `2024-01-01 … 2024-03-31` analyze window | omitted. The backend uses its own window, and the report already shows `imagery.requested_period` |
+
+*Legacy runs:* roads from runs before this item carry no `unpaved` flag, so they
+all render in the paved style rather than being classified client-side.
+
+Tests: `tests/test_pure_renderer_ui.mjs`, 15 tests: **0 passed before, 15 passed
+after**. `tests/test_renderer_contract.py`, 2 tests: **2 failed before, 2 passed
+after**. The `vite build` succeeds. `oxlint` reports the same two findings as on
+`master` (`App.jsx` unused expression in `DragToggle`, conditional `useState` in
+`SecExposure`); neither was introduced here.
 
 ### 59. `batch_run_log.json` — append, don't truncate ✅
 Each invocation currently truncates; the 11-city history was clobbered by a later
