@@ -8,6 +8,7 @@ or in range. The `Lack of Reliability (*)` and `% of Missing Indicators`
 columns were read and then used for nothing.
 
 The ranges are the file's own. Read from the real INFORM_Risk_2026_v072.xlsx
+(and unchanged in INFORM_Risk_Mid_2026_v073.xlsx)
 units row and cell formats at build time:
   VULNERABILITY, LACK OF COPING CAPACITY, Lack of Reliability (*)
       units "(0-10)", number format "0.0"

@@ -2270,9 +2270,23 @@ before** (the valid-row guard) and **17 passed after**.
 `tests/test_inform_ui.mjs`, 12 tests: **0 passed before** (the module did not
 exist) and **12 passed after**.
 
-*Live check:* the JRC results page now offers `INFORM_Risk_Mid_2026_v073.xlsx`,
+~~*Live check:* the JRC results page now offers `INFORM_Risk_Mid_2026_v073.xlsx`,
 so the repo's v072 is one release behind. The source was not switched under
-this item.
+this item.~~
+
+**v073 adopted 2026-10-27.** Downloaded live from the JRC results page
+(`/inform-index/Portals/0/InfoRM/2026/INFORM_Risk_Mid_2026_v073.xlsx`, HTTP
+200, 2,546,463 bytes, sha256 `7e0cc5e5…9e66`). Its structure is identical to
+v072: same sheet name, header row 2, units row 3, columns and cell formats.
+`INFORM_RISK_FILE_PATH` and `INFORM_RISK_EDITION` (`"Mid 2026 (v073)"`) now
+point at it. It is a real update: 186 of 191 rows changed (IND vulnerability
+4.4 → 4.3, coping 4.2 → 3.9). **Item 53's validation on v073: 190 of 191 rows
+pass.** The one failure is again Tajikistan, whose `Lack of Reliability (*)` is
+still the Excel error `'#REF!'` in the new release, so it is an upstream
+defect rather than a stale file. The file itself is untracked (`data/` is
+gitignored) and must be placed at `data/external/` in each checkout that runs
+the pipeline. Without it, the INFORM layer now reports `failed` /
+`FileNotFoundError` (item 54 amendment) rather than stopping the run.
 
 ---
 
