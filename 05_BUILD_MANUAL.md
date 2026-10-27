@@ -795,7 +795,7 @@ bare soil in both; the layer carries its own date range and composite count.
 **Verify:** hand-check a known permanent surface (an arterial road) against a
 known seasonal one (a vegetated lot) in the same AOI.
 
-### 19. Vector road layer 🔓
+### 19. Vector road layer ✅
 
 **What:** OSM roads and paths as primary, building-footprint negative space where
 OSM is thin.
@@ -811,6 +811,59 @@ layer. Do not let consumers build their own.
 **Acceptance:** road vector produced for AOIs in at least three distinct
 morphologies (formal European, formal Asian, dense informal); every derived
 output demonstrably traces to this layer.
+
+**Built 2026-10-27** (`vector/sources.py`, `vector/roads.py`, `vector/aois.py`).
+*Proposed research design under the Part 4 mandate. Not validated.*
+
+- **Fetch.** OSM `highway=*` through the shared C44 client, split into five
+  disjoint per-tag clauses (a test pins the partition as exhaustive and
+  disjoint). Each clause is cached and fetched by a 2-worker thread pool. A
+  clause that hits Overpass's own query limit is re-queried on the box's four
+  quarters (depth ≤ 3). A clause that cannot be retrieved is recorded as
+  unavailable, never read as zero.
+- **Footprints.** Open Buildings v3 where it has coverage (verified live per
+  AOI), otherwise OSM `building=*` ways. The source is recorded in every
+  output.
+- **Widths.** `HIGHWAY_WIDTH_M_DEFAULT` is labelled *defaults, not
+  measurements*. Road length does not depend on it; road area does.
+- **Groupings.** Arterial, narrow (`footway/path/pedestrian/steps`) and broad
+  (narrow + `service/residential/track`) are reported separately and never
+  merged.
+- **Negative space.** Derived only where narrow pedestrian density is below
+  `NEGATIVE_SPACE_TRIGGER_KM_PER_KM2 = 1.0`, as a morphological closing of the
+  footprint union (gaps up to 6 m) minus footprints and minus mapped road
+  space. It is area only and never enters the network. These constants were
+  fixed before the live run.
+- **One source, many representations.** `lengths_km`, `road_space`,
+  `rasterize`, `graph` (real OSM node ids), `blocks`, `surface_coverage` and
+  `paved_status` are all methods of `RoadLayer`. Every output carries
+  `source_layer_id`.
+
+**Live run, 2026-10-27** (the Overpass primary was timing out; every clause was
+satisfied by fallback endpoints, none unavailable):
+
+| AOI | morphology | footprints | narrow km/km² | broad | all | `surface` tagged (by length) | negative space |
+|---|---|---|---:|---:|---:|---:|---|
+| barcelona_eixample | formal European | 4,449 OSM | 37.81 | 45.07 | 66.84 | 91.7% | not triggered |
+| chandigarh_central | formal Asian | 11,266 OB | 2.25 | 18.55 | 25.92 | 75.5% (narrow 1.4%) | not triggered |
+| dharavi | dense informal | 19,339 OB | **2.78** | 13.97 | 23.10 | 16.6% | not triggered |
+| lagos | dense informal | 34,056 OB | **0.19** | 6.62 | 9.53 | 89.5% (70.8% unpaved) | **triggered, 0.561 km²** |
+
+Live re-measurement reproduces `03_EVIDENCE.md` Part B exactly for Dharavi
+(2.78) and Lagos (0.19). Rasterised road area matches vector road space within
+0.1% in every AOI, and every representation carries the layer id.
+**Barcelona's 37.8 km/km² is 4.5× Khayelitsha's 8.35**, because Barcelona
+maps its sidewalks as footways. That is the saturation item 20's baseline
+caution predicted. Lagos's negative space is 3.3% of the AOI and is
+unvalidated candidate road space.
+
+`tests/test_vector_roads.py`, 37 tests: **0 before** (the `vector` package did
+not exist; collection error) and **37 passed after**.
+
+*Doc contradictions:* `diagnose_pure_pixels_paved.py` has per-tag caching but
+**no threaded fetch** (it is sequential with 3 s sleeps), so the thread pool is
+new here. `generate_osm_road_masks.py` keeps its own copy of the width table,
+not changed here; two copies can drift.
 
 ### 20. Per-area completeness score 🔓
 
