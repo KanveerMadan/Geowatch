@@ -163,6 +163,11 @@ WATCHED_AOIS = [
 # the AOI sat. Fixed via pyproj.Geod's geodesic polygon area, which is
 # latitude-correct everywhere.
 MAX_AOI_AREA_KM2 = 100.0  # roughly ~10km x 10km, matches the original intent
+# C2 / item 52: this cap is the ONE AOI size limit. tiler.py used to document
+# "< 5 sq km", 20x below it. Measured live, the tiler exports and validates at
+# least ingestion.tiler.MEASURED_MAX_EXPORT_AREA_KM2 (895 km²), so the
+# tiler's docstring was the wrong side and it was corrected. The cap stays at
+# 100 because the downstream pipeline above that size was not measured.
 
 # ── AOI label validation — AUDIT_FINDINGS_V2 C16 (path traversal) ──
 # `aoi_label` flows from the request body into run_pipeline() /
@@ -313,8 +318,46 @@ def compute_aoi_geodesics(west: float, south: float, east: float, north: float) 
         "height_km": round(height_m / 1000.0, 4),
     }
 
+# C17 / item 56: run directories are named `<label>_%Y%m%d_%H%M%S` by
+# pipeline.py, and labels may themselves contain underscores, so the timestamp
+# is the trailing pair and nothing else.
+_RUN_DIR_TIMESTAMP = re.compile(r"_(\d{8}_\d{6})$")
+
+# `*_test_*` runs are excluded from "latest" selection outright. C17 was a test
+# artifact served as the demo; out-ranking it by time is not enough, because a
+# test run made later would be served again.
+_TEST_RUN_MARKER = "_test_"
+
+# Item 56, finished: `startswith(label)` also matches the inundation and
+# event-hazard runs pipeline.py writes as `<label>_inundation_<ts>` and
+# `<label>_eventhazard_<ts>`. Their result shape is not the land-cover
+# result the demo renders, so they are never "latest" candidates either.
+_EXCLUDED_FROM_LATEST = (_TEST_RUN_MARKER, "_inundation_", "_eventhazard_")
+
+
+def run_dir_timestamp(name: str) -> datetime | None:
+    """Parse the trailing timestamp of a run directory name, or None.
+
+    None means the directory has no position in chronological order. It is
+    never guessed into one -- under string order an undated name like
+    `dharavi_zzz` would have sorted above every real run.
+    """
+    m = _RUN_DIR_TIMESTAMP.search(name)
+    if not m:
+        return None
+    try:
+        return datetime.strptime(m.group(1), "%Y%m%d_%H%M%S")
+    except ValueError:
+        return None
+
+
 def get_latest_run(aoi_label: str) -> dict | None:
-    """Return the most recent result.json for a given AOI label, or None."""
+    """Return the most recent result.json for a given AOI label, or None.
+
+    "Most recent" is by the parsed run timestamp (C17), never by string order,
+    and `*_test_*`, `*_inundation_*` and `*_eventhazard_*` runs are never
+    candidates.
+    """
     # C35 sweep (build item 47): a label reaching a filesystem operation, so it
     # is checked here too. Traversal is not reachable through this particular
     # function -- it filters directory names with startswith() rather than
@@ -327,13 +370,19 @@ def get_latest_run(aoi_label: str) -> dict | None:
             detail="Invalid aoi_label.",
         )
     runs_dir = Path("data/pipeline_runs")
-    matching = sorted([
-        d for d in runs_dir.iterdir()
-        if d.is_dir() and d.name.startswith(aoi_label)
-    ])
-    if not matching:
+    dated = []
+    for d in runs_dir.iterdir():
+        if not (d.is_dir() and d.name.startswith(aoi_label)):
+            continue
+        if any(marker in d.name for marker in _EXCLUDED_FROM_LATEST):
+            continue
+        ts = run_dir_timestamp(d.name)
+        if ts is None:
+            continue
+        dated.append((ts, d))
+    if not dated:
         return None
-    result_path = matching[-1] / "result.json"
+    result_path = max(dated)[1] / "result.json"
     if not result_path.exists():
         return None
     with open(result_path) as f:
@@ -341,9 +390,14 @@ def get_latest_run(aoi_label: str) -> dict | None:
 
 
 def refresh_all_watched_aois():
-    """Background job — re-runs pipeline for all watched AOIs with latest imagery."""
+    """Background job — re-runs pipeline for all watched AOIs with latest imagery.
+
+    Returns one outcome dict per AOI attempted: "complete", "failed" (an
+    in-band status from run_pipeline) or "exception" (with its class).
+    """
     print(f"[Scheduler] Starting refresh at {datetime.now().isoformat()}")
     from pipeline import run_pipeline
+    outcomes = []
     for aoi in WATCHED_AOIS:
         # C35: re-checked at call time, not only at import. WATCHED_AOIS is a
         # module-level list and nothing makes it immutable, so the import-time
@@ -357,16 +411,36 @@ def refresh_all_watched_aois():
                 f"run_pipeline()."
             )
             continue
+        # C18 / item 54: run_pipeline signals failure two ways. It RAISES on
+        # an integration or programmer error, and RETURNS status "failed"
+        # when there is genuinely nothing to process. Both are checked here.
+        # Only checking `except` is what printed "refreshed OK" for a failed
+        # run. The broad catch is the right one at this fan-out loop, so one
+        # city cannot stop the rest, and it records the exception class.
         try:
-            run_pipeline(
+            result = run_pipeline(
                 west=aoi["west"], south=aoi["south"],
                 east=aoi["east"], north=aoi["north"],
                 start_date=None, end_date=None,  # triggers get_latest_image()
                 aoi_label=aoi["label"],
             )
-            print(f"[Scheduler] {aoi['label']} refreshed OK.")
         except Exception as e:
-            print(f"[Scheduler] {aoi['label']} failed: {e}")
+            outcome = {"label": aoi["label"], "outcome": "exception",
+                       "exception_class": type(e).__name__, "error": str(e)}
+            print(f"[Scheduler] {aoi['label']} FAILED with "
+                  f"{type(e).__name__}: {e}")
+        else:
+            status = (result or {}).get("status")
+            if status == "complete":
+                outcome = {"label": aoi["label"], "outcome": "complete"}
+                print(f"[Scheduler] {aoi['label']} refreshed OK.")
+            else:
+                outcome = {"label": aoi["label"], "outcome": "failed",
+                           "error": (result or {}).get("error")}
+                print(f"[Scheduler] {aoi['label']} FAILED in-band "
+                      f"(status={status!r}): {outcome['error']}")
+        outcomes.append(outcome)
+    return outcomes
 
 
 # ── C35 — WATCHED_AOIS bypasses the API boundary (build item 47) ──
@@ -494,7 +568,10 @@ def analyze(req: AnalyzeRequest):
         )
         return result
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        # Items 54/55: the right broad catch at the HTTP boundary, so it
+        # names the class. "EEException: quota" and "KeyError: 'hnd'" are
+        # different failures and must not read the same.
+        raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}")
 
 @app.post("/api/analyze_inundation")
 def analyze_inundation(req: InundationRequest):
@@ -527,7 +604,10 @@ def analyze_inundation(req: InundationRequest):
         )
         return result
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        # Items 54/55: the right broad catch at the HTTP boundary, so it
+        # names the class. "EEException: quota" and "KeyError: 'hnd'" are
+        # different failures and must not read the same.
+        raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}")
 
 
 @app.get("/api/runs")
@@ -536,7 +616,15 @@ def list_runs():
     if not runs_dir.exists():
         return {"runs": []}
     runs = []
-    for run_dir in sorted(runs_dir.iterdir(), reverse=True):
+    # Item 56: newest first by parsed timestamp, not reverse string order
+    # (which grouped by label and put `dharavi_t...` above `dharavi_2...`).
+    # Undated directories are still listed, after every dated one, in name
+    # order, because they have no chronological position to guess.
+    def _order(d):
+        ts = run_dir_timestamp(d.name)
+        return (0, -ts.timestamp(), d.name) if ts else (1, 0, d.name)
+
+    for run_dir in sorted(runs_dir.iterdir(), key=_order):
         result_path = run_dir / "result.json"
         if result_path.exists():
             with open(result_path) as f:

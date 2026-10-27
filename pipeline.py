@@ -23,10 +23,6 @@ from susceptibility.flash_flood import compute_flash_flood_susceptibility
 from susceptibility.waterlogging import compute_waterlogging_susceptibility
 from ingestion.inundation import get_permanent_water_context, get_sentinel1_change_context
 from perception.observed_inundation import compute_observed_inundation
-from ingestion.event_hazard import get_event_rainfall, get_discharge_proxy
-from susceptibility.event_hazard import (
-    compute_pluvial_event_hazard, compute_fluvial_event_hazard, compute_coastal_event_hazard,
-)
 from ingestion.exposure_sources import (
     get_population_context, get_builtup_reference, get_osm_road_length, get_osm_facilities,
 )
@@ -46,6 +42,8 @@ from ingestion.inference import (
     run_inference, save_landcover_outputs,
     build_segments_with_landcover, compute_area_stats, get_device,
 )
+
+from ingestion.errors import layer_failed
 
 import numpy as np
 import ee
@@ -97,6 +95,23 @@ def _apply_osm_labels_to_segments(segments: list, osm_features: dict,
         seg["dominant_landcover_category"] = seg.pop("category")
 
     return segments
+
+
+def _context_layer(layer: str, fn, *args, **kwargs) -> dict:
+    """Call one context-layer source; contain its failure to that layer.
+
+    Item 54 amendment. The sources raise on integration and programmer
+    errors (ingestion/errors.py), and this is the boundary that catches
+    them: the layer's block becomes status "failed" with its exception
+    class, and the run continues without it. A genuine data gap is not
+    caught here -- the source already returned its own "unavailable".
+    """
+    try:
+        return fn(*args, **kwargs)
+    except Exception as e:
+        print(f"Context layer {layer!r} FAILED with {type(e).__name__}: {e} "
+              f"-- continuing without it.")
+        return layer_failed(layer, e)
 
 
 def run_pipeline(
@@ -242,16 +257,16 @@ def run_pipeline(
     print("\n[4/7] Computing relative-elevation proxy...")
     relative_elevation = compute_relative_elevation_proxy(west, south, east, north)
     print("Computing fluvial HAND context (MERIT Hydro)...")
-    hand_context = get_merit_hand_context(west, south, east, north)
+    hand_context = _context_layer("merit_hand", get_merit_hand_context, west, south, east, north)
     print("Computing bare-earth elevation (FABDEM)...")
-    fabdem_elevation = get_fabdem_elevation_stats(west, south, east, north)
+    fabdem_elevation = _context_layer("fabdem", get_fabdem_elevation_stats, west, south, east, north)
     elevation = get_elevation_stats(west, south, east, north, output_dir=osm_dir)
     print("Fetching rainfall climatology (CHIRPS)...")
-    rainfall_climatology = get_rainfall_climatology(aoi)
+    rainfall_climatology = _context_layer("rainfall_climatology", get_rainfall_climatology, aoi)
     print("Computing coastline context (GEE Global Shoreline Dataset)...")
-    coastal_context = get_coastline_context(west, south, east, north)
+    coastal_context = _context_layer("coastline", get_coastline_context, west, south, east, north)
     print("Computing terrain slope (Phase 7)...")
-    slope_context = get_slope_stats(west, south, east, north)
+    slope_context = _context_layer("slope", get_slope_stats, west, south, east, north)
 
     # ── Step 5/6: SAM segmentation + per-pixel inference, PER TILE,
     # mosaicked into full-AOI canvases ──
@@ -495,8 +510,22 @@ def run_pipeline(
     # vulnerability_block didn't exist yet when the loop referenced it —
     # a NameError on every run. ──
     print("\nComputing vulnerability context (Phase 10B — INFORM Risk)...")
-    country_context = get_country_iso3_for_aoi(west, south, east, north)
-    vulnerability_block = get_inform_vulnerability_context(country_context.get("iso3"))
+    country_context = _context_layer("country_lookup", get_country_iso3_for_aoi,
+                                     west, south, east, north)
+    if country_context["status"] == "failed":
+        # Item 54 amendment: without this, INFORM would be asked for a None
+        # ISO3 and report "unavailable", which reads as a data gap when the
+        # real cause is a broken lookup upstream.
+        vulnerability_block = {
+            "status": "failed",
+            "layer": "vulnerability",
+            "failed_upstream": "country_lookup",
+            "error": f"Country lookup failed upstream: {country_context['error']}",
+            "exception_class": country_context["exception_class"],
+        }
+    else:
+        vulnerability_block = _context_layer(
+            "vulnerability", get_inform_vulnerability_context, country_context.get("iso3"))
     vulnerability_block["country_lookup"] = country_context
 
     # ── Phase 10A: exposure, computed SEPARATELY per evidence layer.
@@ -844,93 +873,6 @@ def run_inundation_analysis(
 
     return result
 
-def run_event_hazard_analysis(
-    west: float, south: float, east: float, north: float,
-    event_start: str, event_end: str,
-    aoi_label: str = "aoi",
-    output_dir: str = "data/pipeline_runs",
-) -> dict:
-    """
-    Phase 9: event hazard -- conditions susceptibility (from a prior
-    run_pipeline() call) on real event forcing. Requires a susceptibility
-    result already computed over a matching or reasonably contemporaneous
-    period -- pass it in explicitly rather than re-running the full
-    land-cover pipeline here, keeping this function's cost proportional
-    to what it actually adds (rainfall/discharge-proxy fetch + gating),
-    not a full SAM+inference re-run.
-    """
-    run_id = f"{aoi_label}_eventhazard_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-    run_dir = os.path.join(output_dir, run_id)
-    os.makedirs(run_dir, exist_ok=True)
-
-    print(f"\n{'='*60}")
-    print(f"GeoWatch Event-Hazard Run: {run_id}")
-    print(f"AOI: ({west}, {south}) to ({east}, {north})")
-    print(f"Event: {event_start} to {event_end}")
-    print(f"{'='*60}\n")
-
-    initialize_gee()
-    aoi = aoi_from_bbox(west, south, east, north)
-
-    print("[1/2] Fetching event forcing data...")
-    event_rainfall = get_event_rainfall(west, south, east, north, event_start, event_end)
-    discharge_proxy = get_discharge_proxy(west, south, east, north, event_start, event_end)
-
-    print("\n[2/2] Computing susceptibility baseline for gating...")
-    relative_elevation = compute_relative_elevation_proxy(west, south, east, north)
-    hand_context = get_merit_hand_context(west, south, east, north)
-    rainfall_climatology = get_rainfall_climatology(aoi)
-
-    fluvial_susceptibility = compute_fluvial_susceptibility(hand_context)
-    coastal_context = get_coastline_context(west, south, east, north)
-    fabdem_elevation = get_fabdem_elevation_stats(west, south, east, north)
-    coastal_susceptibility = compute_coastal_susceptibility(coastal_context, fabdem_elevation)
-
-    # NOTE: pluvial susceptibility needs a real landcover_map + waterway
-    # distance map, which only exist from a full run_pipeline() call.
-    # Passed as insufficient_evidence here since this standalone function
-    # doesn't re-run segmentation/inference -- callers wanting pluvial
-    # event hazard should compute it by calling
-    # compute_pluvial_event_hazard() directly with a prior run_pipeline()
-    # result's susceptibility.pluvial block.
-    pluvial_stub = {"status": "insufficient_evidence",
-                     "reason": "Requires a prior run_pipeline() landcover result -- "
-                               "call compute_pluvial_event_hazard() directly with it."}
-
-    pluvial_hazard = compute_pluvial_event_hazard(pluvial_stub, event_rainfall)
-    fluvial_hazard = compute_fluvial_event_hazard(fluvial_susceptibility, discharge_proxy)
-    coastal_hazard = compute_coastal_event_hazard(coastal_susceptibility)
-
-    result = {
-        "run_id": run_id,
-        "aoi": {"west": west, "south": south, "east": east, "north": north},
-        "event_period": {"start": event_start, "end": event_end},
-        "status": "complete",
-        "schema_version": "2.0",
-        "event_forcing": {
-            "rainfall": event_rainfall,
-            "discharge_proxy": discharge_proxy,
-        },
-        "event_hazard": {
-            "pluvial": pluvial_hazard,
-            "fluvial": fluvial_hazard,
-            "coastal": coastal_hazard,
-        },
-    }
-
-    output_path = os.path.join(run_dir, "event_hazard_result.json")
-    with open(output_path, "w") as f:
-        json.dump(result, f, indent=2)
-
-    print(f"\n{'='*60}")
-    print(f"Event-hazard analysis complete. Result saved: {output_path}")
-    print(f"Event rainfall: {event_rainfall.get('event_total_mm')}mm (status={event_rainfall.get('status')})")
-    print(f"Discharge proxy (NOT real discharge): {discharge_proxy.get('catchment_rainfall_mm')}mm (status={discharge_proxy.get('status')})")
-    print(f"Fluvial event hazard: {fluvial_hazard.get('aoi_mean_class')} (score={fluvial_hazard.get('aoi_mean_score')}, status={fluvial_hazard.get('status')})")
-    print(f"Coastal event hazard: {coastal_hazard.get('status')}")
-    print(f"{'='*60}\n")
-
-    return result
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="GeoWatch Copilot — Phase 1 pipeline")

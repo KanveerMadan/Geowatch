@@ -5,6 +5,10 @@ import {
   TRUST_META, blockFlag, isFlagged, reportApplicability, mechanismRows,
 } from './applicability'
 import { categoryColor, legendEntries } from './palette'
+// Build item 53 (C8): INFORM values pass a type guard before display.
+import { formatInformNumber, formatInformFraction, MISSING } from './inform'
+// Build item 58: the frontend renders result.json and computes nothing. See ./render.
+import { humanize, hazardKeys, isUnpaved, segmentGrid } from './render'
 // Build item 43: API base and credentials now live in ./api, so every request
 // is authenticated by construction rather than by remembering. Item 70 put an
 // X-API-Key check at the perimeter; this frontend sent no header on any call,
@@ -83,16 +87,12 @@ const CLASS_COLORS = { very_low: C.green, low: '#9ccc65', moderate: C.amber, hig
 // on the authority of a Python comment claiming they must match exactly.
 // Colours now come from result.landcover.palette via ./palette — there is no
 // palette on this side any more, so there is nothing left to drift.
-// CAT_LABELS below is display text, not colour, and stays.
-const CAT_LABELS = {
-  dense_informal_roofing: 'Dense informal roofing', sparse_informal_roofing: 'Sparse informal roofing',
-  unpaved_dirt_road: 'Unpaved dirt road', paved_road: 'Paved road', open_drainage_channel: 'Open drainage channel',
-  standing_water: 'Standing water', vegetation_clearing: 'Vegetation clearing', active_construction: 'Active construction',
-  dense_vegetation: 'Dense vegetation', open_waste: 'Open waste', unknown: 'Unknown',
-}
-const UNPAVED_HIGHWAY_TYPES = new Set(['track', 'path', 'footway', 'bridleway', 'unclassified', 'service', 'living_street', 'steps'])
+// Item 58: category labels are derived by ./render's humanize(), and road
+// styling reads roads.geojson's `unpaved` flag. Neither list lives here any more.
 
 // Plain-language "what this is" strings, written for a non-technical reader.
+// Display text only (item 58): which hazards render is decided by what the
+// result contains, so a hazard missing from this table still renders.
 const SUSC_INFO = {
   pluvial:      { label: 'Pluvial (rainfall pooling)', what: 'How likely rain falling directly on this area is to pool up faster than it can drain away.' },
   fluvial:      { label: 'Fluvial (river overflow)', what: 'How exposed this area is to a nearby river overflowing its banks.' },
@@ -205,7 +205,7 @@ function OSMVectorLayer({ runId, visible }) {
     apiFetch(`/runs/${runId}/osm/waterways.geojson`).then(r => r.ok ? r.json() : null).then(setWaterways).catch(() => setWaterways(null))
   }, [runId])
   if (!visible) return null
-  const roadStyle = (f) => { const u = UNPAVED_HIGHWAY_TYPES.has(f?.properties?.highway); return { color: u ? '#c89858' : '#d8d8f0', weight: u ? 1.5 : 2, opacity: 0.9, dashArray: u ? '4 3' : null } }
+  const roadStyle = (f) => { const u = isUnpaved(f); return { color: u ? '#c89858' : '#d8d8f0', weight: u ? 1.5 : 2, opacity: 0.9, dashArray: u ? '4 3' : null } }
   return (
     <>
       {roads && <GeoJSON key={`roads-${runId}`} data={roads} style={roadStyle} onEachFeature={(f, l) => l.bindTooltip(`${(f?.properties?.highway || 'road').replace(/_/g, ' ')}`, { sticky: true, className: 'gw-vector-tooltip' })} />}
@@ -225,7 +225,7 @@ function SegmentOverlays({ segments, bbox, onSelect, selected, tileWidth, tileHe
     const north = bbox.north - py * latPerPx, south = bbox.north - (py + ph) * latPerPx
     const color = colorFor(seg.dominant_landcover_category)
     const isSelected = selected?.segment_id === seg.segment_id
-    const label = CAT_LABELS[seg.dominant_landcover_category] || seg.dominant_landcover_category
+    const label = humanize(seg.dominant_landcover_category)
     return (
       <Rectangle key={seg.segment_id} bounds={[[south, west], [north, east]]}
         pathOptions={{ color: isSelected ? '#ffffff' : color, weight: isSelected ? 2.5 : 1, fillColor: color, fillOpacity: isSelected ? 0.45 : 0.05 }}
@@ -283,7 +283,7 @@ function CaveatList({ items }) {
         Good to know
       </div>
       <ul style={{ margin: 0, paddingLeft: 16, display: 'flex', flexDirection: 'column', gap: 6 }}>
-        {items.slice(0, 5).map((it, i) => (
+        {items.map((it, i) => (
           <li key={i} style={{ fontFamily: FONTS.body, fontSize: 11.5, color: C.textDim, lineHeight: 1.55 }}>{it}</li>
         ))}
       </ul>
@@ -636,20 +636,18 @@ function SecOverview({ result }) {
   const summary = result?.summary || {}
   const landcover = result?.landcover || {}
   const provenance = landcover.model_provenance || {}
-  const informalCount = (result?.segments || []).filter(s => s.dominant_landcover_category === 'dense_informal_roofing' || s.dominant_landcover_category === 'sparse_informal_roofing').length
 
   return (
     <section id="overview">
       <ReportCard title="What this run found">
         <Explain>
           This scan split the area into {fmtNum(summary.total_segments)} segments and matched each one to a land-cover type.
-          The most common type here was <b style={{ color: categoryColor(result, summary.dominant_category) }}>{(summary.dominant_category || '—').replace(/_/g, ' ')}</b>.
+          The most common type here was <b style={{ color: categoryColor(result, summary.dominant_category) }}>{humanize(summary.dominant_category)}</b>.
         </Explain>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 18 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 18 }}>
           <Metric label="Segments found" value={fmtNum(summary.total_segments)} accent={C.cyan} big />
-          <Metric label="Informal roofing" value={fmtNum(informalCount)} accent={C.amber} big />
-          <Metric label="Standing water" value={fmtNum(summary.standing_water_segment_count ?? 0)} accent={C.cyan} big />
-          <Metric label="Unclear pixels" value={fmtPct(landcover.unknown_pct)} accent={landcover.unknown_pct > 15 ? C.coral : C.textDim} big />
+          <Metric label="Standing water" value={fmtNum(summary.standing_water_segment_count)} accent={C.cyan} big />
+          <Metric label="Unclear pixels" value={fmtPct(landcover.unknown_pct)} accent={C.textDim} big />
         </div>
         <Small>&ldquo;Unclear pixels&rdquo; are spots the model wasn&rsquo;t confident enough to label at all, rather than a wrong guess.</Small>
       </ReportCard>
@@ -676,7 +674,7 @@ function SecOverview({ result }) {
         {provenance.loco_mean_miou != null ? (
           <>
             <Explain>
-              Before trusting this model on a new city, it was tested by hiding one of its 11 training cities at a time and checking how well it still worked there.
+              Before trusting this model on a new city, it was tested by hiding one of its {provenance.loco_n_folds != null ? `${provenance.loco_n_folds} ` : ''}training cities at a time and checking how well it still worked there.
               On average it scored <b style={{ color: C.cyan }}>{provenance.loco_mean_miou.toFixed(2)} out of 1.0</b> on cities it had never seen. That is the honest
               measure of how well it should generalize to a brand-new place like this one, not just how well it memorized its training data.
             </Explain>
@@ -686,7 +684,7 @@ function SecOverview({ result }) {
                 {provenance.loco_std_miou != null && <Metric label="Variation" value={`± ${provenance.loco_std_miou.toFixed(4)}`} />}
                 {provenance.loco_n_folds != null && <Metric label="Cities tested" value={provenance.loco_n_folds} />}
               </div>
-              <Small style={{ marginTop: 8 }}>Architecture: {provenance.architecture || 'GeoWatchResNetSeg'}</Small>
+              <Small style={{ marginTop: 8 }}>Architecture: {provenance.architecture || MISSING}</Small>
             </Disclosure>
           </>
         ) : <Explain>No reliability testing data was recorded for this run.</Explain>}
@@ -715,8 +713,8 @@ function SecLandcover({ result, showLandcover, setShowLandcover, landcoverOpacit
             return (
               <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
                 <div style={{ width: 11, height: 11, borderRadius: 3, background: color, flexShrink: 0 }} />
-                <span style={{ fontFamily: FONTS.body, fontSize: 12.5, color: pct ? C.text : C.textFaint, flex: 1 }}>{CAT_LABELS[key]}</span>
-                <span style={{ fontFamily: FONTS.mono, fontSize: 12, color: pct ? color : C.textFaint }}>{pct ? fmtPct(pct) : '0.0%'}</span>
+                <span style={{ fontFamily: FONTS.body, fontSize: 12.5, color: pct ? C.text : C.textFaint, flex: 1 }}>{humanize(key)}</span>
+                <span style={{ fontFamily: FONTS.mono, fontSize: 12, color: pct ? color : C.textFaint }}>{fmtPct(pct)}</span>
               </div>
             )
           })}
@@ -804,18 +802,19 @@ function SecHazard({ result }) {
       <Small>Each type of flooding has a different cause, so they're scored separately rather than combined into one number.</Small>
       <div style={{ height: 12 }} />
 
-      {Object.entries(SUSC_INFO).map(([key, info]) => {
+      {hazardKeys(susceptibility).map(key => {
         const s = susceptibility[key]
         if (!s) return null
-        const cls = s.aoi_mean_class || 'unknown'
+        const info = SUSC_INFO[key] || { label: humanize(key), what: null }
+        const cls = s.aoi_mean_class
         const color = CLASS_COLORS[cls] || C.textDim
         return (
           <ReportCard key={key} title={info.label} status={s.status}>
-            <Explain>{info.what}</Explain>
+            {info.what && <Explain>{info.what}</Explain>}
             {(s.status === 'available' || s.status === 'experimental') ? (
               <>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
-                  <span style={{ fontFamily: FONTS.mono, fontSize: 20, fontWeight: 700, color, textTransform: 'capitalize' }}>{cls.replace(/_/g, ' ')}</span>
+                  <span style={{ fontFamily: FONTS.mono, fontSize: 20, fontWeight: 700, color, textTransform: 'capitalize' }}>{cls ? cls.replace(/_/g, ' ') : MISSING}</span>
                   {s.status === 'experimental' && <span style={{ fontFamily: FONTS.body, fontSize: 11, color: C.textDim }}>(early-stage estimate, not a certified hazard map)</span>}
                 </div>
                 {s.aoi_mean_score != null && (
@@ -902,7 +901,9 @@ function SecExposure({ result }) {
             </div>
             <CaveatList items={[
               "This is a modeled estimate, not a household count.",
-              "The most recent population data available is from 2020, so this may not reflect how many people live here today.",
+              pop.population_source?.population_year != null
+                ? `The population data is from ${pop.population_source.population_year}, so it may not reflect how many people live here today.`
+                : "The year of this population data was not recorded for this run, so it may not reflect how many people live here today.",
               "Never treat this as a count of people 'at risk', it's simply who is located in the area.",
             ]} />
           </>
@@ -961,18 +962,18 @@ function SecVulnerability({ result }) {
             </Explain>
             <div style={{ display: 'flex', gap: 28, marginTop: 6 }}>
               <div>
-                <Metric label="Vulnerability" value={v.dimensions?.vulnerability?.raw_score} unit="/ 10" accent={C.violet} big />
+                <Metric label="Vulnerability" value={formatInformNumber(v.dimensions?.vulnerability?.raw_score)} unit={formatInformNumber(v.dimensions?.vulnerability?.raw_score) === MISSING ? null : '/ 10'} accent={C.violet} big />
                 <Small style={{ marginTop: 6, maxWidth: 220 }}>How exposed the population is to hardship if a disaster hits. Higher means more vulnerable.</Small>
               </div>
               <div>
-                <Metric label="Lack of coping capacity" value={v.dimensions?.lack_of_coping_capacity?.raw_score} unit="/ 10" accent={C.violet} big />
+                <Metric label="Lack of coping capacity" value={formatInformNumber(v.dimensions?.lack_of_coping_capacity?.raw_score)} unit={formatInformNumber(v.dimensions?.lack_of_coping_capacity?.raw_score) === MISSING ? null : '/ 10'} accent={C.violet} big />
                 <Small style={{ marginTop: 6, maxWidth: 220 }}>How much difficulty the country would have responding to and recovering from a disaster. Higher means less capacity to cope.</Small>
               </div>
             </div>
             <Disclosure label="Show data quality details">
               <div style={{ display: 'flex', gap: 20 }}>
-                <Metric label="Reliability score" value={v.data_quality?.lack_of_reliability_score?.toFixed?.(2) ?? '—'} />
-                <Metric label="Missing indicators" value={v.data_quality?.pct_missing_indicators != null ? fmtPct(v.data_quality.pct_missing_indicators * 100) : '—'} />
+                <Metric label="Reliability score" value={formatInformNumber(v.data_quality?.lack_of_reliability_score, 2)} />
+                <Metric label="Missing indicators" value={formatInformFraction(v.data_quality?.pct_missing_indicators)} />
               </div>
               <Small style={{ marginTop: 8 }}>Source: {v.source}, {v.source_edition} edition.</Small>
             </Disclosure>
@@ -1051,7 +1052,7 @@ function SegmentDetail({ seg, onClose, colorFor }) {
           <div style={{ fontFamily: FONTS.mono, fontSize: 9, color: C.textFaint, marginBottom: 4 }}>SEGMENT {seg.segment_id}</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
             <div style={{ width: 11, height: 11, borderRadius: 3, background: color }} />
-            <span style={{ fontFamily: FONTS.display, fontSize: 15, fontWeight: 600, color }}>{CAT_LABELS[seg.dominant_landcover_category] || seg.dominant_landcover_category}</span>
+            <span style={{ fontFamily: FONTS.display, fontSize: 15, fontWeight: 600, color }}>{humanize(seg.dominant_landcover_category)}</span>
           </div>
         </div>
         <button onClick={onClose} style={{ background: 'none', border: `1px solid ${C.hairline}`, color: C.textDim, borderRadius: 6, width: 26, height: 26, cursor: 'pointer', fontSize: 13 }}>✕</button>
@@ -1063,7 +1064,7 @@ function SegmentDetail({ seg, onClose, colorFor }) {
       </div>
       {seg.ambiguous_between && (
         <div style={{ fontFamily: FONTS.body, fontSize: 11, color: C.text, background: C.amberDim, border: `1px solid ${C.amber}44`, borderRadius: 8, padding: '9px 11px', marginBottom: 14, lineHeight: 1.5 }}>
-          The model is torn between {CAT_LABELS[seg.ambiguous_between[0]] || seg.ambiguous_between[0]} and {CAT_LABELS[seg.ambiguous_between[1]] || seg.ambiguous_between[1]}
+          The model is torn between {humanize(seg.ambiguous_between[0])} and {humanize(seg.ambiguous_between[1])}
           {seg.ambiguous_pct != null && <> ({fmtPct(seg.ambiguous_pct)} of this segment)</>}
         </div>
       )}
@@ -1241,7 +1242,10 @@ export default function App() {
     try {
       const res = await apiFetch('/api/analyze', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ west: bbox.west, south: bbox.south, east: bbox.east, north: bbox.north, start_date: '2024-01-01', end_date: '2024-03-31', aoi_label: 'aoi', demo: false }),
+        // Item 58: no date window is invented here. Omitted dates make the backend
+        // choose (its latest-90-days mode), and the report shows the period it
+        // actually used from result.imagery.requested_period.
+        body: JSON.stringify({ west: bbox.west, south: bbox.south, east: bbox.east, north: bbox.north, aoi_label: 'aoi', demo: false }),
       })
       // A 401 has one cause and one fix; say so instead of surfacing the raw
       // body. Before item 43 this was every request, and the error the user saw
@@ -1367,9 +1371,12 @@ export default function App() {
           <AOIDrawer onBboxChange={handleBboxChange} bbox={bbox} drawing={drawing} />
           {result && showLandcover && <LandcoverOverlay imageUrl={imageUrl} bbox={result.aoi} opacity={landcoverOpacity} />}
           {result?.run_id && <OSMVectorLayer runId={result.run_id} visible={showRoadsVector} />}
-          {result?.segments && (
+          {/* Item 58: the grid comes from the result or not at all. This used
+              to fall back to 291 x 257 (Dharavi's grid), which would have
+              projected any other AOI's segments to the wrong places. */}
+          {result?.segments && segmentGrid(result) && (
             <SegmentOverlays segments={result.segments} bbox={result.aoi} onSelect={setSelected} selected={selected}
-              tileWidth={result.tile_dimensions?.width ?? 291} tileHeight={result.tile_dimensions?.height ?? 257}
+              tileWidth={segmentGrid(result).width} tileHeight={segmentGrid(result).height}
               colorFor={cat => categoryColor(result, cat)} />
           )}
         </MapContainer>
@@ -1384,6 +1391,12 @@ export default function App() {
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,10,22,0.82)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 600 }}>
             <div style={{ fontFamily: FONTS.display, fontSize: 15, fontWeight: 600, color: C.cyan, marginBottom: 12 }}>PIPELINE RUNNING</div>
             <div style={{ fontFamily: FONTS.body, fontSize: 11.5, color: C.textDim, lineHeight: 2, textAlign: 'center' }}>Sentinel-2 → SAM segmentation → per-pixel classification</div>
+          </div>
+        )}
+
+        {result?.segments && !segmentGrid(result) && (
+          <div style={{ position: 'absolute', bottom: 18, left: '50%', transform: 'translateX(-50%)', background: C.amberDim, border: `1px solid ${C.amber}`, borderRadius: 9, padding: '9px 16px', zIndex: 400, fontFamily: FONTS.body, fontSize: 11.5, color: C.text }}>
+            Segment outlines not shown: this result has no <code style={{ fontFamily: FONTS.mono }}>tile_dimensions</code>, so they cannot be placed on the map.
           </div>
         )}
 

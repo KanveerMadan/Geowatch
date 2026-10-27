@@ -39,6 +39,33 @@ BYTES_PER_SAMPLE = 4
 # recomputing it in float drifts by 1 ULP.
 DEGREES_PER_PIXEL_AT_SCALE_10 = 8.983152841195215e-05
 
+# ── Export validation — C2 / build item 52 ─────────────────────────────
+#
+# The CRS every export is requested on. _compute_export_grid() computes the
+# pixel lattice in EPSG:4326 degrees, so a file in any other CRS cannot have
+# the dimensions that grid predicts, even when its width and height happen to
+# match.
+EXPORT_CRS = "EPSG:4326"
+
+
+class ExportValidationError(RuntimeError):
+    """A downloaded GeoTIFF does not match the export that was requested."""
+
+
+# The largest AOI export_image_local() has been run on live and validated.
+# Measured 2026-10-26 (item 52) on real Sentinel-2 median composites
+# (2025-11-01..2026-02-28) for squares centred on Dharavi. Each one exported,
+# passed validate_export() exactly, and tiled:
+#     99.5 km²  1059x1001 px   2 chunks    53 s
+#    397.9 km²  2117x2002 px   6 chunks   188 s
+#    895.2 km²  3175x3002 px  12 chunks   354 s
+# No failure was reached, so this is a lower bound on the tiler's capability,
+# not its ceiling. It covers the export and tiling only, NOT the downstream
+# pipeline (SAM per tile, inference memory), which was not measured.
+# api.MAX_AOI_AREA_KM2 must not exceed it; tests/test_export_validation.py
+# asserts that.
+MEASURED_MAX_EXPORT_AREA_KM2 = 895.2
+
 # ── Band order — C4 / build item 44 ────────────────────────────────────
 #
 # This used to be two literals under a comment reading "Must match
@@ -322,6 +349,41 @@ def _plan_export_chunks(width: int, height: int, n_bands: int) -> list:
     return chunks
 
 
+def validate_export(path: str, expected_width: int, expected_height: int,
+                    expected_bands: int, expected_crs: str = EXPORT_CRS) -> None:
+    """
+    Raise ExportValidationError unless the GeoTIFF at `path` has exactly the
+    requested width, height, band count and CRS.
+
+    C2 / item 52. Exact equality, with no tolerance: the expected grid comes
+    from _compute_export_grid(), which reproduces 137 of 137 existing raw.tif
+    files exactly (measured at build time), so any difference is a wrong file
+    rather than rounding. Every mismatch is reported in one message, not only
+    the first.
+    """
+    import rasterio
+    from rasterio.crs import CRS
+
+    with rasterio.open(path) as src:
+        got = {"width": src.width, "height": src.height,
+               "bands": src.count, "crs": src.crs}
+
+    problems = []
+    if got["width"] != expected_width:
+        problems.append(f"width {got['width']} != requested {expected_width}")
+    if got["height"] != expected_height:
+        problems.append(f"height {got['height']} != requested {expected_height}")
+    if got["bands"] != expected_bands:
+        problems.append(f"band count {got['bands']} != requested {expected_bands}")
+    if got["crs"] is None or got["crs"] != CRS.from_user_input(expected_crs):
+        problems.append(f"crs {got['crs']} != requested {expected_crs}")
+    if problems:
+        raise ExportValidationError(
+            f"Export at {path} does not match the request: "
+            + "; ".join(problems) + "."
+        )
+
+
 def export_image_local(
     image: ee.Image,
     aoi: ee.Geometry,
@@ -330,7 +392,16 @@ def export_image_local(
 ) -> str:
     """
     Download a GEE image directly to local disk as GeoTIFF.
-    Use only for small AOIs during development (< 5 sq km).
+
+    AOIs above GEE's single-request ceiling are downloaded in chunks and
+    stitched (see _export_image_local_chunked), so request size is not the
+    limit. MEASURED_MAX_EXPORT_AREA_KM2 is the largest AOI this function has
+    been run on live and validated; api.MAX_AOI_AREA_KM2 must not exceed it.
+    (Item 52: this docstring used to claim a five-square-kilometre limit,
+    which contradicted the API's 100 km² cap by 20x and was never measured.)
+
+    The file is checked against the request by validate_export() before
+    this function returns, and is deleted if the check fails.
 
     Args:
         image: clipped Sentinel-2 image (all 6 bands)
@@ -406,6 +477,16 @@ def export_image_local(
             f"(batch export to Drive, or chunked per-tile download), not a "
             f"retry."
         )
+
+    # C2 / item 52: the file exists, but existing is not the same as being
+    # the export that was asked for. A wrong-shaped file left at output_path
+    # would be read as a good one by every later step and by a re-run, so it
+    # is removed before the error propagates.
+    try:
+        validate_export(output_path, grid["width"], grid["height"], n_bands)
+    except ExportValidationError:
+        os.remove(output_path)
+        raise
 
     print(f"Image saved locally: {output_path}")
     return output_path

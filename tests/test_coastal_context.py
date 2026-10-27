@@ -1,3 +1,9 @@
+"""
+Live regression test for ingestion.coastal (calls Earth Engine).
+"""
+from ingestion.coastal import get_coastline_context
+
+
 def test_inland_aoi_returns_nonzero_distance_not_zero():
     """
     Regression test for the filled-polygon-vs-boundary bug: an AOI deep

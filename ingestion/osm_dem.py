@@ -4,6 +4,15 @@ import os
 import json
 from shapely.geometry import box
 
+# OSM highway types treated as unpaved at 10 m. ONE definition (build item
+# 58): apply_osm_vector_labels() labels segments with it, and
+# get_osm_features() stamps it onto roads.geojson as an `unpaved` property so
+# the frontend reads it instead of keeping its own copy of this list.
+UNPAVED_HIGHWAY_TYPES = frozenset({
+    "track", "path", "footway", "bridleway",
+    "unclassified", "service", "living_street", "steps",
+})
+
 
 def get_osm_features(
     west: float, south: float, east: float, north: float,
@@ -97,6 +106,7 @@ def get_osm_features(
                 "geometry": line,
                 "highway": tags.get("highway"),
                 "name": tags.get("name", ""),
+                "unpaved": tags.get("highway") in UNPAVED_HIGHWAY_TYPES,
             })
         elif "waterway" in tags or tags.get("natural") == "water":
             waterways.append({
@@ -637,11 +647,7 @@ def apply_osm_vector_labels(
         y_south = north - (y + h) * lat_per_px - buf_lat
         return box(x_west, y_south, x_east, y_north)
 
-    # Unpaved road highway types at 10m resolution
-    UNPAVED_HIGHWAY_TYPES = {
-        "track", "path", "footway", "bridleway",
-        "unclassified", "service", "living_street", "steps",
-    }
+    # Unpaved road highway types: the module-level UNPAVED_HIGHWAY_TYPES.
 
     # Filter roads to unpaved types only
     unpaved_roads_gdf = None

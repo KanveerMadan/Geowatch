@@ -237,12 +237,21 @@ def test_missing_thresholds_key_raises(tmp_path, fake_ckpt):
 # ── One loader, not two ──
 
 def test_the_dead_duplicate_validator_is_deleted():
-    src = open("ingestion/resnet_classifier.py").read()
-    assert "def load_production_model(" not in src, (
-        "the duplicate validator is back; item 45 required promoting it and "
-        "deleting it, not maintaining both"
+    """Item 45 deleted the duplicate validator from resnet_classifier.py, and
+    item 57 then deleted that whole file as dead code. The property this
+    guards is unchanged: exactly one production-model loader exists."""
+    import pathlib
+    needle = "def load_production_" + "model("   # split so this file is not a hit
+    hits = []
+    for path in pathlib.Path(".").rglob("*.py"):
+        if set(path.parts) & {"geowatch-env", "venv", ".venv", "node_modules", "tests"}:
+            continue
+        if needle in path.read_text():
+            hits.append(str(path))
+    assert hits == ["ingestion/inference.py"], (
+        f"the duplicate validator is back; item 45 required promoting it and "
+        f"deleting it, not maintaining both. Found: {hits}"
     )
-    assert "C10 / build item 45" in src, "the deletion should be recorded in place"
 
 
 def test_only_one_caat_loader_exists():

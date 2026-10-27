@@ -2191,18 +2191,102 @@ Two code paths that were never joined. Then feed `observation_quality` into
 independently as originally ordered. Std-dev is maximally sensitive to
 exactly the cloud-leakage outliers this fix prevents.
 
-### 52. C2 — validate the export; reconcile the size gap
+### 52. C2 — validate the export; reconcile the size gap ✅
 Assert dimensions, band count, and CRS against what was requested; fail loudly on
 mismatch. Then reconcile `MAX_AOI_AREA_KM2 = 100.0` against `tiler.py`'s
 documented "< 5 sq km" — **a 20× gap documented in one file and contradicted in
 another.** Raise the tiler's real capability or lower the API cap; do not leave
 both.
 
-### 53. C8 — INFORM validation + frontend guard
+**Built.** `tiler.validate_export()` checks the downloaded file for **exact**
+width, height, band count and CRS. The expected values are the
+`_compute_export_grid` grid, `image.bandNames()` and `EXPORT_CRS = "EPSG:4326"`.
+It raises `ExportValidationError` with every mismatch listed. On failure,
+`export_image_local` deletes the bad file so no later step or re-run can pick
+it up. Exact equality is safe here: before building, `_compute_export_grid`
+was checked against every real `raw.tif` with a bbox `aoi`, and it reproduced
+**137 of 137** exactly.
+
+**The size gap: the tiler's docstring was the wrong side.** Measured live on
+real Sentinel-2 composites centred on Dharavi. The pass bar was fixed before
+running: export returns, `validate_export` passes, tiling completes.
+
+| AOI | grid | chunks | time | result |
+|---:|---|---:|---:|---|
+| 99.5 km² | 1059×1001 | 2 | 53 s | PASS |
+| 397.9 km² | 2117×2002 | 6 | 188 s | PASS |
+| 895.2 km² | 3175×3002 | 12 | 354 s | PASS |
+
+The chunked export removed the request-size limit that the "< 5 sq km" note
+and the old 943 km² failure reflected. The note is replaced, and the measured
+figure is now `tiler.MEASURED_MAX_EXPORT_AREA_KM2 = 895.2`. **It is a lower
+bound, because no failure was reached.** It covers export and tiling only, not
+SAM or inference memory downstream. `MAX_AOI_AREA_KM2` stays at 100 because
+that downstream cost was not measured. A test asserts the API cap never
+exceeds the measured tiler figure, so there is one number, not two.
+
+`tests/test_export_validation.py`, 9 tests: **8 failed, 1 passed before** (the
+guard that a correct export still succeeds) and **9 passed after**.
+
+*Observed, not changed:* at 398 and 895 km², the grid computed from the
+client bbox is one row short of the grid computed from GEE's
+`aoi.bounds()`. The export follows GEE's bounds, and validation checks
+against that same grid, so the two agree. Any consumer that predicts raster
+size from the request bbox alone will be off by one row at those sizes.
+
+### 53. C8 — INFORM validation + frontend guard ✅
 Validate numeric and in-range at read time; an invalid cell yields
 `status: "unavailable"`, not `"available"`. **Use the `PCT_MISSING`/`RELIABILITY`
 columns that are already read and currently unused.** And guard the frontend
 render — `App.jsx:568/572` currently renders `raw_score` with no type check.
+
+**Built.** `vulnerability_sources.INFORM_VALID_RANGES` validates all four
+values at read time: both scores, `Lack of Reliability (*)` and
+`% of Missing Indicators`. Each must be a finite number, not bool and not
+text, and inside **the file's own range**. Both scores and reliability are
+0–10 (from the file's units row). Missing indicators is 0–1, because the
+cells use the `0%` number format and so store a fraction. Any invalid cell
+makes the lookup `unavailable`, and the reason names each bad column. The
+two quality columns are now required columns too.
+
+**Reliability is validated and reported, not used as a quality cut-off.**
+INFORM publishes no global threshold for its Lack of Reliability index, so
+none was invented here. Whether a high-but-valid score should suppress the
+output is a decision, and it is not made.
+
+**On the real file** (`INFORM_Risk_2026_v072.xlsx`), **190 of 191 rows
+pass.** The failure is real data: **Tajikistan's reliability cell is the Excel
+error string `'#REF!'`**, so TJK is now `unavailable`. Before this change it was
+`available`, with `'#REF!'` passed through as `lack_of_reliability_score`.
+
+Frontend: the ledger's `App.jsx:568/572` are now at 964/968. All four values go
+through `geowatch-ui/src/inform.js`, a type guard that shows `—` for anything
+that is not a finite number and drops the `/ 10` unit when the value is
+missing. It deliberately has no 0–10 range check, because that would be a
+second copy of the backend rule (the C31 pattern).
+
+Tests: `tests/test_inform_validation.py`, 17 tests: **16 failed, 1 passed
+before** (the valid-row guard) and **17 passed after**.
+`tests/test_inform_ui.mjs`, 12 tests: **0 passed before** (the module did not
+exist) and **12 passed after**.
+
+~~*Live check:* the JRC results page now offers `INFORM_Risk_Mid_2026_v073.xlsx`,
+so the repo's v072 is one release behind. The source was not switched under
+this item.~~
+
+**v073 adopted 2026-10-27.** Downloaded live from the JRC results page
+(`/inform-index/Portals/0/InfoRM/2026/INFORM_Risk_Mid_2026_v073.xlsx`, HTTP
+200, 2,546,463 bytes, sha256 `7e0cc5e5…9e66`). Its structure is identical to
+v072: same sheet name, header row 2, units row 3, columns and cell formats.
+`INFORM_RISK_FILE_PATH` and `INFORM_RISK_EDITION` (`"Mid 2026 (v073)"`) now
+point at it. It is a real update: 186 of 191 rows changed (IND vulnerability
+4.4 → 4.3, coping 4.2 → 3.9). **Item 53's validation on v073: 190 of 191 rows
+pass.** The one failure is again Tajikistan, whose `Lack of Reliability (*)` is
+still the Excel error `'#REF!'` in the new release, so it is an upstream
+defect rather than a stale file. The file itself is untracked (`data/` is
+gitignored) and must be placed at `data/external/` in each checkout that runs
+the pipeline. Without it, the INFORM layer now reports `failed` /
+`FileNotFoundError` (item 54 amendment) rather than stopping the run.
 
 ---
 
@@ -2210,13 +2294,13 @@ render — `App.jsx:568/572` currently renders `raw_score` with no type check.
 
 *Two items.*
 
-### 54. C18 — in-band errors detected in-band
+### 54. C18 — in-band errors detected in-band ✅
 Pick one convention and use it consistently across the boundary. **Recommended:**
 raise on programmer error and integration failure; return status dicts only for
 genuine data absence. Then make the scheduler check the thing that is actually
 signalled.
 
-### 55. Distinguish exception classes
+### 55. Distinguish exception classes ✅
 Catch specific types. Where a broad catch is genuinely right, **record the
 exception class in the output** so "broken integration" and "no data here" are
 distinguishable downstream.
@@ -2224,17 +2308,106 @@ distinguishable downstream.
 *This is the shared root cause behind several individual findings across
 `hydrology.py`, `coastal.py`, `rainfall.py`, and `vulnerability_sources.py`.*
 
+**Built, as one change, because the root cause is shared.** The convention is
+written once, in `ingestion/errors.py`:
+
+- **Raise** on integration and programmer errors. This covers GEE errors,
+  network failures, typos, a matched country boundary with no `country_co`
+  (schema change), the INFORM file not installed, a missing INFORM sheet, and
+  a changed INFORM header row.
+- **`status: "unavailable"` means genuine no-data only.** That covers a
+  reduction that returned no value, no CHIRPS images, a centroid over ocean,
+  an ISO2 code pycountry cannot resolve, an ISO3 not in INFORM, and an INFORM
+  cell that fails item 53's validation. Each such dict is produced by
+  catching `NoDataError` and nothing else, and it carries
+  `exception_class: "NoDataError"`. The old field shapes are kept, plus `error`.
+- All seven `except Exception` blocks in the four modules are gone.
+  `coastal.py` has no genuine no-data case ("far inland" is a real
+  `available` result), so it has no catch at all.
+- **Broad catches remain only where they are right**, and each records the
+  class. The scheduler loop and the `run_all_cities` batch loop do this so
+  one city cannot stop the rest. The `/api/analyze` and
+  `/api/analyze_inundation` 500s now read `EEException: …` rather than a bare
+  message.
+- **C18: the scheduler checks what is signalled.** `refresh_all_watched_aois`
+  checks both the raise and the returned `status`. It prints "refreshed OK"
+  only for `complete`, and returns one outcome per AOI
+  (`complete` / `failed` / `exception` + class).
+
+~~**Behaviour change, stated plainly:** `run_pipeline` and
+`run_inundation_analysis` call these sources without a guard. A GEE or network
+failure in any context layer therefore **now aborts the run**, where before it
+silently degraded that layer to "unavailable". That is the convention as
+specified. Whether the pipeline should degrade per layer instead is a separate
+question, not decided here.~~ *Superseded by the amendment below.
+`run_inundation_analysis` never called these sources. The calls seen were in
+`run_event_hazard_analysis`, which item 57 deleted.*
+
+**Amendment (decided 2026-10-27): a failed layer is contained, not fatal.** The
+sources still raise. `run_pipeline` now calls each of its seven context layers
+through `_context_layer()`: MERIT HAND, FABDEM, CHIRPS, coastline, slope, the
+country lookup and INFORM. A raise there becomes that layer's block with
+**`status: "failed"`** plus `exception_class` and `layer`, built by
+`errors.layer_failed()`, and the run continues and completes. `"failed"` is
+deliberately distinct from `"unavailable"` (genuine no-data, `NoDataError`),
+so result.json says which happened. Every consumer gates on
+`status == "available"`, so a failed layer is excluded exactly as an
+unavailable one is. A failed country lookup makes the vulnerability block
+`failed` too (`failed_upstream: "country_lookup"`). Otherwise INFORM would
+report the missing ISO3 as a data gap.
+
+`tests/test_pipeline_layer_boundary.py`, 11 tests, driving the real
+`run_pipeline` with its external dependencies stubbed: **9 failed, 2 passed
+before** (the harness baseline, and the guard that a data-absent layer stays
+`unavailable`) and **11 passed after**.
+
+Tests: `tests/test_error_convention.py`, 46 tests: **46 failed before, 46 passed
+after.** Three existing tests encoded the old convention and were rewritten to
+the new one. They are `test_hydrology_hand.py`'s two
+`test_gee_failure_returns_unavailable_not_fabricated` tests (now
+`..._raises_...`) and item 53's `test_missing_quality_column_...` (now
+expects `KeyError`).
+
+Verified live against GEE for Dharavi: MERIT HAND, FABDEM, slope, coastline,
+CHIRPS and the country lookup all return `available`. An ocean AOI returns
+`unavailable` / `NoDataError`. INFORM returns IND `available`, and TJK (`#REF!`)
+and ATA (not listed) `unavailable` / `NoDataError`.
+
 ---
 
 # PART 12 — Hygiene 🔓
 
 *Four items. Individually cheap, collectively substantial.*
 
-### 56. C17 — sort by timestamp
+### 56. C17 — sort by timestamp ✅
 Parse the timestamp; do not sort strings. **And exclude `*_test_*` runs from the
 demo endpoint entirely.**
 
-### 57. Delete dead code
+**Built.** `api.get_latest_run` orders candidates by `run_dir_timestamp()`, the
+parsed trailing `_%Y%m%d_%H%M%S` that `pipeline.py` writes. It drops every
+`*_test_*` directory before ordering, and drops directories with no parseable
+timestamp instead of guessing a position for them.
+`tests/test_latest_run_ordering.py`, 12 tests: **12 failed before, 12 passed
+after**. It rebuilds the ledger's exact three names. Against the real
+`data/pipeline_runs/` the demo now selects
+`dharavi_phase11_postfix_20260807_125913`, which is the ledger's
+newest-by-mtime run.
+
+~~*Not changed, outside the item:* `startswith(aoi_label)` still admits
+`dharavi_*_inundation_*` and `*_eventhazard_*` runs, which have a different
+result shape. If one is ever the newest, `/api/demo` would serve it.
+`/api/runs` still lists in reverse string order.~~
+
+**Finished 2026-10-27.** `*_inundation_*` and `*_eventhazard_*` runs are now
+excluded from "latest" selection alongside `*_test_*` (`_EXCLUDED_FROM_LATEST`).
+`/api/runs` lists newest first by parsed timestamp, with undated directories
+listed after every dated one in name order rather than dropped. 4 more tests
+in the same file: **4 failed before, 4 passed after** (16/16 in the file). On
+the real `data/pipeline_runs/` the demo still selects
+`dharavi_phase11_postfix_20260807_125913`, and `/api/runs` lists all 137
+runs.
+
+### 57. Delete dead code ✅ *(partial: two of six targets kept, see below)*
 `resnet_classifier.py`, `resnet_model.py`, `classifier.py`,
 `run_event_hazard_analysis`, the duplicate `decode_mask_rle` in
 `verify_masks.py`, the duplicated `GeoWatchResNetSeg`.
@@ -2242,16 +2415,76 @@ demo endpoint entirely.**
 **Removes roughly a dozen Moderates at once**, and removes the trap where the
 correct provenance check lives in a file nothing imports (C10's root cause).
 
-### 58. Frontend as pure renderer
+**Built.** Every target was grepped for importers repo-wide first, and on
+every other branch (none imports a deleted name).
+
+| target | result |
+|---|---|
+| `ingestion/resnet_classifier.py` | **deleted**: no importer |
+| `ingestion/classifier.py` | **deleted**, together with root `test_classifier.py`, its only importer. That is a hard-coded RemoteCLIP smoke script outside `tests/` and never collected, which the original audit had already named as the sole importer |
+| `run_event_hazard_analysis` | **deleted** from `pipeline.py`, with the five imports only it used |
+| `verify_masks.py` fallback `decode_mask_rle` | **deleted**. It decoded with a different layout (`(w, h).T`) behind a print-only warning. The import of `segmentation.decode_mask_rle` is now unconditional |
+| `ingestion/resnet_model.py` | **KEPT**: live importers are `tests/test_encoder_band_contract.py` and `experiments/band_reflectance/{run_probe,fidelity_run,run_comparison}.py` |
+| duplicated `GeoWatchResNetSeg` | **KEPT**: the two are not duplicates. `resnet_model.py`'s loads pretrained SSL4EO weights and runs `assert_encoder_band_contract()`. `inference.py`'s uses `weights=None` and runs no contract check. Merging them changes behaviour on one side, so it is a design decision, not a deletion |
+
+`tests/test_dead_code_removed.py`, 12 tests: **6 failed, 6 passed before** (the
+six that pass are the "live modules still import" safety net) and **12 passed
+after**. `test_caat_provenance.py::test_the_dead_duplicate_validator_is_deleted`
+read `resnet_classifier.py` directly. It was restated to keep its property
+(exactly one `load_production_model`, in `inference.py`) without the file.
+
+*Left dead, outside the list:* with `run_event_hazard_analysis` gone,
+`ingestion/event_hazard.py` and `susceptibility/event_hazard.py` have no entry
+point. The Part 4 validation mandate still names `event_hazard.py`.
+
+### 58. Frontend as pure renderer ✅
 Renders `result.json` and computes nothing. Remove: hardcoded category lists,
 recomputed aggregates, invented thresholds, truncated caveat lists, the hardcoded
 Q1-2024 date window, and **the `?? 291 / ?? 257` fallback — verified as exactly
 Dharavi's `tile_dimensions`. If the field were ever missing, every AOI worldwide
 would be projected through Dharavi's grid, silently.**
 
-### 59. `batch_run_log.json` — append, don't truncate
+**Built.** The helpers live in `geowatch-ui/src/render.js` (plain JS, tested
+under node). Removed from `App.jsx`:
+
+| removed | replaced by |
+|---|---|
+| `?? 291 / ?? 257` | `segmentGrid(result)`. With no valid `tile_dimensions`, segments are **not drawn** and the map says why |
+| `CAT_LABELS` category table | `humanize(key)`. Every old entry was the key in sentence case, so no label changes, and a new category is no longer blank in the legend |
+| `Object.entries(SUSC_INFO)` deciding which hazards render | `hazardKeys(result.susceptibility)`. `SUSC_INFO` is now display text only, so a hazard it does not list still renders |
+| `UNPAVED_HIGHWAY_TYPES`, a copy of `osm_dem.py`'s set | `roads.geojson` now carries the backend's own `unpaved` flag. `osm_dem.UNPAVED_HIGHWAY_TYPES` is one module-level frozenset used by both paths |
+| client-side informal-roofing segment count | removed. No run has ever emitted it, and recomputing it is the defect |
+| `standing_water_segment_count ?? 0`, legend `'0.0%'` for missing, `aoi_mean_class \|\| 'unknown'`, architecture `\|\| 'GeoWatchResNetSeg'` | missing renders as `—` |
+| `unknown_pct > 15` colour threshold | removed |
+| "one of its 11 training cities", "data … from 2020" | read from `loco_n_folds` and `population_year` |
+| `CaveatList` `items.slice(0, 5)` | every caveat renders |
+| hardcoded `2024-01-01 … 2024-03-31` analyze window | omitted. The backend uses its own window, and the report already shows `imagery.requested_period` |
+
+*Legacy runs:* roads from runs before this item carry no `unpaved` flag, so they
+all render in the paved style rather than being classified client-side.
+
+Tests: `tests/test_pure_renderer_ui.mjs`, 15 tests: **0 passed before, 15 passed
+after**. `tests/test_renderer_contract.py`, 2 tests: **2 failed before, 2 passed
+after**. The `vite build` succeeds. `oxlint` reports the same two findings as on
+`master` (`App.jsx` unused expression in `DragToggle`, conditional `useState` in
+`SecExposure`); neither was introduced here.
+
+### 59. `batch_run_log.json` — append, don't truncate ✅
 Each invocation currently truncates; the 11-city history was clobbered by a later
 single-city run.
+
+**Built.** `run_all_cities.run_batch` reads the existing log before any city
+runs. It writes `history + this batch` after each city, through a temp file and
+`os.replace`. Each entry carries a `batch_id`, so invocations can be told apart,
+and an `exception` entry also records `exception_class`. If an existing log
+cannot be parsed as a JSON list, the run **raises before running anything**.
+Treating that file as empty would overwrite it, which is the defect itself.
+`tests/test_batch_run_log_append.py`, 6 tests: **5 failed, 1 passed before**
+(the guard that the return value stays per-batch) and **6 passed after**.
+
+*The lost history is not recovered.* The on-disk log still holds the single
+`nusantara` entry that clobbered it. The earlier entries are not in git
+(`data/pipeline_runs/` is untracked), so they are gone.
 
 ---
 

@@ -50,8 +50,48 @@ OUTPUT_DIR = "data/pipeline_runs"
 LOG_PATH = "data/pipeline_runs/batch_run_log.json"
 
 
+def _load_existing_log(path: str) -> list:
+    """Return the entries already in the batch log, or [] if there is no file.
+
+    Item 59: the log is append-only across invocations. A file that exists
+    but cannot be read as a JSON list raises instead of being treated as
+    empty, because treating it as empty means overwriting it, and that
+    overwrite is the defect this item fixes.
+    """
+    if not os.path.exists(path):
+        return []
+    with open(path) as f:
+        try:
+            existing = json.load(f)
+        except json.JSONDecodeError as e:
+            raise ValueError(
+                f"{path} exists but is not valid JSON ({e}); refusing to "
+                "overwrite batch history. Move or repair it, then re-run."
+            ) from e
+    if not isinstance(existing, list):
+        raise ValueError(
+            f"{path} holds a {type(existing).__name__}, not a list of batch "
+            "entries; refusing to overwrite batch history."
+        )
+    return existing
+
+
+def _write_log(path: str, entries: list) -> None:
+    """Write via a temp file and rename, so a crash mid-write cannot
+    truncate the history that was already on disk."""
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(entries, f, indent=2)
+    os.replace(tmp, path)
+
+
 def run_batch(cities_to_run: dict, start_date: str = None, end_date: str = None,
               cloud_cover_threshold: int = 20):
+    # Read before any city runs, so an unreadable log stops the batch before
+    # it spends an hour of pipeline time it then cannot record.
+    history = _load_existing_log(LOG_PATH)
+    batch_id = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     results_log = []
     print(f"\n{'#'*60}")
     print(f"# GeoWatch batch run — {len(cities_to_run)} cities")
@@ -70,6 +110,7 @@ def run_batch(cities_to_run: dict, start_date: str = None, end_date: str = None,
         print(f"{'='*60}")
 
         entry = {
+            "batch_id": batch_id,
             "city": label,
             "bbox": bbox,
             "started_at": datetime.now().isoformat(),
@@ -99,6 +140,7 @@ def run_batch(cities_to_run: dict, start_date: str = None, end_date: str = None,
             elapsed = time.time() - t0
             entry.update({
                 "status": "exception",
+                "exception_class": type(e).__name__,
                 "elapsed_seconds": round(elapsed, 1),
                 "error": str(e),
                 "traceback": traceback.format_exc(),
@@ -108,10 +150,9 @@ def run_batch(cities_to_run: dict, start_date: str = None, end_date: str = None,
 
         results_log.append(entry)
 
-        # Save log after every city — crash-safe, same philosophy as annotate.py
-        os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
-        with open(LOG_PATH, "w") as f:
-            json.dump(results_log, f, indent=2)
+        # Save log after every city — crash-safe, same philosophy as annotate.py.
+        # Earlier invocations' entries come first and are never rewritten.
+        _write_log(LOG_PATH, history + results_log)
 
     # ── Final summary ──
     print(f"\n{'#'*60}")
