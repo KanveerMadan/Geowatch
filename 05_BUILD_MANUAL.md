@@ -2320,12 +2320,32 @@ written once, in `ingestion/errors.py`:
   only for `complete`, and returns one outcome per AOI
   (`complete` / `failed` / `exception` + class).
 
-**Behaviour change, stated plainly:** `run_pipeline` and
+~~**Behaviour change, stated plainly:** `run_pipeline` and
 `run_inundation_analysis` call these sources without a guard. A GEE or network
 failure in any context layer therefore **now aborts the run**, where before it
 silently degraded that layer to "unavailable". That is the convention as
 specified. Whether the pipeline should degrade per layer instead is a separate
-question, not decided here.
+question, not decided here.~~ *Superseded by the amendment below.
+`run_inundation_analysis` never called these sources. The calls seen were in
+`run_event_hazard_analysis`, which item 57 deleted.*
+
+**Amendment (decided 2026-10-27): a failed layer is contained, not fatal.** The
+sources still raise. `run_pipeline` now calls each of its seven context layers
+through `_context_layer()`: MERIT HAND, FABDEM, CHIRPS, coastline, slope, the
+country lookup and INFORM. A raise there becomes that layer's block with
+**`status: "failed"`** plus `exception_class` and `layer`, built by
+`errors.layer_failed()`, and the run continues and completes. `"failed"` is
+deliberately distinct from `"unavailable"` (genuine no-data, `NoDataError`),
+so result.json says which happened. Every consumer gates on
+`status == "available"`, so a failed layer is excluded exactly as an
+unavailable one is. A failed country lookup makes the vulnerability block
+`failed` too (`failed_upstream: "country_lookup"`). Otherwise INFORM would
+report the missing ISO3 as a data gap.
+
+`tests/test_pipeline_layer_boundary.py`, 11 tests, driving the real
+`run_pipeline` with its external dependencies stubbed: **9 failed, 2 passed
+before** (the harness baseline, and the guard that a data-absent layer stays
+`unavailable`) and **11 passed after**.
 
 Tests: `tests/test_error_convention.py`, 46 tests: **46 failed before, 46 passed
 after.** Three existing tests encoded the old convention and were rewritten to

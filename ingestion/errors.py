@@ -12,9 +12,14 @@ The error convention for ingestion sources (build items 54 and 55).
     tell "no data here" from anything else. Before this, every source
     returned one identical "unavailable" for a GEE quota error, a timeout,
     a wrong band name, a Python typo and a real data gap alike.
-  * A broad `except Exception` is right only at a fan-out loop (the
-    scheduler, the batch runner) where one AOI must not stop the others,
-    and there it records `type(e).__name__`.
+  * A broad `except Exception` is right only at a fan-out boundary, where
+    one unit must not stop the others, and there it records
+    `type(e).__name__`. Those boundaries are the scheduler and batch-runner
+    loops (one AOI) and, since the item 54 amendment, run_pipeline's
+    context-layer calls (one layer). A layer caught there becomes
+    `status: "failed"` via layer_failed() -- deliberately NOT "unavailable",
+    so "the integration broke" and "there is no data here" stay distinct
+    all the way into result.json.
 """
 
 
@@ -32,6 +37,22 @@ def no_data(exc: NoDataError, **fields) -> dict:
     return {
         **fields,
         "status": "unavailable",
+        "error": str(exc),
+        "exception_class": type(exc).__name__,
+    }
+
+
+def layer_failed(layer: str, exc: BaseException, **fields) -> dict:
+    """The block for a context layer whose source raised (item 54 amendment).
+
+    Built by run_pipeline's layer boundary, never by a source. Every consumer
+    gates on `status == "available"`, so a failed layer is excluded exactly
+    as an unavailable one is; only the label and the class differ.
+    """
+    return {
+        **fields,
+        "status": "failed",
+        "layer": layer,
         "error": str(exc),
         "exception_class": type(exc).__name__,
     }

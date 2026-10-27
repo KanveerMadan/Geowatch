@@ -43,6 +43,8 @@ from ingestion.inference import (
     build_segments_with_landcover, compute_area_stats, get_device,
 )
 
+from ingestion.errors import layer_failed
+
 import numpy as np
 import ee
 
@@ -93,6 +95,23 @@ def _apply_osm_labels_to_segments(segments: list, osm_features: dict,
         seg["dominant_landcover_category"] = seg.pop("category")
 
     return segments
+
+
+def _context_layer(layer: str, fn, *args, **kwargs) -> dict:
+    """Call one context-layer source; contain its failure to that layer.
+
+    Item 54 amendment. The sources raise on integration and programmer
+    errors (ingestion/errors.py), and this is the boundary that catches
+    them: the layer's block becomes status "failed" with its exception
+    class, and the run continues without it. A genuine data gap is not
+    caught here -- the source already returned its own "unavailable".
+    """
+    try:
+        return fn(*args, **kwargs)
+    except Exception as e:
+        print(f"Context layer {layer!r} FAILED with {type(e).__name__}: {e} "
+              f"-- continuing without it.")
+        return layer_failed(layer, e)
 
 
 def run_pipeline(
@@ -238,16 +257,16 @@ def run_pipeline(
     print("\n[4/7] Computing relative-elevation proxy...")
     relative_elevation = compute_relative_elevation_proxy(west, south, east, north)
     print("Computing fluvial HAND context (MERIT Hydro)...")
-    hand_context = get_merit_hand_context(west, south, east, north)
+    hand_context = _context_layer("merit_hand", get_merit_hand_context, west, south, east, north)
     print("Computing bare-earth elevation (FABDEM)...")
-    fabdem_elevation = get_fabdem_elevation_stats(west, south, east, north)
+    fabdem_elevation = _context_layer("fabdem", get_fabdem_elevation_stats, west, south, east, north)
     elevation = get_elevation_stats(west, south, east, north, output_dir=osm_dir)
     print("Fetching rainfall climatology (CHIRPS)...")
-    rainfall_climatology = get_rainfall_climatology(aoi)
+    rainfall_climatology = _context_layer("rainfall_climatology", get_rainfall_climatology, aoi)
     print("Computing coastline context (GEE Global Shoreline Dataset)...")
-    coastal_context = get_coastline_context(west, south, east, north)
+    coastal_context = _context_layer("coastline", get_coastline_context, west, south, east, north)
     print("Computing terrain slope (Phase 7)...")
-    slope_context = get_slope_stats(west, south, east, north)
+    slope_context = _context_layer("slope", get_slope_stats, west, south, east, north)
 
     # ── Step 5/6: SAM segmentation + per-pixel inference, PER TILE,
     # mosaicked into full-AOI canvases ──
@@ -491,8 +510,22 @@ def run_pipeline(
     # vulnerability_block didn't exist yet when the loop referenced it —
     # a NameError on every run. ──
     print("\nComputing vulnerability context (Phase 10B — INFORM Risk)...")
-    country_context = get_country_iso3_for_aoi(west, south, east, north)
-    vulnerability_block = get_inform_vulnerability_context(country_context.get("iso3"))
+    country_context = _context_layer("country_lookup", get_country_iso3_for_aoi,
+                                     west, south, east, north)
+    if country_context["status"] == "failed":
+        # Item 54 amendment: without this, INFORM would be asked for a None
+        # ISO3 and report "unavailable", which reads as a data gap when the
+        # real cause is a broken lookup upstream.
+        vulnerability_block = {
+            "status": "failed",
+            "layer": "vulnerability",
+            "failed_upstream": "country_lookup",
+            "error": f"Country lookup failed upstream: {country_context['error']}",
+            "exception_class": country_context["exception_class"],
+        }
+    else:
+        vulnerability_block = _context_layer(
+            "vulnerability", get_inform_vulnerability_context, country_context.get("iso3"))
     vulnerability_block["country_lookup"] = country_context
 
     # ── Phase 10A: exposure, computed SEPARATELY per evidence layer.
