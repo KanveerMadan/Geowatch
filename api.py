@@ -328,6 +328,12 @@ _RUN_DIR_TIMESTAMP = re.compile(r"_(\d{8}_\d{6})$")
 # test run made later would be served again.
 _TEST_RUN_MARKER = "_test_"
 
+# Item 56, finished: `startswith(label)` also matches the inundation and
+# event-hazard runs pipeline.py writes as `<label>_inundation_<ts>` and
+# `<label>_eventhazard_<ts>`. Their result shape is not the land-cover
+# result the demo renders, so they are never "latest" candidates either.
+_EXCLUDED_FROM_LATEST = (_TEST_RUN_MARKER, "_inundation_", "_eventhazard_")
+
 
 def run_dir_timestamp(name: str) -> datetime | None:
     """Parse the trailing timestamp of a run directory name, or None.
@@ -349,7 +355,8 @@ def get_latest_run(aoi_label: str) -> dict | None:
     """Return the most recent result.json for a given AOI label, or None.
 
     "Most recent" is by the parsed run timestamp (C17), never by string order,
-    and `*_test_*` runs are never candidates.
+    and `*_test_*`, `*_inundation_*` and `*_eventhazard_*` runs are never
+    candidates.
     """
     # C35 sweep (build item 47): a label reaching a filesystem operation, so it
     # is checked here too. Traversal is not reachable through this particular
@@ -367,7 +374,7 @@ def get_latest_run(aoi_label: str) -> dict | None:
     for d in runs_dir.iterdir():
         if not (d.is_dir() and d.name.startswith(aoi_label)):
             continue
-        if _TEST_RUN_MARKER in d.name:
+        if any(marker in d.name for marker in _EXCLUDED_FROM_LATEST):
             continue
         ts = run_dir_timestamp(d.name)
         if ts is None:
@@ -609,7 +616,15 @@ def list_runs():
     if not runs_dir.exists():
         return {"runs": []}
     runs = []
-    for run_dir in sorted(runs_dir.iterdir(), reverse=True):
+    # Item 56: newest first by parsed timestamp, not reverse string order
+    # (which grouped by label and put `dharavi_t...` above `dharavi_2...`).
+    # Undated directories are still listed, after every dated one, in name
+    # order, because they have no chronological position to guess.
+    def _order(d):
+        ts = run_dir_timestamp(d.name)
+        return (0, -ts.timestamp(), d.name) if ts else (1, 0, d.name)
+
+    for run_dir in sorted(runs_dir.iterdir(), key=_order):
         result_path = run_dir / "result.json"
         if result_path.exists():
             with open(result_path) as f:

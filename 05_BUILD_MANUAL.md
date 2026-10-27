@@ -2379,10 +2379,19 @@ after**. It rebuilds the ledger's exact three names. Against the real
 `dharavi_phase11_postfix_20260807_125913`, which is the ledger's
 newest-by-mtime run.
 
-*Not changed, outside the item:* `startswith(aoi_label)` still admits
+~~*Not changed, outside the item:* `startswith(aoi_label)` still admits
 `dharavi_*_inundation_*` and `*_eventhazard_*` runs, which have a different
 result shape. If one is ever the newest, `/api/demo` would serve it.
-`/api/runs` still lists in reverse string order.
+`/api/runs` still lists in reverse string order.~~
+
+**Finished 2026-10-27.** `*_inundation_*` and `*_eventhazard_*` runs are now
+excluded from "latest" selection alongside `*_test_*` (`_EXCLUDED_FROM_LATEST`).
+`/api/runs` lists newest first by parsed timestamp, with undated directories
+listed after every dated one in name order rather than dropped. 4 more tests
+in the same file: **4 failed before, 4 passed after** (16/16 in the file). On
+the real `data/pipeline_runs/` the demo still selects
+`dharavi_phase11_postfix_20260807_125913`, and `/api/runs` lists all 137
+runs.
 
 ### 57. Delete dead code ✅ *(partial: two of six targets kept, see below)*
 `resnet_classifier.py`, `resnet_model.py`, `classifier.py`,

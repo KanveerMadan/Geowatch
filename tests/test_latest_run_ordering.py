@@ -117,3 +117,59 @@ def test_run_timestamp_parsing(api_module, name, expected):
         assert ts is None
     else:
         assert ts.timetuple()[:6] == expected
+
+
+# ── Item 56, finished: other run kinds, and /api/runs ordering ───────────
+#
+# `startswith("dharavi")` also matches the inundation and event-hazard runs,
+# whose result shape is not the land-cover result the demo renders. They are
+# excluded outright, like test runs.
+
+@pytest.mark.parametrize("name", [
+    "dharavi_gate_b_inundation_20991231_235959",
+    "dharavi_p9_event_eventhazard_20991231_235959",
+])
+def test_other_run_kinds_are_never_the_demo(api_module, runs_root, name):
+    _make_run(runs_root, LEDGER_PLAIN_OLD)
+    _make_run(runs_root, name)
+    assert api_module.get_latest_run("dharavi")["run_id"] == LEDGER_PLAIN_OLD
+
+
+def _client(api_module):
+    return TestClient(
+        api_module.app,
+        headers={api_module.API_KEY_HEADER_NAME: api_module.API_KEY},
+    )
+
+
+def test_api_runs_is_newest_first_by_parsed_timestamp(api_module, runs_root):
+    """Reverse string order put every `dharavi_t...` above `dharavi_2...` and
+    grouped by label before time. The list is now chronological."""
+    names = [
+        "accra_20260701_131955",
+        "dharavi_test_20260806_114208",
+        "dharavi_phase11_postfix_20260807_125913",
+        "zzz_20250101_000000",
+        "dharavi_20261026_090000",
+    ]
+    for n in names:
+        _make_run(runs_root, n)
+    got = [r["run_id"] for r in _client(api_module).get("/api/runs").json()["runs"]]
+    assert got == [
+        "dharavi_20261026_090000",
+        "dharavi_phase11_postfix_20260807_125913",
+        "dharavi_test_20260806_114208",
+        "accra_20260701_131955",
+        "zzz_20250101_000000",
+    ]
+
+
+def test_api_runs_lists_undated_directories_last(api_module, runs_root):
+    """Listing is not "latest" selection: an undated run is still listed,
+    but it has no chronological position, so it goes after every dated run
+    rather than being guessed into one."""
+    _make_run(runs_root, "dharavi_20260702_163012")
+    _make_run(runs_root, "zz_undated")
+    _make_run(runs_root, "aa_undated")
+    got = [r["run_id"] for r in _client(api_module).get("/api/runs").json()["runs"]]
+    assert got == ["dharavi_20260702_163012", "aa_undated", "zz_undated"]
