@@ -22,7 +22,7 @@ from pydantic import BaseModel
 from datetime import datetime
 from dotenv import load_dotenv
 
-from configs.legacy_pipeline import legacy_pipeline_marker
+from configs.legacy_pipeline import RETIRED, legacy_pipeline_marker, mark_retired
 
 # Load .env BEFORE _load_api_key() runs at import, below. Without this the
 # module-level API_KEY read happens against the raw process environment and a
@@ -542,6 +542,7 @@ def get_demo():
     if not data:
         raise HTTPException(status_code=404, detail="No Dharavi run found. Run pipeline first.")
     data.setdefault("legacy_pipeline", legacy_pipeline_marker())
+    mark_retired(data)
     data["_demo_mode"] = True
     data["_auto_refresh"] = SCHEDULER_DISABLED_REASON
     return data
@@ -652,6 +653,9 @@ def list_runs():
                 "dominant_category": data.get("summary", {}).get("dominant_category"),
                 "total_segments": data.get("summary", {}).get("total_segments"),
                 "relative_elevation_proxy_score": data.get("relative_elevation_proxy", {}).get("score"),
+                # Every run listed here is a legacy 7-class run (or an
+                # inundation run beside them); none is a current result.
+                "validation_status": RETIRED if _is_legacy_result(data) else None,
             })
     return {"runs": runs}
 
@@ -669,7 +673,19 @@ def get_run(run_id: str):
         # match the whitelist, so it cannot carry markup or separators.
         raise HTTPException(status_code=404, detail=f"Run {run_id} not found.")
     with open(result_path) as f:
-        return json.load(f)
+        data = json.load(f)
+    if _is_legacy_result(data):
+        # Stored runs predating the marker and the label get both here; the
+        # file on disk is not modified.
+        data.setdefault("legacy_pipeline", legacy_pipeline_marker())
+        mark_retired(data)
+    return data
+
+
+def _is_legacy_result(data: dict) -> bool:
+    """A run_pipeline() result: it carries the marker, or (before the marker
+    existed) the 7-class `landcover` block."""
+    return isinstance(data, dict) and ("legacy_pipeline" in data or "landcover" in data)
 
 
 @app.get("/api/vector/coverage")

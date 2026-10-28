@@ -11,7 +11,7 @@ from ingestion.segmentation import load_sam, segment_tile, encode_mask_rle
 from perception.applicability import compute_applicability, finalize_applicability
 from perception.applicability_gate import annotate as annotate_applicability
 from configs.palette import palette_for_result
-from configs.legacy_pipeline import legacy_pipeline_marker
+from configs.legacy_pipeline import legacy_pipeline_marker, mark_retired
 from perception.hydrological_surfaces import compute_hydrological_surfaces
 from ingestion.rainfall import get_rainfall_climatology
 from susceptibility.pluvial import compute_pluvial_susceptibility, save_pluvial_susceptibility_output
@@ -217,7 +217,7 @@ def run_pipeline(
     if not tiles:
         result["status"] = "failed"
         result["error"] = "No tiles generated — AOI may be too small or imagery unavailable."
-        return result
+        return mark_retired(result)
 
     full_width = raster_info["width"]
     full_height = raster_info["height"]
@@ -747,6 +747,10 @@ def run_pipeline(
             "road_score_method": "distance_transform" if osm_available else "unavailable",
         },
     })
+
+    # Every block of this retired pipeline's result is labelled "retired"
+    # (configs/legacy_pipeline.py), whatever its module labelled it.
+    mark_retired(result)
 
     output_path = os.path.join(run_dir, "result.json")
     with open(output_path, "w") as f:
