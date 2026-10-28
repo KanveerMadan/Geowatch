@@ -154,33 +154,36 @@ def _half(which):
     return lambda col: col.filter(ee.Filter.calendarRange(lo, hi, "day_of_month"))
 
 
-def run_change(layer) -> dict:
-    """Two epochs, one AOI, per fraction, on item 22's grid units."""
+def run_change(layer, epochs: dict | None = None) -> dict:
+    """Two epochs, one AOI, per fraction, on item 22's grid units.
+    `epochs` has EPOCHS' shape; the default is item 25's pre-registered pair."""
+    epochs = EPOCHS if epochs is None else epochs
     tr, shape = fractions.grid_for(layer)
     polys = units.grid_units(layer, tr)
     out = {"aoi": layer.name, "unit_type": "grid", "n_units": len(polys),
            "grid_cell_m": units.GRID_CELL_M, "pre_registration": {
                "k": K_NOISE, "min_epoch_unit_coverage": MIN_EPOCH_UNIT_COVERAGE,
-               "min_epoch_valid_pct": MIN_EPOCH_VALID_PCT, "epochs": EPOCHS,
+               "min_epoch_valid_pct": MIN_EPOCH_VALID_PCT, "epochs": epochs,
                "expectation": CHANGE_AOI["expectation"]},
            "fractions": {}, "not_computed": not_computed_block()}
 
-    # built
-    yrs = EPOCHS["built"]
-    pres = {y: ob_temporal_presence(layer, y) for y in sorted(set(yrs) | set(EPOCHS["built_noise"]))}
-    vals = {y: unit_values(polys, p["presence"], p["observed"], tr, shape) for y, p in pres.items()}
-    (n_va, n_ca), (n_vb, n_cb) = (vals[y] for y in EPOCHS["built_noise"])
-    nz = noise_from_pair(n_va, n_vb, n_ca, n_cb)
-    b = detect("built", vals[yrs[0]][0], vals[yrs[1]][0], vals[yrs[0]][1], vals[yrs[1]][1], nz)
-    b["epochs"] = {"a": yrs[0], "b": yrs[1], "source": OB_TEMPORAL_ASSET,
-                   "images": {y: pres[y]["images"] for y in yrs}}
-    b["noise_basis"] = f"std(presence {EPOCHS['built_noise'][1]} - {EPOCHS['built_noise'][0]}) over units"
-    b["method"] = "open_buildings_temporal_mean_presence (built proxy)"
-    b["validation_status"] = "experimental"
-    out["fractions"]["built"] = b
+    # built (skipped when the window has no Open Buildings Temporal pair)
+    if epochs.get("built"):
+        yrs = epochs["built"]
+        pres = {y: ob_temporal_presence(layer, y) for y in sorted(set(yrs) | set(epochs["built_noise"]))}
+        vals = {y: unit_values(polys, p["presence"], p["observed"], tr, shape) for y, p in pres.items()}
+        (n_va, n_ca), (n_vb, n_cb) = (vals[y] for y in epochs["built_noise"])
+        nz = noise_from_pair(n_va, n_vb, n_ca, n_cb)
+        b = detect("built", vals[yrs[0]][0], vals[yrs[1]][0], vals[yrs[0]][1], vals[yrs[1]][1], nz)
+        b["epochs"] = {"a": yrs[0], "b": yrs[1], "source": OB_TEMPORAL_ASSET,
+                       "images": {y: pres[y]["images"] for y in yrs}}
+        b["noise_basis"] = f"std(presence {epochs['built_noise'][1]} - {epochs['built_noise'][0]}) over units"
+        b["method"] = "open_buildings_temporal_mean_presence (built proxy)"
+        b["validation_status"] = "experimental"
+        out["fractions"]["built"] = b
 
     # vegetation, water
-    (a0, a1), (b0, b1) = EPOCHS["s2"]
+    (a0, a1), (b0, b1) = epochs["s2"]
     full = {e: fractions.s2_index_composite(layer, s, t) for e, (s, t) in (("a", (a0, a1)), ("b", (b0, b1)))}
     halves = {h: fractions.s2_index_composite(layer, a0, a1, collection_filter=_half(h)) for h in "AB"}
     quality = {e: full[e]["observation_quality"] for e in full}

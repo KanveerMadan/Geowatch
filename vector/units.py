@@ -89,9 +89,12 @@ def _upsample(a):
     return np.repeat(np.repeat(a, SUBSAMPLE, axis=0), SUBSAMPLE, axis=1)
 
 
-def aggregate(units, fr: dict, osm_coverage: dict, aoi_mask_fine=None) -> dict:
+def aggregate(units, fr: dict, osm_coverage: dict, aoi_mask_fine=None, *,
+              fractions=FRACTIONS, not_computed=NOT_COMPUTED) -> dict:
     """Per-unit {value, status, coverage} for each fraction, plus per-type
-    fraction-area totals for the consistency check."""
+    fraction-area totals for the consistency check. `fractions` and
+    `not_computed` default to this track's three; a different fraction
+    producer (analysis/fractions.py) passes its own."""
     labels = _labels(units, fr["transform"], fr["shape"])
     cell_m2 = (PIXEL_M / SUBSAMPLE) ** 2
     n = len(units)
@@ -101,7 +104,7 @@ def aggregate(units, fr: dict, osm_coverage: dict, aoi_mask_fine=None) -> dict:
 
     per_fraction = {}
     totals = {}
-    for f in FRACTIONS:
+    for f in fractions:
         val = _upsample(fr["rasters"][f])[in_unit]
         obs = _upsample(fr["observed"][f])[in_unit] & np.isfinite(val)
         obs_cells = np.bincount(lab, weights=obs.astype(float), minlength=n)
@@ -114,13 +117,13 @@ def aggregate(units, fr: dict, osm_coverage: dict, aoi_mask_fine=None) -> dict:
     for i in range(n):
         u = {"unit_index": i, "area_m2": float(area_cells[i] * cell_m2),
              "osm_coverage": osm_coverage}
-        for f in FRACTIONS:
+        for f in fractions:
             s, o = per_fraction[f][0][i], per_fraction[f][1][i]
             cov = float(o / area_cells[i]) if area_cells[i] else 0.0
             u[f] = {"value": float(s / o) if o else None,
                     "status": "available" if cov >= MIN_UNIT_COVERAGE else "insufficient_observation",
                     "coverage": round(cov, 4)}
-        for f in NOT_COMPUTED:
+        for f in not_computed:
             u[f] = {"value": None, "status": "not_computed", "coverage": 0.0}
         out_units.append(u)
     return {"units": out_units, "totals": totals,
