@@ -83,9 +83,88 @@ def test_untested_module_keeps_its_own_label_and_a_tested_one_takes_its_verdict(
     assert C.hazard_label("experimental", v["flash_flood"]) == "experimental"   # not-run
     assert C.hazard_label("experimental", None, "placeholder") == "placeholder"
     assert C.hazard_label("experimental", v["coastal"]) == "failed"            # round 2
-    # fluvial passed, but the worst-of-inputs rule still caps it by its inputs
-    assert C.hazard_label("validated", v["fluvial"]) == "validated"
+    # fluvial passed; without its scope (C70) the worst-of-inputs rule caps it
+    # and `validated` never stands unscoped
+    assert C.hazard_label("validated", v["fluvial"]) == "experimental"
     assert C.hazard_label("validated", v["fluvial"], "experimental") == "experimental"
+    scope = C.VALIDATED_CONFIGS["fluvial"]["scope"]
+    assert C.hazard_label("validated", v["fluvial"], "experimental", scope=scope) == "validated"
+    with pytest.raises(C.ContractError):
+        C.hazard_label("validated", v["fluvial"], scope={"events": ["x"]})
+
+
+# ── C70: exactly the validated configuration keeps `validated`, scoped ──
+
+def _fluvial():
+    from susceptibility.fluvial import compute_fluvial_susceptibility
+    from susceptibility.hydro_rasters import SOURCES
+    from susceptibility.inputs import surface
+    _, x = np.mgrid[0:6, 0:6]
+    vals = {"hand_m": 0.5 + 2.0 * x, "upa_near_km2": np.full((6, 6), 50.0)}
+    rasters = {"status": "available", "shape": (6, 6), "errors": {},
+               "layers": {k: surface(a, *SOURCES[k], "experimental") for k, a in vals.items()}}
+    return compute_fluvial_susceptibility(rasters)
+
+
+def _hz(mod, verdicts=None):
+    from analysis import hazards as H
+    other = {"status": "insufficient_evidence", "validation_status": "experimental"}
+    mods = {h: other for h in H.HAZARDS} | {"fluvial": mod}
+    return H.hazard_outputs(mods, MV, verdicts or C.flood_verdicts(), has_waterways=False)["fluvial"]
+
+
+def test_fluvial_with_its_validated_inputs_reads_validated_with_its_scope():
+    o = _hz(_fluvial())
+    assert o["validation_status"] == "validated"
+    sc = o["validated_scope"]
+    assert all(sc[k] for k in C.SCOPE_KEYS)
+    assert any("hanoi" in e for e in sc["events"]) and any("kolonnawa" in e for e in sc["events"])
+    assert sc["input_versions"] == {"MERIT/Hydro": "v1_0_1"}
+    C.check_output(o)
+
+
+@pytest.mark.parametrize("change", [
+    lambda m: m["inputs"]["hand_m"].update(source="MERIT/Hydro/v1_0_2"),        # input version
+    lambda m: m["inputs"]["upa_near_km2"].update(method="upa focal max r=2000 m, nearest"),
+    lambda m: m["inputs"].pop("upa_near_km2"),                                  # input missing
+    lambda m: m["weights"].update(river_size=0.5),
+    lambda m: m["ceilings"].update(hand_m=20.0),
+])
+def test_any_differing_input_caps_fluvial_at_the_worst_label(change):
+    mod = copy.deepcopy(_fluvial())
+    change(mod)
+    o = _hz(mod)
+    assert o["validation_status"] == "experimental"
+    assert o["validated_scope"] is None
+
+
+def test_a_failed_verdict_is_not_rescued_by_a_matching_configuration():
+    v = dict(C.flood_verdicts(), fluvial="failed")
+    assert _hz(_fluvial(), v)["validation_status"] == "failed"
+
+
+def test_the_validated_configuration_is_the_pinned_round2_run():
+    """The literal record agrees with the pinned result and today's fetch."""
+    import json
+    from susceptibility.hydro_rasters import SOURCES
+    cfg = C.VALIDATED_CONFIGS["fluvial"]
+    with open(C.FLOOD_VALIDATION_ROUND2_RESULT) as fh:
+        r2 = json.load(fh)["modules"]["fluvial"]
+    assert r2["held_out"]["verdict"] == "validated"
+    assert cfg["config"]["weights"] == r2["weights_used"]
+    qualifying = sorted(e for e, p in r2["held_out_per_event"].items() if p["qualifies"])
+    assert sorted(s.split()[0] for s in cfg["scope"]["events"]) == qualifying
+    assert {k: tuple(i.values()) for k, i in cfg["config"]["inputs"].items()} == \
+        {k: SOURCES[k] for k in ("hand_m", "upa_near_km2")}
+
+
+def test_a_validated_output_without_a_scope_is_refused():
+    o = _out()
+    o["validation_status"] = "validated"
+    with pytest.raises(C.ContractError):
+        C.check_output(o)
+    o["validated_scope"] = C.VALIDATED_CONFIGS["fluvial"]["scope"]
+    C.check_output(o)
 
 
 # ── model_version ──

@@ -65,6 +65,39 @@ FLOOD_VALIDATION_ROUND2_SHA256 = "6edde1eddd0a18c354db568f95babba1ec7af04754de69
 ROUND2_REPLACED_METHODS = ("fluvial", "flash_flood", "waterlogging")
 VERDICT_LABEL = {"failed": "failed", "passed": "validated", "validated": "validated"}
 
+# C70 (item 26 flood follow-ups): a module that ran EXACTLY the configuration
+# it was validated with keeps `validated`, and must say for what (SCOPE_KEYS).
+# Any difference -- an input's source or method, a weight, a ceiling -- falls
+# back to the worst-of-inputs rule. Literals, not today's constants: a changed
+# constant is a changed configuration. Taken from the pinned round-2 run.
+SCOPE_KEYS = ("events", "regions", "input_versions")
+VALIDATED_CONFIGS = {
+    "fluvial": {
+        "config": {
+            "method": "merit_hydro_hand_per_pixel_weighted",
+            "weights": {"low_hand": 1.0, "river_size": 1.0},
+            "ceilings": {"hand_m": 30.0, "upstream_area_km2": 10000.0},
+            "inputs": {
+                "hand_m": {"source": "MERIT/Hydro/v1_0_1", "method": "hnd, bilinear"},
+                "upa_near_km2": {"source": "MERIT/Hydro/v1_0_1",
+                                 "method": "upa focal max r=1000 m, nearest"},
+            },
+        },
+        "scope": {
+            "events": ["hanoi 2024-09-09 (Copernicus EMS EMSR754 AOI03), held-out AUC 0.9162",
+                       "kolonnawa 2025-11-30 (Copernicus EMS EMSR851 AOI02), held-out AUC 0.7996"],
+            "tuning_events": ["faenza 2023-05-02 (EMSR659 AOI02)",
+                              "encantado 2024-05-02 (EMSR720 AOI02)"],
+            "regions": ["Hanoi, Vietnam (Red River)", "Kolonnawa, Sri Lanka (Kelani Ganga)"],
+            "input_versions": {"MERIT/Hydro": "v1_0_1"},
+            "evidence": FLOOD_VALIDATION_ROUND2_RESULT,
+            "note": "Validated for these events, regions and inputs only: two Asian river "
+                    "cities, the pre-registered minimum of two (bar: mean within-event "
+                    "AUC >= 0.70; held-out 0.8579). Not a claim about other places.",
+        },
+    },
+}
+
 
 class ContractError(ValueError):
     pass
@@ -86,11 +119,41 @@ def verdict_label(verdict: str | None) -> str | None:
     return VERDICT_LABEL.get(verdict) if verdict else None
 
 
-def hazard_label(module_status: str, verdict: str | None = None, *input_labels: str) -> str:
+def module_config(mod: dict) -> dict:
+    """What a module output says it ran, in VALIDATED_CONFIGS' shape."""
+    return {"method": mod.get("method"), "weights": mod.get("weights"),
+            "ceilings": mod.get("ceilings"),
+            "inputs": {k: {"source": i.get("source"), "method": i.get("method")}
+                       for k, i in (mod.get("inputs") or {}).items() if isinstance(i, dict)}}
+
+
+def validated_scope(name: str, mod: dict, verdict: str | None) -> dict | None:
+    """C70: the scope note when module `name` passed Tier 2 and ran exactly
+    its validated configuration; None otherwise."""
+    cfg = VALIDATED_CONFIGS.get(name)
+    if cfg is None or verdict_label(verdict) != "validated" or module_config(mod) != cfg["config"]:
+        return None
+    return json.loads(json.dumps(cfg["scope"]))          # a copy the caller cannot mutate
+
+
+def hazard_label(module_status: str, verdict: str | None = None, *input_labels: str,
+                 scope: dict | None = None) -> str:
     """A flood module's label: the worst of what the module says about
-    itself, its Tier 2 verdict, and its inputs' labels."""
+    itself, its Tier 2 verdict, and its inputs' labels. With a `scope`
+    (validated_scope: exactly the validated configuration) the inputs do
+    not cap it. Without one it is never `validated` (C70)."""
     v = verdict_label(verdict)
-    return worst(module_status, *([v] if v else []), *input_labels)
+    if scope:
+        check_scope(scope)
+        return worst(module_status, *([v] if v else []))
+    lab = worst(module_status, *([v] if v else []), *input_labels)
+    return "experimental" if lab == "validated" else lab
+
+
+def check_scope(scope, where: str = "") -> None:
+    if not isinstance(scope, dict) or any(not scope.get(k) for k in SCOPE_KEYS):
+        raise ContractError(f"{where}: a validated output needs a scope note with "
+                            f"non-empty {SCOPE_KEYS}")
 
 
 def _pinned_modules(path: str, expected: str) -> dict:
@@ -229,6 +292,8 @@ def check_output(o: dict, *, where: str = "", version_id: str | None = None,
     if o["validation_status"] not in allowed_labels:
         raise ContractError(f"{where}: validation_status {o['validation_status']!r} "
                             f"not in {allowed_labels}")
+    if o["validation_status"] == "validated":        # C70: validated says for what
+        check_scope(o.get("validated_scope"), where)
     if o["value"] is None:
         if o["status"] not in ABSENT:
             raise ContractError(f"{where}: value None with status {o['status']!r}; "
