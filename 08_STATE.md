@@ -1,8 +1,9 @@
 # GeoWatch — Current State
 
 **Where the project actually is, across all branches, as of 2026-09-23.**
-*(§"Decisions recorded 2026-09-24" added 2026-09-24; the rest of this document
-has not been re-audited since 2026-09-23.)*
+*(§"Decisions recorded 2026-09-24" added 2026-09-24; §"Phase 2 recorded
+2026-10-28" added 2026-10-28; the rest of this document has not been
+re-audited since 2026-09-23.)*
 
 This document exists because the same facts kept being rediscovered. The branch
 layout, the reason the pipeline is offline, and the state of the classifier
@@ -67,7 +68,7 @@ and building on it would have silently inherited them. *(Past tense
 | **Part 3 — Decide (the gate)** | ✅ Complete. All seven decisions settled. ~~— though Decision 13 was subsequently **reopened** by the item 21 investigation, on `unmixing-ceiling-investigation` and unsigned.~~ Decision 13 was reopened by the item 21 investigation, **signed off as amended 2026-09-23**, and **amended again 2026-09-24** (no unmixing endmember; optional LOCO-gated feature). Decisions 11 and 14 were also amended 2026-09-23/24. *(Updated 2026-09-25)* |
 | **Part 4 — Build the architecture** | ~~🔓 Not started.~~ **In progress (2026-10-28).** Item 21's pilot ran ahead of it as its own gate; see `07_ITEM_21.md`. Item 21's re-scope is signed off; its site list and labelling guide are recorded, ~~**labelling is blocked on the guide's open numbers**, and nothing is built~~ and hand labelling is under way on `item-21-phase-a`. Item 26 gained a runoff-coefficient requirement 2026-09-24. **Vector track built 2026-10-28** (`vector/`): 19 ✅, 20 ✅ (low-coverage flag in the UI since 2026-10-28; `GET /api/vector/coverage`), 22 ✅, 23 🔶 (pre-registered separation test failed), 24 ✅, 25 ✅ (pre-registered expectation not met). All `experimental`; vegetation and water are `placeholder` proxies. The validation-first mandate is **overridden**; see §"Decision recorded 2026-10-28". |
 | **Part 5 — Validation discipline** | 🔓 Not started |
-| **Part 6 — Epistemic contract** | 🔓 Not started |
+| **Part 6 — Epistemic contract** | ~~🔓 Not started~~ **Built 2026-10-28 (Phase 2, `build/backend`)**, in the analysis pipeline: 33, 34, 35, 37, 38, 39 ✅; 36 🔶 (no UI view of the analysis result yet). Decision 14 is signed off (2026-09-23), which is what unblocked it. See §"Phase 2 recorded 2026-10-28" |
 | **Part 7 — Gating architecture** | ✅ **Complete** — items 40, 41, 42 all landed. ~~Not on `master`.~~ On `master` via the `applicability-gating` merge (`a98b529`). *(2026-09-25)* |
 | **Part 8 — Contract enforcement** | Items 43, 44, 45 done on `applicability-gating`; 47 and 70 merged to `master`. ~~**Only item 46 remains.**~~ Item 46 done 2026-09-23 (`primary_tile` removed). *(2026-09-25)* |
 | **Parts 9–13** | 🔓 Not started (Part 9 deleted per Decision 12) |
@@ -121,11 +122,13 @@ is false for the base image and must be corrected in the same change.
 
 The pipeline is retired but **not removed**. `api.py` reaches
 `run_pipeline()` on ~~two paths~~ **one path** since the auto-refresh was
-removed (2026-09-25): `POST /api/analyze`.
+removed (2026-09-25): ~~`POST /api/analyze`~~ **`POST /api/legacy/analyze`
+since 2026-10-28** — `POST /api/analyze` now runs the analysis pipeline.
 
 | Path | State |
 |---|---|
-| `POST /api/analyze` | **Kept.** The UI's Analyze button depends on it (`geowatch-ui/src/App.jsx:1242`). Every result carries `legacy_pipeline: {retired: true, validated: false}`, and the UI shows the banner **"Legacy 7-class pipeline — retired, not validated."** on every result — including stored runs from before the marker |
+| `POST /api/analyze` | ~~**Kept.** The UI's Analyze button depends on it (`geowatch-ui/src/App.jsx:1242`). Every result carries `legacy_pipeline: {retired: true, validated: false}`, and the UI shows the banner **"Legacy 7-class pipeline — retired, not validated."** on every result — including stored runs from before the marker~~ **Rewired 2026-10-28 to the analysis pipeline (`analysis/run.py`), no 7-class classifier.** It had failed on every call since item 45 (C59: HTTP 500 after ~90 s, `CaatProvenanceError`). The UI's Analyze button still posts here and does not yet render the new shape (C60) |
+| `POST /api/legacy/analyze` | **New 2026-10-28: the only route to `run_pipeline()`**, marked LEGACY. Every block of its result is labelled `validation_status: "retired"` (the module's earlier label kept as `validation_status_superseded`), as are stored runs served by `/api/demo`, `/api/runs` and `/api/runs/{id}`. It still fails at CAAT load (C59) |
 | `POST /api/scheduler/trigger` | **Disabled** — 410 Gone, detail names the retired pipeline and C46 |
 | 5-day auto-refresh job | ~~**Still runs** `run_pipeline()` for the watched AOIs every 5 days; it feeds `/api/demo`. Not changed — only the trigger endpoint was ruled on~~ **Removed 2026-09-25.** No APScheduler object or job exists; nothing runs `run_pipeline()` on a timer. `GET /` and `GET /api/scheduler/status` report `disabled` with the reason. `refresh_all_watched_aois()` is kept, unscheduled (the C35 whitelist check lives there and is tested) |
 | `GET /api/demo` | Serves the **last stored** Dharavi result, no longer refreshed. Stored runs that predate the marker get `legacy_pipeline` added in the response (the file is not modified), so the banner appears; `_auto_refresh` states that refresh is disabled |
@@ -652,8 +655,54 @@ the pre-registered Tier 2 bar (AUC ≥ 0.70) and scored 0.448 and 0.447
 window (C53). `failed` is a fourth label beside the three decided above,
 meaning tested and did not pass. Pluvial (0.533) and waterlogging (0.432) also
 failed that test but keep `placeholder`, which says more about their inputs.
-**Still open:** the retired 7-class pipeline's own `result.json` blocks
-(landcover, legacy `hydrological_surfaces`) carry no `validation_status`.
+~~Still open: the retired 7-class pipeline's own `result.json` blocks
+(landcover, legacy `hydrological_surfaces`) carry no `validation_status`.~~ **Closed 2026-10-28 (Phase 2):** every block of a legacy result is labelled `retired` (`configs/legacy_pipeline.mark_retired`), on new runs and on stored runs as served.
+
+---
+
+## Phase 2 recorded 2026-10-28 — the analysis pipeline, the result contract, Part 6
+
+Built on `build/backend`. Nothing here is validated; this records what runs.
+
+| What | State |
+|---|---|
+| **Pipeline** | `analysis/run.py`: AOI → item 19 layer → item 20 coverage → fractions → the five flood modules → item 25 change → item 22 aggregation (plus administrative wards when a boundary layer is given) → result. **No 7-class classifier is imported or reached** (tested statically and in a fresh interpreter) |
+| **Fractions** | A swappable producer (`analysis/fractions.py`). The stand-in: `built` = footprint area (`experimental`); `vegetation`, `water` = the Sentinel-2 index stand-ins (`placeholder`); `impervious_total`, `paved`, `bare` = `not_computed` (`placeholder`). Item 21's model drops in as another producer; its artifact hash enters `model_version` |
+| **Result contract** | `analysis/contract.py`. Every output carries `value`, `status`, `validation_status`, `coverage`, `data_sources`, `model_version` (code commit over the imported packages + artifact hashes). `check_result()` enforces it over the whole result and every served ward unit. A `null` value must name why it is absent; a number is always measured |
+| **Label precedence** | **retired > failed > placeholder > experimental > validated**: an output takes the worst label that applies. Pluvial and waterlogging are **`failed`** (placeholder inputs, and Tier 2 AUC 0.533 / 0.432 against the 0.70 bar); fluvial and flash flood `failed`; coastal `experimental` (not run, C53). The verdicts are read from the pinned (sha256) Tier 2 result file |
+| **Legacy pipeline** | Reachable only at `POST /api/legacy/analyze`. Every block of its results — new and stored — is labelled `retired` |
+| **API** | `POST /api/analyze` (protected) runs the analysis pipeline. Public, GET only: `/api/results`, `/api/results/{id}`, `/api/results/{id}/maps/{name}`, `/api/results/{id}/wards`, `.../wards/{unit_type}` (paged) and `.../wards/{unit_type}/{unit_id}`. Permanent result IDs hash bbox + resolved dates + boundary layer + `version_id`; the same AOI + dates + version is served from `data/results/`, never recomputed; a run with any timed-out or failed stage is never stored |
+| **Part 6** | Decision 14 is signed off, so items 33–39 were built in the analysis pipeline: 33, 34, 35, 37, 38, 39 ✅, 36 🔶 (no UI view of the analysis result). 38 and 39 also fix C27's and C15's original sites (`zonal/hazard_screening.py`, `pipeline.py`) |
+| **Timeouts** | Every Earth Engine and Overpass call runs in a stage with a wall-clock limit and one EE request deadline (`analysis/stages.py`) |
+
+**Live runs, 2026-10-28** (`experiments/analysis_runs/`; window
+2026-01-01..2026-03-31; bars fixed in `analysis/live_runs.py` before the
+first run, engineering only):
+
+| City | Uncached runtime | Every stage ok | Contract violations | Item 22 consistency | Cache hit on rerun |
+|---|---:|---|---:|---|---|
+| Dharavi (+ 4 BMC wards in the AOI) | 429 s | yes | 0 (35 outputs, 20,963 units) | PASS | **no** — see below |
+| Lagos | 616 s | yes | 0 (34 outputs, 36,125 units) | PASS | yes |
+| Chandigarh (central) | 488 s | yes | 0 (34 outputs, 12,368 units) | PASS | yes |
+
+Per city the labels are the same: **`failed`** — pluvial, fluvial, flash
+flood, waterlogging; **`placeholder`** — vegetation, water,
+`impervious_total`, `paved`, `bare`, the fully-shadowed / transient-snow /
+fire-smoke / ships fields, every prediction interval, paved's derivation
+uncertainty, and vegetation / water change; **`experimental`** — built,
+`observed_fraction`, `cloud_nodata`, OSM coverage, coastal, built change and
+the aggregation summaries. No output is `validated`. Coastal at Chandigarh is
+`not_applicable` (no coastline in range).
+
+Dharavi's cache bar failed in the first run: a ledger edit made mid-run
+dirtied the tree, the diff entered `version_id`, and the rerun got a new ID.
+Fixed (`model_version` now covers only the packages the pipeline imports)
+and rechecked live with docs edits still uncommitted in the tree: every bar
+met, the rerun a cache hit on the same ID, `code_dirty: false`, 178 s uncached
+(warm OSM and footprint caches)
+(`experiments/analysis_runs/result_2026-10-28_dharavi_cache_recheck.json`).
+Lagos and Chandigarh are stored under the first run's dirty version; they
+are not wrong, only keyed to a version no later run will reproduce.
 
 ---
 
