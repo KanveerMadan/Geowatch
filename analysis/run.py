@@ -266,7 +266,11 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
 
     # 4. flood surfaces and context.
     surfaces = dict(producer.hydrology_inputs(layer, fset, ht, (H_, W_), k))
-    surfaces["conduits"] = road_conduits(layer, ht, (H_, W_))
+    if len(layer.fetch.get("unavailable", [])) < len(layer.fetch.get("clauses", {})) \
+            or not layer.fetch.get("clauses"):
+        # Item 34: with every highway clause unretrieved there is no road
+        # evidence; zero conduit area would read as "no roads".
+        surfaces["conduits"] = road_conduits(layer, ht, (H_, W_))
     do = stage("dem", deps["fetch_dem"], layer, ht, (H_, W_))
     if do["status"] == "ok":
         surfaces["terrain"] = terrain_surfaces(do["value"], HYDROLOGY_PIXEL_M)

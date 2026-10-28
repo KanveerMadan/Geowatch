@@ -2169,7 +2169,21 @@ every observability field and every estimate-quality field is independently
 readable, not summed into one number by the producer, and **no
 estimate-quality field reduces the denominator** *(reworded 2026-09-25)*.
 
-### 34. C21 — `hydrological_surfaces.py` status field and failure path
+### 34. C21 — `hydrological_surfaces.py` status field and failure path ✅ *(2026-10-28)*
+
+> **Built 2026-10-28 (Phase 2).** `compute_hydrological_surfaces()` returns
+> `status` on every path; an all-unknown AOI (empty or all-zero
+> `category_area_pct`) gives `insufficient_evidence` with both surfaces
+> `None`. The once-dead branches are reachable and tested — the ledger's
+> line numbers are stale; today they are `applicability.py:71`
+> (`finalize_applicability`) and `:210` (`compute_applicability`), both
+> waterlogging `not_calculated`, and `waterlogging.py:65`
+> (`insufficient_evidence`). In the analysis pipeline an AOI with no
+> footprint source gives unobserved imperviousness rather than zero, and an
+> AOI with every highway clause unretrieved gives no conduit input; a
+> synthetic all-unknown AOI is `insufficient_evidence` / `not_applicable` on
+> every hazard. `hydrological_surfaces` itself is a legacy-only record
+> (label `retired`). Tests: `tests/test_item34_insufficient_evidence.py`.
 The only module in the analysis chain with neither. That single omission produces
 C19, C21, and C25, and makes two separate guard clauses vacuous.
 

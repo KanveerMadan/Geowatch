@@ -112,8 +112,16 @@ class StandInFractions:
         }
 
     def hydrology_inputs(self, layer, fset: dict, transform, shape, k: int) -> dict:
+        import numpy as np
         from susceptibility.inputs import (block_nanmean, impervious_built_area,
                                            infiltration_vegetation)
-        return {"impervious": impervious_built_area(layer, transform, shape),
+        imp = impervious_built_area(layer, transform, shape)
+        if layer.footprint_source == "none":
+            # Item 34 (C21): no footprint source is no evidence, not zero
+            # imperviousness. built_raster() returns zeros for an empty
+            # footprint list; those must not reach pluvial as a measurement.
+            imp["raster"] = np.full(imp["raster"].shape, np.nan, dtype=np.float32)
+            imp["source"] = "no footprint source: unobserved"
+        return {"impervious": imp,
                 "infiltration": infiltration_vegetation(
                     block_nanmean(fset["rasters"]["vegetation"], k))}
