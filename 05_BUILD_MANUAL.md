@@ -1906,6 +1906,14 @@ declare themselves. Every new output carries `validation_status`; none claims
   `configs/flash_flood_constants.py`, the single definition.
   `docs/susceptibility_dag.md` updated. `tests/test_rainfall_ceiling_single_definition.py`
   (2; both fail on the old code).
+- **Task 7 — `test_flood_flag_combination` fixed, not deleted.** It guards a
+  real regression (each elevation source judged on its own status), so it is
+  kept. Its fixture patched functions `pipeline.py` no longer has
+  (`get_best_image`, `save_masks`, `get_imagery_acquisition_date`) and errored
+  at setup; it now builds on the maintained `stub_pipeline` fixture and lets
+  the real Open Elevation source and the conftest mocks drive the assessment.
+  **Errors 3 → 0**; all three pass, and the "both sources fail →
+  insufficient_evidence" case confirms the mocks reach the logic.
 
 ---
 

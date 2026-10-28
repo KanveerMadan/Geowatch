@@ -7,53 +7,23 @@ meaning a successful GEE call + a FAILED Open Elevation call still fed
 elev_flag=True (from the 0m substitute) into the OR.
 """
 import pytest
+
+import pipeline
+from ingestion.osm_dem import get_elevation_stats
 from pipeline import run_pipeline
+# The maintained stub of every external dependency (item 54). The old local
+# fixture patched functions pipeline.py no longer has (get_best_image,
+# save_masks, get_imagery_acquisition_date) and errored at setup.
+from tests.test_pipeline_layer_boundary import stub_pipeline  # noqa: F401
 
 
 @pytest.fixture
-def mock_full_pipeline_deps(monkeypatch, tmp_path):
-    """Stubs every external dependency except the flood-logic path itself,
-    so this test exercises only pipeline.py's combination logic."""
-    monkeypatch.setattr("pipeline.initialize_gee", lambda: None)
-    monkeypatch.setattr("pipeline.aoi_from_bbox", lambda *a, **k: object())
-    monkeypatch.setattr("pipeline.get_best_image", lambda *a, **k: object())
-    monkeypatch.setattr("pipeline.get_latest_image", lambda *a, **k: object()) 
-    monkeypatch.setattr("pipeline.get_imagery_acquisition_date", lambda *a, **k: "unknown")
-    monkeypatch.setattr("pipeline.export_image_local", lambda **k: None)
-    monkeypatch.setattr(
-        "pipeline.generate_rgb_preview_tiles",
-        lambda **k: [str(tmp_path / "tile_0_0.png")],
-    )
-    # produce a real tiny PNG so PIL.Image.open() succeeds
-    from PIL import Image
-    Image.new("RGB", (64, 64)).save(tmp_path / "tile_0_0.png")
-
-    monkeypatch.setattr("pipeline.load_sam", lambda *a, **k: object())
-    monkeypatch.setattr("pipeline.segment_tile", lambda *a, **k: [])
-    monkeypatch.setattr("pipeline.save_masks", lambda *a, **k: None)
-    monkeypatch.setattr("pipeline.get_osm_features", lambda *a, **k: {"roads": None, "waterways": None})
-    monkeypatch.setattr("pipeline.compute_road_distance_map", lambda *a, **k: None)
-    monkeypatch.setattr("pipeline.compute_waterway_distance_map", lambda *a, **k: None)
-    monkeypatch.setattr("pipeline.compute_road_access_score", lambda *a, **k: -1.0)
-    monkeypatch.setattr(
-        "pipeline.load_production_model",
-        lambda *a, **k: (object(), ["dense_informal_roofing"], 1),
-    )
-    monkeypatch.setattr("pipeline.load_caat_thresholds", lambda *a, **k: [0.5])
-    monkeypatch.setattr(
-        "pipeline.run_inference",
-        lambda *a, **k: {
-            "landcover_map": None, "confidence_map": None, "ambiguity_map": None,
-            "category_area_pct": {"dense_informal_roofing": 100.0},
-            "unknown_pct": 0.0, "ambiguous_pct": 0.0, "ambiguous_pct_by_pair": {},
-        },
-    )
-    monkeypatch.setattr(
-        "pipeline.save_landcover_outputs",
-        lambda *a, **k: {"map_path": "landcover.png", "confidence_map_path": "landcover_confidence.png"},
-    )
-    monkeypatch.setattr("pipeline.build_segments_with_landcover", lambda *a, **k: [])
-    monkeypatch.setattr("pipeline._apply_osm_labels_to_segments", lambda segs, *a, **k: segs)
+def mock_full_pipeline_deps(stub_pipeline, monkeypatch):
+    """Everything stubbed except the flood-logic path: the real Open
+    Elevation source runs (requests.post is mocked by conftest), and the
+    relative-elevation proxy is set by the mock_gee_proxy_* fixture, which
+    must be requested after this one."""
+    monkeypatch.setattr(pipeline, "get_elevation_stats", get_elevation_stats)
 
 
 def test_open_elevation_failure_alone_does_not_produce_positive_flag(
