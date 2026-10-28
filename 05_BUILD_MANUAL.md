@@ -819,7 +819,8 @@ morphologies (formal European, formal Asian, dense informal); every derived
 output demonstrably traces to this layer.
 
 **Built 2026-10-27** (`vector/sources.py`, `vector/roads.py`, `vector/aois.py`).
-*Proposed research design under the Part 4 mandate. Not validated.*
+*Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).*
 
 - **Fetch.** OSM `highway=*` through the shared C44 client, split into five
   disjoint per-tag clauses (a test pins the partition as exhaustive and
@@ -907,8 +908,8 @@ threshold. **This item sets those thresholds.**
 low-coverage AOI is visibly flagged end-to-end through to the UI; Lagos (0.19)
 and Khayelitsha (8.35) produce visibly different scores.
 
-**Built 2026-10-28** (`vector/coverage.py`). *Proposed research design under the
-Part 4 mandate. Not validated.* **Partially accepted: the UI half is NOT met**
+**Built 2026-10-28** (`vector/coverage.py`). *Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).* **Partially accepted: the UI half is NOT met**
 (see below).
 
 - **Fields** (all always present, never null; the JSON forbids NaN and inf):
@@ -1515,8 +1516,8 @@ there is not automatically your error.
 **Acceptance:** each unit type produces the same fraction totals over the same
 area (a consistency check); every unit carries `{value, status, coverage}`.
 
-**Built 2026-10-28** (`vector/units.py`, `vector/fractions.py`). *Proposed
-research design under the Part 4 mandate. Not validated.*
+**Built 2026-10-28** (`vector/units.py`, `vector/fractions.py`). *Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).*
 
 - **Units, in the specified order.**
   1. A regular 100 m grid on the 10 m pixel grid.
@@ -1576,8 +1577,8 @@ are working.
 **Acceptance:** metrics computed for a known-formal and a known-informal AOI;
 they separate the two without any spectral input.
 
-**Built 2026-10-28** (`vector/density.py`). *Proposed research design under the
-Part 4 mandate.* Every metric is a `{value, status}` block, computed from the
+**Built 2026-10-28** (`vector/density.py`). *Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).* Every metric is a `{value, status}` block, computed from the
 item 19 layer only. A test forbids imagery imports, and `spectral_inputs` is
 `[]`.
 
@@ -1683,8 +1684,8 @@ Network connectivity, distance-to-nearest-paved-access per building or per block
 **Acceptance:** computed from the vector layer alone; degradation with
 coverage is reported via item 20's score, not silent.
 
-**Built 2026-10-28** (`vector/access.py`). *Proposed research design under the
-Part 4 mandate. Not validated.* Built from the item 19 layer alone; a test
+**Built 2026-10-28** (`vector/access.py`). *Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).* Built from the item 19 layer alone; a test
 forbids imagery imports.
 
 - **Network connectivity** on real OSM node topology: components,
@@ -1731,8 +1732,8 @@ is attributable to a specific fraction (not "something changed"); the epochs'
 observation quality is carried alongside so a cloud-affected epoch cannot
 masquerade as change.
 
-**Built 2026-10-28** (`vector/change.py`). *Proposed research design under the
-Part 4 mandate. Not validated.* **built, vegetation and water only;
+**Built 2026-10-28** (`vector/change.py`). *Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).* **built, vegetation and water only;
 `impervious_total`, `paved` and `bare` are `not_computed`.** Every change
 record names its fraction. There is no combined "something changed".
 
