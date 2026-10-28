@@ -1607,13 +1607,68 @@ reversed.
 network separates the two decisively. The footprint metrics all point the
 predicted way and fall well short of their bars.
 
-*Not explained, and needing your decision:* Chandigarh's median Open Buildings
+~~*Not explained, and needing your decision:* Chandigarh's median Open Buildings
 footprint is **50 m²**, implausibly small for planned formal fabric. Barcelona
 (OSM footprints) is 287 m². Possible causes, NOT tested: Open Buildings
 fragmenting formal houses; the AOI including many small structures; or a
 real property of Chandigarh's sector housing. Until that is resolved, the
 footprint metrics cannot be read as morphology signals on Open Buildings
-input.
+input.~~
+
+**Investigated 2026-10-28** (not re-tested, as instructed). **The cause is Open
+Buildings fragmenting formal buildings, not informal colonies in the AOI, and
+not something a confidence filter fixes.**
+
+1. **Confidence filter.** None is applied beyond the dataset's own 0.65
+   publication floor. Confidence and size are strongly linked:
+
+   | confidence | share of polygons | median area |
+   |---|---:|---:|
+   | 0.65–0.70 | 28% | 27.6 m² |
+   | 0.70–0.75 | 26% | 36.4 m² |
+   | 0.75–0.80 | 21% | 66.3 m² |
+   | 0.80–0.85 | 15% | 119.2 m² |
+   | ≥ 0.85 | 10% | 179.3 m² |
+
+   Filtering at ≥ 0.75 would move the median to 106 m². But a filter would
+   hide the problem rather than fix it: in the imagery sample below,
+   fragments occur at confidence 0.79–0.87, and whole buildings at 0.75–0.82.
+   No threshold separates them.
+2. **Is the AOI informal?** No evidence of it. The AOI is Sectors 17, 18, 21,
+   22 and 23 plus Sector 20A and police quarters (OSM place nodes and named
+   landuse, queried live). OSM maps no colony, village or basti in it. The
+   imagery shows plotted formal housing and commercial blocks throughout.
+3. **Does Open Buildings split houses? Yes.**
+   - **OSM cross-check.** OSM has only 1,271 buildings here (median 139 m²)
+     against Open Buildings' 11,266, so it is incomplete. But where both map
+     a building, **60% of OSM buildings over 200 m² contain two or more Open
+     Buildings polygons** (24% across all sizes; 7.6% contain four or more).
+     The 86% of Open Buildings polygons outside any OSM building have a median
+     of 44 m².
+   - **Imagery sample.** 30 polygons, simple random sample with a fixed seed
+     (sample median 36.6 m² vs AOI 50.9 m²), outlined on Esri World Imagery at
+     zoom 19 and classified by eye:
+
+   | outcome | count |
+   |---|---:|
+   | **fragment of a larger building** (rooftop room, stair tower, one roof level, part of a block) | **21 (70%)** |
+   | whole building | 5 (17%) |
+   | small real structure (annex or outbuilding) | 2 (7%) |
+   | not a building (tree canopy, gap between buildings) | 2 (7%) |
+
+   Chandigarh's multi-level plotted houses, with rooftop rooms, water tanks
+   and solar arrays, are mapped by Open Buildings as several small
+   "buildings". That pulls the median footprint down to informal-fabric
+   sizes.
+
+**Consequence.** On Open Buildings input, footprint size, density and spacing
+measure segmentation behaviour as much as morphology, in formal fabric at
+least. Whether Dharavi's footprints fragment the same way was not checked.
+The separation test's footprint predictions cannot be read as a statement
+about the two places until that is addressed.
+
+*Limits:* a single observer, 30 samples, and imagery of unknown date relative
+to Open Buildings' inference.
 
 Other AOIs, for the record: Barcelona φ = 0.617 (sidewalk footways add
 off-grid bearings), 1,093 footprints/km², median 287 m². Lagos φ suppressed,
