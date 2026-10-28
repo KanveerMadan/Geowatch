@@ -727,6 +727,12 @@ placement.
 
 *Nine items. The core rebuild. Unblocked — Part 3 is complete.*
 
+> **OVERRIDDEN 2026-10-28 by the user:** build everything except item 21's
+> dependencies, and label every output `validated` / `experimental` /
+> `placeholder`. The validation criteria below still define `validated`. See
+> `08_STATE.md`, §"Decision recorded 2026-10-28". The original note is kept
+> below as the record.
+>
 > ### ⛔ Validation-first mandate — decided 2026-09-24
 >
 > **No further architecture or build progression past item 21** until two
@@ -795,7 +801,7 @@ bare soil in both; the layer carries its own date range and composite count.
 **Verify:** hand-check a known permanent surface (an arterial road) against a
 known seasonal one (a vegetated lot) in the same AOI.
 
-### 19. Vector road layer 🔓
+### 19. Vector road layer ✅
 
 **What:** OSM roads and paths as primary, building-footprint negative space where
 OSM is thin.
@@ -812,7 +818,61 @@ layer. Do not let consumers build their own.
 morphologies (formal European, formal Asian, dense informal); every derived
 output demonstrably traces to this layer.
 
-### 20. Per-area completeness score 🔓
+**Built 2026-10-27** (`vector/sources.py`, `vector/roads.py`, `vector/aois.py`).
+*Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).*
+
+- **Fetch.** OSM `highway=*` through the shared C44 client, split into five
+  disjoint per-tag clauses (a test pins the partition as exhaustive and
+  disjoint). Each clause is cached and fetched by a 2-worker thread pool. A
+  clause that hits Overpass's own query limit is re-queried on the box's four
+  quarters (depth ≤ 3). A clause that cannot be retrieved is recorded as
+  unavailable, never read as zero.
+- **Footprints.** Open Buildings v3 where it has coverage (verified live per
+  AOI), otherwise OSM `building=*` ways. The source is recorded in every
+  output.
+- **Widths.** `HIGHWAY_WIDTH_M_DEFAULT` is labelled *defaults, not
+  measurements*. Road length does not depend on it; road area does.
+- **Groupings.** Arterial, narrow (`footway/path/pedestrian/steps`) and broad
+  (narrow + `service/residential/track`) are reported separately and never
+  merged.
+- **Negative space.** Derived only where narrow pedestrian density is below
+  `NEGATIVE_SPACE_TRIGGER_KM_PER_KM2 = 1.0`, as a morphological closing of the
+  footprint union (gaps up to 6 m) minus footprints and minus mapped road
+  space. It is area only and never enters the network. These constants were
+  fixed before the live run.
+- **One source, many representations.** `lengths_km`, `road_space`,
+  `rasterize`, `graph` (real OSM node ids), `blocks`, `surface_coverage` and
+  `paved_status` are all methods of `RoadLayer`. Every output carries
+  `source_layer_id`.
+
+**Live run, 2026-10-27** (the Overpass primary was timing out; every clause was
+satisfied by fallback endpoints, none unavailable):
+
+| AOI | morphology | footprints | narrow km/km² | broad | all | `surface` tagged (by length) | negative space |
+|---|---|---|---:|---:|---:|---:|---|
+| barcelona_eixample | formal European | 4,449 OSM | 37.81 | 45.07 | 66.84 | 91.7% | not triggered |
+| chandigarh_central | formal Asian | 11,266 OB | 2.25 | 18.55 | 25.92 | 75.5% (narrow 1.4%) | not triggered |
+| dharavi | dense informal | 19,339 OB | **2.78** | 13.97 | 23.10 | 16.6% | not triggered |
+| lagos | dense informal | 34,056 OB | **0.19** | 6.62 | 9.53 | 89.5% (70.8% unpaved) | **triggered, 0.561 km²** |
+
+Live re-measurement reproduces `03_EVIDENCE.md` Part B exactly for Dharavi
+(2.78) and Lagos (0.19). Rasterised road area matches vector road space within
+0.1% in every AOI, and every representation carries the layer id.
+**Barcelona's 37.8 km/km² is 4.5× Khayelitsha's 8.35**, because Barcelona
+maps its sidewalks as footways. That is the saturation item 20's baseline
+caution predicted. Lagos's negative space is 3.3% of the AOI and is
+unvalidated candidate road space.
+
+`tests/test_vector_roads.py`, 37 tests: **0 before** (the `vector` package did
+not exist; collection error) and **37 passed after**.
+
+*Doc contradictions:* `diagnose_pure_pixels_paved.py` has per-tag caching but
+**no threaded fetch** (it is sequential with 3 s sleeps), so the thread pool is
+new here. `generate_osm_road_masks.py` keeps its own copy of the width table,
+not changed here; two copies can drift.
+
+### 20. Per-area completeness score 🔶 **PARTIAL — stays partial until the low-coverage flag reaches the UI** *(the flag reaches every vector output; no UI consumer exists yet)*
 
 **What:** a mandatory field on every AOI and every reporting unit, quantifying how
 much of the road network is likely present.
@@ -847,6 +907,87 @@ threshold. **This item sets those thresholds.**
 **Acceptance:** score emitted for every AOI, **never optional, never null**; a
 low-coverage AOI is visibly flagged end-to-end through to the UI; Lagos (0.19)
 and Khayelitsha (8.35) produce visibly different scores.
+
+**Built 2026-10-28** (`vector/coverage.py`). *Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).* **Partially accepted: the UI half is NOT met**
+(see below).
+
+- **Fields** (all always present, never null; the JSON forbids NaN and inf):
+  `osm_density_percentile` (narrow pedestrian density ranked against the
+  reference set), `coverage_regime_flag`, `regime_reasons`,
+  `arterial_to_pedestrian_ratio`, `footprints_per_road_km`, `footprint_count`
+  and its method, `topology_metrics_suppressed`,
+  `footprint_metrics_confidence`, and `measure: "peer_relative_density_rank"`.
+  Named per the caution above: not a completeness rate.
+- **Low-coverage policy thresholds, set here** (fixed before any score was
+  computed). `very_low` below 0.3 km/km² narrow density. `low` below 1.0 (the
+  same constant as item 19's negative-space trigger), or above 5.0
+  arterial/pedestrian, the partial-mapping signature. `not_measurable` if the
+  pedestrian or arterial clause was not retrieved. Under low or worse,
+  topology metrics are **suppressed** and footprint metrics carry reduced
+  confidence. A zero denominator gives a capped value with `capped: true`.
+  Footprints per road km is reported but not used in the regime, because no
+  threshold for it is justified.
+- **Partial fetch.** Each output declares the Overpass clauses it is built
+  from (`roads.GROUP_CLAUSES`, tested against the clause partition). When one
+  was not retrieved, it carries `partial_fetch`, the missing clauses, and a
+  lower-bound note. The arterial/pedestrian ratio reads only the arterial and
+  narrow clauses, so a missing `service` clause leaves it complete.
+- **Reference set, measured live** (13 AOIs: the 11 baseline AOIs plus
+  Barcelona and Chandigarh as formal anchors), committed as
+  `REFERENCE_NARROW_KM_PER_KM2`. It reproduces Part B within 0.1 km/km²: the
+  largest drifts are HCMC 0.99 vs 0.90, Kigali 1.87 vs 1.94 and Jakarta 0.41
+  vs 0.39. Dharavi 2.78, Lagos 0.19 and Khayelitsha 8.35 match exactly.
+
+**Scores, 2026-10-28** (percentile leave-one-out, 12 others):
+
+| AOI | narrow km/km² | percentile | regime | arterial/ped | footprints per road km |
+|---|---:|---:|---|---:|---:|
+| lagos | 0.193 | **0.0** | **very_low** | 11.10 | 208.9 |
+| jakarta | 0.407 | 8.3 | low | 4.02 | 76.9 |
+| nusantara | 0.633 | 16.7 | low | 1.59 | 9.7 |
+| hcmc | 0.990 | 25.0 | low | 3.86 | 204.2 |
+| accra | 1.303 | 33.3 | adequate | 3.78 | 127.6 |
+| guatemala | 1.830 | 41.7 | adequate | 4.22 | 125.9 |
+| kigali | 1.874 | 50.0 | adequate | 1.82 | 185.7 |
+| nairobi | 2.110 | 58.3 | adequate | 1.66 | 108.7 |
+| chandigarh_central | 2.248 | 66.7 | adequate | 3.09 | 81.9 |
+| dhaka | 2.284 | 75.0 | adequate | 2.52 | 96.4 |
+| dharavi | 2.782 | 83.3 | adequate | 2.72 | 120.1 |
+| capetown (Khayelitsha) | 8.348 | **91.7** | **adequate** | 0.25 | 196.0 |
+| barcelona_eixample | 37.807 | 100.0 | adequate | 0.26 | 16.9 (OSM footprints) |
+
+**Lagos vs Khayelitsha: visibly different** (0.0 / very_low vs 91.7 / adequate).
+Every field is present and non-null for all 13. The low regime covers exactly
+`03_EVIDENCE.md`'s under-mapped list (Lagos, Jakarta, HCMC) plus Nusantara,
+which Part B deliberately did *not* flag: sparse mapping there plausibly
+reflects sparse construction. This score cannot tell those apart.
+
+**NOT met: "flagged end-to-end through to the UI".** The flag reaches the
+output of every vector product (items 22–24 embed it in every AOI block and
+every unit). No UI consumer of the vector track exists yet, so nothing renders
+it.
+
+**Deviations (recorded 2026-10-28):**
+1. *Reference check narrowed.* `measure_reference` first refused any AOI
+   with any unretrieved clause. It now refuses only a missing
+   `narrow_pedestrian` clause, the one its value is built from. Prompted by
+   HCMC's `service` clause failing; tested both ways.
+2. *Footprint count method.* For every Open Buildings AOI, the count is the
+   server-side `filterBounds` count, not a download. The 112k-polygon Cape
+   Town download stalled for 23 h. Same asset, same `filterBounds(Rectangle)`,
+   no extra confidence threshold. **Verified identical** to the
+   downloaded-then-layer-filtered count on Dharavi (19,339), Chandigarh
+   (11,266) and Lagos (34,056), so one method is used for all 12 OB AOIs, not
+   a mix. Barcelona (no OB) counts OSM buildings, a different source,
+   recorded. The download now has a 300 s per-request deadline.
+3. *Percentile is leave-one-out for reference members.* Ranking an AOI
+   against its own rounded entry moved it by about 4 points with the 4th
+   decimal. The regime flags do not use the percentile and are unchanged.
+
+`tests/test_vector_coverage.py`, 26 tests: **0 before** (module absent) and
+**26 passed after**. The partial-fetch tests were also run against item 19's
+`roads.py` (no `fetch_status`): **6 failed, then 6 passed** with it.
 
 ### 21. ~~Spectral unmixing~~ Spectral regression → fractions 🔓 **PILOT COMPLETE — RE-SCOPE SIGNED OFF 2026-09-23; not yet built** *(heading was "⚠️ PILOT COMPLETE — RE-SCOPE PROPOSED, AWAITING DECISION"; corrected 2026-09-24)*
 
@@ -1363,7 +1504,7 @@ built-up for the same AOI. Agreement is a sanity check, **not ground truth** —
 and note WorldCover's built-up user's accuracy is 47.1% in Africa, so disagreement
 there is not automatically your error.
 
-### 22. Aggregation units 🔓
+### 22. Aggregation units ✅
 
 **Sequence, in order:**
 1. **Regular-grid blocks** — free, immediately available
@@ -1375,7 +1516,51 @@ there is not automatically your error.
 **Acceptance:** each unit type produces the same fraction totals over the same
 area (a consistency check); every unit carries `{value, status, coverage}`.
 
-### 23. Density metrics 🔓
+**Built 2026-10-28** (`vector/units.py`, `vector/fractions.py`). *Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).*
+
+- **Units, in the specified order.**
+  1. A regular 100 m grid on the 10 m pixel grid.
+  2. One unit per building: a centroid-Voronoi tessellation clipped to the
+     AOI (momepy is not installed, so this is the simpler centroid form).
+  3. Path-delineated blocks from item 19's `blocks()`, carrying
+     `partial_fetch` if a clause was missing.
+- **Fractions: built, vegetation and water only.**
+  - **built** is the item 19 layer's footprints rasterised to 10 m
+    (02_ARCHITECTURE.md's definition of `built`).
+  - **vegetation and water are PROXIES, not item 21 fractions.** They are
+    index thresholds on a Sentinel-2 median composite: water is MNDWI > 0 (Xu
+    2006), and vegetation is NDVI > 0.3 and not water. A pixel needs ≥ 3
+    cloud-free (SCL) observations. Item 21's regression, the decided
+    producer, is not built. Every output carries `method` and `producer`
+    saying so.
+  - **`impervious_total` is `not_computed` in every unit**, with value
+    `None`, never 0.
+- **Every unit** carries `{value, status, coverage}` per fraction (status is
+  `insufficient_observation` below 50% coverage) plus item 20's coverage
+  regime, inherited at AOI level.
+- **Consistency check** (tolerance fixed before the run: 0.5% of AOI area per
+  fraction) on a 2 m sub-grid.
+
+**Live, Dharavi, Sentinel-2 2024-01-01..03-31** (36 images, 98.1% clear):
+
+| unit type | units | built | vegetation (proxy) | water (proxy) |
+|---|---:|---:|---:|---:|
+| grid | 728 | 24.61% | 27.42% | 7.35% |
+| footprint | 19,246 | 24.61% | 27.42% | 7.35% |
+| path | 985 | 24.60% | 27.41% | 7.34% |
+
+**Consistency: PASS.** The largest spread between unit types is 0.009% of the
+AOI (built), against a 0.5% bar. Path units cover 99.95% of the AOI; the road
+cut-strips and slivers account for the rest. 19,246 footprint units for 19,339
+footprints: 93 footprints touch the AOI but have their representative point
+outside it, so they get no cell. One path block is `insufficient_observation`
+in every fraction: it is too small to hold a single 2 m sub-cell.
+
+`tests/test_vector_units.py`, 11 tests: **0 before** (module absent) and **11
+passed after**.
+
+### 23. Density metrics 🔶 **BUILT — pre-registered acceptance test FAILED (2026-10-28)**
 Road length per unit area, footprint density, footprint size distribution,
 spacing statistics, orthogonality index, `impervious_total`.
 
@@ -1392,13 +1577,150 @@ are working.
 **Acceptance:** metrics computed for a known-formal and a known-informal AOI;
 they separate the two without any spectral input.
 
-### 24. Access and service indicators 🔓
+**Built 2026-10-28** (`vector/density.py`). *Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).* Every metric is a `{value, status}` block, computed from the
+item 19 layer only. A test forbids imagery imports, and `spectral_inputs` is
+`[]`.
+
+- Road length per area: all, arterial, narrow and broad, kept separate.
+- Footprint density and built-area share.
+- Footprint size distribution: p10, p25, median, p75, p90 and mean.
+- Spacing: centroid nearest-neighbour distance.
+- **Orthogonality:** Boeing's (2019) orientation order φ. It is a topology
+  metric, so it is suppressed under item 20's low coverage (Lagos:
+  `suppressed_low_coverage`).
+- `impervious_total`: `not_computed`.
+
+**Separation test, pre-registered in code before either AOI was computed**
+(`SEPARATION_TEST`). Known-formal is chandigarh_central and known-informal is
+dharavi, with the same footprint source (Open Buildings v3) so the source
+cannot separate them. Pass = at least 3 of 4 predictions hold and none is
+reversed.
+
+| prediction | formal | informal | statistic | bar | outcome |
+|---|---:|---:|---:|---:|---|
+| larger formal footprints (median m²) | 50.4 | 46.1 | 1.09× | ≥ 2.0× | short of bar |
+| denser informal footprints (/km²) | 2,101 | 2,761 | 1.31× | ≥ 2.0× | short of bar |
+| wider formal spacing (median m) | 7.6 | 6.7 | 1.13× | ≥ 1.5× | short of bar |
+| more orthogonal formal network (φ) | 0.879 | 0.047 | +0.832 | ≥ +0.10 | **holds** |
+
+**Result: FAIL.** 1 of 4 hold, 0 reversed. The bar was not moved. The street
+network separates the two decisively. The footprint metrics all point the
+predicted way and fall well short of their bars.
+
+~~*Not explained, and needing your decision:* Chandigarh's median Open Buildings
+footprint is **50 m²**, implausibly small for planned formal fabric. Barcelona
+(OSM footprints) is 287 m². Possible causes, NOT tested: Open Buildings
+fragmenting formal houses; the AOI including many small structures; or a
+real property of Chandigarh's sector housing. Until that is resolved, the
+footprint metrics cannot be read as morphology signals on Open Buildings
+input.~~
+
+**Investigated 2026-10-28** (not re-tested, as instructed). **The cause is Open
+Buildings fragmenting formal buildings, not informal colonies in the AOI, and
+not something a confidence filter fixes.**
+
+1. **Confidence filter.** None is applied beyond the dataset's own 0.65
+   publication floor. Confidence and size are strongly linked:
+
+   | confidence | share of polygons | median area |
+   |---|---:|---:|
+   | 0.65–0.70 | 28% | 27.6 m² |
+   | 0.70–0.75 | 26% | 36.4 m² |
+   | 0.75–0.80 | 21% | 66.3 m² |
+   | 0.80–0.85 | 15% | 119.2 m² |
+   | ≥ 0.85 | 10% | 179.3 m² |
+
+   Filtering at ≥ 0.75 would move the median to 106 m². But a filter would
+   hide the problem rather than fix it: in the imagery sample below,
+   fragments occur at confidence 0.79–0.87, and whole buildings at 0.75–0.82.
+   No threshold separates them.
+2. **Is the AOI informal?** No evidence of it. The AOI is Sectors 17, 18, 21,
+   22 and 23 plus Sector 20A and police quarters (OSM place nodes and named
+   landuse, queried live). OSM maps no colony, village or basti in it. The
+   imagery shows plotted formal housing and commercial blocks throughout.
+3. **Does Open Buildings split houses? Yes.**
+   - **OSM cross-check.** OSM has only 1,271 buildings here (median 139 m²)
+     against Open Buildings' 11,266, so it is incomplete. But where both map
+     a building, **60% of OSM buildings over 200 m² contain two or more Open
+     Buildings polygons** (24% across all sizes; 7.6% contain four or more).
+     The 86% of Open Buildings polygons outside any OSM building have a median
+     of 44 m².
+   - **Imagery sample.** 30 polygons, simple random sample with a fixed seed
+     (sample median 36.6 m² vs AOI 50.9 m²), outlined on Esri World Imagery at
+     zoom 19 and classified by eye:
+
+   | outcome | count |
+   |---|---:|
+   | **fragment of a larger building** (rooftop room, stair tower, one roof level, part of a block) | **21 (70%)** |
+   | whole building | 5 (17%) |
+   | small real structure (annex or outbuilding) | 2 (7%) |
+   | not a building (tree canopy, gap between buildings) | 2 (7%) |
+
+   Chandigarh's multi-level plotted houses, with rooftop rooms, water tanks
+   and solar arrays, are mapped by Open Buildings as several small
+   "buildings". That pulls the median footprint down to informal-fabric
+   sizes.
+
+**Consequence.** On Open Buildings input, footprint size, density and spacing
+measure segmentation behaviour as much as morphology, in formal fabric at
+least. Whether Dharavi's footprints fragment the same way was not checked.
+The separation test's footprint predictions cannot be read as a statement
+about the two places until that is addressed.
+
+*Limits:* a single observer, 30 samples, and imagery of unknown date relative
+to Open Buildings' inference.
+
+Other AOIs, for the record: Barcelona φ = 0.617 (sidewalk footways add
+off-grid bearings), 1,093 footprints/km², median 287 m². Lagos φ suppressed,
+1,983 footprints/km², median 52 m².
+
+`tests/test_vector_density.py`, 14 tests (commit 61547c6 said 15; corrected in item 24's commit): **0 before** (module absent) and **14
+passed after**.
+
+### 24. Access and service indicators ✅
 Network connectivity, distance-to-nearest-paved-access per building or per block.
 
 **Acceptance:** computed from the vector layer alone; degradation with
 coverage is reported via item 20's score, not silent.
 
-### 25. Change over time 🔓
+**Built 2026-10-28** (`vector/access.py`). *Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).* Built from the item 19 layer alone; a test
+forbids imagery imports.
+
+- **Network connectivity** on real OSM node topology: components,
+  largest-component length share, intersections per km² (degree ≥ 3),
+  dead-end ratio (degree 1 over topological nodes) and link-node ratio. It is
+  **suppressed** under item 20's low coverage, because under thin mapping a
+  dead end measures the mapping, not the place.
+- **Paved access** per building: the Euclidean distance from the footprint
+  edge to the nearest paved centreline, summarised per building and per block
+  (the layer's `blocks()`, the same partition item 22 uses). Paved means the
+  `surface` tag where present, otherwise a highway-class DEFAULT. The share of
+  buildings whose nearest paved way rests on that default is reported.
+  Distances are always computed, carry item 20's confidence, and are UPPER
+  bounds when a clause is missing (`partial_fetch`).
+
+**Live, 2026-10-28:**
+
+| AOI | regime | network | components | intersections/km² | dead-end ratio | median building→paved | ≤ 50 m | nearest paved on class default |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| chandigarh_central | adequate | reported | 25 | 206 | 0.21 | 11.0 m | 98.1% | 11% |
+| dharavi | adequate | reported | 27 | 260 | 0.27 | 17.5 m | 87.5% | **91%** |
+| barcelona_eixample | adequate | reported | 36 | 1,375 | 0.09 | 2.8 m | 100% | 0.4% |
+| lagos | **very_low** | **suppressed** | — | — | — | 186.8 m (confidence **low**) | 17.2% | 51% |
+
+Degradation is visible: Lagos's topology is suppressed, and its distances carry
+low confidence. They also reflect a real 70.8% unpaved-tagged network (item
+19). **Dharavi's access figure rests 91% on the class default**, since its
+surface tagging covers 16.6% of length, so it is mostly an assumption.
+Barcelona's sidewalk footways cut the AOI into 4,771 blocks, only 340 of them
+with a building, which inflates per-block counts there.
+
+`tests/test_vector_access.py`, 7 tests: **0 before** (module absent) and **7
+passed after**.
+
+### 25. Change over time ✅ *(acceptance met; the pre-registered expectation was NOT met, see below)*
 Fraction deltas across composites.
 
 **Why this matters:** the one capability free 10 m imagery has that VHR does not.
@@ -1409,6 +1731,71 @@ be the most valuable output.
 is attributable to a specific fraction (not "something changed"); the epochs'
 observation quality is carried alongside so a cloud-affected epoch cannot
 masquerade as change.
+
+**Built 2026-10-28** (`vector/change.py`). *Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
+`validated`).* **built, vegetation and water only;
+`impervious_total`, `paved` and `bare` are `not_computed`.** Every change
+record names its fraction. There is no combined "something changed".
+
+- **built:** Open Buildings 2.5D Temporal `building_presence`, mean on the
+  10 m grid. Its years (2016–2023) and coverage were verified live before
+  use. It is a model score, so it is a built *proxy*, not footprint area. The
+  asset's native grid was found live to be **0.5 m** (400 input pixels per
+  10 m output pixel).
+- **vegetation, water:** item 22's labelled Sentinel-2 index-threshold
+  proxies, on two composites over the same calendar window.
+- **Units:** item 22's 100 m grid.
+
+**Pre-registered in code before any change data was fetched:**
+- the AOI: the Navi Mumbai International Airport site, OSM way 455547086
+  bounds, fetched live;
+- the epochs;
+- `K_NOISE = 3.0`, so a change counts only if |Δ| > 3 × noise for that
+  fraction;
+- the noise procedure:
+  - vegetation and water: the std of split-half composites (days 1–15 vs
+    16–31) of the same window, which contain no real change; conservative,
+    because a half-composite is noisier than a full one;
+  - built: the std of 2022→2023 differences; conservative, because it may
+    include real change;
+- the observation gates: an epoch below 50% clear at AOI level makes every
+  unit `epoch_unreliable`; a unit below 80% coverage in either epoch is
+  `insufficient_observation`;
+- an expectation: *where change is detected, vegetation mostly DECREASES*.
+
+**Live, 2026-10-28** (1,683 grid units):
+
+| fraction | epoch A | epoch B | noise | threshold | increase | decrease | no detectable change | insufficient obs. |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| built | OB Temporal 2019 (1 image) | 2023 (1 image) | 0.0204 | 0.0612 | 44 | 40 | 1,598 | 1 |
+| vegetation | S2 2019-01-01..03-31 (34 images, 92.2% clear) | S2 2024-01-01..03-31 (36 images, 96.0% clear) | 0.0419 | 0.1257 | **138** | **75** | 1,469 | 1 |
+| water | same | same | 0.0437 | 0.1311 | 66 | 61 | 1,555 | 1 |
+
+**The three checks asked for (2026-10-28):**
+1. *The two dates.* Vegetation and water: 2019-01-01..2019-03-31 and
+   2024-01-01..2024-03-31. Built: Open Buildings Temporal 2019 and 2023, the
+   latest year it has.
+2. *Same season: YES for vegetation and water.* The windows are identical
+   (Jan–Mar, the dry season, in both years), and a test pins the month-day
+   windows equal. *Not applicable to built:* Open Buildings Temporal is one
+   annual estimate per year, with no within-year window to match. This is
+   stated rather than claimed as a pass.
+3. *Threshold a constant fixed before the run: YES.* `K_NOISE = 3.0` and the
+   noise procedure were in code before the first live attempt. The noise
+   values themselves are measured in the run, as pre-registered. The only
+   edit between the failed first attempt and the run reported here was the
+   resampling limit (`maxPixels` 64 → 1024). *Limit:* git cannot prove the
+   ordering, because `change.py` was not committed before the run.
+
+**Acceptance: met.** Two epochs over one AOI; every change attributable to a
+named fraction; each epoch's observation quality carried. **The pre-registered
+expectation was NOT met: vegetation increased in 138 units and decreased in
+75**, the opposite of the prediction. Not investigated here. One possibility,
+not checked, is that the site was already cleared by early 2019 and has since
+regrown cover on airside land. The threshold was not changed.
+
+`tests/test_vector_change.py`, 9 tests: **0 before** (module absent) and **9
+passed after**.
 
 ### 26. Rewire flood risk 🔓
 
