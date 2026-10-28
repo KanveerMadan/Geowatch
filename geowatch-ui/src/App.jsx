@@ -15,6 +15,9 @@ import { humanize, hazardKeys, isUnpaved, segmentGrid } from './render'
 // so every request had been 401ing since that shipped.
 import { apiFetch, fetchImageObjectUrl, isKeyMissing } from './api'
 import { legacyPipelineNotice } from './legacyPipeline'
+// Build item 20: the OSM coverage regime per vector AOI, read from the backend
+// report and never re-derived. See ./coverage.
+import { coverageRows, percentileText, densityText, warningHeadline } from './coverage'
 
 
 /* ============================================================
@@ -299,6 +302,67 @@ function ReportCard({ title, status, children, style }) {
         {status && <StatusPill status={status} />}
       </div>
       {children}
+    </div>
+  )
+}
+
+/* ============================================================
+   OSM COVERAGE — build item 20
+   ============================================================ */
+
+// Every vector AOI with its coverage regime. Rows that warn get the loud box;
+// the regime, reasons and partial-fetch notes are the backend's own words.
+function CoverageRow({ row }) {
+  const accent = row.warning ? C.coral : C.green
+  return (
+    <div data-testid="coverage-row" style={{ padding: '8px 0', borderBottom: `1px solid ${C.hairline}` }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 6 }}>
+        <span style={{ fontFamily: FONTS.mono, fontSize: 10.5, color: C.text, overflow: 'hidden', textOverflow: 'ellipsis' }}>{row.aoi}</span>
+        <span data-testid="coverage-regime" style={{
+          fontFamily: FONTS.mono, fontSize: 9, color: accent, background: `${accent}18`,
+          border: `1px solid ${accent}44`, borderRadius: 20, padding: '1px 7px', whiteSpace: 'nowrap',
+        }}>{row.regimeLabel}</span>
+      </div>
+      <div style={{ fontFamily: FONTS.mono, fontSize: 9.5, color: C.textDim, marginTop: 3 }}>
+        {row.measurable
+          ? <>pctl {percentileText(row)} · ped {densityText(row)} km/km²</>
+          : <span data-testid="coverage-not-measurable">Coverage {percentileText(row)}: no score</span>}
+        {row.validationStatus && <> · {row.validationStatus}</>}
+      </div>
+      {row.warning && (
+        <div role="alert" data-testid="coverage-warning" style={{
+          marginTop: 6, background: C.coralDim, border: `1px solid ${C.coral}`, borderRadius: 6,
+          padding: '6px 8px', fontFamily: FONTS.body, fontSize: 10.5, color: C.text, lineHeight: 1.5,
+        }}>
+          <b style={{ color: C.coral }}>⚠ {warningHeadline(row)}</b>
+          {row.reasons.map((r, i) => <div key={i} style={{ color: C.textDim }}>{r}</div>)}
+          {row.topologySuppressed && <div>Network-topology metrics suppressed.</div>}
+          {row.footprintConfidence && <div>Footprint metrics confidence: {row.footprintConfidence}.</div>}
+        </div>
+      )}
+      {row.partialFetch.map((p, i) => (
+        <div key={i} data-testid="coverage-partial-fetch" style={{
+          marginTop: 5, background: C.amberDim, border: `1px solid ${C.amber}`, borderRadius: 6,
+          padding: '4px 8px', fontFamily: FONTS.body, fontSize: 10, color: C.text, lineHeight: 1.45,
+        }}>
+          <b style={{ color: C.amber }}>Partial fetch</b> · {p.field}: missing {p.missingClauses.join(', ') || '—'}
+          {p.note && <div style={{ color: C.textDim }}>{p.note}</div>}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function CoveragePanel({ report, error }) {
+  const rows = coverageRows(report)
+  return (
+    <div data-testid="coverage-panel" style={{ padding: '14px 18px' }}>
+      <div style={{ fontFamily: FONTS.body, fontSize: 10.5, color: C.textDim, letterSpacing: '0.05em', textTransform: 'uppercase', fontWeight: 600 }}>OSM coverage · vector AOIs</div>
+      <div style={{ fontFamily: FONTS.body, fontSize: 10, color: C.textFaint, margin: '3px 0 6px', lineHeight: 1.45 }}>
+        Peer-relative density rank, not a completeness rate.{report?.generated_at && <> Scored {report.generated_at.slice(0, 10)}.</>}
+      </div>
+      {error && <div style={{ fontFamily: FONTS.body, fontSize: 10.5, color: C.coral, lineHeight: 1.5 }}>Coverage report unavailable: {error}</div>}
+      {rows.map(row => <CoverageRow key={row.aoi} row={row} />)}
     </div>
   )
 }
@@ -1224,6 +1288,19 @@ export default function App() {
   const [showRoadsVector, setShowRoadsVector] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [reportMode, setReportMode] = useState(false)
+  const [coverageReport, setCoverageReport] = useState(null)
+  const [coverageError, setCoverageError] = useState(null)
+
+  // Item 20: the stored coverage report. Read once; it is built offline.
+  useEffect(() => {
+    apiFetch('/api/vector/coverage')
+      .then(async r => {
+        if (!r.ok) throw new Error((await r.json().catch(() => null))?.detail || `HTTP ${r.status}`)
+        return r.json()
+      })
+      .then(setCoverageReport)
+      .catch(e => setCoverageError(e.message))
+  }, [])
 
   useEffect(() => {
     if (!bbox) return
@@ -1362,7 +1439,9 @@ export default function App() {
             </div>
           )}
 
-          <div style={{ flex: 1 }} />
+          <div style={{ flex: 1, overflowY: 'auto' }}>
+            <CoveragePanel report={coverageReport} error={coverageError} />
+          </div>
           <div style={{ padding: '10px 18px', borderTop: `1px solid ${C.hairline}` }}>
             <div style={{ fontFamily: FONTS.mono, fontSize: 8.5, color: C.textFaint, lineHeight: 1.6 }}>
               Sentinel-2 SR · SAM vit_b · ResNet50+DeepLabV3+<br />CPS Lab · VIPS Delhi

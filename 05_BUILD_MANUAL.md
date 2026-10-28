@@ -1008,6 +1008,26 @@ serves what the UI needs, so the frontend decides nothing:
 code (module absent); with only the new module added, **9 failed**; **11
 passed** after.
 
+**The UI half (2026-10-28, `build/coverage-ui`).** The sidebar's "OSM
+coverage · vector AOIs" panel lists every AOI in the report, in the
+backend's order, with its regime. A row whose block does not carry
+`low_coverage_warning: false` gets a red `role="alert"` box with the
+backend's own `regime_reasons`, the topology-suppressed note and the
+footprint-confidence level. `not_measurable` (or `scored: false`) prints
+"not measurable" and **no number**, even where the block carries densities
+from the clauses that were fetched. Every `{status: "partial_fetch"}` in a
+block, at any depth, is listed with its missing clauses and lower-bound note.
+`geowatch-ui/src/coverage.js` is a reader in the `applicability.js` mould: no
+thresholds, no regime list (a test checks its source for both). A missing
+warning field warns.
+
+`tests/test_coverage_ui.mjs` (node; its report is emitted by the real
+`build_report` over synthetic layers), 13 checks: **crashes on old code**
+(no `coverage.js`); against master's `App.jsx` **2 failed**; **13 passed**
+after. App.jsx is checked structurally, not rendered: there is no browser or
+component renderer in the test setup, the same limit as the other `.mjs`
+tests.
+
 ### 21. ~~Spectral unmixing~~ Spectral regression → fractions 🔓 **PILOT COMPLETE — RE-SCOPE SIGNED OFF 2026-09-23; not yet built** *(heading was "⚠️ PILOT COMPLETE — RE-SCOPE PROPOSED, AWAITING DECISION"; corrected 2026-09-24)*
 
 > **The sequencing requirement below was honoured, and the pilot returned a
