@@ -196,8 +196,6 @@ CONFUSION_PAIRS = [
     frozenset({"standing_water", "dense_vegetation"}),
 ]
 AMBIGUITY_MARGIN = 0.15  # top1_prob - top2_prob below this => ambiguous. Tunable, not yet validated empirically.
-ROAD_PROXIMITY_PENALTY_STRENGTH = 0.3  # max confidence reduction for paved_road
-WATERWAY_PROXIMITY_PENALTY_STRENGTH = 0.2  # weaker than road's 0.3 -- OSM water
 
 def get_device() -> str:
     return "cuda" if torch.cuda.is_available() else "cpu"
@@ -497,8 +495,6 @@ def run_inference(
     device: str = None,
     patch_size: int = PATCH_SIZE,
     stride: int = None,
-    road_dist_map: np.ndarray = None,
-    waterway_dist_map: np.ndarray = None,
 ) -> dict:
     """
     Run sliding-window per-pixel inference over a full tile.
@@ -547,12 +543,6 @@ def run_inference(
     image = Image.open(tile_path).convert("RGB")
     img_arr = np.array(image, dtype=np.float32) / 255.0  # matches GeoWatchDatasetResNet: /255 only, no mean/std
     H, W, _ = img_arr.shape
-    if road_dist_map is not None and road_dist_map.shape != (H, W):
-        print(f"WARNING: road_dist_map shape {road_dist_map.shape} != tile shape {(H,W)} — skipping road proximity adjustment.")
-        road_dist_map = None
-    if waterway_dist_map is not None and waterway_dist_map.shape != (H, W):
-        print(f"WARNING: waterway_dist_map shape {waterway_dist_map.shape} != tile shape {(H,W)} — skipping waterway proximity adjustment.")
-        waterway_dist_map = None
     num_classes = len(categories)
 
     prob_accum = np.zeros((num_classes, H, W), dtype=np.float32)
@@ -604,24 +594,8 @@ def run_inference(
 
     count_accum = np.maximum(count_accum, 1e-6)
     mean_probs = prob_accum / count_accum[None, :, :]  # (num_classes, H, W)
-    # ── NEW: OSM road-proximity confidence adjustment (Phase 3 item #1) ──
-    # Discounts paved_road's predicted probability for pixels far from any
-    # real OSM road geometry -- soft penalty, not a hard override, since
-    # OSM road coverage in informal settlements is known-incomplete (a
-    # missing OSM road does not mean a real road doesn't exist there).
-    # Only paved_road's channel is touched; every other class's
-    # probability is left as-is. This runs BEFORE argmax so it can
-    # actually change the winning class, not just cosmetically lower a
-    # confidence number after the decision is already made.
-    if road_dist_map is not None and "paved_road" in categories:
-        road_idx = categories.index("paved_road")
-        # road_dist_map: 0=on a real road, 1=farthest from any real road
-        penalty = 1.0 - (ROAD_PROXIMITY_PENALTY_STRENGTH * road_dist_map)
-        mean_probs[road_idx, :, :] = mean_probs[road_idx, :, :] * penalty
-    if waterway_dist_map is not None and "standing_water" in categories:
-        water_idx = categories.index("standing_water")
-        penalty = 1.0 - (WATERWAY_PROXIMITY_PENALTY_STRENGTH * waterway_dist_map)
-        mean_probs[water_idx, :, :] = mean_probs[water_idx, :, :] * penalty
+    # Item 26: the OSM road/waterway proximity penalties (C7, C11) are
+    # deleted. They were applied here but never in calibration.
 
     predicted_idx = np.argmax(mean_probs, axis=0)  # (H, W)
     predicted_conf = np.take_along_axis(

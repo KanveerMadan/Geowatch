@@ -1854,6 +1854,14 @@ declare themselves. Every new output carries `validation_status`; none claims
   `LANDCOVER_INDEPENDENT`. Tests: `tests/test_flood_inputs.py` (20; an AST
   scan proves no `susceptibility/` module names the 7-class map, and 9 fail on
   the old code), two pipeline-boundary tests.
+- **Task 2 — the road-proximity penalty (C7, C11) is deleted.** The
+  road and waterway penalty block in `run_inference` (formerly
+  `inference.py:607-624`), both `*_PROXIMITY_PENALTY_STRENGTH` constants and
+  `run_inference`'s `road_dist_map` / `waterway_dist_map` parameters are gone,
+  and `pipeline.py` no longer passes them. `compute_road_distance_map` stays:
+  segment `road_access_score` still reads it, and that is not a penalty.
+  `git grep` for the penalty finds only the deletion comment.
+  `tests/test_proximity_penalty_deleted.py` (3; all fail on the old code).
 
 ---
 

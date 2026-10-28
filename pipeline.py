@@ -311,17 +311,11 @@ def run_pipeline(
             full_dist_map[row_off:row_off + t_h, col_off:col_off + t_w]
             if full_dist_map is not None else None
         )
-        tile_waterway_dist_map = (
-            full_waterway_dist_map[row_off:row_off + t_h, col_off:col_off + t_w]
-            if full_waterway_dist_map is not None else None
-        )
 
         masks = segment_tile(tile_path, mask_generator)
 
         inference_result = run_inference(
             tile_path, model, categories, caat_thresholds, device=device,
-            road_dist_map=tile_dist_map,
-            waterway_dist_map=tile_waterway_dist_map,
         )
 
         # Place this tile's per-pixel outputs into the full mosaic canvas.
