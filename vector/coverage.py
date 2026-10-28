@@ -64,7 +64,10 @@ RATIO_CAP = 1000.0
 FOOTPRINTS_PER_KM_CAP = 1_000_000.0
 
 REGIMES = ("adequate", "low", "very_low", "not_measurable")
-SUPPRESS_TOPOLOGY_IN = frozenset({"low", "very_low", "not_measurable"})
+# The regimes a reader must be warned about. The UI reads the per-block
+# `low_coverage_warning` this sets; it never keeps its own list of regimes.
+LOW_COVERAGE_REGIMES = frozenset({"low", "very_low", "not_measurable"})
+SUPPRESS_TOPOLOGY_IN = LOW_COVERAGE_REGIMES
 
 
 def percentile_rank(x: float, reference) -> float:
@@ -144,6 +147,7 @@ def score_layer(layer, reference=None, *, region=None, footprint_count=None) -> 
     return layer.stamp({
         "osm_density_percentile": round(percentile_rank(narrow_density, ref_values), 1),
         "coverage_regime_flag": regime,
+        "low_coverage_warning": regime in LOW_COVERAGE_REGIMES,
         "regime_reasons": reasons,
         "narrow_pedestrian_km_per_km2": round(narrow_density, 4),
         "broad_pedestrian_km_per_km2": round(L["broad_pedestrian"] / area if area else 0.0, 4),
@@ -167,7 +171,25 @@ def score_layer(layer, reference=None, *, region=None, footprint_count=None) -> 
         "reference_measured_on": REFERENCE_MEASURED_ON,
         # What this is. Deliberately not called a completeness rate (item 20).
         "measure": "peer_relative_density_rank",
+        "scored": True,
     })
+
+
+def not_measurable_block(reason: str) -> dict:
+    """The coverage block for an AOI whose inputs could not be built at all
+    (an Earth Engine or Overpass failure that raised). It carries the regime
+    and the policy fields, and NO numeric score: there was nothing to measure,
+    and a number here would read as a measurement."""
+    return {
+        "coverage_regime_flag": "not_measurable",
+        "low_coverage_warning": True,
+        "regime_reasons": [reason],
+        "scored": False,
+        "topology_metrics_suppressed": True,
+        "footprint_metrics_confidence": "low",
+        "validation_status": "experimental",
+        "measure": "peer_relative_density_rank",
+    }
 
 
 def measure_reference(aois: dict, *, fetch=None) -> dict:

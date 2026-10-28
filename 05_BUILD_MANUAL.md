@@ -989,6 +989,25 @@ it.
 **26 passed after**. The partial-fetch tests were also run against item 19's
 `roads.py` (no `fetch_status`): **6 failed, then 6 passed** with it.
 
+**Toward the UI half (2026-10-28, `build/coverage-ui`).** The backend now
+serves what the UI needs, so the frontend decides nothing:
+
+- Every block carries `low_coverage_warning` (true for `low`, `very_low`,
+  `not_measurable`: `coverage.LOW_COVERAGE_REGIMES`, the same set that
+  suppresses topology) and `scored`.
+- `vector/coverage_report.py` scores all 13 vector AOIs (the reference set)
+  and stores one report under `experiments/vector_coverage/`. An AOI whose
+  inputs raise is kept as `not_measurable` with the error as its reason and
+  **no number** (`coverage.not_measurable_block`); it is never dropped.
+- `GET /api/vector/coverage` serves the newest stored report verbatim; 404
+  with the command to run when none exists.
+- `sources.count_open_buildings` had **no Earth Engine timeout**; it now goes
+  through `ee_timeout.call` (`OPEN_BUILDINGS_COUNT_TIMEOUT_S = 120`).
+
+`tests/test_vector_coverage_report.py`, 11 tests: collection error on old
+code (module absent); with only the new module added, **9 failed**; **11
+passed** after.
+
 ### 21. ~~Spectral unmixing~~ Spectral regression → fractions 🔓 **PILOT COMPLETE — RE-SCOPE SIGNED OFF 2026-09-23; not yet built** *(heading was "⚠️ PILOT COMPLETE — RE-SCOPE PROPOSED, AWAITING DECISION"; corrected 2026-09-24)*
 
 > **The sequencing requirement below was honoured, and the pilot returned a

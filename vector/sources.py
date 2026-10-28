@@ -155,6 +155,8 @@ OPEN_BUILDINGS_ASSET = "GOOGLE/Research/open-buildings/v3/polygons"
 # no limit: on 2026-10-27 a 112k-polygon Cape Town download stalled for 23 h
 # using 37 s of CPU, and nothing raised. A stall now fails loudly instead.
 OPEN_BUILDINGS_DEADLINE_MS = 300_000
+# Hard client-side timeout for the server-side footprint count (ee_timeout).
+OPEN_BUILDINGS_COUNT_TIMEOUT_S = 120
 
 
 def fetch_open_buildings(name: str, bbox):
@@ -196,7 +198,10 @@ def count_open_buildings(bbox) -> int:
     downloaded-then-layer-filtered count exactly on Dharavi (19,339),
     Chandigarh (11,266) and Lagos (34,056)."""
     import ee
+    from ee_timeout import call
     from ingestion.gee_client import initialize_gee
     initialize_gee()
-    return (ee.FeatureCollection(OPEN_BUILDINGS_ASSET)
-            .filterBounds(ee.Geometry.Rectangle(list(bbox))).size().getInfo())
+    size = ee.FeatureCollection(OPEN_BUILDINGS_ASSET).filterBounds(
+        ee.Geometry.Rectangle(list(bbox))).size()
+    return call(size.getInfo, timeout=OPEN_BUILDINGS_COUNT_TIMEOUT_S,
+                label="open buildings count")
