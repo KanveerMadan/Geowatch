@@ -1084,6 +1084,32 @@ therefore start at C48 to avoid a third collision.*
 `03a47ab`). **No fate assigned.** Numbered from C51: no branch uses C51 or
 above.*
 
+***C57 and C58 added 2026-10-28** from item 20's UI half (`build/coverage-ui`).
+**No fate assigned.** Numbered from C57, the next free number on `master` at
+`220add1`. Lanes running at the same time may collide.*
+
+### C58 — `SecExposure` calls `useState` after a conditional return [S] *(entry)*
+
+`geowatch-ui/src/App.jsx`, `SecExposure`: `if (!exposure) return ...` runs
+before `const [activeLayer, setActiveLayer] = useState(...)`. oxlint reports
+`react-hooks(rules-of-hooks)` as an **error**, which is pre-existing on
+`master` (`App.jsx:846` there). A result without `exposure`, followed in the
+same mounted report by one with it, changes the hook count between renders,
+and React throws. Not reproduced in a browser. Found while linting item 20's
+UI change; not touched.
+
+### C57 — The `footprints_per_road_km` partial-fetch note says "lower bound"; it is an upper bound [E] *(entry)*
+
+`RoadLayer.fetch_status` attaches one note to every partial fetch: "value is
+a LOWER BOUND: built without the missing clauses". That holds for road
+lengths. `coverage.score_layer` also attaches it to `footprints_per_road_km`,
+where the missing clauses are in the **denominator**, so the ratio is
+overstated. Live, 2026-10-28: Lagos with `service` unretrieved scored
+**250.4** footprints per road km, against **208.9** with every clause. The
+UI shows the backend's note verbatim, so it currently shows the wrong
+direction next to that field. The regime does not use this ratio, so no
+regime is affected.
+
 ### C56 — An Earth Engine reduction can stall for hours without raising [E] *(entry)*
 
 On 2026-10-28 the item 26 ward-ranking run (`experiments/ward_ranking/c3_ward_ranking.py`)

@@ -672,6 +672,23 @@ def get_run(run_id: str):
         return json.load(f)
 
 
+@app.get("/api/vector/coverage")
+def vector_coverage():
+    """Item 20: the newest stored OSM coverage report, one block per vector
+    AOI. Served verbatim: the regime, warning and partial-fetch statuses are
+    decided by vector.coverage, and neither this route nor the UI re-derives
+    them. Built offline by `python -m vector.coverage_report`."""
+    from vector.coverage_report import latest_report
+    found = latest_report()
+    if found is None:
+        raise HTTPException(
+            status_code=404,
+            detail="No item 20 coverage report stored. Run: python -m vector.coverage_report",
+        )
+    path, report = found
+    return {**report, "source_file": path}
+
+
 @app.get("/api/scheduler/status")
 def scheduler_status():
     """Auto-refresh status: disabled since 2026-09-25 (C46)."""
