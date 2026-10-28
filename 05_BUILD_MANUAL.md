@@ -2069,6 +2069,25 @@ result.
   tests moved to the new signatures. Suite **727 → 748 passed**, with the
   same 2 Earth Engine-auth failures.
 
+- **Task 2 — better references.** `experiments/flood_validation/references.py`
+  adds two sources beside Sentinel-1 and JRC:
+  - **Copernicus EMS rapid-mapping delineations.** These are the public
+    dashboard API's DEL products, `observedEventA` polygons with notation
+    `Flooded area` or `Flood trace`. A 30 m cell is flooded if ≥ half its area
+    is covered (rasterised at 3 m), and valid if ≥ half lies in the product
+    extent. The layer is cached, with its SHA256 in the result. Only
+    activations from EMSR656 (2023) on are public without login.
+  - **The Global Flood Database.** This is MODIS 250 m, scored on 240 m
+    blocks.
+
+  Sentinel-1 is tightened to the earliest acquisition date in the event
+  window, against a same-relative-orbit pre-event median. Each reference
+  records its source, resolution and the dates of the images actually used.
+  JRC permanent water is excluded everywhere. Earth Engine calls run under a
+  600 s hard deadline, and HTTP under 120 s. Tests:
+  `tests/test_flood_references_round2.py` (8; they fail on the old code,
+  where the module does not exist).
+
 ---
 
 # PART 5 — Validation discipline 🔓
