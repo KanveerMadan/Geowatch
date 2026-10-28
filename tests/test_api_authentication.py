@@ -108,7 +108,7 @@ def _request_for(api_module, method: str, path: str):
     bodies["/api/legacy/analyze"] = bodies["/api/analyze"]
     concrete = (path.replace("{run_id}", "dharavi_20260629_122047")
                 .replace("{result_id}", "r" + "0" * 24).replace("{unit_type}", "grid")
-                .replace("{unit_id}", "0"))
+                .replace("{unit_id}", "0").replace("{name}", "pluvial_susceptibility"))
     return method, concrete, bodies.get(path)
 
 
@@ -180,6 +180,7 @@ def test_every_route_accepts_the_valid_key(authed, api_module, method, path):
 # public pattern fails test_every_route_requires_auth until it is listed here.
 PUBLIC_READ_ROUTES = {
     "/api/results", "/api/results/{result_id}", "/api/results/{result_id}/wards",
+    "/api/results/{result_id}/maps/{name}",
     "/api/results/{result_id}/wards/{unit_type}",
     "/api/results/{result_id}/wards/{unit_type}/{unit_id}",
 }

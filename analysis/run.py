@@ -284,6 +284,14 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
     app = H.applicability_for(ctx, surfaces.get("impervious"))
     modules = H.run_modules(ctx, surfaces, waterway, app)
     hz = H.hazard_outputs(modules, mv, verdicts, has_waterways=waterway is not None)
+    # Item 37: the pluvial map, rendered with no-data as its own state.
+    from analysis.rasters import map_record
+    maps, map_meta = {}, {}
+    if modules["pluvial"].get("susceptibility_map") is not None:
+        meta, png = map_record("pluvial_susceptibility", modules["pluvial"]["susceptibility_map"],
+                               ht, layer.crs.to_string())
+        maps["pluvial_susceptibility"], map_meta["pluvial_susceptibility"] = png, meta
+        hz["pluvial"]["map"] = {**meta, "url_path": "maps/pluvial_susceptibility"}
 
     # 5. item 25: change.
     epochs = change_epochs(window)
@@ -318,6 +326,10 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
                     "observation_quality": fset.get("observation_quality")},
         "change_epochs": epochs, "stages": stages, "outputs": outputs,
         "wards": {t: {"status": b["status"], "n_units": b["n_units"]} for t, b in unit_sets.items()},
+        "maps": map_meta,
+        # PNG bytes for the store; analysis.store pops this before anything
+        # is written or returned (it is not JSON).
+        "_maps": maps,
     }
     C.check_result(result)
     result["validation_summary"] = C.label_summary(result)

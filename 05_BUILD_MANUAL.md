@@ -2228,7 +2228,18 @@ or "not measured"; zero renders as "0.0%".
 **Copy the existing correct pattern** — `road_access_score === -1` → "N/A", and
 the gated modules' status pills. Do not invent a new one.
 
-### 37. C22 — no-data must not collide with real classes
+### 37. C22 — no-data must not collide with real classes ✅ *(2026-10-28, in the analysis pipeline)*
+
+> **Built 2026-10-28 (`analysis/rasters.py`, Phase 2).** The pluvial map is
+> stored as an RGBA PNG (`GET /api/results/{id}/maps/pluvial_susceptibility`,
+> public). Observed cells take their tier's colour at alpha 255; no-data
+> cells are alpha 0 — a state of their own, not a colour on the scale — and
+> the legend lists it separately. The mask is propagated, not re-derived:
+> fewer than `MIN_VALID_OBS` clear observations at ingestion → NaN
+> vegetation → NaN infiltration → NaN pluvial cell → transparent pixel. The
+> legacy preview (`save_pluvial_susceptibility_output`, NaN rendered black)
+> is retired with its pipeline and not changed. Tests:
+> `tests/test_item37_nodata_render.py`.
 The surviving defect: no-data scores identically to `standing_water` and
 `active_construction`. Give it a distinct render state — never a value on the
 susceptibility scale.

@@ -822,6 +822,22 @@ def get_result(result_id: str):
     return _load_result(result_id)
 
 
+@app.get("/api/results/{result_id}/maps/{name}")
+def get_result_map(result_id: str, name: str):
+    """A stored map as RGBA PNG. No-data is alpha 0 (item 37); the legend is
+    in the result's `maps` block."""
+    from fastapi.responses import Response
+    from analysis import store
+    _load_result(result_id)
+    try:
+        png = store.get_map(result_id, name, str(RESULTS_ROOT))
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid map name.")
+    if png is None:
+        raise HTTPException(status_code=404, detail="Unknown map for this result.")
+    return Response(content=png, media_type="image/png")
+
+
 @app.get("/api/results/{result_id}/wards")
 def get_result_wards(result_id: str):
     """The unit types of a result: item 22's grid / footprint / path units,

@@ -72,7 +72,21 @@ def get_units(rid: str, root: str = RESULTS_ROOT) -> dict | None:
         return json.load(fh)
 
 
-def put(rid: str, result: dict, units: dict, root: str = RESULTS_ROOT) -> None:
+MAP_NAME_PATTERN = re.compile(r"[a-z0-9_]{1,64}")
+
+
+def get_map(rid: str, name: str, root: str = RESULTS_ROOT) -> bytes | None:
+    if not MAP_NAME_PATTERN.fullmatch(name or ""):
+        raise ValueError("invalid map name")
+    p = os.path.join(_dir(rid, root), "maps", f"{name}.png")
+    if not os.path.exists(p):
+        return None
+    with open(p, "rb") as fh:
+        return fh.read()
+
+
+def put(rid: str, result: dict, units: dict, root: str = RESULTS_ROOT,
+        maps: dict | None = None) -> None:
     """Write once, atomically: a complete directory appears or nothing does."""
     final = _dir(rid, root)
     if os.path.exists(final):
@@ -84,6 +98,13 @@ def put(rid: str, result: dict, units: dict, root: str = RESULTS_ROOT) -> None:
             json.dump(result, fh)
         with open(os.path.join(tmp, "units.json"), "w") as fh:
             json.dump(units, fh)
+        if maps:
+            os.makedirs(os.path.join(tmp, "maps"))
+            for name, png in maps.items():
+                if not MAP_NAME_PATTERN.fullmatch(name):
+                    raise ValueError(f"invalid map name {name!r}")
+                with open(os.path.join(tmp, "maps", f"{name}.png"), "wb") as fh:
+                    fh.write(png)
         os.rename(tmp, final)
     except BaseException:
         shutil.rmtree(tmp, ignore_errors=True)
@@ -140,11 +161,12 @@ def analyze(bbox, start, end, *, name: str, boundary_id: str | None = None, prod
                                boundary_id=boundary_id, commit=commit, **(run_kwargs or {}))
         if result["model_version"]["version_id"] != mv["version_id"]:
             raise RuntimeError("the run's model_version differs from the one it was keyed on")
+        maps = result.pop("_maps", {})
         result["result_id"] = rid
         gaps = incomplete_stages(result)
         if gaps:
             result["result_id"] = None
             return {"result_id": None, "cached": False, "stored": False, "result": result,
                     "not_stored_because": gaps}
-        put(rid, result, units, root)
+        put(rid, result, units, root, maps=maps)
         return {"result_id": rid, "cached": False, "stored": True, "result": result}
