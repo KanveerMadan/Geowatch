@@ -2575,11 +2575,19 @@ tied to resolution) that formally closes Gate C per Decision 17. This is the
 record of the review that actually happened, distinct from item 64's unrun
 protocol for the review that could not happen.
 
-### 66. Susceptibility dependency DAG
+### 66. Susceptibility dependency DAG ✅
 Plus a correlation matrix across the AOIs. **Directly defuses the "four of five
 layers agree, therefore convergent evidence" misreading** — they are driven by
 two shared inputs, normalized by three provisional ceilings, and reported with
 byte-identical class breaks. Probably a figure in the paper.
+
+**Done:** `docs/susceptibility_dag.md`, re-derived from code and the stored
+runs. MERIT Hydro and CHIRPS are each read by three of the five layers, and
+the class breaks hash identically across all six configs. **Ceilings
+re-counted:** ten fixed definitions (the 2,500 mm rainfall ceiling is defined
+twice) plus two AOI-relative normalisations, not "three". The correlation
+matrix covers the only 11 distinct AOIs with a susceptibility block (n = 7–9,
+geographically clustered), so it is descriptive only.
 
 ### 67. Population from two sources, as a range
 WorldPop and GHS-POP disagree ~7.6% at 2020 over the same AOI. **Report the
