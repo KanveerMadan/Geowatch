@@ -1103,6 +1103,10 @@ document still draws pluvial and waterlogging as consumers of the 7-class
 land-cover map, so item 66's dependency picture and its "two shared inputs"
 reading are out of date for those two layers.
 
+*Doc change 2026-10-28 (`build/cleanup`): §1 of `docs/susceptibility_dag.md`
+now shows the item 26 wiring; §2's correlations are marked as computed on the
+old wiring, not recomputed. Fate still unassigned.*
+
 ### C54 — Exposure's `landcover_builtup_pct` is still built from the retired 7-class map [S] *(entry)*
 
 `pipeline.py` sums `category_area_pct` for `dense_informal_roofing`,
