@@ -2531,13 +2531,20 @@ Gebru et al. template, covering the training data.
 does not describe the class definitions (item 21). Composition was re-derived
 from the 5-builder rebuild, not copied.
 
-### 62. Provenance Reconstruction — a named section
+### 62. Provenance Reconstruction — a named section ✅
 Document how the production checkpoint's training notebook was identified, by
 fingerprinting four independent config values against checkpoint metadata.
 
 **This does not recover history — it recovers auditability**, which is the actual
 function git history serves. Frame it as a named subsection, not a footnote.
 Reviewers respect a documented forensic process far more than silence.
+
+**Done:** `docs/provenance_reconstruction.md`, kept short because it concerns
+only the **retired** checkpoint. Re-run 2026-10-28. The four config values
+narrow 28 archived notebooks to **12**, not one. The single file is reached
+only via the `.npy`, builder-count and mtime steps. The checkpoint's stored
+LOCO fields match **no** archived artifact (notebook 0.2994,
+`patch_checkpoint_provenance.py` 0.3037, checkpoint 0.313).
 
 ### 63. Written labeling guide
 The exact decision rules the annotator followed, including edge cases. **This is
