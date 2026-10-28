@@ -1900,6 +1900,12 @@ declare themselves. Every new output carries `validation_status`; none claims
   experimental`. A first run hung silently for 2 h 40 min on one Earth Engine
   reduction; the rerun sets a 10-minute deadline with one retry (no retry
   fired). `tests/test_ward_ranking.py` (3, the verdict logic).
+- **Task 6 — one 2,500 mm rainfall ceiling.** The duplicate in
+  `configs/waterlogging_constants.py` (item 66's finding) is removed;
+  waterlogging imports `FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM` from
+  `configs/flash_flood_constants.py`, the single definition.
+  `docs/susceptibility_dag.md` updated. `tests/test_rainfall_ceiling_single_definition.py`
+  (2; both fail on the old code).
 
 ---
 

@@ -27,7 +27,5 @@ WATERLOGGING_CLASS_BREAKS = {
     "very_high": (0.8, 1.01),
 }
 
-# Shared with flash_flood_constants.py's rainfall-load proxy -- imported
-# here directly so waterlogging.py doesn't need a cross-mechanism import
-# from configs.flash_flood_constants at all.
-FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM = 2500.0
+# The rainfall-load ceiling is shared with flash flood and defined once, in
+# configs/flash_flood_constants.py (item 26: it was duplicated here).

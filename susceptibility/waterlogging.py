@@ -21,8 +21,8 @@ from configs.waterlogging_constants import (
     WATERLOGGING_HAND_NORMALIZATION_MAX_M,
     WATERLOGGING_IMPERVIOUS_NORMALIZATION_MAX_PCT,
     WATERLOGGING_CLASS_BREAKS,
-    FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM,
 )
+from configs.flash_flood_constants import FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM
 
 
 def _classify(score):
