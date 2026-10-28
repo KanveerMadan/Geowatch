@@ -1914,6 +1914,29 @@ declare themselves. Every new output carries `validation_status`; none claims
   the real Open Elevation source and the conftest mocks drive the assessment.
   **Errors 3 → 0**; all three pass, and the "both sources fail →
   insufficient_evidence" case confirms the mocks reach the logic.
+- **Task 8 — flood validation harness (Tier 2), run.** Pre-registered per
+  module before any score or reference was computed
+  (`experiments/flood_validation/PREREGISTRATION.md`, SHA256 `d4b5e563…` in the
+  result file): ROC AUC of the module's score over 30 m cells, flooded vs dry,
+  JRC permanent water excluded; **validated if AUC ≥ 0.70**; not-run below 50
+  flooded / 50 dry cells or, for pooled scalar modules, below 3 sites.
+  References: Sentinel-1 event extents (the project's VV −3 dB drop rule) or
+  JRC GSW recurrent water (5–80 % occurrence). **No module validated.**
+
+  | Module | Reference, sites | AUC | Verdict |
+  |---|---|---|---|
+  | pluvial | S1, Dharavi, Mumbai 2017-08-29 (502 flooded / 7,373 dry cells) | 0.533 | **failed** |
+  | fluvial | JRC, 9 `BASELINE_AOIS` (held-out Lagos, Nairobi excluded) | 0.448 | **failed** |
+  | waterlogging | JRC, same 9 AOIs | 0.432 | **failed** |
+  | coastal | S1, Beira / Chennai / Fort Myers Beach | — | **not-run**: no S1 image in any 3-day event window |
+  | flash flood | S1, Paiporta / Derna / Bad Neuenahr | 0.447 | **failed** |
+
+  Read with the stated weaknesses: four modules emit one AOI-wide scalar, so
+  their AUC is a ranking of a handful of sites; SAR misses urban flooding
+  (double bounce); and the pluvial inputs are placeholders. A fail is still a
+  fail against the bar. Module labels are unchanged (nothing became
+  `validated`). `tests/test_flood_validation_harness.py` (4: AUC, ties,
+  pooled counts, verdict and minimums).
 
 ---
 
