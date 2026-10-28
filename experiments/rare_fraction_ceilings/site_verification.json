@@ -1,0 +1,330 @@
+{
+  "verified_on": "2026-10-28",
+  "spectra_read": false,
+  "validation_status": "experimental",
+  "note": "measure_rare_endmembers.py --verify: reference masks, Sentinel-2 image counts and pure-pixel counts only. Everglades failed on the first pass (0 pixels: GLWD maps it as class 27, tropical non-forested peatland); GLWD_MARSH gained 23/25/27 and Everglades/Sudd were re-verified. No spectrum had been read at either pass.",
+  "sites": [
+    {
+      "name": "bhadla",
+      "fraction": "solar",
+      "subtype": "utility",
+      "aoi_wsen": [
+        71.89,
+        27.44,
+        72.05,
+        27.55
+      ],
+      "window": [
+        "2025-01-01",
+        "2025-03-31"
+      ],
+      "reference": {
+        "overpass_elements": 1,
+        "polygons": 1,
+        "osm": "relation/11250846",
+        "name": "Bhadla Solar Park",
+        "output": "2245 MW",
+        "plant_source": "solar"
+      },
+      "s2_crs": "EPSG:32642",
+      "n_images": 30,
+      "cloud_pct_used": 20,
+      "n_pure_pixels": 463984,
+      "status": "ok"
+    },
+    {
+      "name": "benban",
+      "fraction": "solar",
+      "subtype": "utility",
+      "aoi_wsen": [
+        32.68,
+        24.39,
+        32.76,
+        24.46
+      ],
+      "window": [
+        "2025-01-01",
+        "2025-03-31"
+      ],
+      "reference": {
+        "overpass_elements": 1,
+        "polygons": 1,
+        "osm": "way/694477324",
+        "name": "محطة بنبان للطاقة الشمسية",
+        "output": "1465 MW",
+        "plant_source": "solar"
+      },
+      "s2_crs": "EPSG:32636",
+      "n_images": 25,
+      "cloud_pct_used": 20,
+      "n_pure_pixels": 366160,
+      "status": "ok"
+    },
+    {
+      "name": "witznitz",
+      "fraction": "solar",
+      "subtype": "utility",
+      "aoi_wsen": [
+        12.39,
+        51.14,
+        12.45,
+        51.19
+      ],
+      "window": [
+        "2025-06-01",
+        "2025-08-31"
+      ],
+      "reference": {
+        "overpass_elements": 1,
+        "polygons": 1,
+        "osm": "relation/15093634",
+        "name": "Energiepark Witznitz",
+        "output": "650 MW",
+        "plant_source": "solar"
+      },
+      "s2_crs": "EPSG:32632",
+      "n_images": 23,
+      "cloud_pct_used": 20,
+      "n_pure_pixels": 33159,
+      "status": "ok"
+    },
+    {
+      "name": "rooftop_venlo",
+      "fraction": "solar",
+      "subtype": "rooftop",
+      "aoi_wsen": [
+        6.08,
+        51.33,
+        6.25,
+        51.43
+      ],
+      "window": [
+        "2025-06-01",
+        "2025-08-31"
+      ],
+      "reference": {
+        "overpass_elements": 13,
+        "polygons": 13
+      },
+      "s2_crs": "EPSG:32631",
+      "n_images": 31,
+      "cloud_pct_used": 20,
+      "n_pure_pixels": 1264,
+      "status": "ok"
+    },
+    {
+      "name": "aletsch",
+      "fraction": "snow_ice",
+      "subtype": "glacier",
+      "aoi_wsen": [
+        7.9799999999999995,
+        46.45,
+        8.08,
+        46.55
+      ],
+      "window": [
+        "2025-08-01",
+        "2025-09-30"
+      ],
+      "reference": {
+        "glims_polygons": 415,
+        "glims_names": [
+          "None",
+          "Oberaletschgletscher",
+          "Chielouwenenlgetscher",
+          "Aletschhorn N",
+          "Kranzbergfirn",
+          "Grosser Aletschgletscher",
+          "Kleines Dreieckhorn SE",
+          "Olmenhorn N",
+          "Chamm NW",
+          "Chamm SW"
+        ],
+        "worldcover_class": 70
+      },
+      "s2_crs": "EPSG:32632",
+      "n_images": 12,
+      "cloud_pct_used": 20,
+      "n_pure_pixels": 643590,
+      "status": "ok"
+    },
+    {
+      "name": "quelccaya",
+      "fraction": "snow_ice",
+      "subtype": "ice_cap",
+      "aoi_wsen": [
+        -70.86,
+        -13.969999999999999,
+        -70.77999999999999,
+        -13.89
+      ],
+      "window": [
+        "2025-06-01",
+        "2025-09-30"
+      ],
+      "reference": {
+        "glims_polygons": 147,
+        "glims_names": [
+          "None"
+        ],
+        "worldcover_class": 70
+      },
+      "s2_crs": "EPSG:32719",
+      "n_images": 44,
+      "cloud_pct_used": 20,
+      "n_pure_pixels": 356833,
+      "status": "ok"
+    },
+    {
+      "name": "sundarbans",
+      "fraction": "mixed_water_vegetation",
+      "subtype": "mangrove",
+      "aoi_wsen": [
+        89.4,
+        21.9,
+        89.5,
+        22.0
+      ],
+      "window": [
+        "2025-01-01",
+        "2025-03-31"
+      ],
+      "reference": {
+        "gmw_polygons": 35,
+        "glwd_class": 28,
+        "worldcover_class": 95
+      },
+      "s2_crs": "EPSG:32645",
+      "n_images": 12,
+      "cloud_pct_used": 20,
+      "n_pure_pixels": 843721,
+      "status": "ok"
+    },
+    {
+      "name": "everglades",
+      "fraction": "mixed_water_vegetation",
+      "subtype": "marsh",
+      "aoi_wsen": [
+        -80.8,
+        25.65,
+        -80.7,
+        25.75
+      ],
+      "window": [
+        "2025-08-01",
+        "2025-10-31"
+      ],
+      "reference": {
+        "glwd_classes": [
+          9,
+          11,
+          13,
+          15,
+          17,
+          19,
+          21,
+          23,
+          25,
+          27
+        ],
+        "worldcover_class": 90
+      },
+      "s2_crs": "EPSG:32617",
+      "n_images": 11,
+      "cloud_pct_used": 50,
+      "n_pure_pixels": 1080533,
+      "status": "ok",
+      "first_pass": {
+        "reference": {
+          "glwd_classes": [
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21
+          ],
+          "worldcover_class": 90
+        },
+        "n_pure_pixels": 0,
+        "status": "failed"
+      }
+    },
+    {
+      "name": "sudd",
+      "fraction": "mixed_water_vegetation",
+      "subtype": "marsh",
+      "aoi_wsen": [
+        30.55,
+        7.55,
+        30.650000000000002,
+        7.6499999999999995
+      ],
+      "window": [
+        "2025-10-01",
+        "2025-12-31"
+      ],
+      "reference": {
+        "glwd_classes": [
+          9,
+          11,
+          13,
+          15,
+          17,
+          19,
+          21,
+          23,
+          25,
+          27
+        ],
+        "worldcover_class": 90
+      },
+      "s2_crs": "EPSG:32635",
+      "n_images": 22,
+      "cloud_pct_used": 20,
+      "n_pure_pixels": 279130,
+      "status": "ok",
+      "first_pass": {
+        "reference": {
+          "glwd_classes": [
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            21
+          ],
+          "worldcover_class": 90
+        },
+        "n_pure_pixels": 217969,
+        "status": "ok"
+      }
+    },
+    {
+      "name": "wadden_neuwerk",
+      "fraction": "mixed_water_vegetation",
+      "subtype": "tidal_flat",
+      "aoi_wsen": [
+        8.399999999999999,
+        53.85,
+        8.5,
+        53.949999999999996
+      ],
+      "window": [
+        "2025-05-01",
+        "2025-08-31"
+      ],
+      "reference": {
+        "murray_image": "2014-2016",
+        "class": 1
+      },
+      "s2_crs": "EPSG:32632",
+      "n_images": 9,
+      "cloud_pct_used": 20,
+      "n_pure_pixels": 474790,
+      "status": "ok"
+    }
+  ]
+}
