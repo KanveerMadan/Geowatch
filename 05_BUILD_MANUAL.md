@@ -2523,10 +2523,15 @@ failure modes, intended use, **out-of-scope uses**.
 contribution, not a validated planning tool. Outputs should be framed as
 "here is why this should be trusted" rather than "a planner validated this."
 
-### 61. Datasheet
+### 61. Datasheet ✅
 Gebru et al. template, covering the training data.
 
-### 62. Provenance Reconstruction — a named section
+**Done:** `docs/retired_datasheet.md`. This is a historical record of the
+**retired** 7-class checkpoint's training data (`08_STATE.md` §RETIRED). It
+does not describe the class definitions (item 21). Composition was re-derived
+from the 5-builder rebuild, not copied.
+
+### 62. Provenance Reconstruction — a named section ✅
 Document how the production checkpoint's training notebook was identified, by
 fingerprinting four independent config values against checkpoint metadata.
 
@@ -2534,12 +2539,19 @@ fingerprinting four independent config values against checkpoint metadata.
 function git history serves. Frame it as a named subsection, not a footnote.
 Reviewers respect a documented forensic process far more than silence.
 
+**Done:** `docs/provenance_reconstruction.md`, kept short because it concerns
+only the **retired** checkpoint. Re-run 2026-10-28. The four config values
+narrow 28 archived notebooks to **12**, not one. The single file is reached
+only via the `.npy`, builder-count and mtime steps. The checkpoint's stored
+LOCO fields match **no** archived artifact (notebook 0.2994,
+`patch_checkpoint_provenance.py` 0.3037, checkpoint 0.313).
+
 ### 63. Written labeling guide
 The exact decision rules the annotator followed, including edge cases. **This is
 the standard substitute for inter-rater statistics in small studies** and is
 broadly accepted when explicit.
 
-### 64. Gate C protocol — written, unrun
+### 64. Gate C protocol — written, unrun ✅
 Write the study design — recruitment, task, metrics — whether or not it gets run.
 Disclose non-execution explicitly as an access constraint.
 
@@ -2549,6 +2561,12 @@ requirements (item 65 below documents that review). This item is the
 real-planner protocol, filed as documented future work, disclosed as blocked
 by access rather than by design choice.
 
+**Done (written; not run):** `docs/gate_c_protocol.md`. It covers
+recruitment (three user classes), a four-stage task in Decision 17's shape,
+and metrics M1–M7 against an answer key frozen before recruitment.
+Non-execution is stated at the top as an access constraint.
+`GATE_C_STATUS` is unchanged.
+
 ### 65. Gate C — advisor review write-up *(new, added during consolidation)*
 Document the structured advisor/faculty review against D.7's five
 requirements (confusion matrix before/after, per-class accuracy before/after,
@@ -2557,17 +2575,34 @@ tied to resolution) that formally closes Gate C per Decision 17. This is the
 record of the review that actually happened, distinct from item 64's unrun
 protocol for the review that could not happen.
 
-### 66. Susceptibility dependency DAG
+### 66. Susceptibility dependency DAG ✅
 Plus a correlation matrix across the AOIs. **Directly defuses the "four of five
 layers agree, therefore convergent evidence" misreading** — they are driven by
 two shared inputs, normalized by three provisional ceilings, and reported with
 byte-identical class breaks. Probably a figure in the paper.
 
-### 67. Population from two sources, as a range
+**Done:** `docs/susceptibility_dag.md`, re-derived from code and the stored
+runs. MERIT Hydro and CHIRPS are each read by three of the five layers, and
+the class breaks hash identically across all six configs. **Ceilings
+re-counted:** ten fixed definitions (the 2,500 mm rainfall ceiling is defined
+twice) plus two AOI-relative normalisations, not "three". The correlation
+matrix covers the only 11 distinct AOIs with a susceptibility block (n = 7–9,
+geographically clustered), so it is descriptive only.
+
+### 67. Population from two sources, as a range ✅
 WorldPop and GHS-POP disagree ~7.6% at 2020 over the same AOI. **Report the
 range, not a point estimate.** More honest, costs nothing.
 
 Record the constraint: no enumerated Indian microdata before 2027–28.
+
+**Done:** `docs/population_range.md`, re-queried in GEE 2026-10-28. The
+"~7.6%" is **one AOI** (Dharavi), computed as (WP − GHS)/WP; it is 8.19% with
+GHS as the denominator. On four other AOIs the sign flips and the spread runs
+9.5–96.9%, so the range must be computed per AOI. **Stale record:**
+`03_EVIDENCE.md` §C.4 says WorldPop R2025A is absent from GEE. It is now
+present (`WorldPop/GP/100m/R2025A/v1/pop`) and gives sums 2.8–6.3× off both
+models. It was not investigated and is not in the range. The census
+constraint was re-checked; no official results date exists.
 
 ### 68. Email Planet re: publishing rights
 Ask explicitly whether annotated masks and model weights derived from
@@ -2578,13 +2613,19 @@ benchmark for informal-settlement land cover would be a stronger contribution
 than another model, and Planet's terms partly foreclose it. Sentinel-2 does not
 have this problem.
 
-### 69. Literature table
+### 69. Literature table ✅
 Columns for resolution, protocol (within-city split vs cross-city LOCO vs
 cross-region), and class count — showing **no directly matched benchmark
 exists.**
 
 That gap is itself a finding about the state of the field, and more valuable than
 a possibly-misleading number-to-number comparison.
+
+**Done:** `docs/literature_table.md`. Seven nearest-neighbour works, each
+cell checked against its source on 2026-10-28, with unconfirmed cells marked
+rather than filled. None combines 10 m, held-out-city evaluation and dense
+multi-class output. No GeoWatch number appears (the retired LOCO figure is
+excluded per C43). This is not a systematic review, and the doc says so.
 
 ---
 

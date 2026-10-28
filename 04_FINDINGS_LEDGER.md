@@ -39,7 +39,7 @@ Fate categories:
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SUPERSEDED | 2 | **C42, C45** — the pivot retires the code they describe |
 | SURVIVES | 25 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed** by the 2026-09-23 triage; C44 was elevated the same day and then **FIXED**) |
-| NEEDS FATE | 0 | **Cleared 2026-09-23.** |
+| NEEDS FATE | 3 | Cleared 2026-09-23; **C48, C49, C50 added 2026-10-28** (Lane E documentation pass), untriaged |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
@@ -1073,6 +1073,75 @@ hardcoded constant.*
 
 ***C44 added** during the city-selection measurement, from live probing of the
 Overpass endpoints the ingestion path depends on. Also untriaged.*
+
+***C48, C49 and C50 added 2026-10-28** while re-deriving figures for items
+61, 62 and 67 (Lane E, `build/docs`). **No fate assigned.** Numbering note:
+C46 and C47 are already used on `item-21-phase-a` (`c2953c9`), and
+`08_STATE.md` on `master` uses C46 for a different finding. These three
+therefore start at C48 to avoid a third collision.*
+
+### C50 — WorldPop R2025A is now in GEE, and its sums are 2.8–6.3× off both models in use [E] *(entry)*
+
+`03_EVIDENCE.md` §C.4 records R2025A as **absent from GEE** ("probed under two
+plausible paths — neither exists"). **That is stale.** On 2026-10-28, querying
+`WorldPop/GP/100m/pop` prints a deprecation warning naming its successor,
+`WorldPop/GP/100m/R2025A/v1/pop`. That asset exists, with 16 yearly images per
+country (2015–2030), EPSG:4326 at 1/1200°, and band `population`.
+
+**Measured** (zonal sum, country-filtered, `year == 2020`, each image's own
+`crs`/`crsTransform`; the method `exposure/compute.py:182-189` uses): R2025A
+2020 sums are **2.8–4.1× lower** than the WorldPop-GP / GHS-POP range on
+Dharavi, two Mumbai AOIs and Accra, and **3.2–6.3× higher** on Delhi. The
+per-AOI table is in `docs/population_range.md` §3. The query is in that
+document's reproduce block.
+
+**Not investigated:** methodology, constrained vs unconstrained variant,
+units. So no claim is made about which source is right. Two consequences
+regardless:
+
+- The asset the code uses (`configs/exposure_constants.py:46`) is now
+  **deprecated** upstream.
+- Any switch to R2025A changes population by a multiple, not a margin. It is
+  a source decision, not a constant edit.
+
+### C49 — `archive/AUDIT_FINDINGS.md` and C42 miscount the archived notebooks [E] *(entry)*
+
+C42 (below) says "Across the **54** archived notebooks at `ecfe370`".
+**Measured:** `git ls-tree -r --name-only ecfe370` lists **37** `.ipynb`
+files, of which **28** are GeoWatch notebooks (the other 9 do not carry
+`geowatch` in their names). One of the 28 (`geowatch_segformer_finetune.ipynb`) is malformed
+JSON, with extra data after the first object. The C42 family split
+(3-builder vs 5-builder) is unaffected; only the count is wrong.
+
+**Related, same pass:** the "four independent" fingerprint values that
+`archive/AUDIT_FINDINGS.md` §"Training Notebook Search" uses to identify the
+training notebook are matched by **12** of the 28 notebooks, not one. The
+single file is reached only by three further steps (no `.npy` input, five
+builders, file mtime). Full elimination table: `docs/provenance_reconstruction.md`.
+
+### C48 — The retired checkpoint's LOCO fields have no archived source [E] *(entry)*
+
+`models/production/geowatch_production_model.pth` (sha256 `f70000c4…6120d`,
+matching `ARTIFACT_HASHES.txt:2`) stores `loco_mean_miou = 0.313`,
+`loco_std_miou = 0.0564`. **No archived artifact writes those values:**
+
+| source | `loco_mean_miou` / `loco_std_miou` |
+|---|---|
+| checkpoint, read with `torch.load` | 0.313 / 0.0564 |
+| identified training notebook, `…diagnostics (2).ipynb` cell 39 (hard-coded, comment "fill in with the FRESH LOCO mean") | 0.2994 / 0.0535 |
+| `…diagnostics (1).ipynb` | 0.2994 / 0.0535 |
+| `…diagnostics.ipynb` and four `…UPDATED__6_*` copies | 0.3055 / 0.0540 |
+| `patch_checkpoint_provenance.py` (mutates the checkpoint in place) | 0.3037 / `None` |
+
+So the stored values were **hand-entered** by a step that was not archived.
+**They are metadata of unknown origin, not a recorded measurement.** This is
+independent of C43, which shows the figure describes an easier task. Even
+setting C43 aside, the number cannot be traced to a run.
+
+Scope: the checkpoint is retired (`08_STATE.md` §RETIRED). This matters
+wherever 0.313 is still quoted, including `03_EVIDENCE.md` §D.4 and
+`08_STATE.md`'s checkpoint-metadata block. Re-derivation:
+`docs/provenance_reconstruction.md` §"What the reconstruction cannot account for".
 
 ### C45 — The OSM patch builders overwrite human labels with their own class [E] ⤴ SUPERSEDED
 
