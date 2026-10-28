@@ -92,10 +92,7 @@ def test_run_pipeline_stamps_before_writing():
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
-    monkeypatch.setenv("GEOWATCH_API_KEY", "k")
-    import importlib
     import api
-    importlib.reload(api)
     run = tmp_path / "dharavi_20260101_000000"
     run.mkdir()
     (run / "result.json").write_text(json.dumps(_load("tests/fixtures/result_clean.json")))
@@ -108,7 +105,8 @@ def client(tmp_path, monkeypatch):
 
 
 def test_served_legacy_runs_are_retired(client):
-    h = {"X-API-Key": "k"}
+    import api
+    h = {"X-API-Key": api.API_KEY}
     r = client.get("/api/runs/dharavi_20260101_000000", headers=h)
     assert r.status_code == 200
     _assert_all_retired(r.json())

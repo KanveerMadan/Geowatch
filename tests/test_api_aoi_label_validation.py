@@ -67,6 +67,14 @@ def stub_pipeline(monkeypatch):
     stub.run_inundation_analysis = _boom
     stub.calls = calls
     monkeypatch.setitem(sys.modules, "pipeline", stub)
+
+    # Phase 2: POST /api/analyze reaches analysis.store.analyze, which takes
+    # the label as `name`. Same stub, same call log.
+    def _boom_store(*args, name=None, **kwargs):
+        return _boom(aoi_label=name)
+
+    import analysis.store
+    monkeypatch.setattr(analysis.store, "analyze", _boom_store)
     return stub
 
 
@@ -226,10 +234,19 @@ def test_analyze_valid_label_passes_validation_and_reaches_pipeline(client, stub
     is proof the label was accepted and forwarded, and that the 400s above are
     about the label rather than a blanket refusal.
     """
-    resp = client.post("/api/analyze", json={**VALID_BBOX, "aoi_label": "dharavi"})
-    assert resp.status_code == 500
-    assert "validation did not reject it" in resp.json()["detail"]
-    assert stub_pipeline.calls[0]["aoi_label"] == "dharavi"
+    for route in ("/api/analyze", "/api/legacy/analyze"):
+        stub_pipeline.calls.clear()
+        resp = client.post(route, json={**VALID_BBOX, "aoi_label": "dharavi"})
+        assert resp.status_code == 500, route
+        assert "validation did not reject it" in resp.json()["detail"]
+        assert stub_pipeline.calls[0]["aoi_label"] == "dharavi"
+
+
+@pytest.mark.parametrize("label", TRAVERSAL_PAYLOADS)
+def test_legacy_analyze_rejects_traversal_with_400(client, stub_pipeline, label):
+    resp = client.post("/api/legacy/analyze", json={**VALID_BBOX, "aoi_label": label})
+    assert resp.status_code == 400
+    assert stub_pipeline.calls == []
 
 
 # ── HTTP level: /api/analyze_inundation ──

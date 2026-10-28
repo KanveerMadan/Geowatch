@@ -198,6 +198,13 @@ def _aggregation_outputs(unit_sets: dict, mv: dict, fset: dict) -> dict:
     return out
 
 
+def version_for(producer, commit: dict | None = None) -> dict:
+    """model_version for a run with `producer`. Computable before running,
+    so the cache can be checked first (analysis/store.py)."""
+    return C.model_version({"fraction_producer": producer.artifact()["sha256"],
+                            "flood_validation_result": C.FLOOD_VALIDATION_SHA256}, commit=commit)
+
+
 # ── the run ─────────────────────────────────────────────────────────────
 
 def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: str | None = None,
@@ -218,8 +225,7 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
     deps = {**_default_deps(), **(deps or {})}
     verdicts = C.flood_verdicts() if verdicts is None else verdicts
     art = producer.artifact()
-    mv = C.model_version({"fraction_producer": art["sha256"],
-                          "flood_validation_result": C.FLOOD_VALIDATION_SHA256}, commit=commit)
+    mv = version_for(producer, commit)
     stages = {}
 
     def stage(key, fn, *a, timeout_key=None):
