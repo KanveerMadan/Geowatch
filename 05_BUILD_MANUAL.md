@@ -1445,8 +1445,8 @@ runoff coefficient is documented with its source, and `bare`'s is non-zero**
 
 *Six items. What keeps the new system honest.*
 
-### 27. Held-out firewall
-Split the 331 human labels. A subset **never touches training** — it exists
+### 27. Held-out firewall ✅
+~~Split the 331 human labels.~~ A subset **never touches training** — it exists
 solely to validate.
 
 **This is the only independent signal available**, and the architecture change
@@ -1454,6 +1454,28 @@ does not create one. Enforce it in code, not convention.
 
 **Acceptance:** the split is recorded in a file, hashed, and the training path
 raises if it reads a held-out record.
+
+*Re-scoped and built 2026-10-28.* The 331 human labels belong to the retired
+7-class pipeline (`08_STATE.md` §RETIRED) and are not covered. The held-out
+set is the item 21 hand-traced fraction tiles, **held out by validation site**:
+Makoko, Kibera and Rocinha (sealed batches 1 and 2), plus any record naming
+their host cities Lagos, Nairobi and Rio (the firewall is city-level).
+
+- `configs/heldout_split.json` registers them **by path and tile-ID pattern
+  only** — the validation tiles are not selected yet, and no tile data was
+  read. Its SHA256 is in `ARTIFACT_HASHES.txt`; `load_split` refuses a
+  mismatch.
+- `experiments/harness/firewall.py`: `training_tiles` is the training path's
+  way in for hand tiles. It checks the whole set before any file is touched,
+  and one held-out tile refuses all of it (`HeldOutError`, no override).
+  **The item 21 Stage 1 trainer, not yet written, must take its tiles through
+  `training_tiles`.** Other training reads use `assert_training_set`.
+- The split's notes carry the §RETIRED lesson: **the fraction validation set
+  is drawn from the full raster, not from annotated segments.**
+- `tests/test_heldout_firewall.py`: training on the 8 Stage 1 tiles passes;
+  training on that set plus one validation tile raises (each site, a misfiled
+  tile, a sealed-batch tile). The training-path tests failed (6 of 21: "DID NOT
+  RAISE") before the guard was added to `training_tiles`.
 
 ### 28. Risk-coverage curves (replaces CAAT)
 Plot risk (error rate among *accepted* predictions) against coverage as the
