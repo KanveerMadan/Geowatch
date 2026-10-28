@@ -96,11 +96,13 @@ Each component is divided by a fixed ceiling and clamped to [0, 1]:
 | flash flood | rainfall | **2,500 mm** | `configs/flash_flood_constants.py:26` |
 | waterlogging | HAND | 15 m | `configs/waterlogging_constants.py:15` |
 | waterlogging | impervious | 70 % | `configs/waterlogging_constants.py:20` |
-| waterlogging | rainfall | **2,500 mm** | `configs/waterlogging_constants.py:33` |
+| waterlogging | rainfall | **2,500 mm** | ~~`configs/waterlogging_constants.py:33`~~ the flash-flood definition, imported *(item 26, 2026-10-28)* |
 
 Three things follow from the table:
 
-- **The 2,500 mm rainfall ceiling appears twice as two separate definitions**
+- ~~**The 2,500 mm rainfall ceiling appears twice as two separate definitions**~~
+  **Fixed 2026-10-28 (item 26):** one definition in `flash_flood_constants.py`,
+  imported by both layers. Original text:
   with the same name and value: `flash_flood_constants.py:26` and
   `waterlogging_constants.py:33`. Waterlogging imports its own copy
   (`susceptibility/waterlogging.py:18-22`). The two layers therefore share a

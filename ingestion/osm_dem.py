@@ -458,11 +458,9 @@ def compute_waterway_distance_map(
 ) -> np.ndarray:
     """
     Same algorithm as compute_road_distance_map(), applied to OSM
-    waterway geometry instead of roads. Used for the standing_water
-    proximity confidence adjustment (Phase 3 item #3) -- same rationale
-    as the road version, but weaker expected effect, since OSM water
-    body coverage (especially small/seasonal ponds) is less complete
-    than road coverage. See master doc Phase 3 discussion.
+    waterway geometry instead of roads. Used as pluvial's drainage-distance
+    input. (Its use as a standing_water confidence penalty was deleted in
+    item 26 with C7/C11.)
     """
     from scipy.ndimage import distance_transform_edt
 

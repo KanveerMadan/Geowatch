@@ -1,6 +1,11 @@
 """
 Phase 12B: per-ward pluvial + waterlogging screening.
 
+ITEM 26 (2026-10-28): pluvial and waterlogging no longer read the retired
+7-class land-cover map, so this module now reports both as not_calculated
+per ward and keeps category_area_pct only as a legacy record. The history
+below describes the pre-item-26 design.
+
 Unlike Phase 12A (zonal/hazard_screening.py), which is pure bbox/GEE-
 scalar and needs no imagery at all, pluvial and waterlogging susceptibility
 are computed from real per-pixel land-cover classification
@@ -54,14 +59,7 @@ from configs.zonal_constants import (
     REQUIRE_LANDCOVER_IN_DISTRIBUTION,
 )
 from perception.hydrological_surfaces import compute_hydrological_surfaces
-from susceptibility.pluvial import compute_pluvial_susceptibility
-from susceptibility.waterlogging import compute_waterlogging_susceptibility
 
-# Must match compute_pluvial_susceptibility()'s `unknown_index` default
-# (255) and inference.py's UNKNOWN_INDEX. Used to mark out-of-ward pixels
-# inside a ward's bounding-box window so they are excluded from the
-# ward's score without breaking the 2-D array shape pluvial requires.
-PLUVIAL_UNKNOWN_INDEX = 255
 
 
 def _json_safe(o):
@@ -475,64 +473,12 @@ def compute_ward_landcover_screening(ward_id, ward_name: str,
                               "reason": "zero pixels in ward mask"},
         }
 
-    # compute_pluvial_susceptibility() does `H, W = landcover_map.shape`
-    # and builds per-pixel rasters -- it requires a 2-D array on the same
-    # grid as waterway_dist_map. Boolean-mask indexing
-    # (landcover_map_full[ward_mask]) returns a FLAT 1-D array and raises
-    # "not enough values to unpack (expected 2, got 1)". Confirmed by
-    # execution against a real wide run before this fix.
-    #
-    # Instead: crop to the ward's bounding-box window (keeps this O(ward)
-    # rather than O(full raster) per ward), then set every pixel OUTSIDE
-    # the true ward polygon to UNKNOWN_INDEX within that window. pluvial
-    # already excludes unknown_index pixels from aoi_mean_score
-    # (`unknown_mask = landcover_map == unknown_index`), so out-of-ward
-    # pixels contribute nothing to the score while the array keeps the
-    # 2-D shape and the waterway grid alignment the function needs.
-    rows = np.any(ward_mask, axis=1)
-    cols = np.any(ward_mask, axis=0)
-    r0, r1 = int(np.argmax(rows)), int(len(rows) - np.argmax(rows[::-1]))
-    c0, c1 = int(np.argmax(cols)), int(len(cols) - np.argmax(cols[::-1]))
-
-    win_mask = ward_mask[r0:r1, c0:c1]
-    ward_landcover_2d = landcover_map_full[r0:r1, c0:c1].copy()
-    ward_landcover_2d[~win_mask] = PLUVIAL_UNKNOWN_INDEX
-
     # 1-D vector of in-ward pixels only, used for category_area_pct
     ward_landcover = landcover_map_full[ward_mask]
 
-    # waterway_dist_map_full may be genuinely None (AOI had no OSM
-    # waterway data at all, per the Option A patch's explicit signal)
-    # -- distinct from the earlier hard-fail case in
-    # run_ward_landcover_screening(), which catches "never loaded."
-    # Sliced to the SAME window so the two rasters stay aligned; values
-    # outside the ward are irrelevant because those pixels are unknown.
-    ward_waterway_dist = (
-        waterway_dist_map_full[r0:r1, c0:c1]
-        if waterway_dist_map_full is not None else None
-    )
-
-    # CORRECTED against real pipeline.py signatures (previous version of
-    # this file called both functions with fabricated argument names
-    # that don't exist -- category_area_pct/impervious_fraction_pct --
-    # and never checked pipeline.py's actual call sites):
-    #   compute_pluvial_susceptibility(landcover_map, categories,
-    #       waterway_dist_map, relative_elevation_score,
-    #       rainfall_mean_annual_mm)
-    #   compute_waterlogging_susceptibility(hand_context,
-    #       hydrological_surfaces, rainfall_climatology)
-    #
-    # IMPORTANT LIMITATION, not hidden: relative_elevation_score,
-    # rainfall_mean_annual_mm, and hand_context are AOI-WIDE SCALARS in
-    # the current architecture -- computed once against the wide run's
-    # full bbox, with no per-pixel/per-ward variant existing anywhere
-    # in this codebase yet. That means every ward screened here shares
-    # the IDENTICAL rainfall/elevation/HAND context; only the land-cover
-    # component (landcover_map, category_area_pct via
-    # hydrological_surfaces) genuinely varies per ward. This is
-    # surfaced explicitly in the output below (shared_aoi_context) so a
-    # reviewer isn't misled into thinking these are independently
-    # measured per ward.
+    # IMPORTANT LIMITATION, not hidden: rainfall/elevation/HAND are AOI-WIDE
+    # SCALARS -- computed once against the wide run's full bbox and shared by
+    # every ward (shared_aoi_context below).
     categories = wide_result.get("landcover", {}).get("categories")
     unique, counts = np.unique(ward_landcover, return_counts=True)
     total = ward_landcover.size
@@ -542,6 +488,7 @@ def compute_ward_landcover_screening(ward_id, ward_name: str,
             cat_name = categories[idx]
             category_area_pct[cat_name] = round(100.0 * count / total, 2)
 
+    # Legacy record of the retired 7-class map; nothing consumes it.
     hydro_surfaces = compute_hydrological_surfaces(category_area_pct)
 
     relative_elevation_score = (
@@ -551,27 +498,14 @@ def compute_ward_landcover_screening(ward_id, ward_name: str,
     rainfall_climatology = wide_result.get("rainfall_climatology", {})
     hand_context = wide_result.get("terrain_context", {}).get("fluvial_hand_context", {})
 
-    pluvial = compute_pluvial_susceptibility(
-        landcover_map=ward_landcover_2d,
-        categories=categories,
-        waterway_dist_map=ward_waterway_dist,
-        relative_elevation_score=relative_elevation_score,
-        rainfall_mean_annual_mm=rainfall_climatology.get("mean_annual_mm"),
-    )
-    # pluvial returns a full per-pixel `susceptibility_map` ndarray, which
-    # is not JSON-serializable. pipeline.py strips it before writing
-    # result.json (`pluvial_result_serializable = {k: v for k, v in ...
-    # if k != "susceptibility_map"}`); this file did not, so json.dump()
-    # raised "Object of type ndarray is not JSON serializable". Mirror
-    # pipeline.py's behaviour rather than inventing a new one. The map is
-    # dropped, not saved to disk, because 12B's unit of output is the
-    # per-ward scalar -- a per-ward PNG is a Phase 12C/13 concern.
-    pluvial = {k: v for k, v in pluvial.items() if k != "susceptibility_map"}
-    waterlogging = compute_waterlogging_susceptibility(
-        hand_context=hand_context,
-        hydrological_surfaces=hydro_surfaces,
-        rainfall_climatology=rainfall_climatology,
-    )
+    # Item 26: pluvial and waterlogging no longer read the retired 7-class
+    # map, and per-ward surface inputs (built area, vegetation) are not
+    # built for wide runs. Not calculated, rather than computed from it.
+    retired = {"status": "not_calculated", "validation_status": "placeholder",
+               "reason": "item 26: susceptibility no longer reads the retired 7-class "
+                         "land-cover map; per-ward surface inputs are not built"}
+    pluvial = dict(retired)
+    waterlogging = dict(retired)
 
     return {
         "ward_id": ward_id,

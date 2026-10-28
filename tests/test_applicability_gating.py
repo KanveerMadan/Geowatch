@@ -41,6 +41,7 @@ from perception.applicability_gate import (
     build_flag,
 )
 from perception.hydrological_surfaces import compute_hydrological_surfaces
+from susceptibility.inputs import mean_pct, surface
 from susceptibility.pluvial import compute_pluvial_susceptibility
 from susceptibility.fluvial import compute_fluvial_susceptibility
 from susceptibility.coastal import compute_coastal_susceptibility
@@ -63,10 +64,12 @@ HAND_AVAILABLE = {
     "mean_hnd_m": 4.0, "min_hnd_m": 0.5, "max_hnd_m": 20.0,
 }
 
-# A tiny real raster. compute_pluvial_susceptibility() indexes .shape and
-# compares against category indices, so None will not do.
-CATEGORIES = ["dense_informal_roofing", "paved_road", "vegetation", "water"]
-LANDCOVER_MAP = np.array([[0, 1], [2, 3]], dtype=np.uint8)
+# Item 26: tiny declared surface inputs. compute_pluvial_susceptibility()
+# needs real rasters on one grid, so None will not do.
+IMPERVIOUS = surface(np.array([[0.6, 0.2], [0.0, 0.4]]), "test footprints",
+                     "footprint_union_area_fraction", "placeholder")
+INFILTRATION = surface(np.array([[0.1, 0.5], [0.9, 0.0]]), "test NDVI",
+                       "ndvi_threshold_proxy", "placeholder")
 WATERWAY_DIST_MAP = np.array([[10.0, 20.0], [30.0, 40.0]], dtype=np.float32)
 COASTAL_AVAILABLE = {
     "status": "available", "distance_km": 3.0,
@@ -86,8 +89,8 @@ def _applicability(unknown_pct):
         slope_context=SLOPE_AVAILABLE,
         hydrological_surfaces=None,
     )
-    surfaces = compute_hydrological_surfaces({"dense_informal_roofing": 40.0})
-    return finalize_applicability(app, surfaces), surfaces
+    app = finalize_applicability(app, {"impervious_fraction_pct": mean_pct(IMPERVIOUS)})
+    return app, IMPERVIOUS
 
 
 @pytest.fixture
@@ -113,7 +116,7 @@ def _all_blocks(app, surfaces):
     asserted separately in test_exposure_is_gated.
     """
     pluvial = compute_pluvial_susceptibility(
-        landcover_map=LANDCOVER_MAP, categories=CATEGORIES,
+        impervious=IMPERVIOUS, infiltration=INFILTRATION,
         waterway_dist_map=WATERWAY_DIST_MAP,
         relative_elevation_score=0.5, rainfall_mean_annual_mm=1800.0,
         applicability=app,
@@ -166,11 +169,13 @@ def test_every_block_carries_the_flag(ood):
 def test_hydrological_surfaces_carries_the_flag(ood):
     """
     The surfaces are a weighted sum of the model's own category_area_pct, so
-    they are downstream of the verdict too. C21's own site.
+    they are downstream of the verdict too. C21's own site. A legacy record
+    since item 26, still flagged.
     """
-    app, surfaces = ood
+    app, _ = ood
     from perception.applicability_gate import annotate
-    annotate(surfaces, app, "waterlogging")
+    surfaces = compute_hydrological_surfaces({"dense_informal_roofing": 40.0})
+    annotate(surfaces, app, "hydrological_surfaces")
     assert surfaces["applicability"]["out_of_distribution"] is True
 
 
@@ -179,7 +184,7 @@ def test_hydrological_surfaces_carries_the_flag(ood):
 @pytest.mark.parametrize("mechanism", sorted(LANDCOVER_DERIVED))
 def test_landcover_derived_mechanisms_are_flagged_ood(ood, mechanism):
     """
-    pluvial, waterlogging and exposure consume the semantic model, so an OOD
+    hydrological_surfaces and exposure consume the semantic model, so an OOD
     verdict reaches them and must be recorded, with the cause named.
     """
     app, _ = ood
@@ -213,7 +218,7 @@ def test_risk_inherits_from_what_it_consumed(ood):
     """
     compute_risk() has no applicability entry of its own; its trust is a
     function of the hazard and exposure it was handed. A landcover-derived
-    hazard must drag risk down with it, and the reason must survive the hop
+    input (exposure, since item 26) must drag risk down with it, and the reason must survive the hop
     rather than flattening to a bare boolean.
     """
     app, surfaces = ood
@@ -248,7 +253,7 @@ def test_degraded_is_distinct_from_out_of_distribution():
         slope_context=None, hydrological_surfaces=None,
     )
     assert app["urban_landcover_model"]["status"] == "degraded"
-    flag = build_flag("pluvial", app)
+    flag = build_flag("exposure", app)   # still landcover-derived after item 26
     assert flag["degraded"] is True
     assert flag["out_of_distribution"] is False
 
@@ -359,12 +364,13 @@ def test_compute_and_flag_not_refuse_to_compute(ood):
     honestly, and a withheld value would add a fourth ambiguous state for
     downstream code to guess about (S1 again).
     """
-    app, surfaces = ood
-    wl = compute_waterlogging_susceptibility(
-        HAND_AVAILABLE, surfaces, RAINFALL, applicability=app)
-    assert wl["applicability"]["out_of_distribution"] is True
-    assert wl.get("status") != "withheld"
-    assert "aoi_mean_score" in wl, (
+    app, _ = ood
+    from perception.applicability_gate import annotate
+    hs = annotate(compute_hydrological_surfaces({"dense_informal_roofing": 40.0}),
+                  app, "hydrological_surfaces")
+    assert hs["applicability"]["out_of_distribution"] is True
+    assert hs.get("status") != "withheld"
+    assert "impervious_fraction_pct" in hs, (
         "the value was withheld rather than flagged — item 40 requires "
         "compute-and-flag"
     )

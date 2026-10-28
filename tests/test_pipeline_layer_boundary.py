@@ -25,6 +25,8 @@ import pytest
 
 import pipeline
 from ingestion.errors import NoDataError, no_data
+from rasterio.transform import Affine
+from susceptibility.inputs import surface
 
 BBOX = dict(west=72.836, south=19.037, east=72.862, north=19.06)
 W, H = 32, 24
@@ -48,6 +50,20 @@ AVAILABLE = {
                        "lack_of_coping_capacity": {"raw_score": 4.1}},
         "data_quality": {"lack_of_reliability_score": 3.2, "pct_missing_indicators": 0.12},
         "error": None,
+    },
+    # item 26: the flood surface inputs, on a 3x4 hydrology grid
+    "build_flood_inputs": {
+        "status": "available", "validation_status": "placeholder",
+        "transform": Affine(30, 0, 272220, 0, -30, 2108880), "shape": (3, 4),
+        "crs": "EPSG:32643", "window": {"start": "2026-01-01", "end": "2026-03-31"},
+        "impervious": surface(np.full((3, 4), 0.6), "open_buildings_v3 footprints",
+                              "footprint_union_area_fraction", "placeholder"),
+        "infiltration": surface(np.full((3, 4), 0.1), "S2 NDVI stand-in",
+                                "ndvi_threshold_proxy", "placeholder"),
+        "conduits": surface(np.full((3, 4), 0.2), "OSM highways",
+                            "road_space_area_fraction", "experimental"),
+        "terrain": {"low_slope": surface(np.full((3, 4), 0.9), "FABDEM", "1 - slope/5deg",
+                                         "experimental")},
     },
 }
 
@@ -190,3 +206,24 @@ def test_failed_country_lookup_makes_vulnerability_failed_not_unavailable(stub_p
     assert v["status"] == "failed"
     assert v["exception_class"] == "ConnectionError"
     assert v["failed_upstream"] == "country_lookup"
+
+
+def test_flood_inputs_reach_pluvial_and_waterlogging_with_provenance(stub_pipeline, tmp_path):
+    """Item 26: pluvial and waterlogging read the declared surface inputs,
+    and say where they came from."""
+    r = _run(tmp_path)
+    pl, wl = r["susceptibility"]["pluvial"], r["susceptibility"]["waterlogging"]
+    assert pl["inputs"]["impervious"]["method"] == "footprint_union_area_fraction"
+    assert pl["validation_status"] == "placeholder"
+    assert wl["impervious_fraction_pct"] == 60.0
+    assert wl["validation_status"] == "placeholder"
+    assert r["flood_inputs"]["grid"]["crs"] == "EPSG:32643"
+
+
+def test_failed_flood_inputs_do_not_abort_and_are_named(stub_pipeline, tmp_path):
+    stub_pipeline["build_flood_inputs"] = ee.EEException("quota")
+    r = _run(tmp_path)
+    assert r["status"] == "complete"
+    assert r["flood_inputs"]["status"] == "failed"
+    assert "impervious" not in r["susceptibility"]["pluvial"].get("inputs", {})
+    assert "impervious_fraction" not in r["susceptibility"]["waterlogging"]["components_used"]

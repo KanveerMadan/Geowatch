@@ -1,8 +1,9 @@
 """
 Phase 7: persistent-waterlogging susceptibility baseline. STATIC/
 SCREENING SLICE ONLY. Combines two AOI-WIDE SCALAR signals: HAND
-(Phase 5's hand_context, reused) and imperviousness (Phase 3's
-hydrological_surfaces, reused).
+(Phase 5's hand_context, reused) and imperviousness -- since item 26 a
+declared surface input (susceptibility/inputs.py: Open Buildings built area,
+placeholder), not the retired 7-class map's hydrological_surfaces.
 
 IMPORTANT: this module reuses the SAME mean_hnd_m value that
 susceptibility/fluvial.py uses, but interprets it DIFFERENTLY. Fluvial
@@ -15,12 +16,13 @@ different physical mechanisms sharing one input statistic. This
 dual-use is documented here and in fluvial.py's own limitations list.
 """
 
+from susceptibility.inputs import check_surface, mean_pct, provenance, weakest
 from configs.waterlogging_constants import (
     WATERLOGGING_HAND_NORMALIZATION_MAX_M,
     WATERLOGGING_IMPERVIOUS_NORMALIZATION_MAX_PCT,
     WATERLOGGING_CLASS_BREAKS,
-    FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM,
 )
+from configs.flash_flood_constants import FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM
 
 
 def _classify(score):
@@ -36,16 +38,15 @@ from perception.applicability_gate import gated
 
 
 @gated("waterlogging")
-def compute_waterlogging_susceptibility(hand_context: dict, hydrological_surfaces: dict,
+def compute_waterlogging_susceptibility(hand_context: dict, impervious: dict = None,
                                          rainfall_climatology: dict = None) -> dict:
     """
     Args:
         hand_context: output of ingestion.hydrology.get_merit_hand_context()
             (Phase 5) -- reused for mean_hnd_m, interpreted as a
             low-relief/poor-drainage proxy here (see module docstring).
-        hydrological_surfaces: output of
-            perception.hydrological_surfaces.compute_hydrological_surfaces()
-            (Phase 3) -- reused for impervious_fraction_pct.
+        impervious: a declared surface input (susceptibility/inputs.py);
+            its AOI mean, in percent, is the imperviousness component.
         rainfall_climatology: optional, output of
             ingestion.rainfall.get_rainfall_climatology() (Phase 4) --
             same weak-proxy caveat as flash_flood.py; included as an
@@ -56,15 +57,14 @@ def compute_waterlogging_susceptibility(hand_context: dict, hydrological_surface
         dict matching the master schema's susceptibility.waterlogging shape.
     """
     hand_available = hand_context is not None and hand_context.get("status") == "available"
-    impervious_available = (
-        hydrological_surfaces is not None
-        and hydrological_surfaces.get("impervious_fraction_pct") is not None
-    )
+    impervious_pct = mean_pct(check_surface(impervious, "impervious")) if impervious is not None else None
+    impervious_available = impervious_pct is not None
 
     if not hand_available and not impervious_available:
         return {
             "status": "insufficient_evidence",
-            "reason": "Neither HAND context nor hydrological surfaces are available.",
+            "reason": "Neither HAND context nor an impervious surface is available.",
+            "validation_status": "placeholder",
         }
 
     components_used = []
@@ -80,7 +80,6 @@ def compute_waterlogging_susceptibility(hand_context: dict, hydrological_surface
         components_excluded.append("hand_relief_proxy (unavailable)")
 
     if impervious_available:
-        impervious_pct = hydrological_surfaces["impervious_fraction_pct"]
         impervious_score = max(0.0, min(1.0, impervious_pct / WATERLOGGING_IMPERVIOUS_NORMALIZATION_MAX_PCT))
         scores.append(impervious_score)
         components_used.append("impervious_fraction")
@@ -104,10 +103,13 @@ def compute_waterlogging_susceptibility(hand_context: dict, hydrological_surface
 
     return {
         "status": "experimental",
+        "validation_status": weakest("experimental", *([impervious["validation_status"]]
+                                                       if impervious_available else [])),
+        "inputs": {"impervious": provenance(impervious)} if impervious_available else {},
         "aoi_mean_score": round(score, 4),
         "aoi_mean_class": _classify(score),
         "mean_hnd_m": hand_context.get("mean_hnd_m") if hand_available else None,
-        "impervious_fraction_pct": hydrological_surfaces.get("impervious_fraction_pct") if impervious_available else None,
+        "impervious_fraction_pct": impervious_pct,
         "rainfall_mean_annual_mm": rainfall_climatology.get("mean_annual_mm") if rainfall_available else None,
         "components_used": components_used,
         "components_excluded": components_excluded,

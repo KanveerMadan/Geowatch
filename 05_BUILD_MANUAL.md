@@ -1797,7 +1797,7 @@ regrown cover on airside land. The threshold was not changed.
 `tests/test_vector_change.py`, 9 tests: **0 before** (module absent) and **9
 passed after**.
 
-### 26. Rewire flood risk 🔓
+### 26. Rewire flood risk 🔶 **PARTIAL (2026-10-28) — the final impervious input waits on item 21**
 
 *Validation (decided 2026-09-24; see the Part 4 mandate note): each of the
 five hazard calculations is validated by discrimination against observed
@@ -1826,6 +1826,117 @@ captures compacted earth's runoff**, and it cannot be the only runoff signal.
 `paved_road` as a class remains anywhere in the flood path; **every fraction's
 runoff coefficient is documented with its source, and `bare`'s is non-zero**
 *(added 2026-09-24)*.
+
+#### Built 2026-10-28 on `build/flood` — partial
+
+Item 21's fractions do not exist, so the per-fraction runoff input (and with it
+the acceptance above) cannot be met yet. What is built uses stand-ins that
+declare themselves. Every new output carries `validation_status`; none claims
+`validated`.
+
+- **Task 1 — decoupled from the retired 7-class map.**
+  `susceptibility/inputs.py` defines a declared surface input (`raster`,
+  `source`, `method`, `validation_status`). Pluvial takes `impervious` and
+  `infiltration`; waterlogging takes `impervious`. Producers, both
+  `placeholder`: **impervious = Open Buildings built AREA fraction** (the
+  footprint union's area per cell, never a count, because Open Buildings
+  fragments houses — item 23's Chandigarh finding); **infiltration = Lane B's
+  Sentinel-2 NDVI vegetation stand-in**, classified at 10 m and averaged to the
+  cell. Both sit on a 30 m hydrology grid (`HYDROLOGY_PIXEL_M`, the DEM's
+  resolution) in the item 19 layer's UTM CRS. An output is no more validated
+  than its weakest input, so pluvial and waterlogging are `placeholder`.
+  `pipeline.py` builds the inputs as a contained context layer
+  (`flood_inputs`) and reprojects the waterway distance map onto that grid;
+  `hydrological_surfaces` stays in `result.json` as a legacy record that
+  nothing consumes. `zonal/landcover_screening.py` now reports per-ward
+  pluvial and waterlogging as `not_calculated` (no per-ward inputs exist).
+  The applicability gate moves pluvial and waterlogging to
+  `LANDCOVER_INDEPENDENT`. Tests: `tests/test_flood_inputs.py` (20; an AST
+  scan proves no `susceptibility/` module names the 7-class map, and 9 fail on
+  the old code), two pipeline-boundary tests.
+- **Task 2 — the road-proximity penalty (C7, C11) is deleted.** The
+  road and waterway penalty block in `run_inference` (formerly
+  `inference.py:607-624`), both `*_PROXIMITY_PENALTY_STRENGTH` constants and
+  `run_inference`'s `road_dist_map` / `waterway_dist_map` parameters are gone,
+  and `pipeline.py` no longer passes them. `compute_road_distance_map` stays:
+  segment `road_access_score` still reads it, and that is not a penalty.
+  `git grep` for the penalty finds only the deletion comment.
+  `tests/test_proximity_penalty_deleted.py` (3; all fail on the old code).
+- **Task 3 — roads as rasterised vector conduits.** `road_conduits()`
+  rasterises item 19's road space (OSM centrelines at `HIGHWAY_WIDTH_M_DEFAULT`
+  class widths; footprint negative space excluded, since it is open ground) as
+  an area fraction per 30 m hydrology cell, supersampled to 2 m so area is
+  preserved. It enters pluvial as `road_conduit` (weight 0.6, quality 0.5,
+  provisional) — the sealed road surface that built area omits.
+  `experimental` (item 19's own label). `tests/test_flood_conduits.py` (5;
+  they fail on the old code, where `road_conduits` does not exist).
+- **Task 4 — DEM hydrology as pluvial inputs.** `susceptibility/terrain.py`
+  derives four per-cell inputs from FABDEM on the 30 m hydrology grid:
+  `low_slope`, `flow_accumulation` (D8), `topographic_hollow` (−TPI, 150 m
+  radius) and `drainage_disconnection` (D8 path ends in an interior pit, not
+  the grid edge). D8 runs on the **unfilled** DEM on purpose — a closed
+  depression is where rain ponds. Each has its own weight and quality, and the
+  three normalisations are module constants fixed before any real DEM was run
+  (`configs/pluvial_constants.py`; all provisional). `experimental`. Smoke run
+  on Dharavi (FABDEM 0–12.0 m, mean 4.89): component means 0.854 / 0.102 /
+  0.125 / **0.914** — on flat ground almost every cell ends in a pit, so
+  `drainage_disconnection` is near-saturated there (listed for a fate, not
+  tuned). A first smoke run returned a constant DEM because `mosaic()` drops
+  FABDEM's native projection; fixed before commit. `tests/test_flood_terrain.py`
+  (8, synthetic planes and bowls; they fail on the old code, where the module
+  does not exist).
+- **Task 5 — ward-ranking test (evidence only; nothing changed on it).**
+  Pre-registered first (`experiments/ward_ranking/PREREGISTRATION.md`,
+  SHA256 `881d5665…`): Spearman ρ over Mumbai's 24 BMC wards (the wide run
+  behind the Dharavi ward screening), **stable if ρ ≥ 0.80** per pair. The
+  brief's "08_STATE §5.7 option C3" does not exist on any branch; the brief's
+  own description was followed. Estimates: (a) stored spectral
+  `impervious_fraction_pct`, (b) Open Buildings footprint built area,
+  (c) `built + max(0, 1 − built − vegetation − water)`. **Result: all three
+  pairs stable** — ρ(a,b) = **0.920**, ρ(a,c) = **0.906**, ρ(b,c) =
+  **0.960**, n = 24. The ward *order* holds; the *levels* do not: built area
+  is about 0.4× the stored estimate (ward A 0.216 vs 0.508), so absolute
+  thresholds would not transfer between estimates. `validation_status:
+  experimental`. A first run hung silently for 2 h 40 min on one Earth Engine
+  reduction; the rerun sets a 10-minute deadline with one retry (no retry
+  fired). `tests/test_ward_ranking.py` (3, the verdict logic).
+- **Task 6 — one 2,500 mm rainfall ceiling.** The duplicate in
+  `configs/waterlogging_constants.py` (item 66's finding) is removed;
+  waterlogging imports `FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM` from
+  `configs/flash_flood_constants.py`, the single definition.
+  `docs/susceptibility_dag.md` updated. `tests/test_rainfall_ceiling_single_definition.py`
+  (2; both fail on the old code).
+- **Task 7 — `test_flood_flag_combination` fixed, not deleted.** It guards a
+  real regression (each elevation source judged on its own status), so it is
+  kept. Its fixture patched functions `pipeline.py` no longer has
+  (`get_best_image`, `save_masks`, `get_imagery_acquisition_date`) and errored
+  at setup; it now builds on the maintained `stub_pipeline` fixture and lets
+  the real Open Elevation source and the conftest mocks drive the assessment.
+  **Errors 3 → 0**; all three pass, and the "both sources fail →
+  insufficient_evidence" case confirms the mocks reach the logic.
+- **Task 8 — flood validation harness (Tier 2), run.** Pre-registered per
+  module before any score or reference was computed
+  (`experiments/flood_validation/PREREGISTRATION.md`, SHA256 `d4b5e563…` in the
+  result file): ROC AUC of the module's score over 30 m cells, flooded vs dry,
+  JRC permanent water excluded; **validated if AUC ≥ 0.70**; not-run below 50
+  flooded / 50 dry cells or, for pooled scalar modules, below 3 sites.
+  References: Sentinel-1 event extents (the project's VV −3 dB drop rule) or
+  JRC GSW recurrent water (5–80 % occurrence). **No module validated.**
+
+  | Module | Reference, sites | AUC | Verdict |
+  |---|---|---|---|
+  | pluvial | S1, Dharavi, Mumbai 2017-08-29 (502 flooded / 7,373 dry cells) | 0.533 | **failed** |
+  | fluvial | JRC, 9 `BASELINE_AOIS` (held-out Lagos, Nairobi excluded) | 0.448 | **failed** |
+  | waterlogging | JRC, same 9 AOIs | 0.432 | **failed** |
+  | coastal | S1, Beira / Chennai / Fort Myers Beach | — | **not-run**: no S1 image in any 3-day event window |
+  | flash flood | S1, Paiporta / Derna / Bad Neuenahr | 0.447 | **failed** |
+
+  Read with the stated weaknesses: four modules emit one AOI-wide scalar, so
+  their AUC is a ranking of a handful of sites; SAR misses urban flooding
+  (double bounce); and the pluvial inputs are placeholders. A fail is still a
+  fail against the bar. Module labels are unchanged (nothing became
+  `validated`). `tests/test_flood_validation_harness.py` (4: AUC, ties,
+  pooled counts, verdict and minimums).
 
 ---
 

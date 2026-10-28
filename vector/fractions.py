@@ -57,16 +57,16 @@ PRODUCER = {
 }
 
 
-def grid_for(layer):
-    """A 10 m grid snapped to whole metres, covering the layer's AOI, in
-    the layer's UTM CRS. Returns (transform, (rows, cols))."""
+def grid_for(layer, pixel_m: float = PIXEL_M):
+    """A `pixel_m` grid (10 m by default) snapped to multiples of `pixel_m`,
+    covering the layer's AOI, in the layer's UTM CRS. Returns (transform, (rows, cols))."""
     from rasterio.transform import from_origin
     minx, miny, maxx, maxy = layer.aoi.bounds
-    x0 = np.floor(minx / PIXEL_M) * PIXEL_M
-    y1 = np.ceil(maxy / PIXEL_M) * PIXEL_M
-    cols = int(np.ceil((maxx - x0) / PIXEL_M))
-    rows = int(np.ceil((y1 - miny) / PIXEL_M))
-    return from_origin(x0, y1, PIXEL_M, PIXEL_M), (rows, cols)
+    x0 = np.floor(minx / pixel_m) * pixel_m
+    y1 = np.ceil(maxy / pixel_m) * pixel_m
+    cols = int(np.ceil((maxx - x0) / pixel_m))
+    rows = int(np.ceil((y1 - miny) / pixel_m))
+    return from_origin(x0, y1, pixel_m, pixel_m), (rows, cols)
 
 
 def built_raster(layer, transform, shape, supersample: int = 5) -> np.ndarray:
@@ -95,9 +95,10 @@ def classify_indices(ndvi: np.ndarray, mndwi: np.ndarray, valid_obs: np.ndarray)
 
 
 def s2_index_composite(layer, start: str, end: str, *, cloud_cover_threshold: int = 60,
-                       collection_filter=None):
+                       collection_filter=None, grid=None):
     """Median NDVI and MNDWI, plus the per-pixel count of cloud-free
-    observations, on grid_for(layer), from Earth Engine.
+    observations, on `grid` ((transform, (rows, cols)); default
+    grid_for(layer)), from Earth Engine.
 
     `collection_filter`, if given, is applied to the image collection before
     compositing. Item 25 uses it to build split-half composites for its noise
@@ -107,7 +108,7 @@ def s2_index_composite(layer, start: str, end: str, *, cloud_cover_threshold: in
     from ingestion.sentinel2 import (compute_observation_quality, get_sentinel2_collection,
                                      mask_s2_clouds)
     initialize_gee()
-    transform, (H, W) = grid_for(layer)
+    transform, (H, W) = grid or grid_for(layer)
     aoi_ll = ee.Geometry.Rectangle(list(layer.bbox))
     col = get_sentinel2_collection(aoi_ll, start, end, cloud_cover_threshold)
     if collection_filter is not None:

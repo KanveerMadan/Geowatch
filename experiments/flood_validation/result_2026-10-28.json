@@ -1,0 +1,195 @@
+{
+  "test": "item 26 task 8 -- flood discrimination (Tier 2)",
+  "preregistration_sha256": "d4b5e5639f77e4f466a194894a3e2a50273f319d175314ce4d7d435b20a91400",
+  "run_utc": "2026-10-28T12:39:42.214431+00:00",
+  "bar": {
+    "metric": "roc_auc_cells",
+    "validated_if_auc_at_least": 0.7,
+    "min_flooded_cells": 50,
+    "min_dry_cells": 50,
+    "min_pooled_sites": 3
+  },
+  "modules": {
+    "pluvial": {
+      "flooded_cells": 502,
+      "dry_cells": 7373,
+      "n_sites": 1,
+      "auc": 0.533,
+      "verdict": "failed",
+      "sites": {
+        "dharavi": {
+          "flooded_cells": 502,
+          "dry_cells": 7373,
+          "s1_images_pre_event": [
+            2,
+            1
+          ],
+          "validation_status_of_inputs": "placeholder"
+        }
+      }
+    },
+    "fluvial": {
+      "flooded_cells": 6236,
+      "dry_cells": 301828,
+      "n_sites": 9,
+      "auc": 0.4476,
+      "verdict": "failed",
+      "sites": {
+        "dharavi": {
+          "score": 0.8866,
+          "flooded_cells": 496,
+          "dry_cells": 7958
+        },
+        "jakarta": {
+          "score": 0.9409,
+          "flooded_cells": 1937,
+          "dry_cells": 14334
+        },
+        "hcmc": {
+          "score": 0.9422,
+          "flooded_cells": 516,
+          "dry_cells": 139700
+        },
+        "kigali": {
+          "score": 0.0,
+          "flooded_cells": 0,
+          "dry_cells": 7603
+        },
+        "accra": {
+          "score": 0.7099,
+          "flooded_cells": 130,
+          "dry_cells": 13820
+        },
+        "dhaka": {
+          "score": 0.926,
+          "flooded_cells": 1155,
+          "dry_cells": 16685
+        },
+        "capetown": {
+          "score": 0.7548,
+          "flooded_cells": 247,
+          "dry_cells": 35786
+        },
+        "guatemala": {
+          "score": 0.0521,
+          "flooded_cells": 0,
+          "dry_cells": 22765
+        },
+        "nusantara": {
+          "score": 0.7868,
+          "flooded_cells": 1755,
+          "dry_cells": 43177
+        }
+      }
+    },
+    "waterlogging": {
+      "flooded_cells": 6236,
+      "dry_cells": 301828,
+      "n_sites": 9,
+      "auc": 0.4324,
+      "verdict": "failed",
+      "sites": {
+        "dharavi": {
+          "score": 0.7082,
+          "flooded_cells": 496,
+          "dry_cells": 7958
+        },
+        "jakarta": {
+          "score": 0.5993,
+          "flooded_cells": 1937,
+          "dry_cells": 14334
+        },
+        "hcmc": {
+          "score": 0.7359,
+          "flooded_cells": 516,
+          "dry_cells": 139700
+        },
+        "kigali": {
+          "score": 0.2474,
+          "flooded_cells": 0,
+          "dry_cells": 7603
+        },
+        "accra": {
+          "score": 0.3951,
+          "flooded_cells": 130,
+          "dry_cells": 13820
+        },
+        "dhaka": {
+          "score": 0.731,
+          "flooded_cells": 1155,
+          "dry_cells": 16685
+        },
+        "capetown": {
+          "score": 0.3512,
+          "flooded_cells": 247,
+          "dry_cells": 35786
+        },
+        "guatemala": {
+          "score": 0.3696,
+          "flooded_cells": 0,
+          "dry_cells": 22765
+        },
+        "nusantara": {
+          "score": 0.5265,
+          "flooded_cells": 1755,
+          "dry_cells": 43177
+        }
+      }
+    },
+    "coastal": {
+      "flooded_cells": 0,
+      "dry_cells": 0,
+      "n_sites": 0,
+      "auc": null,
+      "verdict": "not-run",
+      "reason": "insufficient reference",
+      "sites": {
+        "beira": {
+          "dropped": "LookupError: no Sentinel-1 image: pre=6 event=0"
+        },
+        "chennai_velachery": {
+          "dropped": "LookupError: no Sentinel-1 image: pre=3 event=0"
+        },
+        "fort_myers_beach": {
+          "dropped": "LookupError: no Sentinel-1 image: pre=4 event=0"
+        }
+      }
+    },
+    "flash_flood": {
+      "flooded_cells": 3777,
+      "dry_cells": 63918,
+      "n_sites": 3,
+      "auc": 0.4465,
+      "verdict": "failed",
+      "sites": {
+        "paiporta": {
+          "score": 0.1068,
+          "flooded_cells": 2007,
+          "dry_cells": 26509,
+          "s1_images_pre_event": [
+            10,
+            1
+          ]
+        },
+        "derna": {
+          "score": 0.1668,
+          "flooded_cells": 536,
+          "dry_cells": 12651,
+          "s1_images_pre_event": [
+            7,
+            2
+          ]
+        },
+        "bad_neuenahr": {
+          "score": 0.2661,
+          "flooded_cells": 1234,
+          "dry_cells": 24758,
+          "s1_images_pre_event": [
+            18,
+            2
+          ]
+        }
+      }
+    }
+  }
+}
