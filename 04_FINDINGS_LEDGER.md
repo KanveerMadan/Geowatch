@@ -1084,9 +1084,39 @@ therefore start at C48 to avoid a third collision.*
 `03a47ab`). **No fate assigned.** Numbered from C51: no branch uses C51 or
 above.*
 
+***C60 and C61 added 2026-10-28** from the rare-fraction ceiling checks
+(`build/ceilings`, `06_UNMIXING_CEILING.md` Part 8). **No fate assigned.**
+Numbered from C60: C57 and C58 are on `master`, C59 on `build/flood2`.*
+
+### C61 — Rooftop solar is invisible at realistic panel shares; pooled solar is indeterminate [E] *(entry)*
+
+Same method, four OSM-verified sites (Bhadla, Benban, Witznitz utility farms,
+13 Venlo roof arrays). Pooled `solar` ceiling **R² 0.677** (indeterminate;
+GBT 0.839), falling to 0.516 at 2× noise. With panels filling a uniform 0–25%
+of a 10 m cell, the rooftop endmember gives **0.436**; at 0–10%, 0.092. Each
+farm alone clears 0.70 (0.763–0.944, post hoc), so the pooled loss comes from
+the 21.5° spread between sites: a farm pixel is panels plus the ground
+between them. Benban sits 3.02° from its own desert surround. Bears on the
+deferred `solar`-in-`impervious_total` decision, which assumed solar
+prevalence could be measured.
+
 ***C57 and C58 added 2026-10-28** from item 20's UI half (`build/coverage-ui`).
 **No fate assigned.** Numbered from C57, the next free number on `master` at
 `220add1`. Lanes running at the same time may collide.*
+
+### C60 — `mixed_water_vegetation` is not separable from vegetation, and adding it damages vegetation [E] *(entry)*
+
+Measured by the Part 3 ceiling method on four mapped sites (GMW/GLWD/
+WorldCover mangrove at Sundarbans, GLWD/WorldCover marsh at Everglades and
+Sudd, Murray tidal flat at Neuwerk). The fraction's ceiling is **R² 0.368** at
+documented noise, and with it in the scene **vegetation falls from 0.974 to
+0.634**. The pre-registered rule returned no verdict, because its control 3
+(vegetation ≥ 0.90) was written to detect a broken simulation and fired on
+this real overlap instead. Sudd marsh is 4.35° from vegetation and 2.3× noise
+from the base simplex; the class's sites span 54.4°. Post hoc, not
+pre-registered: tidal flat alone is 0.729 and leaves vegetation intact, while
+mangrove and marsh are 0.32–0.59. Bears on Decision 11's sub-type design and on
+item 26's sub-type-weighted input.
 
 ### C58 — `SecExposure` calls `useState` after a conditional return [S] *(entry)*
 
