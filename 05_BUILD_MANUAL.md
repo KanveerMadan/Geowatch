@@ -1870,6 +1870,21 @@ declare themselves. Every new output carries `validation_status`; none claims
   provisional) — the sealed road surface that built area omits.
   `experimental` (item 19's own label). `tests/test_flood_conduits.py` (5;
   they fail on the old code, where `road_conduits` does not exist).
+- **Task 4 — DEM hydrology as pluvial inputs.** `susceptibility/terrain.py`
+  derives four per-cell inputs from FABDEM on the 30 m hydrology grid:
+  `low_slope`, `flow_accumulation` (D8), `topographic_hollow` (−TPI, 150 m
+  radius) and `drainage_disconnection` (D8 path ends in an interior pit, not
+  the grid edge). D8 runs on the **unfilled** DEM on purpose — a closed
+  depression is where rain ponds. Each has its own weight and quality, and the
+  three normalisations are module constants fixed before any real DEM was run
+  (`configs/pluvial_constants.py`; all provisional). `experimental`. Smoke run
+  on Dharavi (FABDEM 0–12.0 m, mean 4.89): component means 0.854 / 0.102 /
+  0.125 / **0.914** — on flat ground almost every cell ends in a pit, so
+  `drainage_disconnection` is near-saturated there (listed for a fate, not
+  tuned). A first smoke run returned a constant DEM because `mosaic()` drops
+  FABDEM's native projection; fixed before commit. `tests/test_flood_terrain.py`
+  (8, synthetic planes and bowls; they fail on the old code, where the module
+  does not exist).
 
 ---
 

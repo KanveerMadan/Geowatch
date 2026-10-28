@@ -62,6 +62,8 @@ AVAILABLE = {
                                 "ndvi_threshold_proxy", "placeholder"),
         "conduits": surface(np.full((3, 4), 0.2), "OSM highways",
                             "road_space_area_fraction", "experimental"),
+        "terrain": {"low_slope": surface(np.full((3, 4), 0.9), "FABDEM", "1 - slope/5deg",
+                                         "experimental")},
     },
 }
 

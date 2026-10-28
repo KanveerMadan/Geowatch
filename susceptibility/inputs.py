@@ -21,6 +21,7 @@ Producers here, all on the hydrology grid (HYDROLOGY_PIXEL_M, the layer's UTM CR
     conduits      roads as rasterised vector conduits: item 19's road space
                   (OSM centrelines at default class widths, no footprint
                   negative space) as an area fraction per cell. `experimental`.
+    terrain       DEM hydrology from FABDEM (susceptibility/terrain.py).
 """
 from __future__ import annotations
 
@@ -113,6 +114,7 @@ def hydrology_surfaces(layer, start: str, end: str) -> dict:
     hydrology cell, so a cell's value is the share of its area over the
     NDVI threshold. Needs Earth Engine; raises on its errors."""
     from rasterio.transform import Affine
+    from susceptibility.terrain import fetch_dem, terrain_surfaces
     from vector.fractions import PIXEL_M, classify_indices, s2_index_composite
     transform, (H, W) = hydrology_grid(layer)
     k = int(round(HYDROLOGY_PIXEL_M / PIXEL_M))
@@ -126,6 +128,7 @@ def hydrology_surfaces(layer, start: str, end: str) -> dict:
         "impervious": impervious_built_area(layer, transform, (H, W)),
         "infiltration": infiltration_vegetation(block_nanmean(veg, k)),
         "conduits": road_conduits(layer, transform, (H, W)),
+        "terrain": terrain_surfaces(fetch_dem(layer, transform, (H, W)), HYDROLOGY_PIXEL_M),
     })
 
 

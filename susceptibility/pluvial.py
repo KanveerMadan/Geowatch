@@ -1,7 +1,8 @@
 """
 Phase 4: pluvial susceptibility baseline. Item 26: no longer reads the
-retired 7-class land-cover map. Imperviousness, infiltration and road
-conduits arrive as declared surface inputs (susceptibility/inputs.py) -- swappable, each naming
+retired 7-class land-cover map. Imperviousness, infiltration, road
+conduits and DEM hydrology (susceptibility/terrain.py) arrive as declared
+surface inputs (susceptibility/inputs.py) -- swappable, each naming
 its source and validation status. Drainage distance is OSM waterway
 proximity. rainfall_climatology and relative_elevation are AOI-WIDE SCALARS
 applied uniformly -- documented explicitly below, not hidden.
@@ -43,6 +44,7 @@ def compute_pluvial_susceptibility(
     relative_elevation_score=None,
     rainfall_mean_annual_mm=None,
     conduits: dict = None,
+    terrain: dict = None,
 ) -> dict:
     inputs = {}
     rasters = []           # (component, array)
@@ -65,6 +67,12 @@ def compute_pluvial_susceptibility(
         rasters.append(("road_conduit", conduits["raster"]))
     else:
         components_excluded.append("road_conduit (no road layer)")
+
+    for name, s in (terrain or {}).items():
+        inputs[name] = provenance(check_surface(s, name))
+        rasters.append((name, s["raster"]))
+    if not terrain:
+        components_excluded.append("terrain (no DEM)")
 
     if waterway_dist_map is not None:
         rasters.append(("drainage_distance", waterway_dist_map))
@@ -133,6 +141,9 @@ def compute_pluvial_susceptibility(
             "road_conduit is OSM road space at class-default widths, not "
             "measured widths; it scores where runoff concentrates on sealed "
             "road surface, not drain capacity.",
+            "Terrain inputs come from FABDEM at 30 m with metre-scale "
+            "vertical error; D8 runs on the unfilled DEM, the grid edge "
+            "stands in for an outlet, and flat cells count as pits.",
             "drainage_distance uses OSM waterway proximity as a rough "
             "proxy for drainage access, NOT real drainage capacity.",
             "relative_elevation_score is the AOI-relative p10/p90 proxy, "
