@@ -68,6 +68,10 @@ def stub_pipeline(monkeypatch):
     stub.run_pipeline = _boom
     stub.run_inundation_analysis = _boom
     monkeypatch.setitem(sys.modules, "pipeline", stub)
+    # POST /api/analyze runs the analysis pipeline (Phase 2) through
+    # analysis.store.analyze; stubbed the same way, so no test reaches EE.
+    import analysis.store
+    monkeypatch.setattr(analysis.store, "analyze", _boom)
     return stub
 
 
@@ -101,7 +105,10 @@ def _request_for(api_module, method: str, path: str):
             "aoi_label": "dharavi", **VALID_BBOX, **INUNDATION_DATES
         },
     }
-    concrete = path.replace("{run_id}", "dharavi_20260629_122047")
+    bodies["/api/legacy/analyze"] = bodies["/api/analyze"]
+    concrete = (path.replace("{run_id}", "dharavi_20260629_122047")
+                .replace("{result_id}", "r" + "0" * 24).replace("{unit_type}", "grid")
+                .replace("{unit_id}", "0").replace("{name}", "pluvial_susceptibility"))
     return method, concrete, bodies.get(path)
 
 
@@ -141,6 +148,11 @@ def test_every_route_requires_auth(anon, api_module, method, path):
     it is registered.
     """
     verb, concrete, body = _request_for(api_module, method, path)
+    if api_module.is_public_read(verb, concrete):
+        # The one deliberate exemption (Phase 2): stored results are public to
+        # READ. test_only_result_reads_are_public pins exactly which routes.
+        assert path in PUBLIC_READ_ROUTES, f"{verb} {path} is public but not listed"
+        return
     resp = anon.request(verb, concrete, json=body)
     assert resp.status_code == 401, (
         f"{verb} {concrete} answered {resp.status_code} without credentials; "
@@ -162,6 +174,30 @@ def test_every_route_accepts_the_valid_key(authed, api_module, method, path):
     assert resp.status_code != 401, (
         f"{verb} {concrete} rejected a VALID key — auth is broken closed"
     )
+
+
+# Exactly these are public, and only for GET. Adding a route that matches the
+# public pattern fails test_every_route_requires_auth until it is listed here.
+PUBLIC_READ_ROUTES = {
+    "/api/results", "/api/results/{result_id}", "/api/results/{result_id}/wards",
+    "/api/results/{result_id}/maps/{name}",
+    "/api/results/{result_id}/wards/{unit_type}",
+    "/api/results/{result_id}/wards/{unit_type}/{unit_id}",
+}
+
+
+def test_only_result_reads_are_public(anon, api_module):
+    public = set()
+    for route in api_module.app.routes:
+        path, methods = getattr(route, "path", None), getattr(route, "methods", None) or set()
+        for m in methods - {"HEAD", "OPTIONS"}:
+            verb, concrete, _ = _request_for(api_module, m, path)
+            if api_module.is_public_read(verb, concrete):
+                public.add((m, path))
+    assert public == {("GET", p) for p in PUBLIC_READ_ROUTES}
+    for p in PUBLIC_READ_ROUTES:
+        _, concrete, _ = _request_for(api_module, "GET", p)
+        assert anon.get(concrete).status_code != 401, concrete
 
 
 # ── The mount, which a Depends-based fix would have missed ──

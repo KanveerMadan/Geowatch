@@ -214,9 +214,13 @@ def test_flood_inputs_reach_pluvial_and_waterlogging_with_provenance(stub_pipeli
     r = _run(tmp_path)
     pl, wl = r["susceptibility"]["pluvial"], r["susceptibility"]["waterlogging"]
     assert pl["inputs"]["impervious"]["method"] == "footprint_union_area_fraction"
-    assert pl["validation_status"] == "placeholder"
+    # The legacy result labels every block "retired" (2026-10-28); the
+    # module's own label survives as validation_status_superseded.
+    assert pl["validation_status"] == "retired"
+    assert pl["validation_status_superseded"] == "placeholder"
     assert wl["impervious_fraction_pct"] == 60.0
-    assert wl["validation_status"] == "placeholder"
+    assert wl["validation_status"] == "retired"
+    assert wl["validation_status_superseded"] == "placeholder"
     assert r["flood_inputs"]["grid"]["crs"] == "EPSG:32643"
 
 

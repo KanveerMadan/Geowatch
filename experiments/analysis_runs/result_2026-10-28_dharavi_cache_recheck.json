@@ -1,0 +1,351 @@
+{
+ "note": "Dharavi rerun after 2c23809 (model_version over CODE_PATHS), with uncommitted docs edits in the tree",
+ "bars": {
+  "every_stage_ok": true,
+  "contract_violations": 0,
+  "consistency": "PASS",
+  "runtime_budget_s": 1800,
+  "cache_hit_on_rerun": true
+ },
+ "window": [
+  "2026-01-01",
+  "2026-03-31"
+ ],
+ "cities": {
+  "dharavi": {
+   "result_id": "rc9798614186608ca31c3bd1c",
+   "stored": true,
+   "cached": false,
+   "runtime_s": 177.7,
+   "pipeline_runtime_s": 176.6,
+   "stages": {
+    "ee_init": {
+     "status": "ok",
+     "stage": "ee_init",
+     "elapsed_s": 3.4
+    },
+    "road_layer": {
+     "status": "ok",
+     "stage": "road_layer",
+     "elapsed_s": 9.7
+    },
+    "s2_composite": {
+     "status": "ok",
+     "stage": "s2_composite",
+     "elapsed_s": 16.0
+    },
+    "observability": {
+     "status": "ok",
+     "stage": "observability",
+     "elapsed_s": 5.0
+    },
+    "dem": {
+     "status": "ok",
+     "stage": "dem",
+     "elapsed_s": 3.5
+    },
+    "waterways": {
+     "status": "ok",
+     "stage": "waterways",
+     "elapsed_s": 0.0,
+     "unavailable_clauses": []
+    },
+    "context:hand": {
+     "status": "ok",
+     "stage": "context:hand",
+     "elapsed_s": 5.0
+    },
+    "context:fabdem": {
+     "status": "ok",
+     "stage": "context:fabdem",
+     "elapsed_s": 3.4
+    },
+    "context:slope": {
+     "status": "ok",
+     "stage": "context:slope",
+     "elapsed_s": 2.4
+    },
+    "context:rainfall": {
+     "status": "ok",
+     "stage": "context:rainfall",
+     "elapsed_s": 2.0
+    },
+    "context:coastline": {
+     "status": "ok",
+     "stage": "context:coastline",
+     "elapsed_s": 2.2
+    },
+    "context:relative_elevation": {
+     "status": "ok",
+     "stage": "context:relative_elevation",
+     "elapsed_s": 4.2
+    },
+    "change": {
+     "status": "ok",
+     "stage": "change",
+     "elapsed_s": 113.9
+    }
+   },
+   "not_stored_because": null,
+   "version_id": "3c6897d57b902d28",
+   "code_commit": "2c23809fe0485e7954f844317d2b2ff85c95f3ee",
+   "code_dirty": false,
+   "validation_summary": {
+    "failed": 4,
+    "placeholder": 21,
+    "experimental": 10,
+    "validated": 0
+   },
+   "labels": {
+    "outputs.fractions.built": {
+     "validation_status": "experimental",
+     "status": "available"
+    },
+    "outputs.fractions.vegetation": {
+     "validation_status": "placeholder",
+     "status": "available"
+    },
+    "outputs.fractions.water": {
+     "validation_status": "placeholder",
+     "status": "available"
+    },
+    "outputs.fractions.impervious_total": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.fractions.paved": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.fractions.bare": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.observability.observed_fraction": {
+     "validation_status": "experimental",
+     "status": "available"
+    },
+    "outputs.observability.cloud_nodata": {
+     "validation_status": "experimental",
+     "status": "available"
+    },
+    "outputs.observability.fully_shadowed": {
+     "validation_status": "placeholder",
+     "status": "available"
+    },
+    "outputs.observability.transient_snow": {
+     "validation_status": "placeholder",
+     "status": "available"
+    },
+    "outputs.observability.fire_smoke": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.observability.ships": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.estimate_quality.prediction_interval.built": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.estimate_quality.prediction_interval.vegetation": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.estimate_quality.prediction_interval.water": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.estimate_quality.prediction_interval.impervious_total": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.estimate_quality.prediction_interval.paved": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.estimate_quality.prediction_interval.bare": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.estimate_quality.paved_derivation_uncertainty": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.osm_coverage": {
+     "validation_status": "experimental",
+     "status": "available"
+    },
+    "outputs.susceptibility.pluvial": {
+     "validation_status": "failed",
+     "status": "available"
+    },
+    "outputs.susceptibility.fluvial": {
+     "validation_status": "failed",
+     "status": "available"
+    },
+    "outputs.susceptibility.coastal": {
+     "validation_status": "experimental",
+     "status": "available"
+    },
+    "outputs.susceptibility.flash_flood": {
+     "validation_status": "failed",
+     "status": "available"
+    },
+    "outputs.susceptibility.waterlogging": {
+     "validation_status": "failed",
+     "status": "available"
+    },
+    "outputs.change.built": {
+     "validation_status": "experimental",
+     "status": "available"
+    },
+    "outputs.change.vegetation": {
+     "validation_status": "placeholder",
+     "status": "available"
+    },
+    "outputs.change.water": {
+     "validation_status": "placeholder",
+     "status": "available"
+    },
+    "outputs.change.impervious_total": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.change.paved": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.change.bare": {
+     "validation_status": "placeholder",
+     "status": "not_computed"
+    },
+    "outputs.aggregation.grid": {
+     "validation_status": "experimental",
+     "status": "available"
+    },
+    "outputs.aggregation.footprint": {
+     "validation_status": "experimental",
+     "status": "available"
+    },
+    "outputs.aggregation.path": {
+     "validation_status": "experimental",
+     "status": "available"
+    },
+    "outputs.aggregation.ward__datameet_mumbai_bmc_wards": {
+     "validation_status": "experimental",
+     "status": "available"
+    }
+   },
+   "wards": {
+    "grid": {
+     "status": "available",
+     "n_units": 728
+    },
+    "footprint": {
+     "status": "available",
+     "n_units": 19246
+    },
+    "path": {
+     "status": "available",
+     "n_units": 985
+    },
+    "ward:datameet_mumbai_bmc_wards": {
+     "status": "available",
+     "n_units": 4
+    }
+   },
+   "outputs_checked": 35,
+   "ward_units_checked": 20963,
+   "contract_violations": [],
+   "consistency": {
+    "grid": "PASS",
+    "footprint": "PASS",
+    "path": "PASS",
+    "ward__datameet_mumbai_bmc_wards": null
+   },
+   "rerun": {
+    "cached": true,
+    "runtime_s": 0.0,
+    "same_id": true
+   },
+   "headline": {
+    "fractions": {
+     "built": [
+      0.246127,
+      "available",
+      "experimental"
+     ],
+     "vegetation": [
+      0.28796,
+      "available",
+      "placeholder"
+     ],
+     "water": [
+      0.07691,
+      "available",
+      "placeholder"
+     ],
+     "impervious_total": [
+      null,
+      "not_computed",
+      "placeholder"
+     ],
+     "paved": [
+      null,
+      "not_computed",
+      "placeholder"
+     ],
+     "bare": [
+      null,
+      "not_computed",
+      "placeholder"
+     ]
+    },
+    "observed_fraction": 1.0,
+    "susceptibility": {
+     "pluvial": [
+      0.4622,
+      "moderate",
+      "available",
+      "failed"
+     ],
+     "fluvial": [
+      0.8866,
+      "very_high",
+      "available",
+      "failed"
+     ],
+     "coastal": [
+      0.757,
+      "high",
+      "available",
+      "experimental"
+     ],
+     "flash_flood": [
+      0.4089,
+      "moderate",
+      "available",
+      "failed"
+     ],
+     "waterlogging": [
+      0.7039,
+      "high",
+      "available",
+      "failed"
+     ]
+    },
+    "osm_regime": "adequate"
+   },
+   "bars": {
+    "every_stage_ok": true,
+    "contract_violations": 0,
+    "consistency": "PASS",
+    "runtime_s": 177.7,
+    "within_runtime_budget": true,
+    "cache_hit_on_rerun": true
+   }
+  }
+ }
+}

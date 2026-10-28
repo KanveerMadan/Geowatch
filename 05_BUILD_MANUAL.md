@@ -2140,7 +2140,21 @@ not the classification-pipeline vocabulary the original text may still
 suggest. See `04_FINDINGS_LEDGER.md`'s Part 6 translation note for the full
 mapping.
 
-### 33. C19 — denominator + `observed_fraction`
+### 33. C19 — denominator + `observed_fraction` ✅ *(2026-10-28, in the analysis pipeline; the retired 7-class pipeline is not changed)*
+
+> **Built 2026-10-28 (`analysis/observability.py`, Phase 2).** A pixel is
+> observed with ≥ `MIN_VALID_OBS` clear Sentinel-2 observations, and shadow
+> (SCL 3) and snow (SCL 11) observations now leave the composite as cloud
+> and no-data already did. `observed_fraction` is emitted beside every
+> fraction, and every output of the result carries a coverage sibling (the
+> result contract enforces it). Observability: `cloud_nodata`
+> (`experimental`), `fully_shadowed` and `transient_snow` (`placeholder`:
+> SCL only — no solar geometry, no permanent-snow layer), `fire_smoke` and
+> `ships` (`not_computed`). Each is the share of pixel-scene observations it
+> removed; they are not summed. Estimate quality: per-fraction
+> `prediction_interval` and `paved_derivation_uncertainty`, all
+> `not_computed` until item 21, and `observed_fraction` reads only the
+> clear-observation count. Tests: `tests/test_observability.py`.
 Apply Decision 14's convention. **Emit `observed_fraction` as a mandatory
 sibling field** — fixing the denominator alone just moves the bias. Emit
 ~~shadow / cloud-nodata / low-confidence-unmixing as three separate fields~~
@@ -2155,7 +2169,21 @@ every observability field and every estimate-quality field is independently
 readable, not summed into one number by the producer, and **no
 estimate-quality field reduces the denominator** *(reworded 2026-09-25)*.
 
-### 34. C21 — `hydrological_surfaces.py` status field and failure path
+### 34. C21 — `hydrological_surfaces.py` status field and failure path ✅ *(2026-10-28)*
+
+> **Built 2026-10-28 (Phase 2).** `compute_hydrological_surfaces()` returns
+> `status` on every path; an all-unknown AOI (empty or all-zero
+> `category_area_pct`) gives `insufficient_evidence` with both surfaces
+> `None`. The once-dead branches are reachable and tested — the ledger's
+> line numbers are stale; today they are `applicability.py:71`
+> (`finalize_applicability`) and `:210` (`compute_applicability`), both
+> waterlogging `not_calculated`, and `waterlogging.py:65`
+> (`insufficient_evidence`). In the analysis pipeline an AOI with no
+> footprint source gives unobserved imperviousness rather than zero, and an
+> AOI with every highway clause unretrieved gives no conduit input; a
+> synthetic all-unknown AOI is `insufficient_evidence` / `not_applicable` on
+> every hazard. `hydrological_surfaces` itself is a legacy-only record
+> (label `retired`). Tests: `tests/test_item34_insufficient_evidence.py`.
 The only module in the analysis chain with neither. That single omission produces
 C19, C21, and C25, and makes two separate guard clauses vacuous.
 
@@ -2164,21 +2192,54 @@ throughout rather than `score: 0.0, class: "very_low"`. **The two dead
 `insufficient_evidence` branches at `applicability.py:133` and
 `waterlogging.py:57` become reachable and are unit-tested.**
 
-### 35. C25 / C26 — ward coverage fields
+### 35. C25 / C26 — ward coverage fields ✅ *(2026-10-28, in the analysis pipeline)*
+
+> **Built 2026-10-28 (`analysis/wards.py`, Phase 2).** Every served unit —
+> item 22's grid / footprint / path units and `ward:<boundary_id>` wards —
+> carries `observability.observed_fraction` (observed share of its area) and
+> `observability.valid_pixel_count` (observed 10 m pixels with their centre in
+> the unit, beside `pixel_count`), on the same denominator as the fractions.
+> A fully dark unit serves its fractions as `insufficient_observation` with
+> `value: null`; a half-observed unit's value is over its observed part (the
+> C25 case). Phase 12A's `zonal/` ward screening is not changed by this item.
+> Tests: `tests/test_item35_ward_coverage.py`.
 Emit per-ward `observed_fraction` and valid-pixel count, per Decision 14's
 convention. C26 is what makes C25 detectable.
 
 **Acceptance:** a 100%-unobserved and a 50%-unobserved ward are distinguishable
 from the output alone, without inference.
 
-### 36. C33 — absent ≠ measured-zero
+### 36. C33 — absent ≠ measured-zero 🔶 **PARTIAL (2026-10-28) — backend and renderer helper done; no UI view of the new result yet**
+
+> **Built 2026-10-28 (Phase 2).** Backend: the result contract
+> (`analysis/contract.py`) refuses a `null` value without an absent status
+> (`not_computed`, `insufficient_observation`, `timeout`, ...) and refuses a
+> number whose status is not `available`, across the whole result and every
+> served ward, so a zero is always a measured zero
+> (`tests/test_result_contract.py`). Renderer: `fmtMeasured()` in
+> `geowatch-ui/src/render.js` renders absent as "—" plus its reason and zero
+> as "0.0%", checked in `tests/test_measured_vs_absent_ui.mjs`. **Stays
+> partial** because no UI view renders the analysis result yet: `App.jsx`
+> still renders the legacy shape (where `fmtPct` already returns "—" for
+> null).
 `null`/absent and `0` must be distinguishable end to end. Absent renders as "—"
 or "not measured"; zero renders as "0.0%".
 
 **Copy the existing correct pattern** — `road_access_score === -1` → "N/A", and
 the gated modules' status pills. Do not invent a new one.
 
-### 37. C22 — no-data must not collide with real classes
+### 37. C22 — no-data must not collide with real classes ✅ *(2026-10-28, in the analysis pipeline)*
+
+> **Built 2026-10-28 (`analysis/rasters.py`, Phase 2).** The pluvial map is
+> stored as an RGBA PNG (`GET /api/results/{id}/maps/pluvial_susceptibility`,
+> public). Observed cells take their tier's colour at alpha 255; no-data
+> cells are alpha 0 — a state of their own, not a colour on the scale — and
+> the legend lists it separately. The mask is propagated, not re-derived:
+> fewer than `MIN_VALID_OBS` clear observations at ingestion → NaN
+> vegetation → NaN infiltration → NaN pluvial cell → transparent pixel. The
+> legacy preview (`save_pluvial_susceptibility_output`, NaN rendered black)
+> is retired with its pipeline and not changed. Tests:
+> `tests/test_item37_nodata_render.py`.
 The surviving defect: no-data scores identically to `standing_water` and
 `active_construction`. Give it a distinct render state — never a value on the
 susceptibility scale.
@@ -2186,14 +2247,37 @@ susceptibility scale.
 *Requires a nodata mask propagated from ingestion through to render, which may be
 the larger part of the work.*
 
-### 38. C27 — timeout ≠ tier
+### 38. C27 — timeout ≠ tier ✅ *(2026-10-28)*
+
+> **Built 2026-10-28 (Phase 2), in both places.** `zonal/hazard_screening.py`
+> (C27's own site): a timed-out context is now `status: "timeout"`, not
+> `"unavailable"`; a ward hazard block with any timed-out input is
+> `status: "timeout"` with `score` and `tier` `null` and the error kept in
+> `error` / `timed_out_inputs`, and every non-available input's status and
+> error survive in `input_status`. In the analysis pipeline every context
+> layer and spatial input is a timed stage; a module with an input that timed
+> out or failed is emitted with that status and no tier (the partial score is
+> withheld, `score_from_partial_inputs_withheld`), and every ward unit
+> inherits it. A run with any incomplete stage is never cached, so a retry
+> can complete it. Tests: `tests/test_item38_timeout_not_tier.py` — two runs
+> give identical tiers or an explicit `timeout` status, on both paths.
 Preserve the error at the ward boundary. A timeout must produce
 `status: "timeout"`, **never a tier**.
 
 **Acceptance:** two consecutive runs of the same wards produce identical tiers,
 or explicitly differing `status` fields explaining why.
 
-### 39. C15 — derive the claim, do not latch it
+### 39. C15 — derive the claim, do not latch it ✅ *(2026-10-28)*
+
+> **Built 2026-10-28 (Phase 2).** Legacy pipeline (C15's site):
+> `pipeline.derive_osm_context()` computes `osm_available`,
+> `road_access_scores_reliable` and `road_score_method` after the distance
+> map and every segment score exist; a run whose scores are all the -1.0
+> sentinel, or that has no distance map, can no longer claim
+> `distance_transform`. Analysis pipeline: `osm_coverage.osm_claims` is
+> derived after the layer is built and pluvial has run (`osm_available` from
+> the ways actually retrieved, `road_conduits_used_by_pluvial` from pluvial's
+> own `components_used`). Tests: `tests/test_item39_derived_claims.py`.
 Compute `osm_available` and the reliability claim **from the actual outcome**,
 after the map is built.
 

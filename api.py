@@ -22,7 +22,7 @@ from pydantic import BaseModel
 from datetime import datetime
 from dotenv import load_dotenv
 
-from configs.legacy_pipeline import legacy_pipeline_marker
+from configs.legacy_pipeline import RETIRED, legacy_pipeline_marker, mark_retired
 
 # Load .env BEFORE _load_api_key() runs at import, below. Without this the
 # module-level API_KEY read happens against the raw process environment and a
@@ -124,6 +124,8 @@ async def require_api_key(request: Request, call_next):
     """
     if request.method == "OPTIONS":
         return await call_next(request)
+    if is_public_read(request.method, request.url.path):
+        return await call_next(request)
 
     presented = request.headers.get(API_KEY_HEADER_NAME)
     if presented is None or not secrets.compare_digest(presented, API_KEY):
@@ -141,6 +143,23 @@ async def require_api_key(request: Request, call_next):
             },
         )
     return await call_next(request)
+
+# ── Public read-only results (Phase 2, 2026-10-28) ──
+#
+# Stored analysis results are public to READ: GET only, and only under
+# /api/results. Everything that triggers computation (POST /api/analyze,
+# /api/legacy/analyze, /api/analyze_inundation) and everything that serves
+# legacy run data (/api/runs, /api/demo, the /runs mount) still needs the key.
+# The exemption is a fullmatch on the path, so /api/resultsX or a mount
+# cannot ride on it, and it sits in the same middleware as the key check, so
+# coverage stays a property of the perimeter (C35).
+PUBLIC_READ_METHODS = frozenset({"GET"})
+PUBLIC_READ_PATH = re.compile(r"/api/results(/[A-Za-z0-9_:-]+)*")
+
+
+def is_public_read(method: str, path: str) -> bool:
+    return method in PUBLIC_READ_METHODS and PUBLIC_READ_PATH.fullmatch(path) is not None
+
 
 # ── Static file mount ──
 # Serves pipeline run outputs (landcover.png, landcover_confidence.png, etc.)
@@ -503,6 +522,29 @@ class AnalyzeRequest(BaseModel):
     demo: bool = False
 
 
+class AnalysisRequest(BaseModel):
+    west: float
+    south: float
+    east: float
+    north: float
+    start_date: str | None = None
+    end_date: str | None = None
+    aoi_label: str = "aoi"
+    # An ingested boundary layer (data/boundaries/<id>) whose wards become an
+    # extra aggregation unit type. Whitelisted like aoi_label: it is a path
+    # component.
+    boundary_layer_id: str | None = None
+    demo: bool = False
+
+
+def validate_boundary_layer_id(bid: str) -> str:
+    if not _matches_label_whitelist(bid):
+        raise HTTPException(status_code=400, detail="Invalid boundary_layer_id.")
+    if not (Path("data/boundaries") / bid / "manifest.json").exists():
+        raise HTTPException(status_code=400, detail="Unknown boundary_layer_id.")
+    return bid
+
+
 class InundationRequest(BaseModel):
     """Phase 8: separate request shape, deliberately NOT reusing
     AnalyzeRequest's single start_date/end_date pair, per the master
@@ -542,13 +584,52 @@ def get_demo():
     if not data:
         raise HTTPException(status_code=404, detail="No Dharavi run found. Run pipeline first.")
     data.setdefault("legacy_pipeline", legacy_pipeline_marker())
+    mark_retired(data)
     data["_demo_mode"] = True
     data["_auto_refresh"] = SCHEDULER_DISABLED_REASON
     return data
 
 
 @app.post("/api/analyze")
-def analyze(req: AnalyzeRequest):
+def analyze(req: AnalysisRequest):
+    """The analysis pipeline (analysis/run.py): no 7-class classifier. Serves
+    a stored result when the same AOI + dates + version was run before."""
+    validate_aoi_label(req.aoi_label)
+    if req.boundary_layer_id is not None:
+        validate_boundary_layer_id(req.boundary_layer_id)
+    if req.demo:
+        raise HTTPException(status_code=400, detail=(
+            "demo serves the legacy 7-class pipeline's stored Dharavi run: "
+            "use GET /api/demo (legacy, retired)."))
+    if req.west >= req.east or req.south >= req.north:
+        raise HTTPException(status_code=400, detail="Invalid bounding box.")
+    aoi_geo = compute_aoi_geodesics(req.west, req.south, req.east, req.north)
+    if aoi_geo["area_km2"] > MAX_AOI_AREA_KM2:
+        raise HTTPException(status_code=400, detail=(
+            f"AOI too large: {aoi_geo['area_km2']:.2f} km². Keep under {MAX_AOI_AREA_KM2} km²."))
+    from analysis import store
+    from analysis.run import resolve_window
+    try:
+        resolve_window(req.start_date, req.end_date)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=f"Invalid dates: {e}")
+    try:
+        out = store.analyze((req.west, req.south, req.east, req.north), req.start_date,
+                            req.end_date, name=req.aoi_label, boundary_id=req.boundary_layer_id,
+                            root=str(RESULTS_ROOT))
+    except Exception as e:
+        # Items 54/55: name the class at the HTTP boundary.
+        raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}")
+    if out["result_id"]:
+        out["url"] = f"/api/results/{out['result_id']}"
+    return out
+
+
+@app.post("/api/legacy/analyze")
+def legacy_analyze(req: AnalyzeRequest):
+    """LEGACY: the retired 7-class pipeline (08_STATE.md §RETIRED), kept
+    reachable only here. Every block of its result is labelled "retired".
+    It currently fails at CAAT loading (CaatProvenanceError, C62)."""
     # C16: validate first, unconditionally, and OUTSIDE the try/except below.
     # That block catches bare `Exception`, and HTTPException IS an Exception,
     # so a 400 raised inside it would be swallowed and re-raised as a 500.
@@ -652,6 +733,9 @@ def list_runs():
                 "dominant_category": data.get("summary", {}).get("dominant_category"),
                 "total_segments": data.get("summary", {}).get("total_segments"),
                 "relative_elevation_proxy_score": data.get("relative_elevation_proxy", {}).get("score"),
+                # Every run listed here is a legacy 7-class run (or an
+                # inundation run beside them); none is a current result.
+                "validation_status": RETIRED if _is_legacy_result(data) else None,
             })
     return {"runs": runs}
 
@@ -669,7 +753,19 @@ def get_run(run_id: str):
         # match the whitelist, so it cannot carry markup or separators.
         raise HTTPException(status_code=404, detail=f"Run {run_id} not found.")
     with open(result_path) as f:
-        return json.load(f)
+        data = json.load(f)
+    if _is_legacy_result(data):
+        # Stored runs predating the marker and the label get both here; the
+        # file on disk is not modified.
+        data.setdefault("legacy_pipeline", legacy_pipeline_marker())
+        mark_retired(data)
+    return data
+
+
+def _is_legacy_result(data: dict) -> bool:
+    """A run_pipeline() result: it carries the marker, or (before the marker
+    existed) the 7-class `landcover` block."""
+    return isinstance(data, dict) and ("legacy_pipeline" in data or "landcover" in data)
 
 
 @app.get("/api/vector/coverage")
@@ -689,6 +785,90 @@ def vector_coverage():
     return {**report, "source_file": path}
 
 
+# ── Results: public, read-only (Phase 2) ──
+
+RESULTS_ROOT = Path("data/results")
+WARD_PAGE_MAX = 1000
+
+
+def _load_result(result_id: str) -> dict:
+    from analysis import store
+    if not store.valid_id(result_id):
+        raise HTTPException(status_code=400, detail="Invalid result id.")
+    r = store.get(result_id, str(RESULTS_ROOT))
+    if r is None:
+        raise HTTPException(status_code=404, detail=f"Result {result_id} not found.")
+    return r
+
+
+def _load_unit_type(result_id: str, unit_type: str):
+    from analysis import store
+    from analysis.wards import ward_context
+    r = _load_result(result_id)
+    units = store.get_units(result_id, str(RESULTS_ROOT)) or {}
+    if unit_type not in units:
+        raise HTTPException(status_code=404, detail="Unknown unit type for this result.")
+    return r, units[unit_type], ward_context(r)
+
+
+@app.get("/api/results")
+def list_results():
+    from analysis import store
+    return {"results": store.list_results(str(RESULTS_ROOT))}
+
+
+@app.get("/api/results/{result_id}")
+def get_result(result_id: str):
+    return _load_result(result_id)
+
+
+@app.get("/api/results/{result_id}/maps/{name}")
+def get_result_map(result_id: str, name: str):
+    """A stored map as RGBA PNG. No-data is alpha 0 (item 37); the legend is
+    in the result's `maps` block."""
+    from fastapi.responses import Response
+    from analysis import store
+    _load_result(result_id)
+    try:
+        png = store.get_map(result_id, name, str(RESULTS_ROOT))
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid map name.")
+    if png is None:
+        raise HTTPException(status_code=404, detail="Unknown map for this result.")
+    return Response(content=png, media_type="image/png")
+
+
+@app.get("/api/results/{result_id}/wards")
+def get_result_wards(result_id: str):
+    """The unit types of a result: item 22's grid / footprint / path units,
+    and ward:<boundary_id> when a boundary layer was given."""
+    r = _load_result(result_id)
+    return {"result_id": result_id, "unit_types": r["wards"]}
+
+
+@app.get("/api/results/{result_id}/wards/{unit_type}")
+def get_result_ward_page(result_id: str, unit_type: str, offset: int = 0, limit: int = 100):
+    from analysis.wards import materialize
+    if offset < 0 or not (1 <= limit <= WARD_PAGE_MAX):
+        raise HTTPException(status_code=400, detail=f"offset >= 0, 1 <= limit <= {WARD_PAGE_MAX}.")
+    r, block, ctx = _load_unit_type(result_id, unit_type)
+    page = block["units"][offset:offset + limit]
+    return {"result_id": result_id, "unit_type": unit_type, "status": block["status"],
+            "n_units": block["n_units"], "offset": offset, "limit": limit,
+            "osm_coverage": block.get("osm_coverage"),
+            "units": [materialize(u, unit_type, ctx) for u in page]}
+
+
+@app.get("/api/results/{result_id}/wards/{unit_type}/{unit_id}")
+def get_result_ward(result_id: str, unit_type: str, unit_id: str):
+    from analysis.wards import materialize
+    r, block, ctx = _load_unit_type(result_id, unit_type)
+    for u in block["units"]:
+        if str(u.get("unit_id")) == unit_id:
+            return materialize(u, unit_type, ctx)
+    raise HTTPException(status_code=404, detail="Unknown unit for this result.")
+
+
 @app.get("/api/scheduler/status")
 def scheduler_status():
     """Auto-refresh status: disabled since 2026-09-25 (C46)."""
@@ -705,8 +885,8 @@ RETIRED_PIPELINE_DETAIL = (
     "The legacy 7-class pipeline is retired and not validated "
     "(08_STATE.md; finding C46). POST /api/scheduler/trigger and the 5-day "
     "auto-refresh are disabled. "
-    "POST /api/analyze still runs it, and its results are marked "
-    "'legacy_pipeline'."
+    "POST /api/legacy/analyze still runs it, and its results are marked "
+    "'legacy_pipeline' and labelled 'retired'."
 )
 
 

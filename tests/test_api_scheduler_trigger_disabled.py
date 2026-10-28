@@ -77,9 +77,10 @@ def test_trigger_still_requires_auth_first():
     assert TestClient(api.app).post("/api/scheduler/trigger").status_code == 401
 
 
-def test_analyze_is_not_disabled(authed):
+def test_legacy_analyze_is_not_disabled(authed):
+    """The retired pipeline stays reachable, as legacy only, at its own route."""
     api, client = authed
-    r = client.post("/api/analyze", json={"aoi_label": "dharavi", "west": 72.836,
+    r = client.post("/api/legacy/analyze", json={"aoi_label": "dharavi", "west": 72.836,
                                           "south": 19.037, "east": 72.862, "north": 19.060})
     assert r.status_code == 200
     assert r.json()["legacy_pipeline"]["retired"] is True

@@ -11,7 +11,7 @@ from ingestion.segmentation import load_sam, segment_tile, encode_mask_rle
 from perception.applicability import compute_applicability, finalize_applicability
 from perception.applicability_gate import annotate as annotate_applicability
 from configs.palette import palette_for_result
-from configs.legacy_pipeline import legacy_pipeline_marker
+from configs.legacy_pipeline import legacy_pipeline_marker, mark_retired
 from perception.hydrological_surfaces import compute_hydrological_surfaces
 from ingestion.rainfall import get_rainfall_climatology
 from susceptibility.pluvial import compute_pluvial_susceptibility, save_pluvial_susceptibility_output
@@ -97,6 +97,28 @@ def _apply_osm_labels_to_segments(segments: list, osm_features: dict,
         seg["dominant_landcover_category"] = seg.pop("category")
 
     return segments
+
+
+ROAD_ACCESS_SENTINEL = -1.0   # compute_road_access_score(): "OSM unavailable"
+
+
+def derive_osm_context(roads_gdf, full_dist_map, segments: list) -> dict:
+    """Item 39 (C15): the OSM claims, derived from what actually happened,
+    after the distance map and every segment score exist -- never latched
+    from `roads_gdf is not None` before them. A run whose scores are all the
+    -1.0 sentinel cannot claim reliable distance-transform scores."""
+    scores = [s.get("road_access_score") for s in segments]
+    real = [x for x in scores if x is not None and x != ROAD_ACCESS_SENTINEL]
+    reliable = bool(real) and full_dist_map is not None
+    return {
+        "osm_available": roads_gdf is not None and len(roads_gdf) > 0,
+        "road_segments": len(roads_gdf) if roads_gdf is not None else 0,
+        "road_access_scores_reliable": reliable,
+        "road_score_method": "distance_transform" if reliable else "unavailable",
+        "road_access_scored_segments": len(real),
+        "road_access_sentinel_segments": len(scores) - len(real),
+        "claims_derived_from": "outcome (distance map and segment scores)",
+    }
 
 
 def _context_layer(layer: str, fn, *args, **kwargs) -> dict:
@@ -217,7 +239,7 @@ def run_pipeline(
     if not tiles:
         result["status"] = "failed"
         result["error"] = "No tiles generated — AOI may be too small or imagery unavailable."
-        return result
+        return mark_retired(result)
 
     full_width = raster_info["width"]
     full_height = raster_info["height"]
@@ -737,16 +759,17 @@ def run_pipeline(
                       "window.",
         },
         "osm_context": {
-            "osm_available": osm_available,
-            "road_segments": len(roads_gdf) if roads_gdf is not None else 0,
+            **derive_osm_context(roads_gdf, full_dist_map, segments),
             "waterway_features": (
                 len(osm_features.get("waterways"))
                 if osm_features.get("waterways") is not None else 0
             ),
-            "road_access_scores_reliable": osm_available,
-            "road_score_method": "distance_transform" if osm_available else "unavailable",
         },
     })
+
+    # Every block of this retired pipeline's result is labelled "retired"
+    # (configs/legacy_pipeline.py), whatever its module labelled it.
+    mark_retired(result)
 
     output_path = os.path.join(run_dir, "result.json")
     with open(output_path, "w") as f:
@@ -783,8 +806,8 @@ def run_pipeline(
     print(f"Waterlogging susceptibility: {waterlogging_result.get('aoi_mean_class')} (score={waterlogging_result.get('aoi_mean_score')}, status={waterlogging_result.get('status')})")
     print(f"Terrain slope: mean={slope_context.get('mean_slope_deg')}deg (status={slope_context.get('status')})")
     print(f"FABDEM bare-earth elevation: mean={fabdem_elevation.get('mean_elevation_m')}m (status={fabdem_elevation.get('status')})")
-    print(f"OSM available: {osm_available}")
-    print(f"Road score method: {'distance_transform' if osm_available else 'unavailable'}")
+    print(f"OSM available: {result['osm_context']['osm_available']}")
+    print(f"Road score method: {result['osm_context']['road_score_method']}")
     print(f"LOCO mean mIoU (model provenance): {loco_mean_miou} (+/- {loco_std_miou}, {loco_n_folds} folds)")
     print(f"Population context: status={population_context.get('status')}, "
           f"year={population_context.get('population_year')}")

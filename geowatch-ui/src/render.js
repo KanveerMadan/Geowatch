@@ -41,3 +41,24 @@ export function segmentGrid(result) {
   const ok = v => typeof v === 'number' && Number.isFinite(v) && v > 0
   return ok(w) && ok(h) ? { width: w, height: h } : null
 }
+
+/*
+ * Item 36 (C33) — absent is not measured-zero.
+ *
+ * Reads one output of the analysis result contract (analysis/contract.py):
+ * {value, status, ...}. The backend guarantees a null value always carries
+ * the status that says why, and a number is always a measurement. This
+ * keeps the two apart on screen: absent renders as MISSING plus the reason
+ * ("not computed", "insufficient observation", ...), a measured zero
+ * renders as "0.0%". Same pattern as `road_access_score === -1 ? 'N/A'`:
+ * the sentinel is checked first, never folded into a number.
+ */
+export function fmtMeasured(output, { percent = true, digits = 1 } = {}) {
+  if (!output || typeof output !== 'object') return { text: MISSING, absent: true, reason: null }
+  const v = output.value
+  if (v === null || v === undefined || typeof v !== 'number' || !Number.isFinite(v)) {
+    return { text: MISSING, absent: true, reason: humanize(output.status ?? 'unknown') }
+  }
+  const text = percent ? `${(v * 100).toFixed(digits)}%` : v.toFixed(digits)
+  return { text, absent: false, reason: null }
+}

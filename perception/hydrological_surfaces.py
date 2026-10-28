@@ -25,9 +25,27 @@ def compute_hydrological_surfaces(category_area_pct: dict) -> dict:
             inference_result (see compute_area_stats() in inference.py)
 
     Returns:
-        dict with impervious_fraction_pct, infiltration_proxy_pct,
+        dict with status, impervious_fraction_pct, infiltration_proxy_pct,
         and per-class contribution breakdowns for transparency.
+
+    Item 34 (C21): the failure path. When the model classified NO pixel --
+    `category_area_pct` empty, or every share zero, i.e. an all-unknown AOI --
+    there is no evidence for either surface, so both are None with status
+    "insufficient_evidence". Before this they were 0.0 with no status, which
+    finalize_applicability() and waterlogging read as a measured zero and
+    turned into a confident "very_low".
     """
+    known_pct = sum(v for v in (category_area_pct or {}).values() if v)
+    if known_pct <= 0:
+        return {
+            "status": "insufficient_evidence",
+            "reason": "No pixel was classified (all-unknown AOI): there is no "
+                      "evidence for imperviousness or infiltration.",
+            "impervious_fraction_pct": None,
+            "infiltration_proxy_pct": None,
+            "method": "weighted_sum_of_category_area_pct",
+            "validated": False,
+        }
     impervious_contributions = {}
     impervious_total = 0.0
     for cat, weight in IMPERVIOUS_CLASS_WEIGHTS.items():
@@ -45,6 +63,7 @@ def compute_hydrological_surfaces(category_area_pct: dict) -> dict:
         infiltration_total += contribution
 
     return {
+        "status": "available",
         "impervious_fraction_pct": round(impervious_total, 2),
         "impervious_contributions_by_class": impervious_contributions,
         "infiltration_proxy_pct": round(infiltration_total, 2),

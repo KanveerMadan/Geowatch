@@ -282,6 +282,22 @@ def test_analyze_500_names_the_exception_class(api_module, monkeypatch):
     monkeypatch.setattr(pipeline, "run_pipeline", boom)
     client = TestClient(api_module.app,
                         headers={api_module.API_KEY_HEADER_NAME: api_module.API_KEY})
+    r = client.post("/api/legacy/analyze", json={**BBOX, "aoi_label": "dharavi"})
+    assert r.status_code == 500
+    assert "EEException" in r.json()["detail"]
+
+
+def test_new_analyze_500_names_the_exception_class(api_module, monkeypatch):
+    """Same convention at the Phase 2 analysis route."""
+    from fastapi.testclient import TestClient
+    import analysis.store
+
+    def boom(*args, **kwargs):
+        raise ee.EEException("quota")
+
+    monkeypatch.setattr(analysis.store, "analyze", boom)
+    client = TestClient(api_module.app,
+                        headers={api_module.API_KEY_HEADER_NAME: api_module.API_KEY})
     r = client.post("/api/analyze", json={**BBOX, "aoi_label": "dharavi"})
     assert r.status_code == 500
     assert "EEException" in r.json()["detail"]
