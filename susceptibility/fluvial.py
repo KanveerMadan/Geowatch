@@ -22,6 +22,11 @@ def _classify(score):
     return "very_high"
 
 
+# Item 26 task 8 (Tier 2, experiments/flood_validation/result_2026-10-28.json):
+# AUC 0.448 against JRC recurrent water, 9 AOIs, bar 0.70: failed.
+# "failed" = tested against the pre-registered bar and did not pass.
+VALIDATION_STATUS = "failed"
+
 from perception.applicability_gate import gated
 
 
@@ -37,6 +42,7 @@ def compute_fluvial_susceptibility(hand_context: dict) -> dict:
     if hand_context.get("status") != "available":
         return {
             "status": "insufficient_evidence",
+            "validation_status": VALIDATION_STATUS,
             "reason": f"MERIT Hydro HAND unavailable: {hand_context.get('error')}",
         }
 
@@ -69,6 +75,7 @@ def compute_fluvial_susceptibility(hand_context: dict) -> dict:
 
     return {
         "status": "experimental",
+        "validation_status": VALIDATION_STATUS,
         "aoi_mean_score": round(score, 4),
         "aoi_mean_class": _classify(score),
         "mean_hnd_m": mean_hnd,
