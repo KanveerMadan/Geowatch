@@ -1,26 +1,34 @@
 """
-Phase 7: flash-flood susceptibility baseline. STATIC/SCREENING SLICE
-ONLY. Combines three AOI-WIDE SCALAR signals: terrain slope (Phase 7,
-new), upstream catchment size (Phase 5's hand_context, reused), and
-rainfall climatology (Phase 4's rainfall_climatology, reused).
+Flash-flood susceptibility, per pixel (item 26 Phase 1a; was an AOI-wide
+scalar of slope, catchment size and CHIRPS annual total, Phase 7). STATIC /
+SCREENING SLICE ONLY. Method fixed in
+experiments/flood_validation/PREREGISTRATION_ROUND2.md before any run.
 
-The rainfall component is DELIBERATELY WEAK EVIDENCE, flagged
-explicitly: CHIRPS mean_annual_mm is a long-term climatology mean, NOT
-an extreme-rainfall-intensity statistic (e.g. no 24hr/1hr percentile).
-Flash floods are driven by short-duration intensity, not annual totals
--- a place with high but evenly-distributed annual rainfall is not
-necessarily flash-flood-prone, while a place with lower annual totals
-but occasional violent bursts could be. This proxy cannot distinguish
-those cases. A real fix (rainfall intensity percentiles via GPM IMERG)
-is deferred to Phase 9 (event hazard).
+Components on the hydrology grid (susceptibility/hydro_rasters.py), each 0-1:
+
+    valley_floor        1 - HAND / FLASH_FLOOD_HAND_NORMALIZATION_MAX_M
+    steep_surroundings  mean slope within FLASH_FLOOD_RELIEF_RADIUS_M
+                        / FLASH_FLOOD_SLOPE_NORMALIZATION_MAX_DEG
+    small_catchment     1 - upa_near / FLASH_FLOOD_SMALL_CATCHMENT_MAX_KM2
+    rainfall_intensity  IMERG p99.9 half-hourly rate
+                        / FLASH_FLOOD_INTENSITY_NORMALIZATION_MAX_MM_H
+
+Steepness is the SURROUNDING relief, not the cell's own slope: flash floods
+fill flat valley floors under steep ground, and a cell's own slope would rank
+the hillsides above them. Rainfall is now an intensity statistic, not the
+annual total -- round 1's stated weak proxy. At 0.1 deg it is near-constant
+over a city AOI, so it sets the level between places, not the pattern within
+one. Weighted mean (FLASH_FLOOD_WEIGHTS); weights change only on the round-2
+tuning events. Ceilings provisional.
 """
+import numpy as np
 
 from configs.flash_flood_constants import (
-    FLASH_FLOOD_SLOPE_NORMALIZATION_MAX_DEG,
-    FLASH_FLOOD_SMALL_CATCHMENT_MAX_KM2,
-    FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM,
-    FLASH_FLOOD_CLASS_BREAKS,
+    FLASH_FLOOD_CLASS_BREAKS, FLASH_FLOOD_HAND_NORMALIZATION_MAX_M,
+    FLASH_FLOOD_INTENSITY_NORMALIZATION_MAX_MM_H, FLASH_FLOOD_SLOPE_NORMALIZATION_MAX_DEG,
+    FLASH_FLOOD_SMALL_CATCHMENT_MAX_KM2, FLASH_FLOOD_WEIGHTS,
 )
+from susceptibility.hydro_rasters import clip01, layer, map_summary, weighted_map
 
 
 def _classify(score):
@@ -32,110 +40,91 @@ def _classify(score):
     return "very_high"
 
 
-# Item 26 task 8 (Tier 2, experiments/flood_validation/result_2026-10-28.json):
-# AUC 0.447 against Sentinel-1 event extents, 3 events, bar 0.70: failed.
-# "failed" = tested against the pre-registered bar and did not pass.
-VALIDATION_STATUS = "failed"
+# Item 26 Phase 1a, round 2 (experiments/flood_validation/result_round2_2026-10-28.json):
+# not-run -- 1 of 3 held-out events had >= 50 flooded cells (Kastelli 0.881;
+# Volos 0 flooded, Choloma outside its EMS product), fewer than the 2 required.
+# Not-run is "experimental": the per-pixel method is untested at the bar.
+# (Round 1's scalar method failed, 0.447; that method is gone.)
+VALIDATION_STATUS = "experimental"
 
 from perception.applicability_gate import gated
 
+INPUT_LAYERS = ("hand_m", "relief_slope_deg", "upa_near_km2", "rain_intensity_mm_h")
+
+
+def components(rasters: dict) -> dict:
+    """{name: 0-1 array or None}. Pure; the harness tunes weights on these."""
+    hand, relief = layer(rasters, "hand_m"), layer(rasters, "relief_slope_deg")
+    upa, rain = layer(rasters, "upa_near_km2"), layer(rasters, "rain_intensity_mm_h")
+    return {
+        "valley_floor": None if hand is None
+        else clip01(1.0 - hand / FLASH_FLOOD_HAND_NORMALIZATION_MAX_M),
+        "steep_surroundings": None if relief is None
+        else clip01(relief / FLASH_FLOOD_SLOPE_NORMALIZATION_MAX_DEG),
+        "small_catchment": None if upa is None
+        else clip01(1.0 - upa / FLASH_FLOOD_SMALL_CATCHMENT_MAX_KM2),
+        "rainfall_intensity": None if rain is None
+        else clip01(rain / FLASH_FLOOD_INTENSITY_NORMALIZATION_MAX_MM_H),
+    }
+
+
+def combine(comps: dict, weights: dict = None):
+    return weighted_map(comps, FLASH_FLOOD_WEIGHTS if weights is None else weights)
+
 
 @gated("flash_flood")
-def compute_flash_flood_susceptibility(slope_context: dict, hand_context: dict,
-                                        rainfall_climatology: dict) -> dict:
+def compute_flash_flood_susceptibility(rasters: dict = None, weights: dict = None) -> dict:
     """
     Args:
-        slope_context: output of ingestion.hydrology.get_slope_stats()
-        hand_context: output of ingestion.hydrology.get_merit_hand_context()
-            (Phase 5) -- reused for max_upstream_area_km2, NOT for HAND
-            itself (flash-flood doesn't use HAND directly; waterlogging
-            does, with a different physical interpretation -- see that
-            module).
-        rainfall_climatology: output of ingestion.rainfall.get_rainfall_climatology()
-            (Phase 4) -- reused, see module docstring for why this is a
-            weak proxy here specifically.
+        rasters: susceptibility.hydro_rasters.fetch_hydro_rasters() output.
+        weights: override FLASH_FLOOD_WEIGHTS (the validation harness only).
 
     Returns:
-        dict matching the master schema's susceptibility.flash_flood shape.
+        dict matching the master schema's susceptibility.flash_flood shape,
+        plus `susceptibility_map` (per-pixel, NaN = no data).
     """
-    slope_available = slope_context is not None and slope_context.get("status") == "available"
-    catchment_available = (
-        hand_context is not None
-        and hand_context.get("status") == "available"
-        and hand_context.get("max_upstream_area_km2") is not None
-    )
-    rainfall_available = (
-        rainfall_climatology is not None
-        and rainfall_climatology.get("status") == "available"
-        and rainfall_climatology.get("mean_annual_mm") is not None
-    )
-
-    if not slope_available and not catchment_available:
+    w = FLASH_FLOOD_WEIGHTS if weights is None else weights
+    comps = components(rasters) if rasters else {}
+    terrain = [k for k in ("valley_floor", "steep_surroundings", "small_catchment")
+               if comps.get(k) is not None and w.get(k, 0) > 0]
+    if not terrain:
         return {
             "status": "insufficient_evidence",
             "validation_status": VALIDATION_STATUS,
-            "reason": "Neither slope nor upstream-catchment context is available.",
+            "reason": "No per-pixel terrain raster (HAND, relief slope, upstream area) is available.",
         }
-
-    components_used = []
-    components_excluded = []
-    scores = []
-
-    if slope_available:
-        slope_deg = slope_context["mean_slope_deg"]
-        slope_score = max(0.0, min(1.0, slope_deg / FLASH_FLOOD_SLOPE_NORMALIZATION_MAX_DEG))
-        scores.append(slope_score)
-        components_used.append("terrain_slope")
-    else:
-        components_excluded.append("terrain_slope (unavailable)")
-
-    if catchment_available:
-        upstream_km2 = hand_context["max_upstream_area_km2"]
-        # SMALLER catchment -> higher flash-flood score (faster runoff
-        # concentration). Inverted relative to fluvial's use of the
-        # same upstream-area figure.
-        catchment_score = max(0.0, min(1.0, 1.0 - (upstream_km2 / FLASH_FLOOD_SMALL_CATCHMENT_MAX_KM2)))
-        scores.append(catchment_score)
-        components_used.append("small_catchment_upstream_area")
-    else:
-        components_excluded.append("upstream_catchment_area (unavailable)")
-
-    if rainfall_available:
-        rainfall_mm = rainfall_climatology["mean_annual_mm"]
-        rainfall_score = max(0.0, min(1.0, rainfall_mm / FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM))
-        scores.append(rainfall_score)
-        components_used.append("rainfall_climatology_proxy")
-    else:
-        components_excluded.append("rainfall_climatology (unavailable)")
-
-    score = sum(scores) / len(scores)
-
+    used = [k for k, c in comps.items() if c is not None and w.get(k, 0) > 0]
+    errors = (rasters or {}).get("errors", {})
+    excluded = []
+    for k in comps:
+        if k in used:
+            continue
+        why = "weight 0" if comps[k] is not None else "unavailable"
+        if k == "rainfall_intensity" and "rain_intensity_mm_h" in errors:
+            why += f": {errors['rain_intensity_mm_h']}"
+        excluded.append(f"{k} ({why})")
+    m = combine(comps, w)
     return {
         "status": "experimental",
         "validation_status": VALIDATION_STATUS,
-        "aoi_mean_score": round(score, 4),
-        "aoi_mean_class": _classify(score),
-        "mean_slope_deg": slope_context.get("mean_slope_deg") if slope_available else None,
-        "max_upstream_area_km2": hand_context.get("max_upstream_area_km2") if catchment_available else None,
-        "rainfall_mean_annual_mm": rainfall_climatology.get("mean_annual_mm") if rainfall_available else None,
-        "components_used": components_used,
-        "components_excluded": components_excluded,
-        "method": "slope_catchment_rainfall_unweighted_average",
-        "validated": False,
-        "spatial": False,
+        **map_summary(m, _classify),
+        "susceptibility_map": m,
+        "components_used": used,
+        "components_excluded": excluded,
+        "weights": dict(w),
+        "inputs": {k: {kk: v[kk] for kk in ("source", "method", "validation_status")}
+                   for k, v in rasters["layers"].items() if k in INPUT_LAYERS},
+        "method": "valley_relief_catchment_intensity_per_pixel_weighted",
+        "validated": VALIDATION_STATUS == "validated",
+        "spatial": True,
         "limitations": [
-            "AOI-WIDE SCALAR only -- not a per-pixel spatial raster.",
-            "RAINFALL COMPONENT IS A WEAK PROXY: CHIRPS mean_annual_mm is a "
-            "long-term climatology mean, NOT an extreme-rainfall-intensity "
-            "statistic. Flash floods are driven by short-duration intensity, "
-            "not annual totals -- this cannot distinguish 'high annual, evenly "
-            "distributed rainfall' from 'lower annual, violent bursts'. A real "
-            "fix (GPM IMERG intensity percentiles) is deferred to Phase 9.",
-            "Upstream catchment area reused from MERIT Hydro (~90m resolution) "
-            "-- too coarse for small urban micro-catchments.",
-            "All normalization ceilings (slope 15deg, catchment 50km^2, "
-            "rainfall 2500mm) are provisional, not calibrated against real "
-            "flash-flood outcomes.",
+            "Rainfall intensity is a climatological percentile (IMERG, 0.1 deg), "
+            "not an event forecast, and is near-constant across a city AOI.",
+            "HAND and upstream area are MERIT Hydro (~90m) -- too coarse for "
+            "small urban micro-catchments.",
+            "All normalization ceilings (HAND 10 m, slope 15deg, catchment "
+            "50km^2, intensity 20 mm/h) are provisional, not calibrated "
+            "against real flash-flood outcomes.",
             "Does not account for drainage infrastructure, culvert capacity, "
             "or channel confinement.",
         ],

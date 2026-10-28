@@ -77,6 +77,13 @@ COASTAL_AVAILABLE = {
 }
 SLOPE_AVAILABLE = {"status": "available", "mean_slope_deg": 3.2}
 RAINFALL = {"status": "available", "mean_annual_mm": 1800.0}
+# Item 26 Phase 1a: fluvial, flash flood and waterlogging read per-pixel
+# hydrology rasters on the same 2x2 grid.
+RASTERS = {"status": "available", "shape": (2, 2), "errors": {}, "layers": {
+    k: surface(np.full((2, 2), v), "test", "test", "experimental")
+    for k, v in (("hand_m", 4.0), ("upa_near_km2", 120.0), ("slope_deg", 1.0),
+                 ("relief_slope_deg", 3.2), ("rain_annual_mm", 1800.0),
+                 ("rain_intensity_mm_h", 10.0))}}
 
 
 def _applicability(unknown_pct):
@@ -123,12 +130,11 @@ def _all_blocks(app, surfaces):
     )
     blocks = {
         "pluvial": pluvial,
-        "fluvial": compute_fluvial_susceptibility(HAND_AVAILABLE, applicability=app),
+        "fluvial": compute_fluvial_susceptibility(RASTERS, HAND_AVAILABLE, applicability=app),
         "coastal": compute_coastal_susceptibility(COASTAL_AVAILABLE, None, applicability=app),
-        "flash_flood": compute_flash_flood_susceptibility(
-            SLOPE_AVAILABLE, HAND_AVAILABLE, RAINFALL, applicability=app),
+        "flash_flood": compute_flash_flood_susceptibility(RASTERS, applicability=app),
         "waterlogging": compute_waterlogging_susceptibility(
-            HAND_AVAILABLE, surfaces, RAINFALL, applicability=app),
+            RASTERS, surfaces, applicability=app),
     }
     exposure = {"status": "available", "applicability": build_flag("exposure", app)}
     blocks["exposure"] = exposure
@@ -359,7 +365,7 @@ def test_omitting_applicability_is_reported_not_silently_trusted(ood):
     it through the back door would be worse than the original -- the flag would
     be present and wrong.
     """
-    r = compute_fluvial_susceptibility(HAND_AVAILABLE)
+    r = compute_fluvial_susceptibility(RASTERS, HAND_AVAILABLE)
     assert r["applicability"]["gate"] == "not_wired"
     assert r["applicability"]["trust"] == "unknown"
 

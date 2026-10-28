@@ -22,6 +22,8 @@ def test_defined_once_across_configs():
     assert defs == ["flash_flood_constants.py"], defs
 
 
-def test_both_layers_read_the_same_object():
-    assert getattr(ff, NAME) is getattr(ffc, NAME)
+def test_every_layer_reading_it_reads_the_same_object():
+    # Item 26 Phase 1a: flash flood now reads an IMERG intensity, not the
+    # annual total, so waterlogging is the one consumer left.
     assert getattr(wl, NAME) is getattr(ffc, NAME)
+    assert not hasattr(ff, NAME)

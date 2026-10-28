@@ -2015,6 +2015,199 @@ declare themselves. Every new output carries `validation_status`; none claims
   `validated`). `tests/test_flood_validation_harness.py` (4: AUC, ties,
   pooled counts, verdict and minimums).
 
+#### Phase 1a — flood round 2, on `build/flood2` (2026-10-28) — item 26 stays partial
+
+Pre-registered first, before any round-2 score was computed
+(`experiments/flood_validation/PREREGISTRATION_ROUND2.md`, SHA256
+`f2ab3c74…`, commit `45307b8`). It fixes, per module, the reference events,
+the metric (AUC), the bar (0.70, unchanged), the per-pixel formulas and
+constants, a finite weight grid, and a fixed split into tuning and held-out
+events. Weights move only on tuning events, and the verdict is the held-out
+result.
+
+- **Task 1 — fluvial, flash flood and waterlogging are per-pixel maps.**
+  `susceptibility/hydro_rasters.py` samples their inputs onto one 30 m grid.
+  Each Earth Engine call has a 600 s hard deadline via `ee_timeout.call`,
+  and a rainfall timeout loses only that layer:
+  - MERIT Hydro HAND, bilinear;
+  - MERIT upstream area, focal max within 1 km, so a cell reads the
+    drainage line that floods it, not its own near-zero `upa`;
+  - FABDEM slope, and its 1 km focal mean;
+  - CHIRPS mean annual total;
+  - IMERG V07 p99.9 half-hourly rate over the 10 years before the
+    reference year.
+
+  The modules:
+  - **Fluvial** = `low_hand` (1 − HAND/30) plus an optional `river_size`
+    (log upstream area / log 10,000 km²). Its default weights are round 1's
+    HAND-only method.
+  - **Flash flood** = `valley_floor` (1 − HAND/10), `steep_surroundings`
+    (relief slope/15°, *not* the cell's own slope, which would rank
+    hillsides above the valley floors that flood), `small_catchment`
+    (1 − upa/50 km²) and `rainfall_intensity` (IMERG/20 mm h⁻¹). The last
+    replaces the annual-total proxy.
+  - **Waterlogging** = `low_relief` (1 − HAND/15), per-cell `impervious`
+    (built/0.70), `flatness` (1 − slope/5°) and CHIRPS/2,500 mm.
+
+  The old ceilings are kept as provisional constants, and the new ones are
+  in `configs/*_constants.py`. Each module returns `susceptibility_map`,
+  with `spatial: true`, and `aoi_mean_score` is the map's mean. Without
+  rasters each returns `insufficient_evidence`; there is no scalar
+  fallback. `pipeline.py` fetches the rasters on the flood-input grid
+  (`hydro_rasters` block, contained like every context layer) and saves the
+  three maps. `zonal/hazard_screening.py` scores each ward from the per-pixel
+  maps over its bbox, with rainfall intensity excluded per ward (one 0.1°
+  value cannot rank wards) and recorded. `docs/susceptibility_dag.md` is
+  updated.
+
+  Tests: `tests/test_flood_per_pixel.py` (18), which fail on the old code
+  (ImportError: `hydro_rasters` did not exist). `test_fluvial_susceptibility`
+  was rewritten for rasters (8; all fail on the old code).
+  `test_pipeline_layer_boundary` gained a `fetch_hydro_rasters` stub, and a
+  failed-raster test replaces the old slope one (it errors at setup on the
+  old code). The gating, validation-status, flood-input and rainfall-ceiling
+  tests moved to the new signatures. Suite **727 → 748 passed**, with the
+  same 2 Earth Engine-auth failures.
+
+  *Fix found while running round 2.* Asking Earth Engine for the 10-year
+  IMERG p99.9 on the 30 m grid ran past the deadline twice on the first
+  event. The rainfall layers are now computed on their own native grid
+  (0.05° CHIRPS, 0.1° IMERG), sized from the hydrology grid's footprint, and
+  mapped nearest onto the 30 m cells locally. That is the same pre-registered
+  statistic, and one point took 314 s. They get a 1,200 s deadline, and each
+  module fetches only the rainfall layer it reads. Tests: 3 in
+  `test_flood_per_pixel.py`. They fail on the old code, where
+  `native_grid`, `nearest_from_native` and layer selection did not exist.
+
+- **Task 2 — better references.** `experiments/flood_validation/references.py`
+  adds two sources beside Sentinel-1 and JRC:
+  - **Copernicus EMS rapid-mapping delineations.** These are the public
+    dashboard API's DEL products, `observedEventA` polygons with notation
+    `Flooded area` or `Flood trace`. A 30 m cell is flooded if ≥ half its area
+    is covered (rasterised at 3 m), and valid if ≥ half lies in the product
+    extent. The layer is cached, with its SHA256 in the result. Only
+    activations from EMSR656 (2023) on are public without login.
+  - **The Global Flood Database.** This is MODIS 250 m, scored on 240 m
+    blocks.
+
+  Sentinel-1 is tightened to the earliest acquisition date in the event
+  window, against a same-relative-orbit pre-event median. Each reference
+  records its source, resolution and the dates of the images actually used.
+  JRC permanent water is excluded everywhere. Earth Engine calls run under a
+  600 s hard deadline, and HTTP under 120 s. Tests:
+  `tests/test_flood_references_round2.py` (8; they fail on the old code,
+  where the module does not exist).
+
+- **Task 3 — coastal gets a testable Sentinel-1 window.** The window is
+  pre-registered as the event day through day + 12
+  (`S1_EVENT_WINDOW_DAYS["coastal"] = 13`), against 3 days for the other
+  modules. Twelve days is Sentinel-1's single-satellite repeat since S1B
+  failed, so it is the shortest window that guarantees a pass. Round 1's
+  3-day window held no image at any coastal site (C53). The stated cost is
+  that surge water drains within days, so a late image undercounts: Beira's
+  and Fort Myers Beach's first images are at day + 4. Chennai has no image
+  within + 12 (its next is + 20 or later) and is dropped from coastal. Tests:
+  3 added to `tests/test_flood_references_round2.py`. They fail on the old
+  code, where the constant does not exist. Both coastal sites are not-run
+  under round 1's window and testable under the new one.
+
+- **Task 4 — `drainage_disconnection` saturating on flat ground: reported, not
+  fixed (not a bug).** `experiments/drainage_disconnection/diagnose.py` (DEM
+  only) reproduces **0.914** on Dharavi:
+  - 658 of 817 terminal pits are exact flats, which the method treats as
+    pits by design. They include a 295-cell 0.0 m plateau that touches the
+    grid edge.
+  - The other 159 are strict pits, 1.9 cm deep at the median.
+  - Letting outlet-connected flats drain lowers the share only to 0.765.
+
+  The code does what its docstring says. The saturation is centimetre DEM
+  noise under an unfilled D8, so a remedy is a method change, not a bug fix.
+  Recorded as a diagnosis on **C51** (round 1 already filed the saturation; NEEDS FATE). No code changed, so no test.
+
+- **Task 5 — round 2 run: one module validated, one failed, three not-run.**
+  `experiments/flood_validation/harness_round2.py` was run against
+  `result_round2_2026-10-28.json` (pre-registration SHA256 `f2ab3c74…`).
+  Weights were chosen on tuning events only. Each held-out event was scored
+  once, with the chosen weights. The verdict rule: the mean within-event
+  AUC over held-out events, each event needing ≥ 50 flooded and ≥ 50 dry
+  cells, and the module needing ≥ 2 qualifying held-out events. Coastal
+  pools sites, as in round 1.
+
+  | Module | Tuning (chosen weights) | Held-out | Verdict | `validation_status` |
+  |---|---|---|---|---|
+  | **fluvial** | Faenza, Encantado: mean 0.809 with `river_size` 1 (default HAND-only 0.733) | **Hanoi 0.916, Kolonnawa 0.800 → mean 0.858**. Nysa (3 flooded cells) and Hue (10) did not qualify | **validated** | `validated` |
+  | **flash flood** | Paiporta, Derna, Bad Neuenahr: 0.602 with `valley_floor` 0.5 + intensity only; steep and small-catchment weight 0 (default 0.488) | Kastelli 0.881 qualified; Volos had 0 flooded cells; Choloma had no cell inside its EMS product | **not-run** (1 of 2) | `experimental` |
+  | **waterlogging** | 8 JRC AOIs: 0.816 with HAND + rainfall only; impervious and flatness weight 0 (default 0.403) | Nam Dinh 0.472 qualified; Thai Binh had 9 flooded cells; Jakarta GFD had 20 flooded 240 m blocks | **not-run** (1 of 2) | `experimental` (impervious now weight 0, so the placeholder input no longer caps it) |
+  | **pluvial** | Dharavi 0.522 (not tuned) | Milagro 0.350 qualified; Hai Phong and Belize City had 0 flooded cells in their boxes | **not-run** (1 of 2) | `placeholder` (weakest input) |
+  | **coastal** | Kyaukpyu, diagnostic only (score 0.911) | pooled **0.646** over Beira and Fort Myers Beach (S1, first image + 4 d) and Sittwe and Black River (EMS); 2,725 flooded / 46,183 dry cells | **failed** | `failed` |
+
+  **Fluvial is the only `validated` output in the project.** That holds for
+  these events and inputs only: two Asian river cities, at the
+  pre-registered minimum of two. Its tuned weights are in
+  `configs/fluvial_constants.py`.
+
+  Before the verdicts were read, the reference pipeline was cross-checked.
+  For every EMS event, the rasterised flooded cells match the polygon area
+  inside the box (e.g. Hanoi 1,024 cells against 0.910 km²). The empty
+  events are therefore real: the town-centred 4 km boxes missed the mapped
+  flooding (C67). Choloma's pre-registered centre lies outside its product
+  extent (C66). No box was moved after the run.
+
+  **Deviation from the pre-registration, stated:** its Labels section said a
+  not-run module "keeps its current label". For flash flood that is round
+  1's `failed`, a verdict on the scalar method that no longer exists. The
+  decided meaning (`08_STATE.md`, 2026-10-28) is that `experimental` is a
+  real method not yet validated, and the label test already maps not-run to
+  `experimental`, so that was applied (C69).
+
+  Round-2 failures that were fixed before the evaluation ran:
+  - The Open Buildings 2 m paint over HCMC's 11 km box exceeded Earth
+    Engine's request size. It is now fetched in row strips: the same
+    image, test added.
+  - The IMERG timeout (see task 1).
+
+  Runs were stopped before any evaluation was written, and completed events
+  stayed cached. Tests: `tests/test_flood_validation_round2.py` (11:
+  tuning rule, ties, held-out-once, minimums, the registry against the
+  pre-registration, strips; they fail on the old code, where the harness
+  does not exist). `test_scalar_module_validation_status.py` now pins labels
+  to the round-2 result and the config weights to the tuning choice. Suite
+  **748 → 776 passed**, with the same 2 Earth Engine-auth failures.
+
+- **Integration with `master`'s Phase 2 analysis pipeline (at rebase).**
+  `master` gained `analysis/` (`build/backend`) while this branch was open,
+  and it called the scalar signatures.
+  - **Wiring.** `analysis/run.py` now runs a `hydro_rasters` stage on the
+    layer's hydrology grid (`STAGE_TIMEOUT_S["hydro_rasters"] = 1500`).
+    `analysis/hazards.py` feeds it to fluvial, flash flood and waterlogging
+    and counts it as their input for item 38, so its timeout withholds all
+    three. `zonal/hazard_screening.py` routes the per-ward raster fetch
+    through item 38's `_with_input_outcome`.
+  - **Contract.** `analysis/contract.py` pins round 2's result by hash beside
+    round 1's. A module's verdict is its round-2 held-out verdict. Where that
+    is not-run and the method is unchanged since round 1 (pluvial), round 1's
+    verdict stands. The modules round 2 replaced do not inherit round 1's.
+
+  Contract labels now:
+  - pluvial **failed** (round 1);
+  - coastal **failed** (round 2);
+  - flash flood and waterlogging **experimental**;
+  - fluvial **experimental**. Its own label and `tier2_verdict` are
+    `validated`, but the contract's worst-of-inputs rule caps it with its
+    `experimental` raster inputs (C70).
+
+  `hydro_rasters` now sets an Earth Engine request deadline only when none
+  is set, keeping the pipeline's one per-process deadline. Inside that
+  240 s per-request deadline, a ~314 s IMERG request will be recorded as an
+  error, and flash flood runs there without rainfall intensity (C71).
+  Waterlogging lists `impervious` as an input only when it is weighted.
+  `master`'s analysis, contract, item 34 and item 38 tests were moved to the
+  per-pixel inputs, with the same acceptance. A fake raster fetch
+  (`tests/analysis_synth.py`) keeps them offline. The round-2 verdict and
+  label assertions fail on `master`'s code. Suite on `master` at `27a21c6`:
+  **884 passed**. After this branch: **934 passed**, with the same 2 Earth
+  Engine-auth failures.
+
 ---
 
 # PART 5 — Validation discipline 🔓

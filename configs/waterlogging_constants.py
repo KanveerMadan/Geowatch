@@ -29,3 +29,17 @@ WATERLOGGING_CLASS_BREAKS = {
 
 # The rainfall-load ceiling is shared with flash flood and defined once, in
 # configs/flash_flood_constants.py (item 26: it was duplicated here).
+
+# ── Item 26 Phase 1a (round 2): per-pixel waterlogging. Fixed in
+# experiments/flood_validation/PREREGISTRATION_ROUND2.md before any run. ──
+
+# flatness = 1 - slope / this; equal to PLUVIAL_SLOPE_NORMALIZATION_MAX_DEG.
+WATERLOGGING_SLOPE_NORMALIZATION_MAX_DEG = 5.0
+
+# Chosen on the round-2 TUNING events only, from WATERLOGGING_WEIGHT_GRID
+# (result_round2_2026-10-28.json; pre-registered default was all 1).
+WATERLOGGING_WEIGHTS = {'low_relief': 1.0, 'impervious': 0.0, 'flatness': 0.0, 'rainfall_climatology': 1.0}
+WATERLOGGING_WEIGHT_GRID = [
+    {"low_relief": r, "impervious": i, "flatness": f, "rainfall_climatology": 1.0}
+    for r in (0.0, 0.5, 1.0) for i in (0.0, 0.5, 1.0) for f in (0.0, 0.5, 1.0)
+    if (r, i, f) != (0.0, 0.0, 0.0)]

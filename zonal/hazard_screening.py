@@ -48,11 +48,12 @@ hidden:
 import os
 import json
 import threading
+from datetime import date
 
 import geopandas as gpd
 from shapely.geometry import box
 
-from ingestion.hydrology import get_merit_hand_context, get_fabdem_elevation_stats, get_slope_stats
+from ingestion.hydrology import get_merit_hand_context, get_fabdem_elevation_stats
 from ingestion.coastal import get_coastline_context
 from ingestion.rainfall import get_rainfall_climatology
 from ingestion.sentinel2 import aoi_from_bbox
@@ -60,6 +61,7 @@ from ingestion.gee_client import initialize_gee
 from susceptibility.fluvial import compute_fluvial_susceptibility
 from susceptibility.coastal import compute_coastal_susceptibility
 from susceptibility.flash_flood import compute_flash_flood_susceptibility
+from susceptibility.hydro_rasters import fetch_hydro_rasters, utm_grid
 
 NOT_CALCULATED_REASON = (
     "Requires per-ward land-cover classification. Not implemented in Phase 12A."
@@ -318,15 +320,30 @@ def compute_ward_hazard_screening(
             "projects/sat-io/open-datasets/FABDEM", GEE_CALL_TIMEOUT_SECONDS
         )
 
-    fluvial_result = compute_fluvial_susceptibility(hand_context)
+    # Item 26 Phase 1a: fluvial and flash flood are per-pixel maps; the ward
+    # score is the map's mean over the ward bbox. Rainfall is not fetched
+    # per ward: one 0.1 deg IMERG value cannot separate wards, so flash
+    # flood's rainfall_intensity is excluded here (and recorded).
+    try:
+        transform, shape, crs = utm_grid((west, south, east, north))
+        rasters = _call_with_timeout(fetch_hydro_rasters, (west, south, east, north),
+                                     transform, shape, crs, date.today().year, rainfall=False)
+        rasters_context = {"status": "available"}
+    except TimeoutError as e:
+        print(f"    WARNING: {e}")
+        rasters, rasters_context = None, _timed_out_context(
+            "MERIT/Hydro + FABDEM rasters", GEE_CALL_TIMEOUT_SECONDS)
+
+    fluvial_result = compute_fluvial_susceptibility(rasters, hand_context)
     fluvial_block = _with_input_outcome({
         "status": fluvial_result.get("status", "not_calculated"),
+        "validation_status": fluvial_result.get("validation_status"),
         "score": fluvial_result.get("aoi_mean_score"),
         "tier": fluvial_result.get("aoi_mean_class"),
-        "method": "merit_hand_context",
-        "source": "MERIT Hydro + FABDEM elevation",
+        "method": "merit_hand_per_pixel_mean_over_ward_bbox",
+        "source": "MERIT Hydro (HAND, upstream area)",
         **geometry_note,
-    }, {"merit_hand": hand_context})
+    }, {"merit_hand": hand_context, "hydro_rasters": rasters_context})
 
     # ── Coastal: shoreline distance + FABDEM elevation ──
     try:
@@ -350,35 +367,24 @@ def compute_ward_hazard_screening(
         **geometry_note,
     }, {"coastline": coastal_context, "fabdem": fabdem_elevation})
 
-    # ── Flash flood: slope + HAND + ONE shared rainfall value ──
-    try:
-        slope_context = _call_with_timeout(get_slope_stats, west, south, east, north)
-    except TimeoutError as e:
-        print(f"    WARNING: {e}")
-        slope_context = _timed_out_context("COPERNICUS/DEM/GLO30_2024_1", GEE_CALL_TIMEOUT_SECONDS)
-
-    flash_flood_result = compute_flash_flood_susceptibility(
-        slope_context, hand_context, rainfall_climatology
-    )
+    # ── Flash flood: the same per-pixel rasters as fluvial ──
+    flash_flood_result = compute_flash_flood_susceptibility(rasters)
     flash_flood_block = _with_input_outcome({
         "status": flash_flood_result.get("status", "not_calculated"),
+        "validation_status": flash_flood_result.get("validation_status"),
         "score": flash_flood_result.get("aoi_mean_score"),
         "tier": flash_flood_result.get("aoi_mean_class"),
-        "method": "slope_hand_rainfall",
-        "source": "Copernicus DEM GLO-30 (slope) + MERIT Hydro (HAND) + CHIRPS (rainfall)",
-        "rainfall_source": "CHIRPS",
-        "rainfall_resolution": "0.05_deg_approx_5km",
-        "rainfall_temporal_basis": "30_year_climatology",
-        "rainfall_spatial_treatment": "single_aoi_value_reused_across_wards",
+        "method": "valley_relief_catchment_per_pixel_mean_over_ward_bbox",
+        "source": "MERIT Hydro (HAND, upstream area) + FABDEM (relief slope)",
+        "components_excluded": flash_flood_result.get("components_excluded"),
         "rainfall_mean_annual_mm": rainfall_climatology.get("mean_annual_mm"),
         "limitation": (
-            "Localized storm intensity and microclimatic variation within "
-            "the AOI are not captured -- one climatological rainfall value "
-            "is reused across every ward (see module docstring)."
+            "Rainfall intensity is excluded per ward: one 0.1 deg IMERG value "
+            "is near-constant across a city and cannot rank wards. Localized "
+            "storm intensity is not captured (see module docstring)."
         ),
         **geometry_note,
-    }, {"slope": slope_context, "merit_hand": hand_context,
-        "rainfall": rainfall_climatology})
+    }, {"hydro_rasters": rasters_context})
 
     return {
         "unit_id": ward_id,

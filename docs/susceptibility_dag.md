@@ -19,6 +19,15 @@ wiring (see the note there). This document describes the wiring as it stands.
 It is not an endorsement of any input: built area and vegetation are
 `placeholder` until item 21's fractions exist.
 
+**Updated 2026-10-28 for item 26 Phase 1a (`build/flood2`):** fluvial, flash
+flood and waterlogging are **per-pixel maps** on the same 30 m grid, built
+from `susceptibility/hydro_rasters.py`. They read MERIT HAND and upstream area,
+FABDEM slope and relief slope, CHIRPS per pixel and IMERG intensity. They no
+longer read the AOI-wide `hand_context`, `slope_context` or
+`rainfall_climatology` scalars. The edges and the shared-input table below
+are updated to match. Citations into the three rewritten modules are no
+longer line-exact.
+
 Under the validation-first mandate (2026-09-24), none of these layers is
 validated. All weights and ceilings are marked PROVISIONAL in their own
 config files.
@@ -64,30 +73,29 @@ flowchart LR
   RELEV --> PLU
   RAIN --> PLU
 
-  HAND -->|mean_hnd_m| FLU[fluvial]
+  HR((hydro_rasters, per pixel<br/>susceptibility/hydro_rasters.py))
+  HR -->|hand_m, upa_near_km2| FLU[fluvial]
 
   COAST --> COA[coastal]
   FABE --> COA
 
-  SLOPE --> FF[flash flood]
-  HAND -->|max_upstream_area_km2| FF
-  RAIN --> FF
+  HR -->|hand_m, relief_slope_deg,<br/>upa_near_km2, IMERG intensity| FF[flash flood]
 
-  HAND -->|mean_hnd_m| WL[waterlogging]
-  BUILT -->|AOI mean %| WL
-  RAIN --> WL
+  HR -->|hand_m, slope_deg, CHIRPS| WL[waterlogging]
+  BUILT -->|per-cell fraction| WL
 ```
 
 ### Shared inputs (counted from the edges above)
 
 | input | layers that read it | which field |
 |---|---|---|
-| **MERIT Hydro** (`hand_context`) | **fluvial, flash flood, waterlogging (3)** | `mean_hnd_m` (fluvial, waterlogging); `max_upstream_area_km2` (flash flood) |
-| **CHIRPS** (`rainfall_climatology`) | **pluvial, flash flood, waterlogging (3)** | `mean_annual_mm` |
+| **MERIT Hydro** (per pixel since Phase 1a) | **fluvial, flash flood, waterlogging (3)** | `hand_m` (all three); `upa_near_km2` (fluvial, flash flood) |
+| **CHIRPS** | **pluvial, waterlogging (2)** since Phase 1a | AOI `mean_annual_mm` (pluvial); per-pixel annual mean (waterlogging) |
+| **IMERG V07** (Phase 1a) | flash flood (1) | p99.9 half-hourly rate |
 | ~~classifier map (retired)~~ | ~~pluvial, waterlogging (2)~~ **none since item 26** | — |
-| **Open Buildings** built area (item 19 layer) | pluvial, waterlogging (2) | per-cell footprint area fraction (pluvial); its AOI mean (waterlogging) |
-| Copernicus GLO-30 | pluvial, flash flood (2) | AOI-relative elevation (pluvial); mean slope (flash flood) |
-| FABDEM | pluvial, coastal (2) | per-cell terrain on the hydrology grid (pluvial); AOI elevation stats (coastal) |
+| **Open Buildings** built area (item 19 layer) | pluvial, waterlogging (2) | per-cell footprint area fraction (both, since Phase 1a) |
+| Copernicus GLO-30 | pluvial (1) | AOI-relative elevation (pluvial); flash flood's slope moved to FABDEM in Phase 1a |
+| FABDEM | pluvial, coastal, flash flood, waterlogging (4) | per-cell terrain (pluvial); AOI elevation stats (coastal); relief slope (flash flood); slope (waterlogging) |
 | Sentinel-2 vegetation stand-in, OSM highways, shoreline, OSM waterways | one layer each | — |
 
 **Two inputs are each read by three of the five layers:** MERIT Hydro and

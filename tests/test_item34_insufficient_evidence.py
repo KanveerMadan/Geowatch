@@ -36,7 +36,7 @@ def test_legacy_chain_is_insufficient_evidence_throughout():
     app2 = finalize_applicability(app2, hs)
     assert app2["waterlogging"]["status"] == "not_calculated"
     # waterlogging.py's insufficient_evidence branch
-    w = compute_waterlogging_susceptibility(HAND_DOWN, impervious=None)
+    w = compute_waterlogging_susceptibility(None, impervious=None)
     assert w["status"] == "insufficient_evidence"
     assert "aoi_mean_score" not in w and w.get("aoi_mean_class") != "very_low"
 
@@ -46,7 +46,8 @@ def test_before_the_fix_the_same_input_read_as_very_low():
     what an all-unknown AOI produced when the producer had no failure path."""
     from susceptibility.inputs import surface
     zero = surface(np.zeros((3, 3)), "x", "y", "placeholder")
-    w = compute_waterlogging_susceptibility(HAND_DOWN, impervious=zero)
+    # explicit weight: round 2's tuned default gives impervious weight 0
+    w = compute_waterlogging_susceptibility(None, impervious=zero, weights={"impervious": 1.0})
     assert w["aoi_mean_score"] == 0.0 and w["aoi_mean_class"] == "very_low"
 
 
@@ -59,8 +60,14 @@ def _unknown_everything():
         g: None for g in ("arterial", "residential", "service", "narrow_pedestrian", "other")},
         "unavailable": ["arterial", "residential", "service", "narrow_pedestrian", "other"]},
         footprints_4326=[], footprint_source="none")
+    def unknown_rasters(bbox, t, shape, crs, year):
+        r = S.fake_hydro_rasters(bbox, t, shape, crs, year)
+        for v in r["layers"].values():
+            v["raster"] = np.full(shape, np.nan, dtype=np.float32)
+        return r
     return S.deps(context_fns=unavailable, load_layer=lambda n, b: empty,
                   fetch_dem=lambda *a: np.full(a[2], np.nan),
+                  fetch_hydro_rasters=unknown_rasters,
                   fetch_waterways=lambda n, b: {"ways": [], "unavailable": ["waterway"]})
 
 

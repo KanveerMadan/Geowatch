@@ -19,11 +19,13 @@ def ward_sources(monkeypatch):
     monkeypatch.setattr(Z, "get_merit_hand_context", lambda *a: dict(HAND))
     monkeypatch.setattr(Z, "get_fabdem_elevation_stats",
                         lambda *a: {"status": "available", "mean_elevation_m": 8.0})
-    monkeypatch.setattr(Z, "get_slope_stats",
-                        lambda *a: {"status": "available", "mean_slope_deg": 2.0})
     monkeypatch.setattr(Z, "get_coastline_context",
                         lambda *a: {"status": "available", "distance_km": 1.0,
                                     "coastal_connectivity": True})
+    # item 26 Phase 1a: fluvial and flash flood read per-pixel rasters
+    monkeypatch.setattr(Z, "fetch_hydro_rasters",
+                        lambda bbox, t, shape, crs, year, rainfall=True:
+                        S.fake_hydro_rasters(bbox, t, shape, crs, year))
     real = Z._call_with_timeout
     timeouts = set()
 
@@ -59,25 +61,27 @@ def test_ward_timeout_is_a_status_not_a_tier(ward_sources):
 
 
 def test_partial_timeout_cannot_mint_a_different_tier(ward_sources, monkeypatch):
-    """Slope alone times out. Before item 38 flash_flood scored HAND and
-    rainfall without it and emitted a tier that differed from the clean run's."""
+    """The per-pixel rasters alone time out (item 26 Phase 1a: they are
+    fluvial's and flash flood's only scored input). Neither may emit a tier;
+    coastal, which does not read them, keeps the clean run's tier."""
     clean = _ward()
-    monkeypatch.setattr(Z, "get_slope_stats", _named(lambda *a: None, "slow_slope"))
-    ward_sources.add("slow_slope")
+    monkeypatch.setattr(Z, "fetch_hydro_rasters", _named(lambda *a, **k: None, "slow_rasters"))
+    ward_sources.add("slow_rasters")
     timed = _ward()
-    ff = timed["hazards"]["flash_flood"]
-    assert ff["status"] == "timeout" and ff["tier"] is None
-    assert ff["timed_out_inputs"] == ["slope"]
-    assert timed["hazards"]["fluvial"]["tier"] == clean["hazards"]["fluvial"]["tier"]
+    for h in ("fluvial", "flash_flood"):
+        b = timed["hazards"][h]
+        assert b["status"] == "timeout" and b["tier"] is None, h
+        assert b["timed_out_inputs"] == ["hydro_rasters"], h
+    assert timed["hazards"]["coastal"]["tier"] == clean["hazards"]["coastal"]["tier"]
     _consistent(clean, timed)
 
 
 def test_unavailable_input_keeps_its_error_at_the_ward_boundary(ward_sources, monkeypatch):
-    monkeypatch.setattr(Z, "get_slope_stats",
-                        lambda *a: {"status": "unavailable", "error": "no DEM tiles"})
-    ff = _ward()["hazards"]["flash_flood"]
-    assert ff["input_status"]["slope"] == {"status": "unavailable", "error": "no DEM tiles"}
-    assert ff["status"] != "timeout"
+    monkeypatch.setattr(Z, "get_merit_hand_context",
+                        lambda *a: {"status": "unavailable", "error": "no MERIT tiles"})
+    fl = _ward()["hazards"]["fluvial"]
+    assert fl["input_status"]["merit_hand"] == {"status": "unavailable", "error": "no MERIT tiles"}
+    assert fl["status"] != "timeout"
 
 
 def _named(fn, name):
@@ -88,15 +92,21 @@ def _named(fn, name):
 # ── the analysis pipeline ──
 
 def test_pipeline_context_timeout_is_a_status_everywhere(monkeypatch):
-    monkeypatch.setitem(stages.STAGE_TIMEOUT_S, "context", 0.3)
-    r, units = S.run(deps=S.deps(context_fns=S.context_fns({"hand": S.sleeper(2.0)})))
+    """Item 26 Phase 1a: fluvial, flash flood and waterlogging read the
+    per-pixel hydro_rasters stage; its timeout withholds all three."""
+    import time
+    monkeypatch.setitem(stages.STAGE_TIMEOUT_S, "hydro_rasters", 0.3)
+
+    def slow(*a):
+        time.sleep(2.0)
+        return S.fake_hydro_rasters(*a)
+    r, units = S.run(deps=S.deps(fetch_hydro_rasters=slow))
     s = r["outputs"]["susceptibility"]
     for h in ("fluvial", "flash_flood", "waterlogging"):
         assert s[h]["status"] == "timeout" and s[h]["value"] is None and s[h]["tier"] is None, h
-        assert s[h]["incomplete_inputs"]["hand"]["status"] == "timeout"
-    assert s["waterlogging"]["score_from_partial_inputs_withheld"] is True
+        assert s[h]["incomplete_inputs"]["hydro_rasters"]["status"] == "timeout"
     assert s["coastal"]["status"] == "available" and s["pluvial"]["status"] == "available"
-    assert r["stages"]["context:hand"]["status"] == "timeout"
+    assert r["stages"]["hydro_rasters"]["status"] == "timeout"
     ctx = ward_context(r)
     for t, b in units.items():
         m = materialize(b["units"][0], t, ctx)

@@ -33,11 +33,11 @@ def _classify(score):
     return "very_high"
 
 
-# Item 26 task 8 (Tier 2, experiments/flood_validation/result_2026-10-28.json):
-# not-run: no Sentinel-1 image in any pre-registered 3-day event window
-# (C53), so it stays experimental.
+# Item 26 Phase 1a, round 2 (experiments/flood_validation/result_round2_2026-10-28.json):
+# pooled AUC 0.6464 over 4 held-out sites (Beira, Fort Myers Beach on the
+# widened 12-day Sentinel-1 window; Sittwe, Black River on EMS), bar 0.70: failed.
 # "failed" = tested against the pre-registered bar and did not pass.
-VALIDATION_STATUS = "experimental"
+VALIDATION_STATUS = "failed"
 
 from perception.applicability_gate import gated
 
