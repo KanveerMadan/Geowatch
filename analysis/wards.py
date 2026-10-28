@@ -99,10 +99,12 @@ def build_unit_sets(layer, fset: dict, osm_regime: dict, pluvial_10m=None,
             out[t] = {"status": "unavailable", "reason": f"no {t} units could be formed",
                       "n_units": 0, "units": []}
             continue
-        agg = vu.aggregate([p for _, _, p in rows], fr, osm_regime,
-                           fractions=fractions, not_computed=not_computed)
+        polys = [p for _, _, p in rows]
+        agg = vu.aggregate(polys, fr, osm_regime, fractions=fractions, not_computed=not_computed)
+        seen = observation_per_unit(polys, fset)
         units = []
-        for (uid, name, poly), u in zip(rows, agg["units"]):
+        for (uid, name, poly), u, ob in zip(rows, agg["units"], seen):
+            u["observation"] = ob
             u.pop("osm_coverage", None)       # AOI-level, stored once per type
             u["unit_id"] = uid if uid is not None else str(u["unit_index"])
             u["unit_name"] = name
@@ -126,6 +128,38 @@ def build_unit_sets(layer, fset: dict, osm_regime: dict, pluvial_10m=None,
     return out
 
 
+def observation_per_unit(polys, fset: dict) -> list:
+    """Item 35 (C25/C26): per unit, the observed share of its area and the
+    count of observed 10 m pixels, on the same denominator as the fractions
+    (>= MIN_VALID_OBS clear observations; analysis/observability.py).
+
+        observed_fraction   observed 2 m sub-cells / all sub-cells in the unit
+        valid_pixel_count   10 m pixels whose CENTRE is in the unit and that
+                            are observed
+        pixel_count         10 m pixels whose centre is in the unit
+
+    A unit smaller than a pixel can have pixel_count 0; observed_fraction is
+    still defined from its sub-cells."""
+    from rasterio.features import rasterize
+    from shapely.geometry import mapping
+    from vector import units as vu
+    from vector.fractions import MIN_VALID_OBS
+    observed = np.asarray(fset["valid_obs"]) >= MIN_VALID_OBS
+    n = len(polys)
+    fine = vu._labels(polys, fset["transform"], fset["shape"])
+    inside = fine >= 0
+    lab = fine[inside]
+    area = np.bincount(lab, minlength=n).astype(float)
+    obs = np.bincount(lab, weights=vu._upsample(observed)[inside].astype(float), minlength=n)
+    centre = rasterize(((mapping(p), i) for i, p in enumerate(polys)), out_shape=fset["shape"],
+                       transform=fset["transform"], fill=-1, dtype="int32")
+    cin = centre >= 0
+    pix = np.bincount(centre[cin], minlength=n)
+    vpix = np.bincount(centre[cin], weights=observed[cin].astype(float), minlength=n)
+    return [{"observed_fraction": round(float(obs[i] / area[i]), 4) if area[i] else 0.0,
+             "valid_pixel_count": int(vpix[i]), "pixel_count": int(pix[i])} for i in range(n)]
+
+
 # ── serving ─────────────────────────────────────────────────────────────
 
 def ward_context(result: dict) -> dict:
@@ -137,7 +171,9 @@ def ward_context(result: dict) -> dict:
                               "data_sources": v["data_sources"]} for f, v in fr.items()},
             "pluvial": {"validation_status": o["susceptibility"]["pluvial"]["validation_status"],
                         "data_sources": o["susceptibility"]["pluvial"]["data_sources"]},
-            "scalar_hazards": {h: o["susceptibility"][h] for h in SCALAR_HAZARDS}}
+            "scalar_hazards": {h: o["susceptibility"][h] for h in SCALAR_HAZARDS},
+            "observability_label": o.get("observability", {}).get(
+                "observed_fraction", {}).get("validation_status", "experimental")}
 
 
 def _cell(cell: dict, *, label, sources, mv, basis, **extra) -> dict:
@@ -168,6 +204,20 @@ def materialize(unit: dict, unit_type: str, ctx: dict) -> dict:
         cell = unit.get(f) or {"value": None, "status": "not_computed", "coverage": 0.0}
         outputs["fractions"][f] = _cell(cell, label=meta["validation_status"],
                                         sources=meta["data_sources"], mv=mv, basis=basis)
+    ob = unit.get("observation")
+    if ob is not None:
+        src = ["COPERNICUS/S2_SR_HARMONIZED SCL / clear-observation count"]
+        lab = ctx.get("observability_label", "experimental")
+        cov = C.coverage(ob["observed_fraction"], "share of the unit's area observed")
+        outputs["observability"] = {
+            "observed_fraction": C.output(ob["observed_fraction"], validation_status=lab,
+                                          coverage=cov, data_sources=src, model_version=mv,
+                                          unit="share of unit area"),
+            "valid_pixel_count": C.output(ob["valid_pixel_count"], validation_status=lab,
+                                          coverage=cov, data_sources=src, model_version=mv,
+                                          unit="observed 10 m pixels (centre in unit)",
+                                          pixel_count=ob["pixel_count"]),
+        }
     hz = {}
     if PLUVIAL in unit:
         p = _cell(unit[PLUVIAL], label=ctx["pluvial"]["validation_status"],

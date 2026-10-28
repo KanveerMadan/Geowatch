@@ -2192,7 +2192,17 @@ throughout rather than `score: 0.0, class: "very_low"`. **The two dead
 `insufficient_evidence` branches at `applicability.py:133` and
 `waterlogging.py:57` become reachable and are unit-tested.**
 
-### 35. C25 / C26 — ward coverage fields
+### 35. C25 / C26 — ward coverage fields ✅ *(2026-10-28, in the analysis pipeline)*
+
+> **Built 2026-10-28 (`analysis/wards.py`, Phase 2).** Every served unit —
+> item 22's grid / footprint / path units and `ward:<boundary_id>` wards —
+> carries `observability.observed_fraction` (observed share of its area) and
+> `observability.valid_pixel_count` (observed 10 m pixels with their centre in
+> the unit, beside `pixel_count`), on the same denominator as the fractions.
+> A fully dark unit serves its fractions as `insufficient_observation` with
+> `value: null`; a half-observed unit's value is over its observed part (the
+> C25 case). Phase 12A's `zonal/` ward screening is not changed by this item.
+> Tests: `tests/test_item35_ward_coverage.py`.
 Emit per-ward `observed_fraction` and valid-pixel count, per Decision 14's
 convention. C26 is what makes C25 detectable.
 
