@@ -629,7 +629,7 @@ def analyze(req: AnalysisRequest):
 def legacy_analyze(req: AnalyzeRequest):
     """LEGACY: the retired 7-class pipeline (08_STATE.md §RETIRED), kept
     reachable only here. Every block of its result is labelled "retired".
-    It currently fails at CAAT loading (CaatProvenanceError, C57)."""
+    It currently fails at CAAT loading (CaatProvenanceError, C62)."""
     # C16: validate first, unconditionally, and OUTSIDE the try/except below.
     # That block catches bare `Exception`, and HTTPException IS an Exception,
     # so a 400 raised inside it would be swallowed and re-raised as a 500.
