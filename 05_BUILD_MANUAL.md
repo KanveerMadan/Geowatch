@@ -2069,6 +2069,16 @@ result.
   tests moved to the new signatures. Suite **727 → 748 passed**, with the
   same 2 Earth Engine-auth failures.
 
+  *Fix found while running round 2.* Asking Earth Engine for the 10-year
+  IMERG p99.9 on the 30 m grid ran past the deadline twice on the first
+  event. The rainfall layers are now computed on their own native grid
+  (0.05° CHIRPS, 0.1° IMERG), sized from the hydrology grid's footprint, and
+  mapped nearest onto the 30 m cells locally. That is the same pre-registered
+  statistic, and one point took 314 s. They get a 1,200 s deadline, and each
+  module fetches only the rainfall layer it reads. Tests: 3 in
+  `test_flood_per_pixel.py`. They fail on the old code, where
+  `native_grid`, `nearest_from_native` and layer selection did not exist.
+
 - **Task 2 — better references.** `experiments/flood_validation/references.py`
   adds two sources beside Sentinel-1 and JRC:
   - **Copernicus EMS rapid-mapping delineations.** These are the public

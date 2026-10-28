@@ -148,21 +148,58 @@ def test_compute_pixels_uses_a_hard_timeout(monkeypatch):
     assert out["hand_m"].shape == (1, 1)
 
 
-def test_rainfall_failure_loses_only_that_layer(monkeypatch):
+def _fake_terrain(monkeypatch):
     def fake_pixels(img, transform, shape, crs, label):
-        if label == "rain_intensity_mm_h":
-            raise TimeoutError("IMERG percentile too slow")
-        names = (["hand_m", "upa_near_km2", "slope_deg", "relief_slope_deg"]
-                 if label == "terrain" else [label])
-        return {n: np.ones(shape) for n in names}
-
+        return {n: np.ones(shape) for n in ("hand_m", "upa_near_km2", "slope_deg",
+                                             "relief_slope_deg")}
     monkeypatch.setattr(hydro_rasters, "compute_pixels", fake_pixels)
     monkeypatch.setattr(hydro_rasters, "_terrain_image", lambda bbox: None)
-    monkeypatch.setattr(hydro_rasters, "_rain_images", lambda year: (None, None))
+    monkeypatch.setattr(hydro_rasters, "_rain_images",
+                        lambda year: {n: None for n in hydro_rasters.RAIN_LAYERS})
     monkeypatch.setattr("ingestion.gee_client.initialize_gee", lambda: None)
+
+
+def test_rainfall_failure_loses_only_that_layer(monkeypatch):
+    _fake_terrain(monkeypatch)
+
+    def fake_rain(img, name, bbox, transform, shape, crs):
+        if name == "rain_intensity_mm_h":
+            raise TimeoutError("IMERG percentile too slow")
+        return np.ones(shape)
+
+    monkeypatch.setattr(hydro_rasters, "_rain_layer", fake_rain)
     out = hydro_rasters.fetch_hydro_rasters((0, 0, 1, 1), None, (2, 2), "EPSG:32631", 2024)
     assert set(out["layers"]) == set(hydro_rasters.LAYERS) - {"rain_intensity_mm_h"}
     assert "TimeoutError" in out["errors"]["rain_intensity_mm_h"]
+
+
+def test_only_the_requested_rainfall_layers_are_fetched(monkeypatch):
+    _fake_terrain(monkeypatch)
+    asked = []
+    monkeypatch.setattr(hydro_rasters, "_rain_layer",
+                        lambda img, name, *a: asked.append(name) or np.ones((2, 2)))
+    out = hydro_rasters.fetch_hydro_rasters((0, 0, 1, 1), None, (2, 2), "EPSG:32631", 2024,
+                                            rainfall=("rain_intensity_mm_h",))
+    assert asked == ["rain_intensity_mm_h"]
+    assert out["errors"] == {"rain_annual_mm": "not requested"}
+
+
+def test_rainfall_maps_nearest_from_its_native_grid():
+    """A 30 m cell takes the value of the 0.1 deg cell its centre falls in."""
+    bbox = (-0.44, 39.41, -0.40, 39.45)                    # Paiporta, straddles 39.4
+    x0, y1, cols, rows = hydro_rasters.native_grid(bbox, 0.1)
+    assert (round(x0, 6), round(y1, 6), cols, rows) == (-0.5, 39.5, 1, 1)
+    # the native grid is sized from the hydrology grid's own footprint, which
+    # reaches past the lon/lat bbox; every 30 m cell then gets a value
+    t, shape, crs = hydro_rasters.utm_grid((-0.44, 39.35, -0.40, 39.45))
+    x0, y1, cols, rows = hydro_rasters.native_grid(
+        hydro_rasters.grid_lonlat_bounds(t, shape, crs), 0.1)
+    assert (rows, cols) == (2, 2)                          # crosses 39.4 N and 0.4 W
+    v = np.array([[5.0, 6.0], [7.0, 8.0]])
+    out = hydro_rasters.nearest_from_native(v, x0, y1, 0.1, t, shape, crs)
+    assert np.isfinite(out).all()
+    assert set(np.unique(out)) == {5.0, 6.0, 7.0, 8.0}
+    assert out[0, 0] == 5.0 and out[-1, 0] == 7.0 and out[0, -1] == 6.0
 
 
 # ── the constants are the pre-registered ones ──────────────────────────

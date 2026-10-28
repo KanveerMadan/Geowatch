@@ -21,6 +21,10 @@ PHYSICAL value, not a 0-1 score -- each module scores its own components:
                          FLASH_FLOOD_INTENSITY_PERCENTILE over the same
                          years, nearest (0.1 deg)
 
+Both rainfall layers are computed on their own native grid and mapped to the
+hydrology grid locally (nearest_from_native): asking Earth Engine for a
+10-year IMERG percentile on a 30 m grid ran past 600 s twice.
+
 HAND is MERIT's, not derived from FABDEM: MERIT's is routed by its authors,
 and a FABDEM HAND needs a stream network this project does not have.
 
@@ -162,37 +166,96 @@ def _terrain_image(bbox):
     ])
 
 
+RAIN_NATIVE_DEG = {"rain_annual_mm": 0.05, "rain_intensity_mm_h": 0.1}   # CHIRPS, IMERG
+RAIN_TIMEOUT_S = 1200        # a 10-year IMERG percentile took 314 s at one point
+RAIN_LAYERS = ("rain_annual_mm", "rain_intensity_mm_h")
+
+
 def _rain_images(ref_year: int):
     import ee
     y0, y1 = f"{ref_year - FLASH_FLOOD_INTENSITY_YEARS}-01-01", f"{ref_year}-01-01"
     annual = (ee.ImageCollection(CHIRPS_ASSET).filterDate(y0, y1).select("precipitation")
-              .sum().divide(FLASH_FLOOD_INTENSITY_YEARS)
-              .setDefaultProjection(ee.ImageCollection(CHIRPS_ASSET).first().projection())
-              .rename("rain_annual_mm"))
+              .sum().divide(FLASH_FLOOD_INTENSITY_YEARS).rename("rain_annual_mm"))
     imerg = ee.ImageCollection(IMERG_ASSET).filterDate(y0, y1).select("precipitation")
     intensity = (imerg.reduce(ee.Reducer.percentile([FLASH_FLOOD_INTENSITY_PERCENTILE]))
-                 .setDefaultProjection(imerg.first().projection())
                  .rename("rain_intensity_mm_h"))
-    return annual, intensity
+    return {"rain_annual_mm": annual, "rain_intensity_mm_h": intensity}
+
+
+def native_grid(bbox, deg: float):
+    """(x0, y1, cols, rows) of the deg-aligned lon/lat grid covering bbox --
+    CHIRPS and IMERG cell edges sit on multiples of their resolution."""
+    w, s, e, n = bbox
+    x0, y1 = np.floor(w / deg) * deg, np.ceil(n / deg) * deg
+    return x0, y1, int(np.ceil((e - x0) / deg - 1e-9)), int(np.ceil((y1 - s) / deg - 1e-9))
+
+
+def grid_lonlat_bounds(transform, shape, crs: str) -> tuple:
+    """(W, S, E, N) in lon/lat of the hydrology grid's full footprint -- a
+    snapped UTM grid reaches past the lon/lat bbox it was built from."""
+    from pyproj import Transformer
+    H, W = shape
+    cols, rows = np.meshgrid([0, W / 2, W], [0, H / 2, H])
+    xs, ys = transform * (cols, rows)
+    lon, lat = Transformer.from_crs(crs, 4326, always_xy=True).transform(xs, ys)
+    return (float(np.min(lon)), float(np.min(lat)), float(np.max(lon)), float(np.max(lat)))
+
+
+def nearest_from_native(values, x0: float, y1: float, deg: float, transform, shape, crs: str):
+    """Each hydrology cell takes the value of the native cell its centre
+    falls in (nearest). NaN outside the native array."""
+    from pyproj import Transformer
+    H, W = shape
+    cols, rows = np.meshgrid(np.arange(W) + 0.5, np.arange(H) + 0.5)
+    xs, ys = transform * (cols, rows)
+    lon, lat = Transformer.from_crs(crs, 4326, always_xy=True).transform(xs, ys)
+    c = np.floor((np.asarray(lon) - x0) / deg).astype(int)
+    r = np.floor((y1 - np.asarray(lat)) / deg).astype(int)
+    v = np.asarray(values, dtype=np.float64)
+    ok = (r >= 0) & (r < v.shape[0]) & (c >= 0) & (c < v.shape[1])
+    out = np.full(shape, np.nan)
+    out[ok] = v[r[ok], c[ok]]
+    return out
+
+
+def _rain_layer(img, name, bbox, transform, shape, crs):
+    """A rainfall layer computed on its own native grid (a handful of cells)
+    and mapped nearest onto the hydrology grid. Same statistic as sampling
+    it at 30 m, without asking Earth Engine to evaluate the 10-year
+    reduction once per 30 m output pixel."""
+    import ee
+    from ee_timeout import call
+    from rasterio.transform import from_origin
+    deg = RAIN_NATIVE_DEG[name]
+    x0, y1, cols, rows = native_grid(grid_lonlat_bounds(transform, shape, crs), deg)
+    ee.data.setDeadline(RAIN_TIMEOUT_S * 1000)
+    arr = call(lambda: ee.data.computePixels({
+        "expression": img.unmask(NODATA).toFloat(), "fileFormat": "NUMPY_NDARRAY",
+        "grid": ee_grid(from_origin(x0, y1, deg, deg), (rows, cols), "EPSG:4326")}),
+        timeout=RAIN_TIMEOUT_S, retries=EE_RETRIES, label=name)
+    v = np.where(arr[name] == NODATA, np.nan, arr[name]).astype(np.float64)
+    return nearest_from_native(v, x0, y1, deg, transform, shape, crs)
 
 
 def fetch_hydro_rasters(bbox, transform, shape, crs: str, ref_year: int,
-                        rainfall: bool = True) -> dict:
-    """Every LAYERS input on the given grid. Terrain and each rainfall layer
+                        rainfall=True) -> dict:
+    """The LAYERS inputs on the given grid. Terrain and each rainfall layer
     are separate calls, so a rainfall timeout loses only that layer (it is
     recorded under `errors` and the component is excluded downstream).
-    rainfall=False skips both rainfall layers (recorded the same way)."""
+    `rainfall`: True (both layers), False (neither), or the names wanted --
+    a layer not requested is recorded as such."""
     from ingestion.gee_client import initialize_gee
     initialize_gee()
+    wanted = (RAIN_LAYERS if rainfall is True else () if rainfall is False else tuple(rainfall))
     bands, errors = {}, {}
     bands.update(compute_pixels(_terrain_image(bbox), transform, shape, crs, "terrain"))
-    annual, intensity = _rain_images(ref_year)
-    for name, img in (("rain_annual_mm", annual), ("rain_intensity_mm_h", intensity)):
-        if not rainfall:
+    images = _rain_images(ref_year)
+    for name in RAIN_LAYERS:
+        if name not in wanted:
             errors[name] = "not requested"
             continue
         try:
-            bands.update(compute_pixels(img, transform, shape, crs, name))
+            bands[name] = _rain_layer(images[name], name, bbox, transform, shape, crs)
         except Exception as e:   # noqa: BLE001 -- recorded, component excluded
             errors[name] = f"{type(e).__name__}: {e}"
     layers = {k: surface(bands[k], source=SOURCES[k][0], method=SOURCES[k][1],
