@@ -1497,7 +1497,7 @@ built-up for the same AOI. Agreement is a sanity check, **not ground truth** —
 and note WorldCover's built-up user's accuracy is 47.1% in Africa, so disagreement
 there is not automatically your error.
 
-### 22. Aggregation units 🔓
+### 22. Aggregation units ✅
 
 **Sequence, in order:**
 1. **Regular-grid blocks** — free, immediately available
@@ -1508,6 +1508,50 @@ there is not automatically your error.
 
 **Acceptance:** each unit type produces the same fraction totals over the same
 area (a consistency check); every unit carries `{value, status, coverage}`.
+
+**Built 2026-10-28** (`vector/units.py`, `vector/fractions.py`). *Proposed
+research design under the Part 4 mandate. Not validated.*
+
+- **Units, in the specified order.**
+  1. A regular 100 m grid on the 10 m pixel grid.
+  2. One unit per building: a centroid-Voronoi tessellation clipped to the
+     AOI (momepy is not installed, so this is the simpler centroid form).
+  3. Path-delineated blocks from item 19's `blocks()`, carrying
+     `partial_fetch` if a clause was missing.
+- **Fractions: built, vegetation and water only.**
+  - **built** is the item 19 layer's footprints rasterised to 10 m
+    (02_ARCHITECTURE.md's definition of `built`).
+  - **vegetation and water are PROXIES, not item 21 fractions.** They are
+    index thresholds on a Sentinel-2 median composite: water is MNDWI > 0 (Xu
+    2006), and vegetation is NDVI > 0.3 and not water. A pixel needs ≥ 3
+    cloud-free (SCL) observations. Item 21's regression, the decided
+    producer, is not built. Every output carries `method` and `producer`
+    saying so.
+  - **`impervious_total` is `not_computed` in every unit**, with value
+    `None`, never 0.
+- **Every unit** carries `{value, status, coverage}` per fraction (status is
+  `insufficient_observation` below 50% coverage) plus item 20's coverage
+  regime, inherited at AOI level.
+- **Consistency check** (tolerance fixed before the run: 0.5% of AOI area per
+  fraction) on a 2 m sub-grid.
+
+**Live, Dharavi, Sentinel-2 2024-01-01..03-31** (36 images, 98.1% clear):
+
+| unit type | units | built | vegetation (proxy) | water (proxy) |
+|---|---:|---:|---:|---:|
+| grid | 728 | 24.61% | 27.42% | 7.35% |
+| footprint | 19,246 | 24.61% | 27.42% | 7.35% |
+| path | 985 | 24.60% | 27.41% | 7.34% |
+
+**Consistency: PASS.** The largest spread between unit types is 0.009% of the
+AOI (built), against a 0.5% bar. Path units cover 99.95% of the AOI; the road
+cut-strips and slivers account for the rest. 19,246 footprint units for 19,339
+footprints: 93 footprints touch the AOI but have their representative point
+outside it, so they get no cell. One path block is `insufficient_observation`
+in every fraction: it is too small to hold a single 2 m sub-cell.
+
+`tests/test_vector_units.py`, 11 tests: **0 before** (module absent) and **11
+passed after**.
 
 ### 23. Density metrics 🔶 **BUILT — pre-registered acceptance test FAILED (2026-10-28)**
 Road length per unit area, footprint density, footprint size distribution,
