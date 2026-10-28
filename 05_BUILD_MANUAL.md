@@ -2209,7 +2209,19 @@ convention. C26 is what makes C25 detectable.
 **Acceptance:** a 100%-unobserved and a 50%-unobserved ward are distinguishable
 from the output alone, without inference.
 
-### 36. C33 — absent ≠ measured-zero
+### 36. C33 — absent ≠ measured-zero 🔶 **PARTIAL (2026-10-28) — backend and renderer helper done; no UI view of the new result yet**
+
+> **Built 2026-10-28 (Phase 2).** Backend: the result contract
+> (`analysis/contract.py`) refuses a `null` value without an absent status
+> (`not_computed`, `insufficient_observation`, `timeout`, ...) and refuses a
+> number whose status is not `available`, across the whole result and every
+> served ward, so a zero is always a measured zero
+> (`tests/test_result_contract.py`). Renderer: `fmtMeasured()` in
+> `geowatch-ui/src/render.js` renders absent as "—" plus its reason and zero
+> as "0.0%", checked in `tests/test_measured_vs_absent_ui.mjs`. **Stays
+> partial** because no UI view renders the analysis result yet: `App.jsx`
+> still renders the legacy shape (where `fmtPct` already returns "—" for
+> null).
 `null`/absent and `0` must be distinguishable end to end. Absent renders as "—"
 or "not measured"; zero renders as "0.0%".
 
