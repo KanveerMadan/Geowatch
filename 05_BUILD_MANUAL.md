@@ -1885,6 +1885,21 @@ declare themselves. Every new output carries `validation_status`; none claims
   FABDEM's native projection; fixed before commit. `tests/test_flood_terrain.py`
   (8, synthetic planes and bowls; they fail on the old code, where the module
   does not exist).
+- **Task 5 — ward-ranking test (evidence only; nothing changed on it).**
+  Pre-registered first (`experiments/ward_ranking/PREREGISTRATION.md`,
+  SHA256 `881d5665…`): Spearman ρ over Mumbai's 24 BMC wards (the wide run
+  behind the Dharavi ward screening), **stable if ρ ≥ 0.80** per pair. The
+  brief's "08_STATE §5.7 option C3" does not exist on any branch; the brief's
+  own description was followed. Estimates: (a) stored spectral
+  `impervious_fraction_pct`, (b) Open Buildings footprint built area,
+  (c) `built + max(0, 1 − built − vegetation − water)`. **Result: all three
+  pairs stable** — ρ(a,b) = **0.920**, ρ(a,c) = **0.906**, ρ(b,c) =
+  **0.960**, n = 24. The ward *order* holds; the *levels* do not: built area
+  is about 0.4× the stored estimate (ward A 0.216 vs 0.508), so absolute
+  thresholds would not transfer between estimates. `validation_status:
+  experimental`. A first run hung silently for 2 h 40 min on one Earth Engine
+  reduction; the rerun sets a 10-minute deadline with one retry (no retry
+  fired). `tests/test_ward_ranking.py` (3, the verdict logic).
 
 ---
 
