@@ -39,7 +39,7 @@ Fate categories:
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SUPERSEDED | 2 | **C42, C45** — the pivot retires the code they describe |
 | SURVIVES | 25 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed** by the 2026-09-23 triage; C44 was elevated the same day and then **FIXED**) |
-| NEEDS FATE | 3 | Cleared 2026-09-23; **C48, C49, C50 added 2026-10-28** (Lane E documentation pass), untriaged |
+| NEEDS FATE | 3 | Cleared 2026-09-23; **C48, C49, C50 added 2026-10-28** (Lane E documentation pass), untriaged. *(Count not maintained since: C51–C65 also added 2026-10-28, see the section)* |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
@@ -1084,6 +1084,59 @@ therefore start at C48 to avoid a third collision.*
 `03a47ab`). **No fate assigned.** Numbered from C51: no branch uses C51 or
 above.*
 
+***C62–C65 added 2026-10-28** from Phase 2 (`build/backend`: the analysis
+pipeline, the result contract, Part 6). **No fate assigned.** Numbered from
+C62: C59 is on `build/flood2`, C60 and C61 on `master` (`build/ceilings`).*
+
+### C65 — The vector track's own fractions still count shadow and snow as observed [S] *(entry)*
+
+`vector.fractions.s2_index_composite` masks only cloud and no-data
+(`ingestion.sentinel2.mask_s2_clouds`), whose docstring still keeps cloud
+shadow in "for Decision 13's sixth endmember" — superseded on 2026-09-24
+(no unmixing, no shadow term). Decision 14's shadow rule makes fully
+shadowed pixels occlusion that leaves the denominator. Item 33 applies that
+in the analysis pipeline only, through the producer's collection filter
+(`analysis/observability.py`); items 22 and 25 as run from `vector/`
+directly, and item 26's `build_flood_inputs`, still put SCL 3 and SCL 11
+observations into the median and the clear-observation count. The two
+denominators therefore disagree for the same AOI and window. Not changed:
+the vector modules' callers were out of this lane's scope.
+
+### C64 — `fetch_open_buildings` resets Earth Engine's global deadline to 0 [E] *(entry)*
+
+`vector.sources.fetch_open_buildings` sets `ee.data.setDeadline(300 s)` and
+restores **0 (no limit)** in its `finally`. The deadline is process-global, so
+any caller's own deadline is silently removed after the footprint download,
+and every later request in the process is unbounded again — the C56 failure
+mode. Separately, `setDeadline` rebuilds the Cloud API client every call
+(measured ~2 s; it calls `_install_cloud_api_resource`), so setting it per
+stage cost ~2 s a stage. The analysis pipeline works around both
+(`analysis/stages.py`: one constant request deadline, re-checked at every
+stage start, plus a wall-clock join); `vector/sources.py` is unchanged.
+
+### C63 — The UI's Analyze button now receives a result shape `App.jsx` does not render [S] *(entry)*
+
+Phase 2 rewired `POST /api/analyze` to the analysis pipeline, as the brief
+asked. `geowatch-ui/src/App.jsx` (the `analyze` handler) still posts there and
+renders the legacy 7-class shape (`landcover`, `segments`,
+`hydrological_surfaces`, ...), none of which the new result has. Before the
+rewire the button failed anyway (C62). The legacy route is
+`POST /api/legacy/analyze`. A UI for the analysis result was out of this
+lane's scope, which is also why item 36 is partial.
+
+### C62 — `POST /api/analyze` has failed on every call since item 45 [E] *(entry)*
+
+Measured 2026-10-28 on `master` `220add1`, Dharavi, 2026-01-01..2026-03-31:
+**HTTP 500 after 90.6 s**, `CaatProvenanceError` —
+`models/production/caat_thresholds.json` records no `source_checkpoint`.
+The run reaches step 5/7: Sentinel-2 ingestion, the GeoTIFF export, OSM
+(first Overpass endpoint 502, retried), and every elevation, rainfall and
+coastline context call all complete first, then the CAAT load refuses, by
+design (item 45, C10). It leaves a partial `data/pipeline_runs/<label>_<ts>/`
+directory with no `result.json`. 08_STATE.md's C46 table said "the UI's
+Analyze button depends on it"; it could not have succeeded since item 45
+landed. Not a regression to fix: CAAT stays retired (08_STATE.md §RETIRED).
+
 ***C60 and C61 added 2026-10-28** from the rare-fraction ceiling checks
 (`build/ceilings`, `06_UNMIXING_CEILING.md` Part 8). **No fate assigned.**
 Numbered from C60: C57 and C58 are on `master`, C59 on `build/flood2`.*
@@ -1117,7 +1170,6 @@ from the base simplex; the class's sites span 54.4°. Post hoc, not
 pre-registered: tidal flat alone is 0.729 and leaves vegetation intact, while
 mangrove and marsh are 0.32–0.59. Bears on Decision 11's sub-type design and on
 item 26's sub-type-weighted input.
-
 ### C58 — `SecExposure` calls `useState` after a conditional return [S] *(entry)*
 
 `geowatch-ui/src/App.jsx`, `SecExposure`: `if (!exposure) return ...` runs
