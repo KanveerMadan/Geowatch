@@ -2613,13 +2613,19 @@ benchmark for informal-settlement land cover would be a stronger contribution
 than another model, and Planet's terms partly foreclose it. Sentinel-2 does not
 have this problem.
 
-### 69. Literature table
+### 69. Literature table ✅
 Columns for resolution, protocol (within-city split vs cross-city LOCO vs
 cross-region), and class count — showing **no directly matched benchmark
 exists.**
 
 That gap is itself a finding about the state of the field, and more valuable than
 a possibly-misleading number-to-number comparison.
+
+**Done:** `docs/literature_table.md`. Seven nearest-neighbour works, each
+cell checked against its source on 2026-10-28, with unconfirmed cells marked
+rather than filled. None combines 10 m, held-out-city evaluation and dense
+multi-class output. No GeoWatch number appears (the retired LOCO figure is
+excluded per C43). This is not a systematic review, and the doc says so.
 
 ---
 
