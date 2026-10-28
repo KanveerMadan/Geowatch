@@ -1263,6 +1263,22 @@ count as pits, and bilinear resampling of a metre-precision DEM leaves many.
 Near-constant, the component mostly shifts pluvial's level rather than its
 pattern on exactly the flat, low-lying fabric the project targets.
 
+*Diagnosed 2026-10-28 (item 26 Phase 1a, task 4; `build/flood2`):* **not a
+code bug.** A DEM-only diagnostic
+(`experiments/drainage_disconnection/diagnose.py`, result file beside it)
+reproduces 0.914.
+- 658 of the 817 terminal pits are **exact flats**, which the docstring
+  counts as pits by design. They include a 295-cell plateau at exactly
+  0.0 m (Mahim Creek) that touches the grid edge.
+- The other **159** are strict pits, **1.9 cm** deep at the median (p90
+  10 cm), far below FABDEM's metre-scale vertical error.
+- Letting every outlet-connected flat drain lowers the share only to
+  **0.765**.
+
+The saturation is centimetre noise under an unfilled D8. A remedy (e.g.
+filling depressions shallower than the DEM's vertical error) is a method
+change, not a fix, so nothing was changed. Fate still unassigned.
+
 ### C50 — WorldPop R2025A is now in GEE, and its sums are 2.8–6.3× off both models in use [E] *(entry)*
 
 `03_EVIDENCE.md` §C.4 records R2025A as **absent from GEE** ("probed under two

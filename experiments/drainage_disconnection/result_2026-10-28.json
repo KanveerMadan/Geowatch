@@ -1,0 +1,33 @@
+{
+ "bbox": [
+  72.836,
+  19.037,
+  72.862,
+  19.06
+ ],
+ "grid": {
+  "crs": "EPSG:32643",
+  "shape": [
+   87,
+   94
+  ]
+ },
+ "dem_m": {
+  "min": 0.0,
+  "max": 12.033529281616211,
+  "nodata_cells": 0,
+  "cells_exactly_0": 295,
+  "zero_plateau_touches_edge": true
+ },
+ "disconnected_share_as_built": 0.914,
+ "terminal_pits": 817,
+ "pits_on_exact_flats": 658,
+ "strict_single_cell_pits": 159,
+ "strict_pit_depth_m_quantiles_10_50_90": [
+  0.0019,
+  0.0187,
+  0.1045
+ ],
+ "pit_catchment_cells_median": 1.0,
+ "disconnected_share_if_flats_drain": 0.765
+}

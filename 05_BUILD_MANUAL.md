@@ -2101,6 +2101,19 @@ result.
   code, where the constant does not exist. Both coastal sites are not-run
   under round 1's window and testable under the new one.
 
+- **Task 4 — `drainage_disconnection` saturating on flat ground: reported, not
+  fixed (not a bug).** `experiments/drainage_disconnection/diagnose.py` (DEM
+  only) reproduces **0.914** on Dharavi:
+  - 658 of 817 terminal pits are exact flats, which the method treats as
+    pits by design. They include a 295-cell 0.0 m plateau that touches the
+    grid edge.
+  - The other 159 are strict pits, 1.9 cm deep at the median.
+  - Letting outlet-connected flats drain lowers the share only to 0.765.
+
+  The code does what its docstring says. The saturation is centimetre DEM
+  noise under an unfilled D8, so a remedy is a method change, not a bug fix.
+  Recorded as a diagnosis on **C51** (round 1 already filed the saturation; NEEDS FATE). No code changed, so no test.
+
 ---
 
 # PART 5 — Validation discipline 🔓
