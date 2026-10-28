@@ -8,10 +8,16 @@ agree, that is partly the formulas agreeing with themselves.
 Scope: the five modules in `susceptibility/` (pluvial, fluvial, coastal,
 flash flood, waterlogging) as wired in `pipeline.py`. `event_hazard.py`
 conditions some of them on event forcing and is not a sixth layer
-(`05_BUILD_MANUAL.md`, validation-first mandate). The pluvial and waterlogging
+(`05_BUILD_MANUAL.md`, validation-first mandate). ~~The pluvial and waterlogging
 layers consume the retired 7-class classifier's output (`08_STATE.md`
-§RETIRED). This document describes the wiring as it stands. It is not an
-endorsement of that input.
+§RETIRED).~~ **Updated 2026-10-28 for item 26 (at `03a47ab`):** no layer reads
+the retired 7-class map any more. Pluvial reads Open Buildings built area, a
+Sentinel-2 vegetation stand-in, item 19's road conduits and FABDEM terrain, all
+on a 30 m hydrology grid; waterlogging reads the same built area. §1 below is
+the current wiring; §2's correlations were computed on runs that used the old
+wiring (see the note there). This document describes the wiring as it stands.
+It is not an endorsement of any input: built area and vegetation are
+`placeholder` until item 21's fractions exist.
 
 Under the validation-first mandate (2026-09-24), none of these layers is
 validated. All weights and ceilings are marked PROVISIONAL in their own
@@ -19,7 +25,9 @@ config files.
 
 ## 1. The DAG
 
-Every edge was read from code. Citations are `file:line` at commit `e07b4de`.
+Every edge was read from code. Citations are `file:line` at commit `e07b4de`;
+edges added for item 26 cite files at `03a47ab` (`susceptibility/inputs.py`,
+`susceptibility/terrain.py`).
 
 ```mermaid
 flowchart LR
@@ -31,7 +39,9 @@ flowchart LR
     SHORE["sat-io shoreline<br/>coastal.py:34-36"]
   end
   OSMW["OSM waterways"]
-  CLS["7-class classifier map<br/>(RETIRED)"]
+  OB["Open Buildings v3 footprints<br/>(item 19 layer)"]
+  OSMH["OSM highways<br/>(item 19 layer)"]
+  S2["Sentinel-2 NDVI/MNDWI<br/>vector/fractions.py"]
 
   MERIT -->|"mean_hnd_m"| HAND((hand_context<br/>pipeline.py:264))
   MERIT -->|"max_upstream_area_km2"| HAND
@@ -41,9 +51,15 @@ flowchart LR
   FAB --> FABE((fabdem_elevation<br/>pipeline.py:266))
   SHORE --> COAST((coastal_context<br/>pipeline.py:271))
   OSMW --> WDIST((waterway distance map<br/>pipeline.py:253))
-  CLS --> HSURF((hydrological_surfaces<br/>pipeline.py:468))
+  OB --> BUILT((impervious: built area<br/>inputs.py, placeholder))
+  S2 --> VEG((infiltration: vegetation<br/>inputs.py, placeholder))
+  OSMH --> COND((road conduits<br/>inputs.py, experimental))
+  FAB --> TERR((slope, flow acc., TPI,<br/>drainage connectivity<br/>terrain.py, experimental))
 
-  CLS --> PLU[pluvial]
+  BUILT --> PLU[pluvial]
+  VEG --> PLU
+  COND --> PLU
+  TERR --> PLU
   WDIST --> PLU
   RELEV --> PLU
   RAIN --> PLU
@@ -58,7 +74,7 @@ flowchart LR
   RAIN --> FF
 
   HAND -->|mean_hnd_m| WL[waterlogging]
-  HSURF -->|impervious_fraction_pct| WL
+  BUILT -->|AOI mean %| WL
   RAIN --> WL
 ```
 
@@ -68,13 +84,17 @@ flowchart LR
 |---|---|---|
 | **MERIT Hydro** (`hand_context`) | **fluvial, flash flood, waterlogging (3)** | `mean_hnd_m` (fluvial, waterlogging); `max_upstream_area_km2` (flash flood) |
 | **CHIRPS** (`rainfall_climatology`) | **pluvial, flash flood, waterlogging (3)** | `mean_annual_mm` |
-| classifier map (retired) | pluvial, waterlogging (2) | per-pixel class weights (pluvial); area-% class weights via `hydrological_surfaces` (waterlogging), both from `configs/applicability_constants.py:33,41` |
+| ~~classifier map (retired)~~ | ~~pluvial, waterlogging (2)~~ **none since item 26** | — |
+| **Open Buildings** built area (item 19 layer) | pluvial, waterlogging (2) | per-cell footprint area fraction (pluvial); its AOI mean (waterlogging) |
 | Copernicus GLO-30 | pluvial, flash flood (2) | AOI-relative elevation (pluvial); mean slope (flash flood) |
-| FABDEM, shoreline, OSM waterways | one layer each | — |
+| FABDEM | pluvial, coastal (2) | per-cell terrain on the hydrology grid (pluvial); AOI elevation stats (coastal) |
+| Sentinel-2 vegetation stand-in, OSM highways, shoreline, OSM waterways | one layer each | — |
 
 **Two inputs are each read by three of the five layers:** MERIT Hydro and
-CHIRPS. Waterlogging reads both, plus the classifier. Only coastal shares
-nothing with the other four. **Fluvial is a single-input layer.** Its score
+CHIRPS. Waterlogging reads both, plus Open Buildings built area, which it
+shares with pluvial. ~~Only coastal shares nothing with the other four.~~
+Since item 26 coastal shares FABDEM with pluvial; no layer is independent of
+all the others. **Fluvial is a single-input layer.** Its score
 is `1 − mean_hnd_m / 30`, clamped (`susceptibility/fluvial.py:46`). So it is
 a linear relabelling of one MERIT statistic, and waterlogging re-reads that
 same statistic.
@@ -88,6 +108,11 @@ Each component is divided by a fixed ceiling and clamped to [0, 1]:
 | pluvial | rainfall | 200–4,500 mm/yr range | `configs/pluvial_constants.py:8,20` |
 | pluvial | drainage distance | **AOI max** (`dist / dist.max()`) | `ingestion/osm_dem.py` (`compute_waterway_distance_map`, final line) |
 | pluvial | relative elevation | **AOI p10–p90** | `ingestion/osm_dem.py` (`hand_proxy`, p10/p90 percentiles) |
+| pluvial | impervious, infiltration, road conduit | none: already area fractions in [0, 1] | `susceptibility/inputs.py` |
+| pluvial | low slope | 5° | `configs/pluvial_constants.py` (`PLUVIAL_SLOPE_NORMALIZATION_MAX_DEG`) |
+| pluvial | flow accumulation | **log of the grid's cell count** | `susceptibility/terrain.py` (`terrain_surfaces`) |
+| pluvial | topographic hollow | 2 m below the 150 m neighbourhood mean | `configs/pluvial_constants.py` (`PLUVIAL_TPI_*`) |
+| pluvial | drainage disconnection | none: binary | `susceptibility/terrain.py` |
 | fluvial | HAND | 30 m | `configs/fluvial_constants.py:30` |
 | coastal | distance to coast | 15 km | `configs/coastal_constants.py:33` |
 | coastal | elevation | 10 m | `configs/coastal_constants.py:43` |
@@ -95,22 +120,24 @@ Each component is divided by a fixed ceiling and clamped to [0, 1]:
 | flash flood | upstream area | 50 km² | `configs/flash_flood_constants.py:19` |
 | flash flood | rainfall | **2,500 mm** | `configs/flash_flood_constants.py:26` |
 | waterlogging | HAND | 15 m | `configs/waterlogging_constants.py:15` |
-| waterlogging | impervious | 70 % | `configs/waterlogging_constants.py:20` |
+| waterlogging | impervious | 70 % (of footprint built area since item 26) | `configs/waterlogging_constants.py:20` |
 | waterlogging | rainfall | **2,500 mm** | ~~`configs/waterlogging_constants.py:33`~~ the flash-flood definition, imported *(item 26, 2026-10-28)* |
 
 Three things follow from the table:
 
-- ~~**The 2,500 mm rainfall ceiling appears twice as two separate definitions**~~
-  **Fixed 2026-10-28 (item 26):** one definition in `flash_flood_constants.py`,
-  imported by both layers. Original text:
+- ~~**The 2,500 mm rainfall ceiling appears twice as two separate definitions**
   with the same name and value: `flash_flood_constants.py:26` and
   `waterlogging_constants.py:33`. Waterlogging imports its own copy
   (`susceptibility/waterlogging.py:18-22`). The two layers therefore share a
-  value, not a definition, and could drift apart silently.
+  value, not a definition, and could drift apart silently.~~
+  **Fixed 2026-10-28 (item 26):** one definition in `flash_flood_constants.py`,
+  imported by both layers.
 - **HAND is normalised two different ways** for the same statistic: 30 m
   (fluvial) and 15 m (waterlogging).
-- **Two pluvial components are AOI-relative** (max-normalised distance,
-  p10–p90 elevation). Those components cannot be compared across AOIs.
+- ~~**Two pluvial components are AOI-relative**~~ **Three pluvial components
+  are AOI-relative** (max-normalised distance, p10–p90 elevation, and since
+  item 26 flow accumulation, scaled by the grid's own cell count). Those
+  components cannot be compared across AOIs.
 
 *The build-manual text for this item says "three provisional ceilings". This
 reading counts ten fixed ceiling definitions (the pluvial rainfall range
@@ -129,6 +156,11 @@ hash identically (sha256 prefix `7b26555d4f0d2e67`, operation below). So
 not equal hazard.
 
 ## 2. Cross-AOI correlation
+
+> **Note (2026-10-28, item 26).** Every run below predates item 26: its
+> pluvial and waterlogging scores came from the retired 7-class map, not the
+> current inputs. The matrices describe the old wiring and were not recomputed;
+> no stored run uses the new one.
 
 **Input.** Every `data/pipeline_runs/*/result.json` (137 files). 99 have no
 `susceptibility` block, from older schema runs. The remaining 38 cover **11

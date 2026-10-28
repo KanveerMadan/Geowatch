@@ -638,8 +638,22 @@ The Sentinel-2 vegetation and water index proxies and every `not_computed`
 fraction are `placeholder`. `tests/test_vector_validation_labels.py` asserts
 that nothing claims `validated`.
 
-**Not yet applied** to outputs outside `vector/` (the retired 7-class pipeline's
-`result.json`, the susceptibility modules). Labelling them is open work.
+~~**Not yet applied** to outputs outside `vector/` (the retired 7-class pipeline's
+`result.json`, the susceptibility modules). Labelling them is open work.~~
+
+**Applied to all five susceptibility modules 2026-10-28 (item 26).** Pluvial
+and waterlogging take their weakest input's label, so they are `placeholder`
+(Open Buildings built area and the Sentinel-2 vegetation stand-in stand in for
+item 21's fractions); the same built area makes exposure's built-up figure
+`placeholder`. Fluvial and flash flood are **`failed`**: they were run against
+the pre-registered Tier 2 bar (AUC ≥ 0.70) and scored 0.448 and 0.447
+(`experiments/flood_validation/result_2026-10-28.json`). Coastal is
+`experimental`: its test was not-run, with no Sentinel-1 image in any event
+window (C53). `failed` is a fourth label beside the three decided above,
+meaning tested and did not pass. Pluvial (0.533) and waterlogging (0.432) also
+failed that test but keep `placeholder`, which says more about their inputs.
+**Still open:** the retired 7-class pipeline's own `result.json` blocks
+(landcover, legacy `hydrological_surfaces`) carry no `validation_status`.
 
 ---
 

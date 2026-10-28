@@ -33,6 +33,12 @@ def _classify(score):
     return "very_high"
 
 
+# Item 26 task 8 (Tier 2, experiments/flood_validation/result_2026-10-28.json):
+# not-run: no Sentinel-1 image in any pre-registered 3-day event window
+# (C53), so it stays experimental.
+# "failed" = tested against the pre-registered bar and did not pass.
+VALIDATION_STATUS = "experimental"
+
 from perception.applicability_gate import gated
 
 
@@ -53,6 +59,7 @@ def compute_coastal_susceptibility(coastal_context: dict, fabdem_elevation: dict
     if coastal_context is None or coastal_context.get("status") != "available":
         return {
             "status": "insufficient_evidence",
+            "validation_status": VALIDATION_STATUS,
             "reason": f"Coastline context unavailable: "
                       f"{coastal_context.get('error') if coastal_context else 'not computed'}",
         }
@@ -67,6 +74,7 @@ def compute_coastal_susceptibility(coastal_context: dict, fabdem_elevation: dict
         # guessing a near-zero score.
         return {
             "status": "not_applicable",
+            "validation_status": VALIDATION_STATUS,
             "reason": (
                 f"No coastline geometry found within "
                 f"{coastal_context.get('search_radius_km')}km of this AOI -- "
@@ -121,6 +129,7 @@ def compute_coastal_susceptibility(coastal_context: dict, fabdem_elevation: dict
 
     return {
         "status": "experimental",
+        "validation_status": VALIDATION_STATUS,
         "aoi_mean_score": round(score, 4),
         "aoi_mean_class": _classify(score),
         "distance_to_coast_km": distance_km,

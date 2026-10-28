@@ -914,8 +914,8 @@ function SecExposure({ result }) {
       <ReportCard title="Built-up area" status={builtUp.status || 'not_calculated'}>
         {builtUp.status === 'available' ? (
           <>
-            <Explain>Share of this area covered by buildings and paved surfaces, as estimated by the land-cover model.</Explain>
-            <Metric label="Built-up share" value={fmtPct(builtUp.geowatch_model_builtup_pct)} accent={C.amber} big />
+            <Explain>Share of this area covered by building footprints (Open Buildings). A placeholder: it counts roofs, not roads or paving.</Explain>
+            <Metric label="Built-up share" value={fmtPct(builtUp.built_area_pct)} accent={C.amber} big />
             <Small style={{ marginTop: 10 }}>
               {builtUp.global_reference_source
                 ? `This is cross-checked against an independent global dataset (${builtUp.global_reference_source}), though the two haven't been formally compared yet.`

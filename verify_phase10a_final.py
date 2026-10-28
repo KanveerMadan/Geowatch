@@ -59,7 +59,7 @@ def check_run(label_prefix, aoi_name):
     # 3. Built-up cross-check sanity
     print("\n--- Built-up (GeoWatch vs GHSL) ---")
     builtup = first_layer.get("components", {}).get("built_up", {})
-    print(f"  GeoWatch model built-up %: {builtup.get('geowatch_model_builtup_pct')}")
+    print(f"  Footprint built-up %: {builtup.get('built_area_pct')}")
     print(f"  GHSL reference source: {builtup.get('global_reference_source')}")
     print(f"  GHSL status: {builtup.get('status')}")
 

@@ -32,6 +32,11 @@ def _classify(score):
     return "very_high"
 
 
+# Item 26 task 8 (Tier 2, experiments/flood_validation/result_2026-10-28.json):
+# AUC 0.447 against Sentinel-1 event extents, 3 events, bar 0.70: failed.
+# "failed" = tested against the pre-registered bar and did not pass.
+VALIDATION_STATUS = "failed"
+
 from perception.applicability_gate import gated
 
 
@@ -68,6 +73,7 @@ def compute_flash_flood_susceptibility(slope_context: dict, hand_context: dict,
     if not slope_available and not catchment_available:
         return {
             "status": "insufficient_evidence",
+            "validation_status": VALIDATION_STATUS,
             "reason": "Neither slope nor upstream-catchment context is available.",
         }
 
@@ -106,6 +112,7 @@ def compute_flash_flood_susceptibility(slope_context: dict, hand_context: dict,
 
     return {
         "status": "experimental",
+        "validation_status": VALIDATION_STATUS,
         "aoi_mean_score": round(score, 4),
         "aoi_mean_class": _classify(score),
         "mean_slope_deg": slope_context.get("mean_slope_deg") if slope_available else None,

@@ -80,6 +80,7 @@ class EvidenceLayer:
 
 
 from perception.applicability_gate import gated
+from susceptibility.inputs import check_surface, mean_pct, provenance
 
 
 @gated("exposure")
@@ -90,7 +91,7 @@ def compute_exposure_for_layer(
     builtup_reference: dict = None,
     road_length_context: dict = None,
     facilities_context: dict = None,
-    landcover_builtup_pct: float = None,
+    built_area: dict = None,
 ) -> dict:
     """
     Compute exposure for ONE evidence layer.
@@ -121,10 +122,10 @@ def compute_exposure_for_layer(
         builtup_reference: optional, output of get_builtup_reference()
         road_length_context: optional, output of get_osm_road_length()
         facilities_context: optional, output of get_osm_facilities()
-        landcover_builtup_pct: optional, GeoWatch's own built-up-like
-            category_area_pct sum (dense_informal_roofing +
-            sparse_informal_roofing + paved_road, etc.) for cross-check
-            against GHSL -- caller computes this, not this function.
+        built_area: optional, a declared surface input
+            (susceptibility/inputs.py): Open Buildings footprint built AREA,
+            `placeholder`. Its AOI mean is the built-up figure. Since item 26
+            it is never the retired 7-class map's category percentages.
 
     Returns:
         dict matching the exposure-per-layer schema.
@@ -215,13 +216,14 @@ def compute_exposure_for_layer(
             "error": (population_context or {}).get("error", "Population context not provided."),
         }
 
-    # ── Built-up (GeoWatch model + GHSL cross-check, per Document 1) ──
+    # ── Built-up (footprint built area + GHSL cross-check, per Document 1) ──
     builtup_component = {"status": "not_calculated"}
-    if landcover_builtup_pct is not None:
+    built_pct = mean_pct(check_surface(built_area, "built_area")) if built_area is not None else None
+    if built_pct is not None:
         builtup_component = {
             "status": "available",
-            "geowatch_model_builtup_pct": landcover_builtup_pct,
-            "geowatch_applicability": "see urban_landcover_model in applicability block",
+            "built_area_pct": built_pct,
+            **provenance(built_area),
         }
         if builtup_reference is not None and builtup_reference.get("status") == "available":
             builtup_component["global_reference_source"] = builtup_reference["source"]
@@ -233,10 +235,8 @@ def compute_exposure_for_layer(
             builtup_component["global_reference_source"] = None
             builtup_component["note"] = (
                 "GHSL reference unavailable or unverified -- built-up figure "
-                "reflects GeoWatch's own model only, which has known "
-                "geographic and classification limitations (see "
-                "applicability.urban_landcover_model and the project's "
-                "documented paved_road/roofing confusion)."
+                "is Open Buildings footprint area only: roofs, not roads or "
+                "paving, and a placeholder until item 21's fractions exist."
             )
     result["components"]["built_up"] = builtup_component
 

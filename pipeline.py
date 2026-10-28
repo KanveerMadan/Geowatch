@@ -553,13 +553,6 @@ def run_pipeline(
     road_length_context = get_osm_road_length(roads_gdf)
     facilities_context = get_osm_facilities(west, south, east, north, output_dir=osm_dir)
 
-    landcover_builtup_pct = round(
-        inference_result["category_area_pct"].get("dense_informal_roofing", 0)
-        + inference_result["category_area_pct"].get("sparse_informal_roofing", 0)
-        + inference_result["category_area_pct"].get("paved_road", 0),
-        3,
-    )
-
     exposure_layers = {}
     risk_layers = {}
     for layer_key, susc_result in susceptibility_block.items():
@@ -590,7 +583,7 @@ def run_pipeline(
             builtup_reference=builtup_reference,
             road_length_context=road_length_context,
             facilities_context=facilities_context,
-            landcover_builtup_pct=landcover_builtup_pct,
+            built_area=fi.get("impervious"),   # footprint built area, never the 7-class map
             applicability=applicability,
         )
         exposure_layers[layer_key] = exposure_result

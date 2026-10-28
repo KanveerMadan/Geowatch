@@ -1080,6 +1080,81 @@ C46 and C47 are already used on `item-21-phase-a` (`c2953c9`), and
 `08_STATE.md` on `master` uses C46 for a different finding. These three
 therefore start at C48 to avoid a third collision.*
 
+***C51–C56 added 2026-10-28** from item 26 (Lane C, `build/flood`, merged at
+`03a47ab`). **No fate assigned.** Numbered from C51: no branch uses C51 or
+above.*
+
+### C56 — An Earth Engine reduction can stall for hours without raising [E] *(entry)*
+
+On 2026-10-28 the item 26 ward-ranking run (`experiments/ward_ranking/c3_ward_ranking.py`)
+sat on one `reduceRegion(...).getInfo()` for ward 20 (P/S) for **2 h 40 min
+using 0 s of CPU**, with no error. Only two places set
+`ee.data.setDeadline`: `vector/sources.py` (after the same failure class
+stalled a Cape Town download for 23 h) and, since this stall, the ward-ranking
+script. Every other Earth Engine call in the repo, including all of
+`ingestion/`, can hang indefinitely. The ward-ranking rerun set a 10-minute deadline with
+one retry; the retry never fired, so the stall was not reproducible on demand.
+
+### C55 — `docs/susceptibility_dag.md` describes pluvial's retired inputs [S] *(entry)*
+
+After item 26 task 1 (`8f3d366`), pluvial reads Open Buildings built area,
+the Sentinel-2 vegetation stand-in, road conduits and DEM terrain. The DAG
+document still draws pluvial and waterlogging as consumers of the 7-class
+land-cover map, so item 66's dependency picture and its "two shared inputs"
+reading are out of date for those two layers.
+
+*Doc change 2026-10-28 (`build/cleanup`): §1 of `docs/susceptibility_dag.md`
+now shows the item 26 wiring; §2's correlations are marked as computed on the
+old wiring, not recomputed. Fate still unassigned.*
+
+### C54 — Exposure's `landcover_builtup_pct` is still built from the retired 7-class map [S] *(entry)*
+
+`pipeline.py` sums `category_area_pct` for `dense_informal_roofing`,
+`sparse_informal_roofing` and `paved_road` into `landcover_builtup_pct`, and
+`exposure` consumes it. Item 26 removed the 7-class map from every
+susceptibility module but not from exposure, which is why
+`perception/applicability_gate.py` still lists `exposure` in
+`LANDCOVER_DERIVED`. Exposure, and every risk block built on it, therefore
+still inherits the retired model's output and trust verdict.
+
+*Code change 2026-10-28 (`build/cleanup`): exposure's built-up figure is now
+the Open Buildings footprint built-area surface (`built_area_pct`,
+`placeholder`), and `exposure` moved to `LANDCOVER_INDEPENDENT`. Fate still
+unassigned.*
+
+### C53 — The coastal module could not be tested: no Sentinel-1 image in any 3-day event window [E] *(entry)*
+
+Item 26 task 8's pre-registered coastal test used a 3-day event window after
+each event start. All three sites returned **zero** event-window Sentinel-1
+images: Beira (Idai, 2019-03-15; pre-event 6), Chennai Velachery (Michaung,
+2023-12-04; 3), Fort Myers Beach (Ian, 2022-09-28; 4). Coastal is therefore
+**not-run**. Sentinel-1's revisit (6–12 days, single satellite from 2022)
+makes a 3-day window a likely miss for any event; the other S1-referenced
+modules happened to get 1–2 images.
+
+### C52 — Three scalar flood modules rank observed-flooded cells *below* dry ones [E] *(entry)*
+
+Item 26 task 8 (`experiments/flood_validation/result_2026-10-28.json`), cell
+AUC, bar 0.70: fluvial **0.448** and waterlogging **0.432** (JRC recurrent
+water, 9 AOIs, 6,236 flooded / 301,828 dry cells), flash flood **0.447**
+(Sentinel-1, 3 events, 3,777 / 63,918). All below 0.5, so slightly
+anti-discriminating, not merely weak. Pluvial (Sentinel-1, Dharavi
+2017-08-29) is **0.533**. Contributing, not separated: the four scalar modules
+give every cell in a site the same score, so each AUC ranks only 3–9 sites;
+event severity is mixed into the reference; SAR misses urban flooding. Example
+of the inversion: HCMC scores fluvial 0.942 with 516 of 140,216 cells
+recurrently wet, while Nusantara scores 0.787 with 1,755 of 44,932.
+
+### C51 — `drainage_disconnection` is near-saturated on flat urban ground [E] *(entry)*
+
+Item 26 task 4's D8 component (`susceptibility/terrain.py`) is 1 where a
+cell's flow path ends in an interior pit of the **unfilled** FABDEM. On the
+Dharavi hydrology grid (87 × 94, 30 m; FABDEM 0–12.0 m) its mean is
+**0.914**: 91 % of cells flag. Flat cells with no strictly lower neighbour
+count as pits, and bilinear resampling of a metre-precision DEM leaves many.
+Near-constant, the component mostly shifts pluvial's level rather than its
+pattern on exactly the flat, low-lying fabric the project targets.
+
 ### C50 — WorldPop R2025A is now in GEE, and its sums are 2.8–6.3× off both models in use [E] *(entry)*
 
 `03_EVIDENCE.md` §C.4 records R2025A as **absent from GEE** ("probed under two
