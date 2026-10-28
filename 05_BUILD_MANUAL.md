@@ -2088,6 +2088,19 @@ result.
   `tests/test_flood_references_round2.py` (8; they fail on the old code,
   where the module does not exist).
 
+- **Task 3 — coastal gets a testable Sentinel-1 window.** The window is
+  pre-registered as the event day through day + 12
+  (`S1_EVENT_WINDOW_DAYS["coastal"] = 13`), against 3 days for the other
+  modules. Twelve days is Sentinel-1's single-satellite repeat since S1B
+  failed, so it is the shortest window that guarantees a pass. Round 1's
+  3-day window held no image at any coastal site (C53). The stated cost is
+  that surge water drains within days, so a late image undercounts: Beira's
+  and Fort Myers Beach's first images are at day + 4. Chennai has no image
+  within + 12 (its next is + 20 or later) and is dropped from coastal. Tests:
+  3 added to `tests/test_flood_references_round2.py`. They fail on the old
+  code, where the constant does not exist. Both coastal sites are not-run
+  under round 1's window and testable under the new one.
+
 ---
 
 # PART 5 — Validation discipline 🔓

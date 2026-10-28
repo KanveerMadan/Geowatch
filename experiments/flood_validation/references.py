@@ -45,6 +45,13 @@ EMS_FLOODED_NOTATIONS = ("Flooded area", "Flood trace")
 EMS_SUPERSAMPLE = 10              # 30 m cell -> 3 m sub-cells
 COVER_MIN = 0.5                   # >= half a cell's area / sub-pixels
 S1_PRE_EVENT_DAYS = 30
+# Event window, days from the event date (day 0) -- PREREGISTRATION_ROUND2.md.
+# 3 days as in round 1, except coastal: 13 = event day through + 12, the
+# single-satellite Sentinel-1 repeat cycle (S1B failed Dec 2021), the
+# shortest window that guarantees a pass of every relative orbit. Round 1's
+# 3-day window held no image at any coastal site (C53). Cost, stated in
+# advance: surge water drains within days, so a late image undercounts.
+S1_EVENT_WINDOW_DAYS = {"default": 3, "coastal": 13}
 GFD_ASSET = "GLOBAL_FLOOD_DB/MODIS_EVENTS/V1"
 EVAL_BLOCK_GFD = 8                # 8 x 30 m = 240 m, about GFD's 250 m
 HTTP_TIMEOUT_S = 120

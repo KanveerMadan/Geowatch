@@ -91,3 +91,25 @@ def test_square_bbox_is_4_km():
 def test_permanent_water_is_never_valid():
     occ = np.array([[0.0, 79.9, 80.0, np.nan]])
     assert R.not_permanent(occ).tolist() == [[True, True, False, False]]
+
+
+# ── task 3: the coastal Sentinel-1 window ──────────────────────────────
+
+# Acquisition offsets (days from the event) read in the pre-registration's
+# availability check: the first post-event image is at +4 at both sites.
+COASTAL_FIRST_IMAGES = {"beira": ("2019-03-15", [-2, -1, 4, 5, 10, 11]),
+                        "fort_myers_beach": ("2022-09-28", [-3, 4, 9])}
+
+
+def test_coastal_window_is_twelve_days_after_the_event_day():
+    assert R.S1_EVENT_WINDOW_DAYS == {"default": 3, "coastal": 13}
+
+
+@pytest.mark.parametrize("site", sorted(COASTAL_FIRST_IMAGES))
+def test_coastal_sites_are_testable_with_the_wider_window_and_not_with_round_1s(site):
+    event, offsets = COASTAL_FIRST_IMAGES[site]
+    e = datetime.date.fromisoformat(event)
+    ts = [_ms((e + datetime.timedelta(days=o)).isoformat()) for o in offsets]
+    assert R.pick_event_date(ts, event, R.S1_EVENT_WINDOW_DAYS["default"]) is None
+    assert R.pick_event_date(ts, event, R.S1_EVENT_WINDOW_DAYS["coastal"]) == \
+        e + datetime.timedelta(days=4)
