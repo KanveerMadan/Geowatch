@@ -1657,7 +1657,8 @@ with a building, which inflates per-block counts there.
 
 `tests/test_vector_access.py`, 7 tests: **0 before** (module absent) and **7
 passed after**.
-### 25. Change over time 🔓
+
+### 25. Change over time ✅ *(acceptance met; the pre-registered expectation was NOT met, see below)*
 Fraction deltas across composites.
 
 **Why this matters:** the one capability free 10 m imagery has that VHR does not.
@@ -1668,6 +1669,71 @@ be the most valuable output.
 is attributable to a specific fraction (not "something changed"); the epochs'
 observation quality is carried alongside so a cloud-affected epoch cannot
 masquerade as change.
+
+**Built 2026-10-28** (`vector/change.py`). *Proposed research design under the
+Part 4 mandate. Not validated.* **built, vegetation and water only;
+`impervious_total`, `paved` and `bare` are `not_computed`.** Every change
+record names its fraction. There is no combined "something changed".
+
+- **built:** Open Buildings 2.5D Temporal `building_presence`, mean on the
+  10 m grid. Its years (2016–2023) and coverage were verified live before
+  use. It is a model score, so it is a built *proxy*, not footprint area. The
+  asset's native grid was found live to be **0.5 m** (400 input pixels per
+  10 m output pixel).
+- **vegetation, water:** item 22's labelled Sentinel-2 index-threshold
+  proxies, on two composites over the same calendar window.
+- **Units:** item 22's 100 m grid.
+
+**Pre-registered in code before any change data was fetched:**
+- the AOI: the Navi Mumbai International Airport site, OSM way 455547086
+  bounds, fetched live;
+- the epochs;
+- `K_NOISE = 3.0`, so a change counts only if |Δ| > 3 × noise for that
+  fraction;
+- the noise procedure:
+  - vegetation and water: the std of split-half composites (days 1–15 vs
+    16–31) of the same window, which contain no real change; conservative,
+    because a half-composite is noisier than a full one;
+  - built: the std of 2022→2023 differences; conservative, because it may
+    include real change;
+- the observation gates: an epoch below 50% clear at AOI level makes every
+  unit `epoch_unreliable`; a unit below 80% coverage in either epoch is
+  `insufficient_observation`;
+- an expectation: *where change is detected, vegetation mostly DECREASES*.
+
+**Live, 2026-10-28** (1,683 grid units):
+
+| fraction | epoch A | epoch B | noise | threshold | increase | decrease | no detectable change | insufficient obs. |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| built | OB Temporal 2019 (1 image) | 2023 (1 image) | 0.0204 | 0.0612 | 44 | 40 | 1,598 | 1 |
+| vegetation | S2 2019-01-01..03-31 (34 images, 92.2% clear) | S2 2024-01-01..03-31 (36 images, 96.0% clear) | 0.0419 | 0.1257 | **138** | **75** | 1,469 | 1 |
+| water | same | same | 0.0437 | 0.1311 | 66 | 61 | 1,555 | 1 |
+
+**The three checks asked for (2026-10-28):**
+1. *The two dates.* Vegetation and water: 2019-01-01..2019-03-31 and
+   2024-01-01..2024-03-31. Built: Open Buildings Temporal 2019 and 2023, the
+   latest year it has.
+2. *Same season: YES for vegetation and water.* The windows are identical
+   (Jan–Mar, the dry season, in both years), and a test pins the month-day
+   windows equal. *Not applicable to built:* Open Buildings Temporal is one
+   annual estimate per year, with no within-year window to match. This is
+   stated rather than claimed as a pass.
+3. *Threshold a constant fixed before the run: YES.* `K_NOISE = 3.0` and the
+   noise procedure were in code before the first live attempt. The noise
+   values themselves are measured in the run, as pre-registered. The only
+   edit between the failed first attempt and the run reported here was the
+   resampling limit (`maxPixels` 64 → 1024). *Limit:* git cannot prove the
+   ordering, because `change.py` was not committed before the run.
+
+**Acceptance: met.** Two epochs over one AOI; every change attributable to a
+named fraction; each epoch's observation quality carried. **The pre-registered
+expectation was NOT met: vegetation increased in 138 units and decreased in
+75**, the opposite of the prediction. Not investigated here. One possibility,
+not checked, is that the site was already cleared by early 2019 and has since
+regrown cover on airside land. The threshold was not changed.
+
+`tests/test_vector_change.py`, 9 tests: **0 before** (module absent) and **9
+passed after**.
 
 ### 26. Rewire flood risk 🔓
 
