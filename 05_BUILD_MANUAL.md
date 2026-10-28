@@ -871,7 +871,7 @@ not exist; collection error) and **37 passed after**.
 new here. `generate_osm_road_masks.py` keeps its own copy of the width table,
 not changed here; two copies can drift.
 
-### 20. Per-area completeness score ✅ *(partial: the UI half of acceptance is not met, no vector consumer in the UI)*
+### 20. Per-area completeness score 🔶 **PARTIAL — stays partial until the low-coverage flag reaches the UI** *(the flag reaches every vector output; no UI consumer exists yet)*
 
 **What:** a mandatory field on every AOI and every reporting unit, quantifying how
 much of the road network is likely present.
