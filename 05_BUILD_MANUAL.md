@@ -1509,7 +1509,7 @@ there is not automatically your error.
 **Acceptance:** each unit type produces the same fraction totals over the same
 area (a consistency check); every unit carries `{value, status, coverage}`.
 
-### 23. Density metrics 🔓
+### 23. Density metrics 🔶 **BUILT — pre-registered acceptance test FAILED (2026-10-28)**
 Road length per unit area, footprint density, footprint size distribution,
 spacing statistics, orthogonality index, `impervious_total`.
 
@@ -1525,6 +1525,52 @@ are working.
 
 **Acceptance:** metrics computed for a known-formal and a known-informal AOI;
 they separate the two without any spectral input.
+
+**Built 2026-10-28** (`vector/density.py`). *Proposed research design under the
+Part 4 mandate.* Every metric is a `{value, status}` block, computed from the
+item 19 layer only. A test forbids imagery imports, and `spectral_inputs` is
+`[]`.
+
+- Road length per area: all, arterial, narrow and broad, kept separate.
+- Footprint density and built-area share.
+- Footprint size distribution: p10, p25, median, p75, p90 and mean.
+- Spacing: centroid nearest-neighbour distance.
+- **Orthogonality:** Boeing's (2019) orientation order φ. It is a topology
+  metric, so it is suppressed under item 20's low coverage (Lagos:
+  `suppressed_low_coverage`).
+- `impervious_total`: `not_computed`.
+
+**Separation test, pre-registered in code before either AOI was computed**
+(`SEPARATION_TEST`). Known-formal is chandigarh_central and known-informal is
+dharavi, with the same footprint source (Open Buildings v3) so the source
+cannot separate them. Pass = at least 3 of 4 predictions hold and none is
+reversed.
+
+| prediction | formal | informal | statistic | bar | outcome |
+|---|---:|---:|---:|---:|---|
+| larger formal footprints (median m²) | 50.4 | 46.1 | 1.09× | ≥ 2.0× | short of bar |
+| denser informal footprints (/km²) | 2,101 | 2,761 | 1.31× | ≥ 2.0× | short of bar |
+| wider formal spacing (median m) | 7.6 | 6.7 | 1.13× | ≥ 1.5× | short of bar |
+| more orthogonal formal network (φ) | 0.879 | 0.047 | +0.832 | ≥ +0.10 | **holds** |
+
+**Result: FAIL.** 1 of 4 hold, 0 reversed. The bar was not moved. The street
+network separates the two decisively. The footprint metrics all point the
+predicted way and fall well short of their bars.
+
+*Not explained, and needing your decision:* Chandigarh's median Open Buildings
+footprint is **50 m²**, implausibly small for planned formal fabric. Barcelona
+(OSM footprints) is 287 m². Possible causes, NOT tested: Open Buildings
+fragmenting formal houses; the AOI including many small structures; or a
+real property of Chandigarh's sector housing. Until that is resolved, the
+footprint metrics cannot be read as morphology signals on Open Buildings
+input.
+
+Other AOIs, for the record: Barcelona φ = 0.617 (sidewalk footways add
+off-grid bearings), 1,093 footprints/km², median 287 m². Lagos φ suppressed,
+1,983 footprints/km², median 52 m².
+
+`tests/test_vector_density.py`, 15 tests: **0 before** (module absent) and **15
+passed after**.
 
 ### 24. Access and service indicators 🔓
 Network connectivity, distance-to-nearest-paved-access per building or per block.
