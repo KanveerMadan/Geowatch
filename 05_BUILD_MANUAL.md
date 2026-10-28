@@ -2551,7 +2551,7 @@ The exact decision rules the annotator followed, including edge cases. **This is
 the standard substitute for inter-rater statistics in small studies** and is
 broadly accepted when explicit.
 
-### 64. Gate C protocol — written, unrun
+### 64. Gate C protocol — written, unrun ✅
 Write the study design — recruitment, task, metrics — whether or not it gets run.
 Disclose non-execution explicitly as an access constraint.
 
@@ -2560,6 +2560,12 @@ closes via structured advisor/faculty review against D.7's five reporting
 requirements (item 65 below documents that review). This item is the
 real-planner protocol, filed as documented future work, disclosed as blocked
 by access rather than by design choice.
+
+**Done (written; not run):** `docs/gate_c_protocol.md`. It covers
+recruitment (three user classes), a four-stage task in Decision 17's shape,
+and metrics M1–M7 against an answer key frozen before recruitment.
+Non-execution is stated at the top as an access constraint.
+`GATE_C_STATUS` is unchanged.
 
 ### 65. Gate C — advisor review write-up *(new, added during consolidation)*
 Document the structured advisor/faculty review against D.7's five
