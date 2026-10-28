@@ -131,7 +131,22 @@ def _aoi_fraction_outputs(layer, fset: dict, mv: dict) -> dict:
     return out
 
 
-def _coverage_output(cov: dict, mv: dict) -> dict:
+def derive_osm_claims(layer, modules: dict) -> dict:
+    """Item 39 (C15): every OSM claim the result makes, derived after the
+    layer and the flood modules have run, from what they actually did."""
+    fs = layer.fetch_status("all")
+    retrieved = [g for g, n in (layer.fetch.get("clauses") or {}).items() if n is not None]
+    pluvial_used = modules["pluvial"].get("components_used", [])
+    return {
+        "osm_available": bool(layer.ways) and (bool(retrieved) or not layer.fetch.get("clauses")),
+        "highway_ways": len(layer.ways),
+        "highway_fetch": fs,
+        "road_conduits_used_by_pluvial": "road_conduit" in pluvial_used,
+        "claims_derived_from": "outcome (layer as built, pluvial components used)",
+    }
+
+
+def _coverage_output(cov: dict, mv: dict, claims: dict | None = None) -> dict:
     return C.output(cov["osm_density_percentile"], validation_status=cov["validation_status"],
                     coverage=C.coverage(1.0, "AOI-level score over every retrieved OSM clause",
                                         fetch=cov["road_length_fetch"]["all"]),
@@ -143,7 +158,8 @@ def _coverage_output(cov: dict, mv: dict) -> dict:
                     topology_metrics_suppressed=cov["topology_metrics_suppressed"],
                     footprint_metrics_confidence=cov["footprint_metrics_confidence"],
                     narrow_pedestrian_km_per_km2=cov["narrow_pedestrian_km_per_km2"],
-                    measure=cov["measure"], source_layer_id=cov["source_layer_id"])
+                    measure=cov["measure"], source_layer_id=cov["source_layer_id"],
+                    **({"osm_claims": claims} if claims else {}))
 
 
 def _change_outputs(ch: dict | None, stage: dict, epochs: dict, fset: dict, mv: dict) -> dict:
@@ -312,7 +328,7 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
         "fractions": _aoi_fraction_outputs(layer, fset, mv),
         "observability": obs_out,
         "estimate_quality": eq_out,
-        "osm_coverage": _coverage_output(cov, mv),
+        "osm_coverage": _coverage_output(cov, mv, derive_osm_claims(layer, modules)),
         "susceptibility": hz,
         "change": _change_outputs(change, stages["change"], epochs, fset, mv),
         "aggregation": _aggregation_outputs(unit_sets, mv, fset),

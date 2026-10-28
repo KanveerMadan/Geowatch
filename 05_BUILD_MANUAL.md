@@ -2267,7 +2267,17 @@ Preserve the error at the ward boundary. A timeout must produce
 **Acceptance:** two consecutive runs of the same wards produce identical tiers,
 or explicitly differing `status` fields explaining why.
 
-### 39. C15 — derive the claim, do not latch it
+### 39. C15 — derive the claim, do not latch it ✅ *(2026-10-28)*
+
+> **Built 2026-10-28 (Phase 2).** Legacy pipeline (C15's site):
+> `pipeline.derive_osm_context()` computes `osm_available`,
+> `road_access_scores_reliable` and `road_score_method` after the distance
+> map and every segment score exist; a run whose scores are all the -1.0
+> sentinel, or that has no distance map, can no longer claim
+> `distance_transform`. Analysis pipeline: `osm_coverage.osm_claims` is
+> derived after the layer is built and pluvial has run (`osm_available` from
+> the ways actually retrieved, `road_conduits_used_by_pluvial` from pluvial's
+> own `components_used`). Tests: `tests/test_item39_derived_claims.py`.
 Compute `osm_available` and the reliability claim **from the actual outcome**,
 after the map is built.
 
