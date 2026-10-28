@@ -1,0 +1,871 @@
+{
+  "item": 20,
+  "measure": "peer_relative_density_rank",
+  "validation_status": "experimental",
+  "generated_at": "2026-10-28T14:48:03+00:00",
+  "reference_measured_on": "2026-10-27",
+  "thresholds": {
+    "very_low_narrow_km_per_km2": 0.3,
+    "low_narrow_km_per_km2": 1.0,
+    "partial_mapping_arterial_to_pedestrian": 5.0
+  },
+  "aois": [
+    {
+      "aoi": "dharavi",
+      "bbox": [
+        72.836,
+        19.037,
+        72.862,
+        19.06
+      ],
+      "coverage": {
+        "osm_density_percentile": 83.3,
+        "coverage_regime_flag": "adequate",
+        "low_coverage_warning": false,
+        "regime_reasons": [],
+        "narrow_pedestrian_km_per_km2": 2.7817,
+        "broad_pedestrian_km_per_km2": 13.9735,
+        "arterial_to_pedestrian_ratio": {
+          "value": 2.723,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 120.12,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprint_count": 19339,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": false,
+        "footprint_metrics_confidence": "normal",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "4eb71990a905ed57",
+        "validation_status": "experimental"
+      },
+      "morphology": "dense_informal"
+    },
+    {
+      "aoi": "nairobi",
+      "bbox": [
+        36.778,
+        -1.318,
+        36.812,
+        -1.284
+      ],
+      "coverage": {
+        "osm_density_percentile": 58.3,
+        "coverage_regime_flag": "adequate",
+        "low_coverage_warning": false,
+        "regime_reasons": [],
+        "narrow_pedestrian_km_per_km2": 2.1097,
+        "broad_pedestrian_km_per_km2": 15.8972,
+        "arterial_to_pedestrian_ratio": {
+          "value": 1.664,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 108.71,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprint_count": 32760,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": false,
+        "footprint_metrics_confidence": "normal",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "9a7cbdce2c7ccf52",
+        "validation_status": "experimental"
+      }
+    },
+    {
+      "aoi": "jakarta",
+      "bbox": [
+        106.78,
+        -6.13,
+        106.85,
+        -6.08
+      ],
+      "coverage": {
+        "osm_density_percentile": 8.3,
+        "coverage_regime_flag": "low",
+        "low_coverage_warning": true,
+        "regime_reasons": [
+          "narrow pedestrian density 0.41 < 1.0 km/km^2"
+        ],
+        "narrow_pedestrian_km_per_km2": 0.4072,
+        "broad_pedestrian_km_per_km2": 5.3737,
+        "arterial_to_pedestrian_ratio": {
+          "value": 4.023,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 76.87,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprint_count": 27364,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": true,
+        "footprint_metrics_confidence": "reduced",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "82fefec8acfed1e9",
+        "validation_status": "experimental"
+      }
+    },
+    {
+      "aoi": "hcmc",
+      "bbox": [
+        106.58,
+        10.78,
+        106.68,
+        10.88
+      ],
+      "coverage": {
+        "osm_density_percentile": 25.0,
+        "coverage_regime_flag": "low",
+        "low_coverage_warning": true,
+        "regime_reasons": [
+          "narrow pedestrian density 0.99 < 1.0 km/km^2"
+        ],
+        "narrow_pedestrian_km_per_km2": 0.9898,
+        "broad_pedestrian_km_per_km2": 21.1275,
+        "arterial_to_pedestrian_ratio": {
+          "value": 3.864,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 204.19,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprint_count": 627622,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": true,
+        "footprint_metrics_confidence": "reduced",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "56541a1bd063c200",
+        "validation_status": "experimental"
+      }
+    },
+    {
+      "aoi": "kigali",
+      "bbox": [
+        30.058,
+        -1.975,
+        30.082,
+        -1.952
+      ],
+      "coverage": {
+        "osm_density_percentile": 50.0,
+        "coverage_regime_flag": "adequate",
+        "low_coverage_warning": false,
+        "regime_reasons": [],
+        "narrow_pedestrian_km_per_km2": 1.8744,
+        "broad_pedestrian_km_per_km2": 10.4736,
+        "arterial_to_pedestrian_ratio": {
+          "value": 1.825,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 185.72,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprint_count": 18173,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": false,
+        "footprint_metrics_confidence": "normal",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "82b8c5ed6adc5874",
+        "validation_status": "experimental"
+      }
+    },
+    {
+      "aoi": "accra",
+      "bbox": [
+        -0.225,
+        5.54,
+        -0.19,
+        5.57
+      ],
+      "coverage": {
+        "osm_density_percentile": 33.3,
+        "coverage_regime_flag": "adequate",
+        "low_coverage_warning": false,
+        "regime_reasons": [],
+        "narrow_pedestrian_km_per_km2": 1.3027,
+        "broad_pedestrian_km_per_km2": 15.2256,
+        "arterial_to_pedestrian_ratio": {
+          "value": 3.779,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 127.57,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprint_count": 34515,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": false,
+        "footprint_metrics_confidence": "normal",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "5dbe49f47bf061e6",
+        "validation_status": "experimental"
+      }
+    },
+    {
+      "aoi": "dhaka",
+      "bbox": [
+        90.385,
+        23.765,
+        90.425,
+        23.795
+      ],
+      "coverage": {
+        "osm_density_percentile": 0.0,
+        "coverage_regime_flag": "not_measurable",
+        "low_coverage_warning": true,
+        "regime_reasons": [
+          "Overpass clause(s) not retrieved: ['narrow_pedestrian']"
+        ],
+        "narrow_pedestrian_km_per_km2": 0.0,
+        "broad_pedestrian_km_per_km2": 10.4174,
+        "arterial_to_pedestrian_ratio": {
+          "value": 1000.0,
+          "capped": true,
+          "fetch": {
+            "status": "partial_fetch",
+            "missing_clauses": [
+              "narrow_pedestrian"
+            ],
+            "note": "value is a LOWER BOUND: built without the missing clauses"
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 108.46,
+          "capped": false,
+          "fetch": {
+            "status": "partial_fetch",
+            "missing_clauses": [
+              "narrow_pedestrian"
+            ],
+            "note": "value is a LOWER BOUND: built without the missing clauses"
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "partial_fetch",
+            "missing_clauses": [
+              "narrow_pedestrian"
+            ],
+            "note": "value is a LOWER BOUND: built without the missing clauses"
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "partial_fetch",
+            "missing_clauses": [
+              "narrow_pedestrian"
+            ],
+            "note": "value is a LOWER BOUND: built without the missing clauses"
+          },
+          "broad_pedestrian": {
+            "status": "partial_fetch",
+            "missing_clauses": [
+              "narrow_pedestrian"
+            ],
+            "note": "value is a LOWER BOUND: built without the missing clauses"
+          }
+        },
+        "footprint_count": 27486,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": true,
+        "footprint_metrics_confidence": "low",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "3ebefb5f70621982",
+        "validation_status": "experimental"
+      }
+    },
+    {
+      "aoi": "lagos",
+      "bbox": [
+        3.37,
+        6.475,
+        3.41,
+        6.51
+      ],
+      "coverage": {
+        "osm_density_percentile": 0.0,
+        "coverage_regime_flag": "very_low",
+        "low_coverage_warning": true,
+        "regime_reasons": [
+          "narrow pedestrian density 0.19 < 0.3 km/km^2"
+        ],
+        "narrow_pedestrian_km_per_km2": 0.1928,
+        "broad_pedestrian_km_per_km2": 5.0441,
+        "arterial_to_pedestrian_ratio": {
+          "value": 11.097,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 250.36,
+          "capped": false,
+          "fetch": {
+            "status": "partial_fetch",
+            "missing_clauses": [
+              "service"
+            ],
+            "note": "value is a LOWER BOUND: built without the missing clauses"
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "partial_fetch",
+            "missing_clauses": [
+              "service"
+            ],
+            "note": "value is a LOWER BOUND: built without the missing clauses"
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "partial_fetch",
+            "missing_clauses": [
+              "service"
+            ],
+            "note": "value is a LOWER BOUND: built without the missing clauses"
+          }
+        },
+        "footprint_count": 34056,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": true,
+        "footprint_metrics_confidence": "low",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "aff75ddbf1cf51ab",
+        "validation_status": "experimental"
+      },
+      "morphology": "dense_informal"
+    },
+    {
+      "aoi": "capetown",
+      "bbox": [
+        18.66,
+        -34.075,
+        18.71,
+        -34.03
+      ],
+      "coverage": {
+        "osm_density_percentile": 91.7,
+        "coverage_regime_flag": "adequate",
+        "low_coverage_warning": false,
+        "regime_reasons": [],
+        "narrow_pedestrian_km_per_km2": 8.348,
+        "broad_pedestrian_km_per_km2": 22.7232,
+        "arterial_to_pedestrian_ratio": {
+          "value": 0.252,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 196.01,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprint_count": 112264,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": false,
+        "footprint_metrics_confidence": "normal",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "9c393b847cd9b0f3",
+        "validation_status": "experimental"
+      }
+    },
+    {
+      "aoi": "guatemala",
+      "bbox": [
+        -90.54,
+        14.61,
+        -90.5,
+        14.65
+      ],
+      "coverage": {
+        "osm_density_percentile": 41.7,
+        "coverage_regime_flag": "adequate",
+        "low_coverage_warning": false,
+        "regime_reasons": [],
+        "narrow_pedestrian_km_per_km2": 1.8303,
+        "broad_pedestrian_km_per_km2": 18.0798,
+        "arterial_to_pedestrian_ratio": {
+          "value": 4.217,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 125.95,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprint_count": 63439,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": false,
+        "footprint_metrics_confidence": "normal",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "e477fa10c5495fcb",
+        "validation_status": "experimental"
+      }
+    },
+    {
+      "aoi": "nusantara",
+      "bbox": [
+        116.7,
+        -1.0,
+        116.76,
+        -0.945
+      ],
+      "coverage": {
+        "osm_density_percentile": 16.7,
+        "coverage_regime_flag": "low",
+        "low_coverage_warning": true,
+        "regime_reasons": [
+          "narrow pedestrian density 0.63 < 1.0 km/km^2"
+        ],
+        "narrow_pedestrian_km_per_km2": 0.6326,
+        "broad_pedestrian_km_per_km2": 1.9991,
+        "arterial_to_pedestrian_ratio": {
+          "value": 1.587,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 9.72,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprint_count": 1716,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": true,
+        "footprint_metrics_confidence": "reduced",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "18b40194d2f180e3",
+        "validation_status": "experimental"
+      }
+    },
+    {
+      "aoi": "barcelona_eixample",
+      "bbox": [
+        2.15,
+        41.383,
+        2.175,
+        41.4
+      ],
+      "coverage": {
+        "osm_density_percentile": 100.0,
+        "coverage_regime_flag": "adequate",
+        "low_coverage_warning": false,
+        "regime_reasons": [],
+        "narrow_pedestrian_km_per_km2": 37.807,
+        "broad_pedestrian_km_per_km2": 45.0686,
+        "arterial_to_pedestrian_ratio": {
+          "value": 0.26,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 16.87,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprint_count": 4449,
+        "footprint_count_method": "layer_footprints",
+        "footprint_source": "osm_building",
+        "topology_metrics_suppressed": false,
+        "footprint_metrics_confidence": "normal",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "2cee4b4ef2e13170",
+        "validation_status": "experimental"
+      },
+      "morphology": "formal_european"
+    },
+    {
+      "aoi": "chandigarh_central",
+      "bbox": [
+        76.765,
+        30.725,
+        76.79,
+        30.745
+      ],
+      "coverage": {
+        "osm_density_percentile": 66.7,
+        "coverage_regime_flag": "adequate",
+        "low_coverage_warning": false,
+        "regime_reasons": [],
+        "narrow_pedestrian_km_per_km2": 2.2482,
+        "broad_pedestrian_km_per_km2": 18.5486,
+        "arterial_to_pedestrian_ratio": {
+          "value": 3.094,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprints_per_road_km": {
+          "value": 81.87,
+          "capped": false,
+          "fetch": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "road_length_fetch": {
+          "all": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "arterial": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "narrow_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          },
+          "broad_pedestrian": {
+            "status": "complete",
+            "missing_clauses": []
+          }
+        },
+        "footprint_count": 11266,
+        "footprint_count_method": "open_buildings_server_count",
+        "footprint_source": "open_buildings_v3",
+        "topology_metrics_suppressed": false,
+        "footprint_metrics_confidence": "normal",
+        "reference_set_size": 12,
+        "percentile_basis": "leave_one_out",
+        "reference_measured_on": "2026-10-27",
+        "measure": "peer_relative_density_rank",
+        "scored": true,
+        "source_layer_id": "2f110fad6d5db972",
+        "validation_status": "experimental"
+      },
+      "morphology": "formal_asian"
+    }
+  ]
+}

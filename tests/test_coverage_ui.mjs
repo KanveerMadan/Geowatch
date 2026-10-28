@@ -57,6 +57,22 @@ print(json.dumps(coverage_report.build_report(aois, inputs=inputs)))`
   return JSON.parse(out.trim().split('\n').pop())
 }
 
+/** The STORED live report, as GET /api/vector/coverage serves it. */
+function servedReport() {
+  const py = `import json
+from fastapi.testclient import TestClient
+import api
+res = TestClient(api.app, headers={api.API_KEY_HEADER_NAME: api.API_KEY}).get("/api/vector/coverage")
+assert res.status_code == 200, res.text
+print(json.dumps(res.json()))`
+  // api.py refuses to import without a key; the route is called with the same
+  // one, so any value works (tests/conftest.py does the same for pytest).
+  const env = { ...process.env, GEOWATCH_API_KEY: process.env.GEOWATCH_API_KEY || 'coverage-ui-test-key' }
+  const out = execFileSync(join(repo, 'geowatch-env', 'bin', 'python'), ['-c', py],
+    { cwd: repo, encoding: 'utf8', env, stdio: ['ignore', 'pipe', 'ignore'] })
+  return JSON.parse(out.trim().split('\n').pop())
+}
+
 const REPORT = emitReport()
 const rows = Object.fromEntries(coverageRows(REPORT).map(r => [r.aoi, r]))
 
@@ -155,6 +171,25 @@ test('no report means no rows, not a default', () => {
 
 test('rows keep the backend order', () => {
   assert.deepEqual(coverageRows(REPORT).map(r => r.aoi), REPORT.aois.map(a => a.aoi))
+})
+
+/* ── End to end: the stored live report, through the real route ───── */
+
+test('ACCEPTANCE: every stored AOI renders a regime; Lagos warns, Khayelitsha does not', () => {
+  const served = servedReport()
+  const live = coverageRows(served)
+  assert.equal(live.length, served.aois.length)
+  assert.ok(live.length >= 13)
+  for (const r of live) {
+    assert.ok(r.regime, `${r.aoi} has no regime`)
+    assert.ok(r.warning || r.measurable, `${r.aoi}: a quiet row must be measurable`)
+  }
+  const by = Object.fromEntries(live.map(r => [r.aoi, r]))
+  assert.equal(by.lagos.regime, 'very_low')
+  assert.equal(by.lagos.warning, true)
+  assert.equal(by.capetown.regime, 'adequate')
+  assert.equal(by.capetown.warning, false)
+  assert.notEqual(percentileText(by.lagos), percentileText(by.capetown))
 })
 
 /* ── App.jsx wiring ────────────────────────────────────────────────── */

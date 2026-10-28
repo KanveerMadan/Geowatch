@@ -872,7 +872,7 @@ not exist; collection error) and **37 passed after**.
 new here. `generate_osm_road_masks.py` keeps its own copy of the width table,
 not changed here; two copies can drift.
 
-### 20. Per-area completeness score 🔶 **PARTIAL — stays partial until the low-coverage flag reaches the UI** *(the flag reaches every vector output; no UI consumer exists yet)*
+### 20. Per-area completeness score ✅ *(was 🔶 PARTIAL until the low-coverage flag reached the UI; flipped 2026-10-28, `build/coverage-ui`)*
 
 **What:** a mandatory field on every AOI and every reporting unit, quantifying how
 much of the road network is likely present.
@@ -909,8 +909,9 @@ low-coverage AOI is visibly flagged end-to-end through to the UI; Lagos (0.19)
 and Khayelitsha (8.35) produce visibly different scores.
 
 **Built 2026-10-28** (`vector/coverage.py`). *Label: `experimental` (decision 2026-10-28, `08_STATE.md`; nothing here is
-`validated`).* **Partially accepted: the UI half is NOT met**
-(see below).
+`validated`).* ~~**Partially accepted: the UI half is NOT met**
+(see below).~~ **Accepted 2026-10-28**: the UI half is met (see "The UI half"
+below).
 
 - **Fields** (all always present, never null; the JSON forbids NaN and inf):
   `osm_density_percentile` (narrow pedestrian density ranked against the
@@ -963,10 +964,10 @@ Every field is present and non-null for all 13. The low regime covers exactly
 which Part B deliberately did *not* flag: sparse mapping there plausibly
 reflects sparse construction. This score cannot tell those apart.
 
-**NOT met: "flagged end-to-end through to the UI".** The flag reaches the
+~~**NOT met: "flagged end-to-end through to the UI".** The flag reaches the
 output of every vector product (items 22–24 embed it in every AOI block and
 every unit). No UI consumer of the vector track exists yet, so nothing renders
-it.
+it.~~ **Met 2026-10-28** (below).
 
 **Deviations (recorded 2026-10-28):**
 1. *Reference check narrowed.* `measure_reference` first refused any AOI
@@ -1027,6 +1028,34 @@ warning field warns.
 after. App.jsx is checked structurally, not rendered: there is no browser or
 component renderer in the test setup, the same limit as the other `.mjs`
 tests.
+
+**Stored live report, 2026-10-28** (`experiments/vector_coverage/result_2026-10-28.json`,
+`python -m vector.coverage_report`, thresholds unchanged). 12 of 13 AOIs
+reproduce the table above exactly (percentile, regime, density, ratios).
+Two differ, both from Overpass transport failures (`overpass.kumi.systems`
+ReadTimeout), and both are reported as such, not retried into agreement:
+
+| AOI | this run | the table above | why |
+|---|---|---|---|
+| dhaka | **not_measurable**, warns, no number shown | adequate, 75.0 | `narrow_pedestrian` clause not retrieved |
+| lagos | very_low, 0.0, warns; **partial_fetch** (`service`) on road lengths and footprints/road km (250.4 vs 208.9) | very_low, 0.0 | `service` clause not retrieved |
+
+Rerunning `python -m vector.coverage_report` re-fetches only the missing
+clauses (the rest are cached) and writes a new dated report, which the route
+then serves.
+
+**Acceptance, against the text above:**
+- *Score emitted for every AOI, never null*: 13/13 in the stored report.
+- *A low-coverage AOI is visibly flagged end-to-end through to the UI*: met.
+  The stored report goes through `GET /api/vector/coverage` and
+  `coverage.js` to a `role="alert"` box. Lagos, Jakarta, HCMC, Nusantara and
+  Dhaka (this run) warn; the other eight do not.
+  `tests/test_coverage_ui.mjs` has an acceptance check that runs the
+  stored report through the real route. **Limit:** the panel was not
+  inspected in a browser (the browser tool was not connected). The JSX is
+  checked structurally and `vite build` compiles it.
+- *Lagos and Khayelitsha visibly different*: 0.0 / very_low / warning vs
+  91.7 / adequate / no warning.
 
 ### 21. ~~Spectral unmixing~~ Spectral regression → fractions 🔓 **PILOT COMPLETE — RE-SCOPE SIGNED OFF 2026-09-23; not yet built** *(heading was "⚠️ PILOT COMPLETE — RE-SCOPE PROPOSED, AWAITING DECISION"; corrected 2026-09-24)*
 
