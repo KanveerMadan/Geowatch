@@ -56,8 +56,9 @@ FLASH_FLOOD_INTENSITY_PERCENTILE = 99.9
 FLASH_FLOOD_INTENSITY_YEARS = 10
 FLASH_FLOOD_INTENSITY_NORMALIZATION_MAX_MM_H = 20.0
 
-FLASH_FLOOD_WEIGHTS = {"valley_floor": 1.0, "steep_surroundings": 1.0,
-                       "small_catchment": 1.0, "rainfall_intensity": 1.0}
+# Chosen on the round-2 TUNING events only, from FLASH_FLOOD_WEIGHT_GRID
+# (result_round2_2026-10-28.json; pre-registered default was all 1).
+FLASH_FLOOD_WEIGHTS = {'valley_floor': 0.5, 'steep_surroundings': 0.0, 'small_catchment': 0.0, 'rainfall_intensity': 1.0}
 FLASH_FLOOD_WEIGHT_GRID = [
     {"valley_floor": v, "steep_surroundings": s, "small_catchment": c, "rainfall_intensity": 1.0}
     for v in (0.5, 1.0) for s in (0.0, 0.5, 1.0) for c in (0.0, 0.5, 1.0)]

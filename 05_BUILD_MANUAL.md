@@ -2124,6 +2124,56 @@ result.
   noise under an unfilled D8, so a remedy is a method change, not a bug fix.
   Recorded as a diagnosis on **C51** (round 1 already filed the saturation; NEEDS FATE). No code changed, so no test.
 
+- **Task 5 — round 2 run: one module validated, one failed, three not-run.**
+  `experiments/flood_validation/harness_round2.py` was run against
+  `result_round2_2026-10-28.json` (pre-registration SHA256 `f2ab3c74…`).
+  Weights were chosen on tuning events only. Each held-out event was scored
+  once, with the chosen weights. The verdict rule: the mean within-event
+  AUC over held-out events, each event needing ≥ 50 flooded and ≥ 50 dry
+  cells, and the module needing ≥ 2 qualifying held-out events. Coastal
+  pools sites, as in round 1.
+
+  | Module | Tuning (chosen weights) | Held-out | Verdict | `validation_status` |
+  |---|---|---|---|---|
+  | **fluvial** | Faenza, Encantado: mean 0.809 with `river_size` 1 (default HAND-only 0.733) | **Hanoi 0.916, Kolonnawa 0.800 → mean 0.858**. Nysa (3 flooded cells) and Hue (10) did not qualify | **validated** | `validated` |
+  | **flash flood** | Paiporta, Derna, Bad Neuenahr: 0.602 with `valley_floor` 0.5 + intensity only; steep and small-catchment weight 0 (default 0.488) | Kastelli 0.881 qualified; Volos had 0 flooded cells; Choloma had no cell inside its EMS product | **not-run** (1 of 2) | `experimental` |
+  | **waterlogging** | 8 JRC AOIs: 0.816 with HAND + rainfall only; impervious and flatness weight 0 (default 0.403) | Nam Dinh 0.472 qualified; Thai Binh had 9 flooded cells; Jakarta GFD had 20 flooded 240 m blocks | **not-run** (1 of 2) | `experimental` (impervious now weight 0, so the placeholder input no longer caps it) |
+  | **pluvial** | Dharavi 0.522 (not tuned) | Milagro 0.350 qualified; Hai Phong and Belize City had 0 flooded cells in their boxes | **not-run** (1 of 2) | `placeholder` (weakest input) |
+  | **coastal** | Kyaukpyu, diagnostic only (score 0.911) | pooled **0.646** over Beira and Fort Myers Beach (S1, first image + 4 d) and Sittwe and Black River (EMS); 2,725 flooded / 46,183 dry cells | **failed** | `failed` |
+
+  **Fluvial is the only `validated` output in the project.** That holds for
+  these events and inputs only: two Asian river cities, at the
+  pre-registered minimum of two. Its tuned weights are in
+  `configs/fluvial_constants.py`.
+
+  Before the verdicts were read, the reference pipeline was cross-checked.
+  For every EMS event, the rasterised flooded cells match the polygon area
+  inside the box (e.g. Hanoi 1,024 cells against 0.910 km²). The empty
+  events are therefore real: the town-centred 4 km boxes missed the mapped
+  flooding (C67). Choloma's pre-registered centre lies outside its product
+  extent (C66). No box was moved after the run.
+
+  **Deviation from the pre-registration, stated:** its Labels section said a
+  not-run module "keeps its current label". For flash flood that is round
+  1's `failed`, a verdict on the scalar method that no longer exists. The
+  decided meaning (`08_STATE.md`, 2026-10-28) is that `experimental` is a
+  real method not yet validated, and the label test already maps not-run to
+  `experimental`, so that was applied (C69).
+
+  Round-2 failures that were fixed before the evaluation ran:
+  - The Open Buildings 2 m paint over HCMC's 11 km box exceeded Earth
+    Engine's request size. It is now fetched in row strips: the same
+    image, test added.
+  - The IMERG timeout (see task 1).
+
+  Runs were stopped before any evaluation was written, and completed events
+  stayed cached. Tests: `tests/test_flood_validation_round2.py` (11:
+  tuning rule, ties, held-out-once, minimums, the registry against the
+  pre-registration, strips; they fail on the old code, where the harness
+  does not exist). `test_scalar_module_validation_status.py` now pins labels
+  to the round-2 result and the config weights to the tuning choice. Suite
+  **748 → 776 passed**, with the same 2 Earth Engine-auth failures.
+
 ---
 
 # PART 5 — Validation discipline 🔓

@@ -48,7 +48,8 @@ FLUVIAL_DRAINAGE_SEARCH_RADIUS_M = 1000.0
 # river_size = log10(1 + upa_near) / log10(1 + this). Provisional.
 FLUVIAL_UPSTREAM_AREA_NORMALIZATION_MAX_KM2 = 10000.0
 
-# Default weights (round 1's HAND-only method, now per pixel). Only the
-# round-2 tuning events may change them, from FLUVIAL_WEIGHT_GRID.
-FLUVIAL_WEIGHTS = {"low_hand": 1.0, "river_size": 0.0}
+# Weights chosen on the round-2 TUNING events only, from FLUVIAL_WEIGHT_GRID
+# (experiments/flood_validation/result_round2_2026-10-28.json; pre-registered
+# default was low_hand 1, river_size 0).
+FLUVIAL_WEIGHTS = {'low_hand': 1.0, 'river_size': 1.0}
 FLUVIAL_WEIGHT_GRID = [{"low_hand": 1.0, "river_size": w} for w in (0.0, 0.25, 0.5, 1.0)]

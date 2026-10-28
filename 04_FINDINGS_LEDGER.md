@@ -1088,6 +1088,61 @@ above.*
 pipeline, the result contract, Part 6). **No fate assigned.** Numbered from
 C62: C59 is on `build/flood2`, C60 and C61 on `master` (`build/ceilings`).*
 
+***C66–C69 added 2026-10-28** from item 26 Phase 1a, flood round 2 (`build/flood2`). **No fate assigned.** First written as C60–C63 on the branch and renumbered at rebase: `master` had taken C59–C65 meanwhile.*
+
+### C69 — Round 2's pre-registration labelled not-run as "keeps its current label", against the decided meaning [S] *(entry)*
+
+`PREREGISTRATION_ROUND2.md` §Labels says a not-run module keeps its current
+label. For flash flood that label is round 1's `failed`, a verdict on the
+AOI-wide scalar method that round 2 replaced. The decision record
+(`08_STATE.md`, 2026-10-28) defines `experimental` as a real method not yet
+validated, and `tests/test_scalar_module_validation_status.py` already
+mapped not-run to `experimental`. Round 2 therefore applied `experimental`
+to flash flood and waterlogging, and recorded the deviation
+(`05_BUILD_MANUAL.md` item 26, Phase 1a task 5). Whether a label belongs
+to a module or to a method is not written down anywhere.
+
+### C68 — Tuning on JRC recurrent water drove waterlogging to HAND alone, and it did not transfer [E] *(entry)*
+
+On waterlogging's 8 JRC tuning AOIs, the pre-registered default (relief,
+impervious, flatness, rainfall, all weight 1) scored a mean within-event
+AUC of **0.403**. HCMC was 0.124 and Dhaka 0.247. Tuning chose `low_relief`
++ rainfall, with impervious and flatness at weight 0, for **0.816**. The one
+qualifying held-out event, Nam Dinh (EMS WorldView-2), then scored
+**0.472**. JRC "recurrent water" (5–80 % occurrence) marks river channels
+and ponds, where built area is zero. It rewards "is this a water body", not
+urban standing water, so it is the wrong tuning reference for this module.
+The same pattern appears in flash flood: tuning zeroed `steep_surroundings`
+and `small_catchment`, leaving `valley_floor` (HAND).
+`result_round2_2026-10-28.json`, `modules.waterlogging.tuning.table`.
+
+### C67 — Town-centred 4 km boxes missed the mapped flooding in 6 of 16 new EMS events [E] *(entry)*
+
+Round 2 placed each EMS event's box on the town-centre coordinate, without
+looking at the polygons, to avoid choosing references by outcome. In 6
+events the box held < 50 flooded cells:
+- Hai Phong, Belize City and Volos: 0;
+- Nysa: 3;
+- Thai Binh: 9;
+- Hue: 10.
+
+The rasterisation was checked against the polygon areas, so this is not a
+pipeline error. EMS mapped the flooding elsewhere in its AOIs: along rivers
+outside the centre, or in the Thessaly plain rather than in Volos. As a
+result, flash flood, waterlogging and pluvial were each **not-run**, with
+one qualifying held-out event apiece. A rule that places the box on the
+product's flooded area, fixed before scores are computed, would test more
+of the held-out set.
+
+### C66 — Choloma's pre-registered centre is outside its EMS product [E] *(entry)*
+
+`PREREGISTRATION_ROUND2.md` lists Choloma (EMSR778 AOI10) at 15.6133,
+−87.9531. The DEL product's extent starts at −87.901°, so the 4 km box has
+no observed area (0 valid cells), and that held-out flash-flood event
+contributed nothing. The availability check before pre-registration
+confirmed that each product existed, but did not intersect each box with
+its extent.
+
 ### C65 — The vector track's own fractions still count shadow and snow as observed [S] *(entry)*
 
 `vector.fractions.s2_index_composite` masks only cloud and no-data

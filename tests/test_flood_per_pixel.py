@@ -16,6 +16,13 @@ from susceptibility import flash_flood, fluvial, hydro_rasters, waterlogging
 from susceptibility.inputs import surface
 
 
+# The pre-registered default weights; the tuned defaults zero some components,
+# and these tests are about what each component reads.
+ALL_ONE = {"valley_floor": 1.0, "steep_surroundings": 1.0, "small_catchment": 1.0,
+           "rainfall_intensity": 1.0, "low_relief": 1.0, "impervious": 1.0, "flatness": 1.0,
+           "rainfall_climatology": 1.0}
+
+
 def _rasters(shape=(2, 3), **values):
     layers = {k: surface(np.broadcast_to(np.asarray(v, dtype=float), shape).copy(), "test",
                          "test", "experimental") for k, v in values.items()}
@@ -40,12 +47,13 @@ def test_flash_flood_reads_surrounding_relief_not_the_cells_own_slope():
     (the cell's own slope) is not an input at all."""
     r = _rasters(hand_m=[[1.0, 25.0, 1.0]], relief_slope_deg=[[15.0, 15.0, 0.0]],
                  slope_deg=[[0.5, 30.0, 0.5]], upa_near_km2=10.0, shape=(1, 3))
-    m = flash_flood.compute_flash_flood_susceptibility(r)["susceptibility_map"][0]
+    m = flash_flood.compute_flash_flood_susceptibility(r, weights=ALL_ONE)["susceptibility_map"][0]
     assert m[0] > m[1]          # valley floor beats the hillside
     assert m[0] > m[2]          # and steep surroundings beat flat surroundings
     r2 = _rasters(hand_m=[[1.0, 25.0, 1.0]], relief_slope_deg=[[15.0, 15.0, 0.0]],
                   slope_deg=0.0, upa_near_km2=10.0, shape=(1, 3))
-    assert np.allclose(m, flash_flood.compute_flash_flood_susceptibility(r2)["susceptibility_map"][0])
+    assert np.allclose(m, flash_flood.compute_flash_flood_susceptibility(
+        r2, weights=ALL_ONE)["susceptibility_map"][0])
 
 
 def test_flash_flood_rainfall_is_intensity_not_annual_total():
@@ -71,7 +79,7 @@ def test_waterlogging_reads_impervious_per_cell():
     r = _rasters(hand_m=5.0, slope_deg=1.0, rain_annual_mm=2000.0, shape=(1, 2))
     imp = surface(np.array([[0.0, 0.7]]), "test footprints", "footprint_union_area_fraction",
                   "placeholder")
-    out = waterlogging.compute_waterlogging_susceptibility(r, imp)
+    out = waterlogging.compute_waterlogging_susceptibility(r, imp, weights=ALL_ONE)
     m = out["susceptibility_map"][0]
     assert m[1] > m[0]
     assert out["validation_status"] == "placeholder"        # weakest input

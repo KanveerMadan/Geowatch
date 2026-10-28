@@ -1,0 +1,2554 @@
+{
+ "test": "item 26 Phase 1a -- flood discrimination round 2 (Tier 2)",
+ "preregistration_sha256": "f2ab3c744ac26336489a51e0645e7146b3b5860ec733ff0ff76cbd193a30f406",
+ "run_utc": "2026-10-28T18:04:55.062314+00:00",
+ "bar": {
+  "metric": "roc_auc_cells",
+  "validated_if_auc_at_least": 0.7,
+  "per_pixel_modules": "mean of within-event AUCs over held-out events",
+  "coastal": "pooled cells over held-out sites (round 1 rule)",
+  "min_flooded_cells": 50,
+  "min_dry_cells": 50,
+  "min_heldout_events": 2,
+  "min_pooled_sites": 3
+ },
+ "modules": {
+  "pluvial": {
+   "events": {
+    "dharavi": {
+     "bbox": [
+      72.836,
+      19.037,
+      72.862,
+      19.06
+     ],
+     "event": "2017-08-29",
+     "split": "tuning",
+     "centre": null,
+     "inputs_validation_status": "placeholder",
+     "block": 1,
+     "reference": {
+      "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+      "resolution": "10 m -> 30 m",
+      "event_window_days": 3,
+      "event_image_date": "2017-08-29",
+      "days_after_event": 0,
+      "event_images": 1,
+      "relative_orbits": [
+       34
+      ],
+      "pre_event_images": 2
+     },
+     "grid": {
+      "crs": "EPSG:32643",
+      "transform": [
+       30.0,
+       0.0,
+       272220.0,
+       0.0,
+       -30.0,
+       2108880.0
+      ],
+      "shape": [
+       87,
+       94
+      ]
+     }
+    },
+    "hai_phong": {
+     "bbox": [
+      106.668875,
+      20.826934,
+      106.707325,
+      20.862866
+     ],
+     "event": "2024-09-07",
+     "split": "held-out",
+     "centre": [
+      20.8449,
+      106.6881
+     ],
+     "inputs_validation_status": "placeholder",
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR754 AOI05 (Hai Phong) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "WorldView-2",
+        "resolution_class": "VHR2",
+        "acquired": "2024-09-14T03:42:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR754/AOI05/DEL_PRODUCT/EMSR754_AOI05_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "95356f0b4cad2a577dcd3abd002681c5efde9bef399b9c7c342dd472f1c6a51d",
+      "notation_counts": {
+       "Flooded area": 19
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32648",
+      "transform": [
+       30.0,
+       0.0,
+       673620.0,
+       0.0,
+       -30.0,
+       2307930.0
+      ],
+      "shape": [
+       135,
+       135
+      ]
+     }
+    },
+    "milagro": {
+     "bbox": [
+      -79.605179,
+      -2.152666,
+      -79.569221,
+      -2.116734
+     ],
+     "event": "2025-02-26",
+     "split": "held-out",
+     "centre": [
+      -2.1347,
+      -79.5872
+     ],
+     "inputs_validation_status": "placeholder",
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR796 AOI06 (Milagro) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "ICEYE",
+        "resolution_class": "VHR2",
+        "acquired": "2025-04-05T08:34:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR796/AOI06/DEL_PRODUCT/EMSR796_AOI06_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "86a6e94cdae20f883bd32e005661dac58ba8c376c4781c701178af722a8ac2c6",
+      "notation_counts": {
+       "Flooded area": 47
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32717",
+      "transform": [
+       30.0,
+       0.0,
+       655110.0,
+       0.0,
+       -30.0,
+       9765990.0
+      ],
+      "shape": [
+       134,
+       134
+      ]
+     }
+    },
+    "belize_city": {
+     "bbox": [
+      -88.215039,
+      17.486634,
+      -88.177361,
+      17.522566
+     ],
+     "event": "2024-11-15",
+     "split": "held-out",
+     "centre": [
+      17.5046,
+      -88.1962
+     ],
+     "inputs_validation_status": "placeholder",
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR777 AOI01 (Belize City) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "COSMO-SkyMed Second Generation",
+        "resolution_class": "HR+",
+        "acquired": "2024-11-17T23:32:00"
+       },
+       {
+        "sensor": "COSMO-SkyMed",
+        "resolution_class": "HR+",
+        "acquired": "2024-11-17T12:02:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR777/AOI01/DEL_PRODUCT/EMSR777_AOI01_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "bf6ada4d60b4292b009a05717eff8c631ba80ad795e53b963cb937969b06bf13",
+      "notation_counts": {
+       "Flooded area": 128
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32616",
+      "transform": [
+       30.0,
+       0.0,
+       370980.0,
+       0.0,
+       -30.0,
+       1937790.0
+      ],
+      "shape": [
+       134,
+       135
+      ]
+     }
+    }
+   },
+   "dropped": {},
+   "tuning": {
+    "chosen": "not tuned (pre-registered)",
+    "per_event": {
+     "dharavi": {
+      "flooded_cells": 489,
+      "dry_cells": 7386,
+      "evaluation_cell_m": 30,
+      "auc": 0.5218,
+      "qualifies": true
+     }
+    }
+   },
+   "held_out_per_event": {
+    "hai_phong": {
+     "flooded_cells": 0,
+     "dry_cells": 17499,
+     "evaluation_cell_m": 30,
+     "auc": null,
+     "qualifies": false
+    },
+    "milagro": {
+     "flooded_cells": 367,
+     "dry_cells": 15452,
+     "evaluation_cell_m": 30,
+     "auc": 0.3495,
+     "qualifies": true
+    },
+    "belize_city": {
+     "flooded_cells": 0,
+     "dry_cells": 11461,
+     "evaluation_cell_m": 30,
+     "auc": null,
+     "qualifies": false
+    }
+   },
+   "held_out": {
+    "verdict": "not-run",
+    "auc": null,
+    "qualifying_events": 1,
+    "reason": "fewer than 2 qualifying held-out events"
+   },
+   "pooled_held_out_auc_diagnostic": 0.3495,
+   "weights_used": null
+  },
+  "fluvial": {
+   "events": {
+    "faenza": {
+     "bbox": [
+      11.858203,
+      44.267634,
+      11.908397,
+      44.303566
+     ],
+     "event": "2023-05-02",
+     "split": "tuning",
+     "centre": [
+      44.2856,
+      11.8833
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR659 AOI02 (Lamone-Faenza) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "Pleiades",
+        "resolution_class": "VHR1",
+        "acquired": "2023-05-04T10:15:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR659/AOI02/DEL_PRODUCT/EMSR659_AOI02_DEL_PRODUCT_observedEventA_v2.json",
+      "layer_sha256": "c8bcb76cc38e28541135c5d666d187dbd1cf640b0f831d14b5de7d21b41a9bdb",
+      "notation_counts": {
+       "Flooded area": 12,
+       "Flood trace": 3
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32632",
+      "transform": [
+       30.0,
+       0.0,
+       727980.0,
+       0.0,
+       -30.0,
+       4909710.0
+      ],
+      "shape": [
+       138,
+       139
+      ]
+     }
+    },
+    "encantado": {
+     "bbox": [
+      -51.890589,
+      -29.253966,
+      -51.849411,
+      -29.218034
+     ],
+     "event": "2024-05-02",
+     "split": "tuning",
+     "centre": [
+      -29.236,
+      -51.87
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR720 AOI02 (Encantado) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "RADARSAT-2",
+        "resolution_class": "VHR2",
+        "acquired": "2024-05-04T22:10:00"
+       },
+       {
+        "sensor": "RADARSAT-2",
+        "resolution_class": "VHR2",
+        "acquired": "2024-05-04T22:10:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR720/AOI02/DEL_PRODUCT/EMSR720_AOI02_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "6e3722b6e619a9ed36e22f78c55042644206c7015b611b91ed503f42961bc357",
+      "notation_counts": {
+       "Flooded area": 245
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32722",
+      "transform": [
+       30.0,
+       0.0,
+       413430.0,
+       0.0,
+       -30.0,
+       6767580.0
+      ],
+      "shape": [
+       135,
+       135
+      ]
+     }
+    },
+    "hanoi": {
+     "bbox": [
+      105.834952,
+      21.010534,
+      105.873448,
+      21.046466
+     ],
+     "event": "2024-09-09",
+     "split": "held-out",
+     "centre": [
+      21.0285,
+      105.8542
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR754 AOI03 (Hanoi) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "WorldView-3",
+        "resolution_class": "VHR2",
+        "acquired": "2024-09-14T03:44:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR754/AOI03/DEL_PRODUCT/EMSR754_AOI03_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "3786f0f627fca13187e4c42c4cbe5aa6afe693b0250dc1a106e49951f45bab01",
+      "notation_counts": {
+       "Flooded area": 400,
+       "Flood trace": 113
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32648",
+      "transform": [
+       30.0,
+       0.0,
+       586740.0,
+       0.0,
+       -30.0,
+       2327550.0
+      ],
+      "shape": [
+       134,
+       135
+      ]
+     }
+    },
+    "kolonnawa": {
+     "bbox": [
+      79.865201,
+      6.915334,
+      79.901399,
+      6.951266
+     ],
+     "event": "2025-11-30",
+     "split": "held-out",
+     "centre": [
+      6.9333,
+      79.8833
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR851 AOI02 (Kelani Ganga River) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "PlanetScope",
+        "resolution_class": "VHR2",
+        "acquired": "2025-11-30T05:39:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR851/AOI02/DEL_PRODUCT/EMSR851_AOI02_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "9c9f5800494a672350c9994acc2a631e374f1a39fa2b146f5fae2f14e61ef300",
+      "notation_counts": {
+       "Flooded area": 878
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32644",
+      "transform": [
+       30.0,
+       0.0,
+       374610.0,
+       0.0,
+       -30.0,
+       768540.0
+      ],
+      "shape": [
+       134,
+       135
+      ]
+     }
+    },
+    "nysa": {
+     "bbox": [
+      17.30547,
+      50.456734,
+      17.36193,
+      50.492666
+     ],
+     "event": "2024-09-14",
+     "split": "held-out",
+     "centre": [
+      50.4747,
+      17.3337
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR756 AOI03 (Nysa) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "Sentinel-1",
+        "resolution_class": "HR+",
+        "acquired": "2024-09-15T05:01:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR756/AOI03/DEL_PRODUCT/EMSR756_AOI03_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "a48e68015c79c994a31ed9ad850fcb5ac6672dddc7d1c91d8c928629b8aa88b1",
+      "notation_counts": {
+       "Flooded area": 655
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32633",
+      "transform": [
+       30.0,
+       0.0,
+       663510.0,
+       0.0,
+       -30.0,
+       5596080.0
+      ],
+      "shape": [
+       138,
+       139
+      ]
+     }
+    },
+    "hue": {
+     "bbox": [
+      107.572166,
+      16.445734,
+      107.609634,
+      16.481666
+     ],
+     "event": "2025-10-29",
+     "split": "held-out",
+     "centre": [
+      16.4637,
+      107.5909
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR848 AOI06 (East Hue) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "GeoEye-1",
+        "resolution_class": "VHR2",
+        "acquired": "2025-11-09T03:31:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR848/AOI06/DEL_PRODUCT/EMSR848_AOI06_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "5ef97603e733db42e50df143da6ac7ebd134b39339e4d006545c31e601304ca9",
+      "notation_counts": {
+       "Flooded area": 2937
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32648",
+      "transform": [
+       30.0,
+       0.0,
+       774600.0,
+       0.0,
+       -30.0,
+       1824030.0
+      ],
+      "shape": [
+       135,
+       136
+      ]
+     }
+    }
+   },
+   "dropped": {},
+   "tuning": {
+    "chosen": {
+     "low_hand": 1.0,
+     "river_size": 1.0
+    },
+    "best_tuning_mean_auc": 0.8087,
+    "table": [
+     {
+      "weights": {
+       "low_hand": 1.0,
+       "river_size": 0.0
+      },
+      "mean_auc": 0.7326,
+      "per_event": {
+       "faenza": 0.6866,
+       "encantado": 0.7786
+      }
+     },
+     {
+      "weights": {
+       "low_hand": 1.0,
+       "river_size": 0.25
+      },
+      "mean_auc": 0.7949,
+      "per_event": {
+       "faenza": 0.7778,
+       "encantado": 0.8119
+      }
+     },
+     {
+      "weights": {
+       "low_hand": 1.0,
+       "river_size": 0.5
+      },
+      "mean_auc": 0.8047,
+      "per_event": {
+       "faenza": 0.7827,
+       "encantado": 0.8267
+      }
+     },
+     {
+      "weights": {
+       "low_hand": 1.0,
+       "river_size": 1.0
+      },
+      "mean_auc": 0.8087,
+      "per_event": {
+       "faenza": 0.7872,
+       "encantado": 0.8302
+      }
+     }
+    ],
+    "reason": "highest tuning mean"
+   },
+   "held_out_per_event": {
+    "hanoi": {
+     "flooded_cells": 940,
+     "dry_cells": 13776,
+     "evaluation_cell_m": 30,
+     "auc": 0.9162,
+     "qualifies": true
+    },
+    "kolonnawa": {
+     "flooded_cells": 573,
+     "dry_cells": 8617,
+     "evaluation_cell_m": 30,
+     "auc": 0.7996,
+     "qualifies": true
+    },
+    "nysa": {
+     "flooded_cells": 2,
+     "dry_cells": 17782,
+     "evaluation_cell_m": 30,
+     "auc": null,
+     "qualifies": false
+    },
+    "hue": {
+     "flooded_cells": 10,
+     "dry_cells": 12668,
+     "evaluation_cell_m": 30,
+     "auc": null,
+     "qualifies": false
+    }
+   },
+   "held_out": {
+    "verdict": "validated",
+    "auc": 0.8579,
+    "qualifying_events": 2
+   },
+   "pooled_held_out_auc_diagnostic": 0.8851,
+   "weights_used": {
+    "low_hand": 1.0,
+    "river_size": 1.0
+   }
+  },
+  "flash_flood": {
+   "events": {
+    "paiporta": {
+     "bbox": [
+      -0.44096,
+      39.410034,
+      -0.39444,
+      39.445966
+     ],
+     "event": "2024-10-29",
+     "split": "tuning",
+     "centre": [
+      39.428,
+      -0.4177
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR773 AOI03 (Horta Sud) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "WorldView-2",
+        "resolution_class": "VHR1",
+        "acquired": "2024-10-31T10:22:00"
+       },
+       {
+        "sensor": "GeoEye-1",
+        "resolution_class": "VHR2",
+        "acquired": "2024-10-31T10:22:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR773/AOI03/DEL_PRODUCT/EMSR773_AOI03_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "7d2cea68cfe0b6e420f33e7ca1ba6ce4fd6a417fa14d14629edc9b2e374184c1",
+      "notation_counts": {
+       "Flooded area": 306,
+       "Flood trace": 311
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32630",
+      "transform": [
+       30.0,
+       0.0,
+       720180.0,
+       0.0,
+       -30.0,
+       4369530.0
+      ],
+      "shape": [
+       138,
+       139
+      ]
+     }
+    },
+    "derna": {
+     "bbox": [
+      22.62,
+      32.75,
+      22.66,
+      32.78
+     ],
+     "event": "2023-09-11",
+     "split": "tuning",
+     "centre": null,
+     "raster_errors": {
+      "rain_annual_mm": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+      "resolution": "10 m -> 30 m",
+      "event_window_days": 3,
+      "event_image_date": "2023-09-12",
+      "days_after_event": 1,
+      "event_images": 1,
+      "relative_orbits": [
+       175
+      ],
+      "pre_event_images": 2
+     },
+     "grid": {
+      "crs": "EPSG:32634",
+      "transform": [
+       30.0,
+       0.0,
+       651690.0,
+       0.0,
+       -30.0,
+       3628140.0
+      ],
+      "shape": [
+       114,
+       128
+      ]
+     }
+    },
+    "bad_neuenahr": {
+     "bbox": [
+      7.09,
+      50.53,
+      7.13,
+      50.56
+     ],
+     "event": "2021-07-14",
+     "split": "tuning",
+     "centre": null,
+     "raster_errors": {
+      "rain_annual_mm": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+      "resolution": "10 m -> 30 m",
+      "event_window_days": 3,
+      "event_image_date": "2021-07-15",
+      "days_after_event": 1,
+      "event_images": 1,
+      "relative_orbits": [
+       37
+      ],
+      "pre_event_images": 5
+     },
+     "grid": {
+      "crs": "EPSG:32632",
+      "transform": [
+       30.0,
+       0.0,
+       364620.0,
+       0.0,
+       -30.0,
+       5602650.0
+      ],
+      "shape": [
+       114,
+       98
+      ]
+     }
+    },
+    "volos": {
+     "bbox": [
+      22.918762,
+      39.344234,
+      22.965238,
+      39.380166
+     ],
+     "event": "2023-09-05",
+     "split": "held-out",
+     "centre": [
+      39.3622,
+      22.942
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR692 AOI01 (Magnesia) DEL monitoring 3",
+      "images": [
+       {
+        "sensor": "WorldView-3",
+        "resolution_class": "VHR2",
+        "acquired": "2023-09-09T09:31:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR692/AOI01/DEL_MONIT03/EMSR692_AOI01_DEL_MONIT03_observedEventA_v3.json",
+      "layer_sha256": "087aaffc67b98cef72004dfb80406f88e4e2f516ee09cd3f1bcd6a2df4bcf921",
+      "notation_counts": {
+       "Flooded area": 1513,
+       "Flood trace": 292
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32634",
+      "transform": [
+       30.0,
+       0.0,
+       665250.0,
+       0.0,
+       -30.0,
+       4360830.0
+      ],
+      "shape": [
+       137,
+       137
+      ]
+     }
+    },
+    "kastelli": {
+     "bbox": [
+      25.31611,
+      35.195134,
+      25.36009,
+      35.231066
+     ],
+     "event": "2026-10-01",
+     "split": "held-out",
+     "centre": [
+      35.2131,
+      25.3381
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR933 AOI01 (Kastelli) DEL monitoring 1",
+      "images": [
+       {
+        "sensor": "Legion",
+        "resolution_class": "VHR2",
+        "acquired": "2026-10-06T10:47:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR933/AOI01/DEL_MONIT01/EMSR933_AOI01_DEL_MONIT01_observedEventA_v1.json",
+      "layer_sha256": "ec223ce86495772a5488f16d976934339e5d3d886c1d2d86cced0bc96e60b043",
+      "notation_counts": {
+       "Flood trace": 18,
+       "Flooded area": 70
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32635",
+      "transform": [
+       30.0,
+       0.0,
+       346680.0,
+       0.0,
+       -30.0,
+       3899970.0
+      ],
+      "shape": [
+       136,
+       137
+      ]
+     }
+    },
+    "choloma": {
+     "bbox": [
+      -87.971755,
+      15.595334,
+      -87.934445,
+      15.631266
+     ],
+     "event": "2024-11-16",
+     "split": "held-out",
+     "centre": [
+      15.6133,
+      -87.9531
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR778 AOI10 (Choloma) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "COSMO-SkyMed",
+        "resolution_class": "VHR1",
+        "acquired": "2024-11-22T11:37:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR778/AOI10/DEL_PRODUCT/EMSR778_AOI10_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "2c43b9a714c0fa5a430427f8b0f6fd32b7f2ea154f5aaf364f9c5e8ad8d0c8f7",
+      "notation_counts": {
+       "Flooded area": 308
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32616",
+      "transform": [
+       30.0,
+       0.0,
+       395790.0,
+       0.0,
+       -30.0,
+       1728390.0
+      ],
+      "shape": [
+       134,
+       135
+      ]
+     }
+    }
+   },
+   "dropped": {},
+   "tuning": {
+    "chosen": {
+     "valley_floor": 0.5,
+     "steep_surroundings": 0.0,
+     "small_catchment": 0.0,
+     "rainfall_intensity": 1.0
+    },
+    "best_tuning_mean_auc": 0.6024,
+    "table": [
+     {
+      "weights": {
+       "valley_floor": 0.5,
+       "steep_surroundings": 0.0,
+       "small_catchment": 0.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.6024,
+      "per_event": {
+       "paiporta": 0.5014,
+       "derna": 0.5946,
+       "bad_neuenahr": 0.7111
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 0.5,
+       "steep_surroundings": 0.0,
+       "small_catchment": 0.5,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.5088,
+      "per_event": {
+       "paiporta": 0.3789,
+       "derna": 0.514,
+       "bad_neuenahr": 0.6334
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 0.5,
+       "steep_surroundings": 0.0,
+       "small_catchment": 1.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.4812,
+      "per_event": {
+       "paiporta": 0.3787,
+       "derna": 0.5008,
+       "bad_neuenahr": 0.5641
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 0.5,
+       "steep_surroundings": 0.5,
+       "small_catchment": 0.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.5853,
+      "per_event": {
+       "paiporta": 0.5058,
+       "derna": 0.5345,
+       "bad_neuenahr": 0.7157
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 0.5,
+       "steep_surroundings": 0.5,
+       "small_catchment": 0.5,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.4878,
+      "per_event": {
+       "paiporta": 0.3785,
+       "derna": 0.4606,
+       "bad_neuenahr": 0.6244
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 0.5,
+       "steep_surroundings": 0.5,
+       "small_catchment": 1.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.4688,
+      "per_event": {
+       "paiporta": 0.3779,
+       "derna": 0.4595,
+       "bad_neuenahr": 0.5689
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 0.5,
+       "steep_surroundings": 1.0,
+       "small_catchment": 0.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.566,
+      "per_event": {
+       "paiporta": 0.5104,
+       "derna": 0.4711,
+       "bad_neuenahr": 0.7165
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 0.5,
+       "steep_surroundings": 1.0,
+       "small_catchment": 0.5,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.4699,
+      "per_event": {
+       "paiporta": 0.3783,
+       "derna": 0.4098,
+       "bad_neuenahr": 0.6215
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 0.5,
+       "steep_surroundings": 1.0,
+       "small_catchment": 1.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.4524,
+      "per_event": {
+       "paiporta": 0.3771,
+       "derna": 0.4143,
+       "bad_neuenahr": 0.5659
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 1.0,
+       "steep_surroundings": 0.0,
+       "small_catchment": 0.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.6024,
+      "per_event": {
+       "paiporta": 0.5015,
+       "derna": 0.5946,
+       "bad_neuenahr": 0.711
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 1.0,
+       "steep_surroundings": 0.0,
+       "small_catchment": 0.5,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.5613,
+      "per_event": {
+       "paiporta": 0.412,
+       "derna": 0.5623,
+       "bad_neuenahr": 0.7096
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 1.0,
+       "steep_surroundings": 0.0,
+       "small_catchment": 1.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.5087,
+      "per_event": {
+       "paiporta": 0.379,
+       "derna": 0.514,
+       "bad_neuenahr": 0.6332
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 1.0,
+       "steep_surroundings": 0.5,
+       "small_catchment": 0.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.5935,
+      "per_event": {
+       "paiporta": 0.5035,
+       "derna": 0.561,
+       "bad_neuenahr": 0.7159
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 1.0,
+       "steep_surroundings": 0.5,
+       "small_catchment": 0.5,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.5548,
+      "per_event": {
+       "paiporta": 0.4125,
+       "derna": 0.5336,
+       "bad_neuenahr": 0.7184
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 1.0,
+       "steep_surroundings": 0.5,
+       "small_catchment": 1.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.4965,
+      "per_event": {
+       "paiporta": 0.3786,
+       "derna": 0.4818,
+       "bad_neuenahr": 0.629
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 1.0,
+       "steep_surroundings": 1.0,
+       "small_catchment": 0.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.5854,
+      "per_event": {
+       "paiporta": 0.5059,
+       "derna": 0.5345,
+       "bad_neuenahr": 0.7157
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 1.0,
+       "steep_surroundings": 1.0,
+       "small_catchment": 0.5,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.5411,
+      "per_event": {
+       "paiporta": 0.4133,
+       "derna": 0.4903,
+       "bad_neuenahr": 0.7197
+      }
+     },
+     {
+      "weights": {
+       "valley_floor": 1.0,
+       "steep_surroundings": 1.0,
+       "small_catchment": 1.0,
+       "rainfall_intensity": 1.0
+      },
+      "mean_auc": 0.4878,
+      "per_event": {
+       "paiporta": 0.3785,
+       "derna": 0.4606,
+       "bad_neuenahr": 0.6243
+      }
+     }
+    ],
+    "reason": "highest tuning mean"
+   },
+   "held_out_per_event": {
+    "volos": {
+     "flooded_cells": 0,
+     "dry_cells": 14088,
+     "evaluation_cell_m": 30,
+     "auc": null,
+     "qualifies": false
+    },
+    "kastelli": {
+     "flooded_cells": 127,
+     "dry_cells": 17622,
+     "evaluation_cell_m": 30,
+     "auc": 0.8814,
+     "qualifies": true
+    },
+    "choloma": {
+     "flooded_cells": 0,
+     "dry_cells": 0,
+     "evaluation_cell_m": 30,
+     "auc": null,
+     "qualifies": false
+    }
+   },
+   "held_out": {
+    "verdict": "not-run",
+    "auc": null,
+    "qualifying_events": 1,
+    "reason": "fewer than 2 qualifying held-out events"
+   },
+   "pooled_held_out_auc_diagnostic": 0.8814,
+   "weights_used": {
+    "valley_floor": 0.5,
+    "steep_surroundings": 0.0,
+    "small_catchment": 0.0,
+    "rainfall_intensity": 1.0
+   }
+  },
+  "coastal": {
+   "events": {
+    "kyaukpyu": {
+     "bbox": [
+      93.530349,
+      19.411034,
+      93.568451,
+      19.446966
+     ],
+     "event": "2023-05-14",
+     "split": "tuning",
+     "centre": [
+      19.429,
+      93.5494
+     ],
+     "score": 0.911,
+     "coastal_status": "experimental",
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR661 AOI02 (Kyaukpyu) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "COSMO-SkyMed",
+        "resolution_class": "VHR2",
+        "acquired": "2023-05-14T23:36:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR661/AOI02/DEL_PRODUCT/EMSR661_AOI02_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "abdb6ef2260761ea569aa135a75df7099fd63ff45238fca50e3ae16007af21fe",
+      "notation_counts": {
+       "Flooded area": 68
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32646",
+      "transform": [
+       30.0,
+       0.0,
+       555660.0,
+       0.0,
+       -30.0,
+       2150400.0
+      ],
+      "shape": [
+       134,
+       135
+      ]
+     },
+     "flooded_cells": 381,
+     "dry_cells": 8934
+    },
+    "beira": {
+     "bbox": [
+      34.83,
+      -19.85,
+      34.87,
+      -19.81
+     ],
+     "event": "2019-03-15",
+     "split": "held-out",
+     "centre": null,
+     "score": 0.8155,
+     "coastal_status": "experimental",
+     "block": 1,
+     "reference": {
+      "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+      "resolution": "10 m -> 30 m",
+      "event_window_days": 13,
+      "event_image_date": "2019-03-19",
+      "days_after_event": 4,
+      "event_images": 1,
+      "relative_orbits": [
+       174
+      ],
+      "pre_event_images": 1
+     },
+     "grid": {
+      "crs": "EPSG:32736",
+      "transform": [
+       30.0,
+       0.0,
+       691620.0,
+       0.0,
+       -30.0,
+       7808520.0
+      ],
+      "shape": [
+       150,
+       142
+      ]
+     },
+     "flooded_cells": 671,
+     "dry_cells": 18766
+    },
+    "fort_myers_beach": {
+     "bbox": [
+      -81.97,
+      26.43,
+      -81.93,
+      26.47
+     ],
+     "event": "2022-09-28",
+     "split": "held-out",
+     "centre": null,
+     "score": 0.973,
+     "coastal_status": "experimental",
+     "block": 1,
+     "reference": {
+      "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+      "resolution": "10 m -> 30 m",
+      "event_window_days": 13,
+      "event_image_date": "2022-10-02",
+      "days_after_event": 4,
+      "event_images": 1,
+      "relative_orbits": [
+       48
+      ],
+      "pre_event_images": 1
+     },
+     "grid": {
+      "crs": "EPSG:32617",
+      "transform": [
+       30.0,
+       0.0,
+       403260.0,
+       0.0,
+       -30.0,
+       2928120.0
+      ],
+      "shape": [
+       150,
+       135
+      ]
+     },
+     "flooded_cells": 578,
+     "dry_cells": 5378
+    },
+    "sittwe": {
+     "bbox": [
+      92.879163,
+      20.128234,
+      92.917437,
+      20.164166
+     ],
+     "event": "2023-05-14",
+     "split": "held-out",
+     "centre": [
+      20.1462,
+      92.8983
+     ],
+     "score": 0.8604,
+     "coastal_status": "experimental",
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR661 AOI01 (Sittwe City) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "COSMO-SkyMed",
+        "resolution_class": "VHR2",
+        "acquired": "2023-05-15T11:34:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR661/AOI01/DEL_PRODUCT/EMSR661_AOI01_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "11cac80057400430c088568cc51d049a80a691646b4ba6f1fab150a7f3567b74",
+      "notation_counts": {
+       "Flooded area": 193
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32646",
+      "transform": [
+       30.0,
+       0.0,
+       487350.0,
+       0.0,
+       -30.0,
+       2229660.0
+      ],
+      "shape": [
+       133,
+       135
+      ]
+     },
+     "flooded_cells": 216,
+     "dry_cells": 11284
+    },
+    "black_river": {
+     "bbox": [
+      -77.867594,
+      18.008434,
+      -77.829806,
+      18.044366
+     ],
+     "event": "2025-10-28",
+     "split": "held-out",
+     "centre": [
+      18.0264,
+      -77.8487
+     ],
+     "score": 0.8693,
+     "coastal_status": "experimental",
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR847 AOI15 (West Jamaica) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "RADARSAT-2",
+        "resolution_class": "HR+",
+        "acquired": "2025-10-28T23:09:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR847/AOI15/DEL_PRODUCT/EMSR847_AOI15_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "5612eb377b90f2405ed150de8f8fd616bdd1ded88529ed632db3bc665e44fd22",
+      "notation_counts": {
+       "Flooded area": 732
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32618",
+      "transform": [
+       30.0,
+       0.0,
+       196320.0,
+       0.0,
+       -30.0,
+       1997460.0
+      ],
+      "shape": [
+       136,
+       137
+      ]
+     },
+     "flooded_cells": 1260,
+     "dry_cells": 10755
+    }
+   },
+   "dropped": {},
+   "tuning": {
+    "chosen": "not tuned (pre-registered)",
+    "per_event": {
+     "kyaukpyu": {
+      "score": 0.911,
+      "flooded_cells": 381,
+      "dry_cells": 8934
+     }
+    }
+   },
+   "held_out": {
+    "flooded_cells": 2725,
+    "dry_cells": 46183,
+    "n_sites": 4,
+    "auc": 0.6464,
+    "verdict": "failed"
+   }
+  },
+  "waterlogging": {
+   "events": {
+    "dharavi": {
+     "bbox": [
+      72.836,
+      19.037,
+      72.862,
+      19.06
+     ],
+     "event": "2021-12-31",
+     "split": "tuning",
+     "centre": null,
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 19339,
+     "block": 1,
+     "reference": {
+      "source": "JRC/GSW1_4/GlobalSurfaceWater occurrence, recurrent 5-80 %",
+      "resolution": "30 m",
+      "dates": "1984-2021"
+     },
+     "grid": {
+      "crs": "EPSG:32643",
+      "transform": [
+       30.0,
+       0.0,
+       272220.0,
+       0.0,
+       -30.0,
+       2108880.0
+      ],
+      "shape": [
+       87,
+       94
+      ]
+     }
+    },
+    "hcmc": {
+     "bbox": [
+      106.58,
+      10.78,
+      106.68,
+      10.88
+     ],
+     "event": "2021-12-31",
+     "split": "tuning",
+     "centre": null,
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 627622,
+     "block": 1,
+     "reference": {
+      "source": "JRC/GSW1_4/GlobalSurfaceWater occurrence, recurrent 5-80 %",
+      "resolution": "30 m",
+      "dates": "1984-2021"
+     },
+     "grid": {
+      "crs": "EPSG:32648",
+      "transform": [
+       30.0,
+       0.0,
+       672690.0,
+       0.0,
+       -30.0,
+       1203240.0
+      ],
+      "shape": [
+       372,
+       367
+      ]
+     }
+    },
+    "kigali": {
+     "bbox": [
+      30.058,
+      -1.975,
+      30.082,
+      -1.952
+     ],
+     "event": "2021-12-31",
+     "split": "tuning",
+     "centre": null,
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 18173,
+     "block": 1,
+     "reference": {
+      "source": "JRC/GSW1_4/GlobalSurfaceWater occurrence, recurrent 5-80 %",
+      "resolution": "30 m",
+      "dates": "1984-2021"
+     },
+     "grid": {
+      "crs": "EPSG:32736",
+      "transform": [
+       30.0,
+       0.0,
+       172650.0,
+       0.0,
+       -30.0,
+       9783990.0
+      ],
+      "shape": [
+       86,
+       91
+      ]
+     }
+    },
+    "accra": {
+     "bbox": [
+      -0.225,
+      5.54,
+      -0.19,
+      5.57
+     ],
+     "event": "2021-12-31",
+     "split": "tuning",
+     "centre": null,
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 34515,
+     "block": 1,
+     "reference": {
+      "source": "JRC/GSW1_4/GlobalSurfaceWater occurrence, recurrent 5-80 %",
+      "resolution": "30 m",
+      "dates": "1984-2021"
+     },
+     "grid": {
+      "crs": "EPSG:32630",
+      "transform": [
+       30.0,
+       0.0,
+       807450.0,
+       0.0,
+       -30.0,
+       616440.0
+      ],
+      "shape": [
+       113,
+       131
+      ]
+     }
+    },
+    "dhaka": {
+     "bbox": [
+      90.385,
+      23.765,
+      90.425,
+      23.795
+     ],
+     "event": "2021-12-31",
+     "split": "tuning",
+     "centre": null,
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 27486,
+     "block": 1,
+     "reference": {
+      "source": "JRC/GSW1_4/GlobalSurfaceWater occurrence, recurrent 5-80 %",
+      "resolution": "30 m",
+      "dates": "1984-2021"
+     },
+     "grid": {
+      "crs": "EPSG:32646",
+      "transform": [
+       30.0,
+       0.0,
+       233460.0,
+       0.0,
+       -30.0,
+       2634000.0
+      ],
+      "shape": [
+       114,
+       139
+      ]
+     }
+    },
+    "capetown": {
+     "bbox": [
+      18.66,
+      -34.075,
+      18.71,
+      -34.03
+     ],
+     "event": "2021-12-31",
+     "split": "tuning",
+     "centre": null,
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 112264,
+     "block": 1,
+     "reference": {
+      "source": "JRC/GSW1_4/GlobalSurfaceWater occurrence, recurrent 5-80 %",
+      "resolution": "30 m",
+      "dates": "1984-2021"
+     },
+     "grid": {
+      "crs": "EPSG:32734",
+      "transform": [
+       30.0,
+       0.0,
+       283950.0,
+       0.0,
+       -30.0,
+       6232170.0
+      ],
+      "shape": [
+       171,
+       158
+      ]
+     }
+    },
+    "guatemala": {
+     "bbox": [
+      -90.54,
+      14.61,
+      -90.5,
+      14.65
+     ],
+     "event": "2021-12-31",
+     "split": "tuning",
+     "centre": null,
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 63439,
+     "block": 1,
+     "reference": {
+      "source": "JRC/GSW1_4/GlobalSurfaceWater occurrence, recurrent 5-80 %",
+      "resolution": "30 m",
+      "dates": "1984-2021"
+     },
+     "grid": {
+      "crs": "EPSG:32615",
+      "transform": [
+       30.0,
+       0.0,
+       764940.0,
+       0.0,
+       -30.0,
+       1621110.0
+      ],
+      "shape": [
+       150,
+       147
+      ]
+     }
+    },
+    "nusantara": {
+     "bbox": [
+      116.7,
+      -1.0,
+      116.76,
+      -0.945
+     ],
+     "event": "2021-12-31",
+     "split": "tuning",
+     "centre": null,
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 1716,
+     "block": 1,
+     "reference": {
+      "source": "JRC/GSW1_4/GlobalSurfaceWater occurrence, recurrent 5-80 %",
+      "resolution": "30 m",
+      "dates": "1984-2021"
+     },
+     "grid": {
+      "crs": "EPSG:32750",
+      "transform": [
+       30.0,
+       0.0,
+       466620.0,
+       0.0,
+       -30.0,
+       9895560.0
+      ],
+      "shape": [
+       204,
+       223
+      ]
+     }
+    },
+    "thai_binh": {
+     "bbox": [
+      106.317426,
+      20.428334,
+      106.355774,
+      20.464266
+     ],
+     "event": "2024-09-09",
+     "split": "held-out",
+     "centre": [
+      20.4463,
+      106.3366
+     ],
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 50599,
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR754 AOI06 (Thai Binh) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "WorldView-2",
+        "resolution_class": "VHR2",
+        "acquired": "2024-09-20T03:27:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR754/AOI06/DEL_PRODUCT/EMSR754_AOI06_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "a2328c832cf19eaa808b8ee4316e26542bda375c1b0b9d57ab39ac06d9075912",
+      "notation_counts": {
+       "Flooded area": 11,
+       "Flood trace": 78
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32648",
+      "transform": [
+       30.0,
+       0.0,
+       637410.0,
+       0.0,
+       -30.0,
+       2263470.0
+      ],
+      "shape": [
+       135,
+       135
+      ]
+     }
+    },
+    "nam_dinh": {
+     "bbox": [
+      106.149129,
+      20.402034,
+      106.187471,
+      20.437966
+     ],
+     "event": "2024-09-09",
+     "split": "held-out",
+     "centre": [
+      20.42,
+      106.1683
+     ],
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 78381,
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR754 AOI07 (Nam Dinh) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "WorldView-2",
+        "resolution_class": "VHR2",
+        "acquired": "2024-09-14T03:45:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR754/AOI07/DEL_PRODUCT/EMSR754_AOI07_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "6950166eaf0888f73117c240c6ae3799a59948b19ed8d5fe0156b79bc89a1034",
+      "notation_counts": {
+       "Flooded area": 231,
+       "Flood trace": 11
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32648",
+      "transform": [
+       30.0,
+       0.0,
+       619860.0,
+       0.0,
+       -30.0,
+       2260410.0
+      ],
+      "shape": [
+       134,
+       135
+      ]
+     }
+    },
+    "jakarta_gfd_3280": {
+     "bbox": [
+      106.78,
+      -6.13,
+      106.85,
+      -6.08
+     ],
+     "event": "2008-03-01",
+     "split": "held-out",
+     "centre": null,
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 27364,
+     "block": 8,
+     "reference": {
+      "source": "GLOBAL_FLOOD_DB/MODIS_EVENTS/V1 id 3280",
+      "resolution": "250 m MODIS",
+      "dates": "2008-03-01 to 2008-04-03",
+      "evaluation_block_m": 240
+     },
+     "grid": {
+      "crs": "EPSG:32748",
+      "transform": [
+       30.0,
+       0.0,
+       696960.0,
+       0.0,
+       -30.0,
+       9327630.0
+      ],
+      "shape": [
+       186,
+       260
+      ]
+     }
+    }
+   },
+   "dropped": {},
+   "tuning": {
+    "chosen": {
+     "low_relief": 1.0,
+     "impervious": 0.0,
+     "flatness": 0.0,
+     "rainfall_climatology": 1.0
+    },
+    "best_tuning_mean_auc": 0.8164,
+    "table": [
+     {
+      "weights": {
+       "low_relief": 0.0,
+       "impervious": 0.0,
+       "flatness": 0.5,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.5204,
+      "per_event": {
+       "dharavi": 0.4733,
+       "hcmc": 0.2423,
+       "kigali": null,
+       "accra": 0.8135,
+       "dhaka": 0.5384,
+       "capetown": 0.3444,
+       "guatemala": null,
+       "nusantara": 0.7103
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.0,
+       "impervious": 0.0,
+       "flatness": 1.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.5307,
+      "per_event": {
+       "dharavi": 0.4733,
+       "hcmc": 0.295,
+       "kigali": null,
+       "accra": 0.8247,
+       "dhaka": 0.5377,
+       "capetown": 0.343,
+       "guatemala": null,
+       "nusantara": 0.7103
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.0,
+       "impervious": 0.5,
+       "flatness": 0.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.2376,
+      "per_event": {
+       "dharavi": 0.183,
+       "hcmc": 0.1103,
+       "kigali": null,
+       "accra": 0.2126,
+       "dhaka": 0.1947,
+       "capetown": 0.2392,
+       "guatemala": null,
+       "nusantara": 0.4858
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.0,
+       "impervious": 0.5,
+       "flatness": 0.5,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.297,
+      "per_event": {
+       "dharavi": 0.2105,
+       "hcmc": 0.0659,
+       "kigali": null,
+       "accra": 0.4065,
+       "dhaka": 0.1882,
+       "capetown": 0.205,
+       "guatemala": null,
+       "nusantara": 0.7059
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.0,
+       "impervious": 0.5,
+       "flatness": 1.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.3376,
+      "per_event": {
+       "dharavi": 0.2444,
+       "hcmc": 0.0824,
+       "kigali": null,
+       "accra": 0.5223,
+       "dhaka": 0.2337,
+       "capetown": 0.2345,
+       "guatemala": null,
+       "nusantara": 0.7081
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.0,
+       "impervious": 1.0,
+       "flatness": 0.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.2347,
+      "per_event": {
+       "dharavi": 0.183,
+       "hcmc": 0.1063,
+       "kigali": null,
+       "accra": 0.2031,
+       "dhaka": 0.1947,
+       "capetown": 0.2352,
+       "guatemala": null,
+       "nusantara": 0.4858
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.0,
+       "impervious": 1.0,
+       "flatness": 0.5,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.2716,
+      "per_event": {
+       "dharavi": 0.1971,
+       "hcmc": 0.0633,
+       "kigali": null,
+       "accra": 0.3185,
+       "dhaka": 0.1678,
+       "capetown": 0.1807,
+       "guatemala": null,
+       "nusantara": 0.7021
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.0,
+       "impervious": 1.0,
+       "flatness": 1.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.2964,
+      "per_event": {
+       "dharavi": 0.2105,
+       "hcmc": 0.0744,
+       "kigali": null,
+       "accra": 0.395,
+       "dhaka": 0.1878,
+       "capetown": 0.2046,
+       "guatemala": null,
+       "nusantara": 0.7059
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.5,
+       "impervious": 0.0,
+       "flatness": 0.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.806,
+      "per_event": {
+       "dharavi": 0.8155,
+       "hcmc": 0.747,
+       "kigali": null,
+       "accra": 0.8841,
+       "dhaka": 0.7938,
+       "capetown": 0.8583,
+       "guatemala": null,
+       "nusantara": 0.7376
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.5,
+       "impervious": 0.0,
+       "flatness": 0.5,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.6271,
+      "per_event": {
+       "dharavi": 0.5502,
+       "hcmc": 0.4409,
+       "kigali": null,
+       "accra": 0.8923,
+       "dhaka": 0.6212,
+       "capetown": 0.5359,
+       "guatemala": null,
+       "nusantara": 0.7219
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.5,
+       "impervious": 0.0,
+       "flatness": 1.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.5967,
+      "per_event": {
+       "dharavi": 0.5181,
+       "hcmc": 0.4152,
+       "kigali": null,
+       "accra": 0.8892,
+       "dhaka": 0.5848,
+       "capetown": 0.4562,
+       "guatemala": null,
+       "nusantara": 0.7166
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.5,
+       "impervious": 0.5,
+       "flatness": 0.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.4468,
+      "per_event": {
+       "dharavi": 0.4173,
+       "hcmc": 0.1717,
+       "kigali": null,
+       "accra": 0.5728,
+       "dhaka": 0.2537,
+       "capetown": 0.5331,
+       "guatemala": null,
+       "nusantara": 0.7321
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.5,
+       "impervious": 0.5,
+       "flatness": 0.5,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.4027,
+      "per_event": {
+       "dharavi": 0.3139,
+       "hcmc": 0.1111,
+       "kigali": null,
+       "accra": 0.6592,
+       "dhaka": 0.2471,
+       "capetown": 0.3655,
+       "guatemala": null,
+       "nusantara": 0.7195
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.5,
+       "impervious": 0.5,
+       "flatness": 1.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.4147,
+      "per_event": {
+       "dharavi": 0.3228,
+       "hcmc": 0.1213,
+       "kigali": null,
+       "accra": 0.7044,
+       "dhaka": 0.2875,
+       "capetown": 0.3374,
+       "guatemala": null,
+       "nusantara": 0.715
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.5,
+       "impervious": 1.0,
+       "flatness": 0.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.3781,
+      "per_event": {
+       "dharavi": 0.3387,
+       "hcmc": 0.1509,
+       "kigali": null,
+       "accra": 0.4227,
+       "dhaka": 0.2182,
+       "capetown": 0.4113,
+       "guatemala": null,
+       "nusantara": 0.727
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.5,
+       "impervious": 1.0,
+       "flatness": 0.5,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.3439,
+      "per_event": {
+       "dharavi": 0.2581,
+       "hcmc": 0.0969,
+       "kigali": null,
+       "accra": 0.4985,
+       "dhaka": 0.2,
+       "capetown": 0.2938,
+       "guatemala": null,
+       "nusantara": 0.7164
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 0.5,
+       "impervious": 1.0,
+       "flatness": 1.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.3539,
+      "per_event": {
+       "dharavi": 0.2599,
+       "hcmc": 0.1004,
+       "kigali": null,
+       "accra": 0.5528,
+       "dhaka": 0.2148,
+       "capetown": 0.2823,
+       "guatemala": null,
+       "nusantara": 0.7132
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 1.0,
+       "impervious": 0.0,
+       "flatness": 0.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.8164,
+      "per_event": {
+       "dharavi": 0.8155,
+       "hcmc": 0.8057,
+       "kigali": null,
+       "accra": 0.8892,
+       "dhaka": 0.7921,
+       "capetown": 0.8581,
+       "guatemala": null,
+       "nusantara": 0.7376
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 1.0,
+       "impervious": 0.0,
+       "flatness": 0.5,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.6804,
+      "per_event": {
+       "dharavi": 0.6218,
+       "hcmc": 0.5458,
+       "kigali": null,
+       "accra": 0.8965,
+       "dhaka": 0.6699,
+       "capetown": 0.6207,
+       "guatemala": null,
+       "nusantara": 0.7275
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 1.0,
+       "impervious": 0.0,
+       "flatness": 1.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.6349,
+      "per_event": {
+       "dharavi": 0.5502,
+       "hcmc": 0.4791,
+       "kigali": null,
+       "accra": 0.8975,
+       "dhaka": 0.6205,
+       "capetown": 0.5402,
+       "guatemala": null,
+       "nusantara": 0.7219
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 1.0,
+       "impervious": 0.5,
+       "flatness": 0.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.5297,
+      "per_event": {
+       "dharavi": 0.5327,
+       "hcmc": 0.2353,
+       "kigali": null,
+       "accra": 0.6853,
+       "dhaka": 0.3338,
+       "capetown": 0.6559,
+       "guatemala": null,
+       "nusantara": 0.7349
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 1.0,
+       "impervious": 0.5,
+       "flatness": 0.5,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.4745,
+      "per_event": {
+       "dharavi": 0.4192,
+       "hcmc": 0.1675,
+       "kigali": null,
+       "accra": 0.731,
+       "dhaka": 0.3226,
+       "capetown": 0.481,
+       "guatemala": null,
+       "nusantara": 0.7259
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 1.0,
+       "impervious": 0.5,
+       "flatness": 1.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.4686,
+      "per_event": {
+       "dharavi": 0.388,
+       "hcmc": 0.1668,
+       "kigali": null,
+       "accra": 0.7535,
+       "dhaka": 0.3517,
+       "capetown": 0.4309,
+       "guatemala": null,
+       "nusantara": 0.7208
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 1.0,
+       "impervious": 1.0,
+       "flatness": 0.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.4465,
+      "per_event": {
+       "dharavi": 0.4171,
+       "hcmc": 0.1836,
+       "kigali": null,
+       "accra": 0.563,
+       "dhaka": 0.2529,
+       "capetown": 0.5301,
+       "guatemala": null,
+       "nusantara": 0.7321
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 1.0,
+       "impervious": 1.0,
+       "flatness": 0.5,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.406,
+      "per_event": {
+       "dharavi": 0.3336,
+       "hcmc": 0.1285,
+       "kigali": null,
+       "accra": 0.6143,
+       "dhaka": 0.2356,
+       "capetown": 0.4003,
+       "guatemala": null,
+       "nusantara": 0.7238
+      }
+     },
+     {
+      "weights": {
+       "low_relief": 1.0,
+       "impervious": 1.0,
+       "flatness": 1.0,
+       "rainfall_climatology": 1.0
+      },
+      "mean_auc": 0.4031,
+      "per_event": {
+       "dharavi": 0.3137,
+       "hcmc": 0.1237,
+       "kigali": null,
+       "accra": 0.6499,
+       "dhaka": 0.2468,
+       "capetown": 0.3652,
+       "guatemala": null,
+       "nusantara": 0.7195
+      }
+     }
+    ],
+    "reason": "highest tuning mean"
+   },
+   "held_out_per_event": {
+    "thai_binh": {
+     "flooded_cells": 7,
+     "dry_cells": 17455,
+     "evaluation_cell_m": 30,
+     "auc": null,
+     "qualifies": false
+    },
+    "nam_dinh": {
+     "flooded_cells": 169,
+     "dry_cells": 16941,
+     "evaluation_cell_m": 30,
+     "auc": 0.4722,
+     "qualifies": true
+    },
+    "jakarta_gfd_3280": {
+     "flooded_cells": 20,
+     "dry_cells": 225,
+     "evaluation_cell_m": 240,
+     "auc": null,
+     "qualifies": false
+    }
+   },
+   "held_out": {
+    "verdict": "not-run",
+    "auc": null,
+    "qualifying_events": 1,
+    "reason": "fewer than 2 qualifying held-out events"
+   },
+   "pooled_held_out_auc_diagnostic": 0.4722,
+   "weights_used": {
+    "low_relief": 1.0,
+    "impervious": 0.0,
+    "flatness": 0.0,
+    "rainfall_climatology": 1.0
+   }
+  }
+ }
+}

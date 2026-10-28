@@ -98,8 +98,8 @@ class TestComputeFluvialSusceptibility:
 
     def test_river_size_enters_only_through_its_weight(self):
         r = _rasters([[10.0]], upa=10000.0)
-        base = compute_fluvial_susceptibility(r)            # default: HAND only
-        assert base["components_used"] == ["low_hand"]
+        hand_only = compute_fluvial_susceptibility(r, weights={"low_hand": 1.0, "river_size": 0.0})
+        assert hand_only["components_used"] == ["low_hand"]
         both = compute_fluvial_susceptibility(r, weights={"low_hand": 1.0, "river_size": 1.0})
         # (2/3 + 1) / 2: river_size is 1 at the 10,000 km^2 ceiling
         assert both["aoi_mean_score"] == pytest.approx((1 - 10 / 30 + 1.0) / 2, abs=1e-4)

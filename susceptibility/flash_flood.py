@@ -40,10 +40,12 @@ def _classify(score):
     return "very_high"
 
 
-# Item 26 task 8 (Tier 2, experiments/flood_validation/result_2026-10-28.json):
-# AUC 0.447 against Sentinel-1 event extents, 3 events, bar 0.70: failed.
-# "failed" = tested against the pre-registered bar and did not pass.
-VALIDATION_STATUS = "failed"
+# Item 26 Phase 1a, round 2 (experiments/flood_validation/result_round2_2026-10-28.json):
+# not-run -- 1 of 3 held-out events had >= 50 flooded cells (Kastelli 0.881;
+# Volos 0 flooded, Choloma outside its EMS product), fewer than the 2 required.
+# Not-run is "experimental": the per-pixel method is untested at the bar.
+# (Round 1's scalar method failed, 0.447; that method is gone.)
+VALIDATION_STATUS = "experimental"
 
 from perception.applicability_gate import gated
 

@@ -191,7 +191,9 @@ def test_failed_hydro_rasters_reach_the_per_pixel_modules_as_not_available(stub_
     for m in ("fluvial", "flash_flood"):
         assert r["susceptibility"][m]["status"] == "insufficient_evidence", m
         assert "aoi_mean_score" not in r["susceptibility"][m]
-    assert r["susceptibility"]["waterlogging"]["components_used"] == ["impervious"]
+    # round 2's tuned waterlogging weights give impervious 0, so with no
+    # rasters nothing it weights is left
+    assert r["susceptibility"]["waterlogging"]["status"] == "insufficient_evidence"
 
 
 def test_hydro_rasters_make_three_per_pixel_maps(stub_pipeline, tmp_path):
@@ -243,8 +245,13 @@ def test_flood_inputs_reach_pluvial_and_waterlogging_with_provenance(stub_pipeli
     assert pl["validation_status"] == "retired"
     assert pl["validation_status_superseded"] == "placeholder"
     assert wl["impervious_fraction_pct"] == 60.0
+    assert wl["inputs"]["impervious"]["method"] == "footprint_union_area_fraction"
+    # round 2's tuned weights give impervious 0, so the placeholder input is
+    # declared but does not set the module's own label; the legacy result
+    # still labels the block "retired"
+    assert "impervious (weight 0)" in wl["components_excluded"]
     assert wl["validation_status"] == "retired"
-    assert wl["validation_status_superseded"] == "placeholder"
+    assert wl["validation_status_superseded"] == "experimental"
     assert r["flood_inputs"]["grid"]["crs"] == "EPSG:32643"
 
 

@@ -30,10 +30,11 @@ def _classify(score):
     return "very_high"
 
 
-# Item 26 task 8 (Tier 2, experiments/flood_validation/result_2026-10-28.json):
-# AUC 0.448 against JRC recurrent water, 9 AOIs, bar 0.70: failed.
-# "failed" = tested against the pre-registered bar and did not pass.
-VALIDATION_STATUS = "failed"
+# Item 26 Phase 1a, round 2 (experiments/flood_validation/result_round2_2026-10-28.json):
+# held-out mean within-event AUC 0.8579 over 2 Copernicus EMS events
+# (Hanoi, Kolonnawa), bar 0.70: validated -- for these events and inputs only.
+# Round 1's AOI-wide scalar failed (0.448); that method is gone.
+VALIDATION_STATUS = "validated"
 
 from perception.applicability_gate import gated
 

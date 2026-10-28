@@ -704,6 +704,24 @@ met, the rerun a cache hit on the same ID, `code_dirty: false`, 178 s uncached
 Lagos and Chandigarh are stored under the first run's dirty version; they
 are not wrong, only keyed to a version no later run will reproduce.
 
+**Round 2, 2026-10-28 (item 26 Phase 1a, `build/flood2`).** Fluvial, flash
+flood and waterlogging are per-pixel maps now. They were re-tested on
+held-out events under a new pre-registration
+(`experiments/flood_validation/PREREGISTRATION_ROUND2.md`), with weights
+tuned on separate tuning events, against Copernicus EMS, GFD, Sentinel-1 and
+JRC references.
+
+- **Fluvial is `validated`**: held-out AUC 0.858 over Hanoi and Kolonnawa.
+  It is the first `validated` output in the project, and it holds only for
+  those events and inputs.
+- **Coastal is `failed`**: pooled 0.646, now testable on a 12-day S1 window.
+- **Flash flood and waterlogging are `experimental`**: both were not-run,
+  with one qualifying held-out event each.
+- **Pluvial stays `placeholder`**: also not-run.
+
+Result: `experiments/flood_validation/result_round2_2026-10-28.json`. Item 26
+stays partial.
+
 ---
 
 ## Immediate next action
