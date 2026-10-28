@@ -34,6 +34,7 @@ All `experimental`. Every Earth Engine call has a hard client deadline
 from __future__ import annotations
 
 import warnings
+from contextlib import contextmanager
 
 import numpy as np
 
@@ -183,6 +184,26 @@ def _terrain_image(bbox):
 RAIN_NATIVE_DEG = {"rain_annual_mm": 0.05, "rain_intensity_mm_h": 0.1}   # CHIRPS, IMERG
 RAIN_TIMEOUT_S = 1200        # a 10-year IMERG percentile took 314 s at one point
 RAIN_LAYERS = ("rain_annual_mm", "rain_intensity_mm_h")
+# C71: the IMERG percentile gets its own request deadline, set explicitly even
+# inside the analysis pipeline (whose 240 s per-request deadline it cannot
+# beat) and restored afterwards, so every other request keeps the caller's.
+# One attempt: a retry after a full deadline would outrun the stage's limit.
+IMERG_LAYER = "rain_intensity_mm_h"
+IMERG_DEADLINE_S = RAIN_TIMEOUT_S
+IMERG_RETRIES = 1
+
+
+@contextmanager
+def request_deadline(ms: int):
+    """Earth Engine's per-request deadline set to `ms` for the block, then
+    put back to what it was (0 = none, EE's default)."""
+    import ee
+    prev = ee.data._get_state().deadline_ms
+    ee.data.setDeadline(ms)
+    try:
+        yield
+    finally:
+        ee.data.setDeadline(prev or 0)
 
 
 def _rain_images(ref_year: int):
@@ -242,11 +263,19 @@ def _rain_layer(img, name, bbox, transform, shape, crs):
     from rasterio.transform import from_origin
     deg = RAIN_NATIVE_DEG[name]
     x0, y1, cols, rows = native_grid(grid_lonlat_bounds(transform, shape, crs), deg)
-    ensure_deadline(RAIN_TIMEOUT_S * 1000)
-    arr = call(lambda: ee.data.computePixels({
-        "expression": img.unmask(NODATA).toFloat(), "fileFormat": "NUMPY_NDARRAY",
-        "grid": ee_grid(from_origin(x0, y1, deg, deg), (rows, cols), "EPSG:4326")}),
-        timeout=RAIN_TIMEOUT_S, retries=EE_RETRIES, label=name)
+
+    def fetch(timeout, retries):
+        return call(lambda: ee.data.computePixels({
+            "expression": img.unmask(NODATA).toFloat(), "fileFormat": "NUMPY_NDARRAY",
+            "grid": ee_grid(from_origin(x0, y1, deg, deg), (rows, cols), "EPSG:4326")}),
+            timeout=timeout, retries=retries, label=name)
+
+    if name == IMERG_LAYER:
+        with request_deadline(IMERG_DEADLINE_S * 1000):
+            arr = fetch(IMERG_DEADLINE_S, IMERG_RETRIES)
+    else:
+        ensure_deadline(RAIN_TIMEOUT_S * 1000)
+        arr = fetch(RAIN_TIMEOUT_S, EE_RETRIES)
     v = np.where(arr[name] == NODATA, np.nan, arr[name]).astype(np.float64)
     return nearest_from_native(v, x0, y1, deg, transform, shape, crs)
 

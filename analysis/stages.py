@@ -32,14 +32,17 @@ STAGE_TIMEOUT_S = {
     "context": 240,              # each AOI-wide context layer (HAND, CHIRPS, ...)
     "change": 1800,              # four S2 composites + three OB Temporal years
     # item 26 Phase 1a: MERIT/FABDEM terrain + CHIRPS + a 10-year IMERG
-    # percentile (314 s at one point, each request under EE_REQUEST_DEADLINE_S)
+    # percentile (314 s at one point; its one request has its own deadline,
+    # hydro_rasters.IMERG_DEADLINE_S, C71)
     "hydro_rasters": 1500,
 }
 
 
 # One per-REQUEST deadline for every stage. A stage's own wall-clock limit is
 # STAGE_TIMEOUT_S; this bounds each single EE request inside it. Kept constant
-# so the client is rebuilt once per process, not once per stage.
+# so the client is rebuilt once per process, not once per stage. The one
+# exception is the IMERG percentile request (C71), which sets its own longer
+# deadline and puts this one back.
 EE_REQUEST_DEADLINE_S = 240                 # = the shortest stage limit
 
 
