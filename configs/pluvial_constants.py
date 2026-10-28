@@ -20,6 +20,10 @@ RAINFALL_MIN_MM_YEAR = 200.0
 RAINFALL_MAX_MM_YEAR = 4500.0
 RAINFALL_CLIMATOLOGY_YEARS = 10
 
+# Item 26: the grid every pluvial input is put on. 30 m is the DEM's own
+# resolution (Copernicus GLO-30 / FABDEM), so terrain is not resampled.
+HYDROLOGY_PIXEL_M = 30.0
+
 COMPONENT_WEIGHTS = {
     "impervious": 1.0,
     "infiltration_deficit": 0.8,

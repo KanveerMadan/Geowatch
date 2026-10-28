@@ -22,6 +22,7 @@ from susceptibility.coastal import compute_coastal_susceptibility
 from ingestion.hydrology import get_slope_stats
 from susceptibility.flash_flood import compute_flash_flood_susceptibility
 from susceptibility.waterlogging import compute_waterlogging_susceptibility
+from susceptibility.inputs import build_flood_inputs, mean_pct, provenance, to_grid
 from ingestion.inundation import get_permanent_water_context, get_sentinel1_change_context
 from perception.observed_inundation import compute_observed_inundation
 from ingestion.exposure_sources import (
@@ -465,21 +466,29 @@ def run_pipeline(
         hydrological_surfaces=None,   # stage 2 resolves the one status needing it
     )
 
+    # Legacy record only (item 26): derived from the retired 7-class map, so
+    # nothing downstream consumes it. It carries the model's verdict.
     hydrological_surfaces = compute_hydrological_surfaces(inference_result["category_area_pct"])
-    # Surfaces are derived from the model applicability just judged, so they
-    # carry that verdict rather than being presented as unconditional fact.
-    annotate_applicability(hydrological_surfaces, applicability, "waterlogging")
+    annotate_applicability(hydrological_surfaces, applicability, "hydrological_surfaces")
+
+    # Item 26: pluvial and waterlogging read declared surface inputs built from
+    # item 19's layer on the hydrology grid, never the 7-class map.
+    print("\nBuilding flood surface inputs (Open Buildings built area, S2 vegetation stand-in)...")
+    flood_inputs = _context_layer("flood_inputs", build_flood_inputs, aoi_label,
+                                  (west, south, east, north), s2_start, s2_end)
+    fi = flood_inputs if flood_inputs.get("status") == "available" else {}
 
     # Stage 2: resolve waterlogging, the only status that genuinely needed
-    # hydrological_surfaces to exist.
-    applicability = finalize_applicability(applicability, hydrological_surfaces)
+    # its impervious input to exist.
+    applicability = finalize_applicability(
+        applicability, {"impervious_fraction_pct": mean_pct(fi.get("impervious"))})
 
     
     print("\nComputing pluvial susceptibility baseline...")
     pluvial_result = compute_pluvial_susceptibility(
-        landcover_map=landcover_map_full,
-        categories=categories,
-        waterway_dist_map=full_waterway_dist_map,
+        impervious=fi.get("impervious"),
+        infiltration=fi.get("infiltration"),
+        waterway_dist_map=to_grid(full_waterway_dist_map, (west, south, east, north), fi or None),
         relative_elevation_score=relative_elevation.get("score"),
         rainfall_mean_annual_mm=rainfall_climatology.get("mean_annual_mm"),
         applicability=applicability,
@@ -499,7 +508,7 @@ def run_pipeline(
     fluvial_result = compute_fluvial_susceptibility(hand_context, applicability=applicability)
     coastal_result = compute_coastal_susceptibility(coastal_context, fabdem_elevation, applicability=applicability)
     flash_flood_result = compute_flash_flood_susceptibility(slope_context, hand_context, rainfall_climatology, applicability=applicability)
-    waterlogging_result = compute_waterlogging_susceptibility(hand_context, hydrological_surfaces, rainfall_climatology, applicability=applicability)
+    waterlogging_result = compute_waterlogging_susceptibility(hand_context, fi.get("impervious"), rainfall_climatology, applicability=applicability)
     susceptibility_block = {
         "pluvial": pluvial_result_serializable,
         "fluvial": fluvial_result,
@@ -693,6 +702,14 @@ def run_pipeline(
         "landcover": landcover_block,
         "applicability": applicability,
         "hydrological_surfaces": hydrological_surfaces,
+        "flood_inputs": {
+            **{k: v for k, v in flood_inputs.items()
+               if k not in ("impervious", "infiltration", "transform", "shape")},
+            **({"grid": {"crs": fi["crs"], "transform": list(fi["transform"])[:6],
+                         "shape": list(fi["shape"])},
+                "inputs": {k: provenance(fi[k]) for k in ("impervious", "infiltration")}}
+               if fi else {}),
+        },
         "susceptibility": susceptibility_block,
         "rainfall_climatology": rainfall_climatology,
         "segments": segments,

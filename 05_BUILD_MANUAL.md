@@ -1797,7 +1797,7 @@ regrown cover on airside land. The threshold was not changed.
 `tests/test_vector_change.py`, 9 tests: **0 before** (module absent) and **9
 passed after**.
 
-### 26. Rewire flood risk 🔓
+### 26. Rewire flood risk 🔶 **PARTIAL (2026-10-28) — the final impervious input waits on item 21**
 
 *Validation (decided 2026-09-24; see the Part 4 mandate note): each of the
 five hazard calculations is validated by discrimination against observed
@@ -1826,6 +1826,34 @@ captures compacted earth's runoff**, and it cannot be the only runoff signal.
 `paved_road` as a class remains anywhere in the flood path; **every fraction's
 runoff coefficient is documented with its source, and `bare`'s is non-zero**
 *(added 2026-09-24)*.
+
+#### Built 2026-10-28 on `build/flood` — partial
+
+Item 21's fractions do not exist, so the per-fraction runoff input (and with it
+the acceptance above) cannot be met yet. What is built uses stand-ins that
+declare themselves. Every new output carries `validation_status`; none claims
+`validated`.
+
+- **Task 1 — decoupled from the retired 7-class map.**
+  `susceptibility/inputs.py` defines a declared surface input (`raster`,
+  `source`, `method`, `validation_status`). Pluvial takes `impervious` and
+  `infiltration`; waterlogging takes `impervious`. Producers, both
+  `placeholder`: **impervious = Open Buildings built AREA fraction** (the
+  footprint union's area per cell, never a count, because Open Buildings
+  fragments houses — item 23's Chandigarh finding); **infiltration = Lane B's
+  Sentinel-2 NDVI vegetation stand-in**, classified at 10 m and averaged to the
+  cell. Both sit on a 30 m hydrology grid (`HYDROLOGY_PIXEL_M`, the DEM's
+  resolution) in the item 19 layer's UTM CRS. An output is no more validated
+  than its weakest input, so pluvial and waterlogging are `placeholder`.
+  `pipeline.py` builds the inputs as a contained context layer
+  (`flood_inputs`) and reprojects the waterway distance map onto that grid;
+  `hydrological_surfaces` stays in `result.json` as a legacy record that
+  nothing consumes. `zonal/landcover_screening.py` now reports per-ward
+  pluvial and waterlogging as `not_calculated` (no per-ward inputs exist).
+  The applicability gate moves pluvial and waterlogging to
+  `LANDCOVER_INDEPENDENT`. Tests: `tests/test_flood_inputs.py` (20; an AST
+  scan proves no `susceptibility/` module names the 7-class map, and 9 fail on
+  the old code), two pipeline-boundary tests.
 
 ---
 

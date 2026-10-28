@@ -36,19 +36,19 @@ than assumed:
 
     urban_landcover_model  (unknown_pct / ambiguous_pct)
       │
-      ├─ pluvial       — compute_pluvial_susceptibility(landcover_map=...,
-      │                  categories=...) consumes the classified raster
-      │
       ├─ hydrological_surfaces — compute_hydrological_surfaces(
-      │    │             category_area_pct) is a weighted sum of the model's
-      │    │             own category percentages
-      │    └─ waterlogging — compute_waterlogging_susceptibility(
-      │                      hydrological_surfaces=...) consumes that sum
+      │                  category_area_pct) is a weighted sum of the model's
+      │                  own category percentages. Since item 26 a legacy
+      │                  record only: nothing consumes it.
       │
       └─ exposure      — landcover_builtup_pct is built in pipeline.py from
                          category_area_pct (dense_informal_roofing +
                          sparse_informal_roofing + paved_road)
 
+    surface inputs   → pluvial, waterlogging         (item 26: Open Buildings
+                                                      built area, S2 vegetation
+                                                      stand-in; never the
+                                                      7-class map)
     hand_context     → fluvial, flash_flood          (MERIT Hydro)
     coastal_context  → coastal                       (GEE shoreline)
     slope_context    → flash_flood                   (DEM slope)
@@ -76,12 +76,12 @@ consumer may reasonably act on one and not the other:
 #
 # Membership here is a claim about DATA FLOW and is verified by a test that
 # fails if a mechanism's real inputs stop matching this table.
-LANDCOVER_DERIVED = frozenset({"pluvial", "waterlogging", "exposure"})
+LANDCOVER_DERIVED = frozenset({"hydrological_surfaces", "exposure"})
 
-# Mechanisms that read only external context (MERIT Hydro, GEE shoreline, DEM
-# slope). An OOD land-cover verdict is irrelevant to these, and saying
-# otherwise would be false.
-LANDCOVER_INDEPENDENT = frozenset({"fluvial", "coastal", "flash_flood"})
+# Mechanisms that never read the semantic model (MERIT Hydro, GEE shoreline,
+# DEM slope, item 26's declared surface inputs). An OOD land-cover verdict is
+# irrelevant to these, and saying otherwise would be false.
+LANDCOVER_INDEPENDENT = frozenset({"pluvial", "waterlogging", "fluvial", "coastal", "flash_flood"})
 
 # Ordered worst-first. Used to combine trust levels along the chain: a
 # consumer's trust is the worst of its own and everything upstream of it.
