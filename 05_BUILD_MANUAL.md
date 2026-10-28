@@ -1569,15 +1569,50 @@ Other AOIs, for the record: Barcelona φ = 0.617 (sidewalk footways add
 off-grid bearings), 1,093 footprints/km², median 287 m². Lagos φ suppressed,
 1,983 footprints/km², median 52 m².
 
-`tests/test_vector_density.py`, 15 tests: **0 before** (module absent) and **15
+`tests/test_vector_density.py`, 14 tests (commit 61547c6 said 15; corrected in item 24's commit): **0 before** (module absent) and **14
 passed after**.
 
-### 24. Access and service indicators 🔓
+### 24. Access and service indicators ✅
 Network connectivity, distance-to-nearest-paved-access per building or per block.
 
 **Acceptance:** computed from the vector layer alone; degradation with
 coverage is reported via item 20's score, not silent.
 
+**Built 2026-10-28** (`vector/access.py`). *Proposed research design under the
+Part 4 mandate. Not validated.* Built from the item 19 layer alone; a test
+forbids imagery imports.
+
+- **Network connectivity** on real OSM node topology: components,
+  largest-component length share, intersections per km² (degree ≥ 3),
+  dead-end ratio (degree 1 over topological nodes) and link-node ratio. It is
+  **suppressed** under item 20's low coverage, because under thin mapping a
+  dead end measures the mapping, not the place.
+- **Paved access** per building: the Euclidean distance from the footprint
+  edge to the nearest paved centreline, summarised per building and per block
+  (the layer's `blocks()`, the same partition item 22 uses). Paved means the
+  `surface` tag where present, otherwise a highway-class DEFAULT. The share of
+  buildings whose nearest paved way rests on that default is reported.
+  Distances are always computed, carry item 20's confidence, and are UPPER
+  bounds when a clause is missing (`partial_fetch`).
+
+**Live, 2026-10-28:**
+
+| AOI | regime | network | components | intersections/km² | dead-end ratio | median building→paved | ≤ 50 m | nearest paved on class default |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| chandigarh_central | adequate | reported | 25 | 206 | 0.21 | 11.0 m | 98.1% | 11% |
+| dharavi | adequate | reported | 27 | 260 | 0.27 | 17.5 m | 87.5% | **91%** |
+| barcelona_eixample | adequate | reported | 36 | 1,375 | 0.09 | 2.8 m | 100% | 0.4% |
+| lagos | **very_low** | **suppressed** | — | — | — | 186.8 m (confidence **low**) | 17.2% | 51% |
+
+Degradation is visible: Lagos's topology is suppressed, and its distances carry
+low confidence. They also reflect a real 70.8% unpaved-tagged network (item
+19). **Dharavi's access figure rests 91% on the class default**, since its
+surface tagging covers 16.6% of length, so it is mostly an assumption.
+Barcelona's sidewalk footways cut the AOI into 4,771 blocks, only 340 of them
+with a building, which inflates per-block counts there.
+
+`tests/test_vector_access.py`, 7 tests: **0 before** (module absent) and **7
+passed after**.
 ### 25. Change over time 🔓
 Fraction deltas across composites.
 
