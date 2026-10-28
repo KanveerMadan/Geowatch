@@ -130,11 +130,14 @@ def test_no_seven_class_classifier_is_reachable():
 
 
 def test_a_run_imports_no_classifier_module():
-    for m in ("pipeline", "ingestion.inference", "ingestion.resnet_model"):
-        sys.modules.pop(m, None)
-    S.run()
-    for m in ("pipeline", "ingestion.inference", "ingestion.resnet_model"):
-        assert m not in sys.modules, m
+    """In a fresh interpreter, so this process's module table is untouched
+    (popping `pipeline` here broke every test holding a reference to it)."""
+    import subprocess
+    code = ("import sys; from tests import analysis_synth as S; S.run(); "
+            "bad = [m for m in ('pipeline', 'ingestion.inference', 'ingestion.resnet_model', "
+            "'torch') if m in sys.modules]; print('BAD', bad); sys.exit(1 if bad else 0)")
+    p = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, timeout=300)
+    assert p.returncode == 0, p.stdout[-2000:] + p.stderr[-2000:]
 
 
 def test_window_resolution():
