@@ -164,3 +164,30 @@ def test_every_output_carries_the_results_version():
 def test_result_without_outputs_is_refused():
     with pytest.raises(C.ContractError):
         C.check_result({"model_version": MV, "outputs": {}})
+
+
+def test_docs_changes_do_not_change_the_version(tmp_path):
+    """A docs-only commit or uncommitted docs edit keeps version_id; a code
+    change moves it. Before the fix any tracked edit made the tree dirty."""
+    import subprocess
+    def git(*a):
+        subprocess.run(["git", *a], cwd=tmp_path, check=True, capture_output=True)
+    git("init", "-q")
+    git("config", "user.email", "t@t")
+    git("config", "user.name", "t")
+    (tmp_path / "analysis").mkdir()
+    (tmp_path / "analysis" / "m.py").write_text("x = 1\n")
+    (tmp_path / "NOTES.md").write_text("a\n")
+    git("add", ".")
+    git("commit", "-q", "-m", "code")
+    base = C.code_commit(str(tmp_path))
+    (tmp_path / "NOTES.md").write_text("b\n")                 # uncommitted docs edit
+    assert C.code_commit(str(tmp_path))["diff_sha256"] is None
+    git("commit", "-q", "-am", "docs")                        # docs-only commit
+    after = C.code_commit(str(tmp_path))
+    assert after["commit"] == base["commit"] and after["repo_head"] != base["repo_head"]
+    mv = lambda c: C.model_version({"p": "1"}, commit=c)["version_id"]
+    assert mv(after) == mv(base)
+    (tmp_path / "analysis" / "m.py").write_text("x = 2\n")    # uncommitted code edit
+    dirty = C.code_commit(str(tmp_path))
+    assert dirty["dirty"] and mv(dirty) != mv(base)

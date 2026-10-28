@@ -111,19 +111,31 @@ def sha256_json(obj) -> str:
     return hashlib.sha256(json.dumps(obj, sort_keys=True, default=str).encode()).hexdigest()
 
 
-def code_commit(repo_dir: str | None = None) -> dict:
-    """{"commit": sha, "dirty": bool, "diff_sha256": str | None}. Outside a
-    git checkout, GEOWATCH_CODE_COMMIT is used; failing that, "unknown"."""
+# The code a result depends on: every package the pipeline imports. Docs,
+# tests, the UI and api.py do not change an output, so a commit or an
+# uncommitted edit that touches only those must not change version_id --
+# otherwise any docs edit would invalidate every cached result. Measured
+# 2026-10-28: a ledger edit made mid-run gave Dharavi's rerun a new ID.
+CODE_PATHS = ("analysis", "vector", "susceptibility", "ingestion", "perception", "configs")
+
+
+def code_commit(repo_dir: str | None = None, paths=CODE_PATHS) -> dict:
+    """{"commit": the last commit touching `paths`, "dirty": bool,
+    "diff_sha256": hash of the uncommitted diff under `paths` or None,
+    "repo_head": HEAD, for traceability}. Outside a git checkout,
+    GEOWATCH_CODE_COMMIT is used; failing that, "unknown"."""
     cwd = repo_dir or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     try:
-        sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=cwd, capture_output=True,
-                             text=True, timeout=10, check=True).stdout.strip()
-        diff = subprocess.run(["git", "diff", "HEAD", "--", ".", ":(exclude)data"], cwd=cwd,
-                              capture_output=True, text=True, timeout=30, check=True).stdout
+        def git(*a):
+            return subprocess.run(["git", *a], cwd=cwd, capture_output=True, text=True,
+                                  timeout=30, check=True).stdout
+        head = git("rev-parse", "HEAD").strip()
+        sha = git("log", "-1", "--format=%H", "--", *paths).strip() or head
+        diff = git("diff", "HEAD", "--", *paths)
     except (OSError, subprocess.SubprocessError):
         return {"commit": os.getenv("GEOWATCH_CODE_COMMIT", "unknown"), "dirty": None,
-                "diff_sha256": None}
-    return {"commit": sha, "dirty": bool(diff),
+                "diff_sha256": None, "repo_head": None}
+    return {"commit": sha, "dirty": bool(diff), "repo_head": head,
             "diff_sha256": hashlib.sha256(diff.encode()).hexdigest() if diff else None}
 
 
@@ -137,6 +149,7 @@ def model_version(artifacts: dict, commit: dict | None = None) -> dict:
     artifact_hash = sha256_json(artifacts)
     version_id = sha256_json([commit["commit"], commit.get("diff_sha256"), artifact_hash])[:16]
     return {"code_commit": commit["commit"], "code_dirty": commit.get("dirty"),
+            "repo_head": commit.get("repo_head"), "code_paths": list(CODE_PATHS),
             "artifact_hash": artifact_hash, "artifacts": dict(artifacts),
             "version_id": version_id}
 
