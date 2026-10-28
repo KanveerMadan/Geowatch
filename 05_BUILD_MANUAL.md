@@ -2589,11 +2589,20 @@ twice) plus two AOI-relative normalisations, not "three". The correlation
 matrix covers the only 11 distinct AOIs with a susceptibility block (n = 7–9,
 geographically clustered), so it is descriptive only.
 
-### 67. Population from two sources, as a range
+### 67. Population from two sources, as a range ✅
 WorldPop and GHS-POP disagree ~7.6% at 2020 over the same AOI. **Report the
 range, not a point estimate.** More honest, costs nothing.
 
 Record the constraint: no enumerated Indian microdata before 2027–28.
+
+**Done:** `docs/population_range.md`, re-queried in GEE 2026-10-28. The
+"~7.6%" is **one AOI** (Dharavi), computed as (WP − GHS)/WP; it is 8.19% with
+GHS as the denominator. On four other AOIs the sign flips and the spread runs
+9.5–96.9%, so the range must be computed per AOI. **Stale record:**
+`03_EVIDENCE.md` §C.4 says WorldPop R2025A is absent from GEE. It is now
+present (`WorldPop/GP/100m/R2025A/v1/pop`) and gives sums 2.8–6.3× off both
+models. It was not investigated and is not in the range. The census
+constraint was re-checked; no official results date exists.
 
 ### 68. Email Planet re: publishing rights
 Ask explicitly whether annotated masks and model weights derived from
