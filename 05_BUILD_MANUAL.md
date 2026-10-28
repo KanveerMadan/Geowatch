@@ -865,7 +865,7 @@ not exist; collection error) and **37 passed after**.
 new here. `generate_osm_road_masks.py` keeps its own copy of the width table,
 not changed here; two copies can drift.
 
-### 20. Per-area completeness score 🔓
+### 20. Per-area completeness score ✅ *(partial: the UI half of acceptance is not met, no vector consumer in the UI)*
 
 **What:** a mandatory field on every AOI and every reporting unit, quantifying how
 much of the road network is likely present.
@@ -900,6 +900,87 @@ threshold. **This item sets those thresholds.**
 **Acceptance:** score emitted for every AOI, **never optional, never null**; a
 low-coverage AOI is visibly flagged end-to-end through to the UI; Lagos (0.19)
 and Khayelitsha (8.35) produce visibly different scores.
+
+**Built 2026-10-28** (`vector/coverage.py`). *Proposed research design under the
+Part 4 mandate. Not validated.* **Partially accepted: the UI half is NOT met**
+(see below).
+
+- **Fields** (all always present, never null; the JSON forbids NaN and inf):
+  `osm_density_percentile` (narrow pedestrian density ranked against the
+  reference set), `coverage_regime_flag`, `regime_reasons`,
+  `arterial_to_pedestrian_ratio`, `footprints_per_road_km`, `footprint_count`
+  and its method, `topology_metrics_suppressed`,
+  `footprint_metrics_confidence`, and `measure: "peer_relative_density_rank"`.
+  Named per the caution above: not a completeness rate.
+- **Low-coverage policy thresholds, set here** (fixed before any score was
+  computed). `very_low` below 0.3 km/km² narrow density. `low` below 1.0 (the
+  same constant as item 19's negative-space trigger), or above 5.0
+  arterial/pedestrian, the partial-mapping signature. `not_measurable` if the
+  pedestrian or arterial clause was not retrieved. Under low or worse,
+  topology metrics are **suppressed** and footprint metrics carry reduced
+  confidence. A zero denominator gives a capped value with `capped: true`.
+  Footprints per road km is reported but not used in the regime, because no
+  threshold for it is justified.
+- **Partial fetch.** Each output declares the Overpass clauses it is built
+  from (`roads.GROUP_CLAUSES`, tested against the clause partition). When one
+  was not retrieved, it carries `partial_fetch`, the missing clauses, and a
+  lower-bound note. The arterial/pedestrian ratio reads only the arterial and
+  narrow clauses, so a missing `service` clause leaves it complete.
+- **Reference set, measured live** (13 AOIs: the 11 baseline AOIs plus
+  Barcelona and Chandigarh as formal anchors), committed as
+  `REFERENCE_NARROW_KM_PER_KM2`. It reproduces Part B within 0.1 km/km²: the
+  largest drifts are HCMC 0.99 vs 0.90, Kigali 1.87 vs 1.94 and Jakarta 0.41
+  vs 0.39. Dharavi 2.78, Lagos 0.19 and Khayelitsha 8.35 match exactly.
+
+**Scores, 2026-10-28** (percentile leave-one-out, 12 others):
+
+| AOI | narrow km/km² | percentile | regime | arterial/ped | footprints per road km |
+|---|---:|---:|---|---:|---:|
+| lagos | 0.193 | **0.0** | **very_low** | 11.10 | 208.9 |
+| jakarta | 0.407 | 8.3 | low | 4.02 | 76.9 |
+| nusantara | 0.633 | 16.7 | low | 1.59 | 9.7 |
+| hcmc | 0.990 | 25.0 | low | 3.86 | 204.2 |
+| accra | 1.303 | 33.3 | adequate | 3.78 | 127.6 |
+| guatemala | 1.830 | 41.7 | adequate | 4.22 | 125.9 |
+| kigali | 1.874 | 50.0 | adequate | 1.82 | 185.7 |
+| nairobi | 2.110 | 58.3 | adequate | 1.66 | 108.7 |
+| chandigarh_central | 2.248 | 66.7 | adequate | 3.09 | 81.9 |
+| dhaka | 2.284 | 75.0 | adequate | 2.52 | 96.4 |
+| dharavi | 2.782 | 83.3 | adequate | 2.72 | 120.1 |
+| capetown (Khayelitsha) | 8.348 | **91.7** | **adequate** | 0.25 | 196.0 |
+| barcelona_eixample | 37.807 | 100.0 | adequate | 0.26 | 16.9 (OSM footprints) |
+
+**Lagos vs Khayelitsha: visibly different** (0.0 / very_low vs 91.7 / adequate).
+Every field is present and non-null for all 13. The low regime covers exactly
+`03_EVIDENCE.md`'s under-mapped list (Lagos, Jakarta, HCMC) plus Nusantara,
+which Part B deliberately did *not* flag: sparse mapping there plausibly
+reflects sparse construction. This score cannot tell those apart.
+
+**NOT met: "flagged end-to-end through to the UI".** The flag reaches the
+output of every vector product (items 22–24 embed it in every AOI block and
+every unit). No UI consumer of the vector track exists yet, so nothing renders
+it.
+
+**Deviations (recorded 2026-10-28):**
+1. *Reference check narrowed.* `measure_reference` first refused any AOI
+   with any unretrieved clause. It now refuses only a missing
+   `narrow_pedestrian` clause, the one its value is built from. Prompted by
+   HCMC's `service` clause failing; tested both ways.
+2. *Footprint count method.* For every Open Buildings AOI, the count is the
+   server-side `filterBounds` count, not a download. The 112k-polygon Cape
+   Town download stalled for 23 h. Same asset, same `filterBounds(Rectangle)`,
+   no extra confidence threshold. **Verified identical** to the
+   downloaded-then-layer-filtered count on Dharavi (19,339), Chandigarh
+   (11,266) and Lagos (34,056), so one method is used for all 12 OB AOIs, not
+   a mix. Barcelona (no OB) counts OSM buildings, a different source,
+   recorded. The download now has a 300 s per-request deadline.
+3. *Percentile is leave-one-out for reference members.* Ranking an AOI
+   against its own rounded entry moved it by about 4 points with the 4th
+   decimal. The regime flags do not use the percentile and are unchanged.
+
+`tests/test_vector_coverage.py`, 26 tests: **0 before** (module absent) and
+**26 passed after**. The partial-fetch tests were also run against item 19's
+`roads.py` (no `fetch_status`): **6 failed, then 6 passed** with it.
 
 ### 21. ~~Spectral unmixing~~ Spectral regression → fractions 🔓 **PILOT COMPLETE — RE-SCOPE SIGNED OFF 2026-09-23; not yet built** *(heading was "⚠️ PILOT COMPLETE — RE-SCOPE PROPOSED, AWAITING DECISION"; corrected 2026-09-24)*
 

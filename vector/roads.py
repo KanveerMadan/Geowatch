@@ -70,6 +70,22 @@ UNPAVED_SURFACES = frozenset({
 # A default, not a measurement: paved_status() reports which basis was used.
 PAVED_BY_CLASS_DEFAULT = ARTERIAL_CLASSES | {"residential", "living_street"}
 
+# ── Which Overpass clauses (vector.sources.HIGHWAY_CLAUSES) each output is
+# built from. When any of them was not retrieved, the output is reported
+# with status "partial_fetch" and the missing clauses, so a lower value from
+# missing data never reads as a real one. track and living_street fall in
+# the "other" clause. tests/test_vector_coverage.py checks this map against
+# the clause partition.
+ALL_CLAUSES = frozenset({"arterial", "residential", "service", "narrow_pedestrian", "other"})
+GROUP_CLAUSES = {
+    "all": ALL_CLAUSES,
+    "arterial": frozenset({"arterial"}),
+    "narrow_pedestrian": frozenset({"narrow_pedestrian"}),
+    "broad_pedestrian": frozenset({"narrow_pedestrian", "residential", "service", "other"}),
+    # The graph, blocks and paved access read every way.
+    "network": ALL_CLAUSES,
+}
+
 # ── Footprint negative space ──────────────────────────────────────────────
 #
 # Fixed before any real-data run (2026-10-27). PROVISIONAL, not calibrated.
@@ -164,6 +180,16 @@ class RoadLayer:
             if w.highway in BROAD_PEDESTRIAN_CLASSES:
                 out["broad_pedestrian"] += L
         return self.stamp({k: v / 1000.0 for k, v in out.items()})
+
+    def fetch_status(self, *groups) -> dict:
+        """{"status": "complete" | "partial_fetch", "missing_clauses": [...]}
+        for an output built from the union of `groups`' clauses."""
+        need = frozenset().union(*(GROUP_CLAUSES[g] for g in groups))
+        missing = sorted(need & set(self.fetch.get("unavailable", [])))
+        out = {"status": "partial_fetch" if missing else "complete", "missing_clauses": missing}
+        if missing:   # absent rather than None when complete: the score is never-null
+            out["note"] = "value is a LOWER BOUND: built without the missing clauses"
+        return out
 
     def densities_km_per_km2(self) -> dict:
         L = self.lengths_km()

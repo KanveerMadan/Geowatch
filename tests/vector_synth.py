@@ -71,3 +71,16 @@ def _rows_of_huts():
     return huts
 
 
+
+
+def service_missing_layer():
+    """HCMC's live shape on 2026-10-27: every clause but `service` retrieved.
+    Nine footways, two arterials, one service road, and the hut rows."""
+    ways = [_fix_ns(_way(100 + k, "footway", 0, 0, 0, [1000 + 3 * k, 1001 + 3 * k, 1002 + 3 * k]))
+            for k in range(9)]
+    ways += [_way(200 + k, "primary", 72.840, 72.850, 19.0405 + 0.0003 * k, [2000 + 2 * k, 2001 + 2 * k])
+             for k in range(2)]
+    ways.append(_way(400, "service", 72.840, 72.850, 19.0475, [4000, 4001]))
+    layer = _layer(ways, footprints=_rows_of_huts())
+    layer.fetch["unavailable"] = ["service"]
+    return layer

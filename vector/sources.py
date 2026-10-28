@@ -151,6 +151,11 @@ def fetch_osm_buildings(name: str, bbox, *, run=run_query) -> dict:
 
 OPEN_BUILDINGS_ASSET = "GOOGLE/Research/open-buildings/v3/polygons"
 
+# Per-request deadline for the footprint download. Earth Engine's default is
+# no limit: on 2026-10-27 a 112k-polygon Cape Town download stalled for 23 h
+# using 37 s of CPU, and nothing raised. A stall now fails loudly instead.
+OPEN_BUILDINGS_DEADLINE_MS = 300_000
+
 
 def fetch_open_buildings(name: str, bbox):
     """Open Buildings v3 polygons intersecting `bbox`, as a GeoDataFrame in
@@ -169,8 +174,12 @@ def fetch_open_buildings(name: str, bbox):
     fc = (ee.FeatureCollection(OPEN_BUILDINGS_ASSET)
           .filterBounds(ee.Geometry.Rectangle(list(bbox)))
           .select(["confidence", "area_in_meters"]))
-    gdf = ee.data.computeFeatures({"expression": fc,
-                                   "fileFormat": "GEOPANDAS_GEODATAFRAME"})
+    ee.data.setDeadline(OPEN_BUILDINGS_DEADLINE_MS)
+    try:
+        gdf = ee.data.computeFeatures({"expression": fc,
+                                       "fileFormat": "GEOPANDAS_GEODATAFRAME"})
+    finally:
+        ee.data.setDeadline(0)   # global state: restore Earth Engine's default
     gdf = gdf.set_crs("EPSG:4326", allow_override=True)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     gdf.to_file(path, driver="GeoJSON")
@@ -178,9 +187,14 @@ def fetch_open_buildings(name: str, bbox):
 
 
 def count_open_buildings(bbox) -> int:
-    """Server-side polygon count. Used to choose the footprint source and,
-    for item 20, where only the count is needed and downloading 100k
-    polygons would be waste."""
+    """Server-side polygon count. Used to choose the footprint source and as
+    item 20's footprint count for EVERY Open Buildings AOI.
+
+    The filter is identical to fetch_open_buildings(): same asset, same
+    filterBounds(Rectangle(bbox)), no confidence threshold beyond the
+    dataset's own publication threshold. Verified 2026-10-27 to equal the
+    downloaded-then-layer-filtered count exactly on Dharavi (19,339),
+    Chandigarh (11,266) and Lagos (34,056)."""
     import ee
     from ingestion.gee_client import initialize_gee
     initialize_gee()
