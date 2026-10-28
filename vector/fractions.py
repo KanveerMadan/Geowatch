@@ -34,6 +34,17 @@ PIXEL_M = 10.0
 FRACTIONS = ("built", "vegetation", "water")
 NOT_COMPUTED = ("impervious_total",)
 
+# Per-fraction validation label (decision 2026-10-28, 08_STATE.md).
+# vegetation and water are index-threshold stand-ins for item 21's regression:
+# placeholders. built is the architecture's own method, not yet validated.
+# Anything not computed is a placeholder by definition.
+FRACTION_VALIDATION_STATUS = {
+    "built": "experimental",
+    "vegetation": "placeholder",
+    "water": "placeholder",
+    "impervious_total": "placeholder",
+}
+
 PROXY_METHOD = {
     "built": "footprint_coverage_rasterised",
     "vegetation": f"ndvi_threshold_proxy(>{VEGETATION_NDVI_MIN}, not water)",
@@ -133,6 +144,7 @@ def fraction_rasters(layer, composite: dict) -> dict:
                      "vegetation": cls["observed"], "water": cls["observed"]},
         "transform": composite["transform"], "shape": composite["shape"],
         "method": dict(PROXY_METHOD), "producer": dict(PRODUCER),
+        "fraction_validation_status": dict(FRACTION_VALIDATION_STATUS),
         "window": composite.get("window"),
         "source_image_count": composite.get("source_image_count"),
         "observation_quality": composite.get("observation_quality"),

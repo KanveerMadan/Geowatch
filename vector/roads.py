@@ -102,6 +102,12 @@ NEGATIVE_SPACE_MAX_GAP_M = 6.0
 NEGATIVE_SPACE_MIN_AREA_M2 = 20.0
 
 
+# Decision 2026-10-28 (08_STATE.md). "validated" is reserved for outputs that
+# passed independent reference data under pre-registered criteria; none has.
+VALIDATION_LABELS = ("validated", "experimental", "placeholder")
+VALIDATION_DEFAULT = "experimental"
+
+
 def utm_crs_for(bbox) -> pyproj.CRS:
     w, s, e, n = bbox
     lon, lat = (w + e) / 2, (s + n) / 2
@@ -153,8 +159,14 @@ class RoadLayer:
 
     # ── provenance ──
     def stamp(self, out: dict) -> dict:
-        """Every representation's output carries the layer it came from."""
+        """Every representation's output carries the layer it came from, and
+        its validation label (decision 2026-10-28, 08_STATE.md: every output
+        is labelled validated / experimental / placeholder). Nothing in the
+        vector track has been validated against independent reference data,
+        so the default is "experimental". An output that already set its own
+        label (a placeholder) keeps it."""
         out["source_layer_id"] = self.layer_id
+        out.setdefault("validation_status", VALIDATION_DEFAULT)
         return out
 
     @property

@@ -105,7 +105,7 @@ def detect(fraction: str, va, vb, ca, cb, noise: float, *, epoch_ok=(True, True)
 
 
 def not_computed_block():
-    return {f: {"status": "not_computed",
+    return {f: {"status": "not_computed", "validation_status": "placeholder",
                 "reason": "requires item 21's spectral regression, not built"} for f in NOT_COMPUTED}
 
 
@@ -176,6 +176,7 @@ def run_change(layer) -> dict:
                    "images": {y: pres[y]["images"] for y in yrs}}
     b["noise_basis"] = f"std(presence {EPOCHS['built_noise'][1]} - {EPOCHS['built_noise'][0]}) over units"
     b["method"] = "open_buildings_temporal_mean_presence (built proxy)"
+    b["validation_status"] = "experimental"
     out["fractions"]["built"] = b
 
     # vegetation, water
@@ -199,6 +200,7 @@ def run_change(layer) -> dict:
         r["noise_basis"] = (f"std(split-half A - B) over units, window {a0}..{a1}, "
                             f"halves {halves['A']['source_image_count']}+{halves['B']['source_image_count']} images")
         r["method"] = fractions.PROXY_METHOD[f]
+        r["validation_status"] = fractions.FRACTION_VALIDATION_STATUS[f]
         r["producer"] = fractions.PRODUCER[f]
         out["fractions"][f] = r
     return layer.stamp(out)

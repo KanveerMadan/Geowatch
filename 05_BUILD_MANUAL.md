@@ -727,6 +727,12 @@ placement.
 
 *Nine items. The core rebuild. Unblocked — Part 3 is complete.*
 
+> **OVERRIDDEN 2026-10-28 by the user:** build everything except item 21's
+> dependencies, and label every output `validated` / `experimental` /
+> `placeholder`. The validation criteria below still define `validated`. See
+> `08_STATE.md`, §"Decision recorded 2026-10-28". The original note is kept
+> below as the record.
+>
 > ### ⛔ Validation-first mandate — decided 2026-09-24
 >
 > **No further architecture or build progression past item 21** until two

@@ -65,7 +65,7 @@ and building on it would have silently inherited them. *(Past tense
 | **Part 1 — Unblock** | ✅ Complete |
 | **Part 2 — Verify** | ✅ Mostly complete (item 10 partially done) |
 | **Part 3 — Decide (the gate)** | ✅ Complete. All seven decisions settled. ~~— though Decision 13 was subsequently **reopened** by the item 21 investigation, on `unmixing-ceiling-investigation` and unsigned.~~ Decision 13 was reopened by the item 21 investigation, **signed off as amended 2026-09-23**, and **amended again 2026-09-24** (no unmixing endmember; optional LOCO-gated feature). Decisions 11 and 14 were also amended 2026-09-23/24. *(Updated 2026-09-25)* |
-| **Part 4 — Build the architecture** | 🔓 Not started. Item 21's pilot ran ahead of it as its own gate; see `07_ITEM_21.md`. Item 21's re-scope is signed off; its site list and labelling guide are recorded, **labelling is blocked on the guide's open numbers**, and nothing is built. Item 26 gained a runoff-coefficient requirement 2026-09-24. |
+| **Part 4 — Build the architecture** | ~~🔓 Not started.~~ **In progress (2026-10-28).** Item 21's pilot ran ahead of it as its own gate; see `07_ITEM_21.md`. Item 21's re-scope is signed off; its site list and labelling guide are recorded, ~~**labelling is blocked on the guide's open numbers**, and nothing is built~~ and hand labelling is under way on `item-21-phase-a`. Item 26 gained a runoff-coefficient requirement 2026-09-24. **Vector track built 2026-10-28** (`vector/`): 19 ✅, 20 🔶 (low-coverage flag not yet in the UI), 22 ✅, 23 🔶 (pre-registered separation test failed), 24 ✅, 25 ✅ (pre-registered expectation not met). All `experimental`; vegetation and water are `placeholder` proxies. The validation-first mandate is **overridden**; see §"Decision recorded 2026-10-28". |
 | **Part 5 — Validation discipline** | 🔓 Not started |
 | **Part 6 — Epistemic contract** | 🔓 Not started |
 | **Part 7 — Gating architecture** | ✅ **Complete** — items 40, 41, 42 all landed. ~~Not on `master`.~~ On `master` via the `applicability-gating` merge (`a98b529`). *(2026-09-25)* |
@@ -616,6 +616,30 @@ Party Missions, Airbus academic). That is not a blocker.
    so. Kibera is the coldest transfer test.
 3. **Reported areas overstate usable ground.** Check real pixel coverage per
    site before committing labelling time.
+
+---
+
+## Decision recorded 2026-10-28 — the Part 4 validation-first mandate is overridden
+
+**Decided by the user, 2026-10-28.** The Part 4 mandate decided 2026-09-24
+(`05_BUILD_MANUAL.md`, "No further architecture or build progression past item
+21" until the land-classification architecture and all five flood/hazard
+calculations are validated) **is overridden**.
+
+| What | Decided |
+|---|---|
+| **Build scope** | Build everything **except item 21's dependencies**. Item 21's dependencies are anything that consumes item 21's spectral-regression output: the vegetation, water and `impervious_total` fractions, everything derived from them (`paved`, `bare` / the hard-surface remainder), and item 26's per-fraction runoff input. Those wait for item 21. |
+| **Labelling** | **Every output is labelled `validated`, `experimental` or `placeholder`.** `validated` means tested against independent reference data under criteria fixed in advance, and passed. `experimental` means a real method, not yet validated. `placeholder` means a stand-in for a producer that is not built, including anything `not_computed`. |
+| **What still holds** | The validation *criteria* recorded 2026-09-24 (the `impervious_total` bars, `built` validation, Tier 2 flood discrimination) are unchanged. Validation now gates the label `validated`, not the build. "Proposed research design, not established claim" now applies to everything short of `validated`. |
+
+**Applied 2026-10-28 to the vector track** (`vector/`, items 19–25). Every output
+carries `validation_status`. All are `experimental`, because none is validated.
+The Sentinel-2 vegetation and water index proxies and every `not_computed`
+fraction are `placeholder`. `tests/test_vector_validation_labels.py` asserts
+that nothing claims `validated`.
+
+**Not yet applied** to outputs outside `vector/` (the retired 7-class pipeline's
+`result.json`, the susceptibility modules). Labelling them is open work.
 
 ---
 

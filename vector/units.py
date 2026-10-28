@@ -147,7 +147,9 @@ def build_units(layer, fr: dict, osm_coverage: dict) -> dict:
             by_type[t]["fetch"] = fs
             if fs["status"] != "complete":
                 by_type[t]["status"] = "partial_fetch"
+    from vector.fractions import FRACTION_VALIDATION_STATUS
     return layer.stamp({"by_type": by_type,
+                        "fraction_validation_status": dict(FRACTION_VALIDATION_STATUS),
                         "consistency": consistency_check(by_type, layer.aoi.area),
                         "method": fr["method"], "producer": fr["producer"]})
 
