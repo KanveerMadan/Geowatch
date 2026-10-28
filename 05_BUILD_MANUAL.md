@@ -2523,8 +2523,13 @@ failure modes, intended use, **out-of-scope uses**.
 contribution, not a validated planning tool. Outputs should be framed as
 "here is why this should be trusted" rather than "a planner validated this."
 
-### 61. Datasheet
+### 61. Datasheet ✅
 Gebru et al. template, covering the training data.
+
+**Done:** `docs/retired_datasheet.md`. This is a historical record of the
+**retired** 7-class checkpoint's training data (`08_STATE.md` §RETIRED). It
+does not describe the class definitions (item 21). Composition was re-derived
+from the 5-builder rebuild, not copied.
 
 ### 62. Provenance Reconstruction — a named section
 Document how the production checkpoint's training notebook was identified, by
