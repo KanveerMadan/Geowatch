@@ -35,6 +35,12 @@ Confidence: **[E]** empirical · **[S]** static · **[R]** reasoned
    investigation. It is a VHR-derived, Sentinel-2-independent estimate of
    exactly the quantity item 21 tries to predict from spectra.
 
+5. **Of the three rare fractions, only `snow_ice` clears the bar.** [E]
+   *(Part 8, 2026-10-28.)* `snow_ice` 0.925, label it; `solar` 0.677,
+   indeterminate (rooftop panels at realistic shares 0.436, don't label);
+   `mixed_water_vegetation` 0.368 with no verdict, because adding it drops
+   vegetation's own ceiling from 0.974 to 0.634.
+
 ---
 
 ## Part 1 — What was tried
@@ -411,6 +417,8 @@ which derived.
 | `regress_scale_sweep.py` | Scale sweep, PanTex, SAR, combined label |
 | `ceiling_built_fraction.py` | **The ceiling computation** |
 | `ceiling_impervious_bare.py` | Dedicated ceiling for the impervious/bare split |
+| `measure_rare_endmembers.py` | Rare-fraction endmembers at verified sites (Part 8) |
+| `ceiling_rare_fractions.py` | Ceilings for solar, snow_ice, mixed_water_vegetation (Part 8) |
 
 Every script carries its pre-registered thresholds as module constants fixed
 before results existed, and documents any deviation inline.
@@ -564,3 +572,217 @@ Phase 0 delivers a working, verified end-to-end pipeline — source verification
 visual labelling, classifier, S2-grid aggregation, measured co-registration and
 a blocked-split regression — and a label that is **not yet good enough to test
 the 0.822 ceiling**. That is a data-sourcing outcome, not a method failure.
+
+---
+
+## Part 8 — Ceiling checks for the three rare fractions [E]
+
+*Added 2026-10-28 (Phase 1b, branch `build/ceilings`). Simulated upper bounds;
+`validation_status: experimental`. Nothing was labelled.*
+
+Decision 11 (amended 2026-09-24) added `snow_ice`, `solar` and
+`mixed_water_vegetation`, each with its own producer and validation case.
+Nobody had asked whether 10 m / 6-band Sentinel-2 can recover them at all.
+Part 3 showed that question has a computable answer, and that a split which
+looks reasonable (built/paved) can be unidentifiable. This part asks it of the
+three new fractions before anyone spends labelling time on them.
+
+### 8.1 Rule and method, pre-registered
+
+Committed in `a0292b4` **before any endmember spectrum was read**;
+spectra in `a0753fe`, results in `2715fc8`.
+
+| | |
+|---|---|
+| **Rule** (ridge, noise 0.005, realistic scene) | R² ≥ 0.70 → **label it**; R² < 0.50 → **don't label it**; between → **indeterminate** |
+| **Method** | Part 3's, unchanged: Dirichlet mixtures of measured endmembers, exactly linear, Gaussian noise, 40,000 px, seed 42, 50/50 split, ridge (primary) and GBT with `regress_built_fraction.py`'s settings. The six Khayelitsha endmembers and their mixture weights are unchanged |
+| **Rare class** | A seventh component at α = 0.35 (paved's weight), whose spectrum is one of that fraction's measured site endmembers, chosen per pixel. Target = its share (realised mean 0.127, sd 0.171) |
+| **Noise** | 0.005 primary; 0.010 and 0.020 reported |
+| **Controls, first** | (1) vegetation must reproduce **0.974** and (2) built **0.490**, both within ±0.005. These prove the restated code is the Part 3 method. (3) In each rare scene, vegetation must stay ≥ 0.90 |
+| **Solar share** | Solar share ~ U(0, s_max), s_max ∈ {0.05, 0.10, 0.25, 0.50, 1.00}. **Rooftop sub-verdict** at s_max = 0.25 with the rooftop endmember: a 10–20-panel array is 20–40 m², at most 0.2–0.4 of a 100 m² cell, and arrays straddle cells |
+
+**Controls passed: vegetation 0.974, built 0.490** (GBT 0.976 / 0.558, also
+identical to Part 3).
+
+### 8.2 Sites, verified live 2026-10-28
+
+Every site was located by a **mapped reference, never by a spectral
+threshold**. Selecting snow by NDSI, say, would hand the ceiling an endmember
+that is separable by construction. Pure pixels: the reference eroded by 10 m
+(≥ the 7.07 m half-diagonal of a pixel), tested at the pixel centre; raster
+references eroded by one pixel. Composite: `S2_SR_HARMONIZED`,
+`CLOUDY_PIXEL_PERCENTAGE` < 20, SCL-masked (`mask_s2_clouds`, which keeps SCL
+11 snow), median. Record: `experiments/rare_fraction_ceilings/site_verification.json`
+and `endmembers.json`.
+
+| Fraction | Site | Reference (verified live) | Window | Images | Pure px |
+|---|---|---|---|---:|---:|
+| solar | Bhadla, Rajasthan | OSM relation 11250846, *Bhadla Solar Park*, 2245 MW | 2025-01 → 03 | 30 | 463,984 |
+| solar | Benban, Egypt | OSM way 694477324, *محطة بنبان*, 1465 MW | 2025-01 → 03 | 25 | 366,160 |
+| solar | Witznitz, Germany | OSM relation 15093634, *Energiepark Witznitz*, 650 MW | 2025-06 → 08 | 23 | 33,159 |
+| solar (rooftop) | Venlo, NL | 13 OSM `generator:source=solar` + `location=roof` polygons | 2025-06 → 08 | 31 | 1,264 |
+| snow_ice | Aletsch, CH | GLIMS (415 outlines incl. *Grosser Aletschgletscher*) ∩ WorldCover 70 | 2025-08 → 09 | 12 | 645,022 |
+| snow_ice | Quelccaya, Peru | GLIMS (147 outlines) ∩ WorldCover 70 | 2025-06 → 09 | 44 | 357,218 |
+| mixed_w_v (mangrove) | Sundarbans, BD | GMW v3 2020 (35 polygons) ∩ GLWD v2 28 ∩ WorldCover 95 | 2025-01 → 03 | 12 | 844,639 |
+| mixed_w_v (marsh) | Everglades, US | GLWD v2 non-forested wetland ∩ WorldCover 90 | 2025-08 → 10 | 11 ‡ | 1,082,281 |
+| mixed_w_v (marsh) | Sudd, South Sudan | GLWD v2 non-forested wetland ∩ WorldCover 90 | 2025-10 → 12 | 22 | 279,518 |
+| mixed_w_v (tidal flat) | Neuwerk Watt, DE | Murray global intertidal 2014–2016, tidal flat | 2025-05 → 08 | 9 | 475,838 |
+
+‡ Fell back to the pre-registered 50% cloud filter (wet season).
+**Not measured:** water hyacinth, a Decision 11 sub-type. No independent map of
+it was found, so nothing was substituted.
+
+**Recorded deviation.** The GLWD marsh class list first omitted non-forested
+peatland (23/25/27). The `--verify` pass found **0 pure pixels** at the
+Everglades, because GLWD v2 maps that sawgrass marsh as class 27 *(tropical
+peatland, non-forested)* while WorldCover calls 98% of the box herbaceous
+wetland. The three classes were added from class histograms alone, before any
+spectrum was read.
+
+### 8.3 Spectral angles
+
+Same format as Part 2. Rare classes are the mean of their sites. The base
+block is Part 2's table unchanged.
+
+| | built_inst | built_fabric | paved | bare | veg | water | solar | snow_ice | mixed_w_v |
+|---|---|---|---|---|---|---|---|---|---|
+| **built_inst** | 0.00 | 3.35 | 4.70 | 3.86 | 26.19 | 42.76 | 10.77 | 40.27 | 24.91 |
+| **built_fabric** | 3.35 | 0.00 | 1.70 | 3.65 | 24.51 | 45.90 | 8.07 | 43.32 | 24.50 |
+| **paved** | 4.70 | 1.70 | 0.00 | 3.45 | 23.15 | 46.86 | **7.16** | 44.01 | 23.41 |
+| **bare** | 3.86 | 3.65 | 3.45 | 0.00 | 23.38 | 44.04 | 9.71 | 40.75 | 22.05 |
+| veg | 26.19 | 24.51 | 23.15 | 23.38 | 0.00 | 60.66 | 24.07 | 53.33 | **10.70** |
+| water | 42.76 | 45.90 | 46.86 | 44.04 | 60.66 | 0.00 | 50.81 | **14.30** | 51.86 |
+| **solar** | 10.77 | 8.07 | 7.16 | 9.71 | 24.07 | 50.81 | 0.00 | 48.97 | 26.13 |
+| **snow_ice** | 40.27 | 43.32 | 44.01 | 40.75 | 53.33 | 14.30 | 48.97 | 0.00 | 43.64 |
+| **mixed_w_v** | 24.91 | 24.50 | 23.41 | 22.05 | 10.70 | 51.86 | 26.13 | 43.64 | 0.00 |
+
+The class means hide most of the story, so per site:
+
+| Site | Nearest base (°) | Surround (°) | Convex-hull residual (× noise) | Best convex fit |
+|---|---|---|---:|---|
+| bhadla | paved 6.08 | 7.61 | 5.3 | 0.62 paved + 0.36 bare |
+| benban | paved 5.24 | **3.02** | 14.4 | 1.00 built_inst |
+| witznitz | paved 23.38 | 34.79 | 12.5 | 0.49 veg + 0.44 built_fabric |
+| rooftop_venlo | built_inst 8.53 | 16.36 | 5.0 | 0.69 paved + 0.19 built_inst |
+| aletsch | water 13.72 | 42.51 | 47.2 | — (outside, far) |
+| quelccaya | water 14.67 | 44.56 | 89.4 | — (outside, far) |
+| sundarbans | veg 14.12 | 37.52 | 6.0 | 0.84 veg + 0.17 water |
+| everglades | veg 11.51 | 14.79 | 4.5 | 0.65 veg + 0.35 water |
+| sudd | **veg 4.35** | **0.84** | **2.3** | **0.99 veg** |
+| wadden_neuwerk | water 8.48 | 14.79 | 11.2 | 0.81 water + 0.20 veg |
+
+"Convex-hull residual" is what is left after the best non-negative,
+sum-to-one fit by the six base endmembers, in units of the noise vector
+(0.005·√6). A spectrum near the hull is a mixture of fractions that already
+exist, however large its angles look. The pre-run self-test confirmed the
+ceiling cannot recover such a class: a synthetic half-vegetation,
+half-water class scores below 0.50.
+
+**Within-class spread** (largest angle between two sites of one class):
+solar **21.5°**, snow_ice 1.5°, mixed_water_vegetation **54.4°**.
+
+### 8.4 Ceilings
+
+| Fraction | R² @ 0.005 (ridge / gbt) | MAE @ 0.005 | R² @ 0.010 | R² @ 0.020 | vegetation R² in the scene |
+|---|---|---|---|---|---|
+| **snow_ice** | **0.925** / 0.969 | 0.032 | 0.910 | 0.892 | 0.972 |
+| **solar** | **0.677** / 0.839 | 0.072 | 0.516 | 0.290 | 0.967 |
+| **mixed_water_vegetation** | **0.368** / 0.610 | 0.100 | 0.331 | 0.297 | **0.634** — control 3 fails |
+
+Stress scene, all three rare fractions at once (noise 0.005, reported
+only): snow_ice 0.909, solar 0.589, mixed_water_vegetation 0.304 (ridge).
+
+### 8.5 Solar against panel share
+
+Solar share ~ U(0, s_max) in every pixel, all four solar endmembers.
+
+| s_max | R² @ 0.005 (ridge / gbt) | R² @ 0.010 | R² @ 0.020 | MAE @ 0.005 |
+|---|---|---|---|---|
+| 0.05 | 0.027 / 0.024 | 0.009 | 0.003 | 0.012 |
+| 0.10 | 0.092 / 0.117 | 0.034 | 0.011 | 0.024 |
+| **0.25** | **0.311** / 0.431 | 0.166 | 0.067 | 0.050 |
+| 0.50 | 0.546 / 0.722 | 0.399 | 0.218 | 0.080 |
+| 1.00 | 0.794 / 0.925 | 0.699 | 0.516 | 0.105 |
+
+**Rooftop sub-verdict** (Venlo rooftop endmember, s_max = 0.25, noise 0.005):
+ridge **0.436**, GBT 0.448 → **don't label it**.
+
+Solar becomes recoverable only when panels fill most of a cell. Below a
+quarter of a cell it is essentially invisible: at s_max = 0.10 the MAE
+(0.024) is half the mean share itself.
+
+### 8.6 Verdicts
+
+| Fraction | Pre-registered result | Verdict |
+|---|---|---|
+| **snow_ice** | 0.925 ≥ 0.70 | **LABEL IT.** Recoverable, and the most robust result in this document: still 0.892 at four times documented noise. Snow sits 14° from water and 40–54° from everything else |
+| **solar** | 0.677, between 0.50 and 0.70 | **INDETERMINATE.** Neither framing is earned. Rooftop solar at realistic panel shares: **DON'T LABEL IT** (0.436) |
+| **mixed_water_vegetation** | 0.368, but **control 3 failed** | **INDETERMINATE: the pre-registered rule issued no verdict.** The evidence below points to *don't label it as one fraction*, but the rule did not reach that, and this document does not round it up |
+
+**On mixed_water_vegetation, stated plainly.** Control 3 required vegetation
+to stay ≥ 0.90 in every rare scene. It was written to catch a *broken
+simulation*. It fired here for a different reason: the scene is the same code
+that passed controls 1 and 2, and vegetation fell to 0.634 because the
+mangrove and marsh spectra are nearly vegetation (Sudd: 4.35° from
+vegetation, 0.84° from its own surround, 2.3× noise from the hull). The class
+does not just fail to be recovered; **adding it damages vegetation, which is
+otherwise the best-recovered fraction in the architecture**. That is a design
+flaw in the pre-registration, which conflated two failure modes in one
+control. It is recorded as one and not repaired after the fact. The numbers
+are: target 0.368 (below 0.50), vegetation 0.634.
+
+### 8.7 Post-hoc, not pre-registered — per site
+
+Written after 8.4–8.6, **carrying no verdict**
+(`experiments/rare_fraction_ceilings/posthoc_per_site.py`). The same scene,
+with one site endmember at a time:
+
+| Site | R² @ 0.005 (ridge / gbt) | @ 0.010 | @ 0.020 | vegetation R² |
+|---|---|---|---|---|
+| solar · bhadla | 0.763 / 0.850 | 0.528 | 0.272 | 0.971 |
+| solar · benban | 0.793 / 0.915 | 0.694 | 0.581 | 0.968 |
+| solar · witznitz | 0.944 / 0.950 | 0.848 | 0.645 | 0.972 |
+| solar · rooftop_venlo | 0.839 / 0.856 | 0.580 | 0.283 | 0.971 |
+| mixed_w_v · sundarbans | 0.588 / 0.831 | 0.488 | 0.365 | 0.619 |
+| mixed_w_v · everglades | 0.450 / 0.786 | 0.360 | 0.307 | 0.844 |
+| mixed_w_v · sudd | 0.322 / 0.428 | 0.287 | 0.243 | 0.504 |
+| mixed_w_v · wadden (tidal) | 0.729 / 0.894 | 0.694 | 0.639 | 0.965 |
+
+Two readings, offered as hypotheses for the next decision and not as results:
+
+- **Every solar site alone clears 0.70; pooled, they fall to 0.677.** The
+  cost is the 21.5° between farms. Desert farms look like paved/bare; the
+  Witznitz farm, with grass between rows, sits between vegetation and roof.
+  "Solar" at 10 m is panels *plus whatever is under and between them*, and
+  that varies by site more than panels do.
+- **`mixed_water_vegetation` behaves as two classes.** Tidal flat alone is
+  recoverable (0.729) and leaves vegetation intact. Mangrove and marsh are
+  not recoverable (0.32–0.59) and pull vegetation down to 0.50–0.84. The class
+  is a hydrological category (Decision 11 feeds it to item 26 by sub-type),
+  not a spectral one.
+
+### 8.8 What this does not show
+
+- **Each ceiling is an upper bound.** "Label it" for `snow_ice` means
+  physics does not rule it out, not that a producer will work.
+- **Snow's real confuser is cloud,** which is occlusion and not in the base
+  set. Sen2Cor's SCL can call bright snow cloud. The ceiling does not test
+  that, and it is the producer's actual risk.
+- **Absolute noise understates noise on bright surfaces** (radiometric error
+  grows with signal), which inflates `snow_ice`. Not guarded.
+- **The base set is Khayelitsha, not each site's surroundings.** Benban
+  sits **3.02°** from its own desert surround, closer than to any base
+  endmember. Against local sand, the utility-solar ceiling would be lower
+  than 8.4 reports.
+- **Farm pixels are panels plus inter-row ground,** and OSM rooftop polygons
+  may trace the roof rather than the panels. Neither is a pure panel
+  spectrum.
+- **Within-class variability is modelled as a few discrete endmembers** the
+  regressor sees, the same generosity Part 3 gave built_fabric/inst. Real
+  variability is continuous and only lowers these numbers.
+- **Tidal-flat composites mix tide states,** and Murray is 2014–2016.
+
+**Reproduction:** `python measure_rare_endmembers.py --verify`, then
+`python measure_rare_endmembers.py` (Earth Engine + Overpass), then
+`python ceiling_rare_fractions.py` (offline, about 3 min). Tests:
+`tests/test_ceiling_rare_fractions.py`.

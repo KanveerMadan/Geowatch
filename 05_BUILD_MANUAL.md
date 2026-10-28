@@ -197,6 +197,15 @@ removed from the denominator by Decision 14. See the shadow rule below.*
 - **`mixed_water_vegetation`** is sub-typed via Global Mangrove Watch and the
   Global Lakes and Wetlands Database, and feeds the flood model (item 26) as
   **its own hydrological input, weighted by sub-type**.
+- **Ceiling checks, 2026-10-28** *(recorded only; no decision changed, no
+  status flipped)*. `06_UNMIXING_CEILING.md` Part 8 measured all three new
+  fractions by Part 3's method against a pre-registered bar (R² ≥ 0.70
+  label it, < 0.50 don't, between indeterminate): **`snow_ice` 0.925, label
+  it. `solar` 0.677, indeterminate; rooftop solar at realistic panel shares
+  0.436, don't label it. `mixed_water_vegetation` 0.368, and the
+  pre-registered rule issued no verdict** because the class drops
+  vegetation's own ceiling from 0.974 to 0.634. Whether these change
+  Decision 11 is a human call (C60, C61 under NEEDS FATE).
 - **The hard-surface remainder now subtracts `snow_ice`, `solar` and
   `mixed_water_vegetation`** in addition to vegetation and water ~~and
   shadow~~.
