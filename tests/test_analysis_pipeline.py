@@ -157,3 +157,26 @@ def test_change_epochs():
     assert e["s2"] == (("2021-01-01", "2021-03-31"), ("2026-01-01", "2026-03-31"))
     assert e["built"] == (2021, 2023) and e["built_noise"] == (2022, 2023)
     assert change_epochs({"start": "2014-01-01", "end": "2016-03-31"})["built"] is None
+
+
+def test_stage_timeout_is_recorded_not_raised():
+    from analysis.stages import run_stage
+    import time
+    o = run_stage("slow", lambda: time.sleep(2), timeout_s=0.2)
+    assert o["status"] == "timeout" and "value" not in o
+    f = run_stage("bad", lambda: 1 / 0, timeout_s=5)
+    assert f["status"] == "failed" and f["exception_class"] == "ZeroDivisionError"
+    assert run_stage("ok", lambda: 3, timeout_s=5)["value"] == 3
+
+
+def test_ee_deadline_is_only_set_on_an_initialised_session(monkeypatch):
+    import ee
+    from analysis import stages
+    calls = []
+    monkeypatch.setattr(ee.data, "setDeadline", lambda ms: calls.append(ms))
+    monkeypatch.setattr(ee.data, "is_initialized", lambda: False)
+    stages._set_ee_deadline(1000)
+    assert calls == []
+    monkeypatch.setattr(ee.data, "is_initialized", lambda: True)
+    stages._set_ee_deadline(ee.data._get_state().deadline_ms + 1)
+    assert len(calls) == 1

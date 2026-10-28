@@ -4,10 +4,11 @@ stage with an explicit timeout, and its outcome is recorded, never guessed.
 
 Two limits on every Earth Engine stage, because neither covers the other:
 
-  * ee.data.setDeadline(timeout) -- EE's own per-request HTTP deadline.
+  * ee.data.setDeadline -- EE's own per-request HTTP deadline,
+    EE_REQUEST_DEADLINE_S for every request.
     Its default is no limit (C56: a reduction stalled for hours without
     raising). Callees can reset it (vector.sources.fetch_open_buildings
-    restores 0 in its finally), so it is re-set at the start of every stage.
+    restores 0 in its finally), so it is checked at the start of every stage.
   * a wall-clock join on a daemon thread -- bounds the stage as a whole,
     however many requests it makes, and survives a callee resetting the
     deadline. An abandoned thread cannot be killed; daemon=True means it
@@ -33,15 +34,26 @@ STAGE_TIMEOUT_S = {
 }
 
 
+# One per-REQUEST deadline for every stage. A stage's own wall-clock limit is
+# STAGE_TIMEOUT_S; this bounds each single EE request inside it. Kept constant
+# so the client is rebuilt once per process, not once per stage.
+EE_REQUEST_DEADLINE_S = 240                 # = the shortest stage limit
+
+
 class StageTimeout(RuntimeError):
     pass
 
 
 def _set_ee_deadline(ms: int) -> None:
+    """Set EE's request deadline on an initialised session, and only when it
+    changes: setDeadline rebuilds the Cloud API client (about 2 s each), and
+    on an uninitialised session there is no request to bound."""
     try:
         import ee
+        if not ee.data.is_initialized() or ee.data._get_state().deadline_ms == ms:
+            return
         ee.data.setDeadline(ms)
-    except Exception:            # noqa: BLE001 -- ee absent or not initialised
+    except Exception:            # noqa: BLE001 -- ee absent
         pass
 
 
@@ -51,7 +63,7 @@ def run_stage(name: str, fn, *args, timeout_s: float, **kwargs) -> dict:
     box = {}
 
     def target():
-        _set_ee_deadline(int(timeout_s * 1000))
+        _set_ee_deadline(EE_REQUEST_DEADLINE_S * 1000)
         try:
             box["value"] = fn(*args, **kwargs)
         except BaseException as e:            # noqa: BLE001
@@ -62,11 +74,12 @@ def run_stage(name: str, fn, *args, timeout_s: float, **kwargs) -> dict:
     th.start()
     th.join(timeout_s)
     elapsed = round(time.time() - t0, 1)
+    # The deadline is left in place after the stage: the next stage sets its
+    # own, and a bounded deadline is the safer leftover.
     if th.is_alive():
         print(f"[stage {name}] TIMEOUT after {elapsed}s", flush=True)
         return {"status": "timeout", "stage": name, "timeout_s": timeout_s,
                 "elapsed_s": elapsed, "error": f"{name} exceeded {timeout_s}s"}
-    _set_ee_deadline(0)
     if "error" in box:
         e = box["error"]
         print(f"[stage {name}] FAILED in {elapsed}s: {type(e).__name__}: {e}", flush=True)
