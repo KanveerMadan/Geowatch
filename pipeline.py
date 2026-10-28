@@ -23,6 +23,7 @@ from ingestion.hydrology import get_slope_stats
 from susceptibility.flash_flood import compute_flash_flood_susceptibility
 from susceptibility.waterlogging import compute_waterlogging_susceptibility
 from susceptibility.inputs import build_flood_inputs, mean_pct, provenance, to_grid
+from susceptibility.hydro_rasters import fetch_hydro_rasters
 from ingestion.inundation import get_permanent_water_context, get_sentinel1_change_context
 from perception.observed_inundation import compute_observed_inundation
 from ingestion.exposure_sources import (
@@ -523,16 +524,34 @@ def run_pipeline(
     # C14/C20: every consumer now receives the gate. compute-and-flag, not
     # refuse-to-compute -- each still returns its real value, with the trust
     # verdict attached rather than the value withheld.
-    fluvial_result = compute_fluvial_susceptibility(hand_context, applicability=applicability)
+    # Item 26 Phase 1a: fluvial, flash flood and waterlogging are per-pixel
+    # maps on the same hydrology grid (MERIT HAND / upstream area, FABDEM
+    # slope, CHIRPS and IMERG), no longer AOI-wide scalars.
+    print("\nFetching per-pixel hydrology rasters (MERIT Hydro, FABDEM, CHIRPS, IMERG)...")
+    hydro_rasters = (_context_layer("hydro_rasters", fetch_hydro_rasters, (west, south, east, north),
+                                    fi["transform"], fi["shape"], fi["crs"],
+                                    date.fromisoformat(s2_end).year)
+                     if fi else {"status": "unavailable",
+                                 "reason": "no hydrology grid (flood_inputs unavailable)"})
+    hr = hydro_rasters if hydro_rasters.get("status") == "available" else None
+    fluvial_result = compute_fluvial_susceptibility(hr, hand_context, applicability=applicability)
     coastal_result = compute_coastal_susceptibility(coastal_context, fabdem_elevation, applicability=applicability)
-    flash_flood_result = compute_flash_flood_susceptibility(slope_context, hand_context, rainfall_climatology, applicability=applicability)
-    waterlogging_result = compute_waterlogging_susceptibility(hand_context, fi.get("impervious"), rainfall_climatology, applicability=applicability)
+    flash_flood_result = compute_flash_flood_susceptibility(hr, applicability=applicability)
+    waterlogging_result = compute_waterlogging_susceptibility(hr, fi.get("impervious"), applicability=applicability)
+
+    def _without_map(result, name):
+        out = {k: v for k, v in result.items() if k != "susceptibility_map"}
+        if result.get("susceptibility_map") is not None:
+            out["map_path"] = save_pluvial_susceptibility_output(
+                result["susceptibility_map"], run_dir, filename=f"{name}_susceptibility.png")
+        return out
+
     susceptibility_block = {
         "pluvial": pluvial_result_serializable,
-        "fluvial": fluvial_result,
+        "fluvial": _without_map(fluvial_result, "fluvial"),
         "coastal": coastal_result,
-        "flash_flood": flash_flood_result,
-        "waterlogging": waterlogging_result,
+        "flash_flood": _without_map(flash_flood_result, "flash_flood"),
+        "waterlogging": _without_map(waterlogging_result, "waterlogging"),
     }
 
 # ── Phase 10B: vulnerability context (INFORM Risk Index) — resolved
@@ -722,6 +741,10 @@ def run_pipeline(
                 "inputs": {**{k: provenance(fi[k]) for k in ("impervious", "infiltration", "conduits")},
                            **{k: provenance(v) for k, v in fi["terrain"].items()}}}
                if fi else {}),
+        },
+        "hydro_rasters": {
+            **{k: v for k, v in hydro_rasters.items() if k not in ("layers", "transform", "shape")},
+            **({"inputs": {k: provenance(v) for k, v in hr["layers"].items()}} if hr else {}),
         },
         "susceptibility": susceptibility_block,
         "rainfall_climatology": rainfall_climatology,

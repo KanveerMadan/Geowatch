@@ -90,7 +90,7 @@ def test_pluvial_with_no_spatial_input_is_insufficient_evidence():
 
 
 def test_waterlogging_reads_the_declared_impervious_share():
-    r = compute_waterlogging_susceptibility({"status": "unavailable"}, IMP)
+    r = compute_waterlogging_susceptibility(None, IMP)
     assert r["impervious_fraction_pct"] == 50.0           # mean of 0.5, 1.0, 0.0
     assert r["inputs"]["impervious"]["source"] == "test footprints"
     assert r["validation_status"] == "placeholder"

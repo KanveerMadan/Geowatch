@@ -65,6 +65,15 @@ AVAILABLE = {
         "terrain": {"low_slope": surface(np.full((3, 4), 0.9), "FABDEM", "1 - slope/5deg",
                                          "experimental")},
     },
+    # item 26 Phase 1a: per-pixel hydrology rasters on the same 3x4 grid
+    "fetch_hydro_rasters": {
+        "status": "available", "transform": Affine(30, 0, 272220, 0, -30, 2108880),
+        "shape": (3, 4), "crs": "EPSG:32643", "ref_year": 2026, "errors": {},
+        "layers": {k: surface(np.full((3, 4), v), "stub", "stub", "experimental")
+                   for k, v in (("hand_m", 3.0), ("upa_near_km2", 20.0), ("slope_deg", 1.0),
+                                ("relief_slope_deg", 4.0), ("rain_annual_mm", 2400.0),
+                                ("rain_intensity_mm_h", 12.0))},
+    },
 }
 
 
@@ -169,14 +178,29 @@ def test_failing_layer_shows_failed_with_its_class(stub_pipeline, tmp_path, fn, 
     assert block["status"] != "unavailable"
 
 
-def test_failed_slope_layer_reaches_flash_flood_as_not_available(stub_pipeline, tmp_path):
-    """slope has no top-level block of its own; its failure must still stop
-    flash-flood from being scored as if slope were known."""
-    stub_pipeline["get_slope_stats"] = TimeoutError("read timed out")
+def test_failed_hydro_rasters_reach_the_per_pixel_modules_as_not_available(stub_pipeline,
+                                                                           tmp_path):
+    """Item 26 Phase 1a: fluvial and flash flood read only the per-pixel
+    rasters. Their failure is named and stops both from being scored as if
+    the terrain were known; waterlogging keeps only its impervious input."""
+    stub_pipeline["fetch_hydro_rasters"] = TimeoutError("read timed out")
     r = _run(tmp_path)
-    ff = r["susceptibility"]["flash_flood"]
-    assert "terrain_slope" not in ff["components_used"]
-    assert ff["mean_slope_deg"] is None
+    assert r["status"] == "complete"
+    assert r["hydro_rasters"]["status"] == "failed"
+    assert r["hydro_rasters"]["exception_class"] == "TimeoutError"
+    for m in ("fluvial", "flash_flood"):
+        assert r["susceptibility"][m]["status"] == "insufficient_evidence", m
+        assert "aoi_mean_score" not in r["susceptibility"][m]
+    assert r["susceptibility"]["waterlogging"]["components_used"] == ["impervious"]
+
+
+def test_hydro_rasters_make_three_per_pixel_maps(stub_pipeline, tmp_path):
+    r = _run(tmp_path)
+    for m in ("fluvial", "flash_flood", "waterlogging"):
+        b = r["susceptibility"][m]
+        assert b["spatial"] is True and b["map_path"] == "pluvial.png", m   # stubbed saver
+        assert "susceptibility_map" not in b, m
+    assert r["hydro_rasters"]["inputs"]["hand_m"]["validation_status"] == "experimental"
 
 
 def test_programmer_error_is_also_contained_and_named(stub_pipeline, tmp_path):
@@ -230,4 +254,6 @@ def test_failed_flood_inputs_do_not_abort_and_are_named(stub_pipeline, tmp_path)
     assert r["status"] == "complete"
     assert r["flood_inputs"]["status"] == "failed"
     assert "impervious" not in r["susceptibility"]["pluvial"].get("inputs", {})
-    assert "impervious_fraction" not in r["susceptibility"]["waterlogging"]["components_used"]
+    # no hydrology grid -> no per-pixel rasters and no impervious surface
+    assert r["hydro_rasters"]["status"] == "unavailable"
+    assert r["susceptibility"]["waterlogging"]["status"] == "insufficient_evidence"

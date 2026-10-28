@@ -1,26 +1,41 @@
 """
-Phase 7: persistent-waterlogging susceptibility baseline. STATIC/
-SCREENING SLICE ONLY. Combines two AOI-WIDE SCALAR signals: HAND
-(Phase 5's hand_context, reused) and imperviousness -- since item 26 a
-declared surface input (susceptibility/inputs.py: Open Buildings built area,
-placeholder), not the retired 7-class map's hydrological_surfaces.
+Persistent-waterlogging susceptibility, per pixel (item 26 Phase 1a; was an
+AOI-wide scalar, Phase 7). STATIC / SCREENING SLICE ONLY. Method fixed in
+experiments/flood_validation/PREREGISTRATION_ROUND2.md before any run.
 
-IMPORTANT: this module reuses the SAME mean_hnd_m value that
-susceptibility/fluvial.py uses, but interprets it DIFFERENTLY. Fluvial
-reads low HAND as "close to a channel that could overflow" (a river-
-connectivity concern). Waterlogging reads low HAND as "flat, low-relief
-terrain with nowhere for water to drain to" (a poor-drainage concern) --
-independent of whether the AOI is near a river at all. Both readings
-can be simultaneously true and are not in conflict; they are two
-different physical mechanisms sharing one input statistic. This
-dual-use is documented here and in fluvial.py's own limitations list.
+Components on the hydrology grid, each 0-1:
+
+    low_relief            1 - HAND / WATERLOGGING_HAND_NORMALIZATION_MAX_M
+    impervious            built area fraction / WATERLOGGING_IMPERVIOUS_NORMALIZATION_MAX_PCT
+                          (a declared surface, susceptibility/inputs.py: Open
+                          Buildings built area, placeholder -- not the
+                          retired 7-class map's hydrological_surfaces)
+    flatness              1 - slope / WATERLOGGING_SLOPE_NORMALIZATION_MAX_DEG
+    rainfall_climatology  CHIRPS mean annual total
+                          / FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM
+
+IMPORTANT: the HAND here is the SAME MERIT Hydro HAND that
+susceptibility/fluvial.py reads, interpreted DIFFERENTLY. Fluvial reads low
+HAND as "close to a channel that could overflow" (a river-connectivity
+concern). Waterlogging reads it as "low-relief terrain with nowhere for water
+to drain to" (a poor-drainage concern), independent of whether a river is
+near. Both readings can be true at once; they are two mechanisms sharing one
+input.
+
+Weighted mean (WATERLOGGING_WEIGHTS); weights change only on the round-2
+tuning events. Ceilings provisional. An output is no more validated than its
+weakest input.
 """
+import numpy as np
 
+from susceptibility.hydro_rasters import clip01, layer, map_summary, weighted_map
 from susceptibility.inputs import check_surface, mean_pct, provenance, weakest
 from configs.waterlogging_constants import (
     WATERLOGGING_HAND_NORMALIZATION_MAX_M,
     WATERLOGGING_IMPERVIOUS_NORMALIZATION_MAX_PCT,
     WATERLOGGING_CLASS_BREAKS,
+    WATERLOGGING_SLOPE_NORMALIZATION_MAX_DEG,
+    WATERLOGGING_WEIGHTS,
 )
 from configs.flash_flood_constants import FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM
 
@@ -36,96 +51,92 @@ def _classify(score):
 
 from perception.applicability_gate import gated
 
+# The module's own label, before its weakest input caps it.
+VALIDATION_STATUS = "experimental"
+
+
+def components(rasters: dict, impervious: dict = None) -> dict:
+    """{name: 0-1 array or None}. Pure; the harness tunes weights on these.
+    `impervious` must be a declared surface on the rasters' grid."""
+    hand, slope = layer(rasters, "hand_m"), layer(rasters, "slope_deg")
+    rain = layer(rasters, "rain_annual_mm")
+    imp = None
+    if impervious is not None:
+        r = np.asarray(check_surface(impervious, "impervious")["raster"], dtype=np.float64)
+        if rasters and r.shape != tuple(rasters["shape"]):
+            raise ValueError(f"impervious {r.shape} is not on the rasters' grid {rasters['shape']}")
+        imp = r if np.isfinite(r).any() else None
+    return {
+        "low_relief": None if hand is None
+        else clip01(1.0 - hand / WATERLOGGING_HAND_NORMALIZATION_MAX_M),
+        "impervious": None if imp is None
+        else clip01(imp * 100.0 / WATERLOGGING_IMPERVIOUS_NORMALIZATION_MAX_PCT),
+        "flatness": None if slope is None
+        else clip01(1.0 - slope / WATERLOGGING_SLOPE_NORMALIZATION_MAX_DEG),
+        "rainfall_climatology": None if rain is None
+        else clip01(rain / FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM),
+    }
+
+
+def combine(comps: dict, weights: dict = None):
+    return weighted_map(comps, WATERLOGGING_WEIGHTS if weights is None else weights)
+
 
 @gated("waterlogging")
-def compute_waterlogging_susceptibility(hand_context: dict, impervious: dict = None,
-                                         rainfall_climatology: dict = None) -> dict:
+def compute_waterlogging_susceptibility(rasters: dict = None, impervious: dict = None,
+                                         weights: dict = None) -> dict:
     """
     Args:
-        hand_context: output of ingestion.hydrology.get_merit_hand_context()
-            (Phase 5) -- reused for mean_hnd_m, interpreted as a
-            low-relief/poor-drainage proxy here (see module docstring).
-        impervious: a declared surface input (susceptibility/inputs.py);
-            its AOI mean, in percent, is the imperviousness component.
-        rainfall_climatology: optional, output of
-            ingestion.rainfall.get_rainfall_climatology() (Phase 4) --
-            same weak-proxy caveat as flash_flood.py; included as an
-            optional third component since waterlogging is directly
-            about standing water from rainfall accumulation.
+        rasters: susceptibility.hydro_rasters.fetch_hydro_rasters() output.
+        impervious: a declared surface input (susceptibility/inputs.py) on the
+            same grid; its per-cell built fraction is the imperviousness
+            component.
+        weights: override WATERLOGGING_WEIGHTS (the validation harness only).
 
     Returns:
-        dict matching the master schema's susceptibility.waterlogging shape.
+        dict matching the master schema's susceptibility.waterlogging shape,
+        plus `susceptibility_map` (per-pixel, NaN = no data).
     """
-    hand_available = hand_context is not None and hand_context.get("status") == "available"
-    impervious_pct = mean_pct(check_surface(impervious, "impervious")) if impervious is not None else None
-    impervious_available = impervious_pct is not None
-
-    if not hand_available and not impervious_available:
+    w = WATERLOGGING_WEIGHTS if weights is None else weights
+    comps = components(rasters, impervious) if (rasters or impervious is not None) else {}
+    spatial = [k for k in ("low_relief", "impervious", "flatness")
+               if comps.get(k) is not None and w.get(k, 0) > 0]
+    if not spatial:
         return {
             "status": "insufficient_evidence",
-            "reason": "Neither HAND context nor an impervious surface is available.",
+            "reason": "No per-pixel HAND, slope or impervious surface is available.",
             "validation_status": "placeholder",
         }
-
-    components_used = []
-    components_excluded = []
-    scores = []
-
-    if hand_available:
-        mean_hnd = hand_context["mean_hnd_m"]
-        relief_score = max(0.0, min(1.0, 1.0 - (mean_hnd / WATERLOGGING_HAND_NORMALIZATION_MAX_M)))
-        scores.append(relief_score)
-        components_used.append("low_relief_hand_proxy")
-    else:
-        components_excluded.append("hand_relief_proxy (unavailable)")
-
-    if impervious_available:
-        impervious_score = max(0.0, min(1.0, impervious_pct / WATERLOGGING_IMPERVIOUS_NORMALIZATION_MAX_PCT))
-        scores.append(impervious_score)
-        components_used.append("impervious_fraction")
-    else:
-        components_excluded.append("impervious_fraction (unavailable)")
-
-    rainfall_available = (
-        rainfall_climatology is not None
-        and rainfall_climatology.get("status") == "available"
-        and rainfall_climatology.get("mean_annual_mm") is not None
-    )
-    if rainfall_available:
-        rainfall_mm = rainfall_climatology["mean_annual_mm"]
-        rainfall_score = max(0.0, min(1.0, rainfall_mm / FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM))
-        scores.append(rainfall_score)
-        components_used.append("rainfall_climatology_proxy")
-    else:
-        components_excluded.append("rainfall_climatology (unavailable or not provided)")
-
-    score = sum(scores) / len(scores)
-
+    used = [k for k, c in comps.items() if c is not None and w.get(k, 0) > 0]
+    imp_used = "impervious" in used
+    m = combine(comps, w)
+    inputs = {k: provenance(v) for k, v in (rasters or {}).get("layers", {}).items()
+              if k in ("hand_m", "slope_deg", "rain_annual_mm")}
+    if impervious is not None:
+        inputs["impervious"] = provenance(impervious)
     return {
         "status": "experimental",
-        "validation_status": weakest("experimental", *([impervious["validation_status"]]
-                                                       if impervious_available else [])),
-        "inputs": {"impervious": provenance(impervious)} if impervious_available else {},
-        "aoi_mean_score": round(score, 4),
-        "aoi_mean_class": _classify(score),
-        "mean_hnd_m": hand_context.get("mean_hnd_m") if hand_available else None,
-        "impervious_fraction_pct": impervious_pct,
-        "rainfall_mean_annual_mm": rainfall_climatology.get("mean_annual_mm") if rainfall_available else None,
-        "components_used": components_used,
-        "components_excluded": components_excluded,
-        "method": "relief_imperviousness_rainfall_unweighted_average",
+        "validation_status": weakest(VALIDATION_STATUS,
+                                     *([impervious["validation_status"]] if imp_used else [])),
+        "inputs": inputs,
+        **map_summary(m, _classify),
+        "susceptibility_map": m,
+        "impervious_fraction_pct": mean_pct(impervious) if impervious is not None else None,
+        "components_used": used,
+        "components_excluded": [f"{k} ({'weight 0' if comps.get(k) is not None else 'unavailable'})"
+                                for k in comps if k not in used],
+        "weights": dict(w),
+        "method": "relief_imperviousness_flatness_rainfall_per_pixel_weighted",
         "validated": False,
-        "spatial": False,
+        "spatial": True,
         "limitations": [
-            "AOI-WIDE SCALAR only -- not a per-pixel spatial raster.",
-            "Reuses fluvial susceptibility's mean_hnd_m value under a "
-            "DIFFERENT physical interpretation (low-relief/poor-drainage, "
-            "not river-overflow-proximity) -- see module docstring.",
+            "Reuses fluvial susceptibility's MERIT HAND under a DIFFERENT "
+            "physical interpretation (low-relief/poor-drainage, not "
+            "river-overflow-proximity) -- see module docstring.",
             "Does not account for actual drainage infrastructure capacity, "
             "groundwater level, or soil permeability.",
-            "Rainfall component (if included) is a coarse annual-mean proxy, "
-            "not an event-specific accumulation statistic -- same caveat as "
-            "flash_flood.py's rainfall component.",
+            "Rainfall component is a coarse annual-mean climatology (CHIRPS, "
+            "0.05 deg), near-constant across a city AOI.",
             "All normalization ceilings are provisional, not calibrated "
             "against real waterlogging/persistent-inundation outcomes.",
         ],

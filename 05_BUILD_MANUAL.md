@@ -2015,6 +2015,60 @@ declare themselves. Every new output carries `validation_status`; none claims
   `validated`). `tests/test_flood_validation_harness.py` (4: AUC, ties,
   pooled counts, verdict and minimums).
 
+#### Phase 1a — flood round 2, on `build/flood2` (2026-10-28) — item 26 stays partial
+
+Pre-registered first, before any round-2 score was computed
+(`experiments/flood_validation/PREREGISTRATION_ROUND2.md`, SHA256
+`f2ab3c74…`, commit `45307b8`). It fixes, per module, the reference events,
+the metric (AUC), the bar (0.70, unchanged), the per-pixel formulas and
+constants, a finite weight grid, and a fixed split into tuning and held-out
+events. Weights move only on tuning events, and the verdict is the held-out
+result.
+
+- **Task 1 — fluvial, flash flood and waterlogging are per-pixel maps.**
+  `susceptibility/hydro_rasters.py` samples their inputs onto one 30 m grid.
+  Each Earth Engine call has a 600 s hard deadline via `ee_timeout.call`,
+  and a rainfall timeout loses only that layer:
+  - MERIT Hydro HAND, bilinear;
+  - MERIT upstream area, focal max within 1 km, so a cell reads the
+    drainage line that floods it, not its own near-zero `upa`;
+  - FABDEM slope, and its 1 km focal mean;
+  - CHIRPS mean annual total;
+  - IMERG V07 p99.9 half-hourly rate over the 10 years before the
+    reference year.
+
+  The modules:
+  - **Fluvial** = `low_hand` (1 − HAND/30) plus an optional `river_size`
+    (log upstream area / log 10,000 km²). Its default weights are round 1's
+    HAND-only method.
+  - **Flash flood** = `valley_floor` (1 − HAND/10), `steep_surroundings`
+    (relief slope/15°, *not* the cell's own slope, which would rank
+    hillsides above the valley floors that flood), `small_catchment`
+    (1 − upa/50 km²) and `rainfall_intensity` (IMERG/20 mm h⁻¹). The last
+    replaces the annual-total proxy.
+  - **Waterlogging** = `low_relief` (1 − HAND/15), per-cell `impervious`
+    (built/0.70), `flatness` (1 − slope/5°) and CHIRPS/2,500 mm.
+
+  The old ceilings are kept as provisional constants, and the new ones are
+  in `configs/*_constants.py`. Each module returns `susceptibility_map`,
+  with `spatial: true`, and `aoi_mean_score` is the map's mean. Without
+  rasters each returns `insufficient_evidence`; there is no scalar
+  fallback. `pipeline.py` fetches the rasters on the flood-input grid
+  (`hydro_rasters` block, contained like every context layer) and saves the
+  three maps. `zonal/hazard_screening.py` scores each ward from the per-pixel
+  maps over its bbox, with rainfall intensity excluded per ward (one 0.1°
+  value cannot rank wards) and recorded. `docs/susceptibility_dag.md` is
+  updated.
+
+  Tests: `tests/test_flood_per_pixel.py` (18), which fail on the old code
+  (ImportError: `hydro_rasters` did not exist). `test_fluvial_susceptibility`
+  was rewritten for rasters (8; all fail on the old code).
+  `test_pipeline_layer_boundary` gained a `fetch_hydro_rasters` stub, and a
+  failed-raster test replaces the old slope one (it errors at setup on the
+  old code). The gating, validation-status, flood-input and rainfall-ceiling
+  tests moved to the new signatures. Suite **727 → 748 passed**, with the
+  same 2 Earth Engine-auth failures.
+
 ---
 
 # PART 5 — Validation discipline 🔓
