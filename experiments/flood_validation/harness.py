@@ -7,6 +7,9 @@ from Sentinel-1 event extents or JRC GSW recurrent water, and report ROC AUC
 against a fixed bar as validated / failed / not-run.
 
     python -m experiments.flood_validation.harness
+
+A record of round 1. Its module calls are the AOI-wide scalar signatures that
+item 26 Phase 1a replaced with per-pixel maps; round 2 is harness_round2.py.
 """
 from __future__ import annotations
 

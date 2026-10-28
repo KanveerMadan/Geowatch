@@ -31,6 +31,9 @@ STAGE_TIMEOUT_S = {
     "waterways": 300,
     "context": 240,              # each AOI-wide context layer (HAND, CHIRPS, ...)
     "change": 1800,              # four S2 composites + three OB Temporal years
+    # item 26 Phase 1a: MERIT/FABDEM terrain + CHIRPS + a 10-year IMERG
+    # percentile (314 s at one point, each request under EE_REQUEST_DEADLINE_S)
+    "hydro_rasters": 1500,
 }
 
 

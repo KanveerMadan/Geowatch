@@ -1088,7 +1088,32 @@ above.*
 pipeline, the result contract, Part 6). **No fate assigned.** Numbered from
 C62: C59 is on `build/flood2`, C60 and C61 on `master` (`build/ceilings`).*
 
-***C66–C69 added 2026-10-28** from item 26 Phase 1a, flood round 2 (`build/flood2`). **No fate assigned.** First written as C60–C63 on the branch and renumbered at rebase: `master` had taken C59–C65 meanwhile.*
+***C66–C71 added 2026-10-28** from item 26 Phase 1a, flood round 2 (`build/flood2`). **No fate assigned.** C66–C69 were first written as C60–C63 on the branch and renumbered at rebase: `master` had taken C59–C65 meanwhile. C70–C71 came from integrating with `master`'s analysis pipeline.*
+
+### C71 — The analysis pipeline's 240 s request deadline cannot carry a 10-year IMERG percentile [E] *(entry)*
+
+`analysis/stages.py` keeps one Earth Engine per-request deadline for every
+stage, `EE_REQUEST_DEADLINE_S = 240`. The flash-flood intensity input (IMERG
+V07 p99.9 over 10 years, ~175k half-hourly images) took **314 s** for one
+point at native resolution. Inside `run_analysis`, that request will
+therefore hit the deadline. The layer is recorded under
+`hydro_rasters.errors`, and flash flood scores without `rainfall_intensity`.
+Round 2's verdicts are unaffected: the harness sets its own deadline, and
+within-event AUC cannot see a 0.1° near-constant component. The pipeline's
+flash-flood level still differs from the validated configuration's.
+
+### C70 — A validated module is capped at `experimental` by its own validated inputs [S] *(entry)*
+
+`analysis/contract.py` labels each hazard output with the worst of the
+module's label, its Tier 2 verdict and its inputs' labels. After round 2,
+fluvial's own label and verdict are `validated`, but its inputs (the MERIT
+HAND and upstream-area rasters) are declared surfaces labelled
+`experimental`. Under the worst-of-inputs rule, the contract output is
+`experimental`, so no flood output can ever read `validated` in the analysis
+pipeline. The rule was written for placeholder stand-ins (item 21's
+fractions). Whether it should also cap a module with the inputs it was
+validated with has not been decided. Left as is: no label was changed to
+make `validated` appear.
 
 ### C69 — Round 2's pre-registration labelled not-run as "keeps its current label", against the decided meaning [S] *(entry)*
 

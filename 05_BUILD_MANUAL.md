@@ -2174,6 +2174,40 @@ result.
   to the round-2 result and the config weights to the tuning choice. Suite
   **748 → 776 passed**, with the same 2 Earth Engine-auth failures.
 
+- **Integration with `master`'s Phase 2 analysis pipeline (at rebase).**
+  `master` gained `analysis/` (`build/backend`) while this branch was open,
+  and it called the scalar signatures.
+  - **Wiring.** `analysis/run.py` now runs a `hydro_rasters` stage on the
+    layer's hydrology grid (`STAGE_TIMEOUT_S["hydro_rasters"] = 1500`).
+    `analysis/hazards.py` feeds it to fluvial, flash flood and waterlogging
+    and counts it as their input for item 38, so its timeout withholds all
+    three. `zonal/hazard_screening.py` routes the per-ward raster fetch
+    through item 38's `_with_input_outcome`.
+  - **Contract.** `analysis/contract.py` pins round 2's result by hash beside
+    round 1's. A module's verdict is its round-2 held-out verdict. Where that
+    is not-run and the method is unchanged since round 1 (pluvial), round 1's
+    verdict stands. The modules round 2 replaced do not inherit round 1's.
+
+  Contract labels now:
+  - pluvial **failed** (round 1);
+  - coastal **failed** (round 2);
+  - flash flood and waterlogging **experimental**;
+  - fluvial **experimental**. Its own label and `tier2_verdict` are
+    `validated`, but the contract's worst-of-inputs rule caps it with its
+    `experimental` raster inputs (C70).
+
+  `hydro_rasters` now sets an Earth Engine request deadline only when none
+  is set, keeping the pipeline's one per-process deadline. Inside that
+  240 s per-request deadline, a ~314 s IMERG request will be recorded as an
+  error, and flash flood runs there without rainfall intensity (C71).
+  Waterlogging lists `impervious` as an input only when it is weighted.
+  `master`'s analysis, contract, item 34 and item 38 tests were moved to the
+  per-pixel inputs, with the same acceptance. A fake raster fetch
+  (`tests/analysis_synth.py`) keeps them offline. The round-2 verdict and
+  label assertions fail on `master`'s code. Suite on `master` at `27a21c6`:
+  **884 passed**. After this branch: **934 passed**, with the same 2 Earth
+  Engine-auth failures.
+
 ---
 
 # PART 5 — Validation discipline 🔓

@@ -4,7 +4,10 @@ as they are: susceptibility/ is not edited here).
 
 Each module's output becomes one contract output. Its label is the worst of
 the module's own label, its pinned Tier 2 verdict, and its inputs' labels
-(analysis.contract.hazard_label), so pluvial and waterlogging are `failed`.
+(analysis.contract.hazard_label). Pluvial is `failed` (round 1; round 2 could
+not test it); coastal is `failed` (round 2). Fluvial, flash flood and
+waterlogging are per-pixel since item 26 Phase 1a; fluvial's own label is
+`validated`, but its experimental raster inputs cap the contract output.
 """
 from __future__ import annotations
 
@@ -22,15 +25,20 @@ CONTEXT_SOURCES = {
     "rainfall": "UCSB-CHG/CHIRPS/DAILY climatology",
     "coastline": "projects/sat-io/open-datasets/shoreline",
     "relative_elevation": "COPERNICUS/DEM/GLO30_2024_1 (AOI-relative proxy, NOT HAND)",
+    "hydro_rasters": ("per-pixel MERIT/Hydro/v1_0_1 (hnd, upa), FABDEM slope, "
+                      "CHIRPS and IMERG V07 (susceptibility/hydro_rasters.py)"),
 }
 
-# Which context layers each scalar module reads.
+# Which context layers each module reads. Fluvial, flash flood and
+# waterlogging are per-pixel since item 26 Phase 1a: their input is the
+# hydro_rasters stage (fluvial still reads `hand` for its connectivity caveat
+# only, so a missing `hand` does not withhold its score).
 MODULE_CONTEXT = {
     "pluvial": ("rainfall", "relative_elevation"),
-    "fluvial": ("hand",),
+    "fluvial": ("hydro_rasters",),
     "coastal": ("coastline", "fabdem"),
-    "flash_flood": ("slope", "hand", "rainfall"),
-    "waterlogging": ("hand", "rainfall"),
+    "flash_flood": ("hydro_rasters",),
+    "waterlogging": ("hydro_rasters",),
 }
 
 
@@ -91,9 +99,10 @@ def applicability_for(ctx: dict, impervious: dict | None) -> dict:
     return finalize_applicability(app, {"impervious_fraction_pct": mean_pct(impervious)})
 
 
-def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict) -> dict:
+def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict, rasters: dict = None) -> dict:
     """Run the five modules. `surfaces`: impervious, infiltration, conduits
-    (declared surfaces) and terrain ({name: surface}); any may be absent."""
+    (declared surfaces) and terrain ({name: surface}); any may be absent.
+    `rasters`: susceptibility.hydro_rasters output on the same grid, or None."""
     from susceptibility.coastal import compute_coastal_susceptibility
     from susceptibility.flash_flood import compute_flash_flood_susceptibility
     from susceptibility.fluvial import compute_fluvial_susceptibility
@@ -107,13 +116,12 @@ def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict) -> dict:
             relative_elevation_score=ctx["relative_elevation"].get("score"),
             rainfall_mean_annual_mm=ctx["rainfall"].get("mean_annual_mm"),
             applicability=app),
-        "fluvial": compute_fluvial_susceptibility(ctx["hand"], applicability=app),
+        "fluvial": compute_fluvial_susceptibility(rasters, ctx.get("hand"), applicability=app),
         "coastal": compute_coastal_susceptibility(ctx["coastline"], ctx["fabdem"],
                                                   applicability=app),
-        "flash_flood": compute_flash_flood_susceptibility(ctx["slope"], ctx["hand"],
-                                                          ctx["rainfall"], applicability=app),
-        "waterlogging": compute_waterlogging_susceptibility(ctx["hand"], surfaces.get("impervious"),
-                                                            ctx["rainfall"], applicability=app),
+        "flash_flood": compute_flash_flood_susceptibility(rasters, applicability=app),
+        "waterlogging": compute_waterlogging_susceptibility(rasters, surfaces.get("impervious"),
+                                                            applicability=app),
     }
 
 

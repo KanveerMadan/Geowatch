@@ -132,11 +132,25 @@ def ee_grid(transform, shape, crs: str) -> dict:
 
 # ── Earth Engine ────────────────────────────────────────────────────────
 
+def ensure_deadline(ms: int) -> None:
+    """Set Earth Engine's per-request deadline only if none is set: the
+    analysis pipeline keeps one deadline per process (analysis/stages.py), and
+    setDeadline rebuilds the client. The hard client-side limit is
+    ee_timeout.call either way."""
+    import ee
+    try:
+        current = ee.data._get_state().deadline_ms
+    except Exception:            # noqa: BLE001 -- older client: set it
+        current = None
+    if not current:
+        ee.data.setDeadline(ms)
+
+
 def compute_pixels(img, transform, shape, crs: str, label: str) -> dict:
     """{band: float64 array, NaN where no data}, with a hard deadline."""
     import ee
     from ee_timeout import call
-    ee.data.setDeadline(EE_TIMEOUT_S * 1000)
+    ensure_deadline(EE_TIMEOUT_S * 1000)
     arr = call(lambda: ee.data.computePixels({
         "expression": img.unmask(NODATA).toFloat(), "fileFormat": "NUMPY_NDARRAY",
         "grid": ee_grid(transform, shape, crs)}), timeout=EE_TIMEOUT_S, retries=EE_RETRIES,
@@ -228,7 +242,7 @@ def _rain_layer(img, name, bbox, transform, shape, crs):
     from rasterio.transform import from_origin
     deg = RAIN_NATIVE_DEG[name]
     x0, y1, cols, rows = native_grid(grid_lonlat_bounds(transform, shape, crs), deg)
-    ee.data.setDeadline(RAIN_TIMEOUT_S * 1000)
+    ensure_deadline(RAIN_TIMEOUT_S * 1000)
     arr = call(lambda: ee.data.computePixels({
         "expression": img.unmask(NODATA).toFloat(), "fileFormat": "NUMPY_NDARRAY",
         "grid": ee_grid(from_origin(x0, y1, deg, deg), (rows, cols), "EPSG:4326")}),

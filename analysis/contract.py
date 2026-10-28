@@ -55,6 +55,14 @@ ABSENT = ("not_computed", "insufficient_observation", "insufficient_evidence", "
 FLOOD_VALIDATION_RESULT = os.path.join("experiments", "flood_validation",
                                        "result_2026-10-28.json")
 FLOOD_VALIDATION_SHA256 = "4bfcfc51d24beee56513ad8483d2d935c2b0f7d3bec0642d3802b7c6660a6b1a"
+# Round 2 (item 26 Phase 1a): held-out verdicts, pinned the same way.
+FLOOD_VALIDATION_ROUND2_RESULT = os.path.join("experiments", "flood_validation",
+                                              "result_round2_2026-10-28.json")
+FLOOD_VALIDATION_ROUND2_SHA256 = "6edde1eddd0a18c354db568f95babba1ec7af04754de6963a88f8a7f1108c73b"
+# Round 2 replaced these modules' method (AOI-wide scalar -> per-pixel map), so
+# round 1's verdict was on a method that no longer exists. Pluvial and coastal
+# kept theirs: where round 2 could not test them (not-run), round 1 stands.
+ROUND2_REPLACED_METHODS = ("fluvial", "flash_flood", "waterlogging")
 VERDICT_LABEL = {"failed": "failed", "passed": "validated", "validated": "validated"}
 
 
@@ -85,16 +93,32 @@ def hazard_label(module_status: str, verdict: str | None = None, *input_labels: 
     return worst(module_status, *([v] if v else []), *input_labels)
 
 
-def flood_verdicts(path: str = FLOOD_VALIDATION_RESULT, expected_sha256: str | None = None) -> dict:
-    """{module: verdict} from the pinned Tier 2 result file. Raises if the
-    file's hash is not the pinned one."""
-    expected = FLOOD_VALIDATION_SHA256 if expected_sha256 is None else expected_sha256
+def _pinned_modules(path: str, expected: str) -> dict:
     digest = sha256_file(path)
     if expected and digest != expected:
         raise ContractError(f"{path}: sha256 {digest} is not the pinned {expected}")
     with open(path) as fh:
-        mods = json.load(fh)["modules"]
-    return {k: v.get("verdict") for k, v in mods.items()}
+        return json.load(fh)["modules"]
+
+
+def flood_verdicts(path: str = FLOOD_VALIDATION_RESULT, expected_sha256: str | None = None,
+                   round2_path: str = FLOOD_VALIDATION_ROUND2_RESULT,
+                   round2_sha256: str | None = None) -> dict:
+    """{module: verdict}: each module's round-2 held-out verdict; where that
+    is not-run and the module's method is unchanged since round 1, round 1's
+    verdict. Raises if either file's hash is not the pinned one."""
+    r1 = _pinned_modules(path, FLOOD_VALIDATION_SHA256 if expected_sha256 is None
+                         else expected_sha256)
+    r2 = _pinned_modules(round2_path, FLOOD_VALIDATION_ROUND2_SHA256 if round2_sha256 is None
+                         else round2_sha256)
+    out = {}
+    for m in r1.keys() | r2.keys():
+        v2 = (r2.get(m) or {}).get("held_out", {}).get("verdict")
+        if v2 and (v2 != "not-run" or m in ROUND2_REPLACED_METHODS):
+            out[m] = v2
+        else:
+            out[m] = (r1.get(m) or {}).get("verdict")
+    return out
 
 
 # ── model_version ──────────────────────────────────────────────────────

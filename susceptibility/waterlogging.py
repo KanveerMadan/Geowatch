@@ -112,7 +112,7 @@ def compute_waterlogging_susceptibility(rasters: dict = None, impervious: dict =
     m = combine(comps, w)
     inputs = {k: provenance(v) for k, v in (rasters or {}).get("layers", {}).items()
               if k in ("hand_m", "slope_deg", "rain_annual_mm")}
-    if impervious is not None:
+    if imp_used:      # an unweighted input does not shape the map or its label
         inputs["impervious"] = provenance(impervious)
     return {
         "status": "experimental",

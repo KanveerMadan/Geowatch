@@ -68,6 +68,21 @@ def fake_dem(layer, transform, shape):
     return (10.0 + 0.05 * x + 0.03 * y).astype(np.float64)
 
 
+def fake_hydro_rasters(bbox, transform, shape, crs, ref_year):
+    """Per-pixel hydrology inputs (item 26 Phase 1a) on the given grid: HAND
+    rising west to east, gentle slope, steep surroundings, one rainfall value."""
+    from susceptibility.inputs import surface
+    H, W = shape
+    _, x = np.mgrid[0:H, 0:W]
+    vals = {"hand_m": 0.5 + 0.2 * x, "upa_near_km2": np.full(shape, 20.0),
+            "slope_deg": np.full(shape, 1.0), "relief_slope_deg": np.full(shape, 6.0),
+            "rain_annual_mm": np.full(shape, 2200.0), "rain_intensity_mm_h": np.full(shape, 12.0)}
+    return {"status": "available", "transform": transform, "shape": tuple(shape), "crs": crs,
+            "ref_year": ref_year, "errors": {},
+            "layers": {k: surface(v, "synthetic", "synthetic", "experimental")
+                       for k, v in vals.items()}}
+
+
 def fake_waterways(name, bbox):
     w, s, e, n = bbox
     return {"ways": [{"type": "way", "id": 9,
@@ -105,7 +120,7 @@ def deps(**overrides):
     d = {"init_ee": lambda: None, "load_layer": lambda name, bbox: synth_layer(),
          "context_fns": context_fns(), "fetch_dem": fake_dem,
          "fetch_waterways": fake_waterways, "run_change": fake_change,
-         "fetch_cause_counts": fake_cause_counts}
+         "fetch_cause_counts": fake_cause_counts, "fetch_hydro_rasters": fake_hydro_rasters}
     d.update(overrides)
     return d
 

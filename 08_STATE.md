@@ -717,7 +717,12 @@ JRC references.
 - **Coastal is `failed`**: pooled 0.646, now testable on a 12-day S1 window.
 - **Flash flood and waterlogging are `experimental`**: both were not-run,
   with one qualifying held-out event each.
-- **Pluvial stays `placeholder`**: also not-run.
+- **Pluvial stays `placeholder`**: also not-run. In the analysis pipeline's
+  contract it is `failed`, because round 1's verdict stands for its unchanged
+  method.
+- **In the contract** (`analysis/contract.py`, worst of the module label, the
+  verdict and the inputs), fluvial reads `experimental`: its raster inputs
+  cap it (C70).
 
 Result: `experiments/flood_validation/result_round2_2026-10-28.json`. Item 26
 stays partial.

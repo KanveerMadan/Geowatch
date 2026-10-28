@@ -95,13 +95,18 @@ def _default_deps():
         from vector.change import run_change as f
         return f(layer, epochs)
 
+    def fetch_hydro_rasters(bbox, transform, shape, crs, ref_year):
+        from susceptibility.hydro_rasters import fetch_hydro_rasters as f
+        return f(bbox, transform, shape, crs, ref_year)
+
     def fetch_cause_counts(layer, transform, shape, window, cloud_cover_threshold):
         from analysis.observability import fetch_cause_counts as f
         return f(layer, transform, shape, window, cloud_cover_threshold)
 
     return {"init_ee": init_ee, "load_layer": load_layer, "context_fns": None,
             "fetch_dem": fetch_dem, "fetch_waterways": fetch_waterways,
-            "run_change": run_change, "fetch_cause_counts": fetch_cause_counts}
+            "run_change": run_change, "fetch_cause_counts": fetch_cause_counts,
+            "fetch_hydro_rasters": fetch_hydro_rasters}
 
 
 # ── output builders ─────────────────────────────────────────────────────
@@ -222,7 +227,9 @@ def version_for(producer, commit: dict | None = None) -> dict:
     """model_version for a run with `producer`. Computable before running,
     so the cache can be checked first (analysis/store.py)."""
     return C.model_version({"fraction_producer": producer.artifact()["sha256"],
-                            "flood_validation_result": C.FLOOD_VALIDATION_SHA256}, commit=commit)
+                            "flood_validation_result": C.FLOOD_VALIDATION_SHA256,
+                            "flood_validation_round2_result": C.FLOOD_VALIDATION_ROUND2_SHA256},
+                           commit=commit)
 
 
 # ── the run ─────────────────────────────────────────────────────────────
@@ -297,8 +304,16 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
         stages["waterways"]["unavailable_clauses"] = wo["value"]["unavailable"]
     ctx, cstages = H.fetch_context(tuple(bbox), fns=deps["context_fns"])
     stages.update(cstages)
+    # Item 26 Phase 1a: fluvial, flash flood and waterlogging read per-pixel
+    # rasters on the hydrology grid. A stage that did not finish becomes their
+    # input's status (item 38), never an "available" context.
+    ro = stage("hydro_rasters", deps["fetch_hydro_rasters"], tuple(bbox), ht, (H_, W_),
+               layer.crs.to_string(), int(window["end"][:4]))
+    rasters = ro["value"] if ro["status"] == "ok" else None
+    ctx["hydro_rasters"] = ({"status": "available", "errors": rasters.get("errors", {})}
+                            if rasters else H.context_from_outcome(ro))
     app = H.applicability_for(ctx, surfaces.get("impervious"))
-    modules = H.run_modules(ctx, surfaces, waterway, app)
+    modules = H.run_modules(ctx, surfaces, waterway, app, rasters)
     hz = H.hazard_outputs(modules, mv, verdicts, has_waterways=waterway is not None,
                           ctx=ctx, stage_status=stages)
     # Item 37: the pluvial map, rendered with no-data as its own state.

@@ -233,3 +233,20 @@ def test_weight_grids_are_the_preregistered_ones():
     assert len(wc.WATERLOGGING_WEIGHT_GRID) == 26
     assert all(g["rainfall_intensity"] == 1.0 for g in ffc.FLASH_FLOOD_WEIGHT_GRID)
     assert all(g["rainfall_climatology"] == 1.0 for g in wc.WATERLOGGING_WEIGHT_GRID)
+
+
+def test_a_deadline_the_caller_set_is_left_alone(monkeypatch):
+    """The analysis pipeline keeps one Earth Engine request deadline per
+    process (analysis/stages.py); hydro_rasters sets one only if none is set."""
+    import ee
+    calls = []
+    monkeypatch.setattr(ee.data, "setDeadline", lambda ms: calls.append(ms))
+
+    class State:
+        deadline_ms = 240_000
+    monkeypatch.setattr(ee.data, "_get_state", lambda: State)
+    hydro_rasters.ensure_deadline(600_000)
+    assert calls == []
+    State.deadline_ms = None
+    hydro_rasters.ensure_deadline(600_000)
+    assert calls == [600_000]

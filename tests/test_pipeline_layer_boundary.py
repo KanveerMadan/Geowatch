@@ -202,7 +202,7 @@ def test_hydro_rasters_make_three_per_pixel_maps(stub_pipeline, tmp_path):
         b = r["susceptibility"][m]
         assert b["spatial"] is True and b["map_path"] == "pluvial.png", m   # stubbed saver
         assert "susceptibility_map" not in b, m
-    assert r["hydro_rasters"]["inputs"]["hand_m"]["validation_status"] == "experimental"
+    assert r["hydro_rasters"]["inputs"]["hand_m"]["source"] == "stub"
 
 
 def test_programmer_error_is_also_contained_and_named(stub_pipeline, tmp_path):
@@ -245,7 +245,7 @@ def test_flood_inputs_reach_pluvial_and_waterlogging_with_provenance(stub_pipeli
     assert pl["validation_status"] == "retired"
     assert pl["validation_status_superseded"] == "placeholder"
     assert wl["impervious_fraction_pct"] == 60.0
-    assert wl["inputs"]["impervious"]["method"] == "footprint_union_area_fraction"
+    assert "impervious" not in wl["inputs"]      # unweighted: not a listed input
     # round 2's tuned weights give impervious 0, so the placeholder input is
     # declared but does not set the module's own label; the legacy result
     # still labels the block "retired"
