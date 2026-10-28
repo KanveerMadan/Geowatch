@@ -1113,6 +1113,11 @@ susceptibility module but not from exposure, which is why
 `LANDCOVER_DERIVED`. Exposure, and every risk block built on it, therefore
 still inherits the retired model's output and trust verdict.
 
+*Code change 2026-10-28 (`build/cleanup`): exposure's built-up figure is now
+the Open Buildings footprint built-area surface (`built_area_pct`,
+`placeholder`), and `exposure` moved to `LANDCOVER_INDEPENDENT`. Fate still
+unassigned.*
+
 ### C53 — The coastal module could not be tested: no Sentinel-1 image in any 3-day event window [E] *(entry)*
 
 Item 26 task 8's pre-registered coastal test used a 3-day event window after

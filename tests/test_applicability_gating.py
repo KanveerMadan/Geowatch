@@ -184,8 +184,9 @@ def test_hydrological_surfaces_carries_the_flag(ood):
 @pytest.mark.parametrize("mechanism", sorted(LANDCOVER_DERIVED))
 def test_landcover_derived_mechanisms_are_flagged_ood(ood, mechanism):
     """
-    hydrological_surfaces and exposure consume the semantic model, so an OOD
-    verdict reaches them and must be recorded, with the cause named.
+    hydrological_surfaces consumes the semantic model (the only thing that
+    still does, since item 26), so an OOD verdict reaches it and must be
+    recorded, with the cause named.
     """
     app, _ = ood
     flag = build_flag(mechanism, app)
@@ -217,16 +218,22 @@ def test_landcover_independent_mechanisms_are_not_flagged_ood(ood, mechanism):
 def test_risk_inherits_from_what_it_consumed(ood):
     """
     compute_risk() has no applicability entry of its own; its trust is a
-    function of the hazard and exposure it was handed. A landcover-derived
-    input (exposure, since item 26) must drag risk down with it, and the reason must survive the hop
-    rather than flattening to a bare boolean.
+    function of the hazard and exposure it was handed. An OOD-flagged input
+    must drag risk down with it, and the reason must survive the hop rather
+    than flattening to a bare boolean. Since item 26 no live input is
+    landcover-derived, so the OOD input here is built directly.
     """
     app, surfaces = ood
     blocks = _all_blocks(app, surfaces)
-    wl_risk = blocks["risk_waterlogging"]["applicability"]
-    assert wl_risk["gate"] == "inherited"
-    assert wl_risk["out_of_distribution"] is True
-    assert "urban_landcover_model" in wl_risk["degraded_by"]
+    flagged_exposure = {"status": "available",
+                        "applicability": build_flag("hydrological_surfaces", app)}
+    r = compute_risk(hazard=blocks["waterlogging"], exposure=flagged_exposure,
+                     vulnerability=None)["applicability"]
+    assert r["gate"] == "inherited"
+    assert r["out_of_distribution"] is True
+    assert "urban_landcover_model" in r["degraded_by"]
+    # and the live chain no longer carries the retired model's verdict
+    assert blocks["risk_waterlogging"]["applicability"]["out_of_distribution"] is False
 
 
 def test_in_distribution_run_flags_nothing_ood(in_dist):
@@ -253,7 +260,7 @@ def test_degraded_is_distinct_from_out_of_distribution():
         slope_context=None, hydrological_surfaces=None,
     )
     assert app["urban_landcover_model"]["status"] == "degraded"
-    flag = build_flag("exposure", app)   # still landcover-derived after item 26
+    flag = build_flag("hydrological_surfaces", app)   # the only landcover-derived block left
     assert flag["degraded"] is True
     assert flag["out_of_distribution"] is False
 
