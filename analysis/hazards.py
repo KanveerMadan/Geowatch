@@ -131,12 +131,50 @@ def _sources(name: str, mod: dict, has_waterways: bool) -> list:
     return out
 
 
-def hazard_outputs(modules: dict, mv: dict, verdicts: dict, *, has_waterways: bool) -> dict:
-    """Each module as a contract output."""
+# Item 38 (C27): an input that did not finish decides the output's status.
+# A timeout outranks a failure: retrying can fix it, and saying so matters.
+INCOMPLETE = ("timeout", "failed")
+
+
+def incomplete_inputs(name: str, ctx: dict, stage_status: dict | None = None) -> dict:
+    """{input: {"status", "error"}} for every input of module `name` whose
+    stage timed out or failed. Pluvial's spatial inputs are stages too."""
+    out = {}
+    for c in MODULE_CONTEXT[name]:
+        st = (ctx.get(c) or {}).get("status")
+        if st in INCOMPLETE:
+            out[c] = {"status": st, "error": ctx[c].get("error")}
+    if name == "pluvial":
+        for k, v in (stage_status or {}).items():
+            if k in ("s2_composite", "dem", "waterways") and v.get("status") in INCOMPLETE:
+                out[k] = {"status": v["status"], "error": v.get("error")}
+    return out
+
+
+def hazard_outputs(modules: dict, mv: dict, verdicts: dict, *, has_waterways: bool,
+                   ctx: dict | None = None, stage_status: dict | None = None) -> dict:
+    """Each module as a contract output.
+
+    Item 38 (C27): a module whose input timed out (or failed) is reported
+    with that status and NO tier, even when it could score the inputs that
+    did arrive. A tier from a partial input set is what made two runs of the
+    same wards disagree; a status says why they differ."""
     out = {}
     for name in HAZARDS:
         mod = modules[name]
         score = mod.get("aoi_mean_score")
+        bad = incomplete_inputs(name, ctx or {}, stage_status)
+        if bad:
+            status = "timeout" if any(v["status"] == "timeout" for v in bad.values()) else "failed"
+            out[name] = C.absent(
+                status, reason=f"input(s) did not finish: {sorted(bad)}",
+                validation_status=C.hazard_label(mod.get("validation_status", "experimental"),
+                                                 verdicts.get(name), *_input_labels(mod)),
+                data_sources=_sources(name, mod, has_waterways), model_version=mv,
+                incomplete_inputs=bad, tier=None, module_status=mod.get("status"),
+                score_from_partial_inputs_withheld=score is not None,
+                tier2_verdict=verdicts.get(name), spatial=False)
+            continue
         label = C.hazard_label(mod.get("validation_status", "experimental"),
                                verdicts.get(name), *_input_labels(mod))
         extra = {"module_status": mod.get("status"),

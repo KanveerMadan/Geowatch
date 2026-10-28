@@ -170,6 +170,7 @@ def ward_context(result: dict) -> dict:
             "fractions": {f: {"validation_status": v["validation_status"],
                               "data_sources": v["data_sources"]} for f, v in fr.items()},
             "pluvial": {"validation_status": o["susceptibility"]["pluvial"]["validation_status"],
+                        "status": o["susceptibility"]["pluvial"]["status"],
                         "data_sources": o["susceptibility"]["pluvial"]["data_sources"]},
             "scalar_hazards": {h: o["susceptibility"][h] for h in SCALAR_HAZARDS},
             "observability_label": o.get("observability", {}).get(
@@ -219,14 +220,23 @@ def materialize(unit: dict, unit_type: str, ctx: dict) -> dict:
                                           pixel_count=ob["pixel_count"]),
         }
     hz = {}
-    if PLUVIAL in unit:
+    if PLUVIAL in unit and ctx["pluvial"].get("status", "available") != "available":
+        # Item 38: the AOI-level pluvial did not finish (timeout / failed);
+        # no unit gets a value or tier from it.
+        hz["pluvial"] = C.output(None, status=ctx["pluvial"]["status"],
+                                 validation_status=ctx["pluvial"]["validation_status"],
+                                 coverage=C.coverage(0.0, "AOI-level pluvial did not finish"),
+                                 data_sources=ctx["pluvial"]["data_sources"], model_version=mv,
+                                 tier=None)
+    elif PLUVIAL in unit:
         p = _cell(unit[PLUVIAL], label=ctx["pluvial"]["validation_status"],
                   sources=ctx["pluvial"]["data_sources"], mv=mv, basis=basis)
         p["tier"] = classify_pluvial(p["value"])
         hz["pluvial"] = p
     for h, aoi_out in ctx["scalar_hazards"].items():
         o = {k: v for k, v in aoi_out.items()
-             if k in C.OUTPUT_KEYS or k in ("tier", "reason", "tier2_verdict")}
+             if k in C.OUTPUT_KEYS or k in ("tier", "reason", "tier2_verdict",
+                                            "incomplete_inputs")}
         o["coverage"] = C.coverage(aoi_out["coverage"]["observed_fraction"],
                                    "AOI-wide scalar applied uniformly to every unit; "
                                    "it carries no within-AOI variation")

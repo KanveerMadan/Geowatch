@@ -139,11 +139,34 @@ def _timed_out_context(source_label: str, timeout_seconds: int) -> dict:
     status=unavailable dict (matching what get_merit_hand_context() etc.
     already return on a normal failure) instead of blowing up on a
     missing key."""
+    # Item 38 (C27): "timeout", not "unavailable". The modules read any
+    # status other than "available" as missing, so they behave the same; the
+    # difference is that the ward block can now say a timeout happened.
     return {
-        "status": "unavailable",
+        "status": "timeout",
         "source": source_label,
         "error": f"GEE call timed out after {timeout_seconds}s.",
     }
+
+
+def _with_input_outcome(block: dict, inputs: dict) -> dict:
+    """Item 38 (C27): preserve the error at the ward boundary, and never
+    emit a tier from an input set a timeout cut short.
+
+    `inputs` is {name: context dict}. If any timed out, the block becomes
+    status "timeout" with score and tier None, whatever the module computed
+    from the inputs that did arrive -- that partial tier is what made two
+    runs of the same 24 wards disagree. Every non-available input's status
+    and error are kept, so absence and timeout read differently."""
+    issues = {k: {"status": v.get("status"), "error": v.get("error")}
+              for k, v in inputs.items() if v is not None and v.get("status") != "available"}
+    block["input_status"] = issues
+    timed_out = sorted(k for k, v in issues.items() if v["status"] == "timeout")
+    if timed_out:
+        block.update({"status": "timeout", "score": None, "tier": None,
+                      "timed_out_inputs": timed_out,
+                      "error": "; ".join(f"{k}: {issues[k]['error']}" for k in timed_out)})
+    return block
 
 
 def _load_boundary_layer(boundary_layer_id: str, storage_dir: str = "data/boundaries"):
@@ -296,14 +319,14 @@ def compute_ward_hazard_screening(
         )
 
     fluvial_result = compute_fluvial_susceptibility(hand_context)
-    fluvial_block = {
+    fluvial_block = _with_input_outcome({
         "status": fluvial_result.get("status", "not_calculated"),
         "score": fluvial_result.get("aoi_mean_score"),
         "tier": fluvial_result.get("aoi_mean_class"),
         "method": "merit_hand_context",
         "source": "MERIT Hydro + FABDEM elevation",
         **geometry_note,
-    }
+    }, {"merit_hand": hand_context})
 
     # ── Coastal: shoreline distance + FABDEM elevation ──
     try:
@@ -317,7 +340,7 @@ def compute_ward_hazard_screening(
         coastal_context["coastal_connectivity"] = None
 
     coastal_result = compute_coastal_susceptibility(coastal_context, fabdem_elevation)
-    coastal_block = {
+    coastal_block = _with_input_outcome({
         "status": coastal_result.get("status", "not_calculated"),
         "score": coastal_result.get("aoi_mean_score"),
         "tier": coastal_result.get("aoi_mean_class"),
@@ -325,7 +348,7 @@ def compute_ward_hazard_screening(
         "source": "GEE sat-io Global Shoreline Dataset + FABDEM elevation",
         "coastline_distance_km": coastal_context.get("distance_km"),
         **geometry_note,
-    }
+    }, {"coastline": coastal_context, "fabdem": fabdem_elevation})
 
     # ── Flash flood: slope + HAND + ONE shared rainfall value ──
     try:
@@ -337,7 +360,7 @@ def compute_ward_hazard_screening(
     flash_flood_result = compute_flash_flood_susceptibility(
         slope_context, hand_context, rainfall_climatology
     )
-    flash_flood_block = {
+    flash_flood_block = _with_input_outcome({
         "status": flash_flood_result.get("status", "not_calculated"),
         "score": flash_flood_result.get("aoi_mean_score"),
         "tier": flash_flood_result.get("aoi_mean_class"),
@@ -354,7 +377,8 @@ def compute_ward_hazard_screening(
             "is reused across every ward (see module docstring)."
         ),
         **geometry_note,
-    }
+    }, {"slope": slope_context, "merit_hand": hand_context,
+        "rainfall": rainfall_climatology})
 
     return {
         "unit_id": ward_id,

@@ -2247,7 +2247,20 @@ susceptibility scale.
 *Requires a nodata mask propagated from ingestion through to render, which may be
 the larger part of the work.*
 
-### 38. C27 — timeout ≠ tier
+### 38. C27 — timeout ≠ tier ✅ *(2026-10-28)*
+
+> **Built 2026-10-28 (Phase 2), in both places.** `zonal/hazard_screening.py`
+> (C27's own site): a timed-out context is now `status: "timeout"`, not
+> `"unavailable"`; a ward hazard block with any timed-out input is
+> `status: "timeout"` with `score` and `tier` `null` and the error kept in
+> `error` / `timed_out_inputs`, and every non-available input's status and
+> error survive in `input_status`. In the analysis pipeline every context
+> layer and spatial input is a timed stage; a module with an input that timed
+> out or failed is emitted with that status and no tier (the partial score is
+> withheld, `score_from_partial_inputs_withheld`), and every ward unit
+> inherits it. A run with any incomplete stage is never cached, so a retry
+> can complete it. Tests: `tests/test_item38_timeout_not_tier.py` — two runs
+> give identical tiers or an explicit `timeout` status, on both paths.
 Preserve the error at the ward boundary. A timeout must produce
 `status: "timeout"`, **never a tier**.
 

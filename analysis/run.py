@@ -283,7 +283,8 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
     stages.update(cstages)
     app = H.applicability_for(ctx, surfaces.get("impervious"))
     modules = H.run_modules(ctx, surfaces, waterway, app)
-    hz = H.hazard_outputs(modules, mv, verdicts, has_waterways=waterway is not None)
+    hz = H.hazard_outputs(modules, mv, verdicts, has_waterways=waterway is not None,
+                          ctx=ctx, stage_status=stages)
     # Item 37: the pluvial map, rendered with no-data as its own state.
     from analysis.rasters import map_record
     maps, map_meta = {}, {}
@@ -291,7 +292,8 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
         meta, png = map_record("pluvial_susceptibility", modules["pluvial"]["susceptibility_map"],
                                ht, layer.crs.to_string())
         maps["pluvial_susceptibility"], map_meta["pluvial_susceptibility"] = png, meta
-        hz["pluvial"]["map"] = {**meta, "url_path": "maps/pluvial_susceptibility"}
+        if hz["pluvial"]["status"] == "available":
+            hz["pluvial"]["map"] = {**meta, "url_path": "maps/pluvial_susceptibility"}
 
     # 5. item 25: change.
     epochs = change_epochs(window)
