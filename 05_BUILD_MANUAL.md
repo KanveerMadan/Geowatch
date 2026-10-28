@@ -907,6 +907,7 @@ informal AOI; sum to ~1 within tolerance over the observed portion; documented
 an endmember); per-fraction confidence with **`paved` explicitly marked derived,
 never measured**; and `impervious_total` validated against a held-out AOI rather
 than against a same-AOI split.
+The Stage 1 trainer must load hand tiles only through experiments/harness/firewall.py training_tiles(); a test must show it raises HeldOutError on a validation tile.
 
 **4. Blocking gap, stated plainly.** The 0.822 `impervious_total` ceiling is
 *simulated, not achieved*. Testing it needs a real impervious label, and the
