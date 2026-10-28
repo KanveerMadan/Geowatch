@@ -1862,6 +1862,14 @@ declare themselves. Every new output carries `validation_status`; none claims
   segment `road_access_score` still reads it, and that is not a penalty.
   `git grep` for the penalty finds only the deletion comment.
   `tests/test_proximity_penalty_deleted.py` (3; all fail on the old code).
+- **Task 3 — roads as rasterised vector conduits.** `road_conduits()`
+  rasterises item 19's road space (OSM centrelines at `HIGHWAY_WIDTH_M_DEFAULT`
+  class widths; footprint negative space excluded, since it is open ground) as
+  an area fraction per 30 m hydrology cell, supersampled to 2 m so area is
+  preserved. It enters pluvial as `road_conduit` (weight 0.6, quality 0.5,
+  provisional) — the sealed road surface that built area omits.
+  `experimental` (item 19's own label). `tests/test_flood_conduits.py` (5;
+  they fail on the old code, where `road_conduits` does not exist).
 
 ---
 

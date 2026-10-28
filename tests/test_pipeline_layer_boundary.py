@@ -60,6 +60,8 @@ AVAILABLE = {
                               "footprint_union_area_fraction", "placeholder"),
         "infiltration": surface(np.full((3, 4), 0.1), "S2 NDVI stand-in",
                                 "ndvi_threshold_proxy", "placeholder"),
+        "conduits": surface(np.full((3, 4), 0.2), "OSM highways",
+                            "road_space_area_fraction", "experimental"),
     },
 }
 

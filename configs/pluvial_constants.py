@@ -30,6 +30,9 @@ COMPONENT_WEIGHTS = {
     "drainage_distance": 0.7,
     "rainfall_climatology": 0.9,
     "relative_elevation": 0.6,
+    # item 26: sealed road surface that built area omits, and where runoff
+    # concentrates. Provisional, like every weight here.
+    "road_conduit": 0.6,
 }
 
 COMPONENT_QUALITY = {
@@ -38,6 +41,7 @@ COMPONENT_QUALITY = {
     "drainage_distance": 0.5,
     "rainfall_climatology": 0.8,
     "relative_elevation": 0.4,
+    "road_conduit": 0.5,   # widths are class defaults, not measurements
 }
 
 SUSCEPTIBILITY_CLASS_BREAKS = {

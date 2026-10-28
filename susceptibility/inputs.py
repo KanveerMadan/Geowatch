@@ -18,6 +18,9 @@ Producers here, all on the hydrology grid (HYDROLOGY_PIXEL_M, the layer's UTM CR
     infiltration  the Sentinel-2 NDVI vegetation stand-in from Lane B
                   (vector/fractions.py). `placeholder`: item 21's regression
                   is the decided producer and is not built.
+    conduits      roads as rasterised vector conduits: item 19's road space
+                  (OSM centrelines at default class widths, no footprint
+                  negative space) as an area fraction per cell. `experimental`.
 """
 from __future__ import annotations
 
@@ -88,6 +91,16 @@ def impervious_built_area(layer, transform, shape) -> dict:
                    validation_status="placeholder")
 
 
+def road_conduits(layer, transform, shape) -> dict:
+    """Item 19's road space as an area fraction per hydrology cell. Negative
+    space between footprints is left out: it is open ground, not a conduit."""
+    sub = max(1, int(round(abs(transform.a) / 2.0)))
+    r = layer.rasterize(transform, shape, supersample=sub, include_negative_space=False)
+    return surface(r["fraction"], source=f"OSM highways, item 19 layer {layer.layer_id}",
+                   method=f"road_space_area_fraction ({r['width_basis']})",
+                   validation_status="experimental")
+
+
 def infiltration_vegetation(vegetation) -> dict:
     from vector.fractions import PRODUCER, PROXY_METHOD
     return surface(vegetation, source=PRODUCER["vegetation"],
@@ -112,6 +125,7 @@ def hydrology_surfaces(layer, start: str, end: str) -> dict:
         "crs": layer.crs.to_string(), "window": comp["window"],
         "impervious": impervious_built_area(layer, transform, (H, W)),
         "infiltration": infiltration_vegetation(block_nanmean(veg, k)),
+        "conduits": road_conduits(layer, transform, (H, W)),
     })
 
 

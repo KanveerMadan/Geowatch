@@ -482,6 +482,7 @@ def run_pipeline(
     pluvial_result = compute_pluvial_susceptibility(
         impervious=fi.get("impervious"),
         infiltration=fi.get("infiltration"),
+        conduits=fi.get("conduits"),
         waterway_dist_map=to_grid(full_waterway_dist_map, (west, south, east, north), fi or None),
         relative_elevation_score=relative_elevation.get("score"),
         rainfall_mean_annual_mm=rainfall_climatology.get("mean_annual_mm"),
@@ -698,10 +699,10 @@ def run_pipeline(
         "hydrological_surfaces": hydrological_surfaces,
         "flood_inputs": {
             **{k: v for k, v in flood_inputs.items()
-               if k not in ("impervious", "infiltration", "transform", "shape")},
+               if k not in ("impervious", "infiltration", "conduits", "transform", "shape")},
             **({"grid": {"crs": fi["crs"], "transform": list(fi["transform"])[:6],
                          "shape": list(fi["shape"])},
-                "inputs": {k: provenance(fi[k]) for k in ("impervious", "infiltration")}}
+                "inputs": {k: provenance(fi[k]) for k in ("impervious", "infiltration", "conduits")}}
                if fi else {}),
         },
         "susceptibility": susceptibility_block,
