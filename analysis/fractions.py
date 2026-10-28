@@ -42,12 +42,16 @@ class StandInFractions:
     S2_COLLECTION = "COPERNICUS/S2_SR_HARMONIZED"
     CLOUD_COVER_THRESHOLD = 60                 # vector/fractions.py's default
 
-    def __init__(self, collection_filter=None, occlusion: dict | None = None):
-        # `collection_filter` is applied to the raw S2 collection before the
-        # cloud/no-data mask (vector.fractions.s2_index_composite); item 33
-        # uses it to drop occluded observations. `occlusion` describes it.
-        self.collection_filter = collection_filter
-        self.occlusion = occlusion or {"masked": ["cloud", "nodata"]}
+    def __init__(self, mask_occlusion: bool = True):
+        # Item 33: shadowed (SCL 3) and snow (SCL 11) observations leave the
+        # composite and the clear-observation count, as cloud and no-data
+        # already did, so the denominator is Decision 14's. The filter runs on
+        # the raw collection before mask_s2_clouds.
+        from analysis.observability import OCCLUSION_MASKED_SCL, occlusion_filter
+        self.collection_filter = occlusion_filter if mask_occlusion else None
+        self.occlusion = {"masked_scl": sorted({0, 1, 8, 9, 10}
+                                               | (set(OCCLUSION_MASKED_SCL) if mask_occlusion
+                                                  else set()))}
 
     # ── identity ──
     def artifact(self) -> dict:

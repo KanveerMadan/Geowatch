@@ -95,9 +95,13 @@ def _default_deps():
         from vector.change import run_change as f
         return f(layer, epochs)
 
+    def fetch_cause_counts(layer, transform, shape, window, cloud_cover_threshold):
+        from analysis.observability import fetch_cause_counts as f
+        return f(layer, transform, shape, window, cloud_cover_threshold)
+
     return {"init_ee": init_ee, "load_layer": load_layer, "context_fns": None,
             "fetch_dem": fetch_dem, "fetch_waterways": fetch_waterways,
-            "run_change": run_change}
+            "run_change": run_change, "fetch_cause_counts": fetch_cause_counts}
 
 
 # ── output builders ─────────────────────────────────────────────────────
@@ -253,6 +257,13 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
         raise RuntimeError(f"fraction producer {fo['status']}: {fo.get('error')}")
     fset = fo["value"]
 
+    # 3b. item 33: observability (the denominator) and estimate quality.
+    from analysis import observability as OB
+    oo = stage("observability", deps["fetch_cause_counts"], layer, ft, fshape, window,
+               producer.CLOUD_COVER_THRESHOLD)
+    obs_out, eq_out = OB.outputs(fset["valid_obs"], OB.aoi_mask(layer, ft, fshape), oo, fset,
+                                 window, mv)
+
     # 4. flood surfaces and context.
     surfaces = dict(producer.hydrology_inputs(layer, fset, ht, (H_, W_), k))
     surfaces["conduits"] = road_conduits(layer, ht, (H_, W_))
@@ -285,6 +296,8 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
 
     outputs = {
         "fractions": _aoi_fraction_outputs(layer, fset, mv),
+        "observability": obs_out,
+        "estimate_quality": eq_out,
         "osm_coverage": _coverage_output(cov, mv),
         "susceptibility": hz,
         "change": _change_outputs(change, stages["change"], epochs, fset, mv),

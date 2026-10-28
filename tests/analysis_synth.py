@@ -91,10 +91,21 @@ def fake_change(layer, epochs):
     return out
 
 
+def fake_cause_counts(layer, transform, shape, window, cct):
+    """12 scenes everywhere; 2 cloudy everywhere, 1 shadowed on the top
+    half, none snowy."""
+    H, W = shape
+    sh = np.zeros(shape)
+    sh[: H // 2] = 1
+    return {"n_scene": np.full(shape, 12.0), "cloud_nodata": np.full(shape, 2.0),
+            "fully_shadowed": sh, "transient_snow": np.zeros(shape)}
+
+
 def deps(**overrides):
     d = {"init_ee": lambda: None, "load_layer": lambda name, bbox: synth_layer(),
          "context_fns": context_fns(), "fetch_dem": fake_dem,
-         "fetch_waterways": fake_waterways, "run_change": fake_change}
+         "fetch_waterways": fake_waterways, "run_change": fake_change,
+         "fetch_cause_counts": fake_cause_counts}
     d.update(overrides)
     return d
 

@@ -31,7 +31,8 @@ def test_whole_result_follows_the_contract(run):
 def test_chain_order_is_all_present(run):
     result, _ = run
     o = result["outputs"]
-    assert set(o) == {"fractions", "osm_coverage", "susceptibility", "change", "aggregation"}
+    assert set(o) == {"fractions", "observability", "estimate_quality", "osm_coverage",
+                      "susceptibility", "change", "aggregation"}
     assert set(o["susceptibility"]) == {"pluvial", "fluvial", "coastal", "flash_flood",
                                         "waterlogging"}
 

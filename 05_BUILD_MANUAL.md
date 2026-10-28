@@ -2140,7 +2140,21 @@ not the classification-pipeline vocabulary the original text may still
 suggest. See `04_FINDINGS_LEDGER.md`'s Part 6 translation note for the full
 mapping.
 
-### 33. C19 — denominator + `observed_fraction`
+### 33. C19 — denominator + `observed_fraction` ✅ *(2026-10-28, in the analysis pipeline; the retired 7-class pipeline is not changed)*
+
+> **Built 2026-10-28 (`analysis/observability.py`, Phase 2).** A pixel is
+> observed with ≥ `MIN_VALID_OBS` clear Sentinel-2 observations, and shadow
+> (SCL 3) and snow (SCL 11) observations now leave the composite as cloud
+> and no-data already did. `observed_fraction` is emitted beside every
+> fraction, and every output of the result carries a coverage sibling (the
+> result contract enforces it). Observability: `cloud_nodata`
+> (`experimental`), `fully_shadowed` and `transient_snow` (`placeholder`:
+> SCL only — no solar geometry, no permanent-snow layer), `fire_smoke` and
+> `ships` (`not_computed`). Each is the share of pixel-scene observations it
+> removed; they are not summed. Estimate quality: per-fraction
+> `prediction_interval` and `paved_derivation_uncertainty`, all
+> `not_computed` until item 21, and `observed_fraction` reads only the
+> clear-observation count. Tests: `tests/test_observability.py`.
 Apply Decision 14's convention. **Emit `observed_fraction` as a mandatory
 sibling field** — fixing the denominator alone just moves the bias. Emit
 ~~shadow / cloud-nodata / low-confidence-unmixing as three separate fields~~
