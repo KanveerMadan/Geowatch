@@ -13,12 +13,12 @@ Borrowed rigour, not looks:
   that reaches every action.
 - **Mapbox Studio**: the map stays full-bleed and live under every panel; the
   data layer outranks the base map.
+- **Vercel**: a monochrome interface, so the few colours on screen are data.
 
 **Base map (changed 2026-10-29 on review):** Esri World Imagery is the
 default, on the globe too; the quiet dark map is a toggle. Both live in one
 style and switch by visibility. Attribution is Esri's own service text.
 **Esri's terms must be checked before any public deployment.**
-- **Vercel**: a monochrome interface, so the few colours on screen are data.
 
 ## Rules
 
@@ -46,7 +46,7 @@ style and switch by visibility. Attribution is Esri's own service text.
 Image generation was not available in this environment, so these four
 written screen specs stand in for the reference images.
 
-**1. Empty world.** A dark globe, slowly turning, fills the screen. Top left:
+**1. Empty world.** A satellite globe, slowly turning, fills the screen. Top left:
 the search bar (wordmark glyph, "Search a place, address or coordinates",
 `/` hint) with "Draw an area" beside it. Top centre: tabs Ground / Flood /
 Change, disabled until there is an area. Nothing else on screen.
