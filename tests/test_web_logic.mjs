@@ -173,4 +173,36 @@ test('an unstored result names its gaps in plain words', () => {
   assert.equal(S.gapText({ not_stored_because: null }), null)
 })
 
+// ── the URL: what is shared is what is shown; clearing removes the area ──
+const L = await lib('link.js')
+test('a bbox link opens that box; invalid boxes are dropped', () => {
+  assert.deepEqual(L.parseLink('?bbox=36.77,-1.322,36.8,-1.3').bbox, [36.77, -1.322, 36.8, -1.3])
+  for (const bad of ['?bbox=1,2,3', '?bbox=5,0,1,1', '?bbox=0,-95,1,1', '?bbox=a,b,c,d', '']) {
+    assert.equal(L.parseLink(bad).bbox, null, bad)
+  }
+  assert.equal(L.parseLink('?job=../x').jobId, null)
+  assert.equal(L.parseLink('?tab=nope').tab, 'ground')
+})
+test('a link round-trips the box, a running job and the tab', () => {
+  const view = { bbox: [36.77, -1.322, 36.8, -1.3], jobId: 'j' + 'a'.repeat(24), jobDone: false, tab: 'flood' }
+  const back = L.parseLink(L.linkQuery(view))
+  assert.deepEqual(back, { bbox: view.bbox, jobId: view.jobId, tab: 'flood' })
+  assert.equal(L.parseLink(L.linkQuery({ ...view, jobDone: true })).jobId, null)
+})
+test('clearing the area clears it from the URL, job included', () => {
+  assert.equal(L.linkQuery({ bbox: null, jobId: 'j' + 'a'.repeat(24), jobDone: false, tab: 'ground' }), '')
+  assert.equal(L.linkQuery({ bbox: null, tab: 'change' }), '?tab=change')
+})
+test('a new area replaces the old one in the URL', () => {
+  const a = L.linkQuery({ bbox: [1, 1, 2, 2], tab: 'ground' })
+  const b = L.linkQuery({ bbox: [3, 3, 4, 4], tab: 'ground' })
+  assert.equal(L.parseLink(b).bbox[0], 3)
+  assert.ok(!b.includes('1.00000'), a)
+})
+test('a box opened from a link is never called "Drawn area"', () => {
+  const p = L.linkPlace([36.77, -1.322, 36.8, -1.3])
+  assert.equal(p.name, 'Selected area')
+  assert.equal(p.region, '1.311° S, 36.785° E')
+})
+
 console.log(`test_web_logic: ${n} passed`)

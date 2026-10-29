@@ -132,7 +132,14 @@ ul, ol { list-style: none; }
 }
 .panel-empty { display: grid; gap: var(--s-2); justify-items: start; padding-top: var(--s-8); color: var(--c-text2); }
 .panel-empty .lead { color: var(--c-text); }
-.panel-head { padding-right: var(--s-8); }
+.panel-head { padding-right: var(--s-8); display: grid; grid-template-columns: 1fr; }
+.btn-clear {
+  justify-self: start; order: 3; margin-top: var(--s-2); display: inline-flex; align-items: center; gap: var(--s-1);
+  height: 26px; padding: 0 var(--s-2); border: 1px solid var(--c-hairlineStrong); border-radius: var(--r-control);
+  background: transparent; color: var(--c-text2); cursor: pointer; font-size: var(--t-caption-size);
+  transition: color var(--d-fast) var(--ease), background var(--d-fast) var(--ease);
+}
+.btn-clear:hover { color: var(--c-text); background: var(--c-raised); }
 .place {
   font-size: var(--t-display-size); line-height: var(--t-display-lh); font-weight: var(--t-display-weight);
   letter-spacing: var(--t-display-track); margin-bottom: var(--s-1); overflow-wrap: anywhere; text-wrap: balance;

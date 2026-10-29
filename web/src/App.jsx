@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, animate, motion as m, useMotionValue, useReducedMotion } from 'motion/react'
 import {
-  CaretRight, Crosshair, Cube, FrameCorners, GlobeHemisphereWest, MapTrifold, Globe, Mountains, Drop, ArrowsLeftRight, Square, Lasso, MagnifyingGlass, Play, SidebarSimple,
+  CaretRight, Crosshair, Cube, X, FrameCorners, GlobeHemisphereWest, MapTrifold, Globe, Mountains, Drop, ArrowsLeftRight, Square, Lasso, MagnifyingGlass, Play, SidebarSimple,
 } from '@phosphor-icons/react'
 import { motion, breakpoint } from './design/tokens.js'
 import MapView from './map/MapView.jsx'
 import { clearScan, paintCells, scanFrame, setAoi, setCells, setFootprints, showFootprints } from './map/layers.js'
 import { ApiError, JOB_POLL_MS, aoiLabel, getBuildings, getFeatures, getJob, getLimits, getWard, startJob } from './lib/api.js'
 import { DEFAULT_POINT_BOX_KM, boxForPlace, maxBoxKm } from './lib/geo.js'
+import { linkPlace, linkQuery, parseLink } from './lib/link.js'
 import { outputsOf } from './lib/stages.js'
 import SearchBar from './components/SearchBar.jsx'
 import DrawTool from './components/DrawTool.jsx'
@@ -26,7 +27,10 @@ const TABS = [
 const TILT_3D_DEG = 15
 const TILT_ON_DEG = 55
 const TILTED_CELL_OPACITY = 0.4
-const BASEMAP_KEY = 'geowatch.basemap'
+// Versioned: a choice stored before satellite became the default (v1) must
+// not override it. The old key is removed once; later choices are kept.
+const BASEMAP_KEY = 'geowatch.basemap.v2'
+const BASEMAP_KEY_OLD = 'geowatch.basemap'
 const POLL_FAILURES_BEFORE_NOTICE = 5
 
 const isTyping = (el) => el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)
@@ -40,17 +44,19 @@ export default function App() {
   const [bbox, setBbox] = useState(null)
   const [job, setJob] = useState(null)
   const [startNote, setStartNote] = useState(null)
-  const [tab, setTab] = useState(() => {
-    const t = new URLSearchParams(window.location.search).get('tab')
-    return TABS.some((x) => x.id === t) ? t : 'ground'
-  })
+  // Read before any effect rewrites the URL.
+  const link = useRef(parseLink(window.location.search))
+  const [tab, setTab] = useState(link.current.tab)
   const [fraction, setFraction] = useState('built')
   const [panelOpen, setPanelOpen] = useState(false)
   const [drawMode, setDrawMode] = useState(null)
   const [boxKm, setBoxKm] = useState(DEFAULT_POINT_BOX_KM)
   // Satellite by default; the dark map is the toggle. Remembered per viewer.
   const [basemap, setBasemapState] = useState(() => {
-    try { return localStorage.getItem(BASEMAP_KEY) === 'dark' ? 'dark' : 'satellite' } catch { return 'satellite' }
+    try {
+      localStorage.removeItem(BASEMAP_KEY_OLD)
+      return localStorage.getItem(BASEMAP_KEY) === 'dark' ? 'dark' : 'satellite'
+    } catch { return 'satellite' }
   })
   const chooseBasemap = useCallback((b) => {
     setBasemapState(b)
@@ -65,7 +71,7 @@ export default function App() {
   const [buildings, setBuildings] = useState('none') // 'none' | 'loading' | 'shown' | 'missing'
   const [searchCmd, setSearchCmd] = useState(null)
   const searchInput = useRef(null)
-  const linkParams = useRef(new URLSearchParams(window.location.search)) // read before any effect rewrites the URL
+  const bboxRef = useRef(null)
   const hx = useMotionValue(0)
   const hy = useMotionValue(0)
   const reveal = useRef({ p: 0, v: 1 })
@@ -87,9 +93,10 @@ export default function App() {
     const cam = map.cameraForBounds([[b[0], b[1]], [b[2], b[3]]], {
       padding: wide ? { top: 96, bottom: 96, left: 80, right: 440 } : { top: 120, bottom: 320, left: 24, right: 24 },
     })
-    if (!cam) return
-    if (reduce) map.jumpTo({ ...cam, pitch: 0 })
-    else map.flyTo({ ...cam, pitch: 0, duration: motion.flyTo.ms, curve: motion.flyTo.curve, essential: true })
+    // No camera fits (e.g. a box wider than the globe in view): centre on it.
+    const target = cam ?? { center: [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2], zoom: Math.max(map.getZoom(), 3) }
+    if (reduce) map.jumpTo({ ...target, pitch: 0, bearing: 0 })
+    else map.flyTo({ ...target, pitch: 0, bearing: 0, duration: motion.flyTo.ms, curve: motion.flyTo.curve, essential: true })
   }, [map, reduce])
 
   const resetArea = useCallback(() => {
@@ -105,12 +112,22 @@ export default function App() {
     flyToBox(b)
   }, [maxKm2, resetArea, flyToBox])
 
+  // A drawn box replaces any earlier area, and the camera frames it.
   const onDrawn = useCallback((b) => {
     resetArea()
     setPlace(null)
     setBbox(b)
     setDrawMode(null)
     setPanelOpen(true)
+    flyToBox(b)
+  }, [resetArea, flyToBox])
+
+  // Back to the empty search state: no outline, no area in the panel or URL.
+  // The camera stays where it is; a running analysis is left to finish
+  // (and be cached) on the server.
+  const clearArea = useCallback(() => {
+    resetArea(); setBbox(null); setPlace(null); setDrawMode(null); setPanelOpen(false)
+    searchInput.current?.focus()
   }, [resetArea])
   const cancelDraw = useCallback(() => setDrawMode(null), [])
   // The drag-free way to set an area: whatever the map shows now.
@@ -127,17 +144,15 @@ export default function App() {
     map?.flyTo({ center: [20, 12], zoom: motion.globe.idleZoom, pitch: 0, bearing: 0, duration: reduce ? 0 : motion.flyTo.ms })
   }, [map, reduce, resetArea])
 
-  useEffect(() => { if (map) setAoi(map, bbox) }, [map, bbox])
+  useEffect(() => { bboxRef.current = bbox; if (map) setAoi(map, bbox) }, [map, bbox])
 
   // Deep links: ?bbox=w,s,e,n opens an area; ?job=<id> reattaches to a job.
   useEffect(() => {
     if (!map) return
-    const q = linkParams.current
-    const b = (q.get('bbox') ?? '').split(',').map(Number)
-    if (b.length === 4 && b.every(Number.isFinite) && b[0] < b[2] && b[1] < b[3]) {
-      setBbox(b); setPanelOpen(true); flyToBox(b)
+    const { bbox: b, jobId: id } = link.current
+    if (b) {
+      setBbox(b); setPlace(linkPlace(b)); setPanelOpen(true); flyToBox(b)
     }
-    const id = q.get('job')
     if (id) {
       getJob(id).then((j) => {
         setBbox(j.request.bbox); setPlace({ name: j.request.aoi_label.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()), region: null })
@@ -147,12 +162,8 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map])
   useEffect(() => {
-    const q = new URLSearchParams()
-    if (bbox) q.set('bbox', bbox.map((v) => v.toFixed(5)).join(','))
-    if (job?.job_id && job.status !== 'complete') q.set('job', job.job_id)
-    if (tab !== 'ground') q.set('tab', tab)
-    const url = q.toString() ? `?${q}` : window.location.pathname
-    window.history.replaceState(null, '', url)
+    const q = linkQuery({ bbox, jobId: job?.job_id, jobDone: job?.status === 'complete', tab })
+    window.history.replaceState(null, '', q || window.location.pathname)
   }, [bbox, job?.job_id, job?.status, tab])
 
   // ── analysis job ──
@@ -328,12 +339,14 @@ export default function App() {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); setPaletteOpen((o) => !o); return }
       if (isTyping(document.activeElement) || paletteOpen || e.metaKey || e.ctrlKey || e.altKey) return
       if (e.key === '/') { e.preventDefault(); searchInput.current?.focus() }
+      // Esc clears the area, unless a drawing is in progress (Esc cancels that).
+      if (e.key === 'Escape' && !drawMode && bboxRef.current) { e.preventDefault(); clearArea() }
       const t = TABS.find((x) => x.key === e.key)
       if (t) setTab(t.id)
     }
     window.addEventListener('keydown', key)
     return () => window.removeEventListener('keydown', key)
-  }, [paletteOpen])
+  }, [paletteOpen, drawMode, clearArea])
 
   const actions = useMemo(() => [
     { id: 'search', label: 'Search a place', icon: MagnifyingGlass, kbd: '/', run: () => setTimeout(() => searchInput.current?.focus(), 0) },
@@ -345,11 +358,12 @@ export default function App() {
     ...TABS.map((t) => ({ id: `tab-${t.id}`, label: `Show ${t.label}`, icon: t.icon, kbd: t.key, run: () => setTab(t.id) })),
     { id: 'panel', label: panelOpen ? 'Hide the panel' : 'Show the panel', icon: SidebarSimple, run: () => setPanelOpen((o) => !o) },
     { id: '3d', label: tilted ? 'Flatten the map' : 'Tilt the map to 3D', icon: Cube, disabled: !map, run: toggle3d },
+    { id: 'clear', label: 'Clear the area', icon: X, kbd: 'Esc', disabled: !bbox, run: clearArea },
     { id: 'globe', label: 'Back to the globe', icon: Globe, run: backToGlobe },
     { id: 'basemap', label: basemap === 'satellite' ? 'Show the dark map' : 'Show satellite imagery', icon: basemap === 'satellite' ? MapTrifold : GlobeHemisphereWest,
       run: () => chooseBasemap(basemap === 'satellite' ? 'dark' : 'satellite') },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  ], [bbox, jobLive, analyse, panelOpen, tilted, map, backToGlobe, useView, basemap, chooseBasemap])
+  ], [bbox, jobLive, analyse, panelOpen, tilted, map, backToGlobe, useView, basemap, chooseBasemap, clearArea])
 
   const outputs = outputsOf(job)
   const measuredChoices = Object.entries(outputs.fractions ?? {})
@@ -405,7 +419,7 @@ export default function App() {
                 {tab === 'ground' ? (
                   <GroundPanel place={place} bbox={bbox} maxKm2={maxKm2} job={job} onAnalyse={analyse} onRetry={analyse}
                     onRedraw={() => setDrawMode('rect')} fraction={fraction} onFraction={setFraction}
-                    cell={cell} onCloseCell={closeCell} cellsNote={cellsNote} />
+                    cell={cell} onCloseCell={closeCell} cellsNote={cellsNote} onClear={clearArea} />
                 ) : (
                   <div className="panel-empty">
                     <p className="lead">{tabLabel} view</p>

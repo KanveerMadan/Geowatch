@@ -132,7 +132,7 @@ function CellBreakdown({ cell, onClose }) {
   )
 }
 
-export default function GroundPanel({ place, bbox, maxKm2, job, onAnalyse, onRetry, onRedraw, fraction, onFraction, cell, onCloseCell, cellsNote }) {
+export default function GroundPanel({ place, bbox, maxKm2, job, onAnalyse, onRetry, onRedraw, fraction, onFraction, cell, onCloseCell, cellsNote, onClear }) {
   if (!bbox) {
     return (
       <div className="panel-empty">
@@ -155,6 +155,9 @@ export default function GroundPanel({ place, bbox, maxKm2, job, onAnalyse, onRet
     <>
       <header className="panel-head">
         <h2 className="place">{place?.name ?? 'Drawn area'}</h2>
+        <button type="button" className="btn-clear" onClick={onClear} aria-label="Clear area (Esc)">
+          <X size={13} aria-hidden="true" /> Clear area
+        </button>
         <p className="muted">
           {place?.region && <>{place.region}<span aria-hidden="true"> · </span></>}
           <span className={`area area-${st}`}>{fmtKm2(km2)}</span>

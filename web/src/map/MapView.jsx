@@ -4,6 +4,8 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import { color, motion } from '../design/tokens.js'
 import { addLayers } from './layers.js'
 
+const SPIN_MAX_ZOOM = 3.5
+
 // The dark map: OpenFreeMap, free vector tiles with no key, OpenStreetMap data.
 const DARK_STYLE = 'https://tiles.openfreemap.org/styles/dark'
 
@@ -124,7 +126,8 @@ export default function MapView({ onReady, spinning, reducedMotion, basemap }) {
       const tick = (now) => {
         const dt = (now - last) / 1000
         last = now
-        if (spinRef.current && !held && !map.isMoving()) {
+        // Only the idle globe turns: a cleared area at street zoom must not drift.
+        if (spinRef.current && !held && !map.isMoving() && map.getZoom() <= SPIN_MAX_ZOOM) {
           const c = map.getCenter()
           map.jumpTo({ center: [c.lng + motion.globe.degPerSecond * dt, c.lat] })
         }
