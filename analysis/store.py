@@ -139,6 +139,18 @@ def _lock(rid: str) -> threading.Lock:
         return _locks.setdefault(rid, threading.Lock())
 
 
+def cached(bbox, start, end, *, boundary_id: str | None = None, producer=None,
+           root: str = RESULTS_ROOT, commit: dict | None = None) -> tuple:
+    """(result_id, stored result) when this request is already stored, else
+    (None, None). The same key analyze() uses, without running anything."""
+    from analysis.fractions import StandInFractions
+    from analysis.run import resolve_window, version_for
+    mv = version_for(producer or StandInFractions(), commit)
+    rid = result_id(bbox, resolve_window(start, end), boundary_id, mv["version_id"])
+    hit = get(rid, root)
+    return (rid, hit) if hit is not None else (None, None)
+
+
 def analyze(bbox, start, end, *, name: str, boundary_id: str | None = None, producer=None,
             root: str = RESULTS_ROOT, runner=None, commit: dict | None = None,
             run_kwargs: dict | None = None) -> dict:

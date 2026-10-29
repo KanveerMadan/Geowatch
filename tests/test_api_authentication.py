@@ -105,10 +105,11 @@ def _request_for(api_module, method: str, path: str):
             "aoi_label": "dharavi", **VALID_BBOX, **INUNDATION_DATES
         },
     }
-    bodies["/api/legacy/analyze"] = bodies["/api/analyze"]
+    bodies["/api/legacy/analyze"] = bodies["/api/jobs"] = bodies["/api/analyze"]
     concrete = (path.replace("{run_id}", "dharavi_20260629_122047")
                 .replace("{result_id}", "r" + "0" * 24).replace("{unit_type}", "grid")
-                .replace("{unit_id}", "0").replace("{name}", "pluvial_susceptibility"))
+                .replace("{unit_id}", "0").replace("{name}", "pluvial_susceptibility")
+                .replace("{job_id}", "j" + "0" * 24))
     return method, concrete, bodies.get(path)
 
 
@@ -183,6 +184,7 @@ PUBLIC_READ_ROUTES = {
     "/api/results/{result_id}/maps/{name}",
     "/api/results/{result_id}/wards/{unit_type}",
     "/api/results/{result_id}/wards/{unit_type}/{unit_id}",
+    "/api/results/{result_id}/features/{unit_type}",
 }
 
 

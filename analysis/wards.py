@@ -177,13 +177,29 @@ def ward_context(result: dict) -> dict:
                 "observed_fraction", {}).get("validation_status", "experimental")}
 
 
-def _cell(cell: dict, *, label, sources, mv, basis, **extra) -> dict:
+def _value_status(cell: dict) -> tuple:
+    """(value, status): a value only where the cell is available and has one."""
     status = cell["status"]
     value = cell["value"] if status == "available" else None
     if status == "available" and value is None:
         status = "insufficient_observation"
-    if value is not None:
-        value = round(float(value), 6)
+    return (round(float(value), 6) if value is not None else None), status
+
+
+def feature(unit: dict, ctx: dict) -> dict:
+    """One stored unit as a GeoJSON feature for drawing. Absent is null, never
+    0 (item 36): the status says why."""
+    props = {"unit_id": unit.get("unit_id"), "unit_name": unit.get("unit_name"),
+             "area_m2": unit["area_m2"]}
+    for f in ctx["fractions"]:
+        props[f], props[f"{f}_status"] = _value_status(
+            unit.get(f) or {"value": None, "status": "not_computed"})
+    return {"type": "Feature", "id": unit["unit_index"], "geometry": unit.get("geometry"),
+            "properties": props}
+
+
+def _cell(cell: dict, *, label, sources, mv, basis, **extra) -> dict:
+    value, status = _value_status(cell)
     if status == "available":
         return C.output(value, validation_status=label,
                         coverage=C.coverage(cell["coverage"], basis),

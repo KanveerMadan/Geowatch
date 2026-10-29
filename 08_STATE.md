@@ -794,6 +794,16 @@ stays partial.
 
 ---
 
+## Phase 4 recorded 2026-10-29 — the job API and the new frontend (`build/frontend`)
+
+| What | State |
+|---|---|
+| **Job API** | `POST /api/jobs` (protected, same validation as `/api/analyze`) returns a job id at once (202); `GET /api/jobs/{id}` (protected) gives the job status (`queued` → `running` → `complete` \| `failed`), every stage's status (`running` → `ok` \| `failed` \| `timeout`) and each output group (`fractions`, `observability`, `susceptibility`, `change`) as soon as it is final, in the contract's own shape; the full result once complete. A stored area is a job born complete, with no run. `analysis/jobs.py` wraps `store.analyze`, so the result contract and the store's rules are unchanged; jobs are kept in process memory only |
+| **Map features** | `GET /api/results/{id}/features/{unit_type}` (public): every unit as GeoJSON for drawing, each fraction's value where measured and `null` plus its status where not |
+| **AOI limit** | `GET /` now reports `max_aoi_area_km2`, so the UI reads the limit instead of copying it |
+
+---
+
 ## Decision 11 third amendment — recorded 2026-10-29
 
 **Decided by the user, 2026-10-29,** on the 2026-10-28 ceiling checks
