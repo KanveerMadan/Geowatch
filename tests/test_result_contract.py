@@ -106,6 +106,45 @@ def test_code_commit_reads_git():
     assert len(c["commit"]) == 40
 
 
+def test_serving_code_does_not_change_the_result_id_but_a_stage_does(tmp_path):
+    """Editing analysis/jobs.py (or store.py) leaves version_id, and so the
+    result ID, unchanged, committed or not; editing a stage changes both."""
+    import subprocess
+    from analysis import store
+
+    def git(*a):
+        subprocess.run(["git", "-c", "user.email=t@t", "-c", "user.name=t", *a], cwd=tmp_path,
+                       check=True, capture_output=True)
+
+    files = {"analysis/jobs.py": "A = 1\n", "analysis/store.py": "B = 1\n",
+             "analysis/run.py": "STEP = 1\n", "vector/roads.py": "R = 1\n"}
+    for f, text in files.items():
+        (tmp_path / f).parent.mkdir(parents=True, exist_ok=True)
+        (tmp_path / f).write_text(text)
+    git("init", "-q")
+    git("add", "-A")
+    git("commit", "-qm", "base")
+    window = {"start": "2026-01-01", "end": "2026-03-31"}
+
+    def rid():
+        mv = C.model_version({"p": "1"}, commit=C.code_commit(str(tmp_path)))
+        return store.result_id((36.77, -1.32, 36.8, -1.3), window, None, mv["version_id"])
+
+    base = rid()
+    for serving in ("analysis/jobs.py", "analysis/store.py"):
+        (tmp_path / serving).write_text("A = 2  # serving change\n")
+        assert rid() == base, f"uncommitted {serving} edit changed the result ID"
+        git("commit", "-qam", f"edit {serving}")
+        assert rid() == base, f"committed {serving} edit changed the result ID"
+    (tmp_path / "analysis/run.py").write_text("STEP = 2\n")
+    dirty_stage = rid()
+    assert dirty_stage != base
+    git("commit", "-qam", "edit a stage")
+    assert rid() != base                     # committed stage edit: a new ID too
+    (tmp_path / "vector/roads.py").write_text("R = 2\n")
+    assert rid() != base
+
+
 # ── enforcement ──
 
 def test_a_well_formed_result_passes():

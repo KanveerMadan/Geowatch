@@ -141,9 +141,16 @@ def sha256_json(obj) -> str:
 # otherwise any docs edit would invalidate every cached result. Measured
 # 2026-10-28: a ledger edit made mid-run gave Dharavi's rerun a new ID.
 CODE_PATHS = ("analysis", "vector", "susceptibility", "ingestion", "perception", "configs")
+# Serving code inside those packages: it stores, queues and runs results but
+# computes no output, so editing it must not change version_id (2026-10-29: a
+# job-API commit made the stored Kibera result unreachable and forced a rerun).
+# api.py is outside CODE_PATHS already. A module that computes any output
+# must never be listed here.
+SERVING_PATHS = ("analysis/jobs.py", "analysis/store.py", "analysis/live_runs.py")
 
 
-def code_commit(repo_dir: str | None = None, paths=CODE_PATHS) -> dict:
+def code_commit(repo_dir: str | None = None, paths=CODE_PATHS,
+                exclude=SERVING_PATHS) -> dict:
     """{"commit": the last commit touching `paths`, "dirty": bool,
     "diff_sha256": hash of the uncommitted diff under `paths` or None,
     "repo_head": HEAD, for traceability}. Outside a git checkout,
@@ -153,9 +160,10 @@ def code_commit(repo_dir: str | None = None, paths=CODE_PATHS) -> dict:
         def git(*a):
             return subprocess.run(["git", *a], cwd=cwd, capture_output=True, text=True,
                                   timeout=30, check=True).stdout
+        spec = [*paths, *(f":(exclude){p}" for p in exclude)]
         head = git("rev-parse", "HEAD").strip()
-        sha = git("log", "-1", "--format=%H", "--", *paths).strip() or head
-        diff = git("diff", "HEAD", "--", *paths)
+        sha = git("log", "-1", "--format=%H", "--", *spec).strip() or head
+        diff = git("diff", "HEAD", "--", *spec)
     except (OSError, subprocess.SubprocessError):
         return {"commit": os.getenv("GEOWATCH_CODE_COMMIT", "unknown"), "dirty": None,
                 "diff_sha256": None, "repo_head": None}
@@ -174,6 +182,7 @@ def model_version(artifacts: dict, commit: dict | None = None) -> dict:
     version_id = sha256_json([commit["commit"], commit.get("diff_sha256"), artifact_hash])[:16]
     return {"code_commit": commit["commit"], "code_dirty": commit.get("dirty"),
             "repo_head": commit.get("repo_head"), "code_paths": list(CODE_PATHS),
+            "code_paths_excluded": list(SERVING_PATHS),
             "artifact_hash": artifact_hash, "artifacts": dict(artifacts),
             "version_id": version_id}
 

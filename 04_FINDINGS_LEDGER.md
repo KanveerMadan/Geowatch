@@ -1106,6 +1106,49 @@ C62: C59 is on `build/flood2`, C60 and C61 on `master` (`build/ceilings`).*
 
 ***C66–C71 added 2026-10-28** from item 26 Phase 1a, flood round 2 (`build/flood2`). **No fate assigned.** C66–C69 were first written as C60–C63 on the branch and renumbered at rebase: `master` had taken C59–C65 meanwhile. C70–C71 came from integrating with `master`'s analysis pipeline.*
 
+***C74–C77 added 2026-10-29** from Phase 4 (`build/frontend`: the job API and the new frontend). **No fate assigned.** Numbered from C74: `build/flood3` holds C72–C73.*
+
+### C74 — Serving code was in the result version key, so editing it orphaned stored results [S] *(entry; fixed in code 2026-10-29)*
+
+`analysis/contract.py` `CODE_PATHS` hashed the whole `analysis/` package
+into `version_id`, which keys the result store. `analysis/jobs.py`,
+`store.py` and `live_runs.py` store, queue and run results but compute no
+output. Committing the job API (`analysis/jobs.py`) gave the stored Kibera
+result a new ID, so the next request missed the cache and re-ran the whole
+pipeline (Earth Engine and Overpass) for an unchanged result. Fixed: those
+three are excluded by git pathspec (`SERVING_PATHS`) and recorded as
+`code_paths_excluded`. `tests/test_result_contract.py::test_serving_code_does_not_change_the_result_id_but_a_stage_does`
+fails on the old code. Residual: `analysis/wards.py` mixes aggregation
+(an output) with serving (`materialize`, `feature`), so it stays hashed.
+
+### C75 — The result contract has no field for a validation's scope [S] *(entry)*
+
+A `validated` output holds only for the events and inputs it was tested on
+(fluvial: Hanoi and Kolonnawa, round 2). The contract carries no field for
+that scope, so the UI cannot show it; `web/src/lib/contract.js` reads
+`validation_scope` if present and otherwise says "Scope of the validation
+not stated". No output is `validated` in the contract today (C70), so
+nothing is mislabelled yet.
+
+### C76 — The stand-in fractions overlap and can sum past 1 in a cell [S] *(entry)*
+
+`built` is footprint area; `vegetation` and `water` are Sentinel-2 index
+classes. They are measured independently, so a 100 m cell can be counted
+as both built and vegetated. Measured on the stored Kibera result
+(2026-10-29, 850 grid cells): 42 cells sum past 1, maximum 1.154. Any
+stacked or "remainder" display is wrong without saying so; the UI's hover
+chart scales to the sum and states the overlap. Item 21's regression, which
+predicts the fractions jointly, is the producer that would remove it.
+
+### C77 — Stage time limits pause while the host sleeps [E] *(entry)*
+
+`analysis/stages.py` and `ee_timeout.py` bound stages with
+`Thread.join(timeout)`, which counts monotonic time. On a sleeping laptop
+that clock pauses, so a stage can overrun its wall-clock limit by the
+sleep's length: the 2026-10-29 Kibera run's `hydro_rasters` stage logged
+5561 s against a 1500 s limit and the run was stored as incomplete. Not a
+defect on a server that does not sleep; it matters for local runs.
+
 ### C71 — The analysis pipeline's 240 s request deadline cannot carry a 10-year IMERG percentile [E] *(entry)*
 
 `analysis/stages.py` keeps one Earth Engine per-request deadline for every
