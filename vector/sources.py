@@ -25,7 +25,10 @@ from ingestion.overpass import (
     OverpassError, OverpassQueryError, OverpassQueryTooHeavy, run_query,
 )
 
-CACHE_DIR = os.path.join("cache", "vector")
+# Outside the checkout, so every worktree reuses one cache and removing a
+# worktree never deletes fetched clauses.
+CACHE_DIR = os.environ.get("GEOWATCH_VECTOR_CACHE",
+                           os.path.expanduser("~/.cache/geowatch/vector"))
 OVERPASS_WORKERS = 2
 
 _ARTERIAL_RE = "motorway|trunk|primary|secondary|tertiary"
