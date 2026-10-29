@@ -159,10 +159,14 @@ def _coverage_output(cov: dict, mv: dict, claims: dict | None = None) -> dict:
                                   f"footprints: {cov['footprint_source']}"],
                     model_version=mv, unit="percentile of narrow pedestrian density",
                     coverage_regime_flag=cov["coverage_regime_flag"],
+                    low_coverage_warning=cov["low_coverage_warning"], scored=cov["scored"],
                     regime_reasons=cov["regime_reasons"],
                     topology_metrics_suppressed=cov["topology_metrics_suppressed"],
                     footprint_metrics_confidence=cov["footprint_metrics_confidence"],
                     narrow_pedestrian_km_per_km2=cov["narrow_pedestrian_km_per_km2"],
+                    percentile_basis=cov["percentile_basis"],
+                    reference_set_size=cov["reference_set_size"],
+                    reference_measured_on=cov["reference_measured_on"],
                     measure=cov["measure"], source_layer_id=cov["source_layer_id"],
                     **({"osm_claims": claims} if claims else {}))
 

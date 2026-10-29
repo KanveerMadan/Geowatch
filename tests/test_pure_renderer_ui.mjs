@@ -53,6 +53,14 @@ test('App.jsx carries no Dharavi grid fallback', () => {
 
 /* ── hardcoded category lists ── */
 
+test('App.jsx opens on no city: empty AOI fields and a world map', () => {
+  assert.match(app, /useState\(\{ west: '', south: '', east: '', north: '' \}\)/)
+  assert.match(app, /<MapContainer center=\{\[0, 0\]\} zoom=\{2\}/)
+  for (const coord of ['72.836', '19.037', '72.862', '19.060', '19.048', '72.849']) {
+    assert.ok(!app.includes(coord), `App.jsx carries Dharavi coordinate ${coord}`)
+  }
+})
+
 test('category labels are derived from the key, for any key', () => {
   assert.equal(need().humanize('dense_informal_roofing'), 'Dense informal roofing')
   assert.equal(need().humanize('some_future_class'), 'Some future class')

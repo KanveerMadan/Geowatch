@@ -15,9 +15,9 @@ import { humanize, hazardKeys, isUnpaved, segmentGrid } from './render'
 // so every request had been 401ing since that shipped.
 import { apiFetch, fetchImageObjectUrl, isKeyMissing } from './api'
 import { legacyPipelineNotice } from './legacyPipeline'
-// Build item 20: the OSM coverage regime per vector AOI, read from the backend
-// report and never re-derived. See ./coverage.
-import { coverageRows, percentileText, densityText, warningHeadline } from './coverage'
+// Build item 20: the OSM coverage of the AOI being viewed, read from its result
+// and never re-derived. See ./coverage.
+import { coverageBlockOf, coverageView, percentileText, densityText } from './coverage'
 
 
 /* ============================================================
@@ -310,59 +310,34 @@ function ReportCard({ title, status, children, style }) {
    OSM COVERAGE — build item 20
    ============================================================ */
 
-// Every vector AOI with its coverage regime. Rows that warn get the loud box;
-// the regime, reasons and partial-fetch notes are the backend's own words.
-function CoverageRow({ row }) {
-  const accent = row.warning ? C.coral : C.green
-  return (
-    <div data-testid="coverage-row" style={{ padding: '8px 0', borderBottom: `1px solid ${C.hairline}` }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 6 }}>
-        <span style={{ fontFamily: FONTS.mono, fontSize: 10.5, color: C.text, overflow: 'hidden', textOverflow: 'ellipsis' }}>{row.aoi}</span>
-        <span data-testid="coverage-regime" style={{
-          fontFamily: FONTS.mono, fontSize: 9, color: accent, background: `${accent}18`,
-          border: `1px solid ${accent}44`, borderRadius: 20, padding: '1px 7px', whiteSpace: 'nowrap',
-        }}>{row.regimeLabel}</span>
-      </div>
-      <div style={{ fontFamily: FONTS.mono, fontSize: 9.5, color: C.textDim, marginTop: 3 }}>
-        {row.measurable
-          ? <>pctl {percentileText(row)} · ped {densityText(row)} km/km²</>
-          : <span data-testid="coverage-not-measurable">Coverage {percentileText(row)}: no score</span>}
-        {row.validationStatus && <> · {row.validationStatus}</>}
-      </div>
-      {row.warning && (
-        <div role="alert" data-testid="coverage-warning" style={{
-          marginTop: 6, background: C.coralDim, border: `1px solid ${C.coral}`, borderRadius: 6,
-          padding: '6px 8px', fontFamily: FONTS.body, fontSize: 10.5, color: C.text, lineHeight: 1.5,
-        }}>
-          <b style={{ color: C.coral }}>⚠ {warningHeadline(row)}</b>
-          {row.reasons.map((r, i) => <div key={i} style={{ color: C.textDim }}>{r}</div>)}
-          {row.topologySuppressed && <div>Network-topology metrics suppressed.</div>}
-          {row.footprintConfidence && <div>Footprint metrics confidence: {row.footprintConfidence}.</div>}
-        </div>
-      )}
-      {row.partialFetch.map((p, i) => (
-        <div key={i} data-testid="coverage-partial-fetch" style={{
-          marginTop: 5, background: C.amberDim, border: `1px solid ${C.amber}`, borderRadius: 6,
-          padding: '4px 8px', fontFamily: FONTS.body, fontSize: 10, color: C.text, lineHeight: 1.45,
-        }}>
-          <b style={{ color: C.amber }}>Partial fetch</b> · {p.field}: missing {p.missingClauses.join(', ') || '—'}
-          {p.note && <div style={{ color: C.textDim }}>{p.note}</div>}
-        </div>
-      ))}
-    </div>
-  )
-}
-
-function CoveragePanel({ report, error }) {
-  const rows = coverageRows(report)
+// The coverage of the AOI being viewed, from that result's own block. The
+// main text is plain language; the backend's numbers are details only.
+function CoveragePanel({ view }) {
   return (
     <div data-testid="coverage-panel" style={{ padding: '14px 18px' }}>
-      <div style={{ fontFamily: FONTS.body, fontSize: 10.5, color: C.textDim, letterSpacing: '0.05em', textTransform: 'uppercase', fontWeight: 600 }}>OSM coverage · vector AOIs</div>
-      <div style={{ fontFamily: FONTS.body, fontSize: 10, color: C.textFaint, margin: '3px 0 6px', lineHeight: 1.45 }}>
-        Peer-relative density rank, not a completeness rate.{report?.generated_at && <> Scored {report.generated_at.slice(0, 10)}.</>}
-      </div>
-      {error && <div style={{ fontFamily: FONTS.body, fontSize: 10.5, color: C.coral, lineHeight: 1.5 }}>Coverage report unavailable: {error}</div>}
-      {rows.map(row => <CoverageRow key={row.aoi} row={row} />)}
+      <div style={{ fontFamily: FONTS.body, fontSize: 10.5, color: C.textDim, letterSpacing: '0.05em', textTransform: 'uppercase', fontWeight: 600, marginBottom: 6 }}>Road map · this area</div>
+      {!view
+        ? <div data-testid="coverage-empty" style={{ fontFamily: FONTS.body, fontSize: 10.5, color: C.textFaint, lineHeight: 1.5 }}>Analyze an area to check its road map.</div>
+        : <>
+          <div role={view.warning ? 'alert' : undefined} data-testid="coverage-headline" style={{
+            background: view.warning ? C.coralDim : 'none', border: `1px solid ${view.warning ? C.coral : C.hairline}`,
+            borderRadius: 6, padding: '7px 9px', fontFamily: FONTS.body, fontSize: 11, color: C.text, lineHeight: 1.5,
+          }}>
+            <b style={{ color: view.warning ? C.coral : C.green }}>{view.headline}</b>
+            {view.notes.map((n, i) => <div key={i} data-testid="coverage-note" style={{ color: C.textDim }}>{n}</div>)}
+          </div>
+          <Disclosure>
+            <div style={{ fontFamily: FONTS.mono, fontSize: 9.5, color: C.textDim, lineHeight: 1.6 }}>
+              <div>{view.regimeLabel}{view.validationStatus && <> · {view.validationStatus}</>}</div>
+              {view.measurable
+                ? <div>pctl {percentileText(view)} · ped {densityText(view)} km/km²</div>
+                : <div data-testid="coverage-not-measurable">Coverage {percentileText(view)}: no score</div>}
+              {view.reasons.map((r, i) => <div key={i}>{r}</div>)}
+              {view.partialFetch.map((p, i) => <div key={i} data-testid="coverage-partial-fetch">{p.field}: missing {p.missingClauses.join(', ') || '—'}</div>)}
+              <div style={{ color: C.textFaint }}>Peer-relative density rank, not a completeness rate.</div>
+            </div>
+          </Disclosure>
+        </>}
     </div>
   )
 }
@@ -1282,25 +1257,12 @@ export default function App() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [selected, setSelected] = useState(null)
-  const [manualBbox, setManualBbox] = useState({ west: '72.836', south: '19.037', east: '72.862', north: '19.060' })
+  const [manualBbox, setManualBbox] = useState({ west: '', south: '', east: '', north: '' })
   const [showLandcover, setShowLandcover] = useState(true)
   const [landcoverOpacity, setLandcoverOpacity] = useState(0.75)
   const [showRoadsVector, setShowRoadsVector] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [reportMode, setReportMode] = useState(false)
-  const [coverageReport, setCoverageReport] = useState(null)
-  const [coverageError, setCoverageError] = useState(null)
-
-  // Item 20: the stored coverage report. Read once; it is built offline.
-  useEffect(() => {
-    apiFetch('/api/vector/coverage')
-      .then(async r => {
-        if (!r.ok) throw new Error((await r.json().catch(() => null))?.detail || `HTTP ${r.status}`)
-        return r.json()
-      })
-      .then(setCoverageReport)
-      .catch(e => setCoverageError(e.message))
-  }, [])
 
   useEffect(() => {
     if (!bbox) return
@@ -1440,19 +1402,14 @@ export default function App() {
           )}
 
           <div style={{ flex: 1, overflowY: 'auto' }}>
-            <CoveragePanel report={coverageReport} error={coverageError} />
-          </div>
-          <div style={{ padding: '10px 18px', borderTop: `1px solid ${C.hairline}` }}>
-            <div style={{ fontFamily: FONTS.mono, fontSize: 8.5, color: C.textFaint, lineHeight: 1.6 }}>
-              Sentinel-2 SR · SAM vit_b · ResNet50+DeepLabV3+<br />CPS Lab · VIPS Delhi
-            </div>
+            <CoveragePanel view={coverageView(coverageBlockOf(result))} />
           </div>
         </div>
       )}
 
       {/* Map */}
       <div style={{ flex: 1, position: 'relative', cursor: drawing ? 'crosshair' : 'default' }}>
-        <MapContainer center={[19.048, 72.849]} zoom={14} style={{ height: '100%', width: '100%' }} zoomControl>
+        <MapContainer center={[0, 0]} zoom={2} style={{ height: '100%', width: '100%' }} zoomControl>
           <DragToggle drawing={drawing} />
           <MapRecenter bbox={bbox} />
           <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" attribution="Tiles &copy; Esri" />

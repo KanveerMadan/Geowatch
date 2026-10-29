@@ -199,8 +199,8 @@ def test_analyze_rejects_adjacent_bad_labels_with_400(client, stub_pipeline, lab
 
 def test_analyze_rejects_traversal_even_in_demo_mode(client, stub_pipeline):
     """
-    `demo: true` short-circuits to get_demo() and never uses aoi_label, so it
-    would be tempting to validate after that branch. Validating before it means
+    `demo: true` is refused without using aoi_label, so it would be tempting
+    to validate after that branch. Validating before it means
     no request shape at all can carry an unchecked label into the handler —
     fail closed, with no exempt path to reason about later.
     """

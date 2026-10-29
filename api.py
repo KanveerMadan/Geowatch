@@ -88,8 +88,7 @@ def _load_api_key() -> str:
         raise RuntimeError(
             f"{API_KEY_ENV_VAR} is not set. The GeoWatch API refuses to start "
             f"without it: every endpoint runs GEE-backed pipeline work or "
-            f"returns run data, and POST /api/scheduler/trigger fans one "
-            f"request out into a pipeline run per watched AOI. Set "
+            f"returns run data. Set "
             f"{API_KEY_ENV_VAR} to a high-entropy secret "
             f"(python -c 'import secrets; print(secrets.token_urlsafe(32))') "
             f"and restart."
@@ -149,7 +148,7 @@ async def require_api_key(request: Request, call_next):
 # Stored analysis results are public to READ: GET only, and only under
 # /api/results. Everything that triggers computation (POST /api/analyze,
 # /api/legacy/analyze, /api/analyze_inundation) and everything that serves
-# legacy run data (/api/runs, /api/demo, the /runs mount) still needs the key.
+# legacy run data (/api/runs, the /runs mount) still needs the key.
 # The exemption is a fullmatch on the path, so /api/resultsX or a mount
 # cannot ride on it, and it sits in the same middleware as the key check, so
 # coverage stays a property of the perimeter (C35).
@@ -169,12 +168,6 @@ def is_public_read(method: str, path: str) -> bool:
 os.makedirs("data/pipeline_runs", exist_ok=True)
 app.mount("/runs", StaticFiles(directory="data/pipeline_runs"), name="runs")
 
-# ── Watched AOIs — refreshed automatically every 5 days ──
-WATCHED_AOIS = [
-    {"label": "dharavi", "west": 72.836,  "south": 19.037,  "east": 72.862,  "north": 19.060},
-    {"label": "nairobi", "west": 36.775,  "south": -1.320,  "east": 36.810,  "north": -1.290},
-    {"label": "jakarta", "west": 106.820, "south": -6.140,  "east": 106.870, "north": -6.090},
-]
 # ── AOI area limit — geodesic, in real km², not square-degrees ──
 # PREVIOUS BUG: bbox_area = (east-west)*(north-south) is square-degrees,
 # not km². Its physical meaning changes with latitude -- one degree of
@@ -214,12 +207,10 @@ def _matches_label_whitelist(label: str) -> bool:
     """
     The whitelist predicate itself, with no opinion about how to complain.
 
-    Split out for C35 (build item 47). The same rule has to hold at two
-    boundaries that fail in different ways: the HTTP boundary raises
-    HTTPException(400), while the startup check over WATCHED_AOIS raises
-    RuntimeError, because an HTTPException outside a request is meaningless.
-    One predicate, two callers -- so the two can never drift into disagreeing
-    about what a valid label is, which is the failure mode that let C35 exist.
+    Split out for C35 (build item 47), so every caller (AOI labels, boundary
+    layer ids, get_latest_run) applies one rule and none can drift
+    into disagreeing about what a valid label is, which is the failure mode
+    that let C35 exist.
     """
     return isinstance(label, str) and AOI_LABEL_PATTERN.fullmatch(label) is not None
 
@@ -409,102 +400,9 @@ def get_latest_run(aoi_label: str) -> dict | None:
         return json.load(f)
 
 
-def refresh_all_watched_aois():
-    """Re-runs the pipeline for all watched AOIs with latest imagery.
-
-    NOT SCHEDULED since 2026-09-25 (C46): the 5-day APScheduler job that ran
-    it was removed, because run_pipeline is the retired 7-class pipeline.
-    Kept, unscheduled, because the C35 whitelist check lives here and is
-    tested, and a replacement may reuse the loop.
-
-    Returns one outcome dict per AOI attempted: "complete", "failed" (an
-    in-band status from run_pipeline) or "exception" (with its class).
-    """
-    print(f"[Scheduler] Starting refresh at {datetime.now().isoformat()}")
-    from pipeline import run_pipeline
-    outcomes = []
-    for aoi in WATCHED_AOIS:
-        # C35: re-checked at call time, not only at import. WATCHED_AOIS is a
-        # module-level list and nothing makes it immutable, so the import-time
-        # assertion proves the configured value was good, not that the value
-        # being used right now is. Skip loudly rather than raising: one bad
-        # entry must not stop the other cities from refreshing.
-        if not _matches_label_whitelist(aoi.get("label")):
-            print(
-                f"[Scheduler] SKIPPING {aoi.get('label')!r}: fails the AOI "
-                f"whitelist (C35). It would become a path component inside "
-                f"run_pipeline()."
-            )
-            continue
-        # C18 / item 54: run_pipeline signals failure two ways. It RAISES on
-        # an integration or programmer error, and RETURNS status "failed"
-        # when there is genuinely nothing to process. Both are checked here.
-        # Only checking `except` is what printed "refreshed OK" for a failed
-        # run. The broad catch is the right one at this fan-out loop, so one
-        # city cannot stop the rest, and it records the exception class.
-        try:
-            result = run_pipeline(
-                west=aoi["west"], south=aoi["south"],
-                east=aoi["east"], north=aoi["north"],
-                start_date=None, end_date=None,  # triggers get_latest_image()
-                aoi_label=aoi["label"],
-            )
-        except Exception as e:
-            outcome = {"label": aoi["label"], "outcome": "exception",
-                       "exception_class": type(e).__name__, "error": str(e)}
-            print(f"[Scheduler] {aoi['label']} FAILED with "
-                  f"{type(e).__name__}: {e}")
-        else:
-            status = (result or {}).get("status")
-            if status == "complete":
-                outcome = {"label": aoi["label"], "outcome": "complete"}
-                print(f"[Scheduler] {aoi['label']} refreshed OK.")
-            else:
-                outcome = {"label": aoi["label"], "outcome": "failed",
-                           "error": (result or {}).get("error")}
-                print(f"[Scheduler] {aoi['label']} FAILED in-band "
-                      f"(status={status!r}): {outcome['error']}")
-        outcomes.append(outcome)
-    return outcomes
-
-
-# ── C35 — WATCHED_AOIS bypasses the API boundary (build item 47) ──
-#
-# The scheduler calls run_pipeline() directly, so a label in WATCHED_AOIS
-# reaches path construction WITHOUT crossing the API boundary that
-# validate_aoi_label() defends. All three configured labels happen to pass the
-# whitelist today, so there is no current exposure — but nothing enforced that,
-# and a future edit would have reached path construction unimpeded, under the
-# scheduler's privileges.
-#
-# The important implication C35 recorded: "validated at the API boundary" is not
-# the same as "validated everywhere." So the same whitelist is asserted here, at
-# import, against the same predicate the HTTP boundary uses.
-#
-# Startup failure, not a warning and not a silent skip: a mistyped watched label
-# should stop the service, not quietly drop one city's refresh and leave a gap
-# nobody notices for five days.
-def _validate_watched_aois() -> None:
-    """Assert every configured watched label satisfies the AOI whitelist."""
-    offenders = [
-        aoi.get("label") for aoi in WATCHED_AOIS
-        if not _matches_label_whitelist(aoi.get("label"))
-    ]
-    if offenders:
-        raise RuntimeError(
-            f"WATCHED_AOIS contains labels that fail the AOI whitelist: "
-            f"{offenders!r}. Each label becomes a filesystem path component "
-            f"inside run_pipeline(), and the scheduler reaches it without "
-            f"crossing the API boundary (C35). Allowed: lowercase a-z, digits "
-            f"0-9, underscore and hyphen; length 1-{AOI_LABEL_MAX_LENGTH}."
-        )
-
-
-_validate_watched_aois()
-
-# The 5-day auto-refresh scheduler that ran refresh_all_watched_aois() was
-# REMOVED 2026-09-25 (C46): it ran the retired 7-class pipeline unattended.
-# Nothing in this process runs run_pipeline() on a timer any more.
+# The 5-day auto-refresh scheduler was REMOVED 2026-09-25 (C46): it ran the
+# retired 7-class pipeline unattended over a fixed list of three cities. The
+# list and its refresh loop were removed 2026-10-29: GeoWatch serves any AOI.
 SCHEDULER_DISABLED_REASON = (
     "Auto-refresh disabled 2026-09-25 (C46): it ran the retired, unvalidated "
     "7-class pipeline. Stored results are served as they are."
@@ -574,20 +472,9 @@ def root():
     }
 
 
-@app.get("/api/demo")
-def get_demo():
-    """Serves the most recent STORED Dharavi result. It is no longer
-    auto-refreshed (scheduler removed 2026-09-25, C46), and every result it
-    serves is a legacy 7-class pipeline result: stored runs from before the
-    marker existed get it added here (the file on disk is not modified)."""
-    data = get_latest_run("dharavi")
-    if not data:
-        raise HTTPException(status_code=404, detail="No Dharavi run found. Run pipeline first.")
-    data.setdefault("legacy_pipeline", legacy_pipeline_marker())
-    mark_retired(data)
-    data["_demo_mode"] = True
-    data["_auto_refresh"] = SCHEDULER_DISABLED_REASON
-    return data
+# Demo mode served one fixed city's stored run. Removed 2026-10-29: there is
+# no default AOI. Refused, not ignored, so `demo: true` cannot silently run.
+DEMO_REMOVED_DETAIL = "demo mode is removed: there is no default AOI. Send a bounding box."
 
 
 @app.post("/api/analyze")
@@ -598,9 +485,7 @@ def analyze(req: AnalysisRequest):
     if req.boundary_layer_id is not None:
         validate_boundary_layer_id(req.boundary_layer_id)
     if req.demo:
-        raise HTTPException(status_code=400, detail=(
-            "demo serves the legacy 7-class pipeline's stored Dharavi run: "
-            "use GET /api/demo (legacy, retired)."))
+        raise HTTPException(status_code=400, detail=DEMO_REMOVED_DETAIL)
     if req.west >= req.east or req.south >= req.north:
         raise HTTPException(status_code=400, detail="Invalid bounding box.")
     aoi_geo = compute_aoi_geodesics(req.west, req.south, req.east, req.north)
@@ -637,7 +522,7 @@ def legacy_analyze(req: AnalyzeRequest):
     # shape that reaches path construction with an unchecked label.
     validate_aoi_label(req.aoi_label)
     if req.demo:
-        return get_demo()
+        raise HTTPException(status_code=400, detail=DEMO_REMOVED_DETAIL)
     if req.west >= req.east or req.south >= req.north:
         raise HTTPException(status_code=400, detail="Invalid bounding box.")
 
@@ -877,7 +762,6 @@ def scheduler_status():
         "status": "disabled",
         "reason": SCHEDULER_DISABLED_REASON,
         "next_run": None,
-        "watched_aois": [a["label"] for a in WATCHED_AOIS],
     }
 
 

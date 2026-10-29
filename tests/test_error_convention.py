@@ -223,51 +223,12 @@ def test_inform_wrong_sheet_name_raises(inform_file, monkeypatch):
         vs.get_inform_vulnerability_context("IND")
 
 
-# ── C18: the scheduler checks what run_pipeline actually signals ────────
+# ── Items 54/55: the HTTP boundary names the exception class ────────
 
 @pytest.fixture
 def api_module():
     import api
     return api
-
-
-def _run_scheduler(api_module, monkeypatch, outcome):
-    import pipeline
-
-    def fake_run_pipeline(**kwargs):
-        if isinstance(outcome, BaseException):
-            raise outcome
-        return outcome
-
-    monkeypatch.setattr(pipeline, "run_pipeline", fake_run_pipeline)
-    monkeypatch.setattr(api_module, "WATCHED_AOIS", [
-        {"label": "dharavi", "west": 72.836, "south": 19.037,
-         "east": 72.862, "north": 19.060},
-    ])
-    return api_module.refresh_all_watched_aois()
-
-
-def test_in_band_failure_is_not_reported_as_refreshed(api_module, monkeypatch, capsys):
-    """The ledger case: run_pipeline returns {"status": "failed"} and the
-    scheduler used to print "refreshed OK"."""
-    outcomes = _run_scheduler(api_module, monkeypatch,
-                              {"status": "failed", "error": "No tiles generated"})
-    assert "refreshed OK" not in capsys.readouterr().out
-    assert outcomes == [{"label": "dharavi", "outcome": "failed",
-                         "error": "No tiles generated"}]
-
-
-def test_raised_failure_records_its_exception_class(api_module, monkeypatch):
-    outcomes = _run_scheduler(api_module, monkeypatch, ee.EEException("quota"))
-    assert outcomes[0]["outcome"] == "exception"
-    assert outcomes[0]["exception_class"] == "EEException"
-
-
-def test_success_is_reported_as_complete(api_module, monkeypatch, capsys):
-    outcomes = _run_scheduler(api_module, monkeypatch,
-                              {"status": "complete", "run_id": "dharavi_20260101_000000"})
-    assert outcomes[0]["outcome"] == "complete"
-    assert "refreshed OK" in capsys.readouterr().out
 
 
 def test_analyze_500_names_the_exception_class(api_module, monkeypatch):

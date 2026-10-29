@@ -15,12 +15,6 @@ expected to be defeated by Starlette's own normalisation before they ever reach
 the handler; they are kept precisely so that a future routing change cannot
 quietly remove that protection without a test noticing.
 
-C35 [E]: `WATCHED_AOIS` reaches `run_pipeline` without crossing the API
-boundary. All three configured labels pass the whitelist, so there was no
-current exposure — but nothing enforced it. Item 47 requires the check to hold
-everywhere `run_pipeline` or path construction from a label can be reached, not
-only at the two originally-known sinks. See the C35 section at the end.
-
 The property under test is REJECTION, not sanitisation: a fix that stripped the
 offending characters and continued would return a run the caller never asked
 for. Every assertion checks for a non-200 refusal and that no file outside the
@@ -254,79 +248,6 @@ def test_resolve_within_data_root_rejects_escapes(api_module, parts):
     assert exc.value.status_code == 400
 
 
-# ── C35 — the boundary must hold where the API is not involved ──
-
-def test_watched_aois_all_pass_the_whitelist(api_module):
-    """The configured labels are valid — the state C35 observed but nothing enforced."""
-    for aoi in api_module.WATCHED_AOIS:
-        assert api_module._matches_label_whitelist(aoi["label"]), aoi["label"]
-
-
-def test_watched_aoi_validation_raises_on_a_bad_label(api_module, monkeypatch):
-    """
-    A bad label in WATCHED_AOIS stops the service at import.
-
-    This is the actual C35 fix: not "the current three labels are fine", but
-    "a future edit cannot introduce a bad one silently". Startup failure rather
-    than a warning, because a mistyped watched label should not quietly drop one
-    city's refresh and leave a five-day gap nobody notices.
-    """
-    monkeypatch.setattr(
-        api_module, "WATCHED_AOIS",
-        [{"label": "../../../tmp/pwn", "west": 0, "south": 0, "east": 1, "north": 1}],
-    )
-    with pytest.raises(RuntimeError, match="WATCHED_AOIS"):
-        api_module._validate_watched_aois()
-
-
-@pytest.mark.parametrize(
-    "bad_label",
-    [
-        pytest.param("../../../tmp/pwn", id="traversal"),
-        pytest.param("/etc/passwd", id="absolute"),
-        pytest.param("Dharavi", id="uppercase"),
-        pytest.param("dharavi ward", id="space"),
-        pytest.param("", id="empty"),
-        pytest.param(None, id="none"),
-    ],
-)
-def test_watched_aoi_validation_rejects_each_bad_shape(api_module, monkeypatch, bad_label):
-    monkeypatch.setattr(
-        api_module, "WATCHED_AOIS",
-        [{"label": bad_label, "west": 0, "south": 0, "east": 1, "north": 1}],
-    )
-    with pytest.raises(RuntimeError):
-        api_module._validate_watched_aois()
-
-
-def test_scheduler_skips_an_invalid_label_instead_of_running_it(api_module, monkeypatch):
-    """
-    The runtime half of the C35 fix. WATCHED_AOIS is a mutable module-level
-    list, so the import-time assertion proves the CONFIGURED value was good, not
-    that the value in use right now is. The loop re-checks, and must skip the
-    bad entry without invoking run_pipeline on it.
-    """
-    import sys
-    import types
-
-    invoked = []
-    stub = types.ModuleType("pipeline")
-    stub.run_pipeline = lambda *a, **k: invoked.append(k.get("aoi_label"))
-    monkeypatch.setitem(sys.modules, "pipeline", stub)
-    monkeypatch.setattr(
-        api_module, "WATCHED_AOIS",
-        [
-            {"label": "../../../tmp/pwn", "west": 0, "south": 0, "east": 1, "north": 1},
-            {"label": "dharavi", "west": 72.836, "south": 19.037, "east": 72.862, "north": 19.060},
-        ],
-    )
-    api_module.refresh_all_watched_aois()
-    assert "../../../tmp/pwn" not in invoked, (
-        "the scheduler invoked run_pipeline with a label that fails the whitelist"
-    )
-    assert "dharavi" in invoked, "a valid AOI was skipped alongside the bad one"
-
-
 def test_get_latest_run_rejects_a_bad_label(api_module):
     """
     get_latest_run filters directory names with startswith() rather than
@@ -341,7 +262,7 @@ def test_get_latest_run_rejects_a_bad_label(api_module):
 
 def test_one_predicate_governs_both_boundaries(api_module):
     """
-    The HTTP boundary and the startup check must agree on what a valid label is,
+    The HTTP boundary and get_latest_run must agree on what a valid label is,
     by construction. If someone reimplements one of them, this catches the
     drift — the divergence C35 warned about.
     """

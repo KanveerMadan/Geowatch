@@ -1,8 +1,7 @@
 """C46 (2026-09-25): POST /api/scheduler/trigger is disabled with an explicit
 HTTP error naming the retired 7-class pipeline, and the 5-day auto-refresh job
 that ran run_pipeline is removed. POST /api/analyze is NOT disabled (the UI's
-Analyze button depends on it); its results are marked. /api/demo serves the
-last stored result, marked."""
+Analyze button depends on it); its results are marked."""
 import json
 import pathlib
 import sys
@@ -53,23 +52,6 @@ def test_root_and_status_report_disabled(authed):
     st = client.get("/api/scheduler/status").json()
     assert st["scheduler_running"] is False and st["status"] == "disabled"
     assert "C46" in st["reason"]
-
-
-def test_demo_serves_stored_result_marked_without_touching_it(authed, tmp_path, monkeypatch):
-    api, client = authed
-    stored = {"run_id": "dharavi_20260101_000000", "landcover": {}}      # pre-marker run
-    monkeypatch.setattr(api, "get_latest_run", lambda label: dict(stored))
-    body = client.get("/api/demo").json()
-    assert body["legacy_pipeline"]["notice"] == "Legacy 7-class pipeline — retired, not validated."
-    assert body["_demo_mode"] is True and "C46" in body["_auto_refresh"]
-    assert "legacy_pipeline" not in stored                                 # source untouched
-
-
-def test_demo_keeps_an_existing_marker(authed, monkeypatch):
-    api, client = authed
-    marker = {"retired": True, "validated": False, "notice": "from the run"}
-    monkeypatch.setattr(api, "get_latest_run", lambda label: {"legacy_pipeline": marker})
-    assert client.get("/api/demo").json()["legacy_pipeline"] == marker
 
 
 def test_trigger_still_requires_auth_first():
