@@ -12,7 +12,12 @@ Borrowed rigour, not looks:
   colour rather than size; hairlines instead of boxes; a command palette
   that reaches every action.
 - **Mapbox Studio**: the map stays full-bleed and live under every panel; the
-  data layer outranks the base map, which stays dark and quiet.
+  data layer outranks the base map.
+
+**Base map (changed 2026-10-29 on review):** Esri World Imagery is the
+default, on the globe too; the quiet dark map is a toggle. Both live in one
+style and switch by visibility. Attribution is Esri's own service text.
+**Esri's terms must be checked before any public deployment.**
 - **Vercel**: a monochrome interface, so the few colours on screen are data.
 
 ## Rules
@@ -30,6 +35,11 @@ Borrowed rigour, not looks:
 5. **Never block.** No overlay covers the map. Progress is the scan line over
    the area, plus skeletons in the panel sections still waiting.
 6. **Shape lock:** controls 8 px, panels 14 px, badges full pill.
+7. **The drawn box is the analysed box.** Rectangle, lasso (its bounding
+   box) and point + fixed box (10 x 10 km by default, adjustable to the
+   limit) all end as one `[w, s, e, n]`; its outline is drawn densified along
+   parallels and meridians, so it stays a true geographic rectangle on the
+   globe and on a tilted map. Drawing levels the map first.
 
 ## Screens (Step A)
 

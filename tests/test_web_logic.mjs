@@ -98,9 +98,9 @@ test('stacked bar: absent is not a segment; overlap is scaled and flagged', () =
 })
 
 // ── geometry ──
-test('box area matches the sphere at the equator and shrinks with latitude', () => {
+test('box area is ellipsoidal at the equator and shrinks with latitude', () => {
   const eq = G.bboxAreaKm2([0, -0.05, 0.1, 0.05])
-  assert.ok(Math.abs(eq - 123.6) < 0.5, eq)
+  assert.ok(Math.abs(eq - 123.1) < 0.2, eq)       // 11.13 km x 11.06 km on WGS84
   assert.ok(G.bboxAreaKm2([0, 59.95, 0.1, 60.05]) < eq * 0.51)
 })
 test('area state: ok, warn from 80%, over past the limit', () => {

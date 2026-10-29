@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion as m, useReducedMotion } from 'motion/react'
-import { MagnifyingGlass, Square, Lasso, CircleNotch, MapPin, X } from '@phosphor-icons/react'
+import { MagnifyingGlass, Square, Lasso, Crosshair, CircleNotch, MapPin, X } from '@phosphor-icons/react'
 import { motion } from '../design/tokens.js'
 import { parseCoordinates } from '../lib/geo.js'
 import { searchPlaces } from '../lib/geocode.js'
@@ -103,6 +103,10 @@ export default function SearchBar({ inputRef, onPick, drawMode, onDraw, command 
         <button type="button" className={`chip chip-icon${drawMode === 'lasso' ? ' chip-on' : ''}`} aria-pressed={drawMode === 'lasso'}
           onClick={() => onDraw(drawMode === 'lasso' ? null : 'lasso')} aria-label="Draw freehand (lasso)" title="Draw freehand">
           <Lasso size={15} />
+        </button>
+        <button type="button" className={`chip chip-icon${drawMode === 'point' ? ' chip-on' : ''}`} aria-pressed={drawMode === 'point'}
+          onClick={() => onDraw(drawMode === 'point' ? null : 'point')} aria-label="Click a point for a fixed box" title="Point + fixed box">
+          <Crosshair size={15} />
         </button>
       </div>
       <AnimatePresence>
