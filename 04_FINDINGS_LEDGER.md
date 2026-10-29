@@ -27,6 +27,8 @@ Fate categories:
 - **REFUTED** — disproven by evidence.
 - **CONFIRMED** — the finding stands as measured and a decision has acted on
   it; there is no defect to fix. *(Added 2026-10-29.)*
+- **OPEN** — a known limitation that stands, unfixed, with no work scheduled
+  for it yet. *(Added 2026-10-29, for C73.)*
 - **NEEDS FATE** — flagged during this pass; not yet triaged. See note below.
 
 ---
@@ -35,13 +37,14 @@ Fate categories:
 
 | Fate | Count | Meaning |
 |---|---:|---|
-| CLOSED | 17 | 5 during Part 1; C34/C35 via item 47; C43 via the patch-construction investigation; **C4, C10, C14, C20, C23, C24, C31, C32 via the `applicability-gating` merge; C44 via the shared Overpass client** |
+| CLOSED | 19 | 5 during Part 1; C34/C35 via item 47; C43 via the patch-construction investigation; **C4, C10, C14, C20, C23, C24, C31, C32 via the `applicability-gating` merge; C44 via the shared Overpass client; C70, C71 FIXED in `build/flood3` (2026-10-29)** |
 | REFUTED | 2 | Disproven |
 | DELETED | 13 | Architecture change removes the code |
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SUPERSEDED | 2 | **C42, C45** — the pivot retires the code they describe |
 | SURVIVES | 25 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed** by the 2026-09-23 triage; C44 was elevated the same day and then **FIXED**) |
-| CONFIRMED | 2 | **C60, C61** (2026-10-29) — acted on by Decision 11's third amendment |
+| CONFIRMED | 3 | **C60, C61** (2026-10-29) — acted on by Decision 11's third amendment; **C72** (2026-10-29) — round 3's box rule kept as recorded |
+| OPEN | 1 | **C73** (2026-10-29) — Earth Engine's server-side limit can still drop IMERG |
 | NEEDS FATE | 3 | Cleared 2026-09-23; **C48, C49, C50 added 2026-10-28** (Lane E documentation pass), untriaged. *(Count not maintained since: C51–C65 also added 2026-10-28, see the section)* |
 
 **This is the authoritative list for the "irreducible cluster."**
@@ -138,6 +141,26 @@ scope at 10 m (R² 0.436).
 
 `snow_ice` stays, pending a cloud-confusion check before labelling. See
 `05_BUILD_MANUAL.md` Decision 11.
+
+### Assigned 2026-10-29 — flood follow-ups (`build/flood3`)
+
+**C70 — a validated module capped by its own validated inputs → FIXED** in
+`dca9e27`. A module that runs exactly its validated configuration keeps
+`validated`, with a mandatory scope note. Any difference falls back to the
+worst-of-inputs rule.
+
+**C71 — the 240 s request deadline cannot carry the IMERG percentile →
+FIXED** in `5242eca`. IMERG has its own 1200 s deadline; every other request
+keeps 240 s. Checked live: 308 s uncached, layer delivered.
+
+**C72 — the flood-centred box can land far from the named town →
+CONFIRMED.** Round 3's box rule is kept as recorded and not changed. Its
+verdicts stand.
+
+**C73 — Earth Engine's server-side limit can still drop IMERG → OPEN.** The
+client deadline cannot prevent it. When it happens, flash flood scores
+without `rainfall_intensity`, and the layer is recorded under
+`hydro_rasters.errors`.
 
 ---
 
@@ -1104,9 +1127,9 @@ above.*
 pipeline, the result contract, Part 6). **No fate assigned.** Numbered from
 C62: C59 is on `build/flood2`, C60 and C61 on `master` (`build/ceilings`).*
 
-***C72–C73 added 2026-10-29** from item 26's flood follow-ups, round 3 (`build/flood3`). **No fate assigned.***
+***C72–C73 added 2026-10-29** from item 26's flood follow-ups, round 3 (`build/flood3`). ~~**No fate assigned.**~~ **C72 CONFIRMED, C73 OPEN, 2026-10-29** — see § *Fates assigned*.*
 
-### C73 — Earth Engine's own computation limit can still drop the IMERG layer, whatever the client deadline [E] *(entry)*
+### C73 — Earth Engine's own computation limit can still drop the IMERG layer, whatever the client deadline [E] OPEN
 
 In round 3, Volos's IMERG p99.9 request failed with `EEException:
 Computation timed out.` That is Earth Engine's server-side limit, not the
@@ -1119,7 +1142,7 @@ pipeline, such a failure is recorded under `hydro_rasters.errors` and flash
 flood scores without `rainfall_intensity`, the C71 behaviour, by a
 different cause.
 
-### C72 — Centring the box on the mapped flood moved some boxes far from the event's town, into another mechanism [E] *(entry)*
+### C72 — Centring the box on the mapped flood moved some boxes far from the event's town, into another mechanism [E] CONFIRMED
 
 Round 3's rule centres each box on the area-weighted centroid of the EMS
 product's mapped flood. For products covering a wide area, that is far
@@ -1130,9 +1153,9 @@ dry cells), not a steep-catchment flash flood. The verdicts stand under the
 pre-registered rule, and no box was moved. But a product's mapped
 extent is not always the mechanism the event was assigned to.
 
-***C66–C71 added 2026-10-28** from item 26 Phase 1a, flood round 2 (`build/flood2`). **No fate assigned.** C66–C69 were first written as C60–C63 on the branch and renumbered at rebase: `master` had taken C59–C65 meanwhile. C70–C71 came from integrating with `master`'s analysis pipeline.*
+***C66–C71 added 2026-10-28** from item 26 Phase 1a, flood round 2 (`build/flood2`). **No fate assigned.** C66–C69 were first written as C60–C63 on the branch and renumbered at rebase: `master` had taken C59–C65 meanwhile. C70–C71 came from integrating with `master`'s analysis pipeline. **C70 and C71 FIXED 2026-10-29** (`build/flood3`) — see § *Fates assigned*; C66–C69 still have no fate.*
 
-### C71 — The analysis pipeline's 240 s request deadline cannot carry a 10-year IMERG percentile [E] *(entry)*
+### C71 — The analysis pipeline's 240 s request deadline cannot carry a 10-year IMERG percentile [E] ✅ FIXED
 
 `analysis/stages.py` keeps one Earth Engine per-request deadline for every
 stage, `EE_REQUEST_DEADLINE_S = 240`. The flash-flood intensity input (IMERG
@@ -1144,14 +1167,14 @@ Round 2's verdicts are unaffected: the harness sets its own deadline, and
 within-event AUC cannot see a 0.1° near-constant component. The pipeline's
 flash-flood level still differs from the validated configuration's.
 
-*Addressed 2026-10-29 (`build/flood3`), fate not assigned:* the IMERG
+*Fixed 2026-10-29 in `5242eca` (`build/flood3`):* the IMERG
 request now sets its own deadline (`hydro_rasters.IMERG_DEADLINE_S`, 1200 s,
 one attempt) and restores the caller's afterwards. Every other request keeps
 240 s. Checked live inside `run_stage`: an uncached box took 308 s for IMERG,
 the layer arrived, and the deadline was back at 240 s. Earth Engine's own
 computation limit can still drop it (C73).
 
-### C70 — A validated module is capped at `experimental` by its own validated inputs [S] *(entry)*
+### C70 — A validated module is capped at `experimental` by its own validated inputs [S] ✅ FIXED
 
 `analysis/contract.py` labels each hazard output with the worst of the
 module's label, its Tier 2 verdict and its inputs' labels. After round 2,
@@ -1164,7 +1187,7 @@ fractions). Whether it should also cap a module with the inputs it was
 validated with has not been decided. Left as is: no label was changed to
 make `validated` appear.
 
-*Addressed 2026-10-29 (`build/flood3`), fate not assigned:* decided that a
+*Fixed 2026-10-29 in `dca9e27` (`build/flood3`):* decided that a
 module running **exactly** its validated configuration keeps `validated`,
 with a mandatory scope note. The configuration covers method, weights,
 ceilings, and each input's source and method; the note covers events,
