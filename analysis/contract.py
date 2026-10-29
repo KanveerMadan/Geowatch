@@ -63,6 +63,12 @@ FLOOD_VALIDATION_ROUND2_SHA256 = "6edde1eddd0a18c354db568f95babba1ec7af04754de69
 # round 1's verdict was on a method that no longer exists. Pluvial and coastal
 # kept theirs: where round 2 could not test them (not-run), round 1 stands.
 ROUND2_REPLACED_METHODS = ("fluvial", "flash_flood", "waterlogging")
+# Round 3 (item 26 follow-ups): the same methods and weights re-tested with
+# boxes centred on the mapped flood. Where it gave a verdict, that verdict is
+# the module's; where it was not-run, the round-2 rule above decides.
+FLOOD_VALIDATION_ROUND3_RESULT = os.path.join("experiments", "flood_validation",
+                                              "result_round3_2026-10-29.json")
+FLOOD_VALIDATION_ROUND3_SHA256 = "317daa1fcd96cb786463ca980ba1684bb89e9ba07da1e78f33a411518e6f5b5b"
 VERDICT_LABEL = {"failed": "failed", "passed": "validated", "validated": "validated"}
 
 # C70 (item 26 flood follow-ups): a module that ran EXACTLY the configuration
@@ -166,18 +172,26 @@ def _pinned_modules(path: str, expected: str) -> dict:
 
 def flood_verdicts(path: str = FLOOD_VALIDATION_RESULT, expected_sha256: str | None = None,
                    round2_path: str = FLOOD_VALIDATION_ROUND2_RESULT,
-                   round2_sha256: str | None = None) -> dict:
-    """{module: verdict}: each module's round-2 held-out verdict; where that
-    is not-run and the module's method is unchanged since round 1, round 1's
-    verdict. Raises if either file's hash is not the pinned one."""
+                   round2_sha256: str | None = None,
+                   round3_path: str = FLOOD_VALIDATION_ROUND3_RESULT,
+                   round3_sha256: str | None = None) -> dict:
+    """{module: verdict}: each module's round-3 held-out verdict where round 3
+    gave one; else its round-2 verdict; where that is not-run and the
+    module's method is unchanged since round 1, round 1's verdict. Raises if
+    any file's hash is not the pinned one."""
     r1 = _pinned_modules(path, FLOOD_VALIDATION_SHA256 if expected_sha256 is None
                          else expected_sha256)
     r2 = _pinned_modules(round2_path, FLOOD_VALIDATION_ROUND2_SHA256 if round2_sha256 is None
                          else round2_sha256)
+    r3 = _pinned_modules(round3_path, FLOOD_VALIDATION_ROUND3_SHA256 if round3_sha256 is None
+                         else round3_sha256)
     out = {}
     for m in r1.keys() | r2.keys():
         v2 = (r2.get(m) or {}).get("held_out", {}).get("verdict")
-        if v2 and (v2 != "not-run" or m in ROUND2_REPLACED_METHODS):
+        v3 = (r3.get(m) or {}).get("held_out", {}).get("verdict")
+        if v3 and v3 != "not-run":
+            out[m] = v3
+        elif v2 and (v2 != "not-run" or m in ROUND2_REPLACED_METHODS):
             out[m] = v2
         else:
             out[m] = (r1.get(m) or {}).get("verdict")

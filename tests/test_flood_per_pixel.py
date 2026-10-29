@@ -82,7 +82,8 @@ def test_waterlogging_reads_impervious_per_cell():
     out = waterlogging.compute_waterlogging_susceptibility(r, imp, weights=ALL_ONE)
     m = out["susceptibility_map"][0]
     assert m[1] > m[0]
-    assert out["validation_status"] == "placeholder"        # weakest input
+    assert out["validation_status"] == "failed"     # round 3 failed it; outranks placeholder
+    assert out["inputs"]["impervious"]["validation_status"] == "placeholder"
     assert out["inputs"]["impervious"]["source"] == "test footprints"
 
 
@@ -93,9 +94,9 @@ def test_waterlogging_refuses_impervious_on_another_grid():
         waterlogging.compute_waterlogging_susceptibility(r, imp)
 
 
-def test_waterlogging_without_impervious_is_experimental():
+def test_waterlogging_without_impervious_carries_its_round3_verdict():
     out = waterlogging.compute_waterlogging_susceptibility(_rasters(hand_m=5.0, slope_deg=1.0))
-    assert out["validation_status"] == "experimental"
+    assert out["validation_status"] == "failed"
     assert "impervious (unavailable)" in out["components_excluded"]
 
 

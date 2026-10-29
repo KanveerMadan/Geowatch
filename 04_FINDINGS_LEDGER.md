@@ -1104,6 +1104,32 @@ above.*
 pipeline, the result contract, Part 6). **No fate assigned.** Numbered from
 C62: C59 is on `build/flood2`, C60 and C61 on `master` (`build/ceilings`).*
 
+***C72–C73 added 2026-10-29** from item 26's flood follow-ups, round 3 (`build/flood3`). **No fate assigned.***
+
+### C73 — Earth Engine's own computation limit can still drop the IMERG layer, whatever the client deadline [E] *(entry)*
+
+In round 3, Volos's IMERG p99.9 request failed with `EEException:
+Computation timed out.` That is Earth Engine's server-side limit, not the
+client deadline C71 lengthened, and it was raised with the 1200 s deadline
+in place. Kastelli (247 s) and Choloma (212 s) succeeded, as did an uncached
+Kathmandu box inside the pipeline (308 s). Volos's verdict is unaffected:
+its box lies inside one 0.1° IMERG cell, so the component would have been a
+constant there, and within-event AUC is unchanged by a constant. In the
+pipeline, such a failure is recorded under `hydro_rasters.errors` and flash
+flood scores without `rainfall_intensity`, the C71 behaviour, by a
+different cause.
+
+### C72 — Centring the box on the mapped flood moved some boxes far from the event's town, into another mechanism [E] *(entry)*
+
+Round 3's rule centres each box on the area-weighted centroid of the EMS
+product's mapped flood. For products covering a wide area, that is far
+from the town the event was named for. Belize City's box is ~55 km inland.
+Volos's is ~75 km west, in the Thessaly plain, where Storm Daniel's
+flooding was mostly river and lake inundation (10,911 flooded and 6,872
+dry cells), not a steep-catchment flash flood. The verdicts stand under the
+pre-registered rule, and no box was moved. But a product's mapped
+extent is not always the mechanism the event was assigned to.
+
 ***C66–C71 added 2026-10-28** from item 26 Phase 1a, flood round 2 (`build/flood2`). **No fate assigned.** C66–C69 were first written as C60–C63 on the branch and renumbered at rebase: `master` had taken C59–C65 meanwhile. C70–C71 came from integrating with `master`'s analysis pipeline.*
 
 ### C71 — The analysis pipeline's 240 s request deadline cannot carry a 10-year IMERG percentile [E] *(entry)*
@@ -1118,6 +1144,13 @@ Round 2's verdicts are unaffected: the harness sets its own deadline, and
 within-event AUC cannot see a 0.1° near-constant component. The pipeline's
 flash-flood level still differs from the validated configuration's.
 
+*Addressed 2026-10-29 (`build/flood3`), fate not assigned:* the IMERG
+request now sets its own deadline (`hydro_rasters.IMERG_DEADLINE_S`, 1200 s,
+one attempt) and restores the caller's afterwards. Every other request keeps
+240 s. Checked live inside `run_stage`: an uncached box took 308 s for IMERG,
+the layer arrived, and the deadline was back at 240 s. Earth Engine's own
+computation limit can still drop it (C73).
+
 ### C70 — A validated module is capped at `experimental` by its own validated inputs [S] *(entry)*
 
 `analysis/contract.py` labels each hazard output with the worst of the
@@ -1130,6 +1163,15 @@ pipeline. The rule was written for placeholder stand-ins (item 21's
 fractions). Whether it should also cap a module with the inputs it was
 validated with has not been decided. Left as is: no label was changed to
 make `validated` appear.
+
+*Addressed 2026-10-29 (`build/flood3`), fate not assigned:* decided that a
+module running **exactly** its validated configuration keeps `validated`,
+with a mandatory scope note. The configuration covers method, weights,
+ceilings, and each input's source and method; the note covers events,
+regions and input versions (`analysis/contract.VALIDATED_CONFIGS`, literals
+from the pinned round-2 run). Any difference falls back to the
+worst-of-inputs rule. `check_output` refuses a `validated` output without a
+scope. Fluvial now reads `validated`.
 
 ### C69 — Round 2's pre-registration labelled not-run as "keeps its current label", against the decided meaning [S] *(entry)*
 

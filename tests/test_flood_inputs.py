@@ -94,7 +94,8 @@ def test_waterlogging_reads_the_declared_impervious_share():
     r = compute_waterlogging_susceptibility(None, IMP, weights={"impervious": 1.0})
     assert r["impervious_fraction_pct"] == 50.0           # mean of 0.5, 1.0, 0.0
     assert r["inputs"]["impervious"]["source"] == "test footprints"
-    assert r["validation_status"] == "placeholder"
+    assert r["inputs"]["impervious"]["validation_status"] == "placeholder"
+    assert r["validation_status"] == "failed"      # round 3's verdict outranks the input
 
 
 def test_waterlogging_signature_takes_no_7class_surfaces():

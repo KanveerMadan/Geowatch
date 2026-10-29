@@ -4,9 +4,9 @@ as they are: susceptibility/ is not edited here).
 
 Each module's output becomes one contract output. Its label is the worst of
 the module's own label, its pinned Tier 2 verdict, and its inputs' labels
-(analysis.contract.hazard_label). Pluvial is `failed` (round 1; round 2 could
-not test it); coastal is `failed` (round 2). Fluvial, flash flood and
-waterlogging are per-pixel since item 26 Phase 1a. Fluvial reads `validated`,
+(analysis.contract.hazard_label). Pluvial, flash flood and waterlogging are
+`failed` (round 3, boxes on the mapped flood); coastal is `failed` (round 2).
+Fluvial, flash flood and waterlogging are per-pixel since item 26 Phase 1a. Fluvial reads `validated`,
 with its scope note, only while it runs exactly the configuration round 2
 validated (C70, analysis.contract.VALIDATED_CONFIGS); otherwise its
 experimental raster inputs cap it.
