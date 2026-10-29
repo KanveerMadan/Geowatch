@@ -40,12 +40,12 @@ def _classify(score):
     return "very_high"
 
 
-# Item 26 Phase 1a, round 2 (experiments/flood_validation/result_round2_2026-10-28.json):
-# not-run -- 1 of 3 held-out events had >= 50 flooded cells (Kastelli 0.881;
-# Volos 0 flooded, Choloma outside its EMS product), fewer than the 2 required.
-# Not-run is "experimental": the per-pixel method is untested at the bar.
-# (Round 1's scalar method failed, 0.447; that method is gone.)
-VALIDATION_STATUS = "experimental"
+# Round 3 (experiments/flood_validation/result_round3_2026-10-29.json, boxes
+# centred on the mapped flood): failed -- held-out mean within-event AUC
+# 0.566 over Volos 0.518 and Choloma 0.614, bar 0.70 (Kastelli had 45 flooded
+# cells, under 50). Round 2 was not-run: its town-centred boxes missed the
+# flooding. (Round 1's scalar method failed, 0.447; that method is gone.)
+VALIDATION_STATUS = "failed"
 
 from perception.applicability_gate import gated
 

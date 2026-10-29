@@ -55,8 +55,10 @@ def provenance(s: dict) -> dict:
 
 
 def weakest(*statuses: str) -> str:
-    """An output is no more validated than its least-validated input."""
-    return min(statuses, key=VALIDATION_ORDER.index)
+    """An output is no more validated than its least-validated input. A
+    module's own `failed` (a Tier 2 verdict) outranks every input label; an
+    input surface itself can never be `failed` (surface() refuses it)."""
+    return min(statuses, key=(("failed",) + VALIDATION_ORDER).index)
 
 
 def mean_pct(s: dict | None):

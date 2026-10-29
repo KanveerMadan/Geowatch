@@ -728,6 +728,27 @@ JRC references.
 Result: `experiments/flood_validation/result_round2_2026-10-28.json`. Item 26
 stays partial.
 
+**Round 3 and follow-ups, 2026-10-29 (`build/flood3`).**
+
+- **C70 decided:** a module that runs exactly the configuration it was
+  validated with keeps `validated`, with a mandatory scope note (events,
+  regions, input versions). Any differing input, weight or ceiling caps it
+  at the worst label. **Fluvial now reads `validated` in the contract**,
+  scoped to Hanoi and Kolonnawa on MERIT Hydro v1_0_1.
+- **C71 fixed:** the IMERG percentile request gets its own 1200 s
+  deadline inside the pipeline; every other request keeps 240 s.
+- **Round 3** (`PREREGISTRATION_ROUND3.md`, committed before any score)
+  re-tested pluvial, flash flood and waterlogging with each 4 km box
+  centred on the reference product's mapped flood. Methods and weights were
+  frozen, the bar unchanged. **All three failed:** pluvial 0.613, flash
+  flood 0.566, waterlogging 0.360 (mean within-event AUC over 2 qualifying
+  held-out events each; bar 0.70). Contract labels are now `failed` for all
+  three.
+
+The only flood output that is not `failed` is fluvial (`validated`, scoped).
+Result: `experiments/flood_validation/result_round3_2026-10-29.json`. Item 26
+stays partial.
+
 ---
 
 ## Decision 11 third amendment — recorded 2026-10-29

@@ -51,8 +51,11 @@ def _classify(score):
 
 from perception.applicability_gate import gated
 
-# The module's own label, before its weakest input caps it.
-VALIDATION_STATUS = "experimental"
+# The module's own label, before its weakest input caps it. Round 3
+# (experiments/flood_validation/result_round3_2026-10-29.json, boxes on the
+# mapped flood): failed -- held-out mean within-event AUC 0.360 over Thai Binh
+# 0.277 and Nam Dinh 0.442, bar 0.70. (Round 2 was not-run.)
+VALIDATION_STATUS = "failed"
 
 
 def components(rasters: dict, impervious: dict = None) -> dict:
@@ -105,7 +108,7 @@ def compute_waterlogging_susceptibility(rasters: dict = None, impervious: dict =
         return {
             "status": "insufficient_evidence",
             "reason": "No per-pixel HAND, slope or impervious surface is available.",
-            "validation_status": "placeholder",
+            "validation_status": VALIDATION_STATUS,
         }
     used = [k for k, c in comps.items() if c is not None and w.get(k, 0) > 0]
     imp_used = "impervious" in used

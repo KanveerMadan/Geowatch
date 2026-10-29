@@ -106,6 +106,8 @@ def compute_fluvial_susceptibility(rasters: dict = None, hand_context: dict = No
         "components_used": used,
         "components_excluded": [k for k in comps if k not in used],
         "weights": dict(w),
+        "ceilings": {"hand_m": HAND_NORMALIZATION_MAX_M,
+                     "upstream_area_km2": FLUVIAL_UPSTREAM_AREA_NORMALIZATION_MAX_KM2},
         "inputs": {k: {kk: v[kk] for kk in ("source", "method", "validation_status")}
                    for k, v in rasters["layers"].items() if k in ("hand_m", "upa_near_km2")},
         "river_connectivity": river_connected,

@@ -1,10 +1,11 @@
 """
-Fluvial, coastal and flash flood carry a validation_status on every output,
-and it follows the stored round-2 held-out verdict (item 26 Phase 1a,
-experiments/flood_validation/result_round2_2026-10-28.json):
+Fluvial, coastal, flash flood and waterlogging carry a validation_status on
+every output, and it follows the latest stored held-out verdict: round 3
+(result_round3_2026-10-29.json) where it gave one, else round 2 (item 26
+Phase 1a, experiments/flood_validation/result_round2_2026-10-28.json):
 validated -> "validated", failed -> "failed", not-run -> "experimental"
 (the decided meaning: a real method, not yet validated). The tuned weights
-in configs are the ones the result chose on its tuning events.
+in configs are the ones round 2 chose on its tuning events.
 """
 import json
 import pathlib
@@ -18,9 +19,11 @@ from susceptibility.coastal import compute_coastal_susceptibility
 from susceptibility.flash_flood import compute_flash_flood_susceptibility
 from susceptibility.fluvial import compute_fluvial_susceptibility
 from susceptibility.inputs import surface
+from susceptibility.waterlogging import compute_waterlogging_susceptibility
 
 RESULT = (pathlib.Path(__file__).resolve().parent.parent
           / "experiments/flood_validation/result_round2_2026-10-28.json")
+RESULT3 = RESULT.with_name("result_round3_2026-10-29.json")
 VERDICT_TO_LABEL = {"validated": "validated", "failed": "failed", "not-run": "experimental"}
 
 HAND = {"status": "available", "mean_hnd_m": 4.0, "min_hnd_m": 0.5, "max_hnd_m": 20.0,
@@ -43,6 +46,8 @@ PATHS = {
                                                         "distance_km": None,
                                                         "search_radius_km": 50}),
                 lambda: compute_coastal_susceptibility(None)],
+    "waterlogging": [lambda: compute_waterlogging_susceptibility(RASTERS),
+                     lambda: compute_waterlogging_susceptibility(None)],
 }
 
 
@@ -51,12 +56,17 @@ def _result():
 
 
 def _expected(module):
-    return VERDICT_TO_LABEL[_result()[module]["held_out"]["verdict"]]
+    v3 = json.loads(RESULT3.read_text())["modules"].get(module, {}).get("held_out", {})
+    v = v3.get("verdict")
+    if not v or v == "not-run":
+        v = _result()[module]["held_out"]["verdict"]
+    return VERDICT_TO_LABEL[v]
 
 
-def test_round2_verdicts_are_what_the_labels_encode():
+def test_latest_verdicts_are_what_the_labels_encode():
     assert {m: _expected(m) for m in PATHS} == {
-        "fluvial": "validated", "flash_flood": "experimental", "coastal": "failed"}
+        "fluvial": "validated", "flash_flood": "failed", "coastal": "failed",
+        "waterlogging": "failed"}
 
 
 @pytest.mark.parametrize("module", sorted(PATHS))

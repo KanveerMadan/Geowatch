@@ -82,7 +82,8 @@ def test_waterlogging_reads_impervious_per_cell():
     out = waterlogging.compute_waterlogging_susceptibility(r, imp, weights=ALL_ONE)
     m = out["susceptibility_map"][0]
     assert m[1] > m[0]
-    assert out["validation_status"] == "placeholder"        # weakest input
+    assert out["validation_status"] == "failed"     # round 3 failed it; outranks placeholder
+    assert out["inputs"]["impervious"]["validation_status"] == "placeholder"
     assert out["inputs"]["impervious"]["source"] == "test footprints"
 
 
@@ -93,9 +94,9 @@ def test_waterlogging_refuses_impervious_on_another_grid():
         waterlogging.compute_waterlogging_susceptibility(r, imp)
 
 
-def test_waterlogging_without_impervious_is_experimental():
+def test_waterlogging_without_impervious_carries_its_round3_verdict():
     out = waterlogging.compute_waterlogging_susceptibility(_rasters(hand_m=5.0, slope_deg=1.0))
-    assert out["validation_status"] == "experimental"
+    assert out["validation_status"] == "failed"
     assert "impervious (unavailable)" in out["components_excluded"]
 
 
@@ -233,6 +234,46 @@ def test_weight_grids_are_the_preregistered_ones():
     assert len(wc.WATERLOGGING_WEIGHT_GRID) == 26
     assert all(g["rainfall_intensity"] == 1.0 for g in ffc.FLASH_FLOOD_WEIGHT_GRID)
     assert all(g["rainfall_climatology"] == 1.0 for g in wc.WATERLOGGING_WEIGHT_GRID)
+
+
+def test_imerg_gets_its_own_deadline_inside_the_pipeline_and_others_keep_240s(monkeypatch):
+    """C71: under the pipeline's 240 s per-request deadline, the IMERG
+    percentile runs with IMERG_DEADLINE_S, the deadline is restored after it
+    (also when it fails), and CHIRPS keeps the pipeline's."""
+    import ee
+    from analysis.stages import EE_REQUEST_DEADLINE_S, STAGE_TIMEOUT_S
+
+    class State:
+        deadline_ms = EE_REQUEST_DEADLINE_S * 1000
+    monkeypatch.setattr(ee.data, "_get_state", lambda: State)
+    monkeypatch.setattr(ee.data, "setDeadline", lambda ms: setattr(State, "deadline_ms", ms))
+    seen = {}
+
+    def fake_call(fn, timeout, retries, label):
+        seen[label] = (State.deadline_ms, timeout, retries)
+        if label == "rain_intensity_mm_h" and seen.get("fail"):
+            raise TimeoutError("slow")
+        return np.zeros((1, 1), dtype=[(label, "f4")])
+
+    monkeypatch.setattr("ee_timeout.call", fake_call)
+
+    class Img:
+        def unmask(self, v): return self
+        def toFloat(self): return self
+    from rasterio.transform import from_origin
+    grid = (from_origin(500000, 1000030, 30, 30), (1, 1), "EPSG:32643")
+    for name in hydro_rasters.RAIN_LAYERS:
+        hydro_rasters._rain_layer(Img(), name, None, *grid)
+        assert State.deadline_ms == EE_REQUEST_DEADLINE_S * 1000, name
+    assert seen["rain_intensity_mm_h"] == (hydro_rasters.IMERG_DEADLINE_S * 1000,
+                                           hydro_rasters.IMERG_DEADLINE_S, 1)
+    assert seen["rain_annual_mm"][0] == EE_REQUEST_DEADLINE_S * 1000
+    assert hydro_rasters.IMERG_DEADLINE_S > 314            # the measured request
+    assert hydro_rasters.IMERG_DEADLINE_S < STAGE_TIMEOUT_S["hydro_rasters"]
+    seen["fail"] = True
+    with pytest.raises(TimeoutError):
+        hydro_rasters._rain_layer(Img(), "rain_intensity_mm_h", None, *grid)
+    assert State.deadline_ms == EE_REQUEST_DEADLINE_S * 1000
 
 
 def test_a_deadline_the_caller_set_is_left_alone(monkeypatch):

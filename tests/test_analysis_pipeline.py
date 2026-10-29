@@ -70,16 +70,17 @@ def test_vegetation_observed_fraction_reflects_the_unobserved_corner(run):
 
 
 def test_pluvial_and_waterlogging_are_failed(run):
-    """Labels after flood round 2 (item 26 Phase 1a): pluvial failed (round
-    1 stands), coastal failed (round 2). Fluvial passed round 2, but its
-    experimental raster inputs cap the contract output at experimental
-    (worst of inputs); flash flood and waterlogging were not-run."""
+    """Labels after flood round 3: pluvial failed (round 3 confirms round 1),
+    coastal failed (round 2), flash flood and waterlogging failed (round 3).
+    Fluvial passed round 2 and runs exactly its validated inputs, so it reads
+    validated with its scope note (C70)."""
     s = run[0]["outputs"]["susceptibility"]
     assert s["pluvial"]["validation_status"] == "failed"
-    assert s["waterlogging"]["validation_status"] == "experimental"
-    assert s["fluvial"]["validation_status"] == "experimental"
+    assert s["waterlogging"]["validation_status"] == "failed"
+    assert s["fluvial"]["validation_status"] == "validated"
+    assert s["fluvial"]["validated_scope"]["regions"]
     assert s["fluvial"]["tier2_verdict"] == "validated"
-    assert s["flash_flood"]["validation_status"] == "experimental"
+    assert s["flash_flood"]["validation_status"] == "failed"
     assert s["coastal"]["validation_status"] == "failed"
     for h in ("fluvial", "flash_flood", "waterlogging"):
         assert s[h]["spatial"] is True, h

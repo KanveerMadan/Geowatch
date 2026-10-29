@@ -70,7 +70,9 @@ def fake_dem(layer, transform, shape):
 
 def fake_hydro_rasters(bbox, transform, shape, crs, ref_year):
     """Per-pixel hydrology inputs (item 26 Phase 1a) on the given grid: HAND
-    rising west to east, gentle slope, steep surroundings, one rainfall value."""
+    rising west to east, gentle slope, steep surroundings, one rainfall value.
+    Declared with the real fetch's source and method strings (C70 compares them)."""
+    from susceptibility.hydro_rasters import SOURCES
     from susceptibility.inputs import surface
     H, W = shape
     _, x = np.mgrid[0:H, 0:W]
@@ -79,7 +81,7 @@ def fake_hydro_rasters(bbox, transform, shape, crs, ref_year):
             "rain_annual_mm": np.full(shape, 2200.0), "rain_intensity_mm_h": np.full(shape, 12.0)}
     return {"status": "available", "transform": transform, "shape": tuple(shape), "crs": crs,
             "ref_year": ref_year, "errors": {},
-            "layers": {k: surface(v, "synthetic", "synthetic", "experimental")
+            "layers": {k: surface(v, *SOURCES[k], "experimental")
                        for k, v in vals.items()}}
 
 

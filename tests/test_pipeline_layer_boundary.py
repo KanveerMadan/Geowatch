@@ -247,11 +247,11 @@ def test_flood_inputs_reach_pluvial_and_waterlogging_with_provenance(stub_pipeli
     assert wl["impervious_fraction_pct"] == 60.0
     assert "impervious" not in wl["inputs"]      # unweighted: not a listed input
     # round 2's tuned weights give impervious 0, so the placeholder input is
-    # declared but does not set the module's own label; the legacy result
-    # still labels the block "retired"
+    # declared but does not set the module's own label (round 3: failed); the
+    # legacy result still labels the block "retired"
     assert "impervious (weight 0)" in wl["components_excluded"]
     assert wl["validation_status"] == "retired"
-    assert wl["validation_status_superseded"] == "experimental"
+    assert wl["validation_status_superseded"] == "failed"
     assert r["flood_inputs"]["grid"]["crs"] == "EPSG:32643"
 
 

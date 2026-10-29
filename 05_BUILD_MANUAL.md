@@ -2221,6 +2221,51 @@ result.
   **884 passed**. After this branch: **934 passed**, with the same 2 Earth
   Engine-auth failures.
 
+- **Flood follow-ups (`build/flood3`, 2026-10-29).**
+  - **C70:** exactly the validated configuration keeps `validated`, scoped.
+    See the ledger. Fluvial reads `validated` in the contract, with its
+    scope note (events, regions, input versions); a differing input, weight
+    or ceiling caps it.
+  - **C71:** the IMERG request has its own 1200 s deadline inside the
+    pipeline, and every other request keeps 240 s. Checked live: 308 s
+    uncached, layer delivered.
+  - **Round 3** (`experiments/flood_validation/PREREGISTRATION_ROUND3.md`,
+    committed before any box, count or score; `harness_round3.py`). It used
+    round 2's held-out EMS events for pluvial, flash flood and waterlogging,
+    with each 4 km box centred on the product's mapped flood. Jakarta GFD was
+    excluded (its extent is all of Java). Methods and weights were frozen,
+    and the bar, references and minimums are round 2's.
+
+  | Module | Held-out events (AUC; flooded / dry cells) | Mean | Verdict |
+  |---|---|---|---|
+  | pluvial | Hai Phong 0.474 (236 / 8,244); Belize City 0.751 (1,074 / 16,622); Milagro 28 flooded, did not qualify | **0.613** | **failed** |
+  | flash flood | Volos 0.518 (10,911 / 6,872); Choloma 0.614 (4,604 / 12,374); Kastelli 45 flooded, did not qualify | **0.566** | **failed** |
+  | waterlogging | Thai Binh 0.277 (506 / 16,402); Nam Dinh 0.442 (2,733 / 12,502) | **0.360** | **failed** |
+
+  Pooled diagnostics (no verdict): pluvial 0.6883, flash flood 0.6996,
+  waterlogging 0.3355.
+
+  The two events whose round-2 AUCs were known, Milagro and Kastelli, did not
+  qualify this time. So the pluvial and flash-flood verdicts rest only on
+  events no round had scored. Waterlogging's unseen event alone (Thai Binh)
+  is 0.277.
+
+  Volos's IMERG request hit Earth Engine's own computation limit (C73).
+  Flash flood was scored there without `rainfall_intensity`, by round 2's
+  component rule. Its box lies inside one IMERG cell, so the AUC is the same
+  either way. Some boxes landed far from the town (C72). The first run
+  stalled while the laptop slept, and it was restarted on the same rule and
+  cached inputs before any result was written.
+
+  Contract: round 3 is pinned by hash. Its verdict decides where it gave one,
+  so pluvial, flash flood and waterlogging are `failed`, in the contract and
+  in each module's own label. `inputs.weakest` now ranks a module's `failed`
+  below every input label. Waterlogging's no-input path returned
+  `placeholder`, not its own label, and was corrected.
+
+  Suite on `master` at `94e0658`: **923 passed**. After this branch: **941
+  passed** (18 new), with the same 2 Earth Engine-auth failures.
+
 ---
 
 # PART 5 — Validation discipline 🔓

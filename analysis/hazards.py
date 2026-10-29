@@ -4,10 +4,12 @@ as they are: susceptibility/ is not edited here).
 
 Each module's output becomes one contract output. Its label is the worst of
 the module's own label, its pinned Tier 2 verdict, and its inputs' labels
-(analysis.contract.hazard_label). Pluvial is `failed` (round 1; round 2 could
-not test it); coastal is `failed` (round 2). Fluvial, flash flood and
-waterlogging are per-pixel since item 26 Phase 1a; fluvial's own label is
-`validated`, but its experimental raster inputs cap the contract output.
+(analysis.contract.hazard_label). Pluvial, flash flood and waterlogging are
+`failed` (round 3, boxes on the mapped flood); coastal is `failed` (round 2).
+Fluvial, flash flood and waterlogging are per-pixel since item 26 Phase 1a. Fluvial reads `validated`,
+with its scope note, only while it runs exactly the configuration round 2
+validated (C70, analysis.contract.VALIDATED_CONFIGS); otherwise its
+experimental raster inputs cap it.
 """
 from __future__ import annotations
 
@@ -172,20 +174,22 @@ def hazard_outputs(modules: dict, mv: dict, verdicts: dict, *, has_waterways: bo
         mod = modules[name]
         score = mod.get("aoi_mean_score")
         bad = incomplete_inputs(name, ctx or {}, stage_status)
+        # C70: exactly the validated configuration keeps `validated`, scoped.
+        scope = None if bad else C.validated_scope(name, mod, verdicts.get(name))
+        label = C.hazard_label(mod.get("validation_status", "experimental"),
+                               verdicts.get(name), *_input_labels(mod), scope=scope)
         if bad:
             status = "timeout" if any(v["status"] == "timeout" for v in bad.values()) else "failed"
             out[name] = C.absent(
                 status, reason=f"input(s) did not finish: {sorted(bad)}",
-                validation_status=C.hazard_label(mod.get("validation_status", "experimental"),
-                                                 verdicts.get(name), *_input_labels(mod)),
+                validation_status=label,
                 data_sources=_sources(name, mod, has_waterways), model_version=mv,
                 incomplete_inputs=bad, tier=None, module_status=mod.get("status"),
                 score_from_partial_inputs_withheld=score is not None,
                 tier2_verdict=verdicts.get(name), spatial=False)
             continue
-        label = C.hazard_label(mod.get("validation_status", "experimental"),
-                               verdicts.get(name), *_input_labels(mod))
         extra = {"module_status": mod.get("status"),
+                 "validated_scope": scope,
                  "tier": mod.get("aoi_mean_class") if score is not None else None,
                  "tier_scale": "very_low < low < moderate < high < very_high",
                  "tier2_verdict": verdicts.get(name),

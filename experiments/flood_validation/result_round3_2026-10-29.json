@@ -1,0 +1,620 @@
+{
+ "test": "item 26 follow-ups -- flood discrimination round 3 (Tier 2), boxes centred on the mapped flood extent",
+ "preregistration_sha256": "930fc2303d1a1e1b84ede7843d4027411251601f54ea0232677b1bd17518b37b",
+ "run_utc": "2026-10-29T06:59:42.012787+00:00",
+ "bar": {
+  "metric": "roc_auc_cells",
+  "validated_if_auc_at_least": 0.7,
+  "per_pixel_modules": "mean of within-event AUCs over held-out events",
+  "min_flooded_cells": 50,
+  "min_dry_cells": 50,
+  "min_heldout_events": 2,
+  "box_side_m": 4000.0,
+  "tuning": "none; round 2's weights frozen"
+ },
+ "modules": {
+  "pluvial": {
+   "dropped": {},
+   "excluded": {},
+   "held_out_per_event": {
+    "hai_phong": {
+     "flooded_cells": 236,
+     "dry_cells": 8244,
+     "evaluation_cell_m": 30,
+     "auc": 0.4744,
+     "qualifies": true
+    },
+    "milagro": {
+     "flooded_cells": 28,
+     "dry_cells": 7149,
+     "evaluation_cell_m": 30,
+     "auc": null,
+     "qualifies": false
+    },
+    "belize_city": {
+     "flooded_cells": 1074,
+     "dry_cells": 16622,
+     "evaluation_cell_m": 30,
+     "auc": 0.7506,
+     "qualifies": true
+    }
+   },
+   "held_out": {
+    "verdict": "failed",
+    "auc": 0.6125,
+    "qualifying_events": 2
+   },
+   "pooled_held_out_auc_diagnostic": 0.6883,
+   "unseen_events_mean_auc_diagnostic": {
+    "events": [
+     "belize_city",
+     "hai_phong"
+    ],
+    "mean_auc": 0.6125
+   },
+   "weights_used": null,
+   "events": {
+    "hai_phong": {
+     "bbox": [
+      106.778694,
+      20.822589,
+      106.817142,
+      20.858521
+     ],
+     "event": "2024-09-07",
+     "split": "held-out",
+     "centre": [
+      20.840555,
+      106.797918
+     ],
+     "inputs_validation_status": "placeholder",
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR754 AOI05 (Hai Phong) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "WorldView-2",
+        "resolution_class": "VHR2",
+        "acquired": "2024-09-14T03:42:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR754/AOI05/DEL_PRODUCT/EMSR754_AOI05_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "95356f0b4cad2a577dcd3abd002681c5efde9bef399b9c7c342dd472f1c6a51d",
+      "notation_counts": {
+       "Flooded area": 19
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32648",
+      "transform": [
+       30.0,
+       0.0,
+       685050.0,
+       0.0,
+       -30.0,
+       2307570.0
+      ],
+      "shape": [
+       135,
+       135
+      ]
+     },
+     "round2_centre": [
+      20.8449,
+      106.6881
+     ],
+     "box_rule": "centred on the product's mapped flood extent"
+    },
+    "milagro": {
+     "bbox": [
+      -79.614744,
+      -2.182138,
+      -79.578786,
+      -2.146206
+     ],
+     "event": "2025-02-26",
+     "split": "held-out",
+     "centre": [
+      -2.164172,
+      -79.596765
+     ],
+     "inputs_validation_status": "placeholder",
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR796 AOI06 (Milagro) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "ICEYE",
+        "resolution_class": "VHR2",
+        "acquired": "2025-04-05T08:34:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR796/AOI06/DEL_PRODUCT/EMSR796_AOI06_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "86a6e94cdae20f883bd32e005661dac58ba8c376c4781c701178af722a8ac2c6",
+      "notation_counts": {
+       "Flooded area": 47
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32717",
+      "transform": [
+       30.0,
+       0.0,
+       654030.0,
+       0.0,
+       -30.0,
+       9762720.0
+      ],
+      "shape": [
+       133,
+       135
+      ]
+     },
+     "round2_centre": [
+      -2.1347,
+      -79.5872
+     ],
+     "box_rule": "centred on the product's mapped flood extent"
+    },
+    "belize_city": {
+     "bbox": [
+      -88.723744,
+      17.358055,
+      -88.686094,
+      17.393987
+     ],
+     "event": "2024-11-15",
+     "split": "held-out",
+     "centre": [
+      17.376021,
+      -88.704919
+     ],
+     "inputs_validation_status": "placeholder",
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR777 AOI01 (Belize City) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "COSMO-SkyMed Second Generation",
+        "resolution_class": "HR+",
+        "acquired": "2024-11-17T23:32:00"
+       },
+       {
+        "sensor": "COSMO-SkyMed",
+        "resolution_class": "HR+",
+        "acquired": "2024-11-17T12:02:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR777/AOI01/DEL_PRODUCT/EMSR777_AOI01_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "bf6ada4d60b4292b009a05717eff8c631ba80ad795e53b963cb937969b06bf13",
+      "notation_counts": {
+       "Flooded area": 128
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32616",
+      "transform": [
+       30.0,
+       0.0,
+       316830.0,
+       0.0,
+       -30.0,
+       1923990.0
+      ],
+      "shape": [
+       135,
+       136
+      ]
+     },
+     "round2_centre": [
+      17.5046,
+      -88.1962
+     ],
+     "box_rule": "centred on the product's mapped flood extent"
+    }
+   }
+  },
+  "flash_flood": {
+   "dropped": {},
+   "excluded": {},
+   "held_out_per_event": {
+    "volos": {
+     "flooded_cells": 10911,
+     "dry_cells": 6872,
+     "evaluation_cell_m": 30,
+     "auc": 0.5184,
+     "qualifies": true
+    },
+    "kastelli": {
+     "flooded_cells": 45,
+     "dry_cells": 17717,
+     "evaluation_cell_m": 30,
+     "auc": null,
+     "qualifies": false
+    },
+    "choloma": {
+     "flooded_cells": 4604,
+     "dry_cells": 12374,
+     "evaluation_cell_m": 30,
+     "auc": 0.6139,
+     "qualifies": true
+    }
+   },
+   "held_out": {
+    "verdict": "failed",
+    "auc": 0.5661,
+    "qualifying_events": 2
+   },
+   "pooled_held_out_auc_diagnostic": 0.6996,
+   "unseen_events_mean_auc_diagnostic": {
+    "events": [
+     "choloma",
+     "volos"
+    ],
+    "mean_auc": 0.5661
+   },
+   "weights_used": {
+    "valley_floor": 0.5,
+    "steep_surroundings": 0.0,
+    "small_catchment": 0.0,
+    "rainfall_intensity": 1.0
+   },
+   "events": {
+    "volos": {
+     "bbox": [
+      22.045638,
+      39.429621,
+      22.09217,
+      39.465553
+     ],
+     "event": "2023-09-05",
+     "split": "held-out",
+     "centre": [
+      39.447587,
+      22.068904
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "EEException: Computation timed out."
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR692 AOI01 (Magnesia) DEL monitoring 3",
+      "images": [
+       {
+        "sensor": "WorldView-3",
+        "resolution_class": "VHR2",
+        "acquired": "2023-09-09T09:31:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR692/AOI01/DEL_MONIT03/EMSR692_AOI01_DEL_MONIT03_observedEventA_v3.json",
+      "layer_sha256": "087aaffc67b98cef72004dfb80406f88e4e2f516ee09cd3f1bcd6a2df4bcf921",
+      "notation_counts": {
+       "Flooded area": 1513,
+       "Flood trace": 292
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32634",
+      "transform": [
+       30.0,
+       0.0,
+       589920.0,
+       0.0,
+       -30.0,
+       4369020.0
+      ],
+      "shape": [
+       135,
+       136
+      ]
+     },
+     "round2_centre": [
+      39.3622,
+      22.942
+     ],
+     "box_rule": "centred on the product's mapped flood extent"
+    },
+    "kastelli": {
+     "bbox": [
+      25.295996,
+      35.173739,
+      25.339964,
+      35.209671
+     ],
+     "event": "2026-10-01",
+     "split": "held-out",
+     "centre": [
+      35.191705,
+      25.31798
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR933 AOI01 (Kastelli) DEL monitoring 1",
+      "images": [
+       {
+        "sensor": "Legion",
+        "resolution_class": "VHR2",
+        "acquired": "2026-10-06T10:47:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR933/AOI01/DEL_MONIT01/EMSR933_AOI01_DEL_MONIT01_observedEventA_v1.json",
+      "layer_sha256": "ec223ce86495772a5488f16d976934339e5d3d886c1d2d86cced0bc96e60b043",
+      "notation_counts": {
+       "Flood trace": 18,
+       "Flooded area": 70
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32635",
+      "transform": [
+       30.0,
+       0.0,
+       344820.0,
+       0.0,
+       -30.0,
+       3897630.0
+      ],
+      "shape": [
+       136,
+       136
+      ]
+     },
+     "round2_centre": [
+      35.2131,
+      25.3381
+     ],
+     "box_rule": "centred on the product's mapped flood extent"
+    },
+    "choloma": {
+     "bbox": [
+      -87.856284,
+      15.623006,
+      -87.81897,
+      15.658938
+     ],
+     "event": "2024-11-16",
+     "split": "held-out",
+     "centre": [
+      15.640972,
+      -87.837627
+     ],
+     "raster_errors": {
+      "rain_annual_mm": "not requested"
+     },
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR778 AOI10 (Choloma) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "COSMO-SkyMed",
+        "resolution_class": "VHR1",
+        "acquired": "2024-11-22T11:37:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR778/AOI10/DEL_PRODUCT/EMSR778_AOI10_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "2c43b9a714c0fa5a430427f8b0f6fd32b7f2ea154f5aaf364f9c5e8ad8d0c8f7",
+      "notation_counts": {
+       "Flooded area": 308
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32616",
+      "transform": [
+       30.0,
+       0.0,
+       408210.0,
+       0.0,
+       -30.0,
+       1731420.0
+      ],
+      "shape": [
+       134,
+       134
+      ]
+     },
+     "round2_centre": [
+      15.6133,
+      -87.9531
+     ],
+     "box_rule": "centred on the product's mapped flood extent"
+    }
+   }
+  },
+  "waterlogging": {
+   "dropped": {},
+   "excluded": {
+    "jakarta_gfd_3280": "GFD event 3280's mapped extent covers all of Java (105.1-115.9 E): a box centred on it would not be the Jakarta event (pre-registered)"
+   },
+   "held_out_per_event": {
+    "thai_binh": {
+     "flooded_cells": 506,
+     "dry_cells": 16402,
+     "evaluation_cell_m": 30,
+     "auc": 0.277,
+     "qualifies": true
+    },
+    "nam_dinh": {
+     "flooded_cells": 2733,
+     "dry_cells": 12502,
+     "evaluation_cell_m": 30,
+     "auc": 0.4422,
+     "qualifies": true
+    }
+   },
+   "held_out": {
+    "verdict": "failed",
+    "auc": 0.3596,
+    "qualifying_events": 2
+   },
+   "pooled_held_out_auc_diagnostic": 0.3355,
+   "unseen_events_mean_auc_diagnostic": {
+    "events": [
+     "thai_binh"
+    ],
+    "mean_auc": 0.277
+   },
+   "weights_used": {
+    "low_relief": 1.0,
+    "impervious": 0.0,
+    "flatness": 0.0,
+    "rainfall_climatology": 1.0
+   },
+   "events": {
+    "thai_binh": {
+     "bbox": [
+      106.319618,
+      20.478121,
+      106.357978,
+      20.514053
+     ],
+     "event": "2024-09-09",
+     "split": "held-out",
+     "centre": [
+      20.496087,
+      106.338798
+     ],
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 17731,
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR754 AOI06 (Thai Binh) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "WorldView-2",
+        "resolution_class": "VHR2",
+        "acquired": "2024-09-20T03:27:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR754/AOI06/DEL_PRODUCT/EMSR754_AOI06_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "a2328c832cf19eaa808b8ee4316e26542bda375c1b0b9d57ab39ac06d9075912",
+      "notation_counts": {
+       "Flooded area": 11,
+       "Flood trace": 78
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32648",
+      "transform": [
+       30.0,
+       0.0,
+       637590.0,
+       0.0,
+       -30.0,
+       2268960.0
+      ],
+      "shape": [
+       134,
+       135
+      ]
+     },
+     "round2_centre": [
+      20.4463,
+      106.3366
+     ],
+     "box_rule": "centred on the product's mapped flood extent"
+    },
+    "nam_dinh": {
+     "bbox": [
+      106.188953,
+      20.431557,
+      106.227303,
+      20.467489
+     ],
+     "event": "2024-09-09",
+     "split": "held-out",
+     "centre": [
+      20.449523,
+      106.208128
+     ],
+     "raster_errors": {
+      "rain_intensity_mm_h": "not requested"
+     },
+     "open_buildings_footprints": 21404,
+     "block": 1,
+     "reference": {
+      "source": "Copernicus EMS EMSR754 AOI07 (Nam Dinh) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "WorldView-2",
+        "resolution_class": "VHR2",
+        "acquired": "2024-09-14T03:45:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR754/AOI07/DEL_PRODUCT/EMSR754_AOI07_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "6950166eaf0888f73117c240c6ae3799a59948b19ed8d5fe0156b79bc89a1034",
+      "notation_counts": {
+       "Flooded area": 231,
+       "Flood trace": 11
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     },
+     "grid": {
+      "crs": "EPSG:32648",
+      "transform": [
+       30.0,
+       0.0,
+       624000.0,
+       0.0,
+       -30.0,
+       2263710.0
+      ],
+      "shape": [
+       135,
+       135
+      ]
+     },
+     "round2_centre": [
+      20.42,
+      106.1683
+     ],
+     "box_rule": "centred on the product's mapped flood extent"
+    }
+   }
+  }
+ }
+}

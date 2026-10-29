@@ -236,7 +236,7 @@ def materialize(unit: dict, unit_type: str, ctx: dict) -> dict:
     for h, aoi_out in ctx["scalar_hazards"].items():
         o = {k: v for k, v in aoi_out.items()
              if k in C.OUTPUT_KEYS or k in ("tier", "reason", "tier2_verdict",
-                                            "incomplete_inputs")}
+                                            "incomplete_inputs", "validated_scope")}
         o["coverage"] = C.coverage(aoi_out["coverage"]["observed_fraction"],
                                    "AOI-wide scalar applied uniformly to every unit; "
                                    "it carries no within-AOI variation")
