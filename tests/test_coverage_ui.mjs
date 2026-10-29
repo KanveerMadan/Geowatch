@@ -1,12 +1,13 @@
 /*
- * Build item 20, the UI half: "a low-coverage AOI is visibly flagged
- * end-to-end through to the UI".
+ * Build item 20, the UI half: the coverage of the AOI being viewed, in plain
+ * language, visibly flagged when low.
  *
- * The report under test is emitted by the REAL backend
- * (vector.coverage_report.build_report over synthetic layers), so the UI is
- * checked against the shapes the API actually serves, not hand-written ones.
- * geowatch-ui/src/coverage.js is tested by behaviour; App.jsx is checked
- * structurally, because it cannot be rendered here without a browser.
+ * The blocks under test are emitted by the REAL analysis pipeline
+ * (analysis.run.run_analysis over synthetic layers, tests/analysis_synth.py),
+ * wrapped the way POST /api/analyze returns them, so the UI is checked
+ * against the shape the API actually serves. geowatch-ui/src/coverage.js is
+ * tested by behaviour; App.jsx is checked structurally, because it cannot be
+ * rendered here without a browser.
  *
  * Run:  node tests/test_coverage_ui.mjs
  */
@@ -21,117 +22,102 @@ const here = dirname(fileURLToPath(import.meta.url))
 const repo = join(here, '..')
 const SRC = join(repo, 'geowatch-ui', 'src')
 const {
-  coverageRows, partialFetches, percentileText, densityText, warningHeadline, NOT_MEASURABLE,
+  coverageBlockOf, coverageView, partialFetches, percentileText, densityText, NOT_MEASURABLE,
 } = await import(join(SRC, 'coverage.js'))
 const coverageSrc = readFileSync(join(SRC, 'coverage.js'), 'utf8')
 const app = readFileSync(join(SRC, 'App.jsx'), 'utf8')
 
-/** One report from the backend: very_low, adequate, a partial fetch, a
- *  missing pedestrian clause, and an AOI whose inputs raised. */
-function emitReport() {
+/** One /api/analyze response per case: adequate, very_low, a partial fetch,
+ *  and a missing pedestrian clause. None is a reference AOI. */
+function emitResponses() {
   const py = `import json, sys
 sys.path.insert(0, "tests")
-from vector import coverage_report, roads
+from tests import analysis_synth as S
+from vector import roads
 from vector_synth import BBOX, _fix_ns, _layer, _way, _highways, service_missing_layer
 
 def foot(n):
     return [_fix_ns(_way(100 + k, "footway", 0, 0, 0, [1000 + 3 * k, 1001 + 3 * k, 1002 + 3 * k]))
             for k in range(n)]
 
-def inputs(name, bbox):
-    if name == "dense":
-        return _layer(foot(9)), None
-    if name == "thin":
-        return _layer([]), None
-    if name == "partial":
-        return service_missing_layer(), None
-    if name == "no_ped_clause":
-        return roads.build_road_layer("t", BBOX, highways=_highways(foot(9), unavailable=["narrow_pedestrian"]),
-                                      footprints_4326=[], footprint_source="none"), None
-    raise RuntimeError("Earth Engine down")
-
-aois = {n: {"bbox": BBOX} for n in ("dense", "thin", "partial", "no_ped_clause", "broken")}
-print(json.dumps(coverage_report.build_report(aois, inputs=inputs)))`
+layers = {
+    "dense": lambda: _layer(foot(9)),
+    "thin": lambda: _layer([]),
+    "partial": service_missing_layer,
+    "no_ped_clause": lambda: roads.build_road_layer(
+        "t", BBOX, highways=_highways(foot(9), unavailable=["narrow_pedestrian"]),
+        footprints_4326=[], footprint_source="none"),
+}
+out = {}
+for k, f in layers.items():
+    r, _ = S.run(deps=S.deps(load_layer=lambda name, bbox, f=f: f()))
+    r.pop("_maps")
+    out[k] = {"result_id": k, "cached": False, "stored": False, "result": r}
+print(json.dumps(out))`
   const out = execFileSync(join(repo, 'geowatch-env', 'bin', 'python'), ['-c', py],
-    { cwd: repo, encoding: 'utf8' })
+    { cwd: repo, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
   return JSON.parse(out.trim().split('\n').pop())
 }
 
-/** The STORED live report, as GET /api/vector/coverage serves it. */
-function servedReport() {
-  const py = `import json
-from fastapi.testclient import TestClient
-import api
-res = TestClient(api.app, headers={api.API_KEY_HEADER_NAME: api.API_KEY}).get("/api/vector/coverage")
-assert res.status_code == 200, res.text
-print(json.dumps(res.json()))`
-  // api.py refuses to import without a key; the route is called with the same
-  // one, so any value works (tests/conftest.py does the same for pytest).
-  const env = { ...process.env, GEOWATCH_API_KEY: process.env.GEOWATCH_API_KEY || 'coverage-ui-test-key' }
-  const out = execFileSync(join(repo, 'geowatch-env', 'bin', 'python'), ['-c', py],
-    { cwd: repo, encoding: 'utf8', env, stdio: ['ignore', 'pipe', 'ignore'] })
-  return JSON.parse(out.trim().split('\n').pop())
-}
-
-const REPORT = emitReport()
-const rows = Object.fromEntries(coverageRows(REPORT).map(r => [r.aoi, r]))
+const RESPONSES = emitResponses()
+const block = name => coverageBlockOf(RESPONSES[name])
+const views = Object.fromEntries(Object.keys(RESPONSES).map(k => [k, coverageView(block(k))]))
+const mainText = v => [v.headline, ...v.notes].join(' ')
 
 const tests = []
 const test = (n, f) => tests.push([n, f])
 
-/* ── The three the brief names ─────────────────────────────────────── */
+/* ── One AOI, plain language ───────────────────────────────────────── */
 
-test('a very_low AOI renders the warning', () => {
-  const r = rows.thin
-  assert.equal(r.regime, 'very_low')
-  assert.equal(r.warning, true)
-  assert.equal(warningHeadline(r), 'OSM coverage very low')
-  assert.ok(r.reasons.length > 0 && r.reasons[0].includes('narrow pedestrian density'))
-  assert.equal(r.topologySuppressed, true)
-})
-
-test('an adequate AOI does not render the warning', () => {
-  const r = rows.dense
-  assert.equal(r.regime, 'adequate')
-  assert.equal(r.warning, false)
-  assert.equal(r.measurable, true)
-  assert.equal(percentileText(r), `${REPORT.aois[0].coverage.osm_density_percentile}`)
-})
-
-test('not_measurable is shown as such, never as a number', () => {
-  for (const name of ['no_ped_clause', 'broken']) {
-    const r = rows[name]
-    assert.equal(r.regime, 'not_measurable', name)
-    assert.equal(r.warning, true, name)
-    assert.equal(r.measurable, false, name)
-    assert.equal(r.percentile, null, name)
-    assert.equal(r.narrowDensity, null, name)
-    assert.equal(percentileText(r), NOT_MEASURABLE, name)
-    assert.equal(densityText(r), NOT_MEASURABLE, name)
-    assert.doesNotMatch(percentileText(r) + densityText(r), /\d/, name)
+test('the block is read from the analysis response for this AOI', () => {
+  for (const k of Object.keys(RESPONSES)) {
+    assert.equal(block(k), RESPONSES[k].result.outputs.osm_coverage, k)
   }
-  // The scored-but-unmeasurable block DOES carry numbers from the backend;
-  // the point is that none of them is displayed.
-  const raw = REPORT.aois.find(a => a.aoi === 'no_ped_clause').coverage
-  assert.equal(typeof raw.osm_density_percentile, 'number')
-  assert.match(rows.broken.reasons[0], /RuntimeError: Earth Engine down/)
+  assert.equal(coverageBlockOf(RESPONSES.dense.result), block('dense'), 'a bare result works too')
+  assert.equal(coverageBlockOf(null), null)
+  assert.equal(coverageView(null), null, 'no AOI viewed: no panel content, not a default')
 })
 
-/* ── Partial fetch ─────────────────────────────────────────────────── */
+test('a very_low AOI says the road map is incomplete and what is hidden', () => {
+  const v = views.thin
+  assert.equal(block('thin').coverage_regime_flag, 'very_low')
+  assert.equal(v.warning, true)
+  assert.equal(v.headline, 'Road map incomplete: street-network results hidden')
+})
 
-test('partial_fetch statuses are surfaced where the backend marks them', () => {
-  const r = rows.partial
-  const fields = r.partialFetch.map(p => p.field).sort()
-  assert.ok(fields.includes('footprints_per_road_km.fetch'), fields)
-  assert.ok(fields.includes('road_length_fetch.all'), fields)
-  assert.ok(fields.includes('road_length_fetch.broad_pedestrian'), fields)
-  // arterial/pedestrian reads no service clause, so it stays complete.
-  assert.ok(!fields.includes('arterial_to_pedestrian_ratio.fetch'), fields)
-  for (const p of r.partialFetch) {
-    assert.deepEqual(p.missingClauses, ['service'])
-    assert.match(p.note, /LOWER BOUND/)
+test('an adequate AOI does not warn', () => {
+  const v = views.dense
+  assert.equal(block('dense').coverage_regime_flag, 'adequate')
+  assert.equal(v.warning, false)
+  assert.equal(v.headline, 'Road map adequate: nothing hidden')
+  assert.equal(percentileText(v), `${block('dense').value}`)
+})
+
+test('not_measurable says so, and never shows a number', () => {
+  const v = views.no_ped_clause
+  assert.equal(block('no_ped_clause').coverage_regime_flag, 'not_measurable')
+  assert.equal(typeof block('no_ped_clause').value, 'number', 'the backend does carry one')
+  assert.equal(v.warning, true)
+  assert.equal(v.measurable, false)
+  assert.equal(v.headline, 'Road map could not be checked: street-network results hidden')
+  assert.equal(v.percentile, null)
+  assert.equal(v.narrowDensity, null)
+  assert.equal(percentileText(v), NOT_MEASURABLE)
+  assert.equal(densityText(v), NOT_MEASURABLE)
+})
+
+test('a partial fetch is named in plain language', () => {
+  const v = views.partial
+  assert.ok(v.notes.includes('Some road types could not be downloaded: service.'), v.notes)
+  assert.ok(v.partialFetch.length > 0)
+  for (const p of v.partialFetch) assert.deepEqual(p.missingClauses, ['service'])
+  assert.deepEqual(views.dense.partialFetch, [])
+})
+
+test('the main text carries no percentile, density or unit', () => {
+  for (const [k, v] of Object.entries(views)) {
+    assert.doesNotMatch(mainText(v), /\d|km|percentile|pctl/i, k)
   }
-  assert.deepEqual(rows.dense.partialFetch, [])
 })
 
 test('partialFetches finds the status at any depth and nowhere else', () => {
@@ -143,70 +129,46 @@ test('partialFetches finds the status at any depth and nowhere else', () => {
 /* ── Reads, never re-derives ───────────────────────────────────────── */
 
 test('a block without the warning field still warns', () => {
-  const [r] = coverageRows({ aois: [{ aoi: 'old', coverage: { coverage_regime_flag: 'adequate' } }] })
-  assert.equal(r.warning, true)
-  const [none] = coverageRows({ aois: [{ aoi: 'x', coverage: {} }] })
+  assert.equal(coverageView({ coverage_regime_flag: 'adequate' }).warning, true)
+  const none = coverageView({})
   assert.equal(none.warning, true)
   assert.equal(none.measurable, false)
-  assert.equal(warningHeadline(none), 'OSM coverage: no regime reported')
+  assert.equal(none.headline, 'Road map could not be checked: results may be affected')
 })
 
 test('the warning follows the backend flag, not the regime name', () => {
-  const [r] = coverageRows({ aois: [{ aoi: 'x', coverage: { coverage_regime_flag: 'some_new_regime', low_coverage_warning: true } }] })
-  assert.equal(r.warning, true)
-  assert.equal(r.regimeLabel, 'Some new regime')
+  const v = coverageView({ coverage_regime_flag: 'some_new_regime', low_coverage_warning: true })
+  assert.equal(v.warning, true)
+  assert.equal(v.regimeLabel, 'Some new regime')
+  assert.equal(v.headline, 'Road map incomplete: results may be affected')
 })
 
 test('coverage.js holds no thresholds and no regime list', () => {
   const code = coverageSrc.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '')
   assert.doesNotMatch(code, /\b\d+\.\d+\b/, 'no decimal constants')
   assert.doesNotMatch(code, /[<>]=?\s*\d/, 'no numeric comparisons')
-  for (const regime of ['adequate', 'very_low', "'low'"]) assert.ok(!code.includes(regime), regime)
-})
-
-test('no report means no rows, not a default', () => {
-  assert.deepEqual(coverageRows(null), [])
-  assert.deepEqual(coverageRows({}), [])
-})
-
-test('rows keep the backend order', () => {
-  assert.deepEqual(coverageRows(REPORT).map(r => r.aoi), REPORT.aois.map(a => a.aoi))
-})
-
-/* ── End to end: the stored live report, through the real route ───── */
-
-test('ACCEPTANCE: every stored AOI renders a regime; Lagos warns, Khayelitsha does not', () => {
-  const served = servedReport()
-  const live = coverageRows(served)
-  assert.equal(live.length, served.aois.length)
-  assert.ok(live.length >= 13)
-  for (const r of live) {
-    assert.ok(r.regime, `${r.aoi} has no regime`)
-    assert.ok(r.warning || r.measurable, `${r.aoi}: a quiet row must be measurable`)
-  }
-  const by = Object.fromEntries(live.map(r => [r.aoi, r]))
-  assert.equal(by.lagos.regime, 'very_low')
-  assert.equal(by.lagos.warning, true)
-  assert.equal(by.capetown.regime, 'adequate')
-  assert.equal(by.capetown.warning, false)
-  assert.notEqual(percentileText(by.lagos), percentileText(by.capetown))
+  for (const regime of ["'adequate'", "'very_low'", "'low'"]) assert.ok(!code.includes(regime), regime)
 })
 
 /* ── App.jsx wiring ────────────────────────────────────────────────── */
 
-test('App.jsx fetches the report through the authenticated helper', () => {
+test('App.jsx shows the viewed result, not a stored list of AOIs', () => {
   assert.match(app, /from '\.\/coverage'/)
-  assert.equal((app.match(/apiFetch\('\/api\/vector\/coverage'\)/g) || []).length, 1)
-  assert.match(app, /<CoveragePanel report=\{coverageReport\} error=\{coverageError\} \/>/)
+  assert.match(app, /<CoveragePanel view=\{coverageView\(coverageBlockOf\(result\)\)\} \/>/)
+  assert.ok(!app.includes('/api/vector/coverage'), 'App.jsx fetches the stored reference report')
+  assert.ok(!app.includes('coverageRows'), 'App.jsx renders rows of AOIs')
 })
 
-test('App.jsx renders the warning, not-measurable and partial-fetch states', () => {
-  assert.match(app, /\{row\.warning && \(\s*<div role="alert" data-testid="coverage-warning"/)
-  assert.match(app, /data-testid="coverage-not-measurable"/)
-  assert.match(app, /row\.partialFetch\.map\(/)
-  assert.match(app, /data-testid="coverage-partial-fetch"/)
-  // The number only appears on the measurable branch.
-  assert.match(app, /\{row\.measurable\s*\? <>pctl \{percentileText\(row\)\}/)
+test('App.jsx puts the headline in the main text and numbers only in the details', () => {
+  assert.match(app, /data-testid="coverage-headline"/)
+  assert.match(app, /\{view\.headline\}/)
+  const panel = app.slice(app.indexOf('function CoveragePanel'), app.indexOf('GATE C WAIVER'))
+  const details = panel.slice(panel.indexOf('<Disclosure>'), panel.indexOf('</Disclosure>'))
+  assert.ok(details.length > 0, 'details disclosure')
+  for (const s of ['percentileText(view)', 'densityText(view)', 'km/km²', 'view.reasons', 'view.partialFetch']) {
+    assert.ok(details.includes(s), `${s} inside the details`)
+    assert.equal(panel.split(s).length - 1, details.split(s).length - 1, `${s} outside the details`)
+  }
 })
 
 test('App.jsx re-derives nothing about coverage', () => {
