@@ -1404,11 +1404,6 @@ export default function App() {
           <div style={{ flex: 1, overflowY: 'auto' }}>
             <CoveragePanel view={coverageView(coverageBlockOf(result))} />
           </div>
-          <div style={{ padding: '10px 18px', borderTop: `1px solid ${C.hairline}` }}>
-            <div style={{ fontFamily: FONTS.mono, fontSize: 8.5, color: C.textFaint, lineHeight: 1.6 }}>
-              Sentinel-2 SR · SAM vit_b · ResNet50+DeepLabV3+<br />CPS Lab · VIPS Delhi
-            </div>
-          </div>
         </div>
       )}
 

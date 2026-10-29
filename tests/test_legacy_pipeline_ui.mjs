@@ -47,4 +47,10 @@ const setters = [...app.matchAll(/setResult\(([^)]*)\)/g)].map(m => m[1].trim())
 assert.deepEqual([...new Set(setters)].sort(), ['data', 'null'])
 assert.equal((app.match(/apiFetch\('\/api\/analyze'/g) || []).length, 1)
 
+// 7. The sidebar footer that credited the retired 7-class models is gone, with
+//    no replacement: data sources belong on a methods page, not a footer.
+for (const credit of ['SAM vit_b', 'ResNet50', 'DeepLabV3', 'CPS Lab', 'VIPS Delhi']) {
+  assert.ok(!app.includes(credit), `App.jsx still credits ${credit}`)
+}
+
 console.log('legacy pipeline banner: all checks passed')
