@@ -25,6 +25,8 @@ Fate categories:
 - **SURVIVES** — no architecture change touches this. Real work.
 - **CLOSED** — already fixed.
 - **REFUTED** — disproven by evidence.
+- **CONFIRMED** — the finding stands as measured and a decision has acted on
+  it; there is no defect to fix. *(Added 2026-10-29.)*
 - **NEEDS FATE** — flagged during this pass; not yet triaged. See note below.
 
 ---
@@ -39,6 +41,7 @@ Fate categories:
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SUPERSEDED | 2 | **C42, C45** — the pivot retires the code they describe |
 | SURVIVES | 25 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed** by the 2026-09-23 triage; C44 was elevated the same day and then **FIXED**) |
+| CONFIRMED | 2 | **C60, C61** (2026-10-29) — acted on by Decision 11's third amendment |
 | NEEDS FATE | 3 | Cleared 2026-09-23; **C48, C49, C50 added 2026-10-28** (Lane E documentation pass), untriaged. *(Count not maintained since: C51–C65 also added 2026-10-28, see the section)* |
 
 **This is the authoritative list for the "irreducible cluster."**
@@ -122,6 +125,19 @@ the audit result recorded under C45's own entry. The defect is real and
 confirmed, but confined to the training-patch builders feeding the discrete
 7-class classifier, which is retired. **It is not a blocker to endmember
 extraction** — audited, not assumed.
+
+### Assigned 2026-10-29 — Decision 11 third amendment
+
+**C60 — `mixed_water_vegetation` is not separable from vegetation → CONFIRMED.**
+`mixed_water_vegetation` is dropped as a single fraction (vegetation R² fell
+0.974→0.634). `tidal_flat` is a candidate sub-class for later assessment.
+
+**C61 — rooftop solar is invisible at realistic panel shares → CONFIRMED.**
+`solar` is restricted to utility-scale solar farms; rooftop solar is out of
+scope at 10 m (R² 0.436).
+
+`snow_ice` stays, pending a cloud-confusion check before labelling. See
+`05_BUILD_MANUAL.md` Decision 11.
 
 ---
 
@@ -1218,7 +1234,8 @@ Analyze button depends on it"; it could not have succeeded since item 45
 landed. Not a regression to fix: CAAT stays retired (08_STATE.md §RETIRED).
 
 ***C60 and C61 added 2026-10-28** from the rare-fraction ceiling checks
-(`build/ceilings`, `06_UNMIXING_CEILING.md` Part 8). **No fate assigned.**
+(`build/ceilings`, `06_UNMIXING_CEILING.md` Part 8). ~~**No fate assigned.**~~
+**Both CONFIRMED 2026-10-29** — see § *Fates assigned*.
 Numbered from C60: C57 and C58 are on `master`, C59 on `build/flood2`.*
 
 ### C61 — Rooftop solar is invisible at realistic panel shares; pooled solar is indeterminate [E] *(entry)*
@@ -1232,6 +1249,9 @@ the 21.5° spread between sites: a farm pixel is panels plus the ground
 between them. Benban sits 3.02° from its own desert surround. Bears on the
 deferred `solar`-in-`impervious_total` decision, which assumed solar
 prevalence could be measured.
+
+**Fate (2026-10-29): CONFIRMED.** `solar` is restricted to utility-scale solar
+farms; rooftop solar is out of scope at 10 m.
 
 ***C57 and C58 added 2026-10-28** from item 20's UI half (`build/coverage-ui`).
 **No fate assigned.** Numbered from C57, the next free number on `master` at
@@ -1250,6 +1270,10 @@ from the base simplex; the class's sites span 54.4°. Post hoc, not
 pre-registered: tidal flat alone is 0.729 and leaves vegetation intact, while
 mangrove and marsh are 0.32–0.59. Bears on Decision 11's sub-type design and on
 item 26's sub-type-weighted input.
+
+**Fate (2026-10-29): CONFIRMED.** `mixed_water_vegetation` is dropped as a
+single fraction; `tidal_flat` is a candidate sub-class for later assessment.
+
 ### C58 — `SecExposure` calls `useState` after a conditional return [S] *(entry)*
 
 `geowatch-ui/src/App.jsx`, `SecExposure`: `if (!exposure) return ...` runs

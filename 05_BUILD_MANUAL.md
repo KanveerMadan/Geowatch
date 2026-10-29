@@ -150,8 +150,8 @@ these; none of this was typing.*
     Derived:
     impervious_total = built + paved
 
-**Current — eight fractions, disjoint, summing to ~1 on the known-pixel
-denominator (Decision 14):**
+**Current — ~~eight~~ seven fractions *(third amendment, 2026-10-29)*,
+disjoint, summing to ~1 on the known-pixel denominator (Decision 14):**
 
     built                  — building footprints (vector)
     paved                  — derived: impervious_total − built.
@@ -162,14 +162,15 @@ denominator (Decision 14):**
     bare                   — residual. Unsealed ground, INCLUDING compacted
                              ground (dirt roads, gravel, compacted yards)
     snow_ice               — NEW: permanent only (spectral + low temporal variance)
-    solar                  — NEW: own fraction
-    mixed_water_vegetation — NEW: wetlands, mangroves, mudflats/tidal, water hyacinth
+    solar                  — NEW: own fraction. Utility-scale solar farms only (2026-10-29)
+    ~~mixed_water_vegetation — NEW: wetlands, mangroves, mudflats/tidal, water hyacinth~~
+                             DROPPED 2026-10-29 (C60); tidal_flat a candidate sub-class
 
     Derived:
     impervious_total = built + paved        (unchanged; solar DEFERRED — see below)
 
     hard_surface_remainder = 1 − (vegetation + water + snow_ice + solar
-                                  + mixed_water_vegetation)
+                                  ~~+ mixed_water_vegetation~~)
       — on the known-pixel share only (~~shadow-renormalised~~, struck
         2026-09-24: there is no shadow term to renormalise out)
       → split by the item 21 regressor into impervious_total and bare
@@ -178,7 +179,7 @@ denominator (Decision 14):**
     vegetation, water      — spectral regression (item 21, signed off 2026-09-23)
     snow_ice               — spectral signature + low temporal variance
     solar                  — spectral-signature detector
-    mixed_water_vegetation — spectral + dataset sub-typing (GMW, GLWD)
+    ~~mixed_water_vegetation — spectral + dataset sub-typing (GMW, GLWD)~~
 
 *Amended 2026-09-24: the formula as first recorded ended `+ shadow)`. That
 term is ~~struck~~ because it counted shadow twice: subtracted here, and
@@ -191,12 +192,14 @@ removed from the denominator by Decision 14. See the shadow rule below.*
   `LABELLING_GUIDE.md` §4.
 - **`snow_ice`** is permanent snow/ice only. Transient snow is occlusion, like
   cloud.
-- **`solar`** is its own fraction. **Whether it is added to
+- **`solar`** is its own fraction, *(2026-10-29)* **restricted to utility-scale
+  solar farms**. **Whether it is added to
   `impervious_total` is DEFERRED** until real-world solar prevalence is
   measured in the validation data.
-- **`mixed_water_vegetation`** is sub-typed via Global Mangrove Watch and the
+- ~~**`mixed_water_vegetation`** is sub-typed via Global Mangrove Watch and the
   Global Lakes and Wetlands Database, and feeds the flood model (item 26) as
-  **its own hydrological input, weighted by sub-type**.
+  **its own hydrological input, weighted by sub-type**.~~ *Dropped
+  2026-10-29; see the third amendment below.*
 - **Ceiling checks, 2026-10-28** *(recorded only; no decision changed, no
   status flipped)*. `06_UNMIXING_CEILING.md` Part 8 measured all three new
   fractions by Part 3's method against a pre-registered bar (R² ≥ 0.70
@@ -205,9 +208,19 @@ removed from the denominator by Decision 14. See the shadow rule below.*
   0.436, don't label it. `mixed_water_vegetation` 0.368, and the
   pre-registered rule issued no verdict** because the class drops
   vegetation's own ceiling from 0.974 to 0.634. Whether these change
-  Decision 11 is a human call (C60, C61 under NEEDS FATE).
-- **The hard-surface remainder now subtracts `snow_ice`, `solar` and
-  `mixed_water_vegetation`** in addition to vegetation and water ~~and
+  Decision 11 is a human call (C60, C61 under NEEDS FATE). *Decided
+  2026-10-29 — the third amendment below; C60 and C61 CONFIRMED.*
+- **Third amendment, DECIDED 2026-10-29, from the ceiling checks above.**
+  - **`mixed_water_vegetation` is dropped as a single fraction** (C60: its
+    ceiling is R² 0.368, and adding it drops vegetation from 0.974 to 0.634).
+    **`tidal_flat`** (0.729 alone, vegetation intact, post hoc) is a
+    **candidate sub-class for later assessment**, not a fraction.
+  - **`solar` is restricted to utility-scale solar farms.** Rooftop solar is
+    out of scope at 10 m (C61: R² 0.436 at 0–25% panel share).
+  - **`snow_ice` stays** (0.925), **pending a cloud-confusion check before
+    labelling.**
+- **The hard-surface remainder now subtracts `snow_ice` and `solar`
+  ~~and `mixed_water_vegetation`~~** in addition to vegetation and water ~~and
   shadow~~.
 - **Shadow rule (LOCKED 2026-09-24): each pixel is handled one way, never
   both.**
