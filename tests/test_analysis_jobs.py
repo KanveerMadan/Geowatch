@@ -88,6 +88,23 @@ def test_lifecycle_queued_running_stages_partial_complete(tmp_path):
     pool.shutdown()
 
 
+def test_same_request_while_running_attaches_to_the_running_job(tmp_path):
+    gate = threading.Event()
+
+    def held_change(layer, epochs):
+        gate.wait(30)
+        return S.fake_change(layer, epochs)
+
+    calls = []
+    a = _submit(tmp_path, calls, run_change=held_change)
+    b = jobs.submit(BBOX, START, END, name="other_label", root=str(tmp_path),
+                    producer=S.SynthProducer(), commit=S.COMMIT, runner=_runner(calls))
+    assert b["job_id"] == a["job_id"]
+    gate.set()
+    _wait(a["job_id"], _done)
+    assert len(calls) == 1
+
+
 def test_cached_area_is_a_job_born_complete(tmp_path):
     calls = []
     a = _wait(_submit(tmp_path, calls)["job_id"], _done)
@@ -212,3 +229,33 @@ def test_features_are_null_where_not_measured_never_zero(client):
                 seen_null = True
                 assert p[f"{f}_status"] in C.ABSENT
     assert seen_null       # impervious_total / paved / bare are not computed
+
+
+# ── buildings: the run's outlines, from the cache only ──
+
+def test_buildings_are_served_from_cache_and_never_fetched(client, tmp_path, monkeypatch):
+    import json as _json
+    from vector import sources
+    monkeypatch.setattr(sources, "CACHE_DIR", str(tmp_path / "vcache"))
+
+    def no_fetch(*a, **k):
+        raise AssertionError("a public read must not fetch")
+    monkeypatch.setattr(sources, "fetch_open_buildings", no_fetch)
+    monkeypatch.setattr(sources, "fetch_osm_buildings", no_fetch)
+    rid = client.post("/api/analyze", json=REQ, headers=_h()).json()["result_id"]
+    assert client.get(f"/api/results/{rid}/buildings").status_code == 404     # not cached
+    r = client.get(f"/api/results/{rid}").json()
+    key = sources.bbox_key(r["request"]["aoi_label"], r["request"]["bbox"])
+    ring = [[0, 0], [0, 1e-4], [1e-4, 1e-4], [1e-4, 0], [0, 0]]
+    if r["footprint_source"] == "open_buildings_v3":
+        d = tmp_path / "vcache" / "open_buildings"
+        d.mkdir(parents=True)
+        (d / f"{key}.geojson").write_text(_json.dumps({"type": "FeatureCollection", "features": [
+            {"type": "Feature", "properties": {}, "geometry": {"type": "Polygon", "coordinates": [ring]}}]}))
+    else:
+        d = tmp_path / "vcache" / "osm"
+        d.mkdir(parents=True)
+        (d / f"{key}__building.json").write_text(_json.dumps(
+            [{"id": 1, "geometry": [{"lon": x, "lat": y} for x, y in ring]}]))
+    fc = client.get(f"/api/results/{rid}/buildings").json()                  # public
+    assert fc["features"][0]["geometry"]["coordinates"][0] == ring

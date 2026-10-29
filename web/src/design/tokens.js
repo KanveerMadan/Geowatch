@@ -78,7 +78,7 @@ export const motion = {
   ease: [0.16, 1, 0.3, 1],
   duration: { fast: 0.12, base: 0.2, slow: 0.36 },
   flyTo: { ms: 2600, curve: 1.6 },          // search: camera flies, the globe flattens on arrival
-  globe: { degPerSecond: 2.4, idleZoom: 1.6 },
+  globe: { degPerSecond: 2.4, idleZoom: 2.1 },
   countUpMs: 700,                          // numbers arriving
   scan: { periodMs: 2200 },                // the sweep while stages run
   reveal: { blurPx: 8, ms: 650, staggerMs: 180 }, // cells resolving, one fraction after another
