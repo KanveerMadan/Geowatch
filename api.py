@@ -787,6 +787,35 @@ def get_result_features(result_id: str, unit_type: str):
             "features": [feature(u, ctx) for u in block["units"]]}
 
 
+@app.get("/api/results/{result_id}/buildings")
+def get_result_buildings(result_id: str):
+    """The building outlines the run used (item 19 layer), for drawing, read
+    from the vector cache ONLY: a public read never fetches. 404 when this
+    server has no cached copy. Item 22's "footprint" units are a Voronoi
+    partition of the AOI, not outlines, so they cannot stand in."""
+    from fastapi.responses import FileResponse
+    from vector.sources import CACHE_DIR, bbox_key
+    r = _load_result(result_id)
+    key = bbox_key(r["request"]["aoi_label"], r["request"]["bbox"])
+    src = r.get("footprint_source")
+    if src == "open_buildings_v3":
+        path = Path(CACHE_DIR) / "open_buildings" / f"{key}.geojson"
+        if path.exists():
+            return FileResponse(path, media_type="application/geo+json")
+    elif src == "osm_building":
+        path = Path(CACHE_DIR) / "osm" / f"{key}__building.json"
+        if path.exists():
+            with open(path) as fh:
+                elements = json.load(fh)
+            elements = elements.get("elements", elements) if isinstance(elements, dict) else elements
+            feats = [{"type": "Feature", "properties": {},
+                      "geometry": {"type": "Polygon", "coordinates": [[[p["lon"], p["lat"]]
+                                                                        for p in el["geometry"]]]}}
+                     for el in elements if len(el.get("geometry") or []) >= 4]
+            return {"type": "FeatureCollection", "features": feats}
+    raise HTTPException(status_code=404, detail="No building outlines cached for this result.")
+
+
 @app.get("/api/results/{result_id}/wards/{unit_type}/{unit_id}")
 def get_result_ward(result_id: str, unit_type: str, unit_id: str):
     from analysis.wards import materialize

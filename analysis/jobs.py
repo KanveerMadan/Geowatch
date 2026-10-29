@@ -4,7 +4,8 @@ Analysis jobs: POST starts a run and returns at once; GET reports it as it goes.
     job:    queued -> running -> complete | failed
     stage:  running -> ok | failed | timeout      (analysis/stages.py's outcomes)
 
-A job wraps store.analyze, so the cache and the store's rules are unchanged:
+A request identical (bar its label) to a job still queued or running attaches
+to that job. A job wraps store.analyze, so the cache and the store's rules are unchanged:
 an area already stored is a job born complete, with no run; a run with any
 stage not ok completes UNSTORED (result_id None, not_stored_because set).
 `partial` holds each output group as the run finalises it, in the result
@@ -104,10 +105,18 @@ def submit(bbox, start, end, *, name: str, boundary_id: str | None = None,
     """Start a job and return its first snapshot. A stored area is returned
     complete, without queueing a run."""
     analyze = analyze or store.analyze
+    request = {"bbox": list(bbox), "start_date": start, "end_date": end,
+               "aoi_label": name, "boundary_layer_id": boundary_id}
+    with _guard:
+        # The same request already queued or running: attach to it rather
+        # than start a second run of the same area.
+        twin = next((j["job_id"] for j in _jobs.values() if j["status"] in ("queued", "running")
+                     and {**j["request"], "aoi_label": name} == request), None)
+    if twin:
+        return get(twin)
     jid = "j" + secrets.token_hex(12)
     job = {"job_id": jid, "status": "queued", "created_utc": _now(),
-           "request": {"bbox": list(bbox), "start_date": start, "end_date": end,
-                       "aoi_label": name, "boundary_layer_id": boundary_id},
+           "request": request,
            "stages": {}, "partial": {}, "result_id": None, "result": None,
            "cached": False, "stored": False, "error": None}
     rid, hit = store.cached(bbox, start, end, boundary_id=boundary_id, root=root,

@@ -2415,7 +2415,20 @@ convention. C26 is what makes C25 detectable.
 **Acceptance:** a 100%-unobserved and a 50%-unobserved ward are distinguishable
 from the output alone, without inference.
 
-### 36. C33 — absent ≠ measured-zero 🔶 **PARTIAL (2026-10-28) — backend and renderer helper done; no UI view of the new result yet**
+### 36. C33 — absent ≠ measured-zero ✅ *(2026-10-29, `build/frontend`; was 🔶 PARTIAL 2026-10-28 for want of a UI view of the new result)*
+
+> **UI view built 2026-10-29 (Phase 4, `web/`).** The new frontend renders
+> the analysis result. `web/src/lib/contract.js` `readOutput()` treats only
+> `status: "available"` with a finite number as measured; anything else is
+> "Not yet measured" / "Not enough clear imagery" / ... with the contract's
+> reason one click deeper, and a measured share under 1% reads "under 1%",
+> never "0%". On the map an unmeasured cell is a grey hatch listed in the
+> legend as its own state; the features route
+> (`GET /api/results/{id}/features/{unit_type}`) serves `null` plus the
+> status. Tests: `tests/test_web_logic.mjs` (20, including absent never
+> rendered with a digit and a measured 0 as "0.0%") and
+> `tests/test_analysis_jobs.py::test_features_are_null_where_not_measured_never_zero`.
+> `geowatch-ui/` is the retired pipeline's UI and is removed in Phase 4 Step B.
 
 > **Built 2026-10-28 (Phase 2).** Backend: the result contract
 > (`analysis/contract.py`) refuses a `null` value without an absent status
