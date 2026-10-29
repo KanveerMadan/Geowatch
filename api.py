@@ -469,6 +469,7 @@ def root():
         "scheduler": "disabled",
         "next_auto_refresh": None,
         "scheduler_note": SCHEDULER_DISABLED_REASON,
+        "max_aoi_area_km2": MAX_AOI_AREA_KM2,
     }
 
 
@@ -477,10 +478,9 @@ def root():
 DEMO_REMOVED_DETAIL = "demo mode is removed: there is no default AOI. Send a bounding box."
 
 
-@app.post("/api/analyze")
-def analyze(req: AnalysisRequest):
-    """The analysis pipeline (analysis/run.py): no 7-class classifier. Serves
-    a stored result when the same AOI + dates + version was run before."""
+def validate_analysis_request(req: AnalysisRequest) -> None:
+    """Shared by /api/analyze and /api/jobs: everything is refused here, before
+    any run starts."""
     validate_aoi_label(req.aoi_label)
     if req.boundary_layer_id is not None:
         validate_boundary_layer_id(req.boundary_layer_id)
@@ -492,12 +492,19 @@ def analyze(req: AnalysisRequest):
     if aoi_geo["area_km2"] > MAX_AOI_AREA_KM2:
         raise HTTPException(status_code=400, detail=(
             f"AOI too large: {aoi_geo['area_km2']:.2f} km². Keep under {MAX_AOI_AREA_KM2} km²."))
-    from analysis import store
     from analysis.run import resolve_window
     try:
         resolve_window(req.start_date, req.end_date)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=f"Invalid dates: {e}")
+
+
+@app.post("/api/analyze")
+def analyze(req: AnalysisRequest):
+    """The analysis pipeline (analysis/run.py): no 7-class classifier. Serves
+    a stored result when the same AOI + dates + version was run before."""
+    validate_analysis_request(req)
+    from analysis import store
     try:
         out = store.analyze((req.west, req.south, req.east, req.north), req.start_date,
                             req.end_date, name=req.aoi_label, boundary_id=req.boundary_layer_id,
@@ -508,6 +515,30 @@ def analyze(req: AnalysisRequest):
     if out["result_id"]:
         out["url"] = f"/api/results/{out['result_id']}"
     return out
+
+
+@app.post("/api/jobs", status_code=202)
+def start_job(req: AnalysisRequest):
+    """The analysis pipeline as a job (analysis/jobs.py): returns at once with
+    a job id. A stored area comes back already complete."""
+    validate_analysis_request(req)
+    from analysis import jobs
+    return jobs.submit((req.west, req.south, req.east, req.north), req.start_date, req.end_date,
+                       name=req.aoi_label, boundary_id=req.boundary_layer_id,
+                       root=str(RESULTS_ROOT))
+
+
+@app.get("/api/jobs/{job_id}")
+def get_job(job_id: str):
+    """Per-stage status and each output group as it is final; the full
+    result once complete."""
+    from analysis import jobs
+    if not jobs.valid_id(job_id):
+        raise HTTPException(status_code=400, detail="Invalid job id.")
+    j = jobs.get(job_id)
+    if j is None:
+        raise HTTPException(status_code=404, detail="Unknown job (jobs are kept in memory only).")
+    return j
 
 
 @app.post("/api/legacy/analyze")
@@ -742,6 +773,18 @@ def get_result_ward_page(result_id: str, unit_type: str, offset: int = 0, limit:
             "n_units": block["n_units"], "offset": offset, "limit": limit,
             "osm_coverage": block.get("osm_coverage"),
             "units": [materialize(u, unit_type, ctx) for u in page]}
+
+
+@app.get("/api/results/{result_id}/features/{unit_type}")
+def get_result_features(result_id: str, unit_type: str):
+    """Every unit of one type as a GeoJSON FeatureCollection, for drawing:
+    each fraction's value where it was measured and null (with its status)
+    where it was not. The full contract per unit stays at .../wards/..."""
+    from analysis.wards import feature
+    r, block, ctx = _load_unit_type(result_id, unit_type)
+    return {"type": "FeatureCollection", "result_id": result_id, "unit_type": unit_type,
+            "status": block["status"], "fractions": list(ctx["fractions"]),
+            "features": [feature(u, ctx) for u in block["units"]]}
 
 
 @app.get("/api/results/{result_id}/wards/{unit_type}/{unit_id}")

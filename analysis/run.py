@@ -240,8 +240,13 @@ def version_for(producer, commit: dict | None = None) -> dict:
 
 def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: str | None = None,
                  verdicts: dict | None = None, deps: dict | None = None,
-                 commit: dict | None = None) -> tuple:
-    """Run the whole chain. Returns (result, unit_sets)."""
+                 commit: dict | None = None, progress=None) -> tuple:
+    """Run the whole chain. Returns (result, unit_sets).
+
+    `progress(event)`, if given, is told as the run goes: {"stage", "status":
+    "running"} before a stage, the stage's summary after it, and {"outputs":
+    {group: ...}} as each output group is final (analysis/jobs.py streams
+    these). It never changes what is computed."""
     from rasterio.transform import Affine
     from analysis.fractions import StandInFractions
     from analysis.waterways import distance_map
@@ -258,10 +263,13 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
     art = producer.artifact()
     mv = version_for(producer, commit)
     stages = {}
+    emit = progress or (lambda event: None)
 
     def stage(key, fn, *a, timeout_key=None):
+        emit({"stage": key, "status": "running"})
         o = run_stage(key, fn, *a, timeout_s=STAGE_TIMEOUT_S[timeout_key or key])
         stages[key] = summary(o)
+        emit(stages[key])
         return o
 
     stage("ee_init", deps["init_ee"], timeout_key="context")
@@ -283,6 +291,7 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
     if fo["status"] != "ok":
         raise RuntimeError(f"fraction producer {fo['status']}: {fo.get('error')}")
     fset = fo["value"]
+    emit({"outputs": {"fractions": _aoi_fraction_outputs(layer, fset, mv)}})
 
     # 3b. item 33: observability (the denominator) and estimate quality.
     from analysis import observability as OB
@@ -290,6 +299,7 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
                producer.CLOUD_COVER_THRESHOLD)
     obs_out, eq_out = OB.outputs(fset["valid_obs"], OB.aoi_mask(layer, ft, fshape), oo, fset,
                                  window, mv)
+    emit({"outputs": {"observability": obs_out, "estimate_quality": eq_out}})
 
     # 4. flood surfaces and context.
     surfaces = dict(producer.hydrology_inputs(layer, fset, ht, (H_, W_), k))
@@ -308,6 +318,8 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
         stages["waterways"]["unavailable_clauses"] = wo["value"]["unavailable"]
     ctx, cstages = H.fetch_context(tuple(bbox), fns=deps["context_fns"])
     stages.update(cstages)
+    for st in cstages.values():
+        emit(st)
     # Item 26 Phase 1a: fluvial, flash flood and waterlogging read per-pixel
     # rasters on the hydrology grid. A stage that did not finish becomes their
     # input's status (item 38), never an "available" context.
@@ -330,10 +342,13 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
         if hz["pluvial"]["status"] == "available":
             hz["pluvial"]["map"] = {**meta, "url_path": "maps/pluvial_susceptibility"}
 
+    emit({"outputs": {"susceptibility": hz}})
+
     # 5. item 25: change.
     epochs = change_epochs(window)
     co = stage("change", deps["run_change"], layer, epochs)
     change = co["value"] if co["status"] == "ok" else None
+    emit({"outputs": {"change": _change_outputs(change, stages["change"], epochs, fset, mv)}})
 
     # 6. item 22: aggregation units and wards.
     from analysis.wards import build_unit_sets
