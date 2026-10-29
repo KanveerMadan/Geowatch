@@ -178,6 +178,19 @@ def test_fetched_clauses_are_cached_per_clause(tmp_path, monkeypatch):
     assert len(calls) == len(sources.HIGHWAY_CLAUSES)
 
 
+def test_cache_dir_is_outside_the_checkout_and_overridable(monkeypatch):
+    import importlib
+    import os
+    monkeypatch.delenv("GEOWATCH_VECTOR_CACHE", raising=False)
+    try:
+        assert importlib.reload(sources).CACHE_DIR == os.path.expanduser("~/.cache/geowatch/vector")
+        monkeypatch.setenv("GEOWATCH_VECTOR_CACHE", "/elsewhere")
+        assert importlib.reload(sources).CACHE_DIR == "/elsewhere"
+    finally:
+        monkeypatch.undo()
+        importlib.reload(sources)
+
+
 def test_cache_key_is_bound_to_the_box():
     assert sources.bbox_key("x", BBOX) != sources.bbox_key("x", (0, 0, 1, 1))
 
