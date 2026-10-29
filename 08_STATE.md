@@ -2,7 +2,8 @@
 
 **Where the project actually is, across all branches, as of 2026-09-23.**
 *(§"Decisions recorded 2026-09-24" added 2026-09-24; §"Phase 2 recorded
-2026-10-28" added 2026-10-28; the rest of this document has not been
+2026-10-28" added 2026-10-28; §"Decision 11 third amendment" added
+2026-10-29; the rest of this document has not been
 re-audited since 2026-09-23.)*
 
 This document exists because the same facts kept being rediscovered. The branch
@@ -544,7 +545,7 @@ Decision 11 (second amendment), Decision 14 (2026-09-24 extension), item 21
 
 | What | Decided |
 |---|---|
-| **Taxonomy** | Eight disjoint fractions on the known-pixel denominator: built, paved, vegetation, water, bare + **snow_ice** (permanent only), **solar**, **mixed_water_vegetation** |
+| **Taxonomy** | ~~Eight~~ Seven *(2026-10-29)* disjoint fractions on the known-pixel denominator: built, paved, vegetation, water, bare + **snow_ice** (permanent only), **solar**, ~~**mixed_water_vegetation**~~ — *see §"Decision 11 third amendment"* |
 | **`impervious_total`** | Still `built + paved`. **Solar inclusion DEFERRED** until solar prevalence is measured in validation data |
 | **Hard-surface remainder** | Now also subtracts snow_ice, solar, mixed_water_vegetation (besides vegetation and water ~~and shadow~~). Computed on the known-pixel ~~, shadow-renormalised~~ share |
 | **Shadow rule** *(locked 2026-09-24, amended same day)* | Fully shadowed pixels → occlusion, leave the denominator. Partially shadowed → ~~sub-pixel term, renormalised out~~ stay in the denominator with **no explicit term**; regressors learn robustness from hand labels that include them; never a fraction. Never both, and never subtracted in the remainder. The Makoko/Kibera/Rocinha pass labels partial shadow separately to test it; if it fails, a fix is added then, with evidence. Full/partial boundary still open |
@@ -726,6 +727,25 @@ JRC references.
 
 Result: `experiments/flood_validation/result_round2_2026-10-28.json`. Item 26
 stays partial.
+
+---
+
+## Decision 11 third amendment — recorded 2026-10-29
+
+**Decided by the user, 2026-10-29,** on the 2026-10-28 ceiling checks
+(`06_UNMIXING_CEILING.md` Part 8). Full text: `05_BUILD_MANUAL.md` Decision 11.
+
+| What | Decided |
+|---|---|
+| **`mixed_water_vegetation`** | **Dropped as a single fraction** (C60; vegetation R² fell 0.974→0.634). **`tidal_flat`** is a candidate sub-class for later assessment |
+| **`solar`** | **Restricted to utility-scale solar farms.** Rooftop solar is out of scope at 10 m (C61, R² 0.436) |
+| **`snow_ice`** | **Stays**, pending a cloud-confusion check before labelling |
+| **Findings** | C60, C61 → **CONFIRMED** (`04_FINDINGS_LEDGER.md`) |
+
+The taxonomy is now seven fractions, and the hard-surface remainder no longer
+subtracts `mixed_water_vegetation`. **Nothing is built**, and no build-manual
+status was flipped. `LABELLING_GUIDE.md` lives on `item-21-phase-a` and is
+**not yet updated** to match.
 
 ---
 
