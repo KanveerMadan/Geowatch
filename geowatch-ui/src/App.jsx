@@ -1257,7 +1257,7 @@ export default function App() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [selected, setSelected] = useState(null)
-  const [manualBbox, setManualBbox] = useState({ west: '72.836', south: '19.037', east: '72.862', north: '19.060' })
+  const [manualBbox, setManualBbox] = useState({ west: '', south: '', east: '', north: '' })
   const [showLandcover, setShowLandcover] = useState(true)
   const [landcoverOpacity, setLandcoverOpacity] = useState(0.75)
   const [showRoadsVector, setShowRoadsVector] = useState(true)
@@ -1409,7 +1409,7 @@ export default function App() {
 
       {/* Map */}
       <div style={{ flex: 1, position: 'relative', cursor: drawing ? 'crosshair' : 'default' }}>
-        <MapContainer center={[19.048, 72.849]} zoom={14} style={{ height: '100%', width: '100%' }} zoomControl>
+        <MapContainer center={[0, 0]} zoom={2} style={{ height: '100%', width: '100%' }} zoomControl>
           <DragToggle drawing={drawing} />
           <MapRecenter bbox={bbox} />
           <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" attribution="Tiles &copy; Esri" />

@@ -1,6 +1,6 @@
 """
 C17 / build item 56 — "latest run" is chosen by parsed timestamp, not by
-string order, and `*_test_*` runs never reach the demo endpoint.
+string order, and `*_test_*` runs are never chosen as latest.
 
 04_FINDINGS_LEDGER.md C17 [E]: `get_latest_run("dharavi")` took the
 lexicographic last directory. That was `dharavi_test_20260806_114208`, because
@@ -73,27 +73,6 @@ def test_test_runs_are_excluded_even_when_newest(api_module, runs_root):
 def test_only_test_runs_means_no_run(api_module, runs_root):
     _make_run(runs_root, LEDGER_TEST_RUN)
     assert api_module.get_latest_run("dharavi") is None
-
-
-def test_demo_endpoint_never_serves_a_test_run(api_module, runs_root):
-    _make_run(runs_root, LEDGER_TEST_RUN)
-    client = TestClient(
-        api_module.app,
-        headers={api_module.API_KEY_HEADER_NAME: api_module.API_KEY},
-    )
-    assert client.get("/api/demo").status_code == 404
-
-
-def test_demo_endpoint_serves_newest_non_test_run(api_module, runs_root):
-    for name in (LEDGER_PLAIN_OLD, LEDGER_TEST_RUN, LEDGER_NEWEST_BY_TIME):
-        _make_run(runs_root, name)
-    client = TestClient(
-        api_module.app,
-        headers={api_module.API_KEY_HEADER_NAME: api_module.API_KEY},
-    )
-    r = client.get("/api/demo")
-    assert r.status_code == 200
-    assert r.json()["run_id"] == LEDGER_NEWEST_BY_TIME
 
 
 def test_undated_directory_is_not_guessed_into_first_place(api_module, runs_root):

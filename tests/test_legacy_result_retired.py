@@ -111,8 +111,5 @@ def test_served_legacy_runs_are_retired(client):
     assert r.status_code == 200
     _assert_all_retired(r.json())
     assert r.json()["legacy_pipeline"]["retired"] is True
-    d = client.get("/api/demo", headers=h)
-    assert d.status_code == 200
-    _assert_all_retired({k: v for k, v in d.json().items() if not k.startswith("_")})
     rows = client.get("/api/runs", headers=h).json()["runs"]
     assert rows and all(row["validation_status"] == RETIRED for row in rows)

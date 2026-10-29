@@ -1,9 +1,9 @@
 """
 Item 20 — the stored coverage report: one item 20 block per vector AOI.
 
-This is what the UI reads (GET /api/vector/coverage). The UI renders it and
-computes nothing: the regime, the warning, the reasons and every partial-fetch
-status are decided here, by vector.coverage, and nowhere else.
+It is the calibration record behind the reference distribution, served at
+GET /api/vector/coverage. The UI does not display it: since 2026-10-29 it
+shows only the viewed AOI's own block from its analysis result.
 
 The report is built offline because scoring hits Overpass and Earth Engine
 (the 2026-10-27 run took most of a day with the primary endpoint timing
