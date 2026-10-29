@@ -37,6 +37,23 @@ def test_chain_order_is_all_present(run):
                                         "waterlogging"}
 
 
+def test_osm_coverage_for_an_aoi_outside_the_reference_set(run):
+    """Item 20 for any AOI: measured live from its own layer, ranked against the
+    stored reference distribution, which never appears by name in the result."""
+    import json
+    from vector.coverage import (LOW_COVERAGE_REGIMES, REFERENCE_MEASURED_ON,
+                                 REFERENCE_NARROW_KM_PER_KM2)
+    o = run[0]["outputs"]["osm_coverage"]
+    assert o["low_coverage_warning"] is (o["coverage_regime_flag"] in LOW_COVERAGE_REGIMES)
+    assert o["scored"] is True
+    assert o["percentile_basis"] == "full_reference"
+    assert o["reference_set_size"] == len(REFERENCE_NARROW_KM_PER_KM2)
+    assert o["reference_measured_on"] == REFERENCE_MEASURED_ON
+    text = json.dumps(o)
+    for name in REFERENCE_NARROW_KM_PER_KM2:
+        assert name not in text, name
+
+
 def test_fraction_labels_and_not_computed(run):
     f = run[0]["outputs"]["fractions"]
     assert f["built"]["validation_status"] == "experimental" and f["built"]["value"] > 0

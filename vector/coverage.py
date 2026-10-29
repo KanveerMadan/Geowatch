@@ -21,6 +21,7 @@ computed on real data.
 """
 from __future__ import annotations
 
+from vector.aois import BASELINE_AOIS, MORPHOLOGY_AOIS
 from vector.roads import NEGATIVE_SPACE_TRIGGER_KM_PER_KM2
 
 # ── Reference set: narrow pedestrian density, km/km^2 ───────────────────
@@ -52,6 +53,10 @@ REFERENCE_NARROW_KM_PER_KM2 = {
     "chandigarh_central": 2.2482,
 }
 REFERENCE_MEASURED_ON = "2026-10-27"
+# The box each reference value was measured on. An AOI is a reference member
+# only on that box: its label is free text, and any AOI can carry any label.
+REFERENCE_BBOXES = {**{n: tuple(s["bbox"]) for n, s in MORPHOLOGY_AOIS.items()},
+                    **{n: tuple(b) for n, b in BASELINE_AOIS.items()}}
 
 # ── Regime thresholds (fixed before any score was computed) ──────────────
 VERY_LOW_NARROW_KM_PER_KM2 = 0.3
@@ -104,11 +109,14 @@ def score_layer(layer, reference=None, *, region=None, footprint_count=None) -> 
     # Leave-one-out: an AOI that is itself a reference member is ranked
     # against the OTHER members. Ranking it against its own (rounded) entry
     # made its percentile depend on the 4th decimal place of that rounding.
-    if isinstance(ref, dict):
+    member = (isinstance(ref, dict) and layer.name in ref
+              and REFERENCE_BBOXES.get(layer.name, tuple(layer.bbox)) == tuple(layer.bbox))
+    if member:
         ref_values = [v for k, v in ref.items() if k != layer.name]
-        rank_basis = "leave_one_out" if layer.name in ref else "full_reference"
+        rank_basis = "leave_one_out"
     else:
-        ref_values, rank_basis = list(ref), "full_reference"
+        ref_values = list(ref.values()) if isinstance(ref, dict) else list(ref)
+        rank_basis = "full_reference"
 
     area = (layer.aoi if region is None else region).area / 1e6
     L = layer.lengths_km(region)

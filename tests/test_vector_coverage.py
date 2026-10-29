@@ -255,3 +255,20 @@ def test_reference_member_is_ranked_leave_one_out():
 def test_non_member_is_ranked_against_the_full_reference():
     s = coverage.score_layer(_layer(_footways(9)), {"a": 0.19, "b": 2.0, "c": 37.8})
     assert s["percentile_basis"] == "full_reference" and s["reference_set_size"] == 3
+
+
+def test_reference_membership_needs_the_reference_box_not_just_the_label():
+    """An AOI is a calibration member only on the box it was measured on. A
+    user's AOI labelled 'lagos' anywhere else is ranked against all of them."""
+    from vector.aois import BASELINE_AOIS
+    from vector_synth import _highways
+    n = len(coverage.REFERENCE_NARROW_KM_PER_KM2)
+
+    def layer(bbox):
+        return roads.build_road_layer("lagos", bbox, highways=_highways([]),
+                                      footprints_4326=[], footprint_source="none")
+
+    away = coverage.score_layer(layer(BBOX))
+    assert (away["percentile_basis"], away["reference_set_size"]) == ("full_reference", n)
+    home = coverage.score_layer(layer(BASELINE_AOIS["lagos"]))
+    assert (home["percentile_basis"], home["reference_set_size"]) == ("leave_one_out", n - 1)
