@@ -1,19 +1,44 @@
 /* Geometry for the search and draw tools. Plain functions, tested under node. */
 
-const R_KM = 6371.0088 // mean Earth radius
+// WGS84, as the server measures (pyproj Geod in api.compute_aoi_geodesics).
+const A_KM = 6378.137
+const E2 = 0.00669437999014
+const E = Math.sqrt(E2)
 const rad = (d) => (d * Math.PI) / 180
+const deg = (r) => (r * 180) / Math.PI
 
 // Fixed 2026-10-29: the readout turns amber from this share of the limit.
 export const WARN_SHARE = 0.8
 // A searched place smaller than this gets the default box instead of its own.
 export const MIN_PLACE_KM2 = 0.25
 export const DEFAULT_BOX_KM = 3
+// "Point + fixed box": the box side when you click a point.
+export const DEFAULT_POINT_BOX_KM = 10
+export const MIN_POINT_BOX_KM = 1
+// Vertices per box edge when drawn, so edges follow parallels and meridians
+// on the globe and on a tilted map, as the analysed box does.
+export const EDGE_STEPS = 24
 
-/** Area of a lon/lat box on the sphere, km². Exact for a spherical Earth;
- *  the server's geodesic check (api.compute_aoi_geodesics) is the authority. */
-export function bboxAreaKm2([w, s, e, n]) {
-  return R_KM * R_KM * Math.abs(rad(e - w)) * Math.abs(Math.sin(rad(n)) - Math.sin(rad(s)))
+const q = (phi) => {
+  const s = Math.sin(phi)
+  return s / (1 - E2 * s * s) - (1 / (2 * E)) * Math.log((1 - E * s) / (1 + E * s))
 }
+
+/** Area of a lon/lat box on the WGS84 ellipsoid, km² (exact for a box
+ *  bounded by parallels and meridians; the server's geodesic-edged polygon
+ *  agrees to well under 0.1% at analysis sizes). */
+export function bboxAreaKm2([w, s, e, n]) {
+  return Math.abs((A_KM * A_KM * (1 - E2) / 2) * rad(e - w) * (q(rad(n)) - q(rad(s))))
+}
+
+const radii = (lat) => {
+  const s2 = Math.sin(rad(lat)) ** 2
+  return { M: (A_KM * (1 - E2)) / (1 - E2 * s2) ** 1.5, N: A_KM / Math.sqrt(1 - E2 * s2) }
+}
+
+// Coordinates are rounded to 1e-6° INWARD, so a box is never larger than asked.
+const down = (v) => Math.floor(v * 1e6) / 1e6
+const up = (v) => Math.ceil(v * 1e6) / 1e6
 
 /** 'ok' | 'warn' | 'over' against the server's limit. */
 export function areaState(km2, maxKm2) {
@@ -23,11 +48,17 @@ export function areaState(km2, maxKm2) {
   return 'ok'
 }
 
-/** A km-by-km box centred on a point. */
+/** A km-by-km box centred on a point, sized on the ellipsoid at its latitude. */
 export function boxAround(lat, lon, km = DEFAULT_BOX_KM) {
-  const dLat = (km / 2 / R_KM) * (180 / Math.PI)
-  const dLon = dLat / Math.max(Math.cos(rad(lat)), 1e-6)
-  return [lon - dLon, lat - dLat, lon + dLon, lat + dLat].map((v) => Math.round(v * 1e6) / 1e6)
+  const { M, N } = radii(lat)
+  const dLat = deg(km / 2 / M)
+  const dLon = deg(km / 2 / (N * Math.max(Math.cos(rad(lat)), 1e-6)))
+  return [up(lon - dLon), up(lat - dLat), down(lon + dLon), down(lat + dLat)]
+}
+
+/** The largest point-box side the limit allows, in 0.5 km steps. */
+export function maxBoxKm(maxKm2) {
+  return Math.max(MIN_POINT_BOX_KM, Math.floor(Math.sqrt(maxKm2) * 2) / 2)
 }
 
 /** The box to analyse for a found place: its own extent when that is a
@@ -49,8 +80,21 @@ export function bboxOf(points) {
   return [w, s, e, n]
 }
 
-export function bboxPolygon([w, s, e, n]) {
-  return { type: 'Polygon', coordinates: [[[w, s], [e, s], [e, n], [w, n], [w, s]]] }
+/** The box's outline, densified so every vertex lies on one of its four
+ *  edges: drawn exactly where the analysed box is, in any projection. */
+export function boxRing([w, s, e, n], steps = EDGE_STEPS) {
+  const ring = []
+  const lerp = (a, b, t) => a + (b - a) * t
+  for (let i = 0; i < steps; i++) ring.push([lerp(w, e, i / steps), s])
+  for (let i = 0; i < steps; i++) ring.push([e, lerp(s, n, i / steps)])
+  for (let i = 0; i < steps; i++) ring.push([lerp(e, w, i / steps), n])
+  for (let i = 0; i < steps; i++) ring.push([w, lerp(n, s, i / steps)])
+  ring.push([w, s])
+  return ring
+}
+
+export function bboxPolygon(bbox) {
+  return { type: 'Polygon', coordinates: [boxRing(bbox)] }
 }
 
 /**

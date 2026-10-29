@@ -3,7 +3,7 @@
  * React through these functions. Paint values come from the tokens.
  */
 import { color, motion } from '../design/tokens.js'
-import { bboxPolygon } from '../lib/geo.js'
+import { bboxPolygon, boxRing } from '../lib/geo.js'
 
 const EMPTY = { type: 'FeatureCollection', features: [] }
 // A uniform extrusion height, metres: footprints carry no measured height.
@@ -50,13 +50,17 @@ export function addLayers(map) {
       'line-opacity': 0.95,
     },
   })
-  map.addLayer({ id: 'aoi-line', type: 'line', source: 'aoi', paint: { 'line-color': color.select, 'line-width': 1.5, 'line-opacity': 0.9 } })
+  // Outlines are LineStrings of their own: a polygon's outline is cut where
+  // tiles clip it, which dropped whole edges on a tilted map.
+  const isLine = ['==', ['geometry-type'], 'LineString']
+  map.addLayer({ id: 'aoi-casing', type: 'line', source: 'aoi', filter: isLine, paint: { 'line-color': '#000', 'line-width': 4, 'line-opacity': 0.35 } })
+  map.addLayer({ id: 'aoi-line', type: 'line', source: 'aoi', filter: isLine, paint: { 'line-color': color.select, 'line-width': 1.5, 'line-opacity': 0.95 } })
   map.addLayer({
-    id: 'draft-fill', type: 'fill', source: 'draft',
+    id: 'draft-fill', type: 'fill', source: 'draft', filter: ['==', ['geometry-type'], 'Polygon'],
     paint: { 'fill-color': ['get', 'tone'], 'fill-opacity': 0.08 },
   })
   map.addLayer({
-    id: 'draft-line', type: 'line', source: 'draft',
+    id: 'draft-line', type: 'line', source: 'draft', filter: isLine,
     paint: { 'line-color': ['get', 'tone'], 'line-width': 1.5, 'line-dasharray': [2, 1.5] },
   })
   map.addLayer({
@@ -69,12 +73,24 @@ export function addLayers(map) {
   })
 }
 
+// The shown outline is built from the same [w, s, e, n] the analysis gets.
+const outline = (ring, properties = {}) => ({
+  type: 'FeatureCollection',
+  features: [
+    { type: 'Feature', properties, geometry: { type: 'Polygon', coordinates: [ring] } },
+    { type: 'Feature', properties, geometry: { type: 'LineString', coordinates: ring } },
+  ],
+})
+
 export function setAoi(map, bbox) {
-  map.getSource('aoi')?.setData(bbox ? { type: 'Feature', geometry: bboxPolygon(bbox), properties: {} } : EMPTY)
+  map.getSource('aoi')?.setData(bbox ? outline(boxRing(bbox)) : EMPTY)
 }
 
-export function setDraft(map, geometry, tone) {
-  map.getSource('draft')?.setData(geometry ? { type: 'Feature', geometry, properties: { tone } } : EMPTY)
+/** A draft: a box ([w, s, e, n]) or a lasso ring ([[lon, lat], ...]). */
+export function setDraft(map, shape, tone) {
+  if (!shape) return map.getSource('draft')?.setData(EMPTY)
+  const ring = typeof shape[0] === 'number' ? boxRing(shape) : [...shape, shape[0]]
+  map.getSource('draft')?.setData(outline(ring, { tone }))
 }
 
 // ── the scan: a line sweeping west to east with a fading trail ──

@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, animate, motion as m, useMotionValue, useReducedMotion } from 'motion/react'
 import {
-  CaretRight, Cube, FrameCorners, Globe, Mountains, Drop, ArrowsLeftRight, Square, Lasso, MagnifyingGlass, Play, SidebarSimple,
+  CaretRight, Crosshair, Cube, FrameCorners, GlobeHemisphereWest, MapTrifold, Globe, Mountains, Drop, ArrowsLeftRight, Square, Lasso, MagnifyingGlass, Play, SidebarSimple,
 } from '@phosphor-icons/react'
 import { motion, breakpoint } from './design/tokens.js'
 import MapView from './map/MapView.jsx'
 import { clearScan, paintCells, scanFrame, setAoi, setCells, setFootprints, showFootprints } from './map/layers.js'
 import { ApiError, JOB_POLL_MS, aoiLabel, getBuildings, getFeatures, getJob, getLimits, getWard, startJob } from './lib/api.js'
-import { boxForPlace } from './lib/geo.js'
+import { DEFAULT_POINT_BOX_KM, boxForPlace, maxBoxKm } from './lib/geo.js'
 import { outputsOf } from './lib/stages.js'
 import SearchBar from './components/SearchBar.jsx'
 import DrawTool from './components/DrawTool.jsx'
@@ -26,6 +26,7 @@ const TABS = [
 const TILT_3D_DEG = 15
 const TILT_ON_DEG = 55
 const TILTED_CELL_OPACITY = 0.4
+const BASEMAP_KEY = 'geowatch.basemap'
 const POLL_FAILURES_BEFORE_NOTICE = 5
 
 const isTyping = (el) => el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)
@@ -46,6 +47,15 @@ export default function App() {
   const [fraction, setFraction] = useState('built')
   const [panelOpen, setPanelOpen] = useState(false)
   const [drawMode, setDrawMode] = useState(null)
+  const [boxKm, setBoxKm] = useState(DEFAULT_POINT_BOX_KM)
+  // Satellite by default; the dark map is the toggle. Remembered per viewer.
+  const [basemap, setBasemapState] = useState(() => {
+    try { return localStorage.getItem(BASEMAP_KEY) === 'dark' ? 'dark' : 'satellite' } catch { return 'satellite' }
+  })
+  const chooseBasemap = useCallback((b) => {
+    setBasemapState(b)
+    try { localStorage.setItem(BASEMAP_KEY, b) } catch { /* storage blocked: the choice lasts this visit */ }
+  }, [])
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [features, setFeaturesState] = useState(null)
   const [cellsNote, setCellsNote] = useState(null)
@@ -63,7 +73,11 @@ export default function App() {
 
   // ── service limits ──
   useEffect(() => {
-    getLimits().then((r) => { setMaxKm2(r.max_aoi_area_km2); setService('ok') }).catch(() => setService('down'))
+    getLimits().then((r) => {
+      setMaxKm2(r.max_aoi_area_km2)
+      setBoxKm((k) => Math.min(k, maxBoxKm(r.max_aoi_area_km2)))
+      setService('ok')
+    }).catch(() => setService('down'))
   }, [])
 
   // ── place / area ──
@@ -102,6 +116,8 @@ export default function App() {
   // The drag-free way to set an area: whatever the map shows now.
   const useView = useCallback(() => {
     if (!map) return
+    // Level first, so the box is exactly the view and not the bounds of a tilted one.
+    map.jumpTo({ pitch: 0, bearing: 0 })
     const b = map.getBounds()
     onDrawn([b.getWest(), b.getSouth(), b.getEast(), b.getNorth()].map((v) => Math.round(v * 1e6) / 1e6))
   }, [map, onDrawn])
@@ -323,14 +339,17 @@ export default function App() {
     { id: 'search', label: 'Search a place', icon: MagnifyingGlass, kbd: '/', run: () => setTimeout(() => searchInput.current?.focus(), 0) },
     { id: 'rect', label: 'Draw a rectangle', icon: Square, run: () => setDrawMode('rect') },
     { id: 'lasso', label: 'Draw freehand', icon: Lasso, run: () => setDrawMode('lasso') },
+    { id: 'point', label: 'Click a point for a fixed box', icon: Crosshair, run: () => setDrawMode('point') },
     { id: 'view', label: 'Use the area in view', icon: FrameCorners, disabled: !map, run: useView },
     { id: 'analyse', label: 'Analyse this area', icon: Play, disabled: !bbox || !!jobLive, run: analyse },
     ...TABS.map((t) => ({ id: `tab-${t.id}`, label: `Show ${t.label}`, icon: t.icon, kbd: t.key, run: () => setTab(t.id) })),
     { id: 'panel', label: panelOpen ? 'Hide the panel' : 'Show the panel', icon: SidebarSimple, run: () => setPanelOpen((o) => !o) },
     { id: '3d', label: tilted ? 'Flatten the map' : 'Tilt the map to 3D', icon: Cube, disabled: !map, run: toggle3d },
     { id: 'globe', label: 'Back to the globe', icon: Globe, run: backToGlobe },
+    { id: 'basemap', label: basemap === 'satellite' ? 'Show the dark map' : 'Show satellite imagery', icon: basemap === 'satellite' ? MapTrifold : GlobeHemisphereWest,
+      run: () => chooseBasemap(basemap === 'satellite' ? 'dark' : 'satellite') },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  ], [bbox, jobLive, analyse, panelOpen, tilted, map, backToGlobe, useView])
+  ], [bbox, jobLive, analyse, panelOpen, tilted, map, backToGlobe, useView, basemap, chooseBasemap])
 
   const outputs = outputsOf(job)
   const measuredChoices = Object.entries(outputs.fractions ?? {})
@@ -341,7 +360,7 @@ export default function App() {
   return (
     <div className="app">
       <h1 className="sr-only">GeoWatch</h1>
-      <MapView onReady={setMap} spinning={!bbox} reducedMotion={reduce} />
+      <MapView onReady={setMap} spinning={!bbox && !drawMode} reducedMotion={reduce} basemap={basemap} />
 
       <div className="top-left">
         <SearchBar inputRef={searchInput} onPick={onPick} drawMode={drawMode} onDraw={setDrawMode} command={searchCmd} />
@@ -357,7 +376,8 @@ export default function App() {
         ))}
       </nav>
 
-      <DrawTool map={map} mode={drawMode} maxKm2={maxKm2} onDone={onDrawn} onCancel={cancelDraw} onUseView={useView} />
+      <DrawTool map={map} mode={drawMode} maxKm2={maxKm2} boxKm={boxKm} onBoxKm={setBoxKm}
+        onDone={onDrawn} onCancel={cancelDraw} onUseView={useView} />
 
       <AnimatePresence initial={false}>
         {panelOpen ? (
@@ -409,11 +429,19 @@ export default function App() {
           onChoose={setFraction} footprints={tilted ? buildings : 'none'} />
       )}
 
-      {bbox && <div className="map-tools">
-        <button type="button" className={`chip${tilted ? ' chip-on' : ''}`} aria-pressed={tilted} onClick={toggle3d} disabled={!map}>
-          <Cube size={15} aria-hidden="true" /> 3D
-        </button>
-      </div>}
+      <div className="map-tools">
+        <div className="seg seg-float" role="radiogroup" aria-label="Base map">
+          {[['satellite', 'Satellite'], ['dark', 'Map']].map(([id, label]) => (
+            <button key={id} type="button" role="radio" aria-checked={basemap === id} className={basemap === id ? 'on' : ''}
+              onClick={() => chooseBasemap(id)}>{label}</button>
+          ))}
+        </div>
+        {bbox && (
+          <button type="button" className={`chip${tilted ? ' chip-on' : ''}`} aria-pressed={tilted} onClick={toggle3d} disabled={!map}>
+            <Cube size={15} aria-hidden="true" /> 3D
+          </button>
+        )}
+      </div>
 
       <HoverCard cell={tab === 'ground' ? hoverCell : null} keys={measuredChoices} x={hx} y={hy} />
       <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} actions={actions}

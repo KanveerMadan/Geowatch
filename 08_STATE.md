@@ -804,6 +804,7 @@ stays partial.
 | **AOI limit** | `GET /` now reports `max_aoi_area_km2`, so the UI reads the limit instead of copying it |
 | **New frontend, Step A** | `web/` (React + Vite + MapLibre GL globe + Motion), built from scratch against the job API and the result contract: full-screen map, Nominatim search (on Enter only, 1 request/s, cached), rectangle / lasso drawing with a live km² readout against the server's limit, Ground / Flood / Change tabs, one trust badge for every number, the Ground tab streaming from the job (stages, partial fractions, then 100 m cells and 3D footprints). Flood and Change panels are Step B. Tokens in `web/src/design/tokens.js`. Logic tests: `tests/test_web_logic.mjs`. `geowatch-ui/` is still on disk until Step B |
 | **Not measured is never 0** | Item 36 ✅: see `05_BUILD_MANUAL.md` item 36 |
+| **Step A review fixes (2026-10-29)** | Drawn boxes stay true geographic rectangles (densified outlines, map levelled before drawing, no spin while drawing, points off the globe ignored); point + fixed box (10 x 10 km default, adjustable); area measured on WGS84 to match the server (`tests/test_web_geometry.mjs` checks against `api.compute_aoi_geodesics`). Esri World Imagery is the default base map, dark map a toggle; Esri's terms must be checked before public deployment |
 
 ---
 
