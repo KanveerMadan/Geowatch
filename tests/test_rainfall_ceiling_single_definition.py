@@ -7,8 +7,8 @@ import ast
 import pathlib
 
 import configs.flash_flood_constants as ffc
-import susceptibility.flash_flood as ff
-import susceptibility.waterlogging as wl
+import susceptibility.retired_methods.flash_flood_round2 as ff
+import susceptibility.retired_methods.waterlogging_round2 as wl
 
 CONFIGS = pathlib.Path(ffc.__file__).parent
 NAME = "FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM"

@@ -41,11 +41,12 @@ def test_unknown_label_is_refused():
 
 
 def test_pinned_tier2_verdicts():
-    """Round 3 failed pluvial, flash flood and waterlogging (boxes on the
-    mapped flood); fluvial (validated) and coastal (failed) are round 2's."""
+    """Fluvial (validated) and coastal (failed) are round 2's. Pluvial, flash
+    flood and waterlogging run flood round 4's new methods: rounds 1-3 tested
+    the retired ones, so no earlier verdict is theirs."""
     v = C.flood_verdicts()
-    assert v == {"pluvial": "failed", "fluvial": "validated", "waterlogging": "failed",
-                 "coastal": "failed", "flash_flood": "failed"}
+    assert v == {"pluvial": None, "fluvial": "validated", "waterlogging": None,
+                 "coastal": "failed", "flash_flood": None}
 
 
 def test_verdict_file_hash_is_enforced(tmp_path):
@@ -58,43 +59,51 @@ def test_verdict_file_hash_is_enforced(tmp_path):
 
 
 def test_a_round3_not_run_falls_back_to_round2(tmp_path):
-    """Round 3 decides only where it gave a verdict."""
+    """Round 3 decides only where it gave a verdict; no earlier round decides
+    for a method round 4 replaced."""
     import json
     p = tmp_path / "r3.json"
     p.write_text(json.dumps({"modules": {
-        "flash_flood": {"held_out": {"verdict": "not-run"}},
+        "coastal": {"held_out": {"verdict": "not-run"}},
+        "fluvial": {"held_out": {"verdict": "failed"}},
         "pluvial": {"held_out": {"verdict": "validated"}}}}))
     v = C.flood_verdicts(round3_path=str(p), round3_sha256="")
-    assert v["flash_flood"] == "not-run"          # round 2's (a replaced method)
-    assert v["pluvial"] == "validated"
-    assert v["fluvial"] == "validated" and v["coastal"] == "failed"
+    assert v["coastal"] == "failed"               # round 3 not-run: round 2's
+    assert v["fluvial"] == "failed"               # round 3 gave one: it decides
+    assert v["pluvial"] is None and v["flash_flood"] is None   # replaced in round 4
 
 
-def test_pluvial_and_waterlogging_show_failed_not_placeholder():
-    """(a) Pluvial runs on placeholder inputs and failed Tier 2 (rounds 1
-    and 3): the worst applicable label wins, `failed`. Waterlogging's
-    per-pixel method failed round 3; the module carries that itself, and
-    it outranks the placeholder impervious input."""
+def test_retired_methods_keep_failed_and_new_ones_carry_no_old_verdict():
+    """(a) The retired round-1/2 pluvial and waterlogging methods carry their
+    own labels (placeholder; failed). Round 4 replaced both, so the contract
+    reads no rounds 1-3 verdict for them: what is left is the new module's
+    own label and its inputs' -- placeholder for pluvial (stand-in built
+    area), experimental for waterlogging."""
     from susceptibility.inputs import surface
-    from susceptibility.pluvial import compute_pluvial_susceptibility
-    from susceptibility.waterlogging import compute_waterlogging_susceptibility
+    from susceptibility.retired_methods.pluvial_round1 import compute_pluvial_susceptibility
+    from susceptibility.retired_methods.waterlogging_round2 import compute_waterlogging_susceptibility
     imp = surface(np.full((4, 4), 0.6), "OB", "footprint_union_area_fraction", "placeholder")
     inf = surface(np.full((4, 4), 0.2), "S2", "ndvi", "placeholder")
     rasters = {"status": "available", "shape": (4, 4), "errors": {},
                "layers": {"hand_m": surface(np.full((4, 4), 2.0), "MERIT", "hnd", "experimental")}}
     pluvial = compute_pluvial_susceptibility(impervious=imp, infiltration=inf)
     water = compute_waterlogging_susceptibility(rasters, impervious=imp)
-    assert pluvial["validation_status"] == "placeholder"        # the module's own view
+    assert pluvial["validation_status"] == "placeholder"        # the retired module's own view
     assert water["validation_status"] == "failed"
     v = C.flood_verdicts()
-    assert C.hazard_label(pluvial["validation_status"], v["pluvial"]) == "failed"
-    assert C.hazard_label(water["validation_status"], v["waterlogging"]) == "failed"
+    from susceptibility import pluvial as P, waterlogging as W
+    dem = surface(np.add.outer(np.arange(4.0), np.arange(4.0)), "FABDEM", "bilinear",
+                  "experimental")
+    new_p = P.compute_pluvial_susceptibility(dem=dem, impervious=imp, design_storm_mm=80.0)
+    new_w = W.compute_waterlogging_susceptibility(rasters)
+    assert C.hazard_label(new_p["validation_status"], v["pluvial"]) == "placeholder"
+    assert C.hazard_label(new_w["validation_status"], v["waterlogging"]) == "experimental"
 
 
 def test_untested_module_keeps_its_own_label_and_a_tested_one_takes_its_verdict():
     v = C.flood_verdicts()
     assert C.hazard_label("experimental", "not-run") == "experimental"
-    assert C.hazard_label("experimental", v["flash_flood"]) == "failed"        # round 3
+    assert C.hazard_label("experimental", v["flash_flood"]) == "experimental"  # round 4, unrun
     assert C.hazard_label("experimental", None, "placeholder") == "placeholder"
     assert C.hazard_label("experimental", v["coastal"]) == "failed"            # round 2
     # fluvial passed; without its scope (C70) the worst-of-inputs rule caps it

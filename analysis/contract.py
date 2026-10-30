@@ -69,6 +69,11 @@ ROUND2_REPLACED_METHODS = ("fluvial", "flash_flood", "waterlogging")
 FLOOD_VALIDATION_ROUND3_RESULT = os.path.join("experiments", "flood_validation",
                                               "result_round3_2026-10-29.json")
 FLOOD_VALIDATION_ROUND3_SHA256 = "317daa1fcd96cb786463ca980ba1684bb89e9ba07da1e78f33a411518e6f5b5b"
+# Flood round 4 replaced these modules' methods (PREREGISTRATION_ROUND4.md):
+# rounds 1-3 tested methods that no longer run, so none of their verdicts is
+# read for them. Until round 4's result is pinned they have no verdict and
+# take the label their method and inputs give them (`experimental`, C69).
+ROUND4_REPLACED_METHODS = ("pluvial", "flash_flood", "waterlogging")
 VERDICT_LABEL = {"failed": "failed", "passed": "validated", "validated": "validated"}
 
 # C70 (item 26 flood follow-ups): a module that ran EXACTLY the configuration
@@ -216,8 +221,9 @@ def flood_verdicts(path: str = FLOOD_VALIDATION_RESULT, expected_sha256: str | N
                    round3_sha256: str | None = None) -> dict:
     """{module: verdict}: each module's round-3 held-out verdict where round 3
     gave one; else its round-2 verdict; where that is not-run and the
-    module's method is unchanged since round 1, round 1's verdict. Raises if
-    any file's hash is not the pinned one."""
+    module's method is unchanged since round 1, round 1's verdict. A module
+    whose method round 4 replaced has none (None). Raises if any file's hash
+    is not the pinned one."""
     r1 = _pinned_modules(path, FLOOD_VALIDATION_SHA256 if expected_sha256 is None
                          else expected_sha256)
     r2 = _pinned_modules(round2_path, FLOOD_VALIDATION_ROUND2_SHA256 if round2_sha256 is None
@@ -226,6 +232,9 @@ def flood_verdicts(path: str = FLOOD_VALIDATION_RESULT, expected_sha256: str | N
                          else round3_sha256)
     out = {}
     for m in r1.keys() | r2.keys():
+        if m in ROUND4_REPLACED_METHODS:
+            out[m] = None
+            continue
         v2 = (r2.get(m) or {}).get("held_out", {}).get("verdict")
         v3 = (r3.get(m) or {}).get("held_out", {}).get("verdict")
         if v3 and v3 != "not-run":

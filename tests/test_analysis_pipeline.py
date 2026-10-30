@@ -70,18 +70,22 @@ def test_vegetation_observed_fraction_reflects_the_unobserved_corner(run):
     assert 0.8 < veg["coverage"]["observed_fraction"] < 1.0
 
 
-def test_pluvial_and_waterlogging_are_failed(run):
-    """Labels after flood round 3: pluvial failed (round 3 confirms round 1),
-    coastal failed (round 2), flash flood and waterlogging failed (round 3).
+def test_labels_before_round4_is_pinned(run):
+    """Flood round 4 replaced pluvial, flash flood and waterlogging; rounds 1-3
+    tested the retired methods, so until round 4's verdict is pinned the new
+    methods carry no verdict: waterlogging and flash flood read experimental,
+    pluvial placeholder (its stand-in built area). Coastal failed (round 2).
     Fluvial passed round 2 and runs exactly its validated inputs, so it reads
     validated with its scope note (C70)."""
     s = run[0]["outputs"]["susceptibility"]
-    assert s["pluvial"]["validation_status"] == "failed"
-    assert s["waterlogging"]["validation_status"] == "failed"
+    assert s["pluvial"]["validation_status"] == "placeholder"
+    assert s["waterlogging"]["validation_status"] == "experimental"
+    assert s["flash_flood"]["validation_status"] == "experimental"
+    for h in ("pluvial", "flash_flood", "waterlogging"):
+        assert s[h]["tier2_verdict"] is None, h
     assert s["fluvial"]["validation_status"] == "validated"
     assert s["fluvial"]["validated_scope"]["regions"]
     assert s["fluvial"]["tier2_verdict"] == "validated"
-    assert s["flash_flood"]["validation_status"] == "failed"
     assert s["coastal"]["validation_status"] == "failed"
     for h in ("fluvial", "flash_flood", "waterlogging"):
         assert s[h]["spatial"] is True, h
@@ -103,7 +107,8 @@ def test_every_ward_unit_materializes_to_the_contract(run):
         assert b["units"], t
         for u in b["units"]:
             m = materialize(u, t, ctx)
-            assert m["outputs"]["susceptibility"]["pluvial"]["validation_status"] == "failed"
+            # round 4's pluvial, unverdicted, capped by its stand-in built area
+            assert m["outputs"]["susceptibility"]["pluvial"]["validation_status"] == "placeholder"
 
 
 def test_aggregation_reports_each_unit_type(run):

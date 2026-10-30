@@ -121,7 +121,7 @@ def test_analyze_is_protected_and_results_are_public(client):
     res = client.get(f"/api/results/{rid}")
     assert res.status_code == 200
     C.check_result(res.json())
-    assert res.json()["outputs"]["susceptibility"]["pluvial"]["validation_status"] == "failed"
+    assert res.json()["outputs"]["susceptibility"]["pluvial"]["validation_status"] == "placeholder"
 
     types = client.get(f"/api/results/{rid}/wards").json()["unit_types"]
     assert {"grid", "footprint", "path"} <= set(types)

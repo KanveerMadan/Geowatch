@@ -7,7 +7,7 @@ import pytest
 
 from configs.pluvial_constants import HYDROLOGY_PIXEL_M
 from susceptibility.inputs import hydrology_grid, road_conduits, surface
-from susceptibility.pluvial import compute_pluvial_susceptibility
+from susceptibility.retired_methods.pluvial_round1 import compute_pluvial_susceptibility
 from tests.vector_synth import _layer, _rows_of_huts, grid_layer  # noqa: F401
 
 

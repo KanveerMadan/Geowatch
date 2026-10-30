@@ -42,11 +42,15 @@ from perception.applicability_gate import (
 )
 from perception.hydrological_surfaces import compute_hydrological_surfaces
 from susceptibility.inputs import mean_pct, surface
-from susceptibility.pluvial import compute_pluvial_susceptibility
+# pipeline.py (legacy) runs the retired round-1/2 methods; _all_blocks
+# computes the blocks the way it does. Round 4's methods are gated too (below).
+from susceptibility.retired_methods.pluvial_round1 import compute_pluvial_susceptibility
 from susceptibility.fluvial import compute_fluvial_susceptibility
 from susceptibility.coastal import compute_coastal_susceptibility
-from susceptibility.flash_flood import compute_flash_flood_susceptibility
-from susceptibility.waterlogging import compute_waterlogging_susceptibility
+from susceptibility.retired_methods.flash_flood_round2 import compute_flash_flood_susceptibility
+from susceptibility.retired_methods.waterlogging_round2 import compute_waterlogging_susceptibility
+from susceptibility import flash_flood as flash_flood_r4, pluvial as pluvial_r4
+from susceptibility import waterlogging as waterlogging_r4
 from risk.compute import compute_risk
 
 
@@ -335,6 +339,8 @@ CONSUMERS = [
     compute_pluvial_susceptibility, compute_fluvial_susceptibility,
     compute_coastal_susceptibility, compute_flash_flood_susceptibility,
     compute_waterlogging_susceptibility,
+    pluvial_r4.compute_pluvial_susceptibility, flash_flood_r4.compute_flash_flood_susceptibility,
+    waterlogging_r4.compute_waterlogging_susceptibility,
 ]
 
 

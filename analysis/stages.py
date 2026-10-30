@@ -33,8 +33,10 @@ STAGE_TIMEOUT_S = {
     "change": 1800,              # four S2 composites + three OB Temporal years
     # item 26 Phase 1a: MERIT/FABDEM terrain + CHIRPS + a 10-year IMERG
     # percentile (314 s at one point; its one request has its own deadline,
-    # hydro_rasters.IMERG_DEADLINE_S, C71)
-    "hydro_rasters": 1500,
+    # hydro_rasters.IMERG_DEADLINE_S, C71); flood round 4 adds the CHIRPS
+    # design storm and two multi-year water-history reductions (JRC monthly,
+    # Sentinel-1), each with its own 1200 s request deadline
+    "hydro_rasters": 3000,
 }
 
 

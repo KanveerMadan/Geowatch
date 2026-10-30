@@ -27,9 +27,10 @@ def test_nodata_state_is_not_any_tier():
 
 
 def test_the_mask_travels_from_ingestion_to_the_rendered_map():
-    """The synthetic composite's top-left corner has no clear observation.
-    It must be NaN in the pluvial map and transparent in the PNG, and every
-    observed cell must be opaque."""
+    """The synthetic DEM's top-left corner has no data (flood round 4's
+    pluvial reads the DEM, not the Sentinel-2 composite). It must be NaN in
+    the pluvial map and transparent in the PNG, and every observed cell must
+    be opaque."""
     r, _ = S.run()
     png = r["_maps"]["pluvial_susceptibility"]
     meta = r["maps"]["pluvial_susceptibility"]

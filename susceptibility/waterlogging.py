@@ -1,43 +1,48 @@
 """
-Persistent-waterlogging susceptibility, per pixel (item 26 Phase 1a; was an
-AOI-wide scalar, Phase 7). STATIC / SCREENING SLICE ONLY. Method fixed in
-experiments/flood_validation/PREREGISTRATION_ROUND2.md before any run.
+Waterlogging susceptibility (flood taxonomy M3), flood round 4: where water
+has stood before, on clay, on low ground, beside a large river. Method fixed
+in experiments/flood_validation/PREREGISTRATION_ROUND4.md before it was built.
+The round-2 weighted-mean method is retired
+(susceptibility/retired_methods/waterlogging_round2.py).
 
-Components on the hydrology grid, each 0-1:
+Components on the hydrology grid (susceptibility/hydro_rasters.py), each 0-1:
 
-    low_relief            1 - HAND / WATERLOGGING_HAND_NORMALIZATION_MAX_M
-    impervious            built area fraction / WATERLOGGING_IMPERVIOUS_NORMALIZATION_MAX_PCT
-                          (a declared surface, susceptibility/inputs.py: Open
-                          Buildings built area, placeholder -- not the
-                          retired 7-class map's hydrological_surfaces)
-    flatness              1 - slope / WATERLOGGING_SLOPE_NORMALIZATION_MAX_DEG
-    rainfall_climatology  CHIRPS mean annual total
-                          / FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM
+    persistence  mean of the available of: JRC GSW monthly water frequency
+                 (water months / observed months, 1984 to the year before the
+                 reference year, at most 2021) and the Sentinel-1 share of
+                 acquisitions with VV < -18 dB over the 3 calendar years
+                 before it. Only years BEFORE the reference year are read.
+    clay         min(1, clay % / 40), SoilGrids 0-30 cm (gaps: 1 km focal mean)
+    low_relief   1 - HAND / 15 m (MERIT hnd)
+    backwater    (1 - HAND / 5 m) x log10(upa_near / 100 km^2) / 2: low land
+                 beside a large river. River stage is not observed; river size
+                 stands in for a river that runs high in the wet season.
 
-IMPORTANT: the HAND here is the SAME MERIT Hydro HAND that
-susceptibility/fluvial.py reads, interpreted DIFFERENTLY. Fluvial reads low
-HAND as "close to a channel that could overflow" (a river-connectivity
-concern). Waterlogging reads it as "low-relief terrain with nowhere for water
-to drain to" (a poor-drainage concern), independent of whether a river is
-near. Both readings can be true at once; they are two mechanisms sharing one
-input.
-
-Weighted mean (WATERLOGGING_WEIGHTS); weights change only on the round-2
-tuning events. Ceilings provisional. An output is no more validated than its
-weakest input.
+Score = weighted mean (WATERLOGGING_R4_WEIGHTS). The HAND here is the same
+MERIT HAND fluvial reads, read as "nowhere to drain to", not "near a channel
+that overflows".
 """
+from __future__ import annotations
+
 import numpy as np
 
-from susceptibility.hydro_rasters import clip01, layer, map_summary, weighted_map
-from susceptibility.inputs import check_surface, mean_pct, provenance, weakest
 from configs.waterlogging_constants import (
-    WATERLOGGING_HAND_NORMALIZATION_MAX_M,
-    WATERLOGGING_IMPERVIOUS_NORMALIZATION_MAX_PCT,
-    WATERLOGGING_CLASS_BREAKS,
-    WATERLOGGING_SLOPE_NORMALIZATION_MAX_DEG,
-    WATERLOGGING_WEIGHTS,
+    WATERLOGGING_BACKWATER_DECADES, WATERLOGGING_BACKWATER_HAND_MAX_M,
+    WATERLOGGING_BACKWATER_MIN_KM2, WATERLOGGING_CLASS_BREAKS, WATERLOGGING_CLAY_MAX_PCT,
+    WATERLOGGING_HAND_NORMALIZATION_MAX_M, WATERLOGGING_R4_WEIGHTS,
 )
-from configs.flash_flood_constants import FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM
+from susceptibility.hydro_rasters import clip01, layer, map_summary, weighted_map
+from susceptibility.inputs import provenance, weakest
+
+# Flood round 4 has not been run on this method yet: a real method, not
+# validated (C69's meaning). Rounds 1-3's verdicts were on the retired method.
+VALIDATION_STATUS = "experimental"
+METHOD = "persistence_clay_relief_backwater_per_pixel_weighted"
+INPUT_LAYERS = ("hand_m", "upa_near_km2", "clay_pct", "jrc_water_freq", "s1_water_freq")
+CEILINGS = {"low_relief_hand_m": WATERLOGGING_HAND_NORMALIZATION_MAX_M,
+            "clay_pct": WATERLOGGING_CLAY_MAX_PCT,
+            "backwater_hand_m": WATERLOGGING_BACKWATER_HAND_MAX_M,
+            "backwater_min_km2": WATERLOGGING_BACKWATER_MIN_KM2}
 
 
 def _classify(score):
@@ -49,98 +54,91 @@ def _classify(score):
     return "very_high"
 
 
-from perception.applicability_gate import gated
+def persistence(jrc, s1):
+    """Per-cell mean of whichever frequencies are finite there; None if neither."""
+    parts = [np.asarray(a, dtype=np.float64) for a in (jrc, s1) if a is not None]
+    if not parts:
+        return None
+    stack = np.stack(parts)
+    ok = np.isfinite(stack)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        m = np.where(ok, stack, 0.0).sum(0) / ok.sum(0)
+    return clip01(np.where(ok.any(0), m, np.nan))
 
-# The module's own label, before its weakest input caps it. Round 3
-# (experiments/flood_validation/result_round3_2026-10-29.json, boxes on the
-# mapped flood): failed -- held-out mean within-event AUC 0.360 over Thai Binh
-# 0.277 and Nam Dinh 0.442, bar 0.70. (Round 2 was not-run.)
-VALIDATION_STATUS = "failed"
 
-
-def components(rasters: dict, impervious: dict = None) -> dict:
-    """{name: 0-1 array or None}. Pure; the harness tunes weights on these.
-    `impervious` must be a declared surface on the rasters' grid."""
-    hand, slope = layer(rasters, "hand_m"), layer(rasters, "slope_deg")
-    rain = layer(rasters, "rain_annual_mm")
-    imp = None
-    if impervious is not None:
-        r = np.asarray(check_surface(impervious, "impervious")["raster"], dtype=np.float64)
-        if rasters and r.shape != tuple(rasters["shape"]):
-            raise ValueError(f"impervious {r.shape} is not on the rasters' grid {rasters['shape']}")
-        imp = r if np.isfinite(r).any() else None
+def components(rasters: dict) -> dict:
+    """{name: 0-1 array or None}. Pure; the harness tunes weights on these."""
+    hand, upa = layer(rasters, "hand_m"), layer(rasters, "upa_near_km2")
+    clay = layer(rasters, "clay_pct")
+    with np.errstate(invalid="ignore", divide="ignore"):
+        backwater = None if hand is None or upa is None else (
+            clip01(1.0 - hand / WATERLOGGING_BACKWATER_HAND_MAX_M)
+            * clip01(np.log10(np.maximum(upa, 1e-9) / WATERLOGGING_BACKWATER_MIN_KM2)
+                     / WATERLOGGING_BACKWATER_DECADES))
+        backwater = None if backwater is None else np.where(
+            np.isfinite(hand) & np.isfinite(upa), backwater, np.nan)
     return {
+        "persistence": persistence(layer(rasters, "jrc_water_freq"),
+                                   layer(rasters, "s1_water_freq")),
+        "clay": None if clay is None else clip01(clay / WATERLOGGING_CLAY_MAX_PCT),
         "low_relief": None if hand is None
         else clip01(1.0 - hand / WATERLOGGING_HAND_NORMALIZATION_MAX_M),
-        "impervious": None if imp is None
-        else clip01(imp * 100.0 / WATERLOGGING_IMPERVIOUS_NORMALIZATION_MAX_PCT),
-        "flatness": None if slope is None
-        else clip01(1.0 - slope / WATERLOGGING_SLOPE_NORMALIZATION_MAX_DEG),
-        "rainfall_climatology": None if rain is None
-        else clip01(rain / FLASH_FLOOD_RAINFALL_NORMALIZATION_MAX_MM),
+        "backwater": backwater,
     }
 
 
 def combine(comps: dict, weights: dict = None):
-    return weighted_map(comps, WATERLOGGING_WEIGHTS if weights is None else weights)
+    return weighted_map(comps, WATERLOGGING_R4_WEIGHTS if weights is None else weights)
+
+
+from perception.applicability_gate import gated
 
 
 @gated("waterlogging")
-def compute_waterlogging_susceptibility(rasters: dict = None, impervious: dict = None,
-                                         weights: dict = None) -> dict:
+def compute_waterlogging_susceptibility(rasters: dict = None, weights: dict = None) -> dict:
     """
     Args:
-        rasters: susceptibility.hydro_rasters.fetch_hydro_rasters() output.
-        impervious: a declared surface input (susceptibility/inputs.py) on the
-            same grid; its per-cell built fraction is the imperviousness
-            component.
-        weights: override WATERLOGGING_WEIGHTS (the validation harness only).
-
-    Returns:
-        dict matching the master schema's susceptibility.waterlogging shape,
-        plus `susceptibility_map` (per-pixel, NaN = no data).
+        rasters: susceptibility.hydro_rasters.fetch_hydro_rasters() output,
+            persistence layers included.
+        weights: override WATERLOGGING_R4_WEIGHTS (the validation harness only).
     """
-    w = WATERLOGGING_WEIGHTS if weights is None else weights
-    comps = components(rasters, impervious) if (rasters or impervious is not None) else {}
-    spatial = [k for k in ("low_relief", "impervious", "flatness")
-               if comps.get(k) is not None and w.get(k, 0) > 0]
-    if not spatial:
-        return {
-            "status": "insufficient_evidence",
-            "reason": "No per-pixel HAND, slope or impervious surface is available.",
-            "validation_status": VALIDATION_STATUS,
-        }
+    w = dict(WATERLOGGING_R4_WEIGHTS if weights is None else weights)
+    comps = components(rasters) if rasters else {}
     used = [k for k, c in comps.items() if c is not None and w.get(k, 0) > 0]
-    imp_used = "impervious" in used
-    m = combine(comps, w)
-    inputs = {k: provenance(v) for k, v in (rasters or {}).get("layers", {}).items()
-              if k in ("hand_m", "slope_deg", "rain_annual_mm")}
-    if imp_used:      # an unweighted input does not shape the map or its label
-        inputs["impervious"] = provenance(impervious)
+    m = combine(comps, w) if used else None
+    if m is None or not np.isfinite(m).any():
+        return {"status": "insufficient_evidence", "validation_status": VALIDATION_STATUS,
+                "reason": "No per-pixel water history, clay, HAND or upstream area is "
+                          "available."}
+    errors = (rasters or {}).get("errors", {})
+    excluded = []
+    for k, c in comps.items():
+        if k in used:
+            continue
+        why = "weight 0" if c is not None else "unavailable"
+        excluded.append(f"{k} ({why})")
+    inputs = {k: provenance(v) for k, v in rasters.get("layers", {}).items()
+              if k in INPUT_LAYERS}
     return {
         "status": "experimental",
         "validation_status": weakest(VALIDATION_STATUS,
-                                     *([impervious["validation_status"]] if imp_used else [])),
+                                     *(i["validation_status"] for i in inputs.values())),
         "inputs": inputs,
         **map_summary(m, _classify),
         "susceptibility_map": m,
-        "impervious_fraction_pct": mean_pct(impervious) if impervious is not None else None,
         "components_used": used,
-        "components_excluded": [f"{k} ({'weight 0' if comps.get(k) is not None else 'unavailable'})"
-                                for k in comps if k not in used],
-        "weights": dict(w),
-        "method": "relief_imperviousness_flatness_rainfall_per_pixel_weighted",
-        "validated": False,
+        "components_excluded": excluded,
+        "input_errors": {k: v for k, v in errors.items() if k in INPUT_LAYERS},
+        "weights": w,
+        "ceilings": dict(CEILINGS),
+        "method": METHOD,
+        "validated": VALIDATION_STATUS == "validated",
         "spatial": True,
         "limitations": [
-            "Reuses fluvial susceptibility's MERIT HAND under a DIFFERENT "
-            "physical interpretation (low-relief/poor-drainage, not "
-            "river-overflow-proximity) -- see module docstring.",
-            "Does not account for actual drainage infrastructure capacity, "
-            "groundwater level, or soil permeability.",
-            "Rainfall component is a coarse annual-mean climatology (CHIRPS, "
-            "0.05 deg), near-constant across a city AOI.",
-            "All normalization ceilings are provisional, not calibrated "
-            "against real waterlogging/persistent-inundation outcomes.",
+            "Sentinel-1 persistence reads smooth surfaces (tarmac, sand, airports) as "
+            "water; JRC monthly history ends in 2021.",
+            "SoilGrids is 250 m and masks built-up land; gaps take the 1 km focal mean.",
+            "Backwater has no river-stage input: river size stands in for stage.",
+            "Drainage infrastructure and the water table are not modelled.",
         ],
     }

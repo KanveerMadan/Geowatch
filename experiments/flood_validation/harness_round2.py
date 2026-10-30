@@ -240,7 +240,7 @@ def build_event(module: str, name: str, ev: dict) -> dict:
             "centre": ev.get("centre")}
     if module == "pluvial":
         from susceptibility.inputs import hydrology_surfaces
-        from susceptibility.pluvial import compute_pluvial_susceptibility
+        from susceptibility.retired_methods.pluvial_round1 import compute_pluvial_susceptibility
         from vector.roads import load_road_layer
         fi = _call(lambda: hydrology_surfaces(load_road_layer(f"r2_{name}", ev["bbox"]),
                                               *ev["veg_window"]), f"pluvial inputs {name}")
@@ -308,7 +308,9 @@ def _rasters_from(arrays):
 
 
 def components_for(module, arrays):
-    from susceptibility import flash_flood, fluvial, waterlogging
+    from susceptibility import fluvial
+    from susceptibility.retired_methods import flash_flood_round2 as flash_flood
+    from susceptibility.retired_methods import waterlogging_round2 as waterlogging
     r = _rasters_from(arrays)
     if module == "fluvial":
         return fluvial.components(r), fluvial.combine

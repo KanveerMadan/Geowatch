@@ -68,3 +68,34 @@ SUSCEPTIBILITY_CLASS_BREAKS = {
     "high": (0.6, 0.8),
     "very_high": (0.8, 1.01),
 }
+
+# ── Flood round 4 (M2): bluespots with fill-and-spill. Fixed in
+# experiments/flood_validation/PREREGISTRATION_ROUND4.md before the method
+# was built or any round-4 score computed. The constants above belong to the
+# retired round-1 method (susceptibility/retired_methods/pluvial_round1.py). ──
+
+# A hollow is a bluespot only if its deepest cell is at least this deep:
+# shallower ones are FABDEM noise (C51: the median pit is 1.9 cm deep).
+PLUVIAL_BLUESPOT_MIN_DEPTH_M = 0.10
+
+# Rational-method runoff coefficients: C = C_perv + (C_imp - C_perv) * imp.
+PLUVIAL_RUNOFF_C_IMPERVIOUS = 0.90
+PLUVIAL_RUNOFF_C_PERVIOUS = 0.30
+
+# ponding = min(1, ponding depth / this).
+PLUVIAL_PONDING_DEPTH_MAX_M = 1.0
+
+# Design storm: the mean annual maximum 1-day rainfall (CHIRPS daily) over
+# this many calendar years before the reference year.
+PLUVIAL_DESIGN_STORM_YEARS = 10
+
+# The validation harness adds this margin around a box so contributing area
+# outside it reaches the hollows inside; the margin is never evaluated.
+PLUVIAL_CATCHMENT_MARGIN_M = 1000.0
+
+PLUVIAL_WEIGHTS = {"ponding": 1.0, "runoff_path": 0.5}
+# Tuning grid: (weights, C_perv) pairs (12 points).
+PLUVIAL_PARAM_GRID = [
+    {"weights": {"ponding": 1.0, "runoff_path": f}, "c_perv": c}
+    for f in (0.0, 0.25, 0.5, 1.0) for c in (0.15, 0.30, 0.50)]
+PLUVIAL_PARAM_DEFAULT = {"weights": dict(PLUVIAL_WEIGHTS), "c_perv": PLUVIAL_RUNOFF_C_PERVIOUS}

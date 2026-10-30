@@ -220,9 +220,10 @@ def materialize(unit: dict, unit_type: str, ctx: dict) -> dict:
                                           pixel_count=ob["pixel_count"]),
         }
     hz = {}
-    if PLUVIAL in unit and ctx["pluvial"].get("status", "available") != "available":
+    if ctx["pluvial"].get("status") in ("timeout", "failed"):
         # Item 38: the AOI-level pluvial did not finish (timeout / failed);
-        # no unit gets a value or tier from it.
+        # no unit gets a value or tier from it, and every unit says why (since
+        # flood round 4 a DEM timeout leaves no map at all to sample).
         hz["pluvial"] = C.output(None, status=ctx["pluvial"]["status"],
                                  validation_status=ctx["pluvial"]["validation_status"],
                                  coverage=C.coverage(0.0, "AOI-level pluvial did not finish"),

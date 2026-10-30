@@ -93,7 +93,8 @@ def _named(fn, name):
 
 def test_pipeline_context_timeout_is_a_status_everywhere(monkeypatch):
     """Item 26 Phase 1a: fluvial, flash flood and waterlogging read the
-    per-pixel hydro_rasters stage; its timeout withholds all three."""
+    per-pixel hydro_rasters stage; its timeout withholds all three -- and,
+    since flood round 4, pluvial too (its design storm is a raster layer)."""
     import time
     monkeypatch.setitem(stages.STAGE_TIMEOUT_S, "hydro_rasters", 0.3)
 
@@ -102,10 +103,10 @@ def test_pipeline_context_timeout_is_a_status_everywhere(monkeypatch):
         return S.fake_hydro_rasters(*a)
     r, units = S.run(deps=S.deps(fetch_hydro_rasters=slow))
     s = r["outputs"]["susceptibility"]
-    for h in ("fluvial", "flash_flood", "waterlogging"):
+    for h in ("fluvial", "flash_flood", "waterlogging", "pluvial"):
         assert s[h]["status"] == "timeout" and s[h]["value"] is None and s[h]["tier"] is None, h
         assert s[h]["incomplete_inputs"]["hydro_rasters"]["status"] == "timeout"
-    assert s["coastal"]["status"] == "available" and s["pluvial"]["status"] == "available"
+    assert s["coastal"]["status"] == "available"
     assert r["stages"]["hydro_rasters"]["status"] == "timeout"
     ctx = ward_context(r)
     for t, b in units.items():

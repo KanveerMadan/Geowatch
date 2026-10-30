@@ -17,8 +17,8 @@ from shapely.geometry import box
 import susceptibility
 from susceptibility.inputs import (block_nanmean, impervious_built_area, mean_pct, surface,
                                    to_grid)
-from susceptibility.pluvial import compute_pluvial_susceptibility
-from susceptibility.waterlogging import compute_waterlogging_susceptibility
+from susceptibility.retired_methods.pluvial_round1 import compute_pluvial_susceptibility
+from susceptibility.retired_methods.waterlogging_round2 import compute_waterlogging_susceptibility
 
 SUSC_DIR = pathlib.Path(susceptibility.__file__).parent
 

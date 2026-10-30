@@ -7,7 +7,7 @@ import pytest
 
 from perception.applicability import compute_applicability, finalize_applicability
 from perception.hydrological_surfaces import compute_hydrological_surfaces
-from susceptibility.waterlogging import compute_waterlogging_susceptibility
+from susceptibility.retired_methods.waterlogging_round2 import compute_waterlogging_susceptibility
 from tests import analysis_synth as S
 
 HAND_DOWN = {"status": "unavailable", "error": "MERIT unavailable"}
