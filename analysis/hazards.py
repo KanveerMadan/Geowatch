@@ -216,4 +216,15 @@ def hazard_outputs(modules: dict, mv: dict, verdicts: dict, *, has_waterways: bo
         out[name] = C.output(round(float(score), 4), validation_status=label, coverage=cov,
                              data_sources=_sources(name, mod, has_waterways),
                              model_version=mv, **extra)
+    out.update(unbuilt_outputs(mv))
     return out
+
+
+def unbuilt_outputs(mv: dict) -> dict:
+    """The flood types no module computes (docs/flood_taxonomy.md): each is an
+    output with no value, so every type in the taxonomy has a label."""
+    ids = {t["module"]: i for i, t in C.FLOOD_TAXONOMY.items()}
+    return {m: C.absent(status, reason=reason, validation_status=label,
+                        data_sources=["none: not computed (docs/flood_taxonomy.md)"],
+                        model_version=mv, flood_type=ids[m], tier=None, spatial=False)
+            for m, (status, label, reason) in C.UNBUILT_FLOOD_TYPES.items()}

@@ -105,6 +105,45 @@ VALIDATED_CONFIGS = {
 }
 
 
+# The eleven flood types (docs/flood_taxonomy.md, recorded 2026-10-30). Every
+# type has an output under outputs.susceptibility.<module>, so none can go
+# missing silently. Built types (M1-M5) are labelled by hazard_label; unbuilt
+# ones by UNBUILT_FLOOD_TYPES below.
+FLOOD_TAXONOMY = {
+    "M1": {"module": "fluvial", "name": "fluvial", "status": "validated, scoped", "round": 4},
+    "M2": {"module": "pluvial", "name": "pluvial", "status": "new method", "round": 4},
+    "M3": {"module": "waterlogging", "name": "waterlogging", "status": "new method", "round": 4},
+    "M4": {"module": "flash_flood", "name": "flash flood", "status": "new method", "round": 4},
+    "M5": {"module": "coastal", "name": "coastal", "status": "failed; new method planned",
+           "round": 5},
+    "M6": {"module": "debris_flow_glof", "name": "debris flow / glacial lake outburst",
+           "status": "not built", "round": 5},
+    "M7": {"module": "embankment_dam_breach", "name": "embankment / dam breach",
+           "status": "not built", "round": 5},
+    "M8": {"module": "snowmelt_ice_jam", "name": "snowmelt / ice jam", "status": "not built",
+           "round": 5},
+    "M9": {"module": "compound", "name": "compound", "status": "not built; after M1-M3",
+           "round": 6},
+    "M10": {"module": "groundwater", "name": "groundwater",
+            "status": "not measurable: labelled, not tested", "round": None},
+    "M11": {"module": "tsunami", "name": "tsunami", "status": "out of scope", "round": None},
+}
+# {module: (ABSENT status, validation label, reason)} for the types no module
+# computes. `placeholder` as for every other not_computed output.
+UNBUILT_FLOOD_TYPES = {
+    "debris_flow_glof": ("not_computed", "placeholder", "not built; planned for flood round 5"),
+    "embankment_dam_breach": ("not_computed", "placeholder",
+                              "not built; planned for flood round 5"),
+    "snowmelt_ice_jam": ("not_computed", "placeholder", "not built; planned for flood round 5"),
+    "compound": ("not_computed", "placeholder",
+                 "not built; planned for flood round 6, after fluvial, pluvial and "
+                 "waterlogging"),
+    "groundwater": ("not_computed", "placeholder",
+                    "not measurable: no water-table observation to score or test against"),
+    "tsunami": ("not_applicable", "placeholder", "out of scope"),
+}
+
+
 class ContractError(ValueError):
     pass
 

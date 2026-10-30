@@ -74,9 +74,13 @@ def _unknown_everything():
 def test_new_pipeline_all_unknown_aoi_is_insufficient_throughout():
     r, units = S.run(producer=S.SynthProducer(unobserved_all=True), deps=_unknown_everything())
     o = r["outputs"]
+    from analysis.contract import UNBUILT_FLOOD_TYPES
     for name, h in o["susceptibility"].items():
         assert h["value"] is None, name
-        assert h["status"] in ("insufficient_evidence", "not_applicable"), (name, h["status"])
+        # an unbuilt flood type keeps its own fixed status, whatever the input
+        ok = ((UNBUILT_FLOOD_TYPES[name][0],) if name in UNBUILT_FLOOD_TYPES
+              else ("insufficient_evidence", "not_applicable"))
+        assert h["status"] in ok, (name, h["status"])
         assert h["tier"] is None, name
     for f, v in o["fractions"].items():
         assert v["value"] is None and v["status"] in ("insufficient_observation", "not_computed"), f

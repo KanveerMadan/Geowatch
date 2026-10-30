@@ -749,6 +749,27 @@ The only flood output that is not `failed` is fluvial (`validated`, scoped).
 Result: `experiments/flood_validation/result_round3_2026-10-29.json`. Item 26
 stays partial.
 
+**Flood taxonomy, recorded 2026-10-30 (`build/flood4`).** Eleven flood
+types, each with a label in the result (`docs/flood_taxonomy.md`,
+`analysis/contract.FLOOD_TAXONOMY`):
+
+| Id | Type | Status | Round |
+|---|---|---|---|
+| M1 | fluvial | validated (scoped) | re-tested in round 4, method unchanged |
+| M2 | pluvial | new method: bluespots + fill-and-spill | 4 |
+| M3 | waterlogging | new method: standing-water persistence, clay, low relief, backwater | 4 |
+| M4 | flash flood | new method: short-duration intensity, response time, stream power | 4 |
+| M5 | coastal | `failed`; new method | 5 |
+| M6 | debris flow / glacial lake outburst | not built (`not_computed`) | 5 |
+| M7 | embankment / dam breach | not built (`not_computed`) | 5 |
+| M8 | snowmelt / ice jam | not built (`not_computed`) | 5 |
+| M9 | compound | not built (`not_computed`), after M1–M3 | 6 |
+| M10 | groundwater | not measurable: labelled (`not_computed`), not tested | — |
+| M11 | tsunami | out of scope (`not_applicable`) | — |
+
+M6–M11 appear under `outputs.susceptibility` as outputs with no value,
+label `placeholder`, and a reason naming their round.
+
 ---
 
 ## Decision 11 third amendment — recorded 2026-10-29
