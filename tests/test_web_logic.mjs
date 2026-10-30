@@ -314,4 +314,21 @@ test('ward ranking is offered only where a boundary layer holds the area', () =>
   assert.equal(G.boundaryFor([36.77, -1.32, 36.8, -1.3], null), null)
 })
 
+test('a fraction with every cell unjudged is never "no change"', () => {
+  const cloudy = {
+    built: chg.built,
+    vegetation: out({ increase: 0, decrease: 0, no_detectable_change: 0 }, 'available', 'placeholder',
+      { counts_all: { increase: 0, decrease: 0, no_detectable_change: 0, insufficient_observation: 0, epoch_unreliable: 2700 } }),
+  }
+  const r = CH.changeRows(cloudy).find((x) => x.key === 'vegetation')
+  assert.equal(r.judged, 0); assert.equal(r.unjudged, 2700)
+  const s = CH.changeSummary(cloudy)
+  assert.doesNotMatch(s, /Vegetation: no detectable change/)
+  assert.match(s, /Vegetation: could not be judged \(one of the two years was too cloudy to compare\)\./)
+})
+test('flood summary sentences start with a capital and nothing else does', () => {
+  const s = F.floodSummary({ fluvial: hz.fluvial, flash_flood: out(0.7, 'available', 'experimental', { tier: 'high' }), waterlogging: out(0.9, 'available', 'experimental', { tier: 'very_high' }) })
+  assert.match(s, /^Waterlogging is the highest here, at very high\. Flash flooding high; river flooding moderate\.$/)
+})
+
 console.log(`test_web_logic: ${n} passed`)

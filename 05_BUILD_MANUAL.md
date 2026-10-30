@@ -2554,7 +2554,9 @@ from the output alone, without inference.
 > status. Tests: `tests/test_web_logic.mjs` (20, including absent never
 > rendered with a digit and a measured 0 as "0.0%") and
 > `tests/test_analysis_jobs.py::test_features_are_null_where_not_measured_never_zero`.
-> `geowatch-ui/` is the retired pipeline's UI and is removed in Phase 4 Step B.
+> `geowatch-ui/` (the retired pipeline's UI) was removed in Phase 4 Step B
+> (2026-10-31), with its eight `tests/*_ui.mjs`; the C31 palette guard now
+> scans `web/src`.
 
 > **Built 2026-10-28 (Phase 2).** Backend: the result contract
 > (`analysis/contract.py`) refuses a `null` value without an absent status

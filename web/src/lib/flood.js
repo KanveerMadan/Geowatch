@@ -78,7 +78,7 @@ export function floodSummary(susceptibility) {
     parts.push(`${cap(list(top.map((r) => r.long)))} ${top.length > 1 ? 'are' : 'is'} the highest here, at ${TIER_TEXT[top[0].tier].toLowerCase()}.`)
     if (rest.length) {
       const groups = TIERS.slice().reverse().map((t) => rest.filter((r) => r.tier === t)).filter((g) => g.length)
-      parts.push(`${groups.map((g) => `${cap(list(g.map((r) => r.long)))} ${TIER_TEXT[g[0].tier].toLowerCase()}`).join('; ')}.`)
+      parts.push(cap(`${groups.map((g) => `${list(g.map((r) => r.long))} ${TIER_TEXT[g[0].tier].toLowerCase()}`).join('; ')}.`))
     }
   } else if (!failed.length) {
     parts.push('No flood type could be measured for this area yet.')

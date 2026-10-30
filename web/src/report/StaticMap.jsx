@@ -63,7 +63,7 @@ export default function StaticMap({ bbox, addLayers, label, height = 300 }) {
 
   return (
     <figure className="rmap" style={{ height }}>
-      {src ? <img src={src} alt={label} /> : <div ref={box} className="rmap-live" aria-hidden="true" />}
+      {src ? <img src={src} alt={label} width={1280} height={height} decoding="async" /> : <div ref={box} className="rmap-live" aria-hidden="true" />}
       {!src && !failed && <span className="rmap-wait">Drawing the map…</span>}
       {failed && <span className="rmap-wait">The map could not be drawn.</span>}
     </figure>

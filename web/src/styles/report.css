@@ -1,7 +1,8 @@
 /* The area report: a paper page, on screen and printed. Same type and
    spacing tokens as the app; colours from the print tokens. */
 
-body:has(.report) { overflow: auto; background: #eceef1; color-scheme: light; }
+html:has(.report), body:has(.report) { height: auto; overflow: auto; background: #eceef1; color-scheme: light; }
+#root:has(.report) { height: auto; padding: 1px 0; }
 .report {
   --ink: var(--c-print-ink); --ink2: var(--c-print-ink2); --ink3: var(--c-print-ink3); --rule: var(--c-print-rule);
   max-width: 860px; margin: var(--s-8) auto; padding: var(--s-10) var(--s-12); background: var(--c-print-paper);
@@ -81,7 +82,7 @@ body:has(.report) { overflow: auto; background: #eceef1; color-scheme: light; }
 
 @page { size: A4; margin: 14mm 14mm 16mm; }
 @media print {
-  body:has(.report) { background: #fff; }
+  html:has(.report), body:has(.report) { background: #fff; }
   .report { max-width: none; margin: 0; padding: 0; box-shadow: none; border-radius: 0; font-size: 10pt; }
   .rbar { display: none; }
   .rsec { break-inside: auto; margin-top: var(--s-6); }

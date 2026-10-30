@@ -104,7 +104,7 @@ export default function ReportPage({ resultId, name }) {
           <div><dt>Area</dt><dd>{fmtKm2(bboxAreaKm2(bbox))}, centred {coord((bbox[1] + bbox[3]) / 2, 'N', 'S')}, {coord((bbox[0] + bbox[2]) / 2, 'E', 'W')}</dd></div>
           <div><dt>Imagery window</dt><dd>{fmtDate(r.request.window.start)} to {fmtDate(r.request.window.end)}</dd></div>
           <div><dt>Analysed</dt><dd>{when.format(new Date(r.created_utc))}</dd></div>
-          <div><dt>Result</dt><dd className="rmono">{resultId}, version {r.model_version.version_id.slice(0, 12)}</dd></div>
+          <div><dt>Result</dt><dd className="rmono" translate="no">{resultId}, version {r.model_version.version_id.slice(0, 12)}</dd></div>
         </dl>
         <p className="rnote">
           Every number here carries a trust label. Only results labelled Validated have passed an independent test, and only within the scope shown with them.
@@ -203,7 +203,7 @@ export default function ReportPage({ resultId, name }) {
               {cRows.map((x) => (
                 <tr key={x.key}>
                   <th scope="row">{x.name}</th>
-                  {x.measured ? (
+                  {x.measured && x.judged === 0 ? <td colSpan={4} className="rmuted">Not judged: {x.unjudgedWhy.toLowerCase()}</td> : x.measured ? (
                     <>
                       <td className="rmono">{x.years ? `${x.years[0]} to ${x.years[1]}` : ''}</td>
                       <td className="rnum">{x.increase}</td><td className="rnum">{x.decrease}</td><td className="rnum">{x.unchanged}</td>
@@ -238,7 +238,7 @@ export default function ReportPage({ resultId, name }) {
 
       <section className="rsec rsec-keep">
         <SectionHead title="Data sources" />
-        <ul className="rsources">
+        <ul className="rsources" translate="no">
           {sources.map((s) => <li key={s}>{s}</li>)}
           <li>Pictures: Esri World Imagery (Esri, Vantor, Earthstar Geographics, and the GIS User Community)</li>
         </ul>

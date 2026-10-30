@@ -50,7 +50,7 @@ ul, ol { list-style: none; }
 
 /* ── search ── */
 .top-left { position: absolute; top: calc(var(--s-4) + var(--safe-t)); left: calc(var(--s-4) + var(--safe-l)); z-index: var(--z-panel); width: min(560px, calc(100vw - 2 * var(--s-4))); }
-.search { position: relative; display: grid; grid-template-columns: 1fr auto; gap: var(--s-2); }
+.search { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--s-2); }
 .search-bar {
   display: flex; align-items: center; gap: var(--s-2); height: 44px; padding: 0 var(--s-3);
   border-radius: var(--r-panel);
@@ -411,7 +411,8 @@ button.flrow-main { cursor: pointer; border-radius: var(--r-control); }
 .swatch-stripe { background: repeating-linear-gradient(135deg, var(--hue) 0 2px, transparent 2px 4px); box-shadow: inset 0 0 0 1px var(--hue); }
 
 /* ── docks over the map ── */
-.seg-wrap { grid-auto-flow: row; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); }
+.seg-wrap { display: flex; flex-wrap: wrap; }
+.seg-wrap button { flex: 1 0 auto; padding: 0 var(--s-2); white-space: nowrap; }
 .tier-key { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; font-size: var(--t-micro-size); color: var(--c-text3); }
 .tier-key li { display: grid; gap: 4px; }
 .tier-key i { display: block; height: 8px; }
@@ -476,6 +477,8 @@ button.flrow-main { cursor: pointer; border-radius: var(--r-control); }
   .top-left { left: calc(var(--s-2) + var(--safe-l)); width: calc(100vw - 2 * var(--s-2) - var(--safe-l) - var(--safe-r)); }
   .tabs { top: auto; bottom: calc(var(--s-3) + var(--safe-b)); left: 50%; transform: translateX(-50%); }
   .chip span { display: none; }
+  .search-bar .kbd { display: none; }
+  .chip, .chip-icon { width: 40px; }
   .chip { width: 44px; justify-content: center; padding: 0; }
   .legend { position: static; width: auto; padding: 0; background: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
   .dock-inline { padding-bottom: var(--s-4); border-bottom: 1px solid var(--c-hairline); }

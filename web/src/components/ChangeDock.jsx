@@ -79,7 +79,7 @@ export default function ChangeDock({ choices, fraction, onFraction, years, pair,
       {years?.length > 1 && (
         <>
           <TimeScrubber years={years} pair={pair} compared={compared} status={status} onPair={onPair} />
-          <p className="caption">
+          <p className="caption" aria-live="polite">
             {same
               ? <>Pictures and marked cells both compare {pair[0]} and {pair[1]}, the analysed years.</>
               : <>Pictures show {pair[0]} and {pair[1]}. Marked cells compare {analysedPair?.[0]} and {analysedPair?.[1]}, the analysed years.</>}

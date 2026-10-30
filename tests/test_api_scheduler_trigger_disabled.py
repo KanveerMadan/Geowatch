@@ -74,9 +74,9 @@ def test_run_pipeline_marks_every_result():
     assert '"legacy_pipeline": legacy_pipeline_marker(),' in block
 
 
-def test_one_marker_wording_for_backend_and_ui():
+def test_one_marker_wording():
+    """The marker's one wording (the retired UI that echoed it, geowatch-ui/,
+    was removed in Phase 4 Step B; web/ never renders legacy results)."""
     from configs.legacy_pipeline import LEGACY_PIPELINE_NOTICE, legacy_pipeline_marker
-    ui = (REPO / "geowatch-ui" / "src" / "legacyPipeline.js").read_text()
-    assert f"'{LEGACY_PIPELINE_NOTICE}'" in ui
     assert legacy_pipeline_marker() == {"retired": True, "validated": False,
                                         "notice": LEGACY_PIPELINE_NOTICE}

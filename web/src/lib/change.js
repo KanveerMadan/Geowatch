@@ -40,8 +40,10 @@ export function changeRows(change) {
     const all = o.counts_all ?? c
     const judged = c.increase + c.decrease + c.no_detectable_change
     const cells = Object.values(all).reduce((a, b) => a + b, 0)
+    // Every cell unjudged (e.g. one year too cloudy) is not "no change".
+    const why = (all.epoch_unreliable ?? 0) > 0 ? 'epoch_unreliable' : 'insufficient_observation'
     return {
-      key, name: humanize(key), measured: true, trust: trustOf(o),
+      key, name: humanize(key), measured: true, trust: trustOf(o), unjudgedWhy: unjudgedText(why),
       increase: c.increase, decrease: c.decrease, unchanged: c.no_detectable_change,
       judged, cells, unjudged: cells - judged,
       changed: c.increase + c.decrease, changedShare: share(c.increase + c.decrease, judged),
@@ -60,12 +62,15 @@ const yrs = (r) => (r.years ? `${r.years[0]} and ${r.years[1]}` : 'the two compa
  *  not measured. Counts are 100 m cells. */
 export function changeSummary(change) {
   const rows = changeRows(change)
-  const m = rows.filter((r) => r.measured)
+  const m = rows.filter((r) => r.measured && r.judged > 0)
+  const blind = rows.filter((r) => r.measured && r.judged === 0)
   const absent = rows.filter((r) => !r.measured)
-  if (!m.length) return 'Change could not be measured for this area yet.'
+  if (!m.length && !blind.length) return 'Change could not be measured for this area yet.'
   const parts = []
   const top = [...m].sort((a, b) => b.changedShare - a.changedShare)[0]
-  if (top.changed === 0) {
+  if (!top) {
+    // nothing judged anywhere: said below, per fraction
+  } else if (top.changed === 0) {
     parts.push(`No detectable change in ${list(m.map((r) => r.name.toLowerCase()))}.`)
   } else {
     parts.push(`Most change here is in ${top.name.toLowerCase()}: ${top.changed} of ${top.judged} cells (${pctWord(top.changedShare)}) changed between ${yrs(top)}, ${top.increase} up and ${top.decrease} down.`)
@@ -75,6 +80,7 @@ export function changeSummary(change) {
         : `${r.name}: no detectable change (${yrs(r)}).`)
     }
   }
+  for (const r of blind) parts.push(`${r.name}: could not be judged (${r.unjudgedWhy.toLowerCase()}).`)
   if (absent.length) {
     const names = absent.map((r) => r.name.toLowerCase())
     parts.push(`${cap(list(names))} change ${names.length > 1 ? 'are' : 'is'} not yet measured.`)

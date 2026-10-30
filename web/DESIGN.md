@@ -72,3 +72,29 @@ bare). Then the notes for this area: coverage, observation and data
 sources. Hovering a cell shows a small stacked bar that morphs between
 cells; clicking pins the cell's breakdown in the panel. Tilting the map
 raises the building footprints in 3D.
+
+## Screens (Step B)
+
+**5. Flood.** The 100 m cells take one flood type at a time, coloured by its
+tier on one cool-to-hot ramp (`color.flood`, the contract's breaks, shared by
+all five types). The panel: one sentence (the highest trusted reading, then
+what failed validation, then what does not apply), one row per type (name,
+what it means, tier, a five-step meter, badge), then the ward ranking. A
+type with no per-pixel map is marked "area-wide" and is never painted. A
+failed type can be drawn, and its legend says it is for transparency only.
+
+**6. Change.** The analysed box carries two Sentinel-2 pictures of the same
+season, split by a swipe handle; a scrubber below sets their years, with the
+analysed years marked. Changed cells of one fraction lie over both: up is
+filled, down is striped, unjudged is the not-measured hatch. Pictures,
+cells and handle sit in one square fitted to the box's four projected
+corners (`lib/overlay.js`), so they stay on the box when the map tilts.
+
+**7. Area report.** A paper page (`color.print`), screen and A4: the box on
+imagery, then Ground, Flood and Change each as a sentence, a table with
+printed badges (validated adds its scope) and a small map; what the labels
+mean; every data source.
+
+**Mobile (720 px and below).** The panel is a bottom sheet over the map
+(peek and full, dragged by its grip), tabs below it, and the map's dock
+(legend, flood types, scrubber) moves into the sheet.

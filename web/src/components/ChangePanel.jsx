@@ -50,7 +50,7 @@ function ChangeRow({ r, chosen, onChoose }) {
           <span className="frow-name">{r.name}</span>
           <span className="caption num">{r.years ? `${r.years[0]} to ${r.years[1]}` : ''}</span>
         </span>
-        <Counts r={r} />
+        {r.judged > 0 ? <Counts r={r} /> : <span className="frow-absent-text">Not judged: {r.unjudgedWhy.toLowerCase()}.</span>}
       </button>
       <TrustBadge of={{ validation_status: r.trust.key, validation_scope: r.trust.scope }} compact />
     </li>
