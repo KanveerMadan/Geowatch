@@ -6,8 +6,11 @@ Unit types:
     ward:<boundary_id>      an ingested boundary layer (boundaries/ingestion.py),
                             each ward clipped to the AOI
 
-Per unit, every producer fraction and pluvial susceptibility are aggregated
-by vector.units.aggregate (area-weighted over the unit's observed part).
+Per unit, every producer fraction and every per-pixel flood susceptibility
+(pluvial; since Phase 4 Step B also fluvial, flash flood and waterlogging)
+are aggregated by vector.units.aggregate (area-weighted over the unit's
+observed part). A flood type with no per-pixel map (coastal) is an AOI-wide
+scalar, applied to every unit and labelled as such.
 
 Units are STORED compact (units.json beside result.json): footprint units
 number in the tens of thousands, and repeating the full contract in each
@@ -26,10 +29,17 @@ from analysis import contract as C
 VECTOR_UNIT_TYPES = ("grid", "footprint", "path")
 BOUNDARY_ROOT = os.path.join("data", "boundaries")
 PLUVIAL = "pluvial_susceptibility"
-SCALAR_HAZARDS = ("fluvial", "coastal", "flash_flood", "waterlogging")
+HAZARDS = ("pluvial", "fluvial", "coastal", "flash_flood", "waterlogging")
+
+
+def hazard_key(h: str) -> str:
+    """A flood type's per-unit key (and map name)."""
+    return f"{h}_susceptibility"
 
 
 def classify_pluvial(score):
+    """A score's tier. The five modules share one set of breaks (checked in
+    tests/test_flood_layers.py), so this classifies every flood type."""
     from configs.pluvial_constants import SUSCEPTIBILITY_CLASS_BREAKS
     if score is None:
         return None
@@ -72,17 +82,20 @@ def _to_geojson(geom, crs):
     return mapping(shapely.set_precision(shp_transform(to_ll, geom), 1e-6))
 
 
-def build_unit_sets(layer, fset: dict, osm_regime: dict, pluvial_10m=None,
+def build_unit_sets(layer, fset: dict, osm_regime: dict, hazards_10m: dict | None = None,
                     boundary_id: str | None = None, boundary_root: str = BOUNDARY_ROOT) -> dict:
-    """{unit_type: {"status", "n_units", "units": [compact unit], ...}}"""
+    """{unit_type: {"status", "n_units", "units": [compact unit], ...}}
+
+    `hazards_10m`: {hazard_key(h): per-pixel score on the fraction grid} for
+    every flood type with a per-pixel map."""
     from vector import units as vu
     fr = {"rasters": dict(fset["rasters"]), "observed": dict(fset["observed"]),
           "transform": fset["transform"], "shape": fset["shape"]}
     fractions = list(fset["fractions"])
-    if pluvial_10m is not None:
-        fr["rasters"][PLUVIAL] = pluvial_10m
-        fr["observed"][PLUVIAL] = np.isfinite(pluvial_10m)
-        fractions.append(PLUVIAL)
+    for key, m in (hazards_10m or {}).items():
+        fr["rasters"][key] = m
+        fr["observed"][key] = np.isfinite(m)
+        fractions.append(key)
     not_computed = tuple(fset["not_computed"])
 
     makers = {"grid": lambda: [(None, None, p) for p in vu.grid_units(layer, fset["transform"])],
@@ -162,17 +175,27 @@ def observation_per_unit(polys, fset: dict) -> list:
 
 # ── serving ─────────────────────────────────────────────────────────────
 
+def spatial_hazards(result: dict) -> tuple:
+    """The flood types whose values were aggregated per unit. Results stored
+    before Phase 4 Step B carry only pluvial's (it has no `per_unit` flag)."""
+    s = result["outputs"]["susceptibility"]
+    return tuple(h for h in HAZARDS if s[h].get("per_unit") or h == "pluvial")
+
+
 def ward_context(result: dict) -> dict:
     """What materialize() needs from a stored result."""
     o = result["outputs"]
     fr = o["fractions"]
+    spatial = spatial_hazards(result)
     return {"model_version": result["model_version"],
             "fractions": {f: {"validation_status": v["validation_status"],
                               "data_sources": v["data_sources"]} for f, v in fr.items()},
-            "pluvial": {"validation_status": o["susceptibility"]["pluvial"]["validation_status"],
-                        "status": o["susceptibility"]["pluvial"]["status"],
-                        "data_sources": o["susceptibility"]["pluvial"]["data_sources"]},
-            "scalar_hazards": {h: o["susceptibility"][h] for h in SCALAR_HAZARDS},
+            "hazards": {h: {"validation_status": o["susceptibility"][h]["validation_status"],
+                            "status": o["susceptibility"][h]["status"],
+                            "data_sources": o["susceptibility"][h]["data_sources"],
+                            "validated_scope": o["susceptibility"][h].get("validated_scope")}
+                        for h in spatial},
+            "scalar_hazards": {h: o["susceptibility"][h] for h in HAZARDS if h not in spatial},
             "observability_label": o.get("observability", {}).get(
                 "observed_fraction", {}).get("validation_status", "experimental")}
 
@@ -194,6 +217,15 @@ def feature(unit: dict, ctx: dict) -> dict:
     for f in ctx["fractions"]:
         props[f], props[f"{f}_status"] = _value_status(
             unit.get(f) or {"value": None, "status": "not_computed"})
+    for h, meta in ctx["hazards"].items():
+        # flood_<type>: the unit's mean score where measured, else null with
+        # the status (an AOI-level timeout withholds every unit's, item 38).
+        if meta["status"] != "available":
+            v, st = None, meta["status"]
+        else:
+            v, st = _value_status(unit.get(hazard_key(h)) or {"value": None,
+                                                              "status": "not_computed"})
+        props[f"flood_{h}"], props[f"flood_{h}_status"] = v, st
     return {"type": "Feature", "id": unit["unit_index"], "geometry": unit.get("geometry"),
             "properties": props}
 
@@ -236,20 +268,27 @@ def materialize(unit: dict, unit_type: str, ctx: dict) -> dict:
                                           pixel_count=ob["pixel_count"]),
         }
     hz = {}
-    if ctx["pluvial"].get("status") in ("timeout", "failed"):
-        # Item 38: the AOI-level pluvial did not finish (timeout / failed);
-        # no unit gets a value or tier from it, and every unit says why (since
-        # flood round 4 a DEM timeout leaves no map at all to sample).
-        hz["pluvial"] = C.output(None, status=ctx["pluvial"]["status"],
-                                 validation_status=ctx["pluvial"]["validation_status"],
-                                 coverage=C.coverage(0.0, "AOI-level pluvial did not finish"),
-                                 data_sources=ctx["pluvial"]["data_sources"], model_version=mv,
-                                 tier=None)
-    elif PLUVIAL in unit:
-        p = _cell(unit[PLUVIAL], label=ctx["pluvial"]["validation_status"],
-                  sources=ctx["pluvial"]["data_sources"], mv=mv, basis=basis)
+    for h, meta in ctx["hazards"].items():
+        key = hazard_key(h)
+        st = meta.get("status", "available")
+        if st in ("timeout", "failed") or (st != "available" and key in unit):
+            # Item 38: the AOI-level module did not finish (timeout / failed)
+            # or was withheld; no unit gets a value or tier from it, and every
+            # unit says why (since flood round 4 a DEM timeout leaves no map
+            # at all to sample).
+            hz[h] = C.output(None, status=st, validation_status=meta["validation_status"],
+                             coverage=C.coverage(0.0, f"AOI-level {h} did not finish"),
+                             data_sources=meta["data_sources"], model_version=mv, tier=None)
+            continue
+        if key not in unit:
+            continue
+        p = _cell(unit[key], label=meta["validation_status"], sources=meta["data_sources"],
+                  mv=mv, basis=basis)
         p["tier"] = classify_pluvial(p["value"])
-        hz["pluvial"] = p
+        p["spatial"] = True
+        if meta.get("validated_scope"):
+            p["validated_scope"] = meta["validated_scope"]
+        hz[h] = p
     for h, aoi_out in ctx["scalar_hazards"].items():
         o = {k: v for k, v in aoi_out.items()
              if k in C.OUTPUT_KEYS or k in ("tier", "reason", "tier2_verdict",
@@ -267,3 +306,40 @@ def materialize(unit: dict, unit_type: str, ctx: dict) -> dict:
            "model_version": mv, "outputs": outputs}
     C.check_result(out)
     return out
+
+
+def change_cells(layer, change: dict | None) -> dict:
+    """Item 25's per-cell verdicts as drawable cells, on change's own grid
+    (vector.change: 100 m cells from a 10 m-snapped origin, so not item 22's
+    grid units). Each cell names its verdict per fraction: increase /
+    decrease / no_detectable_change, or insufficient_observation /
+    epoch_unreliable where no change could be judged; `delta` is null there."""
+    if not change or not change.get("fractions"):
+        return {"status": "unavailable", "reason": "the change stage produced no verdicts",
+                "fractions": [], "cells": []}
+    from vector import fractions as vf, units as vu
+    polys = vu.grid_units(layer, vf.grid_for(layer)[0])
+    per = change["fractions"]
+    if any(len(r["units"]) != len(polys) for r in per.values()):
+        return {"status": "unavailable", "reason": "change units do not match the change grid",
+                "fractions": [], "cells": []}
+    cells = []
+    for i, poly in enumerate(polys):
+        c = {"unit_index": i, "geometry": _to_geojson(poly, layer.crs)}
+        for f, r in per.items():
+            u = r["units"][i]
+            c[f] = u["status"]
+            judged = u["status"] in ("increase", "decrease", "no_detectable_change")
+            c[f"{f}_delta"] = round(u["delta"], 6) if judged and u["delta"] is not None else None
+        cells.append(c)
+    return {"status": "available", "grid_cell_m": vu.GRID_CELL_M, "fractions": list(per),
+            "cells": cells}
+
+
+def change_features(block: dict) -> dict:
+    """change_cells() as a GeoJSON FeatureCollection."""
+    return {"type": "FeatureCollection", "status": block["status"],
+            "fractions": block.get("fractions", []),
+            "features": [{"type": "Feature", "id": c["unit_index"], "geometry": c["geometry"],
+                          "properties": {k: v for k, v in c.items() if k != "geometry"}}
+                         for c in block.get("cells", [])]}

@@ -17,6 +17,8 @@ nothing changed (item 38, C27).
 
 Layout:  data/results/<result_id>/result.json   the contract-shaped result
                                  /units.json    compact ward units
+                                 /change.json   item 25's per-cell verdicts
+                                 /maps/<name>.png  flood maps (item 37)
 """
 from __future__ import annotations
 
@@ -72,6 +74,15 @@ def get_units(rid: str, root: str = RESULTS_ROOT) -> dict | None:
         return json.load(fh)
 
 
+def get_change_cells(rid: str, root: str = RESULTS_ROOT) -> dict | None:
+    """None for a result stored before change cells were kept."""
+    p = os.path.join(_dir(rid, root), "change.json")
+    if not os.path.exists(p):
+        return None
+    with open(p) as fh:
+        return json.load(fh)
+
+
 MAP_NAME_PATTERN = re.compile(r"[a-z0-9_]{1,64}")
 
 
@@ -86,7 +97,7 @@ def get_map(rid: str, name: str, root: str = RESULTS_ROOT) -> bytes | None:
 
 
 def put(rid: str, result: dict, units: dict, root: str = RESULTS_ROOT,
-        maps: dict | None = None) -> None:
+        maps: dict | None = None, change_cells: dict | None = None) -> None:
     """Write once, atomically: a complete directory appears or nothing does."""
     final = _dir(rid, root)
     if os.path.exists(final):
@@ -98,6 +109,9 @@ def put(rid: str, result: dict, units: dict, root: str = RESULTS_ROOT,
             json.dump(result, fh)
         with open(os.path.join(tmp, "units.json"), "w") as fh:
             json.dump(units, fh)
+        if change_cells is not None:
+            with open(os.path.join(tmp, "change.json"), "w") as fh:
+                json.dump(change_cells, fh)
         if maps:
             os.makedirs(os.path.join(tmp, "maps"))
             for name, png in maps.items():
@@ -174,11 +188,12 @@ def analyze(bbox, start, end, *, name: str, boundary_id: str | None = None, prod
         if result["model_version"]["version_id"] != mv["version_id"]:
             raise RuntimeError("the run's model_version differs from the one it was keyed on")
         maps = result.pop("_maps", {})
+        cells = result.pop("_change_cells", None)
         result["result_id"] = rid
         gaps = incomplete_stages(result)
         if gaps:
             result["result_id"] = None
             return {"result_id": None, "cached": False, "stored": False, "result": result,
                     "not_stored_because": gaps}
-        put(rid, result, units, root, maps=maps)
+        put(rid, result, units, root, maps=maps, change_cells=cells)
         return {"result_id": rid, "cached": False, "stored": True, "result": result}

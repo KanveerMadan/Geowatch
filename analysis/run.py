@@ -336,15 +336,22 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
     modules = H.run_modules(ctx, surfaces, waterway, app, rasters)
     hz = H.hazard_outputs(modules, mv, verdicts, has_waterways=waterway is not None,
                           ctx=ctx, stage_status=stages)
-    # Item 37: the pluvial map, rendered with no-data as its own state.
+    # Item 37: every per-pixel flood map, rendered with no-data as its own
+    # state (Phase 4 Step B: all of them, not only pluvial). A module whose
+    # score was withheld keeps its map out of the output, as pluvial did.
     from analysis.rasters import map_record
-    maps, map_meta = {}, {}
-    if modules["pluvial"].get("susceptibility_map") is not None:
-        meta, png = map_record("pluvial_susceptibility", modules["pluvial"]["susceptibility_map"],
-                               ht, layer.crs.to_string())
-        maps["pluvial_susceptibility"], map_meta["pluvial_susceptibility"] = png, meta
-        if hz["pluvial"]["status"] == "available":
-            hz["pluvial"]["map"] = {**meta, "url_path": "maps/pluvial_susceptibility"}
+    maps, map_meta, hazard_10m = {}, {}, {}
+    for h in H.HAZARDS:
+        smap = modules[h].get("susceptibility_map")
+        if smap is None:
+            continue
+        name = f"{h}_susceptibility"
+        meta, png = map_record(name, smap, ht, layer.crs.to_string())
+        maps[name], map_meta[name] = png, meta
+        hazard_10m[name] = np.repeat(np.repeat(smap, k, axis=0), k, axis=1)
+        if hz[h]["status"] == "available":
+            hz[h]["map"] = {**meta, "url_path": f"maps/{name}"}
+        hz[h]["per_unit"] = True
 
     emit({"outputs": {"susceptibility": hz}})
 
@@ -355,12 +362,10 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
     emit({"outputs": {"change": _change_outputs(change, stages["change"], epochs, fset, mv)}})
 
     # 6. item 22: aggregation units and wards.
-    from analysis.wards import build_unit_sets
-    pmap = modules["pluvial"].get("susceptibility_map")
-    pluvial_10m = np.repeat(np.repeat(pmap, k, axis=0), k, axis=1) if pmap is not None else None
+    from analysis.wards import build_unit_sets, change_cells
     osm_regime = {"regime": cov["coverage_regime_flag"], "basis": "aoi",
                   "osm_density_percentile": cov["osm_density_percentile"]}
-    unit_sets = build_unit_sets(layer, fset, osm_regime, pluvial_10m, boundary_id)
+    unit_sets = build_unit_sets(layer, fset, osm_regime, hazard_10m, boundary_id)
 
     outputs = {
         "fractions": _aoi_fraction_outputs(layer, fset, mv),
@@ -386,6 +391,9 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
         # PNG bytes for the store; analysis.store pops this before anything
         # is written or returned (it is not JSON).
         "_maps": maps,
+        # Item 25's per-cell verdicts, for drawing (change.json in the store):
+        # on change's own grid, which is not item 22's, so not a unit set.
+        "_change_cells": change_cells(layer, change),
     }
     C.check_result(result)
     result["validation_summary"] = C.label_summary(result)

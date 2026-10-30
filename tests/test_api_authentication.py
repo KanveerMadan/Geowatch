@@ -186,6 +186,7 @@ PUBLIC_READ_ROUTES = {
     "/api/results/{result_id}/wards/{unit_type}/{unit_id}",
     "/api/results/{result_id}/features/{unit_type}",
     "/api/results/{result_id}/buildings",
+    "/api/results/{result_id}/change/features",
 }
 
 

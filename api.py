@@ -722,7 +722,7 @@ def _load_unit_type(result_id: str, unit_type: str):
     from analysis.wards import ward_context
     r = _load_result(result_id)
     units = store.get_units(result_id, str(RESULTS_ROOT)) or {}
-    if unit_type not in units:
+    if unit_type not in units or unit_type not in r.get("wards", {}):
         raise HTTPException(status_code=404, detail="Unknown unit type for this result.")
     return r, units[unit_type], ward_context(r)
 
@@ -787,6 +787,20 @@ def get_result_features(result_id: str, unit_type: str):
             "features": [feature(u, ctx) for u in block["units"]]}
 
 
+@app.get("/api/results/{result_id}/change/features")
+def get_result_change_features(result_id: str):
+    """Item 25's per-cell verdicts (increase / decrease / no detectable
+    change, or why none could be judged) as GeoJSON, on change's own 100 m
+    grid. 404 for a result stored before change cells were kept."""
+    from analysis import store
+    from analysis.wards import change_features
+    _load_result(result_id)
+    block = store.get_change_cells(result_id, str(RESULTS_ROOT))
+    if block is None:
+        raise HTTPException(status_code=404, detail="No change cells stored for this result.")
+    return {"result_id": result_id, **change_features(block)}
+
+
 @app.get("/api/results/{result_id}/buildings")
 def get_result_buildings(result_id: str):
     """The building outlines the run used (item 19 layer), for drawing, read
@@ -824,6 +838,85 @@ def get_result_ward(result_id: str, unit_type: str, unit_id: str):
         if str(u.get("unit_id")) == unit_id:
             return materialize(u, unit_type, ctx)
     raise HTTPException(status_code=404, detail="Unknown unit for this result.")
+
+
+# ── Imagery and boundary layers for the frontend (Phase 4 Step B) ──
+# Protected: imagery runs Earth Engine on first request.
+
+IMAGERY_ROOT = Path("data/imagery")
+BOUNDARY_ROOT = Path("data/boundaries")
+
+
+@app.get("/api/imagery/{result_id}")
+def get_imagery_years(result_id: str):
+    """The years the Change tab's swipe can show, and the two the change test
+    compared."""
+    from analysis.imagery import years_for
+    r = _load_result(result_id)
+    ep = r.get("change_epochs") or {}
+    s2 = ep.get("s2")
+    return {"result_id": result_id, "years": years_for(r["request"]["window"]),
+            "window": r["request"]["window"],
+            "compared": [int(s2[0][1][:4]), int(s2[1][1][:4])] if s2 else None,
+            "built_compared": ep.get("built")}
+
+
+@app.get("/api/imagery/{result_id}/{year}")
+def get_imagery_year(result_id: str, year: int):
+    """True-colour Sentinel-2 of the result's bbox for one year's window, as
+    PNG in Web Mercator (analysis/imagery.py). 404 with a reason when that
+    window has no usable scene."""
+    from fastapi.responses import Response
+    from analysis import imagery
+    from analysis.stages import STAGE_TIMEOUT_S, run_stage
+    r = _load_result(result_id)
+    if year not in imagery.years_for(r["request"]["window"]):
+        raise HTTPException(status_code=400, detail="Year outside the imagery range.")
+    o = run_stage("imagery", imagery.get_year, result_id, r, year, root=str(IMAGERY_ROOT),
+                  timeout_s=STAGE_TIMEOUT_S["context"])
+    if o["status"] != "ok":
+        raise HTTPException(status_code=504 if o["status"] == "timeout" else 502,
+                            detail=f"Imagery {o['status']}.")
+    png, note = o["value"]
+    if png is None:
+        raise HTTPException(status_code=404, detail=note["reason"])
+    return Response(content=png, media_type="image/png",
+                    headers={"Cache-Control": "private, max-age=86400"})
+
+
+@app.get("/api/boundaries")
+def list_boundaries():
+    """Ingested boundary layers with their extent, so the frontend can offer
+    ward ranking where one covers the area."""
+    out = []
+    if BOUNDARY_ROOT.is_dir():
+        for d in sorted(BOUNDARY_ROOT.iterdir()):
+            man_p, geo_p = d / "manifest.json", d / "boundary.geojson"
+            if not (man_p.exists() and geo_p.exists()) or not _matches_label_whitelist(d.name):
+                continue
+            with open(man_p) as fh:
+                man = json.load(fh)
+            out.append({"boundary_layer_id": d.name, "name": man.get("name", d.name),
+                        "unit_type": man.get("unit_type"), "feature_count": man.get("feature_count"),
+                        "bbox": _geojson_bbox(geo_p)})
+    return {"boundaries": out}
+
+
+def _geojson_bbox(path) -> list:
+    with open(path) as fh:
+        fc = json.load(fh)
+    xs, ys = [], []
+
+    def walk(c):
+        if isinstance(c[0], (int, float)):
+            xs.append(c[0]); ys.append(c[1])
+        else:
+            for x in c:
+                walk(x)
+    for f in fc.get("features", []):
+        if f.get("geometry"):
+            walk(f["geometry"]["coordinates"])
+    return [min(xs), min(ys), max(xs), max(ys)] if xs else None
 
 
 @app.get("/api/scheduler/status")

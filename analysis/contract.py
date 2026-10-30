@@ -300,8 +300,10 @@ CODE_PATHS = ("analysis", "vector", "susceptibility", "ingestion", "perception",
 # computes no output, so editing it must not change version_id (2026-10-29: a
 # job-API commit made the stored Kibera result unreachable and forced a rerun).
 # api.py is outside CODE_PATHS already. A module that computes any output
-# must never be listed here.
-SERVING_PATHS = ("analysis/jobs.py", "analysis/store.py", "analysis/live_runs.py")
+# must never be listed here. analysis/imagery.py draws a picture for the
+# Change tab's swipe and derives no number (Phase 4 Step B).
+SERVING_PATHS = ("analysis/jobs.py", "analysis/store.py", "analysis/live_runs.py",
+                 "analysis/imagery.py")
 
 
 def code_commit(repo_dir: str | None = None, paths=CODE_PATHS,

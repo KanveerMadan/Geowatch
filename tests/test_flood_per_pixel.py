@@ -146,8 +146,12 @@ def test_compute_pixels_uses_a_hard_timeout(monkeypatch):
         return np.zeros((1, 1), dtype=[("hand_m", "f4")])
 
     import ee
+    from types import SimpleNamespace
     monkeypatch.setattr("ee_timeout.call", fake_call)
     monkeypatch.setattr(ee.data, "setDeadline", lambda ms: seen.update(deadline_ms=ms))
+    # No deadline set yet: the deadline is process-wide, and any earlier test
+    # that ran a stage on an initialised session leaves one behind.
+    monkeypatch.setattr(ee.data, "_get_state", lambda: SimpleNamespace(deadline_ms=None))
 
     class Img:
         def unmask(self, v): return self
