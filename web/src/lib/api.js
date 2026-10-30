@@ -18,8 +18,8 @@ export class ApiError extends Error {
   }
 }
 
-async function call(path, { method = 'GET', body, signal } = {}) {
-  const timeout = AbortSignal.timeout(REQUEST_TIMEOUT_MS)
+async function request(path, { method = 'GET', body, signal, timeoutMs = REQUEST_TIMEOUT_MS } = {}) {
+  const timeout = AbortSignal.timeout(timeoutMs)
   const r = await fetch(`${API_BASE}${path}`, {
     method,
     headers: { ...(KEY ? { 'X-API-Key': KEY } : {}), ...(body ? { 'Content-Type': 'application/json' } : {}) },
@@ -31,13 +31,18 @@ async function call(path, { method = 'GET', body, signal } = {}) {
     try { detail = (await r.json()).detail } catch { /* not JSON */ }
     throw new ApiError(r.status, detail)
   }
-  return r.json()
+  return r
 }
+
+const call = async (path, opts) => (await request(path, opts)).json()
 
 export const getLimits = () => call('/')
 
-export const startJob = ([west, south, east, north], label) =>
-  call('/api/jobs', { method: 'POST', body: { west, south, east, north, aoi_label: label } })
+/** `boundaryId`: an ingested ward layer covering the area, so the result
+ *  carries ward units for the Flood tab's ranking. */
+export const startJob = ([west, south, east, north], label, boundaryId = null) =>
+  call('/api/jobs', { method: 'POST', body: { west, south, east, north, aoi_label: label,
+    ...(boundaryId ? { boundary_layer_id: boundaryId } : {}) } })
 
 export const getJob = (id, signal) => call(`/api/jobs/${id}`, { signal })
 
@@ -45,6 +50,24 @@ export const getFeatures = (resultId, unitType, signal) =>
   call(`/api/results/${resultId}/features/${unitType}`, { signal })
 
 export const getBuildings = (resultId) => call(`/api/results/${resultId}/buildings`)
+
+export const getResult = (resultId, signal) => call(`/api/results/${resultId}`, { signal })
+
+export const getChangeFeatures = (resultId, signal) =>
+  call(`/api/results/${resultId}/change/features`, { signal })
+
+export const getImageryYears = (resultId, signal) => call(`/api/imagery/${resultId}`, { signal })
+
+// First requests run Earth Engine: allow far longer than a plain read.
+const IMAGERY_TIMEOUT_MS = 240000
+
+/** One year's picture as an object URL. The caller revokes it. */
+export async function getImageryYear(resultId, year, signal) {
+  const r = await request(`/api/imagery/${resultId}/${year}`, { signal, timeoutMs: IMAGERY_TIMEOUT_MS })
+  return URL.createObjectURL(await r.blob())
+}
+
+export const getBoundaries = () => call('/api/boundaries')
 
 export const getWard = (resultId, unitType, unitId) =>
   call(`/api/results/${resultId}/wards/${unitType}/${encodeURIComponent(unitId)}`)

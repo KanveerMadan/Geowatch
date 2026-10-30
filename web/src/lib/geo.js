@@ -131,3 +131,10 @@ export function fmtArea(km2) {
 export function fmtKm2(km2) {
   return `${(km2 < 10 ? KM1 : KM0).format(km2)}\u00a0km²`
 }
+
+/** The ingested boundary layer whose extent holds the box's centre, or
+ *  null: ward ranking is offered only where wards cover the area. */
+export function boundaryFor([w, s, e, n], layers) {
+  const x = (w + e) / 2, y = (s + n) / 2
+  return (layers ?? []).find((l) => l.bbox && x >= l.bbox[0] && x <= l.bbox[2] && y >= l.bbox[1] && y <= l.bbox[3]) ?? null
+}

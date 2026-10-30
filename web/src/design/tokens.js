@@ -58,7 +58,37 @@ export const color = {
     failed: '#ff6b5b',
     retired: '#7a808a',
   },
+  // Flood susceptibility tiers, very low -> very high (Step B). One
+  // sequential ramp, cool to hot, shared by every flood type: a tier means
+  // the same breaks in all five (configs/*_constants.py).
+  flood: {
+    very_low: '#2c5b8c',
+    low: '#3d96e0',
+    moderate: '#9a86ff',
+    high: '#ee5fb0',
+    very_high: '#ff3d5e',
+  },
+  // The printed report: paper, not the dark map. Trust hues darkened to keep
+  // 4.5:1 on white.
+  print: {
+    paper: '#ffffff',
+    ink: '#111418',
+    ink2: '#454b54',
+    ink3: '#646a74',
+    rule: '#dcdfe4',
+    trust: {
+      validated: '#0d7368',
+      experimental: '#5b3fc4',
+      placeholder: '#565c65',
+      failed: '#b82d1c',
+      retired: '#646a74',
+    },
+  },
 }
+
+// Change cells take the fraction's own hue: a rise is filled, a fall is
+// striped in it. Unjudged cells are the not-measured hatch (rule 3).
+export const changeStyle = { fillOpacity: 0.62, stripeOpacity: 0.95, swipeHandlePx: 36 }
 
 export const elevation = {
   panel: '0 0 0 1px rgba(255,255,255,0.06) inset, 0 16px 40px -12px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.35)',
@@ -99,10 +129,13 @@ export function applyTokens(root = document.documentElement) {
   }
   for (const [k, v] of Object.entries(space)) set(`--s-${String(k).replace('.', '_')}`, `${v}px`)
   for (const [k, v] of Object.entries(radius)) set(`--r-${k}`, `${v}px`)
-  for (const [k, v] of Object.entries(color)) {
-    if (typeof v === 'string') set(`--c-${k}`, v)
-    else for (const [kk, vv] of Object.entries(v)) set(`--c-${k}-${kk}`, vv)
+  const colours = (prefix, obj) => {
+    for (const [k, v] of Object.entries(obj)) {
+      if (typeof v === 'string') set(`${prefix}-${k}`, v)
+      else colours(`${prefix}-${k}`, v)
+    }
   }
+  colours('--c', color)
   set('--e-panel', elevation.panel)
   set('--e-popover', elevation.popover)
   set('--e-blur', `${elevation.blur}px`)

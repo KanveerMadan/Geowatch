@@ -4,6 +4,7 @@
  */
 import { color, motion } from '../design/tokens.js'
 import { bboxPolygon, boxRing } from '../lib/geo.js'
+import { TIER_BREAKS } from '../lib/flood.js'
 
 const EMPTY = { type: 'FeatureCollection', features: [] }
 // A uniform extrusion height, metres: footprints carry no measured height.
@@ -136,16 +137,31 @@ export function setCells(map, fc, bbox) {
 
 const isNum = (f) => ['==', ['typeof', ['get', f]], 'number']
 
-/** Paint the cell layers for fraction `f` at reveal progress p in [0, 1]
- *  and visibility v in [0, 1] (the tab crossfade). */
-export function paintCells(map, f, p, v = 1) {
+// The flood ramp as a step on the contract's breaks (lib/flood.js).
+const floodColour = (prop) => ['step', ['get', prop],
+  color.flood.very_low, TIER_BREAKS[0], color.flood.low, TIER_BREAKS[1], color.flood.moderate,
+  TIER_BREAKS[2], color.flood.high, TIER_BREAKS[3], color.flood.very_high]
+const FLOOD_OPACITY = 0.78
+
+/** What the cell layers show: {kind: 'fraction' | 'flood', key}. */
+export function cellProp(layer) {
+  return layer.kind === 'flood' ? `flood_${layer.key}` : layer.key
+}
+
+/** Paint the cell layers for `layer` at reveal progress p in [0, 1] and
+ *  visibility v in [0, 1] (the tab crossfade). A fraction is its own hue,
+ *  deeper with more of it; a flood type is its tier's colour. Either way a
+ *  cell with no measurement is the hatch, never the low end of the scale. */
+export function paintCells(map, layer, p, v = 1) {
   if (!map.getLayer('cells-fill')) return
-  const hue = color.data[f] ?? color.select
+  const f = cellProp(layer)
+  const flood = layer.kind === 'flood'
+  const hue = flood ? floodColour(f) : (color.data[f] ?? color.select)
   const P = p * 1.3
   const r = ['min', 1, ['max', 0, ['/', ['-', P, ['get', '_t']], 0.3]]]
   map.setPaintProperty('cells-fill', 'fill-color', hue)
   map.setPaintProperty('cells-fill', 'fill-opacity',
-    ['case', isNum(f), ['*', v, r, ['interpolate', ['linear'], ['get', f], 0, 0.05, 1, 0.9]], 0])
+    ['case', isNum(f), ['*', v, r, flood ? FLOOD_OPACITY : ['interpolate', ['linear'], ['get', f], 0, 0.05, 1, 0.9]], 0])
   map.setPaintProperty('cells-hatch', 'fill-opacity', ['case', isNum(f), 0, ['*', v, r, 0.9]])
   map.setPaintProperty('cells-glow', 'line-color', hue)
   map.setPaintProperty('cells-glow', 'line-width', ['*', ['-', 1, r], motion.reveal.blurPx * 1.5])

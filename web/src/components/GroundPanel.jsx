@@ -1,61 +1,15 @@
-import { useState } from 'react'
-import { AnimatePresence, motion as m, useReducedMotion } from 'motion/react'
-import { ArrowClockwise, CaretDown, Check, CircleNotch, Warning, X, Polygon } from '@phosphor-icons/react'
-import { color, motion } from '../design/tokens.js'
+import { AnimatePresence } from 'motion/react'
+import { X } from '@phosphor-icons/react'
+import { color } from '../design/tokens.js'
 import { fmtPct0, fmtPct1, fractionRows, groundSummary, readOutput } from '../lib/contract.js'
-import { areaState, bboxAreaKm2, fmtArea, fmtKm2 } from '../lib/geo.js'
+import { fmtArea } from '../lib/geo.js'
 import { areaNotes, sourcesOf } from '../lib/notes.js'
-import { failureText, gapText, groupState, outputsOf, stageRows } from '../lib/stages.js'
+import { groupState, outputsOf } from '../lib/stages.js'
 import TrustBadge from './TrustBadge.jsx'
 import { CountUp, Skeleton } from './bits.jsx'
+import { Disclosure, Reveal } from './PanelBits.jsx'
 
 const fmtPct = fmtPct1
-
-function Reveal({ children, k }) {
-  const reduce = useReducedMotion()
-  return (
-    <m.div key={k} initial={reduce ? { opacity: 0 } : { opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}
-      transition={reduce ? { duration: motion.reduced.duration } : { duration: motion.duration.slow, ease: motion.ease }}>
-      {children}
-    </m.div>
-  )
-}
-
-function Disclosure({ label, children }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <div className="disclosure">
-      <button type="button" className="disclosure-btn" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
-        <CaretDown size={12} className={open ? 'rot' : ''} aria-hidden="true" /> {label}
-      </button>
-      {open && <div className="disclosure-body">{children}</div>}
-    </div>
-  )
-}
-
-function StageList({ job }) {
-  const rows = stageRows(job)
-  const icon = {
-    done: <Check size={13} weight="bold" />,
-    running: <CircleNotch size={13} className="spin-slow" />,
-    failed: <Warning size={13} weight="bold" />,
-    timeout: <Warning size={13} weight="bold" />,
-    waiting: <span className="dot-wait" />,
-  }
-  const word = { failed: 'failed', timeout: 'timed out' }
-  return (
-    <ol className="stages" aria-label="Analysis steps">
-      {rows.map((r) => (
-        <li key={r.key} className={`stage stage-${r.state}`}>
-          <span className="stage-icon" aria-hidden="true">{icon[r.state]}</span>
-          <span>{r.text}</span>
-          {word[r.state] && <span className="stage-word">{word[r.state]}</span>}
-          <span className="sr-only">{r.state}</span>
-        </li>
-      ))}
-    </ol>
-  )
-}
 
 function FractionRow({ r, chosen, onChoose }) {
   const hue = color.data[r.key] ?? color.select
@@ -132,71 +86,17 @@ function CellBreakdown({ cell, onClose }) {
   )
 }
 
-export default function GroundPanel({ place, bbox, maxKm2, job, onAnalyse, onRetry, onRedraw, fraction, onFraction, cell, onCloseCell, cellsNote, onClear }) {
-  if (!bbox) {
-    return (
-      <div className="panel-empty">
-        <Polygon size={28} weight="light" aria-hidden="true" />
-        <p className="lead">Search a place or draw an area</p>
-        <p className="muted">Ground cover, flood susceptibility and change, for anywhere on Earth.</p>
-      </div>
-    )
-  }
-  const km2 = bboxAreaKm2(bbox)
-  const st = areaState(km2, maxKm2)
+export default function GroundPanel({ job, fraction, onFraction, cell, onCloseCell, cellsNote }) {
+  if (!job) return null
   const outputs = outputsOf(job)
   const fr = groupState(job, 'fractions')
   const result = job?.result
   const rows = fractionRows(outputs.fractions)
   const notes = result ? areaNotes(result) : []
-  const running = job && (job.status === 'queued' || job.status === 'running')
+  const running = job.status === 'queued' || job.status === 'running'
 
   return (
     <>
-      <header className="panel-head">
-        <h2 className="place">{place?.name ?? 'Drawn area'}</h2>
-        <button type="button" className="btn-clear" onClick={onClear} aria-label="Clear area (Esc)">
-          <X size={13} aria-hidden="true" /> Clear area
-        </button>
-        <p className="muted">
-          {place?.region && <>{place.region}<span aria-hidden="true"> · </span></>}
-          <span className={`area area-${st}`}>{fmtKm2(km2)}</span>
-        </p>
-      </header>
-
-      {!job && st === 'over' && (
-        <section className="callout callout-danger">
-          <p>This area is {fmtKm2(km2)}. One analysis covers up to {maxKm2} km², so it finishes in minutes rather than hours.</p>
-          <button type="button" className="btn" onClick={onRedraw}>Draw a smaller area</button>
-        </section>
-      )}
-      {!job && st !== 'over' && (
-        <section className="cta-block">
-          <button type="button" className="btn btn-primary" onClick={onAnalyse}>Analyse this area</button>
-          <p className="caption">{st === 'warn' ? `Near the ${maxKm2} km² limit. ` : ''}Takes a few minutes. Keep exploring while it runs.</p>
-        </section>
-      )}
-
-      {running && (
-        <section aria-live="polite">
-          <p className="lead">{job.status === 'queued' ? 'Waiting for a free slot…' : 'Analysing this area…'}</p>
-          <StageList job={job} />
-        </section>
-      )}
-      {job?.status === 'failed' && (
-        <section className="callout callout-danger" role="alert">
-          <p>{failureText(job)}</p>
-          <button type="button" className="btn" onClick={onRetry}><ArrowClockwise size={14} aria-hidden="true" /> Retry</button>
-          <Disclosure label="Steps"><StageList job={job} /></Disclosure>
-        </section>
-      )}
-      {job?.status === 'complete' && !job.stored && (
-        <section className="callout callout-warn" role="status">
-          <p>{gapText(job)}</p>
-          <button type="button" className="btn" onClick={onRetry}><ArrowClockwise size={14} aria-hidden="true" /> Retry</button>
-        </section>
-      )}
-
       {job && (
         <section className="ground" aria-busy={fr === 'waiting'}>
           <h3 className="section-title">Ground cover</h3>

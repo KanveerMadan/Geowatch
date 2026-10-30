@@ -14,6 +14,9 @@ const lib = (f) => import(join(here, '..', 'web', 'src', 'lib', f))
 const C = await lib('contract.js')
 const G = await lib('geo.js')
 const S = await lib('stages.js')
+const F = await lib('flood.js')
+const CH = await lib('change.js')
+const O = await lib('overlay.js')
 
 let n = 0
 const test = (name, fn) => { fn(); n += 1 }
@@ -203,6 +206,112 @@ test('a box opened from a link is never called "Drawn area"', () => {
   const p = L.linkPlace([36.77, -1.322, 36.8, -1.3])
   assert.equal(p.name, 'Selected area')
   assert.equal(p.region, '1.311° S, 36.785° E')
+})
+
+// ── Flood tab (Step B) ──
+const hz = {
+  pluvial: out(0.33, 'available', 'failed', { tier: 'low', per_unit: true, map: {} }),
+  fluvial: out(0.41, 'available', 'experimental', { tier: 'moderate', per_unit: true }),
+  coastal: out(null, 'not_applicable', 'failed'),
+  flash_flood: out(0.29, 'available', 'experimental', { tier: 'low', per_unit: true }),
+  waterlogging: out(null, 'timeout', 'experimental'),
+}
+test('one flood row per type in the result, absent never a number', () => {
+  const rows = F.floodRows(hz)
+  assert.deepEqual(rows.map((r) => r.key), Object.keys(hz))
+  const c = rows.find((r) => r.key === 'coastal')
+  assert.equal(c.measured, false); assert.equal(c.value, null); assert.equal(c.tierText, 'Does not apply here')
+  assert.equal(c.mapped, false)
+  assert.equal(rows.find((r) => r.key === 'waterlogging').tierText, 'Timed out')
+  assert.equal(rows.find((r) => r.key === 'pluvial').trust.key, 'failed')
+})
+test('the flood summary leads with trusted readings and names the failed one', () => {
+  const s = F.floodSummary(hz)
+  assert.match(s, /^River flooding is the highest here, at moderate\./)
+  assert.match(s, /Surface-water flooding is shown but failed validation, so it is not for decisions\./)
+  assert.match(s, /Coastal flooding does not apply here\./)
+  assert.match(s, /Waterlogging: timed out\./)
+  assert.doesNotMatch(s, /\d/)
+})
+test('the default flood layer is a mapped type that did not fail', () => {
+  assert.equal(F.defaultFloodLayer(hz), 'fluvial')
+  assert.equal(F.defaultFloodLayer({ pluvial: hz.pluvial, coastal: hz.coastal }), 'pluvial')
+  assert.equal(F.defaultFloodLayer({ coastal: hz.coastal }), null)
+})
+test('tiers follow the contract breaks', () => {
+  assert.equal(F.tierOf(0), 'very_low'); assert.equal(F.tierOf(0.2), 'low'); assert.equal(F.tierOf(0.79), 'high')
+  assert.equal(F.tierOf(1), 'very_high'); assert.equal(F.tierOf(null), null)
+})
+test('wards rank by score, unmeasured wards follow unranked', () => {
+  const f = (id, v, st = 'available') => ({ properties: { unit_id: id, unit_name: `W${id}`, area_m2: 2e6, flood_fluvial: v, flood_fluvial_status: st } })
+  const { ranked, unranked } = F.rankWards({ features: [f('a', 0.2), f('b', null, 'insufficient_observation'), f('c', 0.7), f('d', 0)] }, 'fluvial')
+  assert.deepEqual(ranked.map((r) => [r.id, r.rank]), [['c', 1], ['a', 2], ['d', 3]])
+  assert.equal(ranked[2].value, 0)                         // a measured zero is ranked
+  assert.deepEqual(unranked.map((r) => [r.id, r.value, r.status]), [['b', null, 'insufficient_observation']])
+  assert.equal(F.wardUnitType({ wards: { grid: {}, 'ward:mumbai': {} } }), 'ward:mumbai')
+  assert.equal(F.wardUnitType({ wards: { grid: {} } }), null)
+})
+
+// ── Change tab (Step B) ──
+const chg = {
+  built: out({ increase: 10, decrease: 25, no_detectable_change: 815 }, 'available', 'experimental',
+    { counts_all: { increase: 10, decrease: 25, no_detectable_change: 815, insufficient_observation: 5, epoch_unreliable: 0 }, epochs: { a: 2021, b: 2023 } }),
+  vegetation: out({ increase: 48, decrease: 24, no_detectable_change: 778 }, 'available', 'placeholder',
+    { epochs: { a: { window: ['2021-07-30', '2021-10-28'] }, b: { window: ['2026-07-30', '2026-10-28'] } } }),
+  paved: out(null, 'not_computed', 'placeholder'),
+}
+test('change rows count cells and keep their compared years', () => {
+  const rows = CH.changeRows(chg)
+  assert.deepEqual(rows.map((r) => r.key), ['built', 'vegetation', 'paved'])
+  const b = rows[0]
+  assert.equal(b.judged, 850); assert.equal(b.cells, 855); assert.equal(b.unjudged, 5); assert.deepEqual(b.years, [2021, 2023])
+  assert.deepEqual(rows[1].years, [2021, 2026])
+  assert.equal(rows[2].measured, false); assert.equal(rows[2].text, 'Not yet measured')
+})
+test('the change summary names the fraction with most change and what is not measured', () => {
+  const s = CH.changeSummary(chg)
+  assert.match(s, /^Most change here is in vegetation: 72 of 850 cells \(8%\) changed between 2021 and 2026, 48 up and 24 down\./)
+  assert.match(s, /Built: 10 up, 25 down \(2021 and 2023\)\./)
+  assert.match(s, /Paved change is not yet measured\./)
+})
+test('an unjudged cell is never "no change"', () => {
+  assert.equal(CH.cellChange({ water: 'increase' }, 'water'), 'increase')
+  assert.equal(CH.cellChange({ water: 'no_detectable_change' }, 'water'), 'none')
+  assert.equal(CH.cellChange({ water: 'insufficient_observation' }, 'water'), 'unjudged')
+  assert.equal(CH.cellChange({ water: 'epoch_unreliable' }, 'water'), 'unjudged')
+  assert.equal(CH.cellChange({}, 'water'), 'unjudged')
+})
+test('before stays before after', () => {
+  const ys = [2017, 2018, 2019, 2020, 2021]
+  assert.deepEqual(CH.orderPair([2018, 2020], 'before', 2020, ys), [2020, 2021])
+  assert.deepEqual(CH.orderPair([2018, 2020], 'after', 2017, ys), [2017, 2018])
+  assert.deepEqual(CH.orderPair([2018, 2020], 'before', 2030, ys), [2020, 2021])
+  assert.deepEqual(CH.orderPair([2018, 2020], 'after', 2019, ys), [2018, 2019])
+})
+
+// ── swipe overlay geometry ──
+test('the overlay square lands on the four projected corners', () => {
+  const quad = [[100, 50], [420, 80], [400, 390], [90, 360]]
+  const L = 1000
+  const near = (a, b) => assert.ok(Math.hypot(a[0] - b[0], a[1] - b[1]) < 1e-6, `${a} vs ${b}`)
+  near(O.applyHomography(L, quad, [0, 0]), quad[0]); near(O.applyHomography(L, quad, [L, 0]), quad[1])
+  near(O.applyHomography(L, quad, [L, L]), quad[2]); near(O.applyHomography(L, quad, [0, L]), quad[3])
+})
+test('unit coordinates are Mercator across the box, north up', () => {
+  const u = O.toUnit([36.77, -1.322, 36.8, -1.3])
+  assert.deepEqual(u([36.77, -1.3]).map((v) => +v.toFixed(9)), [0, 0])
+  assert.deepEqual(u([36.8, -1.322]).map((v) => +v.toFixed(9)), [1, 1])
+  const cells = O.unitCells({ features: [{ id: 3, properties: {}, geometry: { type: 'Polygon', coordinates: [[[36.77, -1.3], [36.78, -1.3], [36.78, -1.31], [36.77, -1.31], [36.77, -1.3]]] } }] }, [36.77, -1.322, 36.8, -1.3])
+  assert.equal(O.cellAt(cells, u([36.775, -1.305])).id, 3)
+  assert.equal(O.cellAt(cells, u([36.79, -1.305])), null)
+  assert.match(O.pathOf(cells), /^M0 0L0\.33333 0L/)
+})
+
+test('ward ranking is offered only where a boundary layer holds the area', () => {
+  const layers = [{ boundary_layer_id: 'mumbai', bbox: [72.77, 18.89, 72.99, 19.27] }, { boundary_layer_id: 'x', bbox: null }]
+  assert.equal(G.boundaryFor([72.83, 19.03, 72.86, 19.06], layers).boundary_layer_id, 'mumbai')
+  assert.equal(G.boundaryFor([36.77, -1.32, 36.8, -1.3], layers), null)
+  assert.equal(G.boundaryFor([36.77, -1.32, 36.8, -1.3], null), null)
 })
 
 console.log(`test_web_logic: ${n} passed`)

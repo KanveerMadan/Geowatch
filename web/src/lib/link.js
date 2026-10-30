@@ -31,3 +31,18 @@ export function linkPlace([w, s, e, n]) {
   const fmt = (v, pos, neg) => `${Math.abs(v).toFixed(3)}° ${v >= 0 ? pos : neg}`
   return { name: 'Selected area', region: `${fmt(lat, 'N', 'S')}, ${fmt(lon, 'E', 'W')}` }
 }
+
+/** The printable area report for a stored result: ?report=<result id>,
+ *  with the place name as shown (the result only keeps its label). */
+export function reportHref(resultId, name) {
+  const q = new URLSearchParams({ report: resultId })
+  if (name) q.set('name', name)
+  return `?${q}`
+}
+
+/** {resultId, name} when the page is a report, else null. */
+export function parseReport(search) {
+  const q = new URLSearchParams(search)
+  const id = q.get('report')
+  return id && /^r[0-9a-f]{24}$/.test(id) ? { resultId: id, name: q.get('name')?.slice(0, 120) || null } : null
+}
