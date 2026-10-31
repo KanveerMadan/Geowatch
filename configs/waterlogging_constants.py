@@ -70,3 +70,9 @@ WATERLOGGING_R4_WEIGHTS = {"persistence": 1.0, "clay": 1.0, "low_relief": 1.0, "
 WATERLOGGING_R4_WEIGHT_GRID = [
     {"persistence": p, "clay": c, "low_relief": r, "backwater": b}
     for p in (1.0, 2.0) for c in (0.0, 0.5, 1.0) for r in (0.5, 1.0) for b in (0.0, 0.5, 1.0)]
+
+
+# ── Flood round 4b (decided by the user 2026-10-31, C80): persistence ONLY,
+# fixed in experiments/flood_validation/PREREGISTRATION_ROUND4B.md. No tuning.
+# The pipeline's waterlogging runs these weights. ──
+WATERLOGGING_R4B_WEIGHTS = {"persistence": 1.0, "clay": 0.0, "low_relief": 0.0, "backwater": 0.0}

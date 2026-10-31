@@ -18,7 +18,9 @@ Components on the hydrology grid (susceptibility/hydro_rasters.py), each 0-1:
                  beside a large river. River stage is not observed; river size
                  stands in for a river that runs high in the wet season.
 
-Score = weighted mean (WATERLOGGING_R4_WEIGHTS). The HAND here is the same
+Score = weighted mean. Round 4 weighted all four (WATERLOGGING_R4_WEIGHTS, the
+tuned choice) and failed; since round 4b (C80) the module runs persistence
+alone (WATERLOGGING_R4B_WEIGHTS). The HAND here is the same
 MERIT HAND fluvial reads, read as "nowhere to drain to", not "near a channel
 that overflows".
 """
@@ -29,7 +31,7 @@ import numpy as np
 from configs.waterlogging_constants import (
     WATERLOGGING_BACKWATER_DECADES, WATERLOGGING_BACKWATER_HAND_MAX_M,
     WATERLOGGING_BACKWATER_MIN_KM2, WATERLOGGING_CLASS_BREAKS, WATERLOGGING_CLAY_MAX_PCT,
-    WATERLOGGING_HAND_NORMALIZATION_MAX_M, WATERLOGGING_R4_WEIGHTS,
+    WATERLOGGING_HAND_NORMALIZATION_MAX_M, WATERLOGGING_R4B_WEIGHTS,
 )
 from susceptibility.hydro_rasters import clip01, layer, map_summary, weighted_map
 from susceptibility.inputs import provenance, weakest
@@ -40,6 +42,13 @@ from susceptibility.inputs import provenance, weakest
 VALIDATION_STATUS = "failed"
 METHOD = "persistence_clay_relief_backwater_per_pixel_weighted"
 INPUT_LAYERS = ("hand_m", "upa_near_km2", "clay_pct", "jrc_water_freq", "s1_water_freq")
+# The layers each component reads: an input is declared only if a weighted
+# component reads it (C70 compares the declared inputs).
+COMPONENT_LAYERS = {"persistence": ("jrc_water_freq", "s1_water_freq"), "clay": ("clay_pct",),
+                    "low_relief": ("hand_m",), "backwater": ("hand_m", "upa_near_km2")}
+# Round 4b (C80, decided 2026-10-31): persistence only, the configuration the
+# pipeline runs (PREREGISTRATION_ROUND4B.md).
+DEFAULT_WEIGHTS = WATERLOGGING_R4B_WEIGHTS
 CEILINGS = {"low_relief_hand_m": WATERLOGGING_HAND_NORMALIZATION_MAX_M,
             "clay_pct": WATERLOGGING_CLAY_MAX_PCT,
             "backwater_hand_m": WATERLOGGING_BACKWATER_HAND_MAX_M,
@@ -89,7 +98,7 @@ def components(rasters: dict) -> dict:
 
 
 def combine(comps: dict, weights: dict = None):
-    return weighted_map(comps, WATERLOGGING_R4_WEIGHTS if weights is None else weights)
+    return weighted_map(comps, DEFAULT_WEIGHTS if weights is None else weights)
 
 
 from perception.applicability_gate import gated
@@ -101,9 +110,9 @@ def compute_waterlogging_susceptibility(rasters: dict = None, weights: dict = No
     Args:
         rasters: susceptibility.hydro_rasters.fetch_hydro_rasters() output,
             persistence layers included.
-        weights: override WATERLOGGING_R4_WEIGHTS (the validation harness only).
+        weights: override DEFAULT_WEIGHTS (the validation harness only).
     """
-    w = dict(WATERLOGGING_R4_WEIGHTS if weights is None else weights)
+    w = dict(DEFAULT_WEIGHTS if weights is None else weights)
     comps = components(rasters) if rasters else {}
     used = [k for k, c in comps.items() if c is not None and w.get(k, 0) > 0]
     m = combine(comps, w) if used else None
@@ -118,8 +127,8 @@ def compute_waterlogging_susceptibility(rasters: dict = None, weights: dict = No
             continue
         why = "weight 0" if c is not None else "unavailable"
         excluded.append(f"{k} ({why})")
-    inputs = {k: provenance(v) for k, v in rasters.get("layers", {}).items()
-              if k in INPUT_LAYERS}
+    read = {lay for k in used for lay in COMPONENT_LAYERS[k]}
+    inputs = {k: provenance(v) for k, v in rasters.get("layers", {}).items() if k in read}
     return {
         "status": "experimental",
         "validation_status": weakest(VALIDATION_STATUS,

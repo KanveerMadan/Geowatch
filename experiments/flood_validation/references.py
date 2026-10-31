@@ -288,12 +288,40 @@ UNOSAT_PRODUCTS = {
         "FL20220525BGD_SHP", "RCM1_20220618_{}_Sylhet",
         "https://unosat-maps.web.cern.ch/BD/FL20220525BGD/FL20220525BGD_SHP.zip",
         "RCM-1", "2022-06-18"),
+    # round 4b: a file geodatabase (UNOSAT's SHP archive would not download
+    # whole); the second period, 28 Aug - 4 Sep 2024
+    "FL20240825BGD_S1_20240828_20240904": (
+        "FL20240825BGD.gdb", "{}",
+        "https://unosat.org/static/unosat_filesystem/3954/FL20240825BGD_gdb.zip",
+        "Sentinel-1", "2024-08-28/2024-09-04"),
 }
+UNOSAT_GDB_LAYERS = {"FL20240825BGD_S1_20240828_20240904": {
+    "FloodExtent": "S1_20240828_20240904_FloodExtent_Bangladesh",
+    "AnalysisExtent": "AnalysisExtent_Bangladesh"}}
 
 
 def _unosat_path(key: str, layer: str) -> str:
     folder, stem, *_ = UNOSAT_PRODUCTS[key]
+    if folder.endswith(".gdb"):
+        return os.path.join(UNOSAT_DIR, folder)
     return os.path.join(UNOSAT_DIR, folder, stem.format(layer) + ".shp")
+
+
+def _unosat_read(key: str, layer: str, bbox=None):
+    import geopandas as gpd
+    lay = UNOSAT_GDB_LAYERS.get(key, {}).get(layer)
+    kw = {"layer": lay} if lay else {}
+    return gpd.read_file(_unosat_path(key, layer), bbox=None if bbox is None else tuple(bbox), **kw)
+
+
+def _unosat_sha(key: str) -> str:
+    """SHA256 of the FloodExtent file (shapefile), or of the downloaded
+    geodatabase archive (a .gdb is a directory)."""
+    folder, _, url, *_ = UNOSAT_PRODUCTS[key]
+    path = (os.path.join(UNOSAT_DIR, os.path.basename(url)) if folder.endswith(".gdb")
+            else _unosat_path(key, "FloodExtent"))
+    with open(path, "rb") as fh:
+        return hashlib.sha256(fh.read()).hexdigest()
 
 
 def unosat_product(key: str, bbox=None) -> dict:
@@ -301,22 +329,21 @@ def unosat_product(key: str, bbox=None) -> dict:
     only those meeting `bbox`, clipped to it with a margin, when given). The
     shapefiles are extracted from UNOSAT's archive into UNOSAT_DIR beforehand
     (the archives are 285-337 MB; see the round-4 result's reference meta)."""
-    import geopandas as gpd
     from shapely.geometry import box
     from shapely.ops import unary_union
     folder, stem, url, sensor, date = UNOSAT_PRODUCTS[key]
-    ext = gpd.read_file(_unosat_path(key, "AnalysisExtent")).to_crs(4326)
-    flood = gpd.read_file(_unosat_path(key, "FloodExtent"),
-                          bbox=None if bbox is None else tuple(bbox)).to_crs(4326)
+    ext = _unosat_read(key, "AnalysisExtent").to_crs(4326)
+    flood = _unosat_read(key, "FloodExtent", bbox).to_crs(4326)
     if "Water_Clas" in flood.columns:
         flood = flood[flood["Water_Clas"] == "Flood Water"]
+    elif "Water_Class" in flood.columns:          # geodatabase: coded, 1 = "Flood Water"
+        flood = flood[flood["Water_Class"] == 1]
     polys = list(flood.geometry)
     if bbox is not None:
         w, s, e, n = bbox
         clip = box(w - 0.01, s - 0.01, e + 0.01, n + 0.01)
         polys = [g.intersection(clip) for g in polys]
-    with open(_unosat_path(key, "FloodExtent"), "rb") as fh:
-        sha = hashlib.sha256(fh.read()).hexdigest()
+    sha = _unosat_sha(key)
     return {"key": key, "extent": unary_union(list(ext.geometry)), "polygons": polys,
             "sensor": sensor, "date": date, "url": url, "flood_layer_sha256": sha}
 
