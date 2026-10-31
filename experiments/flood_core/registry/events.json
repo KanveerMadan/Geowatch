@@ -1,0 +1,2080 @@
+{
+ "schema_version": 1,
+ "built_from": [
+  "result_round2_2026-10-28.json",
+  "result_round3_2026-10-29.json",
+  "result_round4_2026-10-30.json",
+  "PREREGISTRATION*.md"
+ ],
+ "metadata_only_products": [
+  "EMSR712"
+ ],
+ "exposure_ladder": {
+  "0": "unseen",
+  "1": "facts/news",
+  "2": "product metadata",
+  "3": "reference geometry/counts",
+  "4": "scored",
+  "5": "tuning or method choice",
+  "6": "post-hoc diagnostics viewed"
+ },
+ "units": [
+  {
+   "event_id": "dharavi",
+   "role": "dev",
+   "kind": "event+site",
+   "date": "2017-08-29",
+   "storm_cluster": "mumbai_2017",
+   "region_cluster": "mumbai",
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "pluvial",
+     "role": "test"
+    },
+    {
+     "round": "r1",
+     "module": "fluvial",
+     "role": "site"
+    },
+    {
+     "round": "r1",
+     "module": "waterlogging",
+     "role": "site"
+    },
+    {
+     "round": "r2",
+     "module": "pluvial",
+     "role": "tuning"
+    },
+    {
+     "round": "r2",
+     "module": "waterlogging",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "pluvial",
+      "bbox": [
+       72.836,
+       19.037,
+       72.862,
+       19.06
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040029530,
+    "main_bas": 4060030580,
+    "hybas_6": 4060030580
+   }
+  },
+  {
+   "event_id": "jakarta",
+   "role": "dev",
+   "kind": "site",
+   "date": null,
+   "storm_cluster": null,
+   "region_cluster": "jakarta",
+   "products": [
+    "JRC"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "fluvial",
+     "role": "site"
+    },
+    {
+     "round": "r1",
+     "module": "waterlogging",
+     "role": "site"
+    }
+   ],
+   "exposure_level": 4,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r1",
+      "module": "site",
+      "bbox": [
+       106.78,
+       -6.13,
+       106.85,
+       -6.08
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "note": "no geometry, or centre point outside HydroBASINS"
+   }
+  },
+  {
+   "event_id": "jakarta_gfd_3280",
+   "role": "dev",
+   "kind": "event",
+   "date": "2008-03-01",
+   "storm_cluster": "jakarta_2008",
+   "region_cluster": "jakarta",
+   "products": [
+    "GFD:3280"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "waterlogging",
+     "role": "held_out"
+    }
+   ],
+   "exposure_level": 4,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "waterlogging",
+      "bbox": [
+       106.78,
+       -6.13,
+       106.85,
+       -6.08
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "note": "no geometry, or centre point outside HydroBASINS"
+   }
+  },
+  {
+   "event_id": "hcmc",
+   "role": "dev",
+   "kind": "site",
+   "date": null,
+   "storm_cluster": null,
+   "region_cluster": "hcmc",
+   "products": [
+    "JRC"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "fluvial",
+     "role": "site"
+    },
+    {
+     "round": "r1",
+     "module": "waterlogging",
+     "role": "site"
+    },
+    {
+     "round": "r2",
+     "module": "waterlogging",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "waterlogging",
+      "bbox": [
+       106.58,
+       10.78,
+       106.68,
+       10.88
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040015090,
+    "main_bas": 4060016810,
+    "hybas_6": 4060016810
+   }
+  },
+  {
+   "event_id": "kigali",
+   "role": "dev",
+   "kind": "site",
+   "date": null,
+   "storm_cluster": null,
+   "region_cluster": "kigali",
+   "products": [
+    "JRC"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "fluvial",
+     "role": "site"
+    },
+    {
+     "round": "r1",
+     "module": "waterlogging",
+     "role": "site"
+    },
+    {
+     "round": "r2",
+     "module": "waterlogging",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "waterlogging",
+      "bbox": [
+       30.058,
+       -1.975,
+       30.082,
+       -1.952
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040837890,
+    "main_bas": 1060034260,
+    "hybas_6": 1061190440
+   }
+  },
+  {
+   "event_id": "accra",
+   "role": "dev",
+   "kind": "site",
+   "date": null,
+   "storm_cluster": null,
+   "region_cluster": "accra",
+   "products": [
+    "JRC"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "fluvial",
+     "role": "site"
+    },
+    {
+     "round": "r1",
+     "module": "waterlogging",
+     "role": "site"
+    },
+    {
+     "round": "r2",
+     "module": "waterlogging",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "waterlogging",
+      "bbox": [
+       -0.225,
+       5.54,
+       -0.19,
+       5.57
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040023310,
+    "main_bas": 1060023310,
+    "hybas_6": 1060023310
+   }
+  },
+  {
+   "event_id": "dhaka",
+   "role": "dev",
+   "kind": "site",
+   "date": null,
+   "storm_cluster": null,
+   "region_cluster": "gbm_system",
+   "products": [
+    "JRC"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "fluvial",
+     "role": "site"
+    },
+    {
+     "round": "r1",
+     "module": "waterlogging",
+     "role": "site"
+    },
+    {
+     "round": "r2",
+     "module": "waterlogging",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "waterlogging",
+      "bbox": [
+       90.385,
+       23.765,
+       90.425,
+       23.795
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040975160,
+    "main_bas": 4060025450,
+    "hybas_6": 4060967130
+   }
+  },
+  {
+   "event_id": "capetown",
+   "role": "dev",
+   "kind": "site",
+   "date": null,
+   "storm_cluster": null,
+   "region_cluster": "capetown",
+   "products": [
+    "JRC"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "fluvial",
+     "role": "site"
+    },
+    {
+     "round": "r1",
+     "module": "waterlogging",
+     "role": "site"
+    },
+    {
+     "round": "r2",
+     "module": "waterlogging",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "waterlogging",
+      "bbox": [
+       18.66,
+       -34.075,
+       18.71,
+       -34.03
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040015030,
+    "main_bas": 1060015030,
+    "hybas_6": 1060015030
+   }
+  },
+  {
+   "event_id": "guatemala",
+   "role": "dev",
+   "kind": "site",
+   "date": null,
+   "storm_cluster": null,
+   "region_cluster": "guatemala",
+   "products": [
+    "JRC"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "fluvial",
+     "role": "site"
+    },
+    {
+     "round": "r1",
+     "module": "waterlogging",
+     "role": "site"
+    },
+    {
+     "round": "r2",
+     "module": "waterlogging",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "waterlogging",
+      "bbox": [
+       -90.54,
+       14.61,
+       -90.5,
+       14.65
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040050930,
+    "main_bas": 7060053240,
+    "hybas_6": 7060053240
+   }
+  },
+  {
+   "event_id": "nusantara",
+   "role": "dev",
+   "kind": "site",
+   "date": null,
+   "storm_cluster": null,
+   "region_cluster": "nusantara",
+   "products": [
+    "JRC"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "fluvial",
+     "role": "site"
+    },
+    {
+     "round": "r1",
+     "module": "waterlogging",
+     "role": "site"
+    },
+    {
+     "round": "r2",
+     "module": "waterlogging",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "waterlogging",
+      "bbox": [
+       116.7,
+       -1.0,
+       116.76,
+       -0.945
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 5040021190,
+    "main_bas": 5060021190,
+    "hybas_6": 5060021190
+   }
+  },
+  {
+   "event_id": "beira",
+   "role": "dev",
+   "kind": "event",
+   "date": "2019-03-15",
+   "storm_cluster": "idai_2019",
+   "region_cluster": "mozambique_coast",
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "coastal",
+     "role": "test"
+    },
+    {
+     "round": "r2",
+     "module": "coastal",
+     "role": "held_out"
+    }
+   ],
+   "exposure_level": 4,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "coastal",
+      "bbox": [
+       34.83,
+       -19.85,
+       34.87,
+       -19.81
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040011670,
+    "main_bas": 1060011670,
+    "hybas_6": 1060011670
+   }
+  },
+  {
+   "event_id": "chennai_velachery",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-12-04",
+   "storm_cluster": "michaung_2023",
+   "region_cluster": "chennai",
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "coastal",
+     "role": "test_not_run"
+    }
+   ],
+   "exposure_level": 2,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r1",
+      "module": "site",
+      "bbox": [
+       80.2,
+       12.96,
+       80.24,
+       13.0
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040027950,
+    "main_bas": 4060028210,
+    "hybas_6": 4060028210
+   }
+  },
+  {
+   "event_id": "chennai_2023",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-12-04",
+   "storm_cluster": "michaung_2023",
+   "region_cluster": "chennai",
+   "products": [],
+   "uses": [
+    {
+     "round": "r4",
+     "module": "pluvial",
+     "role": "test_not_run"
+    }
+   ],
+   "exposure_level": 2,
+   "geometry": {
+    "type": "none",
+    "note": "never boxed: not-run before any reference was read"
+   },
+   "basins": {
+    "note": "no geometry, or centre point outside HydroBASINS"
+   }
+  },
+  {
+   "event_id": "fort_myers_beach",
+   "role": "dev",
+   "kind": "event",
+   "date": "2022-09-28",
+   "storm_cluster": "ian_2022",
+   "region_cluster": "florida_gulf",
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "coastal",
+     "role": "test"
+    },
+    {
+     "round": "r2",
+     "module": "coastal",
+     "role": "held_out"
+    }
+   ],
+   "exposure_level": 4,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "coastal",
+      "bbox": [
+       -81.97,
+       26.43,
+       -81.93,
+       26.47
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040043170,
+    "main_bas": 7060044360,
+    "hybas_6": 7060044360
+   }
+  },
+  {
+   "event_id": "kyaukpyu",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-05-14",
+   "storm_cluster": "mocha_2023",
+   "region_cluster": "rakhine",
+   "products": [
+    "EMSR661:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "coastal",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "coastal",
+      "bbox": [
+       93.530349,
+       19.411034,
+       93.568451,
+       19.446966
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040024190,
+    "main_bas": 4060024190,
+    "hybas_6": 4060024190
+   }
+  },
+  {
+   "event_id": "sittwe",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-05-14",
+   "storm_cluster": "mocha_2023",
+   "region_cluster": "rakhine",
+   "products": [
+    "EMSR661:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "coastal",
+     "role": "held_out"
+    }
+   ],
+   "exposure_level": 4,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "coastal",
+      "bbox": [
+       92.879163,
+       20.128234,
+       92.917437,
+       20.164166
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040024190,
+    "main_bas": 4060024900,
+    "hybas_6": 4060024900
+   }
+  },
+  {
+   "event_id": "black_river",
+   "role": "dev",
+   "kind": "event",
+   "date": "2025-10-28",
+   "storm_cluster": "melissa_2025",
+   "region_cluster": "jamaica",
+   "products": [
+    "EMSR847:AOI15"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "coastal",
+     "role": "held_out"
+    }
+   ],
+   "exposure_level": 4,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "coastal",
+      "bbox": [
+       -77.867594,
+       18.008434,
+       -77.829806,
+       18.044366
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040065090,
+    "main_bas": 7060065090,
+    "hybas_6": 7060065090
+   }
+  },
+  {
+   "event_id": "paiporta",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-10-29",
+   "storm_cluster": "dana_valencia_2024",
+   "region_cluster": "valencia",
+   "products": [
+    "S1",
+    "EMSR773:AOI03"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "flash_flood",
+     "role": "test"
+    },
+    {
+     "round": "r2",
+     "module": "flash_flood",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r1",
+      "module": "site",
+      "bbox": [
+       -0.44,
+       39.41,
+       -0.4,
+       39.45
+      ]
+     },
+     {
+      "round": "r2",
+      "module": "flash_flood",
+      "bbox": [
+       -0.44096,
+       39.410034,
+       -0.39444,
+       39.445966
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040016230,
+    "main_bas": 2060017160,
+    "hybas_6": 2060017160
+   }
+  },
+  {
+   "event_id": "valencia_2024",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-10-29",
+   "storm_cluster": "dana_valencia_2024",
+   "region_cluster": "valencia",
+   "products": [
+    "EMSR773:AOI03"
+   ],
+   "uses": [
+    {
+     "round": "r4",
+     "module": "pluvial",
+     "role": "test"
+    },
+    {
+     "round": "r4",
+     "module": "flash_flood",
+     "role": "test"
+    }
+   ],
+   "exposure_level": 6,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r4",
+      "module": "pluvial",
+      "bbox": [
+       -0.521674,
+       39.429106,
+       -0.475142,
+       39.465038
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040016230,
+    "main_bas": 2060017160,
+    "hybas_6": 2060017160
+   }
+  },
+  {
+   "event_id": "derna",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-09-11",
+   "storm_cluster": "daniel_2023",
+   "region_cluster": "derna",
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "flash_flood",
+     "role": "test"
+    },
+    {
+     "round": "r2",
+     "module": "flash_flood",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "flash_flood",
+      "bbox": [
+       22.62,
+       32.75,
+       22.66,
+       32.78
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040031860,
+    "main_bas": 1060032950,
+    "hybas_6": 1060032950
+   }
+  },
+  {
+   "event_id": "derna_2023",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-09-11",
+   "storm_cluster": "daniel_2023",
+   "region_cluster": "derna",
+   "products": [
+    "EMSR696:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "r4",
+     "module": "flash_flood",
+     "role": "test"
+    }
+   ],
+   "exposure_level": 6,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r4",
+      "module": "flash_flood",
+      "bbox": [
+       22.606275,
+       32.730236,
+       22.648999,
+       32.766168
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040031860,
+    "main_bas": 1060032950,
+    "hybas_6": 1060032950
+   }
+  },
+  {
+   "event_id": "bad_neuenahr",
+   "role": "dev",
+   "kind": "event",
+   "date": "2021-07-14",
+   "storm_cluster": "bernd_2021",
+   "region_cluster": "ahr",
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "r1",
+     "module": "flash_flood",
+     "role": "test"
+    },
+    {
+     "round": "r2",
+     "module": "flash_flood",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "flash_flood",
+      "bbox": [
+       7.09,
+       50.53,
+       7.13,
+       50.56
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040023010,
+    "main_bas": 2060023010,
+    "hybas_6": 2060023010
+   }
+  },
+  {
+   "event_id": "volos",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-09-05",
+   "storm_cluster": "daniel_2023",
+   "region_cluster": "thessaly",
+   "products": [
+    "EMSR692:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "flash_flood",
+     "role": "held_out"
+    },
+    {
+     "round": "r3",
+     "module": "flash_flood",
+     "role": "held_out"
+    },
+    {
+     "round": "r4",
+     "module": "flash_flood",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "flash_flood",
+      "bbox": [
+       22.918762,
+       39.344234,
+       22.965238,
+       39.380166
+      ]
+     },
+     {
+      "round": "r3",
+      "module": "flash_flood",
+      "bbox": [
+       22.045638,
+       39.429621,
+       22.09217,
+       39.465553
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040009230,
+    "main_bas": 2060010040,
+    "hybas_6": 2060010040
+   }
+  },
+  {
+   "event_id": "kastelli",
+   "role": "dev",
+   "kind": "event",
+   "date": "2026-10-01",
+   "storm_cluster": "crete_2026",
+   "region_cluster": "crete",
+   "products": [
+    "EMSR933:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "flash_flood",
+     "role": "held_out"
+    },
+    {
+     "round": "r3",
+     "module": "flash_flood",
+     "role": "held_out"
+    },
+    {
+     "round": "r4",
+     "module": "flash_flood",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "flash_flood",
+      "bbox": [
+       25.31611,
+       35.195134,
+       25.36009,
+       35.231066
+      ]
+     },
+     {
+      "round": "r3",
+      "module": "flash_flood",
+      "bbox": [
+       25.295996,
+       35.173739,
+       25.339964,
+       35.209671
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040045150,
+    "main_bas": 2060045150,
+    "hybas_6": 2060045150
+   }
+  },
+  {
+   "event_id": "choloma",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-11-16",
+   "storm_cluster": "sara_2024",
+   "region_cluster": "sula_valley",
+   "products": [
+    "EMSR778:AOI10"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "flash_flood",
+     "role": "held_out"
+    },
+    {
+     "round": "r3",
+     "module": "flash_flood",
+     "role": "held_out"
+    },
+    {
+     "round": "r4",
+     "module": "flash_flood",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "flash_flood",
+      "bbox": [
+       -87.971755,
+       15.595334,
+       -87.934445,
+       15.631266
+      ]
+     },
+     {
+      "round": "r3",
+      "module": "flash_flood",
+      "bbox": [
+       -87.856284,
+       15.623006,
+       -87.81897,
+       15.658938
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040050930,
+    "main_bas": 7060053250,
+    "hybas_6": 7060053250
+   }
+  },
+  {
+   "event_id": "himachal_2023",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-07-10",
+   "storm_cluster": "monsoon_2023_wh",
+   "region_cluster": "beas",
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "r4",
+     "module": "flash_flood",
+     "role": "test"
+    }
+   ],
+   "exposure_level": 6,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r4",
+      "module": "flash_flood",
+      "bbox": [
+       77.120663,
+       31.947443,
+       77.163017,
+       31.983375
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040794730,
+    "main_bas": 4060033640,
+    "hybas_6": 4060729700
+   }
+  },
+  {
+   "event_id": "hai_phong",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-09-07",
+   "storm_cluster": "yagi_2024",
+   "region_cluster": "red_river_delta",
+   "products": [
+    "EMSR754:AOI05"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "pluvial",
+     "role": "held_out"
+    },
+    {
+     "round": "r3",
+     "module": "pluvial",
+     "role": "held_out"
+    },
+    {
+     "round": "r4",
+     "module": "pluvial",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "pluvial",
+      "bbox": [
+       106.668875,
+       20.826934,
+       106.707325,
+       20.862866
+      ]
+     },
+     {
+      "round": "r3",
+      "module": "pluvial",
+      "bbox": [
+       106.778694,
+       20.822589,
+       106.817142,
+       20.858521
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "note": "no geometry, or centre point outside HydroBASINS"
+   }
+  },
+  {
+   "event_id": "milagro",
+   "role": "dev",
+   "kind": "event",
+   "date": "2025-02-26",
+   "storm_cluster": "ecuador_2025",
+   "region_cluster": "guayas",
+   "products": [
+    "EMSR796:AOI06"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "pluvial",
+     "role": "held_out"
+    },
+    {
+     "round": "r3",
+     "module": "pluvial",
+     "role": "held_out"
+    },
+    {
+     "round": "r4",
+     "module": "pluvial",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "pluvial",
+      "bbox": [
+       -79.605179,
+       -2.152666,
+       -79.569221,
+       -2.116734
+      ]
+     },
+     {
+      "round": "r3",
+      "module": "pluvial",
+      "bbox": [
+       -79.614744,
+       -2.182138,
+       -79.578786,
+       -2.146206
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 6040032290,
+    "main_bas": 6060032610,
+    "hybas_6": 6060256400
+   }
+  },
+  {
+   "event_id": "belize_city",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-11-15",
+   "storm_cluster": "sara_2024",
+   "region_cluster": "belize",
+   "products": [
+    "EMSR777:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "pluvial",
+     "role": "held_out"
+    },
+    {
+     "round": "r3",
+     "module": "pluvial",
+     "role": "held_out"
+    },
+    {
+     "round": "r4",
+     "module": "pluvial",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "pluvial",
+      "bbox": [
+       -88.215039,
+       17.486634,
+       -88.177361,
+       17.522566
+      ]
+     },
+     {
+      "round": "r3",
+      "module": "pluvial",
+      "bbox": [
+       -88.723744,
+       17.358055,
+       -88.686094,
+       17.393987
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040050930,
+    "main_bas": 7060052570,
+    "hybas_6": 7060052570
+   }
+  },
+  {
+   "event_id": "dubai_2024",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-04-16",
+   "storm_cluster": "uae_2024",
+   "region_cluster": "dubai",
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "r4",
+     "module": "pluvial",
+     "role": "test"
+    }
+   ],
+   "exposure_level": 6,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r4",
+      "module": "pluvial",
+      "bbox": [
+       55.275011,
+       25.172306,
+       55.314719,
+       25.208238
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040075170,
+    "main_bas": 2060075800,
+    "hybas_6": 2060075800
+   }
+  },
+  {
+   "event_id": "faenza",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-05-02",
+   "storm_cluster": "emilia_2023",
+   "region_cluster": "lamone",
+   "products": [
+    "EMSR659:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "fluvial",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "fluvial",
+      "bbox": [
+       11.858203,
+       44.267634,
+       11.908397,
+       44.303566
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013110,
+    "hybas_6": 2060013110
+   }
+  },
+  {
+   "event_id": "encantado",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-05-02",
+   "storm_cluster": "rs_2024",
+   "region_cluster": "taquari",
+   "products": [
+    "EMSR720:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "fluvial",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "fluvial",
+      "bbox": [
+       -51.890589,
+       -29.253966,
+       -51.849411,
+       -29.218034
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 6040015560,
+    "main_bas": 6060015560,
+    "hybas_6": 6060848790
+   }
+  },
+  {
+   "event_id": "hanoi",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-09-09",
+   "storm_cluster": "yagi_2024",
+   "region_cluster": "red_river_delta",
+   "products": [
+    "EMSR754:AOI03"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "fluvial",
+     "role": "held_out"
+    }
+   ],
+   "exposure_level": 4,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "fluvial",
+      "bbox": [
+       105.834952,
+       21.010534,
+       105.873448,
+       21.046466
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040015000,
+    "main_bas": 4060015000,
+    "hybas_6": 4060015000
+   }
+  },
+  {
+   "event_id": "kolonnawa",
+   "role": "dev",
+   "kind": "event",
+   "date": "2025-11-30",
+   "storm_cluster": "ditwah_2025",
+   "region_cluster": "kelani",
+   "products": [
+    "EMSR851:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "fluvial",
+     "role": "held_out"
+    }
+   ],
+   "exposure_level": 4,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "fluvial",
+      "bbox": [
+       79.865201,
+       6.915334,
+       79.901399,
+       6.951266
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040048900,
+    "main_bas": 4060048900,
+    "hybas_6": 4060048900
+   }
+  },
+  {
+   "event_id": "nysa",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-09-14",
+   "storm_cluster": "boris_2024",
+   "region_cluster": "odra",
+   "products": [
+    "EMSR756:AOI03"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "fluvial",
+     "role": "held_out"
+    }
+   ],
+   "exposure_level": 4,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "fluvial",
+      "bbox": [
+       17.30547,
+       50.456734,
+       17.36193,
+       50.492666
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040026060,
+    "main_bas": 2060026060,
+    "hybas_6": 2060409780
+   }
+  },
+  {
+   "event_id": "hue",
+   "role": "dev",
+   "kind": "event",
+   "date": "2025-10-29",
+   "storm_cluster": "vn_central_2025",
+   "region_cluster": "perfume",
+   "products": [
+    "EMSR848:AOI06"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "fluvial",
+     "role": "held_out"
+    }
+   ],
+   "exposure_level": 4,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "fluvial",
+      "bbox": [
+       107.572166,
+       16.445734,
+       107.609634,
+       16.481666
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040015090,
+    "main_bas": 4060015430,
+    "hybas_6": 4060015430
+   }
+  },
+  {
+   "event_id": "bihar_2026",
+   "role": "dev",
+   "kind": "event",
+   "date": "2026-09-11",
+   "storm_cluster": "kosi_sep_2026",
+   "region_cluster": "gbm_system",
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "r4",
+     "module": "fluvial",
+     "role": "test"
+    }
+   ],
+   "exposure_level": 6,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r4",
+      "module": "fluvial",
+      "bbox": [
+       87.22573,
+       25.423869,
+       87.265522,
+       25.459801
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040960480,
+    "main_bas": 4060025450,
+    "hybas_6": 4060911800
+   }
+  },
+  {
+   "event_id": "assam_2026",
+   "role": "dev",
+   "kind": "event",
+   "date": "2026-07-20",
+   "storm_cluster": "nagaland_cloudburst_jul_2026",
+   "region_cluster": "gbm_system",
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "r4",
+     "module": "fluvial",
+     "role": "test"
+    },
+    {
+     "round": "r4",
+     "module": "waterlogging",
+     "role": "test"
+    }
+   ],
+   "exposure_level": 6,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r4",
+      "module": "fluvial",
+      "bbox": [
+       94.711221,
+       26.915521,
+       94.751525,
+       26.951453
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040865930,
+    "main_bas": 4060025450,
+    "hybas_6": 4060865930
+   }
+  },
+  {
+   "event_id": "pakistan_2022",
+   "role": "dev",
+   "kind": "event",
+   "date": "2022-08-31",
+   "storm_cluster": "monsoon_2022_pk",
+   "region_cluster": "indus",
+   "products": [
+    "UNOSAT:FL20220808PAK"
+   ],
+   "uses": [
+    {
+     "round": "r4",
+     "module": "fluvial",
+     "role": "test"
+    }
+   ],
+   "exposure_level": 6,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r4",
+      "module": "fluvial",
+      "bbox": [
+       68.181398,
+       27.580669,
+       68.221944,
+       27.616601
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040879040,
+    "main_bas": 4060033640,
+    "hybas_6": 4060839580
+   }
+  },
+  {
+   "event_id": "thai_binh",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-09-09",
+   "storm_cluster": "yagi_2024",
+   "region_cluster": "red_river_delta",
+   "products": [
+    "EMSR754:AOI06"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "waterlogging",
+     "role": "held_out"
+    },
+    {
+     "round": "r3",
+     "module": "waterlogging",
+     "role": "held_out"
+    },
+    {
+     "round": "r4",
+     "module": "waterlogging",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "waterlogging",
+      "bbox": [
+       106.317426,
+       20.428334,
+       106.355774,
+       20.464266
+      ]
+     },
+     {
+      "round": "r3",
+      "module": "waterlogging",
+      "bbox": [
+       106.319618,
+       20.478121,
+       106.357978,
+       20.514053
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040013000,
+    "main_bas": 4060014940,
+    "hybas_6": 4060014940
+   }
+  },
+  {
+   "event_id": "nam_dinh",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-09-09",
+   "storm_cluster": "yagi_2024",
+   "region_cluster": "red_river_delta",
+   "products": [
+    "EMSR754:AOI07"
+   ],
+   "uses": [
+    {
+     "round": "r2",
+     "module": "waterlogging",
+     "role": "held_out"
+    },
+    {
+     "round": "r3",
+     "module": "waterlogging",
+     "role": "held_out"
+    },
+    {
+     "round": "r4",
+     "module": "waterlogging",
+     "role": "tuning"
+    }
+   ],
+   "exposure_level": 5,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r2",
+      "module": "waterlogging",
+      "bbox": [
+       106.149129,
+       20.402034,
+       106.187471,
+       20.437966
+      ]
+     },
+     {
+      "round": "r3",
+      "module": "waterlogging",
+      "bbox": [
+       106.188953,
+       20.431557,
+       106.227303,
+       20.467489
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040015000,
+    "main_bas": 4060015000,
+    "hybas_6": 4060015000
+   }
+  },
+  {
+   "event_id": "sylhet_2022",
+   "role": "dev",
+   "kind": "event",
+   "date": "2022-06-18",
+   "storm_cluster": "monsoon_2022_bd",
+   "region_cluster": "gbm_system",
+   "products": [
+    "UNOSAT:FL20220525BGD"
+   ],
+   "uses": [
+    {
+     "round": "r4",
+     "module": "waterlogging",
+     "role": "test"
+    }
+   ],
+   "exposure_level": 6,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r4",
+      "module": "waterlogging",
+      "bbox": [
+       91.769305,
+       24.880079,
+       91.808919,
+       24.916011
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040975160,
+    "main_bas": 4060025450,
+    "hybas_6": 4060949680
+   }
+  },
+  {
+   "event_id": "kerala_2018",
+   "role": "dev",
+   "kind": "event",
+   "date": "2018-08-16",
+   "storm_cluster": "monsoon_2018_kl",
+   "region_cluster": "kuttanad",
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "r4",
+     "module": "waterlogging",
+     "role": "test"
+    }
+   ],
+   "exposure_level": 6,
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "r4",
+      "module": "waterlogging",
+      "bbox": [
+       76.41977,
+       9.405028,
+       76.456194,
+       9.44096
+      ]
+     }
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040029530,
+    "main_bas": 4060029530,
+    "hybas_6": 4060029530
+   }
+  },
+  {
+   "event_id": "noakhali_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-08-25",
+   "storm_cluster": "bd_aug_2024",
+   "region_cluster": "gbm_system",
+   "products": [
+    "UNOSAT:FL20240825BGD"
+   ],
+   "uses": [
+    {
+     "round": "r4b",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "PREREGISTRATION_ROUND4B.md: event facts, product lists, layer names; Noakhali also one attribute row of the flood layer. No geometry.",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     91.1,
+     22.87
+    ],
+    "note": "Maijdee/Noakhali town, approximate, general geography; not from any reference"
+   },
+   "basins": {
+    "hybas_4": 4040024190,
+    "main_bas": 4060025340,
+    "hybas_6": 4060025340
+   }
+  },
+  {
+   "event_id": "calais_2023",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-11-07",
+   "storm_cluster": "ciaran_domingos_2023",
+   "region_cluster": "aa_wateringues",
+   "products": [
+    "EMSR706:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "r4b",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "PREREGISTRATION_ROUND4B.md: event facts, product lists, layer names; Noakhali also one attribute row of the flood layer. No geometry.",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     1.86,
+     50.95
+    ],
+    "note": "Calais town, approximate, general geography; not from any reference"
+   },
+   "basins": {
+    "hybas_4": 2040022160,
+    "main_bas": 2060022390,
+    "hybas_6": 2060022390
+   }
+  },
+  {
+   "event_id": "redon_2025",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-01-30",
+   "storm_cluster": "herminia_2025",
+   "region_cluster": "vilaine",
+   "products": [
+    "EMSR788:AOI06"
+   ],
+   "uses": [
+    {
+     "round": "r4b",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "PREREGISTRATION_ROUND4B.md: event facts, product lists, layer names; Noakhali also one attribute row of the flood layer. No geometry.",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -2.08,
+     47.65
+    ],
+    "note": "Redon town, approximate, general geography; not from any reference"
+   },
+   "basins": {
+    "hybas_4": 2040021040,
+    "main_bas": 2060021110,
+    "hybas_6": 2060021110
+   }
+  }
+ ],
+ "basins_source": "WWF/HydroSHEDS/v1/Basins hybas_4, hybas_6 (centre point)"
+}
