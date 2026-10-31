@@ -1,0 +1,4 @@
+MERIT upa max km2: {'poyo_at_paiporta': 413, 'poyo_at_picanya': 412, 'poyo_outlet_albufera(approx)': 421, 'horta_sud_r4_box_centre': 309, 'turia_new_channel_near_valencia': 6199, 'albufera_lagoon_centre': 843, 'volos_city': 119, 'volos_r3_r4_box_palamas': 637, 'pineios_at_larissa': 144}
+poyo_at_paiporta hybas12 {'HYBAS_ID': 2120017430, 'NEXT_DOWN': 0, 'SUB_AREA': 44.3, 'UP_AREA': 6673.7}
+poyo_outlet_albufera(approx) hybas12 {'HYBAS_ID': 2120658030, 'NEXT_DOWN': 2120017450, 'SUB_AREA': 150.1, 'UP_AREA': 150.1}
+volos_city hybas12 {'HYBAS_ID': 2120010070, 'NEXT_DOWN': 0, 'SUB_AREA': 373.9, 'UP_AREA': 373.9}

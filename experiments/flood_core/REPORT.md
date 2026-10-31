@@ -95,7 +95,10 @@ No check uses a pass/fail threshold. Each one's basis is stated.
 
 At 90 m the small hollow loses about 60 % of its depth. Coarser grids report **more** area above 0.10 m because averaging spreads shallow water.
 
-### c6 Terrain error at 30 m (8 realisations per amplitude; correlated noise, 90 m correlation length, which is **assumed, not measured**)
+### c6 Terrain error at 30 m: SUPERSEDED by P0b-3 (§6)
+**Superseded (2026-11-01).** c6 used GEDTM30's std (1.24 m) as an error amplitude. That std is ensemble **model spread, not measured elevation error**, and c6 used a single assumed correlation range. P0b-3 replaces it with documented error magnitudes, multi-range correlation and systematic biases. The c6 numbers below are kept as the record of what ran.
+
+(8 realisations per amplitude; correlated noise, 90 m correlation length, which is **assumed, not measured**)
 - **Basis for the amplitudes:**
   - 0.10 m = pluvial's current bluespot depth threshold;
   - 1.24 m = GEDTM30 std, median over the Hanoi dev box (measured);
@@ -121,7 +124,8 @@ At the measured GEDTM30 spread, **where** water ponds at 30 m is not identifiabl
   - The 3 dev boxes with upstream areas > 10,000 km² (Hanoi 137k, Bihar 87k, Encantado 19k) are out of reach as full 30 m domains.
   - P1 must measure real wet fractions.
 
-## 4. Proposed real development cases (P1), selection not run
+## 4. Proposed real development cases (P1): SUPERSEDED by §6–§7 (screening, 2026-11-01)
+**Outcome:** Volos fails screening (its reference does not cover Volos city). Dubai is diagnostic-only. Valencia (Horta Sud) is the recommended first case (§7). The original proposal is kept below as the record.
 
 **Criteria** (from the supplement's gap table and the registry):
 - dev role only;
@@ -168,3 +172,118 @@ These are diagnostics, not verdicts.
 4. Get an EWDS account if you want P1b.
 5. Native (arm64) SFINCS: build from source if you need runtime figures without emulation. It needs gfortran and NetCDF-Fortran; the disk has 1.3 GiB free.
 6. Commit or discard the `proto/flood-core` branch; nothing is committed.
+
+---
+
+# Addendum, 2026-11-01: P0b checks, screening, and the first-case recommendation
+
+The first part of this report was committed as `503ab5a`. Same isolation and same rules: no production change, no 4b run, no reserved event. Every result below is synthetic or a screen of already-seen development data.
+
+## 6. P0b: three checks before any real-data run
+
+### 6.1 Water-balance saw-tooth: explained (`sfincs/p0b_waterbalance.py` → `results/p0b_waterbalance.json`)
+- **Hypothesis tested and rejected:** the meteo update interval (`dtwnd`, documented default 1,800 s). Varying it over 60 / 600 / 1,800 / 3,600 s leaves the residual **identical**. It is also unchanged in a flat basin (no flow) and with `advection = 0`.
+- **Separating forcing from continuity:** with SFINCS's own cumulative-rain output (`storecumprcp`), stored water minus applied rain is at most about 1.4 m³ in 150,000 (< 1×10⁻⁵). The saw-tooth lies entirely in applied-vs-input rain.
+- **Cause, confirmed:** **output time-stamping.** Maps are written at the first internal step at or after each nominal output time but stamped with the nominal time. With an average step of 2.52 s, the predicted overshoot is 0.70 / 1.44 / 2.15 / 0.33 s; measured 0.73 / 1.47 / 2.20 / 0.42 s.
+- **Confirmation run:** capping the step at a divisor of the output interval (`dtmax` = 2 or 1 s) drops the stored-vs-input residual from 1.2×10⁻³ to **≤ 4×10⁻⁶**.
+- **Conclusion:** the continuity solver conserves mass. c1's 0.12 % was an artefact of stamping, not a mass error.
+- **Side note:** SFINCS's `cumprcp` diagnostic itself drifts by about 9 m³ in 150,000, consistent with float32 accumulation (unverified). The analytic input is the better reference.
+- **For real runs:** do water-balance checks with output-aligned steps or after forcing ends. Map time stamps can be up to one step late, which is negligible against the hours-to-days lags of the references.
+
+### 6.2 Shallow-flow threshold `huthresh` (documented default 0.05 m): converges (`sfincs/p0b_huthresh.py` → `results/p0b_huthresh.json`)
+Kinematic plane, dx 10 m, median relative error of steady depth against the analytic solution:
+
+| `huthresh` (m) | 0.05 | 0.02 | 0.01 | 0.005 | 0.002 | 0.001 | 0.0005 | 0.0002 | 0.0001 |
+|---|---|---|---|---|---|---|---|---|---|
+| 100 mm/h (h 1.2–6.5 cm) | +82 % | +44 % | +23 % | +12 % | 5.4 % | 3.1 % | 2.0 % | 1.3 % | 1.1 % |
+| 20 mm/h (h 0.45–2.5 cm) | +198 % | +82 % | +54 % | +30 % | 13 % | 6.6 % | 3.6 % | 1.9 % | 1.3 % |
+
+- **Grid refinement** (huthresh 0.0001; dx 20 / 10 / 5 m): 1.65 / 1.06 / 0.77 % (100 mm/h) and 1.87 / 1.27 / 0.98 % (20 mm/h).
+- **Basis for "converged":** at 0.0002 m the threshold's added error (1.3 % vs 1.06 %, 1.9 % vs 1.27 %) is comparable to the dx = 10 m discretisation error, which no threshold reduction can remove.
+- **Cost:** the time step is unchanged (CFL uses `hmin_cfl`) and the solver time stays within run-to-run noise.
+- **On the c5 terrain (30 m):**
+
+| `huthresh` | area > 0.05 m | area > 0.10 m | large-hollow depth |
+|---|---|---|---|
+| 0.05 m (default) | 8.9 km² | 0.55 km² | 0.47 m |
+| 0.001 m | 5.7 km² | 0.91 km² | 0.58 m |
+
+  The default holds a fictitious 5 cm film over the domain and under-fills hollows.
+- **Decision for real runs:** `huthresh = 0.0002 m`, recorded in every run's metadata.
+
+### 6.3 Terrain sensitivity with documented error structure (`sfincs/p0b_terrain.py` → `results/p0b_terrain.json`)
+**GEDTM30's std is now treated as model spread and is not used as an error amplitude.**
+
+**Error model and its basis:**
+- **Magnitudes:** FABDEM MAE 1.12 m built-up, 2.88 m forest; COPDEM30 1.61 m built-up (Hawker et al. 2022, ERL 17:024016). DeltaDTM MAE 0.45 m. σ = MAE·√(π/2) assumes zero-mean Gaussian errors, which is an assumption because MAE includes bias. That gives σ = 1.40 m (FABDEM urban) and 0.56 m (DeltaDTM).
+- **Correlation:** short range ~20–200 m plus long range ~1–50 km (Hugonnet et al. 2022, IEEE JSTARS 15:6456); SRTM near-field ~2 km (Rougier). Modelled as Gaussian 100 m + Gaussian 2 km. **The variance split is not documented for FABDEM**, so 50/50 and 80/20 are run, plus short-only for comparison with c6.
+- **Systematic biases (bracketing):**
+  - ±1.0 m constant offset against a fixed downstream level;
+  - ±1.0 m urban block (residual building artefacts or underestimation);
+  - ±0.5 m tilt across 3 km.
+- **Run setup:** 10 realisations per random model; level boundary on the east edge; `huthresh` 0.0002 m; 30 m.
+
+**Error-free reference:** 1.00 km² flooded > 0.10 m; large hollow ponds 52,337 m³.
+
+| Random error model | flooded km² (p10 / median / p90) | overlap with reference (median) | reference cells wet in ≥ half the realisations | extra area wet in ≥ half (km²) | small / mid / large hollow wet |
+|---|---|---|---|---|---|
+| FABDEM-urban σ 1.40, short only | 1.30 / 1.50 / 1.69 | 0.11 | 19 % | 0.23 | 70 / 100 / 100 % |
+| FABDEM-urban, 50 short / 50 long | 1.35 / 2.21 / 6.96 | 0.10 | 77 % | 2.67 | 100 / 90 / 100 % |
+| FABDEM-urban, 80 short / 20 long | 1.20 / 1.38 / 5.24 | 0.08 | 18 % | 0.40 | 50 / 100 / 100 % |
+| DeltaDTM σ 0.56, 50 / 50 | 1.91 / 3.30 / 8.98 | 0.12 | 80 % | 3.61 | 100 / 100 / 100 % |
+
+| Systematic bias | flooded km² | overlap with reference | near-boundary flooded (ref 0.37 km²) |
+|---|---|---|---|
+| offset +1.0 m | 0.92 | 0.93 | 0.30 |
+| **offset −1.0 m** | **2.57** | **0.39** | **1.50** |
+| urban block +1.0 m | 1.09 | 0.67 | 0.36 (mid-hollow ponding +29 %) |
+| urban block −1.0 m | 0.83 | 0.83 | 0.29 (large hollow 0.59 → 1.12 m deep) |
+| tilt ±0.5 m | 0.92 / 1.10 | 0.92 / 0.91 | 0.36 / 0.39 |
+
+**Reading:**
+- On gentle terrain (0.001 slope), the **long-range** error component controls the outcome. It creates or removes km-scale closed basins: large-hollow storage reaches 0.76 hm³ at the 90th percentile against 0.05 hm³ in the reference.
+- Even the best documented global DTM error (DeltaDTM) gives a pixel pattern that is **not identifiable** (overlap ≈ 0.1). Only an ensemble frequency is defensible.
+- A **datum offset relative to a level boundary** is the largest systematic effect (4× near-boundary area for −1 m). For Valencia's lagoon boundary, the datum chain matters more than the DEM choice.
+- **Limits:** synthetic, gentle terrain. Steeper real catchments will be less sensitive upstream, but flat coastal plains such as Horta Sud are similar. The variance split is an assumption.
+
+## 7. Screening and the first-case recommendation (`screening/SCREENING.md`)
+
+- **Volos: fails.** EMSR692 has no AOI over Volos city. The regional product's water lies on the Thessaly plain (21.74–22.33° E), and the Volos town box holds **0.0 km²** of flooded area or trace. The referenced flood is a large-basin plain flood, suitable at most for a later nested test.
+- **Dubai:** diagnostic only (as instructed).
+- **Recommendation: Valencia, Horta Sud (DANA 2024), as the one first development case** (dev, exposure 6; never a test event).
+  - **Physics fits the core:** rain-driven ravine floods (Poyo ≈ 413–421 km², plus Poçalet–Saleta) onto an urban plain, with a lagoon boundary.
+  - **Best available reference:** VHR on 31 Oct 10:22, plus a Landsat-8 view on 30 Oct 10:37 in AOI01.
+  - **An independent 2D hydraulic study exists** (Vallés-Morán 2025) for qualitative comparison of dynamics: V-31 backwater, sub-hour response.
+
+**Gaps that become scenarios (not blockers):**
+- Albufera level and gate (gola) timing: {closed, open} at the sea boundary, with the lagoon inside the domain;
+- datum chain (lagoon gauge / EGM2008 / sea): an offset sweep, given 6.3;
+- rainfall: IMERG plus a gauge-informed bracket;
+- crossings: {as DEM, culverts open};
+- the Turia new channel as a wall, with one sensitivity run;
+- drainage: {none, nominal}, with low priority (it matters for duration, not the peak).
+
+**Gaps that limit claims:** EMS traces are a maximum-extent proxy with unknown detection limits, and only 0.84 km² was still water at image time. There are no tributary gauges. Bridges and culverts are unresolved at 30 m.
+
+### Estimated needs for Valencia (basis stated; extrapolated, not measured)
+| Quantity | Estimate | Basis |
+|---|---|---|
+| Active domain | 550–800 km² | Poyo 421 km² (MERIT) + Poçalet–Saleta + plain + lagoon. **DEM delineation pending.** HydroBASINS level 12 is wrong here (it assigns Paiporta to the Turia) |
+| Cells at 30 m | 0.61–0.89 M | area / 900 m² |
+| Simulated window | 60 h (29 Oct 00:00 → 31 Oct 12:00 UTC) | covers both reference acquisition times |
+| Average step | 1.5–4 s → 54k–144k steps | CFL with α = 0.5, dx = 30 m: h 4 m and u 8 m/s give ≈ 1.05 s; shallow cells are capped by `hmin_cfl` (≈ 4.8 s) |
+| Run time per member | **≈ 5–80 min** (amd64 emulated) | cells × steps / measured 27–108 M cell-steps/s (P0). SFINCS skips dry cells, so the real wet fraction decides |
+| Peak memory per member | ≈ 0.25–0.4 GiB | P0 slope ≈ 0.37 KiB per cell + 28 MiB base, extrapolated about 10× beyond the measured range |
+| Inputs | < 100 MB total | GEDTM30 window (~4 MB), FABDEM (~4 MB), IMERG / ERA5-Land (≪ 10 MB), EMS AOI01 m0 layer (size unknown; not yet downloaded), OSM crossings (a few MB) |
+| Outputs per member (lean) | ≈ 20–30 MB | hmax + snapshots at 30 Oct 10:37 and 31 Oct 10:22 + gauge points; full hourly maps would be ≈ 0.4 GB uncompressed per member, so **avoid them** |
+| Staged ensemble | A: 4 members (terrain {GEDTM30 raw m, FABDEM} × golas {closed, open}); B: +5 (rain bracket ×2, crossings ×2, Turia sensitivity); C: +10 documented-error terrain realisations on one configuration | about 19 members, **≈ 1.5–25 h compute, ≈ 0.4–0.6 GB** |
+
+**Disk is the binding constraint: 1.3 GiB free.** Stage A fits with lean outputs. Before Stage C, free space or use external storage.
+
+## 8. Open items for you
+1. **Approve Valencia** as the first development case and Stage A (4 members, lean outputs).
+2. **Datum:** decide whether to search further for the Albufera gauge datum and gola timing (CHJ / Ajuntament), or proceed with the offset sweep.
+3. **Rain bracket:** accept the gauge-informed bracket method, or require radar or gauge data access first.
+4. **Disk:** free space before Stages B–C.
+5. **Native arm64 SFINCS build** (optional): it removes the emulation upper bound on run times.
+6. **Push `proto/flood-core`?** It is not pushed.
