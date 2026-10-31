@@ -52,8 +52,13 @@ from configs.palette import (
     rgb_to_hex,
 )
 
-APP_JSX = Path("geowatch-ui/src/App.jsx")
-PALETTE_JS = Path("geowatch-ui/src/palette.js")
+# The frontend (web/, Phase 4; geowatch-ui/ was removed in Step B).
+WEB_SRC = Path("web/src")
+
+
+def _web_source() -> str:
+    return "\n".join(p.read_text() for p in sorted(WEB_SRC.rglob("*"))
+                     if p.suffix in (".js", ".jsx", ".css"))
 
 
 # ── One definition ──
@@ -158,37 +163,20 @@ def test_frontend_has_no_palette_literal():
     The other half of C31. A hardcoded map on the frontend is the thing that
     drifted; if one comes back, this fails.
     """
-    src = APP_JSX.read_text()
-    assert "const CAT_COLORS = {" not in src, (
-        "App.jsx defines a colour map again -- colours must come from the result"
+    assert "CAT_COLORS" not in _web_source(), (
+        "web/ defines a category colour map -- colours must come from the result"
     )
 
 
 @pytest.mark.parametrize("hexval", [rgb_to_hex(v) for v in ML_CATEGORY_COLORS_RGB.values()])
-def test_backend_colours_are_not_hardcoded_in_app_jsx(hexval):
+def test_backend_colours_are_not_hardcoded_in_the_frontend(hexval):
     """
     Not even the CORRECT values may be pasted in. A correct copy is still a
     copy, and drifts at the next edit -- which is exactly how 0 of 8 happened.
     """
-    assert hexval not in APP_JSX.read_text(), (
-        f"{hexval} is hardcoded in App.jsx; read it from the result instead"
+    assert hexval.lower() not in _web_source().lower(), (
+        f"{hexval} is hardcoded in web/src; read it from the result instead"
     )
-
-
-def test_legacy_fallback_holds_only_the_old_wrong_values():
-    """
-    palette.js keeps the OLD frontend colours for runs that predate this item,
-    deliberately. It must not be quietly upgraded into a second live palette:
-    if someone "fixes" it to the correct values it becomes a competing source
-    again, so assert it still holds the wrong ones.
-    """
-    src = PALETTE_JS.read_text()
-    assert "#5ed99b" in src, "legacy dense_vegetation should stay as it was"
-    for rgb in ML_CATEGORY_COLORS_RGB.values():
-        assert rgb_to_hex(rgb) not in src, (
-            f"{rgb_to_hex(rgb)} appears in palette.js -- the fallback must not "
-            f"mirror the canonical values, or it becomes a second source"
-        )
 
 
 def test_annotate_third_copy_is_recorded_not_forgotten():

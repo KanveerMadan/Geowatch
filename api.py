@@ -469,6 +469,7 @@ def root():
         "scheduler": "disabled",
         "next_auto_refresh": None,
         "scheduler_note": SCHEDULER_DISABLED_REASON,
+        "max_aoi_area_km2": MAX_AOI_AREA_KM2,
     }
 
 
@@ -477,10 +478,9 @@ def root():
 DEMO_REMOVED_DETAIL = "demo mode is removed: there is no default AOI. Send a bounding box."
 
 
-@app.post("/api/analyze")
-def analyze(req: AnalysisRequest):
-    """The analysis pipeline (analysis/run.py): no 7-class classifier. Serves
-    a stored result when the same AOI + dates + version was run before."""
+def validate_analysis_request(req: AnalysisRequest) -> None:
+    """Shared by /api/analyze and /api/jobs: everything is refused here, before
+    any run starts."""
     validate_aoi_label(req.aoi_label)
     if req.boundary_layer_id is not None:
         validate_boundary_layer_id(req.boundary_layer_id)
@@ -492,12 +492,19 @@ def analyze(req: AnalysisRequest):
     if aoi_geo["area_km2"] > MAX_AOI_AREA_KM2:
         raise HTTPException(status_code=400, detail=(
             f"AOI too large: {aoi_geo['area_km2']:.2f} km². Keep under {MAX_AOI_AREA_KM2} km²."))
-    from analysis import store
     from analysis.run import resolve_window
     try:
         resolve_window(req.start_date, req.end_date)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=f"Invalid dates: {e}")
+
+
+@app.post("/api/analyze")
+def analyze(req: AnalysisRequest):
+    """The analysis pipeline (analysis/run.py): no 7-class classifier. Serves
+    a stored result when the same AOI + dates + version was run before."""
+    validate_analysis_request(req)
+    from analysis import store
     try:
         out = store.analyze((req.west, req.south, req.east, req.north), req.start_date,
                             req.end_date, name=req.aoi_label, boundary_id=req.boundary_layer_id,
@@ -508,6 +515,30 @@ def analyze(req: AnalysisRequest):
     if out["result_id"]:
         out["url"] = f"/api/results/{out['result_id']}"
     return out
+
+
+@app.post("/api/jobs", status_code=202)
+def start_job(req: AnalysisRequest):
+    """The analysis pipeline as a job (analysis/jobs.py): returns at once with
+    a job id. A stored area comes back already complete."""
+    validate_analysis_request(req)
+    from analysis import jobs
+    return jobs.submit((req.west, req.south, req.east, req.north), req.start_date, req.end_date,
+                       name=req.aoi_label, boundary_id=req.boundary_layer_id,
+                       root=str(RESULTS_ROOT))
+
+
+@app.get("/api/jobs/{job_id}")
+def get_job(job_id: str):
+    """Per-stage status and each output group as it is final; the full
+    result once complete."""
+    from analysis import jobs
+    if not jobs.valid_id(job_id):
+        raise HTTPException(status_code=400, detail="Invalid job id.")
+    j = jobs.get(job_id)
+    if j is None:
+        raise HTTPException(status_code=404, detail="Unknown job (jobs are kept in memory only).")
+    return j
 
 
 @app.post("/api/legacy/analyze")
@@ -691,7 +722,7 @@ def _load_unit_type(result_id: str, unit_type: str):
     from analysis.wards import ward_context
     r = _load_result(result_id)
     units = store.get_units(result_id, str(RESULTS_ROOT)) or {}
-    if unit_type not in units:
+    if unit_type not in units or unit_type not in r.get("wards", {}):
         raise HTTPException(status_code=404, detail="Unknown unit type for this result.")
     return r, units[unit_type], ward_context(r)
 
@@ -744,6 +775,61 @@ def get_result_ward_page(result_id: str, unit_type: str, offset: int = 0, limit:
             "units": [materialize(u, unit_type, ctx) for u in page]}
 
 
+@app.get("/api/results/{result_id}/features/{unit_type}")
+def get_result_features(result_id: str, unit_type: str):
+    """Every unit of one type as a GeoJSON FeatureCollection, for drawing:
+    each fraction's value where it was measured and null (with its status)
+    where it was not. The full contract per unit stays at .../wards/..."""
+    from analysis.wards import feature
+    r, block, ctx = _load_unit_type(result_id, unit_type)
+    return {"type": "FeatureCollection", "result_id": result_id, "unit_type": unit_type,
+            "status": block["status"], "fractions": list(ctx["fractions"]),
+            "features": [feature(u, ctx) for u in block["units"]]}
+
+
+@app.get("/api/results/{result_id}/change/features")
+def get_result_change_features(result_id: str):
+    """Item 25's per-cell verdicts (increase / decrease / no detectable
+    change, or why none could be judged) as GeoJSON, on change's own 100 m
+    grid. 404 for a result stored before change cells were kept."""
+    from analysis import store
+    from analysis.wards import change_features
+    _load_result(result_id)
+    block = store.get_change_cells(result_id, str(RESULTS_ROOT))
+    if block is None:
+        raise HTTPException(status_code=404, detail="No change cells stored for this result.")
+    return {"result_id": result_id, **change_features(block)}
+
+
+@app.get("/api/results/{result_id}/buildings")
+def get_result_buildings(result_id: str):
+    """The building outlines the run used (item 19 layer), for drawing, read
+    from the vector cache ONLY: a public read never fetches. 404 when this
+    server has no cached copy. Item 22's "footprint" units are a Voronoi
+    partition of the AOI, not outlines, so they cannot stand in."""
+    from fastapi.responses import FileResponse
+    from vector.sources import CACHE_DIR, bbox_key
+    r = _load_result(result_id)
+    key = bbox_key(r["request"]["aoi_label"], r["request"]["bbox"])
+    src = r.get("footprint_source")
+    if src == "open_buildings_v3":
+        path = Path(CACHE_DIR) / "open_buildings" / f"{key}.geojson"
+        if path.exists():
+            return FileResponse(path, media_type="application/geo+json")
+    elif src == "osm_building":
+        path = Path(CACHE_DIR) / "osm" / f"{key}__building.json"
+        if path.exists():
+            with open(path) as fh:
+                elements = json.load(fh)
+            elements = elements.get("elements", elements) if isinstance(elements, dict) else elements
+            feats = [{"type": "Feature", "properties": {},
+                      "geometry": {"type": "Polygon", "coordinates": [[[p["lon"], p["lat"]]
+                                                                        for p in el["geometry"]]]}}
+                     for el in elements if len(el.get("geometry") or []) >= 4]
+            return {"type": "FeatureCollection", "features": feats}
+    raise HTTPException(status_code=404, detail="No building outlines cached for this result.")
+
+
 @app.get("/api/results/{result_id}/wards/{unit_type}/{unit_id}")
 def get_result_ward(result_id: str, unit_type: str, unit_id: str):
     from analysis.wards import materialize
@@ -752,6 +838,85 @@ def get_result_ward(result_id: str, unit_type: str, unit_id: str):
         if str(u.get("unit_id")) == unit_id:
             return materialize(u, unit_type, ctx)
     raise HTTPException(status_code=404, detail="Unknown unit for this result.")
+
+
+# ── Imagery and boundary layers for the frontend (Phase 4 Step B) ──
+# Protected: imagery runs Earth Engine on first request.
+
+IMAGERY_ROOT = Path("data/imagery")
+BOUNDARY_ROOT = Path("data/boundaries")
+
+
+@app.get("/api/imagery/{result_id}")
+def get_imagery_years(result_id: str):
+    """The years the Change tab's swipe can show, and the two the change test
+    compared."""
+    from analysis.imagery import years_for
+    r = _load_result(result_id)
+    ep = r.get("change_epochs") or {}
+    s2 = ep.get("s2")
+    return {"result_id": result_id, "years": years_for(r["request"]["window"]),
+            "window": r["request"]["window"],
+            "compared": [int(s2[0][1][:4]), int(s2[1][1][:4])] if s2 else None,
+            "built_compared": ep.get("built")}
+
+
+@app.get("/api/imagery/{result_id}/{year}")
+def get_imagery_year(result_id: str, year: int):
+    """True-colour Sentinel-2 of the result's bbox for one year's window, as
+    PNG in Web Mercator (analysis/imagery.py). 404 with a reason when that
+    window has no usable scene."""
+    from fastapi.responses import Response
+    from analysis import imagery
+    from analysis.stages import STAGE_TIMEOUT_S, run_stage
+    r = _load_result(result_id)
+    if year not in imagery.years_for(r["request"]["window"]):
+        raise HTTPException(status_code=400, detail="Year outside the imagery range.")
+    o = run_stage("imagery", imagery.get_year, result_id, r, year, root=str(IMAGERY_ROOT),
+                  timeout_s=STAGE_TIMEOUT_S["context"])
+    if o["status"] != "ok":
+        raise HTTPException(status_code=504 if o["status"] == "timeout" else 502,
+                            detail=f"Imagery {o['status']}.")
+    png, note = o["value"]
+    if png is None:
+        raise HTTPException(status_code=404, detail=note["reason"])
+    return Response(content=png, media_type="image/png",
+                    headers={"Cache-Control": "private, max-age=86400"})
+
+
+@app.get("/api/boundaries")
+def list_boundaries():
+    """Ingested boundary layers with their extent, so the frontend can offer
+    ward ranking where one covers the area."""
+    out = []
+    if BOUNDARY_ROOT.is_dir():
+        for d in sorted(BOUNDARY_ROOT.iterdir()):
+            man_p, geo_p = d / "manifest.json", d / "boundary.geojson"
+            if not (man_p.exists() and geo_p.exists()) or not _matches_label_whitelist(d.name):
+                continue
+            with open(man_p) as fh:
+                man = json.load(fh)
+            out.append({"boundary_layer_id": d.name, "name": man.get("name", d.name),
+                        "unit_type": man.get("unit_type"), "feature_count": man.get("feature_count"),
+                        "bbox": _geojson_bbox(geo_p)})
+    return {"boundaries": out}
+
+
+def _geojson_bbox(path) -> list:
+    with open(path) as fh:
+        fc = json.load(fh)
+    xs, ys = [], []
+
+    def walk(c):
+        if isinstance(c[0], (int, float)):
+            xs.append(c[0]); ys.append(c[1])
+        else:
+            for x in c:
+                walk(x)
+    for f in fc.get("features", []):
+        if f.get("geometry"):
+            walk(f["geometry"]["coordinates"])
+    return [min(xs), min(ys), max(xs), max(ys)] if xs else None
 
 
 @app.get("/api/scheduler/status")

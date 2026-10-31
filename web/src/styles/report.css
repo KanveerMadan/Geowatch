@@ -1,0 +1,93 @@
+/* The area report: a paper page, on screen and printed. Same type and
+   spacing tokens as the app; colours from the print tokens. */
+
+html:has(.report), body:has(.report) { height: auto; overflow: auto; background: #eceef1; color-scheme: light; }
+#root:has(.report) { height: auto; padding: 1px 0; }
+.report {
+  --ink: var(--c-print-ink); --ink2: var(--c-print-ink2); --ink3: var(--c-print-ink3); --rule: var(--c-print-rule);
+  max-width: 860px; margin: var(--s-8) auto; padding: var(--s-10) var(--s-12); background: var(--c-print-paper);
+  color: var(--ink); border-radius: var(--r-panel); box-shadow: 0 1px 2px rgba(17, 20, 24, 0.06), 0 12px 40px -16px rgba(17, 20, 24, 0.18);
+  font-size: var(--t-body-size); line-height: var(--t-body-lh);
+}
+.report h1, .report h2, .report h3 { margin: 0; color: var(--ink); }
+.rmuted { color: var(--ink3); }
+.rmono, .rnum { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.rbar { display: flex; justify-content: flex-end; gap: var(--s-2); margin: calc(-1 * var(--s-4)) 0 var(--s-6); }
+.rbar a, .rbar button {
+  display: inline-flex; align-items: center; gap: var(--s-2); height: 32px; padding: 0 var(--s-3);
+  border: 1px solid var(--rule); border-radius: var(--r-control); background: var(--c-print-paper);
+  color: var(--ink); font: inherit; font-weight: 520; text-decoration: none; cursor: pointer;
+}
+.rbar button { background: var(--ink); color: var(--c-print-paper); border-color: var(--ink); }
+.rbar a:hover { background: #f4f5f7; }
+.rbar :focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+
+.rhead { display: grid; gap: var(--s-3); margin-bottom: var(--s-6); }
+.rkicker { font-size: var(--t-caption-size); color: var(--ink3); font-weight: 520; }
+.rhead h1 { font-size: var(--t-display-size); line-height: var(--t-display-lh); font-weight: var(--t-display-weight); letter-spacing: var(--t-display-track); text-wrap: balance; }
+.rmeta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2) var(--s-6); font-size: var(--t-caption-size); }
+.rmeta div { display: grid; gap: 2px; }
+.rmeta dt { color: var(--ink3); }
+.rmeta dd { color: var(--ink); overflow-wrap: anywhere; }
+.rnote { font-size: var(--t-caption-size); color: var(--ink2); padding: var(--s-2) var(--s-3); border-left: 2px solid var(--rule); }
+
+.rmap { position: relative; margin: 0; overflow: hidden; border-radius: var(--r-control); background: #d9dce1; }
+.rmap img, .rmap-live { display: block; width: 100%; height: 100%; object-fit: cover; }
+.rmap-wait { position: absolute; inset: 0; display: grid; place-items: center; font-size: var(--t-caption-size); color: var(--ink2); }
+
+.rsec { margin-top: var(--s-10); padding-top: var(--s-6); border-top: 1px solid var(--rule); }
+.rsec-head { margin-bottom: var(--s-3); }
+.rsec-head h2 { font-size: var(--t-title-size); line-height: var(--t-title-lh); font-weight: var(--t-title-weight); letter-spacing: var(--t-title-track); }
+.rh3 { font-size: var(--t-body-size); font-weight: 600; margin: var(--s-5) 0 var(--s-2); }
+.rlead { font-size: var(--t-lead-size); line-height: var(--t-lead-lh); margin-bottom: var(--s-4); max-width: 68ch; text-wrap: pretty; }
+.rsplit { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: var(--s-6); align-items: start; }
+.rcap { font-size: var(--t-caption-size); line-height: var(--t-caption-lh); color: var(--ink3); margin-top: var(--s-2); }
+.rkey { display: inline-flex; align-items: center; margin-right: var(--s-2); }
+
+.rtable { width: 100%; border-collapse: collapse; font-size: var(--t-caption-size); }
+.rtable th, .rtable td { padding: var(--s-2) var(--s-2) var(--s-2) 0; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule); }
+.rtable thead th { color: var(--ink3); font-weight: 520; }
+.rtable tbody th { font-weight: 560; color: var(--ink); }
+.rtable .rnum { text-align: right; padding-right: var(--s-3); }
+.rtable-compact th, .rtable-compact td { padding-top: 4px; padding-bottom: 4px; }
+.rsub { display: block; font-weight: 420; color: var(--ink3); }
+.rsw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.rsw[data-hatch] { background: repeating-linear-gradient(135deg, #9aa0a8 0 1.5px, transparent 1.5px 4px); box-shadow: inset 0 0 0 1px var(--rule); }
+
+.rbadge {
+  display: inline-flex; align-items: center; height: 20px; padding: 0 7px; border: 1px solid currentColor;
+  border-radius: var(--r-pill); font-size: var(--t-micro-size); font-weight: 560; white-space: nowrap;
+}
+.rbadge-validated { color: var(--c-print-trust-validated); }
+.rbadge-experimental { color: var(--c-print-trust-experimental); }
+.rbadge-placeholder { color: var(--c-print-trust-placeholder); border-style: dashed; }
+.rbadge-failed { color: var(--c-print-trust-failed); }
+.rbadge-retired { color: var(--c-print-trust-retired); }
+.rbadge-unlabelled { color: var(--ink3); border-style: dotted; }
+.rscope { display: block; margin-top: 4px; color: var(--ink2); }
+
+.rnotes { display: grid; gap: var(--s-1); margin-top: var(--s-4); font-size: var(--t-caption-size); color: var(--ink2); }
+.rnotes li { padding-left: var(--s-3); border-left: 2px solid var(--rule); }
+.rlabels { display: grid; gap: var(--s-2); font-size: var(--t-caption-size); }
+.rlabels div { display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--s-3); align-items: start; }
+.rlabels dd { color: var(--ink2); }
+.rsources { display: grid; gap: 2px; font-size: var(--t-caption-size); color: var(--ink2); overflow-wrap: anywhere; }
+
+@media (max-width: 720px) {
+  .report { margin: 0; padding: var(--s-6) var(--s-4); border-radius: 0; }
+  .rsplit, .rmeta { grid-template-columns: 1fr; }
+  .rbar { margin-top: 0; }
+}
+
+@page { size: A4; margin: 14mm 14mm 16mm; }
+@media print {
+  html:has(.report), body:has(.report) { background: #fff; }
+  .report { max-width: none; margin: 0; padding: 0; box-shadow: none; border-radius: 0; font-size: 10pt; }
+  .rbar { display: none; }
+  .rsec { break-inside: auto; margin-top: var(--s-6); }
+  .rsec-head, .rlead, .rmap, .rtable tr, .rsec-keep { break-inside: avoid; }
+  .rsec-head { break-after: avoid; }
+  .rmap { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .rsw, .rbadge { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
