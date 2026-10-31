@@ -45,7 +45,7 @@ Fate categories:
 | SURVIVES | 25 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed** by the 2026-09-23 triage; C44 was elevated the same day and then **FIXED**) |
 | CONFIRMED | 3 | **C60, C61** (2026-10-29) — acted on by Decision 11's third amendment; **C72** (2026-10-29) — round 3's box rule kept as recorded |
 | OPEN | 1 | **C73** (2026-10-29) — Earth Engine's server-side limit can still drop IMERG |
-| NEEDS FATE | 3 | Cleared 2026-09-23; **C48, C49, C50 added 2026-10-28** (Lane E documentation pass), untriaged. *(Count not maintained since: C51–C65 also added 2026-10-28, see the section)* |
+| NEEDS FATE | 3 | Cleared 2026-09-23; **C48, C49, C50 added 2026-10-28** (Lane E documentation pass), untriaged. *(Count not maintained since: C51–C65 also added 2026-10-28, see the section; **C78–C81 added 2026-10-30**, flood round 4)* |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
@@ -1126,6 +1126,87 @@ above.*
 ***C62–C65 added 2026-10-28** from Phase 2 (`build/backend`: the analysis
 pipeline, the result contract, Part 6). **No fate assigned.** Numbered from
 C62: C59 is on `build/flood2`, C60 and C61 on `master` (`build/ceilings`).*
+
+***C78–C81 added 2026-10-30** from flood round 4 (`build/flood4`,
+`experiments/flood_validation/result_round4_2026-10-30.json`). **No fate
+assigned.** They are numbered from C78 because C74–C77 are on the unmerged
+`build/frontend`. The per-component AUCs below are **post-hoc
+diagnostics**, computed after the verdicts. They change no verdict, and the
+test events they were measured on have now been seen, so a re-test needs
+fresh events and a new pre-registration.*
+
+### C78 — Fluvial's validation does not transfer to South Asian monsoon floodplains; its label stays `validated` only by the pre-registered rule [E] NEEDS FATE
+
+Round 4 ran fluvial's exact validated configuration on Bihar 2026
+(Kosi/Ganga, AUC 0.643), Assam 2026 (Dikhow, 0.388) and Sindh 2022 (UNOSAT,
+0.579). The mean is **0.537**, so it **failed** (bar 0.70). As
+pre-registered, the result narrowed the scope note and left the label alone.
+Fluvial still reads `validated` for Hanoi and Kolonnawa, and the three new
+regions are listed as `not_covered`.
+
+Diagnostic: at Assam, `river_size` (weight 1, chosen on round 2's tuning
+events) inverts the ranking (0.347). The flooded cells sat beside smaller
+channels (median upstream area 124 km² against 3,045 km² for the dry
+cells). `low_hand` alone gives 0.750 there, 0.603 at Bihar and 0.514 in
+Sindh.
+
+**Decision needed:** should a module that failed its only out-of-region
+re-test keep `validated` anywhere, even scoped? Or should it be demoted, or
+made `failed` outside its two cities?
+
+### C79 — Pluvial has not yet had a test event that is a pluvial (ponding) flood [E] NEEDS FATE
+
+Round 4's pluvial verdict (**0.524**, failed) rests on two references. Both
+are weak as tests of ponding:
+
+- **Dubai:** the first Sentinel-1 image is 8 days after the rain, and only
+  591 flooded cells remain in the box.
+- **Valencia (EMSR773 AOI03):** the box lies on the Poyo ravine, where the
+  2024 flood was a flash flood from upstream, not rain ponding where it fell.
+
+The third event, Chennai 2023, has no usable reference. Both boxes ran on
+OSM footprints (the stand-in imperviousness). Pluvial has now failed four
+rounds on four different reference sets, and none was a clean ponding
+event. This finding names the gap; it does not excuse the verdict. A
+re-test needs an event mapped soon after rain, in flat urban ground.
+
+### C80 — Waterlogging's persistence alone ranks well on every test event; clay and backwater, chosen on non-waterlogging tuning events, pull it under the bar [E] NEEDS FATE
+
+Waterlogging failed at **0.613**: Assam 0.406, Sylhet 0.668, Kerala 0.766.
+
+Diagnostic, per component:
+
+| Component | Assam | Sylhet | Kerala |
+|---|---|---|---|
+| `persistence` (water history before the event) | 0.726 | 0.753 | 0.806 |
+| `low_relief` | 0.750 | 0.730 | 0.709 |
+| `clay` | 0.563 | 0.496 | 0.423 |
+| `backwater` | 0.373 | 0.529 | 0.428 |
+
+The tuning events (Thai Binh and Nam Dinh, Typhoon Yagi) gave a tuning mean
+of 0.521. There the flooded cells had *less* water history than the dry
+ones, and tuning kept clay and backwater at full weight. The tuning events
+are delta river floods, not waterlogging. The method's choice of weights
+was therefore informed by the wrong mechanism. That is the same class of
+problem as C72.
+
+### C81 — Flash flood's tuning events are flat river plains, and its pooled AUC passes while its mean does not [E] NEEDS FATE
+
+Flash flood failed at **0.640**: Valencia 0.722, Himachal 0.509, Derna
+0.688. Its pooled diagnostic is **0.732**, above the bar. Three things
+weaken the test:
+
+- **Tuning events:** the two qualifying ones (Volos and Choloma, round 3's
+  boxes) are river plains with 0.1–0.4° of surrounding relief (C72). They
+  cannot inform a steep-catchment method; their tuning mean was 0.494, and
+  they chose H_max 5 m, k 0.5.
+- **Himachal's reference is thin:** Sentinel-1 found 520 flooded cells in a
+  narrow mountain valley, where SAR layover and shadow are worst.
+- **Diagnostic only:** where the reference is an optical or EMS mapping of
+  a steep-catchment flood (Valencia, Derna), the method scores 0.69–0.72.
+
+The verdict stands. A re-test needs steep-catchment tuning events and
+better-mapped mountain references.
 
 ***C72–C73 added 2026-10-29** from item 26's flood follow-ups, round 3 (`build/flood3`). ~~**No fate assigned.**~~ **C72 CONFIRMED, C73 OPEN, 2026-10-29** — see § *Fates assigned*.*
 

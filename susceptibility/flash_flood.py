@@ -39,9 +39,10 @@ from configs.flash_flood_constants import (
 )
 from susceptibility.hydro_rasters import clip01, layer, map_summary
 
-# Flood round 4 has not been run on this method yet: a real method, not
-# validated (C69's meaning). Rounds 1-3's verdicts were on retired methods.
-VALIDATION_STATUS = "experimental"
+# Flood round 4 (experiments/flood_validation/result_round4_2026-10-30.json):
+# failed -- mean within-event AUC over the qualifying test events, flash flood 0.640 (Valencia 0.722, Himachal 0.509,
+# Derna 0.688); bar 0.70.
+VALIDATION_STATUS = "failed"
 METHOD = "intensity_response_time_stream_power_on_valley_floors"
 INPUT_LAYERS = ("hand_m", "upa_flash_km2", "relief_slope_deg", "rain_intensity_mm_h")
 CEILINGS = {"omega_max_w_m2": FLASH_POWER_OMEGA_MAX_W_M2,

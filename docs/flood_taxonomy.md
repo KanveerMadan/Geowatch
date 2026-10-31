@@ -7,10 +7,10 @@ pipeline cannot drop a type without saying so.
 
 | Id | Type | Pipeline module | Status | Round |
 |---|---|---|---|---|
-| **M1** | Fluvial (river overflow) | `fluvial` | **validated**, scoped (round 2: Hanoi, Kolonnawa) | re-tested in round 4, method unchanged |
-| **M2** | Pluvial (surface water from rain on the spot) | `pluvial` | new method in round 4: depression ("bluespot") detection with fill-and-spill | round 4 |
-| **M3** | Waterlogging (persistent standing water, poor drainage) | `waterlogging` | new method in round 4: historical standing-water persistence, clay, low relief, backwater | round 4 |
-| **M4** | Flash flood (short, intense rain on steep, fast catchments) | `flash_flood` | new method in round 4: short-duration intensity, catchment response time, stream power on channels and valley floors | round 4 |
+| **M1** | Fluvial (river overflow) | `fluvial` | **validated**, scoped (round 2: Hanoi, Kolonnawa); round 4 **failed** on Bihar, Assam and Sindh (0.537), so the scope is narrowed (C78) | round 4, method unchanged |
+| **M2** | Pluvial (surface water from rain on the spot) | `pluvial` | **failed** round 4 (0.524): depression ("bluespot") detection with fill-and-spill; re-test when item 21's `impervious_total` exists | round 4 |
+| **M3** | Waterlogging (persistent standing water, poor drainage) | `waterlogging` | **failed** round 4 (0.613): historical standing-water persistence, clay, low relief, backwater | round 4 |
+| **M4** | Flash flood (short, intense rain on steep, fast catchments) | `flash_flood` | **failed** round 4 (0.640): short-duration intensity, catchment response time, stream power on channels and valley floors | round 4 |
 | **M5** | Coastal (surge, tide) | `coastal` | `failed` (round 2, pooled AUC 0.646); a new method is planned | round 5 |
 | **M6** | Debris flow / glacial lake outburst | `debris_flow_glof` | not built | round 5 |
 | **M7** | Embankment / dam breach | `embankment_dam_breach` | not built | round 5 |

@@ -7,8 +7,8 @@ the module's own label, its pinned Tier 2 verdict, and its inputs' labels
 (analysis.contract.hazard_label). Pluvial, flash flood and waterlogging run
 flood round 4's new methods (bluespot fill-and-spill; persistence, clay,
 relief and backwater; stream power on valley floors), all per-pixel on the
-hydrology grid; rounds 1-3's verdicts were on the retired methods and do not
-carry over. Coastal is `failed` (round 2). Fluvial reads `validated`,
+hydrology grid, and round 4 failed all three (rounds 1-3's verdicts were on
+the retired methods). Coastal is `failed` (round 2). Fluvial reads `validated`,
 with its scope note, only while it runs exactly the configuration round 2
 validated (C70, analysis.contract.VALIDATED_CONFIGS); otherwise its
 experimental raster inputs cap it.

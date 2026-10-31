@@ -1,0 +1,2819 @@
+{
+ "test": "flood round 4 -- M1 re-test; new M2 pluvial, M3 waterlogging, M4 flash flood (Tier 2 discrimination)",
+ "preregistration_sha256": "4555ce1a4ff062b54dabd763fafdc8db4c295c7d535dc208796be07b943fea86",
+ "run_utc": "2026-10-30T19:27:11.872071+00:00",
+ "bar": {
+  "metric": "roc_auc_cells",
+  "validated_if_auc_at_least": 0.7,
+  "per_module": "mean of within-event AUCs over qualifying test events",
+  "min_flooded_cells": 50,
+  "min_dry_cells": 50,
+  "min_test_events": 2,
+  "box_side_m": 4000.0,
+  "s1_search_square_m": 20000.0
+ },
+ "modules": {
+  "fluvial": {
+   "dropped": {},
+   "held_out_per_event": {
+    "bihar_2026": {
+     "flooded_cells": 8923,
+     "dry_cells": 8786,
+     "evaluation_cell_m": 30,
+     "auc": 0.6425,
+     "qualifies": true
+    },
+    "assam_2026": {
+     "flooded_cells": 5327,
+     "dry_cells": 13059,
+     "evaluation_cell_m": 30,
+     "auc": 0.3878,
+     "qualifies": true
+    },
+    "pakistan_2022": {
+     "flooded_cells": 10153,
+     "dry_cells": 7570,
+     "evaluation_cell_m": 30,
+     "auc": 0.5791,
+     "qualifies": true
+    }
+   },
+   "held_out": {
+    "verdict": "failed",
+    "auc": 0.5365,
+    "qualifying_events": 3
+   },
+   "pooled_held_out_auc_diagnostic": 0.4714,
+   "params_used": null,
+   "events": {
+    "bihar_2026": {
+     "bbox": [
+      87.22573,
+      25.423869,
+      87.265522,
+      25.459801
+     ],
+     "event": "2026-09-11",
+     "centre": [
+      25.441835,
+      87.245626
+     ],
+     "search_centre": [
+      25.45,
+      87.25
+     ],
+     "s1_pass": {
+      "date": "2026-09-12",
+      "orbits": [
+       121
+      ],
+      "days_after_event": 1
+     },
+     "search_square": [
+      87.150515,
+      25.360169,
+      87.349485,
+      25.539831
+     ],
+     "search_square_flooded_cells": 208025,
+     "grid": {
+      "crs": "EPSG:32645",
+      "transform": [
+       30.0,
+       0.0,
+       522690.0,
+       0.0,
+       -30.0,
+       2815890.0
+      ],
+      "shape": [
+       133,
+       134
+      ]
+     },
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested",
+      "rain_design_day_mm": "not requested",
+      "jrc_water_freq": "not requested",
+      "s1_water_freq": "not requested"
+     },
+     "reference": {
+      "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2026 Jan-Mar median",
+      "resolution": "10 m -> 30 m",
+      "event_image_date": "2026-09-12",
+      "days_after_event": 1,
+      "relative_orbits": [
+       121
+      ],
+      "event_images": 1,
+      "baseline_images": 6
+     }
+    },
+    "assam_2026": {
+     "bbox": [
+      94.711221,
+      26.915521,
+      94.751525,
+      26.951453
+     ],
+     "event": "2026-07-20",
+     "centre": [
+      26.933487,
+      94.731373
+     ],
+     "search_centre": [
+      26.917,
+      94.733
+     ],
+     "s1_pass": {
+      "date": "2026-07-22",
+      "orbits": [
+       70
+      ],
+      "days_after_event": 2
+     },
+     "search_square": [
+      94.632254,
+      26.827169,
+      94.833746,
+      27.006831
+     ],
+     "search_square_flooded_cells": 165801,
+     "grid": {
+      "crs": "EPSG:32646",
+      "transform": [
+       30.0,
+       0.0,
+       669840.0,
+       0.0,
+       -30.0,
+       2982270.0
+      ],
+      "shape": [
+       135,
+       137
+      ]
+     },
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested",
+      "rain_design_day_mm": "not requested",
+      "jrc_water_freq": "not requested",
+      "s1_water_freq": "not requested"
+     },
+     "reference": {
+      "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2026 Jan-Mar median",
+      "resolution": "10 m -> 30 m",
+      "event_image_date": "2026-07-22",
+      "days_after_event": 2,
+      "relative_orbits": [
+       70
+      ],
+      "event_images": 1,
+      "baseline_images": 14
+     }
+    },
+    "pakistan_2022": {
+     "bbox": [
+      68.181398,
+      27.580669,
+      68.221944,
+      27.616601
+     ],
+     "event": "2022-08-31",
+     "centre": [
+      27.598635,
+      68.201671
+     ],
+     "search_centre": null,
+     "s1_pass": null,
+     "search_square": null,
+     "search_square_flooded_cells": null,
+     "grid": {
+      "crs": "EPSG:32642",
+      "transform": [
+       30.0,
+       0.0,
+       419190.0,
+       0.0,
+       -30.0,
+       3055020.0
+      ],
+      "shape": [
+       135,
+       135
+      ]
+     },
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested",
+      "rain_design_day_mm": "not requested",
+      "jrc_water_freq": "not requested",
+      "s1_water_freq": "not requested"
+     },
+     "reference": {
+      "source": "UNOSAT FL20220808PAK_S2_20220831 FloodExtent (Sentinel-2 2022-08-31), 'Flood Water'",
+      "resolution": "Sentinel-2",
+      "url": "https://unosat.org/static/unosat_filesystem/3348/FL20220808PAK_SHP.zip",
+      "flood_layer_sha256": "1b929bc3de6cebe4f9c07559dca8a94188bb0d88c7b0f8483434e8e1bc85756b"
+     }
+    }
+   },
+   "tuning": {
+    "chosen": "not tuned: the validated configuration (pre-registered)"
+   }
+  },
+  "pluvial": {
+   "dropped": {
+    "chennai_2023": "not-run: no usable reference: no Sentinel-1 image from day 0 to +21, no EMS or UNOSAT product; NRSC's RISAT-1A map of 2023-12-07 exists only as a PDF (pre-registered)"
+   },
+   "held_out_per_event": {
+    "dubai_2024": {
+     "flooded_cells": 591,
+     "dry_cells": 17889,
+     "evaluation_cell_m": 30,
+     "auc": 0.4913,
+     "qualifies": true
+    },
+    "valencia_2024": {
+     "flooded_cells": 2847,
+     "dry_cells": 14924,
+     "evaluation_cell_m": 30,
+     "auc": 0.5573,
+     "qualifies": true
+    }
+   },
+   "held_out": {
+    "verdict": "failed",
+    "auc": 0.5243,
+    "qualifying_events": 2
+   },
+   "pooled_held_out_auc_diagnostic": 0.5522,
+   "params_used": {
+    "weights": {
+     "ponding": 1.0,
+     "runoff_path": 0.5
+    },
+    "c_perv": 0.5
+   },
+   "events": {
+    "dubai_2024": {
+     "bbox": [
+      55.275011,
+      25.172306,
+      55.314719,
+      25.208238
+     ],
+     "event": "2024-04-16",
+     "centre": [
+      25.190272,
+      55.294865
+     ],
+     "search_centre": [
+      25.2048,
+      55.2708
+     ],
+     "s1_pass": {
+      "date": "2024-04-24",
+      "orbits": [
+       130
+      ],
+      "days_after_event": 8
+     },
+     "search_square": [
+      55.171516,
+      25.114969,
+      55.370084,
+      25.294631
+     ],
+     "search_square_flooded_cells": 9106,
+     "grid": {
+      "crs": "EPSG:32640",
+      "transform": [
+       30.0,
+       0.0,
+       326130.0,
+       0.0,
+       -30.0,
+       2789130.0
+      ],
+      "shape": [
+       135,
+       137
+      ]
+     },
+     "pluvial_inputs": {
+      "footprint_source": "osm_building",
+      "impervious": {
+       "source": "osm_building footprints, item 19 layer 1b134706dc13ab18",
+       "method": "footprint_union_area_fraction",
+       "validation_status": "placeholder"
+      },
+      "conduits": {
+       "source": "OSM highways, item 19 layer 1b134706dc13ab18",
+       "method": "road_space_area_fraction (HIGHWAY_WIDTH_M_DEFAULT (defaults, not measurements))",
+       "validation_status": "experimental"
+      },
+      "margin_bbox": [
+       55.265083,
+       25.163323,
+       55.324647,
+       25.217221
+      ],
+      "design_storm_mm": 18.407913208007812
+     },
+     "reference": {
+      "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+      "resolution": "10 m -> 30 m",
+      "event_image_date": "2024-04-24",
+      "days_after_event": 8,
+      "relative_orbits": [
+       130
+      ],
+      "event_images": 1,
+      "baseline_images": 8
+     }
+    },
+    "valencia_2024": {
+     "bbox": [
+      -0.521674,
+      39.429106,
+      -0.475142,
+      39.465038
+     ],
+     "event": "2024-10-29",
+     "centre": [
+      39.447072,
+      -0.498408
+     ],
+     "search_centre": null,
+     "s1_pass": null,
+     "search_square": null,
+     "search_square_flooded_cells": null,
+     "grid": {
+      "crs": "EPSG:32630",
+      "transform": [
+       30.0,
+       0.0,
+       713190.0,
+       0.0,
+       -30.0,
+       4371450.0
+      ],
+      "shape": [
+       138,
+       138
+      ]
+     },
+     "pluvial_inputs": {
+      "footprint_source": "osm_building",
+      "impervious": {
+       "source": "osm_building footprints, item 19 layer 9de4804942b204a9",
+       "method": "footprint_union_area_fraction",
+       "validation_status": "placeholder"
+      },
+      "conduits": {
+       "source": "OSM highways, item 19 layer 9de4804942b204a9",
+       "method": "road_space_area_fraction (HIGHWAY_WIDTH_M_DEFAULT (defaults, not measurements))",
+       "validation_status": "experimental"
+      },
+      "margin_bbox": [
+       -0.533307,
+       39.420123,
+       -0.463509,
+       39.474021
+      ],
+      "design_storm_mm": 36.92058563232422
+     },
+     "reference": {
+      "source": "Copernicus EMS EMSR773 AOI03 (Horta Sud) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "WorldView-2",
+        "resolution_class": "VHR1",
+        "acquired": "2024-10-31T10:22:00"
+       },
+       {
+        "sensor": "GeoEye-1",
+        "resolution_class": "VHR2",
+        "acquired": "2024-10-31T10:22:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR773/AOI03/DEL_PRODUCT/EMSR773_AOI03_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "7d2cea68cfe0b6e420f33e7ca1ba6ce4fd6a417fa14d14629edc9b2e374184c1",
+      "notation_counts": {
+       "Flooded area": 306,
+       "Flood trace": 311
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     }
+    }
+   },
+   "tuning": {
+    "chosen": {
+     "weights": {
+      "ponding": 1.0,
+      "runoff_path": 0.5
+     },
+     "c_perv": 0.5
+    },
+    "best_tuning_mean_auc": 0.6789,
+    "table": [
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 0.0
+       },
+       "c_perv": 0.15
+      },
+      "mean_auc": 0.5602,
+      "per_event": {
+       "hai_phong": 0.4676,
+       "milagro": 0.7932,
+       "belize_city": 0.4197
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     },
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 0.0
+       },
+       "c_perv": 0.3
+      },
+      "mean_auc": 0.5683,
+      "per_event": {
+       "hai_phong": 0.4638,
+       "milagro": 0.827,
+       "belize_city": 0.4141
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     },
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 0.0
+       },
+       "c_perv": 0.5
+      },
+      "mean_auc": 0.5706,
+      "per_event": {
+       "hai_phong": 0.4455,
+       "milagro": 0.8255,
+       "belize_city": 0.4409
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     },
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 0.25
+       },
+       "c_perv": 0.15
+      },
+      "mean_auc": 0.6665,
+      "per_event": {
+       "hai_phong": 0.7085,
+       "milagro": 0.8213,
+       "belize_city": 0.4698
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     },
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 0.25
+       },
+       "c_perv": 0.3
+      },
+      "mean_auc": 0.6762,
+      "per_event": {
+       "hai_phong": 0.7095,
+       "milagro": 0.8544,
+       "belize_city": 0.4648
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     },
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 0.25
+       },
+       "c_perv": 0.5
+      },
+      "mean_auc": 0.6781,
+      "per_event": {
+       "hai_phong": 0.7073,
+       "milagro": 0.8576,
+       "belize_city": 0.4695
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     },
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 0.5
+       },
+       "c_perv": 0.15
+      },
+      "mean_auc": 0.6668,
+      "per_event": {
+       "hai_phong": 0.7131,
+       "milagro": 0.8142,
+       "belize_city": 0.4731
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     },
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 0.5
+       },
+       "c_perv": 0.3
+      },
+      "mean_auc": 0.6769,
+      "per_event": {
+       "hai_phong": 0.7151,
+       "milagro": 0.8491,
+       "belize_city": 0.4664
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     },
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 0.5
+       },
+       "c_perv": 0.5
+      },
+      "mean_auc": 0.6789,
+      "per_event": {
+       "hai_phong": 0.7141,
+       "milagro": 0.8541,
+       "belize_city": 0.4686
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     },
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 1.0
+       },
+       "c_perv": 0.15
+      },
+      "mean_auc": 0.6644,
+      "per_event": {
+       "hai_phong": 0.7175,
+       "milagro": 0.7973,
+       "belize_city": 0.4785
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     },
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 1.0
+       },
+       "c_perv": 0.3
+      },
+      "mean_auc": 0.6753,
+      "per_event": {
+       "hai_phong": 0.7208,
+       "milagro": 0.8343,
+       "belize_city": 0.4708
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     },
+     {
+      "params": {
+       "weights": {
+        "ponding": 1.0,
+        "runoff_path": 1.0
+       },
+       "c_perv": 0.5
+      },
+      "mean_auc": 0.678,
+      "per_event": {
+       "hai_phong": 0.7207,
+       "milagro": 0.8432,
+       "belize_city": 0.47
+      },
+      "cells": {
+       "hai_phong": [
+        236,
+        8244
+       ],
+       "milagro": [
+        154,
+        17535
+       ],
+       "belize_city": [
+        1074,
+        16622
+       ]
+      }
+     }
+    ],
+    "reason": "highest tuning mean",
+    "dropped": {},
+    "events": {
+     "hai_phong": {
+      "bbox": [
+       106.778694,
+       20.822589,
+       106.817142,
+       20.858521
+      ],
+      "event": "2024-09-07",
+      "centre": [
+       20.840555,
+       106.797918
+      ],
+      "search_centre": null,
+      "s1_pass": null,
+      "search_square": null,
+      "search_square_flooded_cells": null,
+      "grid": {
+       "crs": "EPSG:32648",
+       "transform": [
+        30.0,
+        0.0,
+        685050.0,
+        0.0,
+        -30.0,
+        2307570.0
+       ],
+       "shape": [
+        135,
+        135
+       ]
+      },
+      "pluvial_inputs": {
+       "footprint_source": "open_buildings_v3",
+       "impervious": {
+        "source": "open_buildings_v3 footprints, item 19 layer 8766b9e29873330e",
+        "method": "footprint_union_area_fraction",
+        "validation_status": "placeholder"
+       },
+       "conduits": {
+        "source": "OSM highways, item 19 layer 8766b9e29873330e",
+        "method": "road_space_area_fraction (HIGHWAY_WIDTH_M_DEFAULT (defaults, not measurements))",
+        "validation_status": "experimental"
+       },
+       "margin_bbox": [
+        106.769082,
+        20.813606,
+        106.826754,
+        20.867504
+       ],
+       "design_storm_mm": 68.91800689697266
+      },
+      "reference": {
+       "source": "Copernicus EMS EMSR754 AOI05 (Hai Phong) DEL monitoring 0",
+       "images": [
+        {
+         "sensor": "WorldView-2",
+         "resolution_class": "VHR2",
+         "acquired": "2024-09-14T03:42:00"
+        }
+       ],
+       "resolution": "per sensor, see images",
+       "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR754/AOI05/DEL_PRODUCT/EMSR754_AOI05_DEL_PRODUCT_observedEventA_v1.json",
+       "layer_sha256": "95356f0b4cad2a577dcd3abd002681c5efde9bef399b9c7c342dd472f1c6a51d",
+       "notation_counts": {
+        "Flooded area": 19
+       },
+       "flooded_notations": [
+        "Flooded area",
+        "Flood trace"
+       ]
+      }
+     },
+     "milagro": {
+      "bbox": [
+       -79.614744,
+       -2.182138,
+       -79.578786,
+       -2.146206
+      ],
+      "event": "2025-02-26",
+      "centre": [
+       -2.164172,
+       -79.596765
+      ],
+      "search_centre": null,
+      "s1_pass": null,
+      "search_square": null,
+      "search_square_flooded_cells": null,
+      "grid": {
+       "crs": "EPSG:32717",
+       "transform": [
+        30.0,
+        0.0,
+        654030.0,
+        0.0,
+        -30.0,
+        9762720.0
+       ],
+       "shape": [
+        133,
+        135
+       ]
+      },
+      "pluvial_inputs": {
+       "footprint_source": "open_buildings_v3",
+       "impervious": {
+        "source": "open_buildings_v3 footprints, item 19 layer 8d6bb2ac57ed2db1",
+        "method": "footprint_union_area_fraction",
+        "validation_status": "placeholder"
+       },
+       "conduits": {
+        "source": "OSM highways, item 19 layer 8d6bb2ac57ed2db1",
+        "method": "road_space_area_fraction (HIGHWAY_WIDTH_M_DEFAULT (defaults, not measurements))",
+        "validation_status": "experimental"
+       },
+       "margin_bbox": [
+        -79.623734,
+        -2.191121,
+        -79.569796,
+        -2.137223
+       ],
+       "design_storm_mm": 156.02584838867188
+      },
+      "reference": {
+       "source": "Copernicus EMS EMSR796 AOI06 (Milagro) DEL monitoring 0",
+       "images": [
+        {
+         "sensor": "ICEYE",
+         "resolution_class": "VHR2",
+         "acquired": "2025-04-05T08:34:00"
+        }
+       ],
+       "resolution": "per sensor, see images",
+       "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR796/AOI06/DEL_PRODUCT/EMSR796_AOI06_DEL_PRODUCT_observedEventA_v1.json",
+       "layer_sha256": "86a6e94cdae20f883bd32e005661dac58ba8c376c4781c701178af722a8ac2c6",
+       "notation_counts": {
+        "Flooded area": 47
+       },
+       "flooded_notations": [
+        "Flooded area",
+        "Flood trace"
+       ]
+      }
+     },
+     "belize_city": {
+      "bbox": [
+       -88.723744,
+       17.358055,
+       -88.686094,
+       17.393987
+      ],
+      "event": "2024-11-15",
+      "centre": [
+       17.376021,
+       -88.704919
+      ],
+      "search_centre": null,
+      "s1_pass": null,
+      "search_square": null,
+      "search_square_flooded_cells": null,
+      "grid": {
+       "crs": "EPSG:32616",
+       "transform": [
+        30.0,
+        0.0,
+        316830.0,
+        0.0,
+        -30.0,
+        1923990.0
+       ],
+       "shape": [
+        135,
+        136
+       ]
+      },
+      "pluvial_inputs": {
+       "footprint_source": "open_buildings_v3",
+       "impervious": {
+        "source": "open_buildings_v3 footprints, item 19 layer dd74854d550c21d2",
+        "method": "footprint_union_area_fraction",
+        "validation_status": "placeholder"
+       },
+       "conduits": {
+        "source": "OSM highways, item 19 layer dd74854d550c21d2",
+        "method": "road_space_area_fraction (HIGHWAY_WIDTH_M_DEFAULT (defaults, not measurements))",
+        "validation_status": "experimental"
+       },
+       "margin_bbox": [
+        -88.733157,
+        17.349072,
+        -88.676681,
+        17.40297
+       ],
+       "design_storm_mm": 160.30946350097656
+      },
+      "reference": {
+       "source": "Copernicus EMS EMSR777 AOI01 (Belize City) DEL monitoring 0",
+       "images": [
+        {
+         "sensor": "COSMO-SkyMed Second Generation",
+         "resolution_class": "HR+",
+         "acquired": "2024-11-17T23:32:00"
+        },
+        {
+         "sensor": "COSMO-SkyMed",
+         "resolution_class": "HR+",
+         "acquired": "2024-11-17T12:02:00"
+        }
+       ],
+       "resolution": "per sensor, see images",
+       "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR777/AOI01/DEL_PRODUCT/EMSR777_AOI01_DEL_PRODUCT_observedEventA_v1.json",
+       "layer_sha256": "bf6ada4d60b4292b009a05717eff8c631ba80ad795e53b963cb937969b06bf13",
+       "notation_counts": {
+        "Flooded area": 128
+       },
+       "flooded_notations": [
+        "Flooded area",
+        "Flood trace"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "waterlogging": {
+   "dropped": {},
+   "held_out_per_event": {
+    "assam_2026": {
+     "flooded_cells": 5327,
+     "dry_cells": 13059,
+     "evaluation_cell_m": 30,
+     "auc": 0.4061,
+     "qualifies": true
+    },
+    "sylhet_2022": {
+     "flooded_cells": 8872,
+     "dry_cells": 8564,
+     "evaluation_cell_m": 30,
+     "auc": 0.6677,
+     "qualifies": true
+    },
+    "kerala_2018": {
+     "flooded_cells": 10866,
+     "dry_cells": 7224,
+     "evaluation_cell_m": 30,
+     "auc": 0.7661,
+     "qualifies": true
+    }
+   },
+   "held_out": {
+    "verdict": "failed",
+    "auc": 0.6133,
+    "qualifying_events": 3
+   },
+   "pooled_held_out_auc_diagnostic": 0.5308,
+   "params_used": {
+    "persistence": 1.0,
+    "clay": 1.0,
+    "low_relief": 0.5,
+    "backwater": 1.0
+   },
+   "events": {
+    "assam_2026": {
+     "bbox": [
+      94.711221,
+      26.915521,
+      94.751525,
+      26.951453
+     ],
+     "event": "2026-07-20",
+     "centre": [
+      26.933487,
+      94.731373
+     ],
+     "search_centre": [
+      26.917,
+      94.733
+     ],
+     "s1_pass": {
+      "date": "2026-07-22",
+      "orbits": [
+       70
+      ],
+      "days_after_event": 2
+     },
+     "search_square": [
+      94.632254,
+      26.827169,
+      94.833746,
+      27.006831
+     ],
+     "search_square_flooded_cells": 165801,
+     "grid": {
+      "crs": "EPSG:32646",
+      "transform": [
+       30.0,
+       0.0,
+       669840.0,
+       0.0,
+       -30.0,
+       2982270.0
+      ],
+      "shape": [
+       135,
+       137
+      ]
+     },
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested",
+      "rain_design_day_mm": "not requested"
+     },
+     "reference": {
+      "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2026 Jan-Mar median",
+      "resolution": "10 m -> 30 m",
+      "event_image_date": "2026-07-22",
+      "days_after_event": 2,
+      "relative_orbits": [
+       70
+      ],
+      "event_images": 1,
+      "baseline_images": 14
+     }
+    },
+    "sylhet_2022": {
+     "bbox": [
+      91.769305,
+      24.880079,
+      91.808919,
+      24.916011
+     ],
+     "event": "2022-06-18",
+     "centre": [
+      24.898045,
+      91.789112
+     ],
+     "search_centre": null,
+     "s1_pass": null,
+     "search_square": null,
+     "search_square_flooded_cells": null,
+     "grid": {
+      "crs": "EPSG:32646",
+      "transform": [
+       30.0,
+       0.0,
+       375660.0,
+       0.0,
+       -30.0,
+       2756220.0
+      ],
+      "shape": [
+       135,
+       136
+      ]
+     },
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested",
+      "rain_design_day_mm": "not requested"
+     },
+     "reference": {
+      "source": "UNOSAT FL20220525BGD_RCM1_20220618 FloodExtent (RCM-1 2022-06-18), 'Flood Water'",
+      "resolution": "RCM-1",
+      "url": "https://unosat-maps.web.cern.ch/BD/FL20220525BGD/FL20220525BGD_SHP.zip",
+      "flood_layer_sha256": "2e0abb0bb4f32aa76da354024e3e5e7e98d5c2b84bc19444b942fd828c42cc8d"
+     }
+    },
+    "kerala_2018": {
+     "bbox": [
+      76.41977,
+      9.405028,
+      76.456194,
+      9.44096
+     ],
+     "event": "2018-08-16",
+     "centre": [
+      9.422994,
+      76.437982
+     ],
+     "search_centre": [
+      9.417,
+      76.433
+     ],
+     "s1_pass": {
+      "date": "2018-08-21",
+      "orbits": [
+       165,
+       173
+      ],
+      "days_after_event": 5
+     },
+     "search_square": [
+      76.341942,
+      9.327169,
+      76.524058,
+      9.506831
+     ],
+     "search_square_flooded_cells": 225413,
+     "grid": {
+      "crs": "EPSG:32643",
+      "transform": [
+       30.0,
+       0.0,
+       655860.0,
+       0.0,
+       -30.0,
+       1043940.0
+      ],
+      "shape": [
+       134,
+       135
+      ]
+     },
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_intensity_mm_h": "not requested",
+      "rain_design_day_mm": "not requested"
+     },
+     "reference": {
+      "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2018 Jan-Mar median",
+      "resolution": "10 m -> 30 m",
+      "event_image_date": "2018-08-21",
+      "days_after_event": 5,
+      "relative_orbits": [
+       165,
+       173
+      ],
+      "event_images": 3,
+      "baseline_images": 8
+     }
+    }
+   },
+   "tuning": {
+    "chosen": {
+     "persistence": 1.0,
+     "clay": 1.0,
+     "low_relief": 0.5,
+     "backwater": 1.0
+    },
+    "best_tuning_mean_auc": 0.521,
+    "table": [
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.0,
+       "low_relief": 0.5,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.3553,
+      "per_event": {
+       "thai_binh": 0.2495,
+       "nam_dinh": 0.4612
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.0,
+       "low_relief": 0.5,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.4965,
+      "per_event": {
+       "thai_binh": 0.2495,
+       "nam_dinh": 0.7435
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.0,
+       "low_relief": 0.5,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.5045,
+      "per_event": {
+       "thai_binh": 0.2495,
+       "nam_dinh": 0.7595
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.0,
+       "low_relief": 1.0,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.3515,
+      "per_event": {
+       "thai_binh": 0.2521,
+       "nam_dinh": 0.4509
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.0,
+       "low_relief": 1.0,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.4785,
+      "per_event": {
+       "thai_binh": 0.2521,
+       "nam_dinh": 0.7049
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.0,
+       "low_relief": 1.0,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.497,
+      "per_event": {
+       "thai_binh": 0.2521,
+       "nam_dinh": 0.7418
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.5,
+       "low_relief": 0.5,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.3677,
+      "per_event": {
+       "thai_binh": 0.2602,
+       "nam_dinh": 0.4751
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.5,
+       "low_relief": 0.5,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.5028,
+      "per_event": {
+       "thai_binh": 0.2602,
+       "nam_dinh": 0.7453
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.5,
+       "low_relief": 0.5,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.5106,
+      "per_event": {
+       "thai_binh": 0.2602,
+       "nam_dinh": 0.7609
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.5,
+       "low_relief": 1.0,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.3586,
+      "per_event": {
+       "thai_binh": 0.2586,
+       "nam_dinh": 0.4585
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.5,
+       "low_relief": 1.0,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.4825,
+      "per_event": {
+       "thai_binh": 0.2586,
+       "nam_dinh": 0.7063
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 0.5,
+       "low_relief": 1.0,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.5008,
+      "per_event": {
+       "thai_binh": 0.2586,
+       "nam_dinh": 0.743
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 1.0,
+       "low_relief": 0.5,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.3837,
+      "per_event": {
+       "thai_binh": 0.2797,
+       "nam_dinh": 0.4877
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 1.0,
+       "low_relief": 0.5,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.5131,
+      "per_event": {
+       "thai_binh": 0.2797,
+       "nam_dinh": 0.7466
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 1.0,
+       "low_relief": 0.5,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.521,
+      "per_event": {
+       "thai_binh": 0.2797,
+       "nam_dinh": 0.7622
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 1.0,
+       "low_relief": 1.0,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.3671,
+      "per_event": {
+       "thai_binh": 0.2685,
+       "nam_dinh": 0.4657
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 1.0,
+       "low_relief": 1.0,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.488,
+      "per_event": {
+       "thai_binh": 0.2685,
+       "nam_dinh": 0.7076
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 1.0,
+       "clay": 1.0,
+       "low_relief": 1.0,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.5063,
+      "per_event": {
+       "thai_binh": 0.2685,
+       "nam_dinh": 0.7441
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.0,
+       "low_relief": 0.5,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.3613,
+      "per_event": {
+       "thai_binh": 0.2512,
+       "nam_dinh": 0.4714
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.0,
+       "low_relief": 0.5,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.497,
+      "per_event": {
+       "thai_binh": 0.2512,
+       "nam_dinh": 0.7428
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.0,
+       "low_relief": 0.5,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.506,
+      "per_event": {
+       "thai_binh": 0.2512,
+       "nam_dinh": 0.7609
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.0,
+       "low_relief": 1.0,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.3553,
+      "per_event": {
+       "thai_binh": 0.2495,
+       "nam_dinh": 0.4612
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.0,
+       "low_relief": 1.0,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.4772,
+      "per_event": {
+       "thai_binh": 0.2495,
+       "nam_dinh": 0.7049
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.0,
+       "low_relief": 1.0,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.4965,
+      "per_event": {
+       "thai_binh": 0.2495,
+       "nam_dinh": 0.7435
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.5,
+       "low_relief": 0.5,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.3707,
+      "per_event": {
+       "thai_binh": 0.257,
+       "nam_dinh": 0.4844
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.5,
+       "low_relief": 0.5,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.5008,
+      "per_event": {
+       "thai_binh": 0.257,
+       "nam_dinh": 0.7445
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.5,
+       "low_relief": 0.5,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.5096,
+      "per_event": {
+       "thai_binh": 0.257,
+       "nam_dinh": 0.7623
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.5,
+       "low_relief": 1.0,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.361,
+      "per_event": {
+       "thai_binh": 0.2534,
+       "nam_dinh": 0.4686
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.5,
+       "low_relief": 1.0,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.4798,
+      "per_event": {
+       "thai_binh": 0.2534,
+       "nam_dinh": 0.7062
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 0.5,
+       "low_relief": 1.0,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.499,
+      "per_event": {
+       "thai_binh": 0.2534,
+       "nam_dinh": 0.7445
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 1.0,
+       "low_relief": 0.5,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.3829,
+      "per_event": {
+       "thai_binh": 0.2693,
+       "nam_dinh": 0.4965
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 1.0,
+       "low_relief": 0.5,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.5075,
+      "per_event": {
+       "thai_binh": 0.2693,
+       "nam_dinh": 0.7458
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 1.0,
+       "low_relief": 0.5,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.5164,
+      "per_event": {
+       "thai_binh": 0.2693,
+       "nam_dinh": 0.7635
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 1.0,
+       "low_relief": 1.0,
+       "backwater": 0.0
+      },
+      "mean_auc": 0.3677,
+      "per_event": {
+       "thai_binh": 0.2602,
+       "nam_dinh": 0.4751
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 1.0,
+       "low_relief": 1.0,
+       "backwater": 0.5
+      },
+      "mean_auc": 0.4836,
+      "per_event": {
+       "thai_binh": 0.2602,
+       "nam_dinh": 0.707
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     },
+     {
+      "params": {
+       "persistence": 2.0,
+       "clay": 1.0,
+       "low_relief": 1.0,
+       "backwater": 1.0
+      },
+      "mean_auc": 0.5028,
+      "per_event": {
+       "thai_binh": 0.2602,
+       "nam_dinh": 0.7453
+      },
+      "cells": {
+       "thai_binh": [
+        506,
+        16402
+       ],
+       "nam_dinh": [
+        2733,
+        12502
+       ]
+      }
+     }
+    ],
+    "reason": "highest tuning mean",
+    "dropped": {},
+    "events": {
+     "thai_binh": {
+      "bbox": [
+       106.319618,
+       20.478121,
+       106.357978,
+       20.514053
+      ],
+      "event": "2024-09-09",
+      "centre": [
+       20.496087,
+       106.338798
+      ],
+      "search_centre": null,
+      "s1_pass": null,
+      "search_square": null,
+      "search_square_flooded_cells": null,
+      "grid": {
+       "crs": "EPSG:32648",
+       "transform": [
+        30.0,
+        0.0,
+        637590.0,
+        0.0,
+        -30.0,
+        2268960.0
+       ],
+       "shape": [
+        134,
+        135
+       ]
+      },
+      "raster_errors": {
+       "rain_annual_mm": "not requested",
+       "rain_intensity_mm_h": "not requested",
+       "rain_design_day_mm": "not requested"
+      },
+      "reference": {
+       "source": "Copernicus EMS EMSR754 AOI06 (Thai Binh) DEL monitoring 0",
+       "images": [
+        {
+         "sensor": "WorldView-2",
+         "resolution_class": "VHR2",
+         "acquired": "2024-09-20T03:27:00"
+        }
+       ],
+       "resolution": "per sensor, see images",
+       "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR754/AOI06/DEL_PRODUCT/EMSR754_AOI06_DEL_PRODUCT_observedEventA_v1.json",
+       "layer_sha256": "a2328c832cf19eaa808b8ee4316e26542bda375c1b0b9d57ab39ac06d9075912",
+       "notation_counts": {
+        "Flooded area": 11,
+        "Flood trace": 78
+       },
+       "flooded_notations": [
+        "Flooded area",
+        "Flood trace"
+       ]
+      }
+     },
+     "nam_dinh": {
+      "bbox": [
+       106.188953,
+       20.431557,
+       106.227303,
+       20.467489
+      ],
+      "event": "2024-09-09",
+      "centre": [
+       20.449523,
+       106.208128
+      ],
+      "search_centre": null,
+      "s1_pass": null,
+      "search_square": null,
+      "search_square_flooded_cells": null,
+      "grid": {
+       "crs": "EPSG:32648",
+       "transform": [
+        30.0,
+        0.0,
+        624000.0,
+        0.0,
+        -30.0,
+        2263710.0
+       ],
+       "shape": [
+        135,
+        135
+       ]
+      },
+      "raster_errors": {
+       "rain_annual_mm": "not requested",
+       "rain_intensity_mm_h": "not requested",
+       "rain_design_day_mm": "not requested"
+      },
+      "reference": {
+       "source": "Copernicus EMS EMSR754 AOI07 (Nam Dinh) DEL monitoring 0",
+       "images": [
+        {
+         "sensor": "WorldView-2",
+         "resolution_class": "VHR2",
+         "acquired": "2024-09-14T03:45:00"
+        }
+       ],
+       "resolution": "per sensor, see images",
+       "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR754/AOI07/DEL_PRODUCT/EMSR754_AOI07_DEL_PRODUCT_observedEventA_v1.json",
+       "layer_sha256": "6950166eaf0888f73117c240c6ae3799a59948b19ed8d5fe0156b79bc89a1034",
+       "notation_counts": {
+        "Flooded area": 231,
+        "Flood trace": 11
+       },
+       "flooded_notations": [
+        "Flooded area",
+        "Flood trace"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "flash_flood": {
+   "dropped": {},
+   "held_out_per_event": {
+    "valencia_2024": {
+     "flooded_cells": 2847,
+     "dry_cells": 14924,
+     "evaluation_cell_m": 30,
+     "auc": 0.7219,
+     "qualifies": true
+    },
+    "himachal_2023": {
+     "flooded_cells": 520,
+     "dry_cells": 18227,
+     "evaluation_cell_m": 30,
+     "auc": 0.5094,
+     "qualifies": true
+    },
+    "derna_2023": {
+     "flooded_cells": 1767,
+     "dry_cells": 14275,
+     "evaluation_cell_m": 30,
+     "auc": 0.6877,
+     "qualifies": true
+    }
+   },
+   "held_out": {
+    "verdict": "failed",
+    "auc": 0.6397,
+    "qualifying_events": 3
+   },
+   "pooled_held_out_auc_diagnostic": 0.732,
+   "params_used": {
+    "hand_max_m": 5.0,
+    "power_exponent": 0.5
+   },
+   "events": {
+    "valencia_2024": {
+     "bbox": [
+      -0.521674,
+      39.429106,
+      -0.475142,
+      39.465038
+     ],
+     "event": "2024-10-29",
+     "centre": [
+      39.447072,
+      -0.498408
+     ],
+     "search_centre": null,
+     "s1_pass": null,
+     "search_square": null,
+     "search_square_flooded_cells": null,
+     "grid": {
+      "crs": "EPSG:32630",
+      "transform": [
+       30.0,
+       0.0,
+       713190.0,
+       0.0,
+       -30.0,
+       4371450.0
+      ],
+      "shape": [
+       138,
+       138
+      ]
+     },
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_design_day_mm": "not requested",
+      "jrc_water_freq": "not requested",
+      "s1_water_freq": "not requested"
+     },
+     "reference": {
+      "source": "Copernicus EMS EMSR773 AOI03 (Horta Sud) DEL monitoring 0",
+      "images": [
+       {
+        "sensor": "WorldView-2",
+        "resolution_class": "VHR1",
+        "acquired": "2024-10-31T10:22:00"
+       },
+       {
+        "sensor": "GeoEye-1",
+        "resolution_class": "VHR2",
+        "acquired": "2024-10-31T10:22:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR773/AOI03/DEL_PRODUCT/EMSR773_AOI03_DEL_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "7d2cea68cfe0b6e420f33e7ca1ba6ce4fd6a417fa14d14629edc9b2e374184c1",
+      "notation_counts": {
+       "Flooded area": 306,
+       "Flood trace": 311
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     }
+    },
+    "himachal_2023": {
+     "bbox": [
+      77.120663,
+      31.947443,
+      77.163017,
+      31.983375
+     ],
+     "event": "2023-07-10",
+     "centre": [
+      31.965409,
+      77.14184
+     ],
+     "search_centre": [
+      31.958,
+      77.11
+     ],
+     "s1_pass": {
+      "date": "2023-07-11",
+      "orbits": [
+       129
+      ],
+      "days_after_event": 1
+     },
+     "search_square": [
+      77.004122,
+      31.868169,
+      77.215878,
+      32.047831
+     ],
+     "search_square_flooded_cells": 5086,
+     "grid": {
+      "crs": "EPSG:32643",
+      "transform": [
+       30.0,
+       0.0,
+       700350.0,
+       0.0,
+       -30.0,
+       3540660.0
+      ],
+      "shape": [
+       137,
+       137
+      ]
+     },
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_design_day_mm": "not requested",
+      "jrc_water_freq": "not requested",
+      "s1_water_freq": "not requested"
+     },
+     "reference": {
+      "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2023 Jan-Mar median",
+      "resolution": "10 m -> 30 m",
+      "event_image_date": "2023-07-11",
+      "days_after_event": 1,
+      "relative_orbits": [
+       129
+      ],
+      "event_images": 1,
+      "baseline_images": 7
+     }
+    },
+    "derna_2023": {
+     "bbox": [
+      22.606275,
+      32.730236,
+      22.648999,
+      32.766168
+     ],
+     "event": "2023-09-11",
+     "centre": [
+      32.748202,
+      22.627637
+     ],
+     "search_centre": null,
+     "s1_pass": null,
+     "search_square": null,
+     "search_square_flooded_cells": null,
+     "grid": {
+      "crs": "EPSG:32634",
+      "transform": [
+       30.0,
+       0.0,
+       650430.0,
+       0.0,
+       -30.0,
+       3626580.0
+      ],
+      "shape": [
+       136,
+       137
+      ]
+     },
+     "raster_errors": {
+      "rain_annual_mm": "not requested",
+      "rain_design_day_mm": "not requested",
+      "jrc_water_freq": "not requested",
+      "s1_water_freq": "not requested"
+     },
+     "reference": {
+      "source": "Copernicus EMS EMSR696 AOI01 (Derna) GRA monitoring 0",
+      "images": [
+       {
+        "sensor": "Pleiades",
+        "resolution_class": "VHR1",
+        "acquired": "2023-09-13T09:13:00"
+       }
+      ],
+      "resolution": "per sensor, see images",
+      "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR696/AOI01/GRA_PRODUCT/EMSR696_AOI01_GRA_PRODUCT_observedEventA_v1.json",
+      "layer_sha256": "bce9aa78f3dc940fe85daf5e1d4dd44220a836772f74602f7668dfe9c1b612e9",
+      "notation_counts": {
+       "Flooded area": 7,
+       "Flood trace": 19
+      },
+      "flooded_notations": [
+       "Flooded area",
+       "Flood trace"
+      ]
+     }
+    }
+   },
+   "tuning": {
+    "chosen": {
+     "hand_max_m": 5.0,
+     "power_exponent": 0.5
+    },
+    "best_tuning_mean_auc": 0.4937,
+    "table": [
+     {
+      "params": {
+       "hand_max_m": 5.0,
+       "power_exponent": 0.5
+      },
+      "mean_auc": 0.4937,
+      "per_event": {
+       "volos": 0.4919,
+       "kastelli": null,
+       "choloma": 0.4955
+      },
+      "cells": {
+       "volos": [
+        10911,
+        6872
+       ],
+       "kastelli": [
+        45,
+        17717
+       ],
+       "choloma": [
+        4604,
+        12374
+       ]
+      }
+     },
+     {
+      "params": {
+       "hand_max_m": 5.0,
+       "power_exponent": 1.0
+      },
+      "mean_auc": 0.4682,
+      "per_event": {
+       "volos": 0.4834,
+       "kastelli": null,
+       "choloma": 0.4531
+      },
+      "cells": {
+       "volos": [
+        10911,
+        6872
+       ],
+       "kastelli": [
+        45,
+        17717
+       ],
+       "choloma": [
+        4604,
+        12374
+       ]
+      }
+     },
+     {
+      "params": {
+       "hand_max_m": 5.0,
+       "power_exponent": 2.0
+      },
+      "mean_auc": 0.457,
+      "per_event": {
+       "volos": 0.476,
+       "kastelli": null,
+       "choloma": 0.4381
+      },
+      "cells": {
+       "volos": [
+        10911,
+        6872
+       ],
+       "kastelli": [
+        45,
+        17717
+       ],
+       "choloma": [
+        4604,
+        12374
+       ]
+      }
+     },
+     {
+      "params": {
+       "hand_max_m": 10.0,
+       "power_exponent": 0.5
+      },
+      "mean_auc": 0.4646,
+      "per_event": {
+       "volos": 0.4822,
+       "kastelli": null,
+       "choloma": 0.4469
+      },
+      "cells": {
+       "volos": [
+        10911,
+        6872
+       ],
+       "kastelli": [
+        45,
+        17717
+       ],
+       "choloma": [
+        4604,
+        12374
+       ]
+      }
+     },
+     {
+      "params": {
+       "hand_max_m": 10.0,
+       "power_exponent": 1.0
+      },
+      "mean_auc": 0.4555,
+      "per_event": {
+       "volos": 0.4748,
+       "kastelli": null,
+       "choloma": 0.4362
+      },
+      "cells": {
+       "volos": [
+        10911,
+        6872
+       ],
+       "kastelli": [
+        45,
+        17717
+       ],
+       "choloma": [
+        4604,
+        12374
+       ]
+      }
+     },
+     {
+      "params": {
+       "hand_max_m": 10.0,
+       "power_exponent": 2.0
+      },
+      "mean_auc": 0.4496,
+      "per_event": {
+       "volos": 0.4702,
+       "kastelli": null,
+       "choloma": 0.4289
+      },
+      "cells": {
+       "volos": [
+        10911,
+        6872
+       ],
+       "kastelli": [
+        45,
+        17717
+       ],
+       "choloma": [
+        4604,
+        12374
+       ]
+      }
+     },
+     {
+      "params": {
+       "hand_max_m": 20.0,
+       "power_exponent": 0.5
+      },
+      "mean_auc": 0.4549,
+      "per_event": {
+       "volos": 0.4744,
+       "kastelli": null,
+       "choloma": 0.4355
+      },
+      "cells": {
+       "volos": [
+        10911,
+        6872
+       ],
+       "kastelli": [
+        45,
+        17717
+       ],
+       "choloma": [
+        4604,
+        12374
+       ]
+      }
+     },
+     {
+      "params": {
+       "hand_max_m": 20.0,
+       "power_exponent": 1.0
+      },
+      "mean_auc": 0.449,
+      "per_event": {
+       "volos": 0.4699,
+       "kastelli": null,
+       "choloma": 0.4281
+      },
+      "cells": {
+       "volos": [
+        10911,
+        6872
+       ],
+       "kastelli": [
+        45,
+        17717
+       ],
+       "choloma": [
+        4604,
+        12374
+       ]
+      }
+     },
+     {
+      "params": {
+       "hand_max_m": 20.0,
+       "power_exponent": 2.0
+      },
+      "mean_auc": 0.4456,
+      "per_event": {
+       "volos": 0.4683,
+       "kastelli": null,
+       "choloma": 0.4228
+      },
+      "cells": {
+       "volos": [
+        10911,
+        6872
+       ],
+       "kastelli": [
+        45,
+        17717
+       ],
+       "choloma": [
+        4604,
+        12374
+       ]
+      }
+     }
+    ],
+    "reason": "highest tuning mean",
+    "dropped": {},
+    "events": {
+     "volos": {
+      "bbox": [
+       22.045638,
+       39.429621,
+       22.09217,
+       39.465553
+      ],
+      "event": "2023-09-05",
+      "centre": [
+       39.447587,
+       22.068904
+      ],
+      "search_centre": null,
+      "s1_pass": null,
+      "search_square": null,
+      "search_square_flooded_cells": null,
+      "grid": {
+       "crs": "EPSG:32634",
+       "transform": [
+        30.0,
+        0.0,
+        589920.0,
+        0.0,
+        -30.0,
+        4369020.0
+       ],
+       "shape": [
+        135,
+        136
+       ]
+      },
+      "raster_errors": {
+       "rain_annual_mm": "not requested",
+       "rain_design_day_mm": "not requested",
+       "jrc_water_freq": "not requested",
+       "s1_water_freq": "not requested"
+      },
+      "reference": {
+       "source": "Copernicus EMS EMSR692 AOI01 (Magnesia) DEL monitoring 3",
+       "images": [
+        {
+         "sensor": "WorldView-3",
+         "resolution_class": "VHR2",
+         "acquired": "2023-09-09T09:31:00"
+        }
+       ],
+       "resolution": "per sensor, see images",
+       "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR692/AOI01/DEL_MONIT03/EMSR692_AOI01_DEL_MONIT03_observedEventA_v3.json",
+       "layer_sha256": "087aaffc67b98cef72004dfb80406f88e4e2f516ee09cd3f1bcd6a2df4bcf921",
+       "notation_counts": {
+        "Flooded area": 1513,
+        "Flood trace": 292
+       },
+       "flooded_notations": [
+        "Flooded area",
+        "Flood trace"
+       ]
+      }
+     },
+     "kastelli": {
+      "bbox": [
+       25.295996,
+       35.173739,
+       25.339964,
+       35.209671
+      ],
+      "event": "2026-10-01",
+      "centre": [
+       35.191705,
+       25.31798
+      ],
+      "search_centre": null,
+      "s1_pass": null,
+      "search_square": null,
+      "search_square_flooded_cells": null,
+      "grid": {
+       "crs": "EPSG:32635",
+       "transform": [
+        30.0,
+        0.0,
+        344820.0,
+        0.0,
+        -30.0,
+        3897630.0
+       ],
+       "shape": [
+        136,
+        136
+       ]
+      },
+      "raster_errors": {
+       "rain_annual_mm": "not requested",
+       "rain_design_day_mm": "not requested",
+       "jrc_water_freq": "not requested",
+       "s1_water_freq": "not requested"
+      },
+      "reference": {
+       "source": "Copernicus EMS EMSR933 AOI01 (Kastelli) DEL monitoring 1",
+       "images": [
+        {
+         "sensor": "Legion",
+         "resolution_class": "VHR2",
+         "acquired": "2026-10-06T10:47:00"
+        }
+       ],
+       "resolution": "per sensor, see images",
+       "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR933/AOI01/DEL_MONIT01/EMSR933_AOI01_DEL_MONIT01_observedEventA_v1.json",
+       "layer_sha256": "ec223ce86495772a5488f16d976934339e5d3d886c1d2d86cced0bc96e60b043",
+       "notation_counts": {
+        "Flood trace": 18,
+        "Flooded area": 70
+       },
+       "flooded_notations": [
+        "Flooded area",
+        "Flood trace"
+       ]
+      }
+     },
+     "choloma": {
+      "bbox": [
+       -87.856284,
+       15.623006,
+       -87.81897,
+       15.658938
+      ],
+      "event": "2024-11-16",
+      "centre": [
+       15.640972,
+       -87.837627
+      ],
+      "search_centre": null,
+      "s1_pass": null,
+      "search_square": null,
+      "search_square_flooded_cells": null,
+      "grid": {
+       "crs": "EPSG:32616",
+       "transform": [
+        30.0,
+        0.0,
+        408210.0,
+        0.0,
+        -30.0,
+        1731420.0
+       ],
+       "shape": [
+        134,
+        134
+       ]
+      },
+      "raster_errors": {
+       "rain_annual_mm": "not requested",
+       "rain_design_day_mm": "not requested",
+       "jrc_water_freq": "not requested",
+       "s1_water_freq": "not requested"
+      },
+      "reference": {
+       "source": "Copernicus EMS EMSR778 AOI10 (Choloma) DEL monitoring 0",
+       "images": [
+        {
+         "sensor": "COSMO-SkyMed",
+         "resolution_class": "VHR1",
+         "acquired": "2024-11-22T11:37:00"
+        }
+       ],
+       "resolution": "per sensor, see images",
+       "layer_url": "https://rapidmapping-viewer.s3.eu-west-1.amazonaws.com/EMSR778/AOI10/DEL_PRODUCT/EMSR778_AOI10_DEL_PRODUCT_observedEventA_v1.json",
+       "layer_sha256": "2c43b9a714c0fa5a430427f8b0f6fd32b7f2ea154f5aaf364f9c5e8ad8d0c8f7",
+       "notation_counts": {
+        "Flooded area": 308
+       },
+       "flooded_notations": [
+        "Flooded area",
+        "Flood trace"
+       ]
+      }
+     }
+    }
+   }
+  }
+ }
+}

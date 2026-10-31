@@ -71,9 +71,12 @@ FLOOD_VALIDATION_ROUND3_RESULT = os.path.join("experiments", "flood_validation",
 FLOOD_VALIDATION_ROUND3_SHA256 = "317daa1fcd96cb786463ca980ba1684bb89e9ba07da1e78f33a411518e6f5b5b"
 # Flood round 4 replaced these modules' methods (PREREGISTRATION_ROUND4.md):
 # rounds 1-3 tested methods that no longer run, so none of their verdicts is
-# read for them. Until round 4's result is pinned they have no verdict and
-# take the label their method and inputs give them (`experimental`, C69).
+# read for them; round 4's is. Round 4 failed all three (mean within-event
+# AUC: pluvial 0.524, waterlogging 0.613, flash flood 0.640; bar 0.70).
 ROUND4_REPLACED_METHODS = ("pluvial", "flash_flood", "waterlogging")
+FLOOD_VALIDATION_ROUND4_RESULT = os.path.join("experiments", "flood_validation",
+                                              "result_round4_2026-10-30.json")
+FLOOD_VALIDATION_ROUND4_SHA256 = "b9f39615750c0c836c1c1ef6da1ceb195fb9d4fc660d76ac5af7f84776c013d3"
 VERDICT_LABEL = {"failed": "failed", "passed": "validated", "validated": "validated"}
 
 # C70 (item 26 flood follow-ups): a module that ran EXACTLY the configuration
@@ -104,7 +107,23 @@ VALIDATED_CONFIGS = {
             "evidence": FLOOD_VALIDATION_ROUND2_RESULT,
             "note": "Validated for these events, regions and inputs only: two Asian river "
                     "cities, the pre-registered minimum of two (bar: mean within-event "
-                    "AUC >= 0.70; held-out 0.8579). Not a claim about other places.",
+                    "AUC >= 0.70; held-out 0.8579). Not a claim about other places. "
+                    "Narrowed by flood round 4 (2026-10-30): on three South Asian "
+                    "monsoon floodplain events it failed (mean 0.5365), so the "
+                    "validation does not extend to those events or regions.",
+            # Flood round 4 (PREREGISTRATION_ROUND4.md, Labels): failed, so the
+            # scope is narrowed, not the label (whether the label should change
+            # too is C78, NEEDS FATE).
+            "not_covered": {
+                "evidence": "experiments/flood_validation/result_round4_2026-10-30.json",
+                "round4_mean_auc": 0.5365,
+                "events": ["bihar_2026 2026-09-11 (Kosi/Ganga at Kursela; Sentinel-1), AUC 0.6425",
+                           "assam_2026 2026-07-20 (Dikhow at Nazira; Sentinel-1), AUC 0.3878",
+                           "pakistan_2022 2022-08-31 (Sindh; UNOSAT FL20220808PAK), AUC 0.5791"],
+                "regions": ["Bihar, India (Kosi-Ganga floodplain)",
+                            "Upper Assam, India (Dikhow, Brahmaputra basin)",
+                            "Sindh, Pakistan (Indus plain)"],
+            },
         },
     },
 }
@@ -115,10 +134,14 @@ VALIDATED_CONFIGS = {
 # missing silently. Built types (M1-M5) are labelled by hazard_label; unbuilt
 # ones by UNBUILT_FLOOD_TYPES below.
 FLOOD_TAXONOMY = {
-    "M1": {"module": "fluvial", "name": "fluvial", "status": "validated, scoped", "round": 4},
-    "M2": {"module": "pluvial", "name": "pluvial", "status": "new method", "round": 4},
-    "M3": {"module": "waterlogging", "name": "waterlogging", "status": "new method", "round": 4},
-    "M4": {"module": "flash_flood", "name": "flash flood", "status": "new method", "round": 4},
+    "M1": {"module": "fluvial", "name": "fluvial",
+           "status": "validated, scoped; round 4 failed, scope narrowed", "round": 4},
+    "M2": {"module": "pluvial", "name": "pluvial", "status": "new method; round 4 failed",
+           "round": 4},
+    "M3": {"module": "waterlogging", "name": "waterlogging",
+           "status": "new method; round 4 failed", "round": 4},
+    "M4": {"module": "flash_flood", "name": "flash flood", "status": "new method; round 4 failed",
+           "round": 4},
     "M5": {"module": "coastal", "name": "coastal", "status": "failed; new method planned",
            "round": 5},
     "M6": {"module": "debris_flow_glof", "name": "debris flow / glacial lake outburst",
@@ -218,22 +241,29 @@ def flood_verdicts(path: str = FLOOD_VALIDATION_RESULT, expected_sha256: str | N
                    round2_path: str = FLOOD_VALIDATION_ROUND2_RESULT,
                    round2_sha256: str | None = None,
                    round3_path: str = FLOOD_VALIDATION_ROUND3_RESULT,
-                   round3_sha256: str | None = None) -> dict:
+                   round3_sha256: str | None = None,
+                   round4_path: str = FLOOD_VALIDATION_ROUND4_RESULT,
+                   round4_sha256: str | None = None) -> dict:
     """{module: verdict}: each module's round-3 held-out verdict where round 3
     gave one; else its round-2 verdict; where that is not-run and the
     module's method is unchanged since round 1, round 1's verdict. A module
-    whose method round 4 replaced has none (None). Raises if any file's hash
-    is not the pinned one."""
+    whose method round 4 replaced takes round 4's verdict only (None where
+    round 4 was not-run). Fluvial's round-4 result narrows its scope note, not
+    its verdict (pre-registered). Raises if any file's hash is not the pinned
+    one."""
     r1 = _pinned_modules(path, FLOOD_VALIDATION_SHA256 if expected_sha256 is None
                          else expected_sha256)
     r2 = _pinned_modules(round2_path, FLOOD_VALIDATION_ROUND2_SHA256 if round2_sha256 is None
                          else round2_sha256)
     r3 = _pinned_modules(round3_path, FLOOD_VALIDATION_ROUND3_SHA256 if round3_sha256 is None
                          else round3_sha256)
+    r4 = _pinned_modules(round4_path, FLOOD_VALIDATION_ROUND4_SHA256 if round4_sha256 is None
+                         else round4_sha256)
     out = {}
     for m in r1.keys() | r2.keys():
         if m in ROUND4_REPLACED_METHODS:
-            out[m] = None
+            v4 = (r4.get(m) or {}).get("held_out", {}).get("verdict")
+            out[m] = v4 if v4 and v4 != "not-run" else None
             continue
         v2 = (r2.get(m) or {}).get("held_out", {}).get("verdict")
         v3 = (r3.get(m) or {}).get("held_out", {}).get("verdict")

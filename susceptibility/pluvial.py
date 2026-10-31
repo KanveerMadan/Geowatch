@@ -38,9 +38,10 @@ from susceptibility.bluespots import fill_and_spill
 from susceptibility.hydro_rasters import clip01, layer, map_summary, weighted_map
 from susceptibility.inputs import check_surface, provenance, weakest
 
-# Flood round 4 has not been run on this method yet: a real method, not
-# validated (C69's meaning). Rounds 1-3's verdicts were on the retired method.
-VALIDATION_STATUS = "experimental"
+# Flood round 4 (experiments/flood_validation/result_round4_2026-10-30.json):
+# failed -- mean within-event AUC over the qualifying test events, pluvial 0.524 (Dubai 0.491, Valencia 0.557;
+# Chennai not-run, no usable reference); bar 0.70.
+VALIDATION_STATUS = "failed"
 METHOD = "bluespot_fill_and_spill"
 CEILINGS = {"ponding_depth_m": PLUVIAL_PONDING_DEPTH_MAX_M,
             "bluespot_min_depth_m": PLUVIAL_BLUESPOT_MIN_DEPTH_M,

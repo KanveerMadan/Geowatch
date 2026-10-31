@@ -34,9 +34,10 @@ from configs.waterlogging_constants import (
 from susceptibility.hydro_rasters import clip01, layer, map_summary, weighted_map
 from susceptibility.inputs import provenance, weakest
 
-# Flood round 4 has not been run on this method yet: a real method, not
-# validated (C69's meaning). Rounds 1-3's verdicts were on the retired method.
-VALIDATION_STATUS = "experimental"
+# Flood round 4 (experiments/flood_validation/result_round4_2026-10-30.json):
+# failed -- mean within-event AUC over the qualifying test events, waterlogging 0.613 (Assam 0.406, Sylhet 0.668,
+# Kerala 0.766); bar 0.70.
+VALIDATION_STATUS = "failed"
 METHOD = "persistence_clay_relief_backwater_per_pixel_weighted"
 INPUT_LAYERS = ("hand_m", "upa_near_km2", "clay_pct", "jrc_water_freq", "s1_water_freq")
 CEILINGS = {"low_relief_hand_m": WATERLOGGING_HAND_NORMALIZATION_MAX_M,

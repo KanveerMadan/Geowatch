@@ -146,7 +146,8 @@ def test_pluvial_reads_the_design_storm_layer_and_takes_its_inputs_label():
         dem=_dem(z), impervious=imp,
         rasters=_rasters(rain_design_day_mm=np.full(z.shape, 120.0)))
     assert r["design_storm_mm"] == 120.0
-    assert r["validation_status"] == "placeholder"
+    assert r["validation_status"] == "failed"         # round 4; outranks the placeholder input
+    assert r["inputs"]["impervious"]["validation_status"] == "placeholder"
     assert set(r["inputs"]) == {"dem", "impervious", "rain_design_day_mm"}
 
 
@@ -186,7 +187,7 @@ def test_a_channel_outscores_its_hillside():
     c = hand.shape[1] // 2
     assert m[:, c].min() > m[:, c + 2].max()                  # channel above valley wall
     assert (m[:, c + 4:] == 0).all()                          # HAND >= 10 m: a hillside, 0
-    assert r["validation_status"] == "experimental"
+    assert r["validation_status"] == "failed"         # round 4
 
 
 def test_a_steep_fast_catchment_outscores_a_gentle_slow_one():

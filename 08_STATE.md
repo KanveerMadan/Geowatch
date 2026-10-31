@@ -770,6 +770,28 @@ types, each with a label in the result (`docs/flood_taxonomy.md`,
 M6–M11 appear under `outputs.susceptibility` as outputs with no value,
 label `placeholder`, and a reason naming their round.
 
+**Flood round 4, 2026-10-30 (`build/flood4`).** Pre-registered first
+(`PREREGISTRATION_ROUND4.md`), with new methods for M2–M4. Each module was
+scored once on its test events, after parameters were chosen on separate
+tuning events. **All four failed** (bar: mean within-event AUC ≥ 0.70):
+
+| Module | Test events (AUC) | Mean | Label now |
+|---|---|---|---|
+| M1 fluvial | Bihar 0.643, Assam 0.388, Pakistan 0.579 | 0.537 | **`validated`, scope narrowed** (C78) |
+| M2 pluvial | Dubai 0.491, Valencia 0.557; Chennai not-run (no usable reference) | 0.524 | **`failed`** |
+| M3 waterlogging | Assam 0.406, Sylhet 0.668, Kerala 0.766 | 0.613 | **`failed`** |
+| M4 flash flood | Valencia 0.722, Himachal 0.509, Derna 0.688 | 0.640 | **`failed`** |
+
+Fluvial's validation holds for Hanoi and Kolonnawa only. The scope note now
+records that it does not extend to the Kosi–Ganga, upper-Assam or Sindh
+floodplains. Whether a failed round 4 should also change its label is
+**C78, a decision for a person**. Pluvial must be re-tested when item 21's
+`impervious_total` exists.
+
+Result: `experiments/flood_validation/result_round4_2026-10-30.json`
+(pinned in `analysis/contract.py`). Findings C78–C81 are NEEDS FATE. Item 26
+stays partial.
+
 ---
 
 ## Decision 11 third amendment — recorded 2026-10-29
