@@ -63,9 +63,14 @@ def sleeper(seconds):
 
 
 def fake_dem(layer, transform, shape):
+    """A tilted plane with one hollow, and a no-data top-left corner (flood
+    round 4's pluvial reads the DEM, so its map's no-data comes from here)."""
     H, W = shape
     y, x = np.mgrid[0:H, 0:W]
-    return (10.0 + 0.05 * x + 0.03 * y).astype(np.float64)
+    z = (10.0 + 0.05 * x + 0.03 * y).astype(np.float64)
+    z -= 0.6 * np.exp(-(((y - H / 2) ** 2) + ((x - W / 2) ** 2)) / 8.0)
+    z[:2, :2] = np.nan
+    return z
 
 
 def fake_hydro_rasters(bbox, transform, shape, crs, ref_year):
@@ -78,7 +83,11 @@ def fake_hydro_rasters(bbox, transform, shape, crs, ref_year):
     _, x = np.mgrid[0:H, 0:W]
     vals = {"hand_m": 0.5 + 0.2 * x, "upa_near_km2": np.full(shape, 20.0),
             "slope_deg": np.full(shape, 1.0), "relief_slope_deg": np.full(shape, 6.0),
-            "rain_annual_mm": np.full(shape, 2200.0), "rain_intensity_mm_h": np.full(shape, 12.0)}
+            "rain_annual_mm": np.full(shape, 2200.0), "rain_intensity_mm_h": np.full(shape, 12.0),
+            # flood round 4's layers
+            "upa_flash_km2": np.full(shape, 5.0), "clay_pct": np.full(shape, 30.0),
+            "rain_design_day_mm": np.full(shape, 90.0),
+            "jrc_water_freq": 0.02 * x, "s1_water_freq": np.full(shape, 0.1)}
     return {"status": "available", "transform": transform, "shape": tuple(shape), "crs": crs,
             "ref_year": ref_year, "errors": {},
             "layers": {k: surface(v, *SOURCES[k], "experimental")

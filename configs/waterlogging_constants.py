@@ -43,3 +43,30 @@ WATERLOGGING_WEIGHT_GRID = [
     {"low_relief": r, "impervious": i, "flatness": f, "rainfall_climatology": 1.0}
     for r in (0.0, 0.5, 1.0) for i in (0.0, 0.5, 1.0) for f in (0.0, 0.5, 1.0)
     if (r, i, f) != (0.0, 0.0, 0.0)]
+
+
+# ── Flood round 4 (M3): persistence, clay, low relief, backwater. Fixed in
+# experiments/flood_validation/PREREGISTRATION_ROUND4.md before the method was
+# built. WATERLOGGING_HAND_NORMALIZATION_MAX_M (15 m) above is reused for
+# low_relief; the rest above belongs to the retired method
+# (susceptibility/retired_methods/waterlogging_round2.py). ──
+
+# JRC GSW monthly history ends in December 2021.
+WATERLOGGING_JRC_MONTHLY_LAST_YEAR = 2021
+WATERLOGGING_JRC_MONTHLY_FIRST_YEAR = 1984
+# Sentinel-1 open water: VV below this, over the calendar years before the event.
+WATERLOGGING_S1_WATER_DB = -18.0
+WATERLOGGING_S1_YEARS = 3
+# clay = min(1, clay % / this); SoilGrids 0-30 cm, thickness-weighted; gaps
+# filled from the focal mean within the radius.
+WATERLOGGING_CLAY_MAX_PCT = 40.0
+WATERLOGGING_CLAY_FILL_RADIUS_M = 1000.0
+# backwater = (1 - HAND / this) * log10(upa_near / BACKWATER_MIN) / BACKWATER_DECADES.
+WATERLOGGING_BACKWATER_HAND_MAX_M = 5.0
+WATERLOGGING_BACKWATER_MIN_KM2 = 100.0
+WATERLOGGING_BACKWATER_DECADES = 2.0
+
+WATERLOGGING_R4_WEIGHTS = {"persistence": 1.0, "clay": 1.0, "low_relief": 1.0, "backwater": 1.0}
+WATERLOGGING_R4_WEIGHT_GRID = [
+    {"persistence": p, "clay": c, "low_relief": r, "backwater": b}
+    for p in (1.0, 2.0) for c in (0.0, 0.5, 1.0) for r in (0.5, 1.0) for b in (0.0, 0.5, 1.0)]

@@ -12,7 +12,9 @@ import pytest
 from configs import flash_flood_constants as ffc
 from configs import fluvial_constants as fc
 from configs import waterlogging_constants as wc
-from susceptibility import flash_flood, fluvial, hydro_rasters, waterlogging
+from susceptibility import fluvial, hydro_rasters
+from susceptibility.retired_methods import flash_flood_round2 as flash_flood
+from susceptibility.retired_methods import waterlogging_round2 as waterlogging
 from susceptibility.inputs import surface
 
 
@@ -158,9 +160,9 @@ def test_compute_pixels_uses_a_hard_timeout(monkeypatch):
 
 
 def _fake_terrain(monkeypatch):
-    def fake_pixels(img, transform, shape, crs, label):
+    def fake_pixels(img, transform, shape, crs, label, timeout=None):
         return {n: np.ones(shape) for n in ("hand_m", "upa_near_km2", "slope_deg",
-                                             "relief_slope_deg")}
+                                             "relief_slope_deg", "upa_flash_km2", "clay_pct")}
     monkeypatch.setattr(hydro_rasters, "compute_pixels", fake_pixels)
     monkeypatch.setattr(hydro_rasters, "_terrain_image", lambda bbox: None)
     monkeypatch.setattr(hydro_rasters, "_rain_images",
@@ -177,8 +179,10 @@ def test_rainfall_failure_loses_only_that_layer(monkeypatch):
         return np.ones(shape)
 
     monkeypatch.setattr(hydro_rasters, "_rain_layer", fake_rain)
-    out = hydro_rasters.fetch_hydro_rasters((0, 0, 1, 1), None, (2, 2), "EPSG:32631", 2024)
-    assert set(out["layers"]) == set(hydro_rasters.LAYERS) - {"rain_intensity_mm_h"}
+    out = hydro_rasters.fetch_hydro_rasters((0, 0, 1, 1), None, (2, 2), "EPSG:32631", 2024,
+                                            water_history=False)
+    assert set(out["layers"]) == (set(hydro_rasters.LAYERS) - {"rain_intensity_mm_h"}
+                                  - set(hydro_rasters.WATER_HISTORY_LAYERS))
     assert "TimeoutError" in out["errors"]["rain_intensity_mm_h"]
 
 
@@ -188,9 +192,12 @@ def test_only_the_requested_rainfall_layers_are_fetched(monkeypatch):
     monkeypatch.setattr(hydro_rasters, "_rain_layer",
                         lambda img, name, *a: asked.append(name) or np.ones((2, 2)))
     out = hydro_rasters.fetch_hydro_rasters((0, 0, 1, 1), None, (2, 2), "EPSG:32631", 2024,
-                                            rainfall=("rain_intensity_mm_h",))
+                                            rainfall=("rain_intensity_mm_h",),
+                                            water_history=False)
     assert asked == ["rain_intensity_mm_h"]
-    assert out["errors"] == {"rain_annual_mm": "not requested"}
+    assert out["errors"] == {n: "not requested" for n in
+                             ("rain_annual_mm", "rain_design_day_mm",
+                              *hydro_rasters.WATER_HISTORY_LAYERS)}
 
 
 def test_rainfall_maps_nearest_from_its_native_grid():

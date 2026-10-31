@@ -160,9 +160,9 @@ def built_area_surface(bbox):
 
 def scalar_score(module: str, bbox) -> float | None:
     from susceptibility.coastal import compute_coastal_susceptibility
-    from susceptibility.flash_flood import compute_flash_flood_susceptibility
+    from susceptibility.retired_methods.flash_flood_round2 import compute_flash_flood_susceptibility
     from susceptibility.fluvial import compute_fluvial_susceptibility
-    from susceptibility.waterlogging import compute_waterlogging_susceptibility
+    from susceptibility.retired_methods.waterlogging_round2 import compute_waterlogging_susceptibility
     c = _contexts(bbox)
     if module == "fluvial":
         r = compute_fluvial_susceptibility(c["hand"]())
@@ -198,7 +198,7 @@ def run_pooled(module: str, sites: dict, reference) -> dict:
 def run_pluvial() -> dict:
     import ee
     from susceptibility.inputs import hydrology_surfaces
-    from susceptibility.pluvial import compute_pluvial_susceptibility
+    from susceptibility.retired_methods.pluvial_round1 import compute_pluvial_susceptibility
     from vector.roads import load_road_layer
     groups, per_site = [], {}
     for name, site in PLUVIAL_SITES.items():

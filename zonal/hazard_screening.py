@@ -60,7 +60,7 @@ from ingestion.sentinel2 import aoi_from_bbox
 from ingestion.gee_client import initialize_gee
 from susceptibility.fluvial import compute_fluvial_susceptibility
 from susceptibility.coastal import compute_coastal_susceptibility
-from susceptibility.flash_flood import compute_flash_flood_susceptibility
+from susceptibility.retired_methods.flash_flood_round2 import compute_flash_flood_susceptibility
 from susceptibility.hydro_rasters import fetch_hydro_rasters, utm_grid
 
 NOT_CALCULATED_REASON = (

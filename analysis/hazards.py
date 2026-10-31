@@ -4,9 +4,11 @@ as they are: susceptibility/ is not edited here).
 
 Each module's output becomes one contract output. Its label is the worst of
 the module's own label, its pinned Tier 2 verdict, and its inputs' labels
-(analysis.contract.hazard_label). Pluvial, flash flood and waterlogging are
-`failed` (round 3, boxes on the mapped flood); coastal is `failed` (round 2).
-Fluvial, flash flood and waterlogging are per-pixel since item 26 Phase 1a. Fluvial reads `validated`,
+(analysis.contract.hazard_label). Pluvial, flash flood and waterlogging run
+flood round 4's new methods (bluespot fill-and-spill; persistence, clay,
+relief and backwater; stream power on valley floors), all per-pixel on the
+hydrology grid, and round 4 failed all three (rounds 1-3's verdicts were on
+the retired methods). Coastal is `failed` (round 2). Fluvial reads `validated`,
 with its scope note, only while it runs exactly the configuration round 2
 validated (C70, analysis.contract.VALIDATED_CONFIGS); otherwise its
 experimental raster inputs cap it.
@@ -34,9 +36,11 @@ CONTEXT_SOURCES = {
 # Which context layers each module reads. Fluvial, flash flood and
 # waterlogging are per-pixel since item 26 Phase 1a: their input is the
 # hydro_rasters stage (fluvial still reads `hand` for its connectivity caveat
-# only, so a missing `hand` does not withhold its score).
+# only, so a missing `hand` does not withhold its score). Since flood round 4
+# pluvial reads it too (its design storm), with the DEM and the stand-in
+# surfaces.
 MODULE_CONTEXT = {
-    "pluvial": ("rainfall", "relative_elevation"),
+    "pluvial": ("hydro_rasters",),
     "fluvial": ("hydro_rasters",),
     "coastal": ("coastline", "fabdem"),
     "flash_flood": ("hydro_rasters",),
@@ -102,9 +106,11 @@ def applicability_for(ctx: dict, impervious: dict | None) -> dict:
 
 
 def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict, rasters: dict = None) -> dict:
-    """Run the five modules. `surfaces`: impervious, infiltration, conduits
-    (declared surfaces) and terrain ({name: surface}); any may be absent.
-    `rasters`: susceptibility.hydro_rasters output on the same grid, or None."""
+    """Run the five modules. `surfaces`: dem, impervious, conduits (declared
+    surfaces); any may be absent. `rasters`: susceptibility.hydro_rasters
+    output on the same grid, or None. `waterway_dist` is no longer read by
+    any module (round 4's pluvial routes on the DEM); it is kept for the
+    caller's data-source record."""
     from susceptibility.coastal import compute_coastal_susceptibility
     from susceptibility.flash_flood import compute_flash_flood_susceptibility
     from susceptibility.fluvial import compute_fluvial_susceptibility
@@ -112,18 +118,13 @@ def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict, rasters: di
     from susceptibility.waterlogging import compute_waterlogging_susceptibility
     return {
         "pluvial": compute_pluvial_susceptibility(
-            impervious=surfaces.get("impervious"), infiltration=surfaces.get("infiltration"),
-            conduits=surfaces.get("conduits"), terrain=surfaces.get("terrain"),
-            waterway_dist_map=waterway_dist,
-            relative_elevation_score=ctx["relative_elevation"].get("score"),
-            rainfall_mean_annual_mm=ctx["rainfall"].get("mean_annual_mm"),
-            applicability=app),
+            dem=surfaces.get("dem"), impervious=surfaces.get("impervious"),
+            conduits=surfaces.get("conduits"), rasters=rasters, applicability=app),
         "fluvial": compute_fluvial_susceptibility(rasters, ctx.get("hand"), applicability=app),
         "coastal": compute_coastal_susceptibility(ctx["coastline"], ctx["fabdem"],
                                                   applicability=app),
         "flash_flood": compute_flash_flood_susceptibility(rasters, applicability=app),
-        "waterlogging": compute_waterlogging_susceptibility(rasters, surfaces.get("impervious"),
-                                                            applicability=app),
+        "waterlogging": compute_waterlogging_susceptibility(rasters, applicability=app),
     }
 
 
@@ -136,8 +137,6 @@ def _sources(name: str, mod: dict, has_waterways: bool) -> list:
     out = [f"{i['source']} ({k})" for k, i in (mod.get("inputs") or {}).items()
            if isinstance(i, dict) and i.get("source")]
     out += [CONTEXT_SOURCES[c] for c in MODULE_CONTEXT[name]]
-    if name == "pluvial" and has_waterways:
-        out.append("OpenStreetMap waterway=* / natural=water (Overpass)")
     return out
 
 
@@ -148,7 +147,7 @@ INCOMPLETE = ("timeout", "failed")
 
 def incomplete_inputs(name: str, ctx: dict, stage_status: dict | None = None) -> dict:
     """{input: {"status", "error"}} for every input of module `name` whose
-    stage timed out or failed. Pluvial's spatial inputs are stages too."""
+    stage timed out or failed. Pluvial's DEM is a stage too."""
     out = {}
     for c in MODULE_CONTEXT[name]:
         st = (ctx.get(c) or {}).get("status")
@@ -156,7 +155,7 @@ def incomplete_inputs(name: str, ctx: dict, stage_status: dict | None = None) ->
             out[c] = {"status": st, "error": ctx[c].get("error")}
     if name == "pluvial":
         for k, v in (stage_status or {}).items():
-            if k in ("s2_composite", "dem", "waterways") and v.get("status") in INCOMPLETE:
+            if k == "dem" and v.get("status") in INCOMPLETE:
                 out[k] = {"status": v["status"], "error": v.get("error")}
     return out
 
@@ -216,4 +215,15 @@ def hazard_outputs(modules: dict, mv: dict, verdicts: dict, *, has_waterways: bo
         out[name] = C.output(round(float(score), 4), validation_status=label, coverage=cov,
                              data_sources=_sources(name, mod, has_waterways),
                              model_version=mv, **extra)
+    out.update(unbuilt_outputs(mv))
     return out
+
+
+def unbuilt_outputs(mv: dict) -> dict:
+    """The flood types no module computes (docs/flood_taxonomy.md): each is an
+    output with no value, so every type in the taxonomy has a label."""
+    ids = {t["module"]: i for i, t in C.FLOOD_TAXONOMY.items()}
+    return {m: C.absent(status, reason=reason, validation_status=label,
+                        data_sources=["none: not computed (docs/flood_taxonomy.md)"],
+                        model_version=mv, flood_type=ids[m], tier=None, spatial=False)
+            for m, (status, label, reason) in C.UNBUILT_FLOOD_TYPES.items()}

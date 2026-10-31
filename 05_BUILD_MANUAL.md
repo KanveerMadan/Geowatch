@@ -2266,6 +2266,87 @@ result.
   Suite on `master` at `94e0658`: **923 passed**. After this branch: **941
   passed** (18 new), with the same 2 Earth Engine-auth failures.
 
+#### Flood round 4, on `build/flood4` (2026-10-30) — item 26 stays partial
+
+- **Step 0 — the flood taxonomy.** Eleven types, M1–M11
+  (`docs/flood_taxonomy.md`). Each has an output and a label in the result
+  (`analysis/contract.FLOOD_TAXONOMY`). The unbuilt types M6–M11 are
+  `not_computed` (tsunami `not_applicable`), labelled `placeholder`.
+- **Step 1 — pre-registration** (`experiments/flood_validation/PREREGISTRATION_ROUND4.md`,
+  SHA256 `4555ce1a…`, commit `a772336`). It was committed before the new
+  methods were built and before any box or score existed. It fixes:
+  - **The methods:** for M2, M3 and M4, with constants and tuning grids.
+  - **The test events:** dates, extents and references, all checked live.
+  - **The tuning events:** round 3's boxes, none a test event.
+  - **The bar:** round 3's (mean within-event AUC ≥ 0.70 over ≥ 2
+    qualifying events, ≥ 50 flooded and ≥ 50 dry cells), with round 3's box
+    rule.
+
+  References:
+  - **Copernicus EMS:** Valencia EMSR773 AOI03 (DEL), and Derna EMSR696
+    AOI01 (GRA: no DEL exists).
+  - **UNOSAT:** Pakistan FL20220808PAK (Sentinel-2, 31 Aug 2022) and Sylhet
+    FL20220525BGD (RCM, 18 Jun 2022).
+  - **Sentinel-1** everywhere else, against a same-orbit Jan–Mar dry-season
+    baseline. Inside a 20 km search square on a named place, the box goes on
+    the S1 flood centroid.
+
+  Chennai 2023 was not-run before any score: it has no S1 image to day +21,
+  no EMS or UNOSAT product, and NRSC's map exists only as a PDF.
+- **Step 2 — the new methods**, each built with synthetic tests
+  (`tests/test_flood_round4_methods.py`, 23). Each test has an answer known
+  by construction: a hollow that must fill, one that cannot, a two-hollow
+  cascade that conserves water, a channel that outscores its hillside.
+  - **M2 pluvial:** `susceptibility/bluespots.py` finds the hollows
+    (priority-flood, ≥ 0.10 m deep) and runs fill-and-spill upstream first.
+    The score combines ponding depth and the runoff path. The runoff
+    coefficient comes from the footprint and road stand-ins; the design
+    storm is the CHIRPS annual-maximum day.
+  - **M3 waterlogging:** standing-water persistence (JRC monthly history and
+    Sentinel-1, years before the event only), SoilGrids clay, low relief,
+    and backwater beside a large river.
+  - **M4 flash flood:** response time from Hack's and Kirpich's formulas
+    sets the IMERG intensity, which gives a rational-method discharge and a
+    unit stream power. The score is stream power on valley floors;
+    hillsides score 0.
+
+  The retired methods are kept verbatim in `susceptibility/retired_methods/`
+  for rounds 1–3 and `pipeline.py`. `hydro_rasters` gained five layers
+  (300 m drainage, clay, design storm, two water-history layers). The
+  harness is `harness_round4.py`.
+- **Step 3 — the run, once.** Parameters were chosen on the tuning events
+  first:
+  - pluvial: runoff_path 0.5, C_perv 0.50 (tuning mean 0.679);
+  - waterlogging: low_relief 0.5, the rest 1 (0.521);
+  - flash flood: H_max 5 m, k 0.5 (0.494). Its tuning events are flat
+    river plains (C72), so they say little about this method.
+
+  Then each test event was scored once. **All four modules failed.**
+
+  | Module | Test events (AUC; flooded / dry cells) | Mean | Verdict |
+  |---|---|---|---|
+  | M1 fluvial (unchanged) | Bihar 0.643 (8,923 / 8,786); Assam 0.388 (5,327 / 13,059); Pakistan 0.579 (10,153 / 7,570) | **0.537** | **failed** |
+  | M2 pluvial | Dubai 0.491 (591 / 17,889); Valencia 0.557 (2,847 / 14,924); Chennai not-run | **0.524** | **failed** |
+  | M3 waterlogging | Assam 0.406; Sylhet 0.668 (8,872 / 8,564); Kerala 0.766 (10,866 / 7,224) | **0.613** | **failed** |
+  | M4 flash flood | Valencia 0.722; Himachal 0.509 (520 / 18,227); Derna 0.688 (1,767 / 14,275) | **0.640** | **failed** |
+
+  Pooled diagnostics (no verdict): fluvial 0.471, pluvial 0.552,
+  waterlogging 0.531, flash flood **0.732**.
+
+  Labels and contract (round 4 pinned by hash, `b9f39615…`):
+  - Pluvial, waterlogging and flash flood are **`failed`**, in the contract
+    and in each module's own label.
+  - **Fluvial keeps `validated`, scoped**, as pre-registered. Its scope note
+    is **narrowed**: the three round-4 events and regions are recorded as
+    not covered, with their AUCs. Whether the label should change too is
+    **C78**.
+  - Pluvial must be re-tested when item 21's `impervious_total` exists: both
+    test boxes ran on OSM footprints, the stand-in.
+
+  Candidate findings **C78–C81**, NEEDS FATE. Suite on `master` at
+  `c23ed2c`: **941 passed**. After this branch: **979 passed**, with the
+  same 2 Earth Engine-auth failures.
+
 ---
 
 # PART 5 — Validation discipline 🔓

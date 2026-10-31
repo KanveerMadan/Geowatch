@@ -16,10 +16,10 @@ import pytest
 from configs import flash_flood_constants as ffc, fluvial_constants as fc
 from configs import waterlogging_constants as wc
 from susceptibility.coastal import compute_coastal_susceptibility
-from susceptibility.flash_flood import compute_flash_flood_susceptibility
+from susceptibility.retired_methods.flash_flood_round2 import compute_flash_flood_susceptibility
 from susceptibility.fluvial import compute_fluvial_susceptibility
 from susceptibility.inputs import surface
-from susceptibility.waterlogging import compute_waterlogging_susceptibility
+from susceptibility.retired_methods.waterlogging_round2 import compute_waterlogging_susceptibility
 
 RESULT = (pathlib.Path(__file__).resolve().parent.parent
           / "experiments/flood_validation/result_round2_2026-10-28.json")

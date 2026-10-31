@@ -141,13 +141,14 @@ def derive_osm_claims(layer, modules: dict) -> dict:
     layer and the flood modules have run, from what they actually did."""
     fs = layer.fetch_status("all")
     retrieved = [g for g, n in (layer.fetch.get("clauses") or {}).items() if n is not None]
-    pluvial_used = modules["pluvial"].get("components_used", [])
+    pluvial_inputs = modules["pluvial"].get("inputs") or {}
     return {
         "osm_available": bool(layer.ways) and (bool(retrieved) or not layer.fetch.get("clauses")),
         "highway_ways": len(layer.ways),
         "highway_fetch": fs,
-        "road_conduits_used_by_pluvial": "road_conduit" in pluvial_used,
-        "claims_derived_from": "outcome (layer as built, pluvial components used)",
+        # flood round 4: road space is part of pluvial's impervious share
+        "road_conduits_used_by_pluvial": "conduits" in pluvial_inputs,
+        "claims_derived_from": "outcome (layer as built, pluvial inputs used)",
     }
 
 
@@ -248,8 +249,8 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
     from configs.pluvial_constants import HYDROLOGY_PIXEL_M
     from vector.coverage import score_layer
     from vector.fractions import PIXEL_M, grid_for
-    from susceptibility.inputs import road_conduits
-    from susceptibility.terrain import terrain_surfaces
+    from susceptibility.inputs import road_conduits, surface
+    from susceptibility.terrain import FABDEM_ASSET, terrain_surfaces
 
     t0 = time.time()
     producer = producer or StandInFractions()
@@ -301,6 +302,9 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
     do = stage("dem", deps["fetch_dem"], layer, ht, (H_, W_))
     if do["status"] == "ok":
         surfaces["terrain"] = terrain_surfaces(do["value"], HYDROLOGY_PIXEL_M)
+        # flood round 4: pluvial routes water on the elevation itself
+        surfaces["dem"] = surface(do["value"], FABDEM_ASSET, "bilinear, hydrology grid",
+                                  "experimental")
     wo = stage("waterways", deps["fetch_waterways"], name, tuple(bbox))
     waterway = None
     if wo["status"] == "ok":

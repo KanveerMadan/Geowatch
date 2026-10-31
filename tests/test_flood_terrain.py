@@ -8,7 +8,9 @@ import pytest
 
 from configs.pluvial_constants import COMPONENT_QUALITY, COMPONENT_WEIGHTS
 from susceptibility.inputs import surface
-from susceptibility.pluvial import compute_pluvial_susceptibility
+# the round-1 pluvial method these terrain inputs were built for (retired in
+# flood round 4, which routes on the DEM itself: tests/test_flood_round4_methods.py)
+from susceptibility.retired_methods.pluvial_round1 import compute_pluvial_susceptibility
 from susceptibility.terrain import (TERRAIN_COMPONENTS, d8_receivers, drains_to_edge,
                                     flow_accumulation, slope_deg, terrain_surfaces, tpi)
 

@@ -133,18 +133,21 @@ def _fetch(url: str, path: str) -> bytes:
         return f.read()
 
 
-def ems_product(code: str, aoi: int, monitoring: int) -> dict:
+def ems_product(code: str, aoi: int, monitoring: int, product_type: str = "DEL") -> dict:
     """The DEL product (activation, AOI number, monitoring number) with its
-    extent, images, and observedEventA layer URL."""
+    extent, images, and observedEventA layer URL. Round 4: `product_type`
+    "GRA" where an activation has no DEL (Derna, EMSR696) -- a grading
+    product's observedEventA carries the same flood notations."""
     from shapely import wkt
     act = json.loads(_fetch(EMS_API.format(code=code), os.path.join(CACHE, "ems", f"{code}.json")))
     act = act["results"][0]
     a = next(a for a in act["aois"] if a["number"] == aoi)
     p = next(p for p in a["products"]
-             if p["type"] == "DEL" and (p.get("monitoringNumber") or 0) == monitoring)
+             if p["type"] == product_type and (p.get("monitoringNumber") or 0) == monitoring)
     layer = next(l for l in p["layers"]
                  if "_observedEventA" in l["name"] and "previous" not in l["name"])
     return {"code": code, "aoi": aoi, "aoi_name": a["name"], "monitoring": monitoring,
+            "product_type": product_type,
             "event_time": act["eventTime"], "extent": wkt.loads(p["extent"]),
             "images": [{"sensor": i["sensorName"], "resolution_class": i["resolutionClass"],
                         "acquired": i["acquisitionTime"]} for i in p["images"]],
@@ -183,7 +186,8 @@ def ems_reference(product: dict, bbox, transform, shape, crs: str) -> dict:
     return {"flooded": cover >= COVER_MIN, "valid": (inside >= COVER_MIN) & not_permanent(occ),
             "block": 1,
             "meta": {"source": f"Copernicus EMS {product['code']} AOI{product['aoi']:02d} "
-                               f"({product['aoi_name']}) DEL monitoring {product['monitoring']}",
+                               f"({product['aoi_name']}) {product.get('product_type', 'DEL')} "
+                               f"monitoring {product['monitoring']}",
                      "images": product["images"], "resolution": "per sensor, see images",
                      "layer_url": product["layer_url"], "layer_sha256": sha,
                      "notation_counts": counts, "flooded_notations": list(EMS_FLOODED_NOTATIONS)}}
@@ -269,3 +273,124 @@ def gfd_reference(event_id: int, transform, shape, crs) -> dict:
             "block": EVAL_BLOCK_GFD,
             "meta": {"source": f"{GFD_ASSET} id {event_id}", "resolution": "250 m MODIS",
                      "dates": f"{t0} to {t1}", "evaluation_block_m": EVAL_BLOCK_GFD * 30}}
+
+
+# ── round 4: UNOSAT products (PREREGISTRATION_ROUND4.md §References) ─────
+
+UNOSAT_DIR = os.path.join(CACHE, "unosat")
+# {key: (archive folder, file stem, download URL, sensor, date)}
+UNOSAT_PRODUCTS = {
+    "FL20220808PAK_S2_20220831": (
+        "FL20220808PAK_SHP", "S2_20220831_{}_Sindh",
+        "https://unosat.org/static/unosat_filesystem/3348/FL20220808PAK_SHP.zip",
+        "Sentinel-2", "2022-08-31"),
+    "FL20220525BGD_RCM1_20220618": (
+        "FL20220525BGD_SHP", "RCM1_20220618_{}_Sylhet",
+        "https://unosat-maps.web.cern.ch/BD/FL20220525BGD/FL20220525BGD_SHP.zip",
+        "RCM-1", "2022-06-18"),
+}
+
+
+def _unosat_path(key: str, layer: str) -> str:
+    folder, stem, *_ = UNOSAT_PRODUCTS[key]
+    return os.path.join(UNOSAT_DIR, folder, stem.format(layer) + ".shp")
+
+
+def unosat_product(key: str, bbox=None) -> dict:
+    """The product's analysis extent and its FloodExtent polygons (EPSG:4326;
+    only those meeting `bbox`, clipped to it with a margin, when given). The
+    shapefiles are extracted from UNOSAT's archive into UNOSAT_DIR beforehand
+    (the archives are 285-337 MB; see the round-4 result's reference meta)."""
+    import geopandas as gpd
+    from shapely.geometry import box
+    from shapely.ops import unary_union
+    folder, stem, url, sensor, date = UNOSAT_PRODUCTS[key]
+    ext = gpd.read_file(_unosat_path(key, "AnalysisExtent")).to_crs(4326)
+    flood = gpd.read_file(_unosat_path(key, "FloodExtent"),
+                          bbox=None if bbox is None else tuple(bbox)).to_crs(4326)
+    if "Water_Clas" in flood.columns:
+        flood = flood[flood["Water_Clas"] == "Flood Water"]
+    polys = list(flood.geometry)
+    if bbox is not None:
+        w, s, e, n = bbox
+        clip = box(w - 0.01, s - 0.01, e + 0.01, n + 0.01)
+        polys = [g.intersection(clip) for g in polys]
+    with open(_unosat_path(key, "FloodExtent"), "rb") as fh:
+        sha = hashlib.sha256(fh.read()).hexdigest()
+    return {"key": key, "extent": unary_union(list(ext.geometry)), "polygons": polys,
+            "sensor": sensor, "date": date, "url": url, "flood_layer_sha256": sha}
+
+
+def unosat_reference(product: dict, bbox, transform, shape, crs: str) -> dict:
+    from shapely.geometry import box
+    region = product["extent"].intersection(box(*bbox))
+    cover = coverage(_to_crs(product["polygons"], crs), transform, shape)
+    inside = coverage(_to_crs([region], crs), transform, shape)
+    occ = jrc_occurrence(transform, shape, crs)
+    return {"flooded": cover >= COVER_MIN, "valid": (inside >= COVER_MIN) & not_permanent(occ),
+            "block": 1,
+            "meta": {"source": f"UNOSAT {product['key']} FloodExtent ({product['sensor']} "
+                               f"{product['date']}), 'Flood Water'",
+                     "resolution": product["sensor"], "url": product["url"],
+                     "flood_layer_sha256": product["flood_layer_sha256"]}}
+
+
+# ── round 4: Sentinel-1 against a dry-season baseline ──────────────────
+
+S1_R4_WINDOW_DAYS = 13            # day 0 to day 12, as round 2's coastal window
+S1_R4_BASELINE = ("01-01", "04-01")   # 1 Jan - 31 Mar of the event year
+
+
+def s1_event_pass(bbox, event: str) -> dict:
+    """The earliest acquisition date in the round-4 window over `bbox`, and
+    its relative orbit(s). Fixed once per event on its search square, so the
+    box's reference reads the same images."""
+    import ee
+    col = _s1_col(ee.Geometry.Rectangle(list(bbox)))
+    e = datetime.date.fromisoformat(event)
+    win = col.filterDate(e.isoformat(), (e + datetime.timedelta(days=S1_R4_WINDOW_DAYS)).isoformat())
+    ts = _info(lambda: win.aggregate_array("system:time_start").getInfo(), "s1 dates")
+    d = pick_event_date(ts, event, S1_R4_WINDOW_DAYS)
+    if d is None:
+        raise LookupError(f"no Sentinel-1 image in {event} + {S1_R4_WINDOW_DAYS} d")
+    ev = win.filterDate(d.isoformat(), (d + datetime.timedelta(days=1)).isoformat())
+    orbits = _info(lambda: ev.aggregate_array("relativeOrbitNumber_start").distinct().getInfo(),
+                   "s1 orbits")
+    return {"date": d.isoformat(), "orbits": sorted(orbits), "days_after_event": (d - e).days}
+
+
+def _s1_col(aoi):
+    import ee
+    return (ee.ImageCollection(S1_COLLECTION).filterBounds(aoi)
+            .filter(ee.Filter.eq("instrumentMode", S1_INSTRUMENT_MODE))
+            .filter(ee.Filter.listContains("transmitterReceiverPolarisation", S1_POLARIZATION))
+            .select(S1_POLARIZATION))
+
+
+def s1_dry_reference(bbox, event: str, pas: dict, transform, shape, crs: str) -> dict:
+    """Flooded = >= half the cell's 10 m pixels with VV(event pass) minus the
+    same-orbit 1 Jan - 31 Mar median of the event year <= the drop threshold."""
+    import ee
+    col = _s1_col(ee.Geometry.Rectangle(list(bbox)))
+    d = datetime.date.fromisoformat(pas["date"])
+    ev = col.filterDate(d.isoformat(), (d + datetime.timedelta(days=1)).isoformat()) \
+        .filter(ee.Filter.inList("relativeOrbitNumber_start", pas["orbits"]))
+    y = event[:4]
+    base = col.filterDate(f"{y}-{S1_R4_BASELINE[0]}", f"{y}-{S1_R4_BASELINE[1]}") \
+        .filter(ee.Filter.inList("relativeOrbitNumber_start", pas["orbits"]))
+    n_ev, n_base = _info(lambda: ee.List([ev.size(), base.size()]).getInfo(), "s1 counts")
+    if n_ev == 0 or n_base == 0:
+        raise LookupError(f"S1 over {bbox}: {n_ev} event / {n_base} baseline images")
+    drop = ev.median().subtract(base.median()).lte(S1_VV_DROP_THRESHOLD_DB)
+    share = (drop.reproject(crs=crs, scale=10)
+             .reduceResolution(ee.Reducer.mean(), maxPixels=64).rename("share"))
+    share = _pixels(share, transform, shape, crs, "s1 share")["share"]
+    occ = jrc_occurrence(transform, shape, crs)
+    return {"flooded": share >= COVER_MIN, "valid": np.isfinite(share) & not_permanent(occ),
+            "block": 1,
+            "meta": {"source": f"{S1_COLLECTION} {S1_INSTRUMENT_MODE} {S1_POLARIZATION}, drop "
+                               f"<= {S1_VV_DROP_THRESHOLD_DB} dB vs same-orbit {y} Jan-Mar median",
+                     "resolution": "10 m -> 30 m", "event_image_date": pas["date"],
+                     "days_after_event": pas["days_after_event"],
+                     "relative_orbits": pas["orbits"], "event_images": n_ev,
+                     "baseline_images": n_base}}
