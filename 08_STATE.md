@@ -755,7 +755,7 @@ types, each with a label in the result (`docs/flood_taxonomy.md`,
 
 | Id | Type | Status | Round |
 |---|---|---|---|
-| M1 | fluvial | validated (scoped) | re-tested in round 4, method unchanged |
+| M1 | fluvial | experimental (C78: passed round 2, failed round 4) | re-tested in round 4, method unchanged |
 | M2 | pluvial | new method: bluespots + fill-and-spill | 4 |
 | M3 | waterlogging | new method: standing-water persistence, clay, low relief, backwater | 4 |
 | M4 | flash flood | new method: short-duration intensity, response time, stream power | 4 |
@@ -777,19 +777,19 @@ tuning events. **All four failed** (bar: mean within-event AUC ≥ 0.70):
 
 | Module | Test events (AUC) | Mean | Label now |
 |---|---|---|---|
-| M1 fluvial | Bihar 0.643, Assam 0.388, Pakistan 0.579 | 0.537 | **`validated`, scope narrowed** (C78) |
+| M1 fluvial | Bihar 0.643, Assam 0.388, Pakistan 0.579 | 0.537 | **`experimental`** (C78, decided 2026-10-31) |
 | M2 pluvial | Dubai 0.491, Valencia 0.557; Chennai not-run (no usable reference) | 0.524 | **`failed`** |
 | M3 waterlogging | Assam 0.406, Sylhet 0.668, Kerala 0.766 | 0.613 | **`failed`** |
 | M4 flash flood | Valencia 0.722, Himachal 0.509, Derna 0.688 | 0.640 | **`failed`** |
 
-Fluvial's validation holds for Hanoi and Kolonnawa only. The scope note now
-records that it does not extend to the Kosi–Ganga, upper-Assam or Sindh
-floodplains. Whether a failed round 4 should also change its label is
-**C78, a decision for a person**. Pluvial must be re-tested when item 21's
+**Fates, 2026-10-31 (user):** C78 → fluvial's label is **`experimental`**,
+with the scope note "passed Hanoi, Kolonnawa; failed Bihar, Assam, Sindh
+(round 4)". **No output in the project is `validated` now.** C79, C80 and
+C81 are confirmed as recorded. Pluvial must be re-tested when item 21's
 `impervious_total` exists.
 
 Result: `experiments/flood_validation/result_round4_2026-10-30.json`
-(pinned in `analysis/contract.py`). Findings C78–C81 are NEEDS FATE. Item 26
+(pinned in `analysis/contract.py`). Findings C78–C81: fates assigned 2026-10-31 (above). Item 26
 stays partial.
 
 ---

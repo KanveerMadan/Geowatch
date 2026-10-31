@@ -8,10 +8,10 @@ the module's own label, its pinned Tier 2 verdict, and its inputs' labels
 flood round 4's new methods (bluespot fill-and-spill; persistence, clay,
 relief and backwater; stream power on valley floors), all per-pixel on the
 hydrology grid, and round 4 failed all three (rounds 1-3's verdicts were on
-the retired methods). Coastal is `failed` (round 2). Fluvial reads `validated`,
-with its scope note, only while it runs exactly the configuration round 2
-validated (C70, analysis.contract.VALIDATED_CONFIGS); otherwise its
-experimental raster inputs cap it.
+the retired methods). Coastal is `failed` (round 2). Fluvial is `experimental`
+(C78: passed round 2, failed round 4), with its scope note on every output.
+The C70 rule (analysis.contract.VALIDATED_CONFIGS) keeps `validated`, scoped,
+for a module that runs exactly a validated configuration; none does now.
 """
 from __future__ import annotations
 
@@ -185,13 +185,15 @@ def hazard_outputs(modules: dict, mv: dict, verdicts: dict, *, has_waterways: bo
                 data_sources=_sources(name, mod, has_waterways), model_version=mv,
                 incomplete_inputs=bad, tier=None, module_status=mod.get("status"),
                 score_from_partial_inputs_withheld=score is not None,
-                tier2_verdict=verdicts.get(name), spatial=False)
+                tier2_verdict=verdicts.get(name), scope_note=C.SCOPE_NOTES.get(name),
+                spatial=False)
             continue
         extra = {"module_status": mod.get("status"),
                  "validated_scope": scope,
                  "tier": mod.get("aoi_mean_class") if score is not None else None,
                  "tier_scale": "very_low < low < moderate < high < very_high",
                  "tier2_verdict": verdicts.get(name),
+                 "scope_note": C.SCOPE_NOTES.get(name),
                  "spatial": bool(mod.get("susceptibility_map") is not None),
                  "components_used": mod.get("components_used", []),
                  "components_excluded": mod.get("components_excluded", []),

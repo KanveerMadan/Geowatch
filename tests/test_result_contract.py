@@ -45,8 +45,8 @@ def test_pinned_tier2_verdicts():
     flood and waterlogging run flood round 4's new methods, and round 4 failed
     all three; rounds 1-3 tested the retired ones."""
     v = C.flood_verdicts()
-    assert v == {"pluvial": "failed", "fluvial": "validated", "waterlogging": "failed",
-                 "coastal": "failed", "flash_flood": "failed"}
+    assert v == {"pluvial": "failed", "fluvial": None, "waterlogging": "failed",
+                 "coastal": "failed", "flash_flood": "failed"}      # fluvial: C78
 
 
 def test_a_round4_not_run_leaves_a_replaced_method_unverdicted(tmp_path):
@@ -56,11 +56,19 @@ def test_a_round4_not_run_leaves_a_replaced_method_unverdicted(tmp_path):
                                          "fluvial": {"held_out": {"verdict": "failed"}}}}))
     v = C.flood_verdicts(round4_path=str(p), round4_sha256="")
     assert v["pluvial"] is None and v["flash_flood"] is None
-    assert v["fluvial"] == "validated"           # round 4 narrows its scope, not its verdict
+    assert v["fluvial"] is None                  # C78: decided, not read from the rounds
 
 
-def test_round4_narrows_fluvials_scope_and_keeps_its_label():
-    sc = C.VALIDATED_CONFIGS["fluvial"]["scope"]
+def test_c78_withdraws_fluvials_validation_and_keeps_the_record():
+    assert "fluvial" not in C.VALIDATED_CONFIGS
+    assert C.SCOPE_NOTES["fluvial"] == \
+        "passed Hanoi, Kolonnawa; failed Bihar, Assam, Sindh (round 4)"
+    from susceptibility.fluvial import VALIDATION_STATUS
+    assert VALIDATION_STATUS == "experimental"
+    o = _hz(_fluvial())
+    assert o["validation_status"] == "experimental" and o["validated_scope"] is None
+    assert o["scope_note"] == C.SCOPE_NOTES["fluvial"] and o["tier2_verdict"] is None
+    sc = C.WITHDRAWN_VALIDATIONS["fluvial"]["scope"]
     nc = sc["not_covered"]
     assert nc["round4_mean_auc"] == 0.5365 and len(nc["events"]) == 3
     assert any("Sindh" in r for r in nc["regions"]) and "Narrowed by flood round 4" in sc["note"]
@@ -92,7 +100,7 @@ def test_a_round3_not_run_falls_back_to_round2(tmp_path):
         "pluvial": {"held_out": {"verdict": "validated"}}}}))
     v = C.flood_verdicts(round3_path=str(p), round3_sha256="")
     assert v["coastal"] == "failed"               # round 3 not-run: round 2's
-    assert v["fluvial"] == "failed"               # round 3 gave one: it decides
+    assert v["fluvial"] is None                   # decided (C78), whatever round 3 says
     assert v["pluvial"] == "failed"               # replaced: round 4's, not round 3's
 
 
@@ -127,17 +135,26 @@ def test_untested_module_keeps_its_own_label_and_a_tested_one_takes_its_verdict(
     assert C.hazard_label("experimental", v["flash_flood"]) == "failed"        # round 4
     assert C.hazard_label("experimental", None, "placeholder") == "placeholder"
     assert C.hazard_label("experimental", v["coastal"]) == "failed"            # round 2
-    # fluvial passed; without its scope (C70) the worst-of-inputs rule caps it
-    # and `validated` never stands unscoped
-    assert C.hazard_label("validated", v["fluvial"]) == "experimental"
-    assert C.hazard_label("validated", v["fluvial"], "experimental") == "experimental"
-    scope = C.VALIDATED_CONFIGS["fluvial"]["scope"]
-    assert C.hazard_label("validated", v["fluvial"], "experimental", scope=scope) == "validated"
+    assert C.hazard_label("experimental", v["fluvial"], "experimental") == "experimental"  # C78
+    # a passing verdict without a scope (C70) is capped; `validated` never stands unscoped
+    assert C.hazard_label("validated", "validated") == "experimental"
+    assert C.hazard_label("validated", "validated", "experimental") == "experimental"
+    scope = C.WITHDRAWN_VALIDATIONS["fluvial"]["scope"]
+    assert C.hazard_label("validated", "validated", "experimental", scope=scope) == "validated"
     with pytest.raises(C.ContractError):
-        C.hazard_label("validated", v["fluvial"], scope={"events": ["x"]})
+        C.hazard_label("validated", "validated", scope={"events": ["x"]})
 
 
 # ── C70: exactly the validated configuration keeps `validated`, scoped ──
+# No module is validated now (C78 withdrew fluvial's). The rule is tested by
+# putting fluvial's withdrawn record back as if it still stood.
+
+@pytest.fixture
+def c70(monkeypatch):
+    monkeypatch.setitem(C.VALIDATED_CONFIGS, "fluvial", C.WITHDRAWN_VALIDATIONS["fluvial"])
+    monkeypatch.setitem(C.DECIDED_VERDICTS, "fluvial", "validated")
+    import susceptibility.fluvial as F
+    monkeypatch.setattr(F, "VALIDATION_STATUS", "validated")
 
 def _fluvial():
     from susceptibility.fluvial import compute_fluvial_susceptibility
@@ -157,7 +174,7 @@ def _hz(mod, verdicts=None):
     return H.hazard_outputs(mods, MV, verdicts or C.flood_verdicts(), has_waterways=False)["fluvial"]
 
 
-def test_fluvial_with_its_validated_inputs_reads_validated_with_its_scope():
+def test_fluvial_with_its_validated_inputs_reads_validated_with_its_scope(c70):
     o = _hz(_fluvial())
     assert o["validation_status"] == "validated"
     sc = o["validated_scope"]
@@ -174,7 +191,7 @@ def test_fluvial_with_its_validated_inputs_reads_validated_with_its_scope():
     lambda m: m["weights"].update(river_size=0.5),
     lambda m: m["ceilings"].update(hand_m=20.0),
 ])
-def test_any_differing_input_caps_fluvial_at_the_worst_label(change):
+def test_any_differing_input_caps_fluvial_at_the_worst_label(change, c70):
     mod = copy.deepcopy(_fluvial())
     change(mod)
     o = _hz(mod)
@@ -182,7 +199,7 @@ def test_any_differing_input_caps_fluvial_at_the_worst_label(change):
     assert o["validated_scope"] is None
 
 
-def test_a_failed_verdict_is_not_rescued_by_a_matching_configuration():
+def test_a_failed_verdict_is_not_rescued_by_a_matching_configuration(c70):
     v = dict(C.flood_verdicts(), fluvial="failed")
     assert _hz(_fluvial(), v)["validation_status"] == "failed"
 
@@ -191,7 +208,7 @@ def test_the_validated_configuration_is_the_pinned_round2_run():
     """The literal record agrees with the pinned result and today's fetch."""
     import json
     from susceptibility.hydro_rasters import SOURCES
-    cfg = C.VALIDATED_CONFIGS["fluvial"]
+    cfg = C.WITHDRAWN_VALIDATIONS["fluvial"]
     with open(C.FLOOD_VALIDATION_ROUND2_RESULT) as fh:
         r2 = json.load(fh)["modules"]["fluvial"]
     assert r2["held_out"]["verdict"] == "validated"
@@ -207,7 +224,7 @@ def test_a_validated_output_without_a_scope_is_refused():
     o["validation_status"] = "validated"
     with pytest.raises(C.ContractError):
         C.check_output(o)
-    o["validated_scope"] = C.VALIDATED_CONFIGS["fluvial"]["scope"]
+    o["validated_scope"] = C.WITHDRAWN_VALIDATIONS["fluvial"]["scope"]
     C.check_output(o)
 
 

@@ -56,6 +56,9 @@ def _result():
 
 
 def _expected(module):
+    from analysis.contract import DECIDED_VERDICTS
+    if module in DECIDED_VERDICTS:                # C78: fluvial decided experimental
+        return VERDICT_TO_LABEL.get(DECIDED_VERDICTS[module], "experimental")
     v3 = json.loads(RESULT3.read_text())["modules"].get(module, {}).get("held_out", {})
     v = v3.get("verdict")
     if not v or v == "not-run":
@@ -65,7 +68,7 @@ def _expected(module):
 
 def test_latest_verdicts_are_what_the_labels_encode():
     assert {m: _expected(m) for m in PATHS} == {
-        "fluvial": "validated", "flash_flood": "failed", "coastal": "failed",
+        "fluvial": "experimental", "flash_flood": "failed", "coastal": "failed",
         "waterlogging": "failed"}
 
 
@@ -85,7 +88,7 @@ def test_validated_is_claimed_only_with_a_passing_heldout_run():
     assert res["fluvial"]["held_out"]["auc"] >= 0.70
     assert res["fluvial"]["held_out"]["qualifying_events"] >= 2
     r = compute_fluvial_susceptibility(RASTERS, HAND)
-    assert r["validated"] is True
+    assert r["validated"] is False                 # C78 withdrew it after round 4
     assert compute_flash_flood_susceptibility(RASTERS)["validated"] is False
 
 

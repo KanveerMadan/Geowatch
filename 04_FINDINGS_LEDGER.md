@@ -43,9 +43,9 @@ Fate categories:
 | CONDITIONAL (resolved → DELETED) | 4 | Gated on Decision 12; now resolved |
 | SUPERSEDED | 2 | **C42, C45** — the pivot retires the code they describe |
 | SURVIVES | 25 | The irreducible cluster — real work (C40 from the pre-push audit; **C36, C37, C38, C41 narrowed** by the 2026-09-23 triage; C44 was elevated the same day and then **FIXED**) |
-| CONFIRMED | 3 | **C60, C61** (2026-10-29) — acted on by Decision 11's third amendment; **C72** (2026-10-29) — round 3's box rule kept as recorded |
+| CONFIRMED | 7 | **C60, C61** (2026-10-29) — acted on by Decision 11's third amendment; **C72** (2026-10-29) — round 3's box rule kept as recorded; **C78** (2026-10-31) — acted on: fluvial's label is `experimental`; **C79, C80, C81** (2026-10-31) — confirmed as recorded |
 | OPEN | 1 | **C73** (2026-10-29) — Earth Engine's server-side limit can still drop IMERG |
-| NEEDS FATE | 3 | Cleared 2026-09-23; **C48, C49, C50 added 2026-10-28** (Lane E documentation pass), untriaged. *(Count not maintained since: C51–C65 also added 2026-10-28, see the section; **C78–C81 added 2026-10-30**, flood round 4)* |
+| NEEDS FATE | 3 | Cleared 2026-09-23; **C48, C49, C50 added 2026-10-28** (Lane E documentation pass), untriaged. *(Count not maintained since: C51–C65 also added 2026-10-28, see the section; **C78–C81 added 2026-10-30**, flood round 4, fates assigned 2026-10-31)* |
 
 **This is the authoritative list for the "irreducible cluster."**
 `02_ARCHITECTURE.md` §8 references this section by pointer rather than
@@ -161,6 +161,25 @@ verdicts stand.
 client deadline cannot prevent it. When it happens, flash flood scores
 without `rainfall_intensity`, and the layer is recorded under
 `hydro_rasters.errors`.
+
+### Assigned 2026-10-31 — flood round 4 (`build/flood4b`), decided by the user
+
+**C78 — fluvial's validation does not transfer → CONFIRMED, acted on.**
+Fluvial's label is now **`experimental`**, with the scope note "passed Hanoi,
+Kolonnawa; failed Bihar, Assam, Sindh (round 4)" on every fluvial output
+(`analysis/contract.SCOPE_NOTES`, `DECIDED_VERDICTS`). Its round-2
+configuration and scope are kept as the record in
+`analysis/contract.WITHDRAWN_VALIDATIONS`. The C70 rule stays live; no
+module is `validated` now.
+
+**C79 — pluvial has had no clean ponding test → CONFIRMED** as recorded.
+
+**C80 — waterlogging's persistence alone ranks well → CONFIRMED** as
+recorded. Acted on by round 4b: persistence alone, pre-registered and tested
+on new waterlogging events (`PREREGISTRATION_ROUND4B.md`).
+
+**C81 — flash flood's tuning events are flat plains → CONFIRMED** as
+recorded.
 
 ---
 
@@ -1128,14 +1147,15 @@ pipeline, the result contract, Part 6). **No fate assigned.** Numbered from
 C62: C59 is on `build/flood2`, C60 and C61 on `master` (`build/ceilings`).*
 
 ***C78–C81 added 2026-10-30** from flood round 4 (`build/flood4`,
-`experiments/flood_validation/result_round4_2026-10-30.json`). **No fate
-assigned.** They are numbered from C78 because C74–C77 are on the unmerged
+`experiments/flood_validation/result_round4_2026-10-30.json`). ~~**No fate
+assigned.**~~ **All CONFIRMED 2026-10-31** (C78 acted on: fluvial
+`experimental`) — see § *Fates assigned*. They are numbered from C78 because C74–C77 are on the unmerged
 `build/frontend`. The per-component AUCs below are **post-hoc
 diagnostics**, computed after the verdicts. They change no verdict, and the
 test events they were measured on have now been seen, so a re-test needs
 fresh events and a new pre-registration.*
 
-### C78 — Fluvial's validation does not transfer to South Asian monsoon floodplains; its label stays `validated` only by the pre-registered rule [E] NEEDS FATE
+### C78 — Fluvial's validation does not transfer to South Asian monsoon floodplains; its label stays `validated` only by the pre-registered rule [E] CONFIRMED — fluvial now `experimental` (2026-10-31)
 
 Round 4 ran fluvial's exact validated configuration on Bihar 2026
 (Kosi/Ganga, AUC 0.643), Assam 2026 (Dikhow, 0.388) and Sindh 2022 (UNOSAT,
@@ -1154,7 +1174,7 @@ Sindh.
 re-test keep `validated` anywhere, even scoped? Or should it be demoted, or
 made `failed` outside its two cities?
 
-### C79 — Pluvial has not yet had a test event that is a pluvial (ponding) flood [E] NEEDS FATE
+### C79 — Pluvial has not yet had a test event that is a pluvial (ponding) flood [E] CONFIRMED
 
 Round 4's pluvial verdict (**0.524**, failed) rests on two references. Both
 are weak as tests of ponding:
@@ -1170,7 +1190,7 @@ rounds on four different reference sets, and none was a clean ponding
 event. This finding names the gap; it does not excuse the verdict. A
 re-test needs an event mapped soon after rain, in flat urban ground.
 
-### C80 — Waterlogging's persistence alone ranks well on every test event; clay and backwater, chosen on non-waterlogging tuning events, pull it under the bar [E] NEEDS FATE
+### C80 — Waterlogging's persistence alone ranks well on every test event; clay and backwater, chosen on non-waterlogging tuning events, pull it under the bar [E] CONFIRMED
 
 Waterlogging failed at **0.613**: Assam 0.406, Sylhet 0.668, Kerala 0.766.
 
@@ -1190,7 +1210,7 @@ are delta river floods, not waterlogging. The method's choice of weights
 was therefore informed by the wrong mechanism. That is the same class of
 problem as C72.
 
-### C81 — Flash flood's tuning events are flat river plains, and its pooled AUC passes while its mean does not [E] NEEDS FATE
+### C81 — Flash flood's tuning events are flat river plains, and its pooled AUC passes while its mean does not [E] CONFIRMED
 
 Flash flood failed at **0.640**: Valencia 0.722, Himachal 0.509, Derna
 0.688. Its pooled diagnostic is **0.732**, above the bar. Three things

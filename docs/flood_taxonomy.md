@@ -7,7 +7,7 @@ pipeline cannot drop a type without saying so.
 
 | Id | Type | Pipeline module | Status | Round |
 |---|---|---|---|---|
-| **M1** | Fluvial (river overflow) | `fluvial` | **validated**, scoped (round 2: Hanoi, Kolonnawa); round 4 **failed** on Bihar, Assam and Sindh (0.537), so the scope is narrowed (C78) | round 4, method unchanged |
+| **M1** | Fluvial (river overflow) | `fluvial` | **experimental** (C78, 2026-10-31): passed Hanoi, Kolonnawa (round 2); failed Bihar, Assam, Sindh (round 4, 0.537) | round 4, method unchanged |
 | **M2** | Pluvial (surface water from rain on the spot) | `pluvial` | **failed** round 4 (0.524): depression ("bluespot") detection with fill-and-spill; re-test when item 21's `impervious_total` exists | round 4 |
 | **M3** | Waterlogging (persistent standing water, poor drainage) | `waterlogging` | **failed** round 4 (0.613): historical standing-water persistence, clay, low relief, backwater | round 4 |
 | **M4** | Flash flood (short, intense rain on steep, fast catchments) | `flash_flood` | **failed** round 4 (0.640): short-duration intensity, catchment response time, stream power on channels and valley floors | round 4 |

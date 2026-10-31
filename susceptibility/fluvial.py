@@ -34,7 +34,10 @@ def _classify(score):
 # held-out mean within-event AUC 0.8579 over 2 Copernicus EMS events
 # (Hanoi, Kolonnawa), bar 0.70: validated -- for these events and inputs only.
 # Round 1's AOI-wide scalar failed (0.448); that method is gone.
-VALIDATION_STATUS = "validated"
+# C78 (decided 2026-10-31): round 4 failed it on Bihar, Assam and Sindh (mean
+# 0.537), so the round-2 validation is withdrawn. A real method, tested, with
+# mixed results: experimental, with analysis.contract.SCOPE_NOTES["fluvial"].
+VALIDATION_STATUS = "experimental"
 
 from perception.applicability_gate import gated
 

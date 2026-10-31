@@ -85,7 +85,13 @@ VERDICT_LABEL = {"failed": "failed", "passed": "validated", "validated": "valida
 # back to the worst-of-inputs rule. Literals, not today's constants: a changed
 # constant is a changed configuration. Taken from the pinned round-2 run.
 SCOPE_KEYS = ("events", "regions", "input_versions")
-VALIDATED_CONFIGS = {
+# C78 (decided by the user 2026-10-31): fluvial passed round 2 (Hanoi,
+# Kolonnawa) and failed round 4 (Bihar, Assam, Sindh), so its validation is
+# withdrawn: its label is `experimental`, and every fluvial output carries
+# SCOPE_NOTES["fluvial"]. The configuration and scope it was validated with
+# are kept here as the record; the C70 rule itself stays live for any module
+# that passes later.
+WITHDRAWN_VALIDATIONS = {
     "fluvial": {
         "config": {
             "method": "merit_hydro_hand_per_pixel_weighted",
@@ -127,6 +133,12 @@ VALIDATED_CONFIGS = {
         },
     },
 }
+VALIDATED_CONFIGS: dict = {}
+# Where a module's tests held and where they did not, carried on its outputs.
+SCOPE_NOTES = {"fluvial": "passed Hanoi, Kolonnawa; failed Bihar, Assam, Sindh (round 4)"}
+# Verdicts decided by a person over the pinned rounds' rule (module: verdict).
+# None = no Tier 2 verdict feeds the label.
+DECIDED_VERDICTS = {"fluvial": None}       # C78
 
 
 # The eleven flood types (docs/flood_taxonomy.md, recorded 2026-10-30). Every
@@ -135,7 +147,7 @@ VALIDATED_CONFIGS = {
 # ones by UNBUILT_FLOOD_TYPES below.
 FLOOD_TAXONOMY = {
     "M1": {"module": "fluvial", "name": "fluvial",
-           "status": "validated, scoped; round 4 failed, scope narrowed", "round": 4},
+           "status": "experimental: passed round 2, failed round 4 (C78)", "round": 4},
     "M2": {"module": "pluvial", "name": "pluvial", "status": "new method; round 4 failed",
            "round": 4},
     "M3": {"module": "waterlogging", "name": "waterlogging",
@@ -248,9 +260,9 @@ def flood_verdicts(path: str = FLOOD_VALIDATION_RESULT, expected_sha256: str | N
     gave one; else its round-2 verdict; where that is not-run and the
     module's method is unchanged since round 1, round 1's verdict. A module
     whose method round 4 replaced takes round 4's verdict only (None where
-    round 4 was not-run). Fluvial's round-4 result narrows its scope note, not
-    its verdict (pre-registered). Raises if any file's hash is not the pinned
-    one."""
+    round 4 was not-run). A verdict a person decided (DECIDED_VERDICTS, e.g.
+    fluvial under C78) overrides the rounds. Raises if any file's hash is not
+    the pinned one."""
     r1 = _pinned_modules(path, FLOOD_VALIDATION_SHA256 if expected_sha256 is None
                          else expected_sha256)
     r2 = _pinned_modules(round2_path, FLOOD_VALIDATION_ROUND2_SHA256 if round2_sha256 is None
@@ -261,6 +273,9 @@ def flood_verdicts(path: str = FLOOD_VALIDATION_RESULT, expected_sha256: str | N
                          else round4_sha256)
     out = {}
     for m in r1.keys() | r2.keys():
+        if m in DECIDED_VERDICTS:
+            out[m] = DECIDED_VERDICTS[m]
+            continue
         if m in ROUND4_REPLACED_METHODS:
             v4 = (r4.get(m) or {}).get("held_out", {}).get("verdict")
             out[m] = v4 if v4 and v4 != "not-run" else None
