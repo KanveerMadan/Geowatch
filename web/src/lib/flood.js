@@ -20,6 +20,13 @@ const TYPES = {
   coastal: { name: 'Coastal', long: 'coastal flooding', term: 'coastal', blurb: 'Sea water reaching low land near the shore.' },
   flash_flood: { name: 'Flash flood', long: 'flash flooding', term: 'flash flood', blurb: 'Fast runoff from steep ground after intense rain.' },
   waterlogging: { name: 'Waterlogging', long: 'waterlogging', term: 'waterlogging', blurb: 'Flat, low ground where water stands for days after rain.' },
+  // The taxonomy's types no module computes yet (analysis/contract.py).
+  debris_flow_glof: { name: 'Debris flow and glacial lake outburst', long: 'debris flow and glacial lake outburst', term: 'debris flow / GLOF' },
+  embankment_dam_breach: { name: 'Embankment or dam breach', long: 'embankment or dam breach', term: 'embankment / dam breach' },
+  snowmelt_ice_jam: { name: 'Snowmelt and ice jam', long: 'snowmelt and ice jam', term: 'snowmelt / ice jam' },
+  compound: { name: 'Compound', long: 'compound flooding', term: 'compound' },
+  groundwater: { name: 'Groundwater', long: 'groundwater flooding', term: 'groundwater' },
+  tsunami: { name: 'Tsunami', long: 'tsunami', term: 'tsunami' },
 }
 
 export function floodName(key) {
@@ -53,6 +60,9 @@ export function floodRows(susceptibility) {
       mapped: !!o?.per_unit || (key === 'pluvial' && !!o?.map),
       spatial: !!o?.spatial,
       verdict: o?.tier2_verdict ?? null,
+      // A type in the taxonomy that no method computes: a stand-in label and
+      // no value. Listed together, not as five rows of "not measured".
+      unbuilt: !r.measured && trustOf(o).key === 'placeholder',
       limitations: o?.limitations ?? [],
       sources: (o?.data_sources ?? []).filter((s) => !s.startsWith('none')),
       reason: r.reason,
@@ -60,6 +70,7 @@ export function floodRows(susceptibility) {
   })
 }
 
+const COUNT_WORD = { 1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight', 9: 'Nine' }
 const list = (xs) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs.at(-1)}`)
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1)
 
@@ -69,7 +80,8 @@ export function floodSummary(susceptibility) {
   const rows = floodRows(susceptibility)
   const usable = rows.filter((r) => r.measured && r.trust.key !== 'failed' && r.trust.key !== 'retired')
   const failed = rows.filter((r) => r.measured && r.trust.key === 'failed')
-  const absent = rows.filter((r) => !r.measured)
+  const absent = rows.filter((r) => !r.measured && !r.unbuilt)
+  const unbuilt = rows.filter((r) => r.unbuilt)
   const parts = []
   if (usable.length) {
     const byTier = [...usable].sort((a, b) => TIERS.indexOf(b.tier) - TIERS.indexOf(a.tier))
@@ -90,6 +102,7 @@ export function floodSummary(susceptibility) {
   const other = absent.filter((r) => r.status !== 'not_applicable')
   if (na.length) parts.push(`${cap(list(na.map((r) => r.long)))} does not apply here.`)
   if (other.length) parts.push(`${cap(list(other.map((r) => r.long)))}: ${other.map((r) => r.text.toLowerCase()).join(', ')}.`)
+  if (unbuilt.length) parts.push(`${COUNT_WORD[unbuilt.length] ?? unbuilt.length} other flood type${unbuilt.length > 1 ? 's are' : ' is'} not built yet.`)
   return parts.join(' ')
 }
 

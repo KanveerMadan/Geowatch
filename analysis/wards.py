@@ -271,6 +271,8 @@ def materialize(unit: dict, unit_type: str, ctx: dict) -> dict:
     for h, meta in ctx["hazards"].items():
         key = hazard_key(h)
         st = meta.get("status", "available")
+        # C70: a validated output carries its scope, per unit as for the AOI.
+        scope = {"validated_scope": meta["validated_scope"]} if meta.get("validated_scope") else {}
         if st in ("timeout", "failed") or (st != "available" and key in unit):
             # Item 38: the AOI-level module did not finish (timeout / failed)
             # or was withheld; no unit gets a value or tier from it, and every
@@ -278,16 +280,15 @@ def materialize(unit: dict, unit_type: str, ctx: dict) -> dict:
             # at all to sample).
             hz[h] = C.output(None, status=st, validation_status=meta["validation_status"],
                              coverage=C.coverage(0.0, f"AOI-level {h} did not finish"),
-                             data_sources=meta["data_sources"], model_version=mv, tier=None)
+                             data_sources=meta["data_sources"], model_version=mv, tier=None,
+                             **scope)
             continue
         if key not in unit:
             continue
         p = _cell(unit[key], label=meta["validation_status"], sources=meta["data_sources"],
-                  mv=mv, basis=basis)
+                  mv=mv, basis=basis, **scope)
         p["tier"] = classify_pluvial(p["value"])
         p["spatial"] = True
-        if meta.get("validated_scope"):
-            p["validated_scope"] = meta["validated_scope"]
         hz[h] = p
     for h, aoi_out in ctx["scalar_hazards"].items():
         o = {k: v for k, v in aoi_out.items()

@@ -331,4 +331,39 @@ test('flood summary sentences start with a capital and nothing else does', () =>
   assert.match(s, /^Waterlogging is the highest here, at very high\. Flash flooding high; river flooding moderate\.$/)
 })
 
+// ── round 4 labels and the taxonomy (master 0b4dc35) ──
+const SCOPE = { events: ['hanoi'], regions: ['Hanoi, Vietnam (Red River)', 'Kolonnawa, Sri Lanka (Kelani Ganga)'],
+  input_versions: { 'MERIT/Hydro': 'v1_0_1' },
+  not_covered: { regions: ['Bihar, India (Kosi-Ganga floodplain)', 'Sindh, Pakistan (Indus plain)'] } }
+const r4 = {
+  pluvial: out(0.3, 'available', 'failed', { tier: 'low', per_unit: true }),
+  fluvial: out(0.41, 'available', 'validated', { tier: 'moderate', per_unit: true, validated_scope: SCOPE }),
+  coastal: out(null, 'not_applicable', 'failed'),
+  flash_flood: out(0.29, 'available', 'failed', { tier: 'low', per_unit: true }),
+  waterlogging: out(0.36, 'available', 'failed', { tier: 'low', per_unit: true }),
+  debris_flow_glof: out(null, 'not_computed', 'placeholder'), embankment_dam_breach: out(null, 'not_computed', 'placeholder'),
+  snowmelt_ice_jam: out(null, 'not_computed', 'placeholder'), compound: out(null, 'not_computed', 'placeholder'),
+  groundwater: out(null, 'not_computed', 'placeholder'), tsunami: out(null, 'not_applicable', 'placeholder'),
+}
+test('a validated output shows its contract scope, including where it did not hold', () => {
+  const t = C.trustOf(r4.fluvial)
+  assert.equal(t.key, 'validated')
+  assert.equal(t.scope, 'Validated in Hanoi, Vietnam (Red River); Kolonnawa, Sri Lanka (Kelani Ganga) only. Tested and not shown to hold in Bihar, India (Kosi-Ganga floodplain); Sindh, Pakistan (Indus plain).')
+  assert.equal(C.trustOf(out(0.1, 'available', 'validated')).scope, 'Scope of the validation not stated.')
+  assert.equal(C.trustOf(r4.pluvial).scope, null)
+})
+test('round 4: four flood types failed, fluvial validated, six not built', () => {
+  const rows = F.floodRows(r4)
+  const label = Object.fromEntries(rows.map((r) => [r.key, r.trust.key]))
+  for (const k of ['pluvial', 'flash_flood', 'waterlogging', 'coastal']) assert.equal(label[k], 'failed', k)
+  assert.equal(label.fluvial, 'validated')
+  assert.deepEqual(rows.filter((r) => r.unbuilt).map((r) => r.key),
+    ['debris_flow_glof', 'embankment_dam_breach', 'snowmelt_ice_jam', 'compound', 'groundwater', 'tsunami'])
+  assert.equal(F.defaultFloodLayer(r4), 'fluvial')
+  const s = F.floodSummary(r4)
+  assert.match(s, /^River flooding is the highest here, at moderate\./)
+  assert.match(s, /Surface-water flooding, flash flooding and waterlogging are shown but failed validation, so they are not for decisions\./)
+  assert.match(s, /Coastal flooding does not apply here\. Six other flood types are not built yet\.$/)
+})
+
 console.log(`test_web_logic: ${n} passed`)

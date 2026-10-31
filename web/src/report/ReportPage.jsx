@@ -23,7 +23,7 @@ function Badge({ of }) {
 }
 function Scope({ of }) {
   const t = trustOf(of)
-  return t.scope ? <span className="rscope">Holds for: {t.scope}</span> : null
+  return t.scope ? <span className="rscope">{t.scope}</span> : null
 }
 
 // Map layers for the report's three pictures.
@@ -83,7 +83,7 @@ export default function ReportPage({ resultId, name }) {
   const changeKey = cRows.find((c) => c.measured)?.key
   const notes = areaNotes(r)
   const wardRank = wards && floodKey ? rankWards(wards, floodKey) : null
-  const labelsUsed = [...new Set([...fRows, ...hRows, ...cRows].map((x) => x.trust.key))]
+  const labelsUsed = [...new Set([...fRows, ...hRows, ...cRows].map((x) => x.trust.key))].sort((a, b) => Object.keys(TRUST).indexOf(a) - Object.keys(TRUST).indexOf(b))
     .filter((k) => TRUST[k])
   const sources = [...new Set([
     ...sourcesOf(o.fractions), ...sourcesOf(o.susceptibility), ...sourcesOf(o.change), ...sourcesOf(o.observability),
@@ -149,7 +149,7 @@ export default function ReportPage({ resultId, name }) {
           <table className="rtable">
             <thead><tr><th scope="col">Type</th><th scope="col">Tier</th><th scope="col" className="rnum">Score</th><th scope="col">Label</th></tr></thead>
             <tbody>
-              {hRows.map((x) => (
+              {hRows.filter((x) => !x.unbuilt).map((x) => (
                 <tr key={x.key}>
                   <th scope="row">{x.name}<span className="rsub">{x.mapped ? 'mapped per cell' : x.measured ? 'one value for the area' : ''}</span></th>
                   <td>{x.measured ? <><i className="rsw" style={{ background: color.flood[x.tier] }} />{x.tierText}</> : <span className="rmuted">{x.text}</span>}</td>
@@ -157,6 +157,13 @@ export default function ReportPage({ resultId, name }) {
                   <td><Badge of={{ validation_status: x.trust.key, validation_scope: x.trust.scope }} /><Scope of={{ validation_status: x.trust.key, validation_scope: x.trust.scope }} /></td>
                 </tr>
               ))}
+              {hRows.some((x) => x.unbuilt) && (
+                <tr>
+                  <th scope="row">Not built yet<span className="rsub">{hRows.filter((x) => x.unbuilt).map((x) => x.name).join(', ')}</span></th>
+                  <td colSpan={2} className="rmuted">Not measured</td>
+                  <td><Badge of={{ validation_status: 'placeholder' }} /></td>
+                </tr>
+              )}
             </tbody>
           </table>
           {grid && floodShown?.mapped && (

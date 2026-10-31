@@ -27,6 +27,7 @@ function FloodRow({ r, chosen, onChoose }) {
       <span className={`flrow-val${r.measured ? '' : ' frow-absent-text'}`}>{r.tierText}</span>
       {r.measured ? <TierMeter tier={r.tier} /> : <span />}
       <span className="flrow-blurb">{r.blurb}</span>
+      {r.trust.scope && <span className="flrow-scope-note">{r.trust.scope}</span>}
     </>
   )
   return (
@@ -108,14 +109,24 @@ export default function FloodPanel({ job, layerKey, onLayer, wards }) {
           <Reveal k="flood">
             <p className="lead summary">{floodSummary(outputs.susceptibility)}</p>
             <ul className="flrows">
-              {rows.map((r) => <FloodRow key={r.key} r={r} chosen={r.key === layerKey} onChoose={onLayer} />)}
+              {rows.filter((r) => !r.unbuilt).map((r) => <FloodRow key={r.key} r={r} chosen={r.key === layerKey} onChoose={onLayer} />)}
+              {rows.some((r) => r.unbuilt) && (
+                <li className="flrow frow-absent">
+                  <div className="flrow-main">
+                    <span className="flrow-name">Not built yet</span>
+                    <span className="flrow-val frow-absent-text">Not measured</span>
+                    <span className="flrow-blurb">{rows.filter((r) => r.unbuilt).map((r) => r.name).join(', ')}.</span>
+                  </div>
+                  <TrustBadge of={{ validation_status: 'placeholder' }} compact />
+                </li>
+              )}
             </ul>
             <p className="caption">
               Susceptibility is how prone the ground is to each kind of flooding, on a five-step scale. It is not a forecast of any flood.
             </p>
             <Disclosure label="Figures and sources">
               <dl className="kv">
-                {rows.map((r) => (
+                {rows.filter((r) => !r.unbuilt).map((r) => (
                   <div key={r.key}>
                     <dt>{r.name}</dt>
                     <dd>

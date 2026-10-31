@@ -369,6 +369,8 @@ button.flrow-main { cursor: pointer; border-radius: var(--r-control); }
 .flrow-val { grid-area: val; text-align: right; font-weight: 520; }
 .flrow-blurb { grid-area: blurb; font-size: var(--t-caption-size); line-height: var(--t-caption-lh); color: var(--c-text3); text-wrap: pretty; }
 .flrow-main .tier-meter { grid-area: meter; }
+.flrow-main { grid-template-areas: 'name val' 'blurb meter' 'scope scope'; }
+.flrow-scope-note { grid-area: scope; font-size: var(--t-caption-size); line-height: var(--t-caption-lh); color: var(--c-trust-validated); text-wrap: pretty; }
 .flrow-failed .flrow-val { color: var(--c-text2); }
 .tier-meter { display: inline-grid; grid-template-columns: repeat(5, 8px); gap: 2px; justify-self: end; }
 .tier-meter i { height: 4px; border-radius: 1px; background: var(--c-hairlineStrong); }

@@ -40,6 +40,19 @@ const UNLABELLED = {
   explain: 'This number carries no trust label, so treat it as unverified.',
 }
 
+/** A validated output's scope (the contract's `validated_scope`, C70) as
+ *  one plain sentence: where it was shown to hold, and where it was tested
+ *  and did not. */
+export function scopeText(sc) {
+  if (!sc) return null
+  if (typeof sc === 'string') return sc
+  const places = (sc.regions ?? []).join('; ')
+  let s = places ? `Validated in ${places} only.` : 'Validated for the stated events only.'
+  const nc = sc.not_covered?.regions ?? []
+  if (nc.length) s += ` Tested and not shown to hold in ${nc.join('; ')}.`
+  return s
+}
+
 /** The badge for an output (or a bare label). A validated output shows its
  *  scope note; an unknown label is never promoted to a known one. */
 export function trustOf(outputOrLabel) {
@@ -47,7 +60,8 @@ export function trustOf(outputOrLabel) {
   const key = o ? o.validation_status : outputOrLabel
   const t = TRUST[key]
   if (!t) return { ...UNLABELLED, scope: null }
-  const scope = key === 'validated' ? (o?.validation_scope ?? 'Scope of the validation not stated.') : null
+  const scope = key === 'validated'
+    ? (scopeText(o?.validated_scope ?? o?.validation_scope) ?? 'Scope of the validation not stated.') : null
   return { key, ...t, scope }
 }
 

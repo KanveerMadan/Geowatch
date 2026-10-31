@@ -38,7 +38,7 @@ export default function TrustBadge({ of, compact = false }) {
           >
             <strong className={`trust-tip-title trust-text-${t.key}`}>{t.label}</strong>
             {t.explain}
-            {t.scope && <span className="trust-scope">Holds for: {t.scope}</span>}
+            {t.scope && <span className="trust-scope">{t.scope}</span>}
           </m.span>
         )}
       </AnimatePresence>
