@@ -41,9 +41,10 @@
  "labeller": null,
  "labelling_date": null,
  "timing": {
-  "start_local": null,
-  "end_local": null,
-  "minutes": null
+  "start_local": "2026-09-30T14:00+05:30",
+  "end_local": "2026-09-30T15:00+05:30",
+  "minutes": 60,
+  "note": "approximate, includes one restart"
  },
  "pct_unsure": null,
  "pct_shadow_full": null,

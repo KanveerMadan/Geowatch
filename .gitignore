@@ -66,6 +66,8 @@ data/stage1/*
 !data/stage1/tiles/
 data/stage1/tiles/*/*/*
 !data/stage1/tiles/*/*/labels.gpkg
+!data/stage1/tiles/*/*/labels_valid.gpkg
+!data/stage1/tiles/*/*/labels_resolved.gpkg
 !data/stage1/tiles/*/*/metadata.json
 !data/stage1/tiles/*/*/sun.gpkg
 models/
