@@ -1,0 +1,34 @@
+{
+ "valencia/poyo_at_paiporta": {
+  "upa_max_km2": 413,
+  "radius_m": 600
+ },
+ "valencia/poyo_outlet_albufera": {
+  "upa_max_km2": 421,
+  "radius_m": 1500
+ },
+ "valencia/r4_box_centre": {
+  "upa_max_km2": 309,
+  "radius_m": 2000
+ },
+ "volos_city/torrent_mouths": {
+  "upa_max_km2": 119,
+  "radius_m": 2000
+ },
+ "thessaly/r4_box_palamas_2km": {
+  "upa_max_km2": 637,
+  "radius_m": 2000
+ },
+ "thessaly/r4_box_palamas_5km": {
+  "upa_max_km2": 1492,
+  "radius_m": 5000
+ },
+ "thessaly/pineios_larissa_4km": {
+  "upa_max_km2": 6687,
+  "radius_m": 4000
+ },
+ "thessaly/pineios_mouth_4km": {
+  "upa_max_km2": 9299,
+  "radius_m": 4000
+ }
+}
