@@ -1,0 +1,8 @@
+setting,value,source_file,source_commit,source_commit_date
+block_cells,33,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+block_cells_wide,66,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+reps,1000,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+seed,20261114,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+min_flooded_cells,50,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+min_dry_cells,50,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+dist_cap_m,2000.0,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30

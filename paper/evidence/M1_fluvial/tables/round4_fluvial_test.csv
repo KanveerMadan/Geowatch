@@ -1,0 +1,5 @@
+event,date,reference,flooded_cells,dry_cells,auc,qualifies,source_file,source_commit,source_commit_date
+bihar_2026,2026-09-11,"COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2026 Jan-Mar median",8923,8786,0.6425,True,experiments/flood_validation/result_round4_2026-10-30.json,21d645c,2026-10-31T09:56:30+05:30
+assam_2026,2026-07-20,"COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2026 Jan-Mar median",5327,13059,0.3878,True,experiments/flood_validation/result_round4_2026-10-30.json,21d645c,2026-10-31T09:56:30+05:30
+pakistan_2022,2022-08-31,"UNOSAT FL20220808PAK_S2_20220831 FloodExtent (Sentinel-2 2022-08-31), 'Flood Water'",10153,7570,0.5791,True,experiments/flood_validation/result_round4_2026-10-30.json,21d645c,2026-10-31T09:56:30+05:30
+MEAN over qualifying test events (verdict),,verdict=failed; bar 0.70; pooled diagnostic 0.4714; tuning: not tuned: the validated configuration (pre-registered),,,0.5365,3,experiments/flood_validation/result_round4_2026-10-30.json,21d645c,2026-10-31T09:56:30+05:30
