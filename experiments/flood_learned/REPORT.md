@@ -253,9 +253,9 @@ The comparator rows equal flood_baselines' "excl. JRC-ref" column, as they must.
 | no rain features | 0.713 | +0.076 [+0.020, +0.133] | 10 / 3 |
 | pre-event water only (no post-event JRC years) | 0.716 | +0.079 [+0.026, +0.136] | 11 / 4 |
 | HAND + fluvial score only (2 features) | 0.602 | **−0.035** [−0.074, −0.000] | 4 / 8 |
-| **no land cover** (full minus WorldCover) | 0.644 | **+0.007** (CI pending) | pending |
-| no land cover, LRO | 0.644 | +0.007 (CI pending) | pending |
-| **terrain + hydrography + water only** | 0.631 | **−0.007** (CI pending) | pending |
+| **no land cover** (full minus WorldCover) | 0.644 | **+0.007** [-0.037, +0.055] | 5 / 8 |
+| no land cover, LRO | 0.644 | +0.007 [-0.038, +0.051] | 5 / 8 |
+| **terrain + hydrography + water only** | 0.631 | **−0.007** [-0.046, +0.038] | 6 / 8 |
 | GEDTM30 terrain | not run | GEDTM30 unreadable (§1.3) | |
 
 **Reading:**
