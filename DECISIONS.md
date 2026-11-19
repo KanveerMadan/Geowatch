@@ -151,3 +151,16 @@ Linux x86_64 wheels for Python 3.12 (pip dry run, no source builds); the
 gateway was run under uvicorn against stored results (health 200, explorer
 routes 200, footprint units 403, legacy 401, JSON logs); tests/test_deploy.py
 (38 tests) covers the gateway, runtime, worker and deploy files.
+
+## D16. Item 23: keep v1, add v2, pre-register, accept the result (Phase 6)
+The diagnosis showed v1's footprint predictions cannot work on Open
+Buildings (both fabrics are ~73% touching polygons). Rather than re-score v1
+with new metrics (moving the goalposts), v1 stays as it is and a v2 test on
+segmentation-robust built-mass metrics was written, its caveat stated
+(designed after diagnosing the same AOIs), committed and pushed before
+scoring (c29ab06). v2 FAILED (2 hold, 1 reversed). Stopped there: a third
+variant fitted to the same two boxes would be fishing. The `built_mass`
+metrics stay in vector/density.py: tested, fragmentation-invariant,
+`experimental`, and the one footprint signal that did separate (13×).
+Next step needs a held-out pair chosen with local knowledge
+(experiments/density_fix/REPORT.md).

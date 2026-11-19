@@ -1,0 +1,274 @@
+{
+ "run_utc": "2026-11-19T19:51:27+00:00",
+ "density_py_sha256": "39edc9b2060ae44cb6557ac48073486f136196692fb62ae8696b260c2b386c82",
+ "v1": {
+  "rows": [
+   {
+    "prediction": "larger formal footprints",
+    "formal": 50.40562977828962,
+    "informal": 46.13058833570426,
+    "statistic": 1.0926725974417404,
+    "threshold": 2.0,
+    "kind": "formal_over_informal_ratio",
+    "outcome": "short_of_threshold"
+   },
+   {
+    "prediction": "denser informal footprints",
+    "formal": 2100.53739850078,
+    "informal": 2760.8850056336987,
+    "statistic": 1.3143707927334356,
+    "threshold": 2.0,
+    "kind": "informal_over_formal_ratio",
+    "outcome": "short_of_threshold"
+   },
+   {
+    "prediction": "wider formal spacing",
+    "formal": 7.591065413624405,
+    "informal": 6.734541254240331,
+    "statistic": 1.127183742299414,
+    "threshold": 1.5,
+    "kind": "formal_over_informal_ratio",
+    "outcome": "short_of_threshold"
+   },
+   {
+    "prediction": "more orthogonal formal network",
+    "formal": 0.8792360260123163,
+    "informal": 0.047047910009998084,
+    "statistic": 0.8321881160023182,
+    "threshold": 0.1,
+    "kind": "formal_minus_informal",
+    "outcome": "holds"
+   }
+  ],
+  "holding": 1,
+  "reversed": 0,
+  "pass_rule": "at least 3 of 4 predictions hold AND none is reversed in direction",
+  "result": "FAIL"
+ },
+ "s1_v1_on_masses": {
+  "rows": [
+   {
+    "prediction": "larger formal footprints",
+    "formal": 101.23821066648112,
+    "informal": 173.52055636823025,
+    "statistic": 0.5834364111399124,
+    "threshold": 2.0,
+    "kind": "formal_over_informal_ratio",
+    "outcome": "reversed"
+   },
+   {
+    "prediction": "denser informal footprints",
+    "formal": 540.1112754710077,
+    "informal": 429.7834083382813,
+    "statistic": 0.7957312277242976,
+    "threshold": 2.0,
+    "kind": "informal_over_formal_ratio",
+    "outcome": "reversed"
+   },
+   {
+    "prediction": "wider formal spacing",
+    "formal": 2.2759463798093735,
+    "informal": 2.5725422167990746,
+    "statistic": 0.8847071060475171,
+    "threshold": 1.5,
+    "kind": "formal_over_informal_ratio",
+    "outcome": "reversed"
+   },
+   {
+    "prediction": "more orthogonal formal network",
+    "formal": 0.8792360260123163,
+    "informal": 0.047047910009998084,
+    "statistic": 0.8321881160023182,
+    "threshold": 0.1,
+    "kind": "formal_minus_informal",
+    "outcome": "holds"
+   }
+  ],
+  "holding": 1,
+  "reversed": 3,
+  "pass_rule": "at least 3 of 4 predictions hold AND none is reversed in direction",
+  "result": "FAIL"
+ },
+ "v2": {
+  "rows": [
+   {
+    "prediction": "more contiguous informal fabric (area-weighted mean mass)",
+    "formal": 1481.3355283129615,
+    "informal": 19417.440295006745,
+    "statistic": 13.108063584433538,
+    "threshold": 2.0,
+    "kind": "informal_over_formal_ratio",
+    "outcome": "holds"
+   },
+   {
+    "prediction": "more of the informal AOI built over",
+    "formal": 0.20668524085853038,
+    "informal": 0.2465099778424879,
+    "statistic": 1.1926830228347864,
+    "threshold": 1.5,
+    "kind": "informal_over_formal_ratio",
+    "outcome": "short_of_threshold"
+   },
+   {
+    "prediction": "wider gaps between formal masses (median edge-to-edge)",
+    "formal": 2.2759463798093735,
+    "informal": 2.5725422167990746,
+    "statistic": 0.8847071060475171,
+    "threshold": 1.5,
+    "kind": "formal_over_informal_ratio",
+    "outcome": "reversed"
+   },
+   {
+    "prediction": "more orthogonal formal network",
+    "formal": 0.8792360260123163,
+    "informal": 0.047047910009998084,
+    "statistic": 0.8321881160023182,
+    "threshold": 0.1,
+    "kind": "formal_minus_informal",
+    "outcome": "holds"
+   }
+  ],
+  "holding": 2,
+  "reversed": 1,
+  "pass_rule": "at least 3 of 4 predictions hold AND none is reversed in direction",
+  "result": "FAIL"
+ },
+ "metrics": {
+  "chandigarh_central": {
+   "footprint_density": {
+    "value": 2100.53739850078,
+    "status": "available",
+    "unit": "footprints/km^2",
+    "confidence": "normal"
+   },
+   "built_area_share": {
+    "value": 0.20668524085853038,
+    "status": "available",
+    "unit": "share of area",
+    "confidence": "normal"
+   },
+   "footprint_size_m2": {
+    "value": {
+     "n": 11150,
+     "p10": 15.682299549462154,
+     "p25": 24.813420760636447,
+     "median": 50.40562977828962,
+     "p75": 113.83829585616014,
+     "p90": 215.4129419918349,
+     "mean": 98.64408538282122
+    },
+    "status": "available",
+    "unit": "m^2",
+    "confidence": "normal"
+   },
+   "footprint_spacing_m": {
+    "value": {
+     "n": 11150,
+     "p10": 4.594793190302133,
+     "p25": 5.690176283170018,
+     "median": 7.591065413624405,
+     "p75": 10.312962383370127,
+     "p90": 14.009316476776641,
+     "mean": 8.908366397013255
+    },
+    "status": "available",
+    "unit": "m, centroid nearest neighbour",
+    "confidence": "normal"
+   },
+   "built_mass": {
+    "value": {
+     "gap_m": 1.0,
+     "n_masses": 2867,
+     "area_weighted_mean_m2": 1481.3355283129615,
+     "median_mass_m2": 101.23821066648112,
+     "largest_mass_share": 0.006752739126306963,
+     "median_gap_m": 2.2759463798093735,
+     "footprints_per_mass": 3.889082664806418
+    },
+    "status": "available",
+    "unit": "m^2 / m / share",
+    "method": "footprints within 1.0 m merged (single linkage)",
+    "confidence": "normal"
+   },
+   "orthogonality": {
+    "value": 0.8792360260123163,
+    "status": "available",
+    "method": "boeing_2019_orientation_order",
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "footprint_source": "open_buildings_v3",
+   "_area_km2": 5.308165428503252
+  },
+  "dharavi": {
+   "footprint_density": {
+    "value": 2760.8850056336987,
+    "status": "available",
+    "unit": "footprints/km^2",
+    "confidence": "normal"
+   },
+   "built_area_share": {
+    "value": 0.2465099778424879,
+    "status": "available",
+    "unit": "share of area",
+    "confidence": "normal"
+   },
+   "footprint_size_m2": {
+    "value": {
+     "n": 19246,
+     "p10": 15.374001951389182,
+     "p25": 24.947998996202926,
+     "median": 46.13058833570426,
+     "p75": 93.4806261392379,
+     "p90": 191.98876477345573,
+     "mean": 89.57485292115999
+    },
+    "status": "available",
+    "unit": "m^2",
+    "confidence": "normal"
+   },
+   "footprint_spacing_m": {
+    "value": {
+     "n": 19246,
+     "p10": 4.243136425734216,
+     "p25": 5.266448513385285,
+     "median": 6.734541254240331,
+     "p75": 9.097522101757264,
+     "p90": 13.670572996384724,
+     "mean": 8.180108639475979
+    },
+    "status": "available",
+    "unit": "m, centroid nearest neighbour",
+    "confidence": "normal"
+   },
+   "built_mass": {
+    "value": {
+     "gap_m": 1.0,
+     "n_masses": 2996,
+     "area_weighted_mean_m2": 19417.440295006745,
+     "median_mass_m2": 173.52055636823025,
+     "largest_mass_share": 0.08293694600799366,
+     "median_gap_m": 2.5725422167990746,
+     "footprints_per_mass": 6.423898531375167
+    },
+    "status": "available",
+    "unit": "m^2 / m / share",
+    "method": "footprints within 1.0 m merged (single linkage)",
+    "confidence": "normal"
+   },
+   "orthogonality": {
+    "value": 0.047047910009998084,
+    "status": "available",
+    "method": "boeing_2019_orientation_order",
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "footprint_source": "open_buildings_v3",
+   "_area_km2": 6.970953140289346
+  }
+ }
+}

@@ -32,3 +32,5 @@ with the reason.
 - `deploy/Dockerfile.api` copies `experiments/flood_validation/result_*.json`
   (the contract's pinned verdict files). New pinned files under another
   directory must be added to the COPY lines and `.dockerignore`.
+| vector/density.py | Added `MASS_GAP_M`, `built_masses()`, `_mass_block()`, a `built_mass` block in `density_metrics()`, and `SEPARATION_TEST_V2`. v1 untouched | Phase 6, item 23 fix. **vector/ is in contract.CODE_PATHS: the merge changes code_commit, so results computed after it get a new version_id and new result IDs** (stored results stay; nothing is recomputed silently). Is `density_metrics` called by analysis/run.py? No (checked: no import of vector.density in analysis/), so no output value changes, only the version stamp |
+| tests/test_vector_density.py | 8 tests appended | Built masses invariant to fragmentation; v1 and v2 pinned |

@@ -12,7 +12,7 @@ change branches (see MERGE_NOTES.md).
 | 3 | Honesty page, generated from analysis/contract.py | done; test fails on disagreement |
 | 4 | Downloads with provenance | done; verified end to end (850 grid units) |
 | 5 | Deployment config (prepared, not deployed) | done; image build skipped (SFINCS container running, D15) |
-| 6 | Density metrics fix (item 23) | layers cached; baseline FAIL reproduced exactly |
+| 6 | Density metrics fix (item 23) | done: diagnosed, fixed metrics, v2 pre-registered (c29ab06) and run: still FAIL (2 hold, 1 reversed); see experiments/density_fix/REPORT.md |
 
 ## Failures / open
 
