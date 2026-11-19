@@ -164,6 +164,12 @@ def build() -> dict:
                       "exposure_note": "PREREGISTRATION_ROUND4B.md: event facts, product lists, layer names; "
                                        "Noakhali also one attribute row of the flood layer. No geometry.",
                       "geometry": {"type": "point_approx", "point": r["point_approx"], "note": r["point_note"]}})
+    # flood_final DEV and RESERVED units (experiments/flood_final/register_final.py),
+    # kept on a registry rebuild.
+    heldout = os.path.join(HERE, "..", "..", "flood_final", "registry_units.json")
+    if os.path.exists(heldout):
+        with open(heldout) as fh:
+            units.extend(json.load(fh)["units"])
     return {"schema_version": 1, "built_from": list(RESULTS.values()) + ["PREREGISTRATION*.md"],
             "metadata_only_products": METADATA_ONLY_PRODUCTS,
             "exposure_ladder": {0: "unseen", 1: "facts/news", 2: "product metadata", 3: "reference geometry/counts",
