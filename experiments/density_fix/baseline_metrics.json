@@ -1,0 +1,350 @@
+{
+ "chandigarh_central": {
+  "road_length_per_area": {
+   "all": {
+    "value": 25.922721739023544,
+    "status": "available",
+    "unit": "km/km^2",
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "arterial": {
+    "value": 6.954980491612069,
+    "status": "available",
+    "unit": "km/km^2",
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "narrow_pedestrian": {
+    "value": 2.248190573670573,
+    "status": "available",
+    "unit": "km/km^2",
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "broad_pedestrian": {
+    "value": 18.54857334969657,
+    "status": "available",
+    "unit": "km/km^2",
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   }
+  },
+  "footprint_density": {
+   "value": 2100.53739850078,
+   "status": "available",
+   "unit": "footprints/km^2",
+   "confidence": "normal"
+  },
+  "built_area_share": {
+   "value": 0.20668524085852796,
+   "status": "available",
+   "unit": "share of area",
+   "confidence": "normal"
+  },
+  "footprint_size_m2": {
+   "value": {
+    "n": 11150,
+    "p10": 15.682299549462154,
+    "p25": 24.813420760636447,
+    "median": 50.40562977828962,
+    "p75": 113.83829585616014,
+    "p90": 215.4129419918349,
+    "mean": 98.64408538282005
+   },
+   "status": "available",
+   "unit": "m^2",
+   "confidence": "normal"
+  },
+  "footprint_spacing_m": {
+   "value": {
+    "n": 11150,
+    "p10": 4.594793190302133,
+    "p25": 5.690176283170018,
+    "median": 7.591065413624405,
+    "p75": 10.312962383370127,
+    "p90": 14.009316476776641,
+    "mean": 8.908366397013245
+   },
+   "status": "available",
+   "unit": "m, centroid nearest neighbour",
+   "confidence": "normal"
+  },
+  "orthogonality": {
+   "value": 0.8792360260123163,
+   "status": "available",
+   "method": "boeing_2019_orientation_order",
+   "fetch": {
+    "status": "complete",
+    "missing_clauses": []
+   }
+  },
+  "impervious_total": {
+   "value": null,
+   "status": "not_computed",
+   "reason": "requires item 21's spectral regression, not built"
+  },
+  "footprint_source": "open_buildings_v3",
+  "coverage": {
+   "osm_density_percentile": 66.7,
+   "coverage_regime_flag": "adequate",
+   "low_coverage_warning": false,
+   "regime_reasons": [],
+   "narrow_pedestrian_km_per_km2": 2.2482,
+   "broad_pedestrian_km_per_km2": 18.5486,
+   "arterial_to_pedestrian_ratio": {
+    "value": 3.094,
+    "capped": false,
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "footprints_per_road_km": {
+    "value": 81.87,
+    "capped": false,
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "road_length_fetch": {
+    "all": {
+     "status": "complete",
+     "missing_clauses": []
+    },
+    "arterial": {
+     "status": "complete",
+     "missing_clauses": []
+    },
+    "narrow_pedestrian": {
+     "status": "complete",
+     "missing_clauses": []
+    },
+    "broad_pedestrian": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "footprint_count": 11266,
+   "footprint_count_method": "layer_footprints",
+   "footprint_source": "open_buildings_v3",
+   "topology_metrics_suppressed": false,
+   "footprint_metrics_confidence": "normal",
+   "reference_set_size": 12,
+   "percentile_basis": "leave_one_out",
+   "reference_measured_on": "2026-10-27",
+   "measure": "peer_relative_density_rank",
+   "scored": true,
+   "source_layer_id": "edf2f28b24fdcb2b",
+   "validation_status": "experimental"
+  },
+  "spectral_inputs": [],
+  "source_layer_id": "edf2f28b24fdcb2b",
+  "validation_status": "experimental"
+ },
+ "dharavi": {
+  "road_length_per_area": {
+   "all": {
+    "value": 23.097176831248543,
+    "status": "available",
+    "unit": "km/km^2",
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "arterial": {
+    "value": 7.431817589588389,
+    "status": "available",
+    "unit": "km/km^2",
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "narrow_pedestrian": {
+    "value": 2.8048808084661783,
+    "status": "available",
+    "unit": "km/km^2",
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "broad_pedestrian": {
+    "value": 14.10897702963706,
+    "status": "available",
+    "unit": "km/km^2",
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   }
+  },
+  "footprint_density": {
+   "value": 2760.8850056336987,
+   "status": "available",
+   "unit": "footprints/km^2",
+   "confidence": "normal"
+  },
+  "built_area_share": {
+   "value": 0.24650997784248727,
+   "status": "available",
+   "unit": "share of area",
+   "confidence": "normal"
+  },
+  "footprint_size_m2": {
+   "value": {
+    "n": 19246,
+    "p10": 15.374001951389182,
+    "p25": 24.947998996202926,
+    "median": 46.13058833570426,
+    "p75": 93.4806261392379,
+    "p90": 191.98876477345573,
+    "mean": 89.57485292115977
+   },
+   "status": "available",
+   "unit": "m^2",
+   "confidence": "normal"
+  },
+  "footprint_spacing_m": {
+   "value": {
+    "n": 19246,
+    "p10": 4.243136425734216,
+    "p25": 5.266448513385285,
+    "median": 6.734541254240331,
+    "p75": 9.097522101757264,
+    "p90": 13.670572996384724,
+    "mean": 8.18010863947594
+   },
+   "status": "available",
+   "unit": "m, centroid nearest neighbour",
+   "confidence": "normal"
+  },
+  "orthogonality": {
+   "value": 0.047047910009998084,
+   "status": "available",
+   "method": "boeing_2019_orientation_order",
+   "fetch": {
+    "status": "complete",
+    "missing_clauses": []
+   }
+  },
+  "impervious_total": {
+   "value": null,
+   "status": "not_computed",
+   "reason": "requires item 21's spectral regression, not built"
+  },
+  "footprint_source": "open_buildings_v3",
+  "coverage": {
+   "osm_density_percentile": 83.3,
+   "coverage_regime_flag": "adequate",
+   "low_coverage_warning": false,
+   "regime_reasons": [],
+   "narrow_pedestrian_km_per_km2": 2.8049,
+   "broad_pedestrian_km_per_km2": 14.109,
+   "arterial_to_pedestrian_ratio": {
+    "value": 2.65,
+    "capped": false,
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "footprints_per_road_km": {
+    "value": 120.11,
+    "capped": false,
+    "fetch": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "road_length_fetch": {
+    "all": {
+     "status": "complete",
+     "missing_clauses": []
+    },
+    "arterial": {
+     "status": "complete",
+     "missing_clauses": []
+    },
+    "narrow_pedestrian": {
+     "status": "complete",
+     "missing_clauses": []
+    },
+    "broad_pedestrian": {
+     "status": "complete",
+     "missing_clauses": []
+    }
+   },
+   "footprint_count": 19339,
+   "footprint_count_method": "layer_footprints",
+   "footprint_source": "open_buildings_v3",
+   "topology_metrics_suppressed": false,
+   "footprint_metrics_confidence": "normal",
+   "reference_set_size": 12,
+   "percentile_basis": "leave_one_out",
+   "reference_measured_on": "2026-10-27",
+   "measure": "peer_relative_density_rank",
+   "scored": true,
+   "source_layer_id": "960d01faf1026bb1",
+   "validation_status": "experimental"
+  },
+  "spectral_inputs": [],
+  "source_layer_id": "960d01faf1026bb1",
+  "validation_status": "experimental"
+ },
+ "separation": {
+  "rows": [
+   {
+    "prediction": "larger formal footprints",
+    "formal": 50.40562977828962,
+    "informal": 46.13058833570426,
+    "statistic": 1.0926725974417404,
+    "threshold": 2.0,
+    "kind": "formal_over_informal_ratio",
+    "outcome": "short_of_threshold"
+   },
+   {
+    "prediction": "denser informal footprints",
+    "formal": 2100.53739850078,
+    "informal": 2760.8850056336987,
+    "statistic": 1.3143707927334356,
+    "threshold": 2.0,
+    "kind": "informal_over_formal_ratio",
+    "outcome": "short_of_threshold"
+   },
+   {
+    "prediction": "wider formal spacing",
+    "formal": 7.591065413624405,
+    "informal": 6.734541254240331,
+    "statistic": 1.127183742299414,
+    "threshold": 1.5,
+    "kind": "formal_over_informal_ratio",
+    "outcome": "short_of_threshold"
+   },
+   {
+    "prediction": "more orthogonal formal network",
+    "formal": 0.8792360260123163,
+    "informal": 0.047047910009998084,
+    "statistic": 0.8321881160023182,
+    "threshold": 0.1,
+    "kind": "formal_minus_informal",
+    "outcome": "holds"
+   }
+  ],
+  "holding": 1,
+  "reversed": 0,
+  "pass_rule": "at least 3 of 4 predictions hold AND none is reversed in direction",
+  "result": "FAIL"
+ }
+}

@@ -1,0 +1,90 @@
+{
+ "chandigarh_central": {
+  "n": 11150,
+  "median_m2": 50.40562977828962,
+  "d=0.0": {
+   "groups": 4925,
+   "share_in_multi": 0.7180269058295964,
+   "median_group_m2": 55.7702543218231,
+   "p90_group_m2": 580.6489314995537,
+   "max_group_m2": 6215.85442018761,
+   "largest_group_n": 42
+  },
+  "d=0.25": {
+   "groups": 3972,
+   "share_in_multi": 0.7874439461883408,
+   "median_group_m2": 59.115104340274385,
+   "p90_group_m2": 750.852302647772,
+   "max_group_m2": 6215.85442018761,
+   "largest_group_n": 60
+  },
+  "d=0.5": {
+   "groups": 3480,
+   "share_in_multi": 0.8274439461883408,
+   "median_group_m2": 73.1864709025221,
+   "p90_group_m2": 850.4586847691241,
+   "max_group_m2": 7396.330045559308,
+   "largest_group_n": 60
+  },
+  "d=1.0": {
+   "groups": 2867,
+   "share_in_multi": 0.8698654708520179,
+   "median_group_m2": 101.45980375242269,
+   "p90_group_m2": 1041.015895118722,
+   "max_group_m2": 7396.330045559308,
+   "largest_group_n": 80
+  },
+  "d=2.0": {
+   "groups": 2097,
+   "share_in_multi": 0.9190134529147982,
+   "median_group_m2": 196.09922552001944,
+   "p90_group_m2": 1439.7657825302745,
+   "max_group_m2": 7396.330045559308,
+   "largest_group_n": 184
+  }
+ },
+ "dharavi": {
+  "n": 19246,
+  "median_m2": 46.13058833570426,
+  "d=0.0": {
+   "groups": 7814,
+   "share_in_multi": 0.7410370986178946,
+   "median_group_m2": 79.33012233869282,
+   "p90_group_m2": 505.89682278760324,
+   "max_group_m2": 9708.553279759397,
+   "largest_group_n": 150
+  },
+  "d=0.25": {
+   "groups": 5647,
+   "share_in_multi": 0.8223526966642419,
+   "median_group_m2": 99.10566636298736,
+   "p90_group_m2": 651.4933096211927,
+   "max_group_m2": 29899.045494260077,
+   "largest_group_n": 361
+  },
+  "d=0.5": {
+   "groups": 4213,
+   "share_in_multi": 0.870102878520212,
+   "median_group_m2": 133.74033464550772,
+   "p90_group_m2": 755.5036354536617,
+   "max_group_m2": 53249.24433093934,
+   "largest_group_n": 756
+  },
+  "d=1.0": {
+   "groups": 2996,
+   "share_in_multi": 0.9073054141120233,
+   "median_group_m2": 173.88676890713475,
+   "p90_group_m2": 885.3510458499773,
+   "max_group_m2": 144065.78436895797,
+   "largest_group_n": 2315
+  },
+  "d=2.0": {
+   "groups": 2121,
+   "share_in_multi": 0.9358827808375766,
+   "median_group_m2": 210.76904028116172,
+   "p90_group_m2": 991.4505529869506,
+   "max_group_m2": 214394.585829495,
+   "largest_group_n": 3036
+  }
+ }
+}

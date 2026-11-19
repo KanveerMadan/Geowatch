@@ -14,6 +14,12 @@ Every metric is a {value, status} block:
     uniformly disordered.
   * impervious_total: status "not_computed". It needs item 21's regression,
     which is not built.
+  * built masses (added 2026-11-20, item 23 fix): footprints whose
+    boundaries lie within MASS_GAP_M of each other are one built mass.
+    Area-weighted mean mass area, the largest mass's share of built area,
+    and the edge-to-edge gap from each mass to its nearest other mass.
+    These do not depend on how a building is cut into polygons, which the
+    footprint size / density / spacing metrics do (see SEPARATION_TEST_V2).
 
 Low-coverage policy (item 20 sets the thresholds): orthogonality is a
 network-topology metric and is SUPPRESSED when coverage.score_layer says so.
@@ -67,6 +73,70 @@ def _quantiles(values) -> dict:
             "mean": float(v.mean())}
 
 
+# A gap narrower than this between two footprints is a shared wall or a
+# segmentation seam, not a passage: Open Buildings polygons are traced from
+# ~50 cm imagery, and the narrowest walkable lane is wider. Fixed 2026-11-20
+# before SEPARATION_TEST_V2 was computed (experiments/density_fix/
+# PREREGISTRATION_V2.md); not tuned.
+MASS_GAP_M = 1.0
+
+
+def built_masses(footprints, gap_m: float = MASS_GAP_M) -> dict:
+    """Group footprints (projected, metres) whose boundaries are within
+    `gap_m` (single linkage). Returns the masses' areas (union of members),
+    member counts, and each mass's edge-to-edge distance to its nearest
+    other mass."""
+    from shapely import STRtree, unary_union
+
+    n = len(footprints)
+    parent = list(range(n))
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    tree = STRtree(footprints)
+    a, b = tree.query(footprints, predicate="dwithin", distance=gap_m)
+    for i, j in zip(a.tolist(), b.tolist()):
+        if i < j:
+            ri, rj = find(i), find(j)
+            if ri != rj:
+                parent[ri] = rj
+    members: dict = {}
+    for i in range(n):
+        members.setdefault(find(i), []).append(i)
+    geoms = [unary_union([footprints[i] for i in m]) for m in members.values()]
+    counts = [len(m) for m in members.values()]
+    areas = np.array([g.area for g in geoms])
+    if len(geoms) >= 2:
+        mt = STRtree(geoms)
+        idx, dist = mt.query_nearest(geoms, return_distance=True, exclusive=True, all_matches=False)
+        nearest = np.full(len(geoms), np.nan)
+        nearest[idx[0]] = dist
+    else:
+        nearest = np.array([])
+    return {"areas": areas, "counts": np.array(counts), "gaps": nearest}
+
+
+def _mass_block(fps, conf):
+    m = built_masses(fps)
+    areas = m["areas"]
+    total = float(areas.sum())
+    gaps = m["gaps"][np.isfinite(m["gaps"])] if m["gaps"].size else m["gaps"]
+    return _block({
+        "gap_m": MASS_GAP_M,
+        "n_masses": int(areas.size),
+        "area_weighted_mean_m2": float((areas ** 2).sum() / total) if total else None,
+        "median_mass_m2": float(np.median(areas)),
+        "largest_mass_share": float(areas.max() / total) if total else None,
+        "median_gap_m": float(np.median(gaps)) if gaps.size else None,
+        "footprints_per_mass": float(m["counts"].mean()),
+    }, unit="m^2 / m / share", method=f"footprints within {MASS_GAP_M} m merged (single linkage)",
+        confidence=conf)
+
+
 def density_metrics(layer, reference=None, region=None) -> dict:
     """All item 23 metrics for the AOI (or `region`), plus the item 20
     coverage block they were computed under."""
@@ -92,6 +162,7 @@ def density_metrics(layer, reference=None, region=None) -> dict:
         fp_density = _block(len(fps) / area_km2, unit="footprints/km^2", confidence=conf)
         built_share = _block(built_m2 / region_geom.area, unit="share of area", confidence=conf)
         size = _block(_quantiles(areas), unit="m^2", confidence=conf)
+        mass = _mass_block(fps, conf)
         if len(fps) >= 2:
             pts = np.array([(c.x, c.y) for c in (p.centroid for p in fps)])
             dist, _ = cKDTree(pts).query(pts, k=2)
@@ -105,6 +176,7 @@ def density_metrics(layer, reference=None, region=None) -> dict:
         built_share = _block(0.0, unit="share of area", **none)
         size = _block(None, **none)
         spacing = _block(None, **none)
+        mass = _block(None, **none)
 
     if cov["topology_metrics_suppressed"]:
         ortho = _block(None, "suppressed_low_coverage",
@@ -128,6 +200,7 @@ def density_metrics(layer, reference=None, region=None) -> dict:
         "built_area_share": built_share,
         "footprint_size_m2": size,
         "footprint_spacing_m": spacing,
+        "built_mass": mass,
         "orthogonality": ortho,
         "impervious_total": _block(None, "not_computed",
                                    reason="requires item 21's spectral regression, not built"),
@@ -152,6 +225,36 @@ SEPARATION_TEST = {
     ],
     "pass_rule": "at least 3 of 4 predictions hold AND none is reversed in direction",
     "min_holding": 3,
+}
+# SEPARATION_TEST above FAILED (1 of 4, 2026-10-28) and stays as it is: its
+# bars are not moved and its result is not rerun under a new name.
+
+
+# ── Separation test v2 (fixed 2026-11-20, committed before it was computed;
+# experiments/density_fix/PREREGISTRATION_V2.md). Why: on Open Buildings,
+# ~72-74% of polygons touch another one in BOTH the formal and the informal
+# AOI (formal multi-level houses are cut into rooftop fragments; informal
+# dwellings share walls), so per-polygon size, density and spacing measure
+# segmentation as much as morphology. v2 asks about built MASSES and the gaps
+# between them, which do not depend on where a building is cut.
+# CAVEAT, recorded in advance: v2 was designed after diagnosing these same
+# two AOIs, so a pass here is a consistency check on DEV data, not evidence.
+# Evidence needs the held-out pair named in the pre-registration. ──
+SEPARATION_TEST_V2 = {
+    "formal": "chandigarh_central",
+    "informal": "dharavi",
+    "predictions": [
+        ("more contiguous informal fabric (area-weighted mean mass)",
+         ("built_mass", "area_weighted_mean_m2"), "informal_over_formal_ratio", 2.0),
+        ("more of the informal AOI built over", ("built_area_share",),
+         "informal_over_formal_ratio", 1.5),
+        ("wider gaps between formal masses (median edge-to-edge)",
+         ("built_mass", "median_gap_m"), "formal_over_informal_ratio", 1.5),
+        ("more orthogonal formal network", ("orthogonality",), "formal_minus_informal", 0.10),
+    ],
+    "pass_rule": "at least 3 of 4 predictions hold AND none is reversed in direction",
+    "min_holding": 3,
+    "status": "DEV consistency check only; designed after diagnosing these AOIs",
 }
 
 

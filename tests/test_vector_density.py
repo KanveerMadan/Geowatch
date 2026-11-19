@@ -10,6 +10,7 @@ import ast
 import math
 
 import networkx as nx
+import numpy as np
 import pytest
 from shapely.geometry import box
 
@@ -152,3 +153,78 @@ def test_service_dependent_density_metrics_are_partial():
     assert d["road_length_per_area"]["broad_pedestrian"]["status"] == "partial_fetch"
     assert d["road_length_per_area"]["narrow_pedestrian"]["status"] == "available"
     assert d["orthogonality"]["status"] == "partial_fetch"
+
+
+# ── built masses and separation test v2 (item 23 fix, 2026-11-20) ──
+
+def test_touching_footprints_are_one_mass_and_a_lane_separates_them():
+    a, b = box(0, 0, 10, 10), box(10, 0, 20, 10)          # shared wall
+    c = box(23, 0, 33, 10)                                 # 3 m lane
+    m = density.built_masses([a, b, c])
+    assert sorted(m["areas"].tolist()) == [100.0, 200.0]
+    assert sorted(m["counts"].tolist()) == [1, 2]
+    assert m["gaps"].tolist() == pytest.approx([3.0, 3.0])
+
+
+def test_a_seam_under_the_gap_is_bridged_a_lane_is_not():
+    a, b = box(0, 0, 10, 10), box(10.5, 0, 20, 10)         # 0.5 m segmentation seam
+    assert len(density.built_masses([a, b])["areas"]) == 1
+    c = box(11.5, 0, 20, 10)                               # 1.5 m: a passage
+    assert len(density.built_masses([a, c])["areas"]) == 2
+
+
+def test_mass_metrics_do_not_change_when_a_building_is_cut_into_fragments():
+    """The defect behind v1's failure: Open Buildings cuts one house into
+    several polygons. Per-footprint size changes; mass metrics must not."""
+    whole = [box(x, 0, x + 12, 12) for x in (0, 30, 60)]
+    cut = [p for x in (0, 30, 60) for p in (box(x, 0, x + 6, 12), box(x + 6, 0, x + 12, 6),
+                                            box(x + 6, 6, x + 12, 12))]
+    mw, mc = density._mass_block(whole, "full")["value"], density._mass_block(cut, "full")["value"]
+    for k in ("n_masses", "area_weighted_mean_m2", "median_mass_m2", "largest_mass_share", "median_gap_m"):
+        assert mw[k] == pytest.approx(mc[k]), k
+    assert np.median([p.area for p in cut]) != np.median([p.area for p in whole])
+
+
+def test_density_metrics_report_built_masses():
+    m = density.density_metrics(_dense_layer(), REF)
+    v = m["built_mass"]["value"]
+    assert m["built_mass"]["status"] == "available"
+    assert v["gap_m"] == density.MASS_GAP_M == 1.0
+    # The synthetic huts stand 3 m apart: every hut is its own mass.
+    assert v["n_masses"] == 40 and v["footprints_per_mass"] == 1.0
+    assert v["median_gap_m"] == pytest.approx(3.0, rel=0.05)
+
+
+def test_separation_test_v1_is_unchanged():
+    t = density.SEPARATION_TEST
+    assert [(p[1], p[2], p[3]) for p in t["predictions"]] == [
+        (("footprint_size_m2", "median"), "formal_over_informal_ratio", 2.0),
+        (("footprint_density",), "informal_over_formal_ratio", 2.0),
+        (("footprint_spacing_m", "median"), "formal_over_informal_ratio", 1.5),
+        (("orthogonality",), "formal_minus_informal", 0.10)]
+
+
+def test_separation_test_v2_is_fixed_as_preregistered():
+    t = density.SEPARATION_TEST_V2
+    assert (t["formal"], t["informal"], t["min_holding"]) == ("chandigarh_central", "dharavi", 3)
+    assert [(p[1], p[2], p[3]) for p in t["predictions"]] == [
+        (("built_mass", "area_weighted_mean_m2"), "informal_over_formal_ratio", 2.0),
+        (("built_area_share",), "informal_over_formal_ratio", 1.5),
+        (("built_mass", "median_gap_m"), "formal_over_informal_ratio", 1.5),
+        (("orthogonality",), "formal_minus_informal", 0.10)]
+    assert "consistency check" in t["status"]
+
+
+def _m2(awm, share, gap, phi):
+    return {"built_mass": {"value": {"area_weighted_mean_m2": awm, "median_gap_m": gap}, "status": "available"},
+            "built_area_share": {"value": share, "status": "available"},
+            "orthogonality": {"value": phi, "status": "available"}}
+
+
+def test_separation_v2_evaluates_with_the_same_rule():
+    ok = density.evaluate_separation(_m2(300, 0.2, 6, 0.8), _m2(5000, 0.5, 2, 0.1),
+                                     density.SEPARATION_TEST_V2)
+    assert ok["result"] == "PASS" and ok["holding"] == 4
+    bad = density.evaluate_separation(_m2(300, 0.2, 6, 0.8), _m2(200, 0.5, 2, 0.1),
+                                      density.SEPARATION_TEST_V2)
+    assert bad["reversed"] == 1 and bad["result"] == "FAIL"
