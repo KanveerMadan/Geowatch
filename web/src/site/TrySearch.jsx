@@ -32,7 +32,7 @@ export default function TrySearch() {
         <label htmlFor={id} className="sr-only">Search a place or coordinates</label>
         <MagnifyingGlass size={18} aria-hidden="true" className="try-icon" />
         <input id={id} type="search" value={text} onChange={(e) => setText(e.target.value)}
-          placeholder="Search a place, or type coordinates" autoComplete="off" enterKeyHint="search" />
+          placeholder="A place, or coordinates" autoComplete="off" enterKeyHint="search" />
         <button type="submit" className="sbtn sbtn-primary" disabled={state.busy}>
           {state.busy ? 'Searching…' : 'Find'}
         </button>

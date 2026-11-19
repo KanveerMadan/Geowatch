@@ -16,7 +16,15 @@ change branches (see MERGE_NOTES.md).
 
 ## Failures / open
 
-- none yet
+- Item 23 v2 FAILED (pre-registered; no bar moved). Next: held-out pair (Kanveer).
+- Docker images not built (SFINCS container running all session). Build per DEPLOY.md §3 when free.
+- Gallery result IDs not on any local store: re-run the three cities where the site is served (DEPLOY.md §7).
+- Explorer's two pre-existing axe findings (D6).
+
+## Done
+
+All six phases. Final report: REPORT.md. Last full run: pytest 1076 passed /
+4 skipped; node web tests 67 passed.
 
 ## Notes
 
