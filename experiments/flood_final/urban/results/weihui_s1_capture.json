@@ -1,0 +1,62 @@
+{
+ "what": "D11 (i): share of UrbanSARFloods classes that the round-4 S1 VV-drop reference marks flooded (Weihui, 27 Jul 2021)",
+ "boxes": {
+  "usf_weihui_1": {
+   "flooded_open_cells": 1633,
+   "flooded_urban_cells": 3200,
+   "dry_cells": 14202,
+   "s1_marks_flooded_open": 0.4287,
+   "s1_marks_flooded_urban": 0.0106,
+   "s1_marks_dry": 0.0482,
+   "s1_meta": {
+    "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2021 Jan-Mar median",
+    "resolution": "10 m -> 30 m",
+    "event_image_date": "2021-07-27",
+    "days_after_event": 0,
+    "relative_orbits": [
+     40
+    ],
+    "event_images": 1,
+    "baseline_images": 8
+   }
+  },
+  "usf_weihui_2": {
+   "flooded_open_cells": 0,
+   "flooded_urban_cells": 879,
+   "dry_cells": 18027,
+   "s1_marks_flooded_open": null,
+   "s1_marks_flooded_urban": 0.0705,
+   "s1_marks_dry": 0.0211,
+   "s1_meta": {
+    "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2021 Jan-Mar median",
+    "resolution": "10 m -> 30 m",
+    "event_image_date": "2021-07-27",
+    "days_after_event": 0,
+    "relative_orbits": [
+     40
+    ],
+    "event_images": 1,
+    "baseline_images": 8
+   }
+  },
+  "usf_weihui_3": {
+   "flooded_open_cells": 0,
+   "flooded_urban_cells": 450,
+   "dry_cells": 18046,
+   "s1_marks_flooded_open": null,
+   "s1_marks_flooded_urban": 0.0244,
+   "s1_marks_dry": 0.0184,
+   "s1_meta": {
+    "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2021 Jan-Mar median",
+    "resolution": "10 m -> 30 m",
+    "event_image_date": "2021-07-27",
+    "days_after_event": 0,
+    "relative_orbits": [
+     40
+    ],
+    "event_images": 1,
+    "baseline_images": 8
+   }
+  }
+ }
+}
