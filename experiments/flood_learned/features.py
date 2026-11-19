@@ -62,6 +62,8 @@ OTHER = (
     # soil, land cover, vegetation
     "clay_pct", "wc_built", "wc_tree", "wc_shrub", "wc_grass", "wc_crop", "wc_bare",
     "wc_wetland", "wc_mangrove", "ndvi_pre",
+    # flood_final additions (appended so earlier column indices are unchanged)
+    "elev_glo30", "dist_coast_m", "ghsl_built_frac",
 )
 FEATURES = tuple(f"{t}_{d}" for d in DEMS for t in TERRAIN) + OTHER
 COMPARATORS = ("hand", "occurrence", "dist_water", "fluvial", "pluvial", "waterlogging",
@@ -170,6 +172,9 @@ def build_table(entry: dict, chosen: dict) -> dict:
         "rain_annual_mm": a.get("layer_rain_annual_mm", np.full(shape, np.nan)),
         "clay_pct": a["layer_clay_pct"],
         "ndvi_pre": L.get("ndvi_pre", np.full(shape, np.nan)),
+        "elev_glo30": crop(L["dem_glo30"]).astype(np.float64),
+        "dist_coast_m": L.get("dist_coast_m", np.full(shape, np.nan)),
+        "ghsl_built_frac": L.get("ghsl_built_frac", np.full(shape, np.nan)),
     })
     for c in ("built", "tree", "shrub", "grass", "crop", "bare", "wetland", "mangrove"):
         cols[f"wc_{c}"] = L.get(f"wc_{c}", np.full(shape, np.nan))

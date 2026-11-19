@@ -272,7 +272,62 @@ def fetch_unit(entry: dict) -> tuple:
         arrays["dem_gedtm30"] = gd.astype(np.float32)
     meta["settings"] = step("settings", lambda: BUILD._call(lambda: setting_stats(ll_box, year),
                                                             f"settings {name}"))
+    ex = step("extra", lambda: BUILD._call(lambda: extra_stack(t, shape, crs, ll_box), f"extra {name}"))
+    if ex is not None:
+        arrays.update(ex)
     return arrays, meta
+
+
+# flood_final additions (coastal features; a second built-up source).
+GHSL_BUILT_S = "JRC/GHSL/P2023A/GHS_BUILT_S/2020"     # built-up surface, m2 per 100 m cell
+GHSL_CELL_M2 = 100.0 * 100.0
+# The coastal module's existing search radius (configs/coastal_constants.py):
+# beyond it distance is capped, never extrapolated.
+COAST_SEARCH_M = 50_000.0
+
+
+def extra_stack(t, shape, crs, ll) -> dict:
+    """dist_coast_m: distance (m) to the sat-io shoreline polygons' edge,
+    capped at COAST_SEARCH_M (ingestion/coastal.py's datasets);
+    ghsl_built_frac: GHSL 2020 built-up surface share of each 100 m cell."""
+    import ee
+    from configs.coastal_constants import COASTAL_SEARCH_RADIUS_KM
+    from ingestion.coastal import BIG_ISLANDS_ASSET, MAINLANDS_ASSET, SMALL_ISLANDS_ASSET
+    from susceptibility.hydro_rasters import compute_pixels
+    assert COASTAL_SEARCH_RADIUS_KM * 1000.0 == COAST_SEARCH_M
+    region = ee.Geometry.Rectangle(list(ll)).buffer(COAST_SEARCH_M)
+    land = (ee.FeatureCollection(MAINLANDS_ASSET).merge(ee.FeatureCollection(BIG_ISLANDS_ASSET))
+            .merge(ee.FeatureCollection(SMALL_ISLANDS_ASSET)).filterBounds(region))
+    edge = ee.Image().byte().paint(land, 1, 1)             # polygon outlines = the shoreline
+    dist = (edge.fastDistanceTransform(2048, "pixels", "squared_euclidean").sqrt()
+            .multiply(ee.Image.pixelArea().sqrt()))
+    dist = dist.min(COAST_SEARCH_M).unmask(COAST_SEARCH_M)
+    built = ee.Image(GHSL_BUILT_S).select(0).divide(GHSL_CELL_M2)
+    img = ee.Image.cat([dist.rename("dist_coast_m"), built.rename("ghsl_built_frac")])
+    return {k: v.astype(np.float32) for k, v in compute_pixels(img, t, shape, crs,
+                                                               "extra stack").items()}
+
+
+def add_extra(names) -> int:
+    """Add extra_stack to cached units that lack it."""
+    for n in names:
+        if not os.path.exists(path(n)):
+            continue
+        u = load(n)
+        if "dist_coast_m" in u["arrays"]:
+            continue
+        g = u["meta"]["grid"]
+        t, shape, crs = BUILD._affine(u["meta"]), tuple(g["shape"]), g["crs"]
+        try:
+            u["arrays"].update(BUILD._call(lambda: extra_stack(t, shape, crs, u["meta"]["box_lonlat"]),
+                                           f"extra {n}"))
+            u["meta"]["errors"].pop("extra", None)
+            print(f"── {n}: extra added", flush=True)
+        except Exception as e:      # noqa: BLE001
+            u["meta"]["errors"]["extra"] = f"{type(e).__name__}: {e}"[:400]
+            print(f"── {n}: extra failed: {u['meta']['errors']['extra'][:200]}", flush=True)
+        save(n, u["arrays"], u["meta"])
+    return 0
 
 
 def redo_step(cat, step: str) -> int:
@@ -313,6 +368,8 @@ def main(argv=None):
                     help="refetch cached units that recorded any step error")
     ap.add_argument("--redo-step", choices=("settings", "gedtm30"),
                     help="cached units whose step failed: redo that step only, in place")
+    ap.add_argument("--add-extra", action="store_true",
+                    help="add the coastal / GHSL layers to cached units that lack them")
     args = ap.parse_args(argv)
     print(f"free disk {BUILD.check_disk():.1f} GB", flush=True)
     import ee
@@ -325,6 +382,8 @@ def main(argv=None):
         cat = [c for c in cat if c["unit"] in set(args.only)]
     if args.redo_step:
         return redo_step(cat, args.redo_step)
+    if args.add_extra:
+        return add_extra([c["unit"] for c in cat])
     log = {}
     for c in cat:
         name = c["unit"]

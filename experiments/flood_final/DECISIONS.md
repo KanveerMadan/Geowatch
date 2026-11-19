@@ -26,3 +26,37 @@ Every judgement call, in order. "Owner" = the repository owner's run brief (2026
 ## D7 Registry guard drops (dry run, 2026-11-19)
 - RESERVED EMSR768 (Kupa/Korana, Oct 2024) shares the Danube main basin with 6 new DEV units (EMSR757 Morava x2, EMSR680 Slovenia x3, EMSR770 AOI03). Dropping the reserved activation keeps 6 DEV units, 4 of them flash floods, which DEV has few of. Europe keeps 2 reserved river activations (EMSR712, EMSR861).
 - RESERVED s1_bor_2024 (Sudd) shares the Nile main basin with DEV kigali (and new DEV EMSR662 Uganda). Dropped; waterlogging RESERVED is then 2 events (EMSR856, s1_yenagoa_2022), fewer than the 5 the brief targets. Recorded, not padded.
+
+## D8 The pluvial module's own inputs are not built for the 38 new DEV units
+- They take up to an hour per unit (flood_baselines pass 3), and the pluvial recipe is a comparator, not a candidate the evidence suggests (it is below HAND on batch 0: −0.068 [−0.108, −0.021]).
+- The pluvial module is scored on the batch-0 DEV units, where its inputs exist. On RESERVED it is scored only where its inputs build within the 1 h limit (PREREGISTRATION §4).
+
+## D9 New features for all units: distance to the sat-io shoreline (capped at the coastal module's 50 km search radius), GLO-30 absolute elevation, and GHSL 2020 built-up share
+- The brief lists distance to coast, coastal elevation and a second built-up source (Open Buildings / GHSL). GHSL GHS_BUILT_S 2020 is used because it is one global image in Earth Engine, which keeps one consistent source. Open Buildings' footprint layer exists only where the pluvial inputs were built.
+- Appended at the end of the feature list, so batch-0 column indices and cached predictions are unchanged.
+
+## D10 Urban-capable reference: UrbanSARFloods' published coherence-based labels, not a detector built here
+- A Sentinel-1 coherence detector needs SLC data. Earth Engine has only GRD. The SLC portals (ASF, Copernicus Data Space) need an account (a hard stop in the brief). Processing SLC into coherence also needs an InSAR processor (SNAP / ISCE) that is not installed.
+- UrbanSARFloods (Zhao et al. 2024, CVPRW; CC BY 4.0; huggingface.co/datasets/S1Floodbenchmark/UrbanSARFloods_v1) publishes coherence + intensity labels: NF non-flood, FO flooded open area, FU flooded urban. Full-scene labels are public for 4 events only (the rest are 512 x 512 chips in a 38 GB archive).
+- **Used: Weihui, China (27 Jul 2021)**, the test scene with the most flooded-urban tiles (135). Not used:
+  - Nova Kakhovka (dam breach, M7);
+  - Jubba (10–13 urban tiles);
+  - **Lokoja 2022, which is a RESERVED unit (s1_lokoja_2022)**: its UrbanSARFloods data are not opened.
+- Weihui is a DEV diagnostic **outside the registry**. Adding it would change `events.json`, whose SHA256 the pre-registration pins. It was checked read-only with the registry guard against every reserved unit before use.
+- Fewer than the 3–5 city events the brief targets: one full-scene urban event is all that is public without an account. Recorded, not padded.
+
+## D11 What the urban test decides, fixed before looking at it
+- On Weihui boxes (4 km, centred on flooded-urban pixels by the round-4 box rule), compare:
+  - (i) how many FU cells the round-4 Sentinel-1 VV-drop reference (the method behind 10 DEV and 7 RESERVED references) marks as flooded;
+  - (ii) the learned model's within-box AUC with FO-only labels vs FO + FU labels.
+- **Reading, fixed now:**
+  - If the VV-drop method misses most FU cells and the model's AUC falls when FU cells count as flooded, the cropland signal is at least partly a reference blind spot.
+  - If the model ranks FU cells as high as FO cells, it is not.
+- **Label policy for RESERVED is already fixed** by the pre-registration (§3): primary labels are unchanged. Urban labels can only be a secondary analysis, and none exist for any reserved unit, so the held-out verdicts do not depend on this test.
+
+## D12 DEV units tagged compound (M9)
+- valencia_2024 / paiporta (rain + Poyo ravine river + Albufera lagoon level, flood_core screening B1), and the five batch-0 cyclone units with rain and surge documented in their activations: beira (Idai), black_river (Melissa), fort_myers_beach (Ian), kyaukpyu and sittwe (Mocha). New DEV units carry no compound tag (none of their activation texts names two drivers).
+
+## D13 Where a production module competes in the DEV method choice
+- A module competes for a type only where its score is defined on every DEV unit of that type. Comparing on a subset would compare a module and the learned model on different events.
+- So the pluvial module does not compete for pluvial: its inputs do not exist for the new DEV pluvial units (D8). It is still reported on batch-0 units, and on RESERVED where its inputs build (PREREGISTRATION §4).
