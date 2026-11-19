@@ -172,9 +172,67 @@ def s1_reference(names):
     return out
 
 
+def score(names, model_path=None):
+    """D11. Model = a model_v2 final (pickle) if given, else LightGBM 'full'
+    (flood_final.model_v2.VARIANTS) fitted on every DEV table. Weihui is never
+    in training."""
+    import pickle
+    from experiments.flood_final import model_v2 as V
+    from experiments.flood_learned import features as FT
+    from experiments.flood_learned import model as M
+    from experiments.flood_validation.harness import auc
+    if model_path:
+        fin = pickle.load(open(model_path, "rb"))
+        mdl, featnames, tag = fin["model"], fin["features"], os.path.basename(model_path)
+    else:
+        dev, _, _ = V.dev_units()
+        tables = M.load_tables(dev)
+        c = V.cols("full")
+        X, y, w = M.training_rows(tables, dev, c)
+        mdl, featnames, tag = M.fit_lgbm(X, y, w), list(V.VARIANTS["full"]), "lgbm_full_all_dev"
+    ci = [FT.FEATURES.index(f) for f in featnames]
+    out = {"model": tag}
+    for n in names:
+        z = np.load(os.path.join(CACHE, f"{n}.npz"))
+        valid, f_all, f_open = z["valid"], z["flooded"], z["flooded_open"]
+        fu = (z["fu_share"] >= 0.5) & valid & ~f_open
+        t = FT.load(n)
+        p = mdl.predict_proba(t["X"][:, ci])[:, 1].reshape(valid.shape)
+        hand = t["C"][:, 0].reshape(valid.shape)
+        ok = valid & np.isfinite(hand)
+        dry = ok & ~f_all
+
+        def a(s, pos, neg):
+            P, N = s[pos], s[neg]
+            return None if P.size < 50 or N.size < 50 else round(auc(
+                np.concatenate([P, N]), np.r_[np.ones(P.size), np.zeros(N.size)].astype(int),
+                np.r_[np.zeros(P.size), np.ones(N.size)].astype(int)), 4)
+        rec = {"cells": {"flooded_open": int((f_open & ok).sum()), "flooded_urban": int((fu & ok).sum()),
+                         "dry": int(dry.sum())}}
+        for lab, pos in (("open_only", f_open & ok), ("all", f_all & ok), ("urban_only", fu & ok)):
+            rec[lab] = {"model_auc": a(p, pos, dry), "hand_auc": a(-hand, pos, dry)}
+        s1p = os.path.join(CACHE, f"{n}__s1.npz")
+        if os.path.exists(s1p):
+            s1 = np.load(s1p)
+            sf, sv = s1["flooded"], s1["valid"]
+            rec["s1_vv_drop"] = {
+                "share_of_flooded_open_marked": round(float((sf & f_open & sv).sum() / max(1, (f_open & sv).sum())), 4),
+                "share_of_flooded_urban_marked": round(float((sf & fu & sv).sum() / max(1, (fu & sv).sum())), 4),
+                "share_of_dry_marked": round(float((sf & dry & sv).sum() / max(1, (dry & sv).sum())), 4)}
+        out[n] = rec
+        print(n, json.dumps(rec), flush=True)
+    os.makedirs(OUT, exist_ok=True)
+    json.dump(out, open(os.path.join(OUT, "weihui_score.json"), "w"), indent=1)
+    return out
+
+
 def main(argv=None):
     argv = argv or sys.argv[1:]
     step = argv[0]
+    if step == "score":
+        rows = json.load(open(os.path.join(OUT, "weihui_boxes.json")))
+        score(list(rows), argv[1] if len(argv) > 1 else None)
+        return 0
     if step == "boxes":
         write_refs(choose_boxes())
     else:

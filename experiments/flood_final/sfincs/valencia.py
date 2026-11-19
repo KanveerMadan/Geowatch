@@ -226,8 +226,68 @@ def run(member: str):
     return out
 
 
+WET_M = 0.10            # "flooded" depth for extent IoU: the flood-core P0 convention (> 0.10 m)
+DEV_BOXES = ("valencia_2024", "paiporta")
+
+
+def score():
+    """Each finished member on the DEV boxes: AUC of hmax and of the snapshot
+    depth vs the cached EMS reference (same labels as every DEV score), beside
+    HAND; extent IoU at WET_M; runtime / memory / disk per km2."""
+    import glob
+    from affine import Affine
+    from rasterio.warp import Resampling, reproject
+    from experiments.flood_learned import features as FT
+    from experiments.flood_validation.harness import auc
+    t30 = Affine(DX, 0, X0, 0, -DX, Y1)
+    res = {"settings": {"huthresh": HUTHRESH, "dtmax": DTMAX, "manning": MANNING, "wet_m": WET_M,
+                        "domain_km2": (X1 - X0) * (Y1 - Y0) / 1e6}, "members": {}}
+    for d in sorted(glob.glob(os.path.join(CACHE, "runs", "*"))):
+        sp = os.path.join(d, "summary.json")
+        if not os.path.exists(os.path.join(d, "hmax.npy")):
+            continue
+        summ = json.load(open(sp))
+        mem = os.path.basename(d)
+        rec = {k: summ.get(k) for k in ("wall_s", "solver_reported_s", "sfincs_peak_rss_mib", "disk_mb")}
+        km2 = res["settings"]["domain_km2"]
+        rec["wall_s_per_km2"] = None if not rec["wall_s"] else round(rec["wall_s"] / km2, 3)
+        rec["disk_mb_per_km2"] = None if not rec["disk_mb"] else round(rec["disk_mb"] / km2, 4)
+        for field in ("hmax", "h_snapshot"):
+            p = os.path.join(d, f"{field}.npy")
+            if not os.path.exists(p):
+                continue
+            h = np.load(p).astype(np.float32)
+            h = h.reshape(grid_shape()) if h.size == np.prod(grid_shape()) else h
+            h_top = h[::-1, :]                     # back to north-up
+            for box in DEV_BOXES:
+                t = FT.load(box)
+                g = t["meta"]["grid"]
+                dst = np.full(tuple(g["shape"]), np.nan, np.float32)
+                reproject(h_top, dst, src_transform=t30, src_crs=CRS,
+                          dst_transform=Affine(*g["transform"][:6]), dst_crs=g["crs"],
+                          resampling=Resampling.average, src_nodata=np.nan, dst_nodata=np.nan)
+                y = t["y"]
+                s = dst.ravel()
+                ok = (y >= 0) & np.isfinite(s) & np.isfinite(t["C"][:, 0])
+                yy = y[ok]
+                f = lambda v: auc(v, (yy == 1).astype(int), (yy == 0).astype(int))   # noqa: E731
+                wet = s[ok] > WET_M
+                obs = yy == 1
+                rec[f"{box}__{field}"] = {
+                    "auc": round(f(s[ok]), 4), "hand_auc": round(f(t["C"][ok, 0]), 4),
+                    "iou_wet": round(float((wet & obs).sum() / max(1, (wet | obs).sum())), 4),
+                    "wet_share": round(float(wet.mean()), 4), "observed_share": round(float(obs.mean()), 4)}
+        res["members"][mem] = rec
+    os.makedirs(OUT, exist_ok=True)
+    json.dump(res, open(os.path.join(OUT, "valencia_sfincs.json"), "w"), indent=1)
+    print(json.dumps(res, indent=1)[:3000])
+    return 0
+
+
 def main(argv=None):
     a = argv or sys.argv[1:]
+    if a[0] == "score":
+        return score()
     {"dem": dem, "rain": rain}.get(a[0], lambda: run(a[1]))()
     return 0
 

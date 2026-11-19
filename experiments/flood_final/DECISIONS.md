@@ -60,3 +60,14 @@ Every judgement call, in order. "Owner" = the repository owner's run brief (2026
 ## D13 Where a production module competes in the DEV method choice
 - A module competes for a type only where its score is defined on every DEV unit of that type. Comparing on a subset would compare a module and the learned model on different events.
 - So the pluvial module does not compete for pluvial: its inputs do not exist for the new DEV pluvial units (D8). It is still reported on batch-0 units, and on RESERVED where its inputs build (PREREGISTRATION §4).
+
+## D14 Valencia rain members bracket the storm; neither is "the" forcing
+- IMERG V07's largest 24 h total anywhere in the 42 x 26 km domain is 131 mm. AEMET's Turís gauge recorded 771.8 mm in 24 h.
+- So member `imerg` is a lower bracket. Member `gauge` (the whole field x 5.87, so that the domain maximum equals Turís) is an upper bracket: it also over-rains the plain, where gauges recorded far less than the core.
+- Results are reported for both. A gauge-interpolated field (AEMET station network) would be better; AEMET's open-data API needs a key (an account), so it is skipped (hard stop) and logged.
+
+## D15 (before any reserved data) Which output the AUC verdict uses
+- The pre-registration (§4, §6) applies isotonic calibration to the reserved predictions and uses within-event AUC as the primary metric, but does not say which of the two outputs the AUC is computed on.
+- Isotonic regression is monotone but piecewise constant: it merges distinct scores into plateaus, which adds ties and can only keep or lower a within-event AUC. The ranking it tests is the model's raw score.
+- So the verdict AUC uses the raw score (`learned_raw:<method>`). The calibrated output's AUC is reported beside it, and the calibrated output is what the calibration check (probability vs score) uses.
+- Fixed on 2026-11-19, before the freeze tag and before any reserved reference, input or score was read.
