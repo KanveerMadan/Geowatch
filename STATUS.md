@@ -11,7 +11,7 @@ change branches (see MERGE_NOTES.md).
 | 2 | City gallery | done (IDs not on local store, D4) |
 | 3 | Honesty page, generated from analysis/contract.py | done; test fails on disagreement |
 | 4 | Downloads with provenance | done; verified end to end (850 grid units) |
-| 5 | Deployment config (prepared, not deployed) | todo |
+| 5 | Deployment config (prepared, not deployed) | done; image build skipped (SFINCS container running, D15) |
 | 6 | Density metrics fix (item 23) | layers cached; baseline FAIL reproduced exactly |
 
 ## Failures / open

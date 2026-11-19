@@ -93,3 +93,61 @@ are public reads today (api.py's results exemption). The explorer never
 requests them. The deployment wrapper (Phase 5) requires the API key for
 them, so the public deployment cannot leak per-building values, without
 editing api.py.
+
+## D10. Hosting target: Render (Phase 5)
+Render over Railway because: (1) **Secret Files**: the Earth Engine key is
+mounted as a file (`/etc/secrets/ee-key.json`), never an env var or image
+layer; Railway has env vars only, so the JSON would have to be pasted or
+base64'd into one. (2) A **static-site** product with rewrite rules: the
+site and `/api` share one origin (no CORS, one domain, free CDN and
+auto-TLS); on Railway the frontend would be another container. (3) A
+reviewable **Blueprint** (`render.yaml`) in the repo. (4) Health-check
+restarts and persistent disks on Docker services. Costs: DEPLOY.md §11.
+Against it: a Render disk attaches to one service, so the SFINCS worker
+needs a shared queue/store first (DEPLOY.md §9); Railway has the same
+limitation with volumes.
+
+## D11. No api.py edit: a gateway in front of it (Phase 5)
+`deploy/asgi.py` wraps `api.app` (uvicorn `deploy.asgi:app`, 1 process):
+`/health`, CORS from env, per-client sliding-window rate limits, a global
+daily cap on public analyses, JSON access logs with a salted client hash.
+**The brief said rate limits are "already in the API": they are not**: only
+the job pool (2 concurrent runs) and the 100 km² area cap exist. Hence the
+limiter here.
+
+## D12. Public explorer without a key in the browser (Phase 5)
+Product rule: public explorer, no login. api.py protects `GET /`,
+`/api/boundaries`, `/api/jobs`, `/api/imagery` with the key, and a key
+inlined into the bundle (VITE_*) would be public anyway. The gateway
+forwards exactly those routes with the server's key added, rate-limited
+(analysis: 4/hour/client, 100/day overall; imagery 60/hour; polls 120/min;
+reads 240/min; all env-configurable), and `GEOWATCH_PUBLIC_JOBS=0` turns
+public analysis off. Every other protected route still needs a real key.
+Per-building/per-street units are key-only (D9).
+
+## D13. Earth Engine auth and geemap at process start (Phase 5)
+Unscoped application-default credentials from a service-account key fail
+Earth Engine's refresh, so `deploy/runtime.py` wraps `ee.Initialize` to use
+`ee.ServiceAccountCredentials` from `GEE_SERVICE_ACCOUNT_KEY_FILE`.
+`ingestion/gee_client.py` imports `geemap` at top level for a dev map helper;
+the image omits geemap (Jupyter stack) and the runtime installs a stub with
+`Map`. No pipeline file changed, so no result's version_id changes.
+Verified: with torch / torchgeo / segment-anything / geemap / openpyxl /
+pycountry blocked, 142 API/pipeline/deploy tests pass.
+
+## D14. version_id in a container (Phase 5)
+Without git, `contract.code_commit()` reads `GEOWATCH_CODE_COMMIT` and
+would otherwise say "unknown" for every build, letting different code share
+cache keys. The image takes it as a build arg (`deploy/code_commit.sh`, the
+contract's own rule, refuses a dirty tree); production refuses to start
+without it, falling back to `RENDER_GIT_COMMIT` (HEAD: more misses, never a
+stale hit).
+
+## D15. Docker image build not tested (Phase 5)
+`docker info` responded, but an SFINCS container (sfincs-b3aedda0) was
+running all session, so per the brief no image was built. Checked instead:
+`docker compose config` validates; the pinned requirements resolve to 55
+Linux x86_64 wheels for Python 3.12 (pip dry run, no source builds); the
+gateway was run under uvicorn against stored results (health 200, explorer
+routes 200, footprint units 403, legacy 401, JSON logs); tests/test_deploy.py
+(38 tests) covers the gateway, runtime, worker and deploy files.

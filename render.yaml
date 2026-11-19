@@ -1,0 +1,78 @@
+# Render Blueprint (render.com/docs/blueprint-spec). PREPARED, NOT DEPLOYED:
+# see DEPLOY.md before applying it. Choice of Render: DECISIONS.md D10.
+services:
+  # The API: FastAPI behind deploy/asgi.py's gateway. ONE instance (job
+  # state and rate limits are in memory), a persistent disk for results.
+  - type: web
+    name: geowatch-api
+    runtime: docker
+    dockerfilePath: deploy/Dockerfile.api
+    dockerContext: .
+    plan: standard                 # 2 GB RAM; Starter (512 MB) is too small for a 100 km² run
+    region: frankfurt
+    numInstances: 1
+    healthCheckPath: /health
+    autoDeploy: false              # deploy by hand until the first release is checked
+    disk:
+      name: geowatch-data
+      mountPath: /app/data
+      sizeGB: 10
+    envVars:
+      - key: GEOWATCH_ENV
+        value: production
+      - key: GEOWATCH_API_KEY
+        generateValue: true        # server-side only; the browser never holds it
+      - key: GEE_PROJECT_ID
+        sync: false                # set in the dashboard
+      - key: GEE_SERVICE_ACCOUNT_KEY_FILE
+        value: /etc/secrets/ee-key.json   # upload ee-key.json as a Secret File
+      - key: GEOWATCH_CODE_COMMIT
+        sync: false                # $(deploy/code_commit.sh) for the deployed commit
+      - key: GEOWATCH_CORS_ORIGINS
+        value: https://geowatch-web.onrender.com
+      - key: GEOWATCH_TRUST_PROXY
+        value: "1"
+      - key: GEOWATCH_PUBLIC_JOBS
+        value: "1"
+      - key: GEOWATCH_ANALYSIS_PER_DAY
+        value: "100"
+      - key: GEOWATCH_RATE_ANALYSIS_PER_HOUR
+        value: "4"
+      - key: GEOWATCH_LOG_LEVEL
+        value: INFO
+
+  # The long-job worker (SFINCS). A STUB until the flood branch's SFINCS
+  # handler merges, and it needs a shared queue (object store / Redis): a
+  # Render disk attaches to one service only. Leave it out of the first
+  # deploy (DEPLOY.md step 9).
+  # - type: worker
+  #   name: geowatch-worker
+  #   runtime: docker
+  #   dockerfilePath: deploy/Dockerfile.api
+  #   dockerCommand: python -m deploy.worker
+  #   plan: standard
+
+  # The static site: landing, gallery, honesty page, explorer, reports.
+  - type: web
+    name: geowatch-web
+    runtime: static
+    rootDir: web
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE
+        value: ""                  # same origin, via the rewrites below
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://geowatch-api.onrender.com/api/*
+      - type: rewrite
+        source: /health
+        destination: https://geowatch-api.onrender.com/health
+      - type: rewrite
+        source: /*
+        destination: /index.html

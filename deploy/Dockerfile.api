@@ -1,0 +1,49 @@
+# GeoWatch API (FastAPI) and, with a different command, the long-job worker.
+# Slim, non-root, healthchecked. Build from the repo root:
+#   docker build -f deploy/Dockerfile.api \
+#     --build-arg GEOWATCH_CODE_COMMIT=$(deploy/code_commit.sh) -t geowatch-api .
+FROM python:3.12-slim AS base
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+WORKDIR /app
+COPY deploy/requirements-api.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt && rm /tmp/requirements.txt
+
+# Only the code the server runs. Data, models, notebooks and the retired
+# pipeline's weights stay out (.dockerignore).
+COPY api.py ee_timeout.py ./
+COPY analysis ./analysis
+COPY vector ./vector
+COPY susceptibility ./susceptibility
+COPY ingestion ./ingestion
+COPY configs ./configs
+COPY perception ./perception
+COPY exposure ./exposure
+COPY risk ./risk
+COPY zonal ./zonal
+COPY boundaries ./boundaries
+COPY experiments/flood_validation/result_*.json ./experiments/flood_validation/
+COPY deploy/__init__.py deploy/runtime.py deploy/asgi.py deploy/worker.py ./deploy/
+
+# The results-determining commit: contract.code_commit() falls back to this
+# when there is no git checkout. Production refuses to start without it.
+ARG GEOWATCH_CODE_COMMIT=""
+ENV GEOWATCH_CODE_COMMIT=${GEOWATCH_CODE_COMMIT} \
+    GEOWATCH_VECTOR_CACHE=/app/data/cache/vector \
+    PORT=8000
+
+RUN useradd --create-home --uid 10001 geowatch \
+    && mkdir -p /app/data/results /app/data/cache /app/data/queue /app/data/pipeline_runs /app/data/boundaries /app/data/imagery \
+    && chown -R geowatch:geowatch /app/data
+USER geowatch
+
+EXPOSE 8000
+HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
+    CMD python -c "import os,urllib.request,sys; sys.exit(0 if urllib.request.urlopen(f'http://127.0.0.1:{os.environ.get(\"PORT\",\"8000\")}/health', timeout=4).status == 200 else 1)"
+
+# ONE process: job state and rate limits live in memory.
+CMD ["sh", "-c", "exec uvicorn deploy.asgi:app --host 0.0.0.0 --port ${PORT} --workers 1 --proxy-headers --forwarded-allow-ips='*' --no-access-log"]

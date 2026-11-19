@@ -1,0 +1,27 @@
+# Only code goes into images. Never secrets, data or environments.
+.git
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*service-account*.json
+*service_account*.json
+*-sa.json
+credentials.json
+token.json
+data/
+models/
+archive/
+geowatch-env
+**/__pycache__
+**/*.pyc
+web/node_modules
+web/dist
+**/.pytest_cache
+experiments/*
+!experiments/flood_validation
+*.tif
+*.tiff
+*.gpkg
+*.ipynb
