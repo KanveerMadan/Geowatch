@@ -1,0 +1,7 @@
+file:            experiments/flood_final/PREREGISTRATION.md
+sha256:          e49bca3f99380867f0a8c7a4b36b62c0c806479a356f20ab6366fb11067db9a4
+commit:          eed20fea6f9c3f03e7f47fd191139f7b267bd506 (branch exp/flood-final)
+pushed (UTC):    2026-11-19T07:37:07Z  (origin/exp/flood-final == eed20fe at that time, checked with git ls-remote)
+registry commit: c6fb5b11fa3f0695b1af23afd300ba557fc674fb (reserved units added; pushed before the pre-registration)
+reserved data read before this push: none (references, input layers and scores of RESERVED units untouched)
+check:           shasum -a 256 experiments/flood_final/PREREGISTRATION.md
