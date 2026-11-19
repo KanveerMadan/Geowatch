@@ -71,3 +71,8 @@ Every judgement call, in order. "Owner" = the repository owner's run brief (2026
 - Isotonic regression is monotone but piecewise constant: it merges distinct scores into plateaus, which adds ties and can only keep or lower a within-event AUC. The ranking it tests is the model's raw score.
 - So the verdict AUC uses the raw score (`learned_raw:<method>`). The calibrated output's AUC is reported beside it, and the calibrated output is what the calibration check (probability vs score) uses.
 - Fixed on 2026-11-19, before the freeze tag and before any reserved reference, input or score was read.
+
+## D16 Valencia SFINCS ensemble cut to 4 members (base, gauge, glo30, lidar_e1)
+- The base member took 3.5 h (12,733 s wall, 7,401 s solver; 478 MiB peak; 256 MB). That is 11.7 s and 0.23 MB per km², under amd64 emulation, so 10 members would take ~35 h.
+- The brief caps a case at ~13 h and forbids running SFINCS and model training together. So the ensemble covers one member per uncertainty dimension (rain bracket, DEM source, LiDAR error) instead of 10 terrain realisations. `lagoon1m`, `lidar_e2` and `lidar_e3` are not run.
+- Base result (IMERG lower-bracket rain), max depth vs the EMS AOI03 references: valencia_2024 AUC 0.785 (HAND 0.706), paiporta 0.608 (HAND 0.501). The snapshot at +57 h scores near chance (0.593, 0.499) because most water had drained. EMS "flood trace" polygons are a maximum-extent proxy, so max depth is the comparable field.

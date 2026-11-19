@@ -22,7 +22,7 @@ Branch `exp/flood-final` (from `origin/exp/flood-learned` @ a8395d1; baselines, 
 
 ## Running now
 - build_units --dev (38 new DEV units, ~18 min each, started 2026-11-19 19:32 IST; log ~/.cache/geowatch/flood_final/build_dev.log; resumes, 3 tries per unit)
-- SFINCS Valencia queue: base (running) then gauge, glo30, lagoon1m, lidar_e1..e3, then `valencia score`, then Docker quits (log ~/.cache/geowatch/flood_final/sfincs/valencia/run_queue.log)
+- SFINCS Valencia: base done (3.5 h; hmax AUC 0.785 valencia_2024 vs HAND 0.706); gauge running, then glo30, lidar_e1, then `valencia score`, then Docker quits (D16; log ~/.cache/geowatch/flood_final/sfincs/valencia/run_queue.log)
 
 ## Next steps (in order)
 1. When both finish: `python -m experiments.flood_final.model_v2 cv`, then `choose` -> results/method_choice.json (commit).

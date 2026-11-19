@@ -1,0 +1,47 @@
+{
+ "settings": {
+  "huthresh": 0.001,
+  "dtmax": 4.0,
+  "manning": 0.04,
+  "wet_m": 0.1,
+  "domain_km2": 1092.0
+ },
+ "members": {
+  "base": {
+   "wall_s": 12733.06,
+   "solver_reported_s": 7401.472,
+   "sfincs_peak_rss_mib": 477.9,
+   "disk_mb": 255.8,
+   "wall_s_per_km2": 11.66,
+   "disk_mb_per_km2": 0.2342,
+   "valencia_2024__hmax": {
+    "auc": 0.7848,
+    "hand_auc": 0.7063,
+    "iou_wet": 0.3563,
+    "wet_share": 0.2519,
+    "observed_share": 0.1602
+   },
+   "paiporta__hmax": {
+    "auc": 0.6083,
+    "hand_auc": 0.5008,
+    "iou_wet": 0.235,
+    "wet_share": 0.2568,
+    "observed_share": 0.2071
+   },
+   "valencia_2024__h_snapshot": {
+    "auc": 0.5927,
+    "hand_auc": 0.7063,
+    "iou_wet": 0.0425,
+    "wet_share": 0.0221,
+    "observed_share": 0.1602
+   },
+   "paiporta__h_snapshot": {
+    "auc": 0.4992,
+    "hand_auc": 0.5008,
+    "iou_wet": 0.0621,
+    "wet_share": 0.0324,
+    "observed_share": 0.2071
+   }
+  }
+ }
+}
