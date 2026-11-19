@@ -61,3 +61,35 @@ pre-existing axe findings (`region`, and `aria-valid-attr-value` /
 `aria-allowed-role` on one element). Not fixed here: App.jsx is large and
 the flood/change branches edit its panels; fixing after they merge avoids a
 conflict. Logged for later.
+
+## D7. Downloads built in the browser from existing public endpoints (Phase 4)
+No api.py change: the report's download bar pages through
+`GET /api/results/<id>/wards/<unit_type>` (already public, contract-shaped
+per unit, geometry included) and builds GeoJSON and CSV client-side
+(`web/src/lib/download.js`). Offered unit types: `grid` (100 m) and
+`ward:*` only; `footprint` and `path` (per building / per street segment)
+are never offered, and no raster is. CSV is long (one row per unit and
+output) so every row carries value, status, validation label, scope note,
+coverage, sources, result id, model version and code commit; `#` header
+lines carry provenance and licence notes. GeoJSON flattens each output to
+`<path>`, `_status`, `_validation`, `_coverage`, `_sources` (`_tier`), with
+provenance under a top-level `geowatch` member. CSV cells starting with
+= + - @ are prefixed with `'` (spreadsheet formula injection).
+Verified end to end against stored result r476733d6905c91519bd75b6b (850
+grid units) through the local API and Chrome.
+
+## D8. Licence notes are a summary, and say so
+The notes in each download summarise each source's terms as of November
+2026 (Open Buildings CC BY 4.0 / ODbL; OSM ODbL; MERIT Hydro CC BY-NC 4.0
+or ODbL; FABDEM CC BY-NC-SA 4.0; Copernicus DEM / Sentinel attribution;
+CHIRPS, IMERG). An unmatched source is named as "licence not recorded".
+GeoWatch's own licence is not chosen; the file says so. **For Kanveer:**
+FABDEM and MERIT Hydro are non-commercial, so flood outputs inherit that;
+it matters for funders' and insurers' use (DEPLOY.md lists it).
+
+## D9. Building-level units must be closed on the public API (see Phase 5)
+`GET /api/results/<id>/wards/footprint|path` and `.../features/footprint|path`
+are public reads today (api.py's results exemption). The explorer never
+requests them. The deployment wrapper (Phase 5) requires the API key for
+them, so the public deployment cannot leak per-building values, without
+editing api.py.

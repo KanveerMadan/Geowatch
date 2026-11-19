@@ -10,7 +10,7 @@ change branches (see MERGE_NOTES.md).
 | 1 | Landing page | done: Lighthouse mobile perf 100 / a11y 100, axe 0 |
 | 2 | City gallery | done (IDs not on local store, D4) |
 | 3 | Honesty page, generated from analysis/contract.py | done; test fails on disagreement |
-| 4 | Downloads with provenance | in progress |
+| 4 | Downloads with provenance | done; verified end to end (850 grid units) |
 | 5 | Deployment config (prepared, not deployed) | todo |
 | 6 | Density metrics fix (item 23) | layers cached; baseline FAIL reproduced exactly |
 

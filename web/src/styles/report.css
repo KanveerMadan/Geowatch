@@ -22,6 +22,13 @@ html:has(.report), body:has(.report) { height: auto; overflow: auto; background:
 .rbar button { background: var(--ink); color: var(--c-print-paper); border-color: var(--ink); }
 .rbar a:hover { background: #f4f5f7; }
 .rbar :focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.rbar { flex-wrap: wrap; }
+.rdl { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); margin-right: auto; }
+.rbar .rdl button { background: var(--c-print-paper); color: var(--ink); border-color: var(--rule); }
+.rbar .rdl button:hover { background: #f4f5f7; }
+.rbar .rdl button:disabled { opacity: 0.6; cursor: progress; }
+.rdl select { height: 32px; padding: 0 var(--s-2); border: 1px solid var(--rule); border-radius: var(--r-control); background: var(--c-print-paper); color: var(--ink); font: inherit; }
+.rdl-err { flex-basis: 100%; color: var(--c-print-trust-failed); font-size: var(--t-caption-size); }
 
 .rhead { display: grid; gap: var(--s-3); margin-bottom: var(--s-6); }
 .rkicker { font-size: var(--t-caption-size); color: var(--ink3); font-weight: 520; }

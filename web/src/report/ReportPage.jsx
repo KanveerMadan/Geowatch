@@ -8,6 +8,7 @@ import { bboxAreaKm2, fmtKm2 } from '../lib/geo.js'
 import { areaNotes, sourcesOf } from '../lib/notes.js'
 import { getChangeFeatures, getFeatures, getResult } from '../lib/api.js'
 import StaticMap from './StaticMap.jsx'
+import DownloadBar from './DownloadBar.jsx'
 import '../styles/report.css'
 
 const score = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -93,6 +94,7 @@ export default function ReportPage({ resultId, name }) {
   return (
     <main className="report">
       <nav className="rbar" aria-label="Report actions">
+        <DownloadBar result={r} resultId={resultId} />
         <a href={`./?bbox=${bbox.join(',')}`}><ArrowSquareOut size={15} aria-hidden="true" /> Open in GeoWatch</a>
         <button type="button" onClick={() => window.print()}><Printer size={15} aria-hidden="true" /> Print or save as PDF</button>
       </nav>
@@ -249,6 +251,7 @@ export default function ReportPage({ resultId, name }) {
           {sources.map((s) => <li key={s}>{s}</li>)}
           <li>Pictures: Esri World Imagery (Esri, Vantor, Earthstar Geographics, and the GIS User Community)</li>
         </ul>
+        <p className="rcap">Downloads (GeoJSON, CSV) cover wards and the 100 m grid only, each value with its label, coverage, sources, this result id, the model version and licence notes. Building-level units are not published.</p>
         <p className="rcap">Generated {when.format(new Date())} from stored result {resultId}. A stored result never changes; a new method version is a new result.</p>
       </section>
     </main>

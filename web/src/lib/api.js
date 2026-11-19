@@ -78,3 +78,7 @@ export function aoiLabel(name) {
     .replace(/^_+|_+$/g, '').slice(0, 40)
   return s || 'area'
 }
+
+/** One page of a unit type's contract-shaped units (downloads). */
+export const getWardPage = (resultId, unitType, offset, limit) =>
+  call(`/api/results/${resultId}/wards/${unitType}?offset=${offset}&limit=${limit}`)
