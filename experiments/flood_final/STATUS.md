@@ -21,9 +21,15 @@ Branch `exp/flood-final` (from `origin/exp/flood-learned` @ a8395d1; baselines, 
 | 10 | M7/M6/M8 scenarios | todo | |
 
 ## Running now
-- build_units --dev (38 new DEV units, ~8-40 min each; log ~/.cache/geowatch/flood_final/build_dev.log; resumes, 3 tries per unit)
-- urban/weihui build + s1 (3 Weihui boxes; log ~/.cache/geowatch/flood_final/weihui_build.log)
-- sfincs/valencia dem + rain (MDT05 WCS tiles, IMERG; log ~/.cache/geowatch/flood_final/sfincs/valencia/prep.log)
+- build_units --dev (38 new DEV units, ~18 min each, started 2026-11-19 19:32 IST; log ~/.cache/geowatch/flood_final/build_dev.log; resumes, 3 tries per unit)
+- SFINCS Valencia queue: base (running) then gauge, glo30, lagoon1m, lidar_e1..e3, then `valencia score`, then Docker quits (log ~/.cache/geowatch/flood_final/sfincs/valencia/run_queue.log)
+
+## Next steps (in order)
+1. When both finish: `python -m experiments.flood_final.model_v2 cv`, then `choose` -> results/method_choice.json (commit).
+2. `python -m experiments.flood_final.urban.weihui score <final model pickle>` (D11 model part).
+3. DEV report tables (block bootstrap on DEV) for the evidence packs.
+4. Freeze: commit, tag flood-final-heldout-freeze, push tag. Then `heldout_pass build`, `heldout_pass score` (once).
+5. Evidence packs (paper/evidence/M1..M9), then production branch + PR.
 
 ## Failed / missing (never zero)
 - GEDTM30 v1.2 COG: OpenGeoHub server returns truncated range responses (2026-11-18); GLO-30 fallback.
