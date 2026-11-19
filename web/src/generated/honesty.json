@@ -1,0 +1,388 @@
+{
+ "bar": {
+  "metric": "roc_auc_cells",
+  "min_dry_cells": 50,
+  "min_events": 2,
+  "min_flooded_cells": 50,
+  "validated_if_auc_at_least": 0.7
+ },
+ "flood": [
+  {
+   "built": true,
+   "evidence": {
+    "auc": 0.8579,
+    "auc_kind": "mean within-event AUC over held-out events",
+    "events": [
+     {
+      "auc": 0.9162,
+      "event": "hanoi"
+     },
+     {
+      "auc": 0.7996,
+      "event": "kolonnawa"
+     }
+    ],
+    "file": "experiments/flood_validation/result_round2_2026-10-28.json",
+    "qualifying": 2,
+    "round": 2,
+    "verdict": "validated"
+   },
+   "id": "M1",
+   "label": "validated",
+   "module": "fluvial",
+   "name": "fluvial",
+   "outside_scope": "experimental",
+   "round": 4,
+   "scope": {
+    "events": [
+     "hanoi 2024-09-09 (Copernicus EMS EMSR754 AOI03), held-out AUC 0.9162",
+     "kolonnawa 2025-11-30 (Copernicus EMS EMSR851 AOI02), held-out AUC 0.7996"
+    ],
+    "evidence": "experiments/flood_validation/result_round2_2026-10-28.json",
+    "input_versions": {
+     "MERIT/Hydro": "v1_0_1"
+    },
+    "not_covered": {
+     "events": [
+      "bihar_2026 2026-09-11 (Kosi/Ganga at Kursela; Sentinel-1), AUC 0.6425",
+      "assam_2026 2026-07-20 (Dikhow at Nazira; Sentinel-1), AUC 0.3878",
+      "pakistan_2022 2022-08-31 (Sindh; UNOSAT FL20220808PAK), AUC 0.5791"
+     ],
+     "evidence": "experiments/flood_validation/result_round4_2026-10-30.json",
+     "regions": [
+      "Bihar, India (Kosi-Ganga floodplain)",
+      "Upper Assam, India (Dikhow, Brahmaputra basin)",
+      "Sindh, Pakistan (Indus plain)"
+     ],
+     "round4_mean_auc": 0.5365
+    },
+    "note": "Validated for these events, regions and inputs only: two Asian river cities, the pre-registered minimum of two (bar: mean within-event AUC >= 0.70; held-out 0.8579). Not a claim about other places. Narrowed by flood round 4 (2026-10-30): on three South Asian monsoon floodplain events it failed (mean 0.5365), so the validation does not extend to those events or regions.",
+    "regions": [
+     "Hanoi, Vietnam (Red River)",
+     "Kolonnawa, Sri Lanka (Kelani Ganga)"
+    ],
+    "tuning_events": [
+     "faenza 2023-05-02 (EMSR659 AOI02)",
+     "encantado 2024-05-02 (EMSR720 AOI02)"
+    ]
+   },
+   "status_text": "validated, scoped; round 4 failed, scope narrowed",
+   "validated_method": "merit_hydro_hand_per_pixel_weighted",
+   "verdict": "validated"
+  },
+  {
+   "built": true,
+   "evidence": {
+    "auc": 0.5243,
+    "auc_kind": "mean within-event AUC over held-out events",
+    "events": [
+     {
+      "auc": 0.4913,
+      "event": "dubai_2024"
+     },
+     {
+      "auc": 0.5573,
+      "event": "valencia_2024"
+     }
+    ],
+    "file": "experiments/flood_validation/result_round4_2026-10-30.json",
+    "qualifying": 2,
+    "round": 4,
+    "verdict": "failed"
+   },
+   "id": "M2",
+   "label": "failed",
+   "module": "pluvial",
+   "name": "pluvial",
+   "outside_scope": null,
+   "round": 4,
+   "scope": null,
+   "status_text": "new method; round 4 failed",
+   "validated_method": null,
+   "verdict": "failed"
+  },
+  {
+   "built": true,
+   "evidence": {
+    "auc": 0.6133,
+    "auc_kind": "mean within-event AUC over held-out events",
+    "events": [
+     {
+      "auc": 0.4061,
+      "event": "assam_2026"
+     },
+     {
+      "auc": 0.6677,
+      "event": "sylhet_2022"
+     },
+     {
+      "auc": 0.7661,
+      "event": "kerala_2018"
+     }
+    ],
+    "file": "experiments/flood_validation/result_round4_2026-10-30.json",
+    "qualifying": 3,
+    "round": 4,
+    "verdict": "failed"
+   },
+   "id": "M3",
+   "label": "failed",
+   "module": "waterlogging",
+   "name": "waterlogging",
+   "outside_scope": null,
+   "round": 4,
+   "scope": null,
+   "status_text": "new method; round 4 failed",
+   "validated_method": null,
+   "verdict": "failed"
+  },
+  {
+   "built": true,
+   "evidence": {
+    "auc": 0.6397,
+    "auc_kind": "mean within-event AUC over held-out events",
+    "events": [
+     {
+      "auc": 0.7219,
+      "event": "valencia_2024"
+     },
+     {
+      "auc": 0.5094,
+      "event": "himachal_2023"
+     },
+     {
+      "auc": 0.6877,
+      "event": "derna_2023"
+     }
+    ],
+    "file": "experiments/flood_validation/result_round4_2026-10-30.json",
+    "qualifying": 3,
+    "round": 4,
+    "verdict": "failed"
+   },
+   "id": "M4",
+   "label": "failed",
+   "module": "flash_flood",
+   "name": "flash flood",
+   "outside_scope": null,
+   "round": 4,
+   "scope": null,
+   "status_text": "new method; round 4 failed",
+   "validated_method": null,
+   "verdict": "failed"
+  },
+  {
+   "built": true,
+   "evidence": {
+    "auc": 0.6464,
+    "auc_kind": "pooled AUC over held-out sites",
+    "events": [],
+    "file": "experiments/flood_validation/result_round2_2026-10-28.json",
+    "qualifying": 4,
+    "round": 2,
+    "verdict": "failed"
+   },
+   "id": "M5",
+   "label": "failed",
+   "module": "coastal",
+   "name": "coastal",
+   "outside_scope": null,
+   "round": 5,
+   "scope": null,
+   "status_text": "failed; new method planned",
+   "validated_method": null,
+   "verdict": "failed"
+  },
+  {
+   "built": false,
+   "id": "M6",
+   "label": "placeholder",
+   "module": "debris_flow_glof",
+   "name": "debris flow / glacial lake outburst",
+   "reason": "not built; planned for flood round 5",
+   "round": 5,
+   "status": "not_computed",
+   "status_text": "not built"
+  },
+  {
+   "built": false,
+   "id": "M7",
+   "label": "placeholder",
+   "module": "embankment_dam_breach",
+   "name": "embankment / dam breach",
+   "reason": "not built; planned for flood round 5",
+   "round": 5,
+   "status": "not_computed",
+   "status_text": "not built"
+  },
+  {
+   "built": false,
+   "id": "M8",
+   "label": "placeholder",
+   "module": "snowmelt_ice_jam",
+   "name": "snowmelt / ice jam",
+   "reason": "not built; planned for flood round 5",
+   "round": 5,
+   "status": "not_computed",
+   "status_text": "not built"
+  },
+  {
+   "built": false,
+   "id": "M9",
+   "label": "placeholder",
+   "module": "compound",
+   "name": "compound",
+   "reason": "not built; planned for flood round 6, after fluvial, pluvial and waterlogging",
+   "round": 6,
+   "status": "not_computed",
+   "status_text": "not built; after M1-M3"
+  },
+  {
+   "built": false,
+   "id": "M10",
+   "label": "placeholder",
+   "module": "groundwater",
+   "name": "groundwater",
+   "reason": "not measurable: no water-table observation to score or test against",
+   "round": null,
+   "status": "not_computed",
+   "status_text": "not measurable: labelled, not tested"
+  },
+  {
+   "built": false,
+   "id": "M11",
+   "label": "placeholder",
+   "module": "tsunami",
+   "name": "tsunami",
+   "reason": "out of scope",
+   "round": null,
+   "status": "not_applicable",
+   "status_text": "out of scope"
+  }
+ ],
+ "generated_from": [
+  "analysis/contract.py",
+  "analysis/fractions.py",
+  "analysis/hazards.py",
+  "analysis/observability.py",
+  "experiments/flood_validation/result_2026-10-28.json",
+  "experiments/flood_validation/result_round2_2026-10-28.json",
+  "experiments/flood_validation/result_round3_2026-10-29.json",
+  "experiments/flood_validation/result_round4_2026-10-30.json",
+  "vector/coverage.py",
+  "vector/fractions.py",
+  "vector/roads.py",
+  "vector/units.py"
+ ],
+ "ground": [
+  {
+   "key": "built",
+   "label": "experimental",
+   "measured": true,
+   "reason": null
+  },
+  {
+   "key": "vegetation",
+   "label": "placeholder",
+   "measured": true,
+   "reason": null
+  },
+  {
+   "key": "water",
+   "label": "placeholder",
+   "measured": true,
+   "reason": null
+  },
+  {
+   "key": "impervious_total",
+   "label": "placeholder",
+   "measured": false,
+   "reason": "requires item 21's spectral regression, which is not built"
+  },
+  {
+   "key": "paved",
+   "label": "placeholder",
+   "measured": false,
+   "reason": "requires item 21's spectral regression, which is not built"
+  },
+  {
+   "key": "bare",
+   "label": "placeholder",
+   "measured": false,
+   "reason": "requires item 21's spectral regression, which is not built"
+  }
+ ],
+ "label_order": [
+  "retired",
+  "failed",
+  "placeholder",
+  "experimental",
+  "validated"
+ ],
+ "limits": [
+  {
+   "facts": {
+    "evaluation_cell_m": 30,
+    "terrain_sources": [
+     "MERIT/Hydro/v1_0_1 (hnd, upa)",
+     "projects/sat-io/open-datasets/FABDEM",
+     "COPERNICUS/DEM/GLO30 slope"
+    ]
+   },
+   "id": "terrain",
+   "title": "Flood scores rest on 30 m terrain"
+  },
+  {
+   "facts": {
+    "min_clear_observations_per_pixel": 3,
+    "min_unit_coverage": 0.5,
+    "pixel_m": 10.0
+   },
+   "id": "clouds",
+   "title": "Cloud gaps leave cells unmeasured"
+  },
+  {
+   "facts": {
+    "regimes": [
+     "adequate",
+     "low",
+     "very_low",
+     "not_measurable"
+    ],
+    "topology_suppressed_in": [
+     "low",
+     "not_measurable",
+     "very_low"
+    ],
+    "warned_regimes": [
+     "low",
+     "not_measurable",
+     "very_low"
+    ]
+   },
+   "id": "osm",
+   "title": "Street and building maps vary by place"
+  }
+ ],
+ "observation": [
+  {
+   "cause": "cloud_nodata",
+   "label": "experimental"
+  },
+  {
+   "cause": "fully_shadowed",
+   "label": "placeholder"
+  },
+  {
+   "cause": "transient_snow",
+   "label": "placeholder"
+  }
+ ],
+ "pinned_sha256": {
+  "experiments/flood_validation/result_2026-10-28.json": "4bfcfc51d24beee56513ad8483d2d935c2b0f7d3bec0642d3802b7c6660a6b1a",
+  "experiments/flood_validation/result_round2_2026-10-28.json": "6edde1eddd0a18c354db568f95babba1ec7af04754de6963a88f8a7f1108c73b",
+  "experiments/flood_validation/result_round3_2026-10-29.json": "317daa1fcd96cb786463ca980ba1684bb89e9ba07da1e78f33a411518e6f5b5b",
+  "experiments/flood_validation/result_round4_2026-10-30.json": "b9f39615750c0c836c1c1ef6da1ceb195fb9d4fc660d76ac5af7f84776c013d3"
+ },
+ "vector_default_label": "experimental"
+}

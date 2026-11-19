@@ -1,0 +1,11 @@
+{
+ "_comment": "One entry per gallery city. run_key is the city's key in the run record and in analysis/live_runs.CITIES. Regenerate with: python -m product.site_data",
+ "cities": [
+  {"key": "dharavi", "name": "Dharavi", "region": "Mumbai, India",
+   "run_record": "experiments/analysis_runs/result_2026-10-28.json", "run_key": "dharavi"},
+  {"key": "lagos", "name": "Lagos Mainland", "region": "Ebute-Metta and Makoko, Lagos, Nigeria",
+   "run_record": "experiments/analysis_runs/result_2026-10-28.json", "run_key": "lagos"},
+  {"key": "chandigarh", "name": "Chandigarh", "region": "Central sectors, Chandigarh, India",
+   "run_record": "experiments/analysis_runs/result_2026-10-28.json", "run_key": "chandigarh_central"}
+ ]
+}

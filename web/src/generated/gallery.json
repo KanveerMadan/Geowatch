@@ -1,0 +1,310 @@
+{
+ "cities": [
+  {
+   "bbox": [
+    72.836,
+    19.037,
+    72.862,
+    19.06
+   ],
+   "flood": [
+    {
+     "key": "pluvial",
+     "label": "failed",
+     "status": "available",
+     "tier": "moderate",
+     "value": 0.4622
+    },
+    {
+     "key": "fluvial",
+     "label": "failed",
+     "status": "available",
+     "tier": "very_high",
+     "value": 0.8866
+    },
+    {
+     "key": "coastal",
+     "label": "experimental",
+     "status": "available",
+     "tier": "high",
+     "value": 0.757
+    },
+    {
+     "key": "flash_flood",
+     "label": "failed",
+     "status": "available",
+     "tier": "moderate",
+     "value": 0.4089
+    },
+    {
+     "key": "waterlogging",
+     "label": "failed",
+     "status": "available",
+     "tier": "high",
+     "value": 0.7039
+    }
+   ],
+   "fractions": [
+    {
+     "key": "built",
+     "label": "experimental",
+     "status": "available",
+     "value": 0.246127
+    },
+    {
+     "key": "vegetation",
+     "label": "placeholder",
+     "status": "available",
+     "value": 0.28796
+    },
+    {
+     "key": "water",
+     "label": "placeholder",
+     "status": "available",
+     "value": 0.07691
+    },
+    {
+     "key": "impervious_total",
+     "label": "placeholder",
+     "status": "not_computed",
+     "value": null
+    },
+    {
+     "key": "paved",
+     "label": "placeholder",
+     "status": "not_computed",
+     "value": null
+    },
+    {
+     "key": "bare",
+     "label": "placeholder",
+     "status": "not_computed",
+     "value": null
+    }
+   ],
+   "key": "dharavi",
+   "label_counts": {
+    "experimental": 10,
+    "failed": 4,
+    "placeholder": 21,
+    "validated": 0
+   },
+   "name": "Dharavi",
+   "observed_fraction": 1.0,
+   "osm_regime": "adequate",
+   "region": "Mumbai, India",
+   "result_id": "rcd21a1359a037e9340470747",
+   "run_record": "experiments/analysis_runs/result_2026-10-28.json",
+   "run_utc": "2026-10-28T17:50:21+00:00",
+   "version_id": "8a0ea88fc8945fe1",
+   "window": [
+    "2026-01-01",
+    "2026-03-31"
+   ]
+  },
+  {
+   "bbox": [
+    3.37,
+    6.475,
+    3.41,
+    6.51
+   ],
+   "flood": [
+    {
+     "key": "pluvial",
+     "label": "failed",
+     "status": "available",
+     "tier": "moderate",
+     "value": 0.4185
+    },
+    {
+     "key": "fluvial",
+     "label": "failed",
+     "status": "available",
+     "tier": "very_high",
+     "value": 0.9419
+    },
+    {
+     "key": "coastal",
+     "label": "experimental",
+     "status": "available",
+     "tier": "very_high",
+     "value": 0.9095
+    },
+    {
+     "key": "flash_flood",
+     "label": "failed",
+     "status": "available",
+     "tier": "low",
+     "value": 0.2394
+    },
+    {
+     "key": "waterlogging",
+     "label": "failed",
+     "status": "available",
+     "tier": "high",
+     "value": 0.6031
+    }
+   ],
+   "fractions": [
+    {
+     "key": "built",
+     "label": "experimental",
+     "status": "available",
+     "value": 0.206527
+    },
+    {
+     "key": "vegetation",
+     "label": "placeholder",
+     "status": "available",
+     "value": 0.039861
+    },
+    {
+     "key": "water",
+     "label": "placeholder",
+     "status": "available",
+     "value": 0.634187
+    },
+    {
+     "key": "impervious_total",
+     "label": "placeholder",
+     "status": "not_computed",
+     "value": null
+    },
+    {
+     "key": "paved",
+     "label": "placeholder",
+     "status": "not_computed",
+     "value": null
+    },
+    {
+     "key": "bare",
+     "label": "placeholder",
+     "status": "not_computed",
+     "value": null
+    }
+   ],
+   "key": "lagos",
+   "label_counts": {
+    "experimental": 9,
+    "failed": 4,
+    "placeholder": 21,
+    "validated": 0
+   },
+   "name": "Lagos Mainland",
+   "observed_fraction": 0.610684,
+   "osm_regime": "very_low",
+   "region": "Ebute-Metta and Makoko, Lagos, Nigeria",
+   "result_id": "rc4352088296f7bd465a23bf7",
+   "run_record": "experiments/analysis_runs/result_2026-10-28.json",
+   "run_utc": "2026-10-28T17:50:21+00:00",
+   "version_id": "2af487bdc364cd25",
+   "window": [
+    "2026-01-01",
+    "2026-03-31"
+   ]
+  },
+  {
+   "bbox": [
+    76.765,
+    30.725,
+    76.79,
+    30.745
+   ],
+   "flood": [
+    {
+     "key": "pluvial",
+     "label": "failed",
+     "status": "available",
+     "tier": "low",
+     "value": 0.309
+    },
+    {
+     "key": "fluvial",
+     "label": "failed",
+     "status": "available",
+     "tier": "very_high",
+     "value": 0.8462
+    },
+    {
+     "key": "coastal",
+     "label": "experimental",
+     "status": "not_applicable",
+     "tier": null,
+     "value": null
+    },
+    {
+     "key": "flash_flood",
+     "label": "failed",
+     "status": "available",
+     "tier": "low",
+     "value": 0.2285
+    },
+    {
+     "key": "waterlogging",
+     "label": "failed",
+     "status": "available",
+     "tier": "moderate",
+     "value": 0.4794
+    }
+   ],
+   "fractions": [
+    {
+     "key": "built",
+     "label": "experimental",
+     "status": "available",
+     "value": 0.206263
+    },
+    {
+     "key": "vegetation",
+     "label": "placeholder",
+     "status": "available",
+     "value": 0.567098
+    },
+    {
+     "key": "water",
+     "label": "placeholder",
+     "status": "available",
+     "value": 0.011722
+    },
+    {
+     "key": "impervious_total",
+     "label": "placeholder",
+     "status": "not_computed",
+     "value": null
+    },
+    {
+     "key": "paved",
+     "label": "placeholder",
+     "status": "not_computed",
+     "value": null
+    },
+    {
+     "key": "bare",
+     "label": "placeholder",
+     "status": "not_computed",
+     "value": null
+    }
+   ],
+   "key": "chandigarh",
+   "label_counts": {
+    "experimental": 9,
+    "failed": 4,
+    "placeholder": 21,
+    "validated": 0
+   },
+   "name": "Chandigarh",
+   "observed_fraction": 1.0,
+   "osm_regime": "adequate",
+   "region": "Central sectors, Chandigarh, India",
+   "result_id": "rb69d498cad7987b533b64c30",
+   "run_record": "experiments/analysis_runs/result_2026-10-28.json",
+   "run_utc": "2026-10-28T17:50:21+00:00",
+   "version_id": "2af487bdc364cd25",
+   "window": [
+    "2026-01-01",
+    "2026-03-31"
+   ]
+  }
+ ]
+}

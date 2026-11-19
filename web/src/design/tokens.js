@@ -23,6 +23,7 @@ export const type = {
   title: [17, 24, 560, -0.01],     // panel titles
   figure: [26, 30, 520, -0.02],    // key numbers (mono, tabular)
   display: [30, 34, 600, -0.025],  // the place name
+  hero: [46, 50, 600, -0.03],      // the landing page's one headline (public site only)
 }
 
 // 4 px grid.
