@@ -14,15 +14,14 @@ Branch `exp/flood-final` (from `origin/exp/flood-learned` @ a8395d1; baselines, 
 | 3 | inputs for all DEV events | **running** | coastal/GHSL extras added to the 29; build_units.py for the 38 new DEV units |
 | 4 | urban-capable reference | **part done** | Weihui: round-4 S1 VV-drop marks 43% of flooded-open but 1.1% of flooded-urban cells (dry 4.8%) -> urban flooding invisible to S1 refs (urban/results/weihui_s1_capture.json). Model part waits on v2 |
 | 5 | learned model v2 (DEV) | code ready | model_v2.py cv / choose; waits on phase 3 |
-| 6 | SFINCS (DEV) | **running** | valencia.py: LiDAR + IMERG prep |
+| 6 | SFINCS (DEV) | Valencia done; coastal deferred (D17) | 4 members, hmax AUC 0.75–0.83 vs HAND 0.706 (valencia_2024); 0.60–0.71 vs 0.501 (paiporta) |
 | 7 | one held-out pass | todo | |
 | 8 | evidence packs | todo | |
 | 9 | production PR | todo | |
 | 10 | M7/M6/M8 scenarios | todo | |
 
 ## Running now
-- build_units --dev (38 new DEV units, ~18 min each, started 2026-11-19 19:32 IST; log ~/.cache/geowatch/flood_final/build_dev.log; resumes, 3 tries per unit)
-- SFINCS Valencia: base done (3.5 h; hmax AUC 0.785 valencia_2024 vs HAND 0.706); gauge running, then glo30, lidar_e1, then `valencia score`, then Docker quits (D16; log ~/.cache/geowatch/flood_final/sfincs/valencia/run_queue.log)
+- build_units --dev (38 new DEV units, ~7 min each once SFINCS stopped (29 min while it ran), started 2026-11-19 19:32 IST; log ~/.cache/geowatch/flood_final/build_dev.log; resumes, 3 tries per unit)
 
 ## Next steps (in order)
 1. When both finish: `python -m experiments.flood_final.model_v2 cv`, then `choose` -> results/method_choice.json (commit).

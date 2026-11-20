@@ -76,3 +76,21 @@ Every judgement call, in order. "Owner" = the repository owner's run brief (2026
 - The base member took 3.5 h (12,733 s wall, 7,401 s solver; 478 MiB peak; 256 MB). That is 11.7 s and 0.23 MB per km², under amd64 emulation, so 10 members would take ~35 h.
 - The brief caps a case at ~13 h and forbids running SFINCS and model training together. So the ensemble covers one member per uncertainty dimension (rain bracket, DEM source, LiDAR error) instead of 10 terrain realisations. `lagoon1m`, `lidar_e2` and `lidar_e3` are not run.
 - Base result (IMERG lower-bracket rain), max depth vs the EMS AOI03 references: valencia_2024 AUC 0.785 (HAND 0.706), paiporta 0.608 (HAND 0.501). The snapshot at +57 h scores near chance (0.593, 0.499) because most water had drained. EMS "flood trace" polygons are a maximum-extent proxy, so max depth is the comparable field.
+
+## D17 Valencia ensemble result; the coastal/compound SFINCS case is deferred until after the held-out pass
+- All 4 Valencia members are done (sfincs/results/valencia_sfincs.json). Max-depth AUC vs the EMS AOI03 references:
+  - base: 0.785 / 0.608 (valencia_2024 / paiporta)
+  - gauge: 0.834 / 0.651
+  - glo30: 0.753 / 0.710
+  - lidar_e1: 0.790 / 0.598
+  - HAND: 0.706 / 0.501
+- Every member beats HAND on both. The gauge member wets 62% of the domain against 16% observed (IoU 0.24), which confirms that it over-rains the plain (D14).
+- Wall time per member: 1.4–3.5 h; disk ~0.25 MB per km².
+- The coastal/compound case is the critical-path tail:
+  - it would take ~13 h of Docker CPU;
+  - the brief forbids running it alongside model training;
+  - it does not feed the pre-registered method choice or the held-out pass.
+- So it runs after Phase 7, on a DEV unit only, with sources that need no account:
+  - surge forcing from NOAA CO-OPS water levels (public API, no key), e.g. Fort Myers 8725520 for fort_myers_beach (Ian 2022);
+  - the DEM from USGS 3DEP.
+- If time runs out it is reported as not done, never as a result.
