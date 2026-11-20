@@ -131,3 +131,32 @@ Every judgement call, in order. "Owner" = the repository owner's run brief (2026
 - D11 reading: S1 misses urban flooding, and the model's AUC falls when urban cells count. So the learned model has partly learned "built-up does not flood" from S1-style references.
 - **Consequence, fixed now:** whatever the held-out verdicts, the learned model is not described as valid for built-up areas. Production output must flag cells with WorldCover built-up or GHSL built share ≥ 0.5 as "not assessed (reference blind spot)". 0.5 is the majority-share rule used to define FU cells here, not a tuned threshold.
 - This does not change the pre-registered held-out labels or bar (D11).
+
+## D21 Held-out pass (one run, 2026-11-20): what is recorded and how it is read
+- The run used the freeze tag 81ff7b1 with the pre-registration hash matching (preflight in results/heldout.json).
+- Units:
+  - 34 built and qualifying;
+  - 7 not qualifying (< 50 flooded cells);
+  - 4 missing because the EMS product holds no flood centre in its search square;
+  - 2 missing after 3 tries (r_emsr683_aoi01, r_emsr683_aoi02). The cause is an `EEException: bands with different projections` in flood_learned.fetch.margin_stack. Fixing it would need a commit after the freeze, so they stay missing and are not re-scored.
+- Pre-registered verdicts (mean AUC of the raw score, per D15; Δ vs HAND with its CI):
+  - fluvial `open__logreg`: **passed**, 0.791, Δ +0.095 [+0.011, +0.192], 8 units in 7 clusters;
+  - waterlogging `open__logreg`: **passed**, 0.791, Δ +0.167 [+0.118, +0.226], 3 units in 2 clusters;
+  - pluvial: **failed**, 0.703, Δ +0.039 [−0.035, +0.112];
+  - flash_flood: **failed**, 0.810, Δ −0.017 [−0.060, +0.026];
+  - coastal: **failed**, 0.795, Δ +0.042 [−0.028, +0.098];
+  - compound: **failed**, 0.844, Δ −0.011 [−0.259, +0.096];
+  - fluvial module re-test (validated config): **failed**, 0.578, Δ −0.119 [−0.237, −0.019].
+- **Reading.** Negated GLO-30 elevation was not a pre-registered candidate. It scores higher than the passing learned method on fluvial (0.850) and waterlogging (0.843), and on 4 of the 6 types.
+  - The passes stand as pre-registered (the bar is against HAND).
+  - But "the learned model adds skill over plain low-ground ranking" is **not** supported on held-out data, and every report must say so.
+  - Elevation cannot be called validated post hoc. It is the first candidate for a next pre-registered round with new reserved events.
+- **Calibration** (pooled reserved, secondary):
+  - `open__lgbm` is weakly calibrated (intercept 0.028, slope 1.30), so it may be called a "probability";
+  - `open__logreg`, the passing method, is not (slope 1.72; Brier skill 0.18), so its output is called a "score".
+
+## D22 heldout.json: a local home path in two error tracebacks was redacted after the push
+- The "missing" entries for r_emsr683_aoi01/02 held Python tracebacks containing a local home-directory path. The pre-push scan flagged it, but the commit had already been chained to run.
+- In commit c35c02a, the file as written by the one run had sha256 4657321766b92fdec4f663dc3d740dd884eeb9f15af3249073d7cdc8957388fa. It is still recoverable from that commit.
+- The only change is replacing that path prefix with `<repo>/` (2 occurrences, inside the error strings). No score, verdict or unit changed. The file is still valid JSON.
+- History is not rewritten (force-push is a hard stop). Whether to purge the path from history is the owner's call (STATUS.md).
