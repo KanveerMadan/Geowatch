@@ -154,3 +154,9 @@ Every judgement call, in order. "Owner" = the repository owner's run brief (2026
 - **Calibration** (pooled reserved, secondary):
   - `open__lgbm` is weakly calibrated (intercept 0.028, slope 1.30), so it may be called a "probability";
   - `open__logreg`, the passing method, is not (slope 1.72; Brier skill 0.18), so its output is called a "score".
+
+## D22 heldout.json: a local home path in two error tracebacks was redacted after the push
+- The "missing" entries for r_emsr683_aoi01/02 held Python tracebacks containing a local home-directory path. The pre-push scan flagged it, but the commit had already been chained to run.
+- In commit c35c02a, the file as written by the one run had sha256 4657321766b92fdec4f663dc3d740dd884eeb9f15af3249073d7cdc8957388fa. It is still recoverable from that commit.
+- The only change is replacing that path prefix with `<repo>/` (2 occurrences, inside the error strings). No score, verdict or unit changed. The file is still valid JSON.
+- History is not rewritten (force-push is a hard stop). Whether to purge the path from history is the owner's call (STATUS.md).

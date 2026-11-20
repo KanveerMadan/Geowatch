@@ -3483,12 +3483,12 @@
  },
  "missing": {
   "r_emsr683_aoi01": [
-   "  File \"/Users/kanveermadan/gw-floodproto/experiments/flood_learned/fetch.py\", line 258, in fetch_unit",
+   "  File \"<repo>/experiments/flood_learned/fetch.py\", line 258, in fetch_unit",
    "    raise RuntimeError(f\"{name}: margin stack failed: {meta['errors']}\")",
    "RuntimeError: r_emsr683_aoi01: margin stack failed: {'margin_stack': 'EEException: Image.projection: The bands of the specified image contains different projections. Use Image.select to pick a single band.'}"
   ],
   "r_emsr683_aoi02": [
-   "  File \"/Users/kanveermadan/gw-floodproto/experiments/flood_learned/fetch.py\", line 258, in fetch_unit",
+   "  File \"<repo>/experiments/flood_learned/fetch.py\", line 258, in fetch_unit",
    "    raise RuntimeError(f\"{name}: margin stack failed: {meta['errors']}\")",
    "RuntimeError: r_emsr683_aoi02: margin stack failed: {'margin_stack': 'EEException: Image.projection: The bands of the specified image contains different projections. Use Image.select to pick a single band.'}"
   ],

@@ -3,7 +3,7 @@
 Branch `exp/flood-final` (from `origin/exp/flood-learned` @ a8395d1; baselines, flood-core and paper/evidence-fluvial merged). Read this first on any restart; never redo a phase marked done. Judgement calls: DECISIONS.md.
 
 ## Open questions for the owner
-- none
+- Commit c35c02a (pushed to a public repo) contains a local home-directory path inside two error strings in results/heldout.json. It is redacted in the next commit (D22), but it stays in history. Purging it needs a history rewrite and force-push, which the brief forbids without you: do you want that?
 
 ## Phases
 | # | phase | state | notes |
