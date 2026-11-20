@@ -1,0 +1,12 @@
+type,candidate,lro_mean_auc,lco_mean_auc,chosen,n_units,source_file,source_commit,source_commit_date
+coastal,open__lgbm,0.763,0.7647,True,5,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,full__lgbm,0.7506,0.761,False,5,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,full__logreg,0.7437,0.7251,False,5,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,open__logreg,0.7247,0.7101,False,5,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,no_landcover__lgbm,0.6998,0.6554,False,5,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,no_landcover__logreg,0.6612,0.7045,False,5,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,baseline:hand,0.679,,False,5,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,baseline:occurrence,0.5146,,False,5,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,baseline:dist_water,0.5373,,False,5,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,baseline:neg_elev_glo30,0.7778,,False,5,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,baseline:neg_dist_coast,0.5664,,False,5,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30

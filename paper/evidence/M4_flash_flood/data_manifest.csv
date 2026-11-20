@@ -1,0 +1,30 @@
+event,split,date,tags,region,bbox_w,bbox_s,bbox_e,bbox_n,reference,flooded_cells,dry_cells,storm_cluster,source_file,centre_lon,centre_lat,heldout_status
+bad_neuenahr,DEV,,flash_flood,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),206,10966,1,experiments/flood_final/results/dev_report.json,,,
+choloma,DEV,,flash_flood,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),4604,12374,3,experiments/flood_final/results/dev_report.json,,,
+derna,DEV,,flash_flood,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),408,9239,5,experiments/flood_final/results/dev_report.json,,,
+derna_2023,DEV,,flash_flood,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),1767,14275,5,experiments/flood_final/results/dev_report.json,,,
+himachal_2023,DEV,,flash_flood,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),520,18227,12,experiments/flood_final/results/dev_report.json,,,
+paiporta,DEV,,compound flash_flood,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),3683,14103,17,experiments/flood_final/results/dev_report.json,,,
+valencia_2024,DEV,,compound flash_flood pluvial,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),2847,14924,17,experiments/flood_final/results/dev_report.json,,,
+volos,DEV,,flash_flood,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),10911,6872,5,experiments/flood_final/results/dev_report.json,,,
+emsr870_aoi13,DEV,2026-03-02,flash_flood,americas,-79.531974,-1.818876,-79.496024,-1.782944,EMSR870:AOI13,8858,8577,16,experiments/flood_final/results/dev_report.json,,,
+emsr870_aoi08,DEV,2026-03-02,flash_flood,americas,-79.379098,-1.888613,-79.343146,-1.852681,EMSR870:AOI08,1931,15884,16,experiments/flood_final/results/dev_report.json,,,
+emsr870_aoi05,DEV,2026-03-02,flash_flood,americas,-79.952409,0.526295,-79.916475,0.562227,EMSR870:AOI05,1489,16330,16,experiments/flood_final/results/dev_report.json,,,
+emsr813_aoi01,DEV,2025-07-03,flash_flood,americas,-78.876339,-4.010902,-78.840319,-3.97497,EMSR813:AOI01,173,17458,21,experiments/flood_final/results/dev_report.json,,,
+emsr770_aoi03,DEV,2024-10-04,flash_flood,europe_mediterranean,17.92173,43.891432,17.971606,43.927364,EMSR770:AOI03,348,4902,23,experiments/flood_final/results/dev_report.json,,,
+emsr770_aoi01,DEV,2024-10-04,flash_flood,europe_mediterranean,17.792742,43.714337,17.84247,43.750269,EMSR770:AOI01,217,8524,23,experiments/flood_final/results/dev_report.json,,,
+emsr680_aoi07,DEV,2023-08-04,flash_flood,europe_mediterranean,14.809339,46.326341,14.861391,46.362273,EMSR680:AOI07,865,10859,23,experiments/flood_final/results/dev_report.json,,,
+emsr680_aoi13,DEV,2023-08-04,flash_flood,europe_mediterranean,16.264538,46.530732,16.316786,46.566664,EMSR680:AOI13,563,10649,23,experiments/flood_final/results/dev_report.json,,,
+emsr680_aoi04,DEV,2023-08-04,flash_flood,europe_mediterranean,16.175134,46.572598,16.227422,46.60853,EMSR680:AOI04,254,17504,23,experiments/flood_final/results/dev_report.json,,,
+r_emsr845_aoi02,RESERVED,2025-10-12,flash_flood,americas,,,,,ems EMSR845 2 0 GRA,,,EMSR845,experiments/flood_final/registry_units.json,-97.31682037092204,20.690261568804488,not yet scored
+r_emsr845_aoi03,RESERVED,2025-10-12,flash_flood,americas,,,,,ems EMSR845 3 0 GRA,,,EMSR845,experiments/flood_final/registry_units.json,-97.4556485491214,20.53528974473501,not yet scored
+r_emsr850_aoi02,RESERVED,2025-11-18,flash_flood,europe_mediterranean,,,,,ems EMSR850 2 0 DEL,,,EMSR850,experiments/flood_final/registry_units.json,20.12929694598486,40.132924273029865,not yet scored
+r_emsr850_aoi03,RESERVED,2025-11-18,flash_flood,europe_mediterranean,,,,,ems EMSR850 3 0 DEL,,,EMSR850,experiments/flood_final/registry_units.json,19.666314248046174,41.56903586287322,not yet scored
+r_emsr683_aoi01,RESERVED,2023-08-08,flash_flood,europe_mediterranean,,,,,ems EMSR683 1 0 DEL,,,EMSR683,experiments/flood_final/registry_units.json,9.145027177038349,61.87144347778776,not yet scored
+r_emsr683_aoi02,RESERVED,2023-08-08,flash_flood,europe_mediterranean,,,,,ems EMSR683 2 0 DEL,,,EMSR683,experiments/flood_final/registry_units.json,9.506681524410801,61.80976117849233,not yet scored
+r_emsr775_aoi11,RESERVED,2024-10-31,flash_flood,europe_mediterranean,,,,,ems EMSR775 11 0 DEL,,,EMSR775,experiments/flood_final/registry_units.json,6.192198323441538,61.33002176763355,not yet scored
+r_emsr841_aoi01,RESERVED,2025-09-06,flash_flood,europe_mediterranean,,,,,ems EMSR841 1 0 DEL,,,EMSR841,experiments/flood_final/registry_units.json,18.312319727508715,63.40558146696704,not yet scored
+r_emsr872_aoi01,RESERVED,2026-04-08,flash_flood,oceania,,,,,ems EMSR872 1 0 GRA,,,EMSR872,experiments/flood_final/registry_units.json,151.78800571465675,7.354114732876269,not yet scored
+r_emsr872_aoi02,RESERVED,2026-04-08,flash_flood,oceania,,,,,ems EMSR872 2 0 GRA,,,EMSR872,experiments/flood_final/registry_units.json,151.7201617195486,7.380312008860108,not yet scored
+r_emsr864_aoi01,RESERVED,2026-02-03,flash_flood compound,europe_mediterranean,,,,,ems EMSR864 1 0 DEL,,,EMSR864,experiments/flood_final/registry_units.json,-8.384036118954743,37.88490183091149,not yet scored
+r_emsr864_aoi02,RESERVED,2026-02-03,flash_flood compound,europe_mediterranean,,,,,ems EMSR864 2 0 DEL,,,EMSR864,experiments/flood_final/registry_units.json,-8.494129108876754,38.314751574271796,not yet scored

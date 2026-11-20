@@ -1,0 +1,37 @@
+event,split,date,tags,region,bbox_w,bbox_s,bbox_e,bbox_n,reference,flooded_cells,dry_cells,storm_cluster,source_file,centre_lon,centre_lat,heldout_status
+assam_2026,DEV,,fluvial waterlogging,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),5327,13059,0,experiments/flood_final/results/dev_report.json,,,
+bihar_2026,DEV,,fluvial,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),8923,8786,0,experiments/flood_final/results/dev_report.json,,,
+encantado,DEV,,fluvial,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),725,16160,8,experiments/flood_final/results/dev_report.json,,,
+faenza,DEV,,fluvial,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),219,8427,9,experiments/flood_final/results/dev_report.json,,,
+hanoi,DEV,,fluvial,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),940,13776,11,experiments/flood_final/results/dev_report.json,,,
+kolonnawa,DEV,,fluvial,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),573,8617,14,experiments/flood_final/results/dev_report.json,,,
+pakistan_2022,DEV,,fluvial,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),10153,7570,12,experiments/flood_final/results/dev_report.json,,,
+emsr662_aoi01,DEV,2023-05-11,fluvial,africa,31.763287,0.043827,31.799219,0.079759,EMSR662:AOI01,408,17280,18,experiments/flood_final/results/dev_report.json,,,
+emsr774_aoi01,DEV,2024-10-28,fluvial,americas,-95.600313,18.396024,-95.562441,18.431956,EMSR774:AOI01,7209,10327,19,experiments/flood_final/results/dev_report.json,,,
+emsr774_aoi02,DEV,2024-10-28,fluvial,americas,-94.683184,17.748308,-94.645452,17.78424,EMSR774:AOI02,879,16516,19,experiments/flood_final/results/dev_report.json,,,
+emsr865_aoi01,DEV,2026-01-26,fluvial,americas,-75.940835,8.783534,-75.904475,8.819466,EMSR865:AOI01,1937,15783,20,experiments/flood_final/results/dev_report.json,,,
+emsr853_aoi02,DEV,2025-12-13,fluvial,americas,-63.675141,-16.686889,-63.637633,-16.650957,EMSR853:AOI02,2776,14932,21,experiments/flood_final/results/dev_report.json,,,
+emsr853_aoi04,DEV,2025-12-13,fluvial,americas,-63.458196,-17.997094,-63.420418,-17.961162,EMSR853:AOI04,280,5313,21,experiments/flood_final/results/dev_report.json,,,
+emsr853_aoi08,DEV,2025-12-13,fluvial,americas,-63.257478,-17.462159,-63.219814,-17.426227,EMSR853:AOI08,244,13615,21,experiments/flood_final/results/dev_report.json,,,
+emsr844_aoi01,DEV,2025-10-08,fluvial,southeast_asia,106.079301,21.189472,106.117843,21.225404,EMSR844:AOI01,398,15488,22,experiments/flood_final/results/dev_report.json,,,
+emsr757_aoi01,DEV,2024-09-13,fluvial,europe_mediterranean,16.91768,48.289773,16.971704,48.325705,EMSR757:AOI01,3850,13936,23,experiments/flood_final/results/dev_report.json,,,
+emsr757_aoi02,DEV,2024-09-13,fluvial,europe_mediterranean,17.294106,48.641658,17.348506,48.67759,EMSR757:AOI02,768,17041,23,experiments/flood_final/results/dev_report.json,,,
+emsr868_aoi01,DEV,2026-02-18,fluvial,europe_mediterranean,26.486776,41.331632,26.534642,41.367564,EMSR868:AOI01,4874,11211,24,experiments/flood_final/results/dev_report.json,,,
+emsr868_aoi02,DEV,2026-02-18,fluvial,europe_mediterranean,26.07655,40.823676,26.124048,40.859608,EMSR868:AOI02,1756,16030,24,experiments/flood_final/results/dev_report.json,,,
+emsr711_aoi02,DEV,2023-12-14,fluvial,europe_mediterranean,-0.622467,45.709988,-0.570993,45.74592,EMSR711:AOI02,4362,9120,25,experiments/flood_final/results/dev_report.json,,,
+emsr711_aoi01,DEV,2023-12-14,fluvial,europe_mediterranean,-0.546734,45.69798,-0.49527,45.733912,EMSR711:AOI01,2297,15336,25,experiments/flood_final/results/dev_report.json,,,
+emsr711_aoi03,DEV,2023-12-14,fluvial,europe_mediterranean,0.071987,45.66537,0.123421,45.701302,EMSR711:AOI03,849,10260,25,experiments/flood_final/results/dev_report.json,,,
+emsr838_aoi07,DEV,2025-08-29,fluvial,south_asia,72.994889,30.019117,73.036395,30.055049,EMSR838:AOI07,11360,6389,12,experiments/flood_final/results/dev_report.json,,,
+emsr838_aoi01,DEV,2025-08-29,fluvial,south_asia,73.736937,32.307672,73.779459,32.343604,EMSR838:AOI01,9092,8658,12,experiments/flood_final/results/dev_report.json,,,
+emsr838_aoi03,DEV,2025-08-29,fluvial,south_asia,73.3361,30.185534,73.377676,30.221466,EMSR838:AOI03,7261,10481,12,experiments/flood_final/results/dev_report.json,,,
+r_emsr857_aoi01,RESERVED,2026-01-10,fluvial,africa,,,,,ems EMSR857 1 0 DEL,,,EMSR857,experiments/flood_final/registry_units.json,33.37446304205201,-24.743101354228948,not yet scored
+r_emsr857_aoi02,RESERVED,2026-01-10,fluvial,africa,,,,,ems EMSR857 2 0 DEL,,,EMSR857,experiments/flood_final/registry_units.json,32.386242940133435,-25.30565572751185,not yet scored
+r_emsr712_aoi01,RESERVED,2023-12-24,fluvial,europe_mediterranean,,,,,ems EMSR712 1 0 DEL,,,EMSR712,experiments/flood_final/registry_units.json,7.83020923368529,52.5349831621515,not yet scored
+r_emsr712_aoi02,RESERVED,2023-12-24,fluvial,europe_mediterranean,,,,,ems EMSR712 2 0 DEL,,,EMSR712,experiments/flood_final/registry_units.json,8.3640738110639,52.736733446162724,not yet scored
+r_emsr861_aoi01,RESERVED,2026-01-28,fluvial,europe_mediterranean,,,,,ems EMSR861 1 0 DEL,,,EMSR861,experiments/flood_final/registry_units.json,-4.931263338766444,37.8331929898934,not yet scored
+r_emsr861_aoi02,RESERVED,2026-01-28,fluvial,europe_mediterranean,,,,,ems EMSR861 2 0 DEL,,,EMSR861,experiments/flood_final/registry_units.json,-3.8286481336784095,37.22442227800672,not yet scored
+s1_assam_morigaon_2024,RESERVED,2024-07-03,fluvial,south_asia,,,,,s1 26.25 92.34 2024-07-03,,,s1_assam_morigaon_2024,experiments/flood_final/registry_units.json,92.34,26.25,not yet scored
+s1_sunamganj_2024,RESERVED,2024-06-19,fluvial,south_asia,,,,,s1 25.07 91.4 2024-06-19,,,s1_sunamganj_2024,experiments/flood_final/registry_units.json,91.4,25.07,not yet scored
+s1_lokoja_2022,RESERVED,2022-10-10,fluvial,africa,,,,,s1 7.8 6.74 2022-10-10,,,s1_lokoja_2022,experiments/flood_final/registry_units.json,6.74,7.8,not yet scored
+s1_kelantan_2024,RESERVED,2024-11-30,fluvial,southeast_asia,,,,,s1 6.05 102.1 2024-11-30,,,s1_kelantan_2024,experiments/flood_final/registry_units.json,102.1,6.05,not yet scored
+s1_tabasco_2020,RESERVED,2020-11-08,fluvial,americas,,,,,s1 17.99 -92.93 2020-11-08,,,s1_tabasco_2020,experiments/flood_final/registry_units.json,-92.93,17.99,not yet scored
