@@ -34,8 +34,9 @@ def test_chain_order_is_all_present(run):
     assert set(o) == {"fractions", "observability", "estimate_quality", "osm_coverage",
                       "susceptibility", "change", "aggregation"}
     # the five built modules plus the six unbuilt flood types (docs/flood_taxonomy.md)
+    # ... and flood_final's learned output (not a flood type of its own)
     assert set(o["susceptibility"]) == {"pluvial", "fluvial", "coastal", "flash_flood",
-                                        "waterlogging", *C.UNBUILT_FLOOD_TYPES}
+                                        "waterlogging", "learned_flood", *C.UNBUILT_FLOOD_TYPES}
 
 
 def test_osm_coverage_for_an_aoi_outside_the_reference_set(run):

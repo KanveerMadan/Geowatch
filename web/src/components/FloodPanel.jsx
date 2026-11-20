@@ -130,11 +130,13 @@ export default function FloodPanel({ job, layerKey, onLayer, wards }) {
                   <div key={r.key}>
                     <dt>{r.name}</dt>
                     <dd>
-                      {r.measured
+                      {r.measured && r.ranking
+                        ? <>A ranking within this area, not a probability; the map shows each cell's percentile.{r.notAssessed?.share ? <> Not assessed: <span className="num">{Math.round(r.notAssessed.share * 100)}%</span> of cells (built-up or permanent water).</> : null}</>
+                        : r.measured
                         ? <>Score <span className="num">{score.format(r.value)}</span> of 1 ({r.tierText.toLowerCase()}), {r.term}. {r.mapped ? 'Mapped per cell.' : 'One value for the whole area.'}</>
                         : <>{r.text}{r.reason && <>: {r.reason}</>}.</>}
                       {r.verdict && <> Independent flood test: {VERDICT[r.verdict] ?? r.verdict}.</>}
-                      {r.limitations.slice(0, 2).map((x) => <span key={x} className="kv-src">{x}</span>)}
+                      {r.limitations.slice(0, r.ranking ? 5 : 2).map((x) => <span key={x} className="kv-src">{x}</span>)}
                       {r.sources.map((x) => <span key={x} className="kv-src">{x}</span>)}
                     </dd>
                   </div>
