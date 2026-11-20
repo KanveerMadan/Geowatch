@@ -11,6 +11,6 @@ emsr779_aoi01,DEV,2024-11-21,waterlogging,africa,15.045612,10.510742,15.08216,10
 emsr799_aoi04,DEV,2025-04-04,waterlogging,americas,-67.464955,-18.256737,-67.427121,-18.220805,EMSR799:AOI04,1904,15813,21,experiments/flood_final/results/dev_report.json,,,
 emsr799_aoi03,DEV,2025-04-04,waterlogging,americas,-64.971249,-14.761201,-64.934093,-14.725269,EMSR799:AOI03,1041,16555,21,experiments/flood_final/results/dev_report.json,,,
 emsr799_aoi02,DEV,2025-04-04,waterlogging,americas,-68.90594,-16.864223,-68.868396,-16.828291,EMSR799:AOI02,213,17476,21,experiments/flood_final/results/dev_report.json,,,
-r_emsr856_aoi01,RESERVED,2026-01-06,waterlogging,europe_mediterranean,,,,,ems EMSR856 1 0 DEL,,,EMSR856,experiments/flood_final/registry_units.json,19.44676419352329,41.953461478326204,not yet scored
-r_emsr856_aoi02,RESERVED,2026-01-06,waterlogging,europe_mediterranean,,,,,ems EMSR856 2 0 DEL,,,EMSR856,experiments/flood_final/registry_units.json,19.67636762862818,41.728859149977396,not yet scored
-s1_yenagoa_2022,RESERVED,2022-10-15,waterlogging,africa,,,,,s1 4.93 6.27 2022-10-15,,,s1_yenagoa_2022,experiments/flood_final/registry_units.json,6.27,4.93,not yet scored
+r_emsr856_aoi01,RESERVED,2026-01-06,waterlogging,europe_mediterranean,,,,,ems EMSR856 1 0 DEL,3340,14440,EMSR856,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,19.44676419352329,41.953461478326204,scored
+r_emsr856_aoi02,RESERVED,2026-01-06,waterlogging,europe_mediterranean,,,,,ems EMSR856 2 0 DEL,1554,12340,EMSR856,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,19.67636762862818,41.728859149977396,scored
+s1_yenagoa_2022,RESERVED,2022-10-15,waterlogging,africa,,,,,s1 4.93 6.27 2022-10-15,2773,14959,s1_yenagoa_2022,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,6.27,4.93,scored

@@ -10,8 +10,8 @@ emsr694_aoi03,DEV,2023-09-03,pluvial,europe_mediterranean,-4.015467,40.2057,-3.9
 emsr694_aoi02,DEV,2023-09-03,pluvial,europe_mediterranean,-4.299967,40.209321,-4.252903,40.245253,EMSR694:AOI02,965,7517,28,experiments/flood_final/results/dev_report.json,,,
 emsr935_aoi01,DEV,2026-10-19,pluvial,europe_mediterranean,-0.077048,38.849185,-0.030898,38.885117,EMSR935:AOI01,8596,6298,29,experiments/flood_final/results/dev_report.json,,,
 emsr935_aoi02,DEV,2026-10-19,pluvial,europe_mediterranean,-0.098002,38.886505,-0.051828,38.922437,EMSR935:AOI02,404,11371,29,experiments/flood_final/results/dev_report.json,,,
-r_emsr742_aoi01,RESERVED,2024-07-28,pluvial,europe_mediterranean,,,,,ems EMSR742 1 1 DEL,,,EMSR742,experiments/flood_final/registry_units.json,23.8470551937353,56.787992065222916,not yet scored
-r_emsr742_aoi03,RESERVED,2024-07-28,pluvial,europe_mediterranean,,,,,ems EMSR742 3 0 DEL,,,EMSR742,experiments/flood_final/registry_units.json,23.87640081869268,56.443456114373234,not yet scored
-r_emsr790_aoi02,RESERVED,2025-02-27,pluvial,africa,,,,,ems EMSR790 2 0 GRA,,,EMSR790,experiments/flood_final/registry_units.json,55.48421529051853,-20.91200835470675,not yet scored
-r_emsr780_aoi08,RESERVED,2024-12-14,pluvial,africa,,,,,ems EMSR780 8 0 GRA,,,EMSR780,experiments/flood_final/registry_units.json,45.18321183664762,-12.844661485054365,not yet scored
-r_emsr930_aoi01,RESERVED,2026-09-02,pluvial,europe_mediterranean,,,,,ems EMSR930 1 0 GRA,,,EMSR930,experiments/flood_final/registry_units.json,16.669868231436507,40.19727628210777,not yet scored
+r_emsr742_aoi01,RESERVED,2024-07-28,pluvial,europe_mediterranean,,,,,ems EMSR742 1 1 DEL,187,17538,EMSR742,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,23.8470551937353,56.787992065222916,scored
+r_emsr742_aoi03,RESERVED,2024-07-28,pluvial,europe_mediterranean,,,,,ems EMSR742 3 0 DEL,248,17591,EMSR742,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,23.87640081869268,56.443456114373234,scored
+r_emsr790_aoi02,RESERVED,2025-02-27,pluvial,africa,,,,,ems EMSR790 2 0 GRA,283,16949,EMSR790,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,55.48421529051853,-20.91200835470675,scored
+r_emsr780_aoi08,RESERVED,2024-12-14,pluvial,africa,,,,,ems EMSR780 8 0 GRA,1524,10392,EMSR780,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,45.18321183664762,-12.844661485054365,scored
+r_emsr930_aoi01,RESERVED,2026-09-02,pluvial,europe_mediterranean,,,,,ems EMSR930 1 0 GRA,,,EMSR930,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,16.669868231436507,40.19727628210777,missing

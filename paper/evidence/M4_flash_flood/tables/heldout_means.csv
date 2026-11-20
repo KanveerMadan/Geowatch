@@ -1,0 +1,13 @@
+type,score,mean_auc,ci_lo,ci_hi,minus_hand,minus_hand_ci_lo,minus_hand_ci_hi,n_units,n_clusters,source_file,source_commit,source_commit_date
+flash_flood,waterlogging,0.8622,0.7887,0.9407,0.0358,0.0106,0.07,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+flash_flood,neg_elev_glo30,0.8615,0.7925,0.9361,0.0351,0.0045,0.0941,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+flash_flood,hand,0.8264,0.7339,0.9168,,,,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+flash_flood,fluvial,0.8162,0.6799,0.9375,-0.0102,-0.1336,0.0777,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+flash_flood,flash_flood,0.8142,0.6994,0.9459,-0.0122,-0.1036,0.0641,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+flash_flood,learned_raw:open__lgbm,0.8096,0.7028,0.941,-0.0168,-0.0597,0.0257,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+flash_flood,learned:open__lgbm,0.8077,0.7023,0.9363,-0.0187,-0.0611,0.0227,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+flash_flood,learned_raw:open__logreg,0.7762,0.6575,0.9338,-0.0502,-0.1188,0.0197,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+flash_flood,learned:open__logreg,0.7729,0.663,0.9266,-0.0535,-0.1193,0.0123,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+flash_flood,dist_water,0.6968,0.5464,0.8144,-0.1296,-0.2653,0.0176,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+flash_flood,occurrence,0.5368,0.5068,0.5662,-0.2896,-0.3543,-0.1993,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+flash_flood,neg_dist_coast,0.4848,0.3904,0.5978,-0.3417,-0.4968,-0.1869,6,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
