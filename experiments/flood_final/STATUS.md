@@ -11,9 +11,9 @@ Branch `exp/flood-final` (from `origin/exp/flood-learned` @ a8395d1; baselines, 
 | 0 | context, branch | done | 1744fc5 |
 | 1 | one event set (DEV + RESERVED) | done | registry c6fb5b1: +38 DEV units (18 EMS activations), +47 RESERVED (23 EMS activations, 6 S1 events) |
 | 2 | pre-registration pushed | done | eed20fe, sha256 e49bca3f..., pushed 2026-11-19T07:37:07Z (PREREG_HASH.txt eb0b0c3) |
-| 3 | inputs for all DEV events | **running** | coastal/GHSL extras added to the 29; build_units.py for the 38 new DEV units |
-| 4 | urban-capable reference | **part done** | Weihui: round-4 S1 VV-drop marks 43% of flooded-open but 1.1% of flooded-urban cells (dry 4.8%) -> urban flooding invisible to S1 refs (urban/results/weihui_s1_capture.json). Model part waits on v2 |
-| 5 | learned model v2 (DEV) | code ready | model_v2.py cv / choose; waits on phase 3 |
+| 3 | inputs for all DEV events | done | 67 DEV units (29 + 38), all built 2026-11-20 07:00 IST; counts per mechanism D18 |
+| 4 | urban-capable reference | done | Weihui: round-4 S1 VV-drop marks 43% of flooded-open but 1.1% of flooded-urban cells (dry 4.8%) -> urban flooding invisible to S1 refs (urban/results/weihui_s1_capture.json). Model: ranks flooded-urban cells below chance (0.12–0.36) -> blind spot (D20) |
+| 5 | learned model v2 (DEV) | done | method_choice.json (D19); results/dev_tables.md: Δ vs HAND CI > 0 on DEV for fluvial, waterlogging, flash_flood; not pluvial, coastal, compound |
 | 6 | SFINCS (DEV) | Valencia done; coastal deferred (D17) | 4 members, hmax AUC 0.75–0.83 vs HAND 0.706 (valencia_2024); 0.60–0.71 vs 0.501 (paiporta) |
 | 7 | one held-out pass | todo | |
 | 8 | evidence packs | todo | |
@@ -21,7 +21,7 @@ Branch `exp/flood-final` (from `origin/exp/flood-learned` @ a8395d1; baselines, 
 | 10 | M7/M6/M8 scenarios | todo | |
 
 ## Running now
-- build_units --dev (38 new DEV units, ~7 min each once SFINCS stopped (29 min while it ran), started 2026-11-19 19:32 IST; log ~/.cache/geowatch/flood_final/build_dev.log; resumes, 3 tries per unit)
+- freeze, then heldout_pass build (HEAD must stay at the freeze tag until heldout_pass score; other work goes in a separate worktree)
 
 ## Next steps (in order)
 1. When both finish: `python -m experiments.flood_final.model_v2 cv`, then `choose` -> results/method_choice.json (commit).

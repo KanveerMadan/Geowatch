@@ -94,3 +94,40 @@ Every judgement call, in order. "Owner" = the repository owner's run brief (2026
   - surge forcing from NOAA CO-OPS water levels (public API, no key), e.g. Fort Myers 8725520 for fort_myers_beach (Ian 2022);
   - the DEM from USGS 3DEP.
 - If time runs out it is reported as not done, never as a result.
+
+## D18 Per-mechanism counts fall short of the brief's targets in places; this is reported, not padded
+- The brief asks for ≥ 15 DEV and ≥ 5 RESERVED units per mechanism.
+- DEV has 67 units (29 batch-0 and 38 new; all built 2026-11-20):
+  - meeting 15: fluvial 25, flash_flood 17;
+  - short: waterlogging 12, pluvial 11, compound 7, coastal 5.
+- RESERVED has 47 units (metadata, PREREGISTRATION.md §2):
+  - meeting 5: coastal 16, flash_flood 12, fluvial 11, compound 6, pluvial 5;
+  - short: waterlogging 3.
+- Why: Copernicus EMS activations whose delineation separates rain-driven or ponding water are rare, and the registry guard blocks any that link to reserved or JRC-circular units. The pre-registration was frozen with these counts.
+- Effect: those types get wider confidence intervals, and waterlogging can pass only if all 3 reserved units, in 2 clusters, qualify (pass bar §5).
+- No units were added after the freeze, and no thresholds were changed to compensate.
+
+## D19 Method choice (PREREGISTRATION §4) and what it shows, recorded before the freeze
+- `model_v2 choose`, 2026-11-20, on 67 DEV units. Leave-region-out mean AUC of the chosen method vs HAND:
+  - fluvial: `open__logreg` 0.770 vs 0.648 (the fluvial module scores 0.692 on the same 25 units);
+  - pluvial: `open__lgbm` 0.676 vs 0.662;
+  - waterlogging: `open__logreg` 0.727 vs 0.596 (module 0.591);
+  - flash_flood: `open__lgbm` 0.750 vs 0.671 (module 0.674);
+  - coastal: `open__lgbm` 0.763 vs 0.679;
+  - compound: `open__lgbm` 0.727 vs 0.657.
+- The "open" variant (GLO-30 terrain, no FABDEM/MERIT) is chosen for every type. It is within the 0.005 tie margin of "full", or better.
+- Removing land cover (`no_landcover`) costs 0.04–0.13 AUC on every type. The model leans on WorldCover, as in batch 0.
+- **A naive baseline is competitive.** Negated GLO-30 absolute elevation ("lowest ground floods first", `neg_elev_glo30`) scores:
+  - fluvial 0.757, pluvial 0.705, waterlogging 0.692, flash_flood 0.710, coastal 0.778, compound 0.721;
+  - so it beats the chosen learned method on pluvial and coastal, and comes within 0.02 on fluvial.
+- The pre-registered pass bar compares against HAND only (§5), and that is not changed. `neg_elev_glo30` is already a comparator in heldout_pass (via model_v2.comparators). It will be reported next to every verdict, and the evidence packs must state that the learned model's margin over plain elevation is small or negative.
+- Pluvial's chosen DEV mean (0.676) is below the 0.70 bar, so a held-out pass is unlikely. The rule is applied as written.
+
+## D20 Weihui urban test: the reading fixed in D11 applies, so the cropland signal is partly a reference blind spot
+- Results are in urban/results/weihui_score__open__{lgbm,logreg}.json (Weihui is never in training).
+- `usf_weihui_1`: the learned model ranks flooded-open cells at AUC 0.889 (lgbm) / 0.902 (logreg) vs dry, but flooded-urban cells at 0.364 / 0.318. Both are below chance, so it ranks flooded streets as drier than dry ground. HAND scores 0.497 on them.
+- The two urban-only boxes give 0.135 / 0.121 and 0.327 / 0.333, against HAND 0.531 and 0.611.
+- The Sentinel-1 VV-drop method marks 1.1–7.1% of flooded-urban cells (against 1.8–4.8% of dry cells).
+- D11 reading: S1 misses urban flooding, and the model's AUC falls when urban cells count. So the learned model has partly learned "built-up does not flood" from S1-style references.
+- **Consequence, fixed now:** whatever the held-out verdicts, the learned model is not described as valid for built-up areas. Production output must flag cells with WorldCover built-up or GHSL built share ≥ 0.5 as "not assessed (reference blind spot)". 0.5 is the majority-share rule used to define FU cells here, not a tuned threshold.
+- This does not change the pre-registered held-out labels or bar (D11).
