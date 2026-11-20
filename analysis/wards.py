@@ -315,6 +315,8 @@ def change_cells(layer, change: dict | None) -> dict:
     grid units). Each cell names its verdict per fraction: increase /
     decrease / no_detectable_change, or insufficient_observation /
     epoch_unreliable where no change could be judged; `delta` is null there."""
+    if change and "block" in change:
+        return change["block"]
     if not change or not change.get("fractions"):
         return {"status": "unavailable", "reason": "the change stage produced no verdicts",
                 "fractions": [], "cells": []}
@@ -340,6 +342,7 @@ def change_cells(layer, change: dict | None) -> dict:
 def change_features(block: dict) -> dict:
     """change_cells() as a GeoJSON FeatureCollection."""
     return {"type": "FeatureCollection", "status": block["status"],
+            **({"schema": block["schema"], "grid_cell_m": block["grid_cell_m"]} if "schema" in block else {}),
             "fractions": block.get("fractions", []),
             "features": [{"type": "Feature", "id": c["unit_index"], "geometry": c["geometry"],
                           "properties": {k: v for k, v in c.items() if k != "geometry"}}

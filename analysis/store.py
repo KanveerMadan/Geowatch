@@ -97,7 +97,7 @@ def get_map(rid: str, name: str, root: str = RESULTS_ROOT) -> bytes | None:
 
 
 def put(rid: str, result: dict, units: dict, root: str = RESULTS_ROOT,
-        maps: dict | None = None, change_cells: dict | None = None) -> None:
+        maps: dict | None = None, change_cells: dict | None = None, change_archive=None) -> None:
     """Write once, atomically: a complete directory appears or nothing does."""
     final = _dir(rid, root)
     if os.path.exists(final):
@@ -112,6 +112,9 @@ def put(rid: str, result: dict, units: dict, root: str = RESULTS_ROOT,
         if change_cells is not None:
             with open(os.path.join(tmp, "change.json"), "w") as fh:
                 json.dump(change_cells, fh)
+        if change_archive is not None:
+            shutil.copyfile(os.path.join(change_archive.name, "history.sqlite"),
+                            os.path.join(tmp, "history.sqlite"))
         if maps:
             os.makedirs(os.path.join(tmp, "maps"))
             for name, png in maps.items():
@@ -189,11 +192,22 @@ def analyze(bbox, start, end, *, name: str, boundary_id: str | None = None, prod
             raise RuntimeError("the run's model_version differs from the one it was keyed on")
         maps = result.pop("_maps", {})
         cells = result.pop("_change_cells", None)
-        result["result_id"] = rid
-        gaps = incomplete_stages(result)
-        if gaps:
-            result["result_id"] = None
-            return {"result_id": None, "cached": False, "stored": False, "result": result,
-                    "not_stored_because": gaps}
-        put(rid, result, units, root, maps=maps, change_cells=cells)
+        archive = result.pop("_change_archive", None)
+        try:
+            gaps = incomplete_stages(result)
+            if gaps:
+                result["result_id"] = None
+                return {"result_id": None, "cached": False, "stored": False, "result": result,
+                        "not_stored_because": gaps}
+            # A source outage still yields inspectable evidence. Store that snapshot
+            # under its own ID so subsequent requests can retry the canonical run.
+            summary = result.get("outputs", {}).get("change", {}).get("history", {}).get("summary", {})
+            if any(s["status"] in ("failed", "partial") for s in summary.get("source_status", [])):
+                import uuid
+                rid = "r" + sha256_json([rid, uuid.uuid4().hex])[:24]
+            result["result_id"] = rid
+            put(rid, result, units, root, maps=maps, change_cells=cells, change_archive=archive)
+        finally:
+            if archive is not None:
+                archive.cleanup()
         return {"result_id": rid, "cached": False, "stored": True, "result": result}

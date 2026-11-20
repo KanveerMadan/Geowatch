@@ -55,7 +55,7 @@ function TimeScrubber({ years, pair, compared, status, onPair }) {
 
 /** The Change tab's dock: which fraction's changes are drawn, what the marks
  *  mean, and the years of the two pictures. */
-export default function ChangeDock({ choices, fraction, onFraction, years, pair, compared, status, onPair, analysedPair }) {
+export default function ChangeDock({ choices, fraction, onFraction, years, pair, compared, status, onPair, analysedPair, picturesOnly = false }) {
   const hue = color.data[fraction] ?? color.select
   const same = analysedPair && pair[0] === analysedPair[0] && pair[1] === analysedPair[1]
   const missing = pair.filter((y) => status[y] === 'missing')
@@ -71,18 +71,18 @@ export default function ChangeDock({ choices, fraction, onFraction, years, pair,
           ))}
         </div>
       )}
-      <div className="legend-foot chg-key">
+      {!picturesOnly && same && <div className="legend-foot chg-key">
         <span><i className="swatch" style={{ background: hue }} aria-hidden="true" /> Up</span>
         <span><i className="swatch swatch-stripe" style={{ '--hue': hue }} aria-hidden="true" /> Down</span>
         <span><i className="swatch swatch-hatch" aria-hidden="true" /> Not judged</span>
-      </div>
+      </div>}
       {years?.length > 1 && (
         <>
           <TimeScrubber years={years} pair={pair} compared={compared} status={status} onPair={onPair} />
           <p className="caption" aria-live="polite">
-            {same
+            {picturesOnly ? <>Seasonal picture composites for {pair[0]} and {pair[1]}. Change marks are hidden while browsing imagery.</> : same
               ? <>Pictures and marked cells both compare {pair[0]} and {pair[1]}, the analysed years.</>
-              : <>Pictures show {pair[0]} and {pair[1]}. Marked cells compare {analysedPair?.[0]} and {analysedPair?.[1]}, the analysed years.</>}
+              : <>Pictures show {pair[0]} and {pair[1]}. Change marks are hidden for this pair.</>}
             {missing.length > 0 && <> No clear imagery in {missing.join(' or ')}.</>}
           </p>
           <p className="caption">Pictures: contains modified Copernicus Sentinel-2 data {pair[0]}, {pair[1]}.</p>

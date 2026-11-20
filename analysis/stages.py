@@ -30,7 +30,7 @@ STAGE_TIMEOUT_S = {
     "dem": 300,
     "waterways": 300,
     "context": 240,              # each AOI-wide context layer (HAND, CHIRPS, ...)
-    "change": 1800,              # four S2 composites + three OB Temporal years
+    "change": 1800,              # bounded, cache-backed acquisition and change history
     # item 26 Phase 1a: MERIT/FABDEM terrain + CHIRPS + a 10-year IMERG
     # percentile (314 s at one point; its one request has its own deadline,
     # hydro_rasters.IMERG_DEADLINE_S, C71); flood round 4 adds the CHIRPS

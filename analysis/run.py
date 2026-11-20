@@ -92,8 +92,8 @@ def _default_deps():
         return f(name, bbox)
 
     def run_change(layer, epochs):
-        from vector.change import run_change as f
-        return f(layer, epochs)
+        from analysis.change_history import run_history
+        return run_history(layer, epochs)
 
     def fetch_hydro_rasters(bbox, transform, shape, crs, ref_year):
         from susceptibility.hydro_rasters import fetch_hydro_rasters as f
@@ -173,6 +173,27 @@ def _coverage_output(cov: dict, mv: dict, claims: dict | None = None) -> dict:
 
 
 def _change_outputs(ch: dict | None, stage: dict, epochs: dict, fset: dict, mv: dict) -> dict:
+    from analysis.change_history import SCHEMA as HISTORY_SCHEMA
+    from vector.change_observations import SOURCES
+    if ch is None or ch.get("schema") == HISTORY_SCHEMA:
+        summary = ch["summary"] if ch is not None else {
+            "schema": HISTORY_SCHEMA, "period": epochs["s2"][1],
+            "training_period": [epochs["s2"][0][0], epochs["s2"][1][0]],
+            "counts": {}, "alerts_enabled": False}
+        areas = summary.get("support_area_m2", {})
+        total = sum(areas.values())
+        supported = total - areas.get("insufficient_observation", 0)
+        sources = [SOURCES[s["source"]]["asset"] for s in summary.get("source_status", [])
+                   if s["source"] in SOURCES and s["status"] in ("partial", "available")]
+        sources.extend(s["source"] for s in summary.get("survey_sources", []))
+        status = ("available" if supported > 0 or summary.get("survey_measurements") else
+                  "insufficient_observation" if ch is not None else stage["status"])
+        return {"history": C.output(summary if status == "available" else None, status=status,
+                validation_status="experimental", data_sources=sources or ["change observation history"],
+                coverage=C.coverage(supported / total if total else 0.0,
+                                    "share of reporting-cell area with a usable monitored signal"),
+                model_version=mv, summary=summary,
+                reason=None if status == "available" else stage.get("error") or "Insufficient comparable observations")}
     out = {}
     sources = {"built": ["GOOGLE/Research/open-buildings-temporal/v1 building_presence"],
                "vegetation": fset["sources"].get("vegetation", ["none"]),
@@ -231,7 +252,9 @@ def _aggregation_outputs(unit_sets: dict, mv: dict, fset: dict) -> dict:
 def version_for(producer, commit: dict | None = None) -> dict:
     """model_version for a run with `producer`. Computable before running,
     so the cache can be checked first (analysis/store.py)."""
+    from analysis.change_semantics import external_versions
     return C.model_version({"fraction_producer": producer.artifact()["sha256"],
+                            "change_history": C.sha256_json(external_versions()),
                             "flood_validation_result": C.FLOOD_VALIDATION_SHA256,
                             "flood_validation_round2_result": C.FLOOD_VALIDATION_ROUND2_SHA256},
                            commit=commit)
@@ -345,12 +368,12 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
         smap = modules[h].get("susceptibility_map")
         if smap is None:
             continue
-        name = f"{h}_susceptibility"
-        meta, png = map_record(name, smap, ht, layer.crs.to_string())
-        maps[name], map_meta[name] = png, meta
-        hazard_10m[name] = np.repeat(np.repeat(smap, k, axis=0), k, axis=1)
+        map_name = f"{h}_susceptibility"
+        meta, png = map_record(map_name, smap, ht, layer.crs.to_string())
+        maps[map_name], map_meta[map_name] = png, meta
+        hazard_10m[map_name] = np.repeat(np.repeat(smap, k, axis=0), k, axis=1)
         if hz[h]["status"] == "available":
-            hz[h]["map"] = {**meta, "url_path": f"maps/{name}"}
+            hz[h]["map"] = {**meta, "url_path": f"maps/{map_name}"}
         hz[h]["per_unit"] = True
 
     emit({"outputs": {"susceptibility": hz}})
@@ -359,7 +382,8 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
     epochs = change_epochs(window)
     co = stage("change", deps["run_change"], layer, epochs)
     change = co["value"] if co["status"] == "ok" else None
-    emit({"outputs": {"change": _change_outputs(change, stages["change"], epochs, fset, mv)}})
+    change_outputs = _change_outputs(change, stages["change"], epochs, fset, mv)
+    emit({"outputs": {"change": change_outputs}})
 
     # 6. item 22: aggregation units and wards.
     from analysis.wards import build_unit_sets, change_cells
@@ -373,7 +397,7 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
         "estimate_quality": eq_out,
         "osm_coverage": _coverage_output(cov, mv, derive_osm_claims(layer, modules)),
         "susceptibility": hz,
-        "change": _change_outputs(change, stages["change"], epochs, fset, mv),
+        "change": change_outputs,
         "aggregation": _aggregation_outputs(unit_sets, mv, fset),
     }
     result = {
@@ -395,6 +419,16 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
         # on change's own grid, which is not item 22's, so not a unit set.
         "_change_cells": change_cells(layer, change),
     }
+    if "history" in change_outputs:
+        result["change_epochs"] = {"monitoring": epochs["s2"][1], "end_exclusive": True,
+                                   "history_start": epochs["s2"][0][0]}
+        if change is not None:
+            used = change["summary"]
+            configuration = {"schema": used["schema"], "sources": list(used["sources"]),
+                             "surveys": used["survey_sources"], "interpreter": used["semantic_model"]}
+            if C.sha256_json(configuration) != mv["artifacts"]["change_history"]:
+                raise RuntimeError("change source or model configuration changed during the run; retry")
+            result["_change_archive"] = change["archive"]
     C.check_result(result)
     result["validation_summary"] = C.label_summary(result)
     result["runtime_s"] = round(time.time() - t0, 1)

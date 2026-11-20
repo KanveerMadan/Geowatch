@@ -7,14 +7,14 @@ import { motion, breakpoint } from './design/tokens.js'
 import MapView from './map/MapView.jsx'
 import { clearScan, paintCells, scanFrame, setAoi, setCells, setFootprints, showFootprints } from './map/layers.js'
 import {
-  ApiError, JOB_POLL_MS, aoiLabel, getBoundaries, getBuildings, getChangeFeatures, getFeatures, getImageryYear,
-  getImageryYears, getJob, getLimits, getWard, startJob,
+  ApiError, JOB_POLL_MS, aoiLabel, getBoundaries, getBuildings, getChangeFeatures, getFeatures, getJob, getLimits, getWard, startJob,
 } from './lib/api.js'
 import { DEFAULT_POINT_BOX_KM, boundaryFor, boxForPlace, maxBoxKm } from './lib/geo.js'
 import { linkPlace, linkQuery, parseLink, reportHref } from './lib/link.js'
 import { outputsOf } from './lib/stages.js'
 import { defaultFloodLayer, floodRows, wardUnitType } from './lib/flood.js'
 import { changeRows } from './lib/change.js'
+import { useYearPictures } from './lib/useYearPictures.js'
 import { cellAt, toUnit, unitCells } from './lib/overlay.js'
 import SearchBar from './components/SearchBar.jsx'
 import DrawTool from './components/DrawTool.jsx'
@@ -22,6 +22,7 @@ import AreaStatus from './components/AreaStatus.jsx'
 import GroundPanel from './components/GroundPanel.jsx'
 import FloodPanel from './components/FloodPanel.jsx'
 import ChangePanel from './components/ChangePanel.jsx'
+import ChangeHistory from './components/ChangeHistory.jsx'
 import HoverCard from './components/HoverCard.jsx'
 import Legend from './components/Legend.jsx'
 import FloodLegend from './components/FloodLegend.jsx'
@@ -48,7 +49,7 @@ const POLL_FAILURES_BEFORE_NOTICE = 5
 const SHEET_SNAP_PX = 36
 const MOBILE_QUERY = `(max-width: ${breakpoint.mobile}px)`
 
-const isTyping = (el) => el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)
+const isTyping = (el) => el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' || el.isContentEditable)
 
 function useMobile() {
   const [on, setOn] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
@@ -104,10 +105,7 @@ export default function App() {
   const [wards, setWards] = useState(null) // {name, fc, loading, failed}
   const [changeCells, setChangeCells] = useState(null)
   const [changeNote, setChangeNote] = useState(null)
-  const [imagery, setImagery] = useState(null) // {years, compared}
-  const [pair, setPair] = useState(null)
   const [split, setSplit] = useState(0.5)
-  const [imgs, setImgs] = useState({}) // {year: {state, url}}
   const [changeHover, setChangeHover] = useState(null)
   const searchInput = useRef(null)
   const bboxRef = useRef(null)
@@ -117,6 +115,9 @@ export default function App() {
   const resultId = job?.result_id ?? null
   const result = job?.result ?? null
   const outputs = outputsOf(job)
+  const history = outputs.change?.history
+  const { imagery, pair, setPair, imgs } = useYearPictures(resultId, tab === 'change' && !history)
+  const [historyHost, setHistoryHost] = useState(null)
 
   // ── service limits and the ward layers it holds ──
   useEffect(() => {
@@ -145,7 +146,7 @@ export default function App() {
   const resetArea = useCallback(() => {
     setJob(null); setFeaturesState(null); setCell(null); setCellsNote(null); setStartNote(null); setHoverCell(null)
     setFloodLayer(null); setChangeFraction(null); setWards(null); setChangeCells(null); setChangeNote(null)
-    setImagery(null); setPair(null); setChangeHover(null); setSplit(0.5)
+    setChangeHover(null); setSplit(0.5)
   }, [])
 
   const onPick = useCallback((p) => {
@@ -264,7 +265,7 @@ export default function App() {
   useEffect(() => {
     if (!floodLayer && outputs.susceptibility) setFloodLayer(defaultFloodLayer(outputs.susceptibility))
   }, [floodLayer, outputs.susceptibility])
-  const chRows = useMemo(() => changeRows(outputs.change), [outputs.change])
+  const chRows = useMemo(() => history ? [] : changeRows(outputs.change), [history, outputs.change])
   const changeChoices = useMemo(() => chRows.filter((r) => r.measured).map((r) => r.key), [chRows])
   useEffect(() => {
     if (!changeFraction && changeChoices.length) setChangeFraction(changeChoices[0])
@@ -390,7 +391,7 @@ export default function App() {
   // ── Change: per-cell verdicts and the pictures, fetched on first visit ──
   const changeBbox = result?.request?.bbox ?? null
   useEffect(() => {
-    if (tab !== 'change' || !resultId || changeCells) return
+    if (tab !== 'change' || history || !resultId || changeCells || !changeBbox) return
     const ctl = new AbortController()
     getChangeFeatures(resultId, ctl.signal)
       .then((fc) => {
@@ -404,41 +405,11 @@ export default function App() {
           : 'The changed cells could not be loaded. Reload the page to try again.')
       })
     return () => ctl.abort()
-  }, [tab, resultId, changeCells, changeBbox])
-
-  useEffect(() => {
-    if (tab !== 'change' || !resultId || imagery) return
-    const ctl = new AbortController()
-    getImageryYears(resultId, ctl.signal).then((r) => {
-      setImagery({ years: r.years, compared: r.compared })
-      setPair(r.compared ?? [r.years[0], r.years.at(-1)])
-    }).catch(() => { if (!ctl.signal.aborted) setImagery({ years: [], compared: null, failed: true }) })
-    return () => ctl.abort()
-  }, [tab, resultId, imagery])
-
-  // Pictures for the two chosen years, each fetched once per result.
-  const urls = useRef([])
-  const asked = useRef(new Set())
-  useEffect(() => {
-    if (!resultId || !pair) return
-    for (const y of pair) {
-      if (asked.current.has(y)) continue
-      asked.current.add(y)
-      setImgs((s) => ({ ...s, [y]: { state: 'loading' } }))
-      getImageryYear(resultId, y).then((url) => {
-        urls.current.push(url)
-        setImgs((s) => ({ ...s, [y]: { state: 'ready', url } }))
-      }).catch((e) => setImgs((s) => ({ ...s, [y]: { state: e instanceof ApiError && e.status === 404 ? 'missing' : 'error' } })))
-    }
-  }, [resultId, pair])
-  useEffect(() => () => {
-    urls.current.forEach((u) => URL.revokeObjectURL(u))
-    urls.current = []; asked.current = new Set(); setImgs({})
-  }, [resultId])
+  }, [tab, history, resultId, changeCells, changeBbox])
 
   // Hovering a changed cell: a hit test in the overlay's own square.
   useEffect(() => {
-    if (!map || tab !== 'change' || !changeCells || !changeBbox) return
+    if (!map || tab !== 'change' || history || !changeCells || !changeBbox) return
     const u = toUnit(changeBbox)
     const move = (e) => {
       hx.set(e.originalEvent.clientX + 16)
@@ -450,7 +421,7 @@ export default function App() {
     map.on('mousemove', move)
     map.on('mouseout', out)
     return () => { map.off('mousemove', move); map.off('mouseout', out); out() }
-  }, [map, tab, changeCells, changeBbox, hx, hy])
+  }, [map, history, tab, changeCells, changeBbox, hx, hy])
 
   // ── 3D footprints, lazy: fetched the first time the map tilts ──
   useEffect(() => {
@@ -524,7 +495,7 @@ export default function App() {
       onChoose={setFraction} footprints={tilted ? buildings : 'none'} />
   } else if (tab === 'flood' && features && floodLayer) {
     dock = <FloodLegend rows={fRows} layerKey={floodLayer} onLayer={setFloodLayer} />
-  } else if (tab === 'change' && resultId && changeFraction && pair) {
+  } else if (tab === 'change' && !history && resultId && changeFraction && pair) {
     dock = <ChangeDock choices={changeChoices} fraction={changeFraction} onFraction={setChangeFraction}
       years={imagery?.years} pair={pair} compared={imagery?.compared} status={imgStatus}
       onPair={setPair} analysedPair={analysedPair} />
@@ -546,7 +517,7 @@ export default function App() {
     ground: <GroundPanel job={job} fraction={fraction} onFraction={setFraction}
       cell={cell} onCloseCell={closeCell} cellsNote={cellsNote} />,
     flood: <FloodPanel job={job} layerKey={floodLayer} onLayer={setFloodLayer} wards={wards} />,
-    change: <ChangePanel job={job} fraction={changeFraction} onFraction={setChangeFraction}
+    change: history ? <div ref={setHistoryHost} /> : <ChangePanel job={job} fraction={changeFraction} onFraction={setChangeFraction}
       cellsNote={changeNote ?? (imagery?.failed ? 'The before and after pictures could not be listed. Reload the page to try again.' : null)} />,
   }[tab]
 
@@ -555,8 +526,14 @@ export default function App() {
       <h1 className="sr-only">GeoWatch</h1>
       <MapView onReady={setMap} spinning={!bbox && !drawMode} reducedMotion={reduce} basemap={basemap} />
 
-      {tab === 'change' && map && changeBbox && pair && (
-        <SwipeOverlay map={map} bbox={changeBbox} cells={changeCells} fraction={changeFraction}
+      {tab === 'change' && history && (
+        <ChangeHistory key={resultId ?? jobId} host={historyHost} wrapper={history} resultId={resultId}
+          bbox={changeBbox} window={result?.request?.window} map={map} mobile={mobile}
+          zoneTypes={Object.entries(result?.wards ?? {}).filter(([, v]) => v.n_units > 0).map(([k]) => k)}
+          onInspect={() => { setPanelOpen(true); if (mobile) setSheet('full') }} />
+      )}
+      {tab === 'change' && !history && map && changeBbox && pair && (
+        <SwipeOverlay map={map} bbox={changeBbox} cells={pair[0] === analysedPair?.[0] && pair[1] === analysedPair?.[1] ? changeCells : null} fraction={changeFraction}
           before={{ year: pair[0], ...imgs[pair[0]] }} after={{ year: pair[1], ...imgs[pair[1]] }}
           split={split} onSplit={setSplit} hoverId={changeHover?.id} />
       )}
@@ -642,7 +619,7 @@ export default function App() {
 
       <HoverCard cell={cellsShown ? hoverCell : null} keys={measuredChoices} x={hx} y={hy}
         flood={tab === 'flood' ? fRows.find((r) => r.key === floodLayer) : null}
-        change={tab === 'change' && changeHover ? { props: changeHover.props, fraction: changeFraction, rows: chRows } : null} />
+        change={tab === 'change' && !history && changeHover && pair && pair[0] === analysedPair?.[0] && pair[1] === analysedPair?.[1] ? { props: changeHover.props, fraction: changeFraction, rows: chRows } : null} />
       <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} actions={actions}
         onSearch={(q) => setSearchCmd({ q, n: Date.now() })} />
     </div>

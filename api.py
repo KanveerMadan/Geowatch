@@ -801,6 +801,57 @@ def get_result_change_features(result_id: str):
     return {"result_id": result_id, **change_features(block)}
 
 
+def _change_history(result_id):
+    result = _load_result(result_id)
+    summary = result["outputs"].get("change", {}).get("history", {}).get("summary")
+    path = Path(RESULTS_ROOT) / result_id / "history.sqlite"
+    if not summary or not path.is_file():
+        raise HTTPException(status_code=404, detail="This result has no stored observation history.")
+    return path, summary
+
+
+@app.get("/api/results/{result_id}/change/cells/{unit_index}")
+def get_change_cell(result_id: str, unit_index: int, start: str | None = None,
+                    end: str | None = None, mode: str | None = None, as_of: str | None = None):
+    from analysis.change_history import cell_detail, replay_options
+    path, summary = _change_history(result_id)
+    try:
+        replay = replay_options(summary, start, end, mode, as_of)
+        detail = cell_detail(path, unit_index, replay=replay)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    if detail is None:
+        raise HTTPException(status_code=404, detail="Unknown change cell.")
+    return {"result_id": result_id, "period": [start, end] if replay else summary["period"], **detail}
+
+
+@app.get("/api/results/{result_id}/change/compare")
+def compare_change_windows(result_id: str, before_start: str, before_end: str,
+                           after_start: str, after_end: str, signal: str):
+    from analysis import change_history, store
+    path, summary = _change_history(result_id)
+    block = store.get_change_cells(result_id, str(RESULTS_ROOT))
+    try:
+        comparison = change_history.compare(path, block, summary, (before_start, before_end),
+                                            (after_start, after_end), signal)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return {"result_id": result_id, **comparison}
+
+
+@app.get("/api/results/{result_id}/change/summary/{unit_type}/{unit_id}")
+def get_change_zone(result_id: str, unit_type: str, unit_id: str):
+    from analysis import change_history, store
+    path, summary = _change_history(result_id)
+    _, units, _ = _load_unit_type(result_id, unit_type)
+    unit = next((u for u in units["units"] if str(u.get("unit_id")) == unit_id), None)
+    if unit is None:
+        raise HTTPException(status_code=404, detail="Unknown reporting unit.")
+    block = store.get_change_cells(result_id, str(RESULTS_ROOT))
+    return {"result_id": result_id, "unit_id": unit_id, "period": summary["period"],
+            **change_history.zone_summary(block, unit["geometry"], path, summary["survey_sources"])}
+
+
 @app.get("/api/results/{result_id}/buildings")
 def get_result_buildings(result_id: str):
     """The building outlines the run used (item 19 layer), for drawing, read
