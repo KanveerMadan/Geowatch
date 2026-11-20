@@ -160,3 +160,23 @@ Every judgement call, in order. "Owner" = the repository owner's run brief (2026
 - In commit c35c02a, the file as written by the one run had sha256 4657321766b92fdec4f663dc3d740dd884eeb9f15af3249073d7cdc8957388fa. It is still recoverable from that commit.
 - The only change is replacing that path prefix with `<repo>/` (2 occurrences, inside the error strings). No score, verdict or unit changed. The file is still valid JSON.
 - History is not rewritten (force-push is a hard stop). Whether to purge the path from history is the owner's call (STATUS.md).
+
+## D23 Production integration (phase 9; PR from build/flood-learned, not merged)
+- **Output.** One new output, `susceptibility.learned_flood`, beside the five modules. It is not a new taxonomy type. `flood_types: [M1, M3]`.
+- **Label.** `validated` only when both hold:
+  - the module ran the exact model (JSON sha256 pinned in contract.VALIDATED_CONFIGS);
+  - the pinned flood_final heldout.json (sha256) says every type in LEARNED_FLOOD_TYPES passed.
+- **Scope note** lists the 11 held-out units, the failed types, the elevation-baseline caveat, "not a probability", and "built-up not assessed".
+- **Model.** `open__logreg` as JSON coefficients, not a pickle. It equals the frozen pickle to 0.0 on raw scores and 2e-5 after isotonic.
+- **Features.** Built by the training code itself (experiments.flood_learned / flood_baselines, imported read-only) so they are the validated features:
+  - parity is exact against a cached training table (test);
+  - a live Earth Engine re-fetch for emsr757_aoi02 gave 25/26 features identical. rain_p999 was missing in that unit's training table (the IMERG call failed then) and was present live; scores correlate at 0.996.
+  - Missing-for-whole-event layers occur in training (rain_p999 5/67 units, jrc_recurrence 5/67, clay 1/67). The model imputes them with missing indicators, a constant shift within an event.
+- **Not assessed.**
+  - built-up share ≥ 0.5 (GHSL or WorldCover; D20);
+  - JRC permanent water;
+  - cells with no GLO-30 elevation. An AOI with none is `insufficient_evidence`, so imputation never fills a cell that has no terrain.
+- **Map.** Drawn as the within-AOI percentile, because the output is a ranking. The Flood tab shows "Ranking", no tier, and the limits.
+- **Stage timeout** learned_inputs = 3600 s (flood_final's per-unit kill for the same calls).
+- **Fluvial module.** The flood_final re-test failure is recorded under its scope (`not_covered_flood_final`). Its `validated` label is unchanged, because whether to drop it is C78, the owner's decision; the PR asks.
+- **Production test suite:** 1035 passed. 2 failed, the same Earth Engine-auth tests that fail on master without credentials.

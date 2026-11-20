@@ -16,9 +16,9 @@ Branch `exp/flood-final` (from `origin/exp/flood-learned` @ a8395d1; baselines, 
 | 5 | learned model v2 (DEV) | done | method_choice.json (D19); results/dev_tables.md: Δ vs HAND CI > 0 on DEV for fluvial, waterlogging, flash_flood; not pluvial, coastal, compound |
 | 6 | SFINCS (DEV) | Valencia done; coastal deferred (D17) | 4 members, hmax AUC 0.75–0.83 vs HAND 0.706 (valencia_2024); 0.60–0.71 vs 0.501 (paiporta) |
 | 7 | one held-out pass | done | heldout.json (D21): fluvial + waterlogging passed; pluvial, flash, coastal, compound failed; fluvial module re-test failed; elevation baseline beats the learned model on held-out |
-| 8 | evidence packs | todo | |
-| 9 | production PR | todo | |
-| 10 | M7/M6/M8 scenarios | todo | |
+| 8 | evidence packs | done | paper/evidence-flood-final 21660b3: M1 update (FLOOD_FINAL.md), M2, M3, M4, M5, M9 |
+| 9 | production PR | done (draft, not merged) | https://github.com/KanveerMadan/Geowatch/pull/1 (build/flood-learned); D23 |
+| 10 | M7/M6/M8 scenarios | not started | time; coastal SFINCS (D17) comes first |
 
 ## Running now
 - none
