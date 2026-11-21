@@ -108,6 +108,57 @@ RESERVED_S1_R2 = {
     "s1_baghlan_2024": (("flash_flood",), "south_asia", [68.70, 36.13], "2024-05-11",
                         "flash floods in Baghlan province, Afghanistan, 10-11 May 2024"),
 }
+# R11 (owner, 2026-11-21): more reserved rain / urban-rain and waterlogging units
+# (aim >= 8 each), chosen from general reporting only, same guard, registered in
+# a separate commit before PREREGISTRATION_ROUND2.md is pushed. Excluded on
+# purpose: storms already used (Ida 2021, Pakistan monsoon 2022, Idai 2019,
+# Henan July 2021 = the Weihui urban test), cities already in the registry.
+RESERVED_S1_R2_ADD = {
+    # rain / urban rain
+    "s1_seoul_2022": (("pluvial",), "east_asia", [127.03, 37.49], "2022-08-08",
+                      "record rainfall flooding in Seoul (Gangnam, Gwanak), 8 Aug 2022"),
+    "s1_bengaluru_2022": (("pluvial",), "south_asia", [77.70, 12.95], "2022-09-05",
+                          "heavy-rain flooding in east Bengaluru (Bellandur, Outer Ring Road), 4-5 Sep 2022"),
+    "s1_hyderabad_2020": (("pluvial",), "south_asia", [78.48, 17.38], "2020-10-14",
+                          "extreme rainfall flooding in Hyderabad, India, 13-14 Oct 2020"),
+    "s1_durban_2022": (("pluvial",), "africa", [30.95, -29.85], "2022-04-12",
+                       "KwaZulu-Natal extreme rainfall floods, eThekwini (Durban), 11-12 Apr 2022"),
+    "s1_nairobi_2024": (("pluvial",), "africa", [36.86, -1.26], "2024-04-24",
+                        "long-rains flooding in Nairobi (Mathare, Kasarani), late April 2024"),
+    "s1_fortlauderdale_2023": (("pluvial",), "americas", [-80.15, 26.12], "2023-04-13",
+                               "record 1-day rainfall flooding in Fort Lauderdale, 12-13 Apr 2023"),
+    "s1_auckland_2023": (("pluvial",), "oceania", [174.76, -36.87], "2023-01-27",
+                         "record rainfall flooding in Auckland, 27 Jan 2023"),
+    "s1_klang_2021": (("pluvial",), "southeast_asia", [101.52, 3.07], "2021-12-18",
+                      "heavy-rain flooding in Shah Alam / Klang Valley, 17-19 Dec 2021"),
+    "s1_manila_2024": (("pluvial",), "southeast_asia", [120.98, 14.62], "2024-07-24",
+                       "monsoon rain enhanced by Typhoon Gaemi floods Metro Manila, 24 Jul 2024"),
+    "s1_antananarivo_2022": (("pluvial",), "africa", [47.52, -18.91], "2022-01-18",
+                             "heavy-rain flooding in Antananarivo, 17-18 Jan 2022"),
+    "s1_recife_2022": (("pluvial",), "americas", [-34.95, -8.08], "2022-05-28",
+                       "extreme rainfall flooding in greater Recife, 27-28 May 2022"),
+    "s1_abidjan_2018": (("pluvial",), "africa", [-4.01, 5.35], "2018-06-19",
+                        "torrential rain flooding in Abidjan, 18-19 Jun 2018"),
+    "s1_portauprince_2023": (("pluvial",), "americas", [-72.34, 18.54], "2023-06-03",
+                             "heavy-rain flooding in Port-au-Prince / Ouest, 3 Jun 2023"),
+    "s1_lagos_2021": (("pluvial",), "africa", [3.38, 6.52], "2021-07-10",
+                      "heavy-rain flooding across Lagos, July 2021"),
+    # waterlogging (prolonged standing water)
+    "s1_bentiu_2022": (("waterlogging",), "africa", [29.80, 9.23], "2022-10-15",
+                       "prolonged flooding around Bentiu, Unity State, South Sudan, 2022 season"),
+    "s1_budalangi_2020": (("waterlogging",), "africa", [34.02, 0.13], "2020-05-15",
+                          "prolonged Lake Victoria backflow / Nzoia flooding at Budalangi, Kenya, May 2020"),
+    "s1_battambang_2020": (("waterlogging",), "southeast_asia", [103.20, 13.10], "2020-10-20",
+                           "prolonged flooding in Battambang province, Cambodia, Oct 2020"),
+    "s1_ayutthaya_2021": (("waterlogging",), "southeast_asia", [100.57, 14.35], "2021-10-05",
+                          "prolonged Chao Phraya flooding around Ayutthaya, Sep-Oct 2021"),
+    "s1_khuzestan_2019": (("waterlogging",), "africa_west_asia", [48.68, 31.32], "2019-04-15",
+                          "prolonged Karun flooding around Ahvaz, Khuzestan, April 2019"),
+    "s1_kebbi_2020": (("waterlogging",), "africa", [4.20, 12.45], "2020-09-15",
+                      "prolonged flooding of rice farmland in Kebbi State, Nigeria, Sep 2020"),
+    "s1_mopti_2024": (("waterlogging",), "africa", [-4.20, 14.49], "2024-09-20",
+                      "prolonged flooding around Mopti (inner Niger delta), Mali, Sep 2024"),
+}
 ACCEPTED_EXCEPTION_LINKS = {}
 # R7: a reserved unit whose only links to DEV are main_basin links (no
 # sub_basin, box, proximity, alias or storm link), each to a unit of another

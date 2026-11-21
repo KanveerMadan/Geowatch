@@ -132,7 +132,32 @@ def main(argv=None):
     reg = REG.load()
     have = set(REG.units(reg))
     log = {"step": step, "dropped": [], "accepted_exception_links": {}}
-    if step == "reserved":
+    if step == "reserved_add":
+        saved = E.RESERVED_EMS_R2, E.RESERVED_S1_R2
+        E.RESERVED_EMS_R2, E.RESERVED_S1_R2 = {}, E.RESERVED_S1_R2_ADD
+        try:
+            new = reserved_units()
+        finally:
+            E.RESERVED_EMS_R2, E.RESERVED_S1_R2 = saved
+        b = RF.basins({u["event_id"]: _point(u) for u in new})
+        for u in new:
+            if u["event_id"] in have:
+                raise SystemExit(f"{u['event_id']} already registered")
+            u["basins"] = b.get(u["event_id"], {"note": "centre outside HydroBASINS"})
+        dev = [u for u in reg["units"] if u["role"] == "dev"]
+        kept = []
+        for u in new:
+            links = _links(u, dev)
+            block = [x for x in links if x[2] == REG.BLOCK]
+            exc = [x for x in links if x[2] != REG.BLOCK]
+            if exc and not block and _main_basin_only_far(u, exc, dev):
+                log["accepted_exception_links"][u["event_id"]] = exc[:6]
+                exc = []
+            if block or exc:
+                log["dropped"].append({"event_id": u["event_id"], "links": links[:6]})
+                continue
+            kept.append(u)
+    elif step == "reserved":
         flipped = flip_round1(reg)
         log["flipped_to_dev"] = flipped
         new = reserved_units()

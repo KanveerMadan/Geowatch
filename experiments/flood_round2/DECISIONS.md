@@ -76,3 +76,13 @@ Judgement calls, numbered R1, R2, and so on. Round-1 decisions are D1–D23 in `
   - surge2x doubles the residual.
 - **Reference limit:** the S1 reference's first post-event pass is 11 days after landfall (2021-09-10). It shows residual ponding inside the levees, not the surge extent, so the AUC here tests "where water stayed".
 - No river inflow boundary is added. The Mississippi is leveed and outside the domain, and Barataria's bayous are inside the grid.
+
+## R11 (2026-11-21, owner's instruction) More reserved rain and waterlogging units
+- The owner judged 3 rain and 4 waterlogging reserved units too few to prove anything and asked for ≥ 8 each: regions never used, chosen from metadata only, same guard, in a separate registry commit before the pre-registration is pushed.
+- 21 Sentinel-1 units were added from general reporting (a town point and a date); no image was read.
+  - **Rain / urban rain (14):** Seoul 2022, Bengaluru 2022, Hyderabad 2020, Durban 2022, Nairobi 2024, Fort Lauderdale 2023, Auckland 2023, Klang Valley 2021, Manila 2024, Antananarivo 2022, Recife 2022, Abidjan 2018, Port-au-Prince 2023, Lagos 2021.
+  - **Waterlogging (7):** Bentiu 2022, Budalangi 2020, Battambang 2020, Ayutthaya 2021, Khuzestan 2019, Kebbi 2020, Mopti 2024.
+- Excluded on purpose: storms already used (Ida 2021, the Pakistan 2022 monsoon, Idai 2019, Henan July 2021 = the Weihui urban test) and cities already in the registry.
+- **Guard:** all 21 kept. Four were accepted under R7 (main basin only, other storm, > 100 km): Bentiu and Budalangi (Nile: Kigali, EMSR662), Kebbi and Mopti (Niger: Lokoja).
+- **Totals:** rain 17 units in 17 clusters; waterlogging 11 in 11.
+- **Risk:** Sentinel-1 sees little among buildings (D20), so many urban-rain units may not reach 50 flooded cells. Whether a unit qualifies is decided once, at scoring. The pre-registration therefore raises the minimum for a verdict (R12).

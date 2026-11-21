@@ -10436,6 +10436,1245 @@
     "main_bas": 4060027280,
     "hybas_6": 4060027280
    }
+  },
+  {
+   "event_id": "s1_seoul_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-08-08",
+   "storm_cluster": "s1_seoul_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     127.03,
+     37.49
+    ],
+    "note": "record rainfall flooding in Seoul (Gangnam, Gwanak), 8 Aug 2022"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "east_asia",
+    "basis": "record rainfall flooding in Seoul (Gangnam, Gwanak), 8 Aug 2022",
+    "reference": [
+     "s1",
+     37.49,
+     127.03,
+     "2022-08-08"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "east_asia",
+    "basis": "record rainfall flooding in Seoul (Gangnam, Gwanak), 8 Aug 2022",
+    "reference": [
+     "s1",
+     37.49,
+     127.03,
+     "2022-08-08"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040005050,
+    "main_bas": 4060005050,
+    "hybas_6": 4060005050
+   }
+  },
+  {
+   "event_id": "s1_bengaluru_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-09-05",
+   "storm_cluster": "s1_bengaluru_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     77.7,
+     12.95
+    ],
+    "note": "heavy-rain flooding in east Bengaluru (Bellandur, Outer Ring Road), 4-5 Sep 2022"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "south_asia",
+    "basis": "heavy-rain flooding in east Bengaluru (Bellandur, Outer Ring Road), 4-5 Sep 2022",
+    "reference": [
+     "s1",
+     12.95,
+     77.7,
+     "2022-09-05"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "south_asia",
+    "basis": "heavy-rain flooding in east Bengaluru (Bellandur, Outer Ring Road), 4-5 Sep 2022",
+    "reference": [
+     "s1",
+     12.95,
+     77.7,
+     "2022-09-05"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040027950,
+    "main_bas": 4060028670,
+    "hybas_6": 4060028670
+   }
+  },
+  {
+   "event_id": "s1_hyderabad_2020",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2020-10-14",
+   "storm_cluster": "s1_hyderabad_2020",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     78.48,
+     17.38
+    ],
+    "note": "extreme rainfall flooding in Hyderabad, India, 13-14 Oct 2020"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "south_asia",
+    "basis": "extreme rainfall flooding in Hyderabad, India, 13-14 Oct 2020",
+    "reference": [
+     "s1",
+     17.38,
+     78.48,
+     "2020-10-14"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "south_asia",
+    "basis": "extreme rainfall flooding in Hyderabad, India, 13-14 Oct 2020",
+    "reference": [
+     "s1",
+     17.38,
+     78.48,
+     "2020-10-14"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040027940,
+    "main_bas": 4060027940,
+    "hybas_6": 4061092490
+   }
+  },
+  {
+   "event_id": "s1_durban_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-04-12",
+   "storm_cluster": "s1_durban_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     30.95,
+     -29.85
+    ],
+    "note": "KwaZulu-Natal extreme rainfall floods, eThekwini (Durban), 11-12 Apr 2022"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "KwaZulu-Natal extreme rainfall floods, eThekwini (Durban), 11-12 Apr 2022",
+    "reference": [
+     "s1",
+     -29.85,
+     30.95,
+     "2022-04-12"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "KwaZulu-Natal extreme rainfall floods, eThekwini (Durban), 11-12 Apr 2022",
+    "reference": [
+     "s1",
+     -29.85,
+     30.95,
+     "2022-04-12"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040012820,
+    "main_bas": 1060013210,
+    "hybas_6": 1060013210
+   }
+  },
+  {
+   "event_id": "s1_nairobi_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-04-24",
+   "storm_cluster": "s1_nairobi_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     36.86,
+     -1.26
+    ],
+    "note": "long-rains flooding in Nairobi (Mathare, Kasarani), late April 2024"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "long-rains flooding in Nairobi (Mathare, Kasarani), late April 2024",
+    "reference": [
+     "s1",
+     -1.26,
+     36.86,
+     "2024-04-24"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "long-rains flooding in Nairobi (Mathare, Kasarani), late April 2024",
+    "reference": [
+     "s1",
+     -1.26,
+     36.86,
+     "2024-04-24"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040008480,
+    "main_bas": 1060008570,
+    "hybas_6": 1061184690
+   }
+  },
+  {
+   "event_id": "s1_fortlauderdale_2023",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-04-13",
+   "storm_cluster": "s1_fortlauderdale_2023",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -80.15,
+     26.12
+    ],
+    "note": "record 1-day rainfall flooding in Fort Lauderdale, 12-13 Apr 2023"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "americas",
+    "basis": "record 1-day rainfall flooding in Fort Lauderdale, 12-13 Apr 2023",
+    "reference": [
+     "s1",
+     26.12,
+     -80.15,
+     "2023-04-13"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "americas",
+    "basis": "record 1-day rainfall flooding in Fort Lauderdale, 12-13 Apr 2023",
+    "reference": [
+     "s1",
+     26.12,
+     -80.15,
+     "2023-04-13"
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040043170,
+    "main_bas": 7060043870,
+    "hybas_6": 7060043870
+   }
+  },
+  {
+   "event_id": "s1_auckland_2023",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-01-27",
+   "storm_cluster": "s1_auckland_2023",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     174.76,
+     -36.87
+    ],
+    "note": "record rainfall flooding in Auckland, 27 Jan 2023"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "oceania",
+    "basis": "record rainfall flooding in Auckland, 27 Jan 2023",
+    "reference": [
+     "s1",
+     -36.87,
+     174.76,
+     "2023-01-27"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "oceania",
+    "basis": "record rainfall flooding in Auckland, 27 Jan 2023",
+    "reference": [
+     "s1",
+     -36.87,
+     174.76,
+     "2023-01-27"
+    ]
+   },
+   "basins": {
+    "hybas_4": 5040085040,
+    "main_bas": 5060085980,
+    "hybas_6": 5060085980
+   }
+  },
+  {
+   "event_id": "s1_klang_2021",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2021-12-18",
+   "storm_cluster": "s1_klang_2021",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     101.52,
+     3.07
+    ],
+    "note": "heavy-rain flooding in Shah Alam / Klang Valley, 17-19 Dec 2021"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "southeast_asia",
+    "basis": "heavy-rain flooding in Shah Alam / Klang Valley, 17-19 Dec 2021",
+    "reference": [
+     "s1",
+     3.07,
+     101.52,
+     "2021-12-18"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "southeast_asia",
+    "basis": "heavy-rain flooding in Shah Alam / Klang Valley, 17-19 Dec 2021",
+    "reference": [
+     "s1",
+     3.07,
+     101.52,
+     "2021-12-18"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040018350,
+    "main_bas": 4060020630,
+    "hybas_6": 4060020630
+   }
+  },
+  {
+   "event_id": "s1_manila_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-07-24",
+   "storm_cluster": "s1_manila_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     120.98,
+     14.62
+    ],
+    "note": "monsoon rain enhanced by Typhoon Gaemi floods Metro Manila, 24 Jul 2024"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "southeast_asia",
+    "basis": "monsoon rain enhanced by Typhoon Gaemi floods Metro Manila, 24 Jul 2024",
+    "reference": [
+     "s1",
+     14.62,
+     120.98,
+     "2024-07-24"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "southeast_asia",
+    "basis": "monsoon rain enhanced by Typhoon Gaemi floods Metro Manila, 24 Jul 2024",
+    "reference": [
+     "s1",
+     14.62,
+     120.98,
+     "2024-07-24"
+    ]
+   },
+   "basins": {
+    "hybas_4": 5040022500,
+    "main_bas": 5060028890,
+    "hybas_6": 5060028890
+   }
+  },
+  {
+   "event_id": "s1_antananarivo_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-01-18",
+   "storm_cluster": "s1_antananarivo_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     47.52,
+     -18.91
+    ],
+    "note": "heavy-rain flooding in Antananarivo, 17-18 Jan 2022"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "heavy-rain flooding in Antananarivo, 17-18 Jan 2022",
+    "reference": [
+     "s1",
+     -18.91,
+     47.52,
+     "2022-01-18"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "heavy-rain flooding in Antananarivo, 17-18 Jan 2022",
+    "reference": [
+     "s1",
+     -18.91,
+     47.52,
+     "2022-01-18"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040036860,
+    "main_bas": 1060036860,
+    "hybas_6": 1061472960
+   }
+  },
+  {
+   "event_id": "s1_recife_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-05-28",
+   "storm_cluster": "s1_recife_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -34.95,
+     -8.08
+    ],
+    "note": "extreme rainfall flooding in greater Recife, 27-28 May 2022"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "americas",
+    "basis": "extreme rainfall flooding in greater Recife, 27-28 May 2022",
+    "reference": [
+     "s1",
+     -8.08,
+     -34.95,
+     "2022-05-28"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "americas",
+    "basis": "extreme rainfall flooding in greater Recife, 27-28 May 2022",
+    "reference": [
+     "s1",
+     -8.08,
+     -34.95,
+     "2022-05-28"
+    ]
+   },
+   "basins": {
+    "hybas_4": 6040009770,
+    "main_bas": 6060011380,
+    "hybas_6": 6060011380
+   }
+  },
+  {
+   "event_id": "s1_abidjan_2018",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2018-06-19",
+   "storm_cluster": "s1_abidjan_2018",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -4.01,
+     5.35
+    ],
+    "note": "torrential rain flooding in Abidjan, 18-19 Jun 2018"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "torrential rain flooding in Abidjan, 18-19 Jun 2018",
+    "reference": [
+     "s1",
+     5.35,
+     -4.01,
+     "2018-06-19"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "torrential rain flooding in Abidjan, 18-19 Jun 2018",
+    "reference": [
+     "s1",
+     5.35,
+     -4.01,
+     "2018-06-19"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040023900,
+    "main_bas": 1060023900,
+    "hybas_6": 1060023900
+   }
+  },
+  {
+   "event_id": "s1_portauprince_2023",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-06-03",
+   "storm_cluster": "s1_portauprince_2023",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -72.34,
+     18.54
+    ],
+    "note": "heavy-rain flooding in Port-au-Prince / Ouest, 3 Jun 2023"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "americas",
+    "basis": "heavy-rain flooding in Port-au-Prince / Ouest, 3 Jun 2023",
+    "reference": [
+     "s1",
+     18.54,
+     -72.34,
+     "2023-06-03"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "americas",
+    "basis": "heavy-rain flooding in Port-au-Prince / Ouest, 3 Jun 2023",
+    "reference": [
+     "s1",
+     18.54,
+     -72.34,
+     "2023-06-03"
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040070790,
+    "main_bas": 7060070800,
+    "hybas_6": 7060070800
+   }
+  },
+  {
+   "event_id": "s1_lagos_2021",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2021-07-10",
+   "storm_cluster": "s1_lagos_2021",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     3.38,
+     6.52
+    ],
+    "note": "heavy-rain flooding across Lagos, July 2021"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "heavy-rain flooding across Lagos, July 2021",
+    "reference": [
+     "s1",
+     6.52,
+     3.38,
+     "2021-07-10"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "heavy-rain flooding across Lagos, July 2021",
+    "reference": [
+     "s1",
+     6.52,
+     3.38,
+     "2021-07-10"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040022430,
+    "main_bas": 1060023020,
+    "hybas_6": 1060023020
+   }
+  },
+  {
+   "event_id": "s1_bentiu_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-10-15",
+   "storm_cluster": "s1_bentiu_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     29.8,
+     9.23
+    ],
+    "note": "prolonged flooding around Bentiu, Unity State, South Sudan, 2022 season"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged flooding around Bentiu, Unity State, South Sudan, 2022 season",
+    "reference": [
+     "s1",
+     9.23,
+     29.8,
+     "2022-10-15"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged flooding around Bentiu, Unity State, South Sudan, 2022 season",
+    "reference": [
+     "s1",
+     9.23,
+     29.8,
+     "2022-10-15"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040837630,
+    "main_bas": 1060034260,
+    "hybas_6": 1060848400
+   }
+  },
+  {
+   "event_id": "s1_budalangi_2020",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2020-05-15",
+   "storm_cluster": "s1_budalangi_2020",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     34.02,
+     0.13
+    ],
+    "note": "prolonged Lake Victoria backflow / Nzoia flooding at Budalangi, Kenya, May 2020"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged Lake Victoria backflow / Nzoia flooding at Budalangi, Kenya, May 2020",
+    "reference": [
+     "s1",
+     0.13,
+     34.02,
+     "2020-05-15"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged Lake Victoria backflow / Nzoia flooding at Budalangi, Kenya, May 2020",
+    "reference": [
+     "s1",
+     0.13,
+     34.02,
+     "2020-05-15"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040837890,
+    "main_bas": 1060034260,
+    "hybas_6": 1061135480
+   }
+  },
+  {
+   "event_id": "s1_battambang_2020",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2020-10-20",
+   "storm_cluster": "s1_battambang_2020",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     103.2,
+     13.1
+    ],
+    "note": "prolonged flooding in Battambang province, Cambodia, Oct 2020"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged flooding in Battambang province, Cambodia, Oct 2020",
+    "reference": [
+     "s1",
+     13.1,
+     103.2,
+     "2020-10-20"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged flooding in Battambang province, Cambodia, Oct 2020",
+    "reference": [
+     "s1",
+     13.1,
+     103.2,
+     "2020-10-20"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4041144880,
+    "main_bas": 4060017020,
+    "hybas_6": 4061130890
+   }
+  },
+  {
+   "event_id": "s1_ayutthaya_2021",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2021-10-05",
+   "storm_cluster": "s1_ayutthaya_2021",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     100.57,
+     14.35
+    ],
+    "note": "prolonged Chao Phraya flooding around Ayutthaya, Sep-Oct 2021"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged Chao Phraya flooding around Ayutthaya, Sep-Oct 2021",
+    "reference": [
+     "s1",
+     14.35,
+     100.57,
+     "2021-10-05"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged Chao Phraya flooding around Ayutthaya, Sep-Oct 2021",
+    "reference": [
+     "s1",
+     14.35,
+     100.57,
+     "2021-10-05"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040017030,
+    "main_bas": 4060018280,
+    "hybas_6": 4061120980
+   }
+  },
+  {
+   "event_id": "s1_khuzestan_2019",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2019-04-15",
+   "storm_cluster": "s1_khuzestan_2019",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     48.68,
+     31.32
+    ],
+    "note": "prolonged Karun flooding around Ahvaz, Khuzestan, April 2019"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa_west_asia",
+    "basis": "prolonged Karun flooding around Ahvaz, Khuzestan, April 2019",
+    "reference": [
+     "s1",
+     31.32,
+     48.68,
+     "2019-04-15"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa_west_asia",
+    "basis": "prolonged Karun flooding around Ahvaz, Khuzestan, April 2019",
+    "reference": [
+     "s1",
+     31.32,
+     48.68,
+     "2019-04-15"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040828790,
+    "main_bas": 2060073570,
+    "hybas_6": 2060825520
+   }
+  },
+  {
+   "event_id": "s1_kebbi_2020",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2020-09-15",
+   "storm_cluster": "s1_kebbi_2020",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     4.2,
+     12.45
+    ],
+    "note": "prolonged flooding of rice farmland in Kebbi State, Nigeria, Sep 2020"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged flooding of rice farmland in Kebbi State, Nigeria, Sep 2020",
+    "reference": [
+     "s1",
+     12.45,
+     4.2,
+     "2020-09-15"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged flooding of rice farmland in Kebbi State, Nigeria, Sep 2020",
+    "reference": [
+     "s1",
+     12.45,
+     4.2,
+     "2020-09-15"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040760290,
+    "main_bas": 1060022420,
+    "hybas_6": 1060736280
+   }
+  },
+  {
+   "event_id": "s1_mopti_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-09-20",
+   "storm_cluster": "s1_mopti_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -4.2,
+     14.49
+    ],
+    "note": "prolonged flooding around Mopti (inner Niger delta), Mali, Sep 2024"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged flooding around Mopti (inner Niger delta), Mali, Sep 2024",
+    "reference": [
+     "s1",
+     14.49,
+     -4.2,
+     "2024-09-20"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged flooding around Mopti (inner Niger delta), Mali, Sep 2024",
+    "reference": [
+     "s1",
+     14.49,
+     -4.2,
+     "2024-09-20"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040641670,
+    "main_bas": 1060022420,
+    "hybas_6": 1060641670
+   }
   }
  ],
  "basins_source": "WWF/HydroSHEDS/v1/Basins hybas_4, hybas_6 (centre point)"
