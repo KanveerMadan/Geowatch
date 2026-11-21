@@ -1,0 +1,25 @@
+{
+  "created_utc": "2026-11-21T19:57:42.674549+00:00",
+  "sha256": {
+    "experiments/change_history/building_endpoint_sites.json": "8b8342e0301ccd72e8ceb475f7c917c0540a72fe1e0b7278d639f0ba114b19fd",
+    "experiments/change_history/building_endpoints.py": "b8607788c11743b56253b0671aef512e0a8d5a65ddb678c87e518361c1a526e2",
+    "experiments/change_history/building_multisensor.py": "fccd358c53e91ec31653a7f2bf68fae71d81f2219f5dc26dc27cbe1945731b87",
+    "experiments/change_history/building_multisensor_sites.json": "c6a64bb41dcbc91e1c9927c949c50a954ada6b9d6c51973acecb671be017c0e8",
+    "experiments/change_history/known_change_protocol.json": "ddb87d6d7b415bf720c7e497630970c504470bc2fdb2d8622a2ac74276b920dd",
+    "experiments/change_history/ordinary_city_default_protocol.json": "169b3c039a510e4e2bf1fb4ac70be96fed903109013a20b7ea76ce6eaa64abe1",
+    "experiments/change_history/ordinary_city_protocol.json": "2df8198219ceae91bbc993cfdcf6216ec4da911aec5c179f679a580b548e258a",
+    "experiments/change_history/spacenet_survey.py": "c326d6dcc6def6d8975f13ba2ce4180df3dcbfcece3626e10c922b4738d75784",
+    "experiments/change_round2/building_model.json": "91e965ead32baa3465e7e9abd8f59e80682e0fbfaa596b96b0b131aea0fbf26f",
+    "experiments/change_round2/buildings.py": "d47321e28442712e21b5bac68a77c392b143c41f4b8c4de4cd66938454978d94",
+    "experiments/change_round2/data.py": "be0e85db8bb5a579f763dd708f1223e40e202566f0df1e07449f8fe57eb62329",
+    "experiments/change_round2/forest.py": "6d59bfc688fa1dbf71c401b73bc6b5be3561218eceec610e63b4bd85a2248bd1",
+    "experiments/change_round2/fresh.py": "829b39b66e93e129b9df667c08271dde24ff9e3422507456e93684d44d0c4d53",
+    "experiments/change_round2/fresh_exclusions.json": "bb37f1d100d0c3484d9a1c8317a174998b8d0a9c78853984f9da67254fd67f33",
+    "experiments/change_round2/fresh_plan.json": "c6b4fd5c1ea5495a8db11ee46cbeec61fb53303dbb9cb8806c9e550184855844",
+    "experiments/change_round2/fresh_protocol.md": "6cbd2e068211e5e0a78427f142eaddda6ae39e8b64cc0e80b789d501e294dc03",
+    "experiments/change_round2/monitor_lock.py": "ba8d868e82e276a81cbaf1cb1e20f1d72f39ffb0563c1f771abce51e46221672",
+    "experiments/change_round2/water.py": "b8428cc9305c32658fb0b03db0ee4fa827c0d99700dd67830ff9005e008ac97a",
+    "vector/change_observations.py": "02d5ba28d1869cb736baeba7bf212fb6e06d7a12c882bfc3743afc61211e1eb3",
+    "vector/units.py": "2e4799d172542a485079b44d59c525a63d230e254c0e9de47ef794bcbee11f09"
+  }
+}

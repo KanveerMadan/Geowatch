@@ -1,0 +1,13 @@
+{
+ "version": 1,
+ "water": [
+   ["eden_sanford", -84.370,43.775,"2020-05-19","2020-06-19","Edenville and Sanford dam failures"],
+   ["lismore",153.278,-28.806,"2022-02-28","2022-03-31","Northern Rivers flood"],
+   ["guaiba",-51.236,-29.99,"2024-04-27","2024-06-01","Rio Grande do Sul flood"]
+ ],
+ "forest":[["west_kalimantan",111.80,-0.02],["ratanakiri",106.99,13.64],["madre_de_dios",-69.55,-12.72]],
+ "forest_year":2023,"box_width_m":24000,"cap_per_direction":12,"minimum_separation_m":500,
+ "building_sites":3,"building_min_separation_km":200,"building_target_m2":100,
+ "landsat_collections":["LANDSAT/LC08/C02/T1_L2","LANDSAT/LC09/C02/T1_L2"],
+ "forest_reference":"UMD/hansen/global_forest_change_2024_v1_12"
+}
