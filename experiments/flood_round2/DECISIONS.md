@@ -96,3 +96,14 @@ Judgement calls, numbered R1, R2, and so on. Round-1 decisions are D1–D23 in `
 - The queue shell lacked the PYTHONPATH that holds h5py. Each SFINCS run finished (the solver log reports "Simulation finished"), and then `read_map` failed.
 - `run()` now extracts hmax from an existing `sfincs_map.nc` instead of re-running. Runtime is the solver's own "Total time"; the container's peak memory was not recorded for these runs.
 - Queue timestamps give wall times of about 44, 44 and 53 min for base, surge2x and glo30.
+
+## R14 (2026-11-21) Fort Myers SFINCS result: the reference, not the model, limits this test
+- 4 members over 575 km². Solver time 2,618–3,176 s per member (4.6–7.1 s per km²); disk about 0.31 MB per km².
+- AUC of max depth vs the S1 box labels (578 flooded / 5,378 dry cells):
+  - base 0.558, surge2x 0.537, lidar_e1 0.560 (3DEP members);
+  - glo30 0.739;
+  - HAND 0.658, low elevation 0.734.
+- The 3DEP members wet 99 % of the Fort Myers Beach box, consistent with reports that Ian's surge covered nearly all of Estero Island. The S1 labels mark 9.7 %: S1 is blind among buildings (D20), and its image comes after the peak.
+- When nearly every cell is wet, a within-box ranking cannot tell models apart, and the S1 labels measure "where water stayed visible to radar", not surge extent.
+- **Reading:** this case gives no evidence for or against the surge model. It shows that coastal surge needs an urban-capable or peak-time reference (USGS high-water marks — unavailable, R4 — or VHR optical) before SFINCS can be validated at a barrier island.
+- The glo30 member's better AUC comes from its bias-corrected DSM keeping buildings and trees higher (less wetting). It is not better physics.
