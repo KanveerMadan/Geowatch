@@ -34,6 +34,8 @@ HASHFILE = os.path.join(HERE, "PREREG_HASH_ROUND2.txt")
 FREEZE_TAG = "flood-round2-heldout-freeze"
 CACHE = os.path.expanduser("~/.cache/geowatch/flood_round2/heldout")
 TABLES_R2 = os.path.join(CACHE, "tables_r2")
+# PREREGISTRATION_ROUND2 §6.3 (R12): a verdict needs >= 5 qualifying units in >= 3 clusters
+MIN_UNITS, MIN_CLUSTERS = 5, 3
 
 
 def _git(*a):
@@ -207,7 +209,7 @@ def score():
         res["groups"][ty] = g
         chosen = res["choice"].get(ty)
         n_cl = g["clusters"]
-        if chosen is None or len(mem) < 3 or n_cl < 2:
+        if chosen is None or len(mem) < MIN_UNITS or n_cl < MIN_CLUSTERS:
             res["verdicts"][ty] = {"chosen": chosen, "verdict": "not-run (insufficient)", "units": len(mem), "clusters": n_cl}
             continue
         # PREREGISTRATION_ROUND2 §6: vs the stronger of {hand, elev} on these units (the other one if chosen is a baseline)

@@ -86,3 +86,8 @@ Judgement calls, numbered R1, R2, and so on. Round-1 decisions are D1–D23 in `
 - **Guard:** all 21 kept. Four were accepted under R7 (main basin only, other storm, > 100 km): Bentiu and Budalangi (Nile: Kigali, EMSR662), Kebbi and Mopti (Niger: Lokoja).
 - **Totals:** rain 17 units in 17 clusters; waterlogging 11 in 11.
 - **Risk:** Sentinel-1 sees little among buildings (D20), so many urban-rain units may not reach 50 flooded cells. Whether a unit qualifies is decided once, at scoring. The pre-registration therefore raises the minimum for a verdict (R12).
+
+## R12 (2026-11-21) A verdict needs ≥ 5 qualifying units in ≥ 3 clusters (every type)
+- Round 1 needed 3 units in 2 clusters. The owner judged round 1's 3–4-unit sets unable to prove anything. Since qualification is known only at scoring, the rule is raised in advance instead.
+- Below 5 units in 3 clusters a type is "not-run (insufficient)": numbers indicative only, no verdict, label stays experimental (`heldout_r2.MIN_UNITS`, `MIN_CLUSTERS`).
+- PREREGISTRATION_ROUND2.md §6 states the risk plainly: 16 of 17 rain units and all 11 waterlogging units have Sentinel-1 references. S1 is blind among buildings, so rain may well end insufficient. Coastal and compound (5 each) need every unit to qualify.
