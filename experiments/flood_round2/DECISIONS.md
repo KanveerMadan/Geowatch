@@ -124,3 +124,19 @@ Judgement calls, numbered R1, R2, and so on. Round-1 decisions are D1–D23 in `
 | compound | 14 | full_lgbm | 0.783 | 0.767 | 0.726 |
 
 - The learned candidates beat plain elevation on DEV by only 0.02–0.025. For rain and coastal, plain elevation is the method.
+
+## R16 (2026-11-21) Audit: the HAND sign bug was only in round-2 code; round 1 is unaffected
+- **Storage, checked at the round-1 freeze tag 81ff7b1:**
+  - `flood_baselines.score.all_scores` stores `"hand": -layer_hand_m` (higher = more flood-prone);
+  - `flood_learned.features.build_table` copies it into the table's `C[:, 0]`;
+  - `flood_final.model_v2.comparators` and `heldout_pass.score` use `C[:, 0]` as-is. The Δ-vs-HAND verdicts therefore used the correct direction.
+- **Numeric check** (round-1 held-out units, from cached raw HAND metres):
+
+| unit | published HAND AUC | AUC of −HAND (m) | AUC of +HAND (m) | stored = −raw |
+|---|---|---|---|---|
+| s1_sunamganj_2024 | 0.8424 | 0.8424 | 0.1576 | yes |
+| r_emsr856_aoi01 | 0.6218 | 0.6218 | 0.3782 | yes |
+| s1_kelantan_2024 | 0.5567 | 0.5567 | 0.4433 | yes |
+
+- **History:** the only commits whose code negates the stored comparator are round 2's: a66b302 (model_v3) and 01ed55f (heldout_r2). Both were fixed in e6c2796 before any reserved data existed.
+- **Conclusion:** no round-1 verdict changes, and no round-1 file was edited.
