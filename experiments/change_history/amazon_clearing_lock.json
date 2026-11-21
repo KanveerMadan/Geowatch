@@ -1,0 +1,40 @@
+{
+  "source": "https://terrabrasilis.dpi.inpe.br/geoserver/deter-amz/wfs",
+  "parameters": {
+    "service": "WFS",
+    "version": "2.0.0",
+    "request": "GetFeature",
+    "typeNames": "deter-amz:deter_amz",
+    "outputFormat": "application/json",
+    "srsName": "EPSG:4326",
+    "CQL_FILTER": "classname='DESMATAMENTO_CR' AND view_date >= '2024-07-01' AND view_date < '2024-08-01'"
+  },
+  "response_timestamp": "2026-11-20T06:17:19.609Z",
+  "source_sha256": "640ae79fde9bb58a5ceb27ced5c8156193f473c82d0c6b43725606545d59edfd",
+  "raw_notices": 4092,
+  "eligible": 1598,
+  "selected": [
+    [
+      "MT",
+      "32722/41/1832",
+      8
+    ],
+    [
+      "AM",
+      "32720/48/1875",
+      7
+    ],
+    [
+      "PA",
+      "32722/120/2010",
+      5
+    ]
+  ],
+  "sha256": {
+    "experiments/change_history/amazon_clearing_registry.csv": "d5f688024ed3df9b13a37e270eca8e8ec685a8149a7a7039a2d98b961aa01b53",
+    "experiments/change_history/AMAZON_PROTOCOL.md": "3214189930506ef11bba82956e4769b69c993d6a862b36dece2821f17aebb32f",
+    "experiments/change_history/amazon_clearing.py": "d3582ceb83d686b9d18a6eeaeda82acf4389f566f5b287eae4951f86058c8e96",
+    "vector/change_detection.py": "92b06233ed26100a5342542fba664666df5a093ad19ad48d7daf88a9b48f5202",
+    "vector/change_observations.py": "02d5ba28d1869cb736baeba7bf212fb6e06d7a12c882bfc3743afc61211e1eb3"
+  }
+}

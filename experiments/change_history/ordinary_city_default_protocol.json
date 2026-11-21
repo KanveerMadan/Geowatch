@@ -1,0 +1,16 @@
+{
+  "study":"ordinary-default-2024-v1",
+  "locked_date":"2026-11-20",
+  "detector_commit":"e457e577070dab8ed7c7b7f9e67f091701f9ed37",
+  "frozen_implementation_protocol":"2df8198219ceae91bbc993cfdcf6216ec4da911aec5c179f679a580b548e258a",
+  "sites":[
+    {"id":"pune","lon":73.882,"lat":18.526,"context":"South Asian monsoon urban district"},
+    {"id":"bandung","lon":107.624,"lat":-6.924,"context":"Southeast Asian tropical urban district"},
+    {"id":"dakar","lon":-17.45,"lat":14.725,"context":"West African coastal urban district"},
+    {"id":"belem","lon":-48.477,"lat":-1.451,"context":"Amazonian estuary urban district"}
+  ],
+  "design":"Select four previously unused neighborhoods and new calendar year before reading their imagery. Same 600 m UTM square definition as ordinary-city-2021-v1, 36 cells each. Census January, April, July, October 2024, the first month of each quarter. No substitutions. Scope restricted to these 16 plot-months, 576 cell-months.",
+  "inputs":"All default observation sources at the frozen commit: Sentinel-2, Sentinel-1, Landsat 8, Landsat 9 and historical Open Buildings Temporal. The annual building context cannot itself trigger confirmation. Identical frozen production detector, default config, monthly prospective queries. Request history from 2019-01-01 through the end of each monitored month, with detector's five-year lookback enforced. Never supply post-cutoff data to fitting or confirmation. Resolved source failures must be retried; report as incomplete if unresolved.",
+  "endpoints":"Per site and pooled, count full support (any channel marked observed) and by channel family including water/vegetation, radar, confirmed cells, candidate-only cells, confirmations from partial coverage and indicators by source/signal. Report confirmed cell-months per 0.36 square km plot-month. No extrapolation to whole cities. These are signal notifications projected at historical cutoff; true alert latency cannot be inferred from retrospective archives. No independent labels for physical false-alert rates or precision in this cohort. No release gate.",
+  "comparison":"This is a default-configuration burden study using disjoint sites and months, not a sensor ablation on the 2021 JRC study."
+}

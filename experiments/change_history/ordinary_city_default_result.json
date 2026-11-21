@@ -1,0 +1,146 @@
+{
+  "protocol_sha256": "169b3c039a510e4e2bf1fb4ac70be96fed903109013a20b7ea76ce6eaa64abe1",
+  "pooled": {
+    "counts": {
+      "cell_months": 576,
+      "fully_observable": 540,
+      "alarmed": 1,
+      "confirmed_partial": 0,
+      "candidate_only": 99,
+      "candidate_episodes": 128,
+      "confirmed_episodes": 1
+    },
+    "observable_by_source": {
+      "sentinel1": 540,
+      "sentinel2": 285,
+      "landsat8": 125,
+      "landsat9": 105
+    },
+    "observable_by_signal": {
+      "mndwi": 359,
+      "ndbi": 359,
+      "ndvi": 359,
+      "vh_db": 540,
+      "vv_db": 540
+    },
+    "confirmed_cells_by_transition": {
+      "radar_vv_backscatter_loss": 1
+    },
+    "confirmed_cells_by_source": {
+      "sentinel1": 1
+    },
+    "plot_months": 16
+  },
+  "per_site": {
+    "pune": {
+      "counts": {
+        "cell_months": 144,
+        "fully_observable": 108,
+        "alarmed": 0,
+        "confirmed_partial": 0,
+        "candidate_only": 23,
+        "candidate_episodes": 27,
+        "confirmed_episodes": 0
+      },
+      "observable_by_source": {
+        "sentinel1": 108,
+        "sentinel2": 82,
+        "landsat8": 4
+      },
+      "observable_by_signal": {
+        "mndwi": 82,
+        "ndbi": 82,
+        "ndvi": 82,
+        "vh_db": 108,
+        "vv_db": 108
+      },
+      "confirmed_cells_by_transition": {},
+      "confirmed_cells_by_source": {},
+      "plot_months": 4
+    },
+    "bandung": {
+      "counts": {
+        "cell_months": 144,
+        "fully_observable": 144,
+        "alarmed": 1,
+        "confirmed_partial": 0,
+        "candidate_only": 23,
+        "candidate_episodes": 29,
+        "confirmed_episodes": 1
+      },
+      "observable_by_source": {
+        "sentinel1": 144,
+        "landsat8": 36,
+        "landsat9": 21,
+        "sentinel2": 32
+      },
+      "observable_by_signal": {
+        "vh_db": 144,
+        "vv_db": 144,
+        "mndwi": 70,
+        "ndbi": 70,
+        "ndvi": 70
+      },
+      "confirmed_cells_by_transition": {
+        "radar_vv_backscatter_loss": 1
+      },
+      "confirmed_cells_by_source": {
+        "sentinel1": 1
+      },
+      "plot_months": 4
+    },
+    "dakar": {
+      "counts": {
+        "cell_months": 144,
+        "fully_observable": 144,
+        "alarmed": 0,
+        "confirmed_partial": 0,
+        "candidate_only": 31,
+        "candidate_episodes": 44,
+        "confirmed_episodes": 0
+      },
+      "observable_by_source": {
+        "landsat8": 37,
+        "landsat9": 84,
+        "sentinel1": 144,
+        "sentinel2": 91
+      },
+      "observable_by_signal": {
+        "mndwi": 108,
+        "ndbi": 108,
+        "ndvi": 108,
+        "vh_db": 144,
+        "vv_db": 144
+      },
+      "confirmed_cells_by_transition": {},
+      "confirmed_cells_by_source": {},
+      "plot_months": 4
+    },
+    "belem": {
+      "counts": {
+        "cell_months": 144,
+        "fully_observable": 144,
+        "alarmed": 0,
+        "confirmed_partial": 0,
+        "candidate_only": 22,
+        "candidate_episodes": 28,
+        "confirmed_episodes": 0
+      },
+      "observable_by_source": {
+        "landsat8": 48,
+        "sentinel1": 144,
+        "sentinel2": 80
+      },
+      "observable_by_signal": {
+        "mndwi": 99,
+        "ndbi": 99,
+        "ndvi": 99,
+        "vh_db": 144,
+        "vv_db": 144
+      },
+      "confirmed_cells_by_transition": {},
+      "confirmed_cells_by_source": {},
+      "plot_months": 4
+    }
+  }
+}

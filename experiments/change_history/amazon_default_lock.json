@@ -1,0 +1,19 @@
+{
+  "files": {
+    "experiments/change_history/amazon_clearing_lock.json": "a2aed4bed2527fa3ad9e1e958e5ab4d0651f84e64d1dc7b40b62c7520a1718d9",
+    "experiments/change_history/amazon_default.py": "cf6a916fbf4a5403297ca674d6b5e7d1db0a3adf6f9e18fdc5c918ed92272c1d",
+    "analysis/change_history.py": "2172c71ec5ad4dea3a1e5ce90e50cc29c329bbd7a5f51d1abe8ea4a556269249"
+  },
+  "sources": [
+    "sentinel2",
+    "landsat8",
+    "landsat9",
+    "sentinel1",
+    "open_buildings"
+  ],
+  "period": [
+    "2024-06-01",
+    "2024-09-01"
+  ],
+  "design": "Paired secondary run on all July INPE test notices with identical spatial support, target, policy, decision window and history. Compare confirmed greenness loss with the S2-only result within notices. Report paired gains and losses. No substitutions, score tuning, promotion or pooled global claim."
+}

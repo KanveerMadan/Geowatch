@@ -1,0 +1,46 @@
+{
+  "grid_blocks": 100,
+  "blocks_with_inspections": 98,
+  "inspections_in_blocks": 3696,
+  "destroyed_positive_blocks": 90,
+  "assessed_undamaged_blocks": 3,
+  "common_block_scores": {
+    "optical": {
+      "blocks": 93,
+      "positive": 90,
+      "auc": 0.4481481481481482,
+      "average_precision": 0.970902689158415
+    },
+    "radar": {
+      "blocks": 93,
+      "positive": 90,
+      "auc": 0.34444444444444444,
+      "average_precision": 0.9611340427392746
+    },
+    "combined": {
+      "blocks": 93,
+      "positive": 90,
+      "auc": 0.65,
+      "average_precision": 0.9855066217950567
+    },
+    "zero": {
+      "blocks": 93,
+      "positive": 90,
+      "auc": 0.5,
+      "average_precision": 0.967741935483871
+    }
+  },
+  "site": {
+    "site": "palisades_2025",
+    "centre": [
+      -118.525,
+      34.047
+    ],
+    "epochs": {
+      "2024_02": {},
+      "2025_02": {}
+    }
+  },
+  "inspection_counts_sha256": "68a5f3ca8402fbc76c7a0f073e348a95e4d400b243fb186e7d90cd36d050bade",
+  "lock_sha256": "ec04a43e9f2cffc9e72f029e71cca796178e1ca7dfe55c15c92dfd76d4699294"
+}

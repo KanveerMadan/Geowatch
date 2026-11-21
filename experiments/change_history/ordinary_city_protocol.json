@@ -1,0 +1,25 @@
+{
+  "study": "ordinary-city-2021-v1",
+  "locked_date": "2026-11-20",
+  "baseline_commit": "e457e577070dab8ed7c7b7f9e67f091701f9ed37",
+  "frozen_files": {
+    "vector/change_detection.py": "92b06233ed26100a5342542fba664666df5a093ad19ad48d7daf88a9b48f5202",
+    "vector/change_observations.py": "02d5ba28d1869cb736baeba7bf212fb6e06d7a12c882bfc3743afc61211e1eb3"
+  },
+  "sites": [
+    {"id":"kolkata","context":"East Kolkata wetland landscape, monsoon","lon":88.463,"lat":22.545},
+    {"id":"jakarta","context":"dense tropical urban district","lon":106.816,"lat":-6.208},
+    {"id":"lagos","context":"lagoon-side urban district","lon":3.39,"lat":6.495},
+    {"id":"can_tho","context":"Mekong delta peri-urban farming landscape","lon":105.706,"lat":10.037},
+    {"id":"nairobi","context":"inland tropical urban district","lon":36.822,"lat":-1.284},
+    {"id":"recife","context":"Atlantic coastal urban district","lon":-34.895,"lat":-8.053}
+  ],
+  "design": "Geographically purposive context anchors selected before inspecting imagery or event records. Census all 36 cells in each 600 m square and all 12 months in 2021. Scope only these squares, not entire cities, borders or a random world sample. Centre square on anchor rounded down to 100 m UTM in local hemisphere. Never replace a site for clouds or incomplete references.",
+  "timing": "Sentinel-2 harmonized surface reflectance from 2018-01-01 through 2021-12-31 inclusive. January..December 2021 scored independently as prospective one-calendar-month queries, with all earlier history in this range, same as-of cutoff as month-end. No future confirmation.",
+  "sources": "Frozen Sentinel-2-only detector so independent Landsat reference remains disjoint. This study cannot validate the production multisensor configuration.",
+  "unit": "Report candidate and confirmed episodes but for operational burden count at most one firing of any signal per cell-month. For directed water endpoints collapse by cell-month and direction. This is not a spatially deduplicated incident or a whole-city notification.",
+  "coverage": "Report fully observable cell-months (at least one series marked observed); separately report candidate and confirmed signals when only partially observed. Always retain the full denominator. Source errors abort an area and may be retried with identical protocol.",
+  "reference": "EC JRC / Google JRC/GSW1_4/MonthlyHistory optical water classes (30 m Landsat). Compare water occupancy at the 25 fixed 20 m lattice centres per cell in the current and immediately preceding month. A reference pair requires all 25 centres classified as observed in BOTH months. Direction from sign of change in number of water centres. If exactly equal, reference is stable in net occupancy. Raw counts and unresolved cases retained. A directed confirmed water episode is supported if reference agrees with direction; otherwise report a mismatch. This is a proxy endpoint agreement, not systematic human adjudication. Missing, short-lived or subpixel water can be missed by this reference. Vegetation/built index changes have no independent reference here.",
+  "metrics": "Per site and pooled: eligible and fully observable cell-months / scheduled; confirmed cell-months, water and greenness direction-specific confirmations, candidate-only and quiet; JRC reference coverage; water proxy TP/FP/FN/TN per direction, including detectable-only secondary table. Distinct alarmed cell-months per monitored plot-month, no extrapolation beyond the footprint; physical false alerts unknown without blinded independent review. No promotion threshold.",
+  "review": "Provide a prediction-blind review roster of all sampled cell-months with geographic geometry and dates. Join external blinded references after predictions are frozen, requiring explicit observed/unknown and source evidence for each reviewed target. Expose unmatched and unknown counts; no assumption that silence or missing evidence means stable."
+}

@@ -1,0 +1,49 @@
+site,block,gain,reason
+almere,A1,no,Existing residential roof rows and road intersection visible at both dates.
+almere,A2,no,Canopy and ground clearing east of the green; no large new roof visible.
+almere,A3,no,Same housing rows and wooded edge.
+almere,A4,no,Woodland and path; leaf-off later view contains no qualifying roof.
+almere,B1,no,Canal-side housing and its block arrangement persist.
+almere,B2,no,Same housing edge and canal beside woodland.
+almere,B3,no,Woodland with strong leaf-cover difference; no qualifying later roof.
+almere,B4,no,Pond and field edge remain unbuilt.
+almere,C1,no,Same residential edge next to woodland.
+almere,C2,no,Path and pond bank in woodland; no later roof visible.
+almere,C3,no,Unroofed field and ditch in both years.
+almere,C4,no,Open agricultural field in both years.
+almere,D1,no,Woodland edge visible beside field; no later large roof.
+almere,D2,no,Open field with woodland boundary.
+almere,D3,no,Field and landscaped strip remain unroofed.
+almere,D4,no,Golf bunkers and disturbed ground but no building roof.
+utrecht,A1,no,Individual roofs and existing housing rows correspond across years.
+utrecht,A2,unknown,Light rectangular structure at northern plot; earlier corresponding patch is too indistinct to establish a new roof.
+utrecht,A3,no,Courtyard complex and northern building row already show matching roof outlines.
+utrecht,A4,no,Canal and woodland beside a field; no new substantial roof evident.
+utrecht,B1,no,Industrial roofs correspond at both dates despite brightness differences.
+utrecht,B2,unknown,Western industrial roof strip has possible changes but earlier roof coverage is ambiguous.
+utrecht,B3,no,Canal paths and residential courtyard persist; no definite construction.
+utrecht,B4,yes,Several finished dark row roofs stand on the formerly unroofed eastern construction plot.
+utrecht,C1,yes,Several large white commercial roofs cover previously bare western lots.
+utrecht,C2,no,Residential rows and canal-side houses occupy matching sites.
+utrecht,C3,no,Large flat-roof building and adjacent houses already occupy their later locations.
+utrecht,C4,unknown,Units under construction on eastern site; roofs versus unfinished frames or slab decks unclear.
+utrecht,D1,yes,Substantial white roof clearly extends into the northern block over a previously bare graded lot.
+utrecht,D2,no,Canal island housing rows and southern residential blocks match.
+utrecht,D3,no,Housing rows and road junction persist on both sides of canal.
+utrecht,D4,unknown,New linear structure at northeast edge appears unfinished; roof completion is unclear.
+haarlem,A1,no,Sports field and apartments alongside it persist.
+haarlem,A2,no,White hall and residential strips already have roofs at the earlier date.
+haarlem,A3,no,Existing roof rows and yards remain recognizable.
+haarlem,A4,no,Canal bank and housing surround same park corridor.
+haarlem,B1,no,Curved multiwing building already roofed in earlier view.
+haarlem,B2,no,Existing long apartment roofs on both sides of street.
+haarlem,B3,no,Central residential courtyard and surrounding roof outlines persist.
+haarlem,B4,no,Surrounding courtyard blocks persist; cleared garden area has no large new roof.
+haarlem,C1,no,Lakeside facility and park paths already present.
+haarlem,C2,no,Open water and park paths; no substantial new roof.
+haarlem,C3,no,Two pre-existing buildings occupy the northern shore.
+haarlem,C4,no,Field and reedbed along waterway remain unroofed.
+haarlem,D1,no,Existing small sports facility and park path persist.
+haarlem,D2,no,Sports courts and existing pavilion visible in both years.
+haarlem,D3,no,Park vegetation and path; later leaf-off view shows no new roof.
+haarlem,D4,no,Open field and tree rows remain unroofed.

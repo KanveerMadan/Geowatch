@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "base_commit": "e457e577070dab8ed7c7b7f9e67f091701f9ed37",
+  "detector_sha256": "92b06233ed26100a5342542fba664666df5a093ad19ad48d7daf88a9b48f5202",
+  "observations_sha256": "02d5ba28d1869cb736baeba7bf212fb6e06d7a12c882bfc3743afc61211e1eb3",
+  "detector_source": "sentinel2",
+  "history_start": "2018-01-01",
+  "year": 2021,
+  "box_width_m": 40000,
+  "cap_per_transition_per_region": 24,
+  "minimum_separation_m": 500,
+  "selection": "Order eligible fixed 100 m UTM cells by SHA256 of region and projected southwest corner. Keep in order subject to separation and cap. Use all registered boxes including zero yield. No replacements.",
+  "rationale": "400 square cells per box side give room for spatial sampling. Cap limits remote work, spacing spreads observations across blocks without claiming independence.",
+  "forest_reference": "UMD/hansen/global_forest_change_2024_v1_12",
+  "forest_rule": "Every one of 25 fixed 20 m support centres has lossyear 21. Target greenness_loss confirmed in calendar 2021; no subannual onset inferred.",
+  "water_reference": "JRC/GSW1_4/MonthlyHistory",
+  "water_rule": "At each of 25 sample centres the July-September 2020 and March-May 2021 epochs must agree, and July-September 2021 must reverse. Require >=2 of 3 months observed in each epoch, every observed month must agree, all centres must agree on direction. Monitor June-September inclusive. No-data never dry. Report timing interval uncertainty.",
+  "outcome": "At least one direction-matched confirmed episode in the registered monitoring interval. Count each labelled cell once and retain all misses, abstentions and empty boxes. Observability requires an observed target-signal series. Report case and region counts, conditional sensitivity, dates, first usable image, delay bounds where available. No daily truth, prevalence, precision or global event-level skill inferred.",
+  "regions": [
+    ["para_brazil","forest",-53.2,-6.8], ["chaco_paraguay","forest",-60.6,-22.5],
+    ["sumatra_indonesia","forest",102.2,-1.6], ["borneo_malaysia","forest",117.8,5.2],
+    ["equateur_drc","forest",19.7,0.45], ["zambezia_mozambique","forest",37.1,-16.1],
+    ["gerd_ethiopia","water",35.15,11.07], ["furnas_brazil","water",-45.9,-20.83],
+    ["urmia_iran","water",45.42,37.42], ["poyang_china","water",116.24,29.22],
+    ["jamuna_bangladesh","water",89.74,24.62], ["murray_australia","water",142.33,-34.36]
+  ]
+}

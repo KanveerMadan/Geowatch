@@ -1,0 +1,191 @@
+{
+ "seal": "993a4459c78d7b0c508b8a8babc63ed636a2c537f6a79bedcba7597c3f11768d",
+ "rows": [
+  {
+   "notice": "deter_amz.49693_hist",
+   "date": "2024-07-02",
+   "state": "AM",
+   "cell_id": "EPSG:32720/231100/9004700",
+   "next_usable": "2024-07-07",
+   "confirmed": "2024-07-15",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.49696_hist",
+   "date": "2024-07-02",
+   "state": "AM",
+   "cell_id": "EPSG:32720/232300/9004100",
+   "next_usable": "2024-07-06",
+   "confirmed": "2024-07-07",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.49689_hist",
+   "date": "2024-07-02",
+   "state": "AM",
+   "cell_id": "EPSG:32720/233400/9003900",
+   "next_usable": "2024-07-06",
+   "confirmed": null,
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.54664_hist",
+   "date": "2024-07-07",
+   "state": "AM",
+   "cell_id": "EPSG:32720/234000/9003100",
+   "next_usable": "2024-07-07",
+   "confirmed": "2024-07-31",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.54688_hist",
+   "date": "2024-07-09",
+   "state": "AM",
+   "cell_id": "EPSG:32720/233700/9003000",
+   "next_usable": "2024-07-15",
+   "confirmed": "2024-07-26",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.136839_hist",
+   "date": "2024-07-15",
+   "state": "AM",
+   "cell_id": "EPSG:32720/230400/9001300",
+   "next_usable": "2024-07-15",
+   "confirmed": null,
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.49698_hist",
+   "date": "2024-07-02",
+   "state": "AM",
+   "cell_id": "EPSG:32720/233500/9000400",
+   "next_usable": "2024-07-06",
+   "confirmed": "2024-08-15",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.56941_hist",
+   "date": "2024-07-21",
+   "state": "MT",
+   "cell_id": "EPSG:32722/197000/8795500",
+   "next_usable": "2024-07-21",
+   "confirmed": "2024-08-15",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.58649_hist",
+   "date": "2024-07-25",
+   "state": "MT",
+   "cell_id": "EPSG:32722/197500/8795400",
+   "next_usable": "2024-07-26",
+   "confirmed": "2024-08-25",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.59893_hist",
+   "date": "2024-07-28",
+   "state": "MT",
+   "cell_id": "EPSG:32722/198400/8795300",
+   "next_usable": "2024-07-30",
+   "confirmed": "2024-08-15",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.57578_hist",
+   "date": "2024-07-23",
+   "state": "MT",
+   "cell_id": "EPSG:32722/199400/8794900",
+   "next_usable": "2024-07-23",
+   "confirmed": "2024-08-25",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.58650_hist",
+   "date": "2024-07-25",
+   "state": "MT",
+   "cell_id": "EPSG:32722/198900/8794800",
+   "next_usable": "2024-07-26",
+   "confirmed": null,
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.57577_hist",
+   "date": "2024-07-23",
+   "state": "MT",
+   "cell_id": "EPSG:32722/199200/8794600",
+   "next_usable": "2024-07-23",
+   "confirmed": "2024-08-25",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.56895_hist",
+   "date": "2024-07-21",
+   "state": "MT",
+   "cell_id": "EPSG:32722/199600/8794600",
+   "next_usable": "2024-07-21",
+   "confirmed": "2024-08-20",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.56891_hist",
+   "date": "2024-07-21",
+   "state": "MT",
+   "cell_id": "EPSG:32722/200700/8794600",
+   "next_usable": "2024-07-21",
+   "confirmed": "2024-08-08",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.49798_hist",
+   "date": "2024-07-02",
+   "state": "PA",
+   "cell_id": "EPSG:32722/578700/9649400",
+   "next_usable": "2024-07-11",
+   "confirmed": null,
+   "full_ndvi_window": false
+  },
+  {
+   "notice": "deter_amz.50999_hist",
+   "date": "2024-07-06",
+   "state": "PA",
+   "cell_id": "EPSG:32722/578700/9648900",
+   "next_usable": "2024-07-11",
+   "confirmed": "2024-07-16",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.54200_hist",
+   "date": "2024-07-16",
+   "state": "PA",
+   "cell_id": "EPSG:32722/579000/9648900",
+   "next_usable": "2024-07-16",
+   "confirmed": "2024-07-16",
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.54199_hist",
+   "date": "2024-07-16",
+   "state": "PA",
+   "cell_id": "EPSG:32722/578900/9648500",
+   "next_usable": "2024-07-16",
+   "confirmed": null,
+   "full_ndvi_window": true
+  },
+  {
+   "notice": "deter_amz.56837_hist",
+   "date": "2024-07-21",
+   "state": "PA",
+   "cell_id": "EPSG:32722/579000/9648200",
+   "next_usable": "2024-07-21",
+   "confirmed": null,
+   "full_ndvi_window": true
+  }
+ ],
+ "pair_counts": {
+  "default_only": 2,
+  "neither": 6,
+  "both": 12
+ },
+ "full_ndvi_windows": 19
+}

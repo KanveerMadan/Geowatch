@@ -1,0 +1,362 @@
+{
+  "protocol_sha256": "2df8198219ceae91bbc993cfdcf6216ec4da911aec5c179f679a580b548e258a",
+  "per_site": {
+    "kolkata": {
+      "counts": {
+        "cell_months": 432,
+        "fully_observable": 39,
+        "alarmed": 1,
+        "quiet": 420,
+        "candidate_only": 11,
+        "confirmed_partial": 0,
+        "candidate_only_partial": 1,
+        "confirmed_episodes": 1,
+        "candidate_episodes": 14,
+        "jrc_reference_pairs": 178,
+        "open_water_signal_gain": 0,
+        "open_water_signal_loss": 1,
+        "greenness_gain": 0,
+        "greenness_loss": 0,
+        "built_surface_signal_gain": 0,
+        "built_surface_signal_loss": 0
+      },
+      "water_proxy": {
+        "observable_and_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 16,
+            "fp": 0,
+            "fn": 4
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 19,
+            "fp": 0,
+            "fn": 1
+          }
+        },
+        "all_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 153,
+            "fp": 0,
+            "fn": 25
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 141,
+            "fp": 0,
+            "fn": 37
+          }
+        }
+      },
+      "n_plot_months": 12
+    },
+    "jakarta": {
+      "counts": {
+        "cell_months": 432,
+        "fully_observable": 86,
+        "alarmed": 14,
+        "quiet": 387,
+        "candidate_only": 31,
+        "confirmed_partial": 0,
+        "candidate_only_partial": 4,
+        "confirmed_episodes": 16,
+        "candidate_episodes": 64,
+        "jrc_reference_pairs": 95,
+        "open_water_signal_gain": 0,
+        "open_water_signal_loss": 4,
+        "greenness_gain": 11,
+        "greenness_loss": 0,
+        "built_surface_signal_gain": 0,
+        "built_surface_signal_loss": 1
+      },
+      "water_proxy": {
+        "observable_and_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 21,
+            "fp": 0,
+            "fn": 0
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 21,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "all_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 95,
+            "fp": 0,
+            "fn": 0
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 93,
+            "fp": 0,
+            "fn": 2
+          }
+        }
+      },
+      "n_plot_months": 12
+    },
+    "lagos": {
+      "counts": {
+        "cell_months": 432,
+        "fully_observable": 93,
+        "alarmed": 0,
+        "quiet": 418,
+        "candidate_only": 14,
+        "confirmed_partial": 0,
+        "candidate_only_partial": 0,
+        "confirmed_episodes": 0,
+        "candidate_episodes": 31,
+        "jrc_reference_pairs": 118,
+        "open_water_signal_gain": 0,
+        "open_water_signal_loss": 0,
+        "greenness_gain": 0,
+        "greenness_loss": 0,
+        "built_surface_signal_gain": 0,
+        "built_surface_signal_loss": 0
+      },
+      "water_proxy": {
+        "observable_and_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 17,
+            "fp": 0,
+            "fn": 1
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 18,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "all_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 114,
+            "fp": 0,
+            "fn": 4
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 113,
+            "fp": 0,
+            "fn": 5
+          }
+        }
+      },
+      "n_plot_months": 12
+    },
+    "can_tho": {
+      "counts": {
+        "cell_months": 432,
+        "fully_observable": 23,
+        "alarmed": 1,
+        "quiet": 423,
+        "candidate_only": 8,
+        "confirmed_partial": 0,
+        "candidate_only_partial": 0,
+        "confirmed_episodes": 1,
+        "candidate_episodes": 13,
+        "jrc_reference_pairs": 200,
+        "open_water_signal_gain": 0,
+        "open_water_signal_loss": 0,
+        "greenness_gain": 0,
+        "greenness_loss": 0,
+        "built_surface_signal_gain": 0,
+        "built_surface_signal_loss": 1
+      },
+      "water_proxy": {
+        "observable_and_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 14,
+            "fp": 0,
+            "fn": 0
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 14,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "all_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 193,
+            "fp": 0,
+            "fn": 7
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 198,
+            "fp": 0,
+            "fn": 2
+          }
+        }
+      },
+      "n_plot_months": 12
+    },
+    "nairobi": {
+      "counts": {
+        "cell_months": 432,
+        "fully_observable": 138,
+        "alarmed": 4,
+        "quiet": 386,
+        "candidate_only": 42,
+        "confirmed_partial": 0,
+        "candidate_only_partial": 4,
+        "confirmed_episodes": 5,
+        "candidate_episodes": 65,
+        "jrc_reference_pairs": 129,
+        "open_water_signal_gain": 0,
+        "open_water_signal_loss": 1,
+        "greenness_gain": 0,
+        "greenness_loss": 1,
+        "built_surface_signal_gain": 2,
+        "built_surface_signal_loss": 1
+      },
+      "water_proxy": {
+        "observable_and_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 56,
+            "fp": 0,
+            "fn": 0
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 56,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "all_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 129,
+            "fp": 0,
+            "fn": 0
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 129,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "n_plot_months": 12
+    },
+    "recife": {
+      "counts": {
+        "cell_months": 432,
+        "fully_observable": 283,
+        "alarmed": 6,
+        "quiet": 375,
+        "candidate_only": 51,
+        "confirmed_partial": 0,
+        "candidate_only_partial": 10,
+        "confirmed_episodes": 8,
+        "candidate_episodes": 68,
+        "jrc_reference_pairs": 213,
+        "open_water_signal_gain": 2,
+        "open_water_signal_loss": 1,
+        "greenness_gain": 3,
+        "greenness_loss": 1,
+        "built_surface_signal_gain": 0,
+        "built_surface_signal_loss": 1
+      },
+      "water_proxy": {
+        "observable_and_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 158,
+            "fp": 2,
+            "fn": 1
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 161,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "all_reference": {
+          "gain": {
+            "tp": 0,
+            "tn": 210,
+            "fp": 2,
+            "fn": 1
+          },
+          "loss": {
+            "tp": 0,
+            "tn": 213,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "n_plot_months": 12
+    }
+  },
+  "pooled": {
+    "counts": {
+      "cell_months": 2592,
+      "fully_observable": 662,
+      "alarmed": 26,
+      "quiet": 2409,
+      "candidate_only": 157,
+      "confirmed_partial": 0,
+      "candidate_only_partial": 19,
+      "confirmed_episodes": 31,
+      "candidate_episodes": 255,
+      "jrc_reference_pairs": 933,
+      "open_water_signal_gain": 2,
+      "open_water_signal_loss": 7,
+      "greenness_gain": 14,
+      "greenness_loss": 2,
+      "built_surface_signal_gain": 2,
+      "built_surface_signal_loss": 4
+    },
+    "water_proxy": {
+      "observable_and_reference": {
+        "gain": {
+          "tp": 0,
+          "tn": 282,
+          "fp": 2,
+          "fn": 6
+        },
+        "loss": {
+          "tp": 0,
+          "tn": 289,
+          "fp": 0,
+          "fn": 1
+        }
+      },
+      "all_reference": {
+        "gain": {
+          "tp": 0,
+          "tn": 894,
+          "fp": 2,
+          "fn": 37
+        },
+        "loss": {
+          "tp": 0,
+          "tn": 887,
+          "fp": 0,
+          "fn": 46
+        }
+      }
+    },
+    "n_plot_months": 72
+  }
+}

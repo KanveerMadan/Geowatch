@@ -1,0 +1,735 @@
+{
+  "lock_sha256": "be6cbf157f0daa9487c70e4cd652cccc9227ca8d26d711cfa7e3afa30462171b",
+  "training": {
+    "optical": {
+      "sites": 6,
+      "blocks": 533,
+      "gain_positive": 80,
+      "loss_positive": 5
+    },
+    "radar": {
+      "sites": 7,
+      "blocks": 631,
+      "gain_positive": 99,
+      "loss_positive": 11
+    },
+    "combined": {
+      "sites": 6,
+      "blocks": 533,
+      "gain_positive": 80,
+      "loss_positive": 5
+    }
+  },
+  "sites": {
+    "L15-0457E-1135N_1831_3648_13": {
+      "blocks": 90,
+      "joint_survey_blocks": 90,
+      "mapped_added": 18,
+      "mapped_removed": 2,
+      "stable": 70,
+      "available": {
+        "optical": {
+          "model": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 18,
+              "mae_m2": 94.91841638237032,
+              "bias_m2": 22.313467518195978,
+              "reference_m2": 4081.2766087942173,
+              "changed_mae_m2": 181.5123721604358,
+              "unchanged_mae_m2": 73.26992743785394
+            },
+            "loss": {
+              "mapped_positive": 2,
+              "mae_m2": 7.464352306058147,
+              "bias_m2": -5.3816805968590264,
+              "reference_m2": 579.169300994722,
+              "changed_mae_m2": 289.0357403156364,
+              "unchanged_mae_m2": 1.0650025785677322
+            }
+          },
+          "zero": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 18,
+              "mae_m2": 45.347517875491306,
+              "bias_m2": -45.347517875491306,
+              "reference_m2": 4081.2766087942173,
+              "changed_mae_m2": 226.73758937745652,
+              "unchanged_mae_m2": 0.0
+            },
+            "loss": {
+              "mapped_positive": 2,
+              "mae_m2": 6.435214455496911,
+              "bias_m2": -6.435214455496911,
+              "reference_m2": 579.169300994722,
+              "changed_mae_m2": 289.584650497361,
+              "unchanged_mae_m2": 0.0
+            }
+          }
+        },
+        "radar": {
+          "model": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 18,
+              "mae_m2": 119.65046984863525,
+              "bias_m2": 53.92327953979119,
+              "reference_m2": 4081.2766087942173,
+              "changed_mae_m2": 176.77143709436027,
+              "unchanged_mae_m2": 105.37022803720399
+            },
+            "loss": {
+              "mapped_positive": 2,
+              "mae_m2": 20.705815384337228,
+              "bias_m2": 11.878139422179819,
+              "reference_m2": 579.169300994722,
+              "changed_mae_m2": 198.62270914854173,
+              "unchanged_mae_m2": 16.662249616968946
+            }
+          },
+          "zero": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 18,
+              "mae_m2": 45.347517875491306,
+              "bias_m2": -45.347517875491306,
+              "reference_m2": 4081.2766087942173,
+              "changed_mae_m2": 226.73758937745652,
+              "unchanged_mae_m2": 0.0
+            },
+            "loss": {
+              "mapped_positive": 2,
+              "mae_m2": 6.435214455496911,
+              "bias_m2": -6.435214455496911,
+              "reference_m2": 579.169300994722,
+              "changed_mae_m2": 289.584650497361,
+              "unchanged_mae_m2": 0.0
+            }
+          }
+        },
+        "combined": {
+          "model": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 18,
+              "mae_m2": 167.60568435953013,
+              "bias_m2": 103.05744079821731,
+              "reference_m2": 4081.2766087942173,
+              "changed_mae_m2": 171.3135038199313,
+              "unchanged_mae_m2": 166.67872949442983
+            },
+            "loss": {
+              "mapped_positive": 2,
+              "mae_m2": 6.977510693893273,
+              "bias_m2": -5.892918217100549,
+              "reference_m2": 579.169300994722,
+              "changed_mae_m2": 289.584650497361,
+              "unchanged_mae_m2": 0.5546211529053701
+            }
+          },
+          "zero": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 18,
+              "mae_m2": 45.347517875491306,
+              "bias_m2": -45.347517875491306,
+              "reference_m2": 4081.2766087942173,
+              "changed_mae_m2": 226.73758937745652,
+              "unchanged_mae_m2": 0.0
+            },
+            "loss": {
+              "mapped_positive": 2,
+              "mae_m2": 6.435214455496911,
+              "bias_m2": -6.435214455496911,
+              "reference_m2": 579.169300994722,
+              "changed_mae_m2": 289.584650497361,
+              "unchanged_mae_m2": 0.0
+            }
+          }
+        }
+      },
+      "common": {
+        "optical": {
+          "blocks": 90,
+          "gain": {
+            "mapped_positive": 18,
+            "mae_m2": 94.91841638237032,
+            "bias_m2": 22.313467518195978,
+            "reference_m2": 4081.2766087942173,
+            "changed_mae_m2": 181.5123721604358,
+            "unchanged_mae_m2": 73.26992743785394
+          },
+          "loss": {
+            "mapped_positive": 2,
+            "mae_m2": 7.464352306058147,
+            "bias_m2": -5.3816805968590264,
+            "reference_m2": 579.169300994722,
+            "changed_mae_m2": 289.0357403156364,
+            "unchanged_mae_m2": 1.0650025785677322
+          }
+        },
+        "radar": {
+          "blocks": 90,
+          "gain": {
+            "mapped_positive": 18,
+            "mae_m2": 119.65046984863525,
+            "bias_m2": 53.92327953979119,
+            "reference_m2": 4081.2766087942173,
+            "changed_mae_m2": 176.77143709436027,
+            "unchanged_mae_m2": 105.37022803720399
+          },
+          "loss": {
+            "mapped_positive": 2,
+            "mae_m2": 20.705815384337228,
+            "bias_m2": 11.878139422179819,
+            "reference_m2": 579.169300994722,
+            "changed_mae_m2": 198.62270914854173,
+            "unchanged_mae_m2": 16.662249616968946
+          }
+        },
+        "combined": {
+          "blocks": 90,
+          "gain": {
+            "mapped_positive": 18,
+            "mae_m2": 167.60568435953013,
+            "bias_m2": 103.05744079821731,
+            "reference_m2": 4081.2766087942173,
+            "changed_mae_m2": 171.3135038199313,
+            "unchanged_mae_m2": 166.67872949442983
+          },
+          "loss": {
+            "mapped_positive": 2,
+            "mae_m2": 6.977510693893273,
+            "bias_m2": -5.892918217100549,
+            "reference_m2": 579.169300994722,
+            "changed_mae_m2": 289.584650497361,
+            "unchanged_mae_m2": 0.5546211529053701
+          }
+        },
+        "zero": {
+          "blocks": 90,
+          "gain": {
+            "mapped_positive": 18,
+            "mae_m2": 45.347517875491306,
+            "bias_m2": -45.347517875491306,
+            "reference_m2": 4081.2766087942173,
+            "changed_mae_m2": 226.73758937745652,
+            "unchanged_mae_m2": 0.0
+          },
+          "loss": {
+            "mapped_positive": 2,
+            "mae_m2": 6.435214455496911,
+            "bias_m2": -6.435214455496911,
+            "reference_m2": 579.169300994722,
+            "changed_mae_m2": 289.584650497361,
+            "unchanged_mae_m2": 0.0
+          }
+        }
+      }
+    },
+    "L15-1049E-1370N_4196_2710_13": {
+      "blocks": 90,
+      "joint_survey_blocks": 90,
+      "mapped_added": 1,
+      "mapped_removed": 0,
+      "stable": 89,
+      "available": {
+        "optical": {
+          "model": null,
+          "zero": null
+        },
+        "radar": {
+          "model": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 1,
+              "mae_m2": 295.1729222940001,
+              "bias_m2": 295.1729222940001,
+              "reference_m2": 60.24611713074016,
+              "changed_mae_m2": 371.7677510368406,
+              "unchanged_mae_m2": 294.31230624070974
+            },
+            "loss": {
+              "mapped_positive": 0,
+              "mae_m2": 40.53652057619728,
+              "bias_m2": 40.53652057619728,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 40.53652057619728
+            }
+          },
+          "zero": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 1,
+              "mae_m2": 0.6694013014526684,
+              "bias_m2": -0.6694013014526684,
+              "reference_m2": 60.24611713074016,
+              "changed_mae_m2": 60.24611713074016,
+              "unchanged_mae_m2": 0.0
+            },
+            "loss": {
+              "mapped_positive": 0,
+              "mae_m2": 0.0,
+              "bias_m2": 0.0,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 0.0
+            }
+          }
+        },
+        "combined": {
+          "model": null,
+          "zero": null
+        }
+      },
+      "common": {
+        "optical": null,
+        "radar": null,
+        "combined": null,
+        "zero": null
+      }
+    },
+    "L15-1185E-0935N_4742_4450_13": {
+      "blocks": 90,
+      "joint_survey_blocks": 64,
+      "mapped_added": 22,
+      "mapped_removed": 0,
+      "stable": 42,
+      "available": {
+        "optical": {
+          "model": {
+            "blocks": 1,
+            "gain": {
+              "mapped_positive": 0,
+              "mae_m2": 0.0,
+              "bias_m2": 0.0,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 0.0
+            },
+            "loss": {
+              "mapped_positive": 0,
+              "mae_m2": 0.0,
+              "bias_m2": 0.0,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 0.0
+            }
+          },
+          "zero": {
+            "blocks": 1,
+            "gain": {
+              "mapped_positive": 0,
+              "mae_m2": 0.0,
+              "bias_m2": 0.0,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 0.0
+            },
+            "loss": {
+              "mapped_positive": 0,
+              "mae_m2": 0.0,
+              "bias_m2": 0.0,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 0.0
+            }
+          }
+        },
+        "radar": {
+          "model": {
+            "blocks": 64,
+            "gain": {
+              "mapped_positive": 22,
+              "mae_m2": 217.85110162074432,
+              "bias_m2": -17.364858097547685,
+              "reference_m2": 10160.357584163168,
+              "changed_mae_m2": 392.2049761659957,
+              "unchanged_mae_m2": 126.52288162085081
+            },
+            "loss": {
+              "mapped_positive": 0,
+              "mae_m2": 23.38964088702421,
+              "bias_m2": 23.38964088702421,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 23.38964088702421
+            }
+          },
+          "zero": {
+            "blocks": 64,
+            "gain": {
+              "mapped_positive": 22,
+              "mae_m2": 158.7555872525495,
+              "bias_m2": -158.7555872525495,
+              "reference_m2": 10160.357584163168,
+              "changed_mae_m2": 461.83443564378035,
+              "unchanged_mae_m2": 0.0
+            },
+            "loss": {
+              "mapped_positive": 0,
+              "mae_m2": 0.0,
+              "bias_m2": 0.0,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 0.0
+            }
+          }
+        },
+        "combined": {
+          "model": {
+            "blocks": 1,
+            "gain": {
+              "mapped_positive": 0,
+              "mae_m2": 58.00741404189153,
+              "bias_m2": 58.00741404189153,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 58.00741404189153
+            },
+            "loss": {
+              "mapped_positive": 0,
+              "mae_m2": 0.0,
+              "bias_m2": 0.0,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 0.0
+            }
+          },
+          "zero": {
+            "blocks": 1,
+            "gain": {
+              "mapped_positive": 0,
+              "mae_m2": 0.0,
+              "bias_m2": 0.0,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 0.0
+            },
+            "loss": {
+              "mapped_positive": 0,
+              "mae_m2": 0.0,
+              "bias_m2": 0.0,
+              "reference_m2": 0.0,
+              "changed_mae_m2": null,
+              "unchanged_mae_m2": 0.0
+            }
+          }
+        }
+      },
+      "common": {
+        "optical": {
+          "blocks": 1,
+          "gain": {
+            "mapped_positive": 0,
+            "mae_m2": 0.0,
+            "bias_m2": 0.0,
+            "reference_m2": 0.0,
+            "changed_mae_m2": null,
+            "unchanged_mae_m2": 0.0
+          },
+          "loss": {
+            "mapped_positive": 0,
+            "mae_m2": 0.0,
+            "bias_m2": 0.0,
+            "reference_m2": 0.0,
+            "changed_mae_m2": null,
+            "unchanged_mae_m2": 0.0
+          }
+        },
+        "radar": {
+          "blocks": 1,
+          "gain": {
+            "mapped_positive": 0,
+            "mae_m2": 249.42709640658816,
+            "bias_m2": 249.42709640658816,
+            "reference_m2": 0.0,
+            "changed_mae_m2": null,
+            "unchanged_mae_m2": 249.42709640658816
+          },
+          "loss": {
+            "mapped_positive": 0,
+            "mae_m2": 55.498957684290744,
+            "bias_m2": 55.498957684290744,
+            "reference_m2": 0.0,
+            "changed_mae_m2": null,
+            "unchanged_mae_m2": 55.498957684290744
+          }
+        },
+        "combined": {
+          "blocks": 1,
+          "gain": {
+            "mapped_positive": 0,
+            "mae_m2": 58.00741404189153,
+            "bias_m2": 58.00741404189153,
+            "reference_m2": 0.0,
+            "changed_mae_m2": null,
+            "unchanged_mae_m2": 58.00741404189153
+          },
+          "loss": {
+            "mapped_positive": 0,
+            "mae_m2": 0.0,
+            "bias_m2": 0.0,
+            "reference_m2": 0.0,
+            "changed_mae_m2": null,
+            "unchanged_mae_m2": 0.0
+          }
+        },
+        "zero": {
+          "blocks": 1,
+          "gain": {
+            "mapped_positive": 0,
+            "mae_m2": 0.0,
+            "bias_m2": 0.0,
+            "reference_m2": 0.0,
+            "changed_mae_m2": null,
+            "unchanged_mae_m2": 0.0
+          },
+          "loss": {
+            "mapped_positive": 0,
+            "mae_m2": 0.0,
+            "bias_m2": 0.0,
+            "reference_m2": 0.0,
+            "changed_mae_m2": null,
+            "unchanged_mae_m2": 0.0
+          }
+        }
+      }
+    },
+    "L15-1538E-1163N_6154_3539_13": {
+      "blocks": 90,
+      "joint_survey_blocks": 90,
+      "mapped_added": 43,
+      "mapped_removed": 4,
+      "stable": 45,
+      "available": {
+        "optical": {
+          "model": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 43,
+              "mae_m2": 225.72840442314623,
+              "bias_m2": -206.2203052527449,
+              "reference_m2": 20675.122074184554,
+              "changed_mae_m2": 452.03934733523494,
+              "unchanged_mae_m2": 18.677967290809786
+            },
+            "loss": {
+              "mapped_positive": 4,
+              "mae_m2": 19.764597146164352,
+              "bias_m2": -18.994339851877513,
+              "reference_m2": 1745.7688599039393,
+              "changed_mae_m2": 436.03804122797095,
+              "unchanged_mae_m2": 0.4030416074756727
+            }
+          },
+          "zero": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 43,
+              "mae_m2": 229.7235786020506,
+              "bias_m2": -229.7235786020506,
+              "reference_m2": 20675.122074184554,
+              "changed_mae_m2": 480.8167924228966,
+              "unchanged_mae_m2": 0.0
+            },
+            "loss": {
+              "mapped_positive": 4,
+              "mae_m2": 19.397431776710437,
+              "bias_m2": -19.397431776710437,
+              "reference_m2": 1745.7688599039393,
+              "changed_mae_m2": 436.4422149759848,
+              "unchanged_mae_m2": 0.0
+            }
+          }
+        },
+        "radar": {
+          "model": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 43,
+              "mae_m2": 308.9684694029585,
+              "bias_m2": -45.69491179974014,
+              "reference_m2": 20675.122074184554,
+              "changed_mae_m2": 416.39836641263173,
+              "unchanged_mae_m2": 210.68154235155524
+            },
+            "loss": {
+              "mapped_positive": 4,
+              "mae_m2": 49.4627868739484,
+              "bias_m2": 13.338379341584977,
+              "reference_m2": 1745.7688599039393,
+              "changed_mae_m2": 406.3995847390885,
+              "unchanged_mae_m2": 32.861075345337234
+            }
+          },
+          "zero": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 43,
+              "mae_m2": 229.7235786020506,
+              "bias_m2": -229.7235786020506,
+              "reference_m2": 20675.122074184554,
+              "changed_mae_m2": 480.8167924228966,
+              "unchanged_mae_m2": 0.0
+            },
+            "loss": {
+              "mapped_positive": 4,
+              "mae_m2": 19.397431776710437,
+              "bias_m2": -19.397431776710437,
+              "reference_m2": 1745.7688599039393,
+              "changed_mae_m2": 436.4422149759848,
+              "unchanged_mae_m2": 0.0
+            }
+          }
+        },
+        "combined": {
+          "model": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 43,
+              "mae_m2": 232.27881647914595,
+              "bias_m2": -138.6754984901359,
+              "reference_m2": 20675.122074184554,
+              "changed_mae_m2": 392.7641928662852,
+              "unchanged_mae_m2": 85.45176999729513
+            },
+            "loss": {
+              "mapped_positive": 4,
+              "mae_m2": 20.38098746210057,
+              "bias_m2": -18.3488949508385,
+              "reference_m2": 1745.7688599039393,
+              "changed_mae_m2": 435.7111771455645,
+              "unchanged_mae_m2": 1.0633042210092247
+            }
+          },
+          "zero": {
+            "blocks": 90,
+            "gain": {
+              "mapped_positive": 43,
+              "mae_m2": 229.7235786020506,
+              "bias_m2": -229.7235786020506,
+              "reference_m2": 20675.122074184554,
+              "changed_mae_m2": 480.8167924228966,
+              "unchanged_mae_m2": 0.0
+            },
+            "loss": {
+              "mapped_positive": 4,
+              "mae_m2": 19.397431776710437,
+              "bias_m2": -19.397431776710437,
+              "reference_m2": 1745.7688599039393,
+              "changed_mae_m2": 436.4422149759848,
+              "unchanged_mae_m2": 0.0
+            }
+          }
+        }
+      },
+      "common": {
+        "optical": {
+          "blocks": 90,
+          "gain": {
+            "mapped_positive": 43,
+            "mae_m2": 225.72840442314623,
+            "bias_m2": -206.2203052527449,
+            "reference_m2": 20675.122074184554,
+            "changed_mae_m2": 452.03934733523494,
+            "unchanged_mae_m2": 18.677967290809786
+          },
+          "loss": {
+            "mapped_positive": 4,
+            "mae_m2": 19.764597146164352,
+            "bias_m2": -18.994339851877513,
+            "reference_m2": 1745.7688599039393,
+            "changed_mae_m2": 436.03804122797095,
+            "unchanged_mae_m2": 0.4030416074756727
+          }
+        },
+        "radar": {
+          "blocks": 90,
+          "gain": {
+            "mapped_positive": 43,
+            "mae_m2": 308.9684694029585,
+            "bias_m2": -45.69491179974014,
+            "reference_m2": 20675.122074184554,
+            "changed_mae_m2": 416.39836641263173,
+            "unchanged_mae_m2": 210.68154235155524
+          },
+          "loss": {
+            "mapped_positive": 4,
+            "mae_m2": 49.4627868739484,
+            "bias_m2": 13.338379341584977,
+            "reference_m2": 1745.7688599039393,
+            "changed_mae_m2": 406.3995847390885,
+            "unchanged_mae_m2": 32.861075345337234
+          }
+        },
+        "combined": {
+          "blocks": 90,
+          "gain": {
+            "mapped_positive": 43,
+            "mae_m2": 232.27881647914595,
+            "bias_m2": -138.6754984901359,
+            "reference_m2": 20675.122074184554,
+            "changed_mae_m2": 392.7641928662852,
+            "unchanged_mae_m2": 85.45176999729513
+          },
+          "loss": {
+            "mapped_positive": 4,
+            "mae_m2": 20.38098746210057,
+            "bias_m2": -18.3488949508385,
+            "reference_m2": 1745.7688599039393,
+            "changed_mae_m2": 435.7111771455645,
+            "unchanged_mae_m2": 1.0633042210092247
+          }
+        },
+        "zero": {
+          "blocks": 90,
+          "gain": {
+            "mapped_positive": 43,
+            "mae_m2": 229.7235786020506,
+            "bias_m2": -229.7235786020506,
+            "reference_m2": 20675.122074184554,
+            "changed_mae_m2": 480.8167924228966,
+            "unchanged_mae_m2": 0.0
+          },
+          "loss": {
+            "mapped_positive": 4,
+            "mae_m2": 19.397431776710437,
+            "bias_m2": -19.397431776710437,
+            "reference_m2": 1745.7688599039393,
+            "changed_mae_m2": 436.4422149759848,
+            "unchanged_mae_m2": 0.0
+          }
+        }
+      }
+    }
+  },
+  "equal_site_common_mae_m2": {
+    "optical": {
+      "sites": 3,
+      "blocks": 181,
+      "gain": 106.88227360183885,
+      "loss": 9.076316484074166
+    },
+    "radar": {
+      "sites": 3,
+      "blocks": 181,
+      "gain": 226.01534521939394,
+      "loss": 41.889186647525456
+    },
+    "combined": {
+      "sites": 3,
+      "blocks": 181,
+      "gain": 152.63063829352254,
+      "loss": 9.119499385331281
+    },
+    "zero": {
+      "sites": 3,
+      "blocks": 181,
+      "gain": 91.69036549251398,
+      "loss": 8.610882077402449
+    }
+  }
+}

@@ -1,0 +1,486 @@
+[
+  {
+    "site": "L15-0331E-1257N_1327_3160_13",
+    "split": "development",
+    "centre": [
+      -121.66259765625,
+      37.97884504049712
+    ],
+    "epochs": {
+      "2018_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-0331E-1257N_1327_3160_13/images_masked/global_monthly_2018_01_mosaic_L15-0331E-1257N_1327_3160_13.tif",
+          "bytes": 4193671,
+          "etag": "b5d5328a16d71a9ca02dbb66d2ca704e"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-0331E-1257N_1327_3160_13/labels/global_monthly_2018_01_mosaic_L15-0331E-1257N_1327_3160_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-0331E-1257N_1327_3160_13/labels_match/global_monthly_2018_01_mosaic_L15-0331E-1257N_1327_3160_13_Buildings.geojson",
+          "bytes": 853271,
+          "etag": "0e333ce3907b0cff9b50a511939d8bc9"
+        }
+      },
+      "2019_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-0331E-1257N_1327_3160_13/images_masked/global_monthly_2019_01_mosaic_L15-0331E-1257N_1327_3160_13.tif",
+          "bytes": 4193671,
+          "etag": "b85ad17a2afee2c4d6b5cc7b4f740673"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-0331E-1257N_1327_3160_13/labels/global_monthly_2019_01_mosaic_L15-0331E-1257N_1327_3160_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-0331E-1257N_1327_3160_13/labels_match/global_monthly_2019_01_mosaic_L15-0331E-1257N_1327_3160_13_Buildings.geojson",
+          "bytes": 891382,
+          "etag": "5b0f986f34fcce4ef0b5e22a5cc1cd57"
+        }
+      }
+    }
+  },
+  {
+    "site": "L15-0977E-1187N_3911_3441_13",
+    "split": "development",
+    "centre": [
+      -8.10791015625,
+      27.625140335093295
+    ],
+    "epochs": {
+      "2018_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-0977E-1187N_3911_3441_13/images_masked/global_monthly_2018_01_mosaic_L15-0977E-1187N_3911_3441_13.tif",
+          "bytes": 4197767,
+          "etag": "93a204a3c09f214182e41504a7cdb5a2"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-0977E-1187N_3911_3441_13/labels/global_monthly_2018_01_mosaic_L15-0977E-1187N_3911_3441_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-0977E-1187N_3911_3441_13/labels_match/global_monthly_2018_01_mosaic_L15-0977E-1187N_3911_3441_13_Buildings.geojson",
+          "bytes": 1441710,
+          "etag": "2bad592f40fdd963143ed67a1a487b6e"
+        }
+      },
+      "2019_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-0977E-1187N_3911_3441_13/images_masked/global_monthly_2019_01_mosaic_L15-0977E-1187N_3911_3441_13.tif",
+          "bytes": 4197767,
+          "etag": "afef97617e7d6c688840f1b96de63cbc"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-0977E-1187N_3911_3441_13/labels/global_monthly_2019_01_mosaic_L15-0977E-1187N_3911_3441_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-0977E-1187N_3911_3441_13/labels_match/global_monthly_2019_01_mosaic_L15-0977E-1187N_3911_3441_13_Buildings.geojson",
+          "bytes": 1514664,
+          "etag": "266ed9e79b040fab55abbd52f89353bf"
+        }
+      }
+    }
+  },
+  {
+    "site": "L15-1389E-1284N_5557_3054_13",
+    "split": "development",
+    "centre": [
+      64.22607421875,
+      41.55792157780418
+    ],
+    "epochs": {
+      "2018_02": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1389E-1284N_5557_3054_13/images_masked/global_monthly_2018_02_mosaic_L15-1389E-1284N_5557_3054_13.tif",
+          "bytes": 4197767,
+          "etag": "b80660855e567da07b0ee3e9d8833529"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1389E-1284N_5557_3054_13/labels/global_monthly_2018_02_mosaic_L15-1389E-1284N_5557_3054_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1389E-1284N_5557_3054_13/labels_match/global_monthly_2018_02_mosaic_L15-1389E-1284N_5557_3054_13_Buildings.geojson",
+          "bytes": 365889,
+          "etag": "372889ca85120dc65bd48f055f9f3c3d"
+        }
+      },
+      "2019_02": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1389E-1284N_5557_3054_13/images_masked/global_monthly_2019_02_mosaic_L15-1389E-1284N_5557_3054_13.tif",
+          "bytes": 4197767,
+          "etag": "54de53f2593da0795dc3e8044ffde4dc"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1389E-1284N_5557_3054_13/labels/global_monthly_2019_02_mosaic_L15-1389E-1284N_5557_3054_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1389E-1284N_5557_3054_13/labels_match/global_monthly_2019_02_mosaic_L15-1389E-1284N_5557_3054_13_Buildings.geojson",
+          "bytes": 401113,
+          "etag": "82e2a6ac79237aef19cb007e1603033c"
+        }
+      }
+    }
+  },
+  {
+    "site": "L15-0566E-1185N_2265_3451_13",
+    "split": "development",
+    "centre": [
+      -80.44189453125,
+      27.23509460779548
+    ],
+    "epochs": {
+      "2019_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-0566E-1185N_2265_3451_13/images_masked/global_monthly_2019_01_mosaic_L15-0566E-1185N_2265_3451_13.tif",
+          "bytes": 4197767,
+          "etag": "d858779dffd252893d682fa898e40181"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-0566E-1185N_2265_3451_13/labels/global_monthly_2019_01_mosaic_L15-0566E-1185N_2265_3451_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-0566E-1185N_2265_3451_13/labels_match/global_monthly_2019_01_mosaic_L15-0566E-1185N_2265_3451_13_Buildings.geojson",
+          "bytes": 62732,
+          "etag": "61c2087adfc8731ad3f7c2c714a54eba"
+        }
+      },
+      "2020_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-0566E-1185N_2265_3451_13/images_masked/global_monthly_2020_01_mosaic_L15-0566E-1185N_2265_3451_13.tif",
+          "bytes": 4197767,
+          "etag": "d18f9c5c8543c18fb031f68e8ef4ff34"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-0566E-1185N_2265_3451_13/labels/global_monthly_2020_01_mosaic_L15-0566E-1185N_2265_3451_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-0566E-1185N_2265_3451_13/labels_match/global_monthly_2020_01_mosaic_L15-0566E-1185N_2265_3451_13_Buildings.geojson",
+          "bytes": 289809,
+          "etag": "5b020de1145faf24f989500b69012e13"
+        }
+      }
+    }
+  },
+  {
+    "site": "L15-1669E-1160N_6678_3548_13",
+    "split": "development",
+    "centre": [
+      113.48876953125,
+      23.38259828417886
+    ],
+    "epochs": {
+      "2018_09": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1669E-1160N_6678_3548_13/images_masked/global_monthly_2018_09_mosaic_L15-1669E-1160N_6678_3548_13.tif",
+          "bytes": 3414815,
+          "etag": "39a3a1d57940a3c7d85cbe4233777cdd"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1669E-1160N_6678_3548_13/labels/global_monthly_2018_09_mosaic_L15-1669E-1160N_6678_3548_13_UDM.geojson",
+          "bytes": 45,
+          "etag": "da404b6cce8e78b4146b483163ccc867"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1669E-1160N_6678_3548_13/labels_match/global_monthly_2018_09_mosaic_L15-1669E-1160N_6678_3548_13_Buildings.geojson",
+          "bytes": 1387010,
+          "etag": "9b874ca7f38beab867c44e0a1ac48e02"
+        }
+      },
+      "2019_09": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1669E-1160N_6678_3548_13/images_masked/global_monthly_2019_09_mosaic_L15-1669E-1160N_6678_3548_13.tif",
+          "bytes": 3564614,
+          "etag": "13fe3bcb17b690be1bc6a75067470ef2"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1669E-1160N_6678_3548_13/labels/global_monthly_2019_09_mosaic_L15-1669E-1160N_6678_3548_13_UDM.geojson",
+          "bytes": 45,
+          "etag": "da404b6cce8e78b4146b483163ccc867"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1669E-1160N_6678_3548_13/labels_match/global_monthly_2019_09_mosaic_L15-1669E-1160N_6678_3548_13_Buildings.geojson",
+          "bytes": 1409445,
+          "etag": "9d030799ba1cea58921e4066e72b443f"
+        }
+      }
+    }
+  },
+  {
+    "site": "L15-1015E-1062N_4061_3941_13",
+    "split": "development",
+    "centre": [
+      -1.51611328125,
+      6.773716238753496
+    ],
+    "epochs": {
+      "2019_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1015E-1062N_4061_3941_13/images_masked/global_monthly_2019_01_mosaic_L15-1015E-1062N_4061_3941_13.tif",
+          "bytes": 4197767,
+          "etag": "09f381cd39b37fd483321f42cb5846d0"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1015E-1062N_4061_3941_13/labels/global_monthly_2019_01_mosaic_L15-1015E-1062N_4061_3941_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1015E-1062N_4061_3941_13/labels_match/global_monthly_2019_01_mosaic_L15-1015E-1062N_4061_3941_13_Buildings.geojson",
+          "bytes": 1355558,
+          "etag": "d3361371a7930e6dc60ea382c67301fc"
+        }
+      },
+      "2020_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1015E-1062N_4061_3941_13/images_masked/global_monthly_2020_01_mosaic_L15-1015E-1062N_4061_3941_13.tif",
+          "bytes": 4197767,
+          "etag": "0c8e3c08e9f769d042ac20b28e377f36"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1015E-1062N_4061_3941_13/labels/global_monthly_2020_01_mosaic_L15-1015E-1062N_4061_3941_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1015E-1062N_4061_3941_13/labels_match/global_monthly_2020_01_mosaic_L15-1015E-1062N_4061_3941_13_Buildings.geojson",
+          "bytes": 1519097,
+          "etag": "16072f492264584b943dab38f998e728"
+        }
+      }
+    }
+  },
+  {
+    "site": "L15-1203E-1203N_4815_3378_13",
+    "split": "development",
+    "centre": [
+      31.61865234375,
+      30.05007652169872
+    ],
+    "epochs": {
+      "2018_09": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1203E-1203N_4815_3378_13/images_masked/global_monthly_2018_09_mosaic_L15-1203E-1203N_4815_3378_13.tif",
+          "bytes": 2601393,
+          "etag": "3d810974a4c83c2e9c5e5609060ebc70"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1203E-1203N_4815_3378_13/labels/global_monthly_2018_09_mosaic_L15-1203E-1203N_4815_3378_13_UDM.geojson",
+          "bytes": 45,
+          "etag": "da404b6cce8e78b4146b483163ccc867"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1203E-1203N_4815_3378_13/labels_match/global_monthly_2018_09_mosaic_L15-1203E-1203N_4815_3378_13_Buildings.geojson",
+          "bytes": 167560,
+          "etag": "9c9e91c2a8edd3d5861e094b99462af7"
+        }
+      },
+      "2019_09": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1203E-1203N_4815_3378_13/images_masked/global_monthly_2019_09_mosaic_L15-1203E-1203N_4815_3378_13.tif",
+          "bytes": 2802868,
+          "etag": "2daaa8bd3dfce4b7391e43c48ca765f1"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1203E-1203N_4815_3378_13/labels/global_monthly_2019_09_mosaic_L15-1203E-1203N_4815_3378_13_UDM.geojson",
+          "bytes": 45,
+          "etag": "da404b6cce8e78b4146b483163ccc867"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1203E-1203N_4815_3378_13/labels_match/global_monthly_2019_09_mosaic_L15-1203E-1203N_4815_3378_13_Buildings.geojson",
+          "bytes": 487028,
+          "etag": "180ceeed1567d5c4e1dd39617ebeca30"
+        }
+      }
+    }
+  },
+  {
+    "site": "L15-0457E-1135N_1831_3648_13",
+    "split": "test",
+    "centre": [
+      -99.51416015625,
+      19.290405639497994
+    ],
+    "epochs": {
+      "2018_12": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-0457E-1135N_1831_3648_13/images_masked/global_monthly_2018_12_mosaic_L15-0457E-1135N_1831_3648_13.tif",
+          "bytes": 4193671,
+          "etag": "ce7ce0f45a42e54fef5143a321d54a07"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-0457E-1135N_1831_3648_13/labels/global_monthly_2018_12_mosaic_L15-0457E-1135N_1831_3648_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-0457E-1135N_1831_3648_13/labels_match/global_monthly_2018_12_mosaic_L15-0457E-1135N_1831_3648_13_Buildings.geojson",
+          "bytes": 6080802,
+          "etag": "425a1e46b32f82e778471c7df0355d0b"
+        }
+      },
+      "2019_12": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-0457E-1135N_1831_3648_13/images_masked/global_monthly_2019_12_mosaic_L15-0457E-1135N_1831_3648_13.tif",
+          "bytes": 4193671,
+          "etag": "1e248d9fb8507c4b2eca1e8446d8335f"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-0457E-1135N_1831_3648_13/labels/global_monthly_2019_12_mosaic_L15-0457E-1135N_1831_3648_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-0457E-1135N_1831_3648_13/labels_match/global_monthly_2019_12_mosaic_L15-0457E-1135N_1831_3648_13_Buildings.geojson",
+          "bytes": 6164837,
+          "etag": "f2d05b3be27bd9795fd2085cb022f7b3"
+        }
+      }
+    }
+  },
+  {
+    "site": "L15-1049E-1370N_4196_2710_13",
+    "split": "test",
+    "centre": [
+      4.41650390625,
+      51.87649097061476
+    ],
+    "epochs": {
+      "2019_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1049E-1370N_4196_2710_13/images_masked/global_monthly_2019_01_mosaic_L15-1049E-1370N_4196_2710_13.tif",
+          "bytes": 4197767,
+          "etag": "2428c79a9685c6a06f3d12da254c6f32"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1049E-1370N_4196_2710_13/labels/global_monthly_2019_01_mosaic_L15-1049E-1370N_4196_2710_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1049E-1370N_4196_2710_13/labels_match/global_monthly_2019_01_mosaic_L15-1049E-1370N_4196_2710_13_Buildings.geojson",
+          "bytes": 312707,
+          "etag": "fa3a01f5dcac2cdb27492fee4fac1484"
+        }
+      },
+      "2020_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1049E-1370N_4196_2710_13/images_masked/global_monthly_2020_01_mosaic_L15-1049E-1370N_4196_2710_13.tif",
+          "bytes": 4197767,
+          "etag": "9126141b9bba7e100873ee60b0f53950"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1049E-1370N_4196_2710_13/labels/global_monthly_2020_01_mosaic_L15-1049E-1370N_4196_2710_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1049E-1370N_4196_2710_13/labels_match/global_monthly_2020_01_mosaic_L15-1049E-1370N_4196_2710_13_Buildings.geojson",
+          "bytes": 313374,
+          "etag": "68686e69d9b10b511ff5ad88a2149a0a"
+        }
+      }
+    }
+  },
+  {
+    "site": "L15-1185E-0935N_4742_4450_13",
+    "split": "test",
+    "centre": [
+      28.41064453125,
+      -15.390135715305208
+    ],
+    "epochs": {
+      "2019_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1185E-0935N_4742_4450_13/images_masked/global_monthly_2019_01_mosaic_L15-1185E-0935N_4742_4450_13.tif",
+          "bytes": 4198313,
+          "etag": "f52b96f54f046646113ab05ed89efccf"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1185E-0935N_4742_4450_13/labels/global_monthly_2019_01_mosaic_L15-1185E-0935N_4742_4450_13_UDM.geojson",
+          "bytes": 5379,
+          "etag": "fff5e40e577cb8904aae8e0005e950f9"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1185E-0935N_4742_4450_13/labels_match/global_monthly_2019_01_mosaic_L15-1185E-0935N_4742_4450_13_Buildings.geojson",
+          "bytes": 2670812,
+          "etag": "4e36675e28323280a4ef77380b767d7c"
+        }
+      },
+      "2020_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1185E-0935N_4742_4450_13/images_masked/global_monthly_2020_01_mosaic_L15-1185E-0935N_4742_4450_13.tif",
+          "bytes": 4197767,
+          "etag": "63b656b629a3a96d970cf923004cd5c8"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1185E-0935N_4742_4450_13/labels/global_monthly_2020_01_mosaic_L15-1185E-0935N_4742_4450_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1185E-0935N_4742_4450_13/labels_match/global_monthly_2020_01_mosaic_L15-1185E-0935N_4742_4450_13_Buildings.geojson",
+          "bytes": 3769434,
+          "etag": "d6743f9f423b478ceade6658b221d8bb"
+        }
+      }
+    }
+  },
+  {
+    "site": "L15-1538E-1163N_6154_3539_13",
+    "split": "test",
+    "centre": [
+      90.46142578125,
+      23.745125865762926
+    ],
+    "epochs": {
+      "2019_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1538E-1163N_6154_3539_13/images_masked/global_monthly_2019_01_mosaic_L15-1538E-1163N_6154_3539_13.tif",
+          "bytes": 4197767,
+          "etag": "42d03a871f34f57f6a33be975584d652"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1538E-1163N_6154_3539_13/labels/global_monthly_2019_01_mosaic_L15-1538E-1163N_6154_3539_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1538E-1163N_6154_3539_13/labels_match/global_monthly_2019_01_mosaic_L15-1538E-1163N_6154_3539_13_Buildings.geojson",
+          "bytes": 5013829,
+          "etag": "01eac89e0fcee15bef7311f91d678c10"
+        }
+      },
+      "2020_01": {
+        "image": {
+          "key": "spacenet/SN7_buildings/train/L15-1538E-1163N_6154_3539_13/images_masked/global_monthly_2020_01_mosaic_L15-1538E-1163N_6154_3539_13.tif",
+          "bytes": 4197767,
+          "etag": "835496184ab18cfb7eb442c00ab40ff8"
+        },
+        "unusable": {
+          "key": "spacenet/SN7_buildings/train/L15-1538E-1163N_6154_3539_13/labels/global_monthly_2020_01_mosaic_L15-1538E-1163N_6154_3539_13_UDM.geojson",
+          "bytes": 217,
+          "etag": "df95237a9554634d896b738d542f4c5a"
+        },
+        "tracked": {
+          "key": "spacenet/SN7_buildings/train/L15-1538E-1163N_6154_3539_13/labels_match/global_monthly_2020_01_mosaic_L15-1538E-1163N_6154_3539_13_Buildings.geojson",
+          "bytes": 5169551,
+          "etag": "747e860d389841e5f27db32060c81bb4"
+        }
+      }
+    }
+  }
+]

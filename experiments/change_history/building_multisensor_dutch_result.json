@@ -1,0 +1,242 @@
+{
+  "labels_sha256": "dc0e2d555339e544d51ee1c482b3e0ee857a07f4c287a7b6a6f2cdc8295fd14e",
+  "lock_sha256": "a615befd4f06c00723a0cbd2e2191d2aae8dbb906dee30887069eb3f575b63a5",
+  "results": {
+    "all": {
+      "registered": 48,
+      "unknown": 4,
+      "reference_positive": 3,
+      "reference_negative": 41,
+      "available": {
+        "optical": {
+          "covered_blocks": 27,
+          "positive": 2,
+          "negative": 25,
+          "auc": 0.84,
+          "average_precision": 0.3611111111111111
+        },
+        "radar": {
+          "covered_blocks": 44,
+          "positive": 3,
+          "negative": 41,
+          "auc": 0.39024390243902435,
+          "average_precision": 0.07147335423197493
+        },
+        "combined": {
+          "covered_blocks": 27,
+          "positive": 2,
+          "negative": 25,
+          "auc": 0.52,
+          "average_precision": 0.5384615384615384
+        }
+      },
+      "common": {
+        "optical": {
+          "covered_blocks": 27,
+          "positive": 2,
+          "negative": 25,
+          "auc": 0.84,
+          "average_precision": 0.3611111111111111
+        },
+        "radar": {
+          "covered_blocks": 27,
+          "positive": 2,
+          "negative": 25,
+          "auc": 0.36,
+          "average_precision": 0.08496732026143791
+        },
+        "combined": {
+          "covered_blocks": 27,
+          "positive": 2,
+          "negative": 25,
+          "auc": 0.52,
+          "average_precision": 0.5384615384615384
+        },
+        "zero": {
+          "covered_blocks": 27,
+          "positive": 2,
+          "negative": 25,
+          "auc": 0.5,
+          "average_precision": 0.07407407407407407
+        }
+      }
+    },
+    "almere": {
+      "registered": 16,
+      "unknown": 0,
+      "reference_positive": 0,
+      "reference_negative": 16,
+      "available": {
+        "optical": {
+          "covered_blocks": 16,
+          "positive": 0,
+          "negative": 16,
+          "auc": null,
+          "average_precision": null
+        },
+        "radar": {
+          "covered_blocks": 16,
+          "positive": 0,
+          "negative": 16,
+          "auc": null,
+          "average_precision": null
+        },
+        "combined": {
+          "covered_blocks": 16,
+          "positive": 0,
+          "negative": 16,
+          "auc": null,
+          "average_precision": null
+        }
+      },
+      "common": {
+        "optical": {
+          "covered_blocks": 16,
+          "positive": 0,
+          "negative": 16,
+          "auc": null,
+          "average_precision": null
+        },
+        "radar": {
+          "covered_blocks": 16,
+          "positive": 0,
+          "negative": 16,
+          "auc": null,
+          "average_precision": null
+        },
+        "combined": {
+          "covered_blocks": 16,
+          "positive": 0,
+          "negative": 16,
+          "auc": null,
+          "average_precision": null
+        },
+        "zero": {
+          "covered_blocks": 16,
+          "positive": 0,
+          "negative": 16,
+          "auc": null,
+          "average_precision": null
+        }
+      }
+    },
+    "utrecht": {
+      "registered": 16,
+      "unknown": 4,
+      "reference_positive": 3,
+      "reference_negative": 9,
+      "available": {
+        "optical": {
+          "covered_blocks": 11,
+          "positive": 2,
+          "negative": 9,
+          "auc": 0.7777777777777778,
+          "average_precision": 0.6666666666666666
+        },
+        "radar": {
+          "covered_blocks": 12,
+          "positive": 3,
+          "negative": 9,
+          "auc": 0.33333333333333337,
+          "average_precision": 0.24206349206349204
+        },
+        "combined": {
+          "covered_blocks": 11,
+          "positive": 2,
+          "negative": 9,
+          "auc": 0.5555555555555556,
+          "average_precision": 0.6
+        }
+      },
+      "common": {
+        "optical": {
+          "covered_blocks": 11,
+          "positive": 2,
+          "negative": 9,
+          "auc": 0.7777777777777778,
+          "average_precision": 0.6666666666666666
+        },
+        "radar": {
+          "covered_blocks": 11,
+          "positive": 2,
+          "negative": 9,
+          "auc": 0.33333333333333337,
+          "average_precision": 0.19642857142857142
+        },
+        "combined": {
+          "covered_blocks": 11,
+          "positive": 2,
+          "negative": 9,
+          "auc": 0.5555555555555556,
+          "average_precision": 0.6
+        },
+        "zero": {
+          "covered_blocks": 11,
+          "positive": 2,
+          "negative": 9,
+          "auc": 0.5,
+          "average_precision": 0.18181818181818182
+        }
+      }
+    },
+    "haarlem": {
+      "registered": 16,
+      "unknown": 0,
+      "reference_positive": 0,
+      "reference_negative": 16,
+      "available": {
+        "optical": {
+          "covered_blocks": 0,
+          "positive": 0,
+          "negative": 0,
+          "auc": null,
+          "average_precision": null
+        },
+        "radar": {
+          "covered_blocks": 16,
+          "positive": 0,
+          "negative": 16,
+          "auc": null,
+          "average_precision": null
+        },
+        "combined": {
+          "covered_blocks": 0,
+          "positive": 0,
+          "negative": 0,
+          "auc": null,
+          "average_precision": null
+        }
+      },
+      "common": {
+        "optical": {
+          "covered_blocks": 0,
+          "positive": 0,
+          "negative": 0,
+          "auc": null,
+          "average_precision": null
+        },
+        "radar": {
+          "covered_blocks": 0,
+          "positive": 0,
+          "negative": 0,
+          "auc": null,
+          "average_precision": null
+        },
+        "combined": {
+          "covered_blocks": 0,
+          "positive": 0,
+          "negative": 0,
+          "auc": null,
+          "average_precision": null
+        },
+        "zero": {
+          "covered_blocks": 0,
+          "positive": 0,
+          "negative": 0,
+          "auc": null,
+          "average_precision": null
+        }
+      }
+    }
+  }
+}
