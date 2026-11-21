@@ -1,0 +1,3308 @@
+{
+ "units": [
+  {
+   "event_id": "r_emsr866_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-02-12",
+   "storm_cluster": "EMSR866",
+   "region_cluster": null,
+   "products": [
+    "EMSR866:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -0.13959474436528505,
+     45.02357440285843
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event forecast to hit the Bordeaux region, the Charente river basin and the Dronne river basin",
+    "aoi_name": "Libourne",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR866",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event forecast to hit the Bordeaux region, the Charente river basin and the Dronne river basin",
+    "aoi_name": "Libourne",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR866",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040020320,
+    "main_bas": 2060020620,
+    "hybas_6": 2060020620
+   }
+  },
+  {
+   "event_id": "r_emsr860_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-01-27",
+   "storm_cluster": "EMSR860",
+   "region_cluster": null,
+   "products": [
+    "EMSR860:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -7.175606453096962,
+     52.614270447449385
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Chandra ... flooding damage ... Graiguenamanagh (County Kilkenny)",
+    "aoi_name": "County Kilkenny",
+    "product_type": "DEL",
+    "monitoring": 1,
+    "reference": [
+     "ems",
+     "EMSR860",
+     2,
+     1,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Chandra ... flooding damage ... Graiguenamanagh (County Kilkenny)",
+    "aoi_name": "County Kilkenny",
+    "product_type": "DEL",
+    "monitoring": 1,
+    "reference": [
+     "ems",
+     "EMSR860",
+     2,
+     1,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040054200,
+    "main_bas": 2060054250,
+    "hybas_6": 2060054250
+   }
+  },
+  {
+   "event_id": "r_emsr849_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-11-14",
+   "storm_cluster": "EMSR849",
+   "region_cluster": null,
+   "products": [
+    "EMSR849:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -7.935029414944372,
+     53.26164040776289
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Claudia affected Ireland, causing floods",
+    "aoi_name": "Athlone",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR849",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Claudia affected Ireland, causing floods",
+    "aoi_name": "Athlone",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR849",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040054200,
+    "main_bas": 2060054780,
+    "hybas_6": 2060054780
+   }
+  },
+  {
+   "event_id": "r_emsr849_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-11-14",
+   "storm_cluster": "EMSR849",
+   "region_cluster": null,
+   "products": [
+    "EMSR849:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -7.154781405334426,
+     53.137384424175444
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Claudia affected Ireland, causing floods",
+    "aoi_name": "Mountmellick",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR849",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Claudia affected Ireland, causing floods",
+    "aoi_name": "Mountmellick",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR849",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040054200,
+    "main_bas": 2060054250,
+    "hybas_6": 2060054250
+   }
+  },
+  {
+   "event_id": "r_emsr855_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-01-06",
+   "storm_cluster": "EMSR855",
+   "region_cluster": null,
+   "products": [
+    "EMSR855:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     12.666284327343718,
+     41.932167514242465
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Heavy rainfall ... Lazio ... the Aniene River has reached",
+    "aoi_name": "Aniene River",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR855",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Heavy rainfall ... Lazio ... the Aniene River has reached",
+    "aoi_name": "Aniene River",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR855",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040014550,
+    "main_bas": 2060015610,
+    "hybas_6": 2060015610
+   }
+  },
+  {
+   "event_id": "r_emsr728_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-31",
+   "storm_cluster": "EMSR728",
+   "region_cluster": null,
+   "products": [
+    "EMSR728:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     9.25564584578775,
+     48.77808024878287
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "continuous rain ... Southern and Eastern Germany",
+    "aoi_name": "Stuttgart",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR728",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "continuous rain ... Southern and Eastern Germany",
+    "aoi_name": "Stuttgart",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR728",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040023010,
+    "main_bas": 2060023010,
+    "hybas_6": 2060441290
+   }
+  },
+  {
+   "event_id": "r_emsr728_aoi03",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-31",
+   "storm_cluster": "EMSR728",
+   "region_cluster": null,
+   "products": [
+    "EMSR728:AOI03"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     12.481674155787108,
+     48.93641829896546
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "continuous rain ... Southern and Eastern Germany",
+    "aoi_name": "Regensburg",
+    "product_type": "DEL",
+    "monitoring": 1,
+    "reference": [
+     "ems",
+     "EMSR728",
+     3,
+     1,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "continuous rain ... Southern and Eastern Germany",
+    "aoi_name": "Regensburg",
+    "product_type": "DEL",
+    "monitoring": 1,
+    "reference": [
+     "ems",
+     "EMSR728",
+     3,
+     1,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040539930,
+    "main_bas": 2060008490,
+    "hybas_6": 2060460080
+   }
+  },
+  {
+   "event_id": "r_emsr722_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-17",
+   "storm_cluster": "EMSR722",
+   "region_cluster": null,
+   "products": [
+    "EMSR722:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     7.206771166379572,
+     49.31301335038794
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event was reported affecting Saarland region",
+    "aoi_name": "Blies",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR722",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event was reported affecting Saarland region",
+    "aoi_name": "Blies",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR722",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040023010,
+    "main_bas": 2060023010,
+    "hybas_6": 2060420240
+   }
+  },
+  {
+   "event_id": "r_emsr722_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-17",
+   "storm_cluster": "EMSR722",
+   "region_cluster": null,
+   "products": [
+    "EMSR722:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     6.8113304996452575,
+     49.35635868914547
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event was reported affecting Saarland region",
+    "aoi_name": "Saar",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR722",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event was reported affecting Saarland region",
+    "aoi_name": "Saar",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR722",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040023010,
+    "main_bas": 2060023010,
+    "hybas_6": 2060420240
+   }
+  },
+  {
+   "event_id": "r_emsr698_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-10-07",
+   "storm_cluster": "EMSR698",
+   "region_cluster": null,
+   "products": [
+    "EMSR698:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -3.6210066757114143,
+     57.238514260922614
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "extensive flooding is forecast to hit Central Scotland",
+    "aoi_name": "River Spey",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR698",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "extensive flooding is forecast to hit Central Scotland",
+    "aoi_name": "River Spey",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR698",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040048790,
+    "main_bas": 2060052380,
+    "hybas_6": 2060052380
+   }
+  },
+  {
+   "event_id": "r_emsr698_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-10-07",
+   "storm_cluster": "EMSR698",
+   "region_cluster": null,
+   "products": [
+    "EMSR698:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -3.678575142316808,
+     56.53778538197336
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "extensive flooding is forecast to hit Central Scotland",
+    "aoi_name": "River Tay",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR698",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "extensive flooding is forecast to hit Central Scotland",
+    "aoi_name": "River Tay",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR698",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040048790,
+    "main_bas": 2060052660,
+    "hybas_6": 2060052660
+   }
+  },
+  {
+   "event_id": "r_emsr684_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-08-15",
+   "storm_cluster": "EMSR684",
+   "region_cluster": null,
+   "products": [
+    "EMSR684:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     14.782856254155199,
+     60.886898101478074
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "risk of flooding in several areas of central Sweden due to heavy rainfall",
+    "aoi_name": "Mora",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR684",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "risk of flooding in several areas of central Sweden due to heavy rainfall",
+    "aoi_name": "Mora",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR684",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040031490,
+    "main_bas": 2060031490,
+    "hybas_6": 2060031490
+   }
+  },
+  {
+   "event_id": "r_emsr684_aoi05",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-08-15",
+   "storm_cluster": "EMSR684",
+   "region_cluster": null,
+   "products": [
+    "EMSR684:AOI05"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     17.37274043518659,
+     60.46304612584124
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "risk of flooding in several areas of central Sweden due to heavy rainfall",
+    "aoi_name": "Marma",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR684",
+     5,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "risk of flooding in several areas of central Sweden due to heavy rainfall",
+    "aoi_name": "Marma",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR684",
+     5,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040031490,
+    "main_bas": 2060031490,
+    "hybas_6": 2060031490
+   }
+  },
+  {
+   "event_id": "r_emsr668_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-05-22",
+   "storm_cluster": "EMSR668",
+   "region_cluster": null,
+   "products": [
+    "EMSR668:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "snowmelt",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     10.044084816648384,
+     59.755445356447495
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "ongoing spring flood ... due to snow melt",
+    "aoi_name": "Drammen",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR668",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "ongoing spring flood ... due to snow melt",
+    "aoi_name": "Drammen",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR668",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040033480,
+    "main_bas": 2060033670,
+    "hybas_6": 2060033670
+   }
+  },
+  {
+   "event_id": "r_emsr668_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-05-22",
+   "storm_cluster": "EMSR668",
+   "region_cluster": null,
+   "products": [
+    "EMSR668:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "snowmelt",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     9.804291210149659,
+     60.02783371971034
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "ongoing spring flood ... due to snow melt",
+    "aoi_name": "Amot",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR668",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "ongoing spring flood ... due to snow melt",
+    "aoi_name": "Amot",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR668",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040033480,
+    "main_bas": 2060033670,
+    "hybas_6": 2060033670
+   }
+  },
+  {
+   "event_id": "r_emsr657_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-03-30",
+   "storm_cluster": "EMSR657",
+   "region_cluster": null,
+   "products": [
+    "EMSR657:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "snowmelt",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     26.32620215663437,
+     56.063228966803585
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood due to melted snow and ice, as well as precipitation ... Daugava river valley",
+    "aoi_name": "DaugavaRiver",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR657",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood due to melted snow and ice, as well as precipitation ... Daugava river valley",
+    "aoi_name": "DaugavaRiver",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR657",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040027320,
+    "main_bas": 2060027320,
+    "hybas_6": 2060284370
+   }
+  },
+  {
+   "event_id": "r_emsr871_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-03-31",
+   "storm_cluster": "EMSR871",
+   "region_cluster": null,
+   "products": [
+    "EMSR871:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     14.926599415271774,
+     41.89054572259119
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy rain ... caused a rise in river water levels",
+    "aoi_name": "Romualdi",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR871",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy rain ... caused a rise in river water levels",
+    "aoi_name": "Romualdi",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR871",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013740,
+    "hybas_6": 2060013740
+   }
+  },
+  {
+   "event_id": "r_emsr871_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-03-31",
+   "storm_cluster": "EMSR871",
+   "region_cluster": null,
+   "products": [
+    "EMSR871:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     14.754645431690228,
+     41.92700828311429
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy rain ... caused a rise in river water levels",
+    "aoi_name": "Montero di Bisaccia",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR871",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy rain ... caused a rise in river water levels",
+    "aoi_name": "Montero di Bisaccia",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR871",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013740,
+    "hybas_6": 2060013740
+   }
+  },
+  {
+   "event_id": "r_emsr783_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-12-30",
+   "storm_cluster": "EMSR783",
+   "region_cluster": null,
+   "products": [
+    "EMSR783:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -3.6251204994026844,
+     57.298460787682544
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "severe flooding is reported in North West Scotland (Western Cairngorms)",
+    "aoi_name": "Aviemore",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR783",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "severe flooding is reported in North West Scotland (Western Cairngorms)",
+    "aoi_name": "Aviemore",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR783",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040048790,
+    "main_bas": 2060052380,
+    "hybas_6": 2060052380
+   }
+  },
+  {
+   "event_id": "r_emsr783_aoi03",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-12-30",
+   "storm_cluster": "EMSR783",
+   "region_cluster": null,
+   "products": [
+    "EMSR783:AOI03"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -3.7783475854612174,
+     56.35423975308128
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "severe flooding is reported in North West Scotland (Western Cairngorms)",
+    "aoi_name": "Crieff",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR783",
+     3,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "severe flooding is reported in North West Scotland (Western Cairngorms)",
+    "aoi_name": "Crieff",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR783",
+     3,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040048790,
+    "main_bas": 2060052670,
+    "hybas_6": 2060052670
+   }
+  },
+  {
+   "event_id": "r_emsr721_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-14",
+   "storm_cluster": "EMSR721",
+   "region_cluster": null,
+   "products": [
+    "EMSR721:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     9.366885358764105,
+     45.50098643015864
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy thunderstorms, in Lombardy and Milan ... difficulties in the city's secondary network",
+    "aoi_name": "Gorgonzola",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR721",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy thunderstorms, in Lombardy and Milan ... difficulties in the city's secondary network",
+    "aoi_name": "Gorgonzola",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR721",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013010,
+    "hybas_6": 2060548920
+   }
+  },
+  {
+   "event_id": "r_emsr927_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-08-25",
+   "storm_cluster": "EMSR927",
+   "region_cluster": null,
+   "products": [
+    "EMSR927:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "glof",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     85.3392885477972,
+     28.168251237036756
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood",
+     "glof"
+    ],
+    "region": "south_asia",
+    "quote": "a flash flood reportedly triggered by a Glacial Lake Outburst Flood (GLOF) in Nepal",
+    "aoi_name": "Syapru Besi",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR927",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood",
+     "glof"
+    ],
+    "region": "south_asia",
+    "quote": "a flash flood reportedly triggered by a Glacial Lake Outburst Flood (GLOF) in Nepal",
+    "aoi_name": "Syapru Besi",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR927",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040960480,
+    "main_bas": 4060025450,
+    "hybas_6": 4060905060
+   }
+  },
+  {
+   "event_id": "r_emsr927_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-08-25",
+   "storm_cluster": "EMSR927",
+   "region_cluster": null,
+   "products": [
+    "EMSR927:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "glof",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     85.36990917878651,
+     28.261504941717032
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood",
+     "glof"
+    ],
+    "region": "south_asia",
+    "quote": "a flash flood reportedly triggered by a Glacial Lake Outburst Flood (GLOF) in Nepal",
+    "aoi_name": "Timure",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR927",
+     2,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood",
+     "glof"
+    ],
+    "region": "south_asia",
+    "quote": "a flash flood reportedly triggered by a Glacial Lake Outburst Flood (GLOF) in Nepal",
+    "aoi_name": "Timure",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR927",
+     2,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040960480,
+    "main_bas": 4060025450,
+    "hybas_6": 4060905060
+   }
+  },
+  {
+   "event_id": "r_emsr802_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-05-26",
+   "storm_cluster": "EMSR802",
+   "region_cluster": null,
+   "products": [
+    "EMSR802:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     25.578508897515444,
+     45.765256593117876
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "a major flood is reported to have affected Covasna and Brasov counties",
+    "aoi_name": "Ghimbav",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR802",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "a major flood is reported to have affected Covasna and Brasov counties",
+    "aoi_name": "Ghimbav",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR802",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040543160,
+    "main_bas": 2060008490,
+    "hybas_6": 2060575400
+   }
+  },
+  {
+   "event_id": "r_emsr802_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-05-26",
+   "storm_cluster": "EMSR802",
+   "region_cluster": null,
+   "products": [
+    "EMSR802:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     25.80259093330512,
+     45.76354128578414
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "a major flood is reported to have affected Covasna and Brasov counties",
+    "aoi_name": "Lunca Marcusului",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR802",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "a major flood is reported to have affected Covasna and Brasov counties",
+    "aoi_name": "Lunca Marcusului",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR802",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040543160,
+    "main_bas": 2060008490,
+    "hybas_6": 2060575400
+   }
+  },
+  {
+   "event_id": "r_emsr795_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-03-14",
+   "storm_cluster": "EMSR795",
+   "region_cluster": null,
+   "products": [
+    "EMSR795:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     11.118745949447796,
+     43.82543858840649
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "The Rimaggio River has flooded Sesto Fiorentino",
+    "aoi_name": "Sesto Fiorentino",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR795",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "The Rimaggio River has flooded Sesto Fiorentino",
+    "aoi_name": "Sesto Fiorentino",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR795",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040014550,
+    "main_bas": 2060016020,
+    "hybas_6": 2060016020
+   }
+  },
+  {
+   "event_id": "r_emsr795_aoi06",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-03-14",
+   "storm_cluster": "EMSR795",
+   "region_cluster": null,
+   "products": [
+    "EMSR795:AOI06"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     10.773243754740513,
+     43.76688523526303
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "The Rimaggio River has flooded Sesto Fiorentino",
+    "aoi_name": "Montelupo",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR795",
+     6,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "The Rimaggio River has flooded Sesto Fiorentino",
+    "aoi_name": "Montelupo",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR795",
+     6,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040014550,
+    "main_bas": 2060016020,
+    "hybas_6": 2060016020
+   }
+  },
+  {
+   "event_id": "r_emsr750_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-08-25",
+   "storm_cluster": "EMSR750",
+   "region_cluster": null,
+   "products": [
+    "EMSR750:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "dam_breach",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     36.97117032671447,
+     19.835738617833172
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood",
+     "dam_breach"
+    ],
+    "region": "africa",
+    "quote": "the collapse of Arba'at Dam ... flash flooding that affected 20 villages",
+    "aoi_name": "Arbaat Dam",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR750",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood",
+     "dam_breach"
+    ],
+    "region": "africa",
+    "quote": "the collapse of Arba'at Dam ... flash flooding that affected 20 villages",
+    "aoi_name": "Arbaat Dam",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR750",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040000010,
+    "main_bas": 1060002290,
+    "hybas_6": 1060002290
+   }
+  },
+  {
+   "event_id": "r_emsr750_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-08-25",
+   "storm_cluster": "EMSR750",
+   "region_cluster": null,
+   "products": [
+    "EMSR750:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "dam_breach",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     37.05375522345402,
+     19.81118190222827
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood",
+     "dam_breach"
+    ],
+    "region": "africa",
+    "quote": "the collapse of Arba'at Dam ... flash flooding that affected 20 villages",
+    "aoi_name": "Khor Maluqirm",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR750",
+     2,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood",
+     "dam_breach"
+    ],
+    "region": "africa",
+    "quote": "the collapse of Arba'at Dam ... flash flooding that affected 20 villages",
+    "aoi_name": "Khor Maluqirm",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR750",
+     2,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040000010,
+    "main_bas": 1060002290,
+    "hybas_6": 1060002290
+   }
+  },
+  {
+   "event_id": "r_emsr663_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-03-12",
+   "storm_cluster": "EMSR663",
+   "region_cluster": null,
+   "products": [
+    "EMSR663:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     35.84912646751237,
+     -15.251203074420818
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "compound"
+    ],
+    "region": "africa",
+    "quote": "Following Cyclone Freddy ... communities ... impacted by floods",
+    "aoi_name": "Burnett",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR663",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "compound"
+    ],
+    "region": "africa",
+    "quote": "Following Cyclone Freddy ... communities ... impacted by floods",
+    "aoi_name": "Burnett",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR663",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040041770,
+    "main_bas": 1060041770,
+    "hybas_6": 1060041770
+   }
+  },
+  {
+   "event_id": "s1_helene_steinhatchee_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-09-27",
+   "storm_cluster": "s1_helene_steinhatchee_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -83.39,
+     29.67
+    ],
+    "note": "Hurricane Helene storm surge and rain, Steinhatchee / Keaton Beach, Florida Big Bend"
+   },
+   "flood_round2": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "americas",
+    "basis": "Hurricane Helene storm surge and rain, Steinhatchee / Keaton Beach, Florida Big Bend",
+    "reference": [
+     "s1",
+     29.67,
+     -83.39,
+     "2024-09-27"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "americas",
+    "basis": "Hurricane Helene storm surge and rain, Steinhatchee / Keaton Beach, Florida Big Bend",
+    "reference": [
+     "s1",
+     29.67,
+     -83.39,
+     "2024-09-27"
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040043170,
+    "main_bas": 7060045490,
+    "hybas_6": 7060045490
+   }
+  },
+  {
+   "event_id": "s1_remal_satkhira_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-27",
+   "storm_cluster": "s1_remal_satkhira_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     89.1,
+     22.33
+    ],
+    "note": "Cyclone Remal surge and rain, Shyamnagar, Satkhira, Bangladesh"
+   },
+   "flood_round2": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Remal surge and rain, Shyamnagar, Satkhira, Bangladesh",
+    "reference": [
+     "s1",
+     22.33,
+     89.1,
+     "2024-05-27"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Remal surge and rain, Shyamnagar, Satkhira, Bangladesh",
+    "reference": [
+     "s1",
+     22.33,
+     89.1,
+     "2024-05-27"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040025460,
+    "main_bas": 4060026100,
+    "hybas_6": 4060026100
+   }
+  },
+  {
+   "event_id": "s1_biparjoy_jakhau_2023",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-06-16",
+   "storm_cluster": "s1_biparjoy_jakhau_2023",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     68.72,
+     23.22
+    ],
+    "note": "Cyclone Biparjoy landfall and coastal flooding, Jakhau, Kutch, Gujarat"
+   },
+   "flood_round2": {
+    "tags": [
+     "coastal"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Biparjoy landfall and coastal flooding, Jakhau, Kutch, Gujarat",
+    "reference": [
+     "s1",
+     23.22,
+     68.72,
+     "2023-06-16"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "coastal"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Biparjoy landfall and coastal flooding, Jakhau, Kutch, Gujarat",
+    "reference": [
+     "s1",
+     23.22,
+     68.72,
+     "2023-06-16"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040032890,
+    "main_bas": 4060032890,
+    "hybas_6": 4060032890
+   }
+  },
+  {
+   "event_id": "s1_francine_terrebonne_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-09-12",
+   "storm_cluster": "s1_francine_terrebonne_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -90.66,
+     29.25
+    ],
+    "note": "Hurricane Francine surge and rain, lower Terrebonne Parish, Louisiana"
+   },
+   "flood_round2": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "americas",
+    "basis": "Hurricane Francine surge and rain, lower Terrebonne Parish, Louisiana",
+    "reference": [
+     "s1",
+     29.25,
+     -90.66,
+     "2024-09-12"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "americas",
+    "basis": "Hurricane Francine surge and rain, lower Terrebonne Parish, Louisiana",
+    "reference": [
+     "s1",
+     29.25,
+     -90.66,
+     "2024-09-12"
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040047070,
+    "main_bas": 7060047220,
+    "hybas_6": 7060047220
+   }
+  },
+  {
+   "event_id": "s1_dana_kendrapara_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-10-25",
+   "storm_cluster": "s1_dana_kendrapara_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     86.95,
+     20.65
+    ],
+    "note": "Cyclone Dana surge and heavy rain, Kendrapara / Bhitarkanika, Odisha"
+   },
+   "flood_round2": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Dana surge and heavy rain, Kendrapara / Bhitarkanika, Odisha",
+    "reference": [
+     "s1",
+     20.65,
+     86.95,
+     "2024-10-25"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Dana surge and heavy rain, Kendrapara / Bhitarkanika, Odisha",
+    "reference": [
+     "s1",
+     20.65,
+     86.95,
+     "2024-10-25"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040025460,
+    "main_bas": 4060027020,
+    "hybas_6": 4060027020
+   }
+  },
+  {
+   "event_id": "s1_jowhar_2023",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-11-20",
+   "storm_cluster": "s1_jowhar_2023",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     45.5,
+     2.78
+    ],
+    "note": "prolonged Shabelle flooding around Jowhar, Somalia, Nov 2023 (El Nino rains)"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged Shabelle flooding around Jowhar, Somalia, Nov 2023 (El Nino rains)",
+    "reference": [
+     "s1",
+     2.78,
+     45.5,
+     "2023-11-20"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged Shabelle flooding around Jowhar, Somalia, Nov 2023 (El Nino rains)",
+    "reference": [
+     "s1",
+     2.78,
+     45.5,
+     "2023-11-20"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1041115400,
+    "main_bas": 1060008100,
+    "hybas_6": 1061081050
+   }
+  },
+  {
+   "event_id": "s1_ubon_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-10-05",
+   "storm_cluster": "s1_ubon_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     104.87,
+     15.24
+    ],
+    "note": "prolonged Mun River flooding at Ubon Ratchathani, Oct 2022"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged Mun River flooding at Ubon Ratchathani, Oct 2022",
+    "reference": [
+     "s1",
+     15.24,
+     104.87,
+     "2022-10-05"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged Mun River flooding at Ubon Ratchathani, Oct 2022",
+    "reference": [
+     "s1",
+     15.24,
+     104.87,
+     "2022-10-05"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4041108580,
+    "main_bas": 4060017020,
+    "hybas_6": 4061108670
+   }
+  },
+  {
+   "event_id": "s1_garsen_2023",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-12-01",
+   "storm_cluster": "s1_garsen_2023",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     40.12,
+     -2.27
+    ],
+    "note": "prolonged Tana River delta flooding around Garsen, Kenya, Nov-Dec 2023"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged Tana River delta flooding around Garsen, Kenya, Nov-Dec 2023",
+    "reference": [
+     "s1",
+     -2.27,
+     40.12,
+     "2023-12-01"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged Tana River delta flooding around Garsen, Kenya, Nov-Dec 2023",
+    "reference": [
+     "s1",
+     -2.27,
+     40.12,
+     "2023-12-01"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040008470,
+    "main_bas": 1060008470,
+    "hybas_6": 1061198010
+   }
+  },
+  {
+   "event_id": "s1_sukhothai_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-09-01",
+   "storm_cluster": "s1_sukhothai_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     99.82,
+     17.01
+    ],
+    "note": "prolonged Yom River flooding at Sukhothai, Thailand, late Aug-Sep 2024"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged Yom River flooding at Sukhothai, Thailand, late Aug-Sep 2024",
+    "reference": [
+     "s1",
+     17.01,
+     99.82,
+     "2024-09-01"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged Yom River flooding at Sukhothai, Thailand, late Aug-Sep 2024",
+    "reference": [
+     "s1",
+     17.01,
+     99.82,
+     "2024-09-01"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040017030,
+    "main_bas": 4060018280,
+    "hybas_6": 4061102650
+   }
+  },
+  {
+   "event_id": "s1_jeddah_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-11-24",
+   "storm_cluster": "s1_jeddah_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     39.2,
+     21.55
+    ],
+    "note": "torrential rain flooding in Jeddah, Saudi Arabia, 24 Nov 2022"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa_west_asia",
+    "basis": "torrential rain flooding in Jeddah, Saudi Arabia, 24 Nov 2022",
+    "reference": [
+     "s1",
+     21.55,
+     39.2,
+     "2022-11-24"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa_west_asia",
+    "basis": "torrential rain flooding in Jeddah, Saudi Arabia, 24 Nov 2022",
+    "reference": [
+     "s1",
+     21.55,
+     39.2,
+     "2022-11-24"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040081260,
+    "main_bas": 2060083010,
+    "hybas_6": 2060083010
+   }
+  },
+  {
+   "event_id": "s1_kinshasa_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-12-13",
+   "storm_cluster": "s1_kinshasa_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     15.31,
+     -4.38
+    ],
+    "note": "heavy-rain flooding in Kinshasa, DR Congo, 13 Dec 2022"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "heavy-rain flooding in Kinshasa, DR Congo, 13 Dec 2022",
+    "reference": [
+     "s1",
+     -4.38,
+     15.31,
+     "2022-12-13"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "heavy-rain flooding in Kinshasa, DR Congo, 13 Dec 2022",
+    "reference": [
+     "s1",
+     -4.38,
+     15.31,
+     "2022-12-13"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040020040,
+    "main_bas": 1060020040,
+    "hybas_6": 1061244040
+   }
+  },
+  {
+   "event_id": "s1_baghlan_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-11",
+   "storm_cluster": "s1_baghlan_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     68.7,
+     36.13
+    ],
+    "note": "flash floods in Baghlan province, Afghanistan, 10-11 May 2024"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "south_asia",
+    "basis": "flash floods in Baghlan province, Afghanistan, 10-11 May 2024",
+    "reference": [
+     "s1",
+     36.13,
+     68.7,
+     "2024-05-11"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "south_asia",
+    "basis": "flash floods in Baghlan province, Afghanistan, 10-11 May 2024",
+    "reference": [
+     "s1",
+     36.13,
+     68.7,
+     "2024-05-11"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040484760,
+    "main_bas": 4060050220,
+    "hybas_6": 4060554970
+   }
+  }
+ ],
+ "logs": [
+  {
+   "step": "reserved",
+   "dropped": [
+    {
+     "event_id": "r_emsr866_aoi01",
+     "links": [
+      [
+       "emsr711_aoi02",
+       "proximity",
+       "block"
+      ],
+      [
+       "emsr711_aoi02",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr711_aoi02",
+       "sub_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr711_aoi01",
+       "proximity",
+       "block"
+      ],
+      [
+       "emsr711_aoi01",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr711_aoi01",
+       "sub_basin",
+       "needs_signed_exception"
+      ]
+     ]
+    },
+    {
+     "event_id": "r_emsr854_aoi02",
+     "links": [
+      [
+       "emsr770_aoi01",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr770_aoi01",
+       "sub_basin",
+       "needs_signed_exception"
+      ]
+     ]
+    },
+    {
+     "event_id": "r_emsr797_aoi01",
+     "links": [
+      [
+       "emsr757_aoi01",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr757_aoi02",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr770_aoi03",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr680_aoi07",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr680_aoi13",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr680_aoi04",
+       "main_basin",
+       "needs_signed_exception"
+      ]
+     ]
+    },
+    {
+     "event_id": "r_emsr797_aoi02",
+     "links": [
+      [
+       "emsr757_aoi01",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr757_aoi02",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr770_aoi03",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr680_aoi07",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr680_aoi13",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr680_aoi04",
+       "main_basin",
+       "needs_signed_exception"
+      ]
+     ]
+    },
+    {
+     "event_id": "r_emsr794_aoi01",
+     "links": [
+      [
+       "emsr694_aoi03",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr694_aoi03",
+       "sub_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr694_aoi02",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr694_aoi02",
+       "sub_basin",
+       "needs_signed_exception"
+      ]
+     ]
+    },
+    {
+     "event_id": "r_emsr794_aoi02",
+     "links": [
+      [
+       "emsr694_aoi03",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr694_aoi02",
+       "main_basin",
+       "needs_signed_exception"
+      ]
+     ]
+    },
+    {
+     "event_id": "r_emsr772_aoi01",
+     "links": [
+      [
+       "emsr779_aoi02",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr779_aoi03",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr779_aoi01",
+       "proximity",
+       "block"
+      ],
+      [
+       "emsr779_aoi01",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr779_aoi01",
+       "sub_basin",
+       "needs_signed_exception"
+      ]
+     ]
+    },
+    {
+     "event_id": "r_emsr772_aoi02",
+     "links": [
+      [
+       "emsr779_aoi02",
+       "proximity",
+       "block"
+      ],
+      [
+       "emsr779_aoi02",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr779_aoi03",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr779_aoi01",
+       "main_basin",
+       "needs_signed_exception"
+      ]
+     ]
+    },
+    {
+     "event_id": "r_emsr789_aoi01",
+     "links": [
+      [
+       "emsr870_aoi05",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr870_aoi05",
+       "sub_basin",
+       "needs_signed_exception"
+      ]
+     ]
+    },
+    {
+     "event_id": "r_emsr789_aoi02",
+     "links": [
+      [
+       "emsr870_aoi05",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr870_aoi05",
+       "sub_basin",
+       "needs_signed_exception"
+      ]
+     ]
+    },
+    {
+     "event_id": "s1_ndjamena_2024",
+     "links": [
+      [
+       "emsr779_aoi02",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr779_aoi03",
+       "proximity",
+       "block"
+      ],
+      [
+       "emsr779_aoi03",
+       "main_basin",
+       "needs_signed_exception"
+      ],
+      [
+       "emsr779_aoi01",
+       "main_basin",
+       "needs_signed_exception"
+      ]
+     ]
+    }
+   ],
+   "accepted_exception_links": {
+    "r_emsr728_aoi01": [
+     [
+      "bad_neuenahr",
+      "main_basin",
+      "needs_signed_exception"
+     ]
+    ],
+    "r_emsr728_aoi03": [
+     [
+      "emsr757_aoi01",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr757_aoi02",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr770_aoi03",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr680_aoi07",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr680_aoi13",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr680_aoi04",
+      "main_basin",
+      "needs_signed_exception"
+     ]
+    ],
+    "r_emsr722_aoi01": [
+     [
+      "bad_neuenahr",
+      "main_basin",
+      "needs_signed_exception"
+     ]
+    ],
+    "r_emsr722_aoi02": [
+     [
+      "bad_neuenahr",
+      "main_basin",
+      "needs_signed_exception"
+     ]
+    ],
+    "r_emsr927_aoi01": [
+     [
+      "dhaka",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "bihar_2026",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "assam_2026",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "sylhet_2022",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "s1_assam_morigaon_2024",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "s1_sunamganj_2024",
+      "main_basin",
+      "needs_signed_exception"
+     ]
+    ],
+    "r_emsr927_aoi02": [
+     [
+      "dhaka",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "bihar_2026",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "assam_2026",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "sylhet_2022",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "s1_assam_morigaon_2024",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "s1_sunamganj_2024",
+      "main_basin",
+      "needs_signed_exception"
+     ]
+    ],
+    "r_emsr802_aoi01": [
+     [
+      "emsr757_aoi01",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr757_aoi02",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr770_aoi03",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr680_aoi07",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr680_aoi13",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr680_aoi04",
+      "main_basin",
+      "needs_signed_exception"
+     ]
+    ],
+    "r_emsr802_aoi02": [
+     [
+      "emsr757_aoi01",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr757_aoi02",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr770_aoi03",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr680_aoi07",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr680_aoi13",
+      "main_basin",
+      "needs_signed_exception"
+     ],
+     [
+      "emsr680_aoi04",
+      "main_basin",
+      "needs_signed_exception"
+     ]
+    ]
+   },
+   "flipped_to_dev": [
+    "r_emsr857_aoi01",
+    "r_emsr857_aoi02",
+    "r_emsr712_aoi01",
+    "r_emsr712_aoi02",
+    "r_emsr861_aoi01",
+    "r_emsr861_aoi02",
+    "r_emsr845_aoi02",
+    "r_emsr845_aoi03",
+    "r_emsr850_aoi02",
+    "r_emsr850_aoi03",
+    "r_emsr683_aoi01",
+    "r_emsr683_aoi02",
+    "r_emsr775_aoi11",
+    "r_emsr841_aoi01",
+    "r_emsr872_aoi01",
+    "r_emsr872_aoi02",
+    "r_emsr742_aoi01",
+    "r_emsr742_aoi03",
+    "r_emsr790_aoi02",
+    "r_emsr780_aoi08",
+    "r_emsr930_aoi01",
+    "r_emsr856_aoi01",
+    "r_emsr856_aoi02",
+    "r_emsr703_aoi01",
+    "r_emsr703_aoi02",
+    "r_emsr805_aoi01",
+    "r_emsr805_aoi03",
+    "r_emsr734_aoi09",
+    "r_emsr734_aoi17",
+    "r_emsr781_aoi01",
+    "r_emsr781_aoi05",
+    "r_emsr793_aoi01",
+    "r_emsr793_aoi02",
+    "r_emsr867_aoi01",
+    "r_emsr867_aoi03",
+    "r_emsr863_aoi02",
+    "r_emsr863_aoi03",
+    "r_emsr858_aoi08",
+    "r_emsr858_aoi10",
+    "r_emsr864_aoi01",
+    "r_emsr864_aoi02",
+    "s1_assam_morigaon_2024",
+    "s1_sunamganj_2024",
+    "s1_lokoja_2022",
+    "s1_kelantan_2024",
+    "s1_tabasco_2020",
+    "s1_yenagoa_2022"
+   ]
+  }
+ ]
+}

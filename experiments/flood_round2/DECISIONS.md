@@ -35,3 +35,27 @@ Judgement calls, numbered R1, R2, and so on. Round-1 decisions are D1–D23 in `
   - Member `surge2x` doubles the residual as an upper bracket. That is a sensitivity, not a calibration.
   - The Naples gauge stopped at its peak and is not used.
 - **Members:** base (3DEP), surge2x, glo30, lidar_e1 (3DEP + spatially correlated noise, σ 0.10 m, the 3DEP QL2 RMSEz).
+
+## R6 (2026-11-21) flood_final's reserved units become DEV
+- The 47 flood_final reserved units were scored once (2026-11-20), and the results are public. They are now role `dev`, exposure 6.
+- Where a reference was built, their geometry is that reference box, so box and proximity rules see them.
+- They add DEV units for the weakest types: of the 34 that qualified, 13 coastal, 6 flash, 5 compound and 4 pluvial.
+- Round-1 guard tests are updated to this state (`experiments/flood_final/test_final.py`):
+  - block links are still never allowed;
+  - an exception link is allowed only where R7 accepted it.
+
+## R7 (2026-11-21) Main-basin-only links accepted for reserved units, by a fixed rule
+- Of the 53 reserved candidates, the guard dropped 19 at first. Most were dropped only for being in the same continental "main basin" as a DEV unit (Danube, Rhine, Ganges-Brahmaputra), hundreds of km and years apart.
+- Rule (`events_round2.MAIN_BASIN_MIN_KM = 100`): a reserved unit is kept only if every one of its links is `main_basin`, each to a unit of another storm cluster more than 100 km away.
+  - Any sub-basin, box, proximity, alias or storm link still drops it.
+  - Basis: such units share no water, storm, reference or box with the test.
+  - 100 km is 5x the registry's proximity radius (20 km), far beyond the 4 km boxes plus their 2 km margins.
+- Accepted under R7: EMSR728 AOI01 and AOI03, EMSR722 AOI01 and AOI02, EMSR927 AOI01 and AOI02, EMSR802 AOI01 and AOI02 (listed in `registry_units_round2.json`).
+- Still dropped: EMSR866 AOI01 (proximity), EMSR854 AOI02 (sub-basin), EMSR797 AOI01 and AOI02 (a main-basin link within 100 km), EMSR794 (sub-basin), EMSR772 and s1_ndjamena_2024 (proximity to EMSR779), EMSR789 (sub-basin).
+
+## R8 (2026-11-21) Round-2 reserved set (42 units, metadata only) and its weak spots
+- **By tag:** fluvial 20, flash 9, coastal 5, compound 5, waterlogging 4, pluvial 3. Extra tags: snowmelt 3, glof 2, dam_breach 2.
+- **Coastal and compound** are Sentinel-1 cyclone cases (Helene, Remal, Biparjoy, Francine, Dana). Copernicus EMS has no unused coastal-surge activation. S1 images can be a day or more after the surge peak, so some boxes may not qualify. That is decided once, at scoring.
+- **Pluvial** has only 3 units (EMSR721 Milan; Jeddah 2022 and Kinshasa 2022 by S1). The two S1 cases are urban, where S1 sees little (D20), so pluvial may end "not-run (insufficient)". The urban reference work (Phase F) is the planned fix and is not available yet.
+- **Waterlogging:** 4 units (Jowhar, Ubon, Garsen, Sukhothai), all S1.
+- Points and dates for S1 events come from general reporting only. No image, reference, input or score of any reserved unit has been read.

@@ -4015,7 +4015,7 @@
   },
   {
    "event_id": "r_emsr857_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-01-10",
    "storm_cluster": "EMSR857",
@@ -4028,17 +4028,30 @@
      "round": "flood_final",
      "module": "fluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     33.37446304205201,
-     -24.743101354228948
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "fluvial",
+      "bbox": [
+       33.297489,
+       -24.720975,
+       33.337041,
+       -24.685043
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4065,7 +4078,7 @@
   },
   {
    "event_id": "r_emsr857_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-01-10",
    "storm_cluster": "EMSR857",
@@ -4078,17 +4091,30 @@
      "round": "flood_final",
      "module": "fluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     32.386242940133435,
-     -25.30565572751185
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "fluvial",
+      "bbox": [
+       32.465718,
+       -25.231454,
+       32.505434,
+       -25.195522
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4115,7 +4141,7 @@
   },
   {
    "event_id": "r_emsr712_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2023-12-24",
    "storm_cluster": "EMSR712",
@@ -4128,17 +4154,30 @@
      "round": "flood_final",
      "module": "fluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     7.83020923368529,
-     52.5349831621515
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "fluvial",
+      "bbox": [
+       7.966998,
+       52.535609,
+       8.026096,
+       52.571541
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4165,7 +4204,7 @@
   },
   {
    "event_id": "r_emsr712_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2023-12-24",
    "storm_cluster": "EMSR712",
@@ -4178,17 +4217,30 @@
      "round": "flood_final",
      "module": "fluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     8.3640738110639,
-     52.736733446162724
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "fluvial",
+      "bbox": [
+       8.321151,
+       52.696847,
+       8.380467,
+       52.732779
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4215,7 +4267,7 @@
   },
   {
    "event_id": "r_emsr861_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-01-28",
    "storm_cluster": "EMSR861",
@@ -4228,17 +4280,30 @@
      "round": "flood_final",
      "module": "fluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -4.931263338766444,
-     37.8331929898934
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "fluvial",
+      "bbox": [
+       -4.993652,
+       37.805299,
+       -4.948162,
+       37.841231
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4265,7 +4330,7 @@
   },
   {
    "event_id": "r_emsr861_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-01-28",
    "storm_cluster": "EMSR861",
@@ -4278,17 +4343,30 @@
      "round": "flood_final",
      "module": "fluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -3.8286481336784095,
-     37.22442227800672
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "fluvial",
+      "bbox": [
+       -3.856338,
+       37.130217,
+       -3.811258,
+       37.166149
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4315,7 +4393,7 @@
   },
   {
    "event_id": "r_emsr845_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2025-10-12",
    "storm_cluster": "EMSR845",
@@ -4328,17 +4406,30 @@
      "round": "flood_final",
      "module": "flash_flood",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -97.31682037092204,
-     20.690261568804488
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "flash_flood",
+      "bbox": [
+       -97.388948,
+       20.650137,
+       -97.350544,
+       20.686069
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4365,7 +4456,7 @@
   },
   {
    "event_id": "r_emsr845_aoi03",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2025-10-12",
    "storm_cluster": "EMSR845",
@@ -4378,17 +4469,30 @@
      "round": "flood_final",
      "module": "flash_flood",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -97.4556485491214,
-     20.53528974473501
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "flash_flood",
+      "bbox": [
+       -97.494407,
+       20.523539,
+       -97.456035,
+       20.559471
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4415,7 +4519,7 @@
   },
   {
    "event_id": "r_emsr850_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2025-11-18",
    "storm_cluster": "EMSR850",
@@ -4428,17 +4532,30 @@
      "round": "flood_final",
      "module": "flash_flood",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     20.12929694598486,
-     40.132924273029865
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "flash_flood",
+      "bbox": [
+       20.130703,
+       40.067906,
+       20.177669,
+       40.103838
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4465,7 +4582,7 @@
   },
   {
    "event_id": "r_emsr850_aoi03",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2025-11-18",
    "storm_cluster": "EMSR850",
@@ -4478,17 +4595,30 @@
      "round": "flood_final",
      "module": "flash_flood",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     19.666314248046174,
-     41.56903586287322
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "flash_flood",
+      "bbox": [
+       19.622326,
+       41.549279,
+       19.670352,
+       41.585211
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4515,7 +4645,7 @@
   },
   {
    "event_id": "r_emsr683_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2023-08-08",
    "storm_cluster": "EMSR683",
@@ -4528,17 +4658,30 @@
      "round": "flood_final",
      "module": "flash_flood",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     9.145027177038349,
-     61.87144347778776
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "flash_flood",
+      "bbox": [
+       9.126378,
+       61.848251,
+       9.202582,
+       61.884183
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4565,7 +4708,7 @@
   },
   {
    "event_id": "r_emsr683_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2023-08-08",
    "storm_cluster": "EMSR683",
@@ -4578,17 +4721,30 @@
      "round": "flood_final",
      "module": "flash_flood",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     9.506681524410801,
-     61.80976117849233
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "flash_flood",
+      "bbox": [
+       9.452974,
+       61.808662,
+       9.52908,
+       61.844594
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4615,7 +4771,7 @@
   },
   {
    "event_id": "r_emsr775_aoi11",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2024-10-31",
    "storm_cluster": "EMSR775",
@@ -4628,10 +4784,15 @@
      "round": "flood_final",
      "module": "flash_flood",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
     "type": "point_approx",
     "point": [
@@ -4665,7 +4826,7 @@
   },
   {
    "event_id": "r_emsr841_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2025-09-06",
    "storm_cluster": "EMSR841",
@@ -4678,17 +4839,30 @@
      "round": "flood_final",
      "module": "flash_flood",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     18.312319727508715,
-     63.40558146696704
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "flash_flood",
+      "bbox": [
+       18.223755,
+       63.411176,
+       18.304087,
+       63.447108
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4715,7 +4889,7 @@
   },
   {
    "event_id": "r_emsr872_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-04-08",
    "storm_cluster": "EMSR872",
@@ -4728,10 +4902,15 @@
      "round": "flood_final",
      "module": "flash_flood",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
     "type": "point_approx",
     "point": [
@@ -4765,7 +4944,7 @@
   },
   {
    "event_id": "r_emsr872_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-04-08",
    "storm_cluster": "EMSR872",
@@ -4778,10 +4957,15 @@
      "round": "flood_final",
      "module": "flash_flood",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
     "type": "point_approx",
     "point": [
@@ -4815,7 +4999,7 @@
   },
   {
    "event_id": "r_emsr742_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2024-07-28",
    "storm_cluster": "EMSR742",
@@ -4828,17 +5012,30 @@
      "round": "flood_final",
      "module": "pluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     23.8470551937353,
-     56.787992065222916
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "pluvial",
+      "bbox": [
+       23.599517,
+       56.727268,
+       23.665043,
+       56.7632
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4865,7 +5062,7 @@
   },
   {
    "event_id": "r_emsr742_aoi03",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2024-07-28",
    "storm_cluster": "EMSR742",
@@ -4878,17 +5075,30 @@
      "round": "flood_final",
      "module": "pluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     23.87640081869268,
-     56.443456114373234
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "pluvial",
+      "bbox": [
+       23.555516,
+       56.491834,
+       23.620636,
+       56.527766
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4915,7 +5125,7 @@
   },
   {
    "event_id": "r_emsr790_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2025-02-27",
    "storm_cluster": "EMSR790",
@@ -4928,17 +5138,30 @@
      "round": "flood_final",
      "module": "pluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     55.48421529051853,
-     -20.91200835470675
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "pluvial",
+      "bbox": [
+       55.445069,
+       -20.917956,
+       55.483533,
+       -20.882024
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -4963,7 +5186,7 @@
   },
   {
    "event_id": "r_emsr780_aoi08",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2024-12-14",
    "storm_cluster": "EMSR780",
@@ -4976,17 +5199,30 @@
      "round": "flood_final",
      "module": "pluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     45.18321183664762,
-     -12.844661485054365
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "pluvial",
+      "bbox": [
+       45.161816,
+       -12.864798,
+       45.198672,
+       -12.828866
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5013,7 +5249,7 @@
   },
   {
    "event_id": "r_emsr930_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-09-02",
    "storm_cluster": "EMSR930",
@@ -5026,10 +5262,15 @@
      "round": "flood_final",
      "module": "pluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
     "type": "point_approx",
     "point": [
@@ -5063,7 +5304,7 @@
   },
   {
    "event_id": "r_emsr856_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-01-06",
    "storm_cluster": "EMSR856",
@@ -5076,17 +5317,30 @@
      "round": "flood_final",
      "module": "waterlogging",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     19.44676419352329,
-     41.953461478326204
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "waterlogging",
+      "bbox": [
+       19.400806,
+       41.94073,
+       19.449126,
+       41.976662
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5113,7 +5367,7 @@
   },
   {
    "event_id": "r_emsr856_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-01-06",
    "storm_cluster": "EMSR856",
@@ -5126,17 +5380,30 @@
      "round": "flood_final",
      "module": "waterlogging",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     19.67636762862818,
-     41.728859149977396
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "waterlogging",
+      "bbox": [
+       19.649879,
+       41.714609,
+       19.698029,
+       41.750541
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5163,7 +5430,7 @@
   },
   {
    "event_id": "r_emsr703_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2023-10-25",
    "storm_cluster": "EMSR703",
@@ -5176,17 +5443,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -99.86815975483366,
-     16.83819194890933
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       -99.814986,
+       16.776715,
+       -99.777452,
+       16.812647
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5211,7 +5491,7 @@
   },
   {
    "event_id": "r_emsr703_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2023-10-25",
    "storm_cluster": "EMSR703",
@@ -5224,17 +5504,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -99.81800623206524,
-     16.88691582574979
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       -99.828034,
+       16.870828,
+       -99.790482,
+       16.90676
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5261,7 +5554,7 @@
   },
   {
    "event_id": "r_emsr805_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2025-06-19",
    "storm_cluster": "EMSR805",
@@ -5274,17 +5567,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -99.60512143202577,
-     16.81420053263548
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       -100.0401,
+       16.950972,
+       -100.002532,
+       16.986904
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5311,7 +5617,7 @@
   },
   {
    "event_id": "r_emsr805_aoi03",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2025-06-19",
    "storm_cluster": "EMSR805",
@@ -5324,17 +5630,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -98.44937440492242,
-     16.369713960622306
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       -98.370505,
+       16.295816,
+       -98.333065,
+       16.331748
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5361,7 +5680,7 @@
   },
   {
    "event_id": "r_emsr734_aoi09",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2024-07-01",
    "storm_cluster": "EMSR734",
@@ -5379,17 +5698,30 @@
      "round": "flood_final",
      "module": "compound",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -61.234330910532826,
-     13.010522053267435
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       -61.279846,
+       12.972357,
+       -61.24297,
+       13.008289
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5417,7 +5749,7 @@
   },
   {
    "event_id": "r_emsr734_aoi17",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2024-07-01",
    "storm_cluster": "EMSR734",
@@ -5435,17 +5767,30 @@
      "round": "flood_final",
      "module": "compound",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -90.50562582948959,
-     19.838053797304248
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       -90.493669,
+       19.815478,
+       -90.455471,
+       19.85141
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5473,7 +5818,7 @@
   },
   {
    "event_id": "r_emsr781_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2024-12-15",
    "storm_cluster": "EMSR781",
@@ -5486,17 +5831,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     40.493056063407856,
-     -13.110494777478271
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       40.455111,
+       -13.127038,
+       40.492005,
+       -13.091106
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5523,7 +5881,7 @@
   },
   {
    "event_id": "r_emsr781_aoi05",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2024-12-15",
    "storm_cluster": "EMSR781",
@@ -5536,17 +5894,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     40.54690975777911,
-     -13.306069629675008
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       40.515817,
+       -13.308111,
+       40.552739,
+       -13.272179
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5573,7 +5944,7 @@
   },
   {
    "event_id": "r_emsr793_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2025-03-10",
    "storm_cluster": "EMSR793",
@@ -5586,17 +5957,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     40.36075579008971,
-     -15.009976875067569
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       40.396818,
+       -15.055268,
+       40.434024,
+       -15.019336
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5623,7 +6007,7 @@
   },
   {
    "event_id": "r_emsr793_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2025-03-10",
    "storm_cluster": "EMSR793",
@@ -5636,17 +6020,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     40.21211554027147,
-     -15.476091522481239
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       40.320107,
+       -15.572308,
+       40.357405,
+       -15.536376
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5673,7 +6070,7 @@
   },
   {
    "event_id": "r_emsr867_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-02-10",
    "storm_cluster": "EMSR867",
@@ -5686,17 +6083,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     49.38282818711174,
-     -18.15505167083124
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       49.338335,
+       -18.18966,
+       49.376153,
+       -18.153728
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5723,7 +6133,7 @@
   },
   {
    "event_id": "r_emsr867_aoi03",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-02-10",
    "storm_cluster": "EMSR867",
@@ -5736,17 +6146,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     48.4217417026971,
-     -17.844204602575303
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       48.381959,
+       -17.868608,
+       48.419709,
+       -17.832676
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5773,7 +6196,7 @@
   },
   {
    "event_id": "r_emsr863_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-01-30",
    "storm_cluster": "EMSR863",
@@ -5786,17 +6209,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     48.95913355839533,
-     -19.248685946168596
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       48.911692,
+       -19.292997,
+       48.949758,
+       -19.257065
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5823,7 +6259,7 @@
   },
   {
    "event_id": "r_emsr863_aoi03",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-01-30",
    "storm_cluster": "EMSR863",
@@ -5836,17 +6272,30 @@
      "round": "flood_final",
      "module": "coastal",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     48.87928035902159,
-     -19.177078195635364
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       48.862213,
+       -19.193561,
+       48.900257,
+       -19.157629
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5873,7 +6322,7 @@
   },
   {
    "event_id": "r_emsr858_aoi08",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-01-20",
    "storm_cluster": "EMSR858",
@@ -5891,17 +6340,30 @@
      "round": "flood_final",
      "module": "compound",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     9.365508794174481,
-     39.62186142130137
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       9.562007,
+       39.414765,
+       9.608529,
+       39.450697
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5929,7 +6391,7 @@
   },
   {
    "event_id": "r_emsr858_aoi10",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-01-20",
    "storm_cluster": "EMSR858",
@@ -5947,17 +6409,30 @@
      "round": "flood_final",
      "module": "compound",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     9.511947080278155,
-     40.30254492291426
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "coastal",
+      "bbox": [
+       9.594596,
+       40.376137,
+       9.641776,
+       40.412069
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -5985,7 +6460,7 @@
   },
   {
    "event_id": "r_emsr864_aoi01",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-02-03",
    "storm_cluster": "EMSR864",
@@ -6003,17 +6478,30 @@
      "round": "flood_final",
      "module": "compound",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -8.384036118954743,
-     37.88490183091149
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "flash_flood",
+      "bbox": [
+       -8.463255,
+       37.875162,
+       -8.417723,
+       37.911094
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -6041,7 +6529,7 @@
   },
   {
    "event_id": "r_emsr864_aoi02",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2026-02-03",
    "storm_cluster": "EMSR864",
@@ -6059,17 +6547,30 @@
      "round": "flood_final",
      "module": "compound",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 2,
-   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -8.494129108876754,
-     38.314751574271796
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "flash_flood",
+      "bbox": [
+       -8.424908,
+       38.256342,
+       -8.379138,
+       38.292274
+      ]
+     }
     ],
-    "note": "centroid of the EMS product extent (metadata)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -6097,7 +6598,7 @@
   },
   {
    "event_id": "s1_assam_morigaon_2024",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2024-07-03",
    "storm_cluster": "s1_assam_morigaon_2024",
@@ -6110,17 +6611,30 @@
      "round": "flood_final",
      "module": "fluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 1,
-   "exposure_note": "town point and date from general reporting; no image read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     92.34,
-     26.25
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "fluvial",
+      "bbox": [
+       92.300714,
+       26.231374,
+       92.340778,
+       26.267306
+      ]
+     }
     ],
-    "note": "Brahmaputra floods, Morigaon district, early July 2024"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -6143,7 +6657,7 @@
   },
   {
    "event_id": "s1_sunamganj_2024",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2024-06-19",
    "storm_cluster": "s1_sunamganj_2024",
@@ -6156,17 +6670,30 @@
      "round": "flood_final",
      "module": "fluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 1,
-   "exposure_note": "town point and date from general reporting; no image read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     91.4,
-     25.07
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "fluvial",
+      "bbox": [
+       91.383922,
+       25.034153,
+       91.423586,
+       25.070085
+      ]
+     }
     ],
-    "note": "Surma floods, Sunamganj, June 2024"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -6189,7 +6716,7 @@
   },
   {
    "event_id": "s1_lokoja_2022",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2022-10-10",
    "storm_cluster": "s1_lokoja_2022",
@@ -6202,17 +6729,30 @@
      "round": "flood_final",
      "module": "fluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 1,
-   "exposure_note": "town point and date from general reporting; no image read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     6.74,
-     7.8
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "fluvial",
+      "bbox": [
+       6.765672,
+       7.806581,
+       6.801942,
+       7.842513
+      ]
+     }
     ],
-    "note": "Niger-Benue floods at Lokoja, October 2022"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -6235,7 +6775,7 @@
   },
   {
    "event_id": "s1_kelantan_2024",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2024-11-30",
    "storm_cluster": "s1_kelantan_2024",
@@ -6248,17 +6788,30 @@
      "round": "flood_final",
      "module": "fluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 1,
-   "exposure_note": "town point and date from general reporting; no image read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     102.1,
-     6.05
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "fluvial",
+      "bbox": [
+       102.074553,
+       6.06503,
+       102.110689,
+       6.100962
+      ]
+     }
     ],
-    "note": "Kelantan river floods (Pasir Mas), Nov-Dec 2024"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -6281,7 +6834,7 @@
   },
   {
    "event_id": "s1_tabasco_2020",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2020-11-08",
    "storm_cluster": "s1_tabasco_2020",
@@ -6294,17 +6847,30 @@
      "round": "flood_final",
      "module": "fluvial",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 1,
-   "exposure_note": "town point and date from general reporting; no image read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     -92.93,
-     17.99
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "fluvial",
+      "bbox": [
+       -92.929684,
+       17.952181,
+       -92.891908,
+       17.988113
+      ]
+     }
     ],
-    "note": "Grijalva floods at Villahermosa, Nov 2020 (rain + reservoir releases)"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -6327,7 +6893,7 @@
   },
   {
    "event_id": "s1_yenagoa_2022",
-   "role": "reserved",
+   "role": "dev",
    "kind": "event",
    "date": "2022-10-15",
    "storm_cluster": "s1_yenagoa_2022",
@@ -6340,17 +6906,30 @@
      "round": "flood_final",
      "module": "waterlogging",
      "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "all",
+     "role": "dev"
     }
    ],
-   "exposure_level": 1,
-   "exposure_note": "town point and date from general reporting; no image read",
+   "exposure_level": 6,
+   "exposure_note": "flood_final held-out pass 2026-11-20 (scored once, published); used as DEV from flood_round2",
    "geometry": {
-    "type": "point_approx",
-    "point": [
-     6.27,
-     4.93
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_final",
+      "module": "waterlogging",
+      "bbox": [
+       6.26689,
+       4.926627,
+       6.302956,
+       4.962559
+      ]
+     }
     ],
-    "note": "prolonged Niger-delta flooding around Yenagoa, Oct 2022"
+    "note": "reference box of the flood_final held-out pass"
    },
    "flood_final": {
     "tags": [
@@ -6369,6 +6948,2801 @@
     "hybas_4": 1040021940,
     "main_bas": 1060021940,
     "hybas_6": 1060021940
+   }
+  },
+  {
+   "event_id": "r_emsr866_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-02-12",
+   "storm_cluster": "EMSR866",
+   "region_cluster": null,
+   "products": [
+    "EMSR866:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -0.13959474436528505,
+     45.02357440285843
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event forecast to hit the Bordeaux region, the Charente river basin and the Dronne river basin",
+    "aoi_name": "Libourne",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR866",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event forecast to hit the Bordeaux region, the Charente river basin and the Dronne river basin",
+    "aoi_name": "Libourne",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR866",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040020320,
+    "main_bas": 2060020620,
+    "hybas_6": 2060020620
+   }
+  },
+  {
+   "event_id": "r_emsr860_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-01-27",
+   "storm_cluster": "EMSR860",
+   "region_cluster": null,
+   "products": [
+    "EMSR860:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -7.175606453096962,
+     52.614270447449385
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Chandra ... flooding damage ... Graiguenamanagh (County Kilkenny)",
+    "aoi_name": "County Kilkenny",
+    "product_type": "DEL",
+    "monitoring": 1,
+    "reference": [
+     "ems",
+     "EMSR860",
+     2,
+     1,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Chandra ... flooding damage ... Graiguenamanagh (County Kilkenny)",
+    "aoi_name": "County Kilkenny",
+    "product_type": "DEL",
+    "monitoring": 1,
+    "reference": [
+     "ems",
+     "EMSR860",
+     2,
+     1,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040054200,
+    "main_bas": 2060054250,
+    "hybas_6": 2060054250
+   }
+  },
+  {
+   "event_id": "r_emsr849_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-11-14",
+   "storm_cluster": "EMSR849",
+   "region_cluster": null,
+   "products": [
+    "EMSR849:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -7.935029414944372,
+     53.26164040776289
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Claudia affected Ireland, causing floods",
+    "aoi_name": "Athlone",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR849",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Claudia affected Ireland, causing floods",
+    "aoi_name": "Athlone",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR849",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040054200,
+    "main_bas": 2060054780,
+    "hybas_6": 2060054780
+   }
+  },
+  {
+   "event_id": "r_emsr849_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-11-14",
+   "storm_cluster": "EMSR849",
+   "region_cluster": null,
+   "products": [
+    "EMSR849:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -7.154781405334426,
+     53.137384424175444
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Claudia affected Ireland, causing floods",
+    "aoi_name": "Mountmellick",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR849",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Storm Claudia affected Ireland, causing floods",
+    "aoi_name": "Mountmellick",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR849",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040054200,
+    "main_bas": 2060054250,
+    "hybas_6": 2060054250
+   }
+  },
+  {
+   "event_id": "r_emsr855_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-01-06",
+   "storm_cluster": "EMSR855",
+   "region_cluster": null,
+   "products": [
+    "EMSR855:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     12.666284327343718,
+     41.932167514242465
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Heavy rainfall ... Lazio ... the Aniene River has reached",
+    "aoi_name": "Aniene River",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR855",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "Heavy rainfall ... Lazio ... the Aniene River has reached",
+    "aoi_name": "Aniene River",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR855",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040014550,
+    "main_bas": 2060015610,
+    "hybas_6": 2060015610
+   }
+  },
+  {
+   "event_id": "r_emsr728_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-31",
+   "storm_cluster": "EMSR728",
+   "region_cluster": null,
+   "products": [
+    "EMSR728:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     9.25564584578775,
+     48.77808024878287
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "continuous rain ... Southern and Eastern Germany",
+    "aoi_name": "Stuttgart",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR728",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "continuous rain ... Southern and Eastern Germany",
+    "aoi_name": "Stuttgart",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR728",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040023010,
+    "main_bas": 2060023010,
+    "hybas_6": 2060441290
+   }
+  },
+  {
+   "event_id": "r_emsr728_aoi03",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-31",
+   "storm_cluster": "EMSR728",
+   "region_cluster": null,
+   "products": [
+    "EMSR728:AOI03"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     12.481674155787108,
+     48.93641829896546
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "continuous rain ... Southern and Eastern Germany",
+    "aoi_name": "Regensburg",
+    "product_type": "DEL",
+    "monitoring": 1,
+    "reference": [
+     "ems",
+     "EMSR728",
+     3,
+     1,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "continuous rain ... Southern and Eastern Germany",
+    "aoi_name": "Regensburg",
+    "product_type": "DEL",
+    "monitoring": 1,
+    "reference": [
+     "ems",
+     "EMSR728",
+     3,
+     1,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040539930,
+    "main_bas": 2060008490,
+    "hybas_6": 2060460080
+   }
+  },
+  {
+   "event_id": "r_emsr722_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-17",
+   "storm_cluster": "EMSR722",
+   "region_cluster": null,
+   "products": [
+    "EMSR722:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     7.206771166379572,
+     49.31301335038794
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event was reported affecting Saarland region",
+    "aoi_name": "Blies",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR722",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event was reported affecting Saarland region",
+    "aoi_name": "Blies",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR722",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040023010,
+    "main_bas": 2060023010,
+    "hybas_6": 2060420240
+   }
+  },
+  {
+   "event_id": "r_emsr722_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-17",
+   "storm_cluster": "EMSR722",
+   "region_cluster": null,
+   "products": [
+    "EMSR722:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     6.8113304996452575,
+     49.35635868914547
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event was reported affecting Saarland region",
+    "aoi_name": "Saar",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR722",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood event was reported affecting Saarland region",
+    "aoi_name": "Saar",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR722",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040023010,
+    "main_bas": 2060023010,
+    "hybas_6": 2060420240
+   }
+  },
+  {
+   "event_id": "r_emsr698_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-10-07",
+   "storm_cluster": "EMSR698",
+   "region_cluster": null,
+   "products": [
+    "EMSR698:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -3.6210066757114143,
+     57.238514260922614
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "extensive flooding is forecast to hit Central Scotland",
+    "aoi_name": "River Spey",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR698",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "extensive flooding is forecast to hit Central Scotland",
+    "aoi_name": "River Spey",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR698",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040048790,
+    "main_bas": 2060052380,
+    "hybas_6": 2060052380
+   }
+  },
+  {
+   "event_id": "r_emsr698_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-10-07",
+   "storm_cluster": "EMSR698",
+   "region_cluster": null,
+   "products": [
+    "EMSR698:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -3.678575142316808,
+     56.53778538197336
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "extensive flooding is forecast to hit Central Scotland",
+    "aoi_name": "River Tay",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR698",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "extensive flooding is forecast to hit Central Scotland",
+    "aoi_name": "River Tay",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR698",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040048790,
+    "main_bas": 2060052660,
+    "hybas_6": 2060052660
+   }
+  },
+  {
+   "event_id": "r_emsr684_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-08-15",
+   "storm_cluster": "EMSR684",
+   "region_cluster": null,
+   "products": [
+    "EMSR684:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     14.782856254155199,
+     60.886898101478074
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "risk of flooding in several areas of central Sweden due to heavy rainfall",
+    "aoi_name": "Mora",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR684",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "risk of flooding in several areas of central Sweden due to heavy rainfall",
+    "aoi_name": "Mora",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR684",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040031490,
+    "main_bas": 2060031490,
+    "hybas_6": 2060031490
+   }
+  },
+  {
+   "event_id": "r_emsr684_aoi05",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-08-15",
+   "storm_cluster": "EMSR684",
+   "region_cluster": null,
+   "products": [
+    "EMSR684:AOI05"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     17.37274043518659,
+     60.46304612584124
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "risk of flooding in several areas of central Sweden due to heavy rainfall",
+    "aoi_name": "Marma",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR684",
+     5,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "risk of flooding in several areas of central Sweden due to heavy rainfall",
+    "aoi_name": "Marma",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR684",
+     5,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040031490,
+    "main_bas": 2060031490,
+    "hybas_6": 2060031490
+   }
+  },
+  {
+   "event_id": "r_emsr668_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-05-22",
+   "storm_cluster": "EMSR668",
+   "region_cluster": null,
+   "products": [
+    "EMSR668:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "snowmelt",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     10.044084816648384,
+     59.755445356447495
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "ongoing spring flood ... due to snow melt",
+    "aoi_name": "Drammen",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR668",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "ongoing spring flood ... due to snow melt",
+    "aoi_name": "Drammen",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR668",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040033480,
+    "main_bas": 2060033670,
+    "hybas_6": 2060033670
+   }
+  },
+  {
+   "event_id": "r_emsr668_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-05-22",
+   "storm_cluster": "EMSR668",
+   "region_cluster": null,
+   "products": [
+    "EMSR668:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "snowmelt",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     9.804291210149659,
+     60.02783371971034
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "ongoing spring flood ... due to snow melt",
+    "aoi_name": "Amot",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR668",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "ongoing spring flood ... due to snow melt",
+    "aoi_name": "Amot",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR668",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040033480,
+    "main_bas": 2060033670,
+    "hybas_6": 2060033670
+   }
+  },
+  {
+   "event_id": "r_emsr657_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-03-30",
+   "storm_cluster": "EMSR657",
+   "region_cluster": null,
+   "products": [
+    "EMSR657:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "snowmelt",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     26.32620215663437,
+     56.063228966803585
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood due to melted snow and ice, as well as precipitation ... Daugava river valley",
+    "aoi_name": "DaugavaRiver",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR657",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial",
+     "snowmelt"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "flood due to melted snow and ice, as well as precipitation ... Daugava river valley",
+    "aoi_name": "DaugavaRiver",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR657",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040027320,
+    "main_bas": 2060027320,
+    "hybas_6": 2060284370
+   }
+  },
+  {
+   "event_id": "r_emsr871_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-03-31",
+   "storm_cluster": "EMSR871",
+   "region_cluster": null,
+   "products": [
+    "EMSR871:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     14.926599415271774,
+     41.89054572259119
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy rain ... caused a rise in river water levels",
+    "aoi_name": "Romualdi",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR871",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy rain ... caused a rise in river water levels",
+    "aoi_name": "Romualdi",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR871",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013740,
+    "hybas_6": 2060013740
+   }
+  },
+  {
+   "event_id": "r_emsr871_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-03-31",
+   "storm_cluster": "EMSR871",
+   "region_cluster": null,
+   "products": [
+    "EMSR871:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     14.754645431690228,
+     41.92700828311429
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy rain ... caused a rise in river water levels",
+    "aoi_name": "Montero di Bisaccia",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR871",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy rain ... caused a rise in river water levels",
+    "aoi_name": "Montero di Bisaccia",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR871",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013740,
+    "hybas_6": 2060013740
+   }
+  },
+  {
+   "event_id": "r_emsr783_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-12-30",
+   "storm_cluster": "EMSR783",
+   "region_cluster": null,
+   "products": [
+    "EMSR783:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -3.6251204994026844,
+     57.298460787682544
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "severe flooding is reported in North West Scotland (Western Cairngorms)",
+    "aoi_name": "Aviemore",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR783",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "severe flooding is reported in North West Scotland (Western Cairngorms)",
+    "aoi_name": "Aviemore",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR783",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040048790,
+    "main_bas": 2060052380,
+    "hybas_6": 2060052380
+   }
+  },
+  {
+   "event_id": "r_emsr783_aoi03",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-12-30",
+   "storm_cluster": "EMSR783",
+   "region_cluster": null,
+   "products": [
+    "EMSR783:AOI03"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -3.7783475854612174,
+     56.35423975308128
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "severe flooding is reported in North West Scotland (Western Cairngorms)",
+    "aoi_name": "Crieff",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR783",
+     3,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "severe flooding is reported in North West Scotland (Western Cairngorms)",
+    "aoi_name": "Crieff",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR783",
+     3,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040048790,
+    "main_bas": 2060052670,
+    "hybas_6": 2060052670
+   }
+  },
+  {
+   "event_id": "r_emsr721_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-14",
+   "storm_cluster": "EMSR721",
+   "region_cluster": null,
+   "products": [
+    "EMSR721:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     9.366885358764105,
+     45.50098643015864
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy thunderstorms, in Lombardy and Milan ... difficulties in the city's secondary network",
+    "aoi_name": "Gorgonzola",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR721",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "heavy thunderstorms, in Lombardy and Milan ... difficulties in the city's secondary network",
+    "aoi_name": "Gorgonzola",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR721",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013010,
+    "hybas_6": 2060548920
+   }
+  },
+  {
+   "event_id": "r_emsr927_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-08-25",
+   "storm_cluster": "EMSR927",
+   "region_cluster": null,
+   "products": [
+    "EMSR927:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "glof",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     85.3392885477972,
+     28.168251237036756
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood",
+     "glof"
+    ],
+    "region": "south_asia",
+    "quote": "a flash flood reportedly triggered by a Glacial Lake Outburst Flood (GLOF) in Nepal",
+    "aoi_name": "Syapru Besi",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR927",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood",
+     "glof"
+    ],
+    "region": "south_asia",
+    "quote": "a flash flood reportedly triggered by a Glacial Lake Outburst Flood (GLOF) in Nepal",
+    "aoi_name": "Syapru Besi",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR927",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040960480,
+    "main_bas": 4060025450,
+    "hybas_6": 4060905060
+   }
+  },
+  {
+   "event_id": "r_emsr927_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2026-08-25",
+   "storm_cluster": "EMSR927",
+   "region_cluster": null,
+   "products": [
+    "EMSR927:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "glof",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     85.36990917878651,
+     28.261504941717032
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood",
+     "glof"
+    ],
+    "region": "south_asia",
+    "quote": "a flash flood reportedly triggered by a Glacial Lake Outburst Flood (GLOF) in Nepal",
+    "aoi_name": "Timure",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR927",
+     2,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood",
+     "glof"
+    ],
+    "region": "south_asia",
+    "quote": "a flash flood reportedly triggered by a Glacial Lake Outburst Flood (GLOF) in Nepal",
+    "aoi_name": "Timure",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR927",
+     2,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040960480,
+    "main_bas": 4060025450,
+    "hybas_6": 4060905060
+   }
+  },
+  {
+   "event_id": "r_emsr802_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-05-26",
+   "storm_cluster": "EMSR802",
+   "region_cluster": null,
+   "products": [
+    "EMSR802:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     25.578508897515444,
+     45.765256593117876
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "a major flood is reported to have affected Covasna and Brasov counties",
+    "aoi_name": "Ghimbav",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR802",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "a major flood is reported to have affected Covasna and Brasov counties",
+    "aoi_name": "Ghimbav",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR802",
+     1,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040543160,
+    "main_bas": 2060008490,
+    "hybas_6": 2060575400
+   }
+  },
+  {
+   "event_id": "r_emsr802_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-05-26",
+   "storm_cluster": "EMSR802",
+   "region_cluster": null,
+   "products": [
+    "EMSR802:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     25.80259093330512,
+     45.76354128578414
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "a major flood is reported to have affected Covasna and Brasov counties",
+    "aoi_name": "Lunca Marcusului",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR802",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "a major flood is reported to have affected Covasna and Brasov counties",
+    "aoi_name": "Lunca Marcusului",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR802",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040543160,
+    "main_bas": 2060008490,
+    "hybas_6": 2060575400
+   }
+  },
+  {
+   "event_id": "r_emsr795_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-03-14",
+   "storm_cluster": "EMSR795",
+   "region_cluster": null,
+   "products": [
+    "EMSR795:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     11.118745949447796,
+     43.82543858840649
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "The Rimaggio River has flooded Sesto Fiorentino",
+    "aoi_name": "Sesto Fiorentino",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR795",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "The Rimaggio River has flooded Sesto Fiorentino",
+    "aoi_name": "Sesto Fiorentino",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR795",
+     2,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040014550,
+    "main_bas": 2060016020,
+    "hybas_6": 2060016020
+   }
+  },
+  {
+   "event_id": "r_emsr795_aoi06",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2025-03-14",
+   "storm_cluster": "EMSR795",
+   "region_cluster": null,
+   "products": [
+    "EMSR795:AOI06"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     10.773243754740513,
+     43.76688523526303
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "The Rimaggio River has flooded Sesto Fiorentino",
+    "aoi_name": "Montelupo",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR795",
+     6,
+     0,
+     "DEL"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "quote": "The Rimaggio River has flooded Sesto Fiorentino",
+    "aoi_name": "Montelupo",
+    "product_type": "DEL",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR795",
+     6,
+     0,
+     "DEL"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040014550,
+    "main_bas": 2060016020,
+    "hybas_6": 2060016020
+   }
+  },
+  {
+   "event_id": "r_emsr750_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-08-25",
+   "storm_cluster": "EMSR750",
+   "region_cluster": null,
+   "products": [
+    "EMSR750:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "dam_breach",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     36.97117032671447,
+     19.835738617833172
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood",
+     "dam_breach"
+    ],
+    "region": "africa",
+    "quote": "the collapse of Arba'at Dam ... flash flooding that affected 20 villages",
+    "aoi_name": "Arbaat Dam",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR750",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood",
+     "dam_breach"
+    ],
+    "region": "africa",
+    "quote": "the collapse of Arba'at Dam ... flash flooding that affected 20 villages",
+    "aoi_name": "Arbaat Dam",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR750",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040000010,
+    "main_bas": 1060002290,
+    "hybas_6": 1060002290
+   }
+  },
+  {
+   "event_id": "r_emsr750_aoi02",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-08-25",
+   "storm_cluster": "EMSR750",
+   "region_cluster": null,
+   "products": [
+    "EMSR750:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "dam_breach",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     37.05375522345402,
+     19.81118190222827
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood",
+     "dam_breach"
+    ],
+    "region": "africa",
+    "quote": "the collapse of Arba'at Dam ... flash flooding that affected 20 villages",
+    "aoi_name": "Khor Maluqirm",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR750",
+     2,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood",
+     "dam_breach"
+    ],
+    "region": "africa",
+    "quote": "the collapse of Arba'at Dam ... flash flooding that affected 20 villages",
+    "aoi_name": "Khor Maluqirm",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR750",
+     2,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040000010,
+    "main_bas": 1060002290,
+    "hybas_6": 1060002290
+   }
+  },
+  {
+   "event_id": "r_emsr663_aoi01",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-03-12",
+   "storm_cluster": "EMSR663",
+   "region_cluster": null,
+   "products": [
+    "EMSR663:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 2,
+   "exposure_note": "EMS activation text and product metadata (AOI name, type, monitoring number, extent centroid); no layer read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     35.84912646751237,
+     -15.251203074420818
+    ],
+    "note": "centroid of the EMS product extent (metadata)"
+   },
+   "flood_round2": {
+    "tags": [
+     "compound"
+    ],
+    "region": "africa",
+    "quote": "Following Cyclone Freddy ... communities ... impacted by floods",
+    "aoi_name": "Burnett",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR663",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "compound"
+    ],
+    "region": "africa",
+    "quote": "Following Cyclone Freddy ... communities ... impacted by floods",
+    "aoi_name": "Burnett",
+    "product_type": "GRA",
+    "monitoring": 0,
+    "reference": [
+     "ems",
+     "EMSR663",
+     1,
+     0,
+     "GRA"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040041770,
+    "main_bas": 1060041770,
+    "hybas_6": 1060041770
+   }
+  },
+  {
+   "event_id": "s1_helene_steinhatchee_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-09-27",
+   "storm_cluster": "s1_helene_steinhatchee_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -83.39,
+     29.67
+    ],
+    "note": "Hurricane Helene storm surge and rain, Steinhatchee / Keaton Beach, Florida Big Bend"
+   },
+   "flood_round2": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "americas",
+    "basis": "Hurricane Helene storm surge and rain, Steinhatchee / Keaton Beach, Florida Big Bend",
+    "reference": [
+     "s1",
+     29.67,
+     -83.39,
+     "2024-09-27"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "americas",
+    "basis": "Hurricane Helene storm surge and rain, Steinhatchee / Keaton Beach, Florida Big Bend",
+    "reference": [
+     "s1",
+     29.67,
+     -83.39,
+     "2024-09-27"
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040043170,
+    "main_bas": 7060045490,
+    "hybas_6": 7060045490
+   }
+  },
+  {
+   "event_id": "s1_remal_satkhira_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-27",
+   "storm_cluster": "s1_remal_satkhira_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     89.1,
+     22.33
+    ],
+    "note": "Cyclone Remal surge and rain, Shyamnagar, Satkhira, Bangladesh"
+   },
+   "flood_round2": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Remal surge and rain, Shyamnagar, Satkhira, Bangladesh",
+    "reference": [
+     "s1",
+     22.33,
+     89.1,
+     "2024-05-27"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Remal surge and rain, Shyamnagar, Satkhira, Bangladesh",
+    "reference": [
+     "s1",
+     22.33,
+     89.1,
+     "2024-05-27"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040025460,
+    "main_bas": 4060026100,
+    "hybas_6": 4060026100
+   }
+  },
+  {
+   "event_id": "s1_biparjoy_jakhau_2023",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-06-16",
+   "storm_cluster": "s1_biparjoy_jakhau_2023",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     68.72,
+     23.22
+    ],
+    "note": "Cyclone Biparjoy landfall and coastal flooding, Jakhau, Kutch, Gujarat"
+   },
+   "flood_round2": {
+    "tags": [
+     "coastal"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Biparjoy landfall and coastal flooding, Jakhau, Kutch, Gujarat",
+    "reference": [
+     "s1",
+     23.22,
+     68.72,
+     "2023-06-16"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "coastal"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Biparjoy landfall and coastal flooding, Jakhau, Kutch, Gujarat",
+    "reference": [
+     "s1",
+     23.22,
+     68.72,
+     "2023-06-16"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040032890,
+    "main_bas": 4060032890,
+    "hybas_6": 4060032890
+   }
+  },
+  {
+   "event_id": "s1_francine_terrebonne_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-09-12",
+   "storm_cluster": "s1_francine_terrebonne_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -90.66,
+     29.25
+    ],
+    "note": "Hurricane Francine surge and rain, lower Terrebonne Parish, Louisiana"
+   },
+   "flood_round2": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "americas",
+    "basis": "Hurricane Francine surge and rain, lower Terrebonne Parish, Louisiana",
+    "reference": [
+     "s1",
+     29.25,
+     -90.66,
+     "2024-09-12"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "americas",
+    "basis": "Hurricane Francine surge and rain, lower Terrebonne Parish, Louisiana",
+    "reference": [
+     "s1",
+     29.25,
+     -90.66,
+     "2024-09-12"
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040047070,
+    "main_bas": 7060047220,
+    "hybas_6": 7060047220
+   }
+  },
+  {
+   "event_id": "s1_dana_kendrapara_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-10-25",
+   "storm_cluster": "s1_dana_kendrapara_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "registered_test"
+    },
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     86.95,
+     20.65
+    ],
+    "note": "Cyclone Dana surge and heavy rain, Kendrapara / Bhitarkanika, Odisha"
+   },
+   "flood_round2": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Dana surge and heavy rain, Kendrapara / Bhitarkanika, Odisha",
+    "reference": [
+     "s1",
+     20.65,
+     86.95,
+     "2024-10-25"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Dana surge and heavy rain, Kendrapara / Bhitarkanika, Odisha",
+    "reference": [
+     "s1",
+     20.65,
+     86.95,
+     "2024-10-25"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040025460,
+    "main_bas": 4060027020,
+    "hybas_6": 4060027020
+   }
+  },
+  {
+   "event_id": "s1_jowhar_2023",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-11-20",
+   "storm_cluster": "s1_jowhar_2023",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     45.5,
+     2.78
+    ],
+    "note": "prolonged Shabelle flooding around Jowhar, Somalia, Nov 2023 (El Nino rains)"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged Shabelle flooding around Jowhar, Somalia, Nov 2023 (El Nino rains)",
+    "reference": [
+     "s1",
+     2.78,
+     45.5,
+     "2023-11-20"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged Shabelle flooding around Jowhar, Somalia, Nov 2023 (El Nino rains)",
+    "reference": [
+     "s1",
+     2.78,
+     45.5,
+     "2023-11-20"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1041115400,
+    "main_bas": 1060008100,
+    "hybas_6": 1061081050
+   }
+  },
+  {
+   "event_id": "s1_ubon_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-10-05",
+   "storm_cluster": "s1_ubon_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     104.87,
+     15.24
+    ],
+    "note": "prolonged Mun River flooding at Ubon Ratchathani, Oct 2022"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged Mun River flooding at Ubon Ratchathani, Oct 2022",
+    "reference": [
+     "s1",
+     15.24,
+     104.87,
+     "2022-10-05"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged Mun River flooding at Ubon Ratchathani, Oct 2022",
+    "reference": [
+     "s1",
+     15.24,
+     104.87,
+     "2022-10-05"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4041108580,
+    "main_bas": 4060017020,
+    "hybas_6": 4061108670
+   }
+  },
+  {
+   "event_id": "s1_garsen_2023",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2023-12-01",
+   "storm_cluster": "s1_garsen_2023",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     40.12,
+     -2.27
+    ],
+    "note": "prolonged Tana River delta flooding around Garsen, Kenya, Nov-Dec 2023"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged Tana River delta flooding around Garsen, Kenya, Nov-Dec 2023",
+    "reference": [
+     "s1",
+     -2.27,
+     40.12,
+     "2023-12-01"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "africa",
+    "basis": "prolonged Tana River delta flooding around Garsen, Kenya, Nov-Dec 2023",
+    "reference": [
+     "s1",
+     -2.27,
+     40.12,
+     "2023-12-01"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040008470,
+    "main_bas": 1060008470,
+    "hybas_6": 1061198010
+   }
+  },
+  {
+   "event_id": "s1_sukhothai_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-09-01",
+   "storm_cluster": "s1_sukhothai_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "waterlogging",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     99.82,
+     17.01
+    ],
+    "note": "prolonged Yom River flooding at Sukhothai, Thailand, late Aug-Sep 2024"
+   },
+   "flood_round2": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged Yom River flooding at Sukhothai, Thailand, late Aug-Sep 2024",
+    "reference": [
+     "s1",
+     17.01,
+     99.82,
+     "2024-09-01"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "waterlogging"
+    ],
+    "region": "southeast_asia",
+    "basis": "prolonged Yom River flooding at Sukhothai, Thailand, late Aug-Sep 2024",
+    "reference": [
+     "s1",
+     17.01,
+     99.82,
+     "2024-09-01"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040017030,
+    "main_bas": 4060018280,
+    "hybas_6": 4061102650
+   }
+  },
+  {
+   "event_id": "s1_jeddah_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-11-24",
+   "storm_cluster": "s1_jeddah_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     39.2,
+     21.55
+    ],
+    "note": "torrential rain flooding in Jeddah, Saudi Arabia, 24 Nov 2022"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa_west_asia",
+    "basis": "torrential rain flooding in Jeddah, Saudi Arabia, 24 Nov 2022",
+    "reference": [
+     "s1",
+     21.55,
+     39.2,
+     "2022-11-24"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa_west_asia",
+    "basis": "torrential rain flooding in Jeddah, Saudi Arabia, 24 Nov 2022",
+    "reference": [
+     "s1",
+     21.55,
+     39.2,
+     "2022-11-24"
+    ]
+   },
+   "basins": {
+    "hybas_4": 2040081260,
+    "main_bas": 2060083010,
+    "hybas_6": 2060083010
+   }
+  },
+  {
+   "event_id": "s1_kinshasa_2022",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2022-12-13",
+   "storm_cluster": "s1_kinshasa_2022",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "pluvial",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     15.31,
+     -4.38
+    ],
+    "note": "heavy-rain flooding in Kinshasa, DR Congo, 13 Dec 2022"
+   },
+   "flood_round2": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "heavy-rain flooding in Kinshasa, DR Congo, 13 Dec 2022",
+    "reference": [
+     "s1",
+     -4.38,
+     15.31,
+     "2022-12-13"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "pluvial"
+    ],
+    "region": "africa",
+    "basis": "heavy-rain flooding in Kinshasa, DR Congo, 13 Dec 2022",
+    "reference": [
+     "s1",
+     -4.38,
+     15.31,
+     "2022-12-13"
+    ]
+   },
+   "basins": {
+    "hybas_4": 1040020040,
+    "main_bas": 1060020040,
+    "hybas_6": 1061244040
+   }
+  },
+  {
+   "event_id": "s1_baghlan_2024",
+   "role": "reserved",
+   "kind": "event",
+   "date": "2024-05-11",
+   "storm_cluster": "s1_baghlan_2024",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "registered_test"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "town point and date from general reporting; no image read",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     68.7,
+     36.13
+    ],
+    "note": "flash floods in Baghlan province, Afghanistan, 10-11 May 2024"
+   },
+   "flood_round2": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "south_asia",
+    "basis": "flash floods in Baghlan province, Afghanistan, 10-11 May 2024",
+    "reference": [
+     "s1",
+     36.13,
+     68.7,
+     "2024-05-11"
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "south_asia",
+    "basis": "flash floods in Baghlan province, Afghanistan, 10-11 May 2024",
+    "reference": [
+     "s1",
+     36.13,
+     68.7,
+     "2024-05-11"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040484760,
+    "main_bas": 4060050220,
+    "hybas_6": 4060554970
    }
   }
  ],
