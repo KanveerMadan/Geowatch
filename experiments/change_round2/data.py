@@ -127,3 +127,27 @@ def permanence(ee,crs,cells,start,width=100):
                 out[p["i"]]=p.get("p")
         return out
     return cached(["permanence1",crs,cells,width,start],get)
+
+
+def forest_cover(ee,crs,cells,start,width=100):
+    """Prior natural forest fraction on fixed support from independent JAXA L-band radar."""
+    year=min(int(start[:4])-1,2020)
+    if year<2017:
+        return [None]*len(cells)
+    def get():
+        fc=geometry(ee,crs,cells,width)
+        col=(ee.ImageCollection("JAXA/ALOS/PALSAR/YEARLY/FNF4").filterBounds(fc.geometry().bounds(10))
+             .filterDate(f"{year}-01-01",f"{year+1}-01-01").select("fnf"))
+        blank=ee.Image.constant(0).rename("fnf").toByte().selfMask()
+        cls=ee.ImageCollection.fromImages([blank]).merge(col).mosaic()
+        valid=cls.gte(1).And(cls.lte(4))
+        img=cls.lte(2).updateMask(valid).rename("forest").addBands(valid.unmask(0,False).rename("valid"))
+        rows=img.reduceRegions(collection=fc,reducer=ee.Reducer.mean().unweighted(),crs=crs,
+                               crsTransform=[20,0,0,0,-20,0]).getInfo()["features"]
+        values=[None]*len(cells)
+        for f in rows:
+            p=f["properties"]
+            if p.get("valid",0)>=.999999:
+                values[p["i"]]=p.get("forest")
+        return values
+    return cached(["jaxa-forest-v1",crs,cells,width,year],get)
