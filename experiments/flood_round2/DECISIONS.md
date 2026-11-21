@@ -66,3 +66,13 @@ Judgement calls, numbered R1, R2, and so on. Round-1 decisions are D1–D23 in `
 - Registration drops a DEV unit with ANY link to a reserved unit, main-basin links included. That is stricter than R7 on purpose, since it only protects the reserved set.
   - 14 of 23 were kept (fluvial 8, coastal 5 = Ida, Laura, Amphan, Fani + one flipped, compound 2, flash 1).
   - Dropped: EMSR764 x3, EMSR759 x2 and EMSR665 x2 (main basin with reserved EMSR728 / EMSR802); EMSR705 AOI06 and AOI08 (proximity to reserved EMSR795).
+
+## R10 (2026-11-21) Compound SFINCS case: Hurricane Ida at Lafitte (DEV)
+- It needed open data, DEV status and rain + surge together. Ida is a DEV unit (s1_ida_lafitte_2021): Gulf surge through Barataria Bay plus about 146 mm of IMERG rain over the domain. Helene, which would also fit, is reserved and so excluded from SFINCS set-up.
+- It uses the same code and settings as Fort Myers; only the case constants differ (domain 661 km², UTM 15N).
+- **Boundary:** NOAA 8761724 Grand Isle, the open-Gulf gauge south of Lafitte, in local MSL. CO-OPS publishes no NAVD88 offset for it, and 3DEP is NAVD88.
+  - base assumes MSL ≈ NAVD88;
+  - member datum03 adds +0.3 m, as an assumption bracket for SE Louisiana subsidence;
+  - surge2x doubles the residual.
+- **Reference limit:** the S1 reference's first post-event pass is 11 days after landfall (2021-09-10). It shows residual ponding inside the levees, not the surge extent, so the AUC here tests "where water stayed".
+- No river inflow boundary is added. The Mississippi is leveed and outside the domain, and Barataria's bayous are inside the grid.
