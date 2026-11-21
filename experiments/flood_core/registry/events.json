@@ -9744,6 +9744,698 @@
     "main_bas": 4060050220,
     "hybas_6": 4060554970
    }
+  },
+  {
+   "event_id": "emsr761_aoi01",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-09-18",
+   "storm_cluster": "EMSR761",
+   "region_cluster": null,
+   "products": [
+    "EMSR761:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 3,
+   "exposure_note": "flood_round2 DEV: EMS reference built",
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_round2",
+      "module": "fluvial",
+      "bbox": [
+       13.700434,
+       51.042698,
+       13.757606,
+       51.07863
+      ]
+     }
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "storm_link": "Storm Boris, Sept 2024",
+    "aoi_name": "Dresden",
+    "flooded_cells": 1184,
+    "dry_cells": 16116
+   },
+   "basins": {
+    "hybas_4": 2040024170,
+    "main_bas": 2060024170,
+    "hybas_6": 2060379560
+   }
+  },
+  {
+   "event_id": "emsr762_aoi06",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-09-18",
+   "storm_cluster": "EMSR762",
+   "region_cluster": null,
+   "products": [
+    "EMSR762:AOI06"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 3,
+   "exposure_note": "flood_round2 DEV: EMS reference built",
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_round2",
+      "module": "fluvial",
+      "bbox": [
+       12.006981,
+       44.439348,
+       12.057323,
+       44.47528
+      ]
+     }
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "storm_link": "Storm Boris remnants, Emilia-Romagna, Sept 2024",
+    "aoi_name": "Bagnacavallo",
+    "flooded_cells": 7123,
+    "dry_cells": 10680
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013110,
+    "hybas_6": 2060013110
+   }
+  },
+  {
+   "event_id": "emsr762_aoi04",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-09-18",
+   "storm_cluster": "EMSR762",
+   "region_cluster": null,
+   "products": [
+    "EMSR762:AOI04"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 3,
+   "exposure_note": "flood_round2 DEV: EMS reference built",
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_round2",
+      "module": "fluvial",
+      "bbox": [
+       11.61539,
+       44.54662,
+       11.665824,
+       44.582552
+      ]
+     }
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "storm_link": "Storm Boris remnants, Emilia-Romagna, Sept 2024",
+    "aoi_name": "Molinella",
+    "flooded_cells": 4831,
+    "dry_cells": 12960
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013100,
+    "hybas_6": 2060013100
+   }
+  },
+  {
+   "event_id": "emsr762_aoi02",
+   "role": "dev",
+   "kind": "event",
+   "date": "2024-09-18",
+   "storm_cluster": "EMSR762",
+   "region_cluster": null,
+   "products": [
+    "EMSR762:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 3,
+   "exposure_note": "flood_round2 DEV: EMS reference built",
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_round2",
+      "module": "fluvial",
+      "bbox": [
+       11.648491,
+       44.538904,
+       11.698919,
+       44.574836
+      ]
+     }
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "storm_link": "Storm Boris remnants, Emilia-Romagna, Sept 2024",
+    "aoi_name": "Idice",
+    "flooded_cells": 1812,
+    "dry_cells": 15991
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013100,
+    "hybas_6": 2060013100
+   }
+  },
+  {
+   "event_id": "emsr705_aoi03",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-11-02",
+   "storm_cluster": "EMSR705",
+   "region_cluster": null,
+   "products": [
+    "EMSR705:AOI03"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "flash_flood",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 3,
+   "exposure_note": "flood_round2 DEV: EMS reference built",
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_round2",
+      "module": "flash_flood",
+      "bbox": [
+       10.52782,
+       43.609739,
+       10.577462,
+       43.645671
+      ]
+     }
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "flash_flood"
+    ],
+    "region": "europe_mediterranean",
+    "storm_link": "Storm Ciaran, Nov 2023 (round-4b calais_2023 storm)",
+    "aoi_name": "Pontedera",
+    "flooded_cells": 1275,
+    "dry_cells": 15982
+   },
+   "basins": {
+    "hybas_4": 2040014550,
+    "main_bas": 2060015620,
+    "hybas_6": 2060015620
+   }
+  },
+  {
+   "event_id": "emsr697_aoi01",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-09-27",
+   "storm_cluster": "EMSR697",
+   "region_cluster": null,
+   "products": [
+    "EMSR697:AOI01"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 3,
+   "exposure_note": "flood_round2 DEV: EMS reference built",
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_round2",
+      "module": "fluvial",
+      "bbox": [
+       22.488632,
+       38.833286,
+       22.534772,
+       38.869218
+      ]
+     }
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "storm_link": "Storm Daniel, Sept 2023 (volos DEV)",
+    "aoi_name": "Lamia",
+    "flooded_cells": 1471,
+    "dry_cells": 16294
+   },
+   "basins": {
+    "hybas_4": 2040009230,
+    "main_bas": 2060010050,
+    "hybas_6": 2060010050
+   }
+  },
+  {
+   "event_id": "emsr664_aoi02",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-05-16",
+   "storm_cluster": "EMSR664",
+   "region_cluster": null,
+   "products": [
+    "EMSR664:AOI02"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 3,
+   "exposure_note": "flood_round2 DEV: EMS reference built",
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_round2",
+      "module": "fluvial",
+      "bbox": [
+       11.799291,
+       44.504777,
+       11.849689,
+       44.540709
+      ]
+     }
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "storm_link": "Emilia-Romagna May 2023 (faenza EMSR659 used)",
+    "aoi_name": "Lugo",
+    "flooded_cells": 11033,
+    "dry_cells": 6756
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013100,
+    "hybas_6": 2060013100
+   }
+  },
+  {
+   "event_id": "emsr664_aoi07",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-05-16",
+   "storm_cluster": "EMSR664",
+   "region_cluster": null,
+   "products": [
+    "EMSR664:AOI07"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 3,
+   "exposure_note": "flood_round2 DEV: EMS reference built",
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_round2",
+      "module": "fluvial",
+      "bbox": [
+       12.142559,
+       44.40649,
+       12.192873,
+       44.442422
+      ]
+     }
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "storm_link": "Emilia-Romagna May 2023 (faenza EMSR659 used)",
+    "aoi_name": "Ravenna",
+    "flooded_cells": 8940,
+    "dry_cells": 8853
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013110,
+    "hybas_6": 2060013110
+   }
+  },
+  {
+   "event_id": "emsr664_aoi03",
+   "role": "dev",
+   "kind": "event",
+   "date": "2023-05-16",
+   "storm_cluster": "EMSR664",
+   "region_cluster": null,
+   "products": [
+    "EMSR664:AOI03"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "fluvial",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 3,
+   "exposure_note": "flood_round2 DEV: EMS reference built",
+   "geometry": {
+    "type": "boxes",
+    "boxes": [
+     {
+      "round": "flood_round2",
+      "module": "fluvial",
+      "bbox": [
+       11.755406,
+       44.278075,
+       11.80561,
+       44.314007
+      ]
+     }
+    ]
+   },
+   "flood_final": {
+    "tags": [
+     "fluvial"
+    ],
+    "region": "europe_mediterranean",
+    "storm_link": "Emilia-Romagna May 2023 (faenza EMSR659 used)",
+    "aoi_name": "Castel Bolognese",
+    "flooded_cells": 2709,
+    "dry_cells": 13479
+   },
+   "basins": {
+    "hybas_4": 2040012730,
+    "main_bas": 2060013100,
+    "hybas_6": 2060013100
+   }
+  },
+  {
+   "event_id": "s1_ida_lafitte_2021",
+   "role": "dev",
+   "kind": "event",
+   "date": "2021-08-30",
+   "storm_cluster": "s1_ida_lafitte_2021",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "dev"
+    },
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "flood_round2 DEV: town point and date; reference not yet built",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -90.11,
+     29.67
+    ],
+    "note": "Hurricane Ida surge and rain, Lafitte / Jean Lafitte, Louisiana"
+   },
+   "flood_final": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "americas",
+    "basis": "Hurricane Ida surge and rain, Lafitte / Jean Lafitte, Louisiana",
+    "reference": [
+     "s1",
+     29.67,
+     -90.11,
+     "2021-08-30"
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040047070,
+    "main_bas": 7060047070,
+    "hybas_6": 7060047070
+   }
+  },
+  {
+   "event_id": "s1_laura_cameron_2020",
+   "role": "dev",
+   "kind": "event",
+   "date": "2020-08-27",
+   "storm_cluster": "s1_laura_cameron_2020",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "flood_round2 DEV: town point and date; reference not yet built",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -93.33,
+     29.8
+    ],
+    "note": "Hurricane Laura storm surge, Cameron Parish, Louisiana"
+   },
+   "flood_final": {
+    "tags": [
+     "coastal"
+    ],
+    "region": "americas",
+    "basis": "Hurricane Laura storm surge, Cameron Parish, Louisiana",
+    "reference": [
+     "s1",
+     29.8,
+     -93.33,
+     "2020-08-27"
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040047070,
+    "main_bas": 7060047780,
+    "hybas_6": 7060047780
+   }
+  },
+  {
+   "event_id": "s1_michael_mexicobeach_2018",
+   "role": "dev",
+   "kind": "event",
+   "date": "2018-10-10",
+   "storm_cluster": "s1_michael_mexicobeach_2018",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "flood_round2 DEV: town point and date; reference not yet built",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     -85.41,
+     29.94
+    ],
+    "note": "Hurricane Michael storm surge, Mexico Beach, Florida"
+   },
+   "flood_final": {
+    "tags": [
+     "coastal"
+    ],
+    "region": "americas",
+    "basis": "Hurricane Michael storm surge, Mexico Beach, Florida",
+    "reference": [
+     "s1",
+     29.94,
+     -85.41,
+     "2018-10-10"
+    ]
+   },
+   "basins": {
+    "hybas_4": 7040045900,
+    "main_bas": 7060045900,
+    "hybas_6": 7060045900
+   }
+  },
+  {
+   "event_id": "s1_amphan_sundarbans_2020",
+   "role": "dev",
+   "kind": "event",
+   "date": "2020-05-21",
+   "storm_cluster": "s1_amphan_sundarbans_2020",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "dev"
+    },
+    {
+     "round": "flood_round2",
+     "module": "compound",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "flood_round2 DEV: town point and date; reference not yet built",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     88.8,
+     22.15
+    ],
+    "note": "Cyclone Amphan surge and rain, Gosaba / Sundarbans, West Bengal"
+   },
+   "flood_final": {
+    "tags": [
+     "coastal",
+     "compound"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Amphan surge and rain, Gosaba / Sundarbans, West Bengal",
+    "reference": [
+     "s1",
+     22.15,
+     88.8,
+     "2020-05-21"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040025460,
+    "main_bas": 4060026260,
+    "hybas_6": 4060026260
+   }
+  },
+  {
+   "event_id": "s1_fani_puri_2019",
+   "role": "dev",
+   "kind": "event",
+   "date": "2019-05-03",
+   "storm_cluster": "s1_fani_puri_2019",
+   "region_cluster": null,
+   "products": [
+    "S1"
+   ],
+   "uses": [
+    {
+     "round": "flood_round2",
+     "module": "coastal",
+     "role": "dev"
+    }
+   ],
+   "exposure_level": 1,
+   "exposure_note": "flood_round2 DEV: town point and date; reference not yet built",
+   "geometry": {
+    "type": "point_approx",
+    "point": [
+     85.83,
+     19.81
+    ],
+    "note": "Cyclone Fani landfall and surge near Puri, Odisha"
+   },
+   "flood_final": {
+    "tags": [
+     "coastal"
+    ],
+    "region": "south_asia",
+    "basis": "Cyclone Fani landfall and surge near Puri, Odisha",
+    "reference": [
+     "s1",
+     19.81,
+     85.83,
+     "2019-05-03"
+    ]
+   },
+   "basins": {
+    "hybas_4": 4040027110,
+    "main_bas": 4060027280,
+    "hybas_6": 4060027280
+   }
   }
  ],
  "basins_source": "WWF/HydroSHEDS/v1/Basins hybas_4, hybas_6 (centre point)"

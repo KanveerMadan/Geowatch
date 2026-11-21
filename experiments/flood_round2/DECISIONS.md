@@ -59,3 +59,10 @@ Judgement calls, numbered R1, R2, and so on. Round-1 decisions are D1–D23 in `
 - **Pluvial** has only 3 units (EMSR721 Milan; Jeddah 2022 and Kinshasa 2022 by S1). The two S1 cases are urban, where S1 sees little (D20), so pluvial may end "not-run (insufficient)". The urban reference work (Phase F) is the planned fix and is not available yet.
 - **Waterlogging:** 4 units (Jowhar, Ubon, Garsen, Sukhothai), all S1.
 - Points and dates for S1 events come from general reporting only. No image, reference, input or score of any reserved unit has been read.
+
+## R9 (2026-11-21) Round-2 DEV additions
+- References were built for the DEV EMS activations (storm-linked to used units) and the 5 S1 coastal cases.
+- s1_michael_mexicobeach_2018 has no reference: no Sentinel-1 scene over the point in the window ("LookupError: S1 over …"). It is skipped.
+- Registration drops a DEV unit with ANY link to a reserved unit, main-basin links included. That is stricter than R7 on purpose, since it only protects the reserved set.
+  - 14 of 23 were kept (fluvial 8, coastal 5 = Ida, Laura, Amphan, Fani + one flipped, compound 2, flash 1).
+  - Dropped: EMSR764 x3, EMSR759 x2 and EMSR665 x2 (main basin with reserved EMSR728 / EMSR802); EMSR705 AOI06 and AOI08 (proximity to reserved EMSR795).
