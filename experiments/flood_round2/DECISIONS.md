@@ -91,3 +91,8 @@ Judgement calls, numbered R1, R2, and so on. Round-1 decisions are D1–D23 in `
 - Round 1 needed 3 units in 2 clusters. The owner judged round 1's 3–4-unit sets unable to prove anything. Since qualification is known only at scoring, the rule is raised in advance instead.
 - Below 5 units in 3 clusters a type is "not-run (insufficient)": numbers indicative only, no verdict, label stays experimental (`heldout_r2.MIN_UNITS`, `MIN_CLUSTERS`).
 - PREREGISTRATION_ROUND2.md §6 states the risk plainly: 16 of 17 rain units and all 11 waterlogging units have Sentinel-1 references. S1 is blind among buildings, so rain may well end insufficient. Coastal and compound (5 each) need every unit to qualify.
+
+## R13 (2026-11-21) Fort Myers runs finished, but their maps were read afterwards
+- The queue shell lacked the PYTHONPATH that holds h5py. Each SFINCS run finished (the solver log reports "Simulation finished"), and then `read_map` failed.
+- `run()` now extracts hmax from an existing `sfincs_map.nc` instead of re-running. Runtime is the solver's own "Total time"; the container's peak memory was not recorded for these runs.
+- Queue timestamps give wall times of about 44, 44 and 53 min for base, surge2x and glo30.

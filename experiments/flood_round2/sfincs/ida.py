@@ -189,10 +189,19 @@ def write_member(member):
 
 def run(member):
     from experiments.flood_core.sfincs import sfincs_io as S
-    d = write_member(member)
+    d = os.path.join(CACHE, "runs", member)
     if os.path.exists(os.path.join(d, "summary.json")):
         return json.load(open(os.path.join(d, "summary.json")))
-    r = S.run(d)
+    if os.path.exists(os.path.join(d, "sfincs_map.nc")) and os.path.exists(os.path.join(d, "sfincs_log.txt")):
+        # the run finished but its map was not read (R13: h5py missing in that shell): extract, do not re-run
+        import re
+        txt = open(os.path.join(d, "sfincs_log.txt")).read()
+        m_ = re.search(r"Total time\s*:\s*([0-9.]+)", txt)
+        r = {"exit_code": "0", "solver_reported_s": float(m_.group(1)) if m_ else None,
+             "wall_s": None, "sfincs_peak_rss_mib": None, "note": "extracted from an existing run (R13)"}
+    else:
+        d = write_member(member)
+        r = S.run(d)
     out = {"member": member, **{k: v for k, v in r.items() if k != "log_tail"}}
     if r["exit_code"] == "0" and os.path.exists(os.path.join(d, "sfincs_map.nc")):
         m = S.read_map(d)
@@ -238,9 +247,9 @@ def score():
         f = lambda v: auc(v, (yy == 1).astype(int), (yy == 0).astype(int))      # noqa: E731
         wet, obs = s[ok] > WET_M, yy == 1
         res["members"][os.path.basename(d)] = {
-            "wall_s": summ.get("wall_s"), "disk_mb": summ.get("disk_mb"),
+            "wall_s": summ.get("wall_s") or summ.get("solver_reported_s"), "disk_mb": summ.get("disk_mb"),
             "peak_rss_mib": summ.get("sfincs_peak_rss_mib"),
-            "wall_s_per_km2": None if not summ.get("wall_s") else round(summ["wall_s"] / km2, 3),
+            "wall_s_per_km2": None if not (summ.get("wall_s") or summ.get("solver_reported_s")) else round((summ.get("wall_s") or summ["solver_reported_s"]) / km2, 3),
             "disk_mb_per_km2": None if not summ.get("disk_mb") else round(summ["disk_mb"] / km2, 4),
             "auc_hmax": round(f(s[ok]), 4), "auc_hand": round(f(t["C"][ok, 0]), 4),
             "auc_low_elevation": round(f(-elev[ok]), 4),
