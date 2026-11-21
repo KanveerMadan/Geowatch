@@ -1,0 +1,3065 @@
+{
+ "what": "flood_round2 method choice, DEV only (leave-region-out mean AUC per type; ties -> simplest)",
+ "run_utc": "2026-11-21T09:51:41Z",
+ "order": [
+  "elev",
+  "hand",
+  "full_lr",
+  "resid_lgbm",
+  "flash_lgbm",
+  "coastal_lgbm",
+  "full_lgbm"
+ ],
+ "tie": 0.005,
+ "dev_units": [
+  "assam_2026",
+  "bad_neuenahr",
+  "beira",
+  "belize_city",
+  "bihar_2026",
+  "black_river",
+  "choloma",
+  "derna",
+  "derna_2023",
+  "dharavi",
+  "dubai_2024",
+  "emsr662_aoi01",
+  "emsr664_aoi02",
+  "emsr664_aoi03",
+  "emsr664_aoi07",
+  "emsr680_aoi04",
+  "emsr680_aoi07",
+  "emsr680_aoi13",
+  "emsr694_aoi02",
+  "emsr694_aoi03",
+  "emsr697_aoi01",
+  "emsr705_aoi03",
+  "emsr711_aoi01",
+  "emsr711_aoi02",
+  "emsr711_aoi03",
+  "emsr757_aoi01",
+  "emsr757_aoi02",
+  "emsr761_aoi01",
+  "emsr762_aoi02",
+  "emsr762_aoi04",
+  "emsr762_aoi06",
+  "emsr770_aoi01",
+  "emsr770_aoi03",
+  "emsr774_aoi01",
+  "emsr774_aoi02",
+  "emsr776_aoi01",
+  "emsr779_aoi01",
+  "emsr779_aoi02",
+  "emsr779_aoi03",
+  "emsr799_aoi02",
+  "emsr799_aoi03",
+  "emsr799_aoi04",
+  "emsr813_aoi01",
+  "emsr838_aoi01",
+  "emsr838_aoi03",
+  "emsr838_aoi07",
+  "emsr844_aoi01",
+  "emsr853_aoi02",
+  "emsr853_aoi04",
+  "emsr853_aoi08",
+  "emsr865_aoi01",
+  "emsr868_aoi01",
+  "emsr868_aoi02",
+  "emsr870_aoi05",
+  "emsr870_aoi08",
+  "emsr870_aoi13",
+  "emsr935_aoi01",
+  "emsr935_aoi02",
+  "encantado",
+  "faenza",
+  "fort_myers_beach",
+  "hai_phong",
+  "hanoi",
+  "himachal_2023",
+  "kerala_2018",
+  "kolonnawa",
+  "kyaukpyu",
+  "milagro",
+  "nam_dinh",
+  "paiporta",
+  "pakistan_2022",
+  "r_emsr703_aoi01",
+  "r_emsr703_aoi02",
+  "r_emsr712_aoi02",
+  "r_emsr734_aoi17",
+  "r_emsr742_aoi01",
+  "r_emsr742_aoi03",
+  "r_emsr780_aoi08",
+  "r_emsr781_aoi01",
+  "r_emsr790_aoi02",
+  "r_emsr793_aoi01",
+  "r_emsr793_aoi02",
+  "r_emsr805_aoi01",
+  "r_emsr805_aoi03",
+  "r_emsr845_aoi02",
+  "r_emsr845_aoi03",
+  "r_emsr850_aoi02",
+  "r_emsr850_aoi03",
+  "r_emsr856_aoi01",
+  "r_emsr856_aoi02",
+  "r_emsr857_aoi01",
+  "r_emsr857_aoi02",
+  "r_emsr858_aoi08",
+  "r_emsr858_aoi10",
+  "r_emsr863_aoi02",
+  "r_emsr864_aoi01",
+  "r_emsr864_aoi02",
+  "r_emsr867_aoi01",
+  "r_emsr867_aoi03",
+  "s1_amphan_sundarbans_2020",
+  "s1_assam_morigaon_2024",
+  "s1_fani_puri_2019",
+  "s1_ida_lafitte_2021",
+  "s1_kelantan_2024",
+  "s1_laura_cameron_2020",
+  "s1_lokoja_2022",
+  "s1_sunamganj_2024",
+  "s1_tabasco_2020",
+  "s1_yenagoa_2022",
+  "sittwe",
+  "sylhet_2022",
+  "thai_binh",
+  "valencia_2024",
+  "volos"
+ ],
+ "regions": {
+  "assam_2026": "south_asia",
+  "bad_neuenahr": "europe_mediterranean",
+  "beira": "africa_west_asia",
+  "belize_city": "americas",
+  "bihar_2026": "south_asia",
+  "black_river": "americas",
+  "choloma": "americas",
+  "derna": "europe_mediterranean",
+  "derna_2023": "europe_mediterranean",
+  "dharavi": "south_asia",
+  "dubai_2024": "africa_west_asia",
+  "emsr662_aoi01": "africa_west_asia",
+  "emsr664_aoi02": "europe_mediterranean",
+  "emsr664_aoi03": "europe_mediterranean",
+  "emsr664_aoi07": "europe_mediterranean",
+  "emsr680_aoi04": "europe_mediterranean",
+  "emsr680_aoi07": "europe_mediterranean",
+  "emsr680_aoi13": "europe_mediterranean",
+  "emsr694_aoi02": "europe_mediterranean",
+  "emsr694_aoi03": "europe_mediterranean",
+  "emsr697_aoi01": "europe_mediterranean",
+  "emsr705_aoi03": "europe_mediterranean",
+  "emsr711_aoi01": "europe_mediterranean",
+  "emsr711_aoi02": "europe_mediterranean",
+  "emsr711_aoi03": "europe_mediterranean",
+  "emsr757_aoi01": "europe_mediterranean",
+  "emsr757_aoi02": "europe_mediterranean",
+  "emsr761_aoi01": "europe_mediterranean",
+  "emsr762_aoi02": "europe_mediterranean",
+  "emsr762_aoi04": "europe_mediterranean",
+  "emsr762_aoi06": "europe_mediterranean",
+  "emsr770_aoi01": "europe_mediterranean",
+  "emsr770_aoi03": "europe_mediterranean",
+  "emsr774_aoi01": "americas",
+  "emsr774_aoi02": "americas",
+  "emsr776_aoi01": "americas",
+  "emsr779_aoi01": "africa_west_asia",
+  "emsr779_aoi02": "africa_west_asia",
+  "emsr779_aoi03": "africa_west_asia",
+  "emsr799_aoi02": "americas",
+  "emsr799_aoi03": "americas",
+  "emsr799_aoi04": "americas",
+  "emsr813_aoi01": "americas",
+  "emsr838_aoi01": "south_asia",
+  "emsr838_aoi03": "south_asia",
+  "emsr838_aoi07": "south_asia",
+  "emsr844_aoi01": "southeast_asia",
+  "emsr853_aoi02": "americas",
+  "emsr853_aoi04": "americas",
+  "emsr853_aoi08": "americas",
+  "emsr865_aoi01": "americas",
+  "emsr868_aoi01": "europe_mediterranean",
+  "emsr868_aoi02": "europe_mediterranean",
+  "emsr870_aoi05": "americas",
+  "emsr870_aoi08": "americas",
+  "emsr870_aoi13": "americas",
+  "emsr935_aoi01": "europe_mediterranean",
+  "emsr935_aoi02": "europe_mediterranean",
+  "encantado": "americas",
+  "faenza": "europe_mediterranean",
+  "fort_myers_beach": "americas",
+  "hai_phong": "southeast_asia",
+  "hanoi": "southeast_asia",
+  "himachal_2023": "south_asia",
+  "kerala_2018": "south_asia",
+  "kolonnawa": "south_asia",
+  "kyaukpyu": "southeast_asia",
+  "milagro": "americas",
+  "nam_dinh": "southeast_asia",
+  "paiporta": "europe_mediterranean",
+  "pakistan_2022": "south_asia",
+  "r_emsr703_aoi01": "americas",
+  "r_emsr703_aoi02": "americas",
+  "r_emsr712_aoi02": "europe_mediterranean",
+  "r_emsr734_aoi17": "americas",
+  "r_emsr742_aoi01": "europe_mediterranean",
+  "r_emsr742_aoi03": "europe_mediterranean",
+  "r_emsr780_aoi08": "africa_west_asia",
+  "r_emsr781_aoi01": "africa_west_asia",
+  "r_emsr790_aoi02": "africa_west_asia",
+  "r_emsr793_aoi01": "africa_west_asia",
+  "r_emsr793_aoi02": "africa_west_asia",
+  "r_emsr805_aoi01": "americas",
+  "r_emsr805_aoi03": "americas",
+  "r_emsr845_aoi02": "americas",
+  "r_emsr845_aoi03": "americas",
+  "r_emsr850_aoi02": "europe_mediterranean",
+  "r_emsr850_aoi03": "europe_mediterranean",
+  "r_emsr856_aoi01": "europe_mediterranean",
+  "r_emsr856_aoi02": "europe_mediterranean",
+  "r_emsr857_aoi01": "africa_west_asia",
+  "r_emsr857_aoi02": "africa_west_asia",
+  "r_emsr858_aoi08": "europe_mediterranean",
+  "r_emsr858_aoi10": "europe_mediterranean",
+  "r_emsr863_aoi02": "africa_west_asia",
+  "r_emsr864_aoi01": "europe_mediterranean",
+  "r_emsr864_aoi02": "europe_mediterranean",
+  "r_emsr867_aoi01": "africa_west_asia",
+  "r_emsr867_aoi03": "africa_west_asia",
+  "s1_amphan_sundarbans_2020": "south_asia",
+  "s1_assam_morigaon_2024": "south_asia",
+  "s1_fani_puri_2019": "south_asia",
+  "s1_ida_lafitte_2021": "americas",
+  "s1_kelantan_2024": "southeast_asia",
+  "s1_laura_cameron_2020": "americas",
+  "s1_lokoja_2022": "africa_west_asia",
+  "s1_sunamganj_2024": "south_asia",
+  "s1_tabasco_2020": "americas",
+  "s1_yenagoa_2022": "africa_west_asia",
+  "sittwe": "southeast_asia",
+  "sylhet_2022": "south_asia",
+  "thai_binh": "southeast_asia",
+  "valencia_2024": "europe_mediterranean",
+  "volos": "europe_mediterranean"
+ },
+ "tags": {
+  "assam_2026": [
+   "fluvial",
+   "waterlogging"
+  ],
+  "bad_neuenahr": [
+   "flash_flood"
+  ],
+  "beira": [
+   "coastal",
+   "compound"
+  ],
+  "belize_city": [
+   "pluvial"
+  ],
+  "bihar_2026": [
+   "fluvial"
+  ],
+  "black_river": [
+   "coastal",
+   "compound"
+  ],
+  "choloma": [
+   "flash_flood"
+  ],
+  "derna": [
+   "flash_flood"
+  ],
+  "derna_2023": [
+   "flash_flood"
+  ],
+  "dharavi": [
+   "pluvial",
+   "waterlogging"
+  ],
+  "dubai_2024": [
+   "pluvial"
+  ],
+  "emsr662_aoi01": [
+   "fluvial"
+  ],
+  "emsr664_aoi02": [
+   "fluvial"
+  ],
+  "emsr664_aoi03": [
+   "fluvial"
+  ],
+  "emsr664_aoi07": [
+   "fluvial"
+  ],
+  "emsr680_aoi04": [
+   "flash_flood"
+  ],
+  "emsr680_aoi07": [
+   "flash_flood"
+  ],
+  "emsr680_aoi13": [
+   "flash_flood"
+  ],
+  "emsr694_aoi02": [
+   "pluvial"
+  ],
+  "emsr694_aoi03": [
+   "pluvial"
+  ],
+  "emsr697_aoi01": [
+   "fluvial"
+  ],
+  "emsr705_aoi03": [
+   "flash_flood"
+  ],
+  "emsr711_aoi01": [
+   "fluvial"
+  ],
+  "emsr711_aoi02": [
+   "fluvial"
+  ],
+  "emsr711_aoi03": [
+   "fluvial"
+  ],
+  "emsr757_aoi01": [
+   "fluvial"
+  ],
+  "emsr757_aoi02": [
+   "fluvial"
+  ],
+  "emsr761_aoi01": [
+   "fluvial"
+  ],
+  "emsr762_aoi02": [
+   "fluvial"
+  ],
+  "emsr762_aoi04": [
+   "fluvial"
+  ],
+  "emsr762_aoi06": [
+   "fluvial"
+  ],
+  "emsr770_aoi01": [
+   "flash_flood"
+  ],
+  "emsr770_aoi03": [
+   "flash_flood"
+  ],
+  "emsr774_aoi01": [
+   "fluvial"
+  ],
+  "emsr774_aoi02": [
+   "fluvial"
+  ],
+  "emsr776_aoi01": [
+   "pluvial"
+  ],
+  "emsr779_aoi01": [
+   "waterlogging"
+  ],
+  "emsr779_aoi02": [
+   "waterlogging"
+  ],
+  "emsr779_aoi03": [
+   "waterlogging"
+  ],
+  "emsr799_aoi02": [
+   "waterlogging"
+  ],
+  "emsr799_aoi03": [
+   "waterlogging"
+  ],
+  "emsr799_aoi04": [
+   "waterlogging"
+  ],
+  "emsr813_aoi01": [
+   "flash_flood"
+  ],
+  "emsr838_aoi01": [
+   "fluvial"
+  ],
+  "emsr838_aoi03": [
+   "fluvial"
+  ],
+  "emsr838_aoi07": [
+   "fluvial"
+  ],
+  "emsr844_aoi01": [
+   "fluvial"
+  ],
+  "emsr853_aoi02": [
+   "fluvial"
+  ],
+  "emsr853_aoi04": [
+   "fluvial"
+  ],
+  "emsr853_aoi08": [
+   "fluvial"
+  ],
+  "emsr865_aoi01": [
+   "fluvial"
+  ],
+  "emsr868_aoi01": [
+   "fluvial"
+  ],
+  "emsr868_aoi02": [
+   "fluvial"
+  ],
+  "emsr870_aoi05": [
+   "flash_flood"
+  ],
+  "emsr870_aoi08": [
+   "flash_flood"
+  ],
+  "emsr870_aoi13": [
+   "flash_flood"
+  ],
+  "emsr935_aoi01": [
+   "pluvial"
+  ],
+  "emsr935_aoi02": [
+   "pluvial"
+  ],
+  "encantado": [
+   "fluvial"
+  ],
+  "faenza": [
+   "fluvial"
+  ],
+  "fort_myers_beach": [
+   "coastal",
+   "compound"
+  ],
+  "hai_phong": [
+   "pluvial"
+  ],
+  "hanoi": [
+   "fluvial"
+  ],
+  "himachal_2023": [
+   "flash_flood"
+  ],
+  "kerala_2018": [
+   "waterlogging"
+  ],
+  "kolonnawa": [
+   "fluvial"
+  ],
+  "kyaukpyu": [
+   "coastal",
+   "compound"
+  ],
+  "milagro": [
+   "pluvial"
+  ],
+  "nam_dinh": [
+   "waterlogging"
+  ],
+  "paiporta": [
+   "compound",
+   "flash_flood"
+  ],
+  "pakistan_2022": [
+   "fluvial"
+  ],
+  "r_emsr703_aoi01": [
+   "coastal"
+  ],
+  "r_emsr703_aoi02": [
+   "coastal"
+  ],
+  "r_emsr712_aoi02": [
+   "fluvial"
+  ],
+  "r_emsr734_aoi17": [
+   "coastal",
+   "compound"
+  ],
+  "r_emsr742_aoi01": [
+   "pluvial"
+  ],
+  "r_emsr742_aoi03": [
+   "pluvial"
+  ],
+  "r_emsr780_aoi08": [
+   "pluvial"
+  ],
+  "r_emsr781_aoi01": [
+   "coastal"
+  ],
+  "r_emsr790_aoi02": [
+   "pluvial"
+  ],
+  "r_emsr793_aoi01": [
+   "coastal"
+  ],
+  "r_emsr793_aoi02": [
+   "coastal"
+  ],
+  "r_emsr805_aoi01": [
+   "coastal"
+  ],
+  "r_emsr805_aoi03": [
+   "coastal"
+  ],
+  "r_emsr845_aoi02": [
+   "flash_flood"
+  ],
+  "r_emsr845_aoi03": [
+   "flash_flood"
+  ],
+  "r_emsr850_aoi02": [
+   "flash_flood"
+  ],
+  "r_emsr850_aoi03": [
+   "flash_flood"
+  ],
+  "r_emsr856_aoi01": [
+   "waterlogging"
+  ],
+  "r_emsr856_aoi02": [
+   "waterlogging"
+  ],
+  "r_emsr857_aoi01": [
+   "fluvial"
+  ],
+  "r_emsr857_aoi02": [
+   "fluvial"
+  ],
+  "r_emsr858_aoi08": [
+   "coastal",
+   "compound"
+  ],
+  "r_emsr858_aoi10": [
+   "coastal",
+   "compound"
+  ],
+  "r_emsr863_aoi02": [
+   "coastal"
+  ],
+  "r_emsr864_aoi01": [
+   "compound",
+   "flash_flood"
+  ],
+  "r_emsr864_aoi02": [
+   "compound",
+   "flash_flood"
+  ],
+  "r_emsr867_aoi01": [
+   "coastal"
+  ],
+  "r_emsr867_aoi03": [
+   "coastal"
+  ],
+  "s1_amphan_sundarbans_2020": [
+   "coastal",
+   "compound"
+  ],
+  "s1_assam_morigaon_2024": [
+   "fluvial"
+  ],
+  "s1_fani_puri_2019": [
+   "coastal"
+  ],
+  "s1_ida_lafitte_2021": [
+   "coastal",
+   "compound"
+  ],
+  "s1_kelantan_2024": [
+   "fluvial"
+  ],
+  "s1_laura_cameron_2020": [
+   "coastal"
+  ],
+  "s1_lokoja_2022": [
+   "fluvial"
+  ],
+  "s1_sunamganj_2024": [
+   "fluvial"
+  ],
+  "s1_tabasco_2020": [
+   "fluvial"
+  ],
+  "s1_yenagoa_2022": [
+   "waterlogging"
+  ],
+  "sittwe": [
+   "coastal",
+   "compound"
+  ],
+  "sylhet_2022": [
+   "waterlogging"
+  ],
+  "thai_binh": [
+   "waterlogging"
+  ],
+  "valencia_2024": [
+   "compound",
+   "flash_flood",
+   "pluvial"
+  ],
+  "volos": [
+   "flash_flood"
+  ]
+ },
+ "clusters": {
+  "assam_2026": 0,
+  "bad_neuenahr": 1,
+  "beira": 2,
+  "belize_city": 3,
+  "bihar_2026": 0,
+  "black_river": 4,
+  "choloma": 3,
+  "derna": 5,
+  "derna_2023": 5,
+  "dharavi": 6,
+  "dubai_2024": 7,
+  "emsr662_aoi01": 8,
+  "emsr664_aoi02": 9,
+  "emsr664_aoi03": 9,
+  "emsr664_aoi07": 9,
+  "emsr680_aoi04": 10,
+  "emsr680_aoi07": 10,
+  "emsr680_aoi13": 10,
+  "emsr694_aoi02": 11,
+  "emsr694_aoi03": 11,
+  "emsr697_aoi01": 12,
+  "emsr705_aoi03": 13,
+  "emsr711_aoi01": 14,
+  "emsr711_aoi02": 14,
+  "emsr711_aoi03": 14,
+  "emsr757_aoi01": 10,
+  "emsr757_aoi02": 10,
+  "emsr761_aoi01": 15,
+  "emsr762_aoi02": 9,
+  "emsr762_aoi04": 9,
+  "emsr762_aoi06": 9,
+  "emsr770_aoi01": 10,
+  "emsr770_aoi03": 10,
+  "emsr774_aoi01": 16,
+  "emsr774_aoi02": 16,
+  "emsr776_aoi01": 17,
+  "emsr779_aoi01": 18,
+  "emsr779_aoi02": 18,
+  "emsr779_aoi03": 18,
+  "emsr799_aoi02": 19,
+  "emsr799_aoi03": 19,
+  "emsr799_aoi04": 19,
+  "emsr813_aoi01": 19,
+  "emsr838_aoi01": 20,
+  "emsr838_aoi03": 20,
+  "emsr838_aoi07": 20,
+  "emsr844_aoi01": 21,
+  "emsr853_aoi02": 19,
+  "emsr853_aoi04": 19,
+  "emsr853_aoi08": 19,
+  "emsr865_aoi01": 22,
+  "emsr868_aoi01": 23,
+  "emsr868_aoi02": 23,
+  "emsr870_aoi05": 24,
+  "emsr870_aoi08": 24,
+  "emsr870_aoi13": 24,
+  "emsr935_aoi01": 25,
+  "emsr935_aoi02": 25,
+  "encantado": 26,
+  "faenza": 9,
+  "fort_myers_beach": 27,
+  "hai_phong": 28,
+  "hanoi": 28,
+  "himachal_2023": 20,
+  "kerala_2018": 29,
+  "kolonnawa": 30,
+  "kyaukpyu": 31,
+  "milagro": 24,
+  "nam_dinh": 28,
+  "paiporta": 32,
+  "pakistan_2022": 20,
+  "r_emsr703_aoi01": 33,
+  "r_emsr703_aoi02": 33,
+  "r_emsr712_aoi02": 34,
+  "r_emsr734_aoi17": 35,
+  "r_emsr742_aoi01": 36,
+  "r_emsr742_aoi03": 36,
+  "r_emsr780_aoi08": 37,
+  "r_emsr781_aoi01": 38,
+  "r_emsr790_aoi02": 39,
+  "r_emsr793_aoi01": 40,
+  "r_emsr793_aoi02": 40,
+  "r_emsr805_aoi01": 41,
+  "r_emsr805_aoi03": 41,
+  "r_emsr845_aoi02": 42,
+  "r_emsr845_aoi03": 42,
+  "r_emsr850_aoi02": 43,
+  "r_emsr850_aoi03": 43,
+  "r_emsr856_aoi01": 43,
+  "r_emsr856_aoi02": 43,
+  "r_emsr857_aoi01": 44,
+  "r_emsr857_aoi02": 44,
+  "r_emsr858_aoi08": 45,
+  "r_emsr858_aoi10": 45,
+  "r_emsr863_aoi02": 46,
+  "r_emsr864_aoi01": 47,
+  "r_emsr864_aoi02": 47,
+  "r_emsr867_aoi01": 46,
+  "r_emsr867_aoi03": 46,
+  "s1_amphan_sundarbans_2020": 48,
+  "s1_assam_morigaon_2024": 0,
+  "s1_fani_puri_2019": 49,
+  "s1_ida_lafitte_2021": 50,
+  "s1_kelantan_2024": 51,
+  "s1_laura_cameron_2020": 52,
+  "s1_lokoja_2022": 53,
+  "s1_sunamganj_2024": 0,
+  "s1_tabasco_2020": 54,
+  "s1_yenagoa_2022": 55,
+  "sittwe": 31,
+  "sylhet_2022": 0,
+  "thai_binh": 28,
+  "valencia_2024": 32,
+  "volos": 5
+ },
+ "choice": {
+  "fluvial": {
+   "members": [
+    "assam_2026",
+    "bihar_2026",
+    "emsr662_aoi01",
+    "emsr664_aoi02",
+    "emsr664_aoi03",
+    "emsr664_aoi07",
+    "emsr697_aoi01",
+    "emsr711_aoi01",
+    "emsr711_aoi02",
+    "emsr711_aoi03",
+    "emsr757_aoi01",
+    "emsr757_aoi02",
+    "emsr761_aoi01",
+    "emsr762_aoi02",
+    "emsr762_aoi04",
+    "emsr762_aoi06",
+    "emsr774_aoi01",
+    "emsr774_aoi02",
+    "emsr838_aoi01",
+    "emsr838_aoi03",
+    "emsr838_aoi07",
+    "emsr844_aoi01",
+    "emsr853_aoi02",
+    "emsr853_aoi04",
+    "emsr853_aoi08",
+    "emsr865_aoi01",
+    "emsr868_aoi01",
+    "emsr868_aoi02",
+    "encantado",
+    "faenza",
+    "hanoi",
+    "kolonnawa",
+    "pakistan_2022",
+    "r_emsr712_aoi02",
+    "r_emsr857_aoi01",
+    "r_emsr857_aoi02",
+    "s1_assam_morigaon_2024",
+    "s1_kelantan_2024",
+    "s1_lokoja_2022",
+    "s1_sunamganj_2024",
+    "s1_tabasco_2020"
+   ],
+   "n": 41,
+   "lro_mean_auc": {
+    "elev": 0.7852780487804877,
+    "hand": 0.6534926829268293,
+    "full_lr": 0.7949999999999999,
+    "resid_lgbm": 0.8042780487804878,
+    "full_lgbm": 0.7931780487804878
+   },
+   "chosen": "resid_lgbm",
+   "lco_mean_auc": {
+    "elev": 0.7852780487804877,
+    "hand": 0.6534926829268293,
+    "full_lr": 0.8085048780487805,
+    "resid_lgbm": 0.7972048780487805,
+    "full_lgbm": 0.7866292682926829
+   }
+  },
+  "pluvial": {
+   "members": [
+    "belize_city",
+    "dharavi",
+    "dubai_2024",
+    "emsr694_aoi02",
+    "emsr694_aoi03",
+    "emsr776_aoi01",
+    "emsr935_aoi01",
+    "emsr935_aoi02",
+    "hai_phong",
+    "milagro",
+    "r_emsr742_aoi01",
+    "r_emsr742_aoi03",
+    "r_emsr780_aoi08",
+    "r_emsr790_aoi02",
+    "valencia_2024"
+   ],
+   "n": 15,
+   "lro_mean_auc": {
+    "elev": 0.7294333333333333,
+    "hand": 0.66264,
+    "full_lr": 0.6799199999999999,
+    "resid_lgbm": 0.7244533333333332,
+    "full_lgbm": 0.7272733333333333
+   },
+   "chosen": "elev",
+   "lco_mean_auc": {
+    "elev": 0.7294333333333333,
+    "hand": 0.66264,
+    "full_lr": 0.7001866666666666,
+    "resid_lgbm": 0.73836,
+    "full_lgbm": 0.7397866666666668
+   }
+  },
+  "waterlogging": {
+   "members": [
+    "assam_2026",
+    "dharavi",
+    "emsr779_aoi01",
+    "emsr779_aoi02",
+    "emsr779_aoi03",
+    "emsr799_aoi02",
+    "emsr799_aoi03",
+    "emsr799_aoi04",
+    "kerala_2018",
+    "nam_dinh",
+    "r_emsr856_aoi01",
+    "r_emsr856_aoi02",
+    "s1_yenagoa_2022",
+    "sylhet_2022",
+    "thai_binh"
+   ],
+   "n": 15,
+   "lro_mean_auc": {
+    "elev": 0.7225866666666667,
+    "hand": 0.6018800000000001,
+    "full_lr": 0.7469600000000001,
+    "resid_lgbm": 0.7304333333333333,
+    "full_lgbm": 0.7026666666666668
+   },
+   "chosen": "full_lr",
+   "lco_mean_auc": {
+    "elev": 0.7225866666666667,
+    "hand": 0.6018800000000001,
+    "full_lr": 0.7530866666666667,
+    "resid_lgbm": 0.7232266666666668,
+    "full_lgbm": 0.6996933333333334
+   }
+  },
+  "flash_flood": {
+   "members": [
+    "bad_neuenahr",
+    "choloma",
+    "derna",
+    "derna_2023",
+    "emsr680_aoi04",
+    "emsr680_aoi07",
+    "emsr680_aoi13",
+    "emsr705_aoi03",
+    "emsr770_aoi01",
+    "emsr770_aoi03",
+    "emsr813_aoi01",
+    "emsr870_aoi05",
+    "emsr870_aoi08",
+    "emsr870_aoi13",
+    "himachal_2023",
+    "paiporta",
+    "r_emsr845_aoi02",
+    "r_emsr845_aoi03",
+    "r_emsr850_aoi02",
+    "r_emsr850_aoi03",
+    "r_emsr864_aoi01",
+    "r_emsr864_aoi02",
+    "valencia_2024",
+    "volos"
+   ],
+   "n": 24,
+   "lro_mean_auc": {
+    "elev": 0.7518750000000001,
+    "hand": 0.7160916666666667,
+    "full_lr": 0.7385583333333333,
+    "resid_lgbm": 0.7694166666666667,
+    "flash_lgbm": 0.7624291666666667,
+    "full_lgbm": 0.7662083333333333
+   },
+   "chosen": "resid_lgbm",
+   "lco_mean_auc": {
+    "elev": 0.7518750000000001,
+    "hand": 0.7160916666666667,
+    "full_lr": 0.75785,
+    "resid_lgbm": 0.7812041666666666,
+    "flash_lgbm": 0.7700874999999999,
+    "full_lgbm": 0.7803583333333334
+   }
+  },
+  "coastal": {
+   "members": [
+    "beira",
+    "black_river",
+    "fort_myers_beach",
+    "kyaukpyu",
+    "r_emsr703_aoi01",
+    "r_emsr703_aoi02",
+    "r_emsr734_aoi17",
+    "r_emsr781_aoi01",
+    "r_emsr793_aoi01",
+    "r_emsr793_aoi02",
+    "r_emsr805_aoi01",
+    "r_emsr805_aoi03",
+    "r_emsr858_aoi08",
+    "r_emsr858_aoi10",
+    "r_emsr863_aoi02",
+    "r_emsr867_aoi01",
+    "r_emsr867_aoi03",
+    "s1_amphan_sundarbans_2020",
+    "s1_fani_puri_2019",
+    "s1_ida_lafitte_2021",
+    "s1_laura_cameron_2020",
+    "sittwe"
+   ],
+   "n": 22,
+   "lro_mean_auc": {
+    "elev": 0.7695045454545455,
+    "hand": 0.7072727272727273,
+    "full_lr": 0.771768181818182,
+    "resid_lgbm": 0.7667272727272728,
+    "coastal_lgbm": 0.7450772727272729,
+    "full_lgbm": 0.7625136363636362
+   },
+   "chosen": "elev",
+   "lco_mean_auc": {
+    "elev": 0.7695045454545455,
+    "hand": 0.7072727272727273,
+    "full_lr": 0.7849499999999999,
+    "resid_lgbm": 0.77985,
+    "coastal_lgbm": 0.7536545454545455,
+    "full_lgbm": 0.7737999999999999
+   }
+  },
+  "compound": {
+   "members": [
+    "beira",
+    "black_river",
+    "fort_myers_beach",
+    "kyaukpyu",
+    "paiporta",
+    "r_emsr734_aoi17",
+    "r_emsr858_aoi08",
+    "r_emsr858_aoi10",
+    "r_emsr864_aoi01",
+    "r_emsr864_aoi02",
+    "s1_amphan_sundarbans_2020",
+    "s1_ida_lafitte_2021",
+    "sittwe",
+    "valencia_2024"
+   ],
+   "n": 14,
+   "lro_mean_auc": {
+    "elev": 0.7668571428571428,
+    "hand": 0.7262785714285716,
+    "full_lr": 0.7773000000000001,
+    "resid_lgbm": 0.7666285714285712,
+    "coastal_lgbm": 0.747692857142857,
+    "full_lgbm": 0.7827642857142857
+   },
+   "chosen": "full_lgbm",
+   "lco_mean_auc": {
+    "elev": 0.7668571428571428,
+    "hand": 0.7262785714285716,
+    "full_lr": 0.7846642857142859,
+    "resid_lgbm": 0.7909928571428572,
+    "coastal_lgbm": 0.7579285714285715,
+    "full_lgbm": 0.7879071428571428
+   }
+  }
+ },
+ "final_models": {
+  "full_lr": {
+   "path": "final__full_lr.pkl",
+   "sha256": "ccb624592fd75301e1ad68abf7260c3a1af528ecf2b0c4cfbbdc3f4c1fe662f9",
+   "n_train_units": 114
+  },
+  "resid_lgbm": {
+   "path": "final__resid_lgbm.pkl",
+   "sha256": "fc91db3a1ecac4d8b109cb71d9d12c6e9e0992c63fd6039f941ab91d6a5e20dc",
+   "n_train_units": 114
+  },
+  "flash_lgbm": {
+   "path": "final__flash_lgbm.pkl",
+   "sha256": "09e756d2aa188838834c9a5fb567ce702df24c903fdde8f5311d880179c5af5c",
+   "n_train_units": 114
+  },
+  "coastal_lgbm": {
+   "path": "final__coastal_lgbm.pkl",
+   "sha256": "00c0385b2934196b0530d7e3b9132cdc28e1895333ccf031545881c1cf1b72d9",
+   "n_train_units": 114
+  },
+  "full_lgbm": {
+   "path": "final__full_lgbm.pkl",
+   "sha256": "d36424ce21001796b4b326feb11790de6e5d11fe688ff60c896f900a06adc137",
+   "n_train_units": 114
+  }
+ },
+ "per_unit_lro": {
+  "assam_2026": {
+   "elev": 0.8628,
+   "hand": 0.7495,
+   "full_lr": 0.8276,
+   "resid_lgbm": 0.8766,
+   "flash_lgbm": 0.8521,
+   "coastal_lgbm": 0.856,
+   "full_lgbm": 0.8667
+  },
+  "bad_neuenahr": {
+   "elev": 0.636,
+   "hand": 0.7126,
+   "full_lr": 0.6086,
+   "resid_lgbm": 0.6779,
+   "flash_lgbm": 0.6672,
+   "coastal_lgbm": 0.661,
+   "full_lgbm": 0.6679
+  },
+  "beira": {
+   "elev": 0.5666,
+   "hand": 0.5217,
+   "full_lr": 0.497,
+   "resid_lgbm": 0.5146,
+   "flash_lgbm": 0.5731,
+   "coastal_lgbm": 0.5734,
+   "full_lgbm": 0.539
+  },
+  "belize_city": {
+   "elev": 0.5093,
+   "hand": 0.6462,
+   "full_lr": 0.4363,
+   "resid_lgbm": 0.5192,
+   "flash_lgbm": 0.4624,
+   "coastal_lgbm": 0.4454,
+   "full_lgbm": 0.5836
+  },
+  "bihar_2026": {
+   "elev": 0.751,
+   "hand": 0.6032,
+   "full_lr": 0.7872,
+   "resid_lgbm": 0.8176,
+   "flash_lgbm": 0.6956,
+   "coastal_lgbm": 0.7908,
+   "full_lgbm": 0.7973
+  },
+  "black_river": {
+   "elev": 0.8578,
+   "hand": 0.7193,
+   "full_lr": 0.7341,
+   "resid_lgbm": 0.7995,
+   "flash_lgbm": 0.7995,
+   "coastal_lgbm": 0.7971,
+   "full_lgbm": 0.8423
+  },
+  "choloma": {
+   "elev": 0.582,
+   "hand": 0.6139,
+   "full_lr": 0.7744,
+   "resid_lgbm": 0.7407,
+   "flash_lgbm": 0.595,
+   "coastal_lgbm": 0.6496,
+   "full_lgbm": 0.7273
+  },
+  "derna": {
+   "elev": 0.6319,
+   "hand": 0.6166,
+   "full_lr": 0.5825,
+   "resid_lgbm": 0.6445,
+   "flash_lgbm": 0.6467,
+   "coastal_lgbm": 0.5933,
+   "full_lgbm": 0.6433
+  },
+  "derna_2023": {
+   "elev": 0.965,
+   "hand": 0.9609,
+   "full_lr": 0.4598,
+   "resid_lgbm": 0.7587,
+   "flash_lgbm": 0.9725,
+   "coastal_lgbm": 0.7788,
+   "full_lgbm": 0.7127
+  },
+  "dharavi": {
+   "elev": 0.6562,
+   "hand": 0.6397,
+   "full_lr": 0.6539,
+   "resid_lgbm": 0.6418,
+   "flash_lgbm": 0.6387,
+   "coastal_lgbm": 0.6284,
+   "full_lgbm": 0.6195
+  },
+  "dubai_2024": {
+   "elev": 0.5045,
+   "hand": 0.4969,
+   "full_lr": 0.5224,
+   "resid_lgbm": 0.4864,
+   "flash_lgbm": 0.4949,
+   "coastal_lgbm": 0.5224,
+   "full_lgbm": 0.4894
+  },
+  "emsr662_aoi01": {
+   "elev": 0.5245,
+   "hand": 0.5177,
+   "full_lr": 0.6239,
+   "resid_lgbm": 0.5425,
+   "flash_lgbm": 0.5765,
+   "coastal_lgbm": 0.3968,
+   "full_lgbm": 0.5213
+  },
+  "emsr664_aoi02": {
+   "elev": 0.7796,
+   "hand": 0.5025,
+   "full_lr": 0.6204,
+   "resid_lgbm": 0.6971,
+   "flash_lgbm": 0.7218,
+   "coastal_lgbm": 0.6825,
+   "full_lgbm": 0.7093
+  },
+  "emsr664_aoi03": {
+   "elev": 0.9084,
+   "hand": 0.9014,
+   "full_lr": 0.7483,
+   "resid_lgbm": 0.9415,
+   "flash_lgbm": 0.936,
+   "coastal_lgbm": 0.9206,
+   "full_lgbm": 0.9371
+  },
+  "emsr664_aoi07": {
+   "elev": 0.7629,
+   "hand": 0.7194,
+   "full_lr": 0.7534,
+   "resid_lgbm": 0.7906,
+   "flash_lgbm": 0.7962,
+   "coastal_lgbm": 0.7896,
+   "full_lgbm": 0.8026
+  },
+  "emsr680_aoi04": {
+   "elev": 0.6337,
+   "hand": 0.2653,
+   "full_lr": 0.6096,
+   "resid_lgbm": 0.6251,
+   "flash_lgbm": 0.6677,
+   "coastal_lgbm": 0.7279,
+   "full_lgbm": 0.6348
+  },
+  "emsr680_aoi07": {
+   "elev": 0.8503,
+   "hand": 0.9271,
+   "full_lr": 0.7486,
+   "resid_lgbm": 0.8776,
+   "flash_lgbm": 0.8493,
+   "coastal_lgbm": 0.8599,
+   "full_lgbm": 0.8746
+  },
+  "emsr680_aoi13": {
+   "elev": 0.6764,
+   "hand": 0.5611,
+   "full_lr": 0.6807,
+   "resid_lgbm": 0.6908,
+   "flash_lgbm": 0.7304,
+   "coastal_lgbm": 0.6866,
+   "full_lgbm": 0.6804
+  },
+  "emsr694_aoi02": {
+   "elev": 0.9183,
+   "hand": 0.7232,
+   "full_lr": 0.7354,
+   "resid_lgbm": 0.8772,
+   "flash_lgbm": 0.872,
+   "coastal_lgbm": 0.8199,
+   "full_lgbm": 0.8789
+  },
+  "emsr694_aoi03": {
+   "elev": 0.6119,
+   "hand": 0.7046,
+   "full_lr": 0.6766,
+   "resid_lgbm": 0.6342,
+   "flash_lgbm": 0.6862,
+   "coastal_lgbm": 0.7532,
+   "full_lgbm": 0.6551
+  },
+  "emsr697_aoi01": {
+   "elev": 0.6933,
+   "hand": 0.5312,
+   "full_lr": 0.617,
+   "resid_lgbm": 0.6792,
+   "flash_lgbm": 0.6475,
+   "coastal_lgbm": 0.6218,
+   "full_lgbm": 0.6377
+  },
+  "emsr705_aoi03": {
+   "elev": 0.8096,
+   "hand": 0.8223,
+   "full_lr": 0.7537,
+   "resid_lgbm": 0.8605,
+   "flash_lgbm": 0.7527,
+   "coastal_lgbm": 0.7512,
+   "full_lgbm": 0.871
+  },
+  "emsr711_aoi01": {
+   "elev": 0.9505,
+   "hand": 0.8995,
+   "full_lr": 0.8849,
+   "resid_lgbm": 0.9534,
+   "flash_lgbm": 0.9518,
+   "coastal_lgbm": 0.9642,
+   "full_lgbm": 0.9497
+  },
+  "emsr711_aoi02": {
+   "elev": 0.9335,
+   "hand": 0.8272,
+   "full_lr": 0.9145,
+   "resid_lgbm": 0.9314,
+   "flash_lgbm": 0.9648,
+   "coastal_lgbm": 0.9707,
+   "full_lgbm": 0.9478
+  },
+  "emsr711_aoi03": {
+   "elev": 0.8953,
+   "hand": 0.8878,
+   "full_lr": 0.8939,
+   "resid_lgbm": 0.9336,
+   "flash_lgbm": 0.933,
+   "coastal_lgbm": 0.9459,
+   "full_lgbm": 0.9421
+  },
+  "emsr757_aoi01": {
+   "elev": 0.7458,
+   "hand": 0.6418,
+   "full_lr": 0.719,
+   "resid_lgbm": 0.6842,
+   "flash_lgbm": 0.7199,
+   "coastal_lgbm": 0.7475,
+   "full_lgbm": 0.6431
+  },
+  "emsr757_aoi02": {
+   "elev": 0.8331,
+   "hand": 0.7686,
+   "full_lr": 0.8475,
+   "resid_lgbm": 0.8381,
+   "flash_lgbm": 0.8201,
+   "coastal_lgbm": 0.8007,
+   "full_lgbm": 0.8225
+  },
+  "emsr761_aoi01": {
+   "elev": 0.9517,
+   "hand": 0.5533,
+   "full_lr": 0.9289,
+   "resid_lgbm": 0.9469,
+   "flash_lgbm": 0.8424,
+   "coastal_lgbm": 0.9746,
+   "full_lgbm": 0.9416
+  },
+  "emsr762_aoi02": {
+   "elev": 0.6835,
+   "hand": 0.4676,
+   "full_lr": 0.7087,
+   "resid_lgbm": 0.5801,
+   "flash_lgbm": 0.6661,
+   "coastal_lgbm": 0.7388,
+   "full_lgbm": 0.6119
+  },
+  "emsr762_aoi04": {
+   "elev": 0.9057,
+   "hand": 0.6489,
+   "full_lr": 0.8866,
+   "resid_lgbm": 0.8872,
+   "flash_lgbm": 0.8749,
+   "coastal_lgbm": 0.7965,
+   "full_lgbm": 0.8636
+  },
+  "emsr762_aoi06": {
+   "elev": 0.7933,
+   "hand": 0.6982,
+   "full_lr": 0.792,
+   "resid_lgbm": 0.7982,
+   "flash_lgbm": 0.7512,
+   "coastal_lgbm": 0.7841,
+   "full_lgbm": 0.7886
+  },
+  "emsr770_aoi01": {
+   "elev": 0.8969,
+   "hand": 0.8992,
+   "full_lr": 0.9331,
+   "resid_lgbm": 0.925,
+   "flash_lgbm": 0.949,
+   "coastal_lgbm": 0.8918,
+   "full_lgbm": 0.9231
+  },
+  "emsr770_aoi03": {
+   "elev": 0.8905,
+   "hand": 0.9277,
+   "full_lr": 0.8887,
+   "resid_lgbm": 0.9261,
+   "flash_lgbm": 0.9076,
+   "coastal_lgbm": 0.918,
+   "full_lgbm": 0.9263
+  },
+  "emsr774_aoi01": {
+   "elev": 0.7955,
+   "hand": 0.5771,
+   "full_lr": 0.8203,
+   "resid_lgbm": 0.8268,
+   "flash_lgbm": 0.7178,
+   "coastal_lgbm": 0.8022,
+   "full_lgbm": 0.8233
+  },
+  "emsr774_aoi02": {
+   "elev": 0.8619,
+   "hand": 0.7052,
+   "full_lr": 0.9039,
+   "resid_lgbm": 0.9451,
+   "flash_lgbm": 0.918,
+   "coastal_lgbm": 0.94,
+   "full_lgbm": 0.9441
+  },
+  "emsr776_aoi01": {
+   "elev": 0.9567,
+   "hand": 0.5346,
+   "full_lr": 0.8506,
+   "resid_lgbm": 0.9554,
+   "flash_lgbm": 0.872,
+   "coastal_lgbm": 0.9541,
+   "full_lgbm": 0.9593
+  },
+  "emsr779_aoi01": {
+   "elev": 0.991,
+   "hand": 0.7326,
+   "full_lr": 0.9166,
+   "resid_lgbm": 0.946,
+   "flash_lgbm": 0.8523,
+   "coastal_lgbm": 0.935,
+   "full_lgbm": 0.8653
+  },
+  "emsr779_aoi02": {
+   "elev": 0.8351,
+   "hand": 0.5393,
+   "full_lr": 0.8003,
+   "resid_lgbm": 0.5792,
+   "flash_lgbm": 0.6578,
+   "coastal_lgbm": 0.3896,
+   "full_lgbm": 0.4623
+  },
+  "emsr779_aoi03": {
+   "elev": 0.529,
+   "hand": 0.3905,
+   "full_lr": 0.5533,
+   "resid_lgbm": 0.4901,
+   "flash_lgbm": 0.4261,
+   "coastal_lgbm": 0.5337,
+   "full_lgbm": 0.3847
+  },
+  "emsr799_aoi02": {
+   "elev": 0.7364,
+   "hand": 0.6294,
+   "full_lr": 0.7665,
+   "resid_lgbm": 0.7546,
+   "flash_lgbm": 0.7218,
+   "coastal_lgbm": 0.8376,
+   "full_lgbm": 0.7996
+  },
+  "emsr799_aoi03": {
+   "elev": 0.8432,
+   "hand": 0.7986,
+   "full_lr": 0.9001,
+   "resid_lgbm": 0.8931,
+   "flash_lgbm": 0.9077,
+   "coastal_lgbm": 0.9021,
+   "full_lgbm": 0.8968
+  },
+  "emsr799_aoi04": {
+   "elev": 0.4489,
+   "hand": 0.5285,
+   "full_lr": 0.3499,
+   "resid_lgbm": 0.3257,
+   "flash_lgbm": 0.5112,
+   "coastal_lgbm": 0.3312,
+   "full_lgbm": 0.3032
+  },
+  "emsr813_aoi01": {
+   "elev": 0.8943,
+   "hand": 0.9104,
+   "full_lr": 0.8903,
+   "resid_lgbm": 0.9389,
+   "flash_lgbm": 0.8982,
+   "coastal_lgbm": 0.8993,
+   "full_lgbm": 0.9162
+  },
+  "emsr838_aoi01": {
+   "elev": 0.4462,
+   "hand": 0.4738,
+   "full_lr": 0.7776,
+   "resid_lgbm": 0.6618,
+   "flash_lgbm": 0.5925,
+   "coastal_lgbm": 0.7422,
+   "full_lgbm": 0.7448
+  },
+  "emsr838_aoi03": {
+   "elev": 0.7832,
+   "hand": 0.4472,
+   "full_lr": 0.8221,
+   "resid_lgbm": 0.7686,
+   "flash_lgbm": 0.8298,
+   "coastal_lgbm": 0.6152,
+   "full_lgbm": 0.7505
+  },
+  "emsr838_aoi07": {
+   "elev": 0.6013,
+   "hand": 0.5703,
+   "full_lr": 0.6748,
+   "resid_lgbm": 0.5419,
+   "flash_lgbm": 0.4854,
+   "coastal_lgbm": 0.6411,
+   "full_lgbm": 0.5634
+  },
+  "emsr844_aoi01": {
+   "elev": 0.6426,
+   "hand": 0.6086,
+   "full_lr": 0.719,
+   "resid_lgbm": 0.6908,
+   "flash_lgbm": 0.6308,
+   "coastal_lgbm": 0.6748,
+   "full_lgbm": 0.6925
+  },
+  "emsr853_aoi02": {
+   "elev": 0.5196,
+   "hand": 0.5202,
+   "full_lr": 0.6044,
+   "resid_lgbm": 0.5953,
+   "flash_lgbm": 0.6223,
+   "coastal_lgbm": 0.5901,
+   "full_lgbm": 0.6001
+  },
+  "emsr853_aoi04": {
+   "elev": 0.77,
+   "hand": 0.6546,
+   "full_lr": 0.8341,
+   "resid_lgbm": 0.8226,
+   "flash_lgbm": 0.8134,
+   "coastal_lgbm": 0.6443,
+   "full_lgbm": 0.8067
+  },
+  "emsr853_aoi08": {
+   "elev": 0.3841,
+   "hand": 0.3595,
+   "full_lr": 0.5885,
+   "resid_lgbm": 0.4533,
+   "flash_lgbm": 0.4284,
+   "coastal_lgbm": 0.4356,
+   "full_lgbm": 0.4381
+  },
+  "emsr865_aoi01": {
+   "elev": 0.5902,
+   "hand": 0.6194,
+   "full_lr": 0.6413,
+   "resid_lgbm": 0.6118,
+   "flash_lgbm": 0.6089,
+   "coastal_lgbm": 0.5522,
+   "full_lgbm": 0.6092
+  },
+  "emsr868_aoi01": {
+   "elev": 0.9694,
+   "hand": 0.9134,
+   "full_lr": 0.9585,
+   "resid_lgbm": 0.9788,
+   "flash_lgbm": 0.9756,
+   "coastal_lgbm": 0.9835,
+   "full_lgbm": 0.978
+  },
+  "emsr868_aoi02": {
+   "elev": 0.9424,
+   "hand": 0.79,
+   "full_lr": 0.8444,
+   "resid_lgbm": 0.8534,
+   "flash_lgbm": 0.9008,
+   "coastal_lgbm": 0.7759,
+   "full_lgbm": 0.7481
+  },
+  "emsr870_aoi05": {
+   "elev": 0.8881,
+   "hand": 0.7496,
+   "full_lr": 0.8814,
+   "resid_lgbm": 0.8902,
+   "flash_lgbm": 0.8683,
+   "coastal_lgbm": 0.8789,
+   "full_lgbm": 0.8821
+  },
+  "emsr870_aoi08": {
+   "elev": 0.4078,
+   "hand": 0.4197,
+   "full_lr": 0.5107,
+   "resid_lgbm": 0.482,
+   "flash_lgbm": 0.4184,
+   "coastal_lgbm": 0.4845,
+   "full_lgbm": 0.4564
+  },
+  "emsr870_aoi13": {
+   "elev": 0.8237,
+   "hand": 0.5818,
+   "full_lr": 0.94,
+   "resid_lgbm": 0.8511,
+   "flash_lgbm": 0.9071,
+   "coastal_lgbm": 0.9188,
+   "full_lgbm": 0.813
+  },
+  "emsr935_aoi01": {
+   "elev": 0.7214,
+   "hand": 0.7198,
+   "full_lr": 0.7126,
+   "resid_lgbm": 0.7607,
+   "flash_lgbm": 0.7115,
+   "coastal_lgbm": 0.8185,
+   "full_lgbm": 0.7814
+  },
+  "emsr935_aoi02": {
+   "elev": 0.8084,
+   "hand": 0.5443,
+   "full_lr": 0.7575,
+   "resid_lgbm": 0.8007,
+   "flash_lgbm": 0.7606,
+   "coastal_lgbm": 0.7273,
+   "full_lgbm": 0.8018
+  },
+  "encantado": {
+   "elev": 0.8928,
+   "hand": 0.7786,
+   "full_lr": 0.9037,
+   "resid_lgbm": 0.9092,
+   "flash_lgbm": 0.9132,
+   "coastal_lgbm": 0.9007,
+   "full_lgbm": 0.9021
+  },
+  "faenza": {
+   "elev": 0.7816,
+   "hand": 0.6866,
+   "full_lr": 0.7702,
+   "resid_lgbm": 0.8401,
+   "flash_lgbm": 0.8266,
+   "coastal_lgbm": 0.8331,
+   "full_lgbm": 0.8562
+  },
+  "fort_myers_beach": {
+   "elev": 0.7339,
+   "hand": 0.6584,
+   "full_lr": 0.6927,
+   "resid_lgbm": 0.7021,
+   "flash_lgbm": 0.6337,
+   "coastal_lgbm": 0.662,
+   "full_lgbm": 0.6934
+  },
+  "hai_phong": {
+   "elev": 0.8904,
+   "hand": 0.8705,
+   "full_lr": 0.4279,
+   "resid_lgbm": 0.7471,
+   "flash_lgbm": 0.6321,
+   "coastal_lgbm": 0.5356,
+   "full_lgbm": 0.6922
+  },
+  "hanoi": {
+   "elev": 0.9522,
+   "hand": 0.481,
+   "full_lr": 0.9372,
+   "resid_lgbm": 0.9679,
+   "flash_lgbm": 0.8258,
+   "coastal_lgbm": 0.7406,
+   "full_lgbm": 0.898
+  },
+  "himachal_2023": {
+   "elev": 0.6099,
+   "hand": 0.5341,
+   "full_lr": 0.6041,
+   "resid_lgbm": 0.6001,
+   "flash_lgbm": 0.5776,
+   "coastal_lgbm": 0.5721,
+   "full_lgbm": 0.5758
+  },
+  "kerala_2018": {
+   "elev": 0.747,
+   "hand": 0.7091,
+   "full_lr": 0.781,
+   "resid_lgbm": 0.7969,
+   "flash_lgbm": 0.7156,
+   "coastal_lgbm": 0.7102,
+   "full_lgbm": 0.7986
+  },
+  "kolonnawa": {
+   "elev": 0.8314,
+   "hand": 0.6056,
+   "full_lr": 0.8268,
+   "resid_lgbm": 0.8442,
+   "flash_lgbm": 0.8469,
+   "coastal_lgbm": 0.8376,
+   "full_lgbm": 0.8436
+  },
+  "kyaukpyu": {
+   "elev": 0.8953,
+   "hand": 0.6895,
+   "full_lr": 0.8657,
+   "resid_lgbm": 0.9232,
+   "flash_lgbm": 0.9524,
+   "coastal_lgbm": 0.8809,
+   "full_lgbm": 0.8968
+  },
+  "milagro": {
+   "elev": 0.7523,
+   "hand": 0.698,
+   "full_lr": 0.928,
+   "resid_lgbm": 0.8619,
+   "flash_lgbm": 0.9418,
+   "coastal_lgbm": 0.8355,
+   "full_lgbm": 0.8799
+  },
+  "nam_dinh": {
+   "elev": 0.4518,
+   "hand": 0.4386,
+   "full_lr": 0.694,
+   "resid_lgbm": 0.6761,
+   "flash_lgbm": 0.696,
+   "coastal_lgbm": 0.5726,
+   "full_lgbm": 0.6369
+  },
+  "paiporta": {
+   "elev": 0.7375,
+   "hand": 0.5008,
+   "full_lr": 0.6014,
+   "resid_lgbm": 0.6592,
+   "flash_lgbm": 0.6829,
+   "coastal_lgbm": 0.5767,
+   "full_lgbm": 0.7095
+  },
+  "pakistan_2022": {
+   "elev": 0.655,
+   "hand": 0.5138,
+   "full_lr": 0.7268,
+   "resid_lgbm": 0.7335,
+   "flash_lgbm": 0.6328,
+   "coastal_lgbm": 0.633,
+   "full_lgbm": 0.7064
+  },
+  "r_emsr703_aoi01": {
+   "elev": 0.8327,
+   "hand": 0.6925,
+   "full_lr": 0.803,
+   "resid_lgbm": 0.8325,
+   "flash_lgbm": 0.834,
+   "coastal_lgbm": 0.8308,
+   "full_lgbm": 0.8247
+  },
+  "r_emsr703_aoi02": {
+   "elev": 0.6606,
+   "hand": 0.6251,
+   "full_lr": 0.6388,
+   "resid_lgbm": 0.6568,
+   "flash_lgbm": 0.6282,
+   "coastal_lgbm": 0.5851,
+   "full_lgbm": 0.6488
+  },
+  "r_emsr712_aoi02": {
+   "elev": 0.9023,
+   "hand": 0.7184,
+   "full_lr": 0.6649,
+   "resid_lgbm": 0.914,
+   "flash_lgbm": 0.7378,
+   "coastal_lgbm": 0.6285,
+   "full_lgbm": 0.8112
+  },
+  "r_emsr734_aoi17": {
+   "elev": 0.6898,
+   "hand": 0.9003,
+   "full_lr": 0.9647,
+   "resid_lgbm": 0.6836,
+   "flash_lgbm": 0.7241,
+   "coastal_lgbm": 0.6103,
+   "full_lgbm": 0.7878
+  },
+  "r_emsr742_aoi01": {
+   "elev": 0.9458,
+   "hand": 0.6964,
+   "full_lr": 0.8567,
+   "resid_lgbm": 0.8805,
+   "flash_lgbm": 0.7847,
+   "coastal_lgbm": 0.8689,
+   "full_lgbm": 0.7611
+  },
+  "r_emsr742_aoi03": {
+   "elev": 0.9694,
+   "hand": 0.6263,
+   "full_lr": 0.6745,
+   "resid_lgbm": 0.8528,
+   "flash_lgbm": 0.4943,
+   "coastal_lgbm": 0.9605,
+   "full_lgbm": 0.8873
+  },
+  "r_emsr780_aoi08": {
+   "elev": 0.4139,
+   "hand": 0.4365,
+   "full_lr": 0.4592,
+   "resid_lgbm": 0.4902,
+   "flash_lgbm": 0.4663,
+   "coastal_lgbm": 0.4851,
+   "full_lgbm": 0.5241
+  },
+  "r_emsr781_aoi01": {
+   "elev": 0.949,
+   "hand": 0.7667,
+   "full_lr": 0.9269,
+   "resid_lgbm": 0.9356,
+   "flash_lgbm": 0.903,
+   "coastal_lgbm": 0.9251,
+   "full_lgbm": 0.9393
+  },
+  "r_emsr790_aoi02": {
+   "elev": 0.8623,
+   "hand": 0.8963,
+   "full_lr": 0.866,
+   "resid_lgbm": 0.8867,
+   "flash_lgbm": 0.8635,
+   "coastal_lgbm": 0.9114,
+   "full_lgbm": 0.8798
+  },
+  "r_emsr793_aoi01": {
+   "elev": 0.9606,
+   "hand": 0.8587,
+   "full_lr": 0.9494,
+   "resid_lgbm": 0.973,
+   "flash_lgbm": 0.9677,
+   "coastal_lgbm": 0.9593,
+   "full_lgbm": 0.9687
+  },
+  "r_emsr793_aoi02": {
+   "elev": 0.9345,
+   "hand": 0.9473,
+   "full_lr": 0.9512,
+   "resid_lgbm": 0.9547,
+   "flash_lgbm": 0.937,
+   "coastal_lgbm": 0.9524,
+   "full_lgbm": 0.95
+  },
+  "r_emsr805_aoi01": {
+   "elev": 0.6548,
+   "hand": 0.6561,
+   "full_lr": 0.4982,
+   "resid_lgbm": 0.5859,
+   "flash_lgbm": 0.4823,
+   "coastal_lgbm": 0.5886,
+   "full_lgbm": 0.5538
+  },
+  "r_emsr805_aoi03": {
+   "elev": 0.7254,
+   "hand": 0.7333,
+   "full_lr": 0.8107,
+   "resid_lgbm": 0.7972,
+   "flash_lgbm": 0.6869,
+   "coastal_lgbm": 0.6135,
+   "full_lgbm": 0.7162
+  },
+  "r_emsr845_aoi02": {
+   "elev": 0.9272,
+   "hand": 0.7708,
+   "full_lr": 0.8751,
+   "resid_lgbm": 0.8969,
+   "flash_lgbm": 0.9115,
+   "coastal_lgbm": 0.8992,
+   "full_lgbm": 0.9112
+  },
+  "r_emsr845_aoi03": {
+   "elev": 0.6837,
+   "hand": 0.7065,
+   "full_lr": 0.7134,
+   "resid_lgbm": 0.7508,
+   "flash_lgbm": 0.7177,
+   "coastal_lgbm": 0.7123,
+   "full_lgbm": 0.7176
+  },
+  "r_emsr850_aoi02": {
+   "elev": 0.8533,
+   "hand": 0.8473,
+   "full_lr": 0.7864,
+   "resid_lgbm": 0.8249,
+   "flash_lgbm": 0.852,
+   "coastal_lgbm": 0.8541,
+   "full_lgbm": 0.8306
+  },
+  "r_emsr850_aoi03": {
+   "elev": 0.8306,
+   "hand": 0.7969,
+   "full_lr": 0.7204,
+   "resid_lgbm": 0.8666,
+   "flash_lgbm": 0.7764,
+   "coastal_lgbm": 0.8617,
+   "full_lgbm": 0.8979
+  },
+  "r_emsr856_aoi01": {
+   "elev": 0.9151,
+   "hand": 0.6218,
+   "full_lr": 0.919,
+   "resid_lgbm": 0.903,
+   "flash_lgbm": 0.881,
+   "coastal_lgbm": 0.8005,
+   "full_lgbm": 0.9099
+  },
+  "r_emsr856_aoi02": {
+   "elev": 0.9807,
+   "hand": 0.6957,
+   "full_lr": 0.8834,
+   "resid_lgbm": 0.9536,
+   "flash_lgbm": 0.9555,
+   "coastal_lgbm": 0.9531,
+   "full_lgbm": 0.9148
+  },
+  "r_emsr857_aoi01": {
+   "elev": 0.9312,
+   "hand": 0.6807,
+   "full_lr": 0.9187,
+   "resid_lgbm": 0.8963,
+   "flash_lgbm": 0.7678,
+   "coastal_lgbm": 0.7886,
+   "full_lgbm": 0.8595
+  },
+  "r_emsr857_aoi02": {
+   "elev": 0.9237,
+   "hand": 0.8049,
+   "full_lr": 0.8927,
+   "resid_lgbm": 0.9354,
+   "flash_lgbm": 0.9317,
+   "coastal_lgbm": 0.9289,
+   "full_lgbm": 0.9304
+  },
+  "r_emsr858_aoi08": {
+   "elev": 0.8907,
+   "hand": 0.7495,
+   "full_lr": 0.9091,
+   "resid_lgbm": 0.8991,
+   "flash_lgbm": 0.8841,
+   "coastal_lgbm": 0.9069,
+   "full_lgbm": 0.9042
+  },
+  "r_emsr858_aoi10": {
+   "elev": 0.9129,
+   "hand": 0.7878,
+   "full_lr": 0.8328,
+   "resid_lgbm": 0.9029,
+   "flash_lgbm": 0.9164,
+   "coastal_lgbm": 0.9208,
+   "full_lgbm": 0.9004
+  },
+  "r_emsr863_aoi02": {
+   "elev": 0.8812,
+   "hand": 0.7619,
+   "full_lr": 0.8828,
+   "resid_lgbm": 0.8834,
+   "flash_lgbm": 0.861,
+   "coastal_lgbm": 0.8671,
+   "full_lgbm": 0.8704
+  },
+  "r_emsr864_aoi01": {
+   "elev": 0.9547,
+   "hand": 0.9244,
+   "full_lr": 0.9208,
+   "resid_lgbm": 0.9363,
+   "flash_lgbm": 0.9606,
+   "coastal_lgbm": 0.9603,
+   "full_lgbm": 0.9669
+  },
+  "r_emsr864_aoi02": {
+   "elev": 0.9196,
+   "hand": 0.9125,
+   "full_lr": 0.9267,
+   "resid_lgbm": 0.9353,
+   "flash_lgbm": 0.9363,
+   "coastal_lgbm": 0.9494,
+   "full_lgbm": 0.9327
+  },
+  "r_emsr867_aoi01": {
+   "elev": 0.6083,
+   "hand": 0.5036,
+   "full_lr": 0.6548,
+   "resid_lgbm": 0.6291,
+   "flash_lgbm": 0.6889,
+   "coastal_lgbm": 0.6383,
+   "full_lgbm": 0.6515
+  },
+  "r_emsr867_aoi03": {
+   "elev": 0.7835,
+   "hand": 0.7991,
+   "full_lr": 0.8849,
+   "resid_lgbm": 0.8657,
+   "flash_lgbm": 0.8129,
+   "coastal_lgbm": 0.8205,
+   "full_lgbm": 0.8186
+  },
+  "s1_amphan_sundarbans_2020": {
+   "elev": 0.6756,
+   "hand": 0.6303,
+   "full_lr": 0.6941,
+   "resid_lgbm": 0.6818,
+   "flash_lgbm": 0.6812,
+   "coastal_lgbm": 0.6088,
+   "full_lgbm": 0.6805
+  },
+  "s1_assam_morigaon_2024": {
+   "elev": 0.9108,
+   "hand": 0.8149,
+   "full_lr": 0.9089,
+   "resid_lgbm": 0.8817,
+   "flash_lgbm": 0.8787,
+   "coastal_lgbm": 0.8441,
+   "full_lgbm": 0.8264
+  },
+  "s1_fani_puri_2019": {
+   "elev": 0.5802,
+   "hand": 0.4853,
+   "full_lr": 0.6499,
+   "resid_lgbm": 0.6257,
+   "flash_lgbm": 0.6385,
+   "coastal_lgbm": 0.6513,
+   "full_lgbm": 0.6036
+  },
+  "s1_ida_lafitte_2021": {
+   "elev": 0.6456,
+   "hand": 0.661,
+   "full_lr": 0.7292,
+   "resid_lgbm": 0.6915,
+   "flash_lgbm": 0.68,
+   "coastal_lgbm": 0.6667,
+   "full_lgbm": 0.6641
+  },
+  "s1_kelantan_2024": {
+   "elev": 0.747,
+   "hand": 0.5567,
+   "full_lr": 0.7263,
+   "resid_lgbm": 0.7412,
+   "flash_lgbm": 0.7247,
+   "coastal_lgbm": 0.7403,
+   "full_lgbm": 0.7348
+  },
+  "s1_laura_cameron_2020": {
+   "elev": 0.6548,
+   "hand": 0.6065,
+   "full_lr": 0.5362,
+   "resid_lgbm": 0.3984,
+   "flash_lgbm": 0.4971,
+   "coastal_lgbm": 0.4719,
+   "full_lgbm": 0.3958
+  },
+  "s1_lokoja_2022": {
+   "elev": 0.6581,
+   "hand": 0.5684,
+   "full_lr": 0.7626,
+   "resid_lgbm": 0.8516,
+   "flash_lgbm": 0.7084,
+   "coastal_lgbm": 0.7646,
+   "full_lgbm": 0.8682
+  },
+  "s1_sunamganj_2024": {
+   "elev": 0.9353,
+   "hand": 0.8424,
+   "full_lr": 0.9377,
+   "resid_lgbm": 0.9468,
+   "flash_lgbm": 0.9559,
+   "coastal_lgbm": 0.9459,
+   "full_lgbm": 0.9456
+  },
+  "s1_tabasco_2020": {
+   "elev": 0.7937,
+   "hand": 0.5841,
+   "full_lr": 0.8758,
+   "resid_lgbm": 0.8651,
+   "flash_lgbm": 0.8348,
+   "coastal_lgbm": 0.8664,
+   "full_lgbm": 0.8562
+  },
+  "s1_yenagoa_2022": {
+   "elev": 0.6335,
+   "hand": 0.5543,
+   "full_lr": 0.6763,
+   "resid_lgbm": 0.6729,
+   "flash_lgbm": 0.6427,
+   "coastal_lgbm": 0.6562,
+   "full_lgbm": 0.6647
+  },
+  "sittwe": {
+   "elev": 0.8353,
+   "hand": 0.8061,
+   "full_lr": 0.8727,
+   "resid_lgbm": 0.9317,
+   "flash_lgbm": 0.9416,
+   "coastal_lgbm": 0.8609,
+   "full_lgbm": 0.9254
+  },
+  "sylhet_2022": {
+   "elev": 0.8545,
+   "hand": 0.73,
+   "full_lr": 0.9272,
+   "resid_lgbm": 0.9337,
+   "flash_lgbm": 0.9334,
+   "coastal_lgbm": 0.9239,
+   "full_lgbm": 0.9195
+  },
+  "thai_binh": {
+   "elev": 0.3536,
+   "hand": 0.2706,
+   "full_lr": 0.5553,
+   "resid_lgbm": 0.5132,
+   "flash_lgbm": 0.5932,
+   "coastal_lgbm": 0.4404,
+   "full_lgbm": 0.4975
+  },
+  "valencia_2024": {
+   "elev": 0.4207,
+   "hand": 0.7063,
+   "full_lr": 0.6412,
+   "resid_lgbm": 0.472,
+   "flash_lgbm": 0.4271,
+   "coastal_lgbm": 0.4935,
+   "full_lgbm": 0.5157
+  },
+  "volos": {
+   "elev": 0.5216,
+   "hand": 0.5184,
+   "full_lr": 0.6738,
+   "resid_lgbm": 0.6348,
+   "flash_lgbm": 0.6261,
+   "coastal_lgbm": 0.6025,
+   "full_lgbm": 0.602
+  }
+ },
+ "per_unit_lco": {
+  "assam_2026": {
+   "elev": 0.8628,
+   "hand": 0.7495,
+   "full_lr": 0.8388,
+   "resid_lgbm": 0.867,
+   "flash_lgbm": 0.8615,
+   "coastal_lgbm": 0.8683,
+   "full_lgbm": 0.8689
+  },
+  "bad_neuenahr": {
+   "elev": 0.636,
+   "hand": 0.7126,
+   "full_lr": 0.6383,
+   "resid_lgbm": 0.6651,
+   "flash_lgbm": 0.6346,
+   "coastal_lgbm": 0.6481,
+   "full_lgbm": 0.6582
+  },
+  "beira": {
+   "elev": 0.5666,
+   "hand": 0.5217,
+   "full_lr": 0.5058,
+   "resid_lgbm": 0.5513,
+   "flash_lgbm": 0.58,
+   "coastal_lgbm": 0.567,
+   "full_lgbm": 0.5789
+  },
+  "belize_city": {
+   "elev": 0.5093,
+   "hand": 0.6462,
+   "full_lr": 0.4629,
+   "resid_lgbm": 0.5307,
+   "flash_lgbm": 0.4488,
+   "coastal_lgbm": 0.4105,
+   "full_lgbm": 0.596
+  },
+  "bihar_2026": {
+   "elev": 0.751,
+   "hand": 0.6032,
+   "full_lr": 0.7866,
+   "resid_lgbm": 0.8089,
+   "flash_lgbm": 0.7457,
+   "coastal_lgbm": 0.7929,
+   "full_lgbm": 0.8021
+  },
+  "black_river": {
+   "elev": 0.8578,
+   "hand": 0.7193,
+   "full_lr": 0.7797,
+   "resid_lgbm": 0.8459,
+   "flash_lgbm": 0.8094,
+   "coastal_lgbm": 0.8007,
+   "full_lgbm": 0.86
+  },
+  "choloma": {
+   "elev": 0.582,
+   "hand": 0.6139,
+   "full_lr": 0.7977,
+   "resid_lgbm": 0.7504,
+   "flash_lgbm": 0.6825,
+   "coastal_lgbm": 0.6524,
+   "full_lgbm": 0.7556
+  },
+  "derna": {
+   "elev": 0.6319,
+   "hand": 0.6166,
+   "full_lr": 0.5972,
+   "resid_lgbm": 0.65,
+   "flash_lgbm": 0.6243,
+   "coastal_lgbm": 0.5869,
+   "full_lgbm": 0.6438
+  },
+  "derna_2023": {
+   "elev": 0.965,
+   "hand": 0.9609,
+   "full_lr": 0.5472,
+   "resid_lgbm": 0.8676,
+   "flash_lgbm": 0.9601,
+   "coastal_lgbm": 0.8212,
+   "full_lgbm": 0.852
+  },
+  "dharavi": {
+   "elev": 0.6562,
+   "hand": 0.6397,
+   "full_lr": 0.6566,
+   "resid_lgbm": 0.652,
+   "flash_lgbm": 0.6545,
+   "coastal_lgbm": 0.6273,
+   "full_lgbm": 0.6429
+  },
+  "dubai_2024": {
+   "elev": 0.5045,
+   "hand": 0.4969,
+   "full_lr": 0.529,
+   "resid_lgbm": 0.4739,
+   "flash_lgbm": 0.5044,
+   "coastal_lgbm": 0.5231,
+   "full_lgbm": 0.4845
+  },
+  "emsr662_aoi01": {
+   "elev": 0.5245,
+   "hand": 0.5177,
+   "full_lr": 0.659,
+   "resid_lgbm": 0.5363,
+   "flash_lgbm": 0.5925,
+   "coastal_lgbm": 0.5001,
+   "full_lgbm": 0.5412
+  },
+  "emsr664_aoi02": {
+   "elev": 0.7796,
+   "hand": 0.5025,
+   "full_lr": 0.6533,
+   "resid_lgbm": 0.6657,
+   "flash_lgbm": 0.6995,
+   "coastal_lgbm": 0.7012,
+   "full_lgbm": 0.6802
+  },
+  "emsr664_aoi03": {
+   "elev": 0.9084,
+   "hand": 0.9014,
+   "full_lr": 0.874,
+   "resid_lgbm": 0.9525,
+   "flash_lgbm": 0.9572,
+   "coastal_lgbm": 0.9245,
+   "full_lgbm": 0.9355
+  },
+  "emsr664_aoi07": {
+   "elev": 0.7629,
+   "hand": 0.7194,
+   "full_lr": 0.7583,
+   "resid_lgbm": 0.7598,
+   "flash_lgbm": 0.7918,
+   "coastal_lgbm": 0.7902,
+   "full_lgbm": 0.7393
+  },
+  "emsr680_aoi04": {
+   "elev": 0.6337,
+   "hand": 0.2653,
+   "full_lr": 0.6276,
+   "resid_lgbm": 0.6529,
+   "flash_lgbm": 0.6845,
+   "coastal_lgbm": 0.7452,
+   "full_lgbm": 0.6774
+  },
+  "emsr680_aoi07": {
+   "elev": 0.8503,
+   "hand": 0.9271,
+   "full_lr": 0.8485,
+   "resid_lgbm": 0.8848,
+   "flash_lgbm": 0.8667,
+   "coastal_lgbm": 0.8323,
+   "full_lgbm": 0.8843
+  },
+  "emsr680_aoi13": {
+   "elev": 0.6764,
+   "hand": 0.5611,
+   "full_lr": 0.6829,
+   "resid_lgbm": 0.7078,
+   "flash_lgbm": 0.7416,
+   "coastal_lgbm": 0.6439,
+   "full_lgbm": 0.7097
+  },
+  "emsr694_aoi02": {
+   "elev": 0.9183,
+   "hand": 0.7232,
+   "full_lr": 0.8197,
+   "resid_lgbm": 0.8405,
+   "flash_lgbm": 0.8648,
+   "coastal_lgbm": 0.8359,
+   "full_lgbm": 0.841
+  },
+  "emsr694_aoi03": {
+   "elev": 0.6119,
+   "hand": 0.7046,
+   "full_lr": 0.7006,
+   "resid_lgbm": 0.6706,
+   "flash_lgbm": 0.6732,
+   "coastal_lgbm": 0.6943,
+   "full_lgbm": 0.6379
+  },
+  "emsr697_aoi01": {
+   "elev": 0.6933,
+   "hand": 0.5312,
+   "full_lr": 0.6562,
+   "resid_lgbm": 0.6463,
+   "flash_lgbm": 0.6531,
+   "coastal_lgbm": 0.5821,
+   "full_lgbm": 0.6383
+  },
+  "emsr705_aoi03": {
+   "elev": 0.8096,
+   "hand": 0.8223,
+   "full_lr": 0.7928,
+   "resid_lgbm": 0.8128,
+   "flash_lgbm": 0.7913,
+   "coastal_lgbm": 0.8087,
+   "full_lgbm": 0.8572
+  },
+  "emsr711_aoi01": {
+   "elev": 0.9505,
+   "hand": 0.8995,
+   "full_lr": 0.9396,
+   "resid_lgbm": 0.9584,
+   "flash_lgbm": 0.9522,
+   "coastal_lgbm": 0.9632,
+   "full_lgbm": 0.9536
+  },
+  "emsr711_aoi02": {
+   "elev": 0.9335,
+   "hand": 0.8272,
+   "full_lr": 0.945,
+   "resid_lgbm": 0.9661,
+   "flash_lgbm": 0.9641,
+   "coastal_lgbm": 0.9707,
+   "full_lgbm": 0.9661
+  },
+  "emsr711_aoi03": {
+   "elev": 0.8953,
+   "hand": 0.8878,
+   "full_lr": 0.9347,
+   "resid_lgbm": 0.9295,
+   "flash_lgbm": 0.9189,
+   "coastal_lgbm": 0.9519,
+   "full_lgbm": 0.9456
+  },
+  "emsr757_aoi01": {
+   "elev": 0.7458,
+   "hand": 0.6418,
+   "full_lr": 0.7465,
+   "resid_lgbm": 0.7547,
+   "flash_lgbm": 0.7383,
+   "coastal_lgbm": 0.6836,
+   "full_lgbm": 0.7241
+  },
+  "emsr757_aoi02": {
+   "elev": 0.8331,
+   "hand": 0.7686,
+   "full_lr": 0.8622,
+   "resid_lgbm": 0.8156,
+   "flash_lgbm": 0.8373,
+   "coastal_lgbm": 0.8103,
+   "full_lgbm": 0.8319
+  },
+  "emsr761_aoi01": {
+   "elev": 0.9517,
+   "hand": 0.5533,
+   "full_lr": 0.9513,
+   "resid_lgbm": 0.9377,
+   "flash_lgbm": 0.9602,
+   "coastal_lgbm": 0.9658,
+   "full_lgbm": 0.9453
+  },
+  "emsr762_aoi02": {
+   "elev": 0.6835,
+   "hand": 0.4676,
+   "full_lr": 0.7014,
+   "resid_lgbm": 0.6111,
+   "flash_lgbm": 0.7123,
+   "coastal_lgbm": 0.7522,
+   "full_lgbm": 0.6203
+  },
+  "emsr762_aoi04": {
+   "elev": 0.9057,
+   "hand": 0.6489,
+   "full_lr": 0.8832,
+   "resid_lgbm": 0.863,
+   "flash_lgbm": 0.9062,
+   "coastal_lgbm": 0.9127,
+   "full_lgbm": 0.8865
+  },
+  "emsr762_aoi06": {
+   "elev": 0.7933,
+   "hand": 0.6982,
+   "full_lr": 0.7833,
+   "resid_lgbm": 0.757,
+   "flash_lgbm": 0.7214,
+   "coastal_lgbm": 0.6943,
+   "full_lgbm": 0.6981
+  },
+  "emsr770_aoi01": {
+   "elev": 0.8969,
+   "hand": 0.8992,
+   "full_lr": 0.9337,
+   "resid_lgbm": 0.9203,
+   "flash_lgbm": 0.9373,
+   "coastal_lgbm": 0.923,
+   "full_lgbm": 0.9275
+  },
+  "emsr770_aoi03": {
+   "elev": 0.8905,
+   "hand": 0.9277,
+   "full_lr": 0.9159,
+   "resid_lgbm": 0.9247,
+   "flash_lgbm": 0.9193,
+   "coastal_lgbm": 0.9143,
+   "full_lgbm": 0.9263
+  },
+  "emsr774_aoi01": {
+   "elev": 0.7955,
+   "hand": 0.5771,
+   "full_lr": 0.8092,
+   "resid_lgbm": 0.8238,
+   "flash_lgbm": 0.7578,
+   "coastal_lgbm": 0.7692,
+   "full_lgbm": 0.7942
+  },
+  "emsr774_aoi02": {
+   "elev": 0.8619,
+   "hand": 0.7052,
+   "full_lr": 0.8828,
+   "resid_lgbm": 0.9268,
+   "flash_lgbm": 0.9156,
+   "coastal_lgbm": 0.9392,
+   "full_lgbm": 0.9344
+  },
+  "emsr776_aoi01": {
+   "elev": 0.9567,
+   "hand": 0.5346,
+   "full_lr": 0.8057,
+   "resid_lgbm": 0.935,
+   "flash_lgbm": 0.8939,
+   "coastal_lgbm": 0.9302,
+   "full_lgbm": 0.9387
+  },
+  "emsr779_aoi01": {
+   "elev": 0.991,
+   "hand": 0.7326,
+   "full_lr": 0.9103,
+   "resid_lgbm": 0.8654,
+   "flash_lgbm": 0.8282,
+   "coastal_lgbm": 0.923,
+   "full_lgbm": 0.8054
+  },
+  "emsr779_aoi02": {
+   "elev": 0.8351,
+   "hand": 0.5393,
+   "full_lr": 0.739,
+   "resid_lgbm": 0.6794,
+   "flash_lgbm": 0.4411,
+   "coastal_lgbm": 0.458,
+   "full_lgbm": 0.5326
+  },
+  "emsr779_aoi03": {
+   "elev": 0.529,
+   "hand": 0.3905,
+   "full_lr": 0.5862,
+   "resid_lgbm": 0.3937,
+   "flash_lgbm": 0.6151,
+   "coastal_lgbm": 0.4229,
+   "full_lgbm": 0.4724
+  },
+  "emsr799_aoi02": {
+   "elev": 0.7364,
+   "hand": 0.6294,
+   "full_lr": 0.7518,
+   "resid_lgbm": 0.7536,
+   "flash_lgbm": 0.7104,
+   "coastal_lgbm": 0.8323,
+   "full_lgbm": 0.7338
+  },
+  "emsr799_aoi03": {
+   "elev": 0.8432,
+   "hand": 0.7986,
+   "full_lr": 0.9036,
+   "resid_lgbm": 0.8955,
+   "flash_lgbm": 0.9014,
+   "coastal_lgbm": 0.9038,
+   "full_lgbm": 0.8946
+  },
+  "emsr799_aoi04": {
+   "elev": 0.4489,
+   "hand": 0.5285,
+   "full_lr": 0.4201,
+   "resid_lgbm": 0.3001,
+   "flash_lgbm": 0.4957,
+   "coastal_lgbm": 0.2883,
+   "full_lgbm": 0.2446
+  },
+  "emsr813_aoi01": {
+   "elev": 0.8943,
+   "hand": 0.9104,
+   "full_lr": 0.9038,
+   "resid_lgbm": 0.9389,
+   "flash_lgbm": 0.8823,
+   "coastal_lgbm": 0.8923,
+   "full_lgbm": 0.9288
+  },
+  "emsr838_aoi01": {
+   "elev": 0.4462,
+   "hand": 0.4738,
+   "full_lr": 0.7837,
+   "resid_lgbm": 0.6813,
+   "flash_lgbm": 0.5944,
+   "coastal_lgbm": 0.7529,
+   "full_lgbm": 0.7718
+  },
+  "emsr838_aoi03": {
+   "elev": 0.7832,
+   "hand": 0.4472,
+   "full_lr": 0.8014,
+   "resid_lgbm": 0.6995,
+   "flash_lgbm": 0.7641,
+   "coastal_lgbm": 0.5097,
+   "full_lgbm": 0.4094
+  },
+  "emsr838_aoi07": {
+   "elev": 0.6013,
+   "hand": 0.5703,
+   "full_lr": 0.6767,
+   "resid_lgbm": 0.5282,
+   "flash_lgbm": 0.5304,
+   "coastal_lgbm": 0.6057,
+   "full_lgbm": 0.5499
+  },
+  "emsr844_aoi01": {
+   "elev": 0.6426,
+   "hand": 0.6086,
+   "full_lr": 0.7193,
+   "resid_lgbm": 0.6715,
+   "flash_lgbm": 0.5626,
+   "coastal_lgbm": 0.6972,
+   "full_lgbm": 0.6869
+  },
+  "emsr853_aoi02": {
+   "elev": 0.5196,
+   "hand": 0.5202,
+   "full_lr": 0.6275,
+   "resid_lgbm": 0.5905,
+   "flash_lgbm": 0.6611,
+   "coastal_lgbm": 0.6284,
+   "full_lgbm": 0.6017
+  },
+  "emsr853_aoi04": {
+   "elev": 0.77,
+   "hand": 0.6546,
+   "full_lr": 0.8377,
+   "resid_lgbm": 0.8404,
+   "flash_lgbm": 0.8256,
+   "coastal_lgbm": 0.691,
+   "full_lgbm": 0.8135
+  },
+  "emsr853_aoi08": {
+   "elev": 0.3841,
+   "hand": 0.3595,
+   "full_lr": 0.5886,
+   "resid_lgbm": 0.456,
+   "flash_lgbm": 0.4713,
+   "coastal_lgbm": 0.4539,
+   "full_lgbm": 0.4145
+  },
+  "emsr865_aoi01": {
+   "elev": 0.5902,
+   "hand": 0.6194,
+   "full_lr": 0.6539,
+   "resid_lgbm": 0.6555,
+   "flash_lgbm": 0.6085,
+   "coastal_lgbm": 0.8064,
+   "full_lgbm": 0.6779
+  },
+  "emsr868_aoi01": {
+   "elev": 0.9694,
+   "hand": 0.9134,
+   "full_lr": 0.9734,
+   "resid_lgbm": 0.9833,
+   "flash_lgbm": 0.9741,
+   "coastal_lgbm": 0.9846,
+   "full_lgbm": 0.9823
+  },
+  "emsr868_aoi02": {
+   "elev": 0.9424,
+   "hand": 0.79,
+   "full_lr": 0.9149,
+   "resid_lgbm": 0.7936,
+   "flash_lgbm": 0.7931,
+   "coastal_lgbm": 0.6742,
+   "full_lgbm": 0.7627
+  },
+  "emsr870_aoi05": {
+   "elev": 0.8881,
+   "hand": 0.7496,
+   "full_lr": 0.8887,
+   "resid_lgbm": 0.9141,
+   "flash_lgbm": 0.8849,
+   "coastal_lgbm": 0.8901,
+   "full_lgbm": 0.9153
+  },
+  "emsr870_aoi08": {
+   "elev": 0.4078,
+   "hand": 0.4197,
+   "full_lr": 0.5377,
+   "resid_lgbm": 0.4449,
+   "flash_lgbm": 0.3979,
+   "coastal_lgbm": 0.5127,
+   "full_lgbm": 0.4633
+  },
+  "emsr870_aoi13": {
+   "elev": 0.8237,
+   "hand": 0.5818,
+   "full_lr": 0.9496,
+   "resid_lgbm": 0.8608,
+   "flash_lgbm": 0.9118,
+   "coastal_lgbm": 0.9082,
+   "full_lgbm": 0.8549
+  },
+  "emsr935_aoi01": {
+   "elev": 0.7214,
+   "hand": 0.7198,
+   "full_lr": 0.6761,
+   "resid_lgbm": 0.7183,
+   "flash_lgbm": 0.6886,
+   "coastal_lgbm": 0.7386,
+   "full_lgbm": 0.7315
+  },
+  "emsr935_aoi02": {
+   "elev": 0.8084,
+   "hand": 0.5443,
+   "full_lr": 0.7693,
+   "resid_lgbm": 0.8079,
+   "flash_lgbm": 0.785,
+   "coastal_lgbm": 0.7881,
+   "full_lgbm": 0.8148
+  },
+  "encantado": {
+   "elev": 0.8928,
+   "hand": 0.7786,
+   "full_lr": 0.8953,
+   "resid_lgbm": 0.8924,
+   "flash_lgbm": 0.898,
+   "coastal_lgbm": 0.9026,
+   "full_lgbm": 0.8793
+  },
+  "faenza": {
+   "elev": 0.7816,
+   "hand": 0.6866,
+   "full_lr": 0.8213,
+   "resid_lgbm": 0.8593,
+   "flash_lgbm": 0.8527,
+   "coastal_lgbm": 0.8379,
+   "full_lgbm": 0.849
+  },
+  "fort_myers_beach": {
+   "elev": 0.7339,
+   "hand": 0.6584,
+   "full_lr": 0.6247,
+   "resid_lgbm": 0.737,
+   "flash_lgbm": 0.6467,
+   "coastal_lgbm": 0.6944,
+   "full_lgbm": 0.7391
+  },
+  "hai_phong": {
+   "elev": 0.8904,
+   "hand": 0.8705,
+   "full_lr": 0.504,
+   "resid_lgbm": 0.8453,
+   "flash_lgbm": 0.6098,
+   "coastal_lgbm": 0.4746,
+   "full_lgbm": 0.8139
+  },
+  "hanoi": {
+   "elev": 0.9522,
+   "hand": 0.481,
+   "full_lr": 0.9273,
+   "resid_lgbm": 0.9467,
+   "flash_lgbm": 0.8139,
+   "coastal_lgbm": 0.7386,
+   "full_lgbm": 0.855
+  },
+  "himachal_2023": {
+   "elev": 0.6099,
+   "hand": 0.5341,
+   "full_lr": 0.6023,
+   "resid_lgbm": 0.5941,
+   "flash_lgbm": 0.5709,
+   "coastal_lgbm": 0.5803,
+   "full_lgbm": 0.5616
+  },
+  "kerala_2018": {
+   "elev": 0.747,
+   "hand": 0.7091,
+   "full_lr": 0.7835,
+   "resid_lgbm": 0.7888,
+   "flash_lgbm": 0.7828,
+   "coastal_lgbm": 0.7635,
+   "full_lgbm": 0.8063
+  },
+  "kolonnawa": {
+   "elev": 0.8314,
+   "hand": 0.6056,
+   "full_lr": 0.8278,
+   "resid_lgbm": 0.8362,
+   "flash_lgbm": 0.8221,
+   "coastal_lgbm": 0.8132,
+   "full_lgbm": 0.8368
+  },
+  "kyaukpyu": {
+   "elev": 0.8953,
+   "hand": 0.6895,
+   "full_lr": 0.8676,
+   "resid_lgbm": 0.9049,
+   "flash_lgbm": 0.9435,
+   "coastal_lgbm": 0.8798,
+   "full_lgbm": 0.9107
+  },
+  "milagro": {
+   "elev": 0.7523,
+   "hand": 0.698,
+   "full_lr": 0.911,
+   "resid_lgbm": 0.8633,
+   "flash_lgbm": 0.917,
+   "coastal_lgbm": 0.8929,
+   "full_lgbm": 0.9021
+  },
+  "nam_dinh": {
+   "elev": 0.4518,
+   "hand": 0.4386,
+   "full_lr": 0.6922,
+   "resid_lgbm": 0.6569,
+   "flash_lgbm": 0.7293,
+   "coastal_lgbm": 0.5435,
+   "full_lgbm": 0.6114
+  },
+  "paiporta": {
+   "elev": 0.7375,
+   "hand": 0.5008,
+   "full_lr": 0.66,
+   "resid_lgbm": 0.7171,
+   "flash_lgbm": 0.7231,
+   "coastal_lgbm": 0.6359,
+   "full_lgbm": 0.7374
+  },
+  "pakistan_2022": {
+   "elev": 0.655,
+   "hand": 0.5138,
+   "full_lr": 0.7527,
+   "resid_lgbm": 0.727,
+   "flash_lgbm": 0.649,
+   "coastal_lgbm": 0.6612,
+   "full_lgbm": 0.7538
+  },
+  "r_emsr703_aoi01": {
+   "elev": 0.8327,
+   "hand": 0.6925,
+   "full_lr": 0.8098,
+   "resid_lgbm": 0.8092,
+   "flash_lgbm": 0.8429,
+   "coastal_lgbm": 0.8297,
+   "full_lgbm": 0.8165
+  },
+  "r_emsr703_aoi02": {
+   "elev": 0.6606,
+   "hand": 0.6251,
+   "full_lr": 0.6274,
+   "resid_lgbm": 0.6505,
+   "flash_lgbm": 0.6276,
+   "coastal_lgbm": 0.583,
+   "full_lgbm": 0.6258
+  },
+  "r_emsr712_aoi02": {
+   "elev": 0.9023,
+   "hand": 0.7184,
+   "full_lr": 0.6907,
+   "resid_lgbm": 0.8775,
+   "flash_lgbm": 0.8182,
+   "coastal_lgbm": 0.7007,
+   "full_lgbm": 0.8518
+  },
+  "r_emsr734_aoi17": {
+   "elev": 0.6898,
+   "hand": 0.9003,
+   "full_lr": 0.9789,
+   "resid_lgbm": 0.7734,
+   "flash_lgbm": 0.7494,
+   "coastal_lgbm": 0.6742,
+   "full_lgbm": 0.7493
+  },
+  "r_emsr742_aoi01": {
+   "elev": 0.9458,
+   "hand": 0.6964,
+   "full_lr": 0.8773,
+   "resid_lgbm": 0.8972,
+   "flash_lgbm": 0.8751,
+   "coastal_lgbm": 0.9212,
+   "full_lgbm": 0.8783
+  },
+  "r_emsr742_aoi03": {
+   "elev": 0.9694,
+   "hand": 0.6263,
+   "full_lr": 0.86,
+   "resid_lgbm": 0.9654,
+   "flash_lgbm": 0.9726,
+   "coastal_lgbm": 0.9674,
+   "full_lgbm": 0.9702
+  },
+  "r_emsr780_aoi08": {
+   "elev": 0.4139,
+   "hand": 0.4365,
+   "full_lr": 0.4682,
+   "resid_lgbm": 0.4941,
+   "flash_lgbm": 0.4614,
+   "coastal_lgbm": 0.4869,
+   "full_lgbm": 0.4961
+  },
+  "r_emsr781_aoi01": {
+   "elev": 0.949,
+   "hand": 0.7667,
+   "full_lr": 0.9266,
+   "resid_lgbm": 0.9334,
+   "flash_lgbm": 0.947,
+   "coastal_lgbm": 0.9257,
+   "full_lgbm": 0.9439
+  },
+  "r_emsr790_aoi02": {
+   "elev": 0.8623,
+   "hand": 0.8963,
+   "full_lr": 0.833,
+   "resid_lgbm": 0.852,
+   "flash_lgbm": 0.8391,
+   "coastal_lgbm": 0.7457,
+   "full_lgbm": 0.8086
+  },
+  "r_emsr793_aoi01": {
+   "elev": 0.9606,
+   "hand": 0.8587,
+   "full_lr": 0.9519,
+   "resid_lgbm": 0.9745,
+   "flash_lgbm": 0.9693,
+   "coastal_lgbm": 0.9529,
+   "full_lgbm": 0.9695
+  },
+  "r_emsr793_aoi02": {
+   "elev": 0.9345,
+   "hand": 0.9473,
+   "full_lr": 0.9569,
+   "resid_lgbm": 0.9397,
+   "flash_lgbm": 0.9441,
+   "coastal_lgbm": 0.9356,
+   "full_lgbm": 0.9539
+  },
+  "r_emsr805_aoi01": {
+   "elev": 0.6548,
+   "hand": 0.6561,
+   "full_lr": 0.6783,
+   "resid_lgbm": 0.727,
+   "flash_lgbm": 0.5456,
+   "coastal_lgbm": 0.5656,
+   "full_lgbm": 0.6584
+  },
+  "r_emsr805_aoi03": {
+   "elev": 0.7254,
+   "hand": 0.7333,
+   "full_lr": 0.8074,
+   "resid_lgbm": 0.7781,
+   "flash_lgbm": 0.6656,
+   "coastal_lgbm": 0.7922,
+   "full_lgbm": 0.7468
+  },
+  "r_emsr845_aoi02": {
+   "elev": 0.9272,
+   "hand": 0.7708,
+   "full_lr": 0.8538,
+   "resid_lgbm": 0.9004,
+   "flash_lgbm": 0.8917,
+   "coastal_lgbm": 0.8575,
+   "full_lgbm": 0.8753
+  },
+  "r_emsr845_aoi03": {
+   "elev": 0.6837,
+   "hand": 0.7065,
+   "full_lr": 0.6827,
+   "resid_lgbm": 0.7302,
+   "flash_lgbm": 0.707,
+   "coastal_lgbm": 0.7299,
+   "full_lgbm": 0.7388
+  },
+  "r_emsr850_aoi02": {
+   "elev": 0.8533,
+   "hand": 0.8473,
+   "full_lr": 0.8169,
+   "resid_lgbm": 0.8523,
+   "flash_lgbm": 0.8341,
+   "coastal_lgbm": 0.8658,
+   "full_lgbm": 0.8473
+  },
+  "r_emsr850_aoi03": {
+   "elev": 0.8306,
+   "hand": 0.7969,
+   "full_lr": 0.7316,
+   "resid_lgbm": 0.8607,
+   "flash_lgbm": 0.8062,
+   "coastal_lgbm": 0.8009,
+   "full_lgbm": 0.8669
+  },
+  "r_emsr856_aoi01": {
+   "elev": 0.9151,
+   "hand": 0.6218,
+   "full_lr": 0.913,
+   "resid_lgbm": 0.9208,
+   "flash_lgbm": 0.9229,
+   "coastal_lgbm": 0.823,
+   "full_lgbm": 0.8576
+  },
+  "r_emsr856_aoi02": {
+   "elev": 0.9807,
+   "hand": 0.6957,
+   "full_lr": 0.9251,
+   "resid_lgbm": 0.9672,
+   "flash_lgbm": 0.915,
+   "coastal_lgbm": 0.9525,
+   "full_lgbm": 0.9393
+  },
+  "r_emsr857_aoi01": {
+   "elev": 0.9312,
+   "hand": 0.6807,
+   "full_lr": 0.8831,
+   "resid_lgbm": 0.8647,
+   "flash_lgbm": 0.8088,
+   "coastal_lgbm": 0.7508,
+   "full_lgbm": 0.8551
+  },
+  "r_emsr857_aoi02": {
+   "elev": 0.9237,
+   "hand": 0.8049,
+   "full_lr": 0.914,
+   "resid_lgbm": 0.9262,
+   "flash_lgbm": 0.9171,
+   "coastal_lgbm": 0.905,
+   "full_lgbm": 0.9267
+  },
+  "r_emsr858_aoi08": {
+   "elev": 0.8907,
+   "hand": 0.7495,
+   "full_lr": 0.9145,
+   "resid_lgbm": 0.9075,
+   "flash_lgbm": 0.8998,
+   "coastal_lgbm": 0.9161,
+   "full_lgbm": 0.904
+  },
+  "r_emsr858_aoi10": {
+   "elev": 0.9129,
+   "hand": 0.7878,
+   "full_lr": 0.8756,
+   "resid_lgbm": 0.9163,
+   "flash_lgbm": 0.885,
+   "coastal_lgbm": 0.8952,
+   "full_lgbm": 0.9092
+  },
+  "r_emsr863_aoi02": {
+   "elev": 0.8812,
+   "hand": 0.7619,
+   "full_lr": 0.8794,
+   "resid_lgbm": 0.894,
+   "flash_lgbm": 0.8628,
+   "coastal_lgbm": 0.8852,
+   "full_lgbm": 0.8963
+  },
+  "r_emsr864_aoi01": {
+   "elev": 0.9547,
+   "hand": 0.9244,
+   "full_lr": 0.9463,
+   "resid_lgbm": 0.9661,
+   "flash_lgbm": 0.974,
+   "coastal_lgbm": 0.9672,
+   "full_lgbm": 0.9623
+  },
+  "r_emsr864_aoi02": {
+   "elev": 0.9196,
+   "hand": 0.9125,
+   "full_lr": 0.9342,
+   "resid_lgbm": 0.9371,
+   "flash_lgbm": 0.9304,
+   "coastal_lgbm": 0.9508,
+   "full_lgbm": 0.9358
+  },
+  "r_emsr867_aoi01": {
+   "elev": 0.6083,
+   "hand": 0.5036,
+   "full_lr": 0.6706,
+   "resid_lgbm": 0.6115,
+   "flash_lgbm": 0.6945,
+   "coastal_lgbm": 0.6421,
+   "full_lgbm": 0.66
+  },
+  "r_emsr867_aoi03": {
+   "elev": 0.7835,
+   "hand": 0.7991,
+   "full_lr": 0.8815,
+   "resid_lgbm": 0.8703,
+   "flash_lgbm": 0.8052,
+   "coastal_lgbm": 0.839,
+   "full_lgbm": 0.8237
+  },
+  "s1_amphan_sundarbans_2020": {
+   "elev": 0.6756,
+   "hand": 0.6303,
+   "full_lr": 0.7246,
+   "resid_lgbm": 0.6825,
+   "flash_lgbm": 0.7143,
+   "coastal_lgbm": 0.6377,
+   "full_lgbm": 0.6323
+  },
+  "s1_assam_morigaon_2024": {
+   "elev": 0.9108,
+   "hand": 0.8149,
+   "full_lr": 0.9031,
+   "resid_lgbm": 0.8611,
+   "flash_lgbm": 0.8713,
+   "coastal_lgbm": 0.8835,
+   "full_lgbm": 0.8812
+  },
+  "s1_fani_puri_2019": {
+   "elev": 0.5802,
+   "hand": 0.4853,
+   "full_lr": 0.6686,
+   "resid_lgbm": 0.6713,
+   "flash_lgbm": 0.6428,
+   "coastal_lgbm": 0.6687,
+   "full_lgbm": 0.7165
+  },
+  "s1_ida_lafitte_2021": {
+   "elev": 0.6456,
+   "hand": 0.661,
+   "full_lr": 0.7371,
+   "resid_lgbm": 0.6814,
+   "flash_lgbm": 0.6401,
+   "coastal_lgbm": 0.6396,
+   "full_lgbm": 0.6474
+  },
+  "s1_kelantan_2024": {
+   "elev": 0.747,
+   "hand": 0.5567,
+   "full_lr": 0.7258,
+   "resid_lgbm": 0.7413,
+   "flash_lgbm": 0.7343,
+   "coastal_lgbm": 0.7381,
+   "full_lgbm": 0.7237
+  },
+  "s1_laura_cameron_2020": {
+   "elev": 0.6548,
+   "hand": 0.6065,
+   "full_lr": 0.5951,
+   "resid_lgbm": 0.3728,
+   "flash_lgbm": 0.4239,
+   "coastal_lgbm": 0.4416,
+   "full_lgbm": 0.3574
+  },
+  "s1_lokoja_2022": {
+   "elev": 0.6581,
+   "hand": 0.5684,
+   "full_lr": 0.7711,
+   "resid_lgbm": 0.8715,
+   "flash_lgbm": 0.735,
+   "coastal_lgbm": 0.7762,
+   "full_lgbm": 0.8743
+  },
+  "s1_sunamganj_2024": {
+   "elev": 0.9353,
+   "hand": 0.8424,
+   "full_lr": 0.9282,
+   "resid_lgbm": 0.9452,
+   "flash_lgbm": 0.9559,
+   "coastal_lgbm": 0.9426,
+   "full_lgbm": 0.9414
+  },
+  "s1_tabasco_2020": {
+   "elev": 0.7937,
+   "hand": 0.5841,
+   "full_lr": 0.8658,
+   "resid_lgbm": 0.8563,
+   "flash_lgbm": 0.8665,
+   "coastal_lgbm": 0.8697,
+   "full_lgbm": 0.8475
+  },
+  "s1_yenagoa_2022": {
+   "elev": 0.6335,
+   "hand": 0.5543,
+   "full_lr": 0.6942,
+   "resid_lgbm": 0.6661,
+   "flash_lgbm": 0.657,
+   "coastal_lgbm": 0.6573,
+   "full_lgbm": 0.6805
+  },
+  "sittwe": {
+   "elev": 0.8353,
+   "hand": 0.8061,
+   "full_lr": 0.8069,
+   "resid_lgbm": 0.9242,
+   "flash_lgbm": 0.9388,
+   "coastal_lgbm": 0.8144,
+   "full_lgbm": 0.924
+  },
+  "sylhet_2022": {
+   "elev": 0.8545,
+   "hand": 0.73,
+   "full_lr": 0.9324,
+   "resid_lgbm": 0.93,
+   "flash_lgbm": 0.9452,
+   "coastal_lgbm": 0.9289,
+   "full_lgbm": 0.9213
+  },
+  "thai_binh": {
+   "elev": 0.3536,
+   "hand": 0.2706,
+   "full_lr": 0.5495,
+   "resid_lgbm": 0.5119,
+   "flash_lgbm": 0.6269,
+   "coastal_lgbm": 0.4461,
+   "full_lgbm": 0.4838
+  },
+  "valencia_2024": {
+   "elev": 0.4207,
+   "hand": 0.7063,
+   "full_lr": 0.6294,
+   "resid_lgbm": 0.5292,
+   "flash_lgbm": 0.4875,
+   "coastal_lgbm": 0.538,
+   "full_lgbm": 0.5403
+  },
+  "volos": {
+   "elev": 0.5216,
+   "hand": 0.5184,
+   "full_lr": 0.6696,
+   "resid_lgbm": 0.6666,
+   "flash_lgbm": 0.6381,
+   "coastal_lgbm": 0.6384,
+   "full_lgbm": 0.6086
+  }
+ }
+}

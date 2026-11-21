@@ -53,3 +53,16 @@ def test_redact_removes_home_paths():
     home = os.path.expanduser("~")
     out = H._redact({"tail": [f'File "{home}/x/y.py", line 1']})
     assert home not in json.dumps(out)
+
+
+def test_baseline_candidates_are_flood_scores():
+    """Regression (R15): tables store HAND as a score (higher = more flood-prone);
+    model_v3 must not negate it again. elev = -elevation."""
+    import numpy as np
+    from experiments.flood_round2 import features_r2 as R
+    from experiments.flood_round2 import model_v3 as V
+    t = {"X": np.zeros((3, len(R.FEATURES_R2)), np.float32), "C": np.zeros((3, 7), np.float32)}
+    t["C"][:, 0] = [5.0, 1.0, -2.0]
+    t["X"][:, R.FEATURES_R2.index("elev_glo30")] = [10.0, 20.0, 30.0]
+    assert list(V.predict("hand", None, t)) == [5.0, 1.0, -2.0]
+    assert list(V.predict("elev", None, t)) == [-10.0, -20.0, -30.0]

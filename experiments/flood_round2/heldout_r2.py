@@ -119,7 +119,7 @@ def _comparators(t):
     from experiments.flood_round2 import features_r2 as R
     C = {k: t["C"][:, i].astype(np.float64) for i, k in enumerate(FT.COMPARATORS)}
     C["elev"] = -t["X"][:, R.FEATURES_R2.index("elev_glo30")].astype(np.float64)
-    C["hand"] = -C.pop("hand")
+    # comparators are stored as scores (higher = more flood-prone); HAND is already negated
     return C
 
 

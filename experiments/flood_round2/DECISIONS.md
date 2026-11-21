@@ -107,3 +107,20 @@ Judgement calls, numbered R1, R2, and so on. Round-1 decisions are D1–D23 in `
 - When nearly every cell is wet, a within-box ranking cannot tell models apart, and the S1 labels measure "where water stayed visible to radar", not surge extent.
 - **Reading:** this case gives no evidence for or against the surge model. It shows that coastal surge needs an urban-capable or peak-time reference (USGS high-water marks — unavailable, R4 — or VHR optical) before SFINCS can be validated at a barrier island.
 - The glo30 member's better AUC comes from its bias-corrected DSM keeping buildings and trees higher (less wetting). It is not better physics.
+
+## R15 (2026-11-21) HAND sign bug fixed before any reserved data; method choice
+- model_v3 and heldout_r2 negated the stored HAND comparator, which is already a flood score. DEV HAND AUCs came out at 0.27–0.40.
+- Fixed; only the HAND predictions were recomputed (it has no fitted model), choose was re-run, and a regression test was added.
+- No reserved data existed at any point.
+- Chosen per type (LRO mean AUC over DEV units; ties within 0.005 go to the simpler candidate):
+
+| type | n | chosen | AUC | elev | HAND |
+|---|---|---|---|---|---|
+| fluvial | 41 | resid_lgbm | 0.804 | 0.785 | 0.653 |
+| pluvial | 15 | elev | 0.729 | 0.729 | 0.663 |
+| waterlogging | 15 | full_lr | 0.747 | 0.723 | 0.602 |
+| flash_flood | 24 | resid_lgbm | 0.769 | 0.752 | 0.716 |
+| coastal | 22 | elev (coastal_lgbm 0.772 within the tie) | 0.770 | 0.770 | 0.707 |
+| compound | 14 | full_lgbm | 0.783 | 0.767 | 0.726 |
+
+- The learned candidates beat plain elevation on DEV by only 0.02–0.025. For rain and coastal, plain elevation is the method.

@@ -14,7 +14,7 @@ Clusters: registry links (flood_baselines.events.clusters). Every unit carries e
 
 Candidates, in tie-break order (simplest first):
 1. `elev`: -GLO-30 elevation (plain lowest-ground ranking; no fitting);
-2. `hand`: -HAND;
+2. `hand`: the HAND comparator as stored (already a score: higher = lower HAND);
 3. `full_lr`: logistic regression (flood_learned LogReg) on FULL features;
 4. `resid_lgbm`: LightGBM on FULL features, boosted from an elevation-only logistic fit on `elev_pct`. It learns only what improves on elevation.
 5. `flash_lgbm` / `coastal_lgbm`: LightGBM on type-specific features. Each competes only for its own types (flash_flood; coastal and compound).
@@ -138,7 +138,8 @@ def predict(cand, model, t):
     if cand == "elev":
         return -X[:, F.index("elev_glo30")].astype(np.float64)
     if cand == "hand":
-        return -t["C"][:, 0].astype(np.float64)
+        # flood_learned tables store comparators as scores (higher = more flood-prone): HAND is already negated
+        return t["C"][:, 0].astype(np.float64)
     if cand == "full_lr":
         return model.predict_proba(X[:, cols(FULL)])[:, 1]
     if cand == "resid_lgbm":
