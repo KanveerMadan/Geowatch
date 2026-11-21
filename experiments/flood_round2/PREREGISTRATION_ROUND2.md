@@ -1,6 +1,6 @@
 # flood_round2: pre-registration
 
-Written 2026-11-21, before any reference, input or score of any unit below has been read. The units were added to the registry as `reserved` in commit `0d569a1`, before this file. Once this file is committed and pushed, its SHA256 and push time are recorded in `PREREG_HASH_ROUND2.txt`. Nothing here changes after that.
+Written 2026-11-21, before any reference, input or score of any unit below has been read. The units were added to the registry as `reserved` in commits `0d569a1` (42 units) and `cfc29f1` (21 more rain and waterlogging units, at the owner's request; DECISIONS.md R11), both before this file. Once this file is committed and pushed, its SHA256 and push time are recorded in `PREREG_HASH_ROUND2.txt`. Nothing here changes after that.
 
 ## 1. What is tested
 For each flood type, the method chosen on DEV by the rule in §4 is scored **once** on the RESERVED units of that type (§2). It is scored beside both baselines, every other candidate, and the production modules (§5).
@@ -10,8 +10,8 @@ Reserved units per type (an event can carry two tags; units of one storm are one
 | type | units | clusters |
 |---|---|---|
 | fluvial | 20 | 12 |
-| pluvial | 3 | 3 |
-| waterlogging | 4 | 4 |
+| pluvial | 17 | 17 |
+| waterlogging | 11 | 11 |
 | flash_flood | 9 | 5 |
 | coastal | 5 | 5 |
 | compound | 5 | 5 |
@@ -19,11 +19,12 @@ Reserved units per type (an event can carry two tags; units of one storm are one
 | glof | 2 | 1 |
 | dam_breach | 2 | 1 |
 
+Total: 63 reserved units.
 
 Tags snowmelt (M8), glof (M6) and dam_breach (M7) are recorded and reported, but they are not scored as types this round. Their units are scored under their first tag.
 
 ## 2. Reserved units (fixed)
-Chosen from Copernicus EMS activation text and product metadata (exposure 2), or from a town point and date in general reporting (Sentinel-1 units, exposure 1). Rules: `experiments/flood_round2/DECISIONS.md` R7, R8.
+Chosen from Copernicus EMS activation text and product metadata (exposure 2), or from a town point and date in general reporting (Sentinel-1 units, exposure 1). Rules: `experiments/flood_round2/DECISIONS.md` R7, R8, R11.
 
 | unit | tags | region | date | reference (fixed now) | basis |
 |---|---|---|---|---|---|
@@ -63,10 +64,31 @@ Chosen from Copernicus EMS activation text and product metadata (exposure 2), or
 | r_emsr871_aoi01 | fluvial | europe_mediterranean | 2026-03-31 | EMS EMSR871 AOI01 DEL monitoring 0 (Romualdi) | heavy rain ... caused a rise in river water levels |
 | r_emsr871_aoi02 | fluvial | europe_mediterranean | 2026-03-31 | EMS EMSR871 AOI02 DEL monitoring 0 (Montero di Bisaccia) | heavy rain ... caused a rise in river water levels |
 | r_emsr721_aoi01 | pluvial | europe_mediterranean | 2024-05-14 | EMS EMSR721 AOI01 GRA monitoring 0 (Gorgonzola) | heavy thunderstorms, in Lombardy and Milan ... difficulties in the city's secondary network |
+| s1_abidjan_2018 | pluvial | africa | 2018-06-19 | Sentinel-1 VV drop, 20 km search square at [-4.01, 5.35] | torrential rain flooding in Abidjan, 18-19 Jun 2018 |
+| s1_antananarivo_2022 | pluvial | africa | 2022-01-18 | Sentinel-1 VV drop, 20 km search square at [47.52, -18.91] | heavy-rain flooding in Antananarivo, 17-18 Jan 2022 |
+| s1_auckland_2023 | pluvial | oceania | 2023-01-27 | Sentinel-1 VV drop, 20 km search square at [174.76, -36.87] | record rainfall flooding in Auckland, 27 Jan 2023 |
+| s1_bengaluru_2022 | pluvial | south_asia | 2022-09-05 | Sentinel-1 VV drop, 20 km search square at [77.7, 12.95] | heavy-rain flooding in east Bengaluru (Bellandur, Outer Ring Road), 4-5 Sep 2022 |
+| s1_durban_2022 | pluvial | africa | 2022-04-12 | Sentinel-1 VV drop, 20 km search square at [30.95, -29.85] | KwaZulu-Natal extreme rainfall floods, eThekwini (Durban), 11-12 Apr 2022 |
+| s1_fortlauderdale_2023 | pluvial | americas | 2023-04-13 | Sentinel-1 VV drop, 20 km search square at [-80.15, 26.12] | record 1-day rainfall flooding in Fort Lauderdale, 12-13 Apr 2023 |
+| s1_hyderabad_2020 | pluvial | south_asia | 2020-10-14 | Sentinel-1 VV drop, 20 km search square at [78.48, 17.38] | extreme rainfall flooding in Hyderabad, India, 13-14 Oct 2020 |
 | s1_jeddah_2022 | pluvial | africa_west_asia | 2022-11-24 | Sentinel-1 VV drop, 20 km search square at [39.2, 21.55] | torrential rain flooding in Jeddah, Saudi Arabia, 24 Nov 2022 |
 | s1_kinshasa_2022 | pluvial | africa | 2022-12-13 | Sentinel-1 VV drop, 20 km search square at [15.31, -4.38] | heavy-rain flooding in Kinshasa, DR Congo, 13 Dec 2022 |
+| s1_klang_2021 | pluvial | southeast_asia | 2021-12-18 | Sentinel-1 VV drop, 20 km search square at [101.52, 3.07] | heavy-rain flooding in Shah Alam / Klang Valley, 17-19 Dec 2021 |
+| s1_lagos_2021 | pluvial | africa | 2021-07-10 | Sentinel-1 VV drop, 20 km search square at [3.38, 6.52] | heavy-rain flooding across Lagos, July 2021 |
+| s1_manila_2024 | pluvial | southeast_asia | 2024-07-24 | Sentinel-1 VV drop, 20 km search square at [120.98, 14.62] | monsoon rain enhanced by Typhoon Gaemi floods Metro Manila, 24 Jul 2024 |
+| s1_nairobi_2024 | pluvial | africa | 2024-04-24 | Sentinel-1 VV drop, 20 km search square at [36.86, -1.26] | long-rains flooding in Nairobi (Mathare, Kasarani), late April 2024 |
+| s1_portauprince_2023 | pluvial | americas | 2023-06-03 | Sentinel-1 VV drop, 20 km search square at [-72.34, 18.54] | heavy-rain flooding in Port-au-Prince / Ouest, 3 Jun 2023 |
+| s1_recife_2022 | pluvial | americas | 2022-05-28 | Sentinel-1 VV drop, 20 km search square at [-34.95, -8.08] | extreme rainfall flooding in greater Recife, 27-28 May 2022 |
+| s1_seoul_2022 | pluvial | east_asia | 2022-08-08 | Sentinel-1 VV drop, 20 km search square at [127.03, 37.49] | record rainfall flooding in Seoul (Gangnam, Gwanak), 8 Aug 2022 |
+| s1_ayutthaya_2021 | waterlogging | southeast_asia | 2021-10-05 | Sentinel-1 VV drop, 20 km search square at [100.57, 14.35] | prolonged Chao Phraya flooding around Ayutthaya, Sep-Oct 2021 |
+| s1_battambang_2020 | waterlogging | southeast_asia | 2020-10-20 | Sentinel-1 VV drop, 20 km search square at [103.2, 13.1] | prolonged flooding in Battambang province, Cambodia, Oct 2020 |
+| s1_bentiu_2022 | waterlogging | africa | 2022-10-15 | Sentinel-1 VV drop, 20 km search square at [29.8, 9.23] | prolonged flooding around Bentiu, Unity State, South Sudan, 2022 season |
+| s1_budalangi_2020 | waterlogging | africa | 2020-05-15 | Sentinel-1 VV drop, 20 km search square at [34.02, 0.13] | prolonged Lake Victoria backflow / Nzoia flooding at Budalangi, Kenya, May 2020 |
 | s1_garsen_2023 | waterlogging | africa | 2023-12-01 | Sentinel-1 VV drop, 20 km search square at [40.12, -2.27] | prolonged Tana River delta flooding around Garsen, Kenya, Nov-Dec 2023 |
 | s1_jowhar_2023 | waterlogging | africa | 2023-11-20 | Sentinel-1 VV drop, 20 km search square at [45.5, 2.78] | prolonged Shabelle flooding around Jowhar, Somalia, Nov 2023 (El Nino rains) |
+| s1_kebbi_2020 | waterlogging | africa | 2020-09-15 | Sentinel-1 VV drop, 20 km search square at [4.2, 12.45] | prolonged flooding of rice farmland in Kebbi State, Nigeria, Sep 2020 |
+| s1_khuzestan_2019 | waterlogging | africa_west_asia | 2019-04-15 | Sentinel-1 VV drop, 20 km search square at [48.68, 31.32] | prolonged Karun flooding around Ahvaz, Khuzestan, April 2019 |
+| s1_mopti_2024 | waterlogging | africa | 2024-09-20 | Sentinel-1 VV drop, 20 km search square at [-4.2, 14.49] | prolonged flooding around Mopti (inner Niger delta), Mali, Sep 2024 |
 | s1_sukhothai_2024 | waterlogging | southeast_asia | 2024-09-01 | Sentinel-1 VV drop, 20 km search square at [99.82, 17.01] | prolonged Yom River flooding at Sukhothai, Thailand, late Aug-Sep 2024 |
 | s1_ubon_2022 | waterlogging | southeast_asia | 2022-10-05 | Sentinel-1 VV drop, 20 km search square at [104.87, 15.24] | prolonged Mun River flooding at Ubon Ratchathani, Oct 2022 |
 
@@ -89,6 +111,19 @@ Chosen from Copernicus EMS activation text and product metadata (exposure 2), or
 - The choice and the final models (trained on all DEV units, with isotonic calibration on pooled LRO predictions) are written to `results/method_choice_r2.json`, committed and hashed before the freeze tag.
 - Hyperparameters are flood_learned's, unchanged.
 
+**Choice made under this rule, before this file was pushed** (DEV only; `results/method_choice_r2.json`, commit `e6c2796`, sha256 `ca0c9cb6246bbf90fc10ac6fc43d66d3fdc16a0f593f9592f70bf1bd6b1528b0`; 114 DEV units). Bootstrap from `results/dev_report_r2.json`:
+
+| type | DEV units | chosen | DEV LRO mean AUC | vs elev (DEV, 95 % CI) | vs HAND (DEV, 95 % CI) |
+|---|---|---|---|---|---|
+| fluvial | 41 | `resid_lgbm` | 0.804 | +0.019 [−0.000, +0.041] | +0.151 [+0.117, +0.196] |
+| pluvial | 15 | `elev` | 0.729 | — | +0.067 [−0.038, +0.162] |
+| waterlogging | 15 | `full_lr` | 0.747 | +0.024 [−0.023, +0.096] | +0.145 [+0.065, +0.215] |
+| flash_flood | 24 | `resid_lgbm` | 0.769 | +0.018 [−0.004, +0.039] | +0.053 [+0.010, +0.096] |
+| coastal | 22 | `elev` | 0.770 | — | +0.062 [+0.016, +0.099] |
+| compound | 14 | `full_lgbm` | 0.783 | +0.016 [−0.012, +0.045] | +0.057 [−0.005, +0.112] |
+
+Stated before any reserved data: on DEV, no learned candidate beats plain elevation with a 95 % interval above 0. Under §6 the learned choices are therefore unlikely to pass, and a pass is not expected. For pluvial and coastal, plain elevation itself is the method, and it is tested against HAND.
+
 ## 5. Metrics
 - **Primary:** within-event ROC AUC of the raw score. Isotonic calibration is monotone and only adds ties (D15).
 - **Uncertainty:**
@@ -107,9 +142,16 @@ Chosen from Copernicus EMS activation text and product metadata (exposure 2), or
 A type **passes** when all of these hold for its chosen method on its qualifying reserved units:
 1. mean AUC ≥ 0.70 (the bar of every earlier flood round);
 2. the lower 95 % bound of the mean paired difference against the stronger baseline is > 0. The stronger baseline is whichever of {`hand`, `elev`} has the higher mean AUC on those same units. If the chosen method is itself one of these baselines, the comparison is against the other one.
-3. at least 3 qualifying units in at least 2 clusters. Otherwise the type is "not-run (insufficient)".
+3. at least **5 qualifying units in at least 3 clusters**. Otherwise the type is "not-run (insufficient)": its numbers are reported as indicative only, there is no verdict, and its production label stays `experimental`.
 
-Basis: the owner's round-2 brief ("beat the best of {HAND, elevation} with blocked 95% CI above 0, and AUC ≥ 0.70"), after round 1 showed plain elevation beating the learned model on held-out data.
+Basis for 3: the owner judged round 1's 3–4-unit rain and waterlogging sets too small to prove anything (R11). Five units in three storms is the smallest set where no single storm supplies most of the cluster bootstrap's resampling units. It applies to every type alike, and is fixed before any reserved unit is built.
+
+**Qualification risk, stated in advance.** Whether a unit reaches 50 flooded and 50 dry cells is known only at scoring.
+- 16 of the 17 rain units and all 11 waterlogging units use Sentinel-1 references. Sentinel-1 sees little flooding among buildings (flood_final D20), and its first post-event image can come after water recedes.
+- So **many urban-rain units may not qualify**. If fewer than 5 qualify in at least 3 clusters, rain ends "not-run (insufficient)". The same holds for waterlogging, coastal (5 registered) and compound (5 registered), which would then need every registered unit to qualify.
+- That outcome is reported plainly. It is not a pass, and units are not added after this file.
+
+Basis for 1 and 2: the owner's round-2 brief ("beat the best of {HAND, elevation} with blocked 95% CI above 0, and AUC ≥ 0.70"), after round 1 showed plain elevation beating the learned model on held-out data.
 
 ## 7. One-shot rule
 - The code, `method_choice_r2.json` and the final-model hashes are frozen under the tag `flood-round2-heldout-freeze`, pushed before any reserved reference is built.
@@ -118,7 +160,7 @@ Basis: the owner's round-2 brief ("beat the best of {HAND, elevation} with block
 
 ## 8. What is not tested here
 - SFINCS runs only on DEV cases (Valencia, Fort Myers, a compound case and urban rain cases). It is reported as DEV evidence and offered as a labelled scenario mode, not scored on reserved units.
-- No urban flood reference (Phase F) was available before this file. Built-up cells keep the "not assessed" rule in production unless a later, separately pre-registered urban test passes.
+- No urban flood reference (Phase F) was available before this file (origin/exp/urban-flood-ref absent, checked 2026-11-21). Built-up cells keep the "not assessed" rule in production unless a later, separately pre-registered urban test passes.
 
 ## 9. What the result decides
 - A type that passes gets its chosen method in production, labelled `validated` with a scope note (the reserved units and regions, and the limits).
