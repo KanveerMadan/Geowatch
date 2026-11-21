@@ -158,14 +158,23 @@ def _hz(mod, verdicts=None):
     return H.hazard_outputs(mods, MV, verdicts or C.flood_verdicts(), has_waterways=False)["fluvial"]
 
 
-def test_fluvial_with_its_validated_inputs_reads_validated_with_its_scope():
-    o = _hz(_fluvial())
-    assert o["validation_status"] == "validated"
-    sc = o["validated_scope"]
+def test_fluvial_is_demoted_even_with_its_validated_inputs():
+    """C78 (owner, 2026-11-21): the exact validated configuration no longer
+    reads `validated`; the output says why."""
+    mod = _fluvial()
+    assert C.module_config(mod) == C.VALIDATED_CONFIGS["fluvial"]["config"]   # still exact
+    o = _hz(mod)
+    assert o["validation_status"] == "experimental"
+    assert o["validated_scope"] is None
+    assert o["demoted"]["finding"] == "C78" and "flood_final" in o["demoted"]["reason"]
+    C.check_output(o)
+
+
+def test_validated_config_record_is_kept_for_fluvial():
+    sc = C.VALIDATED_CONFIGS["fluvial"]["scope"]
     assert all(sc[k] for k in C.SCOPE_KEYS)
     assert any("hanoi" in e for e in sc["events"]) and any("kolonnawa" in e for e in sc["events"])
-    assert sc["input_versions"] == {"MERIT/Hydro": "v1_0_1"}
-    C.check_output(o)
+    assert sc["not_covered_flood_final"]["mean_auc"] == 0.5777
 
 
 @pytest.mark.parametrize("change", [

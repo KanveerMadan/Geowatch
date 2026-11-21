@@ -122,8 +122,8 @@ VALIDATED_CONFIGS = {
                     "monsoon floodplain events it failed (mean 0.5365), so the "
                     "validation does not extend to those events or regions.",
             # Flood round 4 (PREREGISTRATION_ROUND4.md, Labels): failed, so the
-            # scope is narrowed, not the label (whether the label should change
-            # too is C78, NEEDS FATE).
+            # scope was narrowed, not the label. C78 then demoted the module
+            # (DEMOTED below); this entry is kept as the record.
             "not_covered": {
                 "evidence": "experiments/flood_validation/result_round4_2026-10-30.json",
                 "round4_mean_auc": 0.5365,
@@ -136,8 +136,8 @@ VALIDATED_CONFIGS = {
             },
             # flood_final (2026-11-20): this exact configuration re-tested on 8
             # new reserved river units in 7 clusters, pre-registered; failed
-            # (mean 0.5777, delta vs HAND -0.1186 [-0.2374, -0.019]). Whether
-            # the label itself should change is C78 (owner's decision).
+            # (mean 0.5777, delta vs HAND -0.1186 [-0.2374, -0.019]). The owner
+            # then demoted the module (C78, DEMOTED).
             "not_covered_flood_final": {
                 "evidence": FLOOD_FINAL_HELDOUT_RESULT,
                 "mean_auc": 0.5777,
@@ -216,13 +216,33 @@ VALIDATED_CONFIGS = {
 }
 
 
+# C78 (decided by the owner on PR #1, 2026-11-21): a module listed here is
+# never `validated`, even when it runs exactly its VALIDATED_CONFIGS entry.
+# The entry stays as the record of what was validated and where it failed.
+DEMOTED = {
+    "fluvial": {
+        "finding": "C78",
+        "decided": "2026-11-21, owner, on PR #1",
+        "label": "experimental",
+        "reason": "Validated on 2 held-out river cities (round 2, mean 0.858), then failed two "
+                  "pre-registered re-tests of the same configuration: round 4 (3 South Asian "
+                  "floodplain events, 0.537) and flood_final (8 river units in 7 clusters, "
+                  "0.578, below HAND). The learned output (learned_flood) is validated for "
+                  "river flooding instead.",
+        "evidence": ["experiments/flood_validation/result_round4_2026-10-30.json",
+                     "experiments/flood_final/results/heldout.json"],
+    },
+}
+
+
 # The eleven flood types (docs/flood_taxonomy.md, recorded 2026-10-30). Every
 # type has an output under outputs.susceptibility.<module>, so none can go
 # missing silently. Built types (M1-M5) are labelled by hazard_label; unbuilt
 # ones by UNBUILT_FLOOD_TYPES below.
 FLOOD_TAXONOMY = {
     "M1": {"module": "fluvial", "name": "fluvial",
-           "status": "validated, scoped; round 4 failed, scope narrowed", "round": 4},
+           "status": "experimental: demoted (C78) after round 4 and flood_final failed; "
+                     "learned_flood is validated for river flooding", "round": 4},
     "M2": {"module": "pluvial", "name": "pluvial", "status": "new method; round 4 failed",
            "round": 4},
     "M3": {"module": "waterlogging", "name": "waterlogging",
@@ -294,6 +314,8 @@ def validated_scope(name: str, mod: dict, verdict: str | None) -> dict | None:
     """C70: the scope note when module `name` passed Tier 2 and ran exactly
     its validated configuration; None otherwise."""
     cfg = VALIDATED_CONFIGS.get(name)
+    if name in DEMOTED:                  # C78: demoted, whatever it ran
+        return None
     if cfg is None or verdict_label(verdict) != "validated" or module_config(mod) != cfg["config"]:
         return None
     return json.loads(json.dumps(cfg["scope"]))          # a copy the caller cannot mutate

@@ -74,15 +74,16 @@ def test_vegetation_observed_fraction_reflects_the_unobserved_corner(run):
 def test_labels_after_flood_round4(run):
     """Flood round 4 replaced pluvial, flash flood and waterlogging and failed
     all three (rounds 1-3 tested the retired methods). Coastal failed (round
-    2). Fluvial passed round 2 and runs exactly its validated inputs, so it
-    reads validated with its scope note (C70), which round 4 narrowed."""
+    2). Fluvial passed round 2 and runs exactly its validated inputs, but the
+    owner demoted it to experimental (C78) after round 4 and flood_final."""
     s = run[0]["outputs"]["susceptibility"]
     for h in ("pluvial", "flash_flood", "waterlogging"):
         assert s[h]["validation_status"] == "failed", h
         assert s[h]["tier2_verdict"] == "failed", h
-    assert s["fluvial"]["validated_scope"]["not_covered"]["regions"]
-    assert s["fluvial"]["validation_status"] == "validated"
-    assert s["fluvial"]["validated_scope"]["regions"]
+    # C78: fluvial passed round 2 but is demoted after two failed re-tests
+    assert s["fluvial"]["validation_status"] == "experimental"
+    assert s["fluvial"]["validated_scope"] is None
+    assert s["fluvial"]["demoted"]["finding"] == "C78"
     assert s["fluvial"]["tier2_verdict"] == "validated"
     assert s["coastal"]["validation_status"] == "failed"
     for h in ("fluvial", "flash_flood", "waterlogging"):

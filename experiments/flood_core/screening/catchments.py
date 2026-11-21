@@ -1,9 +1,10 @@
 """Read-only: MERIT upa (largest drainage line near points) and HydroBASINS lev-12 upstream area, for screening
 the Valencia (Poyo) and Volos/Thessaly domains. Inputs only, dev events only."""
+import os
 import json
 from dotenv import dotenv_values
 import ee
-ee.Initialize(project=dotenv_values("/Users/kanveermadan/geowatch/.env").get("GEE_PROJECT_ID"))
+ee.Initialize(project=dotenv_values(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", ".env")).get("GEE_PROJECT_ID"))
 upa = ee.Image("MERIT/Hydro/v1_0_1").select("upa")
 pts = {  # (lon, lat), radius m
  "poyo_at_paiporta": (-0.4177, 39.428, 600), "poyo_at_picanya": (-0.435, 39.434, 600),

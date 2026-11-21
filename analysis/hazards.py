@@ -8,10 +8,10 @@ the module's own label, its pinned Tier 2 verdict, and its inputs' labels
 flood round 4's new methods (bluespot fill-and-spill; persistence, clay,
 relief and backwater; stream power on valley floors), all per-pixel on the
 hydrology grid, and round 4 failed all three (rounds 1-3's verdicts were on
-the retired methods). Coastal is `failed` (round 2). Fluvial reads `validated`,
-with its scope note, only while it runs exactly the configuration round 2
-validated (C70, analysis.contract.VALIDATED_CONFIGS); otherwise its
-experimental raster inputs cap it.
+the retired methods). Coastal is `failed` (round 2). Fluvial is demoted to
+`experimental` (C78, analysis.contract.DEMOTED) after round 4 and flood_final
+failed its validated configuration; the learned output (learned_flood) is
+validated for river and waterlogging flooding (flood_final).
 """
 from __future__ import annotations
 
@@ -230,6 +230,8 @@ def hazard_outputs(modules: dict, mv: dict, verdicts: dict, *, has_waterways: bo
                  "applicability": mod.get("applicability"),
                  "limitations": mod.get("limitations", []),
                  "method": mod.get("method")}
+        if name in C.DEMOTED:
+            extra["demoted"] = dict(C.DEMOTED[name])
         if name == LEARNED:
             extra.update(flood_types=list(LEARNED_TYPES), not_assessed=mod.get("not_assessed"),
                          score_kind="within-AOI ranking; not a probability")

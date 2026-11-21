@@ -1135,7 +1135,7 @@ diagnostics**, computed after the verdicts. They change no verdict, and the
 test events they were measured on have now been seen, so a re-test needs
 fresh events and a new pre-registration.*
 
-### C78 — Fluvial's validation does not transfer to South Asian monsoon floodplains; its label stays `validated` only by the pre-registered rule [E] NEEDS FATE
+### C78 — Fluvial's validation does not transfer to South Asian monsoon floodplains; its label stays `validated` only by the pre-registered rule [E] DECIDED 2026-11-21: demoted to `experimental`
 
 Round 4 ran fluvial's exact validated configuration on Bihar 2026
 (Kosi/Ganga, AUC 0.643), Assam 2026 (Dikhow, 0.388) and Sindh 2022 (UNOSAT,
@@ -1153,6 +1153,17 @@ Sindh.
 **Decision needed:** should a module that failed its only out-of-region
 re-test keep `validated` anywhere, even scoped? Or should it be demoted, or
 made `failed` outside its two cities?
+
+**Decided 2026-11-21 (owner, on PR #1): demoted to `experimental`.**
+flood_final re-tested the same configuration, pre-registered, on 8 new
+reserved river units in 7 clusters (Mozambique, Lower Saxony, Assam,
+Sunamganj, Lokoja, Kelantan, Tabasco). It failed: mean 0.578, Δ vs HAND
+−0.119 [−0.237, −0.019] (`experiments/flood_final/results/heldout.json`).
+`analysis.contract.DEMOTED["fluvial"]` now caps the label whatever the
+module runs, and the output carries a `demoted` record. Its
+`VALIDATED_CONFIGS` entry is kept as the record. River flooding's validated
+output is now `learned_flood` (flood_final, scoped). Test:
+`tests/test_result_contract.py::test_fluvial_is_demoted_even_with_its_validated_inputs`.
 
 ### C79 — Pluvial has not yet had a test event that is a pluvial (ponding) flood [E] NEEDS FATE
 
