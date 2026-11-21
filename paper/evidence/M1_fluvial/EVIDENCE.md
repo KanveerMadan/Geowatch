@@ -11,6 +11,7 @@
 | R2 | Round 2: **current per-pixel method**, pre-registered, tuned on 2 events, held out on the rest | Hanoi, Kolonnawa (qualifying); Nysa, Hue (did not qualify) | **mean 0.8579** (Hanoi 0.9162, Kolonnawa 0.7996); bar 0.70 | **validated** | `result_round2_2026-10-28.json` (`2832dc8`, run 2026-10-28 18:04 UTC) |
 | R4 | Round 4: the same configuration re-tested, nothing tuned | Bihar, Assam, Pakistan (Sindh) | **mean 0.5365** (0.6425, 0.3878, 0.5791) | failed → scope narrowed | `result_round4_2026-10-30.json` (`21d645c`, run 2026-10-30 19:27 UTC) |
 | B | Baselines: fluvial vs HAND, JRC occurrence and distance to water on the same cells | 34 qualifying dev events (22 clusters) | beats the best baseline clearly on **5 of 34**; mean Δ vs HAND **+0.003** [−0.065, +0.066] | report (no verdict) | `experiments/flood_baselines/results/baselines.json` (`d1894e4`, run 2026-11-17 06:44 UTC) |
+| FF | flood_final: production module re-test + learned model, pre-registered (sha256 `e49bca3f…`), freeze `81ff7b1`, scored once | 8 reserved river units, 7 clusters (Mozambique, Lower Saxony, Guadalquivir, Assam, Sunamganj, Lokoja, Kelantan, Tabasco) | module **0.578** (Δ vs HAND −0.119); learned **0.791** (Δ +0.095 [+0.011, +0.192]); low elevation 0.850 | module **failed**; learned **passed** | `experiments/flood_final/results/heldout.json` (`c35c02a`, run 2026-11-20 14:14 UTC); `FLOOD_FINAL.md` |
 
 Round 3 did not test fluvial (pluvial, flash flood and waterlogging only).
 

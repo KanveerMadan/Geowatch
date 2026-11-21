@@ -127,11 +127,33 @@ def fake_cause_counts(layer, transform, shape, window, cct):
             "fully_shadowed": sh, "transient_snow": np.zeros(shape)}
 
 
+def fake_learned_inputs(transform, shape, crs, ref_year, key):
+    """flood_final learned-model inputs on the margin grid: a west-east
+    elevation ramp, water along the west edge, half the AOI built-up."""
+    from experiments.flood_learned.fetch import MARGIN_CELLS as k
+    H, W = shape
+    He, We = H + 2 * k, W + 2 * k
+    dem = np.tile(np.linspace(5.0, 40.0, We), (He, 1))
+    water = np.zeros((He, We), bool)
+    water[:, :2] = True
+    built = np.zeros(shape)
+    built[:, W // 2:] = 0.8
+    arr = {"dem_glo30": dem, "hs_acc_cells": np.full((He, We), 10.0), "water_ext": water,
+           "dist_water_m": np.tile(np.linspace(0, 3000, W), (H, 1)),
+           "jrc_occurrence": np.zeros(shape), "jrc_recurrence": np.zeros(shape),
+           "ndvi_pre": np.full(shape, 0.4), "dist_coast_m": np.full(shape, 50000.0),
+           "ghsl_built_frac": built, "wc_built": built, "wc_crop": 1.0 - built}
+    for c in ("tree", "shrub", "grass", "bare", "wetland", "mangrove"):
+        arr[f"wc_{c}"] = np.zeros(shape)
+    return {"arrays": arr, "meta": {"margin_cells": k, "osm_complete": True}}
+
+
 def deps(**overrides):
     d = {"init_ee": lambda: None, "load_layer": lambda name, bbox: synth_layer(),
          "context_fns": context_fns(), "fetch_dem": fake_dem,
          "fetch_waterways": fake_waterways, "run_change": fake_change,
-         "fetch_cause_counts": fake_cause_counts, "fetch_hydro_rasters": fake_hydro_rasters}
+         "fetch_cause_counts": fake_cause_counts, "fetch_hydro_rasters": fake_hydro_rasters,
+         "fetch_learned_inputs": fake_learned_inputs}
     d.update(overrides)
     return d
 

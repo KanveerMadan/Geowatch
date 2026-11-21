@@ -7,9 +7,9 @@ pipeline cannot drop a type without saying so.
 
 | Id | Type | Pipeline module | Status | Round |
 |---|---|---|---|---|
-| **M1** | Fluvial (river overflow) | `fluvial` | **validated**, scoped (round 2: Hanoi, Kolonnawa); round 4 **failed** on Bihar, Assam and Sindh (0.537), so the scope is narrowed (C78) | round 4, method unchanged |
+| **M1** | Fluvial (river overflow) | `fluvial`; `learned_flood` | module **experimental**: demoted 2026-11-21 (C78) after round 4 (0.537) and flood_final (0.578) failed its validated configuration. **`learned_flood` validated** for river flooding, scoped (flood_final held-out: 0.791, +0.095 over HAND; plain elevation scored 0.850) | flood_final |
 | **M2** | Pluvial (surface water from rain on the spot) | `pluvial` | **failed** round 4 (0.524): depression ("bluespot") detection with fill-and-spill; re-test when item 21's `impervious_total` exists | round 4 |
-| **M3** | Waterlogging (persistent standing water, poor drainage) | `waterlogging` | **failed** round 4 (0.613): historical standing-water persistence, clay, low relief, backwater | round 4 |
+| **M3** | Waterlogging (persistent standing water, poor drainage) | `waterlogging`; `learned_flood` | module **failed** round 4 (0.613). **`learned_flood` validated** for waterlogging, scoped (flood_final held-out: 0.791 on 3 units, +0.167 over HAND; plain elevation 0.843) | flood_final |
 | **M4** | Flash flood (short, intense rain on steep, fast catchments) | `flash_flood` | **failed** round 4 (0.640): short-duration intensity, catchment response time, stream power on channels and valley floors | round 4 |
 | **M5** | Coastal (surge, tide) | `coastal` | `failed` (round 2, pooled AUC 0.646); a new method is planned | round 5 |
 | **M6** | Debris flow / glacial lake outburst | `debris_flow_glof` | not built | round 5 |

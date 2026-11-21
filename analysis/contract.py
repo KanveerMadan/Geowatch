@@ -77,6 +77,16 @@ ROUND4_REPLACED_METHODS = ("pluvial", "flash_flood", "waterlogging")
 FLOOD_VALIDATION_ROUND4_RESULT = os.path.join("experiments", "flood_validation",
                                               "result_round4_2026-10-30.json")
 FLOOD_VALIDATION_ROUND4_SHA256 = "b9f39615750c0c836c1c1ef6da1ceb195fb9d4fc660d76ac5af7f84776c013d3"
+# flood_final (exp/flood-final): one pre-registered held-out pass of the learned
+# model (PREREGISTRATION.md sha256 e49bca3f..., freeze tag
+# flood-final-heldout-freeze = 81ff7b1). The file's hash is that of the
+# committed file after D22 redacted a local path in two error strings (no
+# score changed; the original is in commit c35c02a).
+FLOOD_FINAL_HELDOUT_RESULT = os.path.join("experiments", "flood_final", "results", "heldout.json")
+FLOOD_FINAL_HELDOUT_SHA256 = "96e82c606e98bef6d6deabdd0700dbc8313a965c6db3f3ad8e43008820c984f6"
+# The learned output is validated only for the types whose pre-registered
+# verdict passed; the others failed (pluvial, flash flood, coastal, compound).
+LEARNED_FLOOD_TYPES = ("fluvial", "waterlogging")
 VERDICT_LABEL = {"failed": "failed", "passed": "validated", "validated": "validated"}
 
 # C70 (item 26 flood follow-ups): a module that ran EXACTLY the configuration
@@ -112,8 +122,8 @@ VALIDATED_CONFIGS = {
                     "monsoon floodplain events it failed (mean 0.5365), so the "
                     "validation does not extend to those events or regions.",
             # Flood round 4 (PREREGISTRATION_ROUND4.md, Labels): failed, so the
-            # scope is narrowed, not the label (whether the label should change
-            # too is C78, NEEDS FATE).
+            # scope was narrowed, not the label. C78 then demoted the module
+            # (DEMOTED below); this entry is kept as the record.
             "not_covered": {
                 "evidence": "experiments/flood_validation/result_round4_2026-10-30.json",
                 "round4_mean_auc": 0.5365,
@@ -124,7 +134,103 @@ VALIDATED_CONFIGS = {
                             "Upper Assam, India (Dikhow, Brahmaputra basin)",
                             "Sindh, Pakistan (Indus plain)"],
             },
+            # flood_final (2026-11-20): this exact configuration re-tested on 8
+            # new reserved river units in 7 clusters, pre-registered; failed
+            # (mean 0.5777, delta vs HAND -0.1186 [-0.2374, -0.019]). The owner
+            # then demoted the module (C78, DEMOTED).
+            "not_covered_flood_final": {
+                "evidence": FLOOD_FINAL_HELDOUT_RESULT,
+                "mean_auc": 0.5777,
+                "events": ["Limpopo, Mozambique 2026-01-10 (EMSR857 AOI01, AOI02)",
+                           "Hunte, Lower Saxony 2023-12-24 (EMSR712 AOI02)",
+                           "Morigaon, Assam 2024-07-03 (Sentinel-1)",
+                           "Sunamganj, Bangladesh 2024-06-19 (Sentinel-1)",
+                           "Lokoja, Nigeria 2022-10-10 (Sentinel-1)",
+                           "Kelantan, Malaysia 2024-11-30 (Sentinel-1)",
+                           "Tabasco, Mexico 2020-11-08 (Sentinel-1)"],
+            },
         },
+    },
+    "learned_flood": {
+        "config": {
+            "method": "flood_final_learned_open_logreg",
+            "weights": None,
+            "ceilings": None,
+            "model_sha256": "49e30c54112df14ee1ef85595ee2a5576a98c27261b80f21332e78e59dec5daf",
+            "inputs": {
+                "terrain": {"source": "COPERNICUS/DEM/GLO30_2024_1 (bilinear, 30 m UTM, 2 km margin)",
+                    "method": "flood_final feature code"},
+                "accumulation": {"source": "WWF/HydroSHEDS/15ACC",
+                    "method": "flood_final feature code"},
+                "water": {"source": "OpenStreetMap water (Overpass) OR JRC/GSW1_4 occurrence >= 80 %",
+                    "method": "flood_final feature code"},
+                "jrc": {"source": "JRC/GSW1_4/GlobalSurfaceWater occurrence, recurrence",
+                    "method": "flood_final feature code"},
+                "landcover": {"source": "ESA/WorldCover v100/v200 (latest year before ref_year), 8 class fractions",
+                    "method": "flood_final feature code"},
+                "ndvi": {"source": "COPERNICUS/S2_HARMONIZED + GOOGLE/CLOUD_SCORE_PLUS cs_cdf >= 0.60, median of ref_year-1",
+                    "method": "flood_final feature code"},
+                "ghsl": {"source": "JRC/GHSL/P2023A/GHS_BUILT_S/2020",
+                    "method": "flood_final feature code"},
+                "coast": {"source": "sat-io shoreline outlines, distance capped at 50 km",
+                    "method": "flood_final feature code"},
+                "rain_clay": {"source": "susceptibility.hydro_rasters (CHIRPS, IMERG V07, SoilGrids)",
+                    "method": "flood_final feature code"},
+            },
+        },
+        "scope": {
+            "events": [
+                "river: Chibabel 2026-01-10 (EMSR857 AOI01), AUC 0.5849",
+                "river: Massiguita 2026-01-10 (EMSR857 AOI02), AUC 0.8575",
+                "river: Hunte River 2023-12-24 (EMSR712 AOI02), AUC 0.6771",
+                "river: Morigaon, Assam 2024-07-03 (Sentinel-1), AUC 0.8872",
+                "river: Sunamganj 2024-06-19 (Sentinel-1), AUC 0.9386",
+                "river: Lokoja 2022-10-10 (Sentinel-1), AUC 0.7926",
+                "river: Kelantan 2024-11-30 (Sentinel-1), AUC 0.7239",
+                "river: Tabasco 2020-11-08 (Sentinel-1), AUC 0.8685",
+                "waterlogging: Velipoje 2026-01-06 (EMSR856 AOI01), AUC 0.8132",
+                "waterlogging: Spiten 2026-01-06 (EMSR856 AOI02), AUC 0.8234",
+                "waterlogging: Yenagoa 2022-10-15 (Sentinel-1), AUC 0.7364",
+            ],
+            "regions": ["Southern Africa (Limpopo)", "West Africa (Niger, Niger delta)",
+                        "Northern Europe (Weser basin)", "Balkans (Albanian lowlands)",
+                        "South Asia (Brahmaputra, Meghna)", "Southeast Asia (Kelantan)",
+                        "Central America (Tabasco)"],
+            "input_versions": {"COPERNICUS/DEM": "GLO30_2024_1", "JRC/GSW": "1_4",
+                               "ESA/WorldCover": "v100/v200", "JRC/GHSL": "P2023A",
+                               "WWF/HydroSHEDS": "15ACC"},
+            "flood_types": list(LEARNED_FLOOD_TYPES),
+            "evidence": FLOOD_FINAL_HELDOUT_RESULT,
+            "note": "Validated for river and waterlogging flooding only, as a within-AOI "
+                    "ranking (mean within-event AUC: river 0.791, delta vs HAND +0.095 "
+                    "[+0.011, +0.192], 8 units in 7 clusters; waterlogging 0.791, +0.167 "
+                    "[+0.118, +0.226], 3 units in 2 clusters; validated on 4 km boxes). "
+                    "Failed for pluvial, flash flood, coastal and compound flooding. "
+                    "Plain low-ground ranking (GLO-30 elevation, not pre-registered) "
+                    "scored higher on the same held-out cells (river 0.850, "
+                    "waterlogging 0.843). The score is not a probability: the "
+                    "logistic model is not weakly calibrated (slope 1.72). Built-up "
+                    "cells are not assessed (reference blind spot, flood_final D20).",
+        },
+    },
+}
+
+
+# C78 (decided by the owner on PR #1, 2026-11-21): a module listed here is
+# never `validated`, even when it runs exactly its VALIDATED_CONFIGS entry.
+# The entry stays as the record of what was validated and where it failed.
+DEMOTED = {
+    "fluvial": {
+        "finding": "C78",
+        "decided": "2026-11-21, owner, on PR #1",
+        "label": "experimental",
+        "reason": "Validated on 2 held-out river cities (round 2, mean 0.858), then failed two "
+                  "pre-registered re-tests of the same configuration: round 4 (3 South Asian "
+                  "floodplain events, 0.537) and flood_final (8 river units in 7 clusters, "
+                  "0.578, below HAND). The learned output (learned_flood) is validated for "
+                  "river flooding instead.",
+        "evidence": ["experiments/flood_validation/result_round4_2026-10-30.json",
+                     "experiments/flood_final/results/heldout.json"],
     },
 }
 
@@ -135,7 +241,8 @@ VALIDATED_CONFIGS = {
 # ones by UNBUILT_FLOOD_TYPES below.
 FLOOD_TAXONOMY = {
     "M1": {"module": "fluvial", "name": "fluvial",
-           "status": "validated, scoped; round 4 failed, scope narrowed", "round": 4},
+           "status": "experimental: demoted (C78) after round 4 and flood_final failed; "
+                     "learned_flood is validated for river flooding", "round": 4},
     "M2": {"module": "pluvial", "name": "pluvial", "status": "new method; round 4 failed",
            "round": 4},
     "M3": {"module": "waterlogging", "name": "waterlogging",
@@ -194,16 +301,21 @@ def verdict_label(verdict: str | None) -> str | None:
 
 def module_config(mod: dict) -> dict:
     """What a module output says it ran, in VALIDATED_CONFIGS' shape."""
-    return {"method": mod.get("method"), "weights": mod.get("weights"),
-            "ceilings": mod.get("ceilings"),
-            "inputs": {k: {"source": i.get("source"), "method": i.get("method")}
-                       for k, i in (mod.get("inputs") or {}).items() if isinstance(i, dict)}}
+    cfg = {"method": mod.get("method"), "weights": mod.get("weights"),
+           "ceilings": mod.get("ceilings"),
+           "inputs": {k: {"source": i.get("source"), "method": i.get("method")}
+                      for k, i in (mod.get("inputs") or {}).items() if isinstance(i, dict)}}
+    if "model_sha256" in mod:            # a learned model: its exact coefficients
+        cfg["model_sha256"] = mod["model_sha256"]
+    return cfg
 
 
 def validated_scope(name: str, mod: dict, verdict: str | None) -> dict | None:
     """C70: the scope note when module `name` passed Tier 2 and ran exactly
     its validated configuration; None otherwise."""
     cfg = VALIDATED_CONFIGS.get(name)
+    if name in DEMOTED:                  # C78: demoted, whatever it ran
+        return None
     if cfg is None or verdict_label(verdict) != "validated" or module_config(mod) != cfg["config"]:
         return None
     return json.loads(json.dumps(cfg["scope"]))          # a copy the caller cannot mutate
@@ -273,7 +385,21 @@ def flood_verdicts(path: str = FLOOD_VALIDATION_RESULT, expected_sha256: str | N
             out[m] = v2
         else:
             out[m] = (r1.get(m) or {}).get("verdict")
+    out["learned_flood"] = flood_final_verdict()
     return out
+
+
+def flood_final_verdict(path: str = FLOOD_FINAL_HELDOUT_RESULT,
+                        expected_sha256: str = FLOOD_FINAL_HELDOUT_SHA256) -> str:
+    """"passed" when every type in LEARNED_FLOOD_TYPES passed the pinned
+    flood_final held-out pass, else "failed". Raises if the hash differs."""
+    digest = sha256_file(path)
+    if expected_sha256 and digest != expected_sha256:
+        raise ContractError(f"{path}: sha256 {digest} is not the pinned {expected_sha256}")
+    with open(path) as fh:
+        v = json.load(fh)["verdicts"]
+    return "passed" if all((v.get(t) or {}).get("verdict") == "passed"
+                           for t in LEARNED_FLOOD_TYPES) else "failed"
 
 
 # ── model_version ──────────────────────────────────────────────────────
