@@ -103,7 +103,10 @@ def load(name: str) -> dict:
 def _mosaic(asset, region, band=0):
     import ee
     col = ee.ImageCollection(asset).filterBounds(region)
-    return col.mosaic().setDefaultProjection(col.first().projection()).select(band)
+    # The projection of the selected band only: GLO-30 tiles above 60 degrees
+    # N/S carry bands with different projections, and Image.projection() on
+    # the whole image raises (EMSR683, Norway; flood_round2 D-B1).
+    return col.mosaic().select(band).setDefaultProjection(ee.Image(col.first()).select(band).projection())
 
 
 def margin_stack(te, she, crs, ll) -> dict:
