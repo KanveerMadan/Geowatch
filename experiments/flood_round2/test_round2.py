@@ -37,3 +37,19 @@ def test_round1_reserved_are_now_dev():
     for u in reg["units"]:
         if any(x.get("round") == "flood_final" and x.get("role") == "registered_test" for x in u.get("uses", [])):
             assert u["role"] == "dev" and u["exposure_level"] == 6
+
+
+def test_heldout_r2_refuses_before_freeze():
+    import pytest
+    from experiments.flood_round2 import heldout_r2 as H
+    if H._git("rev-list", "-n", "1", H.FREEZE_TAG):
+        pytest.skip("freeze tag exists")
+    with pytest.raises((SystemExit, FileNotFoundError, StopIteration)):
+        H.preflight(scoring=True)
+
+
+def test_redact_removes_home_paths():
+    from experiments.flood_round2 import heldout_r2 as H
+    home = os.path.expanduser("~")
+    out = H._redact({"tail": [f'File "{home}/x/y.py", line 1']})
+    assert home not in json.dumps(out)

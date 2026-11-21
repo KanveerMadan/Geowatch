@@ -217,9 +217,9 @@ def choose():
         print(f"{ty:12s} n={len(mem):3d} chosen {pick:13s} {means[pick]:.3f} | elev {means['elev']:.3f} "
               f"hand {means['hand']:.3f} best {best:.3f}", flush=True)
     finals = {}
-    for ty, ch in choice.items():
-        c = ch["chosen"]
-        if c in finals or c in ("elev", "hand"):
+    # every fitted candidate gets a final model: the held-out pass reports them all (PREREGISTRATION_ROUND2 §5)
+    for c in ORDER:
+        if c in ("elev", "hand"):
             continue
         ys, ps, ws = [], [], []
         for n in names:
