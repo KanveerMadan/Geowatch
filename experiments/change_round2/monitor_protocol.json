@@ -1,0 +1,15 @@
+{
+  "version": "r2-water-forest-forward-v1",
+  "sites": [
+    ["kolkata",88.463,22.545,"wetland, monsoon"],
+    ["bandung",107.624,-6.924,"humid tropical"],
+    ["pune",73.882,18.526,"seasonal monsoon"],
+    ["dakar",-17.45,14.725,"semi-arid, coastal"],
+    ["haarlem",4.662,52.375,"temperate maritime"],
+    ["utrecht",5.067,52.081,"temperate maritime"]
+  ],
+  "sampling": "Nine adjacent complete 100 m blocks per registered center. All centers come from seen development neighborhoods. Each small plot supplies 0.09 square kilometres, not city-wide surveillance. Every live run archives all water and forest candidates, confirmations, coverage and supporting observations from the start of this UTC monitoring month through the last complete UTC day. No inferred zero for missing sources.",
+  "timing": "Daily local 09:30 invocation. First snapshot for a site and UTC acquisition cutoff is immutable. Site failures retry; missing days are not backfilled as live receipts. Subsequent snapshots may include late acquisitions for earlier days. Water gets up to 120 days before month start. Forest gets the matching season from two prior years using a 47-day margin on either side of the entire month, enough to contain the 45-day detector comparison windows across leap years. A complete month window determines eligibility, regardless of today's date. One global local EE lock and 15 GB of free-disk guard.",
+  "review": "At every cutoff select one confirmed cell per site when available, otherwise one candidate cell; also select one cell without any candidate or confirmation, favoring cells observable for a monitored target. Hash order breaks ties. All sites can contribute quiet cases even when no alarms are observed. Reviewers see randomized Landsat RGB and SWIR-NIR-red snapshots, site and alert status hidden. Review substantial visible water gain, loss or stable occupancy and greenness loss over the sampled window. Stable requires at least one clear prior day and two distinct clear monitoring days, with no ambiguous mixed-pixel behavior. Differences between visits remain unknown. Unknown stays in every coverage denominator. Water and greenness are observational endpoints. A greenness proxy does not certify cause or canopy removal. Record reasons and source dates. A site-month with one purposively reviewed flag cannot establish a city-wide physical false-incident rate.",
+  "baseline": "Always-silent predicts no candidates and no confirmations. On reviewed cases compare exact target directions at cell-window scale. Count true quiet controls only where an independent endpoint supports them. Report selection strata, prevalence constraints, unreviewed/unknown coverage and source lineage."
+}
