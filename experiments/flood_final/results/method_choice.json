@@ -1,0 +1,3566 @@
+{
+ "what": "PREREGISTRATION \u00a74 method choice, DEV only (leave-region-out mean AUC per type)",
+ "run_utc": "2026-11-20T02:54:52Z",
+ "dev_units": [
+  "assam_2026",
+  "bad_neuenahr",
+  "beira",
+  "belize_city",
+  "bihar_2026",
+  "black_river",
+  "choloma",
+  "derna",
+  "derna_2023",
+  "dharavi",
+  "dubai_2024",
+  "encantado",
+  "faenza",
+  "fort_myers_beach",
+  "hai_phong",
+  "hanoi",
+  "himachal_2023",
+  "kerala_2018",
+  "kolonnawa",
+  "kyaukpyu",
+  "milagro",
+  "nam_dinh",
+  "paiporta",
+  "pakistan_2022",
+  "sittwe",
+  "sylhet_2022",
+  "thai_binh",
+  "valencia_2024",
+  "volos",
+  "emsr662_aoi01",
+  "emsr774_aoi01",
+  "emsr774_aoi02",
+  "emsr865_aoi01",
+  "emsr853_aoi02",
+  "emsr853_aoi04",
+  "emsr853_aoi08",
+  "emsr844_aoi01",
+  "emsr757_aoi01",
+  "emsr757_aoi02",
+  "emsr868_aoi01",
+  "emsr868_aoi02",
+  "emsr711_aoi02",
+  "emsr711_aoi01",
+  "emsr711_aoi03",
+  "emsr838_aoi07",
+  "emsr838_aoi01",
+  "emsr838_aoi03",
+  "emsr779_aoi02",
+  "emsr779_aoi03",
+  "emsr779_aoi01",
+  "emsr799_aoi04",
+  "emsr799_aoi03",
+  "emsr799_aoi02",
+  "emsr870_aoi13",
+  "emsr870_aoi08",
+  "emsr870_aoi05",
+  "emsr813_aoi01",
+  "emsr770_aoi03",
+  "emsr770_aoi01",
+  "emsr680_aoi07",
+  "emsr680_aoi13",
+  "emsr680_aoi04",
+  "emsr776_aoi01",
+  "emsr694_aoi03",
+  "emsr694_aoi02",
+  "emsr935_aoi01",
+  "emsr935_aoi02"
+ ],
+ "regions": {
+  "assam_2026": "south_asia",
+  "bad_neuenahr": "europe_mediterranean",
+  "beira": "africa_west_asia",
+  "belize_city": "americas",
+  "bihar_2026": "south_asia",
+  "black_river": "americas",
+  "choloma": "americas",
+  "derna": "europe_mediterranean",
+  "derna_2023": "europe_mediterranean",
+  "dharavi": "south_asia",
+  "dubai_2024": "africa_west_asia",
+  "encantado": "americas",
+  "faenza": "europe_mediterranean",
+  "fort_myers_beach": "americas",
+  "hai_phong": "southeast_asia",
+  "hanoi": "southeast_asia",
+  "himachal_2023": "south_asia",
+  "kerala_2018": "south_asia",
+  "kolonnawa": "south_asia",
+  "kyaukpyu": "southeast_asia",
+  "milagro": "americas",
+  "nam_dinh": "southeast_asia",
+  "paiporta": "europe_mediterranean",
+  "pakistan_2022": "south_asia",
+  "sittwe": "southeast_asia",
+  "sylhet_2022": "south_asia",
+  "thai_binh": "southeast_asia",
+  "valencia_2024": "europe_mediterranean",
+  "volos": "europe_mediterranean",
+  "emsr662_aoi01": "africa_west_asia",
+  "emsr774_aoi01": "americas",
+  "emsr774_aoi02": "americas",
+  "emsr865_aoi01": "americas",
+  "emsr853_aoi02": "americas",
+  "emsr853_aoi04": "americas",
+  "emsr853_aoi08": "americas",
+  "emsr844_aoi01": "southeast_asia",
+  "emsr757_aoi01": "europe_mediterranean",
+  "emsr757_aoi02": "europe_mediterranean",
+  "emsr868_aoi01": "europe_mediterranean",
+  "emsr868_aoi02": "europe_mediterranean",
+  "emsr711_aoi02": "europe_mediterranean",
+  "emsr711_aoi01": "europe_mediterranean",
+  "emsr711_aoi03": "europe_mediterranean",
+  "emsr838_aoi07": "south_asia",
+  "emsr838_aoi01": "south_asia",
+  "emsr838_aoi03": "south_asia",
+  "emsr779_aoi02": "africa_west_asia",
+  "emsr779_aoi03": "africa_west_asia",
+  "emsr779_aoi01": "africa_west_asia",
+  "emsr799_aoi04": "americas",
+  "emsr799_aoi03": "americas",
+  "emsr799_aoi02": "americas",
+  "emsr870_aoi13": "americas",
+  "emsr870_aoi08": "americas",
+  "emsr870_aoi05": "americas",
+  "emsr813_aoi01": "americas",
+  "emsr770_aoi03": "europe_mediterranean",
+  "emsr770_aoi01": "europe_mediterranean",
+  "emsr680_aoi07": "europe_mediterranean",
+  "emsr680_aoi13": "europe_mediterranean",
+  "emsr680_aoi04": "europe_mediterranean",
+  "emsr776_aoi01": "americas",
+  "emsr694_aoi03": "europe_mediterranean",
+  "emsr694_aoi02": "europe_mediterranean",
+  "emsr935_aoi01": "europe_mediterranean",
+  "emsr935_aoi02": "europe_mediterranean"
+ },
+ "tags": {
+  "assam_2026": [
+   "fluvial",
+   "waterlogging"
+  ],
+  "bad_neuenahr": [
+   "flash_flood"
+  ],
+  "beira": [
+   "coastal",
+   "compound"
+  ],
+  "belize_city": [
+   "pluvial"
+  ],
+  "bihar_2026": [
+   "fluvial"
+  ],
+  "black_river": [
+   "coastal",
+   "compound"
+  ],
+  "choloma": [
+   "flash_flood"
+  ],
+  "derna": [
+   "flash_flood"
+  ],
+  "derna_2023": [
+   "flash_flood"
+  ],
+  "dharavi": [
+   "pluvial",
+   "waterlogging"
+  ],
+  "dubai_2024": [
+   "pluvial"
+  ],
+  "encantado": [
+   "fluvial"
+  ],
+  "faenza": [
+   "fluvial"
+  ],
+  "fort_myers_beach": [
+   "coastal",
+   "compound"
+  ],
+  "hai_phong": [
+   "pluvial"
+  ],
+  "hanoi": [
+   "fluvial"
+  ],
+  "himachal_2023": [
+   "flash_flood"
+  ],
+  "kerala_2018": [
+   "waterlogging"
+  ],
+  "kolonnawa": [
+   "fluvial"
+  ],
+  "kyaukpyu": [
+   "coastal",
+   "compound"
+  ],
+  "milagro": [
+   "pluvial"
+  ],
+  "nam_dinh": [
+   "waterlogging"
+  ],
+  "paiporta": [
+   "compound",
+   "flash_flood"
+  ],
+  "pakistan_2022": [
+   "fluvial"
+  ],
+  "sittwe": [
+   "coastal",
+   "compound"
+  ],
+  "sylhet_2022": [
+   "waterlogging"
+  ],
+  "thai_binh": [
+   "waterlogging"
+  ],
+  "valencia_2024": [
+   "compound",
+   "flash_flood",
+   "pluvial"
+  ],
+  "volos": [
+   "flash_flood"
+  ],
+  "emsr662_aoi01": [
+   "fluvial"
+  ],
+  "emsr774_aoi01": [
+   "fluvial"
+  ],
+  "emsr774_aoi02": [
+   "fluvial"
+  ],
+  "emsr865_aoi01": [
+   "fluvial"
+  ],
+  "emsr853_aoi02": [
+   "fluvial"
+  ],
+  "emsr853_aoi04": [
+   "fluvial"
+  ],
+  "emsr853_aoi08": [
+   "fluvial"
+  ],
+  "emsr844_aoi01": [
+   "fluvial"
+  ],
+  "emsr757_aoi01": [
+   "fluvial"
+  ],
+  "emsr757_aoi02": [
+   "fluvial"
+  ],
+  "emsr868_aoi01": [
+   "fluvial"
+  ],
+  "emsr868_aoi02": [
+   "fluvial"
+  ],
+  "emsr711_aoi02": [
+   "fluvial"
+  ],
+  "emsr711_aoi01": [
+   "fluvial"
+  ],
+  "emsr711_aoi03": [
+   "fluvial"
+  ],
+  "emsr838_aoi07": [
+   "fluvial"
+  ],
+  "emsr838_aoi01": [
+   "fluvial"
+  ],
+  "emsr838_aoi03": [
+   "fluvial"
+  ],
+  "emsr779_aoi02": [
+   "waterlogging"
+  ],
+  "emsr779_aoi03": [
+   "waterlogging"
+  ],
+  "emsr779_aoi01": [
+   "waterlogging"
+  ],
+  "emsr799_aoi04": [
+   "waterlogging"
+  ],
+  "emsr799_aoi03": [
+   "waterlogging"
+  ],
+  "emsr799_aoi02": [
+   "waterlogging"
+  ],
+  "emsr870_aoi13": [
+   "flash_flood"
+  ],
+  "emsr870_aoi08": [
+   "flash_flood"
+  ],
+  "emsr870_aoi05": [
+   "flash_flood"
+  ],
+  "emsr813_aoi01": [
+   "flash_flood"
+  ],
+  "emsr770_aoi03": [
+   "flash_flood"
+  ],
+  "emsr770_aoi01": [
+   "flash_flood"
+  ],
+  "emsr680_aoi07": [
+   "flash_flood"
+  ],
+  "emsr680_aoi13": [
+   "flash_flood"
+  ],
+  "emsr680_aoi04": [
+   "flash_flood"
+  ],
+  "emsr776_aoi01": [
+   "pluvial"
+  ],
+  "emsr694_aoi03": [
+   "pluvial"
+  ],
+  "emsr694_aoi02": [
+   "pluvial"
+  ],
+  "emsr935_aoi01": [
+   "pluvial"
+  ],
+  "emsr935_aoi02": [
+   "pluvial"
+  ]
+ },
+ "clusters": {
+  "assam_2026": 0,
+  "bad_neuenahr": 1,
+  "beira": 2,
+  "belize_city": 3,
+  "bihar_2026": 0,
+  "black_river": 4,
+  "choloma": 3,
+  "derna": 5,
+  "derna_2023": 5,
+  "dharavi": 6,
+  "dubai_2024": 7,
+  "encantado": 8,
+  "faenza": 9,
+  "fort_myers_beach": 10,
+  "hai_phong": 11,
+  "hanoi": 11,
+  "himachal_2023": 12,
+  "kerala_2018": 13,
+  "kolonnawa": 14,
+  "kyaukpyu": 15,
+  "milagro": 16,
+  "nam_dinh": 11,
+  "paiporta": 17,
+  "pakistan_2022": 12,
+  "sittwe": 15,
+  "sylhet_2022": 0,
+  "thai_binh": 11,
+  "valencia_2024": 17,
+  "volos": 5,
+  "emsr662_aoi01": 18,
+  "emsr774_aoi01": 19,
+  "emsr774_aoi02": 19,
+  "emsr865_aoi01": 20,
+  "emsr853_aoi02": 21,
+  "emsr853_aoi04": 21,
+  "emsr853_aoi08": 21,
+  "emsr844_aoi01": 22,
+  "emsr757_aoi01": 23,
+  "emsr757_aoi02": 23,
+  "emsr868_aoi01": 24,
+  "emsr868_aoi02": 24,
+  "emsr711_aoi02": 25,
+  "emsr711_aoi01": 25,
+  "emsr711_aoi03": 25,
+  "emsr838_aoi07": 12,
+  "emsr838_aoi01": 12,
+  "emsr838_aoi03": 12,
+  "emsr779_aoi02": 26,
+  "emsr779_aoi03": 26,
+  "emsr779_aoi01": 26,
+  "emsr799_aoi04": 21,
+  "emsr799_aoi03": 21,
+  "emsr799_aoi02": 21,
+  "emsr870_aoi13": 16,
+  "emsr870_aoi08": 16,
+  "emsr870_aoi05": 16,
+  "emsr813_aoi01": 21,
+  "emsr770_aoi03": 23,
+  "emsr770_aoi01": 23,
+  "emsr680_aoi07": 23,
+  "emsr680_aoi13": 23,
+  "emsr680_aoi04": 23,
+  "emsr776_aoi01": 27,
+  "emsr694_aoi03": 28,
+  "emsr694_aoi02": 28,
+  "emsr935_aoi01": 29,
+  "emsr935_aoi02": 29
+ },
+ "choice": {
+  "fluvial": {
+   "members": [
+    "assam_2026",
+    "bihar_2026",
+    "encantado",
+    "faenza",
+    "hanoi",
+    "kolonnawa",
+    "pakistan_2022",
+    "emsr662_aoi01",
+    "emsr774_aoi01",
+    "emsr774_aoi02",
+    "emsr865_aoi01",
+    "emsr853_aoi02",
+    "emsr853_aoi04",
+    "emsr853_aoi08",
+    "emsr844_aoi01",
+    "emsr757_aoi01",
+    "emsr757_aoi02",
+    "emsr868_aoi01",
+    "emsr868_aoi02",
+    "emsr711_aoi02",
+    "emsr711_aoi01",
+    "emsr711_aoi03",
+    "emsr838_aoi07",
+    "emsr838_aoi01",
+    "emsr838_aoi03"
+   ],
+   "n": 25,
+   "lro_mean_auc": {
+    "full__logreg": 0.7698439593439214,
+    "full__lgbm": 0.7681221909466598,
+    "open__logreg": 0.7697848337802847,
+    "open__lgbm": 0.7660138720017109,
+    "no_landcover__logreg": 0.7188200991057215,
+    "no_landcover__lgbm": 0.7275067369225523,
+    "module:fluvial": 0.6922412241180167
+   },
+   "chosen": "open__logreg",
+   "baselines_lro": {
+    "hand": 0.6480122823268449,
+    "occurrence": 0.5983752825777617,
+    "dist_water": 0.5912956934540745,
+    "neg_elev_glo30": 0.7566297687201725,
+    "neg_dist_coast": 0.5430331333714906
+   },
+   "lco_mean_auc": {
+    "full__logreg": 0.7893463116728582,
+    "full__lgbm": 0.7801796500124929,
+    "open__logreg": 0.785731426359554,
+    "open__lgbm": 0.7830454906460353,
+    "no_landcover__logreg": 0.7286584363605739,
+    "no_landcover__lgbm": 0.750517384041635
+   }
+  },
+  "pluvial": {
+   "members": [
+    "belize_city",
+    "dharavi",
+    "dubai_2024",
+    "hai_phong",
+    "milagro",
+    "valencia_2024",
+    "emsr776_aoi01",
+    "emsr694_aoi03",
+    "emsr694_aoi02",
+    "emsr935_aoi01",
+    "emsr935_aoi02"
+   ],
+   "n": 11,
+   "lro_mean_auc": {
+    "full__logreg": 0.6549374741419551,
+    "full__lgbm": 0.6577374545492447,
+    "open__logreg": 0.6442545773691186,
+    "open__lgbm": 0.6755315572752661,
+    "no_landcover__logreg": 0.6087779683201808,
+    "no_landcover__lgbm": 0.6582530504690063
+   },
+   "chosen": "open__lgbm",
+   "baselines_lro": {
+    "hand": 0.6621972257064749,
+    "occurrence": 0.5365605197642113,
+    "dist_water": 0.5374264936073282,
+    "neg_elev_glo30": 0.7045542106536146,
+    "neg_dist_coast": 0.48672094887319073
+   },
+   "lco_mean_auc": {
+    "full__logreg": 0.6830646653200053,
+    "full__lgbm": 0.7259790768301204,
+    "open__logreg": 0.6847197170127521,
+    "open__lgbm": 0.719253596720405,
+    "no_landcover__logreg": 0.6184146277157663,
+    "no_landcover__lgbm": 0.7012462699979104
+   }
+  },
+  "waterlogging": {
+   "members": [
+    "assam_2026",
+    "dharavi",
+    "kerala_2018",
+    "nam_dinh",
+    "sylhet_2022",
+    "thai_binh",
+    "emsr779_aoi02",
+    "emsr779_aoi03",
+    "emsr779_aoi01",
+    "emsr799_aoi04",
+    "emsr799_aoi03",
+    "emsr799_aoi02"
+   ],
+   "n": 12,
+   "lro_mean_auc": {
+    "full__logreg": 0.7117507461898628,
+    "full__lgbm": 0.6717833129700671,
+    "open__logreg": 0.7271216352235502,
+    "open__lgbm": 0.6997958002755645,
+    "no_landcover__logreg": 0.5957442186846998,
+    "no_landcover__lgbm": 0.6096498683979736,
+    "module:waterlogging": 0.5910593800320015
+   },
+   "chosen": "open__logreg",
+   "baselines_lro": {
+    "hand": 0.5963781048619581,
+    "occurrence": 0.5738617548684638,
+    "dist_water": 0.4900169701342987,
+    "neg_elev_glo30": 0.6924590381118952,
+    "neg_dist_coast": 0.5187376681885926
+   },
+   "lco_mean_auc": {
+    "full__logreg": 0.7185943168932188,
+    "full__lgbm": 0.653555820749144,
+    "open__logreg": 0.7281417294890815,
+    "open__lgbm": 0.6871141394485232,
+    "no_landcover__logreg": 0.5852188381292134,
+    "no_landcover__lgbm": 0.6016040648099859
+   }
+  },
+  "flash_flood": {
+   "members": [
+    "bad_neuenahr",
+    "choloma",
+    "derna",
+    "derna_2023",
+    "himachal_2023",
+    "paiporta",
+    "valencia_2024",
+    "volos",
+    "emsr870_aoi13",
+    "emsr870_aoi08",
+    "emsr870_aoi05",
+    "emsr813_aoi01",
+    "emsr770_aoi03",
+    "emsr770_aoi01",
+    "emsr680_aoi07",
+    "emsr680_aoi13",
+    "emsr680_aoi04"
+   ],
+   "n": 17,
+   "lro_mean_auc": {
+    "full__logreg": 0.7155349001867961,
+    "full__lgbm": 0.6911930940434958,
+    "open__logreg": 0.7014405953528485,
+    "open__lgbm": 0.7503223431728788,
+    "no_landcover__logreg": 0.7187119461529964,
+    "no_landcover__lgbm": 0.6738752340716223,
+    "module:flash_flood": 0.67357936009941
+   },
+   "chosen": "open__lgbm",
+   "baselines_lro": {
+    "hand": 0.6709087605733458,
+    "occurrence": 0.5402374775101175,
+    "dist_water": 0.6300024747938889,
+    "neg_elev_glo30": 0.7097860218267754,
+    "neg_dist_coast": 0.5642906457055723
+   },
+   "lco_mean_auc": {
+    "full__logreg": 0.7591269752807217,
+    "full__lgbm": 0.7538070462619334,
+    "open__logreg": 0.7519726664383517,
+    "open__lgbm": 0.7551151493856043,
+    "no_landcover__logreg": 0.736500924982797,
+    "no_landcover__lgbm": 0.7252973898055888
+   }
+  },
+  "coastal": {
+   "members": [
+    "beira",
+    "black_river",
+    "fort_myers_beach",
+    "kyaukpyu",
+    "sittwe"
+   ],
+   "n": 5,
+   "lro_mean_auc": {
+    "full__logreg": 0.7436698103384666,
+    "full__lgbm": 0.7505879701217044,
+    "open__logreg": 0.7247090252158747,
+    "open__lgbm": 0.7630208630913817,
+    "no_landcover__logreg": 0.6611706494429399,
+    "no_landcover__lgbm": 0.6997611224910156
+   },
+   "chosen": "open__lgbm",
+   "baselines_lro": {
+    "hand": 0.6790040748929813,
+    "occurrence": 0.5146271507461825,
+    "dist_water": 0.5372731115004883,
+    "neg_elev_glo30": 0.7777756517613658,
+    "neg_dist_coast": 0.5663943464491471
+   },
+   "lco_mean_auc": {
+    "full__logreg": 0.7250554907568391,
+    "full__lgbm": 0.7610367273164172,
+    "open__logreg": 0.7100855012433215,
+    "open__lgbm": 0.7647104346033453,
+    "no_landcover__logreg": 0.7045381188350199,
+    "no_landcover__lgbm": 0.6554304794432373
+   }
+  },
+  "compound": {
+   "members": [
+    "beira",
+    "black_river",
+    "fort_myers_beach",
+    "kyaukpyu",
+    "paiporta",
+    "sittwe",
+    "valencia_2024"
+   ],
+   "n": 7,
+   "lro_mean_auc": {
+    "full__logreg": 0.7030301975779487,
+    "full__lgbm": 0.6937742520271,
+    "open__logreg": 0.6859460451309854,
+    "open__lgbm": 0.7269352110379915,
+    "no_landcover__logreg": 0.6481100943313446,
+    "no_landcover__lgbm": 0.6389111482795492
+   },
+   "chosen": "open__lgbm",
+   "baselines_lro": {
+    "hand": 0.6574368562550678,
+    "occurrence": 0.5104429000401846,
+    "dist_water": 0.5602017657672104,
+    "neg_elev_glo30": 0.7210169875486586,
+    "neg_dist_coast": 0.5524869117354685
+   },
+   "lco_mean_auc": {
+    "full__logreg": 0.6999326901523789,
+    "full__lgbm": 0.7525287870131755,
+    "open__logreg": 0.6812632250115588,
+    "open__lgbm": 0.7445870134149374,
+    "no_landcover__logreg": 0.691438983375906,
+    "no_landcover__lgbm": 0.6739920996290568
+   }
+  }
+ },
+ "final_models": {
+  "open__logreg": {
+   "path": "final__open__logreg.pkl",
+   "sha256": "4f9ff2f58e0f68f28b3ab78dc3079190d7fc21ab9f070a24b494dedcfb32cb6b",
+   "features": [
+    "slope_glo30",
+    "curv_glo30",
+    "tpi990_glo30",
+    "relmin2km_glo30",
+    "depr_glo30",
+    "handmap_glo30",
+    "log_hs_acc",
+    "dist_water_m",
+    "jrc_occurrence",
+    "jrc_recurrence",
+    "rain_p999_mm_h",
+    "rain_design_day_mm",
+    "rain_annual_mm",
+    "clay_pct",
+    "wc_built",
+    "wc_tree",
+    "wc_shrub",
+    "wc_grass",
+    "wc_crop",
+    "wc_bare",
+    "wc_wetland",
+    "wc_mangrove",
+    "ndvi_pre",
+    "elev_glo30",
+    "dist_coast_m",
+    "ghsl_built_frac"
+   ],
+   "n_train_units": 67
+  },
+  "open__lgbm": {
+   "path": "final__open__lgbm.pkl",
+   "sha256": "d76aba72f0ec7e59b73ef850730efc6d35c6e6599ca29ba9d1b3e006906c2ad8",
+   "features": [
+    "slope_glo30",
+    "curv_glo30",
+    "tpi990_glo30",
+    "relmin2km_glo30",
+    "depr_glo30",
+    "handmap_glo30",
+    "log_hs_acc",
+    "dist_water_m",
+    "jrc_occurrence",
+    "jrc_recurrence",
+    "rain_p999_mm_h",
+    "rain_design_day_mm",
+    "rain_annual_mm",
+    "clay_pct",
+    "wc_built",
+    "wc_tree",
+    "wc_shrub",
+    "wc_grass",
+    "wc_crop",
+    "wc_bare",
+    "wc_wetland",
+    "wc_mangrove",
+    "ndvi_pre",
+    "elev_glo30",
+    "dist_coast_m",
+    "ghsl_built_frac"
+   ],
+   "n_train_units": 67
+  }
+ },
+ "per_unit_lro": {
+  "assam_2026": {
+   "full__logreg": 0.8416818930094926,
+   "full__lgbm": 0.8409233322714532,
+   "open__logreg": 0.8511216433746639,
+   "open__lgbm": 0.8649756208171221,
+   "no_landcover__logreg": 0.6715459173010311,
+   "no_landcover__lgbm": 0.7560936025957656,
+   "hand": 0.7494936735190636,
+   "occurrence": 0.5215983421503019,
+   "dist_water": 0.26240750542084257,
+   "fluvial": 0.3877853500882976,
+   "pluvial": 0.7342590650771786,
+   "waterlogging": 0.41949268437638865,
+   "flash_flood": 0.5046353215244849,
+   "neg_elev_glo30": 0.8628418412612738,
+   "neg_dist_coast": 0.4041344151314076,
+   "_cells": [
+    5327,
+    13059
+   ]
+  },
+  "bad_neuenahr": {
+   "full__logreg": 0.5669974625895752,
+   "full__lgbm": 0.559044150587252,
+   "open__logreg": 0.5698994154925462,
+   "open__lgbm": 0.6799522885388022,
+   "no_landcover__logreg": 0.6386934726754717,
+   "no_landcover__lgbm": 0.5896435850262683,
+   "hand": 0.7126418107867389,
+   "occurrence": 0.5,
+   "dist_water": 0.7008500679062734,
+   "fluvial": 0.6915862179481505,
+   "pluvial": 0.606770884056457,
+   "waterlogging": 0.6963974261131937,
+   "flash_flood": 0.7097396365465012,
+   "neg_elev_glo30": 0.6359843045317477,
+   "neg_dist_coast": 0.5794939433270355,
+   "_cells": [
+    206,
+    10966
+   ]
+  },
+  "beira": {
+   "full__logreg": 0.6286011578329525,
+   "full__lgbm": 0.5437792277768962,
+   "open__logreg": 0.6207028004416619,
+   "open__lgbm": 0.5871696560151963,
+   "no_landcover__logreg": 0.5436932448323557,
+   "no_landcover__lgbm": 0.4714668780074146,
+   "hand": 0.5216796939529272,
+   "occurrence": 0.5758799893459463,
+   "dist_water": 0.584459643284989,
+   "fluvial": 0.46644613482598857,
+   "pluvial": 0.445175145381741,
+   "waterlogging": 0.5827772246353373,
+   "flash_flood": 0.5112774707961866,
+   "neg_elev_glo30": 0.5665641370359297,
+   "neg_dist_coast": 0.6774788315945717,
+   "_cells": [
+    661,
+    18545
+   ]
+  },
+  "belize_city": {
+   "full__logreg": 0.46896417034524035,
+   "full__lgbm": 0.6404700351130975,
+   "open__logreg": 0.4023399750437317,
+   "open__lgbm": 0.5067299916849783,
+   "no_landcover__logreg": 0.6092445351306865,
+   "no_landcover__lgbm": 0.7763057228007932,
+   "hand": 0.6462447291702657,
+   "occurrence": 0.499939838767898,
+   "dist_water": 0.36367893328421846,
+   "fluvial": 0.6084972810932181,
+   "pluvial": 0.4663272990609246,
+   "waterlogging": 0.7004964085873044,
+   "flash_flood": 0.6851423266869175,
+   "neg_elev_glo30": 0.5093050772718931,
+   "neg_dist_coast": 0.763580894002631,
+   "_cells": [
+    1074,
+    16622
+   ]
+  },
+  "bihar_2026": {
+   "full__logreg": 0.7923436006449085,
+   "full__lgbm": 0.7964769223826307,
+   "open__logreg": 0.7888546236142954,
+   "open__lgbm": 0.7823577373241521,
+   "no_landcover__logreg": 0.7105781323730848,
+   "no_landcover__lgbm": 0.7239705976256022,
+   "hand": 0.6031640456597341,
+   "occurrence": 0.6418808076963904,
+   "dist_water": 0.5290119154088094,
+   "fluvial": 0.6424662028031055,
+   "pluvial": 0.6020620905687808,
+   "waterlogging": 0.67342457113225,
+   "flash_flood": 0.6099747047985395,
+   "neg_elev_glo30": 0.7509622375862652,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    8923,
+    8786
+   ]
+  },
+  "black_river": {
+   "full__logreg": 0.6902127480435688,
+   "full__lgbm": 0.8150427327702593,
+   "open__logreg": 0.6292478707470333,
+   "open__lgbm": 0.7877404733839687,
+   "no_landcover__logreg": 0.7269010395894818,
+   "no_landcover__lgbm": 0.8327971057521588,
+   "hand": 0.7192743183879421,
+   "occurrence": 0.506117263271088,
+   "dist_water": 0.6061811113179064,
+   "fluvial": 0.7115683502757763,
+   "pluvial": 0.7358682004968995,
+   "waterlogging": 0.7087797157450982,
+   "flash_flood": 0.6897504128520321,
+   "neg_elev_glo30": 0.8577654586867317,
+   "neg_dist_coast": 0.467795990534684,
+   "_cells": [
+    1260,
+    10746
+   ]
+  },
+  "choloma": {
+   "full__logreg": 0.8179658604256536,
+   "full__lgbm": 0.7687505432693786,
+   "open__logreg": 0.8124332893288062,
+   "open__lgbm": 0.7598562405660702,
+   "no_landcover__logreg": 0.7205956721423539,
+   "no_landcover__lgbm": 0.7492242306357729,
+   "hand": 0.6138877539815063,
+   "occurrence": 0.5733159404047359,
+   "dist_water": 0.29382781390367996,
+   "fluvial": 0.48930870437256896,
+   "pluvial": 0.5705705167515138,
+   "waterlogging": 0.5725713015168572,
+   "flash_flood": 0.4361864904931545,
+   "neg_elev_glo30": 0.5820401357236109,
+   "neg_dist_coast": 0.6466473187874522,
+   "_cells": [
+    4604,
+    12374
+   ]
+  },
+  "derna": {
+   "full__logreg": 0.5808433558508369,
+   "full__lgbm": 0.5779222880839748,
+   "open__logreg": 0.5696086124676085,
+   "open__lgbm": 0.6120706075481389,
+   "no_landcover__logreg": 0.5729861053632407,
+   "no_landcover__lgbm": 0.5448120340245634,
+   "hand": 0.6165653538176825,
+   "occurrence": 0.4964949043801956,
+   "dist_water": 0.6221930053545393,
+   "fluvial": 0.6327000683377583,
+   "pluvial": 0.5246086230790616,
+   "waterlogging": 0.5912229487530481,
+   "flash_flood": 0.6065197564034814,
+   "neg_elev_glo30": 0.6318770175025308,
+   "neg_dist_coast": 0.5714825950945375,
+   "_cells": [
+    408,
+    9239
+   ]
+  },
+  "derna_2023": {
+   "full__logreg": 0.5426757929227906,
+   "full__lgbm": 0.5688987142167605,
+   "open__logreg": 0.4682363272171163,
+   "open__lgbm": 0.8787927731310651,
+   "no_landcover__logreg": 0.8344263630660177,
+   "no_landcover__lgbm": 0.6837099301555963,
+   "hand": 0.9608992256359785,
+   "occurrence": 0.5,
+   "dist_water": 0.7457063878837255,
+   "fluvial": 0.9768720371631299,
+   "pluvial": 0.5947270299923585,
+   "waterlogging": 0.8288874154200824,
+   "flash_flood": 0.8332790991092782,
+   "neg_elev_glo30": 0.9650465579801716,
+   "neg_dist_coast": 0.8005940986583174,
+   "_cells": [
+    1767,
+    14275
+   ]
+  },
+  "dharavi": {
+   "full__logreg": 0.6424258535443951,
+   "full__lgbm": 0.6110423909627236,
+   "open__logreg": 0.6324531708417964,
+   "open__lgbm": 0.5991149915611289,
+   "no_landcover__logreg": 0.7145667792311005,
+   "no_landcover__lgbm": 0.6541317239249959,
+   "hand": 0.639727768524326,
+   "occurrence": 0.613434765933821,
+   "dist_water": 0.5499151959216507,
+   "fluvial": 0.6006773249816892,
+   "pluvial": 0.5248818627267731,
+   "waterlogging": 0.6918542394424114,
+   "flash_flood": 0.6479679558271132,
+   "neg_elev_glo30": 0.6562080046742623,
+   "neg_dist_coast": 0.3045884198473388,
+   "_cells": [
+    489,
+    7385
+   ]
+  },
+  "dubai_2024": {
+   "full__logreg": 0.5268742695011794,
+   "full__lgbm": 0.43318446456665133,
+   "open__logreg": 0.5284345587032802,
+   "open__lgbm": 0.4505349731882045,
+   "no_landcover__logreg": 0.44633304134662344,
+   "no_landcover__lgbm": 0.43517582906207003,
+   "hand": 0.4969004669611883,
+   "occurrence": 0.4873723551296163,
+   "dist_water": 0.5367322969933314,
+   "fluvial": 0.4893685907994959,
+   "pluvial": 0.49339426179431933,
+   "waterlogging": 0.49360372229614113,
+   "flash_flood": 0.5014309429676274,
+   "neg_elev_glo30": 0.5044865408503785,
+   "neg_dist_coast": 0.5029717474718841,
+   "_cells": [
+    591,
+    17889
+   ]
+  },
+  "encantado": {
+   "full__logreg": 0.8551716456128371,
+   "full__lgbm": 0.8665831341754865,
+   "open__logreg": 0.8681140320928644,
+   "open__lgbm": 0.8792298139296688,
+   "no_landcover__logreg": 0.7993295493342437,
+   "no_landcover__lgbm": 0.8212013059064527,
+   "hand": 0.7786179583475589,
+   "occurrence": 0.5594690594059406,
+   "dist_water": 0.7261199214749061,
+   "fluvial": 0.8301789006486856,
+   "pluvial": 0.48907515363605325,
+   "waterlogging": 0.7643410720382383,
+   "flash_flood": 0.7338076988733356,
+   "neg_elev_glo30": 0.8927934021850461,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    725,
+    16160
+   ]
+  },
+  "faenza": {
+   "full__logreg": 0.6963922768357633,
+   "full__lgbm": 0.7145430565918528,
+   "open__logreg": 0.7121155472760149,
+   "open__lgbm": 0.7889063907975723,
+   "no_landcover__logreg": 0.6900525761671686,
+   "no_landcover__lgbm": 0.7397092298997623,
+   "hand": 0.6866264285323376,
+   "occurrence": 0.5,
+   "dist_water": 0.7714757360148642,
+   "fluvial": 0.7872204097180567,
+   "pluvial": 0.7139142341451943,
+   "waterlogging": 0.7310186923635867,
+   "flash_flood": 0.8492906850290407,
+   "neg_elev_glo30": 0.7815783470503865,
+   "neg_dist_coast": 0.710816450493711,
+   "_cells": [
+    219,
+    8427
+   ]
+  },
+  "fort_myers_beach": {
+   "full__logreg": 0.6008068563325403,
+   "full__lgbm": 0.5607590388112018,
+   "open__logreg": 0.5885003751024616,
+   "open__lgbm": 0.5927627422241839,
+   "no_landcover__logreg": 0.43494031174038533,
+   "no_landcover__lgbm": 0.5204752541753472,
+   "hand": 0.6584193452499675,
+   "occurrence": 0.5812849607718746,
+   "dist_water": 0.5129675751909935,
+   "fluvial": 0.46316001626516334,
+   "pluvial": 0.5884294402030057,
+   "waterlogging": 0.6800422649754672,
+   "flash_flood": 0.4377257531323951,
+   "neg_elev_glo30": 0.7339051769286894,
+   "neg_dist_coast": 0.701468625863926,
+   "_cells": [
+    578,
+    5378
+   ]
+  },
+  "hai_phong": {
+   "full__logreg": 0.4978540343582949,
+   "full__lgbm": 0.7172693836523965,
+   "open__logreg": 0.43321092429295927,
+   "open__lgbm": 0.695755471284324,
+   "no_landcover__logreg": 0.09474088500022844,
+   "no_landcover__lgbm": 0.7002729931009275,
+   "hand": 0.8704567779960707,
+   "occurrence": 0.8597183830584365,
+   "dist_water": 0.7928957543290538,
+   "fluvial": 0.5959395131813405,
+   "pluvial": 0.6298801800155344,
+   "waterlogging": 0.4177879563211038,
+   "flash_flood": 0.1609395702928679,
+   "neg_elev_glo30": 0.8903944122081601,
+   "neg_dist_coast": 0.19608172088454334,
+   "_cells": [
+    86,
+    8144
+   ]
+  },
+  "hanoi": {
+   "full__logreg": 0.8528934069735834,
+   "full__lgbm": 0.8907107566041466,
+   "open__logreg": 0.9133621608347542,
+   "open__lgbm": 0.850943129587071,
+   "no_landcover__logreg": 0.6898207181159958,
+   "no_landcover__lgbm": 0.7899324217881236,
+   "hand": 0.48098118528677686,
+   "occurrence": 0.8550150431215559,
+   "dist_water": 0.829673483949885,
+   "fluvial": 0.916155524872118,
+   "pluvial": 0.4772399810339289,
+   "waterlogging": 0.8099242129389379,
+   "flash_flood": 0.5870305588504213,
+   "neg_elev_glo30": 0.9521590895050288,
+   "neg_dist_coast": 0.8059975952628067,
+   "_cells": [
+    940,
+    13776
+   ]
+  },
+  "himachal_2023": {
+   "full__logreg": 0.5657201277901338,
+   "full__lgbm": 0.47427548311676254,
+   "open__logreg": 0.5922085156846775,
+   "open__lgbm": 0.5188800638106613,
+   "no_landcover__logreg": 0.5642740482209402,
+   "no_landcover__lgbm": 0.48874904516123585,
+   "hand": 0.5341167583171205,
+   "occurrence": 0.5050202890048997,
+   "dist_water": 0.49161366696067965,
+   "fluvial": 0.5459053243075572,
+   "pluvial": 0.5150479951551165,
+   "waterlogging": 0.4222575553595469,
+   "flash_flood": 0.5099369700908627,
+   "neg_elev_glo30": 0.6098885423568586,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    520,
+    18227
+   ]
+  },
+  "kerala_2018": {
+   "full__logreg": 0.7877674799261067,
+   "full__lgbm": 0.7785122930620246,
+   "open__logreg": 0.8059555760202968,
+   "open__lgbm": 0.7510210649757573,
+   "no_landcover__logreg": 0.705520437835393,
+   "no_landcover__lgbm": 0.6644586110290687,
+   "hand": 0.7091390497124032,
+   "occurrence": 0.7865406783103707,
+   "dist_water": 0.26981660615911257,
+   "fluvial": 0.46260145614583287,
+   "pluvial": 0.6295023513559623,
+   "waterlogging": 0.7730248849418844,
+   "flash_flood": 0.5760249976610269,
+   "neg_elev_glo30": 0.7469555639942038,
+   "neg_dist_coast": 0.3914531028746643,
+   "_cells": [
+    10866,
+    7224
+   ]
+  },
+  "kolonnawa": {
+   "full__logreg": 0.8236775147791178,
+   "full__lgbm": 0.8029792562735175,
+   "open__logreg": 0.8358851096122544,
+   "open__lgbm": 0.8218512008305349,
+   "no_landcover__logreg": 0.7359781923836177,
+   "no_landcover__lgbm": 0.7021599415579537,
+   "hand": 0.6056492492923097,
+   "occurrence": 0.4980310036919187,
+   "dist_water": 0.49577785784462347,
+   "fluvial": 0.7996121956253123,
+   "pluvial": 0.7508691067071646,
+   "waterlogging": 0.6718539653645408,
+   "flash_flood": 0.5946858972917896,
+   "neg_elev_glo30": 0.8313687926844557,
+   "neg_dist_coast": 0.422608946437103,
+   "_cells": [
+    573,
+    8617
+   ]
+  },
+  "kyaukpyu": {
+   "full__logreg": 0.8839545214701359,
+   "full__lgbm": 0.9026178357539562,
+   "open__logreg": 0.8706127598296464,
+   "open__lgbm": 0.917961172375158,
+   "no_landcover__logreg": 0.7893071179835749,
+   "no_landcover__lgbm": 0.8900682994736155,
+   "hand": 0.6895469459372038,
+   "occurrence": 0.4483419939516242,
+   "dist_water": 0.6591304638617095,
+   "fluvial": 0.8972208189840516,
+   "pluvial": 0.606468636961027,
+   "waterlogging": 0.7189190636884675,
+   "flash_flood": 0.6525832850214954,
+   "neg_elev_glo30": 0.8953306645666924,
+   "neg_dist_coast": 0.721108559141236,
+   "_cells": [
+    381,
+    8869
+   ]
+  },
+  "milagro": {
+   "full__logreg": 0.9445480097319277,
+   "full__lgbm": 0.9428115938808839,
+   "open__logreg": 0.9363762271375616,
+   "open__lgbm": 0.8917604494165657,
+   "no_landcover__logreg": 0.8427086457882009,
+   "no_landcover__lgbm": 0.8122804483796785,
+   "hand": 0.6979784401512374,
+   "occurrence": 0.49766181921870545,
+   "dist_water": 0.37237917485992766,
+   "fluvial": 0.762598365421291,
+   "pluvial": 0.8489351538111162,
+   "waterlogging": 0.7396596417554502,
+   "flash_flood": 0.4263282340698936,
+   "neg_elev_glo30": 0.7523087405893223,
+   "neg_dist_coast": 0.5603940541921723,
+   "_cells": [
+    154,
+    17535
+   ]
+  },
+  "nam_dinh": {
+   "full__logreg": 0.7292777978062844,
+   "full__lgbm": 0.7417110664415903,
+   "open__logreg": 0.7418150088302008,
+   "open__lgbm": 0.6715814309812882,
+   "no_landcover__logreg": 0.4062192054393873,
+   "no_landcover__lgbm": 0.6103074002122338,
+   "hand": 0.43856826303327506,
+   "occurrence": 0.5603751039789726,
+   "dist_water": 0.628224401768604,
+   "fluvial": 0.774875317424514,
+   "pluvial": 0.43803432724090163,
+   "waterlogging": 0.7440846639802908,
+   "flash_flood": 0.6367633794765541,
+   "neg_elev_glo30": 0.4517636051265094,
+   "neg_dist_coast": 0.7928873934140533,
+   "_cells": [
+    2733,
+    12502
+   ]
+  },
+  "paiporta": {
+   "full__logreg": 0.5587973947307375,
+   "full__lgbm": 0.5032747127919223,
+   "open__logreg": 0.5326512890529662,
+   "open__lgbm": 0.5554418888889466,
+   "no_landcover__logreg": 0.6744962573074488,
+   "no_landcover__lgbm": 0.423248277590942,
+   "hand": 0.5007581532008343,
+   "occurrence": 0.49996454655037936,
+   "dist_water": 0.5462048261395752,
+   "fluvial": 0.6859133077194434,
+   "pluvial": 0.47294510005891455,
+   "waterlogging": 0.5042459332351957,
+   "flash_flood": 0.5281977081496285,
+   "neg_elev_glo30": 0.7375209969999046,
+   "neg_dist_coast": 0.7601895649648992,
+   "_cells": [
+    3683,
+    14103
+   ]
+  },
+  "pakistan_2022": {
+   "full__logreg": 0.7255360552893438,
+   "full__lgbm": 0.7546701842262524,
+   "open__logreg": 0.6939014387662684,
+   "open__lgbm": 0.7396413018205863,
+   "no_landcover__logreg": 0.5402907770035238,
+   "no_landcover__lgbm": 0.6892442459953205,
+   "hand": 0.5137905956956322,
+   "occurrence": 0.464574246524867,
+   "dist_water": 0.4395077767228771,
+   "fluvial": 0.5791074954777115,
+   "pluvial": 0.5306795331299025,
+   "waterlogging": 0.482048859842039,
+   "flash_flood": 0.49364944877066486,
+   "neg_elev_glo30": 0.6549678622491989,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    10153,
+    7570
+   ]
+  },
+  "sittwe": {
+   "full__logreg": 0.9147737680131349,
+   "full__lgbm": 0.9307410154962084,
+   "open__logreg": 0.9144813199585702,
+   "open__lgbm": 0.929470271458402,
+   "no_landcover__logreg": 0.8110115330689021,
+   "no_landcover__lgbm": 0.783998075046542,
+   "hand": 0.8061000709368662,
+   "occurrence": 0.4615115463903792,
+   "dist_water": 0.32362676384684297,
+   "fluvial": 0.8615965124372642,
+   "pluvial": 0.4693441586987581,
+   "waterlogging": 0.8370997728688134,
+   "flash_flood": 0.6814143745399928,
+   "neg_elev_glo30": 0.835312821588786,
+   "neg_dist_coast": 0.2641197251113176,
+   "_cells": [
+    216,
+    11121
+   ]
+  },
+  "sylhet_2022": {
+   "full__logreg": 0.9168771129297931,
+   "full__lgbm": 0.9173816088084876,
+   "open__logreg": 0.9292058161031415,
+   "open__lgbm": 0.9359674875724877,
+   "no_landcover__logreg": 0.7232528213285299,
+   "no_landcover__lgbm": 0.6702860910098641,
+   "hand": 0.7299982121565772,
+   "occurrence": 0.5529444151793592,
+   "dist_water": 0.38742067497722554,
+   "fluvial": 0.5423094119953554,
+   "pluvial": 0.650243312012581,
+   "waterlogging": 0.6879211579476484,
+   "flash_flood": 0.6324499003735308,
+   "neg_elev_glo30": 0.8545237110891357,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    8872,
+    8564
+   ]
+  },
+  "thai_binh": {
+   "full__logreg": 0.557662398251828,
+   "full__lgbm": 0.44760423991482773,
+   "open__logreg": 0.5785819525527832,
+   "open__lgbm": 0.4838412648992483,
+   "no_landcover__logreg": 0.3510590268322623,
+   "no_landcover__lgbm": 0.26080841630708296,
+   "hand": 0.27063814882307324,
+   "occurrence": 0.4407871907070043,
+   "dist_water": 0.8581728440520846,
+   "fluvial": 0.5384926667094007,
+   "pluvial": 0.3231098179003525,
+   "waterlogging": 0.26854980810688756,
+   "flash_flood": 0.7706355582781045,
+   "neg_elev_glo30": 0.35359288103783737,
+   "neg_dist_coast": 0.8952345057698063,
+   "_cells": [
+    506,
+    16402
+   ]
+  },
+  "valencia_2024": {
+   "full__logreg": 0.6440649366225711,
+   "full__lgbm": 0.6002052007892559,
+   "open__logreg": 0.6454259007845582,
+   "open__lgbm": 0.7180002729200858,
+   "no_landcover__logreg": 0.5564211557972641,
+   "no_landcover__lgbm": 0.5503241479108245,
+   "hand": 0.7062794661197345,
+   "occurrence": 0.5,
+   "dist_water": 0.6888419767284555,
+   "fluvial": 0.6988333089974098,
+   "pluvial": 0.5531735221010196,
+   "waterlogging": 0.6927307584514143,
+   "flash_flood": 0.7414086540991627,
+   "neg_elev_glo30": 0.42071965703387737,
+   "neg_dist_coast": 0.27524708493764494,
+   "_cells": [
+    2847,
+    14924
+   ]
+  },
+  "volos": {
+   "full__logreg": 0.6787438841344015,
+   "full__lgbm": 0.6426538154135017,
+   "open__logreg": 0.6721310152659644,
+   "open__lgbm": 0.613093800576556,
+   "no_landcover__logreg": 0.57257462724388,
+   "no_landcover__lgbm": 0.5907657631344472,
+   "hand": 0.5183850532549896,
+   "occurrence": 0.5,
+   "dist_water": 0.5804754194936724,
+   "fluvial": 0.5601410699479938,
+   "pluvial": 0.5137746612474365,
+   "waterlogging": 0.5600210118933494,
+   "flash_flood": 0.47483371385948475,
+   "neg_elev_glo30": 0.52158951102843,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    10911,
+    6872
+   ]
+  },
+  "emsr662_aoi01": {
+   "full__logreg": 0.673887555600944,
+   "full__lgbm": 0.6640749109250181,
+   "open__logreg": 0.6542327637073347,
+   "open__lgbm": 0.5436839029593319,
+   "no_landcover__logreg": 0.6852010711692085,
+   "no_landcover__lgbm": 0.5632679171205519,
+   "hand": 0.5177357082879448,
+   "occurrence": 0.5,
+   "dist_water": 0.7284593857797749,
+   "fluvial": 0.6972358387799564,
+   "pluvial": null,
+   "waterlogging": 0.715353874478032,
+   "flash_flood": 0.41484474287400147,
+   "neg_elev_glo30": 0.5244718619507989,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    408,
+    17280
+   ]
+  },
+  "emsr774_aoi01": {
+   "full__logreg": 0.7162684032927811,
+   "full__lgbm": 0.7061080675505101,
+   "open__logreg": 0.7357405354278392,
+   "open__lgbm": 0.5860882906190487,
+   "no_landcover__logreg": 0.7236964252706776,
+   "no_landcover__lgbm": 0.6804537403033981,
+   "hand": 0.5771146124046361,
+   "occurrence": 0.7696731030414342,
+   "dist_water": 0.3641135789090552,
+   "fluvial": 0.48643896532345016,
+   "pluvial": null,
+   "waterlogging": 0.5059410515161031,
+   "flash_flood": 0.4529628814288241,
+   "neg_elev_glo30": 0.7954618474429638,
+   "neg_dist_coast": 0.6815129386148812,
+   "_cells": [
+    7209,
+    10327
+   ]
+  },
+  "emsr774_aoi02": {
+   "full__logreg": 0.8807094633782913,
+   "full__lgbm": 0.8919693414129257,
+   "open__logreg": 0.879097967124512,
+   "open__lgbm": 0.8897358055387253,
+   "no_landcover__logreg": 0.8769992679212573,
+   "no_landcover__lgbm": 0.9176162061348584,
+   "hand": 0.7052480016619869,
+   "occurrence": 0.7847284847512985,
+   "dist_water": 0.5509737721838182,
+   "fluvial": 0.7253263357406242,
+   "pluvial": null,
+   "waterlogging": 0.7688261611934344,
+   "flash_flood": 0.7136920836030066,
+   "neg_elev_glo30": 0.8619394066387446,
+   "neg_dist_coast": 0.31564386421854246,
+   "_cells": [
+    879,
+    16516
+   ]
+  },
+  "emsr865_aoi01": {
+   "full__logreg": 0.6814906846276083,
+   "full__lgbm": 0.69221940796105,
+   "open__logreg": 0.7255602417021955,
+   "open__lgbm": 0.8244370744405826,
+   "no_landcover__logreg": 0.5629887224679344,
+   "no_landcover__lgbm": 0.7024864947683102,
+   "hand": 0.6193752052349379,
+   "occurrence": 0.4999366406893493,
+   "dist_water": 0.431356009293702,
+   "fluvial": 0.5294052785011326,
+   "pluvial": null,
+   "waterlogging": 0.5151225950325058,
+   "flash_flood": 0.6866860172608819,
+   "neg_elev_glo30": 0.5901576004792148,
+   "neg_dist_coast": 0.7666340351497306,
+   "_cells": [
+    1937,
+    15783
+   ]
+  },
+  "emsr853_aoi02": {
+   "full__logreg": 0.6528999065697251,
+   "full__lgbm": 0.6958484129012137,
+   "open__logreg": 0.6633854212101585,
+   "open__lgbm": 0.6837003903768167,
+   "no_landcover__logreg": 0.48592733021783285,
+   "no_landcover__lgbm": 0.6435744418887236,
+   "hand": 0.5202062510470135,
+   "occurrence": 0.5602810189091605,
+   "dist_water": 0.3608615300022928,
+   "fluvial": 0.4255171474758579,
+   "pluvial": null,
+   "waterlogging": 0.4874901305707874,
+   "flash_flood": 0.5177778672537405,
+   "neg_elev_glo30": 0.5195867037196867,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    2776,
+    14932
+   ]
+  },
+  "emsr853_aoi04": {
+   "full__logreg": 0.8303084079481595,
+   "full__lgbm": 0.7094814605684171,
+   "open__logreg": 0.8382962275819419,
+   "open__lgbm": 0.7959358446936087,
+   "no_landcover__logreg": 0.8346679976338361,
+   "no_landcover__lgbm": 0.7049265951439865,
+   "hand": 0.6546422521577802,
+   "occurrence": 0.4991530208921513,
+   "dist_water": 0.6102471027936867,
+   "fluvial": 0.6718056787932565,
+   "pluvial": null,
+   "waterlogging": 0.6534154768626819,
+   "flash_flood": 0.6327310370788631,
+   "neg_elev_glo30": 0.770043827807803,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    280,
+    5313
+   ]
+  },
+  "emsr853_aoi08": {
+   "full__logreg": 0.7562106042636195,
+   "full__lgbm": 0.701834704972216,
+   "open__logreg": 0.7241642234035508,
+   "open__lgbm": 0.6867151707073322,
+   "no_landcover__logreg": 0.6548099673094405,
+   "no_landcover__lgbm": 0.5371079992534753,
+   "hand": 0.3595031396181887,
+   "occurrence": 0.4863385971355123,
+   "dist_water": 0.6507882157456518,
+   "fluvial": 0.674846781816102,
+   "pluvial": null,
+   "waterlogging": 0.5909041377940194,
+   "flash_flood": 0.3576494705092623,
+   "neg_elev_glo30": 0.3841032371480346,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    244,
+    13615
+   ]
+  },
+  "emsr844_aoi01": {
+   "full__logreg": 0.7448626136882761,
+   "full__lgbm": 0.7346878536535986,
+   "open__logreg": 0.719185496828149,
+   "open__lgbm": 0.7176192818430998,
+   "no_landcover__logreg": 0.7178074644918809,
+   "no_landcover__lgbm": 0.7132934332042443,
+   "hand": 0.6085573788363304,
+   "occurrence": 0.8211684065991113,
+   "dist_water": 0.6450009766030566,
+   "fluvial": 0.7648914121225965,
+   "pluvial": null,
+   "waterlogging": 0.7711080908156485,
+   "flash_flood": 0.872370958615391,
+   "neg_elev_glo30": 0.6426031889821006,
+   "neg_dist_coast": 0.3980861175713277,
+   "_cells": [
+    398,
+    15488
+   ]
+  },
+  "emsr757_aoi01": {
+   "full__logreg": 0.6497367744196102,
+   "full__lgbm": 0.5902794779847018,
+   "open__logreg": 0.6194617509356315,
+   "open__lgbm": 0.6373812008886636,
+   "no_landcover__logreg": 0.6517785479445927,
+   "no_landcover__lgbm": 0.5578822483486663,
+   "hand": 0.6417667220838863,
+   "occurrence": 0.49997487587039824,
+   "dist_water": 0.42069340174750625,
+   "fluvial": 0.6701167489227191,
+   "pluvial": null,
+   "waterlogging": 0.6974082726974518,
+   "flash_flood": 0.5086162717879136,
+   "neg_elev_glo30": 0.7457989771422607,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    3850,
+    13936
+   ]
+  },
+  "emsr757_aoi02": {
+   "full__logreg": 0.7782279914984449,
+   "full__lgbm": 0.8019516044637442,
+   "open__logreg": 0.8140465916759579,
+   "open__lgbm": 0.8205081448785283,
+   "no_landcover__logreg": 0.719645244373863,
+   "no_landcover__lgbm": 0.7733722468360621,
+   "hand": 0.7686356617862802,
+   "occurrence": 0.4954814858282965,
+   "dist_water": 0.6924289825518847,
+   "fluvial": 0.6990301729407508,
+   "pluvial": null,
+   "waterlogging": 0.7674275613471432,
+   "flash_flood": 0.7888528340961993,
+   "neg_elev_glo30": 0.8330895126704223,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    768,
+    17041
+   ]
+  },
+  "emsr868_aoi01": {
+   "full__logreg": 0.9489190850902012,
+   "full__lgbm": 0.9697697103938343,
+   "open__logreg": 0.9304744936781161,
+   "open__lgbm": 0.9733420269463204,
+   "no_landcover__logreg": 0.9621766984891993,
+   "no_landcover__lgbm": 0.9623242853070144,
+   "hand": 0.9133519522032829,
+   "occurrence": 0.8644726603769738,
+   "dist_water": 0.3221983110043418,
+   "fluvial": 0.8605911151729131,
+   "pluvial": null,
+   "waterlogging": 0.90502271733456,
+   "flash_flood": 0.8291946893122255,
+   "neg_elev_glo30": 0.9693977191417641,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    4874,
+    11211
+   ]
+  },
+  "emsr868_aoi02": {
+   "full__logreg": 0.5248058523525793,
+   "full__lgbm": 0.8163893298016106,
+   "open__logreg": 0.5635540813991988,
+   "open__lgbm": 0.8524644317246848,
+   "no_landcover__logreg": 0.5707302615966362,
+   "no_landcover__lgbm": 0.8043547512707523,
+   "hand": 0.7900183951787437,
+   "occurrence": 0.5075931446874241,
+   "dist_water": 0.7379130389062649,
+   "fluvial": 0.6212936983190686,
+   "pluvial": null,
+   "waterlogging": 0.7860733078780249,
+   "flash_flood": 0.5259815025074,
+   "neg_elev_glo30": 0.9423560181152366,
+   "neg_dist_coast": 0.9005205039810037,
+   "_cells": [
+    1756,
+    16030
+   ]
+  },
+  "emsr711_aoi02": {
+   "full__logreg": 0.8870921716257631,
+   "full__lgbm": 0.885847055812962,
+   "open__logreg": 0.8716917738523291,
+   "open__lgbm": 0.9022381794123089,
+   "no_landcover__logreg": 0.8505509353105368,
+   "no_landcover__lgbm": 0.8669450879606168,
+   "hand": 0.8272076752374977,
+   "occurrence": 0.7275212888221241,
+   "dist_water": 0.7162953628626817,
+   "fluvial": 0.761034970076498,
+   "pluvial": null,
+   "waterlogging": 0.8546827239034083,
+   "flash_flood": 0.8204250147807621,
+   "neg_elev_glo30": 0.9335249050813645,
+   "neg_dist_coast": 0.42028224719869367,
+   "_cells": [
+    4362,
+    9120
+   ]
+  },
+  "emsr711_aoi01": {
+   "full__logreg": 0.8498949322436173,
+   "full__lgbm": 0.9254353901995958,
+   "open__logreg": 0.7956836801943248,
+   "open__lgbm": 0.9107256913998868,
+   "no_landcover__logreg": 0.9394572602580445,
+   "no_landcover__lgbm": 0.9236799507602055,
+   "hand": 0.899496780745746,
+   "occurrence": 0.743928257787425,
+   "dist_water": 0.7700115866355358,
+   "fluvial": 0.9210567910924162,
+   "pluvial": null,
+   "waterlogging": 0.9323433141456651,
+   "flash_flood": 0.9041168012119866,
+   "neg_elev_glo30": 0.9505471290147567,
+   "neg_dist_coast": 0.7495912202280582,
+   "_cells": [
+    2297,
+    15336
+   ]
+  },
+  "emsr711_aoi03": {
+   "full__logreg": 0.8746398124613982,
+   "full__lgbm": 0.917901004966283,
+   "open__logreg": 0.850647591364224,
+   "open__lgbm": 0.9170255339959636,
+   "no_landcover__logreg": 0.8770350739432011,
+   "no_landcover__lgbm": 0.9032207366997522,
+   "hand": 0.8878107944904796,
+   "occurrence": 0.4971739484819889,
+   "dist_water": 0.805289504680429,
+   "fluvial": 0.9018575344919031,
+   "pluvial": null,
+   "waterlogging": 0.894722836406551,
+   "flash_flood": 0.8942806236898357,
+   "neg_elev_glo30": 0.8952772669141772,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    849,
+    10260
+   ]
+  },
+  "emsr838_aoi07": {
+   "full__logreg": 0.6357941976085658,
+   "full__lgbm": 0.5238771000553328,
+   "open__logreg": 0.6632335382226053,
+   "open__lgbm": 0.5754520726645048,
+   "no_landcover__logreg": 0.5605463230155703,
+   "no_landcover__lgbm": 0.4657325034886105,
+   "hand": 0.5702730981286057,
+   "occurrence": 0.5127683626016547,
+   "dist_water": 0.6382847237990472,
+   "fluvial": 0.5248652985765587,
+   "pluvial": null,
+   "waterlogging": 0.6346789513887204,
+   "flash_flood": 0.5754091126033081,
+   "neg_elev_glo30": 0.6013228405886879,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    11360,
+    6389
+   ]
+  },
+  "emsr838_aoi01": {
+   "full__logreg": 0.8242664091212265,
+   "full__lgbm": 0.7621485046419054,
+   "open__logreg": 0.8202033762416516,
+   "open__lgbm": 0.6955266165010996,
+   "no_landcover__logreg": 0.6339052151579648,
+   "no_landcover__lgbm": 0.6969432015351505,
+   "hand": 0.47382424642653415,
+   "occurrence": 0.5281486243595791,
+   "dist_water": 0.49424387160858785,
+   "fluvial": 0.620980914838152,
+   "pluvial": null,
+   "waterlogging": 0.4937223489522214,
+   "flash_flood": 0.4427391345286198,
+   "neg_elev_glo30": 0.446168955682814,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    9092,
+    8658
+   ]
+  },
+  "emsr838_aoi03": {
+   "full__logreg": 0.7483877246621765,
+   "full__lgbm": 0.5463447928762326,
+   "open__logreg": 0.7126065343862829,
+   "open__lgbm": 0.40986194534555687,
+   "no_landcover__logreg": 0.8249828083926922,
+   "no_landcover__lgbm": 0.5481752376704478,
+   "hand": 0.4472160463078362,
+   "occurrence": 0.6204716410191875,
+   "dist_water": 0.7892587844077374,
+   "fluvial": 0.807209840733176,
+   "pluvial": null,
+   "waterlogging": 0.7815560192661636,
+   "flash_flood": 0.7125258274884672,
+   "neg_elev_glo30": 0.7832216469618275,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    7261,
+    10481
+   ]
+  },
+  "emsr779_aoi02": {
+   "full__logreg": 0.8036264558070892,
+   "full__lgbm": 0.6108856719244221,
+   "open__logreg": 0.6898917488857386,
+   "open__lgbm": 0.4789983542037578,
+   "no_landcover__logreg": 0.7411270898806823,
+   "no_landcover__lgbm": 0.5994033910980415,
+   "hand": 0.5392866097529111,
+   "occurrence": 0.519494207000131,
+   "dist_water": 0.2963171349356226,
+   "fluvial": 0.6589595478646368,
+   "pluvial": null,
+   "waterlogging": 0.29787118978707755,
+   "flash_flood": 0.396879902424097,
+   "neg_elev_glo30": 0.8351003989539286,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    3374,
+    14315
+   ]
+  },
+  "emsr779_aoi03": {
+   "full__logreg": 0.41524811097875136,
+   "full__lgbm": 0.4001690869274902,
+   "open__logreg": 0.510224572064619,
+   "open__lgbm": 0.456027151394931,
+   "no_landcover__logreg": 0.5485468717419417,
+   "no_landcover__lgbm": 0.20075031807178048,
+   "hand": 0.3904883796156591,
+   "occurrence": 0.4367120893948402,
+   "dist_water": 0.5068126338824523,
+   "fluvial": 0.22831989456154372,
+   "pluvial": null,
+   "waterlogging": 0.626215557816802,
+   "flash_flood": 0.27846865198041876,
+   "neg_elev_glo30": 0.5290362164019075,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    2557,
+    15132
+   ]
+  },
+  "emsr779_aoi01": {
+   "full__logreg": 0.8453372664202158,
+   "full__lgbm": 0.7528145097989568,
+   "open__logreg": 0.8844318124272041,
+   "open__lgbm": 0.8415884111088604,
+   "no_landcover__logreg": 0.33991450178086124,
+   "no_landcover__lgbm": 0.9420016067841529,
+   "hand": 0.7326035020087439,
+   "occurrence": 0.5495994381003022,
+   "dist_water": 0.921393782388886,
+   "fluvial": 0.9072862861025304,
+   "pluvial": null,
+   "waterlogging": 0.8738754884708225,
+   "flash_flood": 0.9710048256275214,
+   "neg_elev_glo30": 0.9909816206259179,
+   "neg_dist_coast": 0.4365541812258402,
+   "_cells": [
+    217,
+    17472
+   ]
+  },
+  "emsr799_aoi04": {
+   "full__logreg": 0.32691208953701,
+   "full__lgbm": 0.2949492546022393,
+   "open__logreg": 0.4042648101737375,
+   "open__lgbm": 0.5628700683460636,
+   "no_landcover__logreg": 0.2651204904272466,
+   "no_landcover__lgbm": 0.26672531562425766,
+   "hand": 0.5285449339098189,
+   "occurrence": 0.35064385980155677,
+   "dist_water": 0.1545722040476217,
+   "fluvial": 0.24075877030759182,
+   "pluvial": null,
+   "waterlogging": 0.22414706254347688,
+   "flash_flood": 0.3822825610988087,
+   "neg_elev_glo30": 0.44887071694547676,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    1904,
+    15813
+   ]
+  },
+  "emsr799_aoi03": {
+   "full__logreg": 0.9150072633619313,
+   "full__lgbm": 0.9131384019327187,
+   "open__logreg": 0.896966389507104,
+   "open__lgbm": 0.9079942531386804,
+   "no_landcover__logreg": 0.8713633796000929,
+   "no_landcover__lgbm": 0.9133604661317282,
+   "hand": 0.7986355556290547,
+   "occurrence": 0.7086122554254717,
+   "dist_water": 0.35797685994723727,
+   "fluvial": 0.8341490290421327,
+   "pluvial": null,
+   "waterlogging": 0.8252685790183277,
+   "flash_flood": 0.6089787164782138,
+   "neg_elev_glo30": 0.8431950842982275,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    1041,
+    16555
+   ]
+  },
+  "emsr799_aoi02": {
+   "full__logreg": 0.7591852327054568,
+   "full__lgbm": 0.7522678989938717,
+   "open__logreg": 0.8005471219013172,
+   "open__lgbm": 0.8435695043074499,
+   "no_landcover__logreg": 0.8106941028178686,
+   "no_landcover__lgbm": 0.7774714779867118,
+   "hand": 0.6294131616585912,
+   "occurrence": 0.8455987124394341,
+   "dist_water": 0.6871737981102454,
+   "fluvial": 0.6680699325271842,
+   "pluvial": null,
+   "waterlogging": 0.6604072439520007,
+   "flash_flood": 0.7029073809608241,
+   "neg_elev_glo30": 0.7364388129340628,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    213,
+    17476
+   ]
+  },
+  "emsr870_aoi13": {
+   "full__logreg": 0.9427813856719782,
+   "full__lgbm": 0.8835067217973854,
+   "open__logreg": 0.9332707851810225,
+   "open__lgbm": 0.9038956017491317,
+   "no_landcover__logreg": 0.6522988871112004,
+   "no_landcover__lgbm": 0.7366104361133428,
+   "hand": 0.5817534070980603,
+   "occurrence": 0.836342524532983,
+   "dist_water": 0.46824336421109525,
+   "fluvial": 0.704748522363903,
+   "pluvial": null,
+   "waterlogging": 0.8174468581573855,
+   "flash_flood": 0.6852508887586882,
+   "neg_elev_glo30": 0.8236958491092328,
+   "neg_dist_coast": 0.2471544282699274,
+   "_cells": [
+    8858,
+    8577
+   ]
+  },
+  "emsr870_aoi08": {
+   "full__logreg": 0.584748424002553,
+   "full__lgbm": 0.6089643832858134,
+   "open__logreg": 0.5603481598398331,
+   "open__lgbm": 0.5807806689122759,
+   "no_landcover__logreg": 0.6501607622377723,
+   "no_landcover__lgbm": 0.6250667872891513,
+   "hand": 0.419716787986856,
+   "occurrence": 0.6312207379732997,
+   "dist_water": 0.7268036839066662,
+   "fluvial": 0.6381341108327973,
+   "pluvial": null,
+   "waterlogging": 0.7024179932944714,
+   "flash_flood": 0.749203394078848,
+   "neg_elev_glo30": 0.4078005956180757,
+   "neg_dist_coast": 0.5089693030817288,
+   "_cells": [
+    1931,
+    15884
+   ]
+  },
+  "emsr870_aoi05": {
+   "full__logreg": 0.9011782053902532,
+   "full__lgbm": 0.9315918079798909,
+   "open__logreg": 0.8871560663070314,
+   "open__lgbm": 0.8892241615077212,
+   "no_landcover__logreg": 0.8194368212369378,
+   "no_landcover__lgbm": 0.8841008177132407,
+   "hand": 0.7495820133520485,
+   "occurrence": 0.5006104369376242,
+   "dist_water": 0.4044845091808186,
+   "fluvial": 0.6526704919563223,
+   "pluvial": null,
+   "waterlogging": 0.7030180087738743,
+   "flash_flood": 0.6747872641872199,
+   "neg_elev_glo30": 0.888113773304704,
+   "neg_dist_coast": 0.7740895984720776,
+   "_cells": [
+    1489,
+    16330
+   ]
+  },
+  "emsr813_aoi01": {
+   "full__logreg": 0.9197787323763655,
+   "full__lgbm": 0.9416482299053649,
+   "open__logreg": 0.8928381045971935,
+   "open__lgbm": 0.9241770670749353,
+   "no_landcover__logreg": 0.9334468786193387,
+   "no_landcover__lgbm": 0.9222828429850137,
+   "hand": 0.910393863521833,
+   "occurrence": 0.6455784551793007,
+   "dist_water": 0.9274738314978244,
+   "fluvial": 0.9059448704967893,
+   "pluvial": null,
+   "waterlogging": 0.9114749055867857,
+   "flash_flood": 0.9164973641115225,
+   "neg_elev_glo30": 0.8942810391512711,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    173,
+    17458
+   ]
+  },
+  "emsr770_aoi03": {
+   "full__logreg": 0.9039630786401984,
+   "full__lgbm": 0.8487554340944583,
+   "open__logreg": 0.9065247822845004,
+   "open__lgbm": 0.9321459221429677,
+   "no_landcover__logreg": 0.9410705576424354,
+   "no_landcover__lgbm": 0.8258572034871997,
+   "hand": 0.9277107162453045,
+   "occurrence": 0.5,
+   "dist_water": 0.9022205925800869,
+   "fluvial": 0.9272725300956213,
+   "pluvial": null,
+   "waterlogging": 0.925341286924877,
+   "flash_flood": 0.914828043444618,
+   "neg_elev_glo30": 0.8904824795884392,
+   "neg_dist_coast": 0.5879613997570778,
+   "_cells": [
+    348,
+    4902
+   ]
+  },
+  "emsr770_aoi01": {
+   "full__logreg": 0.9075167539957658,
+   "full__lgbm": 0.8921456792099077,
+   "open__logreg": 0.9038729356201087,
+   "open__lgbm": 0.9162559712127536,
+   "no_landcover__logreg": 0.9249876196675367,
+   "no_landcover__lgbm": 0.8885575452990417,
+   "hand": 0.8992011171493014,
+   "occurrence": 0.49796832797392887,
+   "dist_water": 0.8686814351238141,
+   "fluvial": 0.9054853522826306,
+   "pluvial": null,
+   "waterlogging": 0.886747259567456,
+   "flash_flood": 0.8747683418139511,
+   "neg_elev_glo30": 0.8969194056575416,
+   "neg_dist_coast": 0.693948450241876,
+   "_cells": [
+    217,
+    8524
+   ]
+  },
+  "emsr680_aoi07": {
+   "full__logreg": 0.7244531719513448,
+   "full__lgbm": 0.6830076753679721,
+   "open__logreg": 0.7266754036368437,
+   "open__lgbm": 0.8407907561294087,
+   "no_landcover__logreg": 0.8931319855616422,
+   "no_landcover__lgbm": 0.7470933516163838,
+   "hand": 0.9271399499735709,
+   "occurrence": 0.5010180947904485,
+   "dist_water": 0.7274349557943731,
+   "fluvial": 0.918893147954841,
+   "pluvial": null,
+   "waterlogging": 0.9200345788129183,
+   "flash_flood": 0.9137601424885566,
+   "neg_elev_glo30": 0.8503155263447864,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    865,
+    10859
+   ]
+  },
+  "emsr680_aoi13": {
+   "full__logreg": 0.6901527791283532,
+   "full__lgbm": 0.6346561114403457,
+   "open__logreg": 0.6793908383228638,
+   "open__lgbm": 0.7179579900346716,
+   "no_landcover__logreg": 0.5861967709507326,
+   "no_landcover__lgbm": 0.5659366109310375,
+   "hand": 0.5611132358928623,
+   "occurrence": 0.49845055873790967,
+   "dist_water": 0.3537781631110719,
+   "fluvial": 0.5619248598964504,
+   "pluvial": null,
+   "waterlogging": 0.5350049963413538,
+   "flash_flood": 0.5078677990261513,
+   "neg_elev_glo30": 0.6764292280047977,
+   "neg_dist_coast": 0.5472960294306273,
+   "_cells": [
+    563,
+    10649
+   ]
+  },
+  "emsr680_aoi04": {
+   "full__logreg": 0.6337119569520218,
+   "full__lgbm": 0.630981647389483,
+   "open__logreg": 0.5718186799147821,
+   "open__lgbm": 0.7141637591947487,
+   "no_landcover__logreg": 0.682905099756726,
+   "no_landcover__lgbm": 0.6398963701435173,
+   "hand": 0.26530426341245733,
+   "occurrence": 0.49805230120629346,
+   "dist_water": 0.6612083717197599,
+   "fluvial": 0.6656557241359455,
+   "pluvial": null,
+   "waterlogging": 0.5358316299356548,
+   "flash_flood": 0.3737838550288618,
+   "neg_elev_glo30": 0.6336577511192043,
+   "neg_dist_coast": 0.5998671619715269,
+   "_cells": [
+    254,
+    17504
+   ]
+  },
+  "emsr776_aoi01": {
+   "full__logreg": 0.8069499536819537,
+   "full__lgbm": 0.800601415754876,
+   "open__logreg": 0.7765143053635406,
+   "open__lgbm": 0.6489779498066659,
+   "no_landcover__logreg": 0.8292136629811652,
+   "no_landcover__lgbm": 0.7380266548930146,
+   "hand": 0.5346050969793276,
+   "occurrence": 0.4757054026933775,
+   "dist_water": 0.1565195954682776,
+   "fluvial": 0.326604037721652,
+   "pluvial": null,
+   "waterlogging": 0.38247967398608773,
+   "flash_flood": 0.5003676174478229,
+   "neg_elev_glo30": 0.9567194352810616,
+   "neg_dist_coast": 0.5928134086892418,
+   "_cells": [
+    1167,
+    16629
+   ]
+  },
+  "emsr694_aoi03": {
+   "full__logreg": 0.6465739707380425,
+   "full__lgbm": 0.5458343010925257,
+   "open__logreg": 0.6576082737712204,
+   "open__lgbm": 0.6974085321244199,
+   "no_landcover__logreg": 0.6535837111187984,
+   "no_landcover__lgbm": 0.5340074879918283,
+   "hand": 0.7046207703404244,
+   "occurrence": 0.5,
+   "dist_water": 0.696864494871287,
+   "fluvial": 0.7221504446096224,
+   "pluvial": null,
+   "waterlogging": 0.7020287864977416,
+   "flash_flood": 0.714736651931057,
+   "neg_elev_glo30": 0.611852907944384,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    1684,
+    15422
+   ]
+  },
+  "emsr694_aoi02": {
+   "full__logreg": 0.6549924488947677,
+   "full__lgbm": 0.6728449710879864,
+   "open__logreg": 0.644461017893121,
+   "open__lgbm": 0.8449570265946411,
+   "no_landcover__logreg": 0.8435892116039567,
+   "no_landcover__lgbm": 0.6379221950108253,
+   "hand": 0.7231702786292349,
+   "occurrence": 0.49940135692430493,
+   "dist_water": 0.4965004366613569,
+   "fluvial": 0.7479644412216593,
+   "pluvial": null,
+   "waterlogging": 0.7206861683465664,
+   "flash_flood": 0.741747996423995,
+   "neg_elev_glo30": 0.9182993849519673,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    965,
+    7517
+   ]
+  },
+  "emsr935_aoi01": {
+   "full__logreg": 0.7200864415731112,
+   "full__lgbm": 0.702784051707641,
+   "open__logreg": 0.7228961057902669,
+   "open__lgbm": 0.714179531168056,
+   "no_landcover__logreg": 0.6592522706211918,
+   "no_landcover__lgbm": 0.7698689236510043,
+   "hand": 0.7198400971095731,
+   "occurrence": 0.47350483235240093,
+   "dist_water": 0.6998070454091728,
+   "fluvial": 0.5687486691321862,
+   "pluvial": null,
+   "waterlogging": 0.6348351131435286,
+   "flash_flood": 0.4790111986477127,
+   "neg_elev_glo30": 0.7214077781197868,
+   "neg_dist_coast": 0.6096865786903626,
+   "_cells": [
+    8596,
+    6298
+   ]
+  },
+  "emsr935_aoi02": {
+   "full__logreg": 0.6509781265700222,
+   "full__lgbm": 0.5680641914336539,
+   "open__logreg": 0.7070798914382688,
+   "open__lgbm": 0.6634279402788578,
+   "no_landcover__logreg": 0.44690375290277246,
+   "no_landcover__lgbm": 0.632467428433108,
+   "hand": 0.5443455907898415,
+   "occurrence": 0.4954269633277636,
+   "dist_water": 0.5575565251538785,
+   "fluvial": 0.3962104833295747,
+   "pluvial": null,
+   "waterlogging": 0.5073909136582465,
+   "flash_flood": 0.4245787442608477,
+   "neg_elev_glo30": 0.8083943782646666,
+   "neg_dist_coast": 0.5485665288892797,
+   "_cells": [
+    404,
+    11371
+   ]
+  }
+ },
+ "per_unit_lco": {
+  "assam_2026": {
+   "full__logreg": 0.8284411164630615,
+   "full__lgbm": 0.8759241911048948,
+   "open__logreg": 0.8407490930858295,
+   "open__lgbm": 0.8713278761005147,
+   "no_landcover__logreg": 0.5466481611742798,
+   "no_landcover__lgbm": 0.7985028755646871,
+   "hand": 0.7494936735190636,
+   "occurrence": 0.5215983421503019,
+   "dist_water": 0.26240750542084257,
+   "fluvial": 0.3877853500882976,
+   "pluvial": 0.7342590650771786,
+   "waterlogging": 0.41949268437638865,
+   "flash_flood": 0.5046353215244849,
+   "neg_elev_glo30": 0.8628418412612738,
+   "neg_dist_coast": 0.4041344151314076,
+   "_cells": [
+    5327,
+    13059
+   ]
+  },
+  "bad_neuenahr": {
+   "full__logreg": 0.6694177413328753,
+   "full__lgbm": 0.6229280618469444,
+   "open__logreg": 0.6575970032704794,
+   "open__lgbm": 0.6323964274394466,
+   "no_landcover__logreg": 0.6504827808460042,
+   "no_landcover__lgbm": 0.6160754600716425,
+   "hand": 0.7126418107867389,
+   "occurrence": 0.5,
+   "dist_water": 0.7008500679062734,
+   "fluvial": 0.6915862179481505,
+   "pluvial": 0.606770884056457,
+   "waterlogging": 0.6963974261131937,
+   "flash_flood": 0.7097396365465012,
+   "neg_elev_glo30": 0.6359843045317477,
+   "neg_dist_coast": 0.5794939433270355,
+   "_cells": [
+    206,
+    10966
+   ]
+  },
+  "beira": {
+   "full__logreg": 0.615293380088259,
+   "full__lgbm": 0.580273644391999,
+   "open__logreg": 0.6109381481606869,
+   "open__lgbm": 0.5818427107632455,
+   "no_landcover__logreg": 0.5307076176075776,
+   "no_landcover__lgbm": 0.4802150307813231,
+   "hand": 0.5216796939529272,
+   "occurrence": 0.5758799893459463,
+   "dist_water": 0.584459643284989,
+   "fluvial": 0.46644613482598857,
+   "pluvial": 0.445175145381741,
+   "waterlogging": 0.5827772246353373,
+   "flash_flood": 0.5112774707961866,
+   "neg_elev_glo30": 0.5665641370359297,
+   "neg_dist_coast": 0.6774788315945717,
+   "_cells": [
+    661,
+    18545
+   ]
+  },
+  "belize_city": {
+   "full__logreg": 0.5988603647720023,
+   "full__lgbm": 0.6890447404631004,
+   "open__logreg": 0.5150847567570475,
+   "open__lgbm": 0.6082964075566093,
+   "no_landcover__logreg": 0.8115898653083,
+   "no_landcover__lgbm": 0.7746789328360901,
+   "hand": 0.6462447291702657,
+   "occurrence": 0.499939838767898,
+   "dist_water": 0.36367893328421846,
+   "fluvial": 0.6084972810932181,
+   "pluvial": 0.4663272990609246,
+   "waterlogging": 0.7004964085873044,
+   "flash_flood": 0.6851423266869175,
+   "neg_elev_glo30": 0.5093050772718931,
+   "neg_dist_coast": 0.763580894002631,
+   "_cells": [
+    1074,
+    16622
+   ]
+  },
+  "bihar_2026": {
+   "full__logreg": 0.7929766503458185,
+   "full__lgbm": 0.8052252140049709,
+   "open__logreg": 0.7878602548923831,
+   "open__lgbm": 0.8174760290120557,
+   "no_landcover__logreg": 0.7079444570908263,
+   "no_landcover__lgbm": 0.757485578809053,
+   "hand": 0.6031640456597341,
+   "occurrence": 0.6418808076963904,
+   "dist_water": 0.5290119154088094,
+   "fluvial": 0.6424662028031055,
+   "pluvial": 0.6020620905687808,
+   "waterlogging": 0.67342457113225,
+   "flash_flood": 0.6099747047985395,
+   "neg_elev_glo30": 0.7509622375862652,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    8923,
+    8786
+   ]
+  },
+  "black_river": {
+   "full__logreg": 0.677684092124349,
+   "full__lgbm": 0.8349432346919784,
+   "open__logreg": 0.633140939855066,
+   "open__lgbm": 0.8488689774563588,
+   "no_landcover__logreg": 0.8077676743505889,
+   "no_landcover__lgbm": 0.8701153474604061,
+   "hand": 0.7192743183879421,
+   "occurrence": 0.506117263271088,
+   "dist_water": 0.6061811113179064,
+   "fluvial": 0.7115683502757763,
+   "pluvial": 0.7358682004968995,
+   "waterlogging": 0.7087797157450982,
+   "flash_flood": 0.6897504128520321,
+   "neg_elev_glo30": 0.8577654586867317,
+   "neg_dist_coast": 0.467795990534684,
+   "_cells": [
+    1260,
+    10746
+   ]
+  },
+  "choloma": {
+   "full__logreg": 0.8334875229542283,
+   "full__lgbm": 0.8031763389562796,
+   "open__logreg": 0.8289447904205407,
+   "open__lgbm": 0.818991103652357,
+   "no_landcover__logreg": 0.7768849007553041,
+   "no_landcover__lgbm": 0.7419947457864413,
+   "hand": 0.6138877539815063,
+   "occurrence": 0.5733159404047359,
+   "dist_water": 0.29382781390367996,
+   "fluvial": 0.48930870437256896,
+   "pluvial": 0.5705705167515138,
+   "waterlogging": 0.5725713015168572,
+   "flash_flood": 0.4361864904931545,
+   "neg_elev_glo30": 0.5820401357236109,
+   "neg_dist_coast": 0.6466473187874522,
+   "_cells": [
+    4604,
+    12374
+   ]
+  },
+  "derna": {
+   "full__logreg": 0.6197428208213689,
+   "full__lgbm": 0.6322770692864222,
+   "open__logreg": 0.6147217464754058,
+   "open__lgbm": 0.6361385770890238,
+   "no_landcover__logreg": 0.5839159021114669,
+   "no_landcover__lgbm": 0.6189348913068854,
+   "hand": 0.6165653538176825,
+   "occurrence": 0.4964949043801956,
+   "dist_water": 0.6221930053545393,
+   "fluvial": 0.6327000683377583,
+   "pluvial": 0.5246086230790616,
+   "waterlogging": 0.5912229487530481,
+   "flash_flood": 0.6065197564034814,
+   "neg_elev_glo30": 0.6318770175025308,
+   "neg_dist_coast": 0.5714825950945375,
+   "_cells": [
+    408,
+    9239
+   ]
+  },
+  "derna_2023": {
+   "full__logreg": 0.8512597464510381,
+   "full__lgbm": 0.8472295449657419,
+   "open__logreg": 0.870374059548623,
+   "open__lgbm": 0.8419733843959654,
+   "no_landcover__logreg": 0.9179000096138884,
+   "no_landcover__lgbm": 0.791715365471472,
+   "hand": 0.9608992256359785,
+   "occurrence": 0.5,
+   "dist_water": 0.7457063878837255,
+   "fluvial": 0.9768720371631299,
+   "pluvial": 0.5947270299923585,
+   "waterlogging": 0.8288874154200824,
+   "flash_flood": 0.8332790991092782,
+   "neg_elev_glo30": 0.9650465579801716,
+   "neg_dist_coast": 0.8005940986583174,
+   "_cells": [
+    1767,
+    14275
+   ]
+  },
+  "dharavi": {
+   "full__logreg": 0.6226649110491753,
+   "full__lgbm": 0.6101727510996839,
+   "open__logreg": 0.6188967024020668,
+   "open__lgbm": 0.6391332400142332,
+   "no_landcover__logreg": 0.7065357983975145,
+   "no_landcover__lgbm": 0.6422849057047877,
+   "hand": 0.639727768524326,
+   "occurrence": 0.613434765933821,
+   "dist_water": 0.5499151959216507,
+   "fluvial": 0.6006773249816892,
+   "pluvial": 0.5248818627267731,
+   "waterlogging": 0.6918542394424114,
+   "flash_flood": 0.6479679558271132,
+   "neg_elev_glo30": 0.6562080046742623,
+   "neg_dist_coast": 0.3045884198473388,
+   "_cells": [
+    489,
+    7385
+   ]
+  },
+  "dubai_2024": {
+   "full__logreg": 0.5292693739613876,
+   "full__lgbm": 0.436233441435572,
+   "open__logreg": 0.529788839789342,
+   "open__lgbm": 0.4463096313334372,
+   "no_landcover__logreg": 0.45136633606052895,
+   "no_landcover__lgbm": 0.4426359618096139,
+   "hand": 0.4969004669611883,
+   "occurrence": 0.4873723551296163,
+   "dist_water": 0.5367322969933314,
+   "fluvial": 0.4893685907994959,
+   "pluvial": 0.49339426179431933,
+   "waterlogging": 0.49360372229614113,
+   "flash_flood": 0.5014309429676274,
+   "neg_elev_glo30": 0.5044865408503785,
+   "neg_dist_coast": 0.5029717474718841,
+   "_cells": [
+    591,
+    17889
+   ]
+  },
+  "encantado": {
+   "full__logreg": 0.8535940594059406,
+   "full__lgbm": 0.8440712700580403,
+   "open__logreg": 0.8608111983612154,
+   "open__lgbm": 0.8644217736428815,
+   "no_landcover__logreg": 0.7801532946398088,
+   "no_landcover__lgbm": 0.7663294639808809,
+   "hand": 0.7786179583475589,
+   "occurrence": 0.5594690594059406,
+   "dist_water": 0.7261199214749061,
+   "fluvial": 0.8301789006486856,
+   "pluvial": 0.48907515363605325,
+   "waterlogging": 0.7643410720382383,
+   "flash_flood": 0.7338076988733356,
+   "neg_elev_glo30": 0.8927934021850461,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    725,
+    16160
+   ]
+  },
+  "faenza": {
+   "full__logreg": 0.7862312538573285,
+   "full__lgbm": 0.8721759207331512,
+   "open__logreg": 0.7878194301530252,
+   "open__lgbm": 0.8326633299250669,
+   "no_landcover__logreg": 0.8550083364354518,
+   "no_landcover__lgbm": 0.9025585297963222,
+   "hand": 0.6866264285323376,
+   "occurrence": 0.5,
+   "dist_water": 0.7714757360148642,
+   "fluvial": 0.7872204097180567,
+   "pluvial": 0.7139142341451943,
+   "waterlogging": 0.7310186923635867,
+   "flash_flood": 0.8492906850290407,
+   "neg_elev_glo30": 0.7815783470503865,
+   "neg_dist_coast": 0.710816450493711,
+   "_cells": [
+    219,
+    8427
+   ]
+  },
+  "fort_myers_beach": {
+   "full__logreg": 0.5412464725570406,
+   "full__lgbm": 0.5773853106530386,
+   "open__logreg": 0.52958033562341,
+   "open__lgbm": 0.6049923371006575,
+   "no_landcover__logreg": 0.5622779464201842,
+   "no_landcover__lgbm": 0.487527521454188,
+   "hand": 0.6584193452499675,
+   "occurrence": 0.5812849607718746,
+   "dist_water": 0.5129675751909935,
+   "fluvial": 0.46316001626516334,
+   "pluvial": 0.5884294402030057,
+   "waterlogging": 0.6800422649754672,
+   "flash_flood": 0.4377257531323951,
+   "neg_elev_glo30": 0.7339051769286894,
+   "neg_dist_coast": 0.701468625863926,
+   "_cells": [
+    578,
+    5378
+   ]
+  },
+  "hai_phong": {
+   "full__logreg": 0.5166158850002285,
+   "full__lgbm": 0.8162907776305569,
+   "open__logreg": 0.6109205807100105,
+   "open__lgbm": 0.7730252261616485,
+   "no_landcover__logreg": 0.09190101430072646,
+   "no_landcover__lgbm": 0.655287670763467,
+   "hand": 0.8704567779960707,
+   "occurrence": 0.8597183830584365,
+   "dist_water": 0.7928957543290538,
+   "fluvial": 0.5959395131813405,
+   "pluvial": 0.6298801800155344,
+   "waterlogging": 0.4177879563211038,
+   "flash_flood": 0.1609395702928679,
+   "neg_elev_glo30": 0.8903944122081601,
+   "neg_dist_coast": 0.19608172088454334,
+   "_cells": [
+    86,
+    8144
+   ]
+  },
+  "hanoi": {
+   "full__logreg": 0.8200939191192824,
+   "full__lgbm": 0.9046428648651988,
+   "open__logreg": 0.8841294295351768,
+   "open__lgbm": 0.851240864469815,
+   "no_landcover__logreg": 0.6819399140040032,
+   "no_landcover__lgbm": 0.805783686398794,
+   "hand": 0.48098118528677686,
+   "occurrence": 0.8550150431215559,
+   "dist_water": 0.829673483949885,
+   "fluvial": 0.916155524872118,
+   "pluvial": 0.4772399810339289,
+   "waterlogging": 0.8099242129389379,
+   "flash_flood": 0.5870305588504213,
+   "neg_elev_glo30": 0.9521590895050288,
+   "neg_dist_coast": 0.8059975952628067,
+   "_cells": [
+    940,
+    13776
+   ]
+  },
+  "himachal_2023": {
+   "full__logreg": 0.54395550134838,
+   "full__lgbm": 0.46253165211372815,
+   "open__logreg": 0.5896656903748032,
+   "open__lgbm": 0.5457502817038122,
+   "no_landcover__logreg": 0.537900029964001,
+   "no_landcover__lgbm": 0.525383307097248,
+   "hand": 0.5341167583171205,
+   "occurrence": 0.5050202890048997,
+   "dist_water": 0.49161366696067965,
+   "fluvial": 0.5459053243075572,
+   "pluvial": 0.5150479951551165,
+   "waterlogging": 0.4222575553595469,
+   "flash_flood": 0.5099369700908627,
+   "neg_elev_glo30": 0.6098885423568586,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    520,
+    18227
+   ]
+  },
+  "kerala_2018": {
+   "full__logreg": 0.7900862418642972,
+   "full__lgbm": 0.7659833272489456,
+   "open__logreg": 0.8073150149949072,
+   "open__lgbm": 0.7899600889135934,
+   "no_landcover__logreg": 0.7132281761064362,
+   "no_landcover__lgbm": 0.6910272696243925,
+   "hand": 0.7091390497124032,
+   "occurrence": 0.7865406783103707,
+   "dist_water": 0.26981660615911257,
+   "fluvial": 0.46260145614583287,
+   "pluvial": 0.6295023513559623,
+   "waterlogging": 0.7730248849418844,
+   "flash_flood": 0.5760249976610269,
+   "neg_elev_glo30": 0.7469555639942038,
+   "neg_dist_coast": 0.3914531028746643,
+   "_cells": [
+    10866,
+    7224
+   ]
+  },
+  "kolonnawa": {
+   "full__logreg": 0.8240360940800289,
+   "full__lgbm": 0.7138145283249293,
+   "open__logreg": 0.816650433890068,
+   "open__lgbm": 0.7965114618795064,
+   "no_landcover__logreg": 0.7017398944130286,
+   "no_landcover__lgbm": 0.7591941008692383,
+   "hand": 0.6056492492923097,
+   "occurrence": 0.4980310036919187,
+   "dist_water": 0.49577785784462347,
+   "fluvial": 0.7996121956253123,
+   "pluvial": 0.7508691067071646,
+   "waterlogging": 0.6718539653645408,
+   "flash_flood": 0.5946858972917896,
+   "neg_elev_glo30": 0.8313687926844557,
+   "neg_dist_coast": 0.422608946437103,
+   "_cells": [
+    573,
+    8617
+   ]
+  },
+  "kyaukpyu": {
+   "full__logreg": 0.8807003899571748,
+   "full__lgbm": 0.8920586288197795,
+   "open__logreg": 0.8664228731471707,
+   "open__lgbm": 0.8781411202841949,
+   "no_landcover__logreg": 0.8049111757636451,
+   "no_landcover__lgbm": 0.8559888478817812,
+   "hand": 0.6895469459372038,
+   "occurrence": 0.4483419939516242,
+   "dist_water": 0.6591304638617095,
+   "fluvial": 0.8972208189840516,
+   "pluvial": 0.606468636961027,
+   "waterlogging": 0.7189190636884675,
+   "flash_flood": 0.6525832850214954,
+   "neg_elev_glo30": 0.8953306645666924,
+   "neg_dist_coast": 0.721108559141236,
+   "_cells": [
+    381,
+    8869
+   ]
+  },
+  "milagro": {
+   "full__logreg": 0.9469669195930958,
+   "full__lgbm": 0.9442243527786727,
+   "open__logreg": 0.9377849125496688,
+   "open__lgbm": 0.9222656727361603,
+   "no_landcover__logreg": 0.7831805776202697,
+   "no_landcover__lgbm": 0.7635585970915312,
+   "hand": 0.6979784401512374,
+   "occurrence": 0.49766181921870545,
+   "dist_water": 0.37237917485992766,
+   "fluvial": 0.762598365421291,
+   "pluvial": 0.8489351538111162,
+   "waterlogging": 0.7396596417554502,
+   "flash_flood": 0.4263282340698936,
+   "neg_elev_glo30": 0.7523087405893223,
+   "neg_dist_coast": 0.5603940541921723,
+   "_cells": [
+    154,
+    17535
+   ]
+  },
+  "nam_dinh": {
+   "full__logreg": 0.7299288169509417,
+   "full__lgbm": 0.6773770203353633,
+   "open__logreg": 0.7420686089420716,
+   "open__lgbm": 0.6696216128288116,
+   "no_landcover__logreg": 0.4033278129579033,
+   "no_landcover__lgbm": 0.5077009998195385,
+   "hand": 0.43856826303327506,
+   "occurrence": 0.5603751039789726,
+   "dist_water": 0.628224401768604,
+   "fluvial": 0.774875317424514,
+   "pluvial": 0.43803432724090163,
+   "waterlogging": 0.7440846639802908,
+   "flash_flood": 0.6367633794765541,
+   "neg_elev_glo30": 0.4517636051265094,
+   "neg_dist_coast": 0.7928873934140533,
+   "_cells": [
+    2733,
+    12502
+   ]
+  },
+  "paiporta": {
+   "full__logreg": 0.57723482499463,
+   "full__lgbm": 0.6638783871400799,
+   "open__logreg": 0.5418971309351246,
+   "open__lgbm": 0.6266735294071781,
+   "no_landcover__logreg": 0.6732247751208772,
+   "no_landcover__lgbm": 0.6445265793924605,
+   "hand": 0.5007581532008343,
+   "occurrence": 0.49996454655037936,
+   "dist_water": 0.5462048261395752,
+   "fluvial": 0.6859133077194434,
+   "pluvial": 0.47294510005891455,
+   "waterlogging": 0.5042459332351957,
+   "flash_flood": 0.5281977081496285,
+   "neg_elev_glo30": 0.7375209969999046,
+   "neg_dist_coast": 0.7601895649648992,
+   "_cells": [
+    3683,
+    14103
+   ]
+  },
+  "pakistan_2022": {
+   "full__logreg": 0.7399306007777178,
+   "full__lgbm": 0.7210301736145039,
+   "open__logreg": 0.7127285100706873,
+   "open__lgbm": 0.7143672029312158,
+   "no_landcover__logreg": 0.5393587035139121,
+   "no_landcover__lgbm": 0.6938714679928143,
+   "hand": 0.5137905956956322,
+   "occurrence": 0.464574246524867,
+   "dist_water": 0.4395077767228771,
+   "fluvial": 0.5791074954777115,
+   "pluvial": 0.5306795331299025,
+   "waterlogging": 0.482048859842039,
+   "flash_flood": 0.49364944877066486,
+   "neg_elev_glo30": 0.6549678622491989,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    10153,
+    7570
+   ]
+  },
+  "sittwe": {
+   "full__logreg": 0.9103531190573723,
+   "full__lgbm": 0.9205228180252908,
+   "open__logreg": 0.9103452094302737,
+   "open__lgbm": 0.9097070274122697,
+   "no_landcover__logreg": 0.8170261800331039,
+   "no_landcover__lgbm": 0.5833056496384884,
+   "hand": 0.8061000709368662,
+   "occurrence": 0.4615115463903792,
+   "dist_water": 0.32362676384684297,
+   "fluvial": 0.8615965124372642,
+   "pluvial": 0.4693441586987581,
+   "waterlogging": 0.8370997728688134,
+   "flash_flood": 0.6814143745399928,
+   "neg_elev_glo30": 0.835312821588786,
+   "neg_dist_coast": 0.2641197251113176,
+   "_cells": [
+    216,
+    11121
+   ]
+  },
+  "sylhet_2022": {
+   "full__logreg": 0.9089676825716643,
+   "full__lgbm": 0.9292773745887855,
+   "open__logreg": 0.9291307040417897,
+   "open__lgbm": 0.9350387737226186,
+   "no_landcover__logreg": 0.6685049993808881,
+   "no_landcover__lgbm": 0.72202019120659,
+   "hand": 0.7299982121565772,
+   "occurrence": 0.5529444151793592,
+   "dist_water": 0.38742067497722554,
+   "fluvial": 0.5423094119953554,
+   "pluvial": 0.650243312012581,
+   "waterlogging": 0.6879211579476484,
+   "flash_flood": 0.6324499003735308,
+   "neg_elev_glo30": 0.8545237110891357,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    8872,
+    8564
+   ]
+  },
+  "thai_binh": {
+   "full__logreg": 0.5620220444532698,
+   "full__lgbm": 0.44367347951879,
+   "open__logreg": 0.5837047251058268,
+   "open__lgbm": 0.5158289527017095,
+   "no_landcover__logreg": 0.35870227914941444,
+   "no_landcover__lgbm": 0.27501351903002286,
+   "hand": 0.27063814882307324,
+   "occurrence": 0.4407871907070043,
+   "dist_water": 0.8581728440520846,
+   "fluvial": 0.5384926667094007,
+   "pluvial": 0.3231098179003525,
+   "waterlogging": 0.26854980810688756,
+   "flash_flood": 0.7706355582781045,
+   "neg_elev_glo30": 0.35359288103783737,
+   "neg_dist_coast": 0.8952345057698063,
+   "_cells": [
+    506,
+    16402
+   ]
+  },
+  "valencia_2024": {
+   "full__logreg": 0.6970165522878263,
+   "full__lgbm": 0.7986394853700618,
+   "open__logreg": 0.6765179379291796,
+   "open__lgbm": 0.7618833914806569,
+   "no_landcover__logreg": 0.6441575143353652,
+   "no_landcover__lgbm": 0.7962657207947501,
+   "hand": 0.7062794661197345,
+   "occurrence": 0.5,
+   "dist_water": 0.6888419767284555,
+   "fluvial": 0.6988333089974098,
+   "pluvial": 0.5531735221010196,
+   "waterlogging": 0.6927307584514143,
+   "flash_flood": 0.7414086540991627,
+   "neg_elev_glo30": 0.42071965703387737,
+   "neg_dist_coast": 0.27524708493764494,
+   "_cells": [
+    2847,
+    14924
+   ]
+  },
+  "volos": {
+   "full__logreg": 0.6839351946839648,
+   "full__lgbm": 0.664157430652003,
+   "open__logreg": 0.6665277303431543,
+   "open__lgbm": 0.6060411700701698,
+   "no_landcover__logreg": 0.6073739785196108,
+   "no_landcover__lgbm": 0.6263743393072685,
+   "hand": 0.5183850532549896,
+   "occurrence": 0.5,
+   "dist_water": 0.5804754194936724,
+   "fluvial": 0.5601410699479938,
+   "pluvial": 0.5137746612474365,
+   "waterlogging": 0.5600210118933494,
+   "flash_flood": 0.47483371385948475,
+   "neg_elev_glo30": 0.52158951102843,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    10911,
+    6872
+   ]
+  },
+  "emsr662_aoi01": {
+   "full__logreg": 0.6810497231299928,
+   "full__lgbm": 0.5665714216820987,
+   "open__logreg": 0.6785065472948438,
+   "open__lgbm": 0.6345995313634714,
+   "no_landcover__logreg": 0.731190853077342,
+   "no_landcover__lgbm": 0.5206687999273784,
+   "hand": 0.5177357082879448,
+   "occurrence": 0.5,
+   "dist_water": 0.7284593857797749,
+   "fluvial": 0.6972358387799564,
+   "pluvial": null,
+   "waterlogging": 0.715353874478032,
+   "flash_flood": 0.41484474287400147,
+   "neg_elev_glo30": 0.5244718619507989,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    408,
+    17280
+   ]
+  },
+  "emsr774_aoi01": {
+   "full__logreg": 0.7196753079555841,
+   "full__lgbm": 0.6907897841297036,
+   "open__logreg": 0.7333260436171645,
+   "open__lgbm": 0.6741591637461125,
+   "no_landcover__logreg": 0.6833101149090035,
+   "no_landcover__lgbm": 0.7198443737609279,
+   "hand": 0.5771146124046361,
+   "occurrence": 0.7696731030414342,
+   "dist_water": 0.3641135789090552,
+   "fluvial": 0.48643896532345016,
+   "pluvial": null,
+   "waterlogging": 0.5059410515161031,
+   "flash_flood": 0.4529628814288241,
+   "neg_elev_glo30": 0.7954618474429638,
+   "neg_dist_coast": 0.6815129386148812,
+   "_cells": [
+    7209,
+    10327
+   ]
+  },
+  "emsr774_aoi02": {
+   "full__logreg": 0.8720371406662991,
+   "full__lgbm": 0.9029973968084453,
+   "open__logreg": 0.8713031332253813,
+   "open__lgbm": 0.9226420837545473,
+   "no_landcover__logreg": 0.8526857880564536,
+   "no_landcover__lgbm": 0.9018700382515965,
+   "hand": 0.7052480016619869,
+   "occurrence": 0.7847284847512985,
+   "dist_water": 0.5509737721838182,
+   "fluvial": 0.7253263357406242,
+   "pluvial": null,
+   "waterlogging": 0.7688261611934344,
+   "flash_flood": 0.7136920836030066,
+   "neg_elev_glo30": 0.8619394066387446,
+   "neg_dist_coast": 0.31564386421854246,
+   "_cells": [
+    879,
+    16516
+   ]
+  },
+  "emsr865_aoi01": {
+   "full__logreg": 0.7192438221646439,
+   "full__lgbm": 0.7248804947560766,
+   "open__logreg": 0.7556868906511521,
+   "open__lgbm": 0.7256719137138431,
+   "no_landcover__logreg": 0.6497802655275206,
+   "no_landcover__lgbm": 0.7467371999391201,
+   "hand": 0.6193752052349379,
+   "occurrence": 0.4999366406893493,
+   "dist_water": 0.431356009293702,
+   "fluvial": 0.5294052785011326,
+   "pluvial": null,
+   "waterlogging": 0.5151225950325058,
+   "flash_flood": 0.6866860172608819,
+   "neg_elev_glo30": 0.5901576004792148,
+   "neg_dist_coast": 0.7666340351497306,
+   "_cells": [
+    1937,
+    15783
+   ]
+  },
+  "emsr853_aoi02": {
+   "full__logreg": 0.6657559418258063,
+   "full__lgbm": 0.7028677096979892,
+   "open__logreg": 0.6791613093671136,
+   "open__lgbm": 0.6482380427196953,
+   "no_landcover__logreg": 0.5169712929159741,
+   "no_landcover__lgbm": 0.601657497176441,
+   "hand": 0.5202062510470135,
+   "occurrence": 0.5602810189091605,
+   "dist_water": 0.3608615300022928,
+   "fluvial": 0.4255171474758579,
+   "pluvial": null,
+   "waterlogging": 0.4874901305707874,
+   "flash_flood": 0.5177778672537405,
+   "neg_elev_glo30": 0.5195867037196867,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    2776,
+    14932
+   ]
+  },
+  "emsr853_aoi04": {
+   "full__logreg": 0.8301833776989056,
+   "full__lgbm": 0.737363206152026,
+   "open__logreg": 0.8365894974590626,
+   "open__lgbm": 0.8054327659917722,
+   "no_landcover__logreg": 0.8343940738350676,
+   "no_landcover__lgbm": 0.7238303621843994,
+   "hand": 0.6546422521577802,
+   "occurrence": 0.4991530208921513,
+   "dist_water": 0.6102471027936867,
+   "fluvial": 0.6718056787932565,
+   "pluvial": null,
+   "waterlogging": 0.6534154768626819,
+   "flash_flood": 0.6327310370788631,
+   "neg_elev_glo30": 0.770043827807803,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    280,
+    5313
+   ]
+  },
+  "emsr853_aoi08": {
+   "full__logreg": 0.7487727494386014,
+   "full__lgbm": 0.6654703707940254,
+   "open__logreg": 0.7064219189298206,
+   "open__lgbm": 0.7056302414766741,
+   "no_landcover__logreg": 0.641402924691306,
+   "no_landcover__lgbm": 0.5445289970680842,
+   "hand": 0.3595031396181887,
+   "occurrence": 0.4863385971355123,
+   "dist_water": 0.6507882157456518,
+   "fluvial": 0.674846781816102,
+   "pluvial": null,
+   "waterlogging": 0.5909041377940194,
+   "flash_flood": 0.3576494705092623,
+   "neg_elev_glo30": 0.3841032371480346,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    244,
+    13615
+   ]
+  },
+  "emsr844_aoi01": {
+   "full__logreg": 0.7500133025665517,
+   "full__lgbm": 0.6961413958999543,
+   "open__logreg": 0.717405791872586,
+   "open__lgbm": 0.6597153185867354,
+   "no_landcover__logreg": 0.7289640999418581,
+   "no_landcover__lgbm": 0.7015909869595913,
+   "hand": 0.6085573788363304,
+   "occurrence": 0.8211684065991113,
+   "dist_water": 0.6450009766030566,
+   "fluvial": 0.7648914121225965,
+   "pluvial": null,
+   "waterlogging": 0.7711080908156485,
+   "flash_flood": 0.872370958615391,
+   "neg_elev_glo30": 0.6426031889821006,
+   "neg_dist_coast": 0.3980861175713277,
+   "_cells": [
+    398,
+    15488
+   ]
+  },
+  "emsr757_aoi01": {
+   "full__logreg": 0.6733233464296897,
+   "full__lgbm": 0.6631591915547139,
+   "open__logreg": 0.6347342955551911,
+   "open__lgbm": 0.6877241788062683,
+   "no_landcover__logreg": 0.6582394564390833,
+   "no_landcover__lgbm": 0.6564694633724485,
+   "hand": 0.6417667220838863,
+   "occurrence": 0.49997487587039824,
+   "dist_water": 0.42069340174750625,
+   "fluvial": 0.6701167489227191,
+   "pluvial": null,
+   "waterlogging": 0.6974082726974518,
+   "flash_flood": 0.5086162717879136,
+   "neg_elev_glo30": 0.7457989771422607,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    3850,
+    13936
+   ]
+  },
+  "emsr757_aoi02": {
+   "full__logreg": 0.7953862498288442,
+   "full__lgbm": 0.8462086077939479,
+   "open__logreg": 0.8418282790402558,
+   "open__lgbm": 0.8469514547023844,
+   "no_landcover__logreg": 0.7805744692946424,
+   "no_landcover__lgbm": 0.8562889990806486,
+   "hand": 0.7686356617862802,
+   "occurrence": 0.4954814858282965,
+   "dist_water": 0.6924289825518847,
+   "fluvial": 0.6990301729407508,
+   "pluvial": null,
+   "waterlogging": 0.7674275613471432,
+   "flash_flood": 0.7888528340961993,
+   "neg_elev_glo30": 0.8330895126704223,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    768,
+    17041
+   ]
+  },
+  "emsr868_aoi01": {
+   "full__logreg": 0.9675164515974716,
+   "full__lgbm": 0.9821836385193378,
+   "open__logreg": 0.9537623099887205,
+   "open__lgbm": 0.9788679632638485,
+   "no_landcover__logreg": 0.9579153567410107,
+   "no_landcover__lgbm": 0.9757091899343978,
+   "hand": 0.9133519522032829,
+   "occurrence": 0.8644726603769738,
+   "dist_water": 0.3221983110043418,
+   "fluvial": 0.8605911151729131,
+   "pluvial": null,
+   "waterlogging": 0.90502271733456,
+   "flash_flood": 0.8291946893122255,
+   "neg_elev_glo30": 0.9693977191417641,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    4874,
+    11211
+   ]
+  },
+  "emsr868_aoi02": {
+   "full__logreg": 0.6902411232071983,
+   "full__lgbm": 0.8853556720954588,
+   "open__logreg": 0.7517914694401301,
+   "open__lgbm": 0.8714213597227295,
+   "no_landcover__logreg": 0.6438875286514323,
+   "no_landcover__lgbm": 0.9428019537683472,
+   "hand": 0.7900183951787437,
+   "occurrence": 0.5075931446874241,
+   "dist_water": 0.7379130389062649,
+   "fluvial": 0.6212936983190686,
+   "pluvial": null,
+   "waterlogging": 0.7860733078780249,
+   "flash_flood": 0.5259815025074,
+   "neg_elev_glo30": 0.9423560181152366,
+   "neg_dist_coast": 0.9005205039810037,
+   "_cells": [
+    1756,
+    16030
+   ]
+  },
+  "emsr711_aoi02": {
+   "full__logreg": 0.9301797773031846,
+   "full__lgbm": 0.9467621584336816,
+   "open__logreg": 0.8948682601735884,
+   "open__lgbm": 0.9344334820458988,
+   "no_landcover__logreg": 0.8725539221305212,
+   "no_landcover__lgbm": 0.9251293568055857,
+   "hand": 0.8272076752374977,
+   "occurrence": 0.7275212888221241,
+   "dist_water": 0.7162953628626817,
+   "fluvial": 0.761034970076498,
+   "pluvial": null,
+   "waterlogging": 0.8546827239034083,
+   "flash_flood": 0.8204250147807621,
+   "neg_elev_glo30": 0.9335249050813645,
+   "neg_dist_coast": 0.42028224719869367,
+   "_cells": [
+    4362,
+    9120
+   ]
+  },
+  "emsr711_aoi01": {
+   "full__logreg": 0.948577605363554,
+   "full__lgbm": 0.9448361491446624,
+   "open__logreg": 0.8617386164485259,
+   "open__lgbm": 0.9197303007324652,
+   "no_landcover__logreg": 0.9393271746118693,
+   "no_landcover__lgbm": 0.9447060067235189,
+   "hand": 0.899496780745746,
+   "occurrence": 0.743928257787425,
+   "dist_water": 0.7700115866355358,
+   "fluvial": 0.9210567910924162,
+   "pluvial": null,
+   "waterlogging": 0.9323433141456651,
+   "flash_flood": 0.9041168012119866,
+   "neg_elev_glo30": 0.9505471290147567,
+   "neg_dist_coast": 0.7495912202280582,
+   "_cells": [
+    2297,
+    15336
+   ]
+  },
+  "emsr711_aoi03": {
+   "full__logreg": 0.9254115035002767,
+   "full__lgbm": 0.9511259663358107,
+   "open__logreg": 0.895449525528256,
+   "open__lgbm": 0.9317146993252008,
+   "no_landcover__logreg": 0.9064673035815557,
+   "no_landcover__lgbm": 0.9277490201750942,
+   "hand": 0.8878107944904796,
+   "occurrence": 0.4971739484819889,
+   "dist_water": 0.805289504680429,
+   "fluvial": 0.9018575344919031,
+   "pluvial": null,
+   "waterlogging": 0.894722836406551,
+   "flash_flood": 0.8942806236898357,
+   "neg_elev_glo30": 0.8952772669141772,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    849,
+    10260
+   ]
+  },
+  "emsr838_aoi07": {
+   "full__logreg": 0.6282184429554317,
+   "full__lgbm": 0.6284145946267683,
+   "open__logreg": 0.6566330651383651,
+   "open__lgbm": 0.5586986821539662,
+   "no_landcover__logreg": 0.5451260308761318,
+   "no_landcover__lgbm": 0.5112364327221743,
+   "hand": 0.5702730981286057,
+   "occurrence": 0.5127683626016547,
+   "dist_water": 0.6382847237990472,
+   "fluvial": 0.5248652985765587,
+   "pluvial": null,
+   "waterlogging": 0.6346789513887204,
+   "flash_flood": 0.5754091126033081,
+   "neg_elev_glo30": 0.6013228405886879,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    11360,
+    6389
+   ]
+  },
+  "emsr838_aoi01": {
+   "full__logreg": 0.813351845110534,
+   "full__lgbm": 0.7813651475937001,
+   "open__logreg": 0.8118610018357049,
+   "open__lgbm": 0.8470739725139197,
+   "no_landcover__logreg": 0.6391555541632532,
+   "no_landcover__lgbm": 0.7264981719172217,
+   "hand": 0.47382424642653415,
+   "occurrence": 0.5281486243595791,
+   "dist_water": 0.49424387160858785,
+   "fluvial": 0.620980914838152,
+   "pluvial": null,
+   "waterlogging": 0.4937223489522214,
+   "flash_flood": 0.4427391345286198,
+   "neg_elev_glo30": 0.446168955682814,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    9092,
+    8658
+   ]
+  },
+  "emsr838_aoi03": {
+   "full__logreg": 0.7294163870297051,
+   "full__lgbm": 0.4511141815882337,
+   "open__logreg": 0.6714693534345982,
+   "open__lgbm": 0.4754235735702964,
+   "no_landcover__logreg": 0.8217219382990116,
+   "no_landcover__lgbm": 0.35189204786210754,
+   "hand": 0.4472160463078362,
+   "occurrence": 0.6204716410191875,
+   "dist_water": 0.7892587844077374,
+   "fluvial": 0.807209840733176,
+   "pluvial": null,
+   "waterlogging": 0.7815560192661636,
+   "flash_flood": 0.7125258274884672,
+   "neg_elev_glo30": 0.7832216469618275,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    7261,
+    10481
+   ]
+  },
+  "emsr779_aoi02": {
+   "full__logreg": 0.7889601627866194,
+   "full__lgbm": 0.5592082703486897,
+   "open__logreg": 0.6500753331189734,
+   "open__lgbm": 0.42675220155527643,
+   "no_landcover__logreg": 0.744783732766915,
+   "no_landcover__lgbm": 0.5499755998129147,
+   "hand": 0.5392866097529111,
+   "occurrence": 0.519494207000131,
+   "dist_water": 0.2963171349356226,
+   "fluvial": 0.6589595478646368,
+   "pluvial": null,
+   "waterlogging": 0.29787118978707755,
+   "flash_flood": 0.396879902424097,
+   "neg_elev_glo30": 0.8351003989539286,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    3374,
+    14315
+   ]
+  },
+  "emsr779_aoi03": {
+   "full__logreg": 0.4267609293206098,
+   "full__lgbm": 0.3148109309178176,
+   "open__logreg": 0.5283626237461273,
+   "open__lgbm": 0.5912057972749465,
+   "no_landcover__logreg": 0.5165173510004155,
+   "no_landcover__lgbm": 0.2391071463831101,
+   "hand": 0.3904883796156591,
+   "occurrence": 0.4367120893948402,
+   "dist_water": 0.5068126338824523,
+   "fluvial": 0.22831989456154372,
+   "pluvial": null,
+   "waterlogging": 0.626215557816802,
+   "flash_flood": 0.27846865198041876,
+   "neg_elev_glo30": 0.5290362164019075,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    2557,
+    15132
+   ]
+  },
+  "emsr779_aoi01": {
+   "full__logreg": 0.8500956368899917,
+   "full__lgbm": 0.7261920587093398,
+   "open__logreg": 0.8874546872098715,
+   "open__lgbm": 0.8173257593980521,
+   "no_landcover__logreg": 0.38622401504025927,
+   "no_landcover__lgbm": 0.8031503466771324,
+   "hand": 0.7326035020087439,
+   "occurrence": 0.5495994381003022,
+   "dist_water": 0.921393782388886,
+   "fluvial": 0.9072862861025304,
+   "pluvial": null,
+   "waterlogging": 0.8738754884708225,
+   "flash_flood": 0.9710048256275214,
+   "neg_elev_glo30": 0.9909816206259179,
+   "neg_dist_coast": 0.4365541812258402,
+   "_cells": [
+    217,
+    17472
+   ]
+  },
+  "emsr799_aoi04": {
+   "full__logreg": 0.4528554781806481,
+   "full__lgbm": 0.24003954171309957,
+   "open__logreg": 0.46753806104114953,
+   "open__lgbm": 0.21580059646700644,
+   "no_landcover__logreg": 0.2779929534894967,
+   "no_landcover__lgbm": 0.2840054846639851,
+   "hand": 0.5285449339098189,
+   "occurrence": 0.35064385980155677,
+   "dist_water": 0.1545722040476217,
+   "fluvial": 0.24075877030759182,
+   "pluvial": null,
+   "waterlogging": 0.22414706254347688,
+   "flash_flood": 0.3822825610988087,
+   "neg_elev_glo30": 0.44887071694547676,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    1904,
+    15813
+   ]
+  },
+  "emsr799_aoi03": {
+   "full__logreg": 0.9166605304531718,
+   "full__lgbm": 0.9057557102326219,
+   "open__logreg": 0.9009673167571431,
+   "open__lgbm": 0.9136229161897683,
+   "no_landcover__logreg": 0.8837560937822314,
+   "no_landcover__lgbm": 0.9185732012553272,
+   "hand": 0.7986355556290547,
+   "occurrence": 0.7086122554254717,
+   "dist_water": 0.35797685994723727,
+   "fluvial": 0.8341490290421327,
+   "pluvial": null,
+   "waterlogging": 0.8252685790183277,
+   "flash_flood": 0.6089787164782138,
+   "neg_elev_glo30": 0.8431950842982275,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    1041,
+    16555
+   ]
+  },
+  "emsr799_aoi02": {
+   "full__logreg": 0.7456882517351765,
+   "full__lgbm": 0.7942551931716951,
+   "open__logreg": 0.7814378834232218,
+   "open__lgbm": 0.8597518582157475,
+   "no_landcover__logreg": 0.8164046843048065,
+   "no_landcover__lgbm": 0.7878872379773414,
+   "hand": 0.6294131616585912,
+   "occurrence": 0.8455987124394341,
+   "dist_water": 0.6871737981102454,
+   "fluvial": 0.6680699325271842,
+   "pluvial": null,
+   "waterlogging": 0.6604072439520007,
+   "flash_flood": 0.7029073809608241,
+   "neg_elev_glo30": 0.7364388129340628,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    213,
+    17476
+   ]
+  },
+  "emsr870_aoi13": {
+   "full__logreg": 0.9518440299874172,
+   "full__lgbm": 0.8114326679229209,
+   "open__logreg": 0.9429428202142003,
+   "open__lgbm": 0.8304592719932615,
+   "no_landcover__logreg": 0.7101007454208726,
+   "no_landcover__lgbm": 0.5277514599329206,
+   "hand": 0.5817534070980603,
+   "occurrence": 0.836342524532983,
+   "dist_water": 0.46824336421109525,
+   "fluvial": 0.704748522363903,
+   "pluvial": null,
+   "waterlogging": 0.8174468581573855,
+   "flash_flood": 0.6852508887586882,
+   "neg_elev_glo30": 0.8236958491092328,
+   "neg_dist_coast": 0.2471544282699274,
+   "_cells": [
+    8858,
+    8577
+   ]
+  },
+  "emsr870_aoi08": {
+   "full__logreg": 0.594167045622451,
+   "full__lgbm": 0.514598964580208,
+   "open__logreg": 0.5732185774362836,
+   "open__lgbm": 0.5152759663176882,
+   "no_landcover__logreg": 0.6675210397077413,
+   "no_landcover__lgbm": 0.5148758294371636,
+   "hand": 0.419716787986856,
+   "occurrence": 0.6312207379732997,
+   "dist_water": 0.7268036839066662,
+   "fluvial": 0.6381341108327973,
+   "pluvial": null,
+   "waterlogging": 0.7024179932944714,
+   "flash_flood": 0.749203394078848,
+   "neg_elev_glo30": 0.4078005956180757,
+   "neg_dist_coast": 0.5089693030817288,
+   "_cells": [
+    1931,
+    15884
+   ]
+  },
+  "emsr870_aoi05": {
+   "full__logreg": 0.9022538419115153,
+   "full__lgbm": 0.939607499289544,
+   "open__logreg": 0.9001593230948162,
+   "open__lgbm": 0.9228578878297965,
+   "no_landcover__logreg": 0.7941532454575028,
+   "no_landcover__lgbm": 0.8862221919715801,
+   "hand": 0.7495820133520485,
+   "occurrence": 0.5006104369376242,
+   "dist_water": 0.4044845091808186,
+   "fluvial": 0.6526704919563223,
+   "pluvial": null,
+   "waterlogging": 0.7030180087738743,
+   "flash_flood": 0.6747872641872199,
+   "neg_elev_glo30": 0.888113773304704,
+   "neg_dist_coast": 0.7740895984720776,
+   "_cells": [
+    1489,
+    16330
+   ]
+  },
+  "emsr813_aoi01": {
+   "full__logreg": 0.9303716202122088,
+   "full__lgbm": 0.9420170754981236,
+   "open__logreg": 0.9047898275431638,
+   "open__lgbm": 0.9297956714612179,
+   "no_landcover__logreg": 0.9436868136707288,
+   "no_landcover__lgbm": 0.9411969403695211,
+   "hand": 0.910393863521833,
+   "occurrence": 0.6455784551793007,
+   "dist_water": 0.9274738314978244,
+   "fluvial": 0.9059448704967893,
+   "pluvial": null,
+   "waterlogging": 0.9114749055867857,
+   "flash_flood": 0.9164973641115225,
+   "neg_elev_glo30": 0.8942810391512711,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    173,
+    17458
+   ]
+  },
+  "emsr770_aoi03": {
+   "full__logreg": 0.9319905785581302,
+   "full__lgbm": 0.9388910578370545,
+   "open__logreg": 0.9328687094641174,
+   "open__lgbm": 0.93686426370658,
+   "no_landcover__logreg": 0.9525047247897879,
+   "no_landcover__lgbm": 0.9357868240502352,
+   "hand": 0.9277107162453045,
+   "occurrence": 0.5,
+   "dist_water": 0.9022205925800869,
+   "fluvial": 0.9272725300956213,
+   "pluvial": null,
+   "waterlogging": 0.925341286924877,
+   "flash_flood": 0.914828043444618,
+   "neg_elev_glo30": 0.8904824795884392,
+   "neg_dist_coast": 0.5879613997570778,
+   "_cells": [
+    348,
+    4902
+   ]
+  },
+  "emsr770_aoi01": {
+   "full__logreg": 0.9328602136120945,
+   "full__lgbm": 0.9115833418031386,
+   "open__logreg": 0.9357736464350048,
+   "open__lgbm": 0.9157742735610161,
+   "no_landcover__logreg": 0.9253433514911543,
+   "no_landcover__lgbm": 0.9252314419357002,
+   "hand": 0.8992011171493014,
+   "occurrence": 0.49796832797392887,
+   "dist_water": 0.8686814351238141,
+   "fluvial": 0.9054853522826306,
+   "pluvial": null,
+   "waterlogging": 0.886747259567456,
+   "flash_flood": 0.8747683418139511,
+   "neg_elev_glo30": 0.8969194056575416,
+   "neg_dist_coast": 0.693948450241876,
+   "_cells": [
+    217,
+    8524
+   ]
+  },
+  "emsr680_aoi07": {
+   "full__logreg": 0.8661429452780705,
+   "full__lgbm": 0.865459353659387,
+   "open__logreg": 0.8363093504921466,
+   "open__lgbm": 0.8503970229004789,
+   "no_landcover__logreg": 0.9239020188895283,
+   "no_landcover__lgbm": 0.9287490677933171,
+   "hand": 0.9271399499735709,
+   "occurrence": 0.5010180947904485,
+   "dist_water": 0.7274349557943731,
+   "fluvial": 0.918893147954841,
+   "pluvial": null,
+   "waterlogging": 0.9200345788129183,
+   "flash_flood": 0.9137601424885566,
+   "neg_elev_glo30": 0.8503155263447864,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    865,
+    10859
+   ]
+  },
+  "emsr680_aoi13": {
+   "full__logreg": 0.6708941391106196,
+   "full__lgbm": 0.6634690137600792,
+   "open__logreg": 0.6823919790332134,
+   "open__lgbm": 0.6967670310523741,
+   "no_landcover__logreg": 0.5576063730331337,
+   "no_landcover__lgbm": 0.6131300614956132,
+   "hand": 0.5611132358928623,
+   "occurrence": 0.49845055873790967,
+   "dist_water": 0.3537781631110719,
+   "fluvial": 0.5619248598964504,
+   "pluvial": null,
+   "waterlogging": 0.5350049963413538,
+   "flash_flood": 0.5078677990261513,
+   "neg_elev_glo30": 0.6764292280047977,
+   "neg_dist_coast": 0.5472960294306273,
+   "_cells": [
+    563,
+    10649
+   ]
+  },
+  "emsr680_aoi04": {
+   "full__logreg": 0.6485842606054499,
+   "full__lgbm": 0.7328428417711497,
+   "open__logreg": 0.6288350064417222,
+   "open__lgbm": 0.7689182854942492,
+   "no_landcover__logreg": 0.6538575209805813,
+   "no_landcover__lgbm": 0.69584140048079,
+   "hand": 0.26530426341245733,
+   "occurrence": 0.49805230120629346,
+   "dist_water": 0.6612083717197599,
+   "fluvial": 0.6656557241359455,
+   "pluvial": null,
+   "waterlogging": 0.5358316299356548,
+   "flash_flood": 0.3737838550288618,
+   "neg_elev_glo30": 0.6336577511192043,
+   "neg_dist_coast": 0.5998671619715269,
+   "_cells": [
+    254,
+    17504
+   ]
+  },
+  "emsr776_aoi01": {
+   "full__logreg": 0.7588244033057125,
+   "full__lgbm": 0.86529345523969,
+   "open__logreg": 0.764011627718232,
+   "open__lgbm": 0.7143805669192839,
+   "no_landcover__logreg": 0.6849713514496489,
+   "no_landcover__lgbm": 0.7907903739056953,
+   "hand": 0.5346050969793276,
+   "occurrence": 0.4757054026933775,
+   "dist_water": 0.1565195954682776,
+   "fluvial": 0.326604037721652,
+   "pluvial": null,
+   "waterlogging": 0.38247967398608773,
+   "flash_flood": 0.5003676174478229,
+   "neg_elev_glo30": 0.9567194352810616,
+   "neg_dist_coast": 0.5928134086892418,
+   "_cells": [
+    1167,
+    16629
+   ]
+  },
+  "emsr694_aoi03": {
+   "full__logreg": 0.7336309629239902,
+   "full__lgbm": 0.777755352889154,
+   "open__logreg": 0.7531663822943502,
+   "open__lgbm": 0.7674257492535419,
+   "no_landcover__logreg": 0.7129178871470593,
+   "no_landcover__lgbm": 0.7488158362471357,
+   "hand": 0.7046207703404244,
+   "occurrence": 0.5,
+   "dist_water": 0.696864494871287,
+   "fluvial": 0.7221504446096224,
+   "pluvial": null,
+   "waterlogging": 0.7020287864977416,
+   "flash_flood": 0.714736651931057,
+   "neg_elev_glo30": 0.611852907944384,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    1684,
+    15422
+   ]
+  },
+  "emsr694_aoi02": {
+   "full__logreg": 0.7516372216068449,
+   "full__lgbm": 0.6810123650640586,
+   "open__logreg": 0.7085021102426899,
+   "open__lgbm": 0.7984034116796401,
+   "no_landcover__logreg": 0.8297942280743958,
+   "no_landcover__lgbm": 0.6987526029083645,
+   "hand": 0.7231702786292349,
+   "occurrence": 0.49940135692430493,
+   "dist_water": 0.4965004366613569,
+   "fluvial": 0.7479644412216593,
+   "pluvial": null,
+   "waterlogging": 0.7206861683465664,
+   "flash_flood": 0.741747996423995,
+   "neg_elev_glo30": 0.9182993849519673,
+   "neg_dist_coast": 0.5,
+   "_cells": [
+    965,
+    7517
+   ]
+  },
+  "emsr935_aoi01": {
+   "full__logreg": 0.7069781971157647,
+   "full__lgbm": 0.7255242326184784,
+   "open__logreg": 0.696700027825389,
+   "open__lgbm": 0.7283355592659359,
+   "no_landcover__logreg": 0.6188757175972754,
+   "no_landcover__lgbm": 0.7273581980201268,
+   "hand": 0.7198400971095731,
+   "occurrence": 0.47350483235240093,
+   "dist_water": 0.6998070454091728,
+   "fluvial": 0.5687486691321862,
+   "pluvial": null,
+   "waterlogging": 0.6348351131435286,
+   "flash_flood": 0.4790111986477127,
+   "neg_elev_glo30": 0.7214077781197868,
+   "neg_dist_coast": 0.6096865786903626,
+   "_cells": [
+    8596,
+    6298
+   ]
+  },
+  "emsr935_aoi02": {
+   "full__logreg": 0.6512465269040315,
+   "full__lgbm": 0.6415788905422949,
+   "open__logreg": 0.7205430089222976,
+   "open__lgbm": 0.7523307075233071,
+   "no_landcover__logreg": 0.4672706145823447,
+   "no_landcover__lgbm": 0.6732801698954523,
+   "hand": 0.5443455907898415,
+   "occurrence": 0.4954269633277636,
+   "dist_water": 0.5575565251538785,
+   "fluvial": 0.3962104833295747,
+   "pluvial": null,
+   "waterlogging": 0.5073909136582465,
+   "flash_flood": 0.4245787442608477,
+   "neg_elev_glo30": 0.8083943782646666,
+   "neg_dist_coast": 0.5485665288892797,
+   "_cells": [
+    404,
+    11371
+   ]
+  }
+ }
+}

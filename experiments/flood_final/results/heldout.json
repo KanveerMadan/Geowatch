@@ -1,0 +1,5326 @@
+{
+ "preflight": {
+  "prereg_sha256": "e49bca3f99380867f0a8c7a4b36b62c0c806479a356f20ab6366fb11067db9a4",
+  "freeze_commit": "81ff7b1191c8a3efdcb7f5eff8c0e77452452925"
+ },
+ "run_utc": "2026-11-20T14:14:08Z",
+ "choice": {
+  "fluvial": "open__logreg",
+  "pluvial": "open__lgbm",
+  "waterlogging": "open__logreg",
+  "flash_flood": "open__lgbm",
+  "coastal": "open__lgbm",
+  "compound": "open__lgbm"
+ },
+ "units": {
+  "r_emsr857_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "region": "africa",
+   "cluster": "EMSR857",
+   "flooded": 14927,
+   "dry": 2762,
+   "auc": {
+    "learned:open__logreg": 0.5953,
+    "learned_raw:open__logreg": 0.5849,
+    "learned:open__lgbm": 0.6364,
+    "learned_raw:open__lgbm": 0.6855,
+    "hand": 0.6807,
+    "occurrence": 0.5013,
+    "dist_water": 0.4696,
+    "fluvial": 0.4478,
+    "waterlogging": 0.8351,
+    "flash_flood": 0.5076,
+    "neg_elev_glo30": 0.9312,
+    "neg_dist_coast": 0.7933
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.5534,
+     0.6362
+    ],
+    "learned_raw:open__logreg": [
+     0.4998,
+     0.6741
+    ],
+    "learned:open__lgbm": [
+     0.5589,
+     0.7329
+    ],
+    "learned_raw:open__lgbm": [
+     0.5833,
+     0.7908
+    ],
+    "hand": [
+     0.534,
+     0.7941
+    ],
+    "occurrence": [
+     0.4965,
+     0.506
+    ],
+    "dist_water": [
+     0.2077,
+     0.7264
+    ],
+    "fluvial": [
+     0.3241,
+     0.6287
+    ],
+    "waterlogging": [
+     0.7154,
+     0.915
+    ],
+    "flash_flood": [
+     0.3151,
+     0.7039
+    ],
+    "neg_elev_glo30": [
+     0.865,
+     0.9756
+    ],
+    "neg_dist_coast": [
+     0.5964,
+     0.9261
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.8744,
+    "learned_raw:open__logreg": 0.8693,
+    "learned:open__lgbm": 0.8888,
+    "learned_raw:open__lgbm": 0.9129,
+    "hand": 0.9037,
+    "occurrence": 0.8443,
+    "dist_water": 0.8051,
+    "fluvial": 0.7989,
+    "waterlogging": 0.9636,
+    "flash_flood": 0.8271,
+    "neg_elev_glo30": 0.9871,
+    "neg_dist_coast": 0.9523
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.7457,
+    "learned_raw:open__logreg": 0.7769,
+    "learned:open__lgbm": 0.7661,
+    "learned_raw:open__lgbm": 0.7658,
+    "hand": 0.7872,
+    "occurrence": 0.7363,
+    "dist_water": 0.7517,
+    "fluvial": 0.7507,
+    "waterlogging": 0.8223,
+    "flash_flood": 0.741,
+    "neg_elev_glo30": 0.8795,
+    "neg_dist_coast": 0.8322
+   }
+  },
+  "r_emsr857_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "region": "africa",
+   "cluster": "EMSR857",
+   "flooded": 2390,
+   "dry": 15208,
+   "auc": {
+    "learned:open__logreg": 0.839,
+    "learned_raw:open__logreg": 0.8575,
+    "learned:open__lgbm": 0.8822,
+    "learned_raw:open__lgbm": 0.882,
+    "hand": 0.8049,
+    "occurrence": 0.5723,
+    "dist_water": 0.8484,
+    "fluvial": 0.8708,
+    "waterlogging": 0.8422,
+    "flash_flood": 0.8563,
+    "neg_elev_glo30": 0.9237,
+    "neg_dist_coast": 0.6952
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.7704,
+     0.9
+    ],
+    "learned_raw:open__logreg": [
+     0.7891,
+     0.9172
+    ],
+    "learned:open__lgbm": [
+     0.8248,
+     0.9332
+    ],
+    "learned_raw:open__lgbm": [
+     0.8246,
+     0.9331
+    ],
+    "hand": [
+     0.7367,
+     0.8701
+    ],
+    "occurrence": [
+     0.5363,
+     0.6066
+    ],
+    "dist_water": [
+     0.7533,
+     0.919
+    ],
+    "fluvial": [
+     0.7936,
+     0.9352
+    ],
+    "waterlogging": [
+     0.764,
+     0.9091
+    ],
+    "flash_flood": [
+     0.7827,
+     0.9147
+    ],
+    "neg_elev_glo30": [
+     0.8653,
+     0.9663
+    ],
+    "neg_dist_coast": [
+     0.5399,
+     0.838
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.3866,
+    "learned_raw:open__logreg": 0.4468,
+    "learned:open__lgbm": 0.4916,
+    "learned_raw:open__lgbm": 0.4852,
+    "hand": 0.3287,
+    "occurrence": 0.1746,
+    "dist_water": 0.3436,
+    "fluvial": 0.405,
+    "waterlogging": 0.351,
+    "flash_flood": 0.3978,
+    "neg_elev_glo30": 0.4876,
+    "neg_dist_coast": 0.1876
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.2805,
+    "learned_raw:open__logreg": 0.3622,
+    "learned:open__lgbm": 0.4013,
+    "learned_raw:open__lgbm": 0.4018,
+    "hand": 0.2016,
+    "occurrence": 0.1044,
+    "dist_water": 0.2416,
+    "fluvial": 0.2503,
+    "waterlogging": 0.2387,
+    "flash_flood": 0.2888,
+    "neg_elev_glo30": 0.4022,
+    "neg_dist_coast": 0.0883
+   }
+  },
+  "r_emsr712_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "region": "europe_mediterranean",
+   "cluster": "EMSR712",
+   "flooded": 1641,
+   "dry": 7963,
+   "auc": {
+    "learned:open__logreg": 0.6685,
+    "learned_raw:open__logreg": 0.6771,
+    "learned:open__lgbm": 0.7638,
+    "learned_raw:open__lgbm": 0.7716,
+    "hand": 0.7184,
+    "occurrence": 0.6315,
+    "dist_water": 0.4494,
+    "fluvial": 0.6327,
+    "waterlogging": 0.7952,
+    "flash_flood": 0.5407,
+    "neg_elev_glo30": 0.9023,
+    "neg_dist_coast": 0.4222
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.5824,
+     0.778
+    ],
+    "learned_raw:open__logreg": [
+     0.5821,
+     0.8088
+    ],
+    "learned:open__lgbm": [
+     0.7198,
+     0.8073
+    ],
+    "learned_raw:open__lgbm": [
+     0.7199,
+     0.8212
+    ],
+    "hand": [
+     0.6609,
+     0.77
+    ],
+    "occurrence": [
+     0.5598,
+     0.6949
+    ],
+    "dist_water": [
+     0.2812,
+     0.5947
+    ],
+    "fluvial": [
+     0.5273,
+     0.7015
+    ],
+    "waterlogging": [
+     0.7065,
+     0.8609
+    ],
+    "flash_flood": [
+     0.4077,
+     0.6846
+    ],
+    "neg_elev_glo30": [
+     0.8619,
+     0.9403
+    ],
+    "neg_dist_coast": [
+     0.2521,
+     0.5917
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.303,
+    "learned_raw:open__logreg": 0.4138,
+    "learned:open__lgbm": 0.4755,
+    "learned_raw:open__lgbm": 0.5101,
+    "hand": 0.3038,
+    "occurrence": 0.3648,
+    "dist_water": 0.1484,
+    "fluvial": 0.2275,
+    "waterlogging": 0.6037,
+    "flash_flood": 0.1731,
+    "neg_elev_glo30": 0.6108,
+    "neg_dist_coast": 0.1376
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.1961,
+    "learned_raw:open__logreg": 0.2696,
+    "learned:open__lgbm": 0.3213,
+    "learned_raw:open__lgbm": 0.3218,
+    "hand": 0.1978,
+    "occurrence": 0.1581,
+    "dist_water": 0.056,
+    "fluvial": 0.1597,
+    "waterlogging": 0.3407,
+    "flash_flood": 0.0694,
+    "neg_elev_glo30": 0.4202,
+    "neg_dist_coast": 0.0018
+   }
+  },
+  "r_emsr845_aoi02": {
+   "tags": [
+    "flash_flood"
+   ],
+   "region": "americas",
+   "cluster": "EMSR845",
+   "flooded": 771,
+   "dry": 16955,
+   "auc": {
+    "learned:open__logreg": 0.7463,
+    "learned_raw:open__logreg": 0.7755,
+    "learned:open__lgbm": 0.7401,
+    "learned_raw:open__lgbm": 0.7395,
+    "hand": 0.7708,
+    "occurrence": 0.5698,
+    "dist_water": 0.7665,
+    "fluvial": 0.8273,
+    "waterlogging": 0.8139,
+    "flash_flood": 0.8821,
+    "neg_elev_glo30": 0.9272,
+    "neg_dist_coast": 0.6081
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.5838,
+     0.8476
+    ],
+    "learned_raw:open__logreg": [
+     0.62,
+     0.8692
+    ],
+    "learned:open__lgbm": [
+     0.5874,
+     0.8336
+    ],
+    "learned_raw:open__lgbm": [
+     0.5864,
+     0.8333
+    ],
+    "hand": [
+     0.6622,
+     0.853
+    ],
+    "occurrence": [
+     0.5407,
+     0.5962
+    ],
+    "dist_water": [
+     0.7098,
+     0.8571
+    ],
+    "fluvial": [
+     0.7332,
+     0.9016
+    ],
+    "waterlogging": [
+     0.7097,
+     0.8916
+    ],
+    "flash_flood": [
+     0.801,
+     0.9377
+    ],
+    "neg_elev_glo30": [
+     0.8619,
+     0.9737
+    ],
+    "neg_dist_coast": [
+     0.4551,
+     0.8103
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.1447,
+    "learned_raw:open__logreg": 0.1593,
+    "learned:open__lgbm": 0.105,
+    "learned_raw:open__lgbm": 0.1121,
+    "hand": 0.0949,
+    "occurrence": 0.0589,
+    "dist_water": 0.0935,
+    "fluvial": 0.1303,
+    "waterlogging": 0.117,
+    "flash_flood": 0.2026,
+    "neg_elev_glo30": 0.2737,
+    "neg_dist_coast": 0.1178
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.1046,
+    "learned_raw:open__logreg": 0.1223,
+    "learned:open__lgbm": 0.0657,
+    "learned_raw:open__lgbm": 0.0583,
+    "hand": 0.0533,
+    "occurrence": 0.103,
+    "dist_water": 0.0783,
+    "fluvial": 0.0708,
+    "waterlogging": 0.0693,
+    "flash_flood": 0.1422,
+    "neg_elev_glo30": 0.1629,
+    "neg_dist_coast": 0.0664
+   }
+  },
+  "r_emsr845_aoi03": {
+   "tags": [
+    "flash_flood"
+   ],
+   "region": "americas",
+   "cluster": "EMSR845",
+   "flooded": 1896,
+   "dry": 14615,
+   "auc": {
+    "learned:open__logreg": 0.6248,
+    "learned_raw:open__logreg": 0.6,
+    "learned:open__lgbm": 0.6941,
+    "learned_raw:open__lgbm": 0.6943,
+    "hand": 0.7065,
+    "occurrence": 0.5104,
+    "dist_water": 0.7442,
+    "fluvial": 0.8085,
+    "waterlogging": 0.8027,
+    "flash_flood": 0.7039,
+    "neg_elev_glo30": 0.6837,
+    "neg_dist_coast": 0.2708
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.5194,
+     0.7351
+    ],
+    "learned_raw:open__logreg": [
+     0.409,
+     0.7858
+    ],
+    "learned:open__lgbm": [
+     0.5499,
+     0.8395
+    ],
+    "learned_raw:open__lgbm": [
+     0.5497,
+     0.8399
+    ],
+    "hand": [
+     0.5783,
+     0.807
+    ],
+    "occurrence": [
+     0.4981,
+     0.5257
+    ],
+    "dist_water": [
+     0.6538,
+     0.8333
+    ],
+    "fluvial": [
+     0.7073,
+     0.8907
+    ],
+    "waterlogging": [
+     0.6972,
+     0.8836
+    ],
+    "flash_flood": [
+     0.5049,
+     0.8534
+    ],
+    "neg_elev_glo30": [
+     0.5415,
+     0.8418
+    ],
+    "neg_dist_coast": [
+     0.1318,
+     0.5152
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.1689,
+    "learned_raw:open__logreg": 0.163,
+    "learned:open__lgbm": 0.2002,
+    "learned_raw:open__lgbm": 0.2041,
+    "hand": 0.1827,
+    "occurrence": 0.1169,
+    "dist_water": 0.2334,
+    "fluvial": 0.261,
+    "waterlogging": 0.2622,
+    "flash_flood": 0.2402,
+    "neg_elev_glo30": 0.172,
+    "neg_dist_coast": 0.0744
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.103,
+    "learned_raw:open__logreg": 0.102,
+    "learned:open__lgbm": 0.1336,
+    "learned_raw:open__lgbm": 0.1333,
+    "hand": 0.1033,
+    "occurrence": 0.0213,
+    "dist_water": 0.1279,
+    "fluvial": 0.1494,
+    "waterlogging": 0.1639,
+    "flash_flood": 0.1773,
+    "neg_elev_glo30": 0.113,
+    "neg_dist_coast": 0.0249
+   }
+  },
+  "r_emsr850_aoi02": {
+   "tags": [
+    "flash_flood"
+   ],
+   "region": "europe_mediterranean",
+   "cluster": "EMSR850",
+   "flooded": 595,
+   "dry": 17159,
+   "auc": {
+    "learned:open__logreg": 0.7287,
+    "learned_raw:open__logreg": 0.7308,
+    "learned:open__lgbm": 0.7729,
+    "learned_raw:open__lgbm": 0.7727,
+    "hand": 0.8473,
+    "occurrence": 0.5133,
+    "dist_water": 0.8058,
+    "fluvial": 0.8596,
+    "waterlogging": 0.8683,
+    "flash_flood": 0.8933,
+    "neg_elev_glo30": 0.8533,
+    "neg_dist_coast": 0.5891
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.6336,
+     0.8187
+    ],
+    "learned_raw:open__logreg": [
+     0.6352,
+     0.8205
+    ],
+    "learned:open__lgbm": [
+     0.6805,
+     0.8629
+    ],
+    "learned_raw:open__lgbm": [
+     0.6806,
+     0.863
+    ],
+    "hand": [
+     0.7726,
+     0.9103
+    ],
+    "occurrence": [
+     0.4986,
+     0.5359
+    ],
+    "dist_water": [
+     0.73,
+     0.882
+    ],
+    "fluvial": [
+     0.7929,
+     0.9175
+    ],
+    "waterlogging": [
+     0.7998,
+     0.9276
+    ],
+    "flash_flood": [
+     0.8345,
+     0.9386
+    ],
+    "neg_elev_glo30": [
+     0.7845,
+     0.9218
+    ],
+    "neg_dist_coast": [
+     0.4173,
+     0.7597
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.066,
+    "learned_raw:open__logreg": 0.0648,
+    "learned:open__lgbm": 0.074,
+    "learned_raw:open__lgbm": 0.0749,
+    "hand": 0.1191,
+    "occurrence": 0.0403,
+    "dist_water": 0.1134,
+    "fluvial": 0.1357,
+    "waterlogging": 0.1747,
+    "flash_flood": 0.2016,
+    "neg_elev_glo30": 0.1804,
+    "neg_dist_coast": 0.0372
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.025,
+    "learned_raw:open__logreg": 0.0197,
+    "learned:open__lgbm": 0.025,
+    "learned_raw:open__lgbm": 0.0294,
+    "hand": 0.0878,
+    "occurrence": 0.0466,
+    "dist_water": 0.0958,
+    "fluvial": 0.1059,
+    "waterlogging": 0.129,
+    "flash_flood": 0.1312,
+    "neg_elev_glo30": 0.1409,
+    "neg_dist_coast": 0.0
+   }
+  },
+  "r_emsr850_aoi03": {
+   "tags": [
+    "flash_flood"
+   ],
+   "region": "europe_mediterranean",
+   "cluster": "EMSR850",
+   "flooded": 1305,
+   "dry": 16468,
+   "auc": {
+    "learned:open__logreg": 0.6831,
+    "learned_raw:open__logreg": 0.6839,
+    "learned:open__lgbm": 0.7664,
+    "learned_raw:open__lgbm": 0.7715,
+    "hand": 0.7969,
+    "occurrence": 0.5,
+    "dist_water": 0.2487,
+    "fluvial": 0.5235,
+    "waterlogging": 0.806,
+    "flash_flood": 0.514,
+    "neg_elev_glo30": 0.8306,
+    "neg_dist_coast": 0.5863
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.604,
+     0.7472
+    ],
+    "learned_raw:open__logreg": [
+     0.6044,
+     0.7505
+    ],
+    "learned:open__lgbm": [
+     0.6494,
+     0.8645
+    ],
+    "learned_raw:open__lgbm": [
+     0.6501,
+     0.8706
+    ],
+    "hand": [
+     0.5977,
+     0.8632
+    ],
+    "occurrence": [
+     0.5,
+     0.5
+    ],
+    "dist_water": [
+     0.1314,
+     0.587
+    ],
+    "fluvial": [
+     0.2563,
+     0.73
+    ],
+    "waterlogging": [
+     0.6368,
+     0.8856
+    ],
+    "flash_flood": [
+     0.4014,
+     0.6828
+    ],
+    "neg_elev_glo30": [
+     0.7034,
+     0.9257
+    ],
+    "neg_dist_coast": [
+     0.411,
+     0.7597
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.1079,
+    "learned_raw:open__logreg": 0.1066,
+    "learned:open__lgbm": 0.1549,
+    "learned_raw:open__lgbm": 0.194,
+    "hand": 0.1834,
+    "occurrence": 0.0734,
+    "dist_water": 0.0455,
+    "fluvial": 0.117,
+    "waterlogging": 0.1883,
+    "flash_flood": 0.0692,
+    "neg_elev_glo30": 0.1858,
+    "neg_dist_coast": 0.0806
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.0394,
+    "learned_raw:open__logreg": 0.0403,
+    "learned:open__lgbm": 0.0772,
+    "learned_raw:open__lgbm": 0.0781,
+    "hand": 0.1013,
+    "occurrence": 0.0085,
+    "dist_water": 0.0015,
+    "fluvial": 0.1207,
+    "waterlogging": 0.1183,
+    "flash_flood": 0.0058,
+    "neg_elev_glo30": 0.0427,
+    "neg_dist_coast": 0.0168
+   }
+  },
+  "r_emsr742_aoi01": {
+   "tags": [
+    "pluvial"
+   ],
+   "region": "europe_mediterranean",
+   "cluster": "EMSR742",
+   "flooded": 187,
+   "dry": 17538,
+   "auc": {
+    "learned:open__logreg": 0.8232,
+    "learned_raw:open__logreg": 0.8508,
+    "learned:open__lgbm": 0.9212,
+    "learned_raw:open__lgbm": 0.9232,
+    "hand": 0.6964,
+    "occurrence": 0.4902,
+    "dist_water": 0.7896,
+    "fluvial": 0.8794,
+    "pluvial": 0.8324,
+    "waterlogging": 0.866,
+    "flash_flood": 0.7111,
+    "neg_elev_glo30": 0.9458,
+    "neg_dist_coast": 0.7954
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.6718,
+     0.9315
+    ],
+    "learned_raw:open__logreg": [
+     0.7298,
+     0.9394
+    ],
+    "learned:open__lgbm": [
+     0.8546,
+     0.9669
+    ],
+    "learned_raw:open__lgbm": [
+     0.8556,
+     0.9708
+    ],
+    "hand": [
+     0.5603,
+     0.8205
+    ],
+    "occurrence": [
+     0.4811,
+     0.4967
+    ],
+    "dist_water": [
+     0.6312,
+     0.9095
+    ],
+    "fluvial": [
+     0.7871,
+     0.9477
+    ],
+    "pluvial": [
+     0.7746,
+     0.8928
+    ],
+    "waterlogging": [
+     0.7543,
+     0.9457
+    ],
+    "flash_flood": [
+     0.6032,
+     0.8223
+    ],
+    "neg_elev_glo30": [
+     0.8957,
+     0.9886
+    ],
+    "neg_dist_coast": [
+     0.6503,
+     0.91
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.0328,
+    "learned_raw:open__logreg": 0.033,
+    "learned:open__lgbm": 0.0685,
+    "learned_raw:open__lgbm": 0.0664,
+    "hand": 0.0176,
+    "occurrence": 0.0106,
+    "dist_water": 0.0241,
+    "fluvial": 0.0468,
+    "pluvial": 0.0389,
+    "waterlogging": 0.0444,
+    "flash_flood": 0.017,
+    "neg_elev_glo30": 0.1417,
+    "neg_dist_coast": 0.0241
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.0,
+    "learned_raw:open__logreg": 0.0,
+    "learned:open__lgbm": 0.0778,
+    "learned_raw:open__lgbm": 0.0027,
+    "hand": 0.0054,
+    "occurrence": 0.0,
+    "dist_water": 0.0,
+    "fluvial": 0.0331,
+    "pluvial": 0.0136,
+    "waterlogging": 0.0,
+    "flash_flood": 0.0,
+    "neg_elev_glo30": 0.0716,
+    "neg_dist_coast": 0.0
+   }
+  },
+  "r_emsr742_aoi03": {
+   "tags": [
+    "pluvial"
+   ],
+   "region": "europe_mediterranean",
+   "cluster": "EMSR742",
+   "flooded": 248,
+   "dry": 17591,
+   "auc": {
+    "learned:open__logreg": 0.5876,
+    "learned_raw:open__logreg": 0.6016,
+    "learned:open__lgbm": 0.5082,
+    "learned_raw:open__lgbm": 0.5066,
+    "hand": 0.6263,
+    "occurrence": 0.5018,
+    "dist_water": 0.914,
+    "fluvial": 0.9129,
+    "pluvial": 0.7688,
+    "waterlogging": 0.8049,
+    "flash_flood": 0.8998,
+    "neg_elev_glo30": 0.9694,
+    "neg_dist_coast": 0.5376
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.4722,
+     0.6736
+    ],
+    "learned_raw:open__logreg": [
+     0.4139,
+     0.7326
+    ],
+    "learned:open__lgbm": [
+     0.3033,
+     0.7411
+    ],
+    "learned_raw:open__lgbm": [
+     0.3029,
+     0.7358
+    ],
+    "hand": [
+     0.4357,
+     0.7667
+    ],
+    "occurrence": [
+     0.4995,
+     0.5078
+    ],
+    "dist_water": [
+     0.8794,
+     0.9555
+    ],
+    "fluvial": [
+     0.8567,
+     0.965
+    ],
+    "pluvial": [
+     0.6499,
+     0.8248
+    ],
+    "waterlogging": [
+     0.626,
+     0.9166
+    ],
+    "flash_flood": [
+     0.8368,
+     0.9719
+    ],
+    "neg_elev_glo30": [
+     0.9505,
+     0.9855
+    ],
+    "neg_dist_coast": [
+     0.1797,
+     0.8037
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.0177,
+    "learned_raw:open__logreg": 0.0209,
+    "learned:open__lgbm": 0.0154,
+    "learned_raw:open__lgbm": 0.0144,
+    "hand": 0.0231,
+    "occurrence": 0.0142,
+    "dist_water": 0.0827,
+    "fluvial": 0.0899,
+    "pluvial": 0.1153,
+    "waterlogging": 0.0516,
+    "flash_flood": 0.1511,
+    "neg_elev_glo30": 0.1957,
+    "neg_dist_coast": 0.0216
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.0206,
+    "learned_raw:open__logreg": 0.0143,
+    "learned:open__lgbm": 0.0061,
+    "learned_raw:open__lgbm": 0.002,
+    "hand": 0.0269,
+    "occurrence": 0.0185,
+    "dist_water": 0.0713,
+    "fluvial": 0.0621,
+    "pluvial": 0.083,
+    "waterlogging": 0.029,
+    "flash_flood": 0.0877,
+    "neg_elev_glo30": 0.1222,
+    "neg_dist_coast": 0.0081
+   }
+  },
+  "r_emsr790_aoi02": {
+   "tags": [
+    "pluvial"
+   ],
+   "region": "africa",
+   "cluster": "EMSR790",
+   "flooded": 283,
+   "dry": 16949,
+   "auc": {
+    "learned:open__logreg": 0.8115,
+    "learned_raw:open__logreg": 0.8517,
+    "learned:open__lgbm": 0.8662,
+    "learned_raw:open__lgbm": 0.8663,
+    "hand": 0.8963,
+    "occurrence": 0.502,
+    "dist_water": 0.773,
+    "fluvial": 0.8983,
+    "pluvial": 0.5717,
+    "waterlogging": 0.8371,
+    "flash_flood": 0.8497,
+    "neg_elev_glo30": 0.8623,
+    "neg_dist_coast": 0.7731
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.7193,
+     0.8782
+    ],
+    "learned_raw:open__logreg": [
+     0.7781,
+     0.9092
+    ],
+    "learned:open__lgbm": [
+     0.7988,
+     0.9248
+    ],
+    "learned_raw:open__lgbm": [
+     0.7986,
+     0.9248
+    ],
+    "hand": [
+     0.8318,
+     0.9482
+    ],
+    "occurrence": [
+     0.4951,
+     0.5093
+    ],
+    "dist_water": [
+     0.6212,
+     0.8831
+    ],
+    "fluvial": [
+     0.834,
+     0.9494
+    ],
+    "pluvial": [
+     0.5331,
+     0.6712
+    ],
+    "waterlogging": [
+     0.7038,
+     0.9367
+    ],
+    "flash_flood": [
+     0.7586,
+     0.9378
+    ],
+    "neg_elev_glo30": [
+     0.7325,
+     0.9399
+    ],
+    "neg_dist_coast": [
+     0.5687,
+     0.9187
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.0431,
+    "learned_raw:open__logreg": 0.0522,
+    "learned:open__lgbm": 0.0627,
+    "learned_raw:open__lgbm": 0.0614,
+    "hand": 0.0817,
+    "occurrence": 0.0165,
+    "dist_water": 0.0419,
+    "fluvial": 0.0879,
+    "pluvial": 0.0271,
+    "waterlogging": 0.0765,
+    "flash_flood": 0.0766,
+    "neg_elev_glo30": 0.0684,
+    "neg_dist_coast": 0.0467
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.0235,
+    "learned_raw:open__logreg": 0.0089,
+    "learned:open__lgbm": 0.0481,
+    "learned_raw:open__lgbm": 0.0254,
+    "hand": 0.0291,
+    "occurrence": 0.0053,
+    "dist_water": 0.1076,
+    "fluvial": 0.0254,
+    "pluvial": 0.031,
+    "waterlogging": 0.0366,
+    "flash_flood": 0.0254,
+    "neg_elev_glo30": 0.0366,
+    "neg_dist_coast": 0.0
+   }
+  },
+  "r_emsr780_aoi08": {
+   "tags": [
+    "pluvial"
+   ],
+   "region": "africa",
+   "cluster": "EMSR780",
+   "flooded": 1524,
+   "dry": 10392,
+   "auc": {
+    "learned:open__logreg": 0.4797,
+    "learned_raw:open__logreg": 0.4762,
+    "learned:open__lgbm": 0.4807,
+    "learned_raw:open__lgbm": 0.5143,
+    "hand": 0.4365,
+    "occurrence": 0.4898,
+    "dist_water": 0.5532,
+    "fluvial": 0.4539,
+    "pluvial": 0.4434,
+    "waterlogging": 0.4491,
+    "flash_flood": 0.4282,
+    "neg_elev_glo30": 0.4139,
+    "neg_dist_coast": 0.4013
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.3986,
+     0.5641
+    ],
+    "learned_raw:open__logreg": [
+     0.3864,
+     0.5702
+    ],
+    "learned:open__lgbm": [
+     0.4044,
+     0.5628
+    ],
+    "learned_raw:open__lgbm": [
+     0.4234,
+     0.6097
+    ],
+    "hand": [
+     0.3491,
+     0.5423
+    ],
+    "occurrence": [
+     0.4781,
+     0.4992
+    ],
+    "dist_water": [
+     0.4901,
+     0.6175
+    ],
+    "fluvial": [
+     0.36,
+     0.5608
+    ],
+    "pluvial": [
+     0.41,
+     0.4812
+    ],
+    "waterlogging": [
+     0.3886,
+     0.5166
+    ],
+    "flash_flood": [
+     0.3759,
+     0.4769
+    ],
+    "neg_elev_glo30": [
+     0.3081,
+     0.5356
+    ],
+    "neg_dist_coast": [
+     0.2997,
+     0.5339
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.1183,
+    "learned_raw:open__logreg": 0.1129,
+    "learned:open__lgbm": 0.1151,
+    "learned_raw:open__lgbm": 0.1204,
+    "hand": 0.1051,
+    "occurrence": 0.1279,
+    "dist_water": 0.1376,
+    "fluvial": 0.1089,
+    "pluvial": 0.1084,
+    "waterlogging": 0.1069,
+    "flash_flood": 0.1178,
+    "neg_elev_glo30": 0.1001,
+    "neg_dist_coast": 0.0974
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.0467,
+    "learned_raw:open__logreg": 0.0367,
+    "learned:open__lgbm": 0.0485,
+    "learned_raw:open__lgbm": 0.0463,
+    "hand": 0.0308,
+    "occurrence": 0.0263,
+    "dist_water": 0.0583,
+    "fluvial": 0.0353,
+    "pluvial": 0.0353,
+    "waterlogging": 0.0329,
+    "flash_flood": 0.0332,
+    "neg_elev_glo30": 0.018,
+    "neg_dist_coast": 0.0208
+   }
+  },
+  "r_emsr856_aoi01": {
+   "tags": [
+    "waterlogging"
+   ],
+   "region": "europe_mediterranean",
+   "cluster": "EMSR856",
+   "flooded": 3340,
+   "dry": 14440,
+   "auc": {
+    "learned:open__logreg": 0.8059,
+    "learned_raw:open__logreg": 0.8132,
+    "learned:open__lgbm": 0.7808,
+    "learned_raw:open__lgbm": 0.8127,
+    "hand": 0.6218,
+    "occurrence": 0.5108,
+    "dist_water": 0.5361,
+    "fluvial": 0.8422,
+    "waterlogging": 0.735,
+    "flash_flood": 0.7781,
+    "neg_elev_glo30": 0.9151,
+    "neg_dist_coast": 0.2705
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.7325,
+     0.8597
+    ],
+    "learned_raw:open__logreg": [
+     0.7169,
+     0.8738
+    ],
+    "learned:open__lgbm": [
+     0.7127,
+     0.8343
+    ],
+    "learned_raw:open__lgbm": [
+     0.7215,
+     0.8761
+    ],
+    "hand": [
+     0.4791,
+     0.7226
+    ],
+    "occurrence": [
+     0.5005,
+     0.5236
+    ],
+    "dist_water": [
+     0.4089,
+     0.6623
+    ],
+    "fluvial": [
+     0.7508,
+     0.895
+    ],
+    "waterlogging": [
+     0.6382,
+     0.8099
+    ],
+    "flash_flood": [
+     0.6424,
+     0.8719
+    ],
+    "neg_elev_glo30": [
+     0.8288,
+     0.9749
+    ],
+    "neg_dist_coast": [
+     0.1392,
+     0.4158
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.4161,
+    "learned_raw:open__logreg": 0.4599,
+    "learned:open__lgbm": 0.3551,
+    "learned_raw:open__lgbm": 0.4067,
+    "hand": 0.2363,
+    "occurrence": 0.2039,
+    "dist_water": 0.1891,
+    "fluvial": 0.4164,
+    "waterlogging": 0.2967,
+    "flash_flood": 0.4065,
+    "neg_elev_glo30": 0.5229,
+    "neg_dist_coast": 0.1221
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.1601,
+    "learned_raw:open__logreg": 0.2479,
+    "learned:open__lgbm": 0.1324,
+    "learned_raw:open__lgbm": 0.2573,
+    "hand": 0.1303,
+    "occurrence": 0.0112,
+    "dist_water": 0.0753,
+    "fluvial": 0.3424,
+    "waterlogging": 0.1948,
+    "flash_flood": 0.2931,
+    "neg_elev_glo30": 0.4579,
+    "neg_dist_coast": 0.0083
+   }
+  },
+  "r_emsr856_aoi02": {
+   "tags": [
+    "waterlogging"
+   ],
+   "region": "europe_mediterranean",
+   "cluster": "EMSR856",
+   "flooded": 1554,
+   "dry": 12340,
+   "auc": {
+    "learned:open__logreg": 0.8225,
+    "learned_raw:open__logreg": 0.8234,
+    "learned:open__lgbm": 0.7045,
+    "learned_raw:open__lgbm": 0.6939,
+    "hand": 0.6957,
+    "occurrence": 0.5,
+    "dist_water": 0.4565,
+    "fluvial": 0.7301,
+    "waterlogging": 0.7249,
+    "flash_flood": 0.621,
+    "neg_elev_glo30": 0.9807,
+    "neg_dist_coast": 0.5816
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.7551,
+     0.9022
+    ],
+    "learned_raw:open__logreg": [
+     0.7548,
+     0.9024
+    ],
+    "learned:open__lgbm": [
+     0.5842,
+     0.8342
+    ],
+    "learned_raw:open__lgbm": [
+     0.5669,
+     0.8296
+    ],
+    "hand": [
+     0.5625,
+     0.8047
+    ],
+    "occurrence": [
+     0.5,
+     0.5
+    ],
+    "dist_water": [
+     0.2782,
+     0.7443
+    ],
+    "fluvial": [
+     0.5654,
+     0.8692
+    ],
+    "waterlogging": [
+     0.5988,
+     0.8284
+    ],
+    "flash_flood": [
+     0.5099,
+     0.736
+    ],
+    "neg_elev_glo30": [
+     0.9658,
+     0.9932
+    ],
+    "neg_dist_coast": [
+     0.3991,
+     0.7731
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.2877,
+    "learned_raw:open__logreg": 0.2857,
+    "learned:open__lgbm": 0.1877,
+    "learned_raw:open__lgbm": 0.1544,
+    "hand": 0.1801,
+    "occurrence": 0.1118,
+    "dist_water": 0.1005,
+    "fluvial": 0.1686,
+    "waterlogging": 0.2388,
+    "flash_flood": 0.1281,
+    "neg_elev_glo30": 0.813,
+    "neg_dist_coast": 0.117
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.1715,
+    "learned_raw:open__logreg": 0.1917,
+    "learned:open__lgbm": 0.0461,
+    "learned_raw:open__lgbm": 0.0461,
+    "hand": 0.1057,
+    "occurrence": 0.0,
+    "dist_water": 0.0451,
+    "fluvial": 0.0377,
+    "waterlogging": 0.1322,
+    "flash_flood": 0.0278,
+    "neg_elev_glo30": 0.6341,
+    "neg_dist_coast": 0.0039
+   }
+  },
+  "r_emsr703_aoi01": {
+   "tags": [
+    "coastal"
+   ],
+   "region": "americas",
+   "cluster": "EMSR703",
+   "flooded": 1287,
+   "dry": 12951,
+   "auc": {
+    "learned:open__logreg": 0.7714,
+    "learned_raw:open__logreg": 0.7957,
+    "learned:open__lgbm": 0.7983,
+    "learned_raw:open__lgbm": 0.7993,
+    "hand": 0.6925,
+    "occurrence": 0.4965,
+    "dist_water": 0.6359,
+    "fluvial": 0.7192,
+    "waterlogging": 0.7406,
+    "flash_flood": 0.7473,
+    "neg_elev_glo30": 0.8327,
+    "neg_dist_coast": 0.3319
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.7063,
+     0.8285
+    ],
+    "learned_raw:open__logreg": [
+     0.7211,
+     0.858
+    ],
+    "learned:open__lgbm": [
+     0.7361,
+     0.8503
+    ],
+    "learned_raw:open__lgbm": [
+     0.7331,
+     0.8554
+    ],
+    "hand": [
+     0.6304,
+     0.7614
+    ],
+    "occurrence": [
+     0.4908,
+     0.5012
+    ],
+    "dist_water": [
+     0.5295,
+     0.7064
+    ],
+    "fluvial": [
+     0.6649,
+     0.7581
+    ],
+    "waterlogging": [
+     0.6822,
+     0.7889
+    ],
+    "flash_flood": [
+     0.681,
+     0.8032
+    ],
+    "neg_elev_glo30": [
+     0.7642,
+     0.891
+    ],
+    "neg_dist_coast": [
+     0.2736,
+     0.4226
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.1952,
+    "learned_raw:open__logreg": 0.193,
+    "learned:open__lgbm": 0.2386,
+    "learned_raw:open__lgbm": 0.25,
+    "hand": 0.1422,
+    "occurrence": 0.0902,
+    "dist_water": 0.1393,
+    "fluvial": 0.1958,
+    "waterlogging": 0.1877,
+    "flash_flood": 0.2125,
+    "neg_elev_glo30": 0.2404,
+    "neg_dist_coast": 0.0633
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.1076,
+    "learned_raw:open__logreg": 0.0893,
+    "learned:open__lgbm": 0.1705,
+    "learned_raw:open__lgbm": 0.178,
+    "hand": 0.0856,
+    "occurrence": 0.035,
+    "dist_water": 0.0958,
+    "fluvial": 0.1435,
+    "waterlogging": 0.1344,
+    "flash_flood": 0.1455,
+    "neg_elev_glo30": 0.1455,
+    "neg_dist_coast": 0.0039
+   }
+  },
+  "r_emsr703_aoi02": {
+   "tags": [
+    "coastal"
+   ],
+   "region": "americas",
+   "cluster": "EMSR703",
+   "flooded": 3331,
+   "dry": 10729,
+   "auc": {
+    "learned:open__logreg": 0.5701,
+    "learned_raw:open__logreg": 0.5831,
+    "learned:open__lgbm": 0.6296,
+    "learned_raw:open__lgbm": 0.6289,
+    "hand": 0.6251,
+    "occurrence": 0.4985,
+    "dist_water": 0.6117,
+    "fluvial": 0.6911,
+    "waterlogging": 0.6648,
+    "flash_flood": 0.7041,
+    "neg_elev_glo30": 0.6606,
+    "neg_dist_coast": 0.3639
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.4529,
+     0.6903
+    ],
+    "learned_raw:open__logreg": [
+     0.4554,
+     0.7172
+    ],
+    "learned:open__lgbm": [
+     0.508,
+     0.7519
+    ],
+    "learned_raw:open__lgbm": [
+     0.5069,
+     0.7516
+    ],
+    "hand": [
+     0.4984,
+     0.7553
+    ],
+    "occurrence": [
+     0.495,
+     0.5
+    ],
+    "dist_water": [
+     0.5381,
+     0.6871
+    ],
+    "fluvial": [
+     0.5919,
+     0.7968
+    ],
+    "waterlogging": [
+     0.5357,
+     0.7916
+    ],
+    "flash_flood": [
+     0.6218,
+     0.786
+    ],
+    "neg_elev_glo30": [
+     0.5283,
+     0.7841
+    ],
+    "neg_dist_coast": [
+     0.195,
+     0.5436
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.258,
+    "learned_raw:open__logreg": 0.2608,
+    "learned:open__lgbm": 0.2874,
+    "learned_raw:open__lgbm": 0.2867,
+    "hand": 0.2945,
+    "occurrence": 0.2369,
+    "dist_water": 0.3439,
+    "fluvial": 0.3471,
+    "waterlogging": 0.3404,
+    "flash_flood": 0.38,
+    "neg_elev_glo30": 0.3373,
+    "neg_dist_coast": 0.1759
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.1301,
+    "learned_raw:open__logreg": 0.1284,
+    "learned:open__lgbm": 0.15,
+    "learned_raw:open__lgbm": 0.1502,
+    "hand": 0.1808,
+    "occurrence": 0.1886,
+    "dist_water": 0.2097,
+    "fluvial": 0.2117,
+    "waterlogging": 0.2237,
+    "flash_flood": 0.2267,
+    "neg_elev_glo30": 0.1598,
+    "neg_dist_coast": 0.0458
+   }
+  },
+  "r_emsr805_aoi01": {
+   "tags": [
+    "coastal"
+   ],
+   "region": "americas",
+   "cluster": "EMSR805",
+   "flooded": 184,
+   "dry": 6316,
+   "auc": {
+    "learned:open__logreg": 0.6091,
+    "learned_raw:open__logreg": 0.6727,
+    "learned:open__lgbm": 0.6766,
+    "learned_raw:open__lgbm": 0.6786,
+    "hand": 0.6561,
+    "occurrence": 0.5117,
+    "dist_water": 0.5122,
+    "fluvial": 0.4299,
+    "waterlogging": 0.7219,
+    "flash_flood": 0.5685,
+    "neg_elev_glo30": 0.6548,
+    "neg_dist_coast": 0.7671
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.3863,
+     0.9481
+    ],
+    "learned_raw:open__logreg": [
+     0.5109,
+     0.9633
+    ],
+    "learned:open__lgbm": [
+     0.5255,
+     0.9801
+    ],
+    "learned_raw:open__lgbm": [
+     0.5254,
+     0.9836
+    ],
+    "hand": [
+     0.4809,
+     0.95
+    ],
+    "occurrence": [
+     0.4745,
+     0.5462
+    ],
+    "dist_water": [
+     0.2963,
+     0.6987
+    ],
+    "fluvial": [
+     0.2128,
+     0.6869
+    ],
+    "waterlogging": [
+     0.5464,
+     0.9565
+    ],
+    "flash_flood": [
+     0.3835,
+     0.9677
+    ],
+    "neg_elev_glo30": [
+     0.3875,
+     0.9261
+    ],
+    "neg_dist_coast": [
+     0.5014,
+     0.8594
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.0698,
+    "learned_raw:open__logreg": 0.0879,
+    "learned:open__lgbm": 0.0882,
+    "learned_raw:open__lgbm": 0.101,
+    "hand": 0.0456,
+    "occurrence": 0.0286,
+    "dist_water": 0.0264,
+    "fluvial": 0.0232,
+    "waterlogging": 0.0756,
+    "flash_flood": 0.0386,
+    "neg_elev_glo30": 0.0503,
+    "neg_dist_coast": 0.062
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.0824,
+    "learned_raw:open__logreg": 0.1118,
+    "learned:open__lgbm": 0.0667,
+    "learned_raw:open__lgbm": 0.0667,
+    "hand": 0.0279,
+    "occurrence": 0.0082,
+    "dist_water": 0.0,
+    "fluvial": 0.0,
+    "waterlogging": 0.0855,
+    "flash_flood": 0.011,
+    "neg_elev_glo30": 0.0,
+    "neg_dist_coast": 0.0
+   }
+  },
+  "r_emsr805_aoi03": {
+   "tags": [
+    "coastal"
+   ],
+   "region": "americas",
+   "cluster": "EMSR805",
+   "flooded": 83,
+   "dry": 17611,
+   "auc": {
+    "learned:open__logreg": 0.7822,
+    "learned_raw:open__logreg": 0.7876,
+    "learned:open__lgbm": 0.7915,
+    "learned_raw:open__lgbm": 0.7982,
+    "hand": 0.7333,
+    "occurrence": 0.5,
+    "dist_water": 0.5,
+    "fluvial": 0.7518,
+    "waterlogging": 0.7321,
+    "flash_flood": 0.7636,
+    "neg_elev_glo30": 0.7254,
+    "neg_dist_coast": 0.2975
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.3947,
+     0.8879
+    ],
+    "learned_raw:open__logreg": [
+     0.3973,
+     0.8906
+    ],
+    "learned:open__lgbm": [
+     0.4127,
+     0.8915
+    ],
+    "learned_raw:open__lgbm": [
+     0.4116,
+     0.9049
+    ],
+    "hand": [
+     0.5435,
+     0.8995
+    ],
+    "occurrence": [
+     0.5,
+     0.5
+    ],
+    "dist_water": [
+     0.5,
+     0.5
+    ],
+    "fluvial": [
+     0.5465,
+     0.9369
+    ],
+    "waterlogging": [
+     0.5187,
+     0.9199
+    ],
+    "flash_flood": [
+     0.5564,
+     0.9232
+    ],
+    "neg_elev_glo30": [
+     0.5729,
+     0.8662
+    ],
+    "neg_dist_coast": [
+     0.0577,
+     0.5915
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.0208,
+    "learned_raw:open__logreg": 0.0221,
+    "learned:open__lgbm": 0.0221,
+    "learned_raw:open__lgbm": 0.0321,
+    "hand": 0.0094,
+    "occurrence": 0.0047,
+    "dist_water": 0.0047,
+    "fluvial": 0.0094,
+    "waterlogging": 0.0147,
+    "flash_flood": 0.0136,
+    "neg_elev_glo30": 0.008,
+    "neg_dist_coast": 0.0031
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.0184,
+    "learned_raw:open__logreg": 0.0122,
+    "learned:open__lgbm": 0.0247,
+    "learned_raw:open__lgbm": 0.0,
+    "hand": 0.0,
+    "occurrence": 0.0,
+    "dist_water": 0.0,
+    "fluvial": 0.0,
+    "waterlogging": 0.0122,
+    "flash_flood": 0.0061,
+    "neg_elev_glo30": 0.0,
+    "neg_dist_coast": 0.0
+   }
+  },
+  "r_emsr734_aoi17": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "region": "americas",
+   "cluster": "EMSR734",
+   "flooded": 250,
+   "dry": 12415,
+   "auc": {
+    "learned:open__logreg": 0.9446,
+    "learned_raw:open__logreg": 0.9586,
+    "learned:open__lgbm": 0.5703,
+    "learned_raw:open__lgbm": 0.6169,
+    "hand": 0.9003,
+    "occurrence": 0.5,
+    "dist_water": 0.2464,
+    "fluvial": 0.8669,
+    "waterlogging": 0.9019,
+    "flash_flood": 0.8966,
+    "neg_elev_glo30": 0.6898,
+    "neg_dist_coast": 0.2079
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.8798,
+     0.9655
+    ],
+    "learned_raw:open__logreg": [
+     0.8892,
+     0.9759
+    ],
+    "learned:open__lgbm": [
+     0.4624,
+     0.8285
+    ],
+    "learned_raw:open__lgbm": [
+     0.5071,
+     0.8303
+    ],
+    "hand": [
+     0.8156,
+     0.9368
+    ],
+    "occurrence": [
+     0.5,
+     0.5
+    ],
+    "dist_water": [
+     0.1533,
+     0.3555
+    ],
+    "fluvial": [
+     0.7462,
+     0.9249
+    ],
+    "waterlogging": [
+     0.8168,
+     0.9404
+    ],
+    "flash_flood": [
+     0.8119,
+     0.9351
+    ],
+    "neg_elev_glo30": [
+     0.5163,
+     0.8221
+    ],
+    "neg_dist_coast": [
+     0.0789,
+     0.3844
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.1851,
+    "learned_raw:open__logreg": 0.2566,
+    "learned:open__lgbm": 0.0212,
+    "learned_raw:open__lgbm": 0.0231,
+    "hand": 0.0954,
+    "occurrence": 0.0197,
+    "dist_water": 0.0197,
+    "fluvial": 0.0645,
+    "waterlogging": 0.1097,
+    "flash_flood": 0.0866,
+    "neg_elev_glo30": 0.0303,
+    "neg_dist_coast": 0.012
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.1905,
+    "learned_raw:open__logreg": 0.2048,
+    "learned:open__lgbm": 0.002,
+    "learned_raw:open__lgbm": 0.002,
+    "hand": 0.0571,
+    "occurrence": 0.0,
+    "dist_water": 0.0,
+    "fluvial": 0.0,
+    "waterlogging": 0.0638,
+    "flash_flood": 0.0163,
+    "neg_elev_glo30": 0.0,
+    "neg_dist_coast": 0.0
+   }
+  },
+  "r_emsr781_aoi01": {
+   "tags": [
+    "coastal"
+   ],
+   "region": "africa",
+   "cluster": "EMSR781",
+   "flooded": 105,
+   "dry": 10901,
+   "auc": {
+    "learned:open__logreg": 0.7931,
+    "learned_raw:open__logreg": 0.873,
+    "learned:open__lgbm": 0.9238,
+    "learned_raw:open__lgbm": 0.935,
+    "hand": 0.7667,
+    "occurrence": 0.494,
+    "dist_water": 0.7368,
+    "fluvial": 0.7851,
+    "waterlogging": 0.8556,
+    "flash_flood": 0.721,
+    "neg_elev_glo30": 0.949,
+    "neg_dist_coast": 0.7561
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.6623,
+     0.8766
+    ],
+    "learned_raw:open__logreg": [
+     0.6809,
+     0.9266
+    ],
+    "learned:open__lgbm": [
+     0.6732,
+     0.9702
+    ],
+    "learned_raw:open__lgbm": [
+     0.6721,
+     0.9775
+    ],
+    "hand": [
+     0.5915,
+     0.8841
+    ],
+    "occurrence": [
+     0.4909,
+     0.4968
+    ],
+    "dist_water": [
+     0.4503,
+     0.8526
+    ],
+    "fluvial": [
+     0.6417,
+     0.933
+    ],
+    "waterlogging": [
+     0.6709,
+     0.9273
+    ],
+    "flash_flood": [
+     0.5671,
+     0.8746
+    ],
+    "neg_elev_glo30": [
+     0.8013,
+     0.9796
+    ],
+    "neg_dist_coast": [
+     0.2961,
+     0.8816
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.0255,
+    "learned_raw:open__logreg": 0.0483,
+    "learned:open__lgbm": 0.1438,
+    "learned_raw:open__lgbm": 0.364,
+    "hand": 0.0198,
+    "occurrence": 0.0095,
+    "dist_water": 0.0177,
+    "fluvial": 0.022,
+    "waterlogging": 0.086,
+    "flash_flood": 0.0157,
+    "neg_elev_glo30": 0.4318,
+    "neg_dist_coast": 0.0209
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.0244,
+    "learned_raw:open__logreg": 0.0244,
+    "learned:open__lgbm": 0.1413,
+    "learned_raw:open__lgbm": 0.2353,
+    "hand": 0.0048,
+    "occurrence": 0.0,
+    "dist_water": 0.0,
+    "fluvial": 0.0048,
+    "waterlogging": 0.0294,
+    "flash_flood": 0.0,
+    "neg_elev_glo30": 0.3725,
+    "neg_dist_coast": 0.0
+   }
+  },
+  "r_emsr793_aoi01": {
+   "tags": [
+    "coastal"
+   ],
+   "region": "africa",
+   "cluster": "EMSR793",
+   "flooded": 1310,
+   "dry": 16360,
+   "auc": {
+    "learned:open__logreg": 0.9126,
+    "learned_raw:open__logreg": 0.9373,
+    "learned:open__lgbm": 0.9549,
+    "learned_raw:open__lgbm": 0.9559,
+    "hand": 0.8587,
+    "occurrence": 0.6855,
+    "dist_water": 0.9292,
+    "fluvial": 0.9247,
+    "waterlogging": 0.8923,
+    "flash_flood": 0.9244,
+    "neg_elev_glo30": 0.9606,
+    "neg_dist_coast": 0.1988
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.8719,
+     0.9587
+    ],
+    "learned_raw:open__logreg": [
+     0.9022,
+     0.9739
+    ],
+    "learned:open__lgbm": [
+     0.9222,
+     0.9836
+    ],
+    "learned_raw:open__lgbm": [
+     0.922,
+     0.9848
+    ],
+    "hand": [
+     0.807,
+     0.9174
+    ],
+    "occurrence": [
+     0.5899,
+     0.7348
+    ],
+    "dist_water": [
+     0.8825,
+     0.9654
+    ],
+    "fluvial": [
+     0.8627,
+     0.9741
+    ],
+    "waterlogging": [
+     0.8399,
+     0.9441
+    ],
+    "flash_flood": [
+     0.8934,
+     0.9563
+    ],
+    "neg_elev_glo30": [
+     0.9251,
+     0.9876
+    ],
+    "neg_dist_coast": [
+     0.103,
+     0.3441
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.599,
+    "learned_raw:open__logreg": 0.7193,
+    "learned:open__lgbm": 0.691,
+    "learned_raw:open__lgbm": 0.7154,
+    "hand": 0.2813,
+    "occurrence": 0.4169,
+    "dist_water": 0.4108,
+    "fluvial": 0.4412,
+    "waterlogging": 0.442,
+    "flash_flood": 0.589,
+    "neg_elev_glo30": 0.8049,
+    "neg_dist_coast": 0.0431
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.4278,
+    "learned_raw:open__logreg": 0.4786,
+    "learned:open__lgbm": 0.4231,
+    "learned_raw:open__lgbm": 0.4231,
+    "hand": 0.1855,
+    "occurrence": 0.6064,
+    "dist_water": 0.3159,
+    "fluvial": 0.2977,
+    "waterlogging": 0.3002,
+    "flash_flood": 0.361,
+    "neg_elev_glo30": 0.5614,
+    "neg_dist_coast": 0.0
+   }
+  },
+  "r_emsr793_aoi02": {
+   "tags": [
+    "coastal"
+   ],
+   "region": "africa",
+   "cluster": "EMSR793",
+   "flooded": 775,
+   "dry": 16921,
+   "auc": {
+    "learned:open__logreg": 0.925,
+    "learned_raw:open__logreg": 0.9296,
+    "learned:open__lgbm": 0.901,
+    "learned_raw:open__lgbm": 0.9066,
+    "hand": 0.9473,
+    "occurrence": 0.5497,
+    "dist_water": 0.7564,
+    "fluvial": 0.9537,
+    "waterlogging": 0.9568,
+    "flash_flood": 0.9384,
+    "neg_elev_glo30": 0.9345,
+    "neg_dist_coast": 0.3248
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.8751,
+     0.9683
+    ],
+    "learned_raw:open__logreg": [
+     0.8818,
+     0.9716
+    ],
+    "learned:open__lgbm": [
+     0.8245,
+     0.9731
+    ],
+    "learned_raw:open__lgbm": [
+     0.8303,
+     0.9783
+    ],
+    "hand": [
+     0.9161,
+     0.9726
+    ],
+    "occurrence": [
+     0.5083,
+     0.6158
+    ],
+    "dist_water": [
+     0.6284,
+     0.8936
+    ],
+    "fluvial": [
+     0.9223,
+     0.9785
+    ],
+    "waterlogging": [
+     0.928,
+     0.9801
+    ],
+    "flash_flood": [
+     0.8937,
+     0.9799
+    ],
+    "neg_elev_glo30": [
+     0.8961,
+     0.9733
+    ],
+    "neg_dist_coast": [
+     0.1178,
+     0.4862
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.2994,
+    "learned_raw:open__logreg": 0.3662,
+    "learned:open__lgbm": 0.2409,
+    "learned_raw:open__lgbm": 0.2775,
+    "hand": 0.4274,
+    "occurrence": 0.1174,
+    "dist_water": 0.0857,
+    "fluvial": 0.4463,
+    "waterlogging": 0.5064,
+    "flash_flood": 0.3173,
+    "neg_elev_glo30": 0.3391,
+    "neg_dist_coast": 0.0299
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.185,
+    "learned_raw:open__logreg": 0.2044,
+    "learned:open__lgbm": 0.1769,
+    "learned_raw:open__lgbm": 0.249,
+    "hand": 0.2789,
+    "occurrence": 0.0537,
+    "dist_water": 0.0417,
+    "fluvial": 0.296,
+    "waterlogging": 0.3237,
+    "flash_flood": 0.2571,
+    "neg_elev_glo30": 0.2726,
+    "neg_dist_coast": 0.0
+   }
+  },
+  "r_emsr867_aoi01": {
+   "tags": [
+    "coastal"
+   ],
+   "region": "africa",
+   "cluster": "EMSR867",
+   "flooded": 212,
+   "dry": 11601,
+   "auc": {
+    "learned:open__logreg": 0.671,
+    "learned_raw:open__logreg": 0.673,
+    "learned:open__lgbm": 0.6312,
+    "learned_raw:open__lgbm": 0.6287,
+    "hand": 0.5036,
+    "occurrence": 0.4941,
+    "dist_water": 0.5522,
+    "fluvial": 0.3466,
+    "waterlogging": 0.5108,
+    "flash_flood": 0.4289,
+    "neg_elev_glo30": 0.6083,
+    "neg_dist_coast": 0.6781
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.4952,
+     0.742
+    ],
+    "learned_raw:open__logreg": [
+     0.4784,
+     0.7517
+    ],
+    "learned:open__lgbm": [
+     0.509,
+     0.7018
+    ],
+    "learned_raw:open__lgbm": [
+     0.5073,
+     0.6981
+    ],
+    "hand": [
+     0.2648,
+     0.6283
+    ],
+    "occurrence": [
+     0.4892,
+     0.498
+    ],
+    "dist_water": [
+     0.3491,
+     0.7371
+    ],
+    "fluvial": [
+     0.2495,
+     0.5701
+    ],
+    "waterlogging": [
+     0.2843,
+     0.6309
+    ],
+    "flash_flood": [
+     0.2635,
+     0.5787
+    ],
+    "neg_elev_glo30": [
+     0.4061,
+     0.7105
+    ],
+    "neg_dist_coast": [
+     0.5151,
+     0.8085
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.0296,
+    "learned_raw:open__logreg": 0.0294,
+    "learned:open__lgbm": 0.0248,
+    "learned_raw:open__lgbm": 0.0236,
+    "hand": 0.0186,
+    "occurrence": 0.0179,
+    "dist_water": 0.0209,
+    "fluvial": 0.0126,
+    "waterlogging": 0.0196,
+    "flash_flood": 0.0147,
+    "neg_elev_glo30": 0.0238,
+    "neg_dist_coast": 0.0276
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.0095,
+    "learned_raw:open__logreg": 0.0,
+    "learned:open__lgbm": 0.0,
+    "learned_raw:open__lgbm": 0.0,
+    "hand": 0.0,
+    "occurrence": 0.0071,
+    "dist_water": 0.0,
+    "fluvial": 0.0,
+    "waterlogging": 0.0,
+    "flash_flood": 0.0,
+    "neg_elev_glo30": 0.0,
+    "neg_dist_coast": 0.0
+   }
+  },
+  "r_emsr867_aoi03": {
+   "tags": [
+    "coastal"
+   ],
+   "region": "africa",
+   "cluster": "EMSR867",
+   "flooded": 1535,
+   "dry": 16190,
+   "auc": {
+    "learned:open__logreg": 0.8099,
+    "learned_raw:open__logreg": 0.8702,
+    "learned:open__lgbm": 0.7852,
+    "learned_raw:open__lgbm": 0.7994,
+    "hand": 0.7991,
+    "occurrence": 0.6518,
+    "dist_water": 0.6005,
+    "fluvial": 0.7745,
+    "waterlogging": 0.8294,
+    "flash_flood": 0.7433,
+    "neg_elev_glo30": 0.7835,
+    "neg_dist_coast": 0.5
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.7463,
+     0.8693
+    ],
+    "learned_raw:open__logreg": [
+     0.8246,
+     0.9086
+    ],
+    "learned:open__lgbm": [
+     0.6938,
+     0.8725
+    ],
+    "learned_raw:open__lgbm": [
+     0.7192,
+     0.8792
+    ],
+    "hand": [
+     0.7279,
+     0.8666
+    ],
+    "occurrence": [
+     0.5727,
+     0.7488
+    ],
+    "dist_water": [
+     0.4541,
+     0.7344
+    ],
+    "fluvial": [
+     0.6938,
+     0.8522
+    ],
+    "waterlogging": [
+     0.7557,
+     0.9014
+    ],
+    "flash_flood": [
+     0.615,
+     0.8616
+    ],
+    "neg_elev_glo30": [
+     0.6789,
+     0.9038
+    ],
+    "neg_dist_coast": [
+     0.5,
+     0.5
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.3303,
+    "learned_raw:open__logreg": 0.4373,
+    "learned:open__lgbm": 0.2215,
+    "learned_raw:open__lgbm": 0.2817,
+    "hand": 0.2014,
+    "occurrence": 0.3176,
+    "dist_water": 0.1016,
+    "fluvial": 0.1958,
+    "waterlogging": 0.3208,
+    "flash_flood": 0.1533,
+    "neg_elev_glo30": 0.2446,
+    "neg_dist_coast": 0.0866
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.25,
+    "learned_raw:open__logreg": 0.2536,
+    "learned:open__lgbm": 0.1881,
+    "learned_raw:open__lgbm": 0.189,
+    "hand": 0.1083,
+    "occurrence": 0.1992,
+    "dist_water": 0.0386,
+    "fluvial": 0.1225,
+    "waterlogging": 0.1673,
+    "flash_flood": 0.0894,
+    "neg_elev_glo30": 0.1581,
+    "neg_dist_coast": 0.0186
+   }
+  },
+  "r_emsr863_aoi02": {
+   "tags": [
+    "coastal"
+   ],
+   "region": "africa",
+   "cluster": "EMSR863",
+   "flooded": 2811,
+   "dry": 13507,
+   "auc": {
+    "learned:open__logreg": 0.8599,
+    "learned_raw:open__logreg": 0.8763,
+    "learned:open__lgbm": 0.8524,
+    "learned_raw:open__lgbm": 0.86,
+    "hand": 0.7619,
+    "occurrence": 0.6069,
+    "dist_water": 0.7541,
+    "fluvial": 0.7595,
+    "waterlogging": 0.7579,
+    "flash_flood": 0.8113,
+    "neg_elev_glo30": 0.8812,
+    "neg_dist_coast": 0.3914
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.8084,
+     0.901
+    ],
+    "learned_raw:open__logreg": [
+     0.8244,
+     0.9163
+    ],
+    "learned:open__lgbm": [
+     0.8,
+     0.8999
+    ],
+    "learned_raw:open__lgbm": [
+     0.8062,
+     0.9083
+    ],
+    "hand": [
+     0.6717,
+     0.8405
+    ],
+    "occurrence": [
+     0.5501,
+     0.6409
+    ],
+    "dist_water": [
+     0.6584,
+     0.8399
+    ],
+    "fluvial": [
+     0.6597,
+     0.8534
+    ],
+    "waterlogging": [
+     0.6548,
+     0.8544
+    ],
+    "flash_flood": [
+     0.7289,
+     0.8791
+    ],
+    "neg_elev_glo30": [
+     0.8008,
+     0.9459
+    ],
+    "neg_dist_coast": [
+     0.2591,
+     0.5625
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.5543,
+    "learned_raw:open__logreg": 0.6275,
+    "learned:open__lgbm": 0.5312,
+    "learned_raw:open__lgbm": 0.5837,
+    "hand": 0.3186,
+    "occurrence": 0.3333,
+    "dist_water": 0.3194,
+    "fluvial": 0.2921,
+    "waterlogging": 0.2972,
+    "flash_flood": 0.4332,
+    "neg_elev_glo30": 0.4864,
+    "neg_dist_coast": 0.1305
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.3576,
+    "learned_raw:open__logreg": 0.4197,
+    "learned:open__lgbm": 0.3709,
+    "learned_raw:open__lgbm": 0.3702,
+    "hand": 0.1901,
+    "occurrence": 0.1838,
+    "dist_water": 0.215,
+    "fluvial": 0.1597,
+    "waterlogging": 0.1657,
+    "flash_flood": 0.3017,
+    "neg_elev_glo30": 0.358,
+    "neg_dist_coast": 0.0093
+   }
+  },
+  "r_emsr858_aoi08": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "region": "europe_mediterranean",
+   "cluster": "EMSR858",
+   "flooded": 618,
+   "dry": 17124,
+   "auc": {
+    "learned:open__logreg": 0.8897,
+    "learned_raw:open__logreg": 0.9216,
+    "learned:open__lgbm": 0.8827,
+    "learned_raw:open__lgbm": 0.8922,
+    "hand": 0.7495,
+    "occurrence": 0.4998,
+    "dist_water": 0.8291,
+    "fluvial": 0.8016,
+    "waterlogging": 0.7915,
+    "flash_flood": 0.875,
+    "neg_elev_glo30": 0.8907,
+    "neg_dist_coast": 0.6729
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.8353,
+     0.9333
+    ],
+    "learned_raw:open__logreg": [
+     0.8658,
+     0.9554
+    ],
+    "learned:open__lgbm": [
+     0.8018,
+     0.9354
+    ],
+    "learned_raw:open__lgbm": [
+     0.8139,
+     0.9411
+    ],
+    "hand": [
+     0.6409,
+     0.8601
+    ],
+    "occurrence": [
+     0.4962,
+     0.5048
+    ],
+    "dist_water": [
+     0.7616,
+     0.8988
+    ],
+    "fluvial": [
+     0.7049,
+     0.8983
+    ],
+    "waterlogging": [
+     0.694,
+     0.8921
+    ],
+    "flash_flood": [
+     0.8074,
+     0.9637
+    ],
+    "neg_elev_glo30": [
+     0.7914,
+     0.9449
+    ],
+    "neg_dist_coast": [
+     0.2945,
+     0.8404
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.1914,
+    "learned_raw:open__logreg": 0.3268,
+    "learned:open__lgbm": 0.1391,
+    "learned_raw:open__lgbm": 0.1503,
+    "hand": 0.065,
+    "occurrence": 0.0348,
+    "dist_water": 0.0947,
+    "fluvial": 0.0799,
+    "waterlogging": 0.0756,
+    "flash_flood": 0.1596,
+    "neg_elev_glo30": 0.1772,
+    "neg_dist_coast": 0.0748
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.1498,
+    "learned_raw:open__logreg": 0.2372,
+    "learned:open__lgbm": 0.1105,
+    "learned_raw:open__lgbm": 0.0795,
+    "hand": 0.0198,
+    "occurrence": 0.0016,
+    "dist_water": 0.0729,
+    "fluvial": 0.024,
+    "waterlogging": 0.0257,
+    "flash_flood": 0.1277,
+    "neg_elev_glo30": 0.1329,
+    "neg_dist_coast": 0.0537
+   }
+  },
+  "r_emsr858_aoi10": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "region": "europe_mediterranean",
+   "cluster": "EMSR858",
+   "flooded": 805,
+   "dry": 16962,
+   "auc": {
+    "learned:open__logreg": 0.7623,
+    "learned_raw:open__logreg": 0.7828,
+    "learned:open__lgbm": 0.8301,
+    "learned_raw:open__lgbm": 0.8303,
+    "hand": 0.7878,
+    "occurrence": 0.5,
+    "dist_water": 0.7723,
+    "fluvial": 0.8387,
+    "waterlogging": 0.8135,
+    "flash_flood": 0.8208,
+    "neg_elev_glo30": 0.9129,
+    "neg_dist_coast": 0.4958
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.6774,
+     0.8581
+    ],
+    "learned_raw:open__logreg": [
+     0.6961,
+     0.878
+    ],
+    "learned:open__lgbm": [
+     0.7695,
+     0.8963
+    ],
+    "learned_raw:open__lgbm": [
+     0.7695,
+     0.8962
+    ],
+    "hand": [
+     0.6986,
+     0.872
+    ],
+    "occurrence": [
+     0.5,
+     0.5
+    ],
+    "dist_water": [
+     0.6471,
+     0.8712
+    ],
+    "fluvial": [
+     0.7565,
+     0.91
+    ],
+    "waterlogging": [
+     0.7285,
+     0.8926
+    ],
+    "flash_flood": [
+     0.7398,
+     0.892
+    ],
+    "neg_elev_glo30": [
+     0.8654,
+     0.9615
+    ],
+    "neg_dist_coast": [
+     0.2962,
+     0.6661
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.1032,
+    "learned_raw:open__logreg": 0.135,
+    "learned:open__lgbm": 0.1432,
+    "learned_raw:open__lgbm": 0.1459,
+    "hand": 0.1041,
+    "occurrence": 0.0453,
+    "dist_water": 0.1104,
+    "fluvial": 0.1331,
+    "waterlogging": 0.1227,
+    "flash_flood": 0.1448,
+    "neg_elev_glo30": 0.3061,
+    "neg_dist_coast": 0.0404
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.0655,
+    "learned_raw:open__logreg": 0.1096,
+    "learned:open__lgbm": 0.0915,
+    "learned_raw:open__lgbm": 0.0908,
+    "hand": 0.0648,
+    "occurrence": 0.0,
+    "dist_water": 0.0748,
+    "fluvial": 0.0784,
+    "waterlogging": 0.0805,
+    "flash_flood": 0.115,
+    "neg_elev_glo30": 0.206,
+    "neg_dist_coast": 0.0
+   }
+  },
+  "r_emsr864_aoi01": {
+   "tags": [
+    "flash_flood",
+    "compound"
+   ],
+   "region": "europe_mediterranean",
+   "cluster": "EMSR864",
+   "flooded": 4179,
+   "dry": 13207,
+   "auc": {
+    "learned:open__logreg": 0.9104,
+    "learned_raw:open__logreg": 0.9163,
+    "learned:open__lgbm": 0.9201,
+    "learned_raw:open__lgbm": 0.9241,
+    "hand": 0.9244,
+    "occurrence": 0.5061,
+    "dist_water": 0.7997,
+    "fluvial": 0.9409,
+    "waterlogging": 0.9369,
+    "flash_flood": 0.9449,
+    "neg_elev_glo30": 0.9547,
+    "neg_dist_coast": 0.3785
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.8684,
+     0.9444
+    ],
+    "learned_raw:open__logreg": [
+     0.8741,
+     0.9494
+    ],
+    "learned:open__lgbm": [
+     0.8749,
+     0.9562
+    ],
+    "learned_raw:open__lgbm": [
+     0.8778,
+     0.9584
+    ],
+    "hand": [
+     0.8964,
+     0.9461
+    ],
+    "occurrence": [
+     0.4931,
+     0.5218
+    ],
+    "dist_water": [
+     0.7046,
+     0.879
+    ],
+    "fluvial": [
+     0.8969,
+     0.9706
+    ],
+    "waterlogging": [
+     0.9015,
+     0.9639
+    ],
+    "flash_flood": [
+     0.9207,
+     0.9657
+    ],
+    "neg_elev_glo30": [
+     0.9202,
+     0.9836
+    ],
+    "neg_dist_coast": [
+     0.2326,
+     0.5287
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.752,
+    "learned_raw:open__logreg": 0.7729,
+    "learned:open__lgbm": 0.6794,
+    "learned_raw:open__lgbm": 0.7144,
+    "hand": 0.6764,
+    "occurrence": 0.241,
+    "dist_water": 0.438,
+    "fluvial": 0.7417,
+    "waterlogging": 0.7021,
+    "flash_flood": 0.7532,
+    "neg_elev_glo30": 0.7701,
+    "neg_dist_coast": 0.187
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.5658,
+    "learned_raw:open__logreg": 0.566,
+    "learned:open__lgbm": 0.518,
+    "learned_raw:open__lgbm": 0.5257,
+    "hand": 0.5441,
+    "occurrence": 0.0497,
+    "dist_water": 0.2962,
+    "fluvial": 0.569,
+    "waterlogging": 0.5881,
+    "flash_flood": 0.6541,
+    "neg_elev_glo30": 0.6528,
+    "neg_dist_coast": 0.0815
+   }
+  },
+  "r_emsr864_aoi02": {
+   "tags": [
+    "flash_flood",
+    "compound"
+   ],
+   "region": "europe_mediterranean",
+   "cluster": "EMSR864",
+   "flooded": 3330,
+   "dry": 13545,
+   "auc": {
+    "learned:open__logreg": 0.9441,
+    "learned_raw:open__logreg": 0.9509,
+    "learned:open__lgbm": 0.9527,
+    "learned_raw:open__lgbm": 0.9556,
+    "hand": 0.9125,
+    "occurrence": 0.6211,
+    "dist_water": 0.8157,
+    "fluvial": 0.9375,
+    "waterlogging": 0.9452,
+    "flash_flood": 0.9471,
+    "neg_elev_glo30": 0.9196,
+    "neg_dist_coast": 0.4757
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.8958,
+     0.9767
+    ],
+    "learned_raw:open__logreg": [
+     0.9104,
+     0.9797
+    ],
+    "learned:open__lgbm": [
+     0.9166,
+     0.9815
+    ],
+    "learned_raw:open__lgbm": [
+     0.9197,
+     0.9841
+    ],
+    "hand": [
+     0.8617,
+     0.9562
+    ],
+    "occurrence": [
+     0.5749,
+     0.6688
+    ],
+    "dist_water": [
+     0.7175,
+     0.8986
+    ],
+    "fluvial": [
+     0.8898,
+     0.9718
+    ],
+    "waterlogging": [
+     0.9123,
+     0.9705
+    ],
+    "flash_flood": [
+     0.9107,
+     0.973
+    ],
+    "neg_elev_glo30": [
+     0.8318,
+     0.9774
+    ],
+    "neg_dist_coast": [
+     0.3399,
+     0.5895
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.7937,
+    "learned_raw:open__logreg": 0.8234,
+    "learned:open__lgbm": 0.7778,
+    "learned_raw:open__lgbm": 0.8032,
+    "hand": 0.631,
+    "occurrence": 0.3793,
+    "dist_water": 0.4541,
+    "fluvial": 0.7285,
+    "waterlogging": 0.7587,
+    "flash_flood": 0.7427,
+    "neg_elev_glo30": 0.7314,
+    "neg_dist_coast": 0.1956
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.6506,
+    "learned_raw:open__logreg": 0.6646,
+    "learned:open__lgbm": 0.6721,
+    "learned_raw:open__lgbm": 0.6814,
+    "hand": 0.4441,
+    "occurrence": 0.2388,
+    "dist_water": 0.3408,
+    "fluvial": 0.6208,
+    "waterlogging": 0.624,
+    "flash_flood": 0.6344,
+    "neg_elev_glo30": 0.6738,
+    "neg_dist_coast": 0.1182
+   }
+  },
+  "s1_assam_morigaon_2024": {
+   "tags": [
+    "fluvial"
+   ],
+   "region": "south_asia",
+   "cluster": "s1_assam_morigaon_2024",
+   "flooded": 3344,
+   "dry": 14878,
+   "auc": {
+    "learned:open__logreg": 0.8791,
+    "learned_raw:open__logreg": 0.8872,
+    "learned:open__lgbm": 0.8422,
+    "learned_raw:open__lgbm": 0.8464,
+    "hand": 0.8149,
+    "occurrence": 0.7775,
+    "dist_water": 0.7861,
+    "fluvial": 0.7716,
+    "waterlogging": 0.8634,
+    "flash_flood": 0.792,
+    "neg_elev_glo30": 0.9108,
+    "neg_dist_coast": 0.2325
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.8319,
+     0.9098
+    ],
+    "learned_raw:open__logreg": [
+     0.8378,
+     0.9189
+    ],
+    "learned:open__lgbm": [
+     0.7848,
+     0.8822
+    ],
+    "learned_raw:open__lgbm": [
+     0.7895,
+     0.8872
+    ],
+    "hand": [
+     0.7608,
+     0.8585
+    ],
+    "occurrence": [
+     0.7375,
+     0.8064
+    ],
+    "dist_water": [
+     0.704,
+     0.8566
+    ],
+    "fluvial": [
+     0.7125,
+     0.8271
+    ],
+    "waterlogging": [
+     0.8226,
+     0.893
+    ],
+    "flash_flood": [
+     0.7233,
+     0.8487
+    ],
+    "neg_elev_glo30": [
+     0.8675,
+     0.9363
+    ],
+    "neg_dist_coast": [
+     0.1489,
+     0.3403
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.5959,
+    "learned_raw:open__logreg": 0.6264,
+    "learned:open__lgbm": 0.4805,
+    "learned_raw:open__lgbm": 0.5024,
+    "hand": 0.454,
+    "occurrence": 0.51,
+    "dist_water": 0.4383,
+    "fluvial": 0.393,
+    "waterlogging": 0.5706,
+    "flash_flood": 0.4117,
+    "neg_elev_glo30": 0.6772,
+    "neg_dist_coast": 0.1154
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.4476,
+    "learned_raw:open__logreg": 0.4479,
+    "learned:open__lgbm": 0.375,
+    "learned_raw:open__lgbm": 0.3747,
+    "hand": 0.2815,
+    "occurrence": 0.4508,
+    "dist_water": 0.2371,
+    "fluvial": 0.2358,
+    "waterlogging": 0.3971,
+    "flash_flood": 0.2605,
+    "neg_elev_glo30": 0.466,
+    "neg_dist_coast": 0.0045
+   }
+  },
+  "s1_sunamganj_2024": {
+   "tags": [
+    "fluvial"
+   ],
+   "region": "south_asia",
+   "cluster": "s1_sunamganj_2024",
+   "flooded": 9149,
+   "dry": 8816,
+   "auc": {
+    "learned:open__logreg": 0.9277,
+    "learned_raw:open__logreg": 0.9386,
+    "learned:open__lgbm": 0.8991,
+    "learned_raw:open__lgbm": 0.9455,
+    "hand": 0.8424,
+    "occurrence": 0.9094,
+    "dist_water": 0.3004,
+    "fluvial": 0.4103,
+    "waterlogging": 0.7493,
+    "flash_flood": 0.7369,
+    "neg_elev_glo30": 0.9353,
+    "neg_dist_coast": 0.5
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.8991,
+     0.9505
+    ],
+    "learned_raw:open__logreg": [
+     0.9136,
+     0.9587
+    ],
+    "learned:open__lgbm": [
+     0.8559,
+     0.9297
+    ],
+    "learned_raw:open__lgbm": [
+     0.9188,
+     0.9638
+    ],
+    "hand": [
+     0.7741,
+     0.8957
+    ],
+    "occurrence": [
+     0.862,
+     0.9459
+    ],
+    "dist_water": [
+     0.2021,
+     0.4216
+    ],
+    "fluvial": [
+     0.2873,
+     0.5716
+    ],
+    "waterlogging": [
+     0.6787,
+     0.8274
+    ],
+    "flash_flood": [
+     0.6632,
+     0.8155
+    ],
+    "neg_elev_glo30": [
+     0.9033,
+     0.9602
+    ],
+    "neg_dist_coast": [
+     0.5,
+     0.5
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.8958,
+    "learned_raw:open__logreg": 0.9083,
+    "learned:open__lgbm": 0.8483,
+    "learned_raw:open__lgbm": 0.9217,
+    "hand": 0.8043,
+    "occurrence": 0.882,
+    "dist_water": 0.3965,
+    "fluvial": 0.4349,
+    "waterlogging": 0.6503,
+    "flash_flood": 0.6799,
+    "neg_elev_glo30": 0.9059,
+    "neg_dist_coast": 0.5093
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.7513,
+    "learned_raw:open__logreg": 0.7973,
+    "learned:open__lgbm": 0.7127,
+    "learned_raw:open__lgbm": 0.8218,
+    "hand": 0.6259,
+    "occurrence": 0.7465,
+    "dist_water": 0.2156,
+    "fluvial": 0.2964,
+    "waterlogging": 0.5646,
+    "flash_flood": 0.5228,
+    "neg_elev_glo30": 0.7586,
+    "neg_dist_coast": 0.225
+   }
+  },
+  "s1_lokoja_2022": {
+   "tags": [
+    "fluvial"
+   ],
+   "region": "africa",
+   "cluster": "s1_lokoja_2022",
+   "flooded": 10350,
+   "dry": 4099,
+   "auc": {
+    "learned:open__logreg": 0.7887,
+    "learned_raw:open__logreg": 0.7926,
+    "learned:open__lgbm": 0.8402,
+    "learned_raw:open__lgbm": 0.8517,
+    "hand": 0.5684,
+    "occurrence": 0.5194,
+    "dist_water": 0.6134,
+    "fluvial": 0.6006,
+    "waterlogging": 0.543,
+    "flash_flood": 0.4959,
+    "neg_elev_glo30": 0.6581,
+    "neg_dist_coast": 0.5
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.7399,
+     0.8309
+    ],
+    "learned_raw:open__logreg": [
+     0.7449,
+     0.834
+    ],
+    "learned:open__lgbm": [
+     0.792,
+     0.8837
+    ],
+    "learned_raw:open__lgbm": [
+     0.807,
+     0.8908
+    ],
+    "hand": [
+     0.4967,
+     0.6473
+    ],
+    "occurrence": [
+     0.4006,
+     0.6119
+    ],
+    "dist_water": [
+     0.5228,
+     0.6926
+    ],
+    "fluvial": [
+     0.5164,
+     0.6714
+    ],
+    "waterlogging": [
+     0.432,
+     0.6334
+    ],
+    "flash_flood": [
+     0.4435,
+     0.5617
+    ],
+    "neg_elev_glo30": [
+     0.547,
+     0.7527
+    ],
+    "neg_dist_coast": [
+     0.5,
+     0.5
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.9119,
+    "learned_raw:open__logreg": 0.9188,
+    "learned:open__lgbm": 0.9196,
+    "learned_raw:open__lgbm": 0.9375,
+    "hand": 0.7653,
+    "occurrence": 0.6849,
+    "dist_water": 0.7699,
+    "fluvial": 0.774,
+    "waterlogging": 0.7035,
+    "flash_flood": 0.7313,
+    "neg_elev_glo30": 0.7881,
+    "neg_dist_coast": 0.7163
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.6644,
+    "learned_raw:open__logreg": 0.6667,
+    "learned:open__lgbm": 0.7388,
+    "learned_raw:open__lgbm": 0.7407,
+    "hand": 0.5798,
+    "occurrence": 0.5637,
+    "dist_water": 0.626,
+    "fluvial": 0.5959,
+    "waterlogging": 0.6153,
+    "flash_flood": 0.5462,
+    "neg_elev_glo30": 0.6687,
+    "neg_dist_coast": 0.487
+   }
+  },
+  "s1_kelantan_2024": {
+   "tags": [
+    "fluvial"
+   ],
+   "region": "southeast_asia",
+   "cluster": "s1_kelantan_2024",
+   "flooded": 826,
+   "dry": 17399,
+   "auc": {
+    "learned:open__logreg": 0.7188,
+    "learned_raw:open__logreg": 0.7239,
+    "learned:open__lgbm": 0.7287,
+    "learned_raw:open__lgbm": 0.7293,
+    "hand": 0.5567,
+    "occurrence": 0.5239,
+    "dist_water": 0.4084,
+    "fluvial": 0.5321,
+    "waterlogging": 0.635,
+    "flash_flood": 0.4932,
+    "neg_elev_glo30": 0.747,
+    "neg_dist_coast": 0.3225
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.6407,
+     0.7699
+    ],
+    "learned_raw:open__logreg": [
+     0.6453,
+     0.7818
+    ],
+    "learned:open__lgbm": [
+     0.6413,
+     0.7941
+    ],
+    "learned_raw:open__lgbm": [
+     0.6432,
+     0.7944
+    ],
+    "hand": [
+     0.4528,
+     0.6481
+    ],
+    "occurrence": [
+     0.4939,
+     0.5573
+    ],
+    "dist_water": [
+     0.313,
+     0.5504
+    ],
+    "fluvial": [
+     0.4295,
+     0.6634
+    ],
+    "waterlogging": [
+     0.5382,
+     0.7144
+    ],
+    "flash_flood": [
+     0.4053,
+     0.5871
+    ],
+    "neg_elev_glo30": [
+     0.6594,
+     0.7976
+    ],
+    "neg_dist_coast": [
+     0.2641,
+     0.3951
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.0907,
+    "learned_raw:open__logreg": 0.1026,
+    "learned:open__lgbm": 0.0907,
+    "learned_raw:open__lgbm": 0.0907,
+    "hand": 0.0581,
+    "occurrence": 0.0504,
+    "dist_water": 0.0378,
+    "fluvial": 0.0555,
+    "waterlogging": 0.0749,
+    "flash_flood": 0.0429,
+    "neg_elev_glo30": 0.2299,
+    "neg_dist_coast": 0.0306
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.0631,
+    "learned_raw:open__logreg": 0.0617,
+    "learned:open__lgbm": 0.0516,
+    "learned_raw:open__lgbm": 0.0516,
+    "hand": 0.041,
+    "occurrence": 0.0502,
+    "dist_water": 0.0223,
+    "fluvial": 0.0403,
+    "waterlogging": 0.0637,
+    "flash_flood": 0.0135,
+    "neg_elev_glo30": 0.1552,
+    "neg_dist_coast": 0.0085
+   }
+  },
+  "s1_tabasco_2020": {
+   "tags": [
+    "fluvial"
+   ],
+   "region": "americas",
+   "cluster": "s1_tabasco_2020",
+   "flooded": 4891,
+   "dry": 12903,
+   "auc": {
+    "learned:open__logreg": 0.8636,
+    "learned_raw:open__logreg": 0.8685,
+    "learned:open__lgbm": 0.8532,
+    "learned_raw:open__lgbm": 0.854,
+    "hand": 0.5841,
+    "occurrence": 0.5708,
+    "dist_water": 0.3527,
+    "fluvial": 0.3556,
+    "waterlogging": 0.4562,
+    "flash_flood": 0.4942,
+    "neg_elev_glo30": 0.7937,
+    "neg_dist_coast": 0.5663
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.8263,
+     0.8983
+    ],
+    "learned_raw:open__logreg": [
+     0.8296,
+     0.9029
+    ],
+    "learned:open__lgbm": [
+     0.7999,
+     0.8927
+    ],
+    "learned_raw:open__lgbm": [
+     0.801,
+     0.8934
+    ],
+    "hand": [
+     0.4997,
+     0.6525
+    ],
+    "occurrence": [
+     0.5188,
+     0.6313
+    ],
+    "dist_water": [
+     0.2827,
+     0.4429
+    ],
+    "fluvial": [
+     0.2564,
+     0.4942
+    ],
+    "waterlogging": [
+     0.3761,
+     0.5353
+    ],
+    "flash_flood": [
+     0.4159,
+     0.576
+    ],
+    "neg_elev_glo30": [
+     0.7376,
+     0.8445
+    ],
+    "neg_dist_coast": [
+     0.3749,
+     0.7315
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.6711,
+    "learned_raw:open__logreg": 0.6772,
+    "learned:open__lgbm": 0.6623,
+    "learned_raw:open__lgbm": 0.6775,
+    "hand": 0.3678,
+    "occurrence": 0.2974,
+    "dist_water": 0.2089,
+    "fluvial": 0.2306,
+    "waterlogging": 0.239,
+    "flash_flood": 0.274,
+    "neg_elev_glo30": 0.4972,
+    "neg_dist_coast": 0.4863
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.4646,
+    "learned_raw:open__logreg": 0.4646,
+    "learned:open__lgbm": 0.4513,
+    "learned_raw:open__lgbm": 0.4505,
+    "hand": 0.2053,
+    "occurrence": 0.2139,
+    "dist_water": 0.081,
+    "fluvial": 0.1125,
+    "waterlogging": 0.1195,
+    "flash_flood": 0.142,
+    "neg_elev_glo30": 0.3725,
+    "neg_dist_coast": 0.2792
+   }
+  },
+  "s1_yenagoa_2022": {
+   "tags": [
+    "waterlogging"
+   ],
+   "region": "africa",
+   "cluster": "s1_yenagoa_2022",
+   "flooded": 2773,
+   "dry": 14959,
+   "auc": {
+    "learned:open__logreg": 0.7356,
+    "learned_raw:open__logreg": 0.7364,
+    "learned:open__lgbm": 0.7264,
+    "learned_raw:open__lgbm": 0.732,
+    "hand": 0.5543,
+    "occurrence": 0.516,
+    "dist_water": 0.6079,
+    "fluvial": 0.5775,
+    "waterlogging": 0.5762,
+    "flash_flood": 0.6156,
+    "neg_elev_glo30": 0.6335,
+    "neg_dist_coast": 0.47
+   },
+   "ci": {
+    "learned:open__logreg": [
+     0.6854,
+     0.7839
+    ],
+    "learned_raw:open__logreg": [
+     0.685,
+     0.7864
+    ],
+    "learned:open__lgbm": [
+     0.6587,
+     0.7821
+    ],
+    "learned_raw:open__lgbm": [
+     0.662,
+     0.7892
+    ],
+    "hand": [
+     0.4732,
+     0.6393
+    ],
+    "occurrence": [
+     0.5024,
+     0.5321
+    ],
+    "dist_water": [
+     0.5213,
+     0.6816
+    ],
+    "fluvial": [
+     0.5311,
+     0.6356
+    ],
+    "waterlogging": [
+     0.495,
+     0.6432
+    ],
+    "flash_flood": [
+     0.5306,
+     0.6913
+    ],
+    "neg_elev_glo30": [
+     0.542,
+     0.7186
+    ],
+    "neg_dist_coast": [
+     0.396,
+     0.5343
+    ]
+   },
+   "ap": {
+    "learned:open__logreg": 0.3463,
+    "learned_raw:open__logreg": 0.3519,
+    "learned:open__lgbm": 0.3482,
+    "learned_raw:open__lgbm": 0.3731,
+    "hand": 0.2089,
+    "occurrence": 0.1607,
+    "dist_water": 0.262,
+    "fluvial": 0.1981,
+    "waterlogging": 0.2091,
+    "flash_flood": 0.246,
+    "neg_elev_glo30": 0.3508,
+    "neg_dist_coast": 0.1473
+   },
+   "iou_area_matched": {
+    "learned:open__logreg": 0.2144,
+    "learned_raw:open__logreg": 0.2015,
+    "learned:open__lgbm": 0.2511,
+    "learned_raw:open__lgbm": 0.2525,
+    "hand": 0.1533,
+    "occurrence": 0.171,
+    "dist_water": 0.2072,
+    "fluvial": 0.1202,
+    "waterlogging": 0.1554,
+    "flash_flood": 0.1497,
+    "neg_elev_glo30": 0.2622,
+    "neg_dist_coast": 0.0777
+   }
+  }
+ },
+ "missing": {
+  "r_emsr683_aoi01": [
+   "  File \"<repo>/experiments/flood_learned/fetch.py\", line 258, in fetch_unit",
+   "    raise RuntimeError(f\"{name}: margin stack failed: {meta['errors']}\")",
+   "RuntimeError: r_emsr683_aoi01: margin stack failed: {'margin_stack': 'EEException: Image.projection: The bands of the specified image contains different projections. Use Image.select to pick a single band.'}"
+  ],
+  "r_emsr683_aoi02": [
+   "  File \"<repo>/experiments/flood_learned/fetch.py\", line 258, in fetch_unit",
+   "    raise RuntimeError(f\"{name}: margin stack failed: {meta['errors']}\")",
+   "RuntimeError: r_emsr683_aoi02: margin stack failed: {'margin_stack': 'EEException: Image.projection: The bands of the specified image contains different projections. Use Image.select to pick a single band.'}"
+  ],
+  "r_emsr775_aoi11": {
+   "missing": "no flood centre in the product / search square"
+  },
+  "r_emsr872_aoi01": {
+   "missing": "no flood centre in the product / search square"
+  },
+  "r_emsr872_aoi02": {
+   "missing": "no flood centre in the product / search square"
+  },
+  "r_emsr930_aoi01": {
+   "missing": "no flood centre in the product / search square"
+  }
+ },
+ "not_qualifying": {
+  "r_emsr712_aoi01": {
+   "not_qualifying": [
+    45,
+    17769
+   ]
+  },
+  "r_emsr861_aoi01": {
+   "not_qualifying": [
+    12,
+    17720
+   ]
+  },
+  "r_emsr861_aoi02": {
+   "not_qualifying": [
+    4,
+    17757
+   ]
+  },
+  "r_emsr841_aoi01": {
+   "not_qualifying": [
+    26,
+    2840
+   ]
+  },
+  "r_emsr734_aoi09": {
+   "not_qualifying": [
+    13,
+    3873
+   ]
+  },
+  "r_emsr781_aoi05": {
+   "not_qualifying": [
+    20,
+    9102
+   ]
+  },
+  "r_emsr863_aoi03": {
+   "not_qualifying": [
+    1,
+    17723
+   ]
+  }
+ },
+ "groups": {
+  "fluvial": {
+   "units": [
+    "r_emsr857_aoi01",
+    "r_emsr857_aoi02",
+    "r_emsr712_aoi02",
+    "s1_assam_morigaon_2024",
+    "s1_sunamganj_2024",
+    "s1_lokoja_2022",
+    "s1_kelantan_2024",
+    "s1_tabasco_2020"
+   ],
+   "clusters": 7,
+   "mean_auc": {
+    "dist_water": {
+     "mean": 0.5286,
+     "ci": [
+      0.3869,
+      0.6536
+     ],
+     "n": 8
+    },
+    "flash_flood": {
+     "mean": 0.6146,
+     "ci": [
+      0.518,
+      0.7046
+     ],
+     "n": 8
+    },
+    "fluvial": {
+     "mean": 0.5777,
+     "ci": [
+      0.467,
+      0.6731
+     ],
+     "n": 8
+    },
+    "hand": {
+     "mean": 0.6963,
+     "ci": [
+      0.6145,
+      0.7702
+     ],
+     "n": 8
+    },
+    "learned:open__lgbm": {
+     "mean": 0.8057,
+     "ci": [
+      0.7607,
+      0.8525
+     ],
+     "n": 8
+    },
+    "learned:open__logreg": {
+     "mean": 0.7851,
+     "ci": [
+      0.7168,
+      0.8538
+     ],
+     "n": 8
+    },
+    "learned_raw:open__lgbm": {
+     "mean": 0.8207,
+     "ci": [
+      0.77,
+      0.8725
+     ],
+     "n": 8
+    },
+    "learned_raw:open__logreg": {
+     "mean": 0.7913,
+     "ci": [
+      0.7242,
+      0.8637
+     ],
+     "n": 8
+    },
+    "neg_dist_coast": {
+     "mean": 0.504,
+     "ci": [
+      0.3568,
+      0.6404
+     ],
+     "n": 8
+    },
+    "neg_elev_glo30": {
+     "mean": 0.8503,
+     "ci": [
+      0.7634,
+      0.9131
+     ],
+     "n": 8
+    },
+    "occurrence": {
+     "mean": 0.6258,
+     "ci": [
+      0.5414,
+      0.7389
+     ],
+     "n": 8
+    },
+    "waterlogging": {
+     "mean": 0.7149,
+     "ci": [
+      0.5909,
+      0.8123
+     ],
+     "n": 8
+    }
+   },
+   "minus_hand": {
+    "dist_water": {
+     "mean": -0.1678,
+     "ci": [
+      -0.3136,
+      -0.0445
+     ],
+     "n": 8
+    },
+    "flash_flood": {
+     "mean": -0.0817,
+     "ci": [
+      -0.1336,
+      -0.028
+     ],
+     "n": 8
+    },
+    "fluvial": {
+     "mean": -0.1186,
+     "ci": [
+      -0.2374,
+      -0.019
+     ],
+     "n": 8
+    },
+    "learned:open__lgbm": {
+     "mean": 0.1094,
+     "ci": [
+      0.034,
+      0.2036
+     ],
+     "n": 8
+    },
+    "learned:open__logreg": {
+     "mean": 0.0888,
+     "ci": [
+      0.0045,
+      0.1849
+     ],
+     "n": 8
+    },
+    "learned_raw:open__lgbm": {
+     "mean": 0.1244,
+     "ci": [
+      0.053,
+      0.2158
+     ],
+     "n": 8
+    },
+    "learned_raw:open__logreg": {
+     "mean": 0.095,
+     "ci": [
+      0.011,
+      0.1923
+     ],
+     "n": 8
+    },
+    "neg_dist_coast": {
+     "mean": -0.1923,
+     "ci": [
+      -0.3572,
+      -0.0579
+     ],
+     "n": 8
+    },
+    "neg_elev_glo30": {
+     "mean": 0.154,
+     "ci": [
+      0.1069,
+      0.1979
+     ],
+     "n": 8
+    },
+    "occurrence": {
+     "mean": -0.0706,
+     "ci": [
+      -0.1429,
+      0.0062
+     ],
+     "n": 8
+    },
+    "waterlogging": {
+     "mean": 0.0186,
+     "ci": [
+      -0.0538,
+      0.08
+     ],
+     "n": 8
+    }
+   }
+  },
+  "pluvial": {
+   "units": [
+    "r_emsr742_aoi01",
+    "r_emsr742_aoi03",
+    "r_emsr790_aoi02",
+    "r_emsr780_aoi08"
+   ],
+   "clusters": 3,
+   "mean_auc": {
+    "dist_water": {
+     "mean": 0.7574,
+     "ci": [
+      0.5523,
+      0.8647
+     ],
+     "n": 4
+    },
+    "flash_flood": {
+     "mean": 0.7222,
+     "ci": [
+      0.4346,
+      0.8642
+     ],
+     "n": 4
+    },
+    "fluvial": {
+     "mean": 0.7861,
+     "ci": [
+      0.4631,
+      0.9182
+     ],
+     "n": 4
+    },
+    "hand": {
+     "mean": 0.6639,
+     "ci": [
+      0.4469,
+      0.89
+     ],
+     "n": 4
+    },
+    "learned:open__lgbm": {
+     "mean": 0.6941,
+     "ci": [
+      0.4887,
+      0.8568
+     ],
+     "n": 4
+    },
+    "learned:open__logreg": {
+     "mean": 0.6755,
+     "ci": [
+      0.4873,
+      0.8027
+     ],
+     "n": 4
+    },
+    "learned_raw:open__lgbm": {
+     "mean": 0.7026,
+     "ci": [
+      0.5236,
+      0.8569
+     ],
+     "n": 4
+    },
+    "learned_raw:open__logreg": {
+     "mean": 0.6951,
+     "ci": [
+      0.4817,
+      0.8384
+     ],
+     "n": 4
+    },
+    "neg_dist_coast": {
+     "mean": 0.6269,
+     "ci": [
+      0.3961,
+      0.7821
+     ],
+     "n": 4
+    },
+    "neg_elev_glo30": {
+     "mean": 0.7978,
+     "ci": [
+      0.4238,
+      0.9588
+     ],
+     "n": 4
+    },
+    "occurrence": {
+     "mean": 0.496,
+     "ci": [
+      0.4886,
+      0.5016
+     ],
+     "n": 4
+    },
+    "pluvial": {
+     "mean": 0.6541,
+     "ci": [
+      0.4493,
+      0.7935
+     ],
+     "n": 4
+    },
+    "waterlogging": {
+     "mean": 0.7393,
+     "ci": [
+      0.4565,
+      0.8771
+     ],
+     "n": 4
+    }
+   },
+   "minus_hand": {
+    "dist_water": {
+     "mean": 0.0936,
+     "ci": [
+      -0.1009,
+      0.2338
+     ],
+     "n": 4
+    },
+    "flash_flood": {
+     "mean": 0.0583,
+     "ci": [
+      -0.0521,
+      0.1667
+     ],
+     "n": 4
+    },
+    "fluvial": {
+     "mean": 0.1223,
+     "ci": [
+      -0.0002,
+      0.2462
+     ],
+     "n": 4
+    },
+    "learned:open__lgbm": {
+     "mean": 0.0302,
+     "ci": [
+      -0.036,
+      0.104
+     ],
+     "n": 4
+    },
+    "learned:open__logreg": {
+     "mean": 0.0116,
+     "ci": [
+      -0.0975,
+      0.1027
+     ],
+     "n": 4
+    },
+    "learned_raw:open__lgbm": {
+     "mean": 0.0387,
+     "ci": [
+      -0.0353,
+      0.1117
+     ],
+     "n": 4
+    },
+    "learned_raw:open__logreg": {
+     "mean": 0.0312,
+     "ci": [
+      -0.053,
+      0.1088
+     ],
+     "n": 4
+    },
+    "neg_dist_coast": {
+     "mean": -0.037,
+     "ci": [
+      -0.1887,
+      0.0903
+     ],
+     "n": 4
+    },
+    "neg_elev_glo30": {
+     "mean": 0.134,
+     "ci": [
+      -0.0658,
+      0.2963
+     ],
+     "n": 4
+    },
+    "occurrence": {
+     "mean": -0.1679,
+     "ci": [
+      -0.3878,
+      0.0427
+     ],
+     "n": 4
+    },
+    "pluvial": {
+     "mean": -0.0098,
+     "ci": [
+      -0.3156,
+      0.1421
+     ],
+     "n": 4
+    },
+    "waterlogging": {
+     "mean": 0.0754,
+     "ci": [
+      -0.0654,
+      0.1714
+     ],
+     "n": 4
+    }
+   }
+  },
+  "waterlogging": {
+   "units": [
+    "r_emsr856_aoi01",
+    "r_emsr856_aoi02",
+    "s1_yenagoa_2022"
+   ],
+   "clusters": 2,
+   "mean_auc": {
+    "dist_water": {
+     "mean": 0.5335,
+     "ci": [
+      0.441,
+      0.6455
+     ],
+     "n": 3
+    },
+    "flash_flood": {
+     "mean": 0.6716,
+     "ci": [
+      0.5755,
+      0.7367
+     ],
+     "n": 3
+    },
+    "fluvial": {
+     "mean": 0.7166,
+     "ci": [
+      0.5564,
+      0.8241
+     ],
+     "n": 3
+    },
+    "hand": {
+     "mean": 0.6239,
+     "ci": [
+      0.5199,
+      0.6955
+     ],
+     "n": 3
+    },
+    "learned:open__lgbm": {
+     "mean": 0.7372,
+     "ci": [
+      0.6883,
+      0.7919
+     ],
+     "n": 3
+    },
+    "learned:open__logreg": {
+     "mean": 0.788,
+     "ci": [
+      0.7147,
+      0.8359
+     ],
+     "n": 3
+    },
+    "learned_raw:open__lgbm": {
+     "mean": 0.7462,
+     "ci": [
+      0.693,
+      0.8033
+     ],
+     "n": 3
+    },
+    "learned_raw:open__logreg": {
+     "mean": 0.791,
+     "ci": [
+      0.715,
+      0.8416
+     ],
+     "n": 3
+    },
+    "neg_dist_coast": {
+     "mean": 0.4407,
+     "ci": [
+      0.3615,
+      0.5178
+     ],
+     "n": 3
+    },
+    "neg_elev_glo30": {
+     "mean": 0.8431,
+     "ci": [
+      0.5972,
+      0.9651
+     ],
+     "n": 3
+    },
+    "occurrence": {
+     "mean": 0.5089,
+     "ci": [
+      0.5021,
+      0.5229
+     ],
+     "n": 3
+    },
+    "waterlogging": {
+     "mean": 0.6787,
+     "ci": [
+      0.5455,
+      0.7652
+     ],
+     "n": 3
+    }
+   },
+   "minus_hand": {
+    "dist_water": {
+     "mean": -0.0904,
+     "ci": [
+      -0.2383,
+      0.0887
+     ],
+     "n": 3
+    },
+    "flash_flood": {
+     "mean": 0.0476,
+     "ci": [
+      -0.0179,
+      0.1122
+     ],
+     "n": 3
+    },
+    "fluvial": {
+     "mean": 0.0927,
+     "ci": [
+      -0.0189,
+      0.1776
+     ],
+     "n": 3
+    },
+    "learned:open__lgbm": {
+     "mean": 0.1133,
+     "ci": [
+      0.0486,
+      0.1933
+     ],
+     "n": 3
+    },
+    "learned:open__logreg": {
+     "mean": 0.1641,
+     "ci": [
+      0.1165,
+      0.2228
+     ],
+     "n": 3
+    },
+    "learned_raw:open__lgbm": {
+     "mean": 0.1223,
+     "ci": [
+      0.0533,
+      0.1987
+     ],
+     "n": 3
+    },
+    "learned_raw:open__logreg": {
+     "mean": 0.1671,
+     "ci": [
+      0.1178,
+      0.2257
+     ],
+     "n": 3
+    },
+    "neg_dist_coast": {
+     "mean": -0.1832,
+     "ci": [
+      -0.2902,
+      -0.0567
+     ],
+     "n": 3
+    },
+    "neg_elev_glo30": {
+     "mean": 0.2192,
+     "ci": [
+      0.0521,
+      0.3426
+     ],
+     "n": 3
+    },
+    "occurrence": {
+     "mean": -0.115,
+     "ci": [
+      -0.189,
+      -0.0075
+     ],
+     "n": 3
+    },
+    "waterlogging": {
+     "mean": 0.0548,
+     "ci": [
+      0.0017,
+      0.0987
+     ],
+     "n": 3
+    }
+   }
+  },
+  "flash_flood": {
+   "units": [
+    "r_emsr845_aoi02",
+    "r_emsr845_aoi03",
+    "r_emsr850_aoi02",
+    "r_emsr850_aoi03",
+    "r_emsr864_aoi01",
+    "r_emsr864_aoi02"
+   ],
+   "clusters": 3,
+   "mean_auc": {
+    "dist_water": {
+     "mean": 0.6968,
+     "ci": [
+      0.5464,
+      0.8144
+     ],
+     "n": 6
+    },
+    "flash_flood": {
+     "mean": 0.8142,
+     "ci": [
+      0.6994,
+      0.9459
+     ],
+     "n": 6
+    },
+    "fluvial": {
+     "mean": 0.8162,
+     "ci": [
+      0.6799,
+      0.9375
+     ],
+     "n": 6
+    },
+    "hand": {
+     "mean": 0.8264,
+     "ci": [
+      0.7339,
+      0.9168
+     ],
+     "n": 6
+    },
+    "learned:open__lgbm": {
+     "mean": 0.8077,
+     "ci": [
+      0.7023,
+      0.9363
+     ],
+     "n": 6
+    },
+    "learned:open__logreg": {
+     "mean": 0.7729,
+     "ci": [
+      0.663,
+      0.9266
+     ],
+     "n": 6
+    },
+    "learned_raw:open__lgbm": {
+     "mean": 0.8096,
+     "ci": [
+      0.7028,
+      0.941
+     ],
+     "n": 6
+    },
+    "learned_raw:open__logreg": {
+     "mean": 0.7762,
+     "ci": [
+      0.6575,
+      0.9338
+     ],
+     "n": 6
+    },
+    "neg_dist_coast": {
+     "mean": 0.4848,
+     "ci": [
+      0.3904,
+      0.5978
+     ],
+     "n": 6
+    },
+    "neg_elev_glo30": {
+     "mean": 0.8615,
+     "ci": [
+      0.7925,
+      0.9361
+     ],
+     "n": 6
+    },
+    "occurrence": {
+     "mean": 0.5368,
+     "ci": [
+      0.5068,
+      0.5662
+     ],
+     "n": 6
+    },
+    "waterlogging": {
+     "mean": 0.8622,
+     "ci": [
+      0.7887,
+      0.9407
+     ],
+     "n": 6
+    }
+   },
+   "minus_hand": {
+    "dist_water": {
+     "mean": -0.1296,
+     "ci": [
+      -0.2653,
+      0.0176
+     ],
+     "n": 6
+    },
+    "flash_flood": {
+     "mean": -0.0122,
+     "ci": [
+      -0.1036,
+      0.0641
+     ],
+     "n": 6
+    },
+    "fluvial": {
+     "mean": -0.0102,
+     "ci": [
+      -0.1336,
+      0.0777
+     ],
+     "n": 6
+    },
+    "learned:open__lgbm": {
+     "mean": -0.0187,
+     "ci": [
+      -0.0611,
+      0.0227
+     ],
+     "n": 6
+    },
+    "learned:open__logreg": {
+     "mean": -0.0535,
+     "ci": [
+      -0.1193,
+      0.0123
+     ],
+     "n": 6
+    },
+    "learned_raw:open__lgbm": {
+     "mean": -0.0168,
+     "ci": [
+      -0.0597,
+      0.0257
+     ],
+     "n": 6
+    },
+    "learned_raw:open__logreg": {
+     "mean": -0.0502,
+     "ci": [
+      -0.1188,
+      0.0197
+     ],
+     "n": 6
+    },
+    "neg_dist_coast": {
+     "mean": -0.3417,
+     "ci": [
+      -0.4968,
+      -0.1869
+     ],
+     "n": 6
+    },
+    "neg_elev_glo30": {
+     "mean": 0.0351,
+     "ci": [
+      0.0045,
+      0.0941
+     ],
+     "n": 6
+    },
+    "occurrence": {
+     "mean": -0.2896,
+     "ci": [
+      -0.3543,
+      -0.1993
+     ],
+     "n": 6
+    },
+    "waterlogging": {
+     "mean": 0.0358,
+     "ci": [
+      0.0106,
+      0.07
+     ],
+     "n": 6
+    }
+   }
+  },
+  "coastal": {
+   "units": [
+    "r_emsr703_aoi01",
+    "r_emsr703_aoi02",
+    "r_emsr805_aoi01",
+    "r_emsr805_aoi03",
+    "r_emsr734_aoi17",
+    "r_emsr781_aoi01",
+    "r_emsr793_aoi01",
+    "r_emsr793_aoi02",
+    "r_emsr867_aoi01",
+    "r_emsr867_aoi03",
+    "r_emsr863_aoi02",
+    "r_emsr858_aoi08",
+    "r_emsr858_aoi10"
+   ],
+   "clusters": 8,
+   "mean_auc": {
+    "dist_water": {
+     "mean": 0.649,
+     "ci": [
+      0.5281,
+      0.7603
+     ],
+     "n": 13
+    },
+    "flash_flood": {
+     "mean": 0.7649,
+     "ci": [
+      0.678,
+      0.8567
+     ],
+     "n": 13
+    },
+    "fluvial": {
+     "mean": 0.7418,
+     "ci": [
+      0.6512,
+      0.8427
+     ],
+     "n": 13
+    },
+    "hand": {
+     "mean": 0.7525,
+     "ci": [
+      0.6779,
+      0.8266
+     ],
+     "n": 13
+    },
+    "learned:open__lgbm": {
+     "mean": 0.7867,
+     "ci": [
+      0.7067,
+      0.8635
+     ],
+     "n": 13
+    },
+    "learned:open__logreg": {
+     "mean": 0.7924,
+     "ci": [
+      0.7098,
+      0.865
+     ],
+     "n": 13
+    },
+    "learned_raw:open__lgbm": {
+     "mean": 0.7946,
+     "ci": [
+      0.7173,
+      0.8692
+     ],
+     "n": 13
+    },
+    "learned_raw:open__logreg": {
+     "mean": 0.8201,
+     "ci": [
+      0.7398,
+      0.8884
+     ],
+     "n": 13
+    },
+    "neg_dist_coast": {
+     "mean": 0.4605,
+     "ci": [
+      0.3339,
+      0.5543
+     ],
+     "n": 13
+    },
+    "neg_elev_glo30": {
+     "mean": 0.8065,
+     "ci": [
+      0.7214,
+      0.8894
+     ],
+     "n": 13
+    },
+    "occurrence": {
+     "mean": 0.5376,
+     "ci": [
+      0.5027,
+      0.575
+     ],
+     "n": 13
+    },
+    "waterlogging": {
+     "mean": 0.7822,
+     "ci": [
+      0.7119,
+      0.8579
+     ],
+     "n": 13
+    }
+   },
+   "minus_hand": {
+    "dist_water": {
+     "mean": -0.1035,
+     "ci": [
+      -0.2351,
+      -0.0096
+     ],
+     "n": 13
+    },
+    "flash_flood": {
+     "mean": 0.0124,
+     "ci": [
+      -0.0263,
+      0.0545
+     ],
+     "n": 13
+    },
+    "fluvial": {
+     "mean": -0.0107,
+     "ci": [
+      -0.0681,
+      0.0407
+     ],
+     "n": 13
+    },
+    "learned:open__lgbm": {
+     "mean": 0.0343,
+     "ci": [
+      -0.0424,
+      0.0909
+     ],
+     "n": 13
+    },
+    "learned:open__logreg": {
+     "mean": 0.0399,
+     "ci": [
+      -0.0097,
+      0.0799
+     ],
+     "n": 13
+    },
+    "learned_raw:open__lgbm": {
+     "mean": 0.0422,
+     "ci": [
+      -0.0283,
+      0.0978
+     ],
+     "n": 13
+    },
+    "learned_raw:open__logreg": {
+     "mean": 0.0677,
+     "ci": [
+      0.0196,
+      0.1097
+     ],
+     "n": 13
+    },
+    "neg_dist_coast": {
+     "mean": -0.292,
+     "ci": [
+      -0.488,
+      -0.1553
+     ],
+     "n": 13
+    },
+    "neg_elev_glo30": {
+     "mean": 0.054,
+     "ci": [
+      -0.0094,
+      0.1107
+     ],
+     "n": 13
+    },
+    "occurrence": {
+     "mean": -0.2149,
+     "ci": [
+      -0.2851,
+      -0.1441
+     ],
+     "n": 13
+    },
+    "waterlogging": {
+     "mean": 0.0298,
+     "ci": [
+      0.0154,
+      0.0508
+     ],
+     "n": 13
+    }
+   }
+  },
+  "compound": {
+   "units": [
+    "r_emsr734_aoi17",
+    "r_emsr858_aoi08",
+    "r_emsr858_aoi10",
+    "r_emsr864_aoi01",
+    "r_emsr864_aoi02"
+   ],
+   "clusters": 3,
+   "mean_auc": {
+    "dist_water": {
+     "mean": 0.6926,
+     "ci": [
+      0.2559,
+      0.8318
+     ],
+     "n": 5
+    },
+    "flash_flood": {
+     "mean": 0.8969,
+     "ci": [
+      0.8222,
+      0.9475
+     ],
+     "n": 5
+    },
+    "fluvial": {
+     "mean": 0.8771,
+     "ci": [
+      0.7946,
+      0.9399
+     ],
+     "n": 5
+    },
+    "hand": {
+     "mean": 0.8549,
+     "ci": [
+      0.7595,
+      0.9241
+     ],
+     "n": 5
+    },
+    "learned:open__lgbm": {
+     "mean": 0.8312,
+     "ci": [
+      0.5819,
+      0.9372
+     ],
+     "n": 5
+    },
+    "learned:open__logreg": {
+     "mean": 0.8902,
+     "ci": [
+      0.8062,
+      0.9451
+     ],
+     "n": 5
+    },
+    "learned_raw:open__lgbm": {
+     "mean": 0.8438,
+     "ci": [
+      0.6267,
+      0.9406
+     ],
+     "n": 5
+    },
+    "learned_raw:open__logreg": {
+     "mean": 0.906,
+     "ci": [
+      0.8342,
+      0.9551
+     ],
+     "n": 5
+    },
+    "neg_dist_coast": {
+     "mean": 0.4462,
+     "ci": [
+      0.2288,
+      0.5732
+     ],
+     "n": 5
+    },
+    "neg_elev_glo30": {
+     "mean": 0.8735,
+     "ci": [
+      0.6841,
+      0.9423
+     ],
+     "n": 5
+    },
+    "occurrence": {
+     "mean": 0.5254,
+     "ci": [
+      0.4992,
+      0.563
+     ],
+     "n": 5
+    },
+    "waterlogging": {
+     "mean": 0.8778,
+     "ci": [
+      0.7907,
+      0.9418
+     ],
+     "n": 5
+    }
+   },
+   "minus_hand": {
+    "dist_water": {
+     "mean": -0.1623,
+     "ci": [
+      -0.631,
+      0.0223
+     ],
+     "n": 5
+    },
+    "flash_flood": {
+     "mean": 0.042,
+     "ci": [
+      -0.0036,
+      0.0849
+     ],
+     "n": 5
+    },
+    "fluvial": {
+     "mean": 0.0222,
+     "ci": [
+      -0.0282,
+      0.0535
+     ],
+     "n": 5
+    },
+    "learned:open__lgbm": {
+     "mean": -0.0237,
+     "ci": [
+      -0.3044,
+      0.0907
+     ],
+     "n": 5
+    },
+    "learned:open__logreg": {
+     "mean": 0.0353,
+     "ci": [
+      0.0027,
+      0.0756
+     ],
+     "n": 5
+    },
+    "learned_raw:open__lgbm": {
+     "mean": -0.0111,
+     "ci": [
+      -0.259,
+      0.0957
+     ],
+     "n": 5
+    },
+    "learned_raw:open__logreg": {
+     "mean": 0.0511,
+     "ci": [
+      0.0121,
+      0.1013
+     ],
+     "n": 5
+    },
+    "neg_dist_coast": {
+     "mean": -0.4087,
+     "ci": [
+      -0.6602,
+      -0.2055
+     ],
+     "n": 5
+    },
+    "neg_elev_glo30": {
+     "mean": 0.0186,
+     "ci": [
+      -0.1928,
+      0.1283
+     ],
+     "n": 5
+    },
+    "occurrence": {
+     "mean": -0.3295,
+     "ci": [
+      -0.3934,
+      -0.2518
+     ],
+     "n": 5
+    },
+    "waterlogging": {
+     "mean": 0.0229,
+     "ci": [
+      0.0023,
+      0.0464
+     ],
+     "n": 5
+    }
+   }
+  }
+ },
+ "verdicts": {
+  "fluvial": {
+   "chosen": "open__logreg",
+   "verdict": "passed",
+   "mean_auc": 0.7913,
+   "minus_hand": {
+    "mean": 0.095,
+    "ci": [
+     0.011,
+     0.1923
+    ],
+    "n": 8
+   },
+   "units": 8,
+   "clusters": 7
+  },
+  "fluvial_module_retest": {
+   "method": "fluvial (validated config)",
+   "verdict": "failed",
+   "mean_auc": 0.5777,
+   "minus_hand": {
+    "mean": -0.1186,
+    "ci": [
+     -0.2374,
+     -0.019
+    ],
+    "n": 8
+   },
+   "units": 8,
+   "clusters": 7
+  },
+  "pluvial": {
+   "chosen": "open__lgbm",
+   "verdict": "failed",
+   "mean_auc": 0.7026,
+   "minus_hand": {
+    "mean": 0.0387,
+    "ci": [
+     -0.0353,
+     0.1117
+    ],
+    "n": 4
+   },
+   "units": 4,
+   "clusters": 3
+  },
+  "waterlogging": {
+   "chosen": "open__logreg",
+   "verdict": "passed",
+   "mean_auc": 0.791,
+   "minus_hand": {
+    "mean": 0.1671,
+    "ci": [
+     0.1178,
+     0.2257
+    ],
+    "n": 3
+   },
+   "units": 3,
+   "clusters": 2
+  },
+  "flash_flood": {
+   "chosen": "open__lgbm",
+   "verdict": "failed",
+   "mean_auc": 0.8096,
+   "minus_hand": {
+    "mean": -0.0168,
+    "ci": [
+     -0.0597,
+     0.0257
+    ],
+    "n": 6
+   },
+   "units": 6,
+   "clusters": 3
+  },
+  "coastal": {
+   "chosen": "open__lgbm",
+   "verdict": "failed",
+   "mean_auc": 0.7946,
+   "minus_hand": {
+    "mean": 0.0422,
+    "ci": [
+     -0.0283,
+     0.0978
+    ],
+    "n": 13
+   },
+   "units": 13,
+   "clusters": 8
+  },
+  "compound": {
+   "chosen": "open__lgbm",
+   "verdict": "failed",
+   "mean_auc": 0.8438,
+   "minus_hand": {
+    "mean": -0.0111,
+    "ci": [
+     -0.259,
+     0.0957
+    ],
+    "n": 5
+   },
+   "units": 5,
+   "clusters": 3
+  }
+ },
+ "calibration": {
+  "open__logreg": {
+   "ece": 0.0471,
+   "brier": 0.1046,
+   "brier_constant": 0.1269,
+   "brier_skill": 0.1761,
+   "intercept": 0.067,
+   "slope": 1.7177,
+   "bins": [
+    {
+     "lo": 0.0,
+     "hi": 0.1,
+     "weight": 0.5037,
+     "mean_pred": 0.0627,
+     "observed": 0.0381
+    },
+    {
+     "lo": 0.1,
+     "hi": 0.2,
+     "weight": 0.1922,
+     "mean_pred": 0.1607,
+     "observed": 0.1227
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.30000000000000004,
+     "weight": 0.2249,
+     "mean_pred": 0.2161,
+     "observed": 0.2549
+    },
+    {
+     "lo": 0.30000000000000004,
+     "hi": 0.4,
+     "weight": 0.0596,
+     "mean_pred": 0.3632,
+     "observed": 0.5309
+    },
+    {
+     "lo": 0.4,
+     "hi": 0.5,
+     "weight": 0.0196,
+     "mean_pred": 0.4488,
+     "observed": 0.8888
+    },
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "prevalence_weighted": 0.1492,
+   "ci": {
+    "ece": [
+     0.0262,
+     0.0976
+    ],
+    "intercept": [
+     -0.4572,
+     0.5524
+    ],
+    "slope": [
+     1.2423,
+     2.2664
+    ],
+    "brier_skill": [
+     0.0783,
+     0.2365
+    ]
+   },
+   "per_event": {
+    "r_emsr857_aoi01": {
+     "observed_fraction": 0.8439,
+     "mean_predicted": 0.2224
+    },
+    "r_emsr857_aoi02": {
+     "observed_fraction": 0.1358,
+     "mean_predicted": 0.1287
+    },
+    "r_emsr712_aoi02": {
+     "observed_fraction": 0.1709,
+     "mean_predicted": 0.2646
+    },
+    "r_emsr845_aoi02": {
+     "observed_fraction": 0.0435,
+     "mean_predicted": 0.0899
+    },
+    "r_emsr845_aoi03": {
+     "observed_fraction": 0.1148,
+     "mean_predicted": 0.0717
+    },
+    "r_emsr850_aoi02": {
+     "observed_fraction": 0.0335,
+     "mean_predicted": 0.1154
+    },
+    "r_emsr850_aoi03": {
+     "observed_fraction": 0.0734,
+     "mean_predicted": 0.1311
+    },
+    "r_emsr742_aoi01": {
+     "observed_fraction": 0.0106,
+     "mean_predicted": 0.1913
+    },
+    "r_emsr742_aoi03": {
+     "observed_fraction": 0.0139,
+     "mean_predicted": 0.1676
+    },
+    "r_emsr790_aoi02": {
+     "observed_fraction": 0.0164,
+     "mean_predicted": 0.0606
+    },
+    "r_emsr780_aoi08": {
+     "observed_fraction": 0.1279,
+     "mean_predicted": 0.0554
+    },
+    "r_emsr856_aoi01": {
+     "observed_fraction": 0.1879,
+     "mean_predicted": 0.1673
+    },
+    "r_emsr856_aoi02": {
+     "observed_fraction": 0.1118,
+     "mean_predicted": 0.1233
+    },
+    "r_emsr703_aoi01": {
+     "observed_fraction": 0.0904,
+     "mean_predicted": 0.1119
+    },
+    "r_emsr703_aoi02": {
+     "observed_fraction": 0.2369,
+     "mean_predicted": 0.1123
+    },
+    "r_emsr805_aoi01": {
+     "observed_fraction": 0.0283,
+     "mean_predicted": 0.108
+    },
+    "r_emsr805_aoi03": {
+     "observed_fraction": 0.0047,
+     "mean_predicted": 0.1199
+    },
+    "r_emsr734_aoi17": {
+     "observed_fraction": 0.0197,
+     "mean_predicted": 0.0417
+    },
+    "r_emsr781_aoi01": {
+     "observed_fraction": 0.0095,
+     "mean_predicted": 0.1532
+    },
+    "r_emsr793_aoi01": {
+     "observed_fraction": 0.0741,
+     "mean_predicted": 0.1007
+    },
+    "r_emsr793_aoi02": {
+     "observed_fraction": 0.0438,
+     "mean_predicted": 0.1115
+    },
+    "r_emsr867_aoi01": {
+     "observed_fraction": 0.0179,
+     "mean_predicted": 0.1262
+    },
+    "r_emsr867_aoi03": {
+     "observed_fraction": 0.0866,
+     "mean_predicted": 0.1606
+    },
+    "r_emsr863_aoi02": {
+     "observed_fraction": 0.1723,
+     "mean_predicted": 0.1276
+    },
+    "r_emsr858_aoi08": {
+     "observed_fraction": 0.0348,
+     "mean_predicted": 0.1081
+    },
+    "r_emsr858_aoi10": {
+     "observed_fraction": 0.0453,
+     "mean_predicted": 0.1165
+    },
+    "r_emsr864_aoi01": {
+     "observed_fraction": 0.2404,
+     "mean_predicted": 0.2356
+    },
+    "r_emsr864_aoi02": {
+     "observed_fraction": 0.1973,
+     "mean_predicted": 0.144
+    },
+    "s1_assam_morigaon_2024": {
+     "observed_fraction": 0.1835,
+     "mean_predicted": 0.1797
+    },
+    "s1_sunamganj_2024": {
+     "observed_fraction": 0.5093,
+     "mean_predicted": 0.2901
+    },
+    "s1_lokoja_2022": {
+     "observed_fraction": 0.7163,
+     "mean_predicted": 0.2404
+    },
+    "s1_kelantan_2024": {
+     "observed_fraction": 0.0453,
+     "mean_predicted": 0.1242
+    },
+    "s1_tabasco_2020": {
+     "observed_fraction": 0.2749,
+     "mean_predicted": 0.135
+    },
+    "s1_yenagoa_2022": {
+     "observed_fraction": 0.1564,
+     "mean_predicted": 0.1754
+    }
+   },
+   "event_prevalence_spearman": 0.4633,
+   "weakly_calibrated": false,
+   "call_it": "score"
+  },
+  "open__lgbm": {
+   "ece": 0.0327,
+   "brier": 0.1046,
+   "brier_constant": 0.1269,
+   "brier_skill": 0.1756,
+   "intercept": 0.0276,
+   "slope": 1.3012,
+   "bins": [
+    {
+     "lo": 0.0,
+     "hi": 0.1,
+     "weight": 0.5011,
+     "mean_pred": 0.0432,
+     "observed": 0.033
+    },
+    {
+     "lo": 0.1,
+     "hi": 0.2,
+     "weight": 0.1298,
+     "mean_pred": 0.1452,
+     "observed": 0.1064
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.30000000000000004,
+     "weight": 0.2773,
+     "mean_pred": 0.2589,
+     "observed": 0.2423
+    },
+    {
+     "lo": 0.30000000000000004,
+     "hi": 0.4,
+     "weight": 0.0904,
+     "mean_pred": 0.3595,
+     "observed": 0.5562
+    },
+    {
+     "lo": 0.4,
+     "hi": 0.5,
+     "weight": 0.0001,
+     "mean_pred": 0.4307,
+     "observed": 0.8814
+    },
+    {
+     "lo": 0.5,
+     "hi": 0.6000000000000001,
+     "weight": 0.0001,
+     "mean_pred": 0.5546,
+     "observed": 0.9412
+    },
+    {
+     "lo": 0.6000000000000001,
+     "hi": 0.7000000000000001,
+     "weight": 0.0002,
+     "mean_pred": 0.6634,
+     "observed": 0.9243
+    },
+    {
+     "lo": 0.7000000000000001,
+     "hi": 0.8,
+     "weight": 0.0001,
+     "mean_pred": 0.7567,
+     "observed": 1.0
+    },
+    {
+     "lo": 0.8,
+     "hi": 0.9,
+     "weight": 0.0001,
+     "mean_pred": 0.8524,
+     "observed": 0.9067
+    },
+    {
+     "lo": 0.9,
+     "hi": 1.0,
+     "weight": 0.0011,
+     "mean_pred": 0.9979,
+     "observed": 0.9155
+    }
+   ],
+   "prevalence_weighted": 0.1492,
+   "ci": {
+    "ece": [
+     0.0168,
+     0.0821
+    ],
+    "intercept": [
+     -0.5067,
+     0.5423
+    ],
+    "slope": [
+     0.8488,
+     1.8999
+    ],
+    "brier_skill": [
+     0.0625,
+     0.232
+    ]
+   },
+   "per_event": {
+    "r_emsr857_aoi01": {
+     "observed_fraction": 0.8439,
+     "mean_predicted": 0.2426
+    },
+    "r_emsr857_aoi02": {
+     "observed_fraction": 0.1358,
+     "mean_predicted": 0.0831
+    },
+    "r_emsr712_aoi02": {
+     "observed_fraction": 0.1709,
+     "mean_predicted": 0.2367
+    },
+    "r_emsr845_aoi02": {
+     "observed_fraction": 0.0435,
+     "mean_predicted": 0.1007
+    },
+    "r_emsr845_aoi03": {
+     "observed_fraction": 0.1148,
+     "mean_predicted": 0.0705
+    },
+    "r_emsr850_aoi02": {
+     "observed_fraction": 0.0335,
+     "mean_predicted": 0.0857
+    },
+    "r_emsr850_aoi03": {
+     "observed_fraction": 0.0734,
+     "mean_predicted": 0.1484
+    },
+    "r_emsr742_aoi01": {
+     "observed_fraction": 0.0106,
+     "mean_predicted": 0.1841
+    },
+    "r_emsr742_aoi03": {
+     "observed_fraction": 0.0139,
+     "mean_predicted": 0.1308
+    },
+    "r_emsr790_aoi02": {
+     "observed_fraction": 0.0164,
+     "mean_predicted": 0.0555
+    },
+    "r_emsr780_aoi08": {
+     "observed_fraction": 0.1279,
+     "mean_predicted": 0.0379
+    },
+    "r_emsr856_aoi01": {
+     "observed_fraction": 0.1879,
+     "mean_predicted": 0.2149
+    },
+    "r_emsr856_aoi02": {
+     "observed_fraction": 0.1118,
+     "mean_predicted": 0.1886
+    },
+    "r_emsr703_aoi01": {
+     "observed_fraction": 0.0904,
+     "mean_predicted": 0.1654
+    },
+    "r_emsr703_aoi02": {
+     "observed_fraction": 0.2369,
+     "mean_predicted": 0.1372
+    },
+    "r_emsr805_aoi01": {
+     "observed_fraction": 0.0283,
+     "mean_predicted": 0.1427
+    },
+    "r_emsr805_aoi03": {
+     "observed_fraction": 0.0047,
+     "mean_predicted": 0.1264
+    },
+    "r_emsr734_aoi17": {
+     "observed_fraction": 0.0197,
+     "mean_predicted": 0.0244
+    },
+    "r_emsr781_aoi01": {
+     "observed_fraction": 0.0095,
+     "mean_predicted": 0.0925
+    },
+    "r_emsr793_aoi01": {
+     "observed_fraction": 0.0741,
+     "mean_predicted": 0.0863
+    },
+    "r_emsr793_aoi02": {
+     "observed_fraction": 0.0438,
+     "mean_predicted": 0.0909
+    },
+    "r_emsr867_aoi01": {
+     "observed_fraction": 0.0179,
+     "mean_predicted": 0.143
+    },
+    "r_emsr867_aoi03": {
+     "observed_fraction": 0.0866,
+     "mean_predicted": 0.2071
+    },
+    "r_emsr863_aoi02": {
+     "observed_fraction": 0.1723,
+     "mean_predicted": 0.193
+    },
+    "r_emsr858_aoi08": {
+     "observed_fraction": 0.0348,
+     "mean_predicted": 0.1521
+    },
+    "r_emsr858_aoi10": {
+     "observed_fraction": 0.0453,
+     "mean_predicted": 0.0661
+    },
+    "r_emsr864_aoi01": {
+     "observed_fraction": 0.2404,
+     "mean_predicted": 0.2176
+    },
+    "r_emsr864_aoi02": {
+     "observed_fraction": 0.1973,
+     "mean_predicted": 0.1223
+    },
+    "s1_assam_morigaon_2024": {
+     "observed_fraction": 0.1835,
+     "mean_predicted": 0.1937
+    },
+    "s1_sunamganj_2024": {
+     "observed_fraction": 0.5093,
+     "mean_predicted": 0.2965
+    },
+    "s1_lokoja_2022": {
+     "observed_fraction": 0.7163,
+     "mean_predicted": 0.2762
+    },
+    "s1_kelantan_2024": {
+     "observed_fraction": 0.0453,
+     "mean_predicted": 0.1526
+    },
+    "s1_tabasco_2020": {
+     "observed_fraction": 0.2749,
+     "mean_predicted": 0.1144
+    },
+    "s1_yenagoa_2022": {
+     "observed_fraction": 0.1564,
+     "mean_predicted": 0.1878
+    }
+   },
+   "event_prevalence_spearman": 0.5122,
+   "weakly_calibrated": true,
+   "call_it": "probability"
+  }
+ }
+}

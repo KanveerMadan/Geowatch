@@ -1,0 +1,11 @@
+site,aoi_wide_score,flooded_cells,dry_cells,pooled_auc,verdict,source_file,source_commit,source_commit_date
+dharavi,0.8866,496,7958,,,experiments/flood_validation/result_2026-10-28.json,78c5031,2026-10-28T18:28:42+05:30
+jakarta,0.9409,1937,14334,,,experiments/flood_validation/result_2026-10-28.json,78c5031,2026-10-28T18:28:42+05:30
+hcmc,0.9422,516,139700,,,experiments/flood_validation/result_2026-10-28.json,78c5031,2026-10-28T18:28:42+05:30
+kigali,0.0,0,7603,,,experiments/flood_validation/result_2026-10-28.json,78c5031,2026-10-28T18:28:42+05:30
+accra,0.7099,130,13820,,,experiments/flood_validation/result_2026-10-28.json,78c5031,2026-10-28T18:28:42+05:30
+dhaka,0.926,1155,16685,,,experiments/flood_validation/result_2026-10-28.json,78c5031,2026-10-28T18:28:42+05:30
+capetown,0.7548,247,35786,,,experiments/flood_validation/result_2026-10-28.json,78c5031,2026-10-28T18:28:42+05:30
+guatemala,0.0521,0,22765,,,experiments/flood_validation/result_2026-10-28.json,78c5031,2026-10-28T18:28:42+05:30
+nusantara,0.7868,1755,43177,,,experiments/flood_validation/result_2026-10-28.json,78c5031,2026-10-28T18:28:42+05:30
+POOLED (verdict),,6236,301828,0.4476,failed,experiments/flood_validation/result_2026-10-28.json,78c5031,2026-10-28T18:28:42+05:30

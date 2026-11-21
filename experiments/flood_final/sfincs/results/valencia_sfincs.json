@@ -1,0 +1,155 @@
+{
+ "settings": {
+  "huthresh": 0.001,
+  "dtmax": 4.0,
+  "manning": 0.04,
+  "wet_m": 0.1,
+  "domain_km2": 1092.0
+ },
+ "members": {
+  "base": {
+   "wall_s": 12733.06,
+   "solver_reported_s": 7401.472,
+   "sfincs_peak_rss_mib": 477.9,
+   "disk_mb": 255.8,
+   "wall_s_per_km2": 11.66,
+   "disk_mb_per_km2": 0.2342,
+   "valencia_2024__hmax": {
+    "auc": 0.7848,
+    "hand_auc": 0.7063,
+    "iou_wet": 0.3563,
+    "wet_share": 0.2519,
+    "observed_share": 0.1602
+   },
+   "paiporta__hmax": {
+    "auc": 0.6083,
+    "hand_auc": 0.5008,
+    "iou_wet": 0.235,
+    "wet_share": 0.2568,
+    "observed_share": 0.2071
+   },
+   "valencia_2024__h_snapshot": {
+    "auc": 0.5927,
+    "hand_auc": 0.7063,
+    "iou_wet": 0.0425,
+    "wet_share": 0.0221,
+    "observed_share": 0.1602
+   },
+   "paiporta__h_snapshot": {
+    "auc": 0.4992,
+    "hand_auc": 0.5008,
+    "iou_wet": 0.0621,
+    "wet_share": 0.0324,
+    "observed_share": 0.2071
+   }
+  },
+  "gauge": {
+   "wall_s": 11888.62,
+   "solver_reported_s": 10031.174,
+   "sfincs_peak_rss_mib": 478.0,
+   "disk_mb": 272.2,
+   "wall_s_per_km2": 10.887,
+   "disk_mb_per_km2": 0.2493,
+   "valencia_2024__hmax": {
+    "auc": 0.8337,
+    "hand_auc": 0.7063,
+    "iou_wet": 0.2433,
+    "wet_share": 0.6193,
+    "observed_share": 0.1602
+   },
+   "paiporta__hmax": {
+    "auc": 0.6507,
+    "hand_auc": 0.5008,
+    "iou_wet": 0.231,
+    "wet_share": 0.8787,
+    "observed_share": 0.2071
+   },
+   "valencia_2024__h_snapshot": {
+    "auc": 0.591,
+    "hand_auc": 0.7063,
+    "iou_wet": 0.05,
+    "wet_share": 0.0266,
+    "observed_share": 0.1602
+   },
+   "paiporta__h_snapshot": {
+    "auc": 0.4943,
+    "hand_auc": 0.5008,
+    "iou_wet": 0.0676,
+    "wet_share": 0.0397,
+    "observed_share": 0.2071
+   }
+  },
+  "glo30": {
+   "wall_s": 6285.61,
+   "solver_reported_s": 6284.131,
+   "sfincs_peak_rss_mib": 478.0,
+   "disk_mb": 256.9,
+   "wall_s_per_km2": 5.756,
+   "disk_mb_per_km2": 0.2353,
+   "valencia_2024__hmax": {
+    "auc": 0.7528,
+    "hand_auc": 0.7063,
+    "iou_wet": 0.276,
+    "wet_share": 0.3211,
+    "observed_share": 0.1602
+   },
+   "paiporta__hmax": {
+    "auc": 0.7097,
+    "hand_auc": 0.5008,
+    "iou_wet": 0.3131,
+    "wet_share": 0.3685,
+    "observed_share": 0.2071
+   },
+   "valencia_2024__h_snapshot": {
+    "auc": 0.6314,
+    "hand_auc": 0.7063,
+    "iou_wet": 0.0585,
+    "wet_share": 0.0375,
+    "observed_share": 0.1602
+   },
+   "paiporta__h_snapshot": {
+    "auc": 0.6797,
+    "hand_auc": 0.5008,
+    "iou_wet": 0.1107,
+    "wet_share": 0.0711,
+    "observed_share": 0.2071
+   }
+  },
+  "lidar_e1": {
+   "wall_s": 5083.83,
+   "solver_reported_s": 5082.002,
+   "sfincs_peak_rss_mib": 478.0,
+   "disk_mb": 269.5,
+   "wall_s_per_km2": 4.656,
+   "disk_mb_per_km2": 0.2468,
+   "valencia_2024__hmax": {
+    "auc": 0.79,
+    "hand_auc": 0.7063,
+    "iou_wet": 0.3461,
+    "wet_share": 0.2705,
+    "observed_share": 0.1602
+   },
+   "paiporta__hmax": {
+    "auc": 0.5984,
+    "hand_auc": 0.5008,
+    "iou_wet": 0.2215,
+    "wet_share": 0.2699,
+    "observed_share": 0.2071
+   },
+   "valencia_2024__h_snapshot": {
+    "auc": 0.6118,
+    "hand_auc": 0.7063,
+    "iou_wet": 0.0541,
+    "wet_share": 0.0262,
+    "observed_share": 0.1602
+   },
+   "paiporta__h_snapshot": {
+    "auc": 0.5783,
+    "hand_auc": 0.5008,
+    "iou_wet": 0.0655,
+    "wet_share": 0.0362,
+    "observed_share": 0.2071
+   }
+  }
+ }
+}

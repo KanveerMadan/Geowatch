@@ -1,0 +1,75 @@
+{
+ "model": "final__open__lgbm.pkl",
+ "usf_weihui_1": {
+  "cells": {
+   "flooded_open": 1633,
+   "flooded_urban": 3200,
+   "dry": 14202
+  },
+  "open_only": {
+   "model_auc": 0.8894,
+   "hand_auc": 0.325
+  },
+  "all": {
+   "model_auc": 0.5409,
+   "hand_auc": 0.4391
+  },
+  "urban_only": {
+   "model_auc": 0.3637,
+   "hand_auc": 0.4966
+  },
+  "s1_vv_drop": {
+   "share_of_flooded_open_marked": 0.4287,
+   "share_of_flooded_urban_marked": 0.0106,
+   "share_of_dry_marked": 0.0482
+  }
+ },
+ "usf_weihui_2": {
+  "cells": {
+   "flooded_open": 0,
+   "flooded_urban": 879,
+   "dry": 18027
+  },
+  "open_only": {
+   "model_auc": null,
+   "hand_auc": null
+  },
+  "all": {
+   "model_auc": 0.1347,
+   "hand_auc": 0.5313
+  },
+  "urban_only": {
+   "model_auc": 0.1347,
+   "hand_auc": 0.5313
+  },
+  "s1_vv_drop": {
+   "share_of_flooded_open_marked": 0.0,
+   "share_of_flooded_urban_marked": 0.0705,
+   "share_of_dry_marked": 0.0211
+  }
+ },
+ "usf_weihui_3": {
+  "cells": {
+   "flooded_open": 0,
+   "flooded_urban": 450,
+   "dry": 18046
+  },
+  "open_only": {
+   "model_auc": null,
+   "hand_auc": null
+  },
+  "all": {
+   "model_auc": 0.3268,
+   "hand_auc": 0.6111
+  },
+  "urban_only": {
+   "model_auc": 0.3268,
+   "hand_auc": 0.6111
+  },
+  "s1_vv_drop": {
+   "share_of_flooded_open_marked": 0.0,
+   "share_of_flooded_urban_marked": 0.0244,
+   "share_of_dry_marked": 0.0184
+  }
+ }
+}

@@ -1,0 +1,4 @@
+check,pinned,recomputed,match,source_file,source_commit,source_commit_date
+fluvial/bihar_2026,0.6425,0.6425,True,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+fluvial/assam_2026,0.3878,0.3878,True,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+fluvial/pakistan_2022,0.5791,0.5791,True,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30

@@ -1,0 +1,2 @@
+type,test,chosen,verdict,mean_auc,minus_hand,minus_hand_ci,units,clusters,source_file,source_commit,source_commit_date
+compound,learned (pre-registered choice),open__lgbm,failed,0.8438,-0.0111,"[-0.259, 0.0957]",5,3,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30

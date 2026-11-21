@@ -20,6 +20,9 @@ const TYPES = {
   coastal: { name: 'Coastal', long: 'coastal flooding', term: 'coastal', blurb: 'Sea water reaching low land near the shore.' },
   flash_flood: { name: 'Flash flood', long: 'flash flooding', term: 'flash flood', blurb: 'Fast runoff from steep ground after intense rain.' },
   waterlogging: { name: 'Waterlogging', long: 'waterlogging', term: 'waterlogging', blurb: 'Flat, low ground where water stands for days after rain.' },
+  // flood_final's learned model: one ranking validated for river and
+  // waterlogging flooding only. A ranking within the area, so no tier.
+  learned_flood: { name: 'River and waterlogging (learned)', long: 'the learned river and waterlogging ranking', term: 'learned model', blurb: 'Where in this area river and waterlogging floods were most likely, learned from 67 mapped floods. A ranking within the area, not a depth or a probability; built-up areas are not assessed.', ranking: true },
   // The taxonomy's types no module computes yet (analysis/contract.py).
   debris_flow_glof: { name: 'Debris flow and glacial lake outburst', long: 'debris flow and glacial lake outburst', term: 'debris flow / GLOF' },
   embankment_dam_breach: { name: 'Embankment or dam breach', long: 'embankment or dam breach', term: 'embankment / dam breach' },
@@ -44,7 +47,7 @@ export function floodRows(susceptibility) {
   return Object.entries(susceptibility ?? {}).map(([key, o]) => {
     const r = readOutput(o)
     const t = TYPES[key]
-    const tier = r.measured ? (o.tier ?? tierOf(r.value)) : null
+    const tier = r.measured && !t?.ranking ? (o.tier ?? tierOf(r.value)) : null
     return {
       key,
       name: floodName(key),
@@ -53,7 +56,7 @@ export function floodRows(susceptibility) {
       blurb: t?.blurb ?? null,
       ...r,
       tier,
-      tierText: tier ? TIER_TEXT[tier] : r.text,
+      tierText: tier ? TIER_TEXT[tier] : (t?.ranking && r.measured ? 'Ranking' : r.text),
       trust: trustOf(o),
       // A map exists only where the type was computed per pixel; an AOI-wide
       // scalar is never painted as if it varied across the area.
@@ -66,6 +69,8 @@ export function floodRows(susceptibility) {
       limitations: o?.limitations ?? [],
       sources: (o?.data_sources ?? []).filter((s) => !s.startsWith('none')),
       reason: r.reason,
+      ranking: !!t?.ranking,
+      notAssessed: o?.not_assessed ?? null,
     }
   })
 }
@@ -78,8 +83,9 @@ const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1)
  *  only shown for transparency, then what was not measured. */
 export function floodSummary(susceptibility) {
   const rows = floodRows(susceptibility)
-  const usable = rows.filter((r) => r.measured && r.trust.key !== 'failed' && r.trust.key !== 'retired')
-  const failed = rows.filter((r) => r.measured && r.trust.key === 'failed')
+  const ranking = rows.filter((r) => r.ranking && r.measured && r.trust.key !== 'failed')
+  const usable = rows.filter((r) => !r.ranking && r.measured && r.trust.key !== 'failed' && r.trust.key !== 'retired')
+  const failed = rows.filter((r) => !r.ranking && r.measured && r.trust.key === 'failed')
   const absent = rows.filter((r) => !r.measured && !r.unbuilt)
   const unbuilt = rows.filter((r) => r.unbuilt)
   const parts = []
@@ -92,8 +98,11 @@ export function floodSummary(susceptibility) {
       const groups = TIERS.slice().reverse().map((t) => rest.filter((r) => r.tier === t)).filter((g) => g.length)
       parts.push(cap(`${groups.map((g) => `${list(g.map((r) => r.long))} ${TIER_TEXT[g[0].tier].toLowerCase()}`).join('; ')}.`))
     }
-  } else if (!failed.length) {
+  } else if (!failed.length && !ranking.length) {
     parts.push('No flood type could be measured for this area yet.')
+  }
+  if (ranking.length) {
+    parts.push('A learned ranking of river and waterlogging flooding is mapped: validated for those two types only, as a ranking within this area; built-up areas are not assessed.')
   }
   if (failed.length) {
     parts.push(`${cap(list(failed.map((r) => r.long)))} ${failed.length > 1 ? 'are' : 'is'} shown but failed validation, so ${failed.length > 1 ? 'they are' : 'it is'} not for decisions.`)

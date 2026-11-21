@@ -1,0 +1,273 @@
+{
+ "settings": {
+  "dx_m": 30.0,
+  "huthresh_m": 0.0002,
+  "boundary_level_m": 2.815,
+  "sigma_fabdem_urban_m": 1.404,
+  "sigma_deltadtm_m": 0.564,
+  "realisations": 10,
+  "seed": 20261101,
+  "gedtm30_std_note": "GEDTM30 std (Hanoi median 1.24 m) is ensemble model spread, not measured error; not used here"
+ },
+ "reference": {
+  "hollow_max_depth_m": {
+   "small_r60m": 0.53,
+   "mid_r120m": 0.634,
+   "large_r250m": 0.586
+  },
+  "hollow_ponded_m3": {
+   "small_r60m": 3649.0,
+   "mid_r120m": 15043.3,
+   "large_r250m": 52337.0
+  },
+  "flooded_km2_0.10": 0.9954,
+  "jaccard_vs_ref": 1.0,
+  "boundary_zone_flooded_km2_0.10": 0.3744
+ },
+ "random": {
+  "fabdem_urban_short100m": {
+   "sigma_m": 1.404,
+   "short_range_variance_share": 1.0,
+   "hollow_wet_fraction": {
+    "small_r60m": 0.7,
+    "mid_r120m": 1.0,
+    "large_r250m": 1.0
+   },
+   "hollow_ponded_m3": {
+    "small_r60m": {
+     "p10": 81.18,
+     "median": 1231.1,
+     "p90": 4762.369999999999
+    },
+    "mid_r120m": {
+     "p10": 1637.92,
+     "median": 3047.0,
+     "p90": 5886.4
+    },
+    "large_r250m": {
+     "p10": 11514.69,
+     "median": 20908.55,
+     "p90": 49852.599999999984
+    }
+   },
+   "flooded_km2_0.10": {
+    "p10": 1.30167,
+    "median": 1.5025499999999998,
+    "p90": 1.68966
+   },
+   "jaccard_vs_ref": {
+    "p10": 0.08314,
+    "median": 0.1132,
+    "p90": 0.14326999999999998
+   },
+   "ref_flooded_cells_wet_in_majority": 0.1872,
+   "nonref_cells_wet_in_majority_km2": 0.2349
+  },
+  "fabdem_urban_50short_50long2km": {
+   "sigma_m": 1.404,
+   "short_range_variance_share": 0.5,
+   "hollow_wet_fraction": {
+    "small_r60m": 1.0,
+    "mid_r120m": 0.9,
+    "large_r250m": 1.0
+   },
+   "hollow_ponded_m3": {
+    "small_r60m": {
+     "p10": 414.14,
+     "median": 3118.5,
+     "p90": 26125.509999999984
+    },
+    "mid_r120m": {
+     "p10": 2291.29,
+     "median": 7697.65,
+     "p90": 227715.59999999995
+    },
+    "large_r250m": {
+     "p10": 12511.14,
+     "median": 162263.15000000002,
+     "p90": 758479.8699999996
+    }
+   },
+   "flooded_km2_0.10": {
+    "p10": 1.34838,
+    "median": 2.20635,
+    "p90": 6.958799999999999
+   },
+   "jaccard_vs_ref": {
+    "p10": 0.06717999999999999,
+    "median": 0.1048,
+    "p90": 0.17411999999999997
+   },
+   "ref_flooded_cells_wet_in_majority": 0.7685,
+   "nonref_cells_wet_in_majority_km2": 2.6739
+  },
+  "fabdem_urban_80short_20long2km": {
+   "sigma_m": 1.404,
+   "short_range_variance_share": 0.8,
+   "hollow_wet_fraction": {
+    "small_r60m": 0.5,
+    "mid_r120m": 1.0,
+    "large_r250m": 1.0
+   },
+   "hollow_ponded_m3": {
+    "small_r60m": {
+     "p10": 69.17,
+     "median": 357.65,
+     "p90": 5365.319999999993
+    },
+    "mid_r120m": {
+     "p10": 803.38,
+     "median": 1695.25,
+     "p90": 77126.13999999998
+    },
+    "large_r250m": {
+     "p10": 10699.810000000001,
+     "median": 20019.800000000003,
+     "p90": 580561.6499999999
+    }
+   },
+   "flooded_km2_0.10": {
+    "p10": 1.19925,
+    "median": 1.37655,
+    "p90": 5.2371
+   },
+   "jaccard_vs_ref": {
+    "p10": 0.05155,
+    "median": 0.0824,
+    "p90": 0.16105999999999998
+   },
+   "ref_flooded_cells_wet_in_majority": 0.1781,
+   "nonref_cells_wet_in_majority_km2": 0.3978
+  },
+  "deltadtm_50short_50long2km": {
+   "sigma_m": 0.564,
+   "short_range_variance_share": 0.5,
+   "hollow_wet_fraction": {
+    "small_r60m": 1.0,
+    "mid_r120m": 1.0,
+    "large_r250m": 1.0
+   },
+   "hollow_ponded_m3": {
+    "small_r60m": {
+     "p10": 1622.34,
+     "median": 3662.35,
+     "p90": 16245.189999999984
+    },
+    "mid_r120m": {
+     "p10": 4477.37,
+     "median": 8410.6,
+     "p90": 106920.66999999995
+    },
+    "large_r250m": {
+     "p10": 17195.23,
+     "median": 136898.1,
+     "p90": 742306.2999999998
+    }
+   },
+   "flooded_km2_0.10": {
+    "p10": 1.9062899999999998,
+    "median": 3.30165,
+    "p90": 8.976510000000001
+   },
+   "jaccard_vs_ref": {
+    "p10": 0.09424,
+    "median": 0.1198,
+    "p90": 0.17260999999999999
+   },
+   "ref_flooded_cells_wet_in_majority": 0.8002,
+   "nonref_cells_wet_in_majority_km2": 3.6135
+  }
+ },
+ "systematic": {
+  "offset_+1.0m": {
+   "hollow_max_depth_m": {
+    "small_r60m": 0.53,
+    "mid_r120m": 0.634,
+    "large_r250m": 0.586
+   },
+   "hollow_ponded_m3": {
+    "small_r60m": 3649.0,
+    "mid_r120m": 15043.3,
+    "large_r250m": 52331.2
+   },
+   "flooded_km2_0.10": 0.9216,
+   "jaccard_vs_ref": 0.9259,
+   "boundary_zone_flooded_km2_0.10": 0.3006
+  },
+  "offset_-1.0m": {
+   "hollow_max_depth_m": {
+    "small_r60m": 0.53,
+    "mid_r120m": 0.635,
+    "large_r250m": 1.142
+   },
+   "hollow_ponded_m3": {
+    "small_r60m": 3648.9,
+    "mid_r120m": 15079.8,
+    "large_r250m": 154362.3
+   },
+   "flooded_km2_0.10": 2.5668,
+   "jaccard_vs_ref": 0.3878,
+   "boundary_zone_flooded_km2_0.10": 1.4958
+  },
+  "urban_block_+1.0m": {
+   "hollow_max_depth_m": {
+    "small_r60m": 0.53,
+    "mid_r120m": 0.732,
+    "large_r250m": 0.56
+   },
+   "hollow_ponded_m3": {
+    "small_r60m": 3647.4,
+    "mid_r120m": 19392.9,
+    "large_r250m": 46602.9
+   },
+   "flooded_km2_0.10": 1.0944,
+   "jaccard_vs_ref": 0.6729,
+   "boundary_zone_flooded_km2_0.10": 0.3618
+  },
+  "urban_block_-1.0m": {
+   "hollow_max_depth_m": {
+    "small_r60m": 0.53,
+    "mid_r120m": 0.624,
+    "large_r250m": 1.118
+   },
+   "hollow_ponded_m3": {
+    "small_r60m": 3648.9,
+    "mid_r120m": 14581.9,
+    "large_r250m": 56600.0
+   },
+   "flooded_km2_0.10": 0.828,
+   "jaccard_vs_ref": 0.8318,
+   "boundary_zone_flooded_km2_0.10": 0.2862
+  },
+  "tilt_+0.5m_west_up": {
+   "hollow_max_depth_m": {
+    "small_r60m": 0.515,
+    "mid_r120m": 0.611,
+    "large_r250m": 0.553
+   },
+   "hollow_ponded_m3": {
+    "small_r60m": 3467.0,
+    "mid_r120m": 14009.4,
+    "large_r250m": 48011.6
+   },
+   "flooded_km2_0.10": 0.9162,
+   "jaccard_vs_ref": 0.9204,
+   "boundary_zone_flooded_km2_0.10": 0.3582
+  },
+  "tilt_-0.5m_west_down": {
+   "hollow_max_depth_m": {
+    "small_r60m": 0.546,
+    "mid_r120m": 0.658,
+    "large_r250m": 0.62
+   },
+   "hollow_ponded_m3": {
+    "small_r60m": 3842.4,
+    "mid_r120m": 16133.3,
+    "large_r250m": 57272.2
+   },
+   "flooded_km2_0.10": 1.0998,
+   "jaccard_vs_ref": 0.9051,
+   "boundary_zone_flooded_km2_0.10": 0.3924
+  }
+ }
+}

@@ -777,7 +777,7 @@ tuning events. **All four failed** (bar: mean within-event AUC ≥ 0.70):
 
 | Module | Test events (AUC) | Mean | Label now |
 |---|---|---|---|
-| M1 fluvial | Bihar 0.643, Assam 0.388, Pakistan 0.579 | 0.537 | **`validated`, scope narrowed** (C78) |
+| M1 fluvial | Bihar 0.643, Assam 0.388, Pakistan 0.579 | 0.537 | scope narrowed; **demoted to `experimental` 2026-11-21** (C78, after flood_final 0.578) |
 | M2 pluvial | Dubai 0.491, Valencia 0.557; Chennai not-run (no usable reference) | 0.524 | **`failed`** |
 | M3 waterlogging | Assam 0.406, Sylhet 0.668, Kerala 0.766 | 0.613 | **`failed`** |
 | M4 flash flood | Valencia 0.722, Himachal 0.509, Derna 0.688 | 0.640 | **`failed`** |

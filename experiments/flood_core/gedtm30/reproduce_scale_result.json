@@ -1,0 +1,76 @@
+{
+ "gdal": "3.12.4",
+ "rasterio": "1.5.1",
+ "layers": {
+  "m": {
+   "dtype": "float32",
+   "nodata": 3.4028234663852886e+38,
+   "scales": [
+    0.1
+   ],
+   "offsets": [
+    0.0
+   ],
+   "units": [
+    null
+   ],
+   "tags": {
+    "VERTICAL_DATUM": "EGM2008/EPSG:3855",
+    "AREA_OR_POINT": "Area"
+   },
+   "band_tags": {},
+   "crs": "EPSG:4326"
+  },
+  "std": {
+   "dtype": "float32",
+   "nodata": 3.4028234663852886e+38,
+   "scales": [
+    0.1
+   ],
+   "offsets": [
+    0.0
+   ],
+   "units": [
+    null
+   ],
+   "tags": {
+    "VERTICAL_DATUM": "EGM2008/EPSG:3855",
+    "AREA_OR_POINT": "Area"
+   },
+   "band_tags": {},
+   "crs": "EPSG:4326"
+  }
+ },
+ "points": {
+  "denver_capitol_mile_step": {
+   "lon": -104.98493,
+   "lat": 39.73927,
+   "published_m": 1609.3,
+   "published_src": "Colorado State Capitol 'one mile above sea level' step",
+   "m_raw": 1613.8,
+   "m_raw_x_header_scale": 161.38,
+   "std_raw": 2.78,
+   "std_raw_x_header_scale": 0.278
+  },
+  "el_alto_airport": {
+   "lon": -68.19226,
+   "lat": -16.51333,
+   "published_m": 4061.5,
+   "published_src": "El Alto International Airport (LPB) aerodrome elevation",
+   "m_raw": 4030.5,
+   "m_raw_x_header_scale": 403.05,
+   "std_raw": 3.0,
+   "std_raw_x_header_scale": 0.3
+  },
+  "dead_sea_shore_ein_bokek": {
+   "lon": 35.364,
+   "lat": 31.201,
+   "published_m": -430.0,
+   "published_src": "Dead Sea shoreline, approx. -430 m (falling)",
+   "m_raw": -323.1,
+   "m_raw_x_header_scale": -32.31,
+   "std_raw": 26.62,
+   "std_raw_x_header_scale": 2.662
+  }
+ }
+}

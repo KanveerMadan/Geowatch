@@ -1,0 +1,13 @@
+type,candidate,lro_mean_auc,lco_mean_auc,chosen,n_units,source_file,source_commit,source_commit_date
+fluvial,full__logreg,0.7698,0.7893,False,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+fluvial,open__logreg,0.7698,0.7857,True,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+fluvial,full__lgbm,0.7681,0.7802,False,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+fluvial,open__lgbm,0.766,0.783,False,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+fluvial,no_landcover__lgbm,0.7275,0.7505,False,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+fluvial,no_landcover__logreg,0.7188,0.7287,False,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+fluvial,module:fluvial,0.6922,,False,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+fluvial,baseline:hand,0.648,,False,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+fluvial,baseline:occurrence,0.5984,,False,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+fluvial,baseline:dist_water,0.5913,,False,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+fluvial,baseline:neg_elev_glo30,0.7566,,False,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+fluvial,baseline:neg_dist_coast,0.543,,False,25,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30

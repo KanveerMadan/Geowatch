@@ -1,0 +1,13 @@
+type,score,mean_auc,ci_lo,ci_hi,minus_hand,minus_hand_ci_lo,minus_hand_ci_hi,n_units,n_clusters,source_file,source_commit,source_commit_date
+coastal,learned_raw:open__logreg,0.8201,0.7398,0.8884,0.0677,0.0196,0.1097,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+coastal,neg_elev_glo30,0.8065,0.7214,0.8894,0.054,-0.0094,0.1107,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+coastal,learned_raw:open__lgbm,0.7946,0.7173,0.8692,0.0422,-0.0283,0.0978,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+coastal,learned:open__logreg,0.7924,0.7098,0.865,0.0399,-0.0097,0.0799,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+coastal,learned:open__lgbm,0.7867,0.7067,0.8635,0.0343,-0.0424,0.0909,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+coastal,waterlogging,0.7822,0.7119,0.8579,0.0298,0.0154,0.0508,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+coastal,flash_flood,0.7649,0.678,0.8567,0.0124,-0.0263,0.0545,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+coastal,hand,0.7525,0.6779,0.8266,,,,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+coastal,fluvial,0.7418,0.6512,0.8427,-0.0107,-0.0681,0.0407,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+coastal,dist_water,0.649,0.5281,0.7603,-0.1035,-0.2351,-0.0096,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+coastal,occurrence,0.5376,0.5027,0.575,-0.2149,-0.2851,-0.1441,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+coastal,neg_dist_coast,0.4605,0.3339,0.5543,-0.292,-0.488,-0.1553,13,8,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30

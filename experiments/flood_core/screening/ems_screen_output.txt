@@ -1,0 +1,129 @@
+== EMSR773 Flood in Valencia Region, Spain eventTime 2024-10-29T14:30:00 activationTime 2024-10-29T16:40:00
+  AOI01 'Valencia province' centre=(39.327, -0.777) extent_km2=11410
+      DEL m4: 2024-11-08T05:51 COSMO-SkyMed Second Generation
+      DEL m2: 2024-11-05T10:52 Sentinel-2
+      DEL m3: 2024-11-06T06:00 Sentinel-1
+      DEL m0: 2024-10-30T10:37 Landsat-8; 2024-10-31T10:51 Sentinel-2; 2024-10-31T18:02 Sentinel-1
+      DEL m1: 2024-11-03T01:51 ICEYE
+  AOI02 'Plana de Utiel' centre=(39.527, -1.2) extent_km2=288
+      DEL m0: 2024-10-31T10:22 GeoEye-1; 2024-10-31T10:22 GeoEye-1
+  AOI03 'Horta Sud' centre=(39.443, -0.484) extent_km2=170
+      GRA m0: 2024-10-31T10:22 GeoEye-1
+      DEL m0: 2024-10-31T10:22 GeoEye-1; 2024-10-31T10:22 WorldView-2
+  AOI04 'Algemesi' centre=(39.23, -0.496) extent_km2=232
+      DEL m0: 2024-10-31T10:22 GeoEye-1
+  AOI05 'Letur' centre=(38.372, -2.095) extent_km2=27
+      GRA m0: 2024-11-06T11:09 Pleiades
+  AOI06 'Castellon province' centre=(40.4, 0.048) extent_km2=5394
+      DEL m0: 2024-11-02T06:13 TerraSAR-X
+      DEL m1: 2024-11-08T10:28 SPOT-6-7
+  AOI07 'Fuenterrobles' centre=(39.587, -1.362) extent_km2=7
+      GRA m0: 2024-10-31T10:28 GeoEye-1
+  AOI08 'Caudete de las Fuentes' centre=(39.557, -1.278) extent_km2=7
+      GRA m0: 2024-11-02T10:50 WorldView-2
+  AOI09 'Chera' centre=(39.593, -0.973) extent_km2=5
+      GRA m0: 2024-10-31T10:22 Pleiades
+  AOI10 'Cheste' centre=(39.485, -0.689) extent_km2=63
+      GRA m0: 2024-11-10T10:39 Pleiades
+  AOI11 'Yatova' centre=(39.384, -0.801) extent_km2=6
+      GRA m0: 2024-11-10T10:39 Pleiades
+      DEL m0: 2024-11-11T10:00 Plane Imagery
+  AOI12 'Godelleta' centre=(39.425, -0.689) extent_km2=14
+      GRA m0: 2024-11-10T10:39 Pleiades
+  AOI13 'Monserrat' centre=(39.361, -0.606) extent_km2=17
+      GRA m0: 2024-11-10T10:39 Pleiades; 2024-11-11T13:00 Plane Imagery
+  AOI14 'Alcudia' centre=(39.196, -0.507) extent_km2=11
+      GRA m0: 2024-11-10T10:39 Pleiades; 2024-11-11T11:20 Pleiades
+      GRA m1: 2024-11-11T13:00 Plane Imagery
+  AOI15 'Alhaurin de la Torre' centre=(36.674, -4.575) extent_km2=73
+      GRA m0: 2024-11-15T11:13 GeoEye-1
+  AOI16 'Benicull de Xuquer' centre=(39.176, -0.371) extent_km2=21
+      GRA m0: 2024-11-11T13:00 Plane Imagery; 2024-11-15T11:01 WorldView-3
+  AOI17 'Alzira' centre=(39.174, -0.428) extent_km2=38
+      GRA m0: 2024-10-31T10:22 GeoEye-1; 2024-11-11T13:00 Plane Imagery
+  AOI18 'Alginet' centre=(39.252, -0.494) extent_km2=21
+      GRA m0: 2024-10-31T10:22 GeoEye-1; 2024-11-11T13:00 Plane Imagery
+  AOI19 'Llombai' centre=(39.28, -0.575) extent_km2=5
+      GRA m0: 2024-10-31T10:22 GeoEye-1; 2024-11-11T10:00 Plane Imagery
+  AOI20 'Montroi' centre=(39.331, -0.609) extent_km2=5
+      GRA m0: 2024-11-09T10:47 Pleiades; 2024-11-11T10:00 Plane Imagery
+  AOI21 'Turis' centre=(39.379, -0.709) extent_km2=8
+      GRA m0: 2024-11-11T13:00 Plane Imagery; 2024-11-15T11:20 Pleiades
+  AOI22 'Bunol' centre=(39.424, -0.774) extent_km2=10
+      GRA m0: 2024-11-11T11:20 Pleiades; 2024-11-11T13:00 Plane Imagery
+  AOI23 'Favara' centre=(39.129, -0.291) extent_km2=2
+      GRA m0: 2024-11-11T11:20 Pleiades; 2024-11-11T13:00 Plane Imagery
+  AOI24 'Cullera' centre=(39.16, -0.248) extent_km2=13
+      GRA m0: 2024-11-11T11:20 Pleiades; 2024-11-11T13:00 Plane Imagery
+  AOI25 'Sueca' centre=(39.201, -0.311) extent_km2=14
+      GRA m0: 2024-11-11T11:20 Pleiades; 2024-11-11T13:00 Plane Imagery
+  AOI26 'Siete Aguas' centre=(39.472, -0.915) extent_km2=2
+      GRA m0: 2024-11-10T10:39 Pleiades; 2024-11-18T12:16 Plane Imagery
+  AOI27 'Requena' centre=(39.519, -1.146) extent_km2=24
+      GRA m0: 2024-10-31T10:22 GeoEye-1; 2024-11-18T12:16 Plane Imagery
+  AOI28 'Pedralba' centre=(39.606, -0.731) extent_km2=3
+      GRA m0: 2024-11-18T12:16 Plane Imagery
+  AOI29 'El Mas del Moro' centre=(39.555, -0.594) extent_km2=6
+      GRA m0: 2024-11-18T12:16 Plane Imagery
+  AOI30 'Valencia Sud' centre=(39.319, -0.419) extent_km2=27
+      GRA m0: 2024-11-11T11:12 Pleiades; 2024-11-17T13:21 Plane Imagery
+  AOI31 'Cases Del Riu' centre=(39.352, -0.695) extent_km2=8
+      GRA m0: 2024-11-11T13:00 Plane Imagery
+  AOI32 'Campo Arcis' centre=(39.435, -1.165) extent_km2=7
+      GRA m0: 2024-11-10T10:39 Pleiades
+  AOI33 'Sot de Chera' centre=(39.62, -0.909) extent_km2=1
+      GRA m0: 2024-11-11T11:20 Pleiades
+  AOI34 'Camporrobles' centre=(39.649, -1.399) extent_km2=3
+      GRA m0: 2024-11-11T11:20 Pleiades
+  AOI35 'Alcasser' centre=(39.375, -0.442) extent_km2=4
+      GRA m0: 2024-11-17T13:21 Plane Imagery
+  AOI36 'Paterna' centre=(39.497, -0.455) extent_km2=24
+      GRA m0: 2024-11-18T12:16 Plane Imagery
+== EMSR692 Flood in Greece eventTime 2023-09-05T10:30:00 activationTime 2023-09-05T12:10:00
+  AOI01 'Magnesia' centre=(39.447, 22.392) extent_km2=9613
+      DEL m3: 2023-09-09T09:31 WorldView-3
+      DEL m4: 
+      DEL m0: 2023-09-05T16:31 PAZ
+      DEL m1: 2023-09-06T04:39 Sentinel-1; 2023-09-06T04:40 Sentinel-1
+      DEL m2: 2023-09-07T16:25 Sentinel-1
+  AOI02 'Palamas' centre=(39.425, 22.192) extent_km2=1442
+      DEL m4: 2023-09-17T09:05 SPOT-6-7
+      DEL m0: 2023-09-10T09:05 GeoEye-1
+      DEL m1: 2023-09-12T08:54 SPOT-6-7
+      DEL m2: 2023-09-14T08:38 SPOT-6-7
+      DEL m3: 2023-09-15T09:19 SPOT-6-7
+      DEL m5: 2023-09-19T09:34 WorldView-2
+  AOI03 'Larissa' centre=(39.661, 22.501) extent_km2=605
+      DEL m3: 2023-09-15T09:19 SPOT-6-7
+      DEL m5: 2023-09-19T09:30 WorldView-2
+      DEL m0: 2023-09-10T09:05 GeoEye-1
+      DEL m4: 2023-09-17T09:04 SPOT-6-7
+      DEL m2: 2023-09-14T08:38 SPOT-6-7
+      DEL m1: 2023-09-12T08:53 SPOT-6-7
+  AOI04 'Stefanovikio' centre=(39.614, 22.715) extent_km2=489
+      DEL m3: 2023-09-17T09:04 SPOT-6-7
+      DEL m1: 2023-09-12T08:53 SPOT-6-7
+      DEL m0: 2023-09-10T10:09 GeoEye-1
+      DEL m4: 2023-09-19T09:33 WorldView-2
+      DEL m2: 2023-09-14T08:38 SPOT-6-7
+  AOI05 'Karditsa' centre=(39.44, 21.893) extent_km2=1323
+      DEL m1: 2023-09-11T09:42 GeoEye-1
+      DEL m2: 2023-09-12T08:54 SPOT-6-7
+      DEL m3: 2023-09-14T09:16 WorldView-3
+      DEL m4: 2023-09-17T09:05 SPOT-6-7
+      DEL m5: 2023-09-18T10:08 WorldView-2
+      DEL m0: 2023-09-10T09:15 Sentinel-2
+  AOI06 'Keramidi' centre=(39.59, 22.18) extent_km2=281
+      DEL m1: 2023-09-22T09:46 GeoEye-1
+  AOI07 'Kalamaki' centre=(39.613, 22.634) extent_km2=561
+      DEL m1: 2023-09-22T09:46 GeoEye-1
+== EMSR773_AOI03_DEL_PRODUCT_observedEventA_v1.json
+   Flooded area: 306 polys, 0.84 km2, bounds W-0.580 S39.356 E-0.389 N39.489, centroid (39.432, -0.481)
+   Flood trace: 311 polys, 23.22 km2, bounds W-0.584 S39.356 E-0.388 N39.497, centroid (39.449, -0.492)
+   property keys: ['area', 'det_method', 'dmg_src_id', 'event_type', 'notation', 'obj_desc']
+== EMSR692_AOI01_DEL_MONIT03_observedEventA_v3.json
+   Flooded area: 1513 polys, 283.47 km2, bounds W21.744 S39.190 E22.334 N39.667, centroid (39.489, 22.037)
+   Flood trace: 292 polys, 247.26 km2, bounds W21.747 S39.120 E23.198 N39.663, centroid (39.400, 22.105)
+   property keys: ['area', 'det_method', 'dmg_src_id', 'event_type', 'notation', 'obj_desc']
+Volos town box (R2): Flooded area 0.0 km2
+Volos town box (R2): Flood trace 0.0 km2

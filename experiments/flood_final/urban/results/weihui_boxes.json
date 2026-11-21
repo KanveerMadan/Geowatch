@@ -1,0 +1,41 @@
+{
+ "usf_weihui_1": {
+  "bbox": [
+   114.039108,
+   35.390758,
+   114.083195,
+   35.42669
+  ],
+  "fu_pixels_coarse": 27,
+  "flooded_all": 4842,
+  "flooded_open": 1633,
+  "fu_cells": 3200,
+  "dry_all": 14202
+ },
+ "usf_weihui_2": {
+  "bbox": [
+   113.412241,
+   35.367416,
+   113.456315,
+   35.403348
+  ],
+  "fu_pixels_coarse": 13,
+  "flooded_all": 879,
+  "flooded_open": 0,
+  "fu_cells": 879,
+  "dry_all": 18027
+ },
+ "usf_weihui_3": {
+  "bbox": [
+   115.456279,
+   35.254041,
+   115.500291,
+   35.289973
+  ],
+  "fu_pixels_coarse": 9,
+  "flooded_all": 450,
+  "flooded_open": 0,
+  "fu_cells": 450,
+  "dry_all": 18046
+ }
+}

@@ -1,0 +1,13 @@
+type,candidate,lro_mean_auc,lco_mean_auc,chosen,n_units,source_file,source_commit,source_commit_date
+flash_flood,open__lgbm,0.7503,0.7551,True,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+flash_flood,no_landcover__logreg,0.7187,0.7365,False,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+flash_flood,full__logreg,0.7155,0.7591,False,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+flash_flood,open__logreg,0.7014,0.752,False,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+flash_flood,full__lgbm,0.6912,0.7538,False,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+flash_flood,no_landcover__lgbm,0.6739,0.7253,False,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+flash_flood,module:flash_flood,0.6736,,False,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+flash_flood,baseline:hand,0.6709,,False,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+flash_flood,baseline:occurrence,0.5402,,False,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+flash_flood,baseline:dist_water,0.63,,False,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+flash_flood,baseline:neg_elev_glo30,0.7098,,False,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30
+flash_flood,baseline:neg_dist_coast,0.5643,,False,17,experiments/flood_final/results/method_choice.json,81ff7b1,2026-11-20T11:31:46+05:30

@@ -1,0 +1,1525 @@
+{
+ "rules": "\nHeld-out selection and reference build (references only: no input layer, no\nscore, no model output is computed here).\n\n    python -m experiments.flood_learned.heldout.select        # builds references, writes selection\n\nRules (fixed before any held-out reference was built):\n  1. Pool: the screen's candidates (screen.py): public Copernicus EMS Flood/Storm\n     activations not carried by any registry unit and not linked by the\n     registry guard to any dev or reserved unit.\n  2. Flood type from the activation's own text (quoted per activation in\n     ACTIVATIONS), by these rules:\n       fluvial       the text names a river or a river overflow as the cause\n       flash_flood   the text says \"flash flood\", or floods with landslides\n                     in steep terrain\n       pluvial       heavy rainfall flooding a city; no river named as the cause\n       waterlogging  prolonged flooding of a flat plain or polder\n     Excluded types: glacial-lake outburst (M6), dam breach (M7), snowmelt /\n     ice (M8), groundwater (M10), cyclone wind damage without flood mapping.\n     Excluded: an activation from the same storm as a registry event\n     (EXCLUDED_SAME_STORM), and one whose HydroBASINS main basin is a registry\n     dev unit's (checked after placement, `independence`).\n  3. Product per AOI: the lowest monitoring number of type DEL (round 4's\n     product rule), else GRA.\n  4. Box: round 4's box rule (harness_round4.place: 4 km square centred on the\n     reference's flood).\n  5. Qualifies: >= 50 flooded and >= 50 dry valid cells in the box (the\n     project's MIN_FLOODED_CELLS / MIN_DRY_CELLS).\n  6. One event per activation (each activation is one storm, i.e. one cluster):\n     the qualifying AOI with the most flooded cells in its box. Ties: lowest\n     AOI number.\n",
+ "activations": {
+  "EMSR662": {
+   "type": "fluvial",
+   "region": "africa",
+   "quote": "River Katonga in Western Uganda flooded ... after heavy rain",
+   "event": "2023-05-11",
+   "aois": [
+    {
+     "unit": "emsr662_aoi01",
+     "aoi": 1,
+     "aoi_name": "Nkozi",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      31.763287,
+      0.043827,
+      31.799219,
+      0.079759
+     ],
+     "centre": [
+      0.061793,
+      31.781253
+     ],
+     "flooded_cells": 408,
+     "dry_cells": 17280,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr662_aoi01"
+  },
+  "EMSR774": {
+   "type": "fluvial",
+   "region": "americas",
+   "quote": "heavy rains hit the Veracruz region causing the Papaloapan river overflow",
+   "event": "2024-10-28",
+   "aois": [
+    {
+     "unit": "emsr774_aoi01",
+     "aoi": 1,
+     "aoi_name": "Tlacotalpan",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -95.600313,
+      18.396024,
+      -95.562441,
+      18.431956
+     ],
+     "centre": [
+      18.41399,
+      -95.581377
+     ],
+     "flooded_cells": 7209,
+     "dry_cells": 10327,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr774_aoi02",
+     "aoi": 2,
+     "aoi_name": "Minatitlan",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -94.683184,
+      17.748308,
+      -94.645452,
+      17.78424
+     ],
+     "centre": [
+      17.766274,
+      -94.664318
+     ],
+     "flooded_cells": 879,
+     "dry_cells": 16516,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr774_aoi01"
+  },
+  "EMSR865": {
+   "type": "fluvial",
+   "region": "americas",
+   "quote": "severe flooding in the department of C\u00f3rdoba ... Overflow of th[e] ... river",
+   "event": "2026-01-26",
+   "aois": [
+    {
+     "unit": "emsr865_aoi01",
+     "aoi": 1,
+     "aoi_name": "Monter\u00eca",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -75.940835,
+      8.783534,
+      -75.904475,
+      8.819466
+     ],
+     "centre": [
+      8.8015,
+      -75.922655
+     ],
+     "flooded_cells": 1937,
+     "dry_cells": 15783,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr865_aoi01"
+  },
+  "EMSR853": {
+   "type": "fluvial",
+   "region": "americas",
+   "quote": "intense rainfall ... provinces of Andr\u00e9s Ib\u00e1\u00f1ez and Sara, Bolivia ... caused rivers to overflow",
+   "event": "2025-12-13",
+   "aois": [
+    {
+     "unit": "emsr853_aoi01",
+     "aoi": 1,
+     "aoi_name": "Portachuelo",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -63.379874,
+      -17.378055,
+      -63.342226,
+      -17.342123
+     ],
+     "centre": [
+      -17.360089,
+      -63.36105
+     ],
+     "flooded_cells": 210,
+     "dry_cells": 17606,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr853_aoi02",
+     "aoi": 2,
+     "aoi_name": "Santa Rosa del Sara",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -63.675141,
+      -16.686889,
+      -63.637633,
+      -16.650957
+     ],
+     "centre": [
+      -16.668923,
+      -63.656387
+     ],
+     "flooded_cells": 2776,
+     "dry_cells": 14932,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr853_aoi04",
+     "aoi": 4,
+     "aoi_name": "El Torno",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      -63.458196,
+      -17.997094,
+      -63.420418,
+      -17.961162
+     ],
+     "centre": [
+      -17.979128,
+      -63.439307
+     ],
+     "flooded_cells": 280,
+     "dry_cells": 5313,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr853_aoi06",
+     "aoi": 6,
+     "aoi_name": "Montero",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      -63.25562,
+      -17.345325,
+      -63.21798,
+      -17.309393
+     ],
+     "centre": [
+      -17.327359,
+      -63.2368
+     ],
+     "flooded_cells": 50,
+     "dry_cells": 17192,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr853_aoi07",
+     "aoi": 7,
+     "aoi_name": "Warnes",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -63.345976,
+      -17.499502,
+      -63.308304,
+      -17.46357
+     ],
+     "centre": [
+      -17.481536,
+      -63.32714
+     ],
+     "flooded_cells": 154,
+     "dry_cells": 12103,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr853_aoi08",
+     "aoi": 8,
+     "aoi_name": "La Caranda",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -63.257478,
+      -17.462159,
+      -63.219814,
+      -17.426227
+     ],
+     "centre": [
+      -17.444193,
+      -63.238646
+     ],
+     "flooded_cells": 244,
+     "dry_cells": 13615,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr853_aoi02"
+  },
+  "EMSR844": {
+   "type": "fluvial",
+   "region": "southeast_asia",
+   "quote": "flood ... Viet Nam (Cau River, Thuong River, Ca Lo River and Day River areas)",
+   "event": "2025-10-08",
+   "aois": [
+    {
+     "unit": "emsr844_aoi01",
+     "aoi": 1,
+     "aoi_name": "Quang Chau",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      106.079301,
+      21.189472,
+      106.117843,
+      21.225404
+     ],
+     "centre": [
+      21.207438,
+      106.098572
+     ],
+     "flooded_cells": 398,
+     "dry_cells": 15488,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr844_aoi01"
+  },
+  "EMSR757": {
+   "type": "fluvial",
+   "region": "europe_mediterranean",
+   "quote": "flooding is forecast to affect the March and Morava Basins",
+   "event": "2024-09-13",
+   "aois": [
+    {
+     "unit": "emsr757_aoi01",
+     "aoi": 1,
+     "aoi_name": "Morava",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      16.91768,
+      48.289773,
+      16.971704,
+      48.325705
+     ],
+     "centre": [
+      48.307739,
+      16.944692
+     ],
+     "flooded_cells": 3850,
+     "dry_cells": 13936,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr757_aoi02",
+     "aoi": 2,
+     "aoi_name": "Myjava",
+     "monitoring": 1,
+     "product_type": "DEL",
+     "bbox": [
+      17.294106,
+      48.641658,
+      17.348506,
+      48.67759
+     ],
+     "centre": [
+      48.659624,
+      17.321306
+     ],
+     "flooded_cells": 768,
+     "dry_cells": 17041,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr757_aoi01"
+  },
+  "EMSR868": {
+   "type": "fluvial",
+   "region": "europe_mediterranean",
+   "quote": "large areas in the Greek part of the Evros River basin had been flooded",
+   "event": "2026-02-18",
+   "aois": [
+    {
+     "unit": "emsr868_aoi01",
+     "aoi": 1,
+     "aoi_name": "Orestiada",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      26.486776,
+      41.331632,
+      26.534642,
+      41.367564
+     ],
+     "centre": [
+      41.349598,
+      26.510709
+     ],
+     "flooded_cells": 4874,
+     "dry_cells": 11211,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr868_aoi02",
+     "aoi": 2,
+     "aoi_name": "Feres",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      26.07655,
+      40.823676,
+      26.124048,
+      40.859608
+     ],
+     "centre": [
+      40.841642,
+      26.100299
+     ],
+     "flooded_cells": 1756,
+     "dry_cells": 16030,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr868_aoi01"
+  },
+  "EMSR711": {
+   "type": "fluvial",
+   "region": "europe_mediterranean",
+   "quote": "a flood event is forecast and expected over Charente River",
+   "event": "2023-12-14",
+   "aois": [
+    {
+     "unit": "emsr711_aoi01",
+     "aoi": 1,
+     "aoi_name": "Rochefort",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -0.546734,
+      45.69798,
+      -0.49527,
+      45.733912
+     ],
+     "centre": [
+      45.715946,
+      -0.521002
+     ],
+     "flooded_cells": 2297,
+     "dry_cells": 15336,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr711_aoi02",
+     "aoi": 2,
+     "aoi_name": "Saintes",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -0.622467,
+      45.709988,
+      -0.570993,
+      45.74592
+     ],
+     "centre": [
+      45.727954,
+      -0.59673
+     ],
+     "flooded_cells": 4362,
+     "dry_cells": 9120,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr711_aoi03",
+     "aoi": 3,
+     "aoi_name": "Angouleme",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      0.071987,
+      45.66537,
+      0.123421,
+      45.701302
+     ],
+     "centre": [
+      45.683336,
+      0.097704
+     ],
+     "flooded_cells": 849,
+     "dry_cells": 10260,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr711_aoi02"
+  },
+  "EMSR779": {
+   "type": "waterlogging",
+   "region": "africa",
+   "quote": "flood ... affected Departments of Logone et Chari and Mayo Danay, Cameroon (Sahelian floodplain, weeks-long inundation; second wave of EMSR772)",
+   "event": "2024-11-21",
+   "aois": [
+    {
+     "unit": "emsr779_aoi01",
+     "aoi": 1,
+     "aoi_name": "Yagoua",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      15.045612,
+      10.510742,
+      15.08216,
+      10.546674
+     ],
+     "centre": [
+      10.528708,
+      15.063886
+     ],
+     "flooded_cells": 217,
+     "dry_cells": 17472,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr779_aoi02",
+     "aoi": 2,
+     "aoi_name": "Makari",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      14.593895,
+      12.457397,
+      14.630697,
+      12.493329
+     ],
+     "centre": [
+      12.475363,
+      14.612296
+     ],
+     "flooded_cells": 3374,
+     "dry_cells": 14315,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr779_aoi03",
+     "aoi": 3,
+     "aoi_name": "Waza",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      14.855866,
+      12.030018,
+      14.892608,
+      12.06595
+     ],
+     "centre": [
+      12.047984,
+      14.874237
+     ],
+     "flooded_cells": 2557,
+     "dry_cells": 15132,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr779_aoi02"
+  },
+  "EMSR708": {
+   "type": "waterlogging",
+   "region": "europe_mediterranean",
+   "quote": "a flood event is reported to have affected West Flanders, Belgium (polders)",
+   "event": "2023-11-10",
+   "aois": [
+    {
+     "unit": "emsr708_aoi01",
+     "aoi": 1,
+     "aoi_name": "Westhoek",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      2.748852,
+      50.939824,
+      2.805898,
+      50.975756
+     ],
+     "centre": [
+      50.95779,
+      2.777375
+     ],
+     "flooded_cells": 6177,
+     "dry_cells": 11592,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr708_aoi02",
+     "aoi": 2,
+     "aoi_name": "Kachtem",
+     "monitoring": 1,
+     "product_type": "DEL",
+     "bbox": [
+      3.152704,
+      50.91629,
+      3.20972,
+      50.952222
+     ],
+     "centre": [
+      50.934256,
+      3.181212
+     ],
+     "flooded_cells": 76,
+     "dry_cells": 11271,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr708_aoi03",
+     "aoi": 3,
+     "aoi_name": "Moorsele Wevelgem",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      3.101087,
+      50.834696,
+      3.158003,
+      50.870628
+     ],
+     "centre": [
+      50.852662,
+      3.129545
+     ],
+     "flooded_cells": 611,
+     "dry_cells": 17121,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr708_aoi01"
+  },
+  "EMSR799": {
+   "type": "waterlogging",
+   "region": "americas",
+   "quote": "heavy rains ... departments of La Paz, Beni and Oruro, causing flooding (Beni plains)",
+   "event": "2025-04-04",
+   "aois": [
+    {
+     "unit": "emsr799_aoi02",
+     "aoi": 2,
+     "aoi_name": "Rio Desaguadero",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -68.90594,
+      -16.864223,
+      -68.868396,
+      -16.828291
+     ],
+     "centre": [
+      -16.846257,
+      -68.887168
+     ],
+     "flooded_cells": 213,
+     "dry_cells": 17476,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr799_aoi03",
+     "aoi": 3,
+     "aoi_name": "Rio Mamore",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -64.971249,
+      -14.761201,
+      -64.934093,
+      -14.725269
+     ],
+     "centre": [
+      -14.743235,
+      -64.952671
+     ],
+     "flooded_cells": 1041,
+     "dry_cells": 16555,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr799_aoi04",
+     "aoi": 4,
+     "aoi_name": "Toledo",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -67.464955,
+      -18.256737,
+      -67.427121,
+      -18.220805
+     ],
+     "centre": [
+      -18.238771,
+      -67.446038
+     ],
+     "flooded_cells": 1904,
+     "dry_cells": 15813,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr799_aoi04"
+  },
+  "EMSR870": {
+   "type": "flash_flood",
+   "region": "americas",
+   "quote": "heavy rainfall ... Ecuador, triggering flash floods, floods and landslides",
+   "event": "2026-03-02",
+   "aois": [
+    {
+     "unit": "emsr870_aoi05",
+     "aoi": 5,
+     "aoi_name": "La Selva",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -79.952409,
+      0.526295,
+      -79.916475,
+      0.562227
+     ],
+     "centre": [
+      0.544261,
+      -79.934442
+     ],
+     "flooded_cells": 1489,
+     "dry_cells": 16330,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr870_aoi08",
+     "aoi": 8,
+     "aoi_name": "Montalvo",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -79.379098,
+      -1.888613,
+      -79.343146,
+      -1.852681
+     ],
+     "centre": [
+      -1.870647,
+      -79.361122
+     ],
+     "flooded_cells": 1931,
+     "dry_cells": 15884,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr870_aoi10",
+     "aoi": 10,
+     "aoi_name": "Pedro Carbo",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -80.158224,
+      -1.845531,
+      -80.122274,
+      -1.809599
+     ],
+     "centre": [
+      -1.827565,
+      -80.140249
+     ],
+     "flooded_cells": 320,
+     "dry_cells": 17368,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr870_aoi13",
+     "aoi": 13,
+     "aoi_name": "Babahoyo",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      -79.531974,
+      -1.818876,
+      -79.496024,
+      -1.782944
+     ],
+     "centre": [
+      -1.80091,
+      -79.513999
+     ],
+     "flooded_cells": 8858,
+     "dry_cells": 8577,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr870_aoi13"
+  },
+  "EMSR813": {
+   "type": "flash_flood",
+   "region": "americas",
+   "quote": "heavy rainfall ... Amazon region in Ecuador which has resulted in floods and landslides (Zamora Chinchipe)",
+   "event": "2025-07-03",
+   "aois": [
+    {
+     "unit": "emsr813_aoi01",
+     "aoi": 1,
+     "aoi_name": "Cumbaratza",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      -78.876339,
+      -4.010902,
+      -78.840319,
+      -3.97497
+     ],
+     "centre": [
+      -3.992936,
+      -78.858329
+     ],
+     "flooded_cells": 173,
+     "dry_cells": 17458,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr813_aoi01"
+  },
+  "EMSR770": {
+   "type": "flash_flood",
+   "region": "europe_mediterranean",
+   "quote": "flood ... municipalities of Jablanica and Konjic ... (Oct 2024 torrential floods and landslides)",
+   "event": "2024-10-04",
+   "aois": [
+    {
+     "unit": "emsr770_aoi01",
+     "aoi": 1,
+     "aoi_name": "Konjic",
+     "monitoring": 1,
+     "product_type": "DEL",
+     "bbox": [
+      17.792742,
+      43.714337,
+      17.84247,
+      43.750269
+     ],
+     "centre": [
+      43.732303,
+      17.817606
+     ],
+     "flooded_cells": 217,
+     "dry_cells": 8524,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr770_aoi02",
+     "aoi": 2,
+     "aoi_name": "Jablanica",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      17.72829,
+      43.64759,
+      17.777962,
+      43.683522
+     ],
+     "centre": [
+      43.665556,
+      17.753126
+     ],
+     "flooded_cells": 34,
+     "dry_cells": 9015,
+     "qualifies": false,
+     "error": null
+    },
+    {
+     "unit": "emsr770_aoi03",
+     "aoi": 3,
+     "aoi_name": "Bakovici",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      17.92173,
+      43.891432,
+      17.971606,
+      43.927364
+     ],
+     "centre": [
+      43.909398,
+      17.946668
+     ],
+     "flooded_cells": 348,
+     "dry_cells": 4902,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr770_aoi03"
+  },
+  "EMSR680": {
+   "type": "flash_flood",
+   "region": "europe_mediterranean",
+   "quote": "red weather alert ... severe weather characterized by heavy rain (Slovenia, Aug 2023 torrential floods)",
+   "event": "2023-08-04",
+   "aois": [
+    {
+     "unit": "emsr680_aoi01",
+     "aoi": 1,
+     "aoi_name": "Kranj",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      14.533299,
+      46.146092,
+      14.585179,
+      46.182024
+     ],
+     "centre": [
+      46.164058,
+      14.559239
+     ],
+     "flooded_cells": 18,
+     "dry_cells": 17731,
+     "qualifies": false,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi03",
+     "aoi": 3,
+     "aoi_name": "Zalec",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      14.986188,
+      46.304602,
+      15.038218,
+      46.340534
+     ],
+     "centre": [
+      46.322568,
+      15.012203
+     ],
+     "flooded_cells": 10,
+     "dry_cells": 16465,
+     "qualifies": false,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi04",
+     "aoi": 4,
+     "aoi_name": "Murska",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      16.175134,
+      46.572598,
+      16.227422,
+      46.60853
+     ],
+     "centre": [
+      46.590564,
+      16.201278
+     ],
+     "flooded_cells": 254,
+     "dry_cells": 17504,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi05",
+     "aoi": 5,
+     "aoi_name": "Solcava",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      14.674379,
+      46.394721,
+      14.726495,
+      46.430653
+     ],
+     "centre": [
+      46.412687,
+      14.700437
+     ],
+     "flooded_cells": 29,
+     "dry_cells": 4026,
+     "qualifies": false,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi06",
+     "aoi": 6,
+     "aoi_name": "Luce",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      14.724806,
+      46.34016,
+      14.77687,
+      46.376092
+     ],
+     "centre": [
+      46.358126,
+      14.750838
+     ],
+     "flooded_cells": 241,
+     "dry_cells": 7178,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi07",
+     "aoi": 7,
+     "aoi_name": "Ljubno",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      14.809339,
+      46.326341,
+      14.861391,
+      46.362273
+     ],
+     "centre": [
+      46.344307,
+      14.835365
+     ],
+     "flooded_cells": 865,
+     "dry_cells": 10859,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi09",
+     "aoi": 9,
+     "aoi_name": "Gornji Grad",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      14.785027,
+      46.278516,
+      14.837033,
+      46.314448
+     ],
+     "centre": [
+      46.296482,
+      14.81103
+     ],
+     "flooded_cells": 1,
+     "dry_cells": 4698,
+     "qualifies": false,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi10",
+     "aoi": 10,
+     "aoi_name": "Vucja",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      16.082166,
+      46.580429,
+      16.134462,
+      46.616361
+     ],
+     "centre": [
+      46.598395,
+      16.108314
+     ],
+     "flooded_cells": 14,
+     "dry_cells": 3074,
+     "qualifies": false,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi11",
+     "aoi": 11,
+     "aoi_name": "Verzej",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      16.127722,
+      46.570871,
+      16.180008,
+      46.606803
+     ],
+     "centre": [
+      46.588837,
+      16.153865
+     ],
+     "flooded_cells": 74,
+     "dry_cells": 5118,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi12",
+     "aoi": 12,
+     "aoi_name": "Krapje",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      16.179027,
+      46.545758,
+      16.231289,
+      46.58169
+     ],
+     "centre": [
+      46.563724,
+      16.205158
+     ],
+     "flooded_cells": 38,
+     "dry_cells": 1784,
+     "qualifies": false,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi13",
+     "aoi": 13,
+     "aoi_name": "Dolnja Bistrica",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      16.264538,
+      46.530732,
+      16.316786,
+      46.566664
+     ],
+     "centre": [
+      46.548698,
+      16.290662
+     ],
+     "flooded_cells": 563,
+     "dry_cells": 10649,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi14",
+     "aoi": 14,
+     "aoi_name": "Podvolovljek",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      14.658801,
+      46.303812,
+      14.710831,
+      46.339744
+     ],
+     "centre": [
+      46.321778,
+      14.684816
+     ],
+     "flooded_cells": 94,
+     "dry_cells": 9964,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr680_aoi15",
+     "aoi": 15,
+     "aoi_name": "Prevalje",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      14.838211,
+      46.491164,
+      14.890421,
+      46.527096
+     ],
+     "centre": [
+      46.50913,
+      14.864316
+     ],
+     "flooded_cells": 155,
+     "dry_cells": 17483,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr680_aoi07"
+  },
+  "EMSR838": {
+   "type": "flash_flood",
+   "region": "south_asia",
+   "quote": "a flash flood event during the monsoon season ... Punjab and Khyber Pakhtunkhwa provinces, Pakistan",
+   "event": "2025-08-29",
+   "aois": [
+    {
+     "unit": "emsr838_aoi01",
+     "aoi": 1,
+     "aoi_name": "Rasoo Nagar",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      73.736937,
+      32.307672,
+      73.779459,
+      32.343604
+     ],
+     "centre": [
+      32.325638,
+      73.758198
+     ],
+     "flooded_cells": 9092,
+     "dry_cells": 8658,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr838_aoi02",
+     "aoi": 2,
+     "aoi_name": "Sharaqpur",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      74.032894,
+      31.36342,
+      74.074984,
+      31.399352
+     ],
+     "centre": [
+      31.381386,
+      74.053939
+     ],
+     "flooded_cells": 7010,
+     "dry_cells": 10721,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr838_aoi03",
+     "aoi": 3,
+     "aoi_name": "Pir Khalis",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      73.3361,
+      30.185534,
+      73.377676,
+      30.221466
+     ],
+     "centre": [
+      30.2035,
+      73.356888
+     ],
+     "flooded_cells": 7261,
+     "dry_cells": 10481,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr838_aoi04",
+     "aoi": 4,
+     "aoi_name": "Najabat",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      74.477898,
+      30.970476,
+      74.519812,
+      31.006408
+     ],
+     "centre": [
+      30.988442,
+      74.498855
+     ],
+     "flooded_cells": 3448,
+     "dry_cells": 9891,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr838_aoi05",
+     "aoi": 5,
+     "aoi_name": "Trimmu",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      72.011259,
+      30.929428,
+      72.053155,
+      30.96536
+     ],
+     "centre": [
+      30.947394,
+      72.032207
+     ],
+     "flooded_cells": 2490,
+     "dry_cells": 15273,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr838_aoi07",
+     "aoi": 7,
+     "aoi_name": "Sahuka",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      72.994889,
+      30.019117,
+      73.036395,
+      30.055049
+     ],
+     "centre": [
+      30.037083,
+      73.015642
+     ],
+     "flooded_cells": 11360,
+     "dry_cells": 6389,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr838_aoi08",
+     "aoi": 8,
+     "aoi_name": "Vanike",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      73.550053,
+      32.245311,
+      73.592547,
+      32.281243
+     ],
+     "centre": [
+      32.263277,
+      73.5713
+     ],
+     "flooded_cells": 6602,
+     "dry_cells": 11133,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr838_aoi10",
+     "aoi": 10,
+     "aoi_name": "Daggar",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      72.432186,
+      34.539597,
+      72.475816,
+      34.575529
+     ],
+     "centre": [
+      34.557563,
+      72.454001
+     ],
+     "flooded_cells": 648,
+     "dry_cells": 17109,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr838_aoi11",
+     "aoi": 11,
+     "aoi_name": "Wakeel Abad",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      72.544985,
+      34.456901,
+      72.588573,
+      34.492833
+     ],
+     "centre": [
+      34.474867,
+      72.566779
+     ],
+     "flooded_cells": 6124,
+     "dry_cells": 10958,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr838_aoi07"
+  },
+  "EMSR776": {
+   "type": "pluvial",
+   "region": "americas",
+   "quote": "a flood ... affected Panama ... damage reported to affect many cities, towns and villages",
+   "event": "2024-11-04",
+   "aois": [
+    {
+     "unit": "emsr776_aoi01",
+     "aoi": 1,
+     "aoi_name": "Tonosi",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -80.428407,
+      7.369352,
+      -80.392173,
+      7.405284
+     ],
+     "centre": [
+      7.387318,
+      -80.41029
+     ],
+     "flooded_cells": 1167,
+     "dry_cells": 16629,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr776_aoi01"
+  },
+  "EMSR694": {
+   "type": "pluvial",
+   "region": "europe_mediterranean",
+   "quote": "slow-moving storm system (DANA) has affected Spain, causing heavy rains and floods",
+   "event": "2023-09-03",
+   "aois": [
+    {
+     "unit": "emsr694_aoi02",
+     "aoi": 2,
+     "aoi_name": "Calalberche",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      -4.299967,
+      40.209321,
+      -4.252903,
+      40.245253
+     ],
+     "centre": [
+      40.227287,
+      -4.276435
+     ],
+     "flooded_cells": 965,
+     "dry_cells": 7517,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr694_aoi03",
+     "aoi": 3,
+     "aoi_name": "El Alamo",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      -4.015467,
+      40.2057,
+      -3.968407,
+      40.241632
+     ],
+     "centre": [
+      40.223666,
+      -3.991937
+     ],
+     "flooded_cells": 1684,
+     "dry_cells": 15422,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr694_aoi03"
+  },
+  "EMSR935": {
+   "type": "pluvial",
+   "region": "europe_mediterranean",
+   "quote": "adverse weather affecting the south of Valencia province and the north of Alicante ... Up to 500 rescues",
+   "event": "2026-10-19",
+   "aois": [
+    {
+     "unit": "emsr935_aoi01",
+     "aoi": 1,
+     "aoi_name": "Moraira",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      -0.077048,
+      38.849185,
+      -0.030898,
+      38.885117
+     ],
+     "centre": [
+      38.867151,
+      -0.053973
+     ],
+     "flooded_cells": 8596,
+     "dry_cells": 6298,
+     "qualifies": true,
+     "error": null
+    },
+    {
+     "unit": "emsr935_aoi02",
+     "aoi": 2,
+     "aoi_name": "Gandia",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": [
+      -0.098002,
+      38.886505,
+      -0.051828,
+      38.922437
+     ],
+     "centre": [
+      38.904471,
+      -0.074915
+     ],
+     "flooded_cells": 404,
+     "dry_cells": 11371,
+     "qualifies": true,
+     "error": null
+    }
+   ],
+   "chosen": "emsr935_aoi01"
+  },
+  "EMSR843": {
+   "type": "pluvial",
+   "region": "europe_mediterranean",
+   "quote": "a severe storm ... affected northern Italy, particularly the Lombardy region, including the city of Milan",
+   "event": "2025-09-22",
+   "aois": [
+    {
+     "unit": "emsr843_aoi01",
+     "aoi": 1,
+     "aoi_name": "Seveso",
+     "monitoring": 0,
+     "product_type": "DEL",
+     "bbox": [
+      9.076727,
+      45.696773,
+      9.128189,
+      45.732705
+     ],
+     "centre": [
+      45.714739,
+      9.102458
+     ],
+     "flooded_cells": 33,
+     "dry_cells": 17656,
+     "qualifies": false,
+     "error": null
+    },
+    {
+     "unit": "emsr843_aoi02",
+     "aoi": 2,
+     "aoi_name": "Blevio",
+     "monitoring": 0,
+     "product_type": "GRA",
+     "bbox": null,
+     "centre": null,
+     "flooded_cells": null,
+     "dry_cells": null,
+     "qualifies": false,
+     "error": "no flood centre (no flooded polygon in the extent)"
+    }
+   ],
+   "chosen": null
+  }
+ },
+ "excluded_same_storm": {
+  "EMSR789": "Ecuador 26 Feb 2025 rainfall = milagro's storm (EMSR796, 2025-02-26)",
+  "EMSR772": "Cameroon Logone flood: first wave of EMSR779 (selected); one activation per flood"
+ }
+}

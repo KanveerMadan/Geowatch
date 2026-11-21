@@ -1,0 +1,15 @@
+event,best_baseline,fluvial_minus_best,delta_ci_lo_990m,delta_ci_hi_990m,clear_win_990m,r4_test_or_alias,jrc_circular,auc_fluvial,auc_best_baseline,source_file,source_commit,source_commit_date
+kyaukpyu,hand,0.2077,0.0438,0.2873,True,False,False,0.8972,0.6895,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+kolonnawa,hand,0.194,0.0628,0.3168,True,False,False,0.7996,0.6056,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+nam_dinh,dist_water,0.1467,0.0195,0.2565,True,False,False,0.7749,0.6282,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+paiporta,dist_water,0.1397,0.0563,0.2229,True,True,False,0.6859,0.5462,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+pakistan_2022,hand,0.0653,-0.0015,0.132,False,True,False,0.5791,0.5138,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+milagro,hand,0.0646,-0.0391,0.2397,False,False,False,0.7626,0.698,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+hanoi,occurrence,0.0611,-0.0148,0.12,False,False,False,0.9162,0.855,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+sittwe,hand,0.0555,-0.0785,0.1025,False,False,False,0.8616,0.8061,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+encantado,hand,0.0516,0.0172,0.0972,True,False,False,0.8302,0.7786,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+derna_2023,hand,0.016,-0.0149,0.0404,False,True,False,0.9769,0.9609,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+faenza,dist_water,0.0157,-0.0946,0.0778,False,False,False,0.7872,0.7715,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+himachal_2023,hand,0.0118,-0.0337,0.0525,False,True,False,0.5459,0.5341,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+derna,dist_water,0.0105,-0.0236,0.0445,False,True,False,0.6327,0.6222,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+bihar_2026,occurrence,0.0006,-0.0928,0.1104,False,True,False,0.6425,0.6419,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
