@@ -162,3 +162,49 @@ def test_pipeline_emits_the_learned_output_and_its_percentile_map():
     assert o["flood_types"] == ["M1", "M3"]
     assert o["map"]["rendered_as"] == "within-AOI percentile of the learned score"
     assert o["not_assessed"]["built_up_cells"] > 0
+
+
+def test_mosaic_takes_the_selected_bands_projection(monkeypatch):
+    """EMSR683 (Norway, 61.8 N): GLO-30 tiles above 60 degrees carry bands with
+    different projections, so Image.projection() on the whole image raised.
+    _mosaic must ask the selected band for its projection."""
+    import sys
+    import types
+    calls = []
+
+    class Img:
+        def __init__(self, sel=None):
+            self.sel = sel
+
+        def select(self, b):
+            calls.append(("select", b))
+            return Img(b)
+
+        def projection(self):
+            if self.sel is None:
+                raise RuntimeError("Image.projection: The bands of the specified image contains "
+                                   "different projections.")
+            return ("proj", self.sel)
+
+        def setDefaultProjection(self, p):
+            calls.append(("setDefaultProjection", p))
+            return self
+
+    class Col:
+        def __init__(self, *a):
+            pass
+
+        def filterBounds(self, r):
+            return self
+
+        def mosaic(self):
+            return Img()
+
+        def first(self):
+            return Img()
+
+    fake = types.SimpleNamespace(ImageCollection=Col, Image=lambda x: x)
+    monkeypatch.setitem(sys.modules, "ee", fake)
+    from experiments.flood_learned import fetch as F
+    F._mosaic("COPERNICUS/DEM/GLO30_2024_1", None, "DEM")
+    assert ("setDefaultProjection", ("proj", "DEM")) in calls
