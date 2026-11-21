@@ -1,0 +1,8 @@
+file:            experiments/flood_round2/PREREGISTRATION_ROUND2.md
+sha256:          7a06490cd79911568df20d823d2ee74b6d663618fe663f13caa40bb1d644b29f
+commit:          9853dd6e86df92cd7982d613e869c61dc51fd4e1 (branch exp/flood-round2)
+pushed (UTC):    2026-11-21T10:07:11Z  (origin/exp/flood-round2 == 9853dd6 at that time, checked with git ls-remote)
+registry commits: 0d569a1 (42 reserved), cfc29f1 (21 more rain / waterlogging reserved); both pushed before the pre-registration
+method choice:   results/method_choice_r2.json, commit e6c2796, sha256 ca0c9cb6246bbf90fc10ac6fc43d66d3fdc16a0f593f9592f70bf1bd6b1528b0
+reserved data read before this push: none (no reference, input layer or score of any round-2 reserved unit)
+check:           shasum -a 256 experiments/flood_round2/PREREGISTRATION_ROUND2.md
