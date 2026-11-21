@@ -24,3 +24,15 @@ def test_forest_classification_requires_prior_forest_and_persistent_observed_cha
     assert not forest(rows,"2022-06-01","2022-06-15",.9)["confirmed"]
     assert not forest(rows,"2022-06-01","2022-06-16",None)["observed_sources"]
     assert forest(rows,"2022-06-01","2022-06-16",.1)["domain"] == "outside_prior_forest"
+
+
+def test_water_observability_requires_a_usable_confirmation_pair():
+    history=[radar(d,-9,-15,t) for t in ("track1","track2") for d in
+             ("2022-05-01","2022-05-13","2022-05-25")]
+    june=[radar("2022-06-01",-9,-15,"track1"),radar("2022-06-02",-9,-15,"track2")]
+    assert not water(history+june,"2022-06-01","2022-07-01",0)["observed"]
+    late=radar("2022-06-29",-9,-15,"track1")
+    assert not water(history+june+[late],"2022-06-01","2022-07-01",0)["observed"]
+    optical=[dict(day=d,source="optical",track="o",water=-.4) for d in
+             ("2022-05-01","2022-05-13","2022-05-25","2022-06-01")]
+    assert set(water(history+june[:1]+optical,"2022-06-01","2022-07-01",0)["observed_targets"])=={"gain","loss"}
