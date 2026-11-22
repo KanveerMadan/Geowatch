@@ -73,16 +73,26 @@ def design(t, feats):
     return np.stack(cols, axis=1)
 
 
+MAX_ROWS_PER_UNIT = 20000       # training subsample per unit (fixed seed); predictions use every cell
+
+
+def _train_idx(t, seed=20261122):
+    ok = np.flatnonzero((t["y"] == 0) | (t["y"] == 1))
+    if len(ok) > MAX_ROWS_PER_UNIT:
+        ok = np.sort(np.random.default_rng(seed + len(t["y"])).choice(ok, MAX_ROWS_PER_UNIT, replace=False))
+    return ok
+
+
 def _rows(tables, names, fn):
-    """Stack labelled rows with equal weight per unit."""
+    """Stack labelled rows with equal weight per unit (at most MAX_ROWS_PER_UNIT per unit)."""
     Xs, ys, ws = [], [], []
     for n in names:
         t = tables[n]
-        ok = (t["y"] == 0) | (t["y"] == 1)
+        ok = _train_idx(t)
         X = fn(t)[ok]
         Xs.append(X)
         ys.append(t["y"][ok].astype(int))
-        ws.append(np.full(ok.sum(), 1.0 / max(1, ok.sum())))
+        ws.append(np.full(len(ok), 1.0 / max(1, len(ok))))
     return np.concatenate(Xs), np.concatenate(ys), np.concatenate(ws) * len(names)
 
 
