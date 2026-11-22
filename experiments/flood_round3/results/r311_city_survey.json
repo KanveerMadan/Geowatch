@@ -1,0 +1,79 @@
+{
+ "criteria": {
+  "C1": "open machine-readable access with timestamp, type and point coordinates",
+  "C2": "a type naming street/surface flooding, separate from basement, sewer-backup and catch-basin types",
+  "C3": ">= 1 reserve-period day (>= 2022-01-01) with >= 50 such reports city-wide (rain311 event rule); DEV days are a bonus",
+  "C4": "no licence term forbidding research use"
+ },
+ "note": "C3 first required a DEV day too; relaxed to reserve-only after New Orleans was seen (its 2019+ system has no DEV day), because the owner's aim is reserve diversity. Recorded in R30.",
+ "cities": {
+  "san_francisco": {
+   "pass": true,
+   "portal": "data.sfgov.org vw6y-z8j6 (Socrata)",
+   "flood_types": [
+    "Sewer Issues | Flooding",
+    "Sewer | flooding"
+   ],
+   "reports": 33061,
+   "days_ge50_dev": 48,
+   "days_ge50_reserve": 36
+  },
+  "new_orleans": {
+   "pass": true,
+   "portal": "data.nola.gov 2jgv-pqrq (Socrata, 2019+)",
+   "flood_types": [
+    "Drainage | Street Flooding",
+    "Roads/Drainage | Street Flooding / Drainage",
+    "Roads and Streets | Street Flooding"
+   ],
+   "reports": 3507,
+   "days_ge50_dev": 0,
+   "days_ge50_reserve": 1,
+   "note": "2012-2018 archive (3iz8-nghx) has only a merged 'Street Flooding/Drainage' type: fails C2, not used"
+  },
+  "miami_dade": {
+   "pass": true,
+   "portal": "gis-mdc ArcGIS data_311_<year> (2014-2023, 2025-)",
+   "flood_types": [
+    "FLOODING / STANDING WATER - LOCALIZED (2014-2023)",
+    "SubType 'Flooding or Standing Water for Days' (2025-)"
+   ],
+   "reports_2014_2023": 4379,
+   "days_ge50_dev": 2,
+   "days_ge50_reserve": 1,
+   "note": "2024 layer needs a token (not used); 2025+ Subject 'Flooding or Drainage Issue' mixes drainage: fails C2, not used"
+  },
+  "baltimore": {
+   "pass": false,
+   "why": "C3: 'WW-Storm Flooded Street' exists (8,451 reports 2011-2026) but no reserve day >= 50 (max 65 on 2015-06-27)"
+  },
+  "washington_dc": {
+   "pass": false,
+   "why": "C3 (max 10/day, 612 reports); C2 also doubtful: 'DC Water - Customer Flooding' / 'Emergency - Flooding'"
+  },
+  "boston": {
+   "pass": false,
+   "why": "C3: 'Roadway Flooding' only since 2024 (17 in 2024, 220 in 2025); no day >= 50"
+  },
+  "philadelphia": {
+   "pass": false,
+   "why": "C2: no flooding type (only 'Inlet Cleaning')"
+  },
+  "los_angeles": {
+   "pass": false,
+   "why": "C2: MyLA311 has no flooding type"
+  },
+  "detroit": {
+   "pass": false,
+   "why": "C2: only blocked catch basin / water main / basement types"
+  },
+  "houston": {
+   "pass": false,
+   "why": "C1: no 311 request data on data.houstontx.gov (only a knowledge-base dump)"
+  },
+  "toronto": {
+   "pass": false,
+   "why": "C1: 311 service requests have no point coordinates (ward / postal prefix / intersection names only)"
+  }
+ }
+}

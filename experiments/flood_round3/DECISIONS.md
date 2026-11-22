@@ -172,3 +172,33 @@ The owner decided: Chicago stays in the rain test and the scope is not narrowed.
    - standing water on flat plains: Pakistan Sindh 2022, Bangladesh, Punjab, South Sudan, Nigeria;
    - near-peak Sentinel-1 passes (MAX_LAG 14 d);
    - selected mechanically from metadata (WATERLOG_PLAINS_DESIGN, to follow).
+
+## R30 (2026-11-22) Rain: more 311 cities, no Chicago cap (owner directive)
+The owner decided: add cities, do not cap Chicago.
+- **Cities surveyed (metadata only: type names and daily counts):** Houston, Philadelphia, Baltimore, Washington DC, Boston, New Orleans, Miami-Dade, Detroit, San Francisco, Los Angeles, Toronto. Results in `results/r311_city_survey.json`.
+- **Intake criteria:**
+  - C1: open access with a timestamp, a type and point coordinates;
+  - C2: a type that names street or surface flooding, separate from basement, sewer-backup and catch-basin types;
+  - C3: ≥ 1 reserve-period day with ≥ 50 such reports (rain311's event rule);
+  - C4: no licence term against research use.
+- **Deviation, recorded:** C3 first also required a DEV day. It was relaxed to the reserve only after New Orleans had been seen. Reason: the owner's aim is reserve diversity, and DEV days only add training data.
+- **Pass, added to rain311.CITIES (labels under R29's classes, the same for every method):**
+
+  | city | flooded type | qualifying days (DEV / reserve) | tide gauge for coastal typing |
+  |---|---|---|---|
+  | San Francisco | "Sewer Issues \| Flooding" | 48 / 36 | 9414290 |
+  | New Orleans | "Street Flooding", from the 2019+ system only | 0 / 1 | 8761927 |
+  | Miami-Dade | 2014–2023 "FLOODING / STANDING WATER - LOCALIZED"; 2025+ subtype "Flooding or Standing Water for Days" | 2 / 1 | 8723214 |
+
+  - New Orleans' 2012–2018 archive has only a merged "Street Flooding/Drainage" type, which fails C2.
+  - Miami-Dade's 2024 layer needs a token, so it is not used. Its 2025+ subject "Flooding or Drainage Issue" fails C2.
+- **Fail:**
+  - Baltimore, C3: "WW-Storm Flooded Street" exists, but no reserve day reaches 50.
+  - Washington DC, C3: at most 10 reports a day; C2 is also doubtful.
+  - Boston, C3: "Roadway Flooding" only since 2024, at low volume.
+  - Philadelphia, LA and Detroit, C2: no flooding type.
+  - Houston, C1: no 311 request data published.
+  - Toronto, C1: no point coordinates.
+- **Existing cities:** NYC and Chicago events are kept exactly as they were (`rain311 events` now adds only missing cities).
+- **GFM:** the owner is creating the account. Credentials go in `~/.config/geowatch/gfm.json` (`{"email": …, "password": …}`, chmod 600). The secrets scan blocks that file name, `.netrc`, `.cdsapirc` and the file's values.
+- **Coherence:** if it validates against 311, it is run on every unused EMS and GFM rain event.

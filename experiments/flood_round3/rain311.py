@@ -42,6 +42,29 @@ CITIES = {
         "since": "2018-12-18", "centre": (41.84, -87.68),
         "bbox": (-87.94, 41.64, -87.52, 42.03), "tide_station": None,      # lake city: no surge check
     },
+    # R30 city intake (results/r311_city_survey.json): every surveyed city that passed C1-C4.
+    "san_francisco": {
+        "apis": ("https://data.sfgov.org/resource/vw6y-z8j6.json",),
+        "time": "requested_datetime", "kind": "service_subtype", "kind2": "service_name", "lat": "lat", "lon": "long",
+        "flood": ("Flooding", "flooding"), "flood_where": "service_name in ('Sewer Issues','Sewer')",
+        "flood_full": ("Sewer Issues | Flooding", "Sewer | flooding"),
+        "ambiguous": (), "since": "2008-07-01", "bbox": (-122.52, 37.70, -122.35, 37.84), "tide_station": "9414290",
+    },
+    "new_orleans": {
+        "apis": ("https://data.nola.gov/resource/2jgv-pqrq.json",),
+        "time": "date_created", "kind": "request_reason", "kind2": "request_type", "lat": "latitude", "lon": "longitude",
+        "flood": ("Street Flooding", "Street Flooding / Drainage"),
+        "ambiguous": (), "since": "2019-01-01", "bbox": (-90.14, 29.87, -89.62, 30.20), "tide_station": "8761927",
+    },
+    "miami_dade": {
+        "arcgis": {**{y: ("https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/data_311_%d/FeatureServer/0" % y,
+                          "ticket_created_date_time", ("issue_type",)) for y in range(2014, 2024)},
+                   **{y: ("https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/data_311_%d/FeatureServer/0" % y,
+                          "Created_Date", ("Subject", "SubType")) for y in range(2025, 2027)}},
+        "flood": ("FLOODING / STANDING WATER - LOCALIZED", "Flooding or Standing Water for Days"),
+        "ambiguous": (), "since": "2014-01-01", "bbox": (-80.55, 25.40, -80.10, 25.98), "tide_station": "8723214",
+        "note": "2024 layer needs a token: no 2024 events; 2025+ Subject 'Flooding or Drainage Issue' is not FLOODED (C2)",
+    },
 }
 
 
@@ -58,6 +81,53 @@ def _soql(api, params):
     raise RuntimeError("311 query failed")
 
 
+def _arc(url, params):
+    q = urllib.parse.urlencode({**params, "f": "json"})
+    for k in range(4):
+        try:
+            req = urllib.request.Request(url + "/query?" + q, headers={"User-Agent": "geowatch-research"})
+            with urllib.request.urlopen(req, timeout=240) as r:
+                j = json.load(r)
+            if "error" in j:
+                raise RuntimeError(str(j["error"])[:150])
+            return j
+        except Exception as e:          # noqa: BLE001
+            print("arcgis:", type(e).__name__, str(e)[:120], flush=True)
+            time.sleep(10 * (k + 1))
+    raise RuntimeError("arcgis query failed")
+
+
+def arc_rows(city, d0, d1, flood_only=False):
+    """ArcGIS city: [(kind_text, lon, lat, day)] with time in [d0, d1) (ISO days), across the yearly layers."""
+    c = CITIES[city]
+    out = []
+    for y, (url, tf, kf) in sorted(c["arcgis"].items()):
+        if not (str(y) <= d1[:4] and str(y) >= d0[:4]):
+            continue
+        w = f"{tf} >= TIMESTAMP '{d0} 00:00:00' AND {tf} < TIMESTAMP '{d1} 00:00:00'"
+        if flood_only:
+            ks = ",".join("'" + k + "'" for k in c["flood"])
+            w += f" AND {kf[-1]} IN ({ks})"
+        off = 0
+        while True:
+            j = _arc(url, {"where": w, "outFields": ",".join((tf,) + kf), "returnGeometry": "true", "outSR": 4326,
+                           "resultOffset": off, "resultRecordCount": 2000})
+            for f in j.get("features", []):
+                g = f.get("geometry") or {}
+                if "x" not in g or g["x"] is None:
+                    continue
+                a = f["attributes"]
+                t = a.get(tf)
+                day = dt.datetime.fromtimestamp(t / 1000, dt.timezone.utc).date().isoformat() if isinstance(t, (int, float)) else str(t)[:10]
+                out.append((" | ".join(str(a.get(k) or "") for k in kf), float(g["x"]), float(g["y"]), day))
+            n = len(j.get("features", []))
+            if n == 0 or (n < 2000 and not j.get("exceededTransferLimit")):
+                break
+            off += n
+            time.sleep(0.3)
+    return out
+
+
 def daily_counts(city: str) -> dict:
     c = CITIES[city]
     os.makedirs(CACHE, exist_ok=True)
@@ -66,10 +136,16 @@ def daily_counts(city: str) -> dict:
         return json.load(open(p))
     kinds = ",".join("'" + k.replace("'", "''") + "'" for k in c["flood"])
     out = {}
+    if "arcgis" in c:
+        for _, _, _, day in arc_rows(city, c["since"], "2027-01-01", flood_only=True):
+            out[day] = out.get(day, 0) + 1
+        json.dump(out, open(p, "w"))
+        return out
+    extra = f" AND {c['flood_where']}" if c.get("flood_where") else ""
     for api in c["apis"]:
         rows = _soql(api, {
             "$select": f"date_trunc_ymd({c['time']}) as d, count(*) as n",
-            "$where": f"{c['kind']} in ({kinds}) AND {c['time']} >= '{c['since']}T00:00:00'",
+            "$where": f"{c['kind']} in ({kinds}) AND {c['time']} >= '{c['since']}T00:00:00'{extra}",
             "$group": "d", "$order": "d", "$limit": 50000})
         for r in rows:
             out[r["d"][:10]] = out.get(r["d"][:10], 0) + int(r["n"])
@@ -78,8 +154,12 @@ def daily_counts(city: str) -> dict:
 
 
 def events():
-    res = {}
+    """Events per city; cities already in r311_events.json are kept as they are (R30 adds cities)."""
+    p0 = os.path.join(OUT, "r311_events.json")
+    res = json.load(open(p0)) if os.path.exists(p0) else {}
     for city in CITIES:
+        if city in res:
+            continue
         d = daily_counts(city)
         days = sorted(k for k, v in d.items() if v >= MIN_EVENT_REPORTS)
         evs, cur = [], None
@@ -241,7 +321,7 @@ WET_TYPES = re.compile(r"water|sewer|sewage|drain|basin|flood|hydrant|leak|manho
 def classify(city, kind_text) -> str:
     c = CITIES[city]
     k = kind_text.split(" | ")[-1]
-    if k in c["flood"]:
+    if ("flood_full" in c and kind_text in c["flood_full"]) or ("flood_full" not in c and k in c["flood"]):
         return "flood"
     if k in c["ambiguous"] or WET_TYPES.search(kind_text):
         return "ambiguous"
@@ -253,6 +333,11 @@ def reports(city, e) -> list:
     (classify, R29). Raw types are cached so the class rule is applied at read time."""
     c = CITIES[city]
     p = os.path.join(CACHE, f"reports2_{city}_{e['event']}.json")
+    if not os.path.exists(p) and "arcgis" in c:
+        w0, w1 = e["window"]
+        out = [(k, lo, la) for k, lo, la, _ in arc_rows(city, w0[:10], w1[:10])]
+        json.dump(out, open(p + ".part", "w"))
+        os.replace(p + ".part", p)
     if not os.path.exists(p):
         w0, w1 = e["window"]
         rows, api = [], c["apis"][0] if (w0 < "2020-01-01" or len(c["apis"]) == 1) else c["apis"][1]
@@ -289,12 +374,16 @@ def history(city=None):
             continue
         kinds = ",".join("'" + k.replace("'", "''") + "'" for k in c["flood"])
         lon, lat, day = [], [], []
-        for api in c["apis"]:
+        if "arcgis" in c:
+            for _, lo, la, d_ in arc_rows(cty, c["since"], RESERVE_FROM, flood_only=True):
+                lon.append(lo); lat.append(la); day.append(d_)
+        extra = f" AND {c['flood_where']}" if c.get("flood_where") else ""
+        for api in c.get("apis", ()):
             off = 0
             while True:
                 page = _soql(api, {"$select": f"{c['time']},{c['lat']},{c['lon']}",
                                    "$where": f"{c['kind']} in ({kinds}) AND {c['time']} >= '{c['since']}T00:00:00' AND "
-                                             f"{c['time']} < '{RESERVE_FROM}T00:00:00' AND {c['lat']} IS NOT NULL",
+                                             f"{c['time']} < '{RESERVE_FROM}T00:00:00' AND {c['lat']} IS NOT NULL{extra}",
                                    "$order": ":id", "$limit": 50000, "$offset": off})
                 for r in page:
                     lon.append(float(r[c["lon"]])); lat.append(float(r[c["lat"]])); day.append(r[c["time"]][:10])

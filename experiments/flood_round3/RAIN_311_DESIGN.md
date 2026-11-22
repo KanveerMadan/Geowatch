@@ -57,7 +57,9 @@ In use:
 
 On DEV, 36 units on 16 lattice boxes reach ≥ 50 flood reports in one box: 32 from Chicago, 4 from NYC. NYC storms are spread across the city (median 98 flood reports per storm), so an 8 km box rarely holds 50. This is open (DIAGNOSIS §k).
 
-Still to check: Chicago, Philadelphia, Washington DC, Baltimore, Boston, Toronto, San Francisco, Houston, Detroit.
+**City intake (R30):** criteria C1–C4 and the results are in DECISIONS R30 and `results/r311_city_survey.json`.
+- **Added:** San Francisco, New Orleans (2019+) and Miami-Dade (2014–2023, 2025+).
+- **Refused, with reasons:** Baltimore, Washington DC, Boston, Philadelphia, Los Angeles, Detroit, Houston and Toronto.
 
 ## Known limits (to be stated in the pre-registration)
 - These are case-control labels on report locations, not a complete flood map. A cell with no report is unobserved, not dry.
