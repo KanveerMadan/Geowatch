@@ -1,0 +1,2328 @@
+{
+ "assam_2026": {
+  "reach": {
+   "link": 440905855,
+   "dsarea_km2": 139.8,
+   "order": 3,
+   "lat": 26.969999313354492,
+   "lon": 94.76721954345703
+  },
+  "tags": [
+   "fluvial",
+   "waterlogging"
+  ],
+  "peak_day": "2026-07-16",
+  "peak_q": 44.4,
+  "peak_minus_event_days": -4,
+  "image_minus_q_peak_days": 6,
+  "q_at_image_over_peak": 0.306,
+  "peak_return_period_y": 1.0,
+  "median_q": 3.4
+ },
+ "bad_neuenahr": {
+  "reach": {
+   "link": 230423722,
+   "dsarea_km2": 812.9,
+   "order": 4,
+   "lat": 50.54167556762695,
+   "lon": 7.112049579620361
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2021-07-15",
+  "peak_q": 155.7,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 87.0,
+  "median_q": 3.4
+ },
+ "beira": {
+  "reach": null
+ },
+ "bihar_2026": {
+  "reach": {
+   "link": 441142594,
+   "dsarea_km2": 942573.2,
+   "order": 8,
+   "lat": 25.447444915771484,
+   "lon": 87.30844116210938
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2026-09-15",
+  "peak_q": 72049.5,
+  "peak_minus_event_days": 4,
+  "image_minus_q_peak_days": -3,
+  "q_at_image_over_peak": 0.929,
+  "peak_return_period_y": 2.1,
+  "median_q": 5933.1
+ },
+ "black_river": {
+  "reach": {
+   "link": 780056741,
+   "dsarea_km2": 1135.9,
+   "order": 4,
+   "lat": 18.018333435058594,
+   "lon": -77.85011291503906
+  },
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "peak_day": "2025-10-29",
+  "peak_q": 866.6,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": -1,
+  "q_at_image_over_peak": 0.222,
+  "peak_return_period_y": 43.5,
+  "median_q": 1.6
+ },
+ "choloma": {
+  "reach": null
+ },
+ "derna": {
+  "reach": {
+   "link": 150748379,
+   "dsarea_km2": 593.2,
+   "order": 3,
+   "lat": 32.773109436035156,
+   "lon": 22.656888961791992
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2023-09-12",
+  "peak_q": 55.6,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 87.0,
+  "median_q": 0.0
+ },
+ "derna_2023": {
+  "reach": {
+   "link": 150746395,
+   "dsarea_km2": 585.4,
+   "order": 3,
+   "lat": 32.74599838256836,
+   "lon": 22.627666473388672
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2023-09-12",
+  "peak_q": 58.2,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.244,
+  "peak_return_period_y": 87.0,
+  "median_q": 0.0
+ },
+ "dharavi": {
+  "reach": {
+   "link": 440394331,
+   "dsarea_km2": 79.5,
+   "order": 2,
+   "lat": 19.04044532775879,
+   "lon": 72.83344268798828
+  },
+  "tags": [
+   "pluvial",
+   "waterlogging"
+  ],
+  "peak_day": "2017-08-29",
+  "peak_q": 71.0,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 29.0,
+  "median_q": 0.2
+ },
+ "emsr662_aoi01": {
+  "reach": {
+   "link": 160206601,
+   "dsarea_km2": 150.5,
+   "order": 3,
+   "lat": 0.07877777516841888,
+   "lon": 31.837778091430664
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-05-04",
+  "peak_q": 2.3,
+  "peak_minus_event_days": -7,
+  "image_minus_q_peak_days": 10,
+  "q_at_image_over_peak": 0.035,
+  "peak_return_period_y": 1.0,
+  "median_q": 0.6
+ },
+ "emsr664_aoi02": {
+  "reach": {
+   "link": 210196613,
+   "dsarea_km2": 2552.7,
+   "order": 5,
+   "lat": 44.57788848876953,
+   "lon": 11.87411117553711
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-05-19",
+  "peak_q": 482.9,
+  "peak_minus_event_days": 3,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.384,
+  "peak_return_period_y": 29.0,
+  "median_q": 10.4
+ },
+ "emsr664_aoi03": {
+  "reach": {
+   "link": 210194514,
+   "dsarea_km2": 476.5,
+   "order": 4,
+   "lat": 44.363224029541016,
+   "lon": 11.791333198547363
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-05-17",
+  "peak_q": 157.8,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 5,
+  "q_at_image_over_peak": 0.043,
+  "peak_return_period_y": 43.5,
+  "median_q": 1.6
+ },
+ "emsr664_aoi07": {
+  "reach": {
+   "link": 210217744,
+   "dsarea_km2": 719.1,
+   "order": 4,
+   "lat": 44.396446228027344,
+   "lon": 12.200666427612305
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-05-18",
+  "peak_q": 187.1,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 0.164,
+  "peak_return_period_y": 43.5,
+  "median_q": 2.5
+ },
+ "emsr680_aoi04": {
+  "reach": {
+   "link": 220573086,
+   "dsarea_km2": 289.4,
+   "order": 3,
+   "lat": 46.599754333496094,
+   "lon": 16.225698471069336
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2023-07-25",
+  "peak_q": 9.8,
+  "peak_minus_event_days": -10,
+  "image_minus_q_peak_days": 11,
+  "q_at_image_over_peak": 0.834,
+  "peak_return_period_y": 1.8,
+  "median_q": 0.8
+ },
+ "emsr680_aoi07": {
+  "reach": {
+   "link": 220447891,
+   "dsarea_km2": 293.9,
+   "order": 3,
+   "lat": 46.328975677490234,
+   "lon": 14.859903335571289
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2023-08-05",
+  "peak_q": 83.5,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 5,
+  "q_at_image_over_peak": 0.088,
+  "peak_return_period_y": 21.8,
+  "median_q": 3.2
+ },
+ "emsr680_aoi13": {
+  "reach": null
+ },
+ "emsr697_aoi01": {
+  "reach": {
+   "link": 210238112,
+   "dsarea_km2": 1472.2,
+   "order": 5,
+   "lat": 38.874778747558594,
+   "lon": 22.562000274658203
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-09-27",
+  "peak_q": 547.5,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.904,
+  "peak_return_period_y": 43.5,
+  "median_q": 5.4
+ },
+ "emsr705_aoi03": {
+  "reach": {
+   "link": 210164986,
+   "dsarea_km2": 33.1,
+   "order": 2,
+   "lat": 43.626556396484375,
+   "lon": 10.535222053527832
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2023-10-30",
+  "peak_q": 11.1,
+  "peak_minus_event_days": -3,
+  "image_minus_q_peak_days": 5,
+  "q_at_image_over_peak": 0.05,
+  "peak_return_period_y": 7.2,
+  "median_q": 0.2
+ },
+ "emsr711_aoi01": {
+  "reach": {
+   "link": 230141040,
+   "dsarea_km2": 5877.0,
+   "order": 5,
+   "lat": 45.713233947753906,
+   "lon": -0.5541810393333435
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-12-13",
+  "peak_q": 259.6,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 2,
+  "q_at_image_over_peak": 0.915,
+  "peak_return_period_y": 2.4,
+  "median_q": 22.2
+ },
+ "emsr711_aoi02": {
+  "reach": {
+   "link": 230168238,
+   "dsarea_km2": 6888.6,
+   "order": 5,
+   "lat": 45.77823257446289,
+   "lon": -0.6357826590538025
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-12-13",
+  "peak_q": 302.0,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 0.595,
+  "peak_return_period_y": 2.5,
+  "median_q": 24.7
+ },
+ "emsr711_aoi03": {
+  "reach": {
+   "link": 230146483,
+   "dsarea_km2": 3639.7,
+   "order": 5,
+   "lat": 45.62067794799805,
+   "lon": 0.043209247291088104
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-12-13",
+  "peak_q": 227.0,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 0.296,
+  "peak_return_period_y": 2.6,
+  "median_q": 15.5
+ },
+ "emsr757_aoi01": {
+  "reach": {
+   "link": 220707816,
+   "dsarea_km2": 27762.0,
+   "order": 6,
+   "lat": 48.24176025390625,
+   "lon": 16.946680068969727
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-09-17",
+  "peak_q": 1180.8,
+  "peak_minus_event_days": 4,
+  "image_minus_q_peak_days": -2,
+  "q_at_image_over_peak": 0.44,
+  "peak_return_period_y": 87.0,
+  "median_q": 61.9
+ },
+ "emsr757_aoi02": {
+  "reach": {
+   "link": 220667883,
+   "dsarea_km2": 519.5,
+   "order": 4,
+   "lat": 48.66431427001953,
+   "lon": 17.262048721313477
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-09-15",
+  "peak_q": 45.7,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 0.005,
+  "peak_return_period_y": 29.0,
+  "median_q": 0.5
+ },
+ "emsr761_aoi01": {
+  "reach": {
+   "link": 230461779,
+   "dsarea_km2": 54197.5,
+   "order": 7,
+   "lat": 51.09345245361328,
+   "lon": 13.651871681213379
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-09-22",
+  "peak_q": 1187.3,
+  "peak_minus_event_days": 4,
+  "image_minus_q_peak_days": -3,
+  "q_at_image_over_peak": 0.459,
+  "peak_return_period_y": 5.8,
+  "median_q": 247.5
+ },
+ "emsr762_aoi02": {
+  "reach": {
+   "link": 210221959,
+   "dsarea_km2": 479.0,
+   "order": 3,
+   "lat": 44.5728874206543,
+   "lon": 11.693888664245605
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-09-20",
+  "peak_q": 95.1,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": -1,
+  "q_at_image_over_peak": 0.861,
+  "peak_return_period_y": 5.4,
+  "median_q": 1.3
+ },
+ "emsr762_aoi04": {
+  "reach": {
+   "link": 210221959,
+   "dsarea_km2": 479.0,
+   "order": 3,
+   "lat": 44.5728874206543,
+   "lon": 11.693888664245605
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-09-20",
+  "peak_q": 95.1,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 2,
+  "q_at_image_over_peak": 0.012,
+  "peak_return_period_y": 5.4,
+  "median_q": 1.3
+ },
+ "emsr762_aoi06": {
+  "reach": {
+   "link": 210201899,
+   "dsarea_km2": 157.1,
+   "order": 3,
+   "lat": 44.5162239074707,
+   "lon": 12.083999633789062
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-09-19",
+  "peak_q": 8.4,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 0.004,
+  "peak_return_period_y": 1.9,
+  "median_q": 0.1
+ },
+ "emsr770_aoi01": {
+  "reach": {
+   "link": 210187154,
+   "dsarea_km2": 145.0,
+   "order": 3,
+   "lat": 43.71989059448242,
+   "lon": 17.819665908813477
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2024-10-04",
+  "peak_q": 33.0,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 0.017,
+  "peak_return_period_y": 1.8,
+  "median_q": 2.0
+ },
+ "emsr770_aoi03": {
+  "reach": {
+   "link": 220205892,
+   "dsarea_km2": 69.6,
+   "order": 3,
+   "lat": 43.91252517700195,
+   "lon": 17.945951461791992
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2024-10-04",
+  "peak_q": 13.8,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 4,
+  "q_at_image_over_peak": 0.006,
+  "peak_return_period_y": 3.2,
+  "median_q": 0.6
+ },
+ "emsr774_aoi01": {
+  "reach": {
+   "link": 770307494,
+   "dsarea_km2": 9379.6,
+   "order": 6,
+   "lat": 18.476333618164062,
+   "lon": -95.57910919189453
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-10-27",
+  "peak_q": 1865.1,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 2,
+  "q_at_image_over_peak": 0.581,
+  "peak_return_period_y": 2.4,
+  "median_q": 112.7
+ },
+ "emsr774_aoi02": {
+  "reach": {
+   "link": 770362641,
+   "dsarea_km2": 11157.9,
+   "order": 6,
+   "lat": 17.81599998474121,
+   "lon": -94.63311004638672
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-10-25",
+  "peak_q": 2970.9,
+  "peak_minus_event_days": -3,
+  "image_minus_q_peak_days": 7,
+  "q_at_image_over_peak": 0.249,
+  "peak_return_period_y": 3.3,
+  "median_q": 196.4
+ },
+ "emsr779_aoi01": {
+  "reach": {
+   "link": 180253190,
+   "dsarea_km2": 279.4,
+   "order": 3,
+   "lat": 10.590110778808594,
+   "lon": 15.031110763549805
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2024-11-11",
+  "peak_q": 0.0,
+  "peak_minus_event_days": -10,
+  "image_minus_q_peak_days": 12,
+  "q_at_image_over_peak": null,
+  "peak_return_period_y": 1.0,
+  "median_q": 0.0
+ },
+ "emsr779_aoi02": {
+  "reach": {
+   "link": 180253093,
+   "dsarea_km2": 128.5,
+   "order": 3,
+   "lat": 12.509666442871094,
+   "lon": 14.577777862548828
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2024-11-11",
+  "peak_q": 0.0,
+  "peak_minus_event_days": -10,
+  "image_minus_q_peak_days": 12,
+  "q_at_image_over_peak": null,
+  "peak_return_period_y": 1.0,
+  "median_q": 0.0
+ },
+ "emsr779_aoi03": {
+  "reach": {
+   "link": 180329915,
+   "dsarea_km2": 1333.1,
+   "order": 4,
+   "lat": 12.071110725402832,
+   "lon": 14.812777519226074
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2024-11-11",
+  "peak_q": 0.0,
+  "peak_minus_event_days": -10,
+  "image_minus_q_peak_days": 12,
+  "q_at_image_over_peak": null,
+  "peak_return_period_y": 1.0,
+  "median_q": 0.0
+ },
+ "emsr799_aoi02": {
+  "reach": {
+   "link": 660113390,
+   "dsarea_km2": 53976.9,
+   "order": 7,
+   "lat": -16.882997512817383,
+   "lon": -68.8212661743164
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2025-03-25",
+  "peak_q": 3133.3,
+  "peak_minus_event_days": -10,
+  "image_minus_q_peak_days": 18,
+  "q_at_image_over_peak": 0.744,
+  "peak_return_period_y": 5.1,
+  "median_q": 503.2
+ },
+ "emsr799_aoi03": {
+  "reach": {
+   "link": 620638161,
+   "dsarea_km2": 17658.1,
+   "order": 6,
+   "lat": -14.713777542114258,
+   "lon": -64.99800109863281
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2025-04-06",
+  "peak_q": 634.7,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 6,
+  "q_at_image_over_peak": 0.791,
+  "peak_return_period_y": 1.1,
+  "median_q": 118.6
+ },
+ "emsr799_aoi04": {
+  "reach": {
+   "link": 660164103,
+   "dsarea_km2": 76355.4,
+   "order": 7,
+   "lat": -18.296663284301758,
+   "lon": -67.38912200927734
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2025-03-25",
+  "peak_q": 4368.2,
+  "peak_minus_event_days": -10,
+  "image_minus_q_peak_days": 18,
+  "q_at_image_over_peak": 0.659,
+  "peak_return_period_y": 7.2,
+  "median_q": 559.8
+ },
+ "emsr813_aoi01": {
+  "reach": {
+   "link": 620951312,
+   "dsarea_km2": 2021.7,
+   "order": 5,
+   "lat": -3.9813332557678223,
+   "lon": -78.85778045654297
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2025-07-03",
+  "peak_q": 310.7,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 11,
+  "q_at_image_over_peak": 0.206,
+  "peak_return_period_y": 1.5,
+  "median_q": 41.8
+ },
+ "emsr838_aoi01": {
+  "reach": {
+   "link": 440477681,
+   "dsarea_km2": 35753.9,
+   "order": 6,
+   "lat": 32.33555603027344,
+   "lon": 73.70833587646484
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2025-08-30",
+  "peak_q": 7892.5,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": -2,
+  "q_at_image_over_peak": 0.527,
+  "peak_return_period_y": 7.9,
+  "median_q": 490.1
+ },
+ "emsr838_aoi03": {
+  "reach": {
+   "link": 440977265,
+   "dsarea_km2": 105400.6,
+   "order": 7,
+   "lat": 30.160999298095703,
+   "lon": 73.29711151123047
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2025-08-28",
+  "peak_q": 5862.1,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 1.6,
+  "median_q": 545.1
+ },
+ "emsr838_aoi07": {
+  "reach": {
+   "link": 441092856,
+   "dsarea_km2": 106220.7,
+   "order": 7,
+   "lat": 30.01188850402832,
+   "lon": 72.98088836669922
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2025-08-29",
+  "peak_q": 5797.7,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 2,
+  "q_at_image_over_peak": 0.874,
+  "peak_return_period_y": 1.6,
+  "median_q": 545.8
+ },
+ "emsr844_aoi01": {
+  "reach": {
+   "link": 420158512,
+   "dsarea_km2": 5813.9,
+   "order": 6,
+   "lat": 21.213443756103516,
+   "lon": 106.12767028808594
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2025-10-09",
+  "peak_q": 2634.7,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 4.8,
+  "median_q": 80.9
+ },
+ "emsr853_aoi02": {
+  "reach": {
+   "link": 620369940,
+   "dsarea_km2": 10520.6,
+   "order": 6,
+   "lat": -16.65855598449707,
+   "lon": -63.676334381103516
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2025-12-19",
+  "peak_q": 154.6,
+  "peak_minus_event_days": 6,
+  "image_minus_q_peak_days": -2,
+  "q_at_image_over_peak": 0.489,
+  "peak_return_period_y": 1.0,
+  "median_q": 51.0
+ },
+ "emsr853_aoi04": {
+  "reach": {
+   "link": 620209018,
+   "dsarea_km2": 2311.8,
+   "order": 5,
+   "lat": -17.9727783203125,
+   "lon": -63.37122344970703
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2025-12-17",
+  "peak_q": 78.7,
+  "peak_minus_event_days": 4,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.824,
+  "peak_return_period_y": 1.0,
+  "median_q": 12.3
+ },
+ "emsr853_aoi08": {
+  "reach": {
+   "link": 620177342,
+   "dsarea_km2": 132.7,
+   "order": 3,
+   "lat": -17.422222137451172,
+   "lon": -63.292667388916016
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2025-12-16",
+  "peak_q": 5.9,
+  "peak_minus_event_days": 3,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.271,
+  "peak_return_period_y": 1.0,
+  "median_q": 0.3
+ },
+ "emsr865_aoi01": {
+  "reach": {
+   "link": 610306610,
+   "dsarea_km2": 818.3,
+   "order": 3,
+   "lat": 8.821666717529297,
+   "lon": -75.92933654785156
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2026-02-02",
+  "peak_q": 38.0,
+  "peak_minus_event_days": 7,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 1.0,
+  "median_q": 14.9
+ },
+ "emsr868_aoi01": {
+  "reach": {
+   "link": 210427002,
+   "dsarea_km2": 40700.2,
+   "order": 6,
+   "lat": 41.284000396728516,
+   "lon": 26.463111877441406
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2026-02-24",
+  "peak_q": 1321.8,
+  "peak_minus_event_days": 6,
+  "image_minus_q_peak_days": -5,
+  "q_at_image_over_peak": 0.535,
+  "peak_return_period_y": 4.8,
+  "median_q": 126.1
+ },
+ "emsr868_aoi02": {
+  "reach": {
+   "link": 210336212,
+   "dsarea_km2": 53592.1,
+   "order": 7,
+   "lat": 40.807334899902344,
+   "lon": 26.163665771484375
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2026-02-24",
+  "peak_q": 1141.8,
+  "peak_minus_event_days": 6,
+  "image_minus_q_peak_days": -5,
+  "q_at_image_over_peak": 0.462,
+  "peak_return_period_y": 2.5,
+  "median_q": 140.4
+ },
+ "emsr870_aoi05": {
+  "reach": {
+   "link": 670087365,
+   "dsarea_km2": 332.6,
+   "order": 3,
+   "lat": 0.5286666750907898,
+   "lon": -79.9489974975586
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2026-02-25",
+  "peak_q": 146.8,
+  "peak_minus_event_days": -5,
+  "image_minus_q_peak_days": 12,
+  "q_at_image_over_peak": 0.177,
+  "peak_return_period_y": 3.6,
+  "median_q": 1.6
+ },
+ "emsr870_aoi08": {
+  "reach": {
+   "link": 670058782,
+   "dsarea_km2": 818.7,
+   "order": 4,
+   "lat": -1.8692221641540527,
+   "lon": -79.3455581665039
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2026-03-04",
+  "peak_q": 848.8,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 9,
+  "q_at_image_over_peak": 0.127,
+  "peak_return_period_y": 3.3,
+  "median_q": 130.5
+ },
+ "emsr870_aoi13": {
+  "reach": {
+   "link": 670075162,
+   "dsarea_km2": 3972.0,
+   "order": 5,
+   "lat": -1.7931110858917236,
+   "lon": -79.5262222290039
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2026-03-03",
+  "peak_q": 4337.6,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 16,
+  "q_at_image_over_peak": 0.432,
+  "peak_return_period_y": 2.6,
+  "median_q": 747.4
+ },
+ "encantado": {
+  "reach": {
+   "link": 640507686,
+   "dsarea_km2": 19885.9,
+   "order": 6,
+   "lat": -29.294776916503906,
+   "lon": -51.89955520629883
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-05-07",
+  "peak_q": 5452.7,
+  "peak_minus_event_days": 5,
+  "image_minus_q_peak_days": -3,
+  "q_at_image_over_peak": 0.425,
+  "peak_return_period_y": 9.7,
+  "median_q": 280.2
+ },
+ "faenza": {
+  "reach": {
+   "link": 210181849,
+   "dsarea_km2": 302.1,
+   "order": 3,
+   "lat": 44.27644348144531,
+   "lon": 11.881667137145996
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-05-03",
+  "peak_q": 24.2,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.3,
+  "peak_return_period_y": 4.0,
+  "median_q": 1.1
+ },
+ "fort_myers_beach": {
+  "reach": {
+   "link": 750072760,
+   "dsarea_km2": 15342.5,
+   "order": 6,
+   "lat": 26.51444435119629,
+   "lon": -82.01555633544922
+  },
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "peak_day": "2022-10-05",
+  "peak_q": 516.3,
+  "peak_minus_event_days": 7,
+  "image_minus_q_peak_days": -3,
+  "q_at_image_over_peak": 0.165,
+  "peak_return_period_y": 9.7,
+  "median_q": 8.6
+ },
+ "hanoi": {
+  "reach": {
+   "link": 420132916,
+   "dsarea_km2": 129276.4,
+   "order": 8,
+   "lat": 21.028778076171875,
+   "lon": 105.8661117553711
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-09-15",
+  "peak_q": 34680.9,
+  "peak_minus_event_days": 6,
+  "image_minus_q_peak_days": -1,
+  "q_at_image_over_peak": 0.945,
+  "peak_return_period_y": 43.5,
+  "median_q": 2669.2
+ },
+ "himachal_2023": {
+  "reach": null
+ },
+ "kerala_2018": {
+  "reach": {
+   "link": 440087905,
+   "dsarea_km2": 185.3,
+   "order": 3,
+   "lat": 9.471888542175293,
+   "lon": 76.40699768066406
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2018-08-16",
+  "peak_q": 267.5,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 5,
+  "q_at_image_over_peak": 0.074,
+  "peak_return_period_y": 10.9,
+  "median_q": 3.6
+ },
+ "kolonnawa": {
+  "reach": {
+   "link": 440075630,
+   "dsarea_km2": 2173.2,
+   "order": 4,
+   "lat": 6.9824442863464355,
+   "lon": 79.86377716064453
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2025-11-29",
+  "peak_q": 3464.8,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.601,
+  "peak_return_period_y": 87.0,
+  "median_q": 86.8
+ },
+ "kyaukpyu": {
+  "reach": null
+ },
+ "nam_dinh": {
+  "reach": {
+   "link": 420051021,
+   "dsarea_km2": 130420.5,
+   "order": 8,
+   "lat": 20.418556213378906,
+   "lon": 106.21355438232422
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2024-09-16",
+  "peak_q": 33703.4,
+  "peak_minus_event_days": 7,
+  "image_minus_q_peak_days": -2,
+  "q_at_image_over_peak": 0.69,
+  "peak_return_period_y": 43.5,
+  "median_q": 2684.5
+ },
+ "paiporta": {
+  "reach": {
+   "link": 210272929,
+   "dsarea_km2": 6302.5,
+   "order": 5,
+   "lat": 39.4357795715332,
+   "lon": -0.3723333477973938
+  },
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "peak_day": "2024-10-30",
+  "peak_q": 225.0,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.821,
+  "peak_return_period_y": 29.0,
+  "median_q": 1.6
+ },
+ "pakistan_2022": {
+  "reach": {
+   "link": 441103974,
+   "dsarea_km2": 200.9,
+   "order": 3,
+   "lat": 27.533111572265625,
+   "lon": 68.1866683959961
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2022-08-25",
+  "peak_q": 13.8,
+  "peak_minus_event_days": -6,
+  "image_minus_q_peak_days": null,
+  "q_at_image_over_peak": null,
+  "peak_return_period_y": 5.4,
+  "median_q": 0.0
+ },
+ "r_emsr657_aoi01": {
+  "reach": {
+   "link": 240289902,
+   "dsarea_km2": 59775.7,
+   "order": 7,
+   "lat": 56.072731018066406,
+   "lon": 26.340723037719727
+  },
+  "tags": [
+   "fluvial",
+   "snowmelt"
+  ],
+  "peak_day": "2023-04-06",
+  "peak_q": 1505.2,
+  "peak_minus_event_days": 7,
+  "image_minus_q_peak_days": -5,
+  "q_at_image_over_peak": 0.798,
+  "peak_return_period_y": 4.6,
+  "median_q": 374.1
+ },
+ "r_emsr663_aoi01": {
+  "reach": {
+   "link": 110316110,
+   "dsarea_km2": 1291.9,
+   "order": 4,
+   "lat": -15.244111061096191,
+   "lon": 35.744110107421875
+  },
+  "tags": [
+   "compound"
+  ],
+  "peak_day": "2023-03-15",
+  "peak_q": 368.1,
+  "peak_minus_event_days": 3,
+  "image_minus_q_peak_days": 64,
+  "q_at_image_over_peak": 0.018,
+  "peak_return_period_y": 4.6,
+  "median_q": 0.8
+ },
+ "r_emsr668_aoi02": {
+  "reach": {
+   "link": 250082242,
+   "dsarea_km2": 3725.6,
+   "order": 5,
+   "lat": 60.062156677246094,
+   "lon": 9.847692489624023
+  },
+  "tags": [
+   "fluvial",
+   "snowmelt"
+  ],
+  "peak_day": "2023-05-26",
+  "peak_q": 137.4,
+  "peak_minus_event_days": 4,
+  "image_minus_q_peak_days": -3,
+  "q_at_image_over_peak": 0.655,
+  "peak_return_period_y": 1.0,
+  "median_q": 71.4
+ },
+ "r_emsr684_aoi01": {
+  "reach": {
+   "link": 240270052,
+   "dsarea_km2": 13163.8,
+   "order": 6,
+   "lat": 60.72952651977539,
+   "lon": 15.01619815826416
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-08-22",
+  "peak_q": 204.9,
+  "peak_minus_event_days": 7,
+  "image_minus_q_peak_days": -5,
+  "q_at_image_over_peak": 0.892,
+  "peak_return_period_y": 1.6,
+  "median_q": 103.6
+ },
+ "r_emsr684_aoi05": {
+  "reach": {
+   "link": 240265456,
+   "dsarea_km2": 30662.1,
+   "order": 7,
+   "lat": 60.514190673828125,
+   "lon": 17.38561248779297
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-08-22",
+  "peak_q": 364.6,
+  "peak_minus_event_days": 7,
+  "image_minus_q_peak_days": -6,
+  "q_at_image_over_peak": 0.735,
+  "peak_return_period_y": 1.2,
+  "median_q": 243.8
+ },
+ "r_emsr698_aoi01": {
+  "reach": {
+   "link": 230102488,
+   "dsarea_km2": 1425.0,
+   "order": 4,
+   "lat": 57.18967056274414,
+   "lon": -3.8247885704040527
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-10-08",
+  "peak_q": 44.6,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 1.1,
+  "median_q": 25.2
+ },
+ "r_emsr698_aoi02": {
+  "reach": {
+   "link": 230077490,
+   "dsarea_km2": 3781.1,
+   "order": 5,
+   "lat": 56.56211471557617,
+   "lon": -3.576502561569214
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-10-09",
+  "peak_q": 484.9,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": -1,
+  "q_at_image_over_peak": 0.569,
+  "peak_return_period_y": 17.4,
+  "median_q": 82.4
+ },
+ "r_emsr712_aoi02": {
+  "reach": {
+   "link": 230355088,
+   "dsarea_km2": 81.7,
+   "order": 3,
+   "lat": 52.72134017944336,
+   "lon": 8.327160835266113
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2023-12-29",
+  "peak_q": 4.6,
+  "peak_minus_event_days": 5,
+  "image_minus_q_peak_days": -4,
+  "q_at_image_over_peak": 0.738,
+  "peak_return_period_y": 17.4,
+  "median_q": 0.5
+ },
+ "r_emsr722_aoi01": {
+  "reach": {
+   "link": 230383520,
+   "dsarea_km2": 1738.1,
+   "order": 4,
+   "lat": 49.20945358276367,
+   "lon": 7.254921913146973
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-05-18",
+  "peak_q": 117.2,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 17.4,
+  "median_q": 7.9
+ },
+ "r_emsr722_aoi02": {
+  "reach": {
+   "link": 230416149,
+   "dsarea_km2": 7143.6,
+   "order": 6,
+   "lat": 49.497562408447266,
+   "lon": 6.594589710235596
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-05-20",
+  "peak_q": 236.6,
+  "peak_minus_event_days": 3,
+  "image_minus_q_peak_days": -2,
+  "q_at_image_over_peak": 0.839,
+  "peak_return_period_y": 2.4,
+  "median_q": 34.1
+ },
+ "r_emsr728_aoi01": {
+  "reach": {
+   "link": 230346538,
+   "dsarea_km2": 5476.0,
+   "order": 5,
+   "lat": 49.008453369140625,
+   "lon": 9.155709266662598
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-06-05",
+  "peak_q": 293.6,
+  "peak_minus_event_days": 5,
+  "image_minus_q_peak_days": -4,
+  "q_at_image_over_peak": 0.302,
+  "peak_return_period_y": 3.3,
+  "median_q": 49.3
+ },
+ "r_emsr728_aoi03": {
+  "reach": {
+   "link": 220669242,
+   "dsarea_km2": 38276.5,
+   "order": 6,
+   "lat": 48.88620376586914,
+   "lon": 12.72033405303955
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-06-06",
+  "peak_q": 1475.5,
+  "peak_minus_event_days": 6,
+  "image_minus_q_peak_days": -3,
+  "q_at_image_over_peak": 0.441,
+  "peak_return_period_y": 9.7,
+  "median_q": 380.0
+ },
+ "r_emsr734_aoi17": {
+  "reach": null
+ },
+ "r_emsr750_aoi01": {
+  "reach": {
+   "link": 110110488,
+   "dsarea_km2": 4440.5,
+   "order": 4,
+   "lat": 19.82288932800293,
+   "lon": 36.99366760253906
+  },
+  "tags": [
+   "flash_flood",
+   "dam_breach"
+  ],
+  "peak_day": "2024-08-27",
+  "peak_q": 0.6,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 2,
+  "q_at_image_over_peak": 0.565,
+  "peak_return_period_y": 1.0,
+  "median_q": 0.0
+ },
+ "r_emsr750_aoi02": {
+  "reach": {
+   "link": 110162969,
+   "dsarea_km2": 4608.0,
+   "order": 4,
+   "lat": 19.809667587280273,
+   "lon": 37.06133270263672
+  },
+  "tags": [
+   "flash_flood",
+   "dam_breach"
+  ],
+  "peak_day": "2024-08-27",
+  "peak_q": 0.6,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 2,
+  "q_at_image_over_peak": 0.6,
+  "peak_return_period_y": 1.0,
+  "median_q": 0.0
+ },
+ "r_emsr795_aoi02": {
+  "reach": {
+   "link": 210168143,
+   "dsarea_km2": 13.5,
+   "order": 2,
+   "lat": 43.8216667175293,
+   "lon": 11.061333656311035
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2025-03-14",
+  "peak_q": 4.9,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 0.366,
+  "peak_return_period_y": 8.7,
+  "median_q": 0.1
+ },
+ "r_emsr795_aoi06": {
+  "reach": null
+ },
+ "r_emsr802_aoi01": {
+  "reach": {
+   "link": 220551128,
+   "dsarea_km2": 5678.4,
+   "order": 6,
+   "lat": 45.85819625854492,
+   "lon": 25.56441307067871
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2025-05-29",
+  "peak_q": 146.9,
+  "peak_minus_event_days": 3,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 1.4,
+  "median_q": 27.2
+ },
+ "r_emsr802_aoi02": {
+  "reach": {
+   "link": 220544253,
+   "dsarea_km2": 2259.7,
+   "order": 5,
+   "lat": 45.761417388916016,
+   "lon": 25.809768676757812
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2025-05-28",
+  "peak_q": 78.5,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.722,
+  "peak_return_period_y": 2.1,
+  "median_q": 9.4
+ },
+ "r_emsr845_aoi02": {
+  "reach": {
+   "link": 770254377,
+   "dsarea_km2": 2531.9,
+   "order": 4,
+   "lat": 20.677778244018555,
+   "lon": -97.36644744873047
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2025-10-11",
+  "peak_q": 1341.0,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 7,
+  "q_at_image_over_peak": 0.155,
+  "peak_return_period_y": 14.5,
+  "median_q": 32.0
+ },
+ "r_emsr845_aoi03": {
+  "reach": null
+ },
+ "r_emsr849_aoi01": {
+  "reach": {
+   "link": 230452986,
+   "dsarea_km2": 7377.1,
+   "order": 5,
+   "lat": 53.2365608215332,
+   "lon": -7.976860046386719
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2025-11-13",
+  "peak_q": 250.3,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.981,
+  "peak_return_period_y": 1.6,
+  "median_q": 93.1
+ },
+ "r_emsr849_aoi02": {
+  "reach": {
+   "link": 230437759,
+   "dsarea_km2": 1220.6,
+   "order": 5,
+   "lat": 53.09056091308594,
+   "lon": -7.055291652679443
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2025-11-13",
+  "peak_q": 44.3,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.239,
+  "peak_return_period_y": 4.6,
+  "median_q": 11.1
+ },
+ "r_emsr850_aoi02": {
+  "reach": {
+   "link": 210222206,
+   "dsarea_km2": 910.0,
+   "order": 4,
+   "lat": 40.100887298583984,
+   "lon": 20.13344383239746
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2025-11-19",
+  "peak_q": 482.4,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.656,
+  "peak_return_period_y": 21.8,
+  "median_q": 10.5
+ },
+ "r_emsr850_aoi03": {
+  "reach": {
+   "link": 210279148,
+   "dsarea_km2": 65.3,
+   "order": 2,
+   "lat": 41.574222564697266,
+   "lon": 19.65244483947754
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2025-11-22",
+  "peak_q": 24.3,
+  "peak_minus_event_days": 4,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 3.0,
+  "median_q": 0.5
+ },
+ "r_emsr855_aoi01": {
+  "reach": {
+   "link": 210426968,
+   "dsarea_km2": 1189.5,
+   "order": 4,
+   "lat": 41.92177963256836,
+   "lon": 12.627333641052246
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2026-01-06",
+  "peak_q": 73.9,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.689,
+  "peak_return_period_y": 1.1,
+  "median_q": 9.9
+ },
+ "r_emsr856_aoi01": {
+  "reach": {
+   "link": 210423797,
+   "dsarea_km2": 18065.4,
+   "order": 6,
+   "lat": 41.957000732421875,
+   "lon": 19.351333618164062
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2026-01-07",
+  "peak_q": 2941.7,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 2,
+  "q_at_image_over_peak": 0.74,
+  "peak_return_period_y": 3.1,
+  "median_q": 253.3
+ },
+ "r_emsr856_aoi02": {
+  "reach": {
+   "link": 210402693,
+   "dsarea_km2": 2577.9,
+   "order": 5,
+   "lat": 41.686553955078125,
+   "lon": 19.673444747924805
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2026-01-11",
+  "peak_q": 595.9,
+  "peak_minus_event_days": 5,
+  "image_minus_q_peak_days": -1,
+  "q_at_image_over_peak": 0.481,
+  "peak_return_period_y": 1.8,
+  "median_q": 26.6
+ },
+ "r_emsr857_aoi01": {
+  "reach": {
+   "link": 120681583,
+   "dsarea_km2": 346111.8,
+   "order": 8,
+   "lat": -24.703887939453125,
+   "lon": 33.37411117553711
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2026-01-17",
+  "peak_q": 7049.0,
+  "peak_minus_event_days": 7,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 1.291,
+  "peak_return_period_y": 10.9,
+  "median_q": 58.5
+ },
+ "r_emsr857_aoi02": {
+  "reach": {
+   "link": 120600081,
+   "dsarea_km2": 31416.6,
+   "order": 6,
+   "lat": -25.17277717590332,
+   "lon": 32.51155471801758
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2026-01-17",
+  "peak_q": 2914.9,
+  "peak_minus_event_days": 7,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 1.774,
+  "peak_return_period_y": 7.9,
+  "median_q": 43.2
+ },
+ "r_emsr858_aoi08": {
+  "reach": {
+   "link": 210270817,
+   "dsarea_km2": 1883.6,
+   "order": 5,
+   "lat": 39.42855453491211,
+   "lon": 9.632444381713867
+  },
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "peak_day": "2026-01-21",
+  "peak_q": 108.7,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 5.1,
+  "median_q": 1.2
+ },
+ "r_emsr858_aoi10": {
+  "reach": {
+   "link": 210262316,
+   "dsarea_km2": 1023.4,
+   "order": 4,
+   "lat": 40.39966583251953,
+   "lon": 9.639778137207031
+  },
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "peak_day": "2026-01-20",
+  "peak_q": 58.4,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.711,
+  "peak_return_period_y": 4.0,
+  "median_q": 0.5
+ },
+ "r_emsr860_aoi02": {
+  "reach": {
+   "link": 230491093,
+   "dsarea_km2": 1867.3,
+   "order": 5,
+   "lat": 52.58856201171875,
+   "lon": -7.184238910675049
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2026-01-31",
+  "peak_q": 75.4,
+  "peak_minus_event_days": 4,
+  "image_minus_q_peak_days": -2,
+  "q_at_image_over_peak": 0.654,
+  "peak_return_period_y": 4.1,
+  "median_q": 17.4
+ },
+ "r_emsr864_aoi01": {
+  "reach": {
+   "link": 230155504,
+   "dsarea_km2": 596.1,
+   "order": 4,
+   "lat": 37.95457077026367,
+   "lon": -8.405338287353516
+  },
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "peak_day": "2026-02-04",
+  "peak_q": 21.8,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.705,
+  "peak_return_period_y": 4.3,
+  "median_q": 0.3
+ },
+ "r_emsr864_aoi02": {
+  "reach": {
+   "link": 230169634,
+   "dsarea_km2": 4074.3,
+   "order": 5,
+   "lat": 38.30223846435547,
+   "lon": -8.45101261138916
+  },
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "peak_day": "2026-02-05",
+  "peak_q": 399.4,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 6.7,
+  "median_q": 2.0
+ },
+ "r_emsr866_aoi02": {
+  "reach": {
+   "link": 230149771,
+   "dsarea_km2": 2582.3,
+   "order": 5,
+   "lat": 45.04790115356445,
+   "lon": -0.13656485080718994
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2026-02-13",
+  "peak_q": 224.6,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": -1,
+  "q_at_image_over_peak": 0.793,
+  "peak_return_period_y": 12.4,
+  "median_q": 10.4
+ },
+ "r_emsr871_aoi01": {
+  "reach": {
+   "link": 210413241,
+   "dsarea_km2": 1338.4,
+   "order": 4,
+   "lat": 41.9195556640625,
+   "lon": 14.975444793701172
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2026-04-02",
+  "peak_q": 197.9,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 29.0,
+  "median_q": 4.6
+ },
+ "r_emsr871_aoi02": {
+  "reach": {
+   "link": 210442801,
+   "dsarea_km2": 1265.7,
+   "order": 4,
+   "lat": 42.06577682495117,
+   "lon": 14.800666809082031
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2026-04-02",
+  "peak_q": 174.4,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 21.8,
+  "median_q": 4.8
+ },
+ "s1_amphan_sundarbans_2020": {
+  "reach": {
+   "link": 440757456,
+   "dsarea_km2": 96.2,
+   "order": 3,
+   "lat": 22.197778701782227,
+   "lon": 88.7403335571289
+  },
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "peak_day": "2020-05-20",
+  "peak_q": 2.0,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 2,
+  "q_at_image_over_peak": 0.163,
+  "peak_return_period_y": 1.0,
+  "median_q": 0.6
+ },
+ "s1_assam_morigaon_2024": {
+  "reach": {
+   "link": 441094398,
+   "dsarea_km2": 14100.8,
+   "order": 6,
+   "lat": 26.277000427246094,
+   "lon": 92.25389099121094
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-07-05",
+  "peak_q": 5717.8,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 6,
+  "q_at_image_over_peak": 0.218,
+  "peak_return_period_y": 4.8,
+  "median_q": 288.8
+ },
+ "s1_ayutthaya_2021": {
+  "reach": {
+   "link": 430487010,
+   "dsarea_km2": 138491.9,
+   "order": 7,
+   "lat": 14.279777526855469,
+   "lon": 100.57644653320312
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2021-10-01",
+  "peak_q": 14123.9,
+  "peak_minus_event_days": -4,
+  "image_minus_q_peak_days": 7,
+  "q_at_image_over_peak": 0.436,
+  "peak_return_period_y": 4.1,
+  "median_q": 1055.0
+ },
+ "s1_baghlan_2024": {
+  "reach": {
+   "link": 470167893,
+   "dsarea_km2": 17742.0,
+   "order": 6,
+   "lat": 36.14330291748047,
+   "lon": 68.69041442871094
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2024-05-13",
+  "peak_q": 1406.8,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.869,
+  "peak_return_period_y": 8.7,
+  "median_q": 25.5
+ },
+ "s1_battambang_2020": {
+  "reach": {
+   "link": 430343687,
+   "dsarea_km2": 523.6,
+   "order": 4,
+   "lat": 13.155333518981934,
+   "lon": 103.12288665771484
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2020-10-10",
+  "peak_q": 78.4,
+  "peak_minus_event_days": -10,
+  "image_minus_q_peak_days": 10,
+  "q_at_image_over_peak": 0.04,
+  "peak_return_period_y": 2.7,
+  "median_q": 0.5
+ },
+ "s1_budalangi_2020": {
+  "reach": {
+   "link": 160267336,
+   "dsarea_km2": 12259.2,
+   "order": 6,
+   "lat": 0.09477777779102325,
+   "lon": 33.99333190917969
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2020-05-13",
+  "peak_q": 2774.9,
+  "peak_minus_event_days": -2,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 0.471,
+  "peak_return_period_y": 21.8,
+  "median_q": 373.9
+ },
+ "s1_dana_kendrapara_2024": {
+  "reach": {
+   "link": 440496084,
+   "dsarea_km2": 69.4,
+   "order": 3,
+   "lat": 20.669776916503906,
+   "lon": 86.87222290039062
+  },
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "peak_day": "2024-10-24",
+  "peak_q": 18.7,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 4,
+  "q_at_image_over_peak": 0.055,
+  "peak_return_period_y": 1.1,
+  "median_q": 0.3
+ },
+ "s1_francine_terrebonne_2024": {
+  "reach": {
+   "link": 760038243,
+   "dsarea_km2": 981.7,
+   "order": 5,
+   "lat": 29.213542938232422,
+   "lon": -90.68368530273438
+  },
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "peak_day": "2024-09-08",
+  "peak_q": 269.6,
+  "peak_minus_event_days": -4,
+  "image_minus_q_peak_days": 10,
+  "q_at_image_over_peak": 0.042,
+  "peak_return_period_y": 3.6,
+  "median_q": 2.2
+ },
+ "s1_garsen_2023": {
+  "reach": {
+   "link": 110343311,
+   "dsarea_km2": 84196.2,
+   "order": 7,
+   "lat": -2.3031110763549805,
+   "lon": 40.13800048828125
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2023-12-03",
+  "peak_q": 2340.8,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.875,
+  "peak_return_period_y": 4.6,
+  "median_q": 176.3
+ },
+ "s1_helene_steinhatchee_2024": {
+  "reach": {
+   "link": 750079779,
+   "dsarea_km2": 833.9,
+   "order": 4,
+   "lat": 29.660444259643555,
+   "lon": -83.42021942138672
+  },
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "peak_day": "2024-09-27",
+  "peak_q": 79.8,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 11,
+  "q_at_image_over_peak": 0.077,
+  "peak_return_period_y": 8.7,
+  "median_q": 2.0
+ },
+ "s1_ida_lafitte_2021": {
+  "reach": {
+   "link": 760079815,
+   "dsarea_km2": 2765.0,
+   "order": 5,
+   "lat": 29.612653732299805,
+   "lon": -90.15908813476562
+  },
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "peak_day": "2021-08-31",
+  "peak_q": 1809.6,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 10,
+  "q_at_image_over_peak": 0.038,
+  "peak_return_period_y": 43.5,
+  "median_q": 10.2
+ },
+ "s1_jowhar_2023": {
+  "reach": {
+   "link": 110613447,
+   "dsarea_km2": 239.6,
+   "order": 3,
+   "lat": 2.7088890075683594,
+   "lon": 45.47022247314453
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2023-11-11",
+  "peak_q": 8.8,
+  "peak_minus_event_days": -9,
+  "image_minus_q_peak_days": 10,
+  "q_at_image_over_peak": 0.011,
+  "peak_return_period_y": 4.8,
+  "median_q": 0.0
+ },
+ "s1_kebbi_2020": {
+  "reach": {
+   "link": 140584702,
+   "dsarea_km2": 146880.9,
+   "order": 7,
+   "lat": 12.484777450561523,
+   "lon": 4.20211124420166
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2020-09-06",
+  "peak_q": 998.2,
+  "peak_minus_event_days": -9,
+  "image_minus_q_peak_days": 16,
+  "q_at_image_over_peak": 0.379,
+  "peak_return_period_y": 2.6,
+  "median_q": 9.6
+ },
+ "s1_kelantan_2024": {
+  "reach": {
+   "link": 430075622,
+   "dsarea_km2": 12105.4,
+   "order": 5,
+   "lat": 6.025000095367432,
+   "lon": 102.15611267089844
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-12-02",
+  "peak_q": 12806.0,
+  "peak_minus_event_days": 2,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 0.293,
+  "peak_return_period_y": 87.0,
+  "median_q": 275.1
+ },
+ "s1_khuzestan_2019": {
+  "reach": {
+   "link": 291245727,
+   "dsarea_km2": 64706.1,
+   "order": 7,
+   "lat": 31.269332885742188,
+   "lon": 48.61899948120117
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2019-04-06",
+  "peak_q": 7690.9,
+  "peak_minus_event_days": -9,
+  "image_minus_q_peak_days": 14,
+  "q_at_image_over_peak": 0.364,
+  "peak_return_period_y": 29.0,
+  "median_q": 225.9
+ },
+ "s1_lokoja_2022": {
+  "reach": {
+   "link": 140633097,
+   "dsarea_km2": 2031145.8,
+   "order": 9,
+   "lat": 7.776000022888184,
+   "lon": 6.746333122253418
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2022-10-07",
+  "peak_q": 36278.2,
+  "peak_minus_event_days": -3,
+  "image_minus_q_peak_days": 6,
+  "q_at_image_over_peak": 0.821,
+  "peak_return_period_y": 7.9,
+  "median_q": 5063.0
+ },
+ "s1_mopti_2024": {
+  "reach": {
+   "link": 140773834,
+   "dsarea_km2": 146199.5,
+   "order": 7,
+   "lat": 14.513111114501953,
+   "lon": -4.198333263397217
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2024-09-19",
+  "peak_q": 14696.9,
+  "peak_minus_event_days": -1,
+  "image_minus_q_peak_days": 2,
+  "q_at_image_over_peak": 0.886,
+  "peak_return_period_y": 8.7,
+  "median_q": 946.1
+ },
+ "s1_remal_satkhira_2024": {
+  "reach": {
+   "link": 440698282,
+   "dsarea_km2": 90.2,
+   "order": 2,
+   "lat": 22.343666076660156,
+   "lon": 89.13077545166016
+  },
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "peak_day": "2024-05-27",
+  "peak_q": 27.1,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 4,
+  "q_at_image_over_peak": 0.017,
+  "peak_return_period_y": 1.2,
+  "median_q": 0.7
+ },
+ "s1_sukhothai_2024": {
+  "reach": {
+   "link": 430606735,
+   "dsarea_km2": 12688.9,
+   "order": 6,
+   "lat": 16.971111297607422,
+   "lon": 99.91000366210938
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2024-09-01",
+  "peak_q": 751.5,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 2,
+  "q_at_image_over_peak": 0.848,
+  "peak_return_period_y": 1.0,
+  "median_q": 87.0
+ },
+ "s1_sunamganj_2024": {
+  "reach": {
+   "link": 441115089,
+   "dsarea_km2": 36315.4,
+   "order": 6,
+   "lat": 25.00688934326172,
+   "lon": 91.3479995727539
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2024-06-19",
+  "peak_q": 11159.6,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 0,
+  "q_at_image_over_peak": 1.0,
+  "peak_return_period_y": 2.6,
+  "median_q": 962.0
+ },
+ "s1_tabasco_2020": {
+  "reach": {
+   "link": 770392789,
+   "dsarea_km2": 41563.1,
+   "order": 7,
+   "lat": 18.005556106567383,
+   "lon": -92.85855865478516
+  },
+  "tags": [
+   "fluvial"
+  ],
+  "peak_day": "2020-11-08",
+  "peak_q": 5355.2,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.96,
+  "peak_return_period_y": 2.8,
+  "median_q": 590.5
+ },
+ "s1_ubon_2022": {
+  "reach": {
+   "link": 430466502,
+   "dsarea_km2": 105251.5,
+   "order": 8,
+   "lat": 15.233888626098633,
+   "lon": 104.89199829101562
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2022-10-02",
+  "peak_q": 9380.0,
+  "peak_minus_event_days": -3,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 0.963,
+  "peak_return_period_y": 7.2,
+  "median_q": 312.9
+ },
+ "s1_yenagoa_2022": {
+  "reach": {
+   "link": 140180484,
+   "dsarea_km2": 2059272.7,
+   "order": 9,
+   "lat": 4.950333118438721,
+   "lon": 6.249555587768555
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2022-10-13",
+  "peak_q": 37384.0,
+  "peak_minus_event_days": -2,
+  "image_minus_q_peak_days": 5,
+  "q_at_image_over_peak": 0.837,
+  "peak_return_period_y": 7.2,
+  "median_q": 5406.1
+ },
+ "sittwe": {
+  "reach": {
+   "link": 440507112,
+   "dsarea_km2": 88.9,
+   "order": 3,
+   "lat": 20.191667556762695,
+   "lon": 92.9280014038086
+  },
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "peak_day": "2023-05-14",
+  "peak_q": 61.8,
+  "peak_minus_event_days": 0,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.01,
+  "peak_return_period_y": 1.3,
+  "median_q": 1.0
+ },
+ "sylhet_2022": {
+  "reach": {
+   "link": 441049049,
+   "dsarea_km2": 29839.8,
+   "order": 6,
+   "lat": 24.9071102142334,
+   "lon": 91.77555847167969
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2022-06-22",
+  "peak_q": 4065.1,
+  "peak_minus_event_days": 4,
+  "image_minus_q_peak_days": null,
+  "q_at_image_over_peak": null,
+  "peak_return_period_y": 1.1,
+  "median_q": 595.8
+ },
+ "thai_binh": {
+  "reach": {
+   "link": 420055118,
+   "dsarea_km2": 130895.9,
+   "order": 8,
+   "lat": 20.38422203063965,
+   "lon": 106.28633117675781
+  },
+  "tags": [
+   "waterlogging"
+  ],
+  "peak_day": "2024-09-16",
+  "peak_q": 33318.1,
+  "peak_minus_event_days": 7,
+  "image_minus_q_peak_days": 4,
+  "q_at_image_over_peak": 0.712,
+  "peak_return_period_y": 43.5,
+  "median_q": 2690.7
+ },
+ "valencia_2024": {
+  "reach": {
+   "link": 210287708,
+   "dsarea_km2": 6252.6,
+   "order": 5,
+   "lat": 39.485111236572266,
+   "lon": -0.4404444396495819
+  },
+  "tags": [
+   "compound",
+   "flash_flood",
+   "pluvial"
+  ],
+  "peak_day": "2024-10-30",
+  "peak_q": 243.5,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 1,
+  "q_at_image_over_peak": 0.652,
+  "peak_return_period_y": 29.0,
+  "median_q": 1.5
+ },
+ "volos": {
+  "reach": {
+   "link": 210215910,
+   "dsarea_km2": 155.7,
+   "order": 3,
+   "lat": 39.35222244262695,
+   "lon": 22.943889617919922
+  },
+  "tags": [
+   "flash_flood"
+  ],
+  "peak_day": "2023-09-06",
+  "peak_q": 51.6,
+  "peak_minus_event_days": 1,
+  "image_minus_q_peak_days": 3,
+  "q_at_image_over_peak": 0.001,
+  "peak_return_period_y": 10.9,
+  "median_q": 0.2
+ }
+}

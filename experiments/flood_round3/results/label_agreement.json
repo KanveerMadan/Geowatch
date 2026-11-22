@@ -1,0 +1,1850 @@
+{
+ "belize_city": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "COSMO-SkyMed",
+   "COSMO-SkyMed Second Generation"
+  ],
+  "s1_minus_ems_days": 5,
+  "cells_both": 9640,
+  "ems_flooded": 0,
+  "s1_flooded": 263,
+  "kappa": 0.0,
+  "s1_recall_of_ems": 0.0,
+  "s1_precision_vs_ems": 0.0,
+  "auc_s1_for_ems": 0.486
+ },
+ "black_river": {
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 12015,
+  "ems_flooded": 1260,
+  "s1_flooded": 1242,
+  "kappa": 0.469,
+  "s1_recall_of_ems": 0.521,
+  "s1_precision_vs_ems": 0.528,
+  "auc_s1_for_ems": 0.733
+ },
+ "choloma": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 1,
+  "ems_flooded": 0,
+  "s1_flooded": 0,
+  "kappa": 0.0,
+  "s1_recall_of_ems": 0.0,
+  "s1_precision_vs_ems": 0.0,
+  "auc_s1_for_ems": 0.0
+ },
+ "derna_2023": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 16042,
+  "ems_flooded": 1767,
+  "s1_flooded": 423,
+  "kappa": 0.062,
+  "s1_recall_of_ems": 0.063,
+  "s1_precision_vs_ems": 0.265,
+  "auc_s1_for_ems": 0.521
+ },
+ "emsr662_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "s1_minus_ems_days": 8,
+  "cells_both": 17688,
+  "ems_flooded": 408,
+  "s1_flooded": 1018,
+  "kappa": 0.458,
+  "s1_recall_of_ems": 0.831,
+  "s1_precision_vs_ems": 0.333,
+  "auc_s1_for_ems": 0.896
+ },
+ "emsr664_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "SPOT-6-7",
+   "aerial"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17789,
+  "ems_flooded": 11033,
+  "s1_flooded": 7249,
+  "kappa": 0.309,
+  "s1_recall_of_ems": 0.537,
+  "s1_precision_vs_ems": 0.818,
+  "auc_s1_for_ems": 0.671
+ },
+ "emsr664_aoi03": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 16188,
+  "ems_flooded": 2709,
+  "s1_flooded": 680,
+  "kappa": 0.107,
+  "s1_recall_of_ems": 0.104,
+  "s1_precision_vs_ems": 0.416,
+  "auc_s1_for_ems": 0.538
+ },
+ "emsr664_aoi07": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "SPOT-6-7"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 17793,
+  "ems_flooded": 8940,
+  "s1_flooded": 3257,
+  "kappa": 0.259,
+  "s1_recall_of_ems": 0.312,
+  "s1_precision_vs_ems": 0.857,
+  "auc_s1_for_ems": 0.63
+ },
+ "emsr680_aoi04": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17758,
+  "ems_flooded": 254,
+  "s1_flooded": 415,
+  "kappa": 0.572,
+  "s1_recall_of_ems": 0.764,
+  "s1_precision_vs_ems": 0.467,
+  "auc_s1_for_ems": 0.876
+ },
+ "emsr680_aoi07": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 11724,
+  "ems_flooded": 865,
+  "s1_flooded": 189,
+  "kappa": 0.022,
+  "s1_recall_of_ems": 0.029,
+  "s1_precision_vs_ems": 0.132,
+  "auc_s1_for_ems": 0.507
+ },
+ "emsr680_aoi13": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 11212,
+  "ems_flooded": 563,
+  "s1_flooded": 731,
+  "kappa": -0.014,
+  "s1_recall_of_ems": 0.05,
+  "s1_precision_vs_ems": 0.038,
+  "auc_s1_for_ems": 0.492
+ },
+ "emsr694_aoi02": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "Pleiades Neo"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 8482,
+  "ems_flooded": 965,
+  "s1_flooded": 538,
+  "kappa": 0.029,
+  "s1_recall_of_ems": 0.084,
+  "s1_precision_vs_ems": 0.151,
+  "auc_s1_for_ems": 0.512
+ },
+ "emsr694_aoi03": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 17106,
+  "ems_flooded": 1684,
+  "s1_flooded": 566,
+  "kappa": 0.01,
+  "s1_recall_of_ems": 0.039,
+  "s1_precision_vs_ems": 0.117,
+  "auc_s1_for_ems": 0.503
+ },
+ "emsr697_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17765,
+  "ems_flooded": 1471,
+  "s1_flooded": 1409,
+  "kappa": 0.15,
+  "s1_recall_of_ems": 0.214,
+  "s1_precision_vs_ems": 0.224,
+  "auc_s1_for_ems": 0.573
+ },
+ "emsr705_aoi03": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17257,
+  "ems_flooded": 1275,
+  "s1_flooded": 1440,
+  "kappa": 0.181,
+  "s1_recall_of_ems": 0.261,
+  "s1_precision_vs_ems": 0.231,
+  "auc_s1_for_ems": 0.596
+ },
+ "emsr711_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 17633,
+  "ems_flooded": 2297,
+  "s1_flooded": 2578,
+  "kappa": 0.791,
+  "s1_recall_of_ems": 0.87,
+  "s1_precision_vs_ems": 0.775,
+  "auc_s1_for_ems": 0.916
+ },
+ "emsr711_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 13482,
+  "ems_flooded": 4362,
+  "s1_flooded": 4358,
+  "kappa": 0.824,
+  "s1_recall_of_ems": 0.881,
+  "s1_precision_vs_ems": 0.881,
+  "auc_s1_for_ems": 0.912
+ },
+ "emsr711_aoi03": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 11109,
+  "ems_flooded": 849,
+  "s1_flooded": 864,
+  "kappa": 0.641,
+  "s1_recall_of_ems": 0.675,
+  "s1_precision_vs_ems": 0.663,
+  "auc_s1_for_ems": 0.823
+ },
+ "emsr757_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17786,
+  "ems_flooded": 3850,
+  "s1_flooded": 1628,
+  "kappa": 0.446,
+  "s1_recall_of_ems": 0.368,
+  "s1_precision_vs_ems": 0.87,
+  "auc_s1_for_ems": 0.676
+ },
+ "emsr757_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17809,
+  "ems_flooded": 768,
+  "s1_flooded": 521,
+  "kappa": 0.195,
+  "s1_recall_of_ems": 0.188,
+  "s1_precision_vs_ems": 0.276,
+  "auc_s1_for_ems": 0.583
+ },
+ "emsr761_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "WorldView-2"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17300,
+  "ems_flooded": 1184,
+  "s1_flooded": 983,
+  "kappa": 0.152,
+  "s1_recall_of_ems": 0.188,
+  "s1_precision_vs_ems": 0.226,
+  "auc_s1_for_ems": 0.57
+ },
+ "emsr762_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "s1_minus_ems_days": 6,
+  "cells_both": 17803,
+  "ems_flooded": 1812,
+  "s1_flooded": 2768,
+  "kappa": 0.201,
+  "s1_recall_of_ems": 0.378,
+  "s1_precision_vs_ems": 0.247,
+  "auc_s1_for_ems": 0.624
+ },
+ "emsr762_aoi04": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Drone Imagery"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 17791,
+  "ems_flooded": 4831,
+  "s1_flooded": 3999,
+  "kappa": 0.762,
+  "s1_recall_of_ems": 0.75,
+  "s1_precision_vs_ems": 0.906,
+  "auc_s1_for_ems": 0.86
+ },
+ "emsr762_aoi06": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Drone Imagery",
+   "GeoEye-1"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 17803,
+  "ems_flooded": 7123,
+  "s1_flooded": 1825,
+  "kappa": 0.194,
+  "s1_recall_of_ems": 0.205,
+  "s1_precision_vs_ems": 0.798,
+  "auc_s1_for_ems": 0.585
+ },
+ "emsr770_aoi01": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "SPOT-6-7"
+  ],
+  "s1_minus_ems_days": 9,
+  "cells_both": 8741,
+  "ems_flooded": 217,
+  "s1_flooded": 223,
+  "kappa": -0.002,
+  "s1_recall_of_ems": 0.023,
+  "s1_precision_vs_ems": 0.022,
+  "auc_s1_for_ems": 0.499
+ },
+ "emsr770_aoi03": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 8,
+  "cells_both": 5250,
+  "ems_flooded": 348,
+  "s1_flooded": 194,
+  "kappa": -0.042,
+  "s1_recall_of_ems": 0.006,
+  "s1_precision_vs_ems": 0.01,
+  "auc_s1_for_ems": 0.483
+ },
+ "emsr774_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17536,
+  "ems_flooded": 7209,
+  "s1_flooded": 10198,
+  "kappa": 0.607,
+  "s1_recall_of_ems": 0.962,
+  "s1_precision_vs_ems": 0.68,
+  "auc_s1_for_ems": 0.823
+ },
+ "emsr774_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17395,
+  "ems_flooded": 879,
+  "s1_flooded": 2159,
+  "kappa": 0.526,
+  "s1_recall_of_ems": 0.968,
+  "s1_precision_vs_ems": 0.394,
+  "auc_s1_for_ems": 0.944
+ },
+ "emsr776_aoi01": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "s1_minus_ems_days": 7,
+  "cells_both": 17796,
+  "ems_flooded": 1167,
+  "s1_flooded": 1045,
+  "kappa": 0.473,
+  "s1_recall_of_ems": 0.479,
+  "s1_precision_vs_ems": 0.535,
+  "auc_s1_for_ems": 0.725
+ },
+ "emsr779_aoi01": {
+  "tags": [
+   "waterlogging"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17689,
+  "ems_flooded": 217,
+  "s1_flooded": 86,
+  "kappa": 0.438,
+  "s1_recall_of_ems": 0.309,
+  "s1_precision_vs_ems": 0.779,
+  "auc_s1_for_ems": 0.654
+ },
+ "emsr779_aoi02": {
+  "tags": [
+   "waterlogging"
+  ],
+  "sensors": [
+   "Sentinel-1",
+   "Sentinel-2"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17689,
+  "ems_flooded": 3374,
+  "s1_flooded": 1728,
+  "kappa": 0.461,
+  "s1_recall_of_ems": 0.401,
+  "s1_precision_vs_ems": 0.783,
+  "auc_s1_for_ems": 0.687
+ },
+ "emsr779_aoi03": {
+  "tags": [
+   "waterlogging"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17689,
+  "ems_flooded": 2557,
+  "s1_flooded": 3540,
+  "kappa": 0.5,
+  "s1_recall_of_ems": 0.697,
+  "s1_precision_vs_ems": 0.503,
+  "auc_s1_for_ems": 0.79
+ },
+ "emsr799_aoi02": {
+  "tags": [
+   "waterlogging"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17689,
+  "ems_flooded": 213,
+  "s1_flooded": 10766,
+  "kappa": 0.008,
+  "s1_recall_of_ems": 0.803,
+  "s1_precision_vs_ems": 0.016,
+  "auc_s1_for_ems": 0.598
+ },
+ "emsr799_aoi03": {
+  "tags": [
+   "waterlogging"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "s1_minus_ems_days": 4,
+  "cells_both": 17596,
+  "ems_flooded": 1041,
+  "s1_flooded": 1985,
+  "kappa": 0.374,
+  "s1_recall_of_ems": 0.615,
+  "s1_precision_vs_ems": 0.322,
+  "auc_s1_for_ems": 0.767
+ },
+ "emsr799_aoi04": {
+  "tags": [
+   "waterlogging"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 17717,
+  "ems_flooded": 1904,
+  "s1_flooded": 2051,
+  "kappa": -0.083,
+  "s1_recall_of_ems": 0.039,
+  "s1_precision_vs_ems": 0.037,
+  "auc_s1_for_ems": 0.457
+ },
+ "emsr813_aoi01": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17631,
+  "ems_flooded": 173,
+  "s1_flooded": 452,
+  "kappa": 0.112,
+  "s1_recall_of_ems": 0.225,
+  "s1_precision_vs_ems": 0.086,
+  "auc_s1_for_ems": 0.601
+ },
+ "emsr838_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17750,
+  "ems_flooded": 9092,
+  "s1_flooded": 9736,
+  "kappa": 0.691,
+  "s1_recall_of_ems": 0.885,
+  "s1_precision_vs_ems": 0.827,
+  "auc_s1_for_ems": 0.845
+ },
+ "emsr838_aoi03": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17742,
+  "ems_flooded": 7261,
+  "s1_flooded": 8383,
+  "kappa": 0.58,
+  "s1_recall_of_ems": 0.823,
+  "s1_precision_vs_ems": 0.713,
+  "auc_s1_for_ems": 0.797
+ },
+ "emsr838_aoi07": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 17749,
+  "ems_flooded": 11360,
+  "s1_flooded": 13327,
+  "kappa": 0.162,
+  "s1_recall_of_ems": 0.805,
+  "s1_precision_vs_ems": 0.687,
+  "auc_s1_for_ems": 0.576
+ },
+ "emsr844_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 4404,
+  "ems_flooded": 29,
+  "s1_flooded": 173,
+  "kappa": 0.139,
+  "s1_recall_of_ems": 0.517,
+  "s1_precision_vs_ems": 0.087,
+  "auc_s1_for_ems": 0.741
+ },
+ "emsr853_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "COSMO-SkyMed",
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 17708,
+  "ems_flooded": 2776,
+  "s1_flooded": 3260,
+  "kappa": 0.729,
+  "s1_recall_of_ems": 0.842,
+  "s1_precision_vs_ems": 0.717,
+  "auc_s1_for_ems": 0.89
+ },
+ "emsr853_aoi04": {
+  "error": "LookupError: no Sentinel-1 image in 2025-12-18 + 13 d"
+ },
+ "emsr853_aoi08": {
+  "error": "LookupError: no Sentinel-1 image in 2025-12-17 + 13 d"
+ },
+ "emsr865_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17720,
+  "ems_flooded": 1937,
+  "s1_flooded": 1263,
+  "kappa": 0.629,
+  "s1_recall_of_ems": 0.546,
+  "s1_precision_vs_ems": 0.838,
+  "auc_s1_for_ems": 0.767
+ },
+ "emsr868_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 16085,
+  "ems_flooded": 4874,
+  "s1_flooded": 3976,
+  "kappa": 0.739,
+  "s1_recall_of_ems": 0.735,
+  "s1_precision_vs_ems": 0.901,
+  "auc_s1_for_ems": 0.85
+ },
+ "emsr868_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17786,
+  "ems_flooded": 1756,
+  "s1_flooded": 2205,
+  "kappa": 0.782,
+  "s1_recall_of_ems": 0.909,
+  "s1_precision_vs_ems": 0.724,
+  "auc_s1_for_ems": 0.935
+ },
+ "emsr870_aoi05": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17819,
+  "ems_flooded": 1489,
+  "s1_flooded": 2508,
+  "kappa": 0.63,
+  "s1_recall_of_ems": 0.898,
+  "s1_precision_vs_ems": 0.533,
+  "auc_s1_for_ems": 0.913
+ },
+ "emsr870_aoi08": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17815,
+  "ems_flooded": 1931,
+  "s1_flooded": 3486,
+  "kappa": 0.568,
+  "s1_recall_of_ems": 0.881,
+  "s1_precision_vs_ems": 0.488,
+  "auc_s1_for_ems": 0.885
+ },
+ "emsr870_aoi13": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Legion"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17435,
+  "ems_flooded": 8858,
+  "s1_flooded": 4506,
+  "kappa": 0.417,
+  "s1_recall_of_ems": 0.465,
+  "s1_precision_vs_ems": 0.915,
+  "auc_s1_for_ems": 0.71
+ },
+ "emsr935_aoi01": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "SPOT-6-7"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 14894,
+  "ems_flooded": 8596,
+  "s1_flooded": 5485,
+  "kappa": 0.222,
+  "s1_recall_of_ems": 0.468,
+  "s1_precision_vs_ems": 0.734,
+  "auc_s1_for_ems": 0.618
+ },
+ "emsr935_aoi02": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "GeoEye-1",
+   "SPOT-6-7"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 11775,
+  "ems_flooded": 404,
+  "s1_flooded": 226,
+  "kappa": 0.063,
+  "s1_recall_of_ems": 0.067,
+  "s1_precision_vs_ems": 0.119,
+  "auc_s1_for_ems": 0.525
+ },
+ "encantado": {
+  "error": "LookupError: S1 over [-51.890589, -29.253966, -51.849411, -29.218034]: 1 event / 0 baseline images"
+ },
+ "faenza": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 6,
+  "cells_both": 8646,
+  "ems_flooded": 219,
+  "s1_flooded": 82,
+  "kappa": 0.02,
+  "s1_recall_of_ems": 0.023,
+  "s1_precision_vs_ems": 0.061,
+  "auc_s1_for_ems": 0.507
+ },
+ "hai_phong": {
+  "error": "LookupError: S1 over [106.668875, 20.826934, 106.707325, 20.862866]: 1 event / 0 baseline images"
+ },
+ "hanoi": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "WorldView-3"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 14716,
+  "ems_flooded": 940,
+  "s1_flooded": 829,
+  "kappa": 0.325,
+  "s1_recall_of_ems": 0.344,
+  "s1_precision_vs_ems": 0.39,
+  "auc_s1_for_ems": 0.653
+ },
+ "kolonnawa": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "PlanetScope"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 9190,
+  "ems_flooded": 573,
+  "s1_flooded": 479,
+  "kappa": 0.194,
+  "s1_recall_of_ems": 0.22,
+  "s1_precision_vs_ems": 0.263,
+  "auc_s1_for_ems": 0.589
+ },
+ "kyaukpyu": {
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "s1_minus_ems_days": 4,
+  "cells_both": 9315,
+  "ems_flooded": 381,
+  "s1_flooded": 153,
+  "kappa": 0.141,
+  "s1_recall_of_ems": 0.113,
+  "s1_precision_vs_ems": 0.281,
+  "auc_s1_for_ems": 0.55
+ },
+ "milagro": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17688,
+  "ems_flooded": 367,
+  "s1_flooded": 1201,
+  "kappa": 0.279,
+  "s1_recall_of_ems": 0.646,
+  "s1_precision_vs_ems": 0.197,
+  "auc_s1_for_ems": 0.795
+ },
+ "nam_dinh": {
+  "tags": [
+   "waterlogging"
+  ],
+  "sensors": [
+   "WorldView-2"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 17110,
+  "ems_flooded": 169,
+  "s1_flooded": 554,
+  "kappa": 0.097,
+  "s1_recall_of_ems": 0.237,
+  "s1_precision_vs_ems": 0.072,
+  "auc_s1_for_ems": 0.603
+ },
+ "paiporta": {
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "sensors": [
+   "GeoEye-1",
+   "WorldView-2"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17786,
+  "ems_flooded": 3683,
+  "s1_flooded": 609,
+  "kappa": 0.016,
+  "s1_recall_of_ems": 0.043,
+  "s1_precision_vs_ems": 0.259,
+  "auc_s1_for_ems": 0.505
+ },
+ "r_emsr657_aoi01": {
+  "tags": [
+   "fluvial",
+   "snowmelt"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 16627,
+  "ems_flooded": 7218,
+  "s1_flooded": 7544,
+  "kappa": 0.655,
+  "s1_recall_of_ems": 0.827,
+  "s1_precision_vs_ems": 0.791,
+  "auc_s1_for_ems": 0.829
+ },
+ "r_emsr663_aoi01": {
+  "tags": [
+   "compound"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 10,
+  "cells_both": 17706,
+  "ems_flooded": 9578,
+  "s1_flooded": 11545,
+  "kappa": 0.024,
+  "s1_recall_of_ems": 0.663,
+  "s1_precision_vs_ems": 0.55,
+  "auc_s1_for_ems": 0.512
+ },
+ "r_emsr668_aoi02": {
+  "tags": [
+   "fluvial",
+   "snowmelt"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 14408,
+  "ems_flooded": 81,
+  "s1_flooded": 663,
+  "kappa": 0.101,
+  "s1_recall_of_ems": 0.506,
+  "s1_precision_vs_ems": 0.062,
+  "auc_s1_for_ems": 0.731
+ },
+ "r_emsr684_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 14513,
+  "ems_flooded": 439,
+  "s1_flooded": 701,
+  "kappa": 0.559,
+  "s1_recall_of_ems": 0.747,
+  "s1_precision_vs_ems": 0.468,
+  "auc_s1_for_ems": 0.86
+ },
+ "r_emsr684_aoi05": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 16696,
+  "ems_flooded": 1741,
+  "s1_flooded": 1516,
+  "kappa": 0.522,
+  "s1_recall_of_ems": 0.532,
+  "s1_precision_vs_ems": 0.611,
+  "auc_s1_for_ems": 0.746
+ },
+ "r_emsr698_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17584,
+  "ems_flooded": 857,
+  "s1_flooded": 1122,
+  "kappa": 0.658,
+  "s1_recall_of_ems": 0.782,
+  "s1_precision_vs_ems": 0.597,
+  "auc_s1_for_ems": 0.877
+ },
+ "r_emsr698_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17826,
+  "ems_flooded": 490,
+  "s1_flooded": 1042,
+  "kappa": 0.626,
+  "s1_recall_of_ems": 1.0,
+  "s1_precision_vs_ems": 0.47,
+  "auc_s1_for_ems": 0.984
+ },
+ "r_emsr703_aoi01": {
+  "tags": [
+   "coastal"
+  ],
+  "sensors": [
+   "Pleiades Neo"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 14243,
+  "ems_flooded": 1287,
+  "s1_flooded": 701,
+  "kappa": 0.158,
+  "s1_recall_of_ems": 0.163,
+  "s1_precision_vs_ems": 0.3,
+  "auc_s1_for_ems": 0.563
+ },
+ "r_emsr703_aoi02": {
+  "tags": [
+   "coastal"
+  ],
+  "sensors": [
+   "Pleiades Neo"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 14060,
+  "ems_flooded": 3331,
+  "s1_flooded": 391,
+  "kappa": 0.075,
+  "s1_recall_of_ems": 0.068,
+  "s1_precision_vs_ems": 0.578,
+  "auc_s1_for_ems": 0.526
+ },
+ "r_emsr712_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 9604,
+  "ems_flooded": 1641,
+  "s1_flooded": 1481,
+  "kappa": 0.29,
+  "s1_recall_of_ems": 0.386,
+  "s1_precision_vs_ems": 0.427,
+  "auc_s1_for_ems": 0.64
+ },
+ "r_emsr721_aoi01": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "GeoEye-1",
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 17810,
+  "ems_flooded": 163,
+  "s1_flooded": 1200,
+  "kappa": 0.002,
+  "s1_recall_of_ems": 0.074,
+  "s1_precision_vs_ems": 0.01,
+  "auc_s1_for_ems": 0.503
+ },
+ "r_emsr722_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 6935,
+  "ems_flooded": 2316,
+  "s1_flooded": 2010,
+  "kappa": 0.735,
+  "s1_recall_of_ems": 0.763,
+  "s1_precision_vs_ems": 0.88,
+  "auc_s1_for_ems": 0.855
+ },
+ "r_emsr722_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 10919,
+  "ems_flooded": 1494,
+  "s1_flooded": 1161,
+  "kappa": 0.493,
+  "s1_recall_of_ems": 0.492,
+  "s1_precision_vs_ems": 0.633,
+  "auc_s1_for_ems": 0.723
+ },
+ "r_emsr728_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "COSMO-SkyMed",
+   "PAZ"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17694,
+  "ems_flooded": 140,
+  "s1_flooded": 2361,
+  "kappa": 0.035,
+  "s1_recall_of_ems": 0.443,
+  "s1_precision_vs_ems": 0.026,
+  "auc_s1_for_ems": 0.656
+ },
+ "r_emsr728_aoi03": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "PAZ"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17330,
+  "ems_flooded": 1410,
+  "s1_flooded": 6374,
+  "kappa": 0.223,
+  "s1_recall_of_ems": 0.901,
+  "s1_precision_vs_ems": 0.199,
+  "auc_s1_for_ems": 0.79
+ },
+ "r_emsr734_aoi17": {
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "sensors": [
+   "GeoEye-1"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 12665,
+  "ems_flooded": 250,
+  "s1_flooded": 271,
+  "kappa": 0.265,
+  "s1_recall_of_ems": 0.292,
+  "s1_precision_vs_ems": 0.269,
+  "auc_s1_for_ems": 0.638
+ },
+ "r_emsr742_aoi01": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 17725,
+  "ems_flooded": 187,
+  "s1_flooded": 347,
+  "kappa": 0.506,
+  "s1_recall_of_ems": 0.733,
+  "s1_precision_vs_ems": 0.395,
+  "auc_s1_for_ems": 0.86
+ },
+ "r_emsr742_aoi03": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "COSMO-SkyMed",
+   "COSMO-SkyMed Second Generation"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 17839,
+  "ems_flooded": 248,
+  "s1_flooded": 661,
+  "kappa": 0.323,
+  "s1_recall_of_ems": 0.617,
+  "s1_precision_vs_ems": 0.231,
+  "auc_s1_for_ems": 0.794
+ },
+ "r_emsr750_aoi01": {
+  "tags": [
+   "flash_flood",
+   "dam_breach"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 10410,
+  "ems_flooded": 5659,
+  "s1_flooded": 1020,
+  "kappa": 0.106,
+  "s1_recall_of_ems": 0.15,
+  "s1_precision_vs_ems": 0.833,
+  "auc_s1_for_ems": 0.557
+ },
+ "r_emsr750_aoi02": {
+  "tags": [
+   "flash_flood",
+   "dam_breach"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 13898,
+  "ems_flooded": 7110,
+  "s1_flooded": 954,
+  "kappa": 0.042,
+  "s1_recall_of_ems": 0.09,
+  "s1_precision_vs_ems": 0.668,
+  "auc_s1_for_ems": 0.521
+ },
+ "r_emsr780_aoi08": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "Pleiades",
+   "Pleiades Neo"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 11920,
+  "ems_flooded": 1524,
+  "s1_flooded": 1836,
+  "kappa": 0.146,
+  "s1_recall_of_ems": 0.293,
+  "s1_precision_vs_ems": 0.243,
+  "auc_s1_for_ems": 0.579
+ },
+ "r_emsr781_aoi01": {
+  "tags": [
+   "coastal"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "s1_minus_ems_days": 10,
+  "cells_both": 11006,
+  "ems_flooded": 105,
+  "s1_flooded": 5828,
+  "kappa": -0.008,
+  "s1_recall_of_ems": 0.305,
+  "s1_precision_vs_ems": 0.005,
+  "auc_s1_for_ems": 0.387
+ },
+ "r_emsr790_aoi02": {
+  "tags": [
+   "pluvial"
+  ],
+  "sensors": [
+   "WorldView-3"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17232,
+  "ems_flooded": 283,
+  "s1_flooded": 225,
+  "kappa": 0.013,
+  "s1_recall_of_ems": 0.025,
+  "s1_precision_vs_ems": 0.031,
+  "auc_s1_for_ems": 0.506
+ },
+ "r_emsr793_aoi01": {
+  "tags": [
+   "coastal"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "s1_minus_ems_days": 9,
+  "cells_both": 17670,
+  "ems_flooded": 1310,
+  "s1_flooded": 646,
+  "kappa": 0.581,
+  "s1_recall_of_ems": 0.449,
+  "s1_precision_vs_ems": 0.91,
+  "auc_s1_for_ems": 0.723
+ },
+ "r_emsr793_aoi02": {
+  "tags": [
+   "coastal"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "s1_minus_ems_days": 7,
+  "cells_both": 17696,
+  "ems_flooded": 775,
+  "s1_flooded": 201,
+  "kappa": 0.082,
+  "s1_recall_of_ems": 0.062,
+  "s1_precision_vs_ems": 0.239,
+  "auc_s1_for_ems": 0.526
+ },
+ "r_emsr795_aoi02": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 13567,
+  "ems_flooded": 1563,
+  "s1_flooded": 2619,
+  "kappa": 0.634,
+  "s1_recall_of_ems": 0.919,
+  "s1_precision_vs_ems": 0.549,
+  "auc_s1_for_ems": 0.91
+ },
+ "r_emsr795_aoi06": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17784,
+  "ems_flooded": 268,
+  "s1_flooded": 1463,
+  "kappa": 0.287,
+  "s1_recall_of_ems": 0.985,
+  "s1_precision_vs_ems": 0.18,
+  "auc_s1_for_ems": 0.958
+ },
+ "r_emsr802_aoi01": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 13099,
+  "ems_flooded": 131,
+  "s1_flooded": 343,
+  "kappa": 0.199,
+  "s1_recall_of_ems": 0.382,
+  "s1_precision_vs_ems": 0.146,
+  "auc_s1_for_ems": 0.68
+ },
+ "r_emsr802_aoi02": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17795,
+  "ems_flooded": 4888,
+  "s1_flooded": 4549,
+  "kappa": 0.784,
+  "s1_recall_of_ems": 0.812,
+  "s1_precision_vs_ems": 0.872,
+  "auc_s1_for_ems": 0.883
+ },
+ "r_emsr805_aoi01": {
+  "tags": [
+   "coastal"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 6500,
+  "ems_flooded": 184,
+  "s1_flooded": 577,
+  "kappa": 0.397,
+  "s1_recall_of_ems": 0.875,
+  "s1_precision_vs_ems": 0.279,
+  "auc_s1_for_ems": 0.905
+ },
+ "r_emsr805_aoi03": {
+  "tags": [
+   "coastal"
+  ],
+  "sensors": [
+   "COSMO-SkyMed",
+   "ICEYE"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 17694,
+  "ems_flooded": 83,
+  "s1_flooded": 157,
+  "kappa": 0.178,
+  "s1_recall_of_ems": 0.265,
+  "s1_precision_vs_ems": 0.14,
+  "auc_s1_for_ems": 0.629
+ },
+ "r_emsr845_aoi02": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "Legion"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17726,
+  "ems_flooded": 771,
+  "s1_flooded": 894,
+  "kappa": 0.207,
+  "s1_recall_of_ems": 0.263,
+  "s1_precision_vs_ems": 0.227,
+  "auc_s1_for_ems": 0.611
+ },
+ "r_emsr845_aoi03": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "GeoEye-1"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 16511,
+  "ems_flooded": 1896,
+  "s1_flooded": 444,
+  "kappa": 0.053,
+  "s1_recall_of_ems": 0.058,
+  "s1_precision_vs_ems": 0.248,
+  "auc_s1_for_ems": 0.518
+ },
+ "r_emsr849_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17820,
+  "ems_flooded": 938,
+  "s1_flooded": 472,
+  "kappa": 0.255,
+  "s1_recall_of_ems": 0.211,
+  "s1_precision_vs_ems": 0.419,
+  "auc_s1_for_ems": 0.597
+ },
+ "r_emsr849_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 16086,
+  "ems_flooded": 950,
+  "s1_flooded": 1374,
+  "kappa": 0.558,
+  "s1_recall_of_ems": 0.72,
+  "s1_precision_vs_ems": 0.498,
+  "auc_s1_for_ems": 0.837
+ },
+ "r_emsr850_aoi02": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 17754,
+  "ems_flooded": 595,
+  "s1_flooded": 286,
+  "kappa": 0.103,
+  "s1_recall_of_ems": 0.091,
+  "s1_precision_vs_ems": 0.189,
+  "auc_s1_for_ems": 0.539
+ },
+ "r_emsr850_aoi03": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 17773,
+  "ems_flooded": 1305,
+  "s1_flooded": 470,
+  "kappa": 0.425,
+  "s1_recall_of_ems": 0.304,
+  "s1_precision_vs_ems": 0.845,
+  "auc_s1_for_ems": 0.65
+ },
+ "r_emsr855_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17792,
+  "ems_flooded": 485,
+  "s1_flooded": 251,
+  "kappa": 0.568,
+  "s1_recall_of_ems": 0.437,
+  "s1_precision_vs_ems": 0.845,
+  "auc_s1_for_ems": 0.717
+ },
+ "r_emsr856_aoi01": {
+  "tags": [
+   "waterlogging"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 17780,
+  "ems_flooded": 3340,
+  "s1_flooded": 3586,
+  "kappa": 0.818,
+  "s1_recall_of_ems": 0.884,
+  "s1_precision_vs_ems": 0.824,
+  "auc_s1_for_ems": 0.92
+ },
+ "r_emsr856_aoi02": {
+  "tags": [
+   "waterlogging"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 13894,
+  "ems_flooded": 1554,
+  "s1_flooded": 1978,
+  "kappa": 0.851,
+  "s1_recall_of_ems": 0.988,
+  "s1_precision_vs_ems": 0.777,
+  "auc_s1_for_ems": 0.976
+ },
+ "r_emsr857_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "s1_minus_ems_days": 6,
+  "cells_both": 17689,
+  "ems_flooded": 14927,
+  "s1_flooded": 3691,
+  "kappa": 0.089,
+  "s1_recall_of_ems": 0.246,
+  "s1_precision_vs_ems": 0.993,
+  "auc_s1_for_ems": 0.618
+ },
+ "r_emsr857_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "s1_minus_ems_days": 1,
+  "cells_both": 17598,
+  "ems_flooded": 2390,
+  "s1_flooded": 2403,
+  "kappa": 0.66,
+  "s1_recall_of_ems": 0.708,
+  "s1_precision_vs_ems": 0.704,
+  "auc_s1_for_ems": 0.831
+ },
+ "r_emsr858_aoi08": {
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17742,
+  "ems_flooded": 618,
+  "s1_flooded": 38,
+  "kappa": 0.03,
+  "s1_recall_of_ems": 0.018,
+  "s1_precision_vs_ems": 0.289,
+  "auc_s1_for_ems": 0.508
+ },
+ "r_emsr858_aoi10": {
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17767,
+  "ems_flooded": 805,
+  "s1_flooded": 263,
+  "kappa": 0.261,
+  "s1_recall_of_ems": 0.184,
+  "s1_precision_vs_ems": 0.563,
+  "auc_s1_for_ems": 0.589
+ },
+ "r_emsr860_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17823,
+  "ems_flooded": 112,
+  "s1_flooded": 195,
+  "kappa": 0.524,
+  "s1_recall_of_ems": 0.723,
+  "s1_precision_vs_ems": 0.415,
+  "auc_s1_for_ems": 0.858
+ },
+ "r_emsr863_aoi02": {
+  "tags": [
+   "coastal"
+  ],
+  "sensors": [
+   "Legion"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 16318,
+  "ems_flooded": 2811,
+  "s1_flooded": 504,
+  "kappa": 0.017,
+  "s1_recall_of_ems": 0.041,
+  "s1_precision_vs_ems": 0.226,
+  "auc_s1_for_ems": 0.506
+ },
+ "r_emsr864_aoi01": {
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17386,
+  "ems_flooded": 4179,
+  "s1_flooded": 3503,
+  "kappa": 0.807,
+  "s1_recall_of_ems": 0.78,
+  "s1_precision_vs_ems": 0.931,
+  "auc_s1_for_ems": 0.881
+ },
+ "r_emsr864_aoi02": {
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 16875,
+  "ems_flooded": 3330,
+  "s1_flooded": 1910,
+  "kappa": 0.554,
+  "s1_recall_of_ems": 0.486,
+  "s1_precision_vs_ems": 0.848,
+  "auc_s1_for_ems": 0.732
+ },
+ "r_emsr866_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 10984,
+  "ems_flooded": 128,
+  "s1_flooded": 201,
+  "kappa": 0.541,
+  "s1_recall_of_ems": 0.703,
+  "s1_precision_vs_ems": 0.448,
+  "auc_s1_for_ems": 0.846
+ },
+ "r_emsr867_aoi01": {
+  "tags": [
+   "coastal"
+  ],
+  "sensors": [
+   "Legion"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 11813,
+  "ems_flooded": 212,
+  "s1_flooded": 317,
+  "kappa": -0.018,
+  "s1_recall_of_ems": 0.005,
+  "s1_precision_vs_ems": 0.003,
+  "auc_s1_for_ems": 0.489
+ },
+ "r_emsr867_aoi03": {
+  "tags": [
+   "coastal"
+  ],
+  "sensors": [
+   "WorldView-3"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 17725,
+  "ems_flooded": 1535,
+  "s1_flooded": 605,
+  "kappa": -0.035,
+  "s1_recall_of_ems": 0.011,
+  "s1_precision_vs_ems": 0.028,
+  "auc_s1_for_ems": 0.487
+ },
+ "r_emsr871_aoi01": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17183,
+  "ems_flooded": 3078,
+  "s1_flooded": 3575,
+  "kappa": 0.883,
+  "s1_recall_of_ems": 0.978,
+  "s1_precision_vs_ems": 0.842,
+  "auc_s1_for_ems": 0.969
+ },
+ "r_emsr871_aoi02": {
+  "tags": [
+   "fluvial"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 10151,
+  "ems_flooded": 298,
+  "s1_flooded": 330,
+  "kappa": 0.747,
+  "s1_recall_of_ems": 0.795,
+  "s1_precision_vs_ems": 0.718,
+  "auc_s1_for_ems": 0.893
+ },
+ "sittwe": {
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "s1_minus_ems_days": 3,
+  "cells_both": 11500,
+  "ems_flooded": 216,
+  "s1_flooded": 294,
+  "kappa": 0.295,
+  "s1_recall_of_ems": 0.366,
+  "s1_precision_vs_ems": 0.269,
+  "auc_s1_for_ems": 0.673
+ },
+ "thai_binh": {
+  "tags": [
+   "waterlogging"
+  ],
+  "sensors": [
+   "WorldView-2"
+  ],
+  "s1_minus_ems_days": 2,
+  "cells_both": 17462,
+  "ems_flooded": 7,
+  "s1_flooded": 447,
+  "kappa": -0.001,
+  "s1_recall_of_ems": 0.0,
+  "s1_precision_vs_ems": 0.0,
+  "auc_s1_for_ems": 0.487
+ },
+ "valencia_2024": {
+  "tags": [
+   "compound",
+   "flash_flood",
+   "pluvial"
+  ],
+  "sensors": [
+   "GeoEye-1",
+   "WorldView-2"
+  ],
+  "s1_minus_ems_days": 0,
+  "cells_both": 17771,
+  "ems_flooded": 2847,
+  "s1_flooded": 314,
+  "kappa": 0.012,
+  "s1_recall_of_ems": 0.024,
+  "s1_precision_vs_ems": 0.217,
+  "auc_s1_for_ems": 0.504
+ },
+ "volos": {
+  "tags": [
+   "flash_flood"
+  ],
+  "sensors": [
+   "WorldView-3"
+  ],
+  "s1_minus_ems_days": 4,
+  "cells_both": 14088,
+  "ems_flooded": 0,
+  "s1_flooded": 687,
+  "kappa": 0.0,
+  "s1_recall_of_ems": 0.0,
+  "s1_precision_vs_ems": 0.0,
+  "auc_s1_for_ems": 0.476
+ }
+}

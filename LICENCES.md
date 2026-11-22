@@ -46,3 +46,14 @@ Earlier notes: `experiments/flood_learned/REPORT.md` §7 and `paper/evidence/M2_
 | GESLA-3 | free for research; terms per contributing agency | **unconfirmed** | [GESLA](https://gesla787883612.wordpress.com/) |
 | Copernicus GTSM (CDS) | Copernicus licence | yes; needs a CDS account, used only if one already exists | [CDS](https://cds.climate.copernicus.eu/) |
 | GEDTM30 | CC BY 4.0 (per data.gov / OpenGeoHub) | yes if CC BY holds; the server failed reads in round 1 | [OpenGeoHub](https://peerj.com/articles/19673) |
+
+## Added for flood round 3 (2026-11-22)
+| dataset | used for | licence | commercial use | source |
+|---|---|---|---|---|
+| GEOGloWS v2 retrospective discharge + model tables | discharge peaks per reach, rating curves, event typing | CC BY 4.0 (`licenses.md` in the `geoglows-v2` S3 bucket, read 2026-11-22) | yes (attribution) | [GEOGloWS](https://geoglows.org/), s3://geoglows-v2 |
+| NASA GPM IMERG V07 (Earth Engine `NASA/GPM_L3/IMERG_V07`) | rain-peak timing, event rain | NASA open data policy | yes | [NASA data policy](https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance) |
+| ERA5 / ERA5-Land (CDS) | antecedent soil moisture, rain checks | Copernicus product licence (accepted on the account 2026-11-22; full text not re-read) | **unconfirmed** | [CDS](https://cds.climate.copernicus.eu/) |
+| ASF HyP3 on-demand InSAR (from Sentinel-1 SLC) | urban coherence-drop labels (planned) | Copernicus open licence for Sentinel-1 derived products | yes | [HyP3](https://hyp3-docs.asf.alaska.edu/) |
+| GloFAS (EWDS) | discharge (planned) | CEMS terms of use; **terms not yet accepted on the account** | not used yet | [EWDS](https://ewds.climate.copernicus.eu/) |
+| Maxar Open Data | VHR post-event imagery for urban labels (planned) | CC BY-NC 4.0 | **no** (evaluation / paper only; never in product outputs) | [Maxar Open Data](https://www.maxar.com/open-data) |
+| MMFlood, Sen1Floods11, Kuro Siwo | candidate extra labelled events (planned) | to check before use | to check | dataset pages |

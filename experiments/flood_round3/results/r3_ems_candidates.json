@@ -1,0 +1,959 @@
+{
+ "candidates": [
+  {
+   "unit": "r3_emsr713_aoi01",
+   "code": "EMSR713",
+   "aoi": 1,
+   "tags": [
+    "fluvial"
+   ],
+   "event": "2024-01-02",
+   "text": "Flood in Saarland region,  Germany. Due to the currently prevailing flood situation in Germany, a 20 to 50-year flood is expected for the federal state of Saarland. The 1st wave will peak between 02.01.2024 around 18:00 and 03.01.2024 06:00, the 2nd wave is expected to peak in the night from 03.01.2",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2024-01-04T17:24:00"
+   ],
+   "sensors": [
+    "Sentinel-1"
+   ],
+   "aoi_km2": 32.3,
+   "centre": [
+    6.843719989442564,
+    49.43974792563927
+   ],
+   "bounds": [
+    6.702592,
+    49.337384,
+    6.978788,
+    49.57092
+   ],
+   "affected_ha": 200.2,
+   "near_used_units": 1,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr753_aoi01",
+   "code": "EMSR753",
+   "aoi": 1,
+   "tags": [
+    "fluvial"
+   ],
+   "event": "2024-09-10",
+   "text": "Flood in Borno, Nigeria. On the 10 September 2024, a flood due to dam overflow is reported to have affected Borno, Nigeria. The flood has destroyed tens of houses in Maiduguri.Copernicus EMS Rapid Mapping is requested to provide initial roughestimation,  flood extent and damage assessment emergency ",
+   "product": "GRA monitoring 0",
+   "images": [
+    "2024-09-11T10:01:00"
+   ],
+   "sensors": [
+    "GeoEye-1"
+   ],
+   "aoi_km2": 182.4,
+   "centre": [
+    13.200843648195438,
+    11.833130679286503
+   ],
+   "bounds": [
+    13.115377,
+    11.716951,
+    13.296228,
+    11.89568
+   ],
+   "affected_ha": 2536.2,
+   "near_used_units": 0,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr755_aoi01",
+   "code": "EMSR755",
+   "aoi": 1,
+   "tags": [
+    "pluvial"
+   ],
+   "event": "2024-09-14",
+   "text": "Flood in Brandenbourg, Germany. Due to heavy rainfall in Middle and Eastern Europe, flooding is forecast to affect Brandenburg rivers in an area bordering Poland (Neisse and Oder). The flooding is expected on the 14 and 15 September 2024. Copernicus EMS Rapid Mapping is requested to provide flood ex",
+   "product": "DEL monitoring 1",
+   "images": [
+    "2024-09-17T04:30:00"
+   ],
+   "sensors": [
+    "COSMO-SkyMed"
+   ],
+   "aoi_km2": 198.6,
+   "centre": [
+    14.676487421652036,
+    51.893607831631755
+   ],
+   "bounds": [
+    14.570587,
+    51.577284,
+    14.772969,
+    52.15739
+   ],
+   "affected_ha": 141.0,
+   "near_used_units": 0,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr763_aoi01",
+   "code": "EMSR763",
+   "aoi": 1,
+   "tags": [
+    "pluvial"
+   ],
+   "event": "2024-09-22",
+   "text": "Flood in Germany. On the 22 September a flood event is forecast to hit Brandenburg's rivers between the confluence of Oder and Neisse at the state border between Germany and Poland. The raising surface in the affected areas is due to the heavy rainfalls occurred in Middle and Eastern Europe.Copernic",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2024-09-23T16:44:00"
+   ],
+   "sensors": [
+    "Sentinel-1"
+   ],
+   "aoi_km2": 1311.7,
+   "centre": [
+    14.357664331728442,
+    52.66353658078538
+   ],
+   "bounds": [
+    13.869769,
+    51.973113,
+    14.767076,
+    53.28058
+   ],
+   "affected_ha": 1539.0,
+   "near_used_units": 0,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr766_aoi01",
+   "code": "EMSR766",
+   "aoi": 1,
+   "tags": [
+    "fluvial"
+   ],
+   "event": "2024-09-25",
+   "text": "Flood in Croatia. On the 25 September 2024 at 12:00, top of the water wave is expected to enter in Croatia. Water level rise is predicted in the Danube basin from Hungary to Croatia. Copernicus EMS Rapid Mapping is requested to provide an initial rough estimation, flood extent and damage assessment ",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2024-09-25T16:25:00"
+   ],
+   "sensors": [
+    "COSMO-SkyMed"
+   ],
+   "aoi_km2": 1142.9,
+   "centre": [
+    18.791217801998048,
+    45.682675179759144
+   ],
+   "bounds": [
+    18.591672,
+    45.473081,
+    19.101531,
+    45.92181
+   ],
+   "affected_ha": 2622.2,
+   "near_used_units": 0,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr766_aoi02",
+   "code": "EMSR766",
+   "aoi": 2,
+   "tags": [
+    "fluvial"
+   ],
+   "event": "2024-09-25",
+   "text": "Flood in Croatia. On the 25 September 2024 at 12:00, top of the water wave is expected to enter in Croatia. Water level rise is predicted in the Danube basin from Hungary to Croatia. Copernicus EMS Rapid Mapping is requested to provide an initial rough estimation, flood extent and damage assessment ",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2024-09-25T16:25:00"
+   ],
+   "sensors": [
+    "COSMO-SkyMed"
+   ],
+   "aoi_km2": 580.2,
+   "centre": [
+    19.03377364678713,
+    45.331606197788894
+   ],
+   "bounds": [
+    18.708217,
+    45.164671,
+    19.447356,
+    45.492189
+   ],
+   "affected_ha": 142.9,
+   "near_used_units": 0,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr771_aoi01",
+   "code": "EMSR771",
+   "aoi": 1,
+   "tags": [
+    "fluvial"
+   ],
+   "event": "2024-10-20",
+   "text": "Flood in Emilia- Romagna, Italy. Italy has been hit in recent days by a severe phase of bad weather, which has caused flooding in large parts of the country. In Emilia-Romagna, in particular, several rivers reached the third-highest alert level. During the night and early hours of October 20, severa",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2024-10-20T17:07:00"
+   ],
+   "sensors": [
+    "Sentinel-1"
+   ],
+   "aoi_km2": 788.6,
+   "centre": [
+    11.65978970543265,
+    44.55197446850399
+   ],
+   "bounds": [
+    11.467341,
+    44.383082,
+    11.907853,
+    44.73032
+   ],
+   "affected_ha": 2991.9,
+   "near_used_units": 3,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr771_aoi04",
+   "code": "EMSR771",
+   "aoi": 4,
+   "tags": [
+    "fluvial"
+   ],
+   "event": "2024-10-20",
+   "text": "Flood in Emilia- Romagna, Italy. Italy has been hit in recent days by a severe phase of bad weather, which has caused flooding in large parts of the country. In Emilia-Romagna, in particular, several rivers reached the third-highest alert level. During the night and early hours of October 20, severa",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2024-10-21T04:16:00"
+   ],
+   "sensors": [
+    "COSMO-SkyMed Second Generation"
+   ],
+   "aoi_km2": 49.5,
+   "centre": [
+    11.498215228006366,
+    44.44914357988025
+   ],
+   "bounds": [
+    11.467341,
+    44.394861,
+    11.535679,
+    44.495144
+   ],
+   "affected_ha": 13.5,
+   "near_used_units": 2,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr771_aoi05",
+   "code": "EMSR771",
+   "aoi": 5,
+   "tags": [
+    "fluvial"
+   ],
+   "event": "2024-10-20",
+   "text": "Flood in Emilia- Romagna, Italy. Italy has been hit in recent days by a severe phase of bad weather, which has caused flooding in large parts of the country. In Emilia-Romagna, in particular, several rivers reached the third-highest alert level. During the night and early hours of October 20, severa",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2024-10-21T04:16:00",
+    "2024-10-21T04:16:00"
+   ],
+   "sensors": [
+    "COSMO-SkyMed Second Generation"
+   ],
+   "aoi_km2": 635.6,
+   "centre": [
+    11.20583667257117,
+    44.65676947741635
+   ],
+   "bounds": [
+    11.06375,
+    44.480795,
+    11.380977,
+    44.821988
+   ],
+   "affected_ha": 647.8,
+   "near_used_units": 0,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr771_aoi06",
+   "code": "EMSR771",
+   "aoi": 6,
+   "tags": [
+    "fluvial"
+   ],
+   "event": "2024-10-20",
+   "text": "Flood in Emilia- Romagna, Italy. Italy has been hit in recent days by a severe phase of bad weather, which has caused flooding in large parts of the country. In Emilia-Romagna, in particular, several rivers reached the third-highest alert level. During the night and early hours of October 20, severa",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2024-10-20T17:07:00"
+   ],
+   "sensors": [
+    "Sentinel-1"
+   ],
+   "aoi_km2": 448.9,
+   "centre": [
+    10.61502727747722,
+    44.78772546545779
+   ],
+   "bounds": [
+    10.441811,
+    44.631275,
+    10.783884,
+    44.92086
+   ],
+   "affected_ha": 1847.7,
+   "near_used_units": 0,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr771_aoi07",
+   "code": "EMSR771",
+   "aoi": 7,
+   "tags": [
+    "fluvial"
+   ],
+   "event": "2024-10-20",
+   "text": "Flood in Emilia- Romagna, Italy. Italy has been hit in recent days by a severe phase of bad weather, which has caused flooding in large parts of the country. In Emilia-Romagna, in particular, several rivers reached the third-highest alert level. During the night and early hours of October 20, severa",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2024-10-21T04:16:00",
+    "2024-10-21T04:16:00",
+    "2024-10-21T04:16:00",
+    "2024-10-21T04:16:00"
+   ],
+   "sensors": [
+    "COSMO-SkyMed Second Generation"
+   ],
+   "aoi_km2": 752.4,
+   "centre": [
+    10.948674945834131,
+    44.7076252544072
+   ],
+   "bounds": [
+    10.729003,
+    44.523383,
+    11.131457,
+    44.893972
+   ],
+   "affected_ha": 653.8,
+   "near_used_units": 0,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr771_aoi08",
+   "code": "EMSR771",
+   "aoi": 8,
+   "tags": [
+    "fluvial"
+   ],
+   "event": "2024-10-20",
+   "text": "Flood in Emilia- Romagna, Italy. Italy has been hit in recent days by a severe phase of bad weather, which has caused flooding in large parts of the country. In Emilia-Romagna, in particular, several rivers reached the third-highest alert level. During the night and early hours of October 20, severa",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2024-10-20T17:07:00"
+   ],
+   "sensors": [
+    "Sentinel-1"
+   ],
+   "aoi_km2": 962.5,
+   "centre": [
+    10.33302361161133,
+    44.95703767040674
+   ],
+   "bounds": [
+    10.022329,
+    44.824176,
+    10.73067,
+    45.127723
+   ],
+   "affected_ha": 5338.3,
+   "near_used_units": 0,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr800_aoi01",
+   "code": "EMSR800",
+   "aoi": 1,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2025-04-17",
+   "text": "Flood in Lombardy - Italy. Intense bad weather hit Northern Italy's regions during the night of 16-17 April. The event was characterised by heavy precipitation, snow and strong winds that persisted the following day. As a consequence, numerous landslides, some disruption of roads and power lines occ",
+   "product": "GRA monitoring 0",
+   "images": [
+    "2025-04-21T10:41:00"
+   ],
+   "sensors": [
+    "Pleiades"
+   ],
+   "aoi_km2": 8.4,
+   "centre": [
+    7.941440721873761,
+    45.172343084986245
+   ],
+   "bounds": [
+    7.912422,
+    45.157723,
+    7.968713,
+    45.186712
+   ],
+   "affected_ha": 31.3,
+   "near_used_units": 0,
+   "category": "Flood"
+  },
+  {
+   "unit": "r3_emsr808_aoi01",
+   "code": "EMSR808",
+   "aoi": 1,
+   "tags": [
+    "pluvial"
+   ],
+   "event": "2025-06-24",
+   "text": "Storm in Gironde Coast, France. Following the violent winds that hit the Gironde coast on the night of June 24-25, 2025, the paths dedicated to forest fire defense were heavily cluttered with fallen trees.\r\nThis situation was particularly problematic given the upcoming forest fire campaign. The cong",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2025-06-28T10:42:00"
+   ],
+   "sensors": [
+    "SPOT-6-7"
+   ],
+   "aoi_km2": 708.8,
+   "centre": [
+    -1.0395495333739555,
+    44.978829733315685
+   ],
+   "bounds": [
+    -1.22124,
+    44.84008,
+    -0.870332,
+    45.104337
+   ],
+   "affected_ha": 21.2,
+   "near_used_units": 0,
+   "category": "Storm"
+  },
+  {
+   "unit": "r3_emsr808_aoi03",
+   "code": "EMSR808",
+   "aoi": 3,
+   "tags": [
+    "pluvial"
+   ],
+   "event": "2025-06-24",
+   "text": "Storm in Gironde Coast, France. Following the violent winds that hit the Gironde coast on the night of June 24-25, 2025, the paths dedicated to forest fire defense were heavily cluttered with fallen trees.\r\nThis situation was particularly problematic given the upcoming forest fire campaign. The cong",
+   "product": "GRA monitoring 0",
+   "images": [
+    "2025-06-28T10:54:00"
+   ],
+   "sensors": [
+    "GeoEye-1"
+   ],
+   "aoi_km2": 186.3,
+   "centre": [
+    -1.053534738885887,
+    45.034902525095006
+   ],
+   "bounds": [
+    -1.132022,
+    44.963046,
+    -0.982022,
+    45.113046
+   ],
+   "affected_ha": 19.6,
+   "near_used_units": 0,
+   "category": "Storm"
+  },
+  {
+   "unit": "r3_emsr808_aoi04",
+   "code": "EMSR808",
+   "aoi": 4,
+   "tags": [
+    "pluvial"
+   ],
+   "event": "2025-06-24",
+   "text": "Storm in Gironde Coast, France. Following the violent winds that hit the Gironde coast on the night of June 24-25, 2025, the paths dedicated to forest fire defense were heavily cluttered with fallen trees.\r\nThis situation was particularly problematic given the upcoming forest fire campaign. The cong",
+   "product": "GRA monitoring 0",
+   "images": [
+    "2025-06-28T10:37:00"
+   ],
+   "sensors": [
+    "Pleiades Neo"
+   ],
+   "aoi_km2": 197.0,
+   "centre": [
+    -0.907022,
+    45.038045999999994
+   ],
+   "bounds": [
+    -0.982022,
+    44.963046,
+    -0.832022,
+    45.113046
+   ],
+   "affected_ha": 9.6,
+   "near_used_units": 0,
+   "category": "Storm"
+  },
+  {
+   "unit": "r3_emsr808_aoi05",
+   "code": "EMSR808",
+   "aoi": 5,
+   "tags": [
+    "pluvial"
+   ],
+   "event": "2025-06-24",
+   "text": "Storm in Gironde Coast, France. Following the violent winds that hit the Gironde coast on the night of June 24-25, 2025, the paths dedicated to forest fire defense were heavily cluttered with fallen trees.\r\nThis situation was particularly problematic given the upcoming forest fire campaign. The cong",
+   "product": "GRA monitoring 0",
+   "images": [
+    "2025-06-28T11:12:00"
+   ],
+   "sensors": [
+    "Legion"
+   ],
+   "aoi_km2": 197.5,
+   "centre": [
+    -1.057022,
+    44.888045999999996
+   ],
+   "bounds": [
+    -1.132022,
+    44.813046,
+    -0.982022,
+    44.963046
+   ],
+   "affected_ha": 57.6,
+   "near_used_units": 0,
+   "category": "Storm"
+  },
+  {
+   "unit": "r3_emsr808_aoi07",
+   "code": "EMSR808",
+   "aoi": 7,
+   "tags": [
+    "pluvial"
+   ],
+   "event": "2025-06-24",
+   "text": "Storm in Gironde Coast, France. Following the violent winds that hit the Gironde coast on the night of June 24-25, 2025, the paths dedicated to forest fire defense were heavily cluttered with fallen trees.\r\nThis situation was particularly problematic given the upcoming forest fire campaign. The cong",
+   "product": "GRA monitoring 0",
+   "images": [
+    "2025-06-29T11:14:00"
+   ],
+   "sensors": [
+    "Pleiades Neo"
+   ],
+   "aoi_km2": 284.2,
+   "centre": [
+    -1.0688856204989265,
+    44.69257980301305
+   ],
+   "bounds": [
+    -1.218364,
+    44.591283,
+    -0.982022,
+    44.813046
+   ],
+   "affected_ha": 9.3,
+   "near_used_units": 0,
+   "category": "Storm"
+  },
+  {
+   "unit": "r3_emsr928_aoi01",
+   "code": "EMSR928",
+   "aoi": 1,
+   "tags": [
+    "pluvial"
+   ],
+   "event": "2026-08-28",
+   "text": "Storm in Lombardy, Italy. On the 28 August 2026, a severe storm was reported to have affected the province of Cremona, Italy, causing damage to public and private buildings, to infrastructures and roads, as well as fallen trees. Copernicus EMS Rapid Mapping was requested to provide damage assessment",
+   "product": "GRA monitoring 1",
+   "images": [
+    "2026-09-04T10:00:00"
+   ],
+   "sensors": [
+    "Plane Imagery"
+   ],
+   "aoi_km2": 20.3,
+   "centre": [
+    9.487095951411625,
+    45.39376020731858
+   ],
+   "bounds": [
+    9.452461,
+    45.363697,
+    9.514415,
+    45.422036
+   ],
+   "affected_ha": 39.1,
+   "near_used_units": 1,
+   "category": "Storm"
+  },
+  {
+   "unit": "r3_emsr928_aoi02",
+   "code": "EMSR928",
+   "aoi": 2,
+   "tags": [
+    "pluvial"
+   ],
+   "event": "2026-08-28",
+   "text": "Storm in Lombardy, Italy. On the 28 August 2026, a severe storm was reported to have affected the province of Cremona, Italy, causing damage to public and private buildings, to infrastructures and roads, as well as fallen trees. Copernicus EMS Rapid Mapping was requested to provide damage assessment",
+   "product": "GRA monitoring 0",
+   "images": [
+    "2026-09-03T08:50:00"
+   ],
+   "sensors": [
+    "Legion"
+   ],
+   "aoi_km2": 103.7,
+   "centre": [
+    10.006318941701464,
+    45.149891062375396
+   ],
+   "bounds": [
+    9.881569,
+    45.089144,
+    10.114012,
+    45.227025
+   ],
+   "affected_ha": 0.4,
+   "near_used_units": 0,
+   "category": "Storm"
+  },
+  {
+   "unit": "r3_emsr928_aoi03",
+   "code": "EMSR928",
+   "aoi": 3,
+   "tags": [
+    "pluvial"
+   ],
+   "event": "2026-08-28",
+   "text": "Storm in Lombardy, Italy. On the 28 August 2026, a severe storm was reported to have affected the province of Cremona, Italy, causing damage to public and private buildings, to infrastructures and roads, as well as fallen trees. Copernicus EMS Rapid Mapping was requested to provide damage assessment",
+   "product": "GRA monitoring 1",
+   "images": [
+    "2026-09-07T10:00:00"
+   ],
+   "sensors": [
+    "Plane Imagery"
+   ],
+   "aoi_km2": 34.4,
+   "centre": [
+    10.174736743261905,
+    45.11606459362413
+   ],
+   "bounds": [
+    10.122321,
+    45.076315,
+    10.224417,
+    45.150056
+   ],
+   "affected_ha": 192.0,
+   "near_used_units": 0,
+   "category": "Storm"
+  },
+  {
+   "unit": "r3_emsr928_aoi04",
+   "code": "EMSR928",
+   "aoi": 4,
+   "tags": [
+    "pluvial"
+   ],
+   "event": "2026-08-28",
+   "text": "Storm in Lombardy, Italy. On the 28 August 2026, a severe storm was reported to have affected the province of Cremona, Italy, causing damage to public and private buildings, to infrastructures and roads, as well as fallen trees. Copernicus EMS Rapid Mapping was requested to provide damage assessment",
+   "product": "GRA monitoring 0",
+   "images": [
+    "2026-09-03T10:30:00"
+   ],
+   "sensors": [
+    "Legion"
+   ],
+   "aoi_km2": 32.1,
+   "centre": [
+    10.369830895971168,
+    45.131261580188045
+   ],
+   "bounds": [
+    10.318928,
+    45.090497,
+    10.42024,
+    45.178977
+   ],
+   "affected_ha": 16.8,
+   "near_used_units": 0,
+   "category": "Storm"
+  },
+  {
+   "unit": "r3_emsr936_aoi01",
+   "code": "EMSR936",
+   "aoi": 1,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2026-11-12",
+   "text": "Flood in Ecuador. From 12 to 14 November 2026, torrential rain linked to El Ni\u00f1o flooded Guayaquil, Milagro and other parts of Ecuador\u2019s Guayas province, killing two people in Guayaquil and raising the number of fatalities from El Ni\u00f1o rains in Ecuador to 14 since the national alert was declared at ",
+   "product": "DEL monitoring 0",
+   "images": [
+    "2026-11-17T11:00:00"
+   ],
+   "sensors": [
+    "Sentinel-1"
+   ],
+   "aoi_km2": 188.1,
+   "centre": [
+    -79.62462480847957,
+    -2.119817412223812
+   ],
+   "bounds": [
+    -79.751667,
+    -2.176463,
+    -79.515409,
+    -2.055314
+   ],
+   "affected_ha": 15232.8,
+   "near_used_units": 1,
+   "category": "Flood"
+  }
+ ],
+ "refused": [
+  {
+   "code": "EMSR693",
+   "why": "no type from the activation text"
+  },
+  {
+   "unit": "r3_emsr701_aoi01",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr701_aoi02",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr701_aoi03",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr701_aoi04",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr701_aoi05",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr701_aoi06",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr701_aoi07",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr701_aoi08",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi01",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi02",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi03",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi04",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi05",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi06",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi07",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi08",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi09",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi10",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi11",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi12",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi13",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi14",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr702_aoi15",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr710_aoi01",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr710_aoi02",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr714_aoi01",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr714_aoi02",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr714_aoi03",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr714_aoi04",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr714_aoi05",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "code": "EMSR718",
+   "why": "no type from the activation text"
+  },
+  {
+   "code": "EMSR725",
+   "why": "no type from the activation text"
+  },
+  {
+   "unit": "r3_emsr732_aoi01",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "code": "EMSR758",
+   "why": "no type from the activation text"
+  },
+  {
+   "unit": "r3_emsr771_aoi02",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr771_aoi03",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr786_aoi01",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr786_aoi02",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr786_aoi03",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr786_aoi04",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr786_aoi05",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr786_aoi06",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr786_aoi07",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr786_aoi08",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr787_aoi01",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr787_aoi02",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "code": "EMSR792",
+   "why": "no type from the activation text"
+  },
+  {
+   "unit": "r3_emsr800_aoi02",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr808_aoi02",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr808_aoi06",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr808_aoi08",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr808_aoi09",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr808_aoi10",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr846_aoi01",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr926_aoi01",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr926_aoi02",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr926_aoi03",
+   "why": "no DEL/GRA product with an observed-event layer"
+  },
+  {
+   "unit": "r3_emsr926_aoi04",
+   "why": "no DEL/GRA product with an observed-event layer"
+  }
+ ]
+}

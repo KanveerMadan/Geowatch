@@ -170,7 +170,7 @@ def discharge():
         out[n] = {"reach": r, "tags": row["tags"], "peak_day": peak_d.isoformat(), "peak_q": round(float(q[i]), 1),
                   "peak_minus_event_days": (peak_d - ev).days,
                   "image_minus_q_peak_days": None if img_d is None else (img_d - peak_d).days,
-                  "q_at_image_over_peak": None if qi is None else round(qi / float(q[i]), 3),
+                  "q_at_image_over_peak": None if qi is None or q[i] <= 0 else round(qi / float(q[i]), 3),
                   "peak_return_period_y": round(rp, 1), "median_q": round(float(np.median(q)), 1)}
         print(n, out[n]["peak_minus_event_days"], out[n]["image_minus_q_peak_days"], out[n]["q_at_image_over_peak"],
               out[n]["peak_return_period_y"], flush=True)

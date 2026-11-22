@@ -1,0 +1,4340 @@
+{
+ "per_unit": {
+  "assam_2026": {
+   "error": "LookupError: no S1 IW pass over [94.711221, 26.915521, 94.751525, 26.951453] in [2026-07-11, 2026-07-14]",
+   "unit": "assam_2026",
+   "type": "fluvial",
+   "peak": "2026-07-11",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 3,
+   "kind": "s1_vvdrop"
+  },
+  "bad_neuenahr": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 14,
+   "v3_dry": 2263,
+   "v3": null,
+   "old": {
+    "elev": 0.636,
+    "hand": 0.7126,
+    "full_lr": 0.6086,
+    "resid_lgbm": 0.6779,
+    "flash_lgbm": 0.6672,
+    "coastal_lgbm": 0.661,
+    "full_lgbm": 0.6679
+   }
+  },
+  "beira": {
+   "error": "LookupError: no S1 IW pass over [34.83, -19.85, 34.87, -19.81] in [2019-03-15, 2019-03-17]",
+   "unit": "beira",
+   "type": "coastal",
+   "peak": "2019-03-15",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 2,
+   "kind": "s1_vvdrop"
+  },
+  "belize_city": {
+   "error": "ValueError: reference shape (134, 135) != table grid (135, 136)",
+   "unit": "belize_city",
+   "type": "pluvial",
+   "peak": "2024-11-16",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "ems"
+  },
+  "bihar_2026": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 7854,
+   "v3_dry": 7951,
+   "v3": {
+    "elev": 0.8294,
+    "hand": 0.6955,
+    "full_lr": 0.8021,
+    "resid_lgbm": 0.7742,
+    "flash_lgbm": 0.7131,
+    "coastal_lgbm": 0.7843,
+    "full_lgbm": 0.7625
+   },
+   "old": {
+    "elev": 0.751,
+    "hand": 0.6032,
+    "full_lr": 0.7872,
+    "resid_lgbm": 0.8176,
+    "flash_lgbm": 0.6956,
+    "coastal_lgbm": 0.7908,
+    "full_lgbm": 0.7973
+   }
+  },
+  "black_river": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 1250,
+   "v3_dry": 9890,
+   "v3": {
+    "elev": 0.8487,
+    "hand": 0.7088,
+    "full_lr": 0.7214,
+    "resid_lgbm": 0.7866,
+    "flash_lgbm": 0.7867,
+    "coastal_lgbm": 0.7847,
+    "full_lgbm": 0.833
+   },
+   "old": {
+    "elev": 0.8578,
+    "hand": 0.7193,
+    "full_lr": 0.7341,
+    "resid_lgbm": 0.7995,
+    "flash_lgbm": 0.7995,
+    "coastal_lgbm": 0.7971,
+    "full_lgbm": 0.8423
+   }
+  },
+  "choloma": {
+   "error": "ValueError: reference shape (134, 135) != table grid (134, 134)",
+   "unit": "choloma",
+   "type": "flash_flood",
+   "peak": "2024-11-16",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 2,
+   "kind": "ems"
+  },
+  "derna": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 22,
+   "v3_dry": 1033,
+   "v3": null,
+   "old": {
+    "elev": 0.6319,
+    "hand": 0.6166,
+    "full_lr": 0.5825,
+    "resid_lgbm": 0.6445,
+    "flash_lgbm": 0.6467,
+    "coastal_lgbm": 0.5933,
+    "full_lgbm": 0.6433
+   }
+  },
+  "derna_2023": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1767,
+   "v3_dry": 14275,
+   "v3": {
+    "elev": 0.965,
+    "hand": 0.9609,
+    "full_lr": 0.4598,
+    "resid_lgbm": 0.7587,
+    "flash_lgbm": 0.9725,
+    "coastal_lgbm": 0.7788,
+    "full_lgbm": 0.7127
+   },
+   "old": {
+    "elev": 0.965,
+    "hand": 0.9609,
+    "full_lr": 0.4598,
+    "resid_lgbm": 0.7587,
+    "flash_lgbm": 0.9725,
+    "coastal_lgbm": 0.7788,
+    "full_lgbm": 0.7127
+   }
+  },
+  "dharavi": {
+   "tags": [
+    "pluvial",
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 81,
+   "v3_dry": 2642,
+   "v3": {
+    "elev": 0.9169,
+    "hand": 0.5819,
+    "full_lr": 0.9298,
+    "resid_lgbm": 0.9517,
+    "flash_lgbm": 0.9245,
+    "coastal_lgbm": 0.9139,
+    "full_lgbm": 0.9508
+   },
+   "old": {
+    "elev": 0.6562,
+    "hand": 0.6397,
+    "full_lr": 0.6539,
+    "resid_lgbm": 0.6418,
+    "flash_lgbm": 0.6387,
+    "coastal_lgbm": 0.6284,
+    "full_lgbm": 0.6195
+   }
+  },
+  "dubai_2024": {
+   "error": "LookupError: no S1 IW pass over [55.275011, 25.172306, 55.314719, 25.208238] in [2024-04-16, 2024-04-17]",
+   "unit": "dubai_2024",
+   "type": "pluvial",
+   "peak": "2024-04-16",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "emsr662_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 408,
+   "v3_dry": 17280,
+   "v3": {
+    "elev": 0.5245,
+    "hand": 0.5177,
+    "full_lr": 0.6239,
+    "resid_lgbm": 0.5425,
+    "flash_lgbm": 0.5765,
+    "coastal_lgbm": 0.3968,
+    "full_lgbm": 0.5213
+   },
+   "old": {
+    "elev": 0.5245,
+    "hand": 0.5177,
+    "full_lr": 0.6239,
+    "resid_lgbm": 0.5425,
+    "flash_lgbm": 0.5765,
+    "coastal_lgbm": 0.3968,
+    "full_lgbm": 0.5213
+   }
+  },
+  "emsr664_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 11033,
+   "v3_dry": 6756,
+   "v3": {
+    "elev": 0.7796,
+    "hand": 0.5025,
+    "full_lr": 0.6204,
+    "resid_lgbm": 0.6971,
+    "flash_lgbm": 0.7218,
+    "coastal_lgbm": 0.6825,
+    "full_lgbm": 0.7093
+   },
+   "old": {
+    "elev": 0.7796,
+    "hand": 0.5025,
+    "full_lr": 0.6204,
+    "resid_lgbm": 0.6971,
+    "flash_lgbm": 0.7218,
+    "coastal_lgbm": 0.6825,
+    "full_lgbm": 0.7093
+   }
+  },
+  "emsr664_aoi03": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 2709,
+   "v3_dry": 13479,
+   "v3": {
+    "elev": 0.9084,
+    "hand": 0.9014,
+    "full_lr": 0.7483,
+    "resid_lgbm": 0.9415,
+    "flash_lgbm": 0.936,
+    "coastal_lgbm": 0.9206,
+    "full_lgbm": 0.9371
+   },
+   "old": {
+    "elev": 0.9084,
+    "hand": 0.9014,
+    "full_lr": 0.7483,
+    "resid_lgbm": 0.9415,
+    "flash_lgbm": 0.936,
+    "coastal_lgbm": 0.9206,
+    "full_lgbm": 0.9371
+   }
+  },
+  "emsr664_aoi07": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 8940,
+   "v3_dry": 8853,
+   "v3": {
+    "elev": 0.7629,
+    "hand": 0.7194,
+    "full_lr": 0.7534,
+    "resid_lgbm": 0.7906,
+    "flash_lgbm": 0.7962,
+    "coastal_lgbm": 0.7896,
+    "full_lgbm": 0.8026
+   },
+   "old": {
+    "elev": 0.7629,
+    "hand": 0.7194,
+    "full_lr": 0.7534,
+    "resid_lgbm": 0.7906,
+    "flash_lgbm": 0.7962,
+    "coastal_lgbm": 0.7896,
+    "full_lgbm": 0.8026
+   }
+  },
+  "emsr680_aoi04": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 252,
+   "v3_dry": 16939,
+   "v3": {
+    "elev": 0.6314,
+    "hand": 0.2566,
+    "full_lr": 0.5998,
+    "resid_lgbm": 0.6164,
+    "flash_lgbm": 0.6614,
+    "coastal_lgbm": 0.7222,
+    "full_lgbm": 0.627
+   },
+   "old": {
+    "elev": 0.6337,
+    "hand": 0.2653,
+    "full_lr": 0.6096,
+    "resid_lgbm": 0.6251,
+    "flash_lgbm": 0.6677,
+    "coastal_lgbm": 0.7279,
+    "full_lgbm": 0.6348
+   }
+  },
+  "emsr680_aoi07": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 865,
+   "v3_dry": 10859,
+   "v3": {
+    "elev": 0.8503,
+    "hand": 0.9271,
+    "full_lr": 0.7486,
+    "resid_lgbm": 0.8776,
+    "flash_lgbm": 0.8493,
+    "coastal_lgbm": 0.8599,
+    "full_lgbm": 0.8746
+   },
+   "old": {
+    "elev": 0.8503,
+    "hand": 0.9271,
+    "full_lr": 0.7486,
+    "resid_lgbm": 0.8776,
+    "flash_lgbm": 0.8493,
+    "coastal_lgbm": 0.8599,
+    "full_lgbm": 0.8746
+   }
+  },
+  "emsr680_aoi13": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 563,
+   "v3_dry": 10649,
+   "v3": {
+    "elev": 0.6764,
+    "hand": 0.5611,
+    "full_lr": 0.6807,
+    "resid_lgbm": 0.6908,
+    "flash_lgbm": 0.7304,
+    "coastal_lgbm": 0.6866,
+    "full_lgbm": 0.6804
+   },
+   "old": {
+    "elev": 0.6764,
+    "hand": 0.5611,
+    "full_lr": 0.6807,
+    "resid_lgbm": 0.6908,
+    "flash_lgbm": 0.7304,
+    "coastal_lgbm": 0.6866,
+    "full_lgbm": 0.6804
+   }
+  },
+  "emsr694_aoi02": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 965,
+   "v3_dry": 7517,
+   "v3": {
+    "elev": 0.9183,
+    "hand": 0.7232,
+    "full_lr": 0.7354,
+    "resid_lgbm": 0.8772,
+    "flash_lgbm": 0.872,
+    "coastal_lgbm": 0.8199,
+    "full_lgbm": 0.8789
+   },
+   "old": {
+    "elev": 0.9183,
+    "hand": 0.7232,
+    "full_lr": 0.7354,
+    "resid_lgbm": 0.8772,
+    "flash_lgbm": 0.872,
+    "coastal_lgbm": 0.8199,
+    "full_lgbm": 0.8789
+   }
+  },
+  "emsr694_aoi03": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1684,
+   "v3_dry": 15422,
+   "v3": {
+    "elev": 0.6119,
+    "hand": 0.7046,
+    "full_lr": 0.6766,
+    "resid_lgbm": 0.6342,
+    "flash_lgbm": 0.6862,
+    "coastal_lgbm": 0.7532,
+    "full_lgbm": 0.6551
+   },
+   "old": {
+    "elev": 0.6119,
+    "hand": 0.7046,
+    "full_lr": 0.6766,
+    "resid_lgbm": 0.6342,
+    "flash_lgbm": 0.6862,
+    "coastal_lgbm": 0.7532,
+    "full_lgbm": 0.6551
+   }
+  },
+  "emsr697_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 1471,
+   "v3_dry": 16251,
+   "v3": {
+    "elev": 0.6925,
+    "hand": 0.5311,
+    "full_lr": 0.616,
+    "resid_lgbm": 0.6783,
+    "flash_lgbm": 0.6465,
+    "coastal_lgbm": 0.6208,
+    "full_lgbm": 0.6368
+   },
+   "old": {
+    "elev": 0.6933,
+    "hand": 0.5312,
+    "full_lr": 0.617,
+    "resid_lgbm": 0.6792,
+    "flash_lgbm": 0.6475,
+    "coastal_lgbm": 0.6218,
+    "full_lgbm": 0.6377
+   }
+  },
+  "emsr705_aoi03": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 1271,
+   "v3_dry": 15416,
+   "v3": {
+    "elev": 0.8047,
+    "hand": 0.8195,
+    "full_lr": 0.7466,
+    "resid_lgbm": 0.857,
+    "flash_lgbm": 0.7449,
+    "coastal_lgbm": 0.7434,
+    "full_lgbm": 0.8679
+   },
+   "old": {
+    "elev": 0.8096,
+    "hand": 0.8223,
+    "full_lr": 0.7537,
+    "resid_lgbm": 0.8605,
+    "flash_lgbm": 0.7527,
+    "coastal_lgbm": 0.7512,
+    "full_lgbm": 0.871
+   }
+  },
+  "emsr711_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 2281,
+   "v3_dry": 6257,
+   "v3": {
+    "elev": 0.8866,
+    "hand": 0.7598,
+    "full_lr": 0.8853,
+    "resid_lgbm": 0.9074,
+    "flash_lgbm": 0.9097,
+    "coastal_lgbm": 0.931,
+    "full_lgbm": 0.9105
+   },
+   "old": {
+    "elev": 0.9505,
+    "hand": 0.8995,
+    "full_lr": 0.8849,
+    "resid_lgbm": 0.9534,
+    "flash_lgbm": 0.9518,
+    "coastal_lgbm": 0.9642,
+    "full_lgbm": 0.9497
+   }
+  },
+  "emsr711_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 4347,
+   "v3_dry": 5768,
+   "v3": {
+    "elev": 0.901,
+    "hand": 0.7513,
+    "full_lr": 0.9,
+    "resid_lgbm": 0.8981,
+    "flash_lgbm": 0.9485,
+    "coastal_lgbm": 0.9577,
+    "full_lgbm": 0.9231
+   },
+   "old": {
+    "elev": 0.9335,
+    "hand": 0.8272,
+    "full_lr": 0.9145,
+    "resid_lgbm": 0.9314,
+    "flash_lgbm": 0.9648,
+    "coastal_lgbm": 0.9707,
+    "full_lgbm": 0.9478
+   }
+  },
+  "emsr711_aoi03": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 806,
+   "v3_dry": 3866,
+   "v3": {
+    "elev": 0.8187,
+    "hand": 0.7786,
+    "full_lr": 0.8646,
+    "resid_lgbm": 0.9024,
+    "flash_lgbm": 0.8911,
+    "coastal_lgbm": 0.9426,
+    "full_lgbm": 0.9216
+   },
+   "old": {
+    "elev": 0.8953,
+    "hand": 0.8878,
+    "full_lr": 0.8939,
+    "resid_lgbm": 0.9336,
+    "flash_lgbm": 0.933,
+    "coastal_lgbm": 0.9459,
+    "full_lgbm": 0.9421
+   }
+  },
+  "emsr757_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 3846,
+   "v3_dry": 13635,
+   "v3": {
+    "elev": 0.7404,
+    "hand": 0.6356,
+    "full_lr": 0.7134,
+    "resid_lgbm": 0.6776,
+    "flash_lgbm": 0.7143,
+    "coastal_lgbm": 0.7425,
+    "full_lgbm": 0.6356
+   },
+   "old": {
+    "elev": 0.7458,
+    "hand": 0.6418,
+    "full_lr": 0.719,
+    "resid_lgbm": 0.6842,
+    "flash_lgbm": 0.7199,
+    "coastal_lgbm": 0.7475,
+    "full_lgbm": 0.6431
+   }
+  },
+  "emsr757_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 768,
+   "v3_dry": 17041,
+   "v3": {
+    "elev": 0.8331,
+    "hand": 0.7686,
+    "full_lr": 0.8475,
+    "resid_lgbm": 0.8381,
+    "flash_lgbm": 0.8201,
+    "coastal_lgbm": 0.8007,
+    "full_lgbm": 0.8225
+   },
+   "old": {
+    "elev": 0.8331,
+    "hand": 0.7686,
+    "full_lr": 0.8475,
+    "resid_lgbm": 0.8381,
+    "flash_lgbm": 0.8201,
+    "coastal_lgbm": 0.8007,
+    "full_lgbm": 0.8225
+   }
+  },
+  "emsr761_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1184,
+   "v3_dry": 16116,
+   "v3": {
+    "elev": 0.9517,
+    "hand": 0.5533,
+    "full_lr": 0.9289,
+    "resid_lgbm": 0.9469,
+    "flash_lgbm": 0.8424,
+    "coastal_lgbm": 0.9746,
+    "full_lgbm": 0.9416
+   },
+   "old": {
+    "elev": 0.9517,
+    "hand": 0.5533,
+    "full_lr": 0.9289,
+    "resid_lgbm": 0.9469,
+    "flash_lgbm": 0.8424,
+    "coastal_lgbm": 0.9746,
+    "full_lgbm": 0.9416
+   }
+  },
+  "emsr762_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1812,
+   "v3_dry": 15908,
+   "v3": {
+    "elev": 0.6825,
+    "hand": 0.4671,
+    "full_lr": 0.7071,
+    "resid_lgbm": 0.5782,
+    "flash_lgbm": 0.6648,
+    "coastal_lgbm": 0.7374,
+    "full_lgbm": 0.6103
+   },
+   "old": {
+    "elev": 0.6835,
+    "hand": 0.4676,
+    "full_lr": 0.7087,
+    "resid_lgbm": 0.5801,
+    "flash_lgbm": 0.6661,
+    "coastal_lgbm": 0.7388,
+    "full_lgbm": 0.6119
+   }
+  },
+  "emsr762_aoi04": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 4831,
+   "v3_dry": 12960,
+   "v3": {
+    "elev": 0.9057,
+    "hand": 0.6489,
+    "full_lr": 0.8866,
+    "resid_lgbm": 0.8872,
+    "flash_lgbm": 0.8749,
+    "coastal_lgbm": 0.7965,
+    "full_lgbm": 0.8636
+   },
+   "old": {
+    "elev": 0.9057,
+    "hand": 0.6489,
+    "full_lr": 0.8866,
+    "resid_lgbm": 0.8872,
+    "flash_lgbm": 0.8749,
+    "coastal_lgbm": 0.7965,
+    "full_lgbm": 0.8636
+   }
+  },
+  "emsr762_aoi06": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 7123,
+   "v3_dry": 10680,
+   "v3": {
+    "elev": 0.7933,
+    "hand": 0.6982,
+    "full_lr": 0.792,
+    "resid_lgbm": 0.7982,
+    "flash_lgbm": 0.7512,
+    "coastal_lgbm": 0.7841,
+    "full_lgbm": 0.7886
+   },
+   "old": {
+    "elev": 0.7933,
+    "hand": 0.6982,
+    "full_lr": 0.792,
+    "resid_lgbm": 0.7982,
+    "flash_lgbm": 0.7512,
+    "coastal_lgbm": 0.7841,
+    "full_lgbm": 0.7886
+   }
+  },
+  "emsr770_aoi01": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 217,
+   "v3_dry": 8524,
+   "v3": {
+    "elev": 0.8969,
+    "hand": 0.8992,
+    "full_lr": 0.9331,
+    "resid_lgbm": 0.925,
+    "flash_lgbm": 0.949,
+    "coastal_lgbm": 0.8918,
+    "full_lgbm": 0.9231
+   },
+   "old": {
+    "elev": 0.8969,
+    "hand": 0.8992,
+    "full_lr": 0.9331,
+    "resid_lgbm": 0.925,
+    "flash_lgbm": 0.949,
+    "coastal_lgbm": 0.8918,
+    "full_lgbm": 0.9231
+   }
+  },
+  "emsr770_aoi03": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 348,
+   "v3_dry": 4902,
+   "v3": {
+    "elev": 0.8905,
+    "hand": 0.9277,
+    "full_lr": 0.8887,
+    "resid_lgbm": 0.9261,
+    "flash_lgbm": 0.9076,
+    "coastal_lgbm": 0.918,
+    "full_lgbm": 0.9263
+   },
+   "old": {
+    "elev": 0.8905,
+    "hand": 0.9277,
+    "full_lr": 0.8887,
+    "resid_lgbm": 0.9261,
+    "flash_lgbm": 0.9076,
+    "coastal_lgbm": 0.918,
+    "full_lgbm": 0.9263
+   }
+  },
+  "emsr774_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 7209,
+   "v3_dry": 10326,
+   "v3": {
+    "elev": 0.7954,
+    "hand": 0.5771,
+    "full_lr": 0.8203,
+    "resid_lgbm": 0.8268,
+    "flash_lgbm": 0.7178,
+    "coastal_lgbm": 0.8022,
+    "full_lgbm": 0.8233
+   },
+   "old": {
+    "elev": 0.7955,
+    "hand": 0.5771,
+    "full_lr": 0.8203,
+    "resid_lgbm": 0.8268,
+    "flash_lgbm": 0.7178,
+    "coastal_lgbm": 0.8022,
+    "full_lgbm": 0.8233
+   }
+  },
+  "emsr774_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 879,
+   "v3_dry": 14106,
+   "v3": {
+    "elev": 0.8386,
+    "hand": 0.6552,
+    "full_lr": 0.8875,
+    "resid_lgbm": 0.9358,
+    "flash_lgbm": 0.9041,
+    "coastal_lgbm": 0.9297,
+    "full_lgbm": 0.9346
+   },
+   "old": {
+    "elev": 0.8619,
+    "hand": 0.7052,
+    "full_lr": 0.9039,
+    "resid_lgbm": 0.9451,
+    "flash_lgbm": 0.918,
+    "coastal_lgbm": 0.94,
+    "full_lgbm": 0.9441
+   }
+  },
+  "emsr776_aoi01": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1167,
+   "v3_dry": 16613,
+   "v3": {
+    "elev": 0.9567,
+    "hand": 0.5345,
+    "full_lr": 0.8504,
+    "resid_lgbm": 0.9553,
+    "flash_lgbm": 0.8718,
+    "coastal_lgbm": 0.9541,
+    "full_lgbm": 0.9592
+   },
+   "old": {
+    "elev": 0.9567,
+    "hand": 0.5346,
+    "full_lr": 0.8506,
+    "resid_lgbm": 0.9554,
+    "flash_lgbm": 0.872,
+    "coastal_lgbm": 0.9541,
+    "full_lgbm": 0.9593
+   }
+  },
+  "emsr779_aoi01": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 217,
+   "v3_dry": 17472,
+   "v3": {
+    "elev": 0.991,
+    "hand": 0.7326,
+    "full_lr": 0.9166,
+    "resid_lgbm": 0.946,
+    "flash_lgbm": 0.8523,
+    "coastal_lgbm": 0.935,
+    "full_lgbm": 0.8653
+   },
+   "old": {
+    "elev": 0.991,
+    "hand": 0.7326,
+    "full_lr": 0.9166,
+    "resid_lgbm": 0.946,
+    "flash_lgbm": 0.8523,
+    "coastal_lgbm": 0.935,
+    "full_lgbm": 0.8653
+   }
+  },
+  "emsr779_aoi02": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 3374,
+   "v3_dry": 14171,
+   "v3": {
+    "elev": 0.8334,
+    "hand": 0.5371,
+    "full_lr": 0.7983,
+    "resid_lgbm": 0.5752,
+    "flash_lgbm": 0.6543,
+    "coastal_lgbm": 0.3835,
+    "full_lgbm": 0.4576
+   },
+   "old": {
+    "elev": 0.8351,
+    "hand": 0.5393,
+    "full_lr": 0.8003,
+    "resid_lgbm": 0.5792,
+    "flash_lgbm": 0.6578,
+    "coastal_lgbm": 0.3896,
+    "full_lgbm": 0.4623
+   }
+  },
+  "emsr779_aoi03": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 2557,
+   "v3_dry": 15132,
+   "v3": {
+    "elev": 0.529,
+    "hand": 0.3905,
+    "full_lr": 0.5533,
+    "resid_lgbm": 0.4901,
+    "flash_lgbm": 0.4261,
+    "coastal_lgbm": 0.5337,
+    "full_lgbm": 0.3847
+   },
+   "old": {
+    "elev": 0.529,
+    "hand": 0.3905,
+    "full_lr": 0.5533,
+    "resid_lgbm": 0.4901,
+    "flash_lgbm": 0.4261,
+    "coastal_lgbm": 0.5337,
+    "full_lgbm": 0.3847
+   }
+  },
+  "emsr799_aoi02": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 213,
+   "v3_dry": 17476,
+   "v3": {
+    "elev": 0.7364,
+    "hand": 0.6294,
+    "full_lr": 0.7665,
+    "resid_lgbm": 0.7546,
+    "flash_lgbm": 0.7218,
+    "coastal_lgbm": 0.8376,
+    "full_lgbm": 0.7996
+   },
+   "old": {
+    "elev": 0.7364,
+    "hand": 0.6294,
+    "full_lr": 0.7665,
+    "resid_lgbm": 0.7546,
+    "flash_lgbm": 0.7218,
+    "coastal_lgbm": 0.8376,
+    "full_lgbm": 0.7996
+   }
+  },
+  "emsr799_aoi03": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 1041,
+   "v3_dry": 16309,
+   "v3": {
+    "elev": 0.8453,
+    "hand": 0.7984,
+    "full_lr": 0.8996,
+    "resid_lgbm": 0.8938,
+    "flash_lgbm": 0.9079,
+    "coastal_lgbm": 0.9025,
+    "full_lgbm": 0.8973
+   },
+   "old": {
+    "elev": 0.8432,
+    "hand": 0.7986,
+    "full_lr": 0.9001,
+    "resid_lgbm": 0.8931,
+    "flash_lgbm": 0.9077,
+    "coastal_lgbm": 0.9021,
+    "full_lgbm": 0.8968
+   }
+  },
+  "emsr799_aoi04": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 1904,
+   "v3_dry": 15813,
+   "v3": {
+    "elev": 0.4489,
+    "hand": 0.5285,
+    "full_lr": 0.3499,
+    "resid_lgbm": 0.3257,
+    "flash_lgbm": 0.5112,
+    "coastal_lgbm": 0.3312,
+    "full_lgbm": 0.3032
+   },
+   "old": {
+    "elev": 0.4489,
+    "hand": 0.5285,
+    "full_lr": 0.3499,
+    "resid_lgbm": 0.3257,
+    "flash_lgbm": 0.5112,
+    "coastal_lgbm": 0.3312,
+    "full_lgbm": 0.3032
+   }
+  },
+  "emsr813_aoi01": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 173,
+   "v3_dry": 17458,
+   "v3": {
+    "elev": 0.8943,
+    "hand": 0.9104,
+    "full_lr": 0.8903,
+    "resid_lgbm": 0.9389,
+    "flash_lgbm": 0.8982,
+    "coastal_lgbm": 0.8993,
+    "full_lgbm": 0.9162
+   },
+   "old": {
+    "elev": 0.8943,
+    "hand": 0.9104,
+    "full_lr": 0.8903,
+    "resid_lgbm": 0.9389,
+    "flash_lgbm": 0.8982,
+    "coastal_lgbm": 0.8993,
+    "full_lgbm": 0.9162
+   }
+  },
+  "emsr838_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 9092,
+   "v3_dry": 8350,
+   "v3": {
+    "elev": 0.4305,
+    "hand": 0.4701,
+    "full_lr": 0.7702,
+    "resid_lgbm": 0.6517,
+    "flash_lgbm": 0.5802,
+    "coastal_lgbm": 0.7344,
+    "full_lgbm": 0.7368
+   },
+   "old": {
+    "elev": 0.4462,
+    "hand": 0.4738,
+    "full_lr": 0.7776,
+    "resid_lgbm": 0.6618,
+    "flash_lgbm": 0.5925,
+    "coastal_lgbm": 0.7422,
+    "full_lgbm": 0.7448
+   }
+  },
+  "emsr838_aoi03": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 7260,
+   "v3_dry": 10409,
+   "v3": {
+    "elev": 0.7819,
+    "hand": 0.4467,
+    "full_lr": 0.8211,
+    "resid_lgbm": 0.7672,
+    "flash_lgbm": 0.8289,
+    "coastal_lgbm": 0.6129,
+    "full_lgbm": 0.7491
+   },
+   "old": {
+    "elev": 0.7832,
+    "hand": 0.4472,
+    "full_lr": 0.8221,
+    "resid_lgbm": 0.7686,
+    "flash_lgbm": 0.8298,
+    "coastal_lgbm": 0.6152,
+    "full_lgbm": 0.7505
+   }
+  },
+  "emsr838_aoi07": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 11301,
+   "v3_dry": 6336,
+   "v3": {
+    "elev": 0.6011,
+    "hand": 0.5702,
+    "full_lr": 0.6749,
+    "resid_lgbm": 0.5417,
+    "flash_lgbm": 0.4844,
+    "coastal_lgbm": 0.6413,
+    "full_lgbm": 0.5633
+   },
+   "old": {
+    "elev": 0.6013,
+    "hand": 0.5703,
+    "full_lr": 0.6748,
+    "resid_lgbm": 0.5419,
+    "flash_lgbm": 0.4854,
+    "coastal_lgbm": 0.6411,
+    "full_lgbm": 0.5634
+   }
+  },
+  "emsr844_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 398,
+   "v3_dry": 15488,
+   "v3": {
+    "elev": 0.6426,
+    "hand": 0.6086,
+    "full_lr": 0.719,
+    "resid_lgbm": 0.6908,
+    "flash_lgbm": 0.6308,
+    "coastal_lgbm": 0.6748,
+    "full_lgbm": 0.6925
+   },
+   "old": {
+    "elev": 0.6426,
+    "hand": 0.6086,
+    "full_lr": 0.719,
+    "resid_lgbm": 0.6908,
+    "flash_lgbm": 0.6308,
+    "coastal_lgbm": 0.6748,
+    "full_lgbm": 0.6925
+   }
+  },
+  "emsr853_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 2771,
+   "v3_dry": 14920,
+   "v3": {
+    "elev": 0.5197,
+    "hand": 0.521,
+    "full_lr": 0.6051,
+    "resid_lgbm": 0.5956,
+    "flash_lgbm": 0.6228,
+    "coastal_lgbm": 0.5903,
+    "full_lgbm": 0.6003
+   },
+   "old": {
+    "elev": 0.5196,
+    "hand": 0.5202,
+    "full_lr": 0.6044,
+    "resid_lgbm": 0.5953,
+    "flash_lgbm": 0.6223,
+    "coastal_lgbm": 0.5901,
+    "full_lgbm": 0.6001
+   }
+  },
+  "emsr853_aoi04": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 280,
+   "v3_dry": 5313,
+   "v3": {
+    "elev": 0.77,
+    "hand": 0.6546,
+    "full_lr": 0.8341,
+    "resid_lgbm": 0.8226,
+    "flash_lgbm": 0.8134,
+    "coastal_lgbm": 0.6443,
+    "full_lgbm": 0.8067
+   },
+   "old": {
+    "elev": 0.77,
+    "hand": 0.6546,
+    "full_lr": 0.8341,
+    "resid_lgbm": 0.8226,
+    "flash_lgbm": 0.8134,
+    "coastal_lgbm": 0.6443,
+    "full_lgbm": 0.8067
+   }
+  },
+  "emsr853_aoi08": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 244,
+   "v3_dry": 13588,
+   "v3": {
+    "elev": 0.3837,
+    "hand": 0.3592,
+    "full_lr": 0.5877,
+    "resid_lgbm": 0.4525,
+    "flash_lgbm": 0.4274,
+    "coastal_lgbm": 0.4347,
+    "full_lgbm": 0.4374
+   },
+   "old": {
+    "elev": 0.3841,
+    "hand": 0.3595,
+    "full_lr": 0.5885,
+    "resid_lgbm": 0.4533,
+    "flash_lgbm": 0.4284,
+    "coastal_lgbm": 0.4356,
+    "full_lgbm": 0.4381
+   }
+  },
+  "emsr865_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1937,
+   "v3_dry": 15762,
+   "v3": {
+    "elev": 0.5898,
+    "hand": 0.619,
+    "full_lr": 0.6409,
+    "resid_lgbm": 0.6115,
+    "flash_lgbm": 0.6085,
+    "coastal_lgbm": 0.5517,
+    "full_lgbm": 0.6088
+   },
+   "old": {
+    "elev": 0.5902,
+    "hand": 0.6194,
+    "full_lr": 0.6413,
+    "resid_lgbm": 0.6118,
+    "flash_lgbm": 0.6089,
+    "coastal_lgbm": 0.5522,
+    "full_lgbm": 0.6092
+   }
+  },
+  "emsr868_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 4836,
+   "v3_dry": 4846,
+   "v3": {
+    "elev": 0.9367,
+    "hand": 0.8341,
+    "full_lr": 0.9419,
+    "resid_lgbm": 0.9589,
+    "flash_lgbm": 0.9516,
+    "coastal_lgbm": 0.9702,
+    "full_lgbm": 0.9574
+   },
+   "old": {
+    "elev": 0.9694,
+    "hand": 0.9134,
+    "full_lr": 0.9585,
+    "resid_lgbm": 0.9788,
+    "flash_lgbm": 0.9756,
+    "coastal_lgbm": 0.9835,
+    "full_lgbm": 0.978
+   }
+  },
+  "emsr868_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 1750,
+   "v3_dry": 12492,
+   "v3": {
+    "elev": 0.9263,
+    "hand": 0.733,
+    "full_lr": 0.8031,
+    "resid_lgbm": 0.8127,
+    "flash_lgbm": 0.8745,
+    "coastal_lgbm": 0.7133,
+    "full_lgbm": 0.6776
+   },
+   "old": {
+    "elev": 0.9424,
+    "hand": 0.79,
+    "full_lr": 0.8444,
+    "resid_lgbm": 0.8534,
+    "flash_lgbm": 0.9008,
+    "coastal_lgbm": 0.7759,
+    "full_lgbm": 0.7481
+   }
+  },
+  "emsr870_aoi05": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1481,
+   "v3_dry": 12910,
+   "v3": {
+    "elev": 0.864,
+    "hand": 0.6881,
+    "full_lr": 0.8568,
+    "resid_lgbm": 0.8678,
+    "flash_lgbm": 0.8397,
+    "coastal_lgbm": 0.8548,
+    "full_lgbm": 0.8575
+   },
+   "old": {
+    "elev": 0.8881,
+    "hand": 0.7496,
+    "full_lr": 0.8814,
+    "resid_lgbm": 0.8902,
+    "flash_lgbm": 0.8683,
+    "coastal_lgbm": 0.8789,
+    "full_lgbm": 0.8821
+   }
+  },
+  "emsr870_aoi08": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1931,
+   "v3_dry": 15846,
+   "v3": {
+    "elev": 0.4075,
+    "hand": 0.4191,
+    "full_lr": 0.5101,
+    "resid_lgbm": 0.4812,
+    "flash_lgbm": 0.4176,
+    "coastal_lgbm": 0.4837,
+    "full_lgbm": 0.4557
+   },
+   "old": {
+    "elev": 0.4078,
+    "hand": 0.4197,
+    "full_lr": 0.5107,
+    "resid_lgbm": 0.482,
+    "flash_lgbm": 0.4184,
+    "coastal_lgbm": 0.4845,
+    "full_lgbm": 0.4564
+   }
+  },
+  "emsr870_aoi13": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 8858,
+   "v3_dry": 8577,
+   "v3": {
+    "elev": 0.8237,
+    "hand": 0.5818,
+    "full_lr": 0.94,
+    "resid_lgbm": 0.8511,
+    "flash_lgbm": 0.9071,
+    "coastal_lgbm": 0.9188,
+    "full_lgbm": 0.813
+   },
+   "old": {
+    "elev": 0.8237,
+    "hand": 0.5818,
+    "full_lr": 0.94,
+    "resid_lgbm": 0.8511,
+    "flash_lgbm": 0.9071,
+    "coastal_lgbm": 0.9188,
+    "full_lgbm": 0.813
+   }
+  },
+  "emsr935_aoi01": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 8596,
+   "v3_dry": 6298,
+   "v3": {
+    "elev": 0.7214,
+    "hand": 0.7198,
+    "full_lr": 0.7126,
+    "resid_lgbm": 0.7607,
+    "flash_lgbm": 0.7115,
+    "coastal_lgbm": 0.8185,
+    "full_lgbm": 0.7814
+   },
+   "old": {
+    "elev": 0.7214,
+    "hand": 0.7198,
+    "full_lr": 0.7126,
+    "resid_lgbm": 0.7607,
+    "flash_lgbm": 0.7115,
+    "coastal_lgbm": 0.8185,
+    "full_lgbm": 0.7814
+   }
+  },
+  "emsr935_aoi02": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 404,
+   "v3_dry": 11371,
+   "v3": {
+    "elev": 0.8084,
+    "hand": 0.5443,
+    "full_lr": 0.7575,
+    "resid_lgbm": 0.8007,
+    "flash_lgbm": 0.7606,
+    "coastal_lgbm": 0.7273,
+    "full_lgbm": 0.8018
+   },
+   "old": {
+    "elev": 0.8084,
+    "hand": 0.5443,
+    "full_lr": 0.7575,
+    "resid_lgbm": 0.8007,
+    "flash_lgbm": 0.7606,
+    "coastal_lgbm": 0.7273,
+    "full_lgbm": 0.8018
+   }
+  },
+  "encantado": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 648,
+   "v3_dry": 5410,
+   "v3": {
+    "elev": 0.7332,
+    "hand": 0.5419,
+    "full_lr": 0.7478,
+    "resid_lgbm": 0.7701,
+    "flash_lgbm": 0.7655,
+    "coastal_lgbm": 0.7334,
+    "full_lgbm": 0.7524
+   },
+   "old": {
+    "elev": 0.8928,
+    "hand": 0.7786,
+    "full_lr": 0.9037,
+    "resid_lgbm": 0.9092,
+    "flash_lgbm": 0.9132,
+    "coastal_lgbm": 0.9007,
+    "full_lgbm": 0.9021
+   }
+  },
+  "faenza": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 219,
+   "v3_dry": 8427,
+   "v3": {
+    "elev": 0.7816,
+    "hand": 0.6866,
+    "full_lr": 0.7702,
+    "resid_lgbm": 0.8401,
+    "flash_lgbm": 0.8266,
+    "coastal_lgbm": 0.8331,
+    "full_lgbm": 0.8562
+   },
+   "old": {
+    "elev": 0.7816,
+    "hand": 0.6866,
+    "full_lr": 0.7702,
+    "resid_lgbm": 0.8401,
+    "flash_lgbm": 0.8266,
+    "coastal_lgbm": 0.8331,
+    "full_lgbm": 0.8562
+   }
+  },
+  "fort_myers_beach": {
+   "error": "LookupError: no S1 IW pass over [-81.97, 26.43, -81.93, 26.47] in [2022-09-27, 2022-09-29]",
+   "unit": "fort_myers_beach",
+   "type": "coastal",
+   "peak": "2022-09-27",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 2,
+   "kind": "s1_vvdrop"
+  },
+  "hai_phong": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 0,
+   "v3_dry": 8317,
+   "v3": null,
+   "old": {
+    "elev": 0.8904,
+    "hand": 0.8705,
+    "full_lr": 0.4279,
+    "resid_lgbm": 0.7471,
+    "flash_lgbm": 0.6321,
+    "coastal_lgbm": 0.5356,
+    "full_lgbm": 0.6922
+   }
+  },
+  "hanoi": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 940,
+   "v3_dry": 13776,
+   "v3": {
+    "elev": 0.9522,
+    "hand": 0.481,
+    "full_lr": 0.9372,
+    "resid_lgbm": 0.9679,
+    "flash_lgbm": 0.8258,
+    "coastal_lgbm": 0.7406,
+    "full_lgbm": 0.898
+   },
+   "old": {
+    "elev": 0.9522,
+    "hand": 0.481,
+    "full_lr": 0.9372,
+    "resid_lgbm": 0.9679,
+    "flash_lgbm": 0.8258,
+    "coastal_lgbm": 0.7406,
+    "full_lgbm": 0.898
+   }
+  },
+  "himachal_2023": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 0,
+   "v3_dry": 491,
+   "v3": null,
+   "old": {
+    "elev": 0.6099,
+    "hand": 0.5341,
+    "full_lr": 0.6041,
+    "resid_lgbm": 0.6001,
+    "flash_lgbm": 0.5776,
+    "coastal_lgbm": 0.5721,
+    "full_lgbm": 0.5758
+   }
+  },
+  "kerala_2018": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 7040,
+   "v3_dry": 10773,
+   "v3": {
+    "elev": 0.7508,
+    "hand": 0.5971,
+    "full_lr": 0.7506,
+    "resid_lgbm": 0.6942,
+    "flash_lgbm": 0.6465,
+    "coastal_lgbm": 0.7361,
+    "full_lgbm": 0.7155
+   },
+   "old": {
+    "elev": 0.747,
+    "hand": 0.7091,
+    "full_lr": 0.781,
+    "resid_lgbm": 0.7969,
+    "flash_lgbm": 0.7156,
+    "coastal_lgbm": 0.7102,
+    "full_lgbm": 0.7986
+   }
+  },
+  "kolonnawa": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 573,
+   "v3_dry": 8617,
+   "v3": {
+    "elev": 0.8314,
+    "hand": 0.6056,
+    "full_lr": 0.8268,
+    "resid_lgbm": 0.8442,
+    "flash_lgbm": 0.8469,
+    "coastal_lgbm": 0.8376,
+    "full_lgbm": 0.8436
+   },
+   "old": {
+    "elev": 0.8314,
+    "hand": 0.6056,
+    "full_lr": 0.8268,
+    "resid_lgbm": 0.8442,
+    "flash_lgbm": 0.8469,
+    "coastal_lgbm": 0.8376,
+    "full_lgbm": 0.8436
+   }
+  },
+  "kyaukpyu": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 376,
+   "v3_dry": 6814,
+   "v3": {
+    "elev": 0.8706,
+    "hand": 0.6457,
+    "full_lr": 0.8304,
+    "resid_lgbm": 0.9042,
+    "flash_lgbm": 0.9421,
+    "coastal_lgbm": 0.8502,
+    "full_lgbm": 0.869
+   },
+   "old": {
+    "elev": 0.8953,
+    "hand": 0.6895,
+    "full_lr": 0.8657,
+    "resid_lgbm": 0.9232,
+    "flash_lgbm": 0.9524,
+    "coastal_lgbm": 0.8809,
+    "full_lgbm": 0.8968
+   }
+  },
+  "milagro": {
+   "error": "ValueError: reference shape (134, 134) != table grid (133, 135)",
+   "unit": "milagro",
+   "type": "pluvial",
+   "peak": "2025-02-27",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "ems"
+  },
+  "nam_dinh": {
+   "error": "ValueError: reference shape (134, 135) != table grid (135, 135)",
+   "unit": "nam_dinh",
+   "type": "waterlogging",
+   "peak": "2024-09-08",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 14,
+   "kind": "ems"
+  },
+  "paiporta": {
+   "tags": [
+    "compound",
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 3683,
+   "v3_dry": 14103,
+   "v3": {
+    "elev": 0.7375,
+    "hand": 0.5008,
+    "full_lr": 0.6014,
+    "resid_lgbm": 0.6592,
+    "flash_lgbm": 0.6829,
+    "coastal_lgbm": 0.5767,
+    "full_lgbm": 0.7095
+   },
+   "old": {
+    "elev": 0.7375,
+    "hand": 0.5008,
+    "full_lr": 0.6014,
+    "resid_lgbm": 0.6592,
+    "flash_lgbm": 0.6829,
+    "coastal_lgbm": 0.5767,
+    "full_lgbm": 0.7095
+   }
+  },
+  "pakistan_2022": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "unosat",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 10153,
+   "v3_dry": 7570,
+   "v3": {
+    "elev": 0.655,
+    "hand": 0.5138,
+    "full_lr": 0.7268,
+    "resid_lgbm": 0.7335,
+    "flash_lgbm": 0.6328,
+    "coastal_lgbm": 0.633,
+    "full_lgbm": 0.7064
+   },
+   "old": {
+    "elev": 0.655,
+    "hand": 0.5138,
+    "full_lr": 0.7268,
+    "resid_lgbm": 0.7335,
+    "flash_lgbm": 0.6328,
+    "coastal_lgbm": 0.633,
+    "full_lgbm": 0.7064
+   }
+  },
+  "r_emsr703_aoi01": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 1287,
+   "v3_dry": 12956,
+   "v3": {
+    "elev": 0.8327,
+    "hand": 0.6925,
+    "full_lr": 0.803,
+    "resid_lgbm": 0.8325,
+    "flash_lgbm": 0.834,
+    "coastal_lgbm": 0.8308,
+    "full_lgbm": 0.8247
+   },
+   "old": {
+    "elev": 0.8327,
+    "hand": 0.6925,
+    "full_lr": 0.803,
+    "resid_lgbm": 0.8325,
+    "flash_lgbm": 0.834,
+    "coastal_lgbm": 0.8308,
+    "full_lgbm": 0.8247
+   }
+  },
+  "r_emsr703_aoi02": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 3331,
+   "v3_dry": 10729,
+   "v3": {
+    "elev": 0.6606,
+    "hand": 0.6251,
+    "full_lr": 0.6388,
+    "resid_lgbm": 0.6568,
+    "flash_lgbm": 0.6282,
+    "coastal_lgbm": 0.5851,
+    "full_lgbm": 0.6488
+   },
+   "old": {
+    "elev": 0.6606,
+    "hand": 0.6251,
+    "full_lr": 0.6388,
+    "resid_lgbm": 0.6568,
+    "flash_lgbm": 0.6282,
+    "coastal_lgbm": 0.5851,
+    "full_lgbm": 0.6488
+   }
+  },
+  "r_emsr712_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 1641,
+   "v3_dry": 7960,
+   "v3": {
+    "elev": 0.9023,
+    "hand": 0.7185,
+    "full_lr": 0.6648,
+    "resid_lgbm": 0.914,
+    "flash_lgbm": 0.7377,
+    "coastal_lgbm": 0.6284,
+    "full_lgbm": 0.8111
+   },
+   "old": {
+    "elev": 0.9023,
+    "hand": 0.7184,
+    "full_lr": 0.6649,
+    "resid_lgbm": 0.914,
+    "flash_lgbm": 0.7378,
+    "coastal_lgbm": 0.6285,
+    "full_lgbm": 0.8112
+   }
+  },
+  "r_emsr734_aoi17": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 250,
+   "v3_dry": 12415,
+   "v3": {
+    "elev": 0.6898,
+    "hand": 0.9003,
+    "full_lr": 0.9647,
+    "resid_lgbm": 0.6836,
+    "flash_lgbm": 0.7241,
+    "coastal_lgbm": 0.6103,
+    "full_lgbm": 0.7878
+   },
+   "old": {
+    "elev": 0.6898,
+    "hand": 0.9003,
+    "full_lr": 0.9647,
+    "resid_lgbm": 0.6836,
+    "flash_lgbm": 0.7241,
+    "coastal_lgbm": 0.6103,
+    "full_lgbm": 0.7878
+   }
+  },
+  "r_emsr742_aoi01": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 187,
+   "v3_dry": 17430,
+   "v3": {
+    "elev": 0.9455,
+    "hand": 0.6948,
+    "full_lr": 0.8558,
+    "resid_lgbm": 0.8798,
+    "flash_lgbm": 0.7834,
+    "coastal_lgbm": 0.8682,
+    "full_lgbm": 0.7598
+   },
+   "old": {
+    "elev": 0.9458,
+    "hand": 0.6964,
+    "full_lr": 0.8567,
+    "resid_lgbm": 0.8805,
+    "flash_lgbm": 0.7847,
+    "coastal_lgbm": 0.8689,
+    "full_lgbm": 0.7611
+   }
+  },
+  "r_emsr742_aoi03": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 248,
+   "v3_dry": 17327,
+   "v3": {
+    "elev": 0.9689,
+    "hand": 0.6218,
+    "full_lr": 0.6708,
+    "resid_lgbm": 0.8513,
+    "flash_lgbm": 0.4897,
+    "coastal_lgbm": 0.96,
+    "full_lgbm": 0.8861
+   },
+   "old": {
+    "elev": 0.9694,
+    "hand": 0.6263,
+    "full_lr": 0.6745,
+    "resid_lgbm": 0.8528,
+    "flash_lgbm": 0.4943,
+    "coastal_lgbm": 0.9605,
+    "full_lgbm": 0.8873
+   }
+  },
+  "r_emsr780_aoi08": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1524,
+   "v3_dry": 10396,
+   "v3": {
+    "elev": 0.4139,
+    "hand": 0.4365,
+    "full_lr": 0.4592,
+    "resid_lgbm": 0.4902,
+    "flash_lgbm": 0.4663,
+    "coastal_lgbm": 0.4851,
+    "full_lgbm": 0.5241
+   },
+   "old": {
+    "elev": 0.4139,
+    "hand": 0.4365,
+    "full_lr": 0.4592,
+    "resid_lgbm": 0.4902,
+    "flash_lgbm": 0.4663,
+    "coastal_lgbm": 0.4851,
+    "full_lgbm": 0.5241
+   }
+  },
+  "r_emsr781_aoi01": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 105,
+   "v3_dry": 8652,
+   "v3": {
+    "elev": 0.9358,
+    "hand": 0.7069,
+    "full_lr": 0.9079,
+    "resid_lgbm": 0.919,
+    "flash_lgbm": 0.8778,
+    "coastal_lgbm": 0.906,
+    "full_lgbm": 0.9235
+   },
+   "old": {
+    "elev": 0.949,
+    "hand": 0.7667,
+    "full_lr": 0.9269,
+    "resid_lgbm": 0.9356,
+    "flash_lgbm": 0.903,
+    "coastal_lgbm": 0.9251,
+    "full_lgbm": 0.9393
+   }
+  },
+  "r_emsr790_aoi02": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 283,
+   "v3_dry": 16949,
+   "v3": {
+    "elev": 0.8623,
+    "hand": 0.8963,
+    "full_lr": 0.866,
+    "resid_lgbm": 0.8867,
+    "flash_lgbm": 0.8635,
+    "coastal_lgbm": 0.9114,
+    "full_lgbm": 0.8798
+   },
+   "old": {
+    "elev": 0.8623,
+    "hand": 0.8963,
+    "full_lr": 0.866,
+    "resid_lgbm": 0.8867,
+    "flash_lgbm": 0.8635,
+    "coastal_lgbm": 0.9114,
+    "full_lgbm": 0.8798
+   }
+  },
+  "r_emsr793_aoi01": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 1310,
+   "v3_dry": 11575,
+   "v3": {
+    "elev": 0.9443,
+    "hand": 0.8002,
+    "full_lr": 0.9296,
+    "resid_lgbm": 0.9619,
+    "flash_lgbm": 0.9544,
+    "coastal_lgbm": 0.943,
+    "full_lgbm": 0.9558
+   },
+   "old": {
+    "elev": 0.9606,
+    "hand": 0.8587,
+    "full_lr": 0.9494,
+    "resid_lgbm": 0.973,
+    "flash_lgbm": 0.9677,
+    "coastal_lgbm": 0.9593,
+    "full_lgbm": 0.9687
+   }
+  },
+  "r_emsr793_aoi02": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 775,
+   "v3_dry": 12844,
+   "v3": {
+    "elev": 0.9138,
+    "hand": 0.9306,
+    "full_lr": 0.9357,
+    "resid_lgbm": 0.9403,
+    "flash_lgbm": 0.9172,
+    "coastal_lgbm": 0.9373,
+    "full_lgbm": 0.9341
+   },
+   "old": {
+    "elev": 0.9345,
+    "hand": 0.9473,
+    "full_lr": 0.9512,
+    "resid_lgbm": 0.9547,
+    "flash_lgbm": 0.937,
+    "coastal_lgbm": 0.9524,
+    "full_lgbm": 0.95
+   }
+  },
+  "r_emsr805_aoi01": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 184,
+   "v3_dry": 5746,
+   "v3": {
+    "elev": 0.6308,
+    "hand": 0.6287,
+    "full_lr": 0.4888,
+    "resid_lgbm": 0.5699,
+    "flash_lgbm": 0.4543,
+    "coastal_lgbm": 0.5721,
+    "full_lgbm": 0.54
+   },
+   "old": {
+    "elev": 0.6548,
+    "hand": 0.6561,
+    "full_lr": 0.4982,
+    "resid_lgbm": 0.5859,
+    "flash_lgbm": 0.4823,
+    "coastal_lgbm": 0.5886,
+    "full_lgbm": 0.5538
+   }
+  },
+  "r_emsr805_aoi03": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 83,
+   "v3_dry": 16098,
+   "v3": {
+    "elev": 0.6996,
+    "hand": 0.7082,
+    "full_lr": 0.7932,
+    "resid_lgbm": 0.7782,
+    "flash_lgbm": 0.6633,
+    "coastal_lgbm": 0.5929,
+    "full_lgbm": 0.6958
+   },
+   "old": {
+    "elev": 0.7254,
+    "hand": 0.7333,
+    "full_lr": 0.8107,
+    "resid_lgbm": 0.7972,
+    "flash_lgbm": 0.6869,
+    "coastal_lgbm": 0.6135,
+    "full_lgbm": 0.7162
+   }
+  },
+  "r_emsr845_aoi02": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 771,
+   "v3_dry": 16955,
+   "v3": {
+    "elev": 0.9272,
+    "hand": 0.7708,
+    "full_lr": 0.8751,
+    "resid_lgbm": 0.8969,
+    "flash_lgbm": 0.9115,
+    "coastal_lgbm": 0.8992,
+    "full_lgbm": 0.9112
+   },
+   "old": {
+    "elev": 0.9272,
+    "hand": 0.7708,
+    "full_lr": 0.8751,
+    "resid_lgbm": 0.8969,
+    "flash_lgbm": 0.9115,
+    "coastal_lgbm": 0.8992,
+    "full_lgbm": 0.9112
+   }
+  },
+  "r_emsr845_aoi03": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1896,
+   "v3_dry": 14615,
+   "v3": {
+    "elev": 0.6837,
+    "hand": 0.7065,
+    "full_lr": 0.7134,
+    "resid_lgbm": 0.7508,
+    "flash_lgbm": 0.7177,
+    "coastal_lgbm": 0.7123,
+    "full_lgbm": 0.7176
+   },
+   "old": {
+    "elev": 0.6837,
+    "hand": 0.7065,
+    "full_lr": 0.7134,
+    "resid_lgbm": 0.7508,
+    "flash_lgbm": 0.7177,
+    "coastal_lgbm": 0.7123,
+    "full_lgbm": 0.7176
+   }
+  },
+  "r_emsr850_aoi02": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 588,
+   "v3_dry": 8433,
+   "v3": {
+    "elev": 0.7262,
+    "hand": 0.7096,
+    "full_lr": 0.605,
+    "resid_lgbm": 0.6589,
+    "flash_lgbm": 0.7148,
+    "coastal_lgbm": 0.7163,
+    "full_lgbm": 0.6716
+   },
+   "old": {
+    "elev": 0.8533,
+    "hand": 0.8473,
+    "full_lr": 0.7864,
+    "resid_lgbm": 0.8249,
+    "flash_lgbm": 0.852,
+    "coastal_lgbm": 0.8541,
+    "full_lgbm": 0.8306
+   }
+  },
+  "r_emsr850_aoi03": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1304,
+   "v3_dry": 16137,
+   "v3": {
+    "elev": 0.8276,
+    "hand": 0.7943,
+    "full_lr": 0.7151,
+    "resid_lgbm": 0.8641,
+    "flash_lgbm": 0.7721,
+    "coastal_lgbm": 0.8592,
+    "full_lgbm": 0.8962
+   },
+   "old": {
+    "elev": 0.8306,
+    "hand": 0.7969,
+    "full_lr": 0.7204,
+    "resid_lgbm": 0.8666,
+    "flash_lgbm": 0.7764,
+    "coastal_lgbm": 0.8617,
+    "full_lgbm": 0.8979
+   }
+  },
+  "r_emsr856_aoi01": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 3340,
+   "v3_dry": 12707,
+   "v3": {
+    "elev": 0.9037,
+    "hand": 0.572,
+    "full_lr": 0.9079,
+    "resid_lgbm": 0.8901,
+    "flash_lgbm": 0.8647,
+    "coastal_lgbm": 0.7736,
+    "full_lgbm": 0.8976
+   },
+   "old": {
+    "elev": 0.9151,
+    "hand": 0.6218,
+    "full_lr": 0.919,
+    "resid_lgbm": 0.903,
+    "flash_lgbm": 0.881,
+    "coastal_lgbm": 0.8005,
+    "full_lgbm": 0.9099
+   }
+  },
+  "r_emsr856_aoi02": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 1554,
+   "v3_dry": 9132,
+   "v3": {
+    "elev": 0.974,
+    "hand": 0.597,
+    "full_lr": 0.8506,
+    "resid_lgbm": 0.9373,
+    "flash_lgbm": 0.9399,
+    "coastal_lgbm": 0.9366,
+    "full_lgbm": 0.8849
+   },
+   "old": {
+    "elev": 0.9807,
+    "hand": 0.6957,
+    "full_lr": 0.8834,
+    "resid_lgbm": 0.9536,
+    "flash_lgbm": 0.9555,
+    "coastal_lgbm": 0.9531,
+    "full_lgbm": 0.9148
+   }
+  },
+  "r_emsr857_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 14927,
+   "v3_dry": 2762,
+   "v3": {
+    "elev": 0.9312,
+    "hand": 0.6807,
+    "full_lr": 0.9187,
+    "resid_lgbm": 0.8963,
+    "flash_lgbm": 0.7678,
+    "coastal_lgbm": 0.7886,
+    "full_lgbm": 0.8595
+   },
+   "old": {
+    "elev": 0.9312,
+    "hand": 0.6807,
+    "full_lr": 0.9187,
+    "resid_lgbm": 0.8963,
+    "flash_lgbm": 0.7678,
+    "coastal_lgbm": 0.7886,
+    "full_lgbm": 0.8595
+   }
+  },
+  "r_emsr857_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 2390,
+   "v3_dry": 12866,
+   "v3": {
+    "elev": 0.9099,
+    "hand": 0.7695,
+    "full_lr": 0.8782,
+    "resid_lgbm": 0.9237,
+    "flash_lgbm": 0.9193,
+    "coastal_lgbm": 0.916,
+    "full_lgbm": 0.9178
+   },
+   "old": {
+    "elev": 0.9237,
+    "hand": 0.8049,
+    "full_lr": 0.8927,
+    "resid_lgbm": 0.9354,
+    "flash_lgbm": 0.9317,
+    "coastal_lgbm": 0.9289,
+    "full_lgbm": 0.9304
+   }
+  },
+  "r_emsr858_aoi08": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 616,
+   "v3_dry": 10052,
+   "v3": {
+    "elev": 0.8159,
+    "hand": 0.5967,
+    "full_lr": 0.851,
+    "resid_lgbm": 0.8305,
+    "flash_lgbm": 0.8053,
+    "coastal_lgbm": 0.8444,
+    "full_lgbm": 0.8386
+   },
+   "old": {
+    "elev": 0.8907,
+    "hand": 0.7495,
+    "full_lr": 0.9091,
+    "resid_lgbm": 0.8991,
+    "flash_lgbm": 0.8841,
+    "coastal_lgbm": 0.9069,
+    "full_lgbm": 0.9042
+   }
+  },
+  "r_emsr858_aoi10": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 805,
+   "v3_dry": 9482,
+   "v3": {
+    "elev": 0.8453,
+    "hand": 0.6339,
+    "full_lr": 0.7137,
+    "resid_lgbm": 0.8288,
+    "flash_lgbm": 0.8521,
+    "coastal_lgbm": 0.8638,
+    "full_lgbm": 0.8258
+   },
+   "old": {
+    "elev": 0.9129,
+    "hand": 0.7878,
+    "full_lr": 0.8328,
+    "resid_lgbm": 0.9029,
+    "flash_lgbm": 0.9164,
+    "coastal_lgbm": 0.9208,
+    "full_lgbm": 0.9004
+   }
+  },
+  "r_emsr863_aoi02": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 2811,
+   "v3_dry": 13507,
+   "v3": {
+    "elev": 0.8812,
+    "hand": 0.7619,
+    "full_lr": 0.8828,
+    "resid_lgbm": 0.8834,
+    "flash_lgbm": 0.861,
+    "coastal_lgbm": 0.8671,
+    "full_lgbm": 0.8704
+   },
+   "old": {
+    "elev": 0.8812,
+    "hand": 0.7619,
+    "full_lr": 0.8828,
+    "resid_lgbm": 0.8834,
+    "flash_lgbm": 0.861,
+    "coastal_lgbm": 0.8671,
+    "full_lgbm": 0.8704
+   }
+  },
+  "r_emsr864_aoi01": {
+   "tags": [
+    "compound",
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 4179,
+   "v3_dry": 10510,
+   "v3": {
+    "elev": 0.9431,
+    "hand": 0.9049,
+    "full_lr": 0.9054,
+    "resid_lgbm": 0.92,
+    "flash_lgbm": 0.951,
+    "coastal_lgbm": 0.9501,
+    "full_lgbm": 0.9585
+   },
+   "old": {
+    "elev": 0.9547,
+    "hand": 0.9244,
+    "full_lr": 0.9208,
+    "resid_lgbm": 0.9363,
+    "flash_lgbm": 0.9606,
+    "coastal_lgbm": 0.9603,
+    "full_lgbm": 0.9669
+   }
+  },
+  "r_emsr864_aoi02": {
+   "tags": [
+    "compound",
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 3276,
+   "v3_dry": 4912,
+   "v3": {
+    "elev": 0.8853,
+    "hand": 0.7736,
+    "full_lr": 0.8786,
+    "resid_lgbm": 0.893,
+    "flash_lgbm": 0.8972,
+    "coastal_lgbm": 0.9123,
+    "full_lgbm": 0.8956
+   },
+   "old": {
+    "elev": 0.9196,
+    "hand": 0.9125,
+    "full_lr": 0.9267,
+    "resid_lgbm": 0.9353,
+    "flash_lgbm": 0.9363,
+    "coastal_lgbm": 0.9494,
+    "full_lgbm": 0.9327
+   }
+  },
+  "r_emsr867_aoi01": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 212,
+   "v3_dry": 11601,
+   "v3": {
+    "elev": 0.6083,
+    "hand": 0.5036,
+    "full_lr": 0.6548,
+    "resid_lgbm": 0.6291,
+    "flash_lgbm": 0.6889,
+    "coastal_lgbm": 0.6383,
+    "full_lgbm": 0.6515
+   },
+   "old": {
+    "elev": 0.6083,
+    "hand": 0.5036,
+    "full_lr": 0.6548,
+    "resid_lgbm": 0.6291,
+    "flash_lgbm": 0.6889,
+    "coastal_lgbm": 0.6383,
+    "full_lgbm": 0.6515
+   }
+  },
+  "r_emsr867_aoi03": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 1535,
+   "v3_dry": 16190,
+   "v3": {
+    "elev": 0.7835,
+    "hand": 0.7991,
+    "full_lr": 0.8849,
+    "resid_lgbm": 0.8657,
+    "flash_lgbm": 0.8129,
+    "coastal_lgbm": 0.8205,
+    "full_lgbm": 0.8186
+   },
+   "old": {
+    "elev": 0.7835,
+    "hand": 0.7991,
+    "full_lr": 0.8849,
+    "resid_lgbm": 0.8657,
+    "flash_lgbm": 0.8129,
+    "coastal_lgbm": 0.8205,
+    "full_lgbm": 0.8186
+   }
+  },
+  "s1_amphan_sundarbans_2020": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 71,
+   "v3_dry": 14718,
+   "v3": {
+    "elev": 0.7993,
+    "hand": 0.6258,
+    "full_lr": 0.7908,
+    "resid_lgbm": 0.6941,
+    "flash_lgbm": 0.7513,
+    "coastal_lgbm": 0.7361,
+    "full_lgbm": 0.6247
+   },
+   "old": {
+    "elev": 0.6756,
+    "hand": 0.6303,
+    "full_lr": 0.6941,
+    "resid_lgbm": 0.6818,
+    "flash_lgbm": 0.6812,
+    "coastal_lgbm": 0.6088,
+    "full_lgbm": 0.6805
+   }
+  },
+  "s1_assam_morigaon_2024": {
+   "error": "LookupError: no S1 IW pass over [92.300714, 26.231374, 92.340778, 26.267306] in [2024-07-05, 2024-07-08]",
+   "unit": "s1_assam_morigaon_2024",
+   "type": "fluvial",
+   "peak": "2024-07-05",
+   "peak_basis": "geoglows_discharge",
+   "max_lag_days": 3,
+   "kind": "s1_vvdrop"
+  },
+  "s1_fani_puri_2019": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 9576,
+   "v3_dry": 8619,
+   "v3": {
+    "elev": 0.5776,
+    "hand": 0.4854,
+    "full_lr": 0.646,
+    "resid_lgbm": 0.6173,
+    "flash_lgbm": 0.6312,
+    "coastal_lgbm": 0.6462,
+    "full_lgbm": 0.5929
+   },
+   "old": {
+    "elev": 0.5802,
+    "hand": 0.4853,
+    "full_lr": 0.6499,
+    "resid_lgbm": 0.6257,
+    "flash_lgbm": 0.6385,
+    "coastal_lgbm": 0.6513,
+    "full_lgbm": 0.6036
+   }
+  },
+  "s1_ida_lafitte_2021": {
+   "error": "LookupError: no S1 IW pass over [-90.139303, 29.641864, -90.097953, 29.677796] in [2021-08-30, 2021-09-01]",
+   "unit": "s1_ida_lafitte_2021",
+   "type": "coastal",
+   "peak": "2021-08-30",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 2,
+   "kind": "s1_vvdrop"
+  },
+  "s1_kelantan_2024": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 395,
+   "v3_dry": 17130,
+   "v3": {
+    "elev": 0.8574,
+    "hand": 0.5565,
+    "full_lr": 0.8336,
+    "resid_lgbm": 0.8598,
+    "flash_lgbm": 0.8308,
+    "coastal_lgbm": 0.8574,
+    "full_lgbm": 0.8518
+   },
+   "old": {
+    "elev": 0.747,
+    "hand": 0.5567,
+    "full_lr": 0.7263,
+    "resid_lgbm": 0.7412,
+    "flash_lgbm": 0.7247,
+    "coastal_lgbm": 0.7403,
+    "full_lgbm": 0.7348
+   }
+  },
+  "s1_laura_cameron_2020": {
+   "tags": [
+    "coastal"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 294,
+   "v3_dry": 8475,
+   "v3": {
+    "elev": 0.52,
+    "hand": 0.5041,
+    "full_lr": 0.5803,
+    "resid_lgbm": 0.4977,
+    "flash_lgbm": 0.5418,
+    "coastal_lgbm": 0.486,
+    "full_lgbm": 0.5029
+   },
+   "old": {
+    "elev": 0.6548,
+    "hand": 0.6065,
+    "full_lr": 0.5362,
+    "resid_lgbm": 0.3984,
+    "flash_lgbm": 0.4971,
+    "coastal_lgbm": 0.4719,
+    "full_lgbm": 0.3958
+   }
+  },
+  "s1_lokoja_2022": {
+   "error": "LookupError: no S1 IW pass over [6.765672, 7.806581, 6.801942, 7.842513] in [2022-10-07, 2022-10-10]",
+   "unit": "s1_lokoja_2022",
+   "type": "fluvial",
+   "peak": "2022-10-07",
+   "peak_basis": "geoglows_discharge",
+   "max_lag_days": 3,
+   "kind": "s1_vvdrop"
+  },
+  "s1_sunamganj_2024": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 7299,
+   "v3_dry": 9460,
+   "v3": {
+    "elev": 0.7891,
+    "hand": 0.7336,
+    "full_lr": 0.8117,
+    "resid_lgbm": 0.8625,
+    "flash_lgbm": 0.8317,
+    "coastal_lgbm": 0.8518,
+    "full_lgbm": 0.8631
+   },
+   "old": {
+    "elev": 0.9353,
+    "hand": 0.8424,
+    "full_lr": 0.9377,
+    "resid_lgbm": 0.9468,
+    "flash_lgbm": 0.9559,
+    "coastal_lgbm": 0.9459,
+    "full_lgbm": 0.9456
+   }
+  },
+  "s1_tabasco_2020": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 3793,
+   "v3_dry": 7871,
+   "v3": {
+    "elev": 0.7347,
+    "hand": 0.5496,
+    "full_lr": 0.8056,
+    "resid_lgbm": 0.8307,
+    "flash_lgbm": 0.7724,
+    "coastal_lgbm": 0.8123,
+    "full_lgbm": 0.8207
+   },
+   "old": {
+    "elev": 0.7937,
+    "hand": 0.5841,
+    "full_lr": 0.8758,
+    "resid_lgbm": 0.8651,
+    "flash_lgbm": 0.8348,
+    "coastal_lgbm": 0.8664,
+    "full_lgbm": 0.8562
+   }
+  },
+  "s1_yenagoa_2022": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 2542,
+   "v3_dry": 11072,
+   "v3": {
+    "elev": 0.6927,
+    "hand": 0.5497,
+    "full_lr": 0.7642,
+    "resid_lgbm": 0.7303,
+    "flash_lgbm": 0.7329,
+    "coastal_lgbm": 0.7398,
+    "full_lgbm": 0.7152
+   },
+   "old": {
+    "elev": 0.6335,
+    "hand": 0.5543,
+    "full_lr": 0.6763,
+    "resid_lgbm": 0.6729,
+    "flash_lgbm": 0.6427,
+    "coastal_lgbm": 0.6562,
+    "full_lgbm": 0.6647
+   }
+  },
+  "sittwe": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "dev",
+   "v3_flooded": 216,
+   "v3_dry": 6931,
+   "v3": {
+    "elev": 0.7594,
+    "hand": 0.7314,
+    "full_lr": 0.8039,
+    "resid_lgbm": 0.8906,
+    "flash_lgbm": 0.9079,
+    "coastal_lgbm": 0.7904,
+    "full_lgbm": 0.8825
+   },
+   "old": {
+    "elev": 0.8353,
+    "hand": 0.8061,
+    "full_lr": 0.8727,
+    "resid_lgbm": 0.9317,
+    "flash_lgbm": 0.9416,
+    "coastal_lgbm": 0.8609,
+    "full_lgbm": 0.9254
+   }
+  },
+  "sylhet_2022": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "unosat",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 8872,
+   "v3_dry": 8564,
+   "v3": {
+    "elev": 0.8545,
+    "hand": 0.73,
+    "full_lr": 0.9272,
+    "resid_lgbm": 0.9337,
+    "flash_lgbm": 0.9334,
+    "coastal_lgbm": 0.9239,
+    "full_lgbm": 0.9195
+   },
+   "old": {
+    "elev": 0.8545,
+    "hand": 0.73,
+    "full_lr": 0.9272,
+    "resid_lgbm": 0.9337,
+    "flash_lgbm": 0.9334,
+    "coastal_lgbm": 0.9239,
+    "full_lgbm": 0.9195
+   }
+  },
+  "thai_binh": {
+   "error": "ValueError: reference shape (135, 135) != table grid (134, 135)",
+   "unit": "thai_binh",
+   "type": "waterlogging",
+   "peak": "2024-09-08",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 14,
+   "kind": "ems"
+  },
+  "valencia_2024": {
+   "tags": [
+    "compound",
+    "flash_flood",
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "dev",
+   "v3_flooded": 2847,
+   "v3_dry": 14924,
+   "v3": {
+    "elev": 0.4207,
+    "hand": 0.7063,
+    "full_lr": 0.6412,
+    "resid_lgbm": 0.472,
+    "flash_lgbm": 0.4271,
+    "coastal_lgbm": 0.4935,
+    "full_lgbm": 0.5157
+   },
+   "old": {
+    "elev": 0.4207,
+    "hand": 0.7063,
+    "full_lr": 0.6412,
+    "resid_lgbm": 0.472,
+    "flash_lgbm": 0.4271,
+    "coastal_lgbm": 0.4935,
+    "full_lgbm": 0.5157
+   }
+  },
+  "volos": {
+   "error": "ValueError: reference shape (137, 137) != table grid (135, 136)",
+   "unit": "volos",
+   "type": "flash_flood",
+   "peak": "2023-09-05",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 2,
+   "kind": "ems"
+  },
+  "r_emsr866_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 128,
+   "v3_dry": 7636,
+   "v3": {
+    "elev": 0.8464,
+    "hand": 0.7483,
+    "full_lr": 0.9233,
+    "resid_lgbm": 0.9006,
+    "flash_lgbm": 0.915,
+    "coastal_lgbm": 0.8944,
+    "full_lgbm": 0.9093
+   },
+   "old": {
+    "elev": 0.872,
+    "hand": 0.8218,
+    "full_lr": 0.9426,
+    "resid_lgbm": 0.9262,
+    "flash_lgbm": 0.938,
+    "coastal_lgbm": 0.9219,
+    "full_lgbm": 0.9338
+   }
+  },
+  "r_emsr860_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 112,
+   "v3_dry": 13265,
+   "v3": {
+    "elev": 0.9958,
+    "hand": 0.8042,
+    "full_lr": 0.9747,
+    "resid_lgbm": 0.9811,
+    "flash_lgbm": 0.9827,
+    "coastal_lgbm": 0.9541,
+    "full_lgbm": 0.9854
+   },
+   "old": {
+    "elev": 0.9968,
+    "hand": 0.8417,
+    "full_lr": 0.981,
+    "resid_lgbm": 0.9857,
+    "flash_lgbm": 0.987,
+    "coastal_lgbm": 0.9649,
+    "full_lgbm": 0.989
+   }
+  },
+  "r_emsr849_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 938,
+   "v3_dry": 16710,
+   "v3": {
+    "elev": 0.9379,
+    "hand": 0.7595,
+    "full_lr": 0.6267,
+    "resid_lgbm": 0.8837,
+    "flash_lgbm": 0.8843,
+    "coastal_lgbm": 0.8918,
+    "full_lgbm": 0.8967
+   },
+   "old": {
+    "elev": 0.9386,
+    "hand": 0.762,
+    "full_lr": 0.6302,
+    "resid_lgbm": 0.8849,
+    "flash_lgbm": 0.8855,
+    "coastal_lgbm": 0.893,
+    "full_lgbm": 0.8977
+   }
+  },
+  "r_emsr849_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 950,
+   "v3_dry": 14663,
+   "v3": {
+    "elev": 0.9261,
+    "hand": 0.7982,
+    "full_lr": 0.9086,
+    "resid_lgbm": 0.9588,
+    "flash_lgbm": 0.9613,
+    "coastal_lgbm": 0.9258,
+    "full_lgbm": 0.9642
+   },
+   "old": {
+    "elev": 0.9283,
+    "hand": 0.8041,
+    "full_lr": 0.9114,
+    "resid_lgbm": 0.9601,
+    "flash_lgbm": 0.9625,
+    "coastal_lgbm": 0.9281,
+    "full_lgbm": 0.9653
+   }
+  },
+  "r_emsr855_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 485,
+   "v3_dry": 8845,
+   "v3": {
+    "elev": 0.8711,
+    "hand": 0.7393,
+    "full_lr": 0.9534,
+    "resid_lgbm": 0.9504,
+    "flash_lgbm": 0.9556,
+    "coastal_lgbm": 0.9253,
+    "full_lgbm": 0.9628
+   },
+   "old": {
+    "elev": 0.929,
+    "hand": 0.8476,
+    "full_lr": 0.9759,
+    "resid_lgbm": 0.9746,
+    "flash_lgbm": 0.9771,
+    "coastal_lgbm": 0.9615,
+    "full_lgbm": 0.9809
+   }
+  },
+  "r_emsr728_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 140,
+   "v3_dry": 7560,
+   "v3": {
+    "elev": 0.8157,
+    "hand": 0.7723,
+    "full_lr": 0.9203,
+    "resid_lgbm": 0.8061,
+    "flash_lgbm": 0.8613,
+    "coastal_lgbm": 0.913,
+    "full_lgbm": 0.815
+   },
+   "old": {
+    "elev": 0.9185,
+    "hand": 0.8661,
+    "full_lr": 0.9655,
+    "resid_lgbm": 0.911,
+    "flash_lgbm": 0.9375,
+    "coastal_lgbm": 0.9625,
+    "full_lgbm": 0.9157
+   }
+  },
+  "r_emsr728_aoi03": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 1410,
+   "v3_dry": 13465,
+   "v3": {
+    "elev": 0.7197,
+    "hand": 0.411,
+    "full_lr": 0.5793,
+    "resid_lgbm": 0.7268,
+    "flash_lgbm": 0.6969,
+    "coastal_lgbm": 0.5655,
+    "full_lgbm": 0.6126
+   },
+   "old": {
+    "elev": 0.761,
+    "hand": 0.4585,
+    "full_lr": 0.6428,
+    "resid_lgbm": 0.7655,
+    "flash_lgbm": 0.7427,
+    "coastal_lgbm": 0.6305,
+    "full_lgbm": 0.6657
+   }
+  },
+  "r_emsr722_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 2310,
+   "v3_dry": 1790,
+   "v3": {
+    "elev": 0.8147,
+    "hand": 0.6293,
+    "full_lr": 0.8792,
+    "resid_lgbm": 0.905,
+    "flash_lgbm": 0.8633,
+    "coastal_lgbm": 0.8751,
+    "full_lgbm": 0.9062
+   },
+   "old": {
+    "elev": 0.922,
+    "hand": 0.8426,
+    "full_lr": 0.9513,
+    "resid_lgbm": 0.952,
+    "flash_lgbm": 0.9389,
+    "coastal_lgbm": 0.9509,
+    "full_lgbm": 0.9581
+   }
+  },
+  "r_emsr722_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 1414,
+   "v3_dry": 2742,
+   "v3": {
+    "elev": 0.8429,
+    "hand": 0.7542,
+    "full_lr": 0.9233,
+    "resid_lgbm": 0.8572,
+    "flash_lgbm": 0.8825,
+    "coastal_lgbm": 0.8483,
+    "full_lgbm": 0.8511
+   },
+   "old": {
+    "elev": 0.9257,
+    "hand": 0.8723,
+    "full_lr": 0.9408,
+    "resid_lgbm": 0.9135,
+    "flash_lgbm": 0.9339,
+    "coastal_lgbm": 0.9205,
+    "full_lgbm": 0.9219
+   }
+  },
+  "r_emsr698_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 853,
+   "v3_dry": 7114,
+   "v3": {
+    "elev": 0.9368,
+    "hand": 0.7143,
+    "full_lr": 0.9378,
+    "resid_lgbm": 0.8773,
+    "flash_lgbm": 0.9405,
+    "coastal_lgbm": 0.9512,
+    "full_lgbm": 0.902
+   },
+   "old": {
+    "elev": 0.9721,
+    "hand": 0.8717,
+    "full_lr": 0.9711,
+    "resid_lgbm": 0.943,
+    "flash_lgbm": 0.9739,
+    "coastal_lgbm": 0.9787,
+    "full_lgbm": 0.9564
+   }
+  },
+  "r_emsr698_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 487,
+   "v3_dry": 2923,
+   "v3": {
+    "elev": 0.7584,
+    "hand": 0.8579,
+    "full_lr": 0.9196,
+    "resid_lgbm": 0.7952,
+    "flash_lgbm": 0.7972,
+    "coastal_lgbm": 0.8612,
+    "full_lgbm": 0.7337
+   },
+   "old": {
+    "elev": 0.956,
+    "hand": 0.9741,
+    "full_lr": 0.986,
+    "resid_lgbm": 0.9623,
+    "flash_lgbm": 0.9632,
+    "coastal_lgbm": 0.9752,
+    "full_lgbm": 0.9518
+   }
+  },
+  "r_emsr684_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "r2_test",
+   "v3_flooded": 439,
+   "v3_dry": 6097,
+   "v3": {
+    "elev": 0.879,
+    "hand": 0.9112,
+    "full_lr": 0.9375,
+    "resid_lgbm": 0.9059,
+    "flash_lgbm": 0.898,
+    "coastal_lgbm": 0.9337,
+    "full_lgbm": 0.9273
+   },
+   "old": {
+    "elev": 0.9473,
+    "hand": 0.9609,
+    "full_lr": 0.9725,
+    "resid_lgbm": 0.9582,
+    "flash_lgbm": 0.9553,
+    "coastal_lgbm": 0.9712,
+    "full_lgbm": 0.9683
+   }
+  },
+  "r_emsr684_aoi05": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "r2_test",
+   "v3_flooded": 1736,
+   "v3_dry": 14506,
+   "v3": {
+    "elev": 0.8392,
+    "hand": 0.7484,
+    "full_lr": 0.9302,
+    "resid_lgbm": 0.9169,
+    "flash_lgbm": 0.8738,
+    "coastal_lgbm": 0.8641,
+    "full_lgbm": 0.8775
+   },
+   "old": {
+    "elev": 0.8424,
+    "hand": 0.7527,
+    "full_lr": 0.9302,
+    "resid_lgbm": 0.9178,
+    "flash_lgbm": 0.8754,
+    "coastal_lgbm": 0.8667,
+    "full_lgbm": 0.8795
+   }
+  },
+  "r_emsr668_aoi02": {
+   "tags": [
+    "fluvial",
+    "snowmelt"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 56,
+   "v3_dry": 5547,
+   "v3": {
+    "elev": 0.7353,
+    "hand": 0.7065,
+    "full_lr": 0.8941,
+    "resid_lgbm": 0.7459,
+    "flash_lgbm": 0.7423,
+    "coastal_lgbm": 0.7907,
+    "full_lgbm": 0.7752
+   },
+   "old": {
+    "elev": 0.7998,
+    "hand": 0.7934,
+    "full_lr": 0.857,
+    "resid_lgbm": 0.8015,
+    "flash_lgbm": 0.796,
+    "coastal_lgbm": 0.8232,
+    "full_lgbm": 0.8089
+   }
+  },
+  "r_emsr657_aoi01": {
+   "tags": [
+    "fluvial",
+    "snowmelt"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "r2_test",
+   "v3_flooded": 7218,
+   "v3_dry": 8424,
+   "v3": {
+    "elev": 0.7004,
+    "hand": 0.7333,
+    "full_lr": 0.745,
+    "resid_lgbm": 0.6963,
+    "flash_lgbm": 0.6728,
+    "coastal_lgbm": 0.7523,
+    "full_lgbm": 0.7012
+   },
+   "old": {
+    "elev": 0.7318,
+    "hand": 0.7598,
+    "full_lr": 0.7716,
+    "resid_lgbm": 0.7281,
+    "flash_lgbm": 0.707,
+    "coastal_lgbm": 0.7783,
+    "full_lgbm": 0.7324
+   }
+  },
+  "r_emsr871_aoi01": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 3078,
+   "v3_dry": 9167,
+   "v3": {
+    "elev": 0.8205,
+    "hand": 0.7605,
+    "full_lr": 0.916,
+    "resid_lgbm": 0.9285,
+    "flash_lgbm": 0.8642,
+    "coastal_lgbm": 0.8524,
+    "full_lgbm": 0.8714
+   },
+   "old": {
+    "elev": 0.8732,
+    "hand": 0.8389,
+    "full_lr": 0.9453,
+    "resid_lgbm": 0.9525,
+    "flash_lgbm": 0.9081,
+    "coastal_lgbm": 0.8989,
+    "full_lgbm": 0.9123
+   }
+  },
+  "r_emsr871_aoi02": {
+   "tags": [
+    "fluvial"
+   ],
+   "kind": "ems",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 298,
+   "v3_dry": 4768,
+   "v3": {
+    "elev": 0.8689,
+    "hand": 0.8157,
+    "full_lr": 0.9257,
+    "resid_lgbm": 0.9182,
+    "flash_lgbm": 0.8639,
+    "coastal_lgbm": 0.9323,
+    "full_lgbm": 0.955
+   },
+   "old": {
+    "elev": 0.9364,
+    "hand": 0.9097,
+    "full_lr": 0.9639,
+    "resid_lgbm": 0.9602,
+    "flash_lgbm": 0.934,
+    "coastal_lgbm": 0.9642,
+    "full_lgbm": 0.978
+   }
+  },
+  "r_emsr721_aoi01": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "r2_test",
+   "v3_flooded": 163,
+   "v3_dry": 17647,
+   "v3": {
+    "elev": 0.4872,
+    "hand": 0.6407,
+    "full_lr": 0.63,
+    "resid_lgbm": 0.5432,
+    "flash_lgbm": 0.5121,
+    "coastal_lgbm": 0.5255,
+    "full_lgbm": 0.4876
+   },
+   "old": {
+    "elev": 0.4872,
+    "hand": 0.6407,
+    "full_lr": 0.63,
+    "resid_lgbm": 0.5432,
+    "flash_lgbm": 0.5121,
+    "coastal_lgbm": 0.5255,
+    "full_lgbm": 0.4876
+   }
+  },
+  "r_emsr802_aoi01": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "r2_test",
+   "v3_flooded": 131,
+   "v3_dry": 11378,
+   "v3": {
+    "elev": 0.8933,
+    "hand": 0.8346,
+    "full_lr": 0.2514,
+    "resid_lgbm": 0.8883,
+    "flash_lgbm": 0.7895,
+    "coastal_lgbm": 0.7655,
+    "full_lgbm": 0.8575
+   },
+   "old": {
+    "elev": 0.9062,
+    "hand": 0.8539,
+    "full_lr": 0.3187,
+    "resid_lgbm": 0.9018,
+    "flash_lgbm": 0.8151,
+    "coastal_lgbm": 0.7939,
+    "full_lgbm": 0.8746
+   }
+  },
+  "r_emsr802_aoi02": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "r2_test",
+   "v3_flooded": 4887,
+   "v3_dry": 12482,
+   "v3": {
+    "elev": 0.6152,
+    "hand": 0.6325,
+    "full_lr": 0.5139,
+    "resid_lgbm": 0.6302,
+    "flash_lgbm": 0.533,
+    "coastal_lgbm": 0.526,
+    "full_lgbm": 0.6135
+   },
+   "old": {
+    "elev": 0.6239,
+    "hand": 0.6405,
+    "full_lr": 0.5292,
+    "resid_lgbm": 0.6397,
+    "flash_lgbm": 0.5457,
+    "coastal_lgbm": 0.5412,
+    "full_lgbm": 0.6247
+   }
+  },
+  "r_emsr795_aoi02": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "r2_test",
+   "v3_flooded": 1549,
+   "v3_dry": 10181,
+   "v3": {
+    "elev": 0.84,
+    "hand": 0.5395,
+    "full_lr": 0.8472,
+    "resid_lgbm": 0.8461,
+    "flash_lgbm": 0.8652,
+    "coastal_lgbm": 0.8455,
+    "full_lgbm": 0.8222
+   },
+   "old": {
+    "elev": 0.863,
+    "hand": 0.5864,
+    "full_lr": 0.8684,
+    "resid_lgbm": 0.8683,
+    "flash_lgbm": 0.8847,
+    "coastal_lgbm": 0.8688,
+    "full_lgbm": 0.848
+   }
+  },
+  "r_emsr795_aoi06": {
+   "tags": [
+    "flash_flood"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "r2_test",
+   "v3_flooded": 268,
+   "v3_dry": 14716,
+   "v3": {
+    "elev": 0.911,
+    "hand": 0.5252,
+    "full_lr": 0.8995,
+    "resid_lgbm": 0.9105,
+    "flash_lgbm": 0.9297,
+    "coastal_lgbm": 0.868,
+    "full_lgbm": 0.8914
+   },
+   "old": {
+    "elev": 0.925,
+    "hand": 0.5799,
+    "full_lr": 0.9152,
+    "resid_lgbm": 0.9247,
+    "flash_lgbm": 0.9408,
+    "coastal_lgbm": 0.8883,
+    "full_lgbm": 0.9086
+   }
+  },
+  "r_emsr750_aoi01": {
+   "tags": [
+    "flash_flood",
+    "dam_breach"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "r2_test",
+   "v3_flooded": 5659,
+   "v3_dry": 4751,
+   "v3": {
+    "elev": 0.8623,
+    "hand": 0.8815,
+    "full_lr": 0.9136,
+    "resid_lgbm": 0.9036,
+    "flash_lgbm": 0.8621,
+    "coastal_lgbm": 0.8215,
+    "full_lgbm": 0.8557
+   },
+   "old": {
+    "elev": 0.8623,
+    "hand": 0.8815,
+    "full_lr": 0.9136,
+    "resid_lgbm": 0.9036,
+    "flash_lgbm": 0.8621,
+    "coastal_lgbm": 0.8215,
+    "full_lgbm": 0.8557
+   }
+  },
+  "r_emsr750_aoi02": {
+   "tags": [
+    "flash_flood",
+    "dam_breach"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "r2_test",
+   "v3_flooded": 7110,
+   "v3_dry": 6788,
+   "v3": {
+    "elev": 0.8468,
+    "hand": 0.8206,
+    "full_lr": 0.8238,
+    "resid_lgbm": 0.8985,
+    "flash_lgbm": 0.726,
+    "coastal_lgbm": 0.7605,
+    "full_lgbm": 0.8999
+   },
+   "old": {
+    "elev": 0.8468,
+    "hand": 0.8206,
+    "full_lr": 0.8238,
+    "resid_lgbm": 0.8985,
+    "flash_lgbm": 0.726,
+    "coastal_lgbm": 0.7605,
+    "full_lgbm": 0.8999
+   }
+  },
+  "r_emsr663_aoi01": {
+   "tags": [
+    "compound"
+   ],
+   "kind": "ems",
+   "late": true,
+   "role": "r2_test",
+   "v3_flooded": 9578,
+   "v3_dry": 8128,
+   "v3": {
+    "elev": 0.984,
+    "hand": 0.5272,
+    "full_lr": 0.9768,
+    "resid_lgbm": 0.9703,
+    "flash_lgbm": 0.9471,
+    "coastal_lgbm": 0.92,
+    "full_lgbm": 0.9325
+   },
+   "old": {
+    "elev": 0.984,
+    "hand": 0.5272,
+    "full_lr": 0.9768,
+    "resid_lgbm": 0.9703,
+    "flash_lgbm": 0.9471,
+    "coastal_lgbm": 0.92,
+    "full_lgbm": 0.9325
+   }
+  },
+  "s1_helene_steinhatchee_2024": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 2,
+   "v3_dry": 17406,
+   "v3": null,
+   "old": {
+    "elev": 0.6343,
+    "hand": 0.4733,
+    "full_lr": 0.615,
+    "resid_lgbm": 0.6177,
+    "flash_lgbm": 0.6143,
+    "coastal_lgbm": 0.6007,
+    "full_lgbm": 0.6097
+   }
+  },
+  "s1_remal_satkhira_2024": {
+   "error": "LookupError: no S1 IW pass over [89.089192, 22.302842, 89.128034, 22.338774] in [2024-05-26, 2024-05-28]",
+   "unit": "s1_remal_satkhira_2024",
+   "type": "coastal",
+   "peak": "2024-05-26",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 2,
+   "kind": "s1_vvdrop"
+  },
+  "s1_francine_terrebonne_2024": {
+   "tags": [
+    "coastal",
+    "compound"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 85,
+   "v3_dry": 10411,
+   "v3": {
+    "elev": 0.4457,
+    "hand": 0.4798,
+    "full_lr": 0.4832,
+    "resid_lgbm": 0.4597,
+    "flash_lgbm": 0.4461,
+    "coastal_lgbm": 0.4967,
+    "full_lgbm": 0.4703
+   },
+   "old": {
+    "elev": 0.6973,
+    "hand": 0.6395,
+    "full_lr": 0.3236,
+    "resid_lgbm": 0.4369,
+    "flash_lgbm": 0.3627,
+    "coastal_lgbm": 0.3833,
+    "full_lgbm": 0.3204
+   }
+  },
+  "s1_dana_kendrapara_2024": {
+   "error": "LookupError: no S1 IW pass over [86.898665, 20.645768, 86.937069, 20.6817] in [2024-10-24, 2024-10-26]",
+   "unit": "s1_dana_kendrapara_2024",
+   "type": "coastal",
+   "peak": "2024-10-24",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 2,
+   "kind": "s1_vvdrop"
+  },
+  "s1_jowhar_2023": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 207,
+   "v3_dry": 14197,
+   "v3": {
+    "elev": 0.6302,
+    "hand": 0.4534,
+    "full_lr": 0.7576,
+    "resid_lgbm": 0.7196,
+    "flash_lgbm": 0.7545,
+    "coastal_lgbm": 0.7699,
+    "full_lgbm": 0.6944
+   },
+   "old": {
+    "elev": 0.5907,
+    "hand": 0.4546,
+    "full_lr": 0.6941,
+    "resid_lgbm": 0.6708,
+    "flash_lgbm": 0.6924,
+    "coastal_lgbm": 0.7026,
+    "full_lgbm": 0.6633
+   }
+  },
+  "s1_ubon_2022": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 1673,
+   "v3_dry": 5736,
+   "v3": {
+    "elev": 0.8966,
+    "hand": 0.7072,
+    "full_lr": 0.8393,
+    "resid_lgbm": 0.8854,
+    "flash_lgbm": 0.8707,
+    "coastal_lgbm": 0.9082,
+    "full_lgbm": 0.8981
+   },
+   "old": {
+    "elev": 0.9026,
+    "hand": 0.7215,
+    "full_lr": 0.8622,
+    "resid_lgbm": 0.8947,
+    "flash_lgbm": 0.8825,
+    "coastal_lgbm": 0.8967,
+    "full_lgbm": 0.8964
+   }
+  },
+  "s1_garsen_2023": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 3039,
+   "v3_dry": 14867,
+   "v3": {
+    "elev": 0.7812,
+    "hand": 0.6952,
+    "full_lr": 0.8946,
+    "resid_lgbm": 0.876,
+    "flash_lgbm": 0.8494,
+    "coastal_lgbm": 0.8485,
+    "full_lgbm": 0.8678
+   },
+   "old": {
+    "elev": 0.7615,
+    "hand": 0.686,
+    "full_lr": 0.8523,
+    "resid_lgbm": 0.8421,
+    "flash_lgbm": 0.812,
+    "coastal_lgbm": 0.8014,
+    "full_lgbm": 0.8353
+   }
+  },
+  "s1_sukhothai_2024": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 1915,
+   "v3_dry": 14772,
+   "v3": {
+    "elev": 0.6873,
+    "hand": 0.5983,
+    "full_lr": 0.7135,
+    "resid_lgbm": 0.7173,
+    "flash_lgbm": 0.672,
+    "coastal_lgbm": 0.7154,
+    "full_lgbm": 0.725
+   },
+   "old": {
+    "elev": 0.5988,
+    "hand": 0.5543,
+    "full_lr": 0.6285,
+    "resid_lgbm": 0.6294,
+    "flash_lgbm": 0.6057,
+    "coastal_lgbm": 0.6309,
+    "full_lgbm": 0.6341
+   }
+  },
+  "s1_jeddah_2022": {
+   "error": "LookupError: no S1 IW pass over [39.191247, 21.513337, 39.229875, 21.549269] in [2022-11-24, 2022-11-25]",
+   "unit": "s1_jeddah_2022",
+   "type": "pluvial",
+   "peak": "2022-11-24",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "s1_kinshasa_2022": {
+   "error": "LookupError: no S1 IW pass over [15.30153, -4.393591, 15.337568, -4.357659] in [2022-12-13, 2022-12-14]",
+   "unit": "s1_kinshasa_2022",
+   "type": "pluvial",
+   "peak": "2022-12-13",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "s1_baghlan_2024": {
+   "error": "LookupError: no S1 IW pass over [68.663635, 36.110698, 68.708123, 36.14663] in [2024-04-28, 2024-04-30]",
+   "unit": "s1_baghlan_2024",
+   "type": "flash_flood",
+   "peak": "2024-04-28",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 2,
+   "kind": "s1_vvdrop"
+  },
+  "s1_seoul_2022": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 0,
+   "v3_dry": 2153,
+   "v3": null,
+   "old": {
+    "elev": 0.5037,
+    "hand": 0.4899,
+    "full_lr": 0.5239,
+    "resid_lgbm": 0.4977,
+    "flash_lgbm": 0.4868,
+    "coastal_lgbm": 0.4909,
+    "full_lgbm": 0.4958
+   }
+  },
+  "s1_bengaluru_2022": {
+   "error": "LookupError: no S1 IW pass over [77.698169, 12.937199, 77.735039, 12.973131] in [2022-08-26, 2022-08-27]",
+   "unit": "s1_bengaluru_2022",
+   "type": "pluvial",
+   "peak": "2022-08-26",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "s1_hyderabad_2020": {
+   "error": "LookupError: no S1 IW pass over [78.458457, 17.359217, 78.496107, 17.395149] in [2020-10-12, 2020-10-13]",
+   "unit": "s1_hyderabad_2020",
+   "type": "pluvial",
+   "peak": "2020-10-12",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "s1_durban_2022": {
+   "error": "LookupError: no S1 IW pass over [30.929811, -29.873088, 30.971241, -29.837156] in [2022-04-11, 2022-04-12]",
+   "unit": "s1_durban_2022",
+   "type": "pluvial",
+   "peak": "2022-04-11",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "s1_nairobi_2024": {
+   "error": "LookupError: no S1 IW pass over [36.831909, -1.263122, 36.867849, -1.22719] in [2024-04-21, 2024-04-22]",
+   "unit": "s1_nairobi_2024",
+   "type": "pluvial",
+   "peak": "2024-04-21",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "s1_fortlauderdale_2023": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 1,
+   "v3_dry": 2136,
+   "v3": null,
+   "old": {
+    "elev": 0.5819,
+    "hand": 0.6319,
+    "full_lr": 0.5461,
+    "resid_lgbm": 0.5781,
+    "flash_lgbm": 0.5612,
+    "coastal_lgbm": 0.6007,
+    "full_lgbm": 0.5623
+   }
+  },
+  "s1_auckland_2023": {
+   "error": "LookupError: no S1 IW pass over [174.734697, -36.894864, 174.779617, -36.858932] in [2023-01-28, 2023-01-29]",
+   "unit": "s1_auckland_2023",
+   "type": "pluvial",
+   "peak": "2023-01-28",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "s1_klang_2021": {
+   "error": "LookupError: no S1 IW pass over [101.500405, 3.052982, 101.536389, 3.088914] in [2021-12-17, 2021-12-18]",
+   "unit": "s1_klang_2021",
+   "type": "pluvial",
+   "peak": "2021-12-17",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "s1_antananarivo_2022": {
+   "error": "LookupError: no S1 IW pass over [47.486654, -18.942277, 47.52464, -18.906345] in [2022-01-10, 2022-01-11]",
+   "unit": "s1_antananarivo_2022",
+   "type": "pluvial",
+   "peak": "2022-01-10",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "s1_recife_2022": {
+   "error": "LookupError: no S1 IW pass over [-35.001669, -8.092461, -34.965377, -8.056529] in [2022-05-24, 2022-05-25]",
+   "unit": "s1_recife_2022",
+   "type": "pluvial",
+   "peak": "2022-05-24",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "s1_abidjan_2018": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 20,
+   "v3_dry": 2080,
+   "v3": null,
+   "old": {
+    "elev": 0.5806,
+    "hand": 0.5679,
+    "full_lr": 0.5651,
+    "resid_lgbm": 0.562,
+    "flash_lgbm": 0.5638,
+    "coastal_lgbm": 0.5411,
+    "full_lgbm": 0.5585
+   }
+  },
+  "s1_portauprince_2023": {
+   "tags": [
+    "pluvial"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 8,
+   "v3_dry": 3401,
+   "v3": null,
+   "old": {
+    "elev": 0.6151,
+    "hand": 0.56,
+    "full_lr": 0.6065,
+    "resid_lgbm": 0.6191,
+    "flash_lgbm": 0.6092,
+    "coastal_lgbm": 0.6189,
+    "full_lgbm": 0.6216
+   }
+  },
+  "s1_lagos_2021": {
+   "error": "LookupError: no S1 IW pass over [3.3509, 6.502604, 3.387066, 6.538536] in [2021-06-27, 2021-06-28]",
+   "unit": "s1_lagos_2021",
+   "type": "pluvial",
+   "peak": "2021-06-27",
+   "peak_basis": "imerg_rain",
+   "max_lag_days": 1,
+   "kind": "s1_vvdrop"
+  },
+  "s1_budalangi_2020": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 3407,
+   "v3_dry": 14316,
+   "v3": {
+    "elev": 0.7579,
+    "hand": 0.7031,
+    "full_lr": 0.8385,
+    "resid_lgbm": 0.8221,
+    "flash_lgbm": 0.8294,
+    "coastal_lgbm": 0.8233,
+    "full_lgbm": 0.7903
+   },
+   "old": {
+    "elev": 0.7479,
+    "hand": 0.7067,
+    "full_lr": 0.8182,
+    "resid_lgbm": 0.8078,
+    "flash_lgbm": 0.8083,
+    "coastal_lgbm": 0.8,
+    "full_lgbm": 0.7761
+   }
+  },
+  "s1_battambang_2020": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 5609,
+   "v3_dry": 10528,
+   "v3": {
+    "elev": 0.7661,
+    "hand": 0.5636,
+    "full_lr": 0.7756,
+    "resid_lgbm": 0.7766,
+    "flash_lgbm": 0.7915,
+    "coastal_lgbm": 0.7978,
+    "full_lgbm": 0.7698
+   },
+   "old": {
+    "elev": 0.8046,
+    "hand": 0.6085,
+    "full_lr": 0.8168,
+    "resid_lgbm": 0.8135,
+    "flash_lgbm": 0.8234,
+    "coastal_lgbm": 0.8305,
+    "full_lgbm": 0.8001
+   }
+  },
+  "s1_ayutthaya_2021": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 1084,
+   "v3_dry": 11434,
+   "v3": {
+    "elev": 0.8497,
+    "hand": 0.6939,
+    "full_lr": 0.8074,
+    "resid_lgbm": 0.8396,
+    "flash_lgbm": 0.8467,
+    "coastal_lgbm": 0.8306,
+    "full_lgbm": 0.8027
+   },
+   "old": {
+    "elev": 0.7455,
+    "hand": 0.6685,
+    "full_lr": 0.7479,
+    "resid_lgbm": 0.7565,
+    "flash_lgbm": 0.7466,
+    "coastal_lgbm": 0.7495,
+    "full_lgbm": 0.7433
+   }
+  },
+  "s1_khuzestan_2019": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 1651,
+   "v3_dry": 4951,
+   "v3": {
+    "elev": 0.562,
+    "hand": 0.5405,
+    "full_lr": 0.4967,
+    "resid_lgbm": 0.5444,
+    "flash_lgbm": 0.5095,
+    "coastal_lgbm": 0.5346,
+    "full_lgbm": 0.5428
+   },
+   "old": {
+    "elev": 0.5846,
+    "hand": 0.4817,
+    "full_lr": 0.5753,
+    "resid_lgbm": 0.573,
+    "flash_lgbm": 0.5414,
+    "coastal_lgbm": 0.5754,
+    "full_lgbm": 0.5899
+   }
+  },
+  "s1_kebbi_2020": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 10392,
+   "v3_dry": 7698,
+   "v3": {
+    "elev": 0.6161,
+    "hand": 0.5878,
+    "full_lr": 0.5485,
+    "resid_lgbm": 0.7415,
+    "flash_lgbm": 0.5562,
+    "coastal_lgbm": 0.4435,
+    "full_lgbm": 0.6635
+   },
+   "old": {
+    "elev": 0.6212,
+    "hand": 0.5885,
+    "full_lr": 0.616,
+    "resid_lgbm": 0.7134,
+    "flash_lgbm": 0.5937,
+    "coastal_lgbm": 0.5366,
+    "full_lgbm": 0.6808
+   }
+  },
+  "s1_mopti_2024": {
+   "tags": [
+    "waterlogging"
+   ],
+   "kind": "s1_vvdrop",
+   "late": false,
+   "role": "r2_test",
+   "v3_flooded": 1731,
+   "v3_dry": 14314,
+   "v3": {
+    "elev": 0.5888,
+    "hand": 0.5713,
+    "full_lr": 0.4646,
+    "resid_lgbm": 0.4467,
+    "flash_lgbm": 0.5342,
+    "coastal_lgbm": 0.4823,
+    "full_lgbm": 0.4474
+   },
+   "old": {
+    "elev": 0.7153,
+    "hand": 0.6339,
+    "full_lr": 0.5795,
+    "resid_lgbm": 0.5619,
+    "flash_lgbm": 0.6468,
+    "coastal_lgbm": 0.5911,
+    "full_lgbm": 0.5525
+   }
+  }
+ },
+ "by_type": {
+  "fluvial": {
+   "old": {
+    "units": 55,
+    "elev": 0.818,
+    "hand": 0.703,
+    "learned": 0.834,
+    "gain_mean": 0.0133,
+    "gain_sd": 0.0496,
+    "units_needed_plus30": {
+     "delta_0.03": 38,
+     "delta_0.05": 14,
+     "delta_0.08": 6
+    }
+   },
+   "v3": {
+    "units": 31,
+    "elev": 0.796,
+    "hand": 0.661,
+    "learned": 0.817,
+    "gain_mean": 0.0166,
+    "gain_sd": 0.0639,
+    "units_needed_plus30": {
+     "delta_0.03": 62,
+     "delta_0.05": 23,
+     "delta_0.08": 9
+    }
+   }
+  },
+  "pluvial": {
+   "old": {
+    "units": 17,
+    "elev": 0.703,
+    "hand": 0.646,
+    "learned": 0.694,
+    "gain_mean": -0.0461,
+    "gain_sd": 0.0714,
+    "units_needed_plus30": {
+     "delta_0.03": 78,
+     "delta_0.05": 28,
+     "delta_0.08": 11
+    }
+   },
+   "v3": {
+    "units": 3,
+    "elev": 0.816,
+    "hand": 0.615,
+    "learned": 0.838,
+    "gain_mean": 0.0221,
+    "gain_sd": 0.0259,
+    "units_needed_plus30": {
+     "delta_0.03": 11,
+     "delta_0.05": 4,
+     "delta_0.08": 2
+    }
+   }
+  },
+  "waterlogging": {
+   "old": {
+    "units": 22,
+    "elev": 0.738,
+    "hand": 0.622,
+    "learned": 0.742,
+    "gain_mean": -0.0002,
+    "gain_sd": 0.0711,
+    "units_needed_plus30": {
+     "delta_0.03": 77,
+     "delta_0.05": 28,
+     "delta_0.08": 11
+    }
+   },
+   "v3": {
+    "units": 18,
+    "elev": 0.745,
+    "hand": 0.609,
+    "learned": 0.742,
+    "gain_mean": -0.0072,
+    "gain_sd": 0.0844,
+    "units_needed_plus30": {
+     "delta_0.03": 109,
+     "delta_0.05": 39,
+     "delta_0.08": 16
+    }
+   }
+  },
+  "flash_flood": {
+   "old": {
+    "units": 28,
+    "elev": 0.785,
+    "hand": 0.729,
+    "learned": 0.794,
+    "gain_mean": -0.0114,
+    "gain_sd": 0.0668,
+    "units_needed_plus30": {
+     "delta_0.03": 68,
+     "delta_0.05": 25,
+     "delta_0.08": 10
+    }
+   },
+   "v3": {
+    "units": 4,
+    "elev": 0.84,
+    "hand": 0.802,
+    "learned": 0.832,
+    "gain_mean": -0.0113,
+    "gain_sd": 0.0448,
+    "units_needed_plus30": {
+     "delta_0.03": 31,
+     "delta_0.05": 11,
+     "delta_0.08": 5
+    }
+   }
+  },
+  "coastal": {
+   "old": {
+    "units": 21,
+    "elev": 0.777,
+    "hand": 0.706,
+    "learned": 0.737,
+    "gain_mean": -0.0519,
+    "gain_sd": 0.1005,
+    "units_needed_plus30": {
+     "delta_0.03": 154,
+     "delta_0.05": 56,
+     "delta_0.08": 22
+    }
+   },
+   "v3": {
+    "units": 14,
+    "elev": 0.754,
+    "hand": 0.639,
+    "learned": 0.74,
+    "gain_mean": -0.0173,
+    "gain_sd": 0.05,
+    "units_needed_plus30": {
+     "delta_0.03": 38,
+     "delta_0.05": 14,
+     "delta_0.08": 6
+    }
+   }
+  },
+  "compound": {
+   "old": {
+    "units": 14,
+    "elev": 0.793,
+    "hand": 0.712,
+    "learned": 0.78,
+    "gain_mean": -0.0483,
+    "gain_sd": 0.1148,
+    "units_needed_plus30": {
+     "delta_0.03": 201,
+     "delta_0.05": 73,
+     "delta_0.08": 29
+    }
+   },
+   "v3": {
+    "units": 9,
+    "elev": 0.801,
+    "hand": 0.678,
+    "learned": 0.8,
+    "gain_mean": -0.0055,
+    "gain_sd": 0.0766,
+    "units_needed_plus30": {
+     "delta_0.03": 90,
+     "delta_0.05": 33,
+     "delta_0.08": 13
+    }
+   }
+  }
+ }
+}
