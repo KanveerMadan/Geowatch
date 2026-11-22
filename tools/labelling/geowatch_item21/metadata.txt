@@ -1,0 +1,10 @@
+[general]
+name=GeoWatch Item 21 review
+description=Inspect training suggestions and trace high-resolution surface labels with explicit provenance.
+version=1.0
+qgisMinimumVersion=3.34
+author=GeoWatch
+email=
+about=Keyboard-based training tile review, manual tracing, time recording and validation for the GeoWatch Item 21 project.
+category=Vector
+experimental=False

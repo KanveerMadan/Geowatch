@@ -7,3 +7,5 @@ Next are the candidate packages, QGIS projects and keyboard workflow, provenance
 Phase 1 complete. Eight private training/practice GeoPackages passed geometry, identity, source and count checks. All six scored target tiles and both practice tiles have candidates. No validation packages were generated.
 
 Phase 2 complete. QGIS 3.44.14 LTR reopened all 100 layers across eight relocated private projects. Their relative sources, guide forms, tile bookmarks and snapping survived relocation.
+
+Phase 3 complete. Keyboard review, explicit source attribution, native vertex edits, rejection log, drawing, remaining-area overlay, user-controlled timer and Mark tile done passed the QGIS edit lifecycle checks on a private practice copy.
