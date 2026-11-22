@@ -54,7 +54,7 @@ The first label image must fall inside **[peak − 1 d, peak + MAX_LAG]**.
 - **EMS:** the product's reported `stats` must show an affected area ≥ 45 ha. That is 10× the 4.5 ha that 50 flooded 30 m cells need.
   - The AOI extent must be ≥ 16 km², so a 4 km box fits inside.
   - The flood centre and AOI are taken from the product's own AOI record at build time, not from a search square.
-  - **Unit size (R24):** a square centred on the product AOI's centre; side is the first of 7.98, 6.93, 5.94, 4.95, 3.99 km that fits inside the AOI extent.
+  - **Unit size (R24, R25):** an 8 km square, placed by round 4's `place()` at build time; cells outside the product extent are unobserved.
 - **Sentinel-1 / reporting candidates:** there is no extent metadata. They are kept only for types that EMS cannot fill (§6), and their dropout risk is stated in the pre-registration.
 
 ## 5. Labels at build time (after the freeze)
@@ -90,10 +90,10 @@ The mask and SAR tiles are never read.
    - The §2 regex RULES are applied to the title.
    - A title with no type word ("Flood in X") is a river candidate, and is kept only if the river driver check (rule 4) passes.
    - Only **river** and **waterlogging** (title words only) are taken on this route. The other types are refused: Sentinel-1 labels agree with independent optical maps only at chance level for rain, flash, coastal and compound (DIAGNOSIS §e, κ 0.02–0.05).
-3. **Unit box (R24):**
-   - centred on the GEOGloWS reach point with the largest drainage area inside the AOI footprint shrunk by 2 km;
-   - side: the first of 7.98, 6.93, 5.94, 4.95, 3.99 km that fits inside the footprint;
-   - no reach there → refused.
+3. **Search point and unit box (R24, R25):**
+   - the search point is the GEOGloWS reach point with the largest drainage area inside the AOI footprint shrunk by 2 km;
+   - no reach there → refused;
+   - at build time the 8 km unit box is placed by round 4's `place()` inside the 20 km Sentinel-1 search square centred on that point.
 4. **Driver check and peak:**
    - the discharge peak at that reach within [start − 10 d, start + 7 d] has an empirical annual-maximum return period ≥ 1.5 y;
    - the peak day is the peak.

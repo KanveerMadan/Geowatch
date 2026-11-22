@@ -160,7 +160,7 @@ def ems():
 
 
 MM_META = os.path.expanduser("~/.cache/geowatch/flood_round3/mmflood_meta")
-BOX_SIDES_KM = (7.98, 6.93, 5.94, 4.95, 3.99)      # R24: the first that fits
+BOX_KM = 8.0          # R24
 S1_ROUTE_TYPES = ("fluvial", "waterlogging")
 S1_CACHE = os.path.expanduser("~/.cache/geowatch/flood_round3/s1_passes")
 
@@ -291,11 +291,7 @@ def mmflood():
             if r is None:
                 refuse(unit, "no GEOGloWS reach inside the footprint")
                 continue
-            side = next((k for k in BOX_SIDES_KM if _inside(_box(r["lon"], r["lat"], k), groups[g])), None)
-            if side is None:
-                refuse(unit, "no box side fits the footprint")
-                continue
-            box = _box(r["lon"], r["lat"], side)
+            box = _box(r["lon"], r["lat"], BOX_KM)        # for the overlap rule and the reach check only
             if any(_overlap(box, b) for b in taken):
                 refuse(unit, "box overlaps this activation's first unit")
                 continue
@@ -328,7 +324,7 @@ def mmflood():
             rows.append({"unit": unit, "code": code, "aoi_group": g, "tags": [ty], "title": a["title"],
                          "event": start, "peak_day": pk["peak_day"], "peak_rp_y": pk["rp_y"], "reach": r,
                          "image": t0, "orbit": orbit, "lag_days": (t0d - peak).days, "baseline_passes": nb,
-                         "baseline_year_before": yr == 1, "bbox": [round(x, 6) for x in box], "side_km": side,
+                         "baseline_year_before": yr == 1, "search_point": [r["lat"], r["lon"]], "bbox_at_search_point": [round(x, 6) for x in box],
                          "cluster": f"mm_{code.lower()}", "source": "MMFlood event list; v3 Sentinel-1 label"})
             print(unit, ty, pk["peak_day"], pk["rp_y"], t0, flush=True)
     json.dump({"candidates": rows, "refused": refused}, open(os.path.join(OUT, "r3_mmflood_candidates.json"), "w"),

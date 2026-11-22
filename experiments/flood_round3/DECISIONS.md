@@ -92,3 +92,12 @@ Every AUC falls about 0.02–0.03 per lag step (≤ 1, 2–3, 4–7 d), and thes
 - **Effects:**
   - The EMS AOI-extent floor becomes "a 3.99 km box fits" (≥ 16 km², as before). Bigger AOIs simply get bigger boxes.
   - The Phase 4 DEV CV is re-run on 7.98 km boxes around the burned units (tables rebuilt, labels by v3), so the method choice and the target n are made at the size that is tested.
+
+## R25 (2026-11-22) R24 amended: fixed 8 km side, round 4's placement kept
+This replaces R24's rule, before any round-3 candidate was listed. R24's text above stays as written.
+- **Side:** a fixed 8 km square (round 4's 4 km × 2, ~70–80 blocks). R24's fallback list of sides is dropped.
+  - Cells outside a product's extent are unobserved, as before, so no fallback is needed.
+- **Placement:** round 4's `place()`, unchanged. The box is centred on the flood centre of the label inside the product AOI (EMS) or the 20 km Sentinel-1 search square.
+  - This is the rule every earlier unit used. It is mechanical and runs at build time, after the freeze, identically for every method.
+  - R24's "box on the reach" is dropped: the reach point is now only the Sentinel-1-route search point (RESERVE_CRITERIA_R3 §8.3).
+- **DEV:** the Phase 4 DEV CV runs on 8 km boxes around the burned units' own round-2 centres (`build_r3.py`; round 2's feature pipeline; v3 labels). The method choice and the target n are made at the size that is tested.
