@@ -80,3 +80,33 @@ def test_choice_rule_ties_go_to_the_earlier_candidate():
     assert M.choose(res, ["physics", "elev_hand_lr", "anc_elev_lgbm"]) == "elev_hand_lr"
     res["anc_elev_lgbm"]["ci"][0] = 0.02
     assert M.choose(res, ["physics", "elev_hand_lr", "anc_elev_lgbm"]) == "anc_elev_lgbm"
+
+
+def test_311_label_states_flood_dry_ambiguous():
+    from experiments.flood_round3 import labels_r3 as L
+    from experiments.flood_round3 import rain311 as R
+    bbox = (-73.80, 40.70, -73.78, 40.715)
+    rep = [("flood", -73.790, 40.707), ("other", -73.7901, 40.7071),      # other next to a flood -> not dry
+           ("other", -73.783, 40.712), ("ambiguous", -73.796, 40.703), ("other", -73.796, 40.703)]
+    y, t, shape, crs = R.label_box(rep, bbox, ee=None)
+    assert (y == L.FLOODED).sum() == 1
+    assert (y == L.DRY).sum() == 1             # only the far 'other' report; the ambiguous cell is not dry
+    assert (y == L.UNOBSERVED).sum() == y.size - 2
+
+
+def test_tiff_header_parser_reads_georeference():
+    import struct
+    from experiments.flood_round3 import mmflood_meta as MM
+    tags = [(256, 3, 1, 100), (257, 3, 1, 50)]
+    # IFD at 8: 4 entries; doubles for scale (3) and tiepoint (6) after the IFD
+    n = 4
+    ifd_end = 8 + 2 + 12 * n + 4
+    scale_off, tie_off = ifd_end, ifd_end + 24
+    ent = b"".join(struct.pack("<HHIHH", tg, ty, c, v, 0) for tg, ty, c, v in tags)
+    ent += struct.pack("<HHII", 33550, 12, 3, scale_off) + struct.pack("<HHII", 33922, 12, 6, tie_off)
+    buf = b"II" + struct.pack("<HI", 42, 8) + struct.pack("<H", n) + ent + b"\0\0\0\0"
+    buf += struct.pack("<3d", 0.001, 0.002, 0.0) + struct.pack("<6d", 0, 0, 0, 10.0, 45.0, 0)
+    h = MM.parse_tiff_header(buf)
+    assert h["w"] == 100 and h["h"] == 50
+    assert h["bounds"] == pytest.approx([10.0, 45.0 - 50 * 0.002, 10.0 + 100 * 0.001, 45.0])
+    assert MM.parse_tiff_header(buf[:20]) is None
