@@ -123,11 +123,14 @@ def build_one(n: str) -> dict:
     return {"flooded": int((z["y"] == 1).sum()), "dry": int((z["y"] == 0).sum()), "cells": int(len(z["y"]))}
 
 
-def dev():
+def dev(shard=0, shards=1):
     from experiments.flood_baselines.build import check_disk
-    log = json.load(open(LOG)) if os.path.exists(LOG) else {}
+    log_p = LOG if shards == 1 else LOG.replace(".json", f"_{shard}of{shards}.json")
+    log = json.load(open(log_p)) if os.path.exists(log_p) else {}
     os.makedirs(BIG, exist_ok=True)
-    for n in dev_units():
+    for k, n in enumerate(dev_units()):
+        if k % shards != shard:
+            continue
         rec = log.setdefault(n, {"tries": 0})
         if rec.get("done"):
             continue
@@ -148,7 +151,7 @@ def dev():
                 rec["result"] = json.loads(tail[-1][7:])
                 rec["done"] = True
             print(n, json.dumps(rec)[:300], flush=True)
-            json.dump(log, open(LOG, "w"), indent=1)
+            json.dump(log, open(log_p, "w"), indent=1)
     print("built", sum(1 for r in log.values() if r.get("done")), "of", len(log))
     return 0
 
@@ -159,7 +162,9 @@ def main(argv=None):
         res = build_one(a[1])
         print("RESULT " + json.dumps(res))
         return 0
-    return {"dev": dev}[a[0]]()
+    if a[0] == "dev":
+        return dev(*(int(x) for x in a[1:3])) if len(a) > 2 else dev()
+    raise SystemExit(f"unknown command {a[0]}")
 
 
 if __name__ == "__main__":
