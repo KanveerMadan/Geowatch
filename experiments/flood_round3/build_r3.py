@@ -301,6 +301,55 @@ def s1route(cands: str, split: str = "dev", labels_only: bool = True):
     return 0
 
 
+US_REGION = {**{s: "us_northeast" for s in ("CONNECTICUT", "MAINE", "MASSACHUSETTS", "NEW HAMPSHIRE", "RHODE ISLAND",
+                                            "VERMONT", "NEW JERSEY", "NEW YORK", "PENNSYLVANIA")},
+             **{s: "us_midwest" for s in ("ILLINOIS", "INDIANA", "MICHIGAN", "OHIO", "WISCONSIN", "IOWA", "KANSAS",
+                                          "MINNESOTA", "MISSOURI", "NEBRASKA", "NORTH DAKOTA", "SOUTH DAKOTA")},
+             **{s: "us_west" for s in ("ARIZONA", "COLORADO", "IDAHO", "MONTANA", "NEVADA", "NEW MEXICO", "UTAH",
+                                       "WYOMING", "ALASKA", "CALIFORNIA", "HAWAII", "OREGON", "WASHINGTON")}}
+S1ROUTE_CATALOG = os.path.join(OUT, "s1route_catalog.json")
+
+
+def s1route_catalog(cands: str = "se_flash_candidates"):
+    """DEV catalog rows for built Sentinel-1-route units: tags, region (US census region; folds for
+    leave-region-out), cluster (episode). Everything else in the US is us_south."""
+    eps = {e["episode"]: e for e in json.load(open(os.path.join(OUT, "se_flash_episodes.json")))}
+    cat = json.load(open(S1ROUTE_CATALOG)) if os.path.exists(S1ROUTE_CATALOG) else {}
+    for r in json.load(open(os.path.join(OUT, f"{cands}.json")))["candidates"]:
+        if r.get("split") != "dev":
+            continue
+        st = eps.get(r.get("episode"), {}).get("state", "")
+        cat[r["unit"]] = {"role": "dev", "tags": r["tags"], "region": US_REGION.get(st, "us_south"),
+                          "cluster": r["cluster"], "event": r["event"], "kind": "s1_vvdrop", "source": r["source"]}
+    json.dump(cat, open(S1ROUTE_CATALOG, "w"), indent=1, sort_keys=True)
+    return cat
+
+
+def s1route_features(cands: str = "se_flash_candidates"):
+    """Feature tables for qualifying DEV Sentinel-1-route units, one subprocess each (memory)."""
+    from experiments.flood_baselines.build import check_disk
+    s1route_catalog(cands)
+    log = json.load(open(S1ROUTE_LOG))
+    for n, v in sorted(log.items()):
+        if not (v.get("done") and v.get("flooded", 0) >= 50 and v.get("dry", 0) >= 50) or v.get("table_done"):
+            continue
+        if v.get("ftries", 0) >= TRIES:
+            continue
+        check_disk()
+        t0 = time.time()
+        try:
+            r = subprocess.run([sys.executable, "-m", "experiments.flood_round3.build_r3", "--s1feat", n],
+                               timeout=UNIT_KILL_S, capture_output=True, text=True)
+            ok, tail = r.returncode == 0, (r.stdout + r.stderr).strip().splitlines()[-3:]
+        except subprocess.TimeoutExpired:
+            ok, tail = False, [f"killed after {UNIT_KILL_S} s"]
+        v["ftries"] = v.get("ftries", 0) + 1
+        v.update(table_done=ok, ftail=tail, fs=round(time.time() - t0))
+        print(n, ok, round(time.time() - t0), tail[-1][:150] if tail else "", flush=True)
+        json.dump(log, open(S1ROUTE_LOG, "w"), indent=1)
+    return 0
+
+
 def main(argv=None):
     a = argv or sys.argv[1:]
     if a[0] == "--box":
@@ -308,6 +357,12 @@ def main(argv=None):
         return 0
     if a[0] == "r311":
         return r311()
+    if a[0] == "--s1feat":
+        rp = os.path.join(REFS, f"{a[1]}.npz")
+        print("RESULT " + json.dumps({"table": _features(a[1], rp, json.loads(str(np.load(rp)["meta"])))}))
+        return 0
+    if a[0] == "s1feat":
+        return s1route_features(*a[1:2])
     if a[0] == "s1route":           # s1route <candidates file stem> [dev]
         return s1route(a[1], a[2] if len(a) > 2 else "dev")
     if a[0] == "--one":

@@ -1,0 +1,5171 @@
+{
+ "candidates": [
+  {
+   "unit": "r3se_94009",
+   "episode": 94009,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2015-05-04",
+   "date": "2015-05-04",
+   "lat": 34.492,
+   "lon": -103.2674,
+   "peak_day": "2015-05-04",
+   "rain_3day_mm": 72.5,
+   "image": "2015-05-03",
+   "orbit": 78,
+   "lag_days": -1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    34.492,
+    -103.2674
+   ],
+   "bbox_at_search_point": [
+    -103.376391,
+    34.402169,
+    -103.158409,
+    34.581831
+   ],
+   "damage_usd": 3000000.0,
+   "split": "dev",
+   "cluster": "se_94009",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_94967",
+   "episode": 94967,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2015-05-24",
+   "date": "2015-05-24",
+   "lat": 43.5413,
+   "lon": -108.1968,
+   "peak_day": "2015-05-24",
+   "rain_3day_mm": 40.5,
+   "image": "2015-05-25",
+   "orbit": 49,
+   "lag_days": 1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    43.5413,
+    -108.1968
+   ],
+   "bbox_at_search_point": [
+    -108.320726,
+    43.451469,
+    -108.072874,
+    43.631131
+   ],
+   "damage_usd": 1600000.0,
+   "split": "dev",
+   "cluster": "se_94967",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_97248",
+   "episode": 97248,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2015-06-17",
+   "date": "2015-06-17",
+   "lat": 34.3878,
+   "lon": -97.3169,
+   "peak_day": "2015-06-17",
+   "rain_3day_mm": 88.8,
+   "image": "2015-06-17",
+   "orbit": 34,
+   "lag_days": 0,
+   "baseline_passes": 2,
+   "baseline_year_before": false,
+   "search_point": [
+    34.3878,
+    -97.3169
+   ],
+   "bbox_at_search_point": [
+    -97.425755,
+    34.297969,
+    -97.208045,
+    34.477631
+   ],
+   "damage_usd": 5040000.0,
+   "split": "dev",
+   "cluster": "se_97248",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_95146",
+   "episode": 95146,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2015-06-19",
+   "date": "2015-06-19",
+   "lat": 37.25,
+   "lon": -92.88,
+   "peak_day": "2015-06-18",
+   "rain_3day_mm": 97.3,
+   "image": "2015-06-19",
+   "orbit": 63,
+   "lag_days": 1,
+   "baseline_passes": 2,
+   "baseline_year_before": false,
+   "search_point": [
+    37.25,
+    -92.88
+   ],
+   "bbox_at_search_point": [
+    -92.992853,
+    37.160169,
+    -92.767147,
+    37.339831
+   ],
+   "damage_usd": 1901000.0,
+   "split": "dev",
+   "cluster": "se_95146",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_103788",
+   "episode": 103788,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2016-04-17",
+   "date": "2016-04-17",
+   "lat": 30.0622,
+   "lon": -95.8832,
+   "peak_day": "2016-04-18",
+   "rain_3day_mm": 180.1,
+   "image": "2016-04-19",
+   "orbit": 143,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    30.0622,
+    -95.8832
+   ],
+   "bbox_at_search_point": [
+    -95.986993,
+    29.972369,
+    -95.779407,
+    30.152031
+   ],
+   "damage_usd": 51292000.0,
+   "split": "dev",
+   "cluster": "se_103788",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_107666",
+   "episode": 107666,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2016-07-07",
+   "date": "2016-07-07",
+   "lat": 36.97,
+   "lon": -88.45,
+   "peak_day": "2016-07-07",
+   "rain_3day_mm": 64.1,
+   "image": "2016-07-08",
+   "orbit": 92,
+   "lag_days": 1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    36.97,
+    -88.45
+   ],
+   "bbox_at_search_point": [
+    -88.562436,
+    36.880169,
+    -88.337564,
+    37.059831
+   ],
+   "damage_usd": 2930000.0,
+   "split": "dev",
+   "cluster": "se_107666",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_106764",
+   "episode": 106764,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2016-07-30",
+   "date": "2016-07-30",
+   "lat": 40.29,
+   "lon": -74.64,
+   "peak_day": "2016-07-29",
+   "rain_3day_mm": 28.3,
+   "image": "2016-07-28",
+   "orbit": 33,
+   "lag_days": -1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    40.29,
+    -74.64
+   ],
+   "bbox_at_search_point": [
+    -74.757768,
+    40.200169,
+    -74.522232,
+    40.379831
+   ],
+   "damage_usd": 3100000.0,
+   "split": "dev",
+   "cluster": "se_106764",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_109004",
+   "episode": 109004,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2016-08-11",
+   "date": "2016-08-11",
+   "lat": 44.5956,
+   "lon": -91.753,
+   "peak_day": "2016-08-12",
+   "rain_3day_mm": 49.9,
+   "image": "2016-08-13",
+   "orbit": 92,
+   "lag_days": 1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    44.5956,
+    -91.753
+   ],
+   "bbox_at_search_point": [
+    -91.879153,
+    44.505769,
+    -91.626847,
+    44.685431
+   ],
+   "damage_usd": 5730000.0,
+   "split": "dev",
+   "cluster": "se_109004",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_109768",
+   "episode": 109768,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2016-08-11",
+   "date": "2016-08-11",
+   "lat": 41.84,
+   "lon": -91.7,
+   "peak_day": "2016-08-12",
+   "rain_3day_mm": 94.0,
+   "image": "2016-08-13",
+   "orbit": 92,
+   "lag_days": 1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    41.84,
+    -91.7
+   ],
+   "bbox_at_search_point": [
+    -91.820577,
+    41.750169,
+    -91.579423,
+    41.929831
+   ],
+   "damage_usd": 1500000.0,
+   "split": "dev",
+   "cluster": "se_109768",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_109822",
+   "episode": 109822,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2016-08-12",
+   "date": "2016-08-12",
+   "lat": 39.9753,
+   "lon": -89.6986,
+   "peak_day": "2016-08-13",
+   "rain_3day_mm": 73.2,
+   "image": "2016-08-13",
+   "orbit": 92,
+   "lag_days": 0,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    39.9753,
+    -89.6986
+   ],
+   "bbox_at_search_point": [
+    -89.815824,
+    39.885469,
+    -89.581376,
+    40.065131
+   ],
+   "damage_usd": 2440000.0,
+   "split": "dev",
+   "cluster": "se_109822",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_109571",
+   "episode": 109571,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2016-08-23",
+   "date": "2016-08-23",
+   "lat": 43.2857,
+   "lon": -91.7242,
+   "peak_day": "2016-08-24",
+   "rain_3day_mm": 64.8,
+   "image": "2016-08-25",
+   "orbit": 92,
+   "lag_days": 1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    43.2857,
+    -91.7242
+   ],
+   "bbox_at_search_point": [
+    -91.847604,
+    43.195869,
+    -91.600796,
+    43.375531
+   ],
+   "damage_usd": 5783000.0,
+   "split": "dev",
+   "cluster": "se_109571",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_108830",
+   "episode": 108830,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2016-09-21",
+   "date": "2016-09-21",
+   "lat": 45.1405,
+   "lon": -93.2599,
+   "peak_day": "2016-09-22",
+   "rain_3day_mm": 66.1,
+   "image": "2016-09-24",
+   "orbit": 165,
+   "lag_days": 2,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    45.1405,
+    -93.2599
+   ],
+   "bbox_at_search_point": [
+    -93.387253,
+    45.050669,
+    -93.132547,
+    45.230331
+   ],
+   "damage_usd": 1000000.0,
+   "split": "dev",
+   "cluster": "se_108830",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_110544",
+   "episode": 110544,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2016-09-29",
+   "date": "2016-09-29",
+   "lat": 35.21,
+   "lon": -78.98,
+   "peak_day": "2016-09-28",
+   "rain_3day_mm": 124.2,
+   "image": "2016-09-29",
+   "orbit": 77,
+   "lag_days": 1,
+   "baseline_passes": 2,
+   "baseline_year_before": true,
+   "search_point": [
+    35.21,
+    -78.98
+   ],
+   "bbox_at_search_point": [
+    -79.089946,
+    35.120169,
+    -78.870054,
+    35.299831
+   ],
+   "damage_usd": 2475000.0,
+   "split": "dev",
+   "cluster": "se_110544",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_110904",
+   "episode": 110904,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2016-10-08",
+   "date": "2016-10-08",
+   "lat": 34.6381,
+   "lon": -79.2286,
+   "peak_day": "2016-10-08",
+   "rain_3day_mm": 121.5,
+   "image": "2016-10-10",
+   "orbit": 150,
+   "lag_days": 2,
+   "baseline_passes": 2,
+   "baseline_year_before": false,
+   "search_point": [
+    34.6381,
+    -79.2286
+   ],
+   "bbox_at_search_point": [
+    -79.337783,
+    34.548269,
+    -79.119417,
+    34.727931
+   ],
+   "damage_usd": 18755000.0,
+   "split": "dev",
+   "cluster": "se_110904",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_111078",
+   "episode": 111078,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2016-10-08",
+   "date": "2016-10-08",
+   "lat": 34.1954,
+   "lon": -79.7626,
+   "peak_day": "2016-10-08",
+   "rain_3day_mm": 138.6,
+   "image": "2016-10-10",
+   "orbit": 150,
+   "lag_days": 2,
+   "baseline_passes": 2,
+   "baseline_year_before": false,
+   "search_point": [
+    34.1954,
+    -79.7626
+   ],
+   "bbox_at_search_point": [
+    -79.871206,
+    34.105569,
+    -79.653994,
+    34.285231
+   ],
+   "damage_usd": 17775000.0,
+   "split": "dev",
+   "cluster": "se_111078",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_113684",
+   "episode": 113684,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-04-02",
+   "date": "2017-04-02",
+   "lat": 32.3727,
+   "lon": -90.001,
+   "peak_day": "2017-04-03",
+   "rain_3day_mm": 143.8,
+   "image": "2017-04-04",
+   "orbit": 165,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    32.3727,
+    -90.001
+   ],
+   "bbox_at_search_point": [
+    -90.107361,
+    32.282869,
+    -89.894639,
+    32.462531
+   ],
+   "damage_usd": 6710000.0,
+   "split": "dev",
+   "cluster": "se_113684",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_114084",
+   "episode": 114084,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-04-29",
+   "date": "2017-04-29",
+   "lat": 36.7354,
+   "lon": -91.8553,
+   "peak_day": "2017-04-29",
+   "rain_3day_mm": 137.7,
+   "image": "2017-04-28",
+   "orbit": 165,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    36.7354,
+    -91.8553
+   ],
+   "bbox_at_search_point": [
+    -91.967392,
+    36.645569,
+    -91.743208,
+    36.825231
+   ],
+   "damage_usd": 114880000.0,
+   "split": "dev",
+   "cluster": "se_114084",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_116304",
+   "episode": 116304,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-06-06",
+   "date": "2017-06-06",
+   "lat": 31.47,
+   "lon": -89.42,
+   "peak_day": "2017-06-04",
+   "rain_3day_mm": 48.1,
+   "image": "2017-06-03",
+   "orbit": 165,
+   "lag_days": -1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    31.47,
+    -89.42
+   ],
+   "bbox_at_search_point": [
+    -89.525323,
+    31.380169,
+    -89.314677,
+    31.559831
+   ],
+   "damage_usd": 2420000.0,
+   "split": "dev",
+   "cluster": "se_116304",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_116524",
+   "episode": 116524,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-06-18",
+   "date": "2017-06-18",
+   "lat": 42.0106,
+   "lon": -80.4034,
+   "peak_day": "2017-06-18",
+   "rain_3day_mm": 34.6,
+   "image": "2017-06-20",
+   "orbit": 77,
+   "lag_days": 2,
+   "baseline_passes": 6,
+   "baseline_year_before": false,
+   "search_point": [
+    42.0106,
+    -80.4034
+   ],
+   "bbox_at_search_point": [
+    -80.5243,
+    41.920769,
+    -80.2825,
+    42.100431
+   ],
+   "damage_usd": 2800000.0,
+   "split": "dev",
+   "cluster": "se_116524",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_117751",
+   "episode": 117751,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-06-22",
+   "date": "2017-06-22",
+   "lat": 43.8152,
+   "lon": -84.606,
+   "peak_day": "2017-06-23",
+   "rain_3day_mm": 83.8,
+   "image": "2017-06-24",
+   "orbit": 48,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    43.8152,
+    -84.606
+   ],
+   "bbox_at_search_point": [
+    -84.730493,
+    43.725369,
+    -84.481507,
+    43.905031
+   ],
+   "damage_usd": 119400000.0,
+   "split": "dev",
+   "cluster": "se_117751",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_116778",
+   "episode": 116778,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-07-01",
+   "date": "2017-07-01",
+   "lat": 43.7265,
+   "lon": -72.7938,
+   "peak_day": "2017-06-30",
+   "rain_3day_mm": 58.7,
+   "image": "2017-06-30",
+   "orbit": 135,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    43.7265,
+    -72.7938
+   ],
+   "bbox_at_search_point": [
+    -72.918108,
+    43.636669,
+    -72.669492,
+    43.816331
+   ],
+   "damage_usd": 7931000.0,
+   "split": "dev",
+   "cluster": "se_116778",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_117671",
+   "episode": 117671,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-07-01",
+   "date": "2017-07-01",
+   "lat": 43.1083,
+   "lon": -75.1561,
+   "peak_day": "2017-06-30",
+   "rain_3day_mm": 41.8,
+   "image": "2017-06-29",
+   "orbit": 33,
+   "lag_days": -1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    43.1083,
+    -75.1561
+   ],
+   "bbox_at_search_point": [
+    -75.279146,
+    43.018469,
+    -75.033054,
+    43.198131
+   ],
+   "damage_usd": 1300000.0,
+   "split": "dev",
+   "cluster": "se_117671",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_119157",
+   "episode": 119157,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-07-01",
+   "date": "2017-07-01",
+   "lat": 43.8208,
+   "lon": -72.1534,
+   "peak_day": "2017-06-30",
+   "rain_3day_mm": 53.7,
+   "image": "2017-06-30",
+   "orbit": 135,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    43.8208,
+    -72.1534
+   ],
+   "bbox_at_search_point": [
+    -72.277905,
+    43.730969,
+    -72.028895,
+    43.910631
+   ],
+   "damage_usd": 12406000.0,
+   "split": "dev",
+   "cluster": "se_119157",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_118207",
+   "episode": 118207,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-07-20",
+   "date": "2017-07-20",
+   "lat": 44.1595,
+   "lon": -90.5925,
+   "peak_day": "2017-07-20",
+   "rain_3day_mm": 57.1,
+   "image": "2017-07-21",
+   "orbit": 92,
+   "lag_days": 1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    44.1595,
+    -90.5925
+   ],
+   "bbox_at_search_point": [
+    -90.717717,
+    44.069669,
+    -90.467283,
+    44.249331
+   ],
+   "damage_usd": 9628000.0,
+   "split": "dev",
+   "cluster": "se_118207",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_117502",
+   "episode": 117502,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-07-22",
+   "date": "2017-07-22",
+   "lat": 38.64,
+   "lon": -83.75,
+   "peak_day": "2017-07-22",
+   "rain_3day_mm": 90.3,
+   "image": "2017-07-24",
+   "orbit": 48,
+   "lag_days": 2,
+   "baseline_passes": 2,
+   "baseline_year_before": false,
+   "search_point": [
+    38.64,
+    -83.75
+   ],
+   "bbox_at_search_point": [
+    -83.865008,
+    38.550169,
+    -83.634992,
+    38.729831
+   ],
+   "damage_usd": 1000000.0,
+   "split": "dev",
+   "cluster": "se_117502",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_118638",
+   "episode": 118638,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-07-22",
+   "date": "2017-07-22",
+   "lat": 43.0469,
+   "lon": -92.0798,
+   "peak_day": "2017-07-21",
+   "rain_3day_mm": 78.8,
+   "image": "2017-07-21",
+   "orbit": 165,
+   "lag_days": 0,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    43.0469,
+    -92.0798
+   ],
+   "bbox_at_search_point": [
+    -92.202722,
+    42.957069,
+    -91.956878,
+    43.136731
+   ],
+   "damage_usd": 2420000.0,
+   "split": "dev",
+   "cluster": "se_118638",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_120356",
+   "episode": 120356,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-09-06",
+   "date": "2017-09-06",
+   "lat": 18.2493,
+   "lon": -66.7947,
+   "peak_day": "2017-09-07",
+   "rain_3day_mm": 81.6,
+   "image": "2017-09-08",
+   "orbit": 98,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    18.2493,
+    -66.7947
+   ],
+   "bbox_at_search_point": [
+    -66.889289,
+    18.159469,
+    -66.700111,
+    18.339131
+   ],
+   "damage_usd": 759427000.0,
+   "split": "dev",
+   "cluster": "se_120356",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_118772",
+   "episode": 118772,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-09-10",
+   "date": "2017-09-10",
+   "lat": 27.448,
+   "lon": -80.4321,
+   "peak_day": "2017-09-10",
+   "rain_3day_mm": 159.1,
+   "image": "2017-09-10",
+   "orbit": 48,
+   "lag_days": 0,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    27.448,
+    -80.4321
+   ],
+   "bbox_at_search_point": [
+    -80.533326,
+    27.358169,
+    -80.330874,
+    27.537831
+   ],
+   "damage_usd": 30150000.0,
+   "split": "dev",
+   "cluster": "se_118772",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_120357",
+   "episode": 120357,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-09-20",
+   "date": "2017-09-20",
+   "lat": 18.449,
+   "lon": -66.1638,
+   "peak_day": "2017-09-21",
+   "rain_3day_mm": 193.2,
+   "image": "2017-09-21",
+   "orbit": 25,
+   "lag_days": 0,
+   "baseline_passes": 3,
+   "baseline_year_before": true,
+   "search_point": [
+    18.449,
+    -66.1638
+   ],
+   "bbox_at_search_point": [
+    -66.258498,
+    18.359169,
+    -66.069102,
+    18.538831
+   ],
+   "damage_usd": 18258750000.0,
+   "split": "dev",
+   "cluster": "se_120357",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_119671",
+   "episode": 119671,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2017-09-29",
+   "date": "2017-09-29",
+   "lat": 34.6657,
+   "lon": -106.7902,
+   "peak_day": "2017-09-29",
+   "rain_3day_mm": 41.3,
+   "image": "2017-09-29",
+   "orbit": 49,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    34.6657,
+    -106.7902
+   ],
+   "bbox_at_search_point": [
+    -106.899419,
+    34.575869,
+    -106.680981,
+    34.755531
+   ],
+   "damage_usd": 7675000.0,
+   "split": "dev",
+   "cluster": "se_119671",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_122797",
+   "episode": 122797,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-01-27",
+   "date": "2018-01-27",
+   "lat": 29.9647,
+   "lon": -93.8538,
+   "peak_day": "2018-01-27",
+   "rain_3day_mm": 127.9,
+   "image": "2018-01-27",
+   "orbit": 136,
+   "lag_days": 0,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    29.9647,
+    -93.8538
+   ],
+   "bbox_at_search_point": [
+    -93.957491,
+    29.874869,
+    -93.750109,
+    30.054531
+   ],
+   "damage_usd": 1000000.0,
+   "split": "dev",
+   "cluster": "se_122797",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_123057",
+   "episode": 123057,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-03-22",
+   "date": "2018-03-22",
+   "lat": 37.7122,
+   "lon": -120.348,
+   "peak_day": "2018-03-21",
+   "rain_3day_mm": 80.4,
+   "image": "2018-03-21",
+   "orbit": 42,
+   "lag_days": 0,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    37.7122,
+    -120.348
+   ],
+   "bbox_at_search_point": [
+    -120.461553,
+    37.622369,
+    -120.234447,
+    37.802031
+   ],
+   "damage_usd": 2000000.0,
+   "split": "dev",
+   "cluster": "se_123057",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_123655",
+   "episode": 123655,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-04-14",
+   "date": "2018-04-14",
+   "lat": 22.191,
+   "lon": -159.4867,
+   "peak_day": "2018-04-15",
+   "rain_3day_mm": 68.4,
+   "image": "2018-04-15",
+   "orbit": 58,
+   "lag_days": 0,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    22.191,
+    -159.4867
+   ],
+   "bbox_at_search_point": [
+    -159.583717,
+    22.101169,
+    -159.389683,
+    22.280831
+   ],
+   "damage_usd": 19800000.0,
+   "split": "dev",
+   "cluster": "se_123655",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_126423",
+   "episode": 126423,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-05-15",
+   "date": "2018-05-15",
+   "lat": 39.4399,
+   "lon": -77.3957,
+   "peak_day": "2018-05-16",
+   "rain_3day_mm": 57.4,
+   "image": "2018-05-17",
+   "orbit": 4,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    39.4399,
+    -77.3957
+   ],
+   "bbox_at_search_point": [
+    -77.512018,
+    39.350069,
+    -77.279382,
+    39.529731
+   ],
+   "damage_usd": 48995000.0,
+   "split": "dev",
+   "cluster": "se_126423",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_125075",
+   "episode": 125075,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-05-27",
+   "date": "2018-05-27",
+   "lat": 37.2512,
+   "lon": -79.9994,
+   "peak_day": "2018-05-27",
+   "rain_3day_mm": 30.8,
+   "image": "2018-05-27",
+   "orbit": 150,
+   "lag_days": 0,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    37.2512,
+    -79.9994
+   ],
+   "bbox_at_search_point": [
+    -80.112255,
+    37.161369,
+    -79.886545,
+    37.341031
+   ],
+   "damage_usd": 1500000.0,
+   "split": "dev",
+   "cluster": "se_125075",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_126459",
+   "episode": 126459,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-05-27",
+   "date": "2018-05-27",
+   "lat": 39.2717,
+   "lon": -76.8165,
+   "peak_day": "2018-05-27",
+   "rain_3day_mm": 21.6,
+   "image": "2018-05-29",
+   "orbit": 4,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    39.2717,
+    -76.8165
+   ],
+   "bbox_at_search_point": [
+    -76.932538,
+    39.181869,
+    -76.700462,
+    39.361531
+   ],
+   "damage_usd": 22110000.0,
+   "split": "dev",
+   "cluster": "se_126459",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_126462",
+   "episode": 126462,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-05-31",
+   "date": "2018-05-31",
+   "lat": 38.3536,
+   "lon": -78.542,
+   "peak_day": "2018-06-01",
+   "rain_3day_mm": 53.0,
+   "image": "2018-06-03",
+   "orbit": 77,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    38.3536,
+    -78.542
+   ],
+   "bbox_at_search_point": [
+    -78.656552,
+    38.263769,
+    -78.427448,
+    38.443431
+   ],
+   "damage_usd": 4904000.0,
+   "split": "dev",
+   "cluster": "se_126462",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_125550",
+   "episode": 125550,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-06-13",
+   "date": "2018-06-13",
+   "lat": 41.5277,
+   "lon": -83.1836,
+   "peak_day": "2018-06-11",
+   "rain_3day_mm": 25.6,
+   "image": "2018-06-13",
+   "orbit": 48,
+   "lag_days": 2,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    41.5277,
+    -83.1836
+   ],
+   "bbox_at_search_point": [
+    -83.303593,
+    41.437869,
+    -83.063607,
+    41.617531
+   ],
+   "damage_usd": 1250000.0,
+   "split": "dev",
+   "cluster": "se_125550",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_126624",
+   "episode": 126624,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-06-17",
+   "date": "2018-06-17",
+   "lat": 47.2826,
+   "lon": -88.4346,
+   "peak_day": "2018-06-16",
+   "rain_3day_mm": 83.3,
+   "image": "2018-06-18",
+   "orbit": 121,
+   "lag_days": 2,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    47.2826,
+    -88.4346
+   ],
+   "bbox_at_search_point": [
+    -88.56702,
+    47.192769,
+    -88.30218,
+    47.372431
+   ],
+   "damage_usd": 100210000.0,
+   "split": "dev",
+   "cluster": "se_126624",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_128323",
+   "episode": 128323,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-06-20",
+   "date": "2018-06-20",
+   "lat": 26.2809,
+   "lon": -97.8728,
+   "peak_day": "2018-06-20",
+   "rain_3day_mm": 216.8,
+   "image": "2018-06-20",
+   "orbit": 143,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.2809,
+    -97.8728
+   ],
+   "bbox_at_search_point": [
+    -97.972987,
+    26.191069,
+    -97.772613,
+    26.370731
+   ],
+   "damage_usd": 115650000.0,
+   "split": "dev",
+   "cluster": "se_128323",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_126801",
+   "episode": 126801,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-07-26",
+   "date": "2018-07-26",
+   "lat": 35.4167,
+   "lon": -106.408,
+   "peak_day": "2018-07-27",
+   "rain_3day_mm": 35.5,
+   "image": "2018-07-26",
+   "orbit": 49,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    35.4167,
+    -106.408
+   ],
+   "bbox_at_search_point": [
+    -106.518228,
+    35.326869,
+    -106.297772,
+    35.506531
+   ],
+   "damage_usd": 1050000.0,
+   "split": "dev",
+   "cluster": "se_126801",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_128029",
+   "episode": 128029,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-08-02",
+   "date": "2018-08-02",
+   "lat": 37.3502,
+   "lon": -79.1911,
+   "peak_day": "2018-08-01",
+   "rain_3day_mm": 63.9,
+   "image": "2018-08-02",
+   "orbit": 77,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    37.3502,
+    -79.1911
+   ],
+   "bbox_at_search_point": [
+    -79.304103,
+    37.260369,
+    -79.078097,
+    37.440031
+   ],
+   "damage_usd": 18125000.0,
+   "split": "dev",
+   "cluster": "se_128029",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_129101",
+   "episode": 129101,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-08-22",
+   "date": "2018-08-22",
+   "lat": 20.0789,
+   "lon": -155.5817,
+   "peak_day": "2018-08-23",
+   "rain_3day_mm": 131.2,
+   "image": "2018-08-24",
+   "orbit": 124,
+   "lag_days": 1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    20.0789,
+    -155.5817
+   ],
+   "bbox_at_search_point": [
+    -155.677344,
+    19.989069,
+    -155.486056,
+    20.168731
+   ],
+   "damage_usd": 7100000.0,
+   "split": "dev",
+   "cluster": "se_129101",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_129126",
+   "episode": 129126,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-08-28",
+   "date": "2018-08-28",
+   "lat": 22.2097,
+   "lon": -159.4823,
+   "peak_day": "2018-08-28",
+   "rain_3day_mm": 73.8,
+   "image": "2018-08-28",
+   "orbit": 95,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    22.2097,
+    -159.4823
+   ],
+   "bbox_at_search_point": [
+    -159.57933,
+    22.119869,
+    -159.38527,
+    22.299531
+   ],
+   "damage_usd": 1500000.0,
+   "split": "dev",
+   "cluster": "se_129126",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_129710",
+   "episode": 129710,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-08-28",
+   "date": "2018-08-28",
+   "lat": 43.64,
+   "lon": -90.31,
+   "peak_day": "2018-08-28",
+   "rain_3day_mm": 93.1,
+   "image": "2018-08-27",
+   "orbit": 92,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    43.64,
+    -90.31
+   ],
+   "bbox_at_search_point": [
+    -90.434129,
+    43.550169,
+    -90.185871,
+    43.729831
+   ],
+   "damage_usd": 85305000.0,
+   "split": "dev",
+   "cluster": "se_129710",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_130523",
+   "episode": 130523,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-09-03",
+   "date": "2018-09-03",
+   "lat": 43.4236,
+   "lon": -90.8165,
+   "peak_day": "2018-09-02",
+   "rain_3day_mm": 58.1,
+   "image": "2018-09-02",
+   "orbit": 92,
+   "lag_days": 0,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    43.4236,
+    -90.8165
+   ],
+   "bbox_at_search_point": [
+    -90.940185,
+    43.333769,
+    -90.692815,
+    43.513431
+   ],
+   "damage_usd": 1628000.0,
+   "split": "dev",
+   "cluster": "se_130523",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_131391",
+   "episode": 131391,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-09-03",
+   "date": "2018-09-03",
+   "lat": 39.2288,
+   "lon": -96.7141,
+   "peak_day": "2018-09-04",
+   "rain_3day_mm": 85.3,
+   "image": "2018-09-05",
+   "orbit": 34,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    39.2288,
+    -96.7141
+   ],
+   "bbox_at_search_point": [
+    -96.830067,
+    39.138969,
+    -96.598133,
+    39.318631
+   ],
+   "damage_usd": 17200000.0,
+   "split": "dev",
+   "cluster": "se_131391",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_130719",
+   "episode": 130719,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2018-09-15",
+   "date": "2018-09-15",
+   "lat": 34.2743,
+   "lon": -77.7304,
+   "peak_day": "2018-09-15",
+   "rain_3day_mm": 283.6,
+   "image": "2018-09-14",
+   "orbit": 4,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    34.2743,
+    -77.7304
+   ],
+   "bbox_at_search_point": [
+    -77.839108,
+    34.184469,
+    -77.621692,
+    34.364131
+   ],
+   "damage_usd": 8620000.0,
+   "split": "dev",
+   "cluster": "se_130719",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_135086",
+   "episode": 135086,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-02-06",
+   "date": "2019-02-06",
+   "lat": 35.9894,
+   "lon": -87.5157,
+   "peak_day": "2019-02-07",
+   "rain_3day_mm": 52.7,
+   "image": "2019-02-06",
+   "orbit": 19,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    35.9894,
+    -87.5157
+   ],
+   "bbox_at_search_point": [
+    -87.626722,
+    35.899569,
+    -87.404678,
+    36.079231
+   ],
+   "damage_usd": 2764430.0,
+   "split": "dev",
+   "cluster": "se_135086",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_135262",
+   "episode": 135262,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-02-23",
+   "date": "2019-02-23",
+   "lat": 35.4606,
+   "lon": -86.0589,
+   "peak_day": "2019-02-23",
+   "rain_3day_mm": 144.2,
+   "image": "2019-02-25",
+   "orbit": 121,
+   "lag_days": 2,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    35.4606,
+    -86.0589
+   ],
+   "bbox_at_search_point": [
+    -86.169188,
+    35.370769,
+    -85.948612,
+    35.550431
+   ],
+   "damage_usd": 1688060.0,
+   "split": "dev",
+   "cluster": "se_135262",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_135533",
+   "episode": 135533,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-04-09",
+   "date": "2019-04-09",
+   "lat": 34.0207,
+   "lon": -85.2279,
+   "peak_day": "2019-04-08",
+   "rain_3day_mm": 39.7,
+   "image": "2019-04-07",
+   "orbit": 19,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    34.0207,
+    -85.2279
+   ],
+   "bbox_at_search_point": [
+    -85.336282,
+    33.930869,
+    -85.119518,
+    34.110531
+   ],
+   "damage_usd": 5000000.0,
+   "split": "dev",
+   "cluster": "se_135533",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_138900",
+   "episode": 138900,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-05-05",
+   "date": "2019-05-05",
+   "lat": 37.4,
+   "lon": -100.32,
+   "peak_day": "2019-05-06",
+   "rain_3day_mm": 52.8,
+   "image": "2019-05-08",
+   "orbit": 107,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    37.4,
+    -100.32
+   ],
+   "bbox_at_search_point": [
+    -100.433078,
+    37.310169,
+    -100.206922,
+    37.489831
+   ],
+   "damage_usd": 1000000.0,
+   "split": "dev",
+   "cluster": "se_138900",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_135483",
+   "episode": 135483,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-05-08",
+   "date": "2019-05-08",
+   "lat": 37.2217,
+   "lon": -97.346,
+   "peak_day": "2019-05-07",
+   "rain_3day_mm": 108.9,
+   "image": "2019-05-09",
+   "orbit": 34,
+   "lag_days": 2,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    37.2217,
+    -97.346
+   ],
+   "bbox_at_search_point": [
+    -97.458811,
+    37.131869,
+    -97.233189,
+    37.311531
+   ],
+   "damage_usd": 2811200.0,
+   "split": "dev",
+   "cluster": "se_135483",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_137851",
+   "episode": 137851,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-05-09",
+   "date": "2019-05-09",
+   "lat": 32.394,
+   "lon": -90.264,
+   "peak_day": "2019-05-10",
+   "rain_3day_mm": 101.6,
+   "image": "2019-05-12",
+   "orbit": 165,
+   "lag_days": 2,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    32.394,
+    -90.264
+   ],
+   "bbox_at_search_point": [
+    -90.370387,
+    32.304169,
+    -90.157613,
+    32.483831
+   ],
+   "damage_usd": 1603000.0,
+   "split": "dev",
+   "cluster": "se_137851",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_137992",
+   "episode": 137992,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-05-11",
+   "date": "2019-05-11",
+   "lat": 31.0881,
+   "lon": -89.1908,
+   "peak_day": "2019-05-10",
+   "rain_3day_mm": 128.1,
+   "image": "2019-05-12",
+   "orbit": 165,
+   "lag_days": 2,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    31.0881,
+    -89.1908
+   ],
+   "bbox_at_search_point": [
+    -89.295697,
+    30.998269,
+    -89.085903,
+    31.177931
+   ],
+   "damage_usd": 3619000.0,
+   "split": "dev",
+   "cluster": "se_137992",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_137312",
+   "episode": 137312,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-05-25",
+   "date": "2019-05-25",
+   "lat": 34.0825,
+   "lon": -101.7913,
+   "peak_day": "2019-05-25",
+   "rain_3day_mm": 104.4,
+   "image": "2019-05-24",
+   "orbit": 78,
+   "lag_days": -1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    34.0825,
+    -101.7913
+   ],
+   "bbox_at_search_point": [
+    -101.899761,
+    33.992669,
+    -101.682839,
+    34.172331
+   ],
+   "damage_usd": 1010000.0,
+   "split": "dev",
+   "cluster": "se_137312",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_136371",
+   "episode": 136371,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-05-28",
+   "date": "2019-05-28",
+   "lat": 40.79,
+   "lon": -80.14,
+   "peak_day": "2019-05-29",
+   "rain_3day_mm": 74.5,
+   "image": "2019-05-29",
+   "orbit": 77,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    40.79,
+    -80.14
+   ],
+   "bbox_at_search_point": [
+    -80.25865,
+    40.700169,
+    -80.02135,
+    40.879831
+   ],
+   "damage_usd": 5048000.0,
+   "split": "dev",
+   "cluster": "se_136371",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_136821",
+   "episode": 136821,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-05-28",
+   "date": "2019-05-28",
+   "lat": 41.0504,
+   "lon": -80.6171,
+   "peak_day": "2019-05-29",
+   "rain_3day_mm": 47.6,
+   "image": "2019-05-29",
+   "orbit": 77,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    41.0504,
+    -80.6171
+   ],
+   "bbox_at_search_point": [
+    -80.736219,
+    40.960569,
+    -80.497981,
+    41.140231
+   ],
+   "damage_usd": 3000000.0,
+   "split": "dev",
+   "cluster": "se_136821",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_137124",
+   "episode": 137124,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-06-07",
+   "date": "2019-06-07",
+   "lat": 36.2998,
+   "lon": -84.1713,
+   "peak_day": "2019-06-06",
+   "rain_3day_mm": 53.7,
+   "image": "2019-06-08",
+   "orbit": 48,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    36.2998,
+    -84.1713
+   ],
+   "bbox_at_search_point": [
+    -84.282763,
+    36.209969,
+    -84.059837,
+    36.389631
+   ],
+   "damage_usd": 6400000.0,
+   "split": "dev",
+   "cluster": "se_137124",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_137788",
+   "episode": 137788,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-06-07",
+   "date": "2019-06-07",
+   "lat": 35.0524,
+   "lon": -89.8012,
+   "peak_day": "2019-06-06",
+   "rain_3day_mm": 68.3,
+   "image": "2019-06-05",
+   "orbit": 165,
+   "lag_days": -1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    35.0524,
+    -89.8012
+   ],
+   "bbox_at_search_point": [
+    -89.910934,
+    34.962569,
+    -89.691466,
+    35.142231
+   ],
+   "damage_usd": 1665500.0,
+   "split": "dev",
+   "cluster": "se_137788",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_139516",
+   "episode": 139516,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-06-17",
+   "date": "2019-06-17",
+   "lat": 41.1161,
+   "lon": -81.6722,
+   "peak_day": "2019-06-16",
+   "rain_3day_mm": 33.6,
+   "image": "2019-06-15",
+   "orbit": 150,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    41.1161,
+    -81.6722
+   ],
+   "bbox_at_search_point": [
+    -81.791438,
+    41.026269,
+    -81.552962,
+    41.205931
+   ],
+   "damage_usd": 5710000.0,
+   "split": "dev",
+   "cluster": "se_139516",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_139525",
+   "episode": 139525,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-06-20",
+   "date": "2019-06-20",
+   "lat": 41.2829,
+   "lon": -82.8131,
+   "peak_day": "2019-06-19",
+   "rain_3day_mm": 32.1,
+   "image": "2019-06-20",
+   "orbit": 48,
+   "lag_days": 1,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    41.2829,
+    -82.8131
+   ],
+   "bbox_at_search_point": [
+    -82.932642,
+    41.193069,
+    -82.693558,
+    41.372731
+   ],
+   "damage_usd": 1580000.0,
+   "split": "dev",
+   "cluster": "se_139525",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_138835",
+   "episode": 138835,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-06-23",
+   "date": "2019-06-23",
+   "lat": 36.643,
+   "lon": -94.4492,
+   "peak_day": "2019-06-23",
+   "rain_3day_mm": 98.4,
+   "image": "2019-06-22",
+   "orbit": 63,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    36.643,
+    -94.4492
+   ],
+   "bbox_at_search_point": [
+    -94.561157,
+    36.553169,
+    -94.337243,
+    36.732831
+   ],
+   "damage_usd": 1380000.0,
+   "split": "dev",
+   "cluster": "se_138835",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_142205",
+   "episode": 142205,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-06-24",
+   "date": "2019-06-24",
+   "lat": 26.3298,
+   "lon": -97.7841,
+   "peak_day": "2019-06-25",
+   "rain_3day_mm": 77.8,
+   "image": "2019-06-25",
+   "orbit": 107,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.3298,
+    -97.7841
+   ],
+   "bbox_at_search_point": [
+    -97.884329,
+    26.239969,
+    -97.683871,
+    26.419631
+   ],
+   "damage_usd": 75000000.0,
+   "split": "dev",
+   "cluster": "se_142205",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_140616",
+   "episode": 140616,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-07-20",
+   "date": "2019-07-20",
+   "lat": 41.4301,
+   "lon": -80.5814,
+   "peak_day": "2019-07-21",
+   "rain_3day_mm": 58.6,
+   "image": "2019-07-21",
+   "orbit": 150,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    41.4301,
+    -80.5814
+   ],
+   "bbox_at_search_point": [
+    -80.701213,
+    41.340269,
+    -80.461587,
+    41.519931
+   ],
+   "damage_usd": 3750000.0,
+   "split": "dev",
+   "cluster": "se_140616",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_141240",
+   "episode": 141240,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-07-20",
+   "date": "2019-07-20",
+   "lat": 44.179,
+   "lon": -86.3918,
+   "peak_day": "2019-07-19",
+   "rain_3day_mm": 116.4,
+   "image": "2019-07-19",
+   "orbit": 121,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    44.179,
+    -86.3918
+   ],
+   "bbox_at_search_point": [
+    -86.517058,
+    44.089169,
+    -86.266542,
+    44.268831
+   ],
+   "damage_usd": 3500000.0,
+   "split": "dev",
+   "cluster": "se_141240",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_140942",
+   "episode": 140942,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-07-21",
+   "date": "2019-07-21",
+   "lat": 40.7097,
+   "lon": -81.7788,
+   "peak_day": "2019-07-21",
+   "rain_3day_mm": 35.0,
+   "image": "2019-07-21",
+   "orbit": 150,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    40.7097,
+    -81.7788
+   ],
+   "bbox_at_search_point": [
+    -81.897307,
+    40.619869,
+    -81.660293,
+    40.799531
+   ],
+   "damage_usd": 8170000.0,
+   "split": "dev",
+   "cluster": "se_140942",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_142104",
+   "episode": 142104,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-09-18",
+   "date": "2019-09-18",
+   "lat": 29.8256,
+   "lon": -94.3789,
+   "peak_day": "2019-09-18",
+   "rain_3day_mm": 440.3,
+   "image": "2019-09-19",
+   "orbit": 136,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    29.8256,
+    -94.3789
+   ],
+   "bbox_at_search_point": [
+    -94.482447,
+    29.735769,
+    -94.275353,
+    29.915431
+   ],
+   "damage_usd": 360000000.0,
+   "split": "dev",
+   "cluster": "se_142104",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_141836",
+   "episode": 141836,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2019-09-19",
+   "date": "2019-09-19",
+   "lat": 30.0579,
+   "lon": -95.1776,
+   "peak_day": "2019-09-18",
+   "rain_3day_mm": 358.1,
+   "image": "2019-09-19",
+   "orbit": 136,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    30.0579,
+    -95.1776
+   ],
+   "bbox_at_search_point": [
+    -95.281389,
+    29.968069,
+    -95.073811,
+    30.147731
+   ],
+   "damage_usd": 565155000.0,
+   "split": "dev",
+   "cluster": "se_141836",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_145702",
+   "episode": 145702,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-03-28",
+   "date": "2020-03-28",
+   "lat": 22.2095,
+   "lon": -159.4824,
+   "peak_day": "2020-03-28",
+   "rain_3day_mm": 65.8,
+   "image": "2020-03-29",
+   "orbit": 58,
+   "lag_days": 1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    22.2095,
+    -159.4824
+   ],
+   "bbox_at_search_point": [
+    -159.57943,
+    22.119669,
+    -159.38537,
+    22.299331
+   ],
+   "damage_usd": 30600000.0,
+   "split": "dev",
+   "cluster": "se_145702",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_147364",
+   "episode": 147364,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-04-13",
+   "date": "2020-04-13",
+   "lat": 35.457,
+   "lon": -82.873,
+   "peak_day": "2020-04-13",
+   "rain_3day_mm": 92.9,
+   "image": "2020-04-15",
+   "orbit": 48,
+   "lag_days": 2,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    35.457,
+    -82.873
+   ],
+   "bbox_at_search_point": [
+    -82.983283,
+    35.367169,
+    -82.762717,
+    35.546831
+   ],
+   "damage_usd": 1212000.0,
+   "split": "dev",
+   "cluster": "se_147364",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_148205",
+   "episode": 148205,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-05-24",
+   "date": "2020-05-24",
+   "lat": 36.71,
+   "lon": -79.94,
+   "peak_day": "2020-05-22",
+   "rain_3day_mm": 57.3,
+   "image": "2020-05-23",
+   "orbit": 77,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    36.71,
+    -79.94
+   ],
+   "bbox_at_search_point": [
+    -80.052055,
+    36.620169,
+    -79.827945,
+    36.799831
+   ],
+   "damage_usd": 1200000.0,
+   "split": "dev",
+   "cluster": "se_148205",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_148908",
+   "episode": 148908,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-06-28",
+   "date": "2020-06-28",
+   "lat": 42.1885,
+   "lon": -71.2059,
+   "peak_day": "2020-06-28",
+   "rain_3day_mm": 58.5,
+   "image": "2020-06-27",
+   "orbit": 62,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    42.1885,
+    -71.2059
+   ],
+   "bbox_at_search_point": [
+    -71.327139,
+    42.098669,
+    -71.084661,
+    42.278331
+   ],
+   "damage_usd": 30030000.0,
+   "split": "dev",
+   "cluster": "se_148908",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_147906",
+   "episode": 147906,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-06-29",
+   "date": "2020-06-29",
+   "lat": 45.2223,
+   "lon": -92.2921,
+   "peak_day": "2020-06-30",
+   "rain_3day_mm": 133.2,
+   "image": "2020-06-29",
+   "orbit": 165,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    45.2223,
+    -92.2921
+   ],
+   "bbox_at_search_point": [
+    -92.419636,
+    45.132469,
+    -92.164564,
+    45.312131
+   ],
+   "damage_usd": 8000000.0,
+   "split": "dev",
+   "cluster": "se_147906",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_150353",
+   "episode": 150353,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-07-26",
+   "date": "2020-07-26",
+   "lat": 26.1006,
+   "lon": -97.8674,
+   "peak_day": "2020-07-26",
+   "rain_3day_mm": 173.5,
+   "image": "2020-07-25",
+   "orbit": 107,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.1006,
+    -97.8674
+   ],
+   "bbox_at_search_point": [
+    -97.967432,
+    26.010769,
+    -97.767368,
+    26.190431
+   ],
+   "damage_usd": 51160000.0,
+   "split": "dev",
+   "cluster": "se_150353",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_151541",
+   "episode": 151541,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-07-26",
+   "date": "2020-07-26",
+   "lat": 33.1451,
+   "lon": -107.2798,
+   "peak_day": "2020-07-26",
+   "rain_3day_mm": 28.7,
+   "image": "2020-07-27",
+   "orbit": 49,
+   "lag_days": 1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    33.1451,
+    -107.2798
+   ],
+   "bbox_at_search_point": [
+    -107.387088,
+    33.055269,
+    -107.172512,
+    33.234931
+   ],
+   "damage_usd": 2400000.0,
+   "split": "dev",
+   "cluster": "se_151541",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_152863",
+   "episode": 152863,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-09-10",
+   "date": "2020-09-10",
+   "lat": 29.0577,
+   "lon": -98.1156,
+   "peak_day": "2020-09-09",
+   "rain_3day_mm": 73.6,
+   "image": "2020-09-11",
+   "orbit": 107,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    29.0577,
+    -98.1156
+   ],
+   "bbox_at_search_point": [
+    -98.218366,
+    28.967869,
+    -98.012834,
+    29.147531
+   ],
+   "damage_usd": 1000000.0,
+   "split": "dev",
+   "cluster": "se_152863",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_151831",
+   "episode": 151831,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-09-16",
+   "date": "2020-09-16",
+   "lat": 31.19,
+   "lon": -85.59,
+   "peak_day": "2020-09-15",
+   "rain_3day_mm": 180.2,
+   "image": "2020-09-16",
+   "orbit": 19,
+   "lag_days": 1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    31.19,
+    -85.59
+   ],
+   "bbox_at_search_point": [
+    -85.69501,
+    31.100169,
+    -85.48499,
+    31.279831
+   ],
+   "damage_usd": 1000000.0,
+   "split": "dev",
+   "cluster": "se_151831",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_151832",
+   "episode": 151832,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-09-16",
+   "date": "2020-09-16",
+   "lat": 30.44,
+   "lon": -85.87,
+   "peak_day": "2020-09-15",
+   "rain_3day_mm": 278.0,
+   "image": "2020-09-16",
+   "orbit": 19,
+   "lag_days": 1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    30.44,
+    -85.87
+   ],
+   "bbox_at_search_point": [
+    -85.974193,
+    30.350169,
+    -85.765807,
+    30.529831
+   ],
+   "damage_usd": 47000000.0,
+   "split": "dev",
+   "cluster": "se_151832",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_153456",
+   "episode": 153456,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-10-29",
+   "date": "2020-10-29",
+   "lat": 36.1559,
+   "lon": -81.1488,
+   "peak_day": "2020-10-29",
+   "rain_3day_mm": 51.7,
+   "image": "2020-10-31",
+   "orbit": 150,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    36.1559,
+    -81.1488
+   ],
+   "bbox_at_search_point": [
+    -81.260058,
+    36.066069,
+    -81.037542,
+    36.245731
+   ],
+   "damage_usd": 1275000.0,
+   "split": "dev",
+   "cluster": "se_153456",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_154480",
+   "episode": 154480,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2020-11-12",
+   "date": "2020-11-12",
+   "lat": 35.091,
+   "lon": -80.963,
+   "peak_day": "2020-11-12",
+   "rain_3day_mm": 120.2,
+   "image": "2020-11-12",
+   "orbit": 150,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    35.091,
+    -80.963
+   ],
+   "bbox_at_search_point": [
+    -81.072786,
+    35.001169,
+    -80.853214,
+    35.180831
+   ],
+   "damage_usd": 2020000.0,
+   "split": "dev",
+   "cluster": "se_154480",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_155558",
+   "episode": 155558,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-03-09",
+   "date": "2021-03-09",
+   "lat": 22.2097,
+   "lon": -159.4825,
+   "peak_day": "2021-03-10",
+   "rain_3day_mm": 141.7,
+   "image": "2021-03-09",
+   "orbit": 95,
+   "lag_days": -1,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    22.2097,
+    -159.4825
+   ],
+   "bbox_at_search_point": [
+    -159.57953,
+    22.119869,
+    -159.38547,
+    22.299531
+   ],
+   "damage_usd": 47100000.0,
+   "split": "dev",
+   "cluster": "se_155558",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_157248",
+   "episode": 157248,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-03-27",
+   "date": "2021-03-27",
+   "lat": 36.183,
+   "lon": -86.6027,
+   "peak_day": "2021-03-27",
+   "rain_3day_mm": 113.8,
+   "image": "2021-03-27",
+   "orbit": 19,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    36.183,
+    -86.6027
+   ],
+   "bbox_at_search_point": [
+    -86.713996,
+    36.093169,
+    -86.491404,
+    36.272831
+   ],
+   "damage_usd": 24180080.0,
+   "split": "dev",
+   "cluster": "se_157248",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_156063",
+   "episode": 156063,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-03-28",
+   "date": "2021-03-28",
+   "lat": 36.4362,
+   "lon": -83.5285,
+   "peak_day": "2021-03-27",
+   "rain_3day_mm": 102.7,
+   "image": "2021-03-29",
+   "orbit": 48,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    36.4362,
+    -83.5285
+   ],
+   "bbox_at_search_point": [
+    -83.640158,
+    36.346369,
+    -83.416842,
+    36.526031
+   ],
+   "damage_usd": 1754000.0,
+   "split": "dev",
+   "cluster": "se_156063",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_157424",
+   "episode": 157424,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-05-16",
+   "date": "2021-05-16",
+   "lat": 39.2075,
+   "lon": -99.0481,
+   "peak_day": "2021-05-15",
+   "rain_3day_mm": 60.0,
+   "image": "2021-05-16",
+   "orbit": 34,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    39.2075,
+    -99.0481
+   ],
+   "bbox_at_search_point": [
+    -99.164032,
+    39.117669,
+    -98.932168,
+    39.297331
+   ],
+   "damage_usd": 2000000.0,
+   "split": "dev",
+   "cluster": "se_157424",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_158930",
+   "episode": 158930,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-05-17",
+   "date": "2021-05-17",
+   "lat": 30.2248,
+   "lon": -93.2212,
+   "peak_day": "2021-05-18",
+   "rain_3day_mm": 231.2,
+   "image": "2021-05-18",
+   "orbit": 63,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    30.2248,
+    -93.2212
+   ],
+   "bbox_at_search_point": [
+    -93.325164,
+    30.134969,
+    -93.117236,
+    30.314631
+   ],
+   "damage_usd": 500330000.0,
+   "split": "dev",
+   "cluster": "se_158930",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_157472",
+   "episode": 157472,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-05-30",
+   "date": "2021-05-30",
+   "lat": 33.2431,
+   "lon": -104.4726,
+   "peak_day": "2021-05-30",
+   "rain_3day_mm": 62.2,
+   "image": "2021-05-30",
+   "orbit": 151,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    33.2431,
+    -104.4726
+   ],
+   "bbox_at_search_point": [
+    -104.580008,
+    33.153269,
+    -104.365192,
+    33.332931
+   ],
+   "damage_usd": 1810000.0,
+   "split": "dev",
+   "cluster": "se_157472",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_157473",
+   "episode": 157473,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-05-31",
+   "date": "2021-05-31",
+   "lat": 32.9739,
+   "lon": -104.2162,
+   "peak_day": "2021-05-30",
+   "rain_3day_mm": 46.3,
+   "image": "2021-05-30",
+   "orbit": 151,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    32.9739,
+    -104.2162
+   ],
+   "bbox_at_search_point": [
+    -104.32328,
+    32.884069,
+    -104.10912,
+    33.063731
+   ],
+   "damage_usd": 1250000.0,
+   "split": "dev",
+   "cluster": "se_157473",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_158564",
+   "episode": 158564,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-06-10",
+   "date": "2021-06-10",
+   "lat": 38.2908,
+   "lon": -82.0599,
+   "peak_day": "2021-06-10",
+   "rain_3day_mm": 34.1,
+   "image": "2021-06-09",
+   "orbit": 48,
+   "lag_days": -1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    38.2908,
+    -82.0599
+   ],
+   "bbox_at_search_point": [
+    -82.174353,
+    38.200969,
+    -81.945447,
+    38.380631
+   ],
+   "damage_usd": 1138000.0,
+   "split": "dev",
+   "cluster": "se_158564",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_158305",
+   "episode": 158305,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-06-18",
+   "date": "2021-06-18",
+   "lat": 39.2007,
+   "lon": -86.5303,
+   "peak_day": "2021-06-19",
+   "rain_3day_mm": 116.6,
+   "image": "2021-06-19",
+   "orbit": 19,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    39.2007,
+    -86.5303
+   ],
+   "bbox_at_search_point": [
+    -86.646221,
+    39.110869,
+    -86.414379,
+    39.290531
+   ],
+   "damage_usd": 47625000.0,
+   "split": "dev",
+   "cluster": "se_158305",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_160373",
+   "episode": 160373,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-06-19",
+   "date": "2021-06-19",
+   "lat": 33.241,
+   "lon": -87.689,
+   "peak_day": "2021-06-20",
+   "rain_3day_mm": 83.0,
+   "image": "2021-06-19",
+   "orbit": 19,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    33.241,
+    -87.689
+   ],
+   "bbox_at_search_point": [
+    -87.796406,
+    33.151169,
+    -87.581594,
+    33.330831
+   ],
+   "damage_usd": 3350000.0,
+   "split": "dev",
+   "cluster": "se_160373",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_159081",
+   "episode": 159081,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-06-25",
+   "date": "2021-06-25",
+   "lat": 40.4547,
+   "lon": -89.2381,
+   "peak_day": "2021-06-25",
+   "rain_3day_mm": 92.7,
+   "image": "2021-06-24",
+   "orbit": 92,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    40.4547,
+    -89.2381
+   ],
+   "bbox_at_search_point": [
+    -89.356156,
+    40.364869,
+    -89.120044,
+    40.544531
+   ],
+   "damage_usd": 12300000.0,
+   "split": "dev",
+   "cluster": "se_159081",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_160029",
+   "episode": 160029,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-06-26",
+   "date": "2021-06-26",
+   "lat": 42.4357,
+   "lon": -83.5514,
+   "peak_day": "2021-06-26",
+   "rain_3day_mm": 38.3,
+   "image": "2021-06-27",
+   "orbit": 48,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    42.4357,
+    -83.5514
+   ],
+   "bbox_at_search_point": [
+    -83.673117,
+    42.345869,
+    -83.429683,
+    42.525531
+   ],
+   "damage_usd": 149500000.0,
+   "split": "dev",
+   "cluster": "se_160029",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_158840",
+   "episode": 158840,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-07-06",
+   "date": "2021-07-06",
+   "lat": 33.3397,
+   "lon": -105.6916,
+   "peak_day": "2021-07-06",
+   "rain_3day_mm": 23.0,
+   "image": "2021-07-05",
+   "orbit": 151,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    33.3397,
+    -105.6916
+   ],
+   "bbox_at_search_point": [
+    -105.799127,
+    33.249869,
+    -105.584073,
+    33.429531
+   ],
+   "damage_usd": 1825000.0,
+   "split": "dev",
+   "cluster": "se_158840",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_160869",
+   "episode": 160869,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-07-14",
+   "date": "2021-07-14",
+   "lat": 42.73,
+   "lon": -73.6,
+   "peak_day": "2021-07-13",
+   "rain_3day_mm": 41.9,
+   "image": "2021-07-14",
+   "orbit": 33,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    42.73,
+    -73.6
+   ],
+   "bbox_at_search_point": [
+    -73.722293,
+    42.640169,
+    -73.477707,
+    42.819831
+   ],
+   "damage_usd": 2950000.0,
+   "split": "dev",
+   "cluster": "se_160869",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_162517",
+   "episode": 162517,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-08-10",
+   "date": "2021-08-10",
+   "lat": 41.9643,
+   "lon": -86.5668,
+   "peak_day": "2021-08-11",
+   "rain_3day_mm": 47.6,
+   "image": "2021-08-13",
+   "orbit": 121,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    41.9643,
+    -86.5668
+   ],
+   "bbox_at_search_point": [
+    -86.687612,
+    41.874469,
+    -86.445988,
+    42.054131
+   ],
+   "damage_usd": 1340000.0,
+   "split": "dev",
+   "cluster": "se_162517",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_161016",
+   "episode": 161016,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-08-18",
+   "date": "2021-08-18",
+   "lat": 33.3905,
+   "lon": -110.8224,
+   "peak_day": "2021-08-17",
+   "rain_3day_mm": 42.9,
+   "image": "2021-08-19",
+   "orbit": 27,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    33.3905,
+    -110.8224
+   ],
+   "bbox_at_search_point": [
+    -110.92999,
+    33.300669,
+    -110.71481,
+    33.480331
+   ],
+   "damage_usd": 8124000.0,
+   "split": "dev",
+   "cluster": "se_161016",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_162459",
+   "episode": 162459,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-08-18",
+   "date": "2021-08-18",
+   "lat": 42.1244,
+   "lon": -77.508,
+   "peak_day": "2021-08-18",
+   "rain_3day_mm": 53.5,
+   "image": "2021-08-17",
+   "orbit": 4,
+   "lag_days": -1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    42.1244,
+    -77.508
+   ],
+   "bbox_at_search_point": [
+    -77.629117,
+    42.034569,
+    -77.386883,
+    42.214231
+   ],
+   "damage_usd": 33500000.0,
+   "split": "dev",
+   "cluster": "se_162459",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_162236",
+   "episode": 162236,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-08-20",
+   "date": "2021-08-20",
+   "lat": 30.5288,
+   "lon": -103.8206,
+   "peak_day": "2021-08-20",
+   "rain_3day_mm": 27.2,
+   "image": "2021-08-22",
+   "orbit": 151,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    30.5288,
+    -103.8206
+   ],
+   "bbox_at_search_point": [
+    -103.924888,
+    30.438969,
+    -103.716312,
+    30.618631
+   ],
+   "damage_usd": 1000000.0,
+   "split": "dev",
+   "cluster": "se_162236",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_162118",
+   "episode": 162118,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-08-21",
+   "date": "2021-08-21",
+   "lat": 36.0852,
+   "lon": -87.8281,
+   "peak_day": "2021-08-21",
+   "rain_3day_mm": 71.9,
+   "image": "2021-08-23",
+   "orbit": 92,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    36.0852,
+    -87.8281
+   ],
+   "bbox_at_search_point": [
+    -87.939258,
+    35.995369,
+    -87.716942,
+    36.175031
+   ],
+   "damage_usd": 101034600.0,
+   "split": "dev",
+   "cluster": "se_162118",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_160909",
+   "episode": 160909,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-08-30",
+   "date": "2021-08-30",
+   "lat": 37.468,
+   "lon": -82.0236,
+   "peak_day": "2021-08-31",
+   "rain_3day_mm": 113.8,
+   "image": "2021-09-01",
+   "orbit": 48,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    37.468,
+    -82.0236
+   ],
+   "bbox_at_search_point": [
+    -82.136781,
+    37.378169,
+    -81.910419,
+    37.557831
+   ],
+   "damage_usd": 2510000.0,
+   "split": "dev",
+   "cluster": "se_160909",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_162538",
+   "episode": 162538,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-09-01",
+   "date": "2021-09-01",
+   "lat": 40.5774,
+   "lon": -74.7004,
+   "peak_day": "2021-09-01",
+   "rain_3day_mm": 116.4,
+   "image": "2021-08-31",
+   "orbit": 33,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    40.5774,
+    -74.7004
+   ],
+   "bbox_at_search_point": [
+    -74.818672,
+    40.487569,
+    -74.582128,
+    40.667231
+   ],
+   "damage_usd": 220000000.0,
+   "split": "dev",
+   "cluster": "se_162538",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_162971",
+   "episode": 162971,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-09-01",
+   "date": "2021-09-01",
+   "lat": 41.5491,
+   "lon": -73.9712,
+   "peak_day": "2021-09-01",
+   "rain_3day_mm": 109.9,
+   "image": "2021-08-31",
+   "orbit": 33,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    41.5491,
+    -73.9712
+   ],
+   "bbox_at_search_point": [
+    -74.091233,
+    41.459269,
+    -73.851167,
+    41.638931
+   ],
+   "damage_usd": 2400000.0,
+   "split": "dev",
+   "cluster": "se_162971",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_163555",
+   "episode": 163555,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-09-01",
+   "date": "2021-09-01",
+   "lat": 41.1675,
+   "lon": -73.8661,
+   "peak_day": "2021-09-01",
+   "rain_3day_mm": 121.1,
+   "image": "2021-08-31",
+   "orbit": 33,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    41.1675,
+    -73.8661
+   ],
+   "bbox_at_search_point": [
+    -73.985431,
+    41.077669,
+    -73.746769,
+    41.257331
+   ],
+   "damage_usd": 470920000.0,
+   "split": "dev",
+   "cluster": "se_163555",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_163812",
+   "episode": 163812,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-10-07",
+   "date": "2021-10-07",
+   "lat": 35.439,
+   "lon": -82.255,
+   "peak_day": "2021-10-06",
+   "rain_3day_mm": 85.1,
+   "image": "2021-10-07",
+   "orbit": 48,
+   "lag_days": 1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    35.439,
+    -82.255
+   ],
+   "bbox_at_search_point": [
+    -82.365258,
+    35.349169,
+    -82.144742,
+    35.528831
+   ],
+   "damage_usd": 1360000.0,
+   "split": "dev",
+   "cluster": "se_163812",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3se_163966",
+   "episode": 163966,
+   "tags": [
+    "flash_flood"
+   ],
+   "event": "2021-10-31",
+   "date": "2021-10-31",
+   "lat": 43.5014,
+   "lon": -70.4643,
+   "peak_day": "2021-10-31",
+   "rain_3day_mm": 58.1,
+   "image": "2021-11-01",
+   "orbit": 62,
+   "lag_days": 1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    43.5014,
+    -70.4643
+   ],
+   "bbox_at_search_point": [
+    -70.588144,
+    43.411569,
+    -70.340456,
+    43.591231
+   ],
+   "damage_usd": 2000000.0,
+   "split": "dev",
+   "cluster": "se_163966",
+   "source": "NOAA Storm Events episode; v3 Sentinel-1 label"
+  }
+ ],
+ "refused": [
+  {
+   "episode": 93070,
+   "date": "2015-04-03",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-04-03"
+  },
+  {
+   "episode": 93086,
+   "date": "2015-04-03",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-04-03"
+  },
+  {
+   "episode": 93137,
+   "date": "2015-04-03",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-04-03"
+  },
+  {
+   "episode": 94924,
+   "date": "2015-04-16",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-04-14"
+  },
+  {
+   "episode": 94740,
+   "date": "2015-05-06",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-05-06"
+  },
+  {
+   "episode": 95504,
+   "date": "2015-05-09",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-05-09"
+  },
+  {
+   "episode": 96388,
+   "date": "2015-05-11",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-05-11"
+  },
+  {
+   "episode": 96564,
+   "date": "2015-05-23",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-05-21"
+  },
+  {
+   "episode": 96368,
+   "date": "2015-05-24",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-05-24"
+  },
+  {
+   "episode": 96313,
+   "date": "2015-05-25",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-05-25"
+  },
+  {
+   "episode": 96369,
+   "date": "2015-05-25",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-05-24"
+  },
+  {
+   "episode": 97001,
+   "date": "2015-05-27",
+   "split": "dev",
+   "why": "fewer than 2 same-orbit baseline passes",
+   "t0": "2015-05-29"
+  },
+  {
+   "episode": 94600,
+   "date": "2015-05-28",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-05-29"
+  },
+  {
+   "episode": 95972,
+   "date": "2015-05-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-05-28"
+  },
+  {
+   "episode": 95143,
+   "date": "2015-06-03",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 17.3
+  },
+  {
+   "episode": 97900,
+   "date": "2015-06-04",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-06-05"
+  },
+  {
+   "episode": 96916,
+   "date": "2015-06-14",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-06-13"
+  },
+  {
+   "episode": 98085,
+   "date": "2015-06-17",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-06-18"
+  },
+  {
+   "episode": 98334,
+   "date": "2015-06-17",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-06-18"
+  },
+  {
+   "episode": 98337,
+   "date": "2015-06-19",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-06-18"
+  },
+  {
+   "episode": 96721,
+   "date": "2015-06-23",
+   "split": "dev",
+   "why": "fewer than 2 same-orbit baseline passes",
+   "t0": "2015-06-24"
+  },
+  {
+   "episode": 99413,
+   "date": "2015-06-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-06-28"
+  },
+  {
+   "episode": 99706,
+   "date": "2015-07-01",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-01"
+  },
+  {
+   "episode": 95782,
+   "date": "2015-07-02",
+   "split": "dev",
+   "why": "same place and month as an earlier candidate"
+  },
+  {
+   "episode": 96068,
+   "date": "2015-07-03",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-02"
+  },
+  {
+   "episode": 99402,
+   "date": "2015-07-05",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-04"
+  },
+  {
+   "episode": 95902,
+   "date": "2015-07-07",
+   "split": "dev",
+   "why": "same place and month as an earlier candidate"
+  },
+  {
+   "episode": 96107,
+   "date": "2015-07-07",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 11.0
+  },
+  {
+   "episode": 97901,
+   "date": "2015-07-07",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-08"
+  },
+  {
+   "episode": 98761,
+   "date": "2015-07-08",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 7.6
+  },
+  {
+   "episode": 96168,
+   "date": "2015-07-12",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-13"
+  },
+  {
+   "episode": 97125,
+   "date": "2015-07-13",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-13"
+  },
+  {
+   "episode": 98841,
+   "date": "2015-07-13",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-12"
+  },
+  {
+   "episode": 99554,
+   "date": "2015-07-13",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-14"
+  },
+  {
+   "episode": 96169,
+   "date": "2015-07-14",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-13"
+  },
+  {
+   "episode": 99559,
+   "date": "2015-07-14",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-14"
+  },
+  {
+   "episode": 98290,
+   "date": "2015-07-18",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-19"
+  },
+  {
+   "episode": 96400,
+   "date": "2015-07-19",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 4.8
+  },
+  {
+   "episode": 97326,
+   "date": "2015-07-19",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-19"
+  },
+  {
+   "episode": 99423,
+   "date": "2015-07-26",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 16.6
+  },
+  {
+   "episode": 97285,
+   "date": "2015-07-28",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-07-28"
+  },
+  {
+   "episode": 99142,
+   "date": "2015-08-18",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-08-19"
+  },
+  {
+   "episode": 98278,
+   "date": "2015-08-26",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 16.6
+  },
+  {
+   "episode": 99704,
+   "date": "2015-09-06",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-09-07"
+  },
+  {
+   "episode": 100526,
+   "date": "2015-09-23",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-09-24"
+  },
+  {
+   "episode": 99960,
+   "date": "2015-09-29",
+   "split": "dev",
+   "why": "fewer than 2 same-orbit baseline passes",
+   "t0": "2015-09-28"
+  },
+  {
+   "episode": 99634,
+   "date": "2015-10-03",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-10-04"
+  },
+  {
+   "episode": 100823,
+   "date": "2015-10-03",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-10-03"
+  },
+  {
+   "episode": 100894,
+   "date": "2015-10-04",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-10-03"
+  },
+  {
+   "episode": 100616,
+   "date": "2015-10-05",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 2.3
+  },
+  {
+   "episode": 100769,
+   "date": "2015-10-08",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-10-08"
+  },
+  {
+   "episode": 100432,
+   "date": "2015-10-10",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-10-10"
+  },
+  {
+   "episode": 100619,
+   "date": "2015-10-18",
+   "split": "dev",
+   "why": "fewer than 2 same-orbit baseline passes",
+   "t0": "2015-10-17"
+  },
+  {
+   "episode": 100423,
+   "date": "2015-10-23",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-10-24"
+  },
+  {
+   "episode": 101218,
+   "date": "2015-10-24",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-10-23"
+  },
+  {
+   "episode": 101302,
+   "date": "2015-10-24",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-10-23"
+  },
+  {
+   "episode": 101150,
+   "date": "2015-10-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-10-31"
+  },
+  {
+   "episode": 101034,
+   "date": "2015-10-31",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-10-31"
+  },
+  {
+   "episode": 101160,
+   "date": "2015-10-31",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-11-01"
+  },
+  {
+   "episode": 101946,
+   "date": "2015-11-27",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-11-27"
+  },
+  {
+   "episode": 101534,
+   "date": "2015-12-24",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-12-24"
+  },
+  {
+   "episode": 102597,
+   "date": "2015-12-25",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-12-25"
+  },
+  {
+   "episode": 101275,
+   "date": "2015-12-26",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-12-27"
+  },
+  {
+   "episode": 102600,
+   "date": "2015-12-28",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-12-27"
+  },
+  {
+   "episode": 101537,
+   "date": "2015-12-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2015-12-30"
+  },
+  {
+   "episode": 103186,
+   "date": "2016-03-08",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-03-09"
+  },
+  {
+   "episode": 103381,
+   "date": "2016-03-08",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-03-09"
+  },
+  {
+   "episode": 104289,
+   "date": "2016-03-09",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-03-09"
+  },
+  {
+   "episode": 104676,
+   "date": "2016-03-10",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-03-11"
+  },
+  {
+   "episode": 106193,
+   "date": "2016-03-10",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-03-11"
+  },
+  {
+   "episode": 103382,
+   "date": "2016-03-11",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-03-11"
+  },
+  {
+   "episode": 104365,
+   "date": "2016-03-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-03-31"
+  },
+  {
+   "episode": 104081,
+   "date": "2016-04-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-04-28"
+  },
+  {
+   "episode": 104275,
+   "date": "2016-05-09",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-05-10"
+  },
+  {
+   "episode": 104839,
+   "date": "2016-05-11",
+   "split": "dev",
+   "why": "fewer than 2 same-orbit baseline passes",
+   "t0": "2016-05-11"
+  },
+  {
+   "episode": 105808,
+   "date": "2016-05-16",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-05-15"
+  },
+  {
+   "episode": 104473,
+   "date": "2016-05-22",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-05-23"
+  },
+  {
+   "episode": 105633,
+   "date": "2016-05-24",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-05-25"
+  },
+  {
+   "episode": 104613,
+   "date": "2016-05-26",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-05-27"
+  },
+  {
+   "episode": 104709,
+   "date": "2016-06-01",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-05-31"
+  },
+  {
+   "episode": 105857,
+   "date": "2016-06-03",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 17.7
+  },
+  {
+   "episode": 105483,
+   "date": "2016-06-23",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-06-22"
+  },
+  {
+   "episode": 107243,
+   "date": "2016-06-23",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-06-22"
+  },
+  {
+   "episode": 107297,
+   "date": "2016-06-23",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-06-23"
+  },
+  {
+   "episode": 105744,
+   "date": "2016-07-07",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-07-08"
+  },
+  {
+   "episode": 108803,
+   "date": "2016-07-08",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 7.8
+  },
+  {
+   "episode": 108406,
+   "date": "2016-07-11",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-07-11"
+  },
+  {
+   "episode": 108984,
+   "date": "2016-07-23",
+   "split": "dev",
+   "why": "fewer than 2 same-orbit baseline passes",
+   "t0": "2016-07-24"
+  },
+  {
+   "episode": 109093,
+   "date": "2016-07-29",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 0.5
+  },
+  {
+   "episode": 108547,
+   "date": "2016-07-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-07-29"
+  },
+  {
+   "episode": 108993,
+   "date": "2016-08-01",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-08-02"
+  },
+  {
+   "episode": 109765,
+   "date": "2016-08-03",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 19.6
+  },
+  {
+   "episode": 107042,
+   "date": "2016-08-05",
+   "split": "dev",
+   "why": "fewer than 2 same-orbit baseline passes",
+   "t0": "2016-08-04"
+  },
+  {
+   "episode": 109514,
+   "date": "2016-08-12",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-08-12"
+  },
+  {
+   "episode": 109515,
+   "date": "2016-08-12",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-08-12"
+  },
+  {
+   "episode": 109693,
+   "date": "2016-08-12",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-08-13"
+  },
+  {
+   "episode": 109464,
+   "date": "2016-08-15",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-08-16"
+  },
+  {
+   "episode": 107806,
+   "date": "2016-08-22",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 12.9
+  },
+  {
+   "episode": 108073,
+   "date": "2016-08-28",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-08-28"
+  },
+  {
+   "episode": 108168,
+   "date": "2016-08-28",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-08-28"
+  },
+  {
+   "episode": 110218,
+   "date": "2016-09-21",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-09-21"
+  },
+  {
+   "episode": 110402,
+   "date": "2016-09-21",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-09-21"
+  },
+  {
+   "episode": 110219,
+   "date": "2016-09-22",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-09-21"
+  },
+  {
+   "episode": 110619,
+   "date": "2016-09-22",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-09-23"
+  },
+  {
+   "episode": 110316,
+   "date": "2016-09-29",
+   "split": "dev",
+   "why": "fewer than 2 same-orbit baseline passes",
+   "t0": "2016-09-28"
+  },
+  {
+   "episode": 109645,
+   "date": "2016-10-08",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-10-08"
+  },
+  {
+   "episode": 109819,
+   "date": "2016-10-21",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2016-10-20"
+  },
+  {
+   "episode": 112816,
+   "date": "2017-01-02",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-01-01"
+  },
+  {
+   "episode": 113376,
+   "date": "2017-02-04",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 7.4
+  },
+  {
+   "episode": 113734,
+   "date": "2017-02-17",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-02-17"
+  },
+  {
+   "episode": 115191,
+   "date": "2017-04-02",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-04-03"
+  },
+  {
+   "episode": 115280,
+   "date": "2017-04-13",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 12.6
+  },
+  {
+   "episode": 115700,
+   "date": "2017-04-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-04-30"
+  },
+  {
+   "episode": 116155,
+   "date": "2017-05-03",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-05-01"
+  },
+  {
+   "episode": 116985,
+   "date": "2017-05-11",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-05-10"
+  },
+  {
+   "episode": 115742,
+   "date": "2017-06-23",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-06-23"
+  },
+  {
+   "episode": 117589,
+   "date": "2017-07-01",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-06-30"
+  },
+  {
+   "episode": 117993,
+   "date": "2017-07-09",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-07-10"
+  },
+  {
+   "episode": 118416,
+   "date": "2017-07-12",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-07-11"
+  },
+  {
+   "episode": 119571,
+   "date": "2017-07-12",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-07-11"
+  },
+  {
+   "episode": 119879,
+   "date": "2017-07-19",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 16.5
+  },
+  {
+   "episode": 119141,
+   "date": "2017-07-21",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-07-21"
+  },
+  {
+   "episode": 118007,
+   "date": "2017-07-23",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-07-23"
+  },
+  {
+   "episode": 118008,
+   "date": "2017-07-24",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-07-23"
+  },
+  {
+   "episode": 118034,
+   "date": "2017-07-24",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 2.9
+  },
+  {
+   "episode": 117803,
+   "date": "2017-07-25",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-07-24"
+  },
+  {
+   "episode": 119192,
+   "date": "2017-07-26",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 10.8
+  },
+  {
+   "episode": 116976,
+   "date": "2017-07-29",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-07-28"
+  },
+  {
+   "episode": 119205,
+   "date": "2017-07-29",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-07-28"
+  },
+  {
+   "episode": 119837,
+   "date": "2017-08-02",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-07-31"
+  },
+  {
+   "episode": 117328,
+   "date": "2017-08-03",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-08-01"
+  },
+  {
+   "episode": 117685,
+   "date": "2017-08-05",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 7.3
+  },
+  {
+   "episode": 118725,
+   "date": "2017-08-05",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-08-04"
+  },
+  {
+   "episode": 119767,
+   "date": "2017-08-10",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 11.4
+  },
+  {
+   "episode": 119753,
+   "date": "2017-08-26",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-08-26"
+  },
+  {
+   "episode": 119746,
+   "date": "2017-08-27",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-08-28"
+  },
+  {
+   "episode": 120120,
+   "date": "2017-08-27",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-08-28"
+  },
+  {
+   "episode": 120680,
+   "date": "2017-09-09",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 2.9
+  },
+  {
+   "episode": 121207,
+   "date": "2017-10-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2017-10-29"
+  },
+  {
+   "episode": 124503,
+   "date": "2018-03-22",
+   "split": "dev",
+   "why": "same place and month as an earlier candidate"
+  },
+  {
+   "episode": 124409,
+   "date": "2018-04-03",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-04-02"
+  },
+  {
+   "episode": 124938,
+   "date": "2018-04-14",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-04-14"
+  },
+  {
+   "episode": 126723,
+   "date": "2018-05-17",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-05-18"
+  },
+  {
+   "episode": 124890,
+   "date": "2018-05-18",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-05-17"
+  },
+  {
+   "episode": 124894,
+   "date": "2018-05-18",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-05-17"
+  },
+  {
+   "episode": 124482,
+   "date": "2018-05-26",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 14.7
+  },
+  {
+   "episode": 124954,
+   "date": "2018-06-08",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-06-09"
+  },
+  {
+   "episode": 125245,
+   "date": "2018-06-17",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-06-16"
+  },
+  {
+   "episode": 128458,
+   "date": "2018-06-20",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-06-21"
+  },
+  {
+   "episode": 127578,
+   "date": "2018-06-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-06-30"
+  },
+  {
+   "episode": 128625,
+   "date": "2018-07-02",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-07-03"
+  },
+  {
+   "episode": 129115,
+   "date": "2018-07-10",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 16.4
+  },
+  {
+   "episode": 128654,
+   "date": "2018-07-14",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 5.2
+  },
+  {
+   "episode": 129476,
+   "date": "2018-07-21",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 6.1
+  },
+  {
+   "episode": 126594,
+   "date": "2018-07-23",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-07-24"
+  },
+  {
+   "episode": 127772,
+   "date": "2018-07-24",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 6.3
+  },
+  {
+   "episode": 127273,
+   "date": "2018-08-02",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 5.0
+  },
+  {
+   "episode": 129755,
+   "date": "2018-08-10",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 16.0
+  },
+  {
+   "episode": 130182,
+   "date": "2018-08-11",
+   "split": "dev",
+   "why": "inside a 311 city (+ ~20 km)"
+  },
+  {
+   "episode": 130512,
+   "date": "2018-08-14",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-08-13"
+  },
+  {
+   "episode": 130103,
+   "date": "2018-08-15",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 8.8
+  },
+  {
+   "episode": 129415,
+   "date": "2018-08-20",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-08-21"
+  },
+  {
+   "episode": 129882,
+   "date": "2018-09-08",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-09-09"
+  },
+  {
+   "episode": 130244,
+   "date": "2018-09-17",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-09-16"
+  },
+  {
+   "episode": 131386,
+   "date": "2018-09-21",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-09-21"
+  },
+  {
+   "episode": 129881,
+   "date": "2018-09-22",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-09-23"
+  },
+  {
+   "episode": 131617,
+   "date": "2018-09-26",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-09-26"
+  },
+  {
+   "episode": 131740,
+   "date": "2018-10-08",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-10-08"
+  },
+  {
+   "episode": 130716,
+   "date": "2018-10-11",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-10-10"
+  },
+  {
+   "episode": 131036,
+   "date": "2018-10-11",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-10-10"
+  },
+  {
+   "episode": 131818,
+   "date": "2018-10-16",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-10-16"
+  },
+  {
+   "episode": 132395,
+   "date": "2018-12-27",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-12-28"
+  },
+  {
+   "episode": 133435,
+   "date": "2018-12-27",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2018-12-28"
+  },
+  {
+   "episode": 134538,
+   "date": "2019-02-14",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-02-14"
+  },
+  {
+   "episode": 135004,
+   "date": "2019-02-14",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-02-15"
+  },
+  {
+   "episode": 133572,
+   "date": "2019-02-22",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-02-20"
+  },
+  {
+   "episode": 134617,
+   "date": "2019-03-13",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-03-13"
+  },
+  {
+   "episode": 135253,
+   "date": "2019-03-13",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-03-13"
+  },
+  {
+   "episode": 135532,
+   "date": "2019-03-14",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-03-13"
+  },
+  {
+   "episode": 135252,
+   "date": "2019-03-17",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 5.6
+  },
+  {
+   "episode": 136193,
+   "date": "2019-04-09",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-04-08"
+  },
+  {
+   "episode": 136168,
+   "date": "2019-04-15",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-04-14"
+  },
+  {
+   "episode": 137334,
+   "date": "2019-05-01",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-04-30"
+  },
+  {
+   "episode": 137737,
+   "date": "2019-05-06",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 7.8
+  },
+  {
+   "episode": 135677,
+   "date": "2019-05-17",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-05-18"
+  },
+  {
+   "episode": 138330,
+   "date": "2019-05-26",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-05-27"
+  },
+  {
+   "episode": 138217,
+   "date": "2019-06-02",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 12.3
+  },
+  {
+   "episode": 138573,
+   "date": "2019-06-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-07-01"
+  },
+  {
+   "episode": 139772,
+   "date": "2019-07-04",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 18.7
+  },
+  {
+   "episode": 140934,
+   "date": "2019-07-05",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 17.9
+  },
+  {
+   "episode": 138929,
+   "date": "2019-07-08",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-07-09"
+  },
+  {
+   "episode": 140967,
+   "date": "2019-07-11",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-07-11"
+  },
+  {
+   "episode": 140637,
+   "date": "2019-07-14",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-07-14"
+  },
+  {
+   "episode": 140585,
+   "date": "2019-07-19",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-07-20"
+  },
+  {
+   "episode": 142531,
+   "date": "2019-08-02",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-08-01"
+  },
+  {
+   "episode": 142496,
+   "date": "2019-09-12",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-09-11"
+  },
+  {
+   "episode": 141424,
+   "date": "2019-09-20",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-09-21"
+  },
+  {
+   "episode": 143175,
+   "date": "2019-10-31",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-10-31"
+  },
+  {
+   "episode": 142455,
+   "date": "2019-11-01",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-10-31"
+  },
+  {
+   "episode": 142456,
+   "date": "2019-11-01",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2019-10-31"
+  },
+  {
+   "episode": 144086,
+   "date": "2020-01-02",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-01-02"
+  },
+  {
+   "episode": 145487,
+   "date": "2020-01-14",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-01-14"
+  },
+  {
+   "episode": 145042,
+   "date": "2020-02-06",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-02-06"
+  },
+  {
+   "episode": 145216,
+   "date": "2020-02-06",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-02-06"
+  },
+  {
+   "episode": 145640,
+   "date": "2020-02-06",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-02-06"
+  },
+  {
+   "episode": 145331,
+   "date": "2020-03-20",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-03-19"
+  },
+  {
+   "episode": 147224,
+   "date": "2020-04-13",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-04-13"
+  },
+  {
+   "episode": 148882,
+   "date": "2020-05-18",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-05-18"
+  },
+  {
+   "episode": 146685,
+   "date": "2020-05-19",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-05-18"
+  },
+  {
+   "episode": 147735,
+   "date": "2020-05-22",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-05-23"
+  },
+  {
+   "episode": 148308,
+   "date": "2020-05-28",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-05-29"
+  },
+  {
+   "episode": 149548,
+   "date": "2020-06-19",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-06-17"
+  },
+  {
+   "episode": 150880,
+   "date": "2020-07-01",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-07-01"
+  },
+  {
+   "episode": 149699,
+   "date": "2020-07-09",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-07-09"
+  },
+  {
+   "episode": 150199,
+   "date": "2020-07-30",
+   "split": "dev",
+   "why": "fewer than 2 same-orbit baseline passes",
+   "t0": "2020-07-31"
+  },
+  {
+   "episode": 152010,
+   "date": "2020-08-23",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 19.0
+  },
+  {
+   "episode": 151889,
+   "date": "2020-08-24",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 18.9
+  },
+  {
+   "episode": 152026,
+   "date": "2020-09-07",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2020-09-07"
+  },
+  {
+   "episode": 153731,
+   "date": "2020-10-23",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 10.5
+  },
+  {
+   "episode": 155965,
+   "date": "2021-02-28",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-02-28"
+  },
+  {
+   "episode": 158973,
+   "date": "2021-05-17",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-05-18"
+  },
+  {
+   "episode": 158008,
+   "date": "2021-06-08",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-06-08"
+  },
+  {
+   "episode": 159267,
+   "date": "2021-06-08",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-06-09"
+  },
+  {
+   "episode": 160599,
+   "date": "2021-06-09",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-06-09"
+  },
+  {
+   "episode": 160609,
+   "date": "2021-06-10",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-06-09"
+  },
+  {
+   "episode": 161114,
+   "date": "2021-06-10",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-06-09"
+  },
+  {
+   "episode": 159758,
+   "date": "2021-06-26",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-06-27"
+  },
+  {
+   "episode": 158833,
+   "date": "2021-06-29",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 7.9
+  },
+  {
+   "episode": 159972,
+   "date": "2021-07-12",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 17.5
+  },
+  {
+   "episode": 161227,
+   "date": "2021-07-15",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-07-15"
+  },
+  {
+   "episode": 161557,
+   "date": "2021-07-18",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-07-18"
+  },
+  {
+   "episode": 161611,
+   "date": "2021-07-22",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-07-23"
+  },
+  {
+   "episode": 159630,
+   "date": "2021-07-28",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 10.8
+  },
+  {
+   "episode": 161044,
+   "date": "2021-07-29",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-07-28"
+  },
+  {
+   "episode": 161577,
+   "date": "2021-07-29",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-07-30"
+  },
+  {
+   "episode": 161654,
+   "date": "2021-07-29",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-07-28"
+  },
+  {
+   "episode": 161834,
+   "date": "2021-07-29",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 7.3
+  },
+  {
+   "episode": 159632,
+   "date": "2021-07-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-07-31"
+  },
+  {
+   "episode": 162616,
+   "date": "2021-08-01",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 12.7
+  },
+  {
+   "episode": 161073,
+   "date": "2021-08-12",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-08-11"
+  },
+  {
+   "episode": 162570,
+   "date": "2021-08-14",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 19.0
+  },
+  {
+   "episode": 162679,
+   "date": "2021-08-16",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-08-16"
+  },
+  {
+   "episode": 162681,
+   "date": "2021-08-17",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-08-16"
+  },
+  {
+   "episode": 161167,
+   "date": "2021-08-30",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-08-30"
+  },
+  {
+   "episode": 162940,
+   "date": "2021-08-31",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 18.9
+  },
+  {
+   "episode": 162533,
+   "date": "2021-09-01",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-09-01"
+  },
+  {
+   "episode": 162539,
+   "date": "2021-09-01",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-09-01"
+  },
+  {
+   "episode": 163204,
+   "date": "2021-09-01",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-08-31"
+  },
+  {
+   "episode": 163260,
+   "date": "2021-09-01",
+   "split": "dev",
+   "why": "inside a 311 city (+ ~20 km)"
+  },
+  {
+   "episode": 163420,
+   "date": "2021-09-01",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 17.6
+  },
+  {
+   "episode": 162458,
+   "date": "2021-09-07",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-09-08"
+  },
+  {
+   "episode": 163646,
+   "date": "2021-10-08",
+   "split": "dev",
+   "why": "driver check failed (IMERG 3-day < 20 mm)",
+   "rain_3day_mm": 14.5
+  },
+  {
+   "episode": 163032,
+   "date": "2021-10-21",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-10-21"
+  },
+  {
+   "episode": 163922,
+   "date": "2021-10-26",
+   "split": "dev",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + 2 d]",
+   "peak": "2021-10-26"
+  }
+ ]
+}

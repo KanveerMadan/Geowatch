@@ -1,0 +1,1168 @@
+{
+ "r3se_103788": {
+  "cluster": "se_103788",
+  "event": "2016-04-17",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_106764": {
+  "cluster": "se_106764",
+  "event": "2016-07-30",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_107666": {
+  "cluster": "se_107666",
+  "event": "2016-07-07",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_108830": {
+  "cluster": "se_108830",
+  "event": "2016-09-21",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_109004": {
+  "cluster": "se_109004",
+  "event": "2016-08-11",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_109571": {
+  "cluster": "se_109571",
+  "event": "2016-08-23",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_109768": {
+  "cluster": "se_109768",
+  "event": "2016-08-11",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_109822": {
+  "cluster": "se_109822",
+  "event": "2016-08-12",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_110544": {
+  "cluster": "se_110544",
+  "event": "2016-09-29",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_110904": {
+  "cluster": "se_110904",
+  "event": "2016-10-08",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_111078": {
+  "cluster": "se_111078",
+  "event": "2016-10-08",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_113684": {
+  "cluster": "se_113684",
+  "event": "2017-04-02",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_114084": {
+  "cluster": "se_114084",
+  "event": "2017-04-29",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_116304": {
+  "cluster": "se_116304",
+  "event": "2017-06-06",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_116524": {
+  "cluster": "se_116524",
+  "event": "2017-06-18",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_116778": {
+  "cluster": "se_116778",
+  "event": "2017-07-01",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_117502": {
+  "cluster": "se_117502",
+  "event": "2017-07-22",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_117671": {
+  "cluster": "se_117671",
+  "event": "2017-07-01",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_117751": {
+  "cluster": "se_117751",
+  "event": "2017-06-22",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_118207": {
+  "cluster": "se_118207",
+  "event": "2017-07-20",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_118638": {
+  "cluster": "se_118638",
+  "event": "2017-07-22",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_118772": {
+  "cluster": "se_118772",
+  "event": "2017-09-10",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_119157": {
+  "cluster": "se_119157",
+  "event": "2017-07-01",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_119671": {
+  "cluster": "se_119671",
+  "event": "2017-09-29",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_120356": {
+  "cluster": "se_120356",
+  "event": "2017-09-06",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_120357": {
+  "cluster": "se_120357",
+  "event": "2017-09-20",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_122797": {
+  "cluster": "se_122797",
+  "event": "2018-01-27",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_123057": {
+  "cluster": "se_123057",
+  "event": "2018-03-22",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_123655": {
+  "cluster": "se_123655",
+  "event": "2018-04-14",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_125075": {
+  "cluster": "se_125075",
+  "event": "2018-05-27",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_125550": {
+  "cluster": "se_125550",
+  "event": "2018-06-13",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_126423": {
+  "cluster": "se_126423",
+  "event": "2018-05-15",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_126459": {
+  "cluster": "se_126459",
+  "event": "2018-05-27",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_126462": {
+  "cluster": "se_126462",
+  "event": "2018-05-31",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_126624": {
+  "cluster": "se_126624",
+  "event": "2018-06-17",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_126801": {
+  "cluster": "se_126801",
+  "event": "2018-07-26",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_128029": {
+  "cluster": "se_128029",
+  "event": "2018-08-02",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_128323": {
+  "cluster": "se_128323",
+  "event": "2018-06-20",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_129101": {
+  "cluster": "se_129101",
+  "event": "2018-08-22",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_129126": {
+  "cluster": "se_129126",
+  "event": "2018-08-28",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_129710": {
+  "cluster": "se_129710",
+  "event": "2018-08-28",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_130523": {
+  "cluster": "se_130523",
+  "event": "2018-09-03",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_130719": {
+  "cluster": "se_130719",
+  "event": "2018-09-15",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_131391": {
+  "cluster": "se_131391",
+  "event": "2018-09-03",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_135086": {
+  "cluster": "se_135086",
+  "event": "2019-02-06",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_135262": {
+  "cluster": "se_135262",
+  "event": "2019-02-23",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_135483": {
+  "cluster": "se_135483",
+  "event": "2019-05-08",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_135533": {
+  "cluster": "se_135533",
+  "event": "2019-04-09",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_136371": {
+  "cluster": "se_136371",
+  "event": "2019-05-28",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_136821": {
+  "cluster": "se_136821",
+  "event": "2019-05-28",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_137124": {
+  "cluster": "se_137124",
+  "event": "2019-06-07",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_137312": {
+  "cluster": "se_137312",
+  "event": "2019-05-25",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_137788": {
+  "cluster": "se_137788",
+  "event": "2019-06-07",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_137851": {
+  "cluster": "se_137851",
+  "event": "2019-05-09",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_137992": {
+  "cluster": "se_137992",
+  "event": "2019-05-11",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_138835": {
+  "cluster": "se_138835",
+  "event": "2019-06-23",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_138900": {
+  "cluster": "se_138900",
+  "event": "2019-05-05",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_139516": {
+  "cluster": "se_139516",
+  "event": "2019-06-17",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_139525": {
+  "cluster": "se_139525",
+  "event": "2019-06-20",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_140616": {
+  "cluster": "se_140616",
+  "event": "2019-07-20",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_140942": {
+  "cluster": "se_140942",
+  "event": "2019-07-21",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_141240": {
+  "cluster": "se_141240",
+  "event": "2019-07-20",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_141836": {
+  "cluster": "se_141836",
+  "event": "2019-09-19",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_142104": {
+  "cluster": "se_142104",
+  "event": "2019-09-18",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_142205": {
+  "cluster": "se_142205",
+  "event": "2019-06-24",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_145702": {
+  "cluster": "se_145702",
+  "event": "2020-03-28",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_147364": {
+  "cluster": "se_147364",
+  "event": "2020-04-13",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_147906": {
+  "cluster": "se_147906",
+  "event": "2020-06-29",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_148205": {
+  "cluster": "se_148205",
+  "event": "2020-05-24",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_148908": {
+  "cluster": "se_148908",
+  "event": "2020-06-28",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_150353": {
+  "cluster": "se_150353",
+  "event": "2020-07-26",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_151541": {
+  "cluster": "se_151541",
+  "event": "2020-07-26",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_151831": {
+  "cluster": "se_151831",
+  "event": "2020-09-16",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_151832": {
+  "cluster": "se_151832",
+  "event": "2020-09-16",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_152863": {
+  "cluster": "se_152863",
+  "event": "2020-09-10",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_153456": {
+  "cluster": "se_153456",
+  "event": "2020-10-29",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_154480": {
+  "cluster": "se_154480",
+  "event": "2020-11-12",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_155558": {
+  "cluster": "se_155558",
+  "event": "2021-03-09",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_156063": {
+  "cluster": "se_156063",
+  "event": "2021-03-28",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_157248": {
+  "cluster": "se_157248",
+  "event": "2021-03-27",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_157424": {
+  "cluster": "se_157424",
+  "event": "2021-05-16",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_157472": {
+  "cluster": "se_157472",
+  "event": "2021-05-30",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_157473": {
+  "cluster": "se_157473",
+  "event": "2021-05-31",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_158305": {
+  "cluster": "se_158305",
+  "event": "2021-06-18",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_158564": {
+  "cluster": "se_158564",
+  "event": "2021-06-10",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_158840": {
+  "cluster": "se_158840",
+  "event": "2021-07-06",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_158930": {
+  "cluster": "se_158930",
+  "event": "2021-05-17",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_159081": {
+  "cluster": "se_159081",
+  "event": "2021-06-25",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_160029": {
+  "cluster": "se_160029",
+  "event": "2021-06-26",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_160373": {
+  "cluster": "se_160373",
+  "event": "2021-06-19",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_160869": {
+  "cluster": "se_160869",
+  "event": "2021-07-14",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_160909": {
+  "cluster": "se_160909",
+  "event": "2021-08-30",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_161016": {
+  "cluster": "se_161016",
+  "event": "2021-08-18",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_162118": {
+  "cluster": "se_162118",
+  "event": "2021-08-21",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_162236": {
+  "cluster": "se_162236",
+  "event": "2021-08-20",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_162459": {
+  "cluster": "se_162459",
+  "event": "2021-08-18",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_162517": {
+  "cluster": "se_162517",
+  "event": "2021-08-10",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_162538": {
+  "cluster": "se_162538",
+  "event": "2021-09-01",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_162971": {
+  "cluster": "se_162971",
+  "event": "2021-09-01",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_163555": {
+  "cluster": "se_163555",
+  "event": "2021-09-01",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_163812": {
+  "cluster": "se_163812",
+  "event": "2021-10-07",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_163966": {
+  "cluster": "se_163966",
+  "event": "2021-10-31",
+  "kind": "s1_vvdrop",
+  "region": "us_northeast",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_94009": {
+  "cluster": "se_94009",
+  "event": "2015-05-04",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_94967": {
+  "cluster": "se_94967",
+  "event": "2015-05-24",
+  "kind": "s1_vvdrop",
+  "region": "us_west",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_95146": {
+  "cluster": "se_95146",
+  "event": "2015-06-19",
+  "kind": "s1_vvdrop",
+  "region": "us_midwest",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ },
+ "r3se_97248": {
+  "cluster": "se_97248",
+  "event": "2015-06-17",
+  "kind": "s1_vvdrop",
+  "region": "us_south",
+  "role": "dev",
+  "source": "NOAA Storm Events episode; v3 Sentinel-1 label",
+  "tags": [
+   "flash_flood"
+  ]
+ }
+}

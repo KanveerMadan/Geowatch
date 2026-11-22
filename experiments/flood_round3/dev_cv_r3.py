@@ -41,6 +41,9 @@ def family(ty):
 
 def load_tables():
     cat = json.load(open(os.path.join(OUT, "burned_catalog.json")))
+    p1 = os.path.join(OUT, "s1route_catalog.json")      # DEV Sentinel-1-route units (Storm Events flash)
+    if os.path.exists(p1):
+        cat.update(json.load(open(p1)))
     tabs = {}
     for f in sorted(os.listdir(TABLES)):
         n = f[:-4]
