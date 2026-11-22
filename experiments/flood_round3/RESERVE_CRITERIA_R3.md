@@ -70,5 +70,40 @@ The first label image must fall inside **[peak − 1 d, peak + MAX_LAG]**.
 - **Per activation:** up to 2 AOI units, as in round 2. Units of one storm form one cluster.
 - If a type still ends below its target, that is stated in the pre-registration with its achieved power. The bar is not changed.
 
+## 8. Sentinel-1 route: event lists without EMS image metadata (added 2026-11-22, before any such candidate was listed)
+This route is for event lists that give an activation code, a date and AOI footprints, but no image times or reported extent. The first is MMFlood (CC BY 4.0, Zenodo 6534637).
+
+**What is read:**
+- `activations.json`: code, title, start date;
+- the GeoTIFF header of each DEM tile, for the AOI footprint (`mmflood_meta.py`).
+
+The mask and SAR tiles are never read.
+
+**Labels:** our own v3 Sentinel-1 labels (§5), not MMFlood masks, since the mask image dates are unknown.
+
+**Rules, in order:**
+1. **Never used (§1):**
+   - the code is not in the used set;
+   - the footprint centre is more than 20 km from every burned unit's centre, on any date.
+2. **Type:**
+   - The §2 regex RULES are applied to the title.
+   - A title with no type word ("Flood in X") is a river candidate, and is kept only if the river driver check (rule 4) passes.
+   - Only **river** and **waterlogging** (title words only) are taken on this route. The other types are refused: Sentinel-1 labels agree with independent optical maps only at chance level for rain, flash, coastal and compound (DIAGNOSIS §e, κ 0.02–0.05).
+3. **Unit box:**
+   - a 3.99 km square (round 2's box), centred on the GEOGloWS reach point with the largest drainage area inside the AOI footprint shrunk by 2 km;
+   - no reach there → refused.
+4. **Driver check and peak:**
+   - the discharge peak at that reach within [start − 10 d, start + 7 d] has an empirical annual-maximum return period ≥ 1.5 y;
+   - the peak day is the peak.
+5. **Timing:**
+   - the first Sentinel-1 IW GRD VV pass covering the box centre is in [peak − 1 d, peak + 3 d];
+   - it has ≥ 2 same-relative-orbit baseline passes in [t0 − 60 d, t0 − 6 d], or in the same window a year earlier.
+6. **Per activation:**
+   - up to 2 units, from AOI groups in ascending group number;
+   - a second unit's box must not overlap the first;
+   - units of one activation form one cluster.
+7. **Order:** ascending activation code, then AOI group number.
+8. **Buffer for dropouts:** there is no extent metadata, so 1.5 × the §6 target is taken. Units with fewer than 50 flooded or 50 dry cells drop out under the bar's own rule, and every dropout is reported.
+
 ## 7. Order inside a type
 Candidates that pass §1–§4 are taken in **ascending activation code**, then AOI number. Sentinel-1 candidates come in ascending date. Taking stops when the target is met. No other ordering is allowed, so no one can pick "easy" events.
