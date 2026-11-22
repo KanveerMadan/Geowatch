@@ -127,6 +127,71 @@ def build_one(n: str) -> dict:
     return {"flooded": int((z["y"] == 1).sum()), "dry": int((z["y"] == 0).sum()), "cells": int(len(z["y"]))}
 
 
+def _features(n, rp, meta):
+    """Round 2's feature pipeline for a reference file rp (flooded/valid/meta) -> FR2 table path."""
+    from experiments.flood_baselines import build as BUILD
+    from experiments.flood_baselines import score as BSCORE
+    from experiments.flood_learned import features as FT
+    from experiments.flood_learned import fetch as F
+    from experiments.flood_round2 import features_r2 as FR2
+    e = {"unit": n, "path": rp, "meta": meta, "round": "flood_round3", "split": "dev", "modules": [], "uses": []}
+    if not os.path.exists(BUILD.path(n)):
+        BUILD.save(n, BUILD.build_unit(e))
+    if not os.path.exists(F.path(n)):
+        arrays, fm = F.fetch_unit(e)
+        F.save(n, arrays, fm)
+    if not os.path.exists(FT.path(n)):
+        FT.save(n, FT.build_table(e, BSCORE.round4_chosen()))
+    FR2.CACHE = TABLES
+    FR2.SRC_TABLES = [FT.CACHE]
+    FR2.SRC_INPUTS = [F.CACHE]
+    if not os.path.exists(FR2.path(n)):
+        FR2.build(n)
+    return FR2.path(n)
+
+
+def build_box(box: str) -> dict:
+    """311 lattice box: features once (reference year FEATURE_YEAR_EVENT); per-event labels stay in r311_refs."""
+    from experiments.flood_round3 import rain311 as R3
+    units = json.load(open(os.path.join(R3.REFS, "units.json")))
+    mine = sorted(n for n, u in units.items() if u["box"] == box)
+    z = np.load(os.path.join(R3.REFS, f"{mine[0]}.npz"), allow_pickle=False)
+    y = z["y3"]
+    m0 = json.loads(str(z["meta"]))
+    rp = os.path.join(REFS, f"{box}.npz")
+    meta = {"unit": box, "event": R3.FEATURE_YEAR_EVENT, "bbox": m0["bbox"], "grid": m0["grid"], "block": 1,
+            "note": "features only; labels per event in r311_refs"}
+    if not os.path.exists(rp):
+        os.makedirs(REFS, exist_ok=True)
+        np.savez_compressed(rp + ".tmp.npz", flooded=(y == 1), valid=(y == 1) | (y == 0),
+                            meta=np.array(json.dumps(meta)))
+        os.replace(rp + ".tmp.npz", rp)
+    p = _features(box, rp, meta)
+    return {"table": os.path.basename(p), "events": len(mine)}
+
+
+def r311():
+    from experiments.flood_round3 import rain311 as R3
+    units = json.load(open(os.path.join(R3.REFS, "units.json")))
+    log_p = LOG.replace(".json", "_r311.json")
+    log = json.load(open(log_p)) if os.path.exists(log_p) else {}
+    for box in sorted({u["box"] for u in units.values()}):
+        rec = log.setdefault(box, {"tries": 0})
+        while not rec.get("done") and rec["tries"] < TRIES:
+            try:
+                r = subprocess.run([sys.executable, "-m", "experiments.flood_round3.build_r3", "--box", box],
+                                   timeout=UNIT_KILL_S, capture_output=True, text=True)
+                tail = (r.stdout + r.stderr).strip().splitlines()[-3:]
+                ok = r.returncode == 0
+            except subprocess.TimeoutExpired:
+                ok, tail = False, [f"killed after {UNIT_KILL_S} s"]
+            rec["tries"] += 1
+            rec.update(ok=ok, tail=tail, done=bool(ok and tail and tail[-1].startswith("RESULT ")))
+            print(box, json.dumps(rec)[:300], flush=True)
+            json.dump(log, open(log_p, "w"), indent=1)
+    return 0
+
+
 def dev(shard=0, shards=1):
     from experiments.flood_baselines.build import check_disk
     log_p = LOG if shards == 1 else LOG.replace(".json", f"_{shard}of{shards}.json")
@@ -162,6 +227,11 @@ def dev(shard=0, shards=1):
 
 def main(argv=None):
     a = argv or sys.argv[1:]
+    if a[0] == "--box":
+        print("RESULT " + json.dumps(build_box(a[1])))
+        return 0
+    if a[0] == "r311":
+        return r311()
     if a[0] == "--one":
         res = build_one(a[1])
         print("RESULT " + json.dumps(res))
