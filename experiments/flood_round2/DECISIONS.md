@@ -140,3 +140,23 @@ Judgement calls, numbered R1, R2, and so on. Round-1 decisions are D1–D23 in `
 
 - **History:** the only commits whose code negates the stored comparator are round 2's: a66b302 (model_v3) and 01ed55f (heldout_r2). Both were fixed in e6c2796 before any reserved data existed.
 - **Conclusion:** no round-1 verdict changes, and no round-1 file was edited.
+
+## R17 (2026-11-22) Round-2 held-out pass: read as scored, no changes after results
+
+The pass ran once at freeze tag `flood-round2-heldout-freeze` (50fab0a). Build: 63 reserved units, 55 built,
+3 not qualifying (< 50 flooded or dry cells), 2 with no flood centre in the product, 3 failed with no Sentinel-1 pass
+(e.g. s1_manila_2024, s1_bentiu_2022). `results/heldout_r2.json` sha256 231710fb91a8b543e86c1532280aab4ade587b5c73a4f08e0ad47deb86580dd0.
+
+| type | chosen | mean AUC | vs | Δ mean [95% CI] | units / clusters | verdict |
+|---|---|---|---|---|---|---|
+| fluvial | resid_lgbm | 0.912 | elev | +0.015 [−0.004, +0.044] | 17 / 11 | failed |
+| pluvial | elev | 0.611 | hand | +0.014 [−0.019, +0.048] | 16 / 16 | failed |
+| waterlogging | full_lr | 0.719 | elev | +0.012 [−0.035, +0.054] | 10 / 10 | failed |
+| flash_flood | resid_lgbm | 0.825 | elev | +0.016 [−0.008, +0.043] | 7 / 4 | failed |
+| coastal | elev | — | — | — | 4 / 4 | not run (below 5 units) |
+| compound | full_lgbm | 0.665 | elev | −0.082 [−0.239, +0.015] | 5 / 5 | failed |
+
+Reading: no type clears the pre-registered bar (beat the best of {HAND, elevation} with the lower CI above 0, and AUC ≥ 0.70).
+Fluvial, flash and waterlogging rank well (AUC 0.72–0.91), but not reliably better than plain lowest-ground elevation.
+Pluvial ranks poorly with every method (0.61). Coastal has too few qualifying units to judge. These verdicts are final
+for round 2. Production impact (Phase M): no type is upgraded to "validated" by round 2; round-1 status stands.
