@@ -225,6 +225,82 @@ def dev(shard=0, shards=1):
     return 0
 
 
+S1ROUTE_LOG = os.path.join(BIG, "s1route_log.json")
+
+
+def s1route_ref(row: dict, ee=None) -> dict:
+    """Sentinel-1-route unit (MMFlood §8, Storm Events flash): box by round 4's place() on the 20 km search
+    square around the search point (R25: side 8 km), then the v3 Sentinel-1 label in
+    [peak - 1 d, peak + MAX_LAG] on that box. Writes REFS/<unit>.npz; returns its meta."""
+    import datetime as dt
+    from experiments.flood_round3 import labels_r3 as L
+    from experiments.flood_round3.relabel_burned import MAX_LAG_DAYS
+    from experiments.flood_validation import harness_round4 as H4
+    from susceptibility.hydro_rasters import utm_grid
+    n = row["unit"]
+    rp = os.path.join(REFS, f"{n}.npz")
+    if os.path.exists(rp):
+        return json.loads(str(np.load(rp, allow_pickle=False)["meta"]))
+    if ee is None:
+        from experiments.flood_round3.diagnose_ee import _init
+        ee = _init()
+    H4.BOX_SIDE_M = SIDE_M
+    ty = row["tags"][0]
+    pk = dt.date.fromisoformat(row["peak_day"])
+    pl = H4.place({"ref": ("s1",), "search_centre": tuple(row["search_point"]), "event": row["peak_day"]})
+    meta = {"unit": n, "event": row["event"], "peak": row["peak_day"], "type": ty, "side_m": SIDE_M,
+            "search_point": row["search_point"], "centre": pl.get("centre"), "bbox": pl.get("bbox"),
+            "place": {k: pl.get(k) for k in ("s1_pass", "search_square", "search_square_flooded_cells")}}
+    os.makedirs(REFS, exist_ok=True)
+    if pl.get("bbox") is None:
+        meta.update(flooded_cells=0, dry_cells=0, why="no flood centre in the search square")
+        y = np.zeros((1, 1), np.int8) + L.UNOBSERVED
+    else:
+        bbox = pl["bbox"]
+        t, shape, crs = utm_grid(bbox)
+        lag = MAX_LAG_DAYS.get(ty, 3)
+        t0, t1 = (pk - dt.timedelta(days=1)).isoformat(), (pk + dt.timedelta(days=lag)).isoformat()
+        obs = L.observability(ee, t, shape, crs)
+        lab = L.s1_label(ee, list(bbox), t0, t1, t, shape, crs)
+        y = L.s1_states(lab, obs)
+        meta.update(grid={"crs": crs, "transform": list(t)[:6], "shape": list(shape)}, block=1,
+                    label_v3={"type": ty, "peak": row["peak_day"], "window": [t0, t1], "kind": "s1_vvdrop",
+                              "passes": lab["passes"], "baselines": lab["baselines"]},
+                    flooded_cells=int((y == L.FLOODED).sum()), dry_cells=int((y == L.DRY).sum()))
+    np.savez_compressed(rp + ".tmp.npz", flooded=(y == L.FLOODED), valid=(y == L.FLOODED) | (y == L.DRY),
+                        y3=y.astype(np.int8), meta=np.array(json.dumps(meta, default=str)))
+    os.replace(rp + ".tmp.npz", rp)
+    return meta
+
+
+def s1route(cands: str, split: str = "dev", labels_only: bool = True):
+    """Label (and optionally feature) every candidate of `split` in results/<cands>.json.
+    DEV only until the freeze: a reserve split is refused here."""
+    if split != "dev":
+        raise SystemExit("reserve units are built only by the frozen heldout_r3 harness")
+    from experiments.flood_round3.diagnose_ee import _init
+    ee = _init()
+    rows = [r for r in json.load(open(os.path.join(OUT, f"{cands}.json")))["candidates"]
+            if r.get("split", "dev") == split]
+    log = json.load(open(S1ROUTE_LOG)) if os.path.exists(S1ROUTE_LOG) else {}
+    for r in rows:
+        n = r["unit"]
+        rec = log.setdefault(n, {"tries": 0})
+        if rec.get("done") or rec["tries"] >= TRIES:
+            continue
+        rec["tries"] += 1
+        try:
+            m = s1route_ref(r, ee)
+            rec.update(done=True, flooded=m["flooded_cells"], dry=m["dry_cells"], why=m.get("why"))
+        except Exception as e:          # noqa: BLE001
+            rec.update(error=f"{type(e).__name__}: {str(e)[:160]}")
+        print(n, json.dumps(rec)[:200], flush=True)
+        json.dump(log, open(S1ROUTE_LOG, "w"), indent=1)
+    q = [n for n, v in log.items() if v.get("done") and v.get("flooded", 0) >= 50 and v.get("dry", 0) >= 50]
+    print(len(q), "of", len(rows), "qualify (>= 50 flooded and dry cells)")
+    return 0
+
+
 def main(argv=None):
     a = argv or sys.argv[1:]
     if a[0] == "--box":
@@ -232,6 +308,8 @@ def main(argv=None):
         return 0
     if a[0] == "r311":
         return r311()
+    if a[0] == "s1route":           # s1route <candidates file stem> [dev]
+        return s1route(a[1], a[2] if len(a) > 2 else "dev")
     if a[0] == "--one":
         res = build_one(a[1])
         print("RESULT " + json.dumps(res))
