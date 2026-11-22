@@ -1,5 +1,7 @@
 # Round-3 reserve: selection criteria (written before any candidate is listed)
 
+**Status: DRAFT, not sealed.** The source list in §6 is open until the fresh-event pool is settled (DECISIONS R23). No reserve has been selected, and nothing in §1–§7 has been applied to choose events. When final, this line changes to the final commit and the file is hashed with `reserve_r3.json`.
+
 The reserve is chosen **mechanically from metadata**. Metadata means:
 - imagery availability and acquisition times;
 - product footprints;
