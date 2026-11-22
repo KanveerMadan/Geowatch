@@ -1,0 +1,1090 @@
+{
+ "nyc": [
+  {
+   "event": "2010-01-25",
+   "days": [
+    "2010-01-25"
+   ],
+   "flood_reports": 65,
+   "split": "dev"
+  },
+  {
+   "event": "2010-02-25",
+   "days": [
+    "2010-02-25"
+   ],
+   "flood_reports": 60,
+   "split": "dev"
+  },
+  {
+   "event": "2010-03-13",
+   "days": [
+    "2010-03-13"
+   ],
+   "flood_reports": 78,
+   "split": "dev"
+  },
+  {
+   "event": "2010-03-29",
+   "days": [
+    "2010-03-29",
+    "2010-03-30"
+   ],
+   "flood_reports": 202,
+   "split": "dev"
+  },
+  {
+   "event": "2010-05-03",
+   "days": [
+    "2010-05-03"
+   ],
+   "flood_reports": 67,
+   "split": "dev"
+  },
+  {
+   "event": "2010-08-05",
+   "days": [
+    "2010-08-05"
+   ],
+   "flood_reports": 81,
+   "split": "dev"
+  },
+  {
+   "event": "2010-09-30",
+   "days": [
+    "2010-09-30",
+    "2010-10-01"
+   ],
+   "flood_reports": 237,
+   "split": "dev"
+  },
+  {
+   "event": "2010-10-11",
+   "days": [
+    "2010-10-11"
+   ],
+   "flood_reports": 51,
+   "split": "dev"
+  },
+  {
+   "event": "2010-12-01",
+   "days": [
+    "2010-12-01"
+   ],
+   "flood_reports": 139,
+   "split": "dev"
+  },
+  {
+   "event": "2011-01-18",
+   "days": [
+    "2011-01-18"
+   ],
+   "flood_reports": 98,
+   "split": "dev"
+  },
+  {
+   "event": "2011-02-02",
+   "days": [
+    "2011-02-02"
+   ],
+   "flood_reports": 124,
+   "split": "dev"
+  },
+  {
+   "event": "2011-02-25",
+   "days": [
+    "2011-02-25"
+   ],
+   "flood_reports": 62,
+   "split": "dev"
+  },
+  {
+   "event": "2011-05-17",
+   "days": [
+    "2011-05-17",
+    "2011-05-18"
+   ],
+   "flood_reports": 157,
+   "split": "dev"
+  },
+  {
+   "event": "2011-06-17",
+   "days": [
+    "2011-06-17"
+   ],
+   "flood_reports": 57,
+   "split": "dev"
+  },
+  {
+   "event": "2011-08-09",
+   "days": [
+    "2011-08-09"
+   ],
+   "flood_reports": 52,
+   "split": "dev"
+  },
+  {
+   "event": "2011-08-14",
+   "days": [
+    "2011-08-14",
+    "2011-08-15"
+   ],
+   "flood_reports": 163,
+   "split": "dev"
+  },
+  {
+   "event": "2011-08-28",
+   "days": [
+    "2011-08-28"
+   ],
+   "flood_reports": 80,
+   "split": "dev"
+  },
+  {
+   "event": "2011-09-06",
+   "days": [
+    "2011-09-06"
+   ],
+   "flood_reports": 55,
+   "split": "dev"
+  },
+  {
+   "event": "2011-09-08",
+   "days": [
+    "2011-09-08"
+   ],
+   "flood_reports": 96,
+   "split": "dev"
+  },
+  {
+   "event": "2011-09-23",
+   "days": [
+    "2011-09-23"
+   ],
+   "flood_reports": 61,
+   "split": "dev"
+  },
+  {
+   "event": "2012-05-21",
+   "days": [
+    "2012-05-21"
+   ],
+   "flood_reports": 138,
+   "split": "dev"
+  },
+  {
+   "event": "2012-05-24",
+   "days": [
+    "2012-05-24"
+   ],
+   "flood_reports": 51,
+   "split": "dev"
+  },
+  {
+   "event": "2012-06-25",
+   "days": [
+    "2012-06-25"
+   ],
+   "flood_reports": 55,
+   "split": "dev"
+  },
+  {
+   "event": "2012-08-01",
+   "days": [
+    "2012-08-01"
+   ],
+   "flood_reports": 53,
+   "split": "dev"
+  },
+  {
+   "event": "2012-08-10",
+   "days": [
+    "2012-08-10"
+   ],
+   "flood_reports": 54,
+   "split": "dev"
+  },
+  {
+   "event": "2012-08-15",
+   "days": [
+    "2012-08-15"
+   ],
+   "flood_reports": 67,
+   "split": "dev"
+  },
+  {
+   "event": "2012-09-08",
+   "days": [
+    "2012-09-08"
+   ],
+   "flood_reports": 56,
+   "split": "dev"
+  },
+  {
+   "event": "2012-09-18",
+   "days": [
+    "2012-09-18"
+   ],
+   "flood_reports": 55,
+   "split": "dev"
+  },
+  {
+   "event": "2012-10-29",
+   "days": [
+    "2012-10-29",
+    "2012-10-30"
+   ],
+   "flood_reports": 162,
+   "split": "dev"
+  },
+  {
+   "event": "2012-12-21",
+   "days": [
+    "2012-12-21"
+   ],
+   "flood_reports": 56,
+   "split": "dev"
+  },
+  {
+   "event": "2012-12-27",
+   "days": [
+    "2012-12-27"
+   ],
+   "flood_reports": 97,
+   "split": "dev"
+  },
+  {
+   "event": "2013-02-27",
+   "days": [
+    "2013-02-27"
+   ],
+   "flood_reports": 61,
+   "split": "dev"
+  },
+  {
+   "event": "2013-04-12",
+   "days": [
+    "2013-04-12"
+   ],
+   "flood_reports": 50,
+   "split": "dev"
+  },
+  {
+   "event": "2013-05-08",
+   "days": [
+    "2013-05-08",
+    "2013-05-09"
+   ],
+   "flood_reports": 293,
+   "split": "dev"
+  },
+  {
+   "event": "2013-06-03",
+   "days": [
+    "2013-06-03"
+   ],
+   "flood_reports": 53,
+   "split": "dev"
+  },
+  {
+   "event": "2013-06-07",
+   "days": [
+    "2013-06-07"
+   ],
+   "flood_reports": 105,
+   "split": "dev"
+  },
+  {
+   "event": "2013-11-27",
+   "days": [
+    "2013-11-27"
+   ],
+   "flood_reports": 58,
+   "split": "dev"
+  },
+  {
+   "event": "2014-02-05",
+   "days": [
+    "2014-02-05"
+   ],
+   "flood_reports": 132,
+   "split": "dev"
+  },
+  {
+   "event": "2014-02-13",
+   "days": [
+    "2014-02-13",
+    "2014-02-14"
+   ],
+   "flood_reports": 228,
+   "split": "dev"
+  },
+  {
+   "event": "2014-04-30",
+   "days": [
+    "2014-04-30",
+    "2014-05-01"
+   ],
+   "flood_reports": 348,
+   "split": "dev"
+  },
+  {
+   "event": "2014-06-09",
+   "days": [
+    "2014-06-09"
+   ],
+   "flood_reports": 67,
+   "split": "dev"
+  },
+  {
+   "event": "2014-06-13",
+   "days": [
+    "2014-06-13"
+   ],
+   "flood_reports": 69,
+   "split": "dev"
+  },
+  {
+   "event": "2014-07-15",
+   "days": [
+    "2014-07-15"
+   ],
+   "flood_reports": 82,
+   "split": "dev"
+  },
+  {
+   "event": "2014-11-17",
+   "days": [
+    "2014-11-17"
+   ],
+   "flood_reports": 131,
+   "split": "dev"
+  },
+  {
+   "event": "2014-12-09",
+   "days": [
+    "2014-12-09"
+   ],
+   "flood_reports": 266,
+   "split": "dev"
+  },
+  {
+   "event": "2015-01-18",
+   "days": [
+    "2015-01-18"
+   ],
+   "flood_reports": 94,
+   "split": "dev"
+  },
+  {
+   "event": "2015-02-02",
+   "days": [
+    "2015-02-02"
+   ],
+   "flood_reports": 62,
+   "split": "dev"
+  },
+  {
+   "event": "2015-02-22",
+   "days": [
+    "2015-02-22"
+   ],
+   "flood_reports": 64,
+   "split": "dev"
+  },
+  {
+   "event": "2015-03-04",
+   "days": [
+    "2015-03-04"
+   ],
+   "flood_reports": 68,
+   "split": "dev"
+  },
+  {
+   "event": "2015-05-31",
+   "days": [
+    "2015-05-31"
+   ],
+   "flood_reports": 98,
+   "split": "dev"
+  },
+  {
+   "event": "2015-07-15",
+   "days": [
+    "2015-07-15"
+   ],
+   "flood_reports": 52,
+   "split": "dev"
+  },
+  {
+   "event": "2015-07-30",
+   "days": [
+    "2015-07-30"
+   ],
+   "flood_reports": 59,
+   "split": "dev"
+  },
+  {
+   "event": "2015-09-09",
+   "days": [
+    "2015-09-09"
+   ],
+   "flood_reports": 53,
+   "split": "dev"
+  },
+  {
+   "event": "2015-10-02",
+   "days": [
+    "2015-10-02"
+   ],
+   "flood_reports": 50,
+   "split": "dev"
+  },
+  {
+   "event": "2016-01-10",
+   "days": [
+    "2016-01-10"
+   ],
+   "flood_reports": 74,
+   "split": "dev"
+  },
+  {
+   "event": "2016-02-08",
+   "days": [
+    "2016-02-08",
+    "2016-02-09"
+   ],
+   "flood_reports": 218,
+   "split": "dev"
+  },
+  {
+   "event": "2016-02-16",
+   "days": [
+    "2016-02-16"
+   ],
+   "flood_reports": 116,
+   "split": "dev"
+  },
+  {
+   "event": "2016-02-24",
+   "days": [
+    "2016-02-24"
+   ],
+   "flood_reports": 80,
+   "split": "dev"
+  },
+  {
+   "event": "2016-07-25",
+   "days": [
+    "2016-07-25"
+   ],
+   "flood_reports": 87,
+   "split": "dev"
+  },
+  {
+   "event": "2016-10-21",
+   "days": [
+    "2016-10-21"
+   ],
+   "flood_reports": 85,
+   "split": "dev"
+  },
+  {
+   "event": "2016-11-15",
+   "days": [
+    "2016-11-15"
+   ],
+   "flood_reports": 171,
+   "split": "dev"
+  },
+  {
+   "event": "2016-11-29",
+   "days": [
+    "2016-11-29"
+   ],
+   "flood_reports": 97,
+   "split": "dev"
+  },
+  {
+   "event": "2017-01-24",
+   "days": [
+    "2017-01-24"
+   ],
+   "flood_reports": 65,
+   "split": "dev"
+  },
+  {
+   "event": "2017-03-31",
+   "days": [
+    "2017-03-31"
+   ],
+   "flood_reports": 91,
+   "split": "dev"
+  },
+  {
+   "event": "2017-04-04",
+   "days": [
+    "2017-04-04"
+   ],
+   "flood_reports": 53,
+   "split": "dev"
+  },
+  {
+   "event": "2017-04-06",
+   "days": [
+    "2017-04-06"
+   ],
+   "flood_reports": 107,
+   "split": "dev"
+  },
+  {
+   "event": "2017-05-05",
+   "days": [
+    "2017-05-05"
+   ],
+   "flood_reports": 279,
+   "split": "dev"
+  },
+  {
+   "event": "2017-05-13",
+   "days": [
+    "2017-05-13"
+   ],
+   "flood_reports": 54,
+   "split": "dev"
+  },
+  {
+   "event": "2017-06-24",
+   "days": [
+    "2017-06-24"
+   ],
+   "flood_reports": 63,
+   "split": "dev"
+  },
+  {
+   "event": "2017-07-07",
+   "days": [
+    "2017-07-07"
+   ],
+   "flood_reports": 105,
+   "split": "dev"
+  },
+  {
+   "event": "2017-10-29",
+   "days": [
+    "2017-10-29"
+   ],
+   "flood_reports": 115,
+   "split": "dev"
+  },
+  {
+   "event": "2018-02-07",
+   "days": [
+    "2018-02-07"
+   ],
+   "flood_reports": 52,
+   "split": "dev"
+  },
+  {
+   "event": "2018-03-02",
+   "days": [
+    "2018-03-02",
+    "2018-03-03"
+   ],
+   "flood_reports": 180,
+   "split": "dev"
+  },
+  {
+   "event": "2018-04-16",
+   "days": [
+    "2018-04-16"
+   ],
+   "flood_reports": 194,
+   "split": "dev"
+  },
+  {
+   "event": "2018-06-28",
+   "days": [
+    "2018-06-28"
+   ],
+   "flood_reports": 55,
+   "split": "dev"
+  },
+  {
+   "event": "2018-07-27",
+   "days": [
+    "2018-07-27"
+   ],
+   "flood_reports": 61,
+   "split": "dev"
+  },
+  {
+   "event": "2018-08-11",
+   "days": [
+    "2018-08-11"
+   ],
+   "flood_reports": 77,
+   "split": "dev"
+  },
+  {
+   "event": "2018-09-18",
+   "days": [
+    "2018-09-18"
+   ],
+   "flood_reports": 54,
+   "split": "dev"
+  },
+  {
+   "event": "2018-09-25",
+   "days": [
+    "2018-09-25"
+   ],
+   "flood_reports": 55,
+   "split": "dev"
+  },
+  {
+   "event": "2018-09-28",
+   "days": [
+    "2018-09-28"
+   ],
+   "flood_reports": 86,
+   "split": "dev"
+  },
+  {
+   "event": "2018-10-27",
+   "days": [
+    "2018-10-27"
+   ],
+   "flood_reports": 119,
+   "split": "dev"
+  },
+  {
+   "event": "2018-11-06",
+   "days": [
+    "2018-11-06"
+   ],
+   "flood_reports": 84,
+   "split": "dev"
+  },
+  {
+   "event": "2018-11-13",
+   "days": [
+    "2018-11-13"
+   ],
+   "flood_reports": 83,
+   "split": "dev"
+  },
+  {
+   "event": "2018-11-16",
+   "days": [
+    "2018-11-16"
+   ],
+   "flood_reports": 55,
+   "split": "dev"
+  },
+  {
+   "event": "2018-11-25",
+   "days": [
+    "2018-11-25",
+    "2018-11-26"
+   ],
+   "flood_reports": 274,
+   "split": "dev"
+  },
+  {
+   "event": "2018-12-21",
+   "days": [
+    "2018-12-21"
+   ],
+   "flood_reports": 113,
+   "split": "dev"
+  },
+  {
+   "event": "2019-01-24",
+   "days": [
+    "2019-01-24"
+   ],
+   "flood_reports": 73,
+   "split": "dev"
+  },
+  {
+   "event": "2019-04-26",
+   "days": [
+    "2019-04-26"
+   ],
+   "flood_reports": 71,
+   "split": "dev"
+  },
+  {
+   "event": "2019-05-13",
+   "days": [
+    "2019-05-13"
+   ],
+   "flood_reports": 55,
+   "split": "dev"
+  },
+  {
+   "event": "2019-05-30",
+   "days": [
+    "2019-05-30"
+   ],
+   "flood_reports": 64,
+   "split": "dev"
+  },
+  {
+   "event": "2019-06-18",
+   "days": [
+    "2019-06-18"
+   ],
+   "flood_reports": 76,
+   "split": "dev"
+  },
+  {
+   "event": "2019-06-21",
+   "days": [
+    "2019-06-21"
+   ],
+   "flood_reports": 54,
+   "split": "dev"
+  },
+  {
+   "event": "2019-07-22",
+   "days": [
+    "2019-07-22",
+    "2019-07-23"
+   ],
+   "flood_reports": 200,
+   "split": "dev"
+  },
+  {
+   "event": "2019-10-27",
+   "days": [
+    "2019-10-27"
+   ],
+   "flood_reports": 71,
+   "split": "dev"
+  },
+  {
+   "event": "2019-12-09",
+   "days": [
+    "2019-12-09"
+   ],
+   "flood_reports": 90,
+   "split": "dev"
+  },
+  {
+   "event": "2019-12-17",
+   "days": [
+    "2019-12-17"
+   ],
+   "flood_reports": 82,
+   "split": "dev"
+  },
+  {
+   "event": "2020-07-10",
+   "days": [
+    "2020-07-10"
+   ],
+   "flood_reports": 136,
+   "split": "dev"
+  },
+  {
+   "event": "2020-11-30",
+   "days": [
+    "2020-11-30"
+   ],
+   "flood_reports": 116,
+   "split": "dev"
+  },
+  {
+   "event": "2021-06-08",
+   "days": [
+    "2021-06-08"
+   ],
+   "flood_reports": 55,
+   "split": "dev"
+  },
+  {
+   "event": "2021-07-08",
+   "days": [
+    "2021-07-08",
+    "2021-07-09"
+   ],
+   "flood_reports": 151,
+   "split": "dev"
+  },
+  {
+   "event": "2021-08-21",
+   "days": [
+    "2021-08-21",
+    "2021-08-22",
+    "2021-08-23"
+   ],
+   "flood_reports": 306,
+   "split": "dev"
+  },
+  {
+   "event": "2021-09-01",
+   "days": [
+    "2021-09-01",
+    "2021-09-02",
+    "2021-09-03"
+   ],
+   "flood_reports": 778,
+   "split": "dev"
+  },
+  {
+   "event": "2021-10-26",
+   "days": [
+    "2021-10-26"
+   ],
+   "flood_reports": 184,
+   "split": "dev"
+  },
+  {
+   "event": "2022-05-19",
+   "days": [
+    "2022-05-19"
+   ],
+   "flood_reports": 55,
+   "split": "reserve"
+  },
+  {
+   "event": "2022-06-02",
+   "days": [
+    "2022-06-02"
+   ],
+   "flood_reports": 53,
+   "split": "reserve"
+  },
+  {
+   "event": "2022-07-18",
+   "days": [
+    "2022-07-18"
+   ],
+   "flood_reports": 77,
+   "split": "reserve"
+  },
+  {
+   "event": "2022-09-13",
+   "days": [
+    "2022-09-13"
+   ],
+   "flood_reports": 112,
+   "split": "reserve"
+  },
+  {
+   "event": "2022-11-11",
+   "days": [
+    "2022-11-11"
+   ],
+   "flood_reports": 83,
+   "split": "reserve"
+  },
+  {
+   "event": "2022-12-16",
+   "days": [
+    "2022-12-16"
+   ],
+   "flood_reports": 59,
+   "split": "reserve"
+  },
+  {
+   "event": "2022-12-23",
+   "days": [
+    "2022-12-23"
+   ],
+   "flood_reports": 314,
+   "split": "reserve"
+  },
+  {
+   "event": "2023-04-29",
+   "days": [
+    "2023-04-29",
+    "2023-04-30",
+    "2023-05-01"
+   ],
+   "flood_reports": 289,
+   "split": "reserve"
+  },
+  {
+   "event": "2023-07-16",
+   "days": [
+    "2023-07-16"
+   ],
+   "flood_reports": 54,
+   "split": "reserve"
+  },
+  {
+   "event": "2023-07-25",
+   "days": [
+    "2023-07-25"
+   ],
+   "flood_reports": 68,
+   "split": "reserve"
+  },
+  {
+   "event": "2023-08-18",
+   "days": [
+    "2023-08-18"
+   ],
+   "flood_reports": 61,
+   "split": "reserve"
+  },
+  {
+   "event": "2023-09-11",
+   "days": [
+    "2023-09-11"
+   ],
+   "flood_reports": 50,
+   "split": "reserve"
+  },
+  {
+   "event": "2023-09-29",
+   "days": [
+    "2023-09-29"
+   ],
+   "flood_reports": 634,
+   "split": "reserve"
+  },
+  {
+   "event": "2023-12-18",
+   "days": [
+    "2023-12-18"
+   ],
+   "flood_reports": 129,
+   "split": "reserve"
+  },
+  {
+   "event": "2024-01-13",
+   "days": [
+    "2024-01-13"
+   ],
+   "flood_reports": 133,
+   "split": "reserve"
+  },
+  {
+   "event": "2024-03-06",
+   "days": [
+    "2024-03-06"
+   ],
+   "flood_reports": 92,
+   "split": "reserve"
+  },
+  {
+   "event": "2024-03-23",
+   "days": [
+    "2024-03-23"
+   ],
+   "flood_reports": 148,
+   "split": "reserve"
+  },
+  {
+   "event": "2024-04-03",
+   "days": [
+    "2024-04-03"
+   ],
+   "flood_reports": 84,
+   "split": "reserve"
+  },
+  {
+   "event": "2024-08-06",
+   "days": [
+    "2024-08-06",
+    "2024-08-07"
+   ],
+   "flood_reports": 125,
+   "split": "reserve"
+  },
+  {
+   "event": "2025-05-14",
+   "days": [
+    "2025-05-14"
+   ],
+   "flood_reports": 51,
+   "split": "reserve"
+  },
+  {
+   "event": "2025-07-14",
+   "days": [
+    "2025-07-14"
+   ],
+   "flood_reports": 57,
+   "split": "reserve"
+  },
+  {
+   "event": "2025-07-31",
+   "days": [
+    "2025-07-31"
+   ],
+   "flood_reports": 152,
+   "split": "reserve"
+  },
+  {
+   "event": "2025-10-30",
+   "days": [
+    "2025-10-30",
+    "2025-10-31"
+   ],
+   "flood_reports": 963,
+   "split": "reserve"
+  },
+  {
+   "event": "2025-12-19",
+   "days": [
+    "2025-12-19"
+   ],
+   "flood_reports": 105,
+   "split": "reserve"
+  },
+  {
+   "event": "2026-03-05",
+   "days": [
+    "2026-03-05"
+   ],
+   "flood_reports": 82,
+   "split": "reserve"
+  },
+  {
+   "event": "2026-03-23",
+   "days": [
+    "2026-03-23"
+   ],
+   "flood_reports": 52,
+   "split": "reserve"
+  },
+  {
+   "event": "2026-05-20",
+   "days": [
+    "2026-05-20",
+    "2026-05-21"
+   ],
+   "flood_reports": 277,
+   "split": "reserve"
+  },
+  {
+   "event": "2026-05-24",
+   "days": [
+    "2026-05-24"
+   ],
+   "flood_reports": 108,
+   "split": "reserve"
+  },
+  {
+   "event": "2026-07-06",
+   "days": [
+    "2026-07-06"
+   ],
+   "flood_reports": 205,
+   "split": "reserve"
+  },
+  {
+   "event": "2026-07-18",
+   "days": [
+    "2026-07-18"
+   ],
+   "flood_reports": 146,
+   "split": "reserve"
+  }
+ ]
+}
