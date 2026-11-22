@@ -20,9 +20,10 @@ const TYPES = {
   coastal: { name: 'Coastal', long: 'coastal flooding', term: 'coastal', blurb: 'Sea water reaching low land near the shore.' },
   flash_flood: { name: 'Flash flood', long: 'flash flooding', term: 'flash flood', blurb: 'Fast runoff from steep ground after intense rain.' },
   waterlogging: { name: 'Waterlogging', long: 'waterlogging', term: 'waterlogging', blurb: 'Flat, low ground where water stands for days after rain.' },
-  // flood_final's learned model: one ranking validated for river and
-  // waterlogging flooding only. A ranking within the area, so no tier.
-  learned_flood: { name: 'River and waterlogging (learned)', long: 'the learned river and waterlogging ranking', term: 'learned model', blurb: 'Where in this area river and waterlogging floods were most likely, learned from 67 mapped floods. A ranking within the area, not a depth or a probability; built-up areas are not assessed.', ranking: true },
+  // River and waterlogging ranking by plain elevation (since 2026-11-22; it
+  // replaced the learned model, whose gain over elevation was not confirmed).
+  // A ranking within the area, so no tier. Not validated.
+  flood_ranking: { name: 'River and waterlogging (by elevation)', long: 'the elevation-based river and waterlogging ranking', term: 'elevation ranking', blurb: 'The lowest ground in this area, ranked by elevation: where river and waterlogging floods usually reach first. It does not know river levels or flood defences. A ranking within the area, not a depth or a probability; built-up areas are not assessed.', ranking: true },
   // The taxonomy's types no module computes yet (analysis/contract.py).
   debris_flow_glof: { name: 'Debris flow and glacial lake outburst', long: 'debris flow and glacial lake outburst', term: 'debris flow / GLOF' },
   embankment_dam_breach: { name: 'Embankment or dam breach', long: 'embankment or dam breach', term: 'embankment / dam breach' },
@@ -102,7 +103,7 @@ export function floodSummary(susceptibility) {
     parts.push('No flood type could be measured for this area yet.')
   }
   if (ranking.length) {
-    parts.push('A learned ranking of river and waterlogging flooding is mapped: validated for those two types only, as a ranking within this area; built-up areas are not assessed.')
+    parts.push('River and waterlogging flooding is mapped as an elevation-based ranking within this area (lowest ground first). It is experimental, not validated; built-up areas are not assessed.')
   }
   if (failed.length) {
     parts.push(`${cap(list(failed.map((r) => r.long)))} ${failed.length > 1 ? 'are' : 'is'} shown but failed validation, so ${failed.length > 1 ? 'they are' : 'it is'} not for decisions.`)

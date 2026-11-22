@@ -7,7 +7,10 @@ These are the datasets GeoWatch's flood outputs read, as recorded on 2026-11-21.
 
 Earlier notes: `experiments/flood_learned/REPORT.md` §7 and `paper/evidence/M2_pluvial/METHOD.md`.
 
-## Inputs to the learned flood output (`learned_flood`, open variant)
+## River and waterlogging ranking (`flood_ranking`, since 2026-11-22)
+It reads four datasets, all in the table below: Copernicus DEM GLO-30 (elevation), JRC Global Surface Water (permanent-water mask), ESA WorldCover and JRC GHSL (built-up mask). The GLO-30 commercial terms are still **unconfirmed**.
+
+## Inputs to the learned flood model (`learned_flood`, open variant; withdrawn from the pipeline 2026-11-22, kept for flood round 3)
 | dataset | used for | licence | commercial use | source |
 |---|---|---|---|---|
 | Copernicus DEM GLO-30 (2024_1) | terrain, elevation | Copernicus WorldDEM-30 licence; attribution "© DLR e.V." / "Produced using Copernicus WorldDEM-30 © DLR e.V." | **unconfirmed** (no purpose restriction found in the summary; full text not read) | [licence PDF](https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/DEM/resources/license/License-COPDEM-30.pdf), [EE catalogue](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_DEM_GLO30_2024_1) |

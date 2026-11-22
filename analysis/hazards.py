@@ -10,8 +10,10 @@ relief and backwater; stream power on valley floors), all per-pixel on the
 hydrology grid, and round 4 failed all three (rounds 1-3's verdicts were on
 the retired methods). Coastal is `failed` (round 2). Fluvial is demoted to
 `experimental` (C78, analysis.contract.DEMOTED) after round 4 and flood_final
-failed its validated configuration; the learned output (learned_flood) is
-validated for river and waterlogging flooding (flood_final).
+failed its validated configuration. River and waterlogging floods are also
+ranked by plain elevation (flood_ranking, `experimental`): it replaced the
+learned model on 2026-11-22, because flood round 2 did not confirm the learned
+gain over elevation (exp/flood-round2, DECISIONS R17).
 """
 from __future__ import annotations
 
@@ -21,11 +23,12 @@ from analysis import contract as C
 from analysis.stages import STAGE_TIMEOUT_S, run_stage, summary
 
 HAZARDS = ("pluvial", "fluvial", "coastal", "flash_flood", "waterlogging")
-# flood_final's learned model: one more output, not a flood type of its own
-# (docs/flood_taxonomy.md is unchanged). Validated for river (M1) and
-# waterlogging (M3) flooding only (analysis.contract.VALIDATED_CONFIGS).
-LEARNED = "learned_flood"
-LEARNED_TYPES = ("M1", "M3")
+# One more output, not a flood type of its own (docs/flood_taxonomy.md is
+# unchanged): the river (M1) and waterlogging (M3) ranking. Since 2026-11-22 it
+# ranks by plain GLO-30 elevation (susceptibility/flood_ranking.py), labelled
+# `experimental`; flood round 3's winners replace it.
+RANKING = "flood_ranking"
+RANKING_TYPES = ("M1", "M3")
 
 
 def percentile_map(smap: np.ndarray) -> np.ndarray:
@@ -42,9 +45,9 @@ def percentile_map(smap: np.ndarray) -> np.ndarray:
 
 
 def output_names(modules: dict) -> tuple:
-    """The flood outputs a run produced: the five modules, plus the learned
+    """The flood outputs a run produced: the five modules, plus the ranking
     output when it ran."""
-    return HAZARDS + ((LEARNED,) if LEARNED in modules else ())
+    return HAZARDS + ((RANKING,) if RANKING in modules else ())
 
 CONTEXT_SOURCES = {
     "hand": "MERIT/Hydro/v1_0_1 (hnd, upa)",
@@ -55,8 +58,8 @@ CONTEXT_SOURCES = {
     "relative_elevation": "COPERNICUS/DEM/GLO30_2024_1 (AOI-relative proxy, NOT HAND)",
     "hydro_rasters": ("per-pixel MERIT/Hydro/v1_0_1 (hnd, upa), FABDEM slope, "
                       "CHIRPS and IMERG V07 (susceptibility/hydro_rasters.py)"),
-    "learned_inputs": ("GLO-30, HydroSHEDS, OSM + JRC water, WorldCover, Sentinel-2 NDVI, "
-                       "GHSL, shoreline (susceptibility/learned_flood.py)"),
+    "ranking_inputs": ("GLO-30 elevation, JRC occurrence, WorldCover and GHSL built share "
+                       "(susceptibility/flood_ranking.py)"),
 }
 
 # Which context layers each module reads. Fluvial, flash flood and
@@ -71,7 +74,7 @@ MODULE_CONTEXT = {
     "coastal": ("coastline", "fabdem"),
     "flash_flood": ("hydro_rasters",),
     "waterlogging": ("hydro_rasters",),
-    "learned_flood": ("hydro_rasters", "learned_inputs"),
+    "flood_ranking": ("ranking_inputs",),
 }
 
 
@@ -142,7 +145,7 @@ def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict, rasters: di
     from susceptibility.coastal import compute_coastal_susceptibility
     from susceptibility.flash_flood import compute_flash_flood_susceptibility
     from susceptibility.fluvial import compute_fluvial_susceptibility
-    from susceptibility.learned_flood import compute_learned_flood
+    from susceptibility.flood_ranking import compute_flood_ranking
     from susceptibility.pluvial import compute_pluvial_susceptibility
     from susceptibility.waterlogging import compute_waterlogging_susceptibility
     return {
@@ -154,9 +157,9 @@ def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict, rasters: di
                                                   applicability=app),
         "flash_flood": compute_flash_flood_susceptibility(rasters, applicability=app),
         "waterlogging": compute_waterlogging_susceptibility(rasters, applicability=app),
-        # flood_final: `learned` is susceptibility.learned_flood.fetch_inputs()'s
-        # result (None when that stage did not finish), on the hydrology grid.
-        LEARNED: compute_learned_flood(learned, rasters, shape),
+        # `learned` is susceptibility.flood_ranking.fetch_inputs()'s result
+        # (None when that stage did not finish), on the hydrology grid.
+        RANKING: compute_flood_ranking(learned, shape),
     }
 
 
@@ -232,9 +235,10 @@ def hazard_outputs(modules: dict, mv: dict, verdicts: dict, *, has_waterways: bo
                  "method": mod.get("method")}
         if name in C.DEMOTED:
             extra["demoted"] = dict(C.DEMOTED[name])
-        if name == LEARNED:
-            extra.update(flood_types=list(LEARNED_TYPES), not_assessed=mod.get("not_assessed"),
-                         score_kind="within-AOI ranking; not a probability")
+        if name == RANKING:
+            extra.update(flood_types=list(RANKING_TYPES), not_assessed=mod.get("not_assessed"),
+                         score_kind="within-AOI elevation ranking; not a probability",
+                         value_kind=mod.get("aoi_score_kind"), evidence=mod.get("evidence"))
         if score is None:
             status = {"not_applicable": "not_applicable"}.get(mod.get("status"),
                                                                "insufficient_evidence")

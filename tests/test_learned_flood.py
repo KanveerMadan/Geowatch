@@ -1,5 +1,7 @@
-"""flood_final learned flood output: model export, feature parity, masks,
-labels. Parity tests use the experiment caches and skip without them."""
+"""flood_final learned flood model: model export, feature parity, masks, and
+its withdrawal from the pipeline (2026-11-22; analysis.contract.WITHDRAWN).
+The module is kept for flood round 3. Parity tests use the experiment caches
+and skip without them."""
 import hashlib
 import json
 import os
@@ -26,7 +28,8 @@ def test_model_json_is_the_frozen_final_model():
 
 
 def test_contract_pins_this_model_file():
-    assert C.VALIDATED_CONFIGS["learned_flood"]["config"]["model_sha256"] == L.model_sha256()
+    assert C.WITHDRAWN["learned_flood"]["config"]["model_sha256"] == L.model_sha256()
+    assert "learned_flood" not in C.VALIDATED_CONFIGS
 
 
 @pytest.mark.skipif(not os.path.exists(PKL), reason="flood_final model cache absent")
@@ -104,40 +107,14 @@ def test_failed_inputs_give_no_score_never_zero():
 
 def test_verdict_is_read_from_the_pinned_heldout_result():
     assert C.flood_final_verdict() == "passed"
-    assert C.flood_verdicts()["learned_flood"] == "passed"
+    assert "learned_flood" not in C.flood_verdicts()        # withdrawn: no verdict attached
     with pytest.raises(C.ContractError):
         C.flood_final_verdict(expected_sha256="0" * 64)
 
 
-def test_learned_output_is_validated_only_with_its_exact_config():
-    shape = (20, 30)
-    mod = L.compute_learned_flood(_fake(shape), _rasters(shape), shape)
-    ctx = {"hydro_rasters": {"status": "available"}, "learned_inputs": {"status": "available"}}
-    v = {"learned_flood": "passed"}
-    others = {h: {"aoi_mean_score": None, "status": "insufficient_evidence"} for h in H.HAZARDS}
-    out = H.hazard_outputs({**others, "learned_flood": mod}, MV, v,
-                           has_waterways=False, ctx=ctx)["learned_flood"]
-    assert out["validation_status"] == "validated"
-    assert out["validated_scope"]["flood_types"] == ["fluvial", "waterlogging"]
-    changed = {**mod, "model_sha256": "x"}
-    out2 = H.hazard_outputs({**others, "learned_flood": changed}, MV, v,
-                            has_waterways=False, ctx=ctx)["learned_flood"]
-    assert out2["validation_status"] != "validated"
-
-
-def test_input_stage_timeout_withholds_the_score():
-    shape = (20, 30)
-    mod = L.compute_learned_flood(None, _rasters(shape), shape)
-    ctx = {"hydro_rasters": {"status": "available"},
-           "learned_inputs": {"status": "timeout", "error": "stage timed out"}}
-    others = {h: {"aoi_mean_score": None, "status": "insufficient_evidence"} for h in H.HAZARDS}
-    out = H.hazard_outputs({**others, "learned_flood": mod}, MV,
-                           {"learned_flood": "passed"}, has_waterways=False, ctx=ctx)["learned_flood"]
-    assert out["status"] == "timeout" and out.get("value") is None
-
-
-def test_failed_types_are_not_in_the_validated_scope():
-    sc = C.VALIDATED_CONFIGS["learned_flood"]["scope"]
+def test_withdrawn_record_keeps_the_validated_scope():
+    rec = C.WITHDRAWN["learned_flood"]
+    sc = rec["scope"]
     assert set(sc["flood_types"]) == {"fluvial", "waterlogging"}
     for t in ("pluvial", "flash flood", "coastal", "compound"):
         assert t in sc["note"]
@@ -145,6 +122,7 @@ def test_failed_types_are_not_in_the_validated_scope():
     assert {t for t, v in hv.items() if v.get("verdict") == "passed"} == set(sc["flood_types"])
     assert hashlib.sha256(open(C.FLOOD_FINAL_HELDOUT_RESULT, "rb").read()).hexdigest() \
         == C.FLOOD_FINAL_HELDOUT_SHA256
+    assert rec["withdrawn"]["replaced_by"].startswith("flood_ranking")
 
 
 def test_percentile_map_keeps_nodata_and_spans_zero_to_one():
@@ -152,16 +130,6 @@ def test_percentile_map_keeps_nodata_and_spans_zero_to_one():
     p = H.percentile_map(m)
     assert np.isnan(p[0, 1])
     assert p[0, 0] == 0.0 and p[1, 0] == 1.0 and p[1, 1] == 0.5
-
-
-def test_pipeline_emits_the_learned_output_and_its_percentile_map():
-    from tests import analysis_synth as S
-    r, _ = S.run()
-    o = r["outputs"]["susceptibility"]["learned_flood"]
-    assert o["status"] == "available" and o["validation_status"] == "validated"
-    assert o["flood_types"] == ["M1", "M3"]
-    assert o["map"]["rendered_as"] == "within-AOI percentile of the learned score"
-    assert o["not_assessed"]["built_up_cells"] > 0
 
 
 def test_mosaic_takes_the_selected_bands_projection(monkeypatch):

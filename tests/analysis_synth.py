@@ -148,12 +148,24 @@ def fake_learned_inputs(transform, shape, crs, ref_year, key):
     return {"arrays": arr, "meta": {"margin_cells": k, "osm_complete": True}}
 
 
+def fake_ranking_inputs(transform, shape, crs, ref_year, key):
+    """flood_ranking inputs on the hydrology grid: a west-east elevation ramp,
+    half the AOI built-up."""
+    H, W = shape
+    built = np.zeros(shape)
+    built[:, W // 2:] = 0.8
+    return {"arrays": {"dem_glo30": np.tile(np.linspace(5.0, 40.0, W), (H, 1)),
+                       "jrc_occurrence": np.zeros(shape), "wc_built": built,
+                       "ghsl_built_frac": built},
+            "meta": {"worldcover_year": 2021}}
+
+
 def deps(**overrides):
     d = {"init_ee": lambda: None, "load_layer": lambda name, bbox: synth_layer(),
          "context_fns": context_fns(), "fetch_dem": fake_dem,
          "fetch_waterways": fake_waterways, "run_change": fake_change,
          "fetch_cause_counts": fake_cause_counts, "fetch_hydro_rasters": fake_hydro_rasters,
-         "fetch_learned_inputs": fake_learned_inputs}
+         "fetch_ranking_inputs": fake_ranking_inputs}
     d.update(overrides)
     return d
 

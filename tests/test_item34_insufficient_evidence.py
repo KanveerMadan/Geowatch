@@ -65,14 +65,13 @@ def _unknown_everything():
         for v in r["layers"].values():
             v["raster"] = np.full(shape, np.nan, dtype=np.float32)
         return r
-    def unknown_learned(t, shape, crs, year, key):
-        r = S.fake_learned_inputs(t, shape, crs, year, key)
-        r["arrays"] = {k: np.full(np.shape(v), np.nan) if k != "water_ext" else v
-                       for k, v in r["arrays"].items()}
+    def unknown_ranking(t, shape, crs, year, key):
+        r = S.fake_ranking_inputs(t, shape, crs, year, key)
+        r["arrays"] = {k: np.full(np.shape(v), np.nan) for k, v in r["arrays"].items()}
         return r
     return S.deps(context_fns=unavailable, load_layer=lambda n, b: empty,
                   fetch_dem=lambda *a: np.full(a[2], np.nan),
-                  fetch_hydro_rasters=unknown_rasters, fetch_learned_inputs=unknown_learned,
+                  fetch_hydro_rasters=unknown_rasters, fetch_ranking_inputs=unknown_ranking,
                   fetch_waterways=lambda n, b: {"ways": [], "unavailable": ["waterway"]})
 
 

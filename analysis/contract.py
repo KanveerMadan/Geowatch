@@ -84,8 +84,9 @@ FLOOD_VALIDATION_ROUND4_SHA256 = "b9f39615750c0c836c1c1ef6da1ceb195fb9d4fc660d76
 # score changed; the original is in commit c35c02a).
 FLOOD_FINAL_HELDOUT_RESULT = os.path.join("experiments", "flood_final", "results", "heldout.json")
 FLOOD_FINAL_HELDOUT_SHA256 = "96e82c606e98bef6d6deabdd0700dbc8313a965c6db3f3ad8e43008820c984f6"
-# The learned output is validated only for the types whose pre-registered
+# The learned output was validated only for the types whose pre-registered
 # verdict passed; the others failed (pluvial, flash flood, coastal, compound).
+# It was withdrawn on 2026-11-22 (WITHDRAWN below).
 LEARNED_FLOOD_TYPES = ("fluvial", "waterlogging")
 VERDICT_LABEL = {"failed": "failed", "passed": "validated", "validated": "validated"}
 
@@ -151,6 +152,19 @@ VALIDATED_CONFIGS = {
             },
         },
     },
+}
+
+
+# Withdrawn from the pipeline (2026-11-22). flood_final's learned model was
+# the `learned_flood` output, validated for river and waterlogging against
+# HAND. Flood round 2 (exp/flood-round2, PREREGISTRATION_ROUND2.md, freeze tag
+# flood-round2-heldout-freeze, DECISIONS R17) then tested whether it beats
+# plain elevation on 63 new reserved units and did not confirm it (river
+# +0.015 [-0.004, +0.044]; waterlogging +0.012 [-0.035, +0.054]). The river and
+# waterlogging output is now plain elevation ranking (flood_ranking,
+# `experimental`). This entry is the record of what was validated; nothing
+# reads it to label an output.
+WITHDRAWN = {
     "learned_flood": {
         "config": {
             "method": "flood_final_learned_open_logreg",
@@ -214,6 +228,13 @@ VALIDATED_CONFIGS = {
         },
     },
 }
+WITHDRAWN["learned_flood"]["withdrawn"] = {
+    "date": "2026-11-22",
+    "replaced_by": "flood_ranking (glo30_elevation_rank, experimental)",
+    "evidence": "exp/flood-round2 experiments/flood_round2/results/heldout_r2.json "
+                "(sha256 231710fb91a8b543e86c1532280aab4ade587b5c73a4f08e0ad47deb86580dd0)",
+    "reason": "flood round 2 did not confirm the learned gain over plain elevation",
+}
 
 
 # C78 (decided by the owner on PR #1, 2026-11-21): a module listed here is
@@ -227,8 +248,8 @@ DEMOTED = {
         "reason": "Validated on 2 held-out river cities (round 2, mean 0.858), then failed two "
                   "pre-registered re-tests of the same configuration: round 4 (3 South Asian "
                   "floodplain events, 0.537) and flood_final (8 river units in 7 clusters, "
-                  "0.578, below HAND). The learned output (learned_flood) is validated for "
-                  "river flooding instead.",
+                  "0.578, below HAND). River flooding is ranked by plain elevation "
+                  "(flood_ranking, experimental) instead.",
         "evidence": ["experiments/flood_validation/result_round4_2026-10-30.json",
                      "experiments/flood_final/results/heldout.json"],
     },
@@ -242,7 +263,7 @@ DEMOTED = {
 FLOOD_TAXONOMY = {
     "M1": {"module": "fluvial", "name": "fluvial",
            "status": "experimental: demoted (C78) after round 4 and flood_final failed; "
-                     "learned_flood is validated for river flooding", "round": 4},
+                     "river flooding is ranked by elevation (flood_ranking)", "round": 4},
     "M2": {"module": "pluvial", "name": "pluvial", "status": "new method; round 4 failed",
            "round": 4},
     "M3": {"module": "waterlogging", "name": "waterlogging",
@@ -385,7 +406,9 @@ def flood_verdicts(path: str = FLOOD_VALIDATION_RESULT, expected_sha256: str | N
             out[m] = v2
         else:
             out[m] = (r1.get(m) or {}).get("verdict")
-    out["learned_flood"] = flood_final_verdict()
+    # flood_final's learned verdict (flood_final_verdict) is not attached: that
+    # output was withdrawn (WITHDRAWN), and the elevation ranking that replaced
+    # it has no pre-registered verdict of its own.
     return out
 
 

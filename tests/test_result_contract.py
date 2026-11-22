@@ -44,10 +44,10 @@ def test_pinned_tier2_verdicts():
     """Fluvial (validated) and coastal (failed) are round 2's. Pluvial, flash
     flood and waterlogging run flood round 4's new methods, and round 4 failed
     all three; rounds 1-3 tested the retired ones. flood_final's learned output
-    passed its pre-registered held-out test for river and waterlogging."""
+    was withdrawn (2026-11-22), so no verdict is attached for it."""
     v = C.flood_verdicts()
     assert v == {"pluvial": "failed", "fluvial": "validated", "waterlogging": "failed",
-                 "coastal": "failed", "flash_flood": "failed", "learned_flood": "passed"}
+                 "coastal": "failed", "flash_flood": "failed"}
 
 
 def test_a_round4_not_run_leaves_a_replaced_method_unverdicted(tmp_path):

@@ -2,6 +2,11 @@
 Learned flood susceptibility (flood_final): one logistic model, scored per
 30 m cell on the hydrology grid.
 
+WITHDRAWN from the pipeline on 2026-11-22: flood round 2 did not confirm its
+gain over plain elevation (analysis.contract.WITHDRAWN). The river and
+waterlogging output is now susceptibility/flood_ranking.py. This module is
+kept, unwired, for its tests and for flood round 3.
+
 What it is
 ----------
 - The model chosen by flood_final's pre-registered rule for river (M1) and

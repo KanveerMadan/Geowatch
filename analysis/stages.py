@@ -37,11 +37,11 @@ STAGE_TIMEOUT_S = {
     # design storm and two multi-year water-history reductions (JRC monthly,
     # Sentinel-1), each with its own 1200 s request deadline
     "hydro_rasters": 3000,
-    # flood_final learned model's own inputs (GLO-30 margin stack, WorldCover,
-    # NDVI, GHSL, shoreline, Overpass water): flood_final's per-unit kill for
-    # the same calls (heldout_pass.UNIT_KILL_S = 3600 s; measured 6-21 min per
-    # 4 km box, 2026-11-20)
-    "learned_inputs": 3600,
+    # The elevation ranking's inputs: one Earth Engine stack (GLO-30, JRC
+    # occurrence, WorldCover and GHSL built share). It replaced the learned
+    # model's 3600 s stage (2026-11-22) and keeps that limit: same grid, a
+    # subset of the same calls.
+    "ranking_inputs": 3600,
 }
 
 

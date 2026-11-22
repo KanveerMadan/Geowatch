@@ -1165,6 +1165,19 @@ module runs, and the output carries a `demoted` record. Its
 output is now `learned_flood` (flood_final, scoped). Test:
 `tests/test_result_contract.py::test_fluvial_is_demoted_even_with_its_validated_inputs`.
 
+**Update 2026-11-22: `learned_flood` withdrawn.** Flood round 2
+(`exp/flood-round2`, DECISIONS R17, scored once at tag
+`flood-round2-heldout-freeze`) did not confirm the learned model's gain over
+plain elevation on 63 new reserved units (river +0.015 [−0.004, +0.044],
+waterlogging +0.012 [−0.035, +0.054]). River and waterlogging flooding are
+now ranked by plain GLO-30 elevation (`flood_ranking`,
+`susceptibility/flood_ranking.py`), labelled `experimental`: elevation was the
+comparator in every pre-registered round, never the method under test, so it
+has no pass of its own. The learned entry moved to
+`analysis.contract.WITHDRAWN` as the record. No flood output is `validated`
+now. Flood round 3 (`exp/flood-round3`) is the planned replacement. Tests:
+`tests/test_flood_ranking.py`.
+
 ### C79 — Pluvial has not yet had a test event that is a pluvial (ponding) flood [E] NEEDS FATE
 
 Round 4's pluvial verdict (**0.524**, failed) rests on two references. Both

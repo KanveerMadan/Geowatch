@@ -99,8 +99,8 @@ def _default_deps():
         from susceptibility.hydro_rasters import fetch_hydro_rasters as f
         return f(bbox, transform, shape, crs, ref_year)
 
-    def fetch_learned_inputs(transform, shape, crs, ref_year, key):
-        from susceptibility.learned_flood import fetch_inputs as f
+    def fetch_ranking_inputs(transform, shape, crs, ref_year, key):
+        from susceptibility.flood_ranking import fetch_inputs as f
         return f(transform, shape, crs, ref_year, key)
 
     def fetch_cause_counts(layer, transform, shape, window, cloud_cover_threshold):
@@ -111,7 +111,7 @@ def _default_deps():
             "fetch_dem": fetch_dem, "fetch_waterways": fetch_waterways,
             "run_change": run_change, "fetch_cause_counts": fetch_cause_counts,
             "fetch_hydro_rasters": fetch_hydro_rasters,
-            "fetch_learned_inputs": fetch_learned_inputs}
+            "fetch_ranking_inputs": fetch_ranking_inputs}
 
 
 # ── output builders ─────────────────────────────────────────────────────
@@ -337,12 +337,12 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
     rasters = ro["value"] if ro["status"] == "ok" else None
     ctx["hydro_rasters"] = ({"status": "available", "errors": rasters.get("errors", {})}
                             if rasters else H.context_from_outcome(ro))
-    # flood_final: the learned model's own inputs (Earth Engine, Overpass), on
-    # the same grid. A stage that did not finish is its status, never zero.
-    lio = stage("learned_inputs", deps["fetch_learned_inputs"], ht, (H_, W_),
+    # The elevation ranking's inputs (Earth Engine) on the same grid. A stage
+    # that did not finish is its status, never zero.
+    lio = stage("ranking_inputs", deps["fetch_ranking_inputs"], ht, (H_, W_),
                layer.crs.to_string(), int(window["end"][:4]), name)
     learned = lio["value"] if lio["status"] == "ok" else None
-    ctx["learned_inputs"] = ({"status": "available"} if learned else H.context_from_outcome(lio))
+    ctx["ranking_inputs"] = ({"status": "available"} if learned else H.context_from_outcome(lio))
     app = H.applicability_for(ctx, surfaces.get("impervious"))
     modules = H.run_modules(ctx, surfaces, waterway, app, rasters, learned=learned,
                             shape=(H_, W_))
@@ -358,12 +358,12 @@ def run_analysis(bbox, window: dict, *, name: str, producer=None, boundary_id: s
         if smap is None:
             continue
         name = f"{h}_susceptibility"
-        # flood_final: the learned output is a within-AOI ranking, so its map
-        # is drawn as each cell's percentile in the AOI (no-data stays no-data)
-        meta, png = map_record(name, H.percentile_map(smap) if h == H.LEARNED else smap, ht,
+        # The ranking output is a within-AOI ranking, so its map is drawn as
+        # each cell's percentile in the AOI (no-data stays no-data)
+        meta, png = map_record(name, H.percentile_map(smap) if h == H.RANKING else smap, ht,
                                layer.crs.to_string())
-        if h == H.LEARNED:
-            meta["rendered_as"] = "within-AOI percentile of the learned score"
+        if h == H.RANKING:
+            meta["rendered_as"] = "within-AOI percentile of minus the GLO-30 elevation"
         maps[name], map_meta[name] = png, meta
         hazard_10m[name] = np.repeat(np.repeat(smap, k, axis=0), k, axis=1)
         if hz[h]["status"] == "available":
