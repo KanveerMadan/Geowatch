@@ -12,7 +12,7 @@
 - **Count check (metadata only, NYC; first done with SC included, before this rule):** 630 "Street Flooding (SJ)" reports on 2023-09-29/30, against 5 on a dry day. The same window holds ~19,000 reports of other kinds.
 
 ## Label rules (same for every method)
-1. **Window:** [rain start, IMERG 3-day peak + 24 h], for R19's 1-day lag.
+1. **Window:** [peak − 1 d, peak + 2 d) in UTC days. The peak is the IMERG day with the largest centred 3-day sum within [first report day − 2 d, + 1 d]. This allows reports up to one day after the rain peak (R19's 1-day lag) plus the peak day itself.
 2. **FLOODED:** 30 m cells holding ≥ 1 report in the window whose descriptor is surface flooding:
    - NYC: `Street Flooding (SJ)`, `Highway Flooding (SH)`;
    - other cities: their nearest equivalents, listed per city before use.
@@ -26,7 +26,8 @@
 5. **Location:** the report's geocoded latitude/longitude. Reports without coordinates are dropped and counted.
 
 ## Units and events
-- **Unit:** an 8 km box (R25), centred on the 8 km window with the most flood reports (the analogue of `place()`'s flood centre). It is placed at build time.
+- **Unit:** an 8 km box (R25), taken from a fixed lattice of 8 km boxes at 4 km steps over the city: the lattice box with the most flood reports (the analogue of `place()`'s flood centre). It is placed at build time.
+  - The lattice lets features be built once per box. Features use one reference year (2021: WorldCover / NDVI) for every event in a box, for all methods alike.
   - A second box per event is allowed if it does not overlap the first and holds ≥ 50 flood reports.
   - Units of one storm form one cluster.
 - **Event (metadata only):** consecutive days with ≥ 50 surface-flood (SJ + SH) reports city-wide each. That count plays the role of EMS's reported affected area (§4). Its driver checks (§2), from metadata:

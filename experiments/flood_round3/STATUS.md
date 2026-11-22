@@ -12,7 +12,7 @@ Branch `exp/flood-round3` (from `07e9920`, round 2's result), worktree gw-floodp
 ## Credentials (checked 2026-11-22; the files are never printed, logged or committed)
 | service | state |
 |---|---|
-| CDS (`~/.cdsapirc`, cdsapi 0.7.7) | works: ERA5-Land downloaded. The tiny ERA5 request passed the licence check and was still in the CDS queue after 1 h |
+| CDS (`~/.cdsapirc`, cdsapi 0.7.7) | works: ERA5 and ERA5-Land both downloaded |
 | EWDS (GloFAS) | key works; CEMS terms not accepted (403) |
 | Earthdata → ASF HyP3 | works, 8000 credits |
 | Earthdata → GES DISC | app not authorised; IMERG comes from Earth Engine instead |
@@ -21,13 +21,13 @@ Branch `exp/flood-round3` (from `07e9920`, round 2's result), worktree gw-floodp
 | # | phase | state | notes |
 |---|---|---|---|
 | 0a | PR #1: elevation instead of the learned model | done | `39d31e4`; output `flood_ranking`, `experimental`; PR updated |
-| 0b | Ida compound SFINCS rerun | running | `~/.cache/geowatch/flood_round3/ida_queue.log`; 4 members in turn, ~45 min each, Docker capped at 3 GB |
+| 0b | Ida compound SFINCS rerun | running (2 of 4 members done) | `~/.cache/geowatch/flood_round3/ida_queue.log`; ~65 min per member, Docker capped at 3 GB, peak use ~300 MB |
 | 0c | city-rain SFINCS | moved to Phase 4 | never built in round 2 |
 | 0d | round-2 appendix | done | APPENDIX_ROUND2.md |
 | 1 | diagnosis | **done** | DIAGNOSIS.md: all 9 suspected causes plus 3 new ones measured |
-| 2 | label rules v3 | rules done; burned units relabelled | labels_r3.py; R19; R21. Next: urban labels (HyP3 coherence), max-extent from S2/Landsat/HLS |
-| 3 | seal the round-3 reserve | criteria drafted (not pushed); EMS metadata pulled | RESERVE_CRITERIA_R3.md, select_r3.py. **Blocked on the fresh-event pool (R23)** |
-| 4 | features the terrain cannot know | started | model_r3.py (anchored learner, λ by inner CV, tests pass). Oracle headroom caps terrain re-weighting (DIAGNOSIS §a) |
+| 2 | label rules v3 | rules done; burned units relabelled; **rain: 311 street-flooding labels designed** | labels_r3.py; R19; R21; RAIN_311_DESIGN.md (NYC: 103 DEV / 30 reserve events before driver checks) |
+| 3 | seal the round-3 reserve | criteria drafted (draft pushed); sources being added | RESERVE_CRITERIA_R3.md §8 (MMFlood via Sentinel-1, no EMS account needed); 311 for rain; R24–R25 8 km units |
+| 4 | features the terrain cannot know | started | model_r3.py (anchored learner). 8 km DEV tables building (`build_r3.py`, 77 units, 2 workers, ~16 h) |
 | 5–8 | pre-register, freeze, score, evidence, product | todo | |
 
 ## What the diagnosis found, in plain words
@@ -52,3 +52,11 @@ Branch `exp/flood-round3` (from `07e9920`, round 2's result), worktree gw-floodp
 
 ## Running now
 - Ida SFINCS queue (Docker).
+- MMFlood footprints from DEM tile headers (`mmflood_meta.py`).
+- 8 km DEV tables (`build_r3.py dev`, two shards; logs `~/.cache/geowatch/flood_round3/big_dev_*.log`).
+- 311 driver checks (`rain311.py drivers`).
+
+## New since the Phase 1–2 checkpoint
+- **Gain spread (DIAGNOSIS §j):** for coastal and compound it is mostly noise inside units that are too small (25 blocks). For river and waterlogging it is mostly real event-to-event difference. So round 3 uses 8 km units (R24, R25).
+- **Rain gets a real label source:** city 311 street-flooding reports, timestamped during the storm, with other reports in the same window as the dry control. NYC has 133 storm events from 2010 onwards. Typing uses IMERG rain and the Battery tide gauge (surge days become coastal or compound).
+- **MMFlood without the EMS account:** the criteria now take its 95 activations on a Sentinel-1 route, for river and waterlogging only. The discharge peak, Sentinel-1 pass times and baselines all come from metadata.
