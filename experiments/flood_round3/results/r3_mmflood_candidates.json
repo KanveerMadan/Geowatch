@@ -1,0 +1,4513 @@
+{
+ "candidates": [
+  {
+   "unit": "r3mm_emsr117_0",
+   "code": "EMSR117",
+   "aoi_group": "EMSR117-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Greece",
+   "event": "2015-02-02",
+   "peak_day": "2015-02-02",
+   "peak_rp_y": 8.7,
+   "reach": {
+    "link": 210238092,
+    "dsarea_km2": 718.4,
+    "order": 4,
+    "lat": 39.23644256591797,
+    "lon": 20.47255516052246
+   },
+   "image": "2015-02-01",
+   "orbit": 153,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    39.23644256591797,
+    20.47255516052246
+   ],
+   "bbox_at_search_point": [
+    20.426163,
+    39.20051,
+    20.518947,
+    39.272375
+   ],
+   "cluster": "mm_emsr117",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr117_1",
+   "code": "EMSR117",
+   "aoi_group": "EMSR117-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Greece",
+   "event": "2015-02-02",
+   "peak_day": "2015-02-02",
+   "peak_rp_y": 12.43,
+   "reach": {
+    "link": 210315161,
+    "dsarea_km2": 1670.2,
+    "order": 5,
+    "lat": 39.58277893066406,
+    "lon": 20.249332427978516
+   },
+   "image": "2015-02-01",
+   "orbit": 153,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    39.58277893066406,
+    20.249332427978516
+   ],
+   "bbox_at_search_point": [
+    20.20271,
+    39.546846,
+    20.295955,
+    39.618711
+   ],
+   "cluster": "mm_emsr117",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr120_0",
+   "code": "EMSR120",
+   "aoi_group": "EMSR120-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Spain",
+   "event": "2015-02-27",
+   "peak_day": "2015-03-02",
+   "peak_rp_y": 7.91,
+   "reach": {
+    "link": 210434368,
+    "dsarea_km2": 31688.7,
+    "order": 7,
+    "lat": 41.785888671875,
+    "lon": -1.1412222385406494
+   },
+   "image": "2015-03-05",
+   "orbit": 103,
+   "lag_days": 3,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    41.785888671875,
+    -1.1412222385406494
+   ],
+   "bbox_at_search_point": [
+    -1.189412,
+    41.749956,
+    -1.093032,
+    41.821821
+   ],
+   "cluster": "mm_emsr120",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr120_1",
+   "code": "EMSR120",
+   "aoi_group": "EMSR120-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Spain",
+   "event": "2015-02-27",
+   "peak_day": "2015-03-03",
+   "peak_rp_y": 5.8,
+   "reach": {
+    "link": 210432265,
+    "dsarea_km2": 47515.2,
+    "order": 7,
+    "lat": 41.60377883911133,
+    "lon": -0.7929999828338623
+   },
+   "image": "2015-03-05",
+   "orbit": 103,
+   "lag_days": 2,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    41.60377883911133,
+    -0.7929999828338623
+   ],
+   "bbox_at_search_point": [
+    -0.841054,
+    41.567846,
+    -0.744946,
+    41.639711
+   ],
+   "cluster": "mm_emsr120",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr122_0",
+   "code": "EMSR122",
+   "aoi_group": "EMSR122-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Greece",
+   "event": "2015-03-31",
+   "peak_day": "2015-03-28",
+   "peak_rp_y": 2.49,
+   "reach": {
+    "link": 210380560,
+    "dsarea_km2": 17343.7,
+    "order": 6,
+    "lat": 40.8934440612793,
+    "lon": 23.815555572509766
+   },
+   "image": "2015-03-29",
+   "orbit": 102,
+   "lag_days": 1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    40.8934440612793,
+    23.815555572509766
+   ],
+   "bbox_at_search_point": [
+    23.768021,
+    40.857512,
+    23.86309,
+    40.929377
+   ],
+   "cluster": "mm_emsr122",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr122_3",
+   "code": "EMSR122",
+   "aoi_group": "EMSR122-3",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Greece",
+   "event": "2015-03-31",
+   "peak_day": "2015-03-30",
+   "peak_rp_y": 2.17,
+   "reach": {
+    "link": 210378446,
+    "dsarea_km2": 14426.5,
+    "order": 6,
+    "lat": 40.942665100097656,
+    "lon": 23.695667266845703
+   },
+   "image": "2015-03-29",
+   "orbit": 102,
+   "lag_days": -1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    40.942665100097656,
+    23.695667266845703
+   ],
+   "bbox_at_search_point": [
+    23.648098,
+    40.906733,
+    23.743237,
+    40.978598
+   ],
+   "cluster": "mm_emsr122",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr147_1",
+   "code": "EMSR147",
+   "aoi_group": "EMSR147-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Cumbria",
+   "event": "2015-12-05",
+   "peak_day": "2015-12-06",
+   "peak_rp_y": 87.0,
+   "reach": {
+    "link": 230111295,
+    "dsarea_km2": 1226.0,
+    "order": 5,
+    "lat": 54.712337493896484,
+    "lon": -2.6907217502593994
+   },
+   "image": "2015-12-08",
+   "orbit": 132,
+   "lag_days": 2,
+   "baseline_passes": 2,
+   "baseline_year_before": false,
+   "search_point": [
+    54.712337493896484,
+    -2.6907217502593994
+   ],
+   "bbox_at_search_point": [
+    -2.752923,
+    54.676405,
+    -2.628521,
+    54.74827
+   ],
+   "cluster": "mm_emsr147",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr147_2",
+   "code": "EMSR147",
+   "aoi_group": "EMSR147-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Cumbria",
+   "event": "2015-12-05",
+   "peak_day": "2015-12-06",
+   "peak_rp_y": 87.0,
+   "reach": {
+    "link": 230183122,
+    "dsarea_km2": 553.6,
+    "order": 4,
+    "lat": 54.20722579956055,
+    "lon": -2.5943593978881836
+   },
+   "image": "2015-12-08",
+   "orbit": 132,
+   "lag_days": 2,
+   "baseline_passes": 2,
+   "baseline_year_before": false,
+   "search_point": [
+    54.20722579956055,
+    -2.5943593978881836
+   ],
+   "bbox_at_search_point": [
+    -2.655798,
+    54.171293,
+    -2.532921,
+    54.243158
+   ],
+   "cluster": "mm_emsr147",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr149_1",
+   "code": "EMSR149",
+   "aoi_group": "EMSR149-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Ireland",
+   "event": "2015-12-08",
+   "peak_day": "2015-12-06",
+   "peak_rp_y": 43.5,
+   "reach": {
+    "link": 230426879,
+    "dsarea_km2": 470.7,
+    "order": 3,
+    "lat": 53.142784118652344,
+    "lon": -8.931014060974121
+   },
+   "image": "2015-12-06",
+   "orbit": 96,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    53.142784118652344,
+    -8.931014060974121
+   ],
+   "bbox_at_search_point": [
+    -8.990919,
+    53.106852,
+    -8.871109,
+    53.178717
+   ],
+   "cluster": "mm_emsr149",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr149_2",
+   "code": "EMSR149",
+   "aoi_group": "EMSR149-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Ireland",
+   "event": "2015-12-08",
+   "peak_day": "2015-12-06",
+   "peak_rp_y": 87.0,
+   "reach": {
+    "link": 230165722,
+    "dsarea_km2": 1623.6,
+    "order": 5,
+    "lat": 54.047672271728516,
+    "lon": -7.40369987487793
+   },
+   "image": "2015-12-08",
+   "orbit": 125,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    54.047672271728516,
+    -7.40369987487793
+   ],
+   "bbox_at_search_point": [
+    -7.464902,
+    54.01174,
+    -7.342498,
+    54.083605
+   ],
+   "cluster": "mm_emsr149",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr150_1",
+   "code": "EMSR150",
+   "aoi_group": "EMSR150-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in England",
+   "event": "2015-12-28",
+   "peak_day": "2015-12-27",
+   "peak_rp_y": 29.0,
+   "reach": {
+    "link": 230233180,
+    "dsarea_km2": 516.3,
+    "order": 4,
+    "lat": 53.96700668334961,
+    "lon": -1.3610061407089233
+   },
+   "image": "2015-12-29",
+   "orbit": 81,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    53.96700668334961,
+    -1.3610061407089233
+   ],
+   "bbox_at_search_point": [
+    -1.42209,
+    53.931074,
+    -1.299923,
+    54.002939
+   ],
+   "cluster": "mm_emsr150",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr150_2",
+   "code": "EMSR150",
+   "aoi_group": "EMSR150-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in England",
+   "event": "2015-12-28",
+   "peak_day": "2015-12-28",
+   "peak_rp_y": 29.0,
+   "reach": {
+    "link": 230175518,
+    "dsarea_km2": 3922.6,
+    "order": 5,
+    "lat": 53.90467071533203,
+    "lon": -1.090439796447754
+   },
+   "image": "2015-12-29",
+   "orbit": 81,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    53.90467071533203,
+    -1.090439796447754
+   ],
+   "bbox_at_search_point": [
+    -1.151432,
+    53.868738,
+    -1.029447,
+    53.940603
+   ],
+   "cluster": "mm_emsr150",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr151_2",
+   "code": "EMSR151",
+   "aoi_group": "EMSR151-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Northern Ireland",
+   "event": "2016-01-11",
+   "peak_day": "2016-01-07",
+   "peak_rp_y": 7.25,
+   "reach": {
+    "link": 230136326,
+    "dsarea_km2": 1644.2,
+    "order": 4,
+    "lat": 54.533782958984375,
+    "lon": -6.558719635009766
+   },
+   "image": "2016-01-06",
+   "orbit": 23,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    54.533782958984375,
+    -6.558719635009766
+   ],
+   "bbox_at_search_point": [
+    -6.620648,
+    54.497851,
+    -6.496791,
+    54.569715
+   ],
+   "cluster": "mm_emsr151",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr151_3",
+   "code": "EMSR151",
+   "aoi_group": "EMSR151-3",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Northern Ireland",
+   "event": "2016-01-11",
+   "peak_day": "2016-01-08",
+   "peak_rp_y": 4.58,
+   "reach": {
+    "link": 230143933,
+    "dsarea_km2": 5438.4,
+    "order": 5,
+    "lat": 54.749114990234375,
+    "lon": -6.468902111053467
+   },
+   "image": "2016-01-11",
+   "orbit": 103,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    54.749114990234375,
+    -6.468902111053467
+   ],
+   "bbox_at_search_point": [
+    -6.53116,
+    54.713183,
+    -6.406645,
+    54.785047
+   ],
+   "cluster": "mm_emsr151",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr154_0",
+   "code": "EMSR154",
+   "aoi_group": "EMSR154-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Roscommon",
+   "event": "2016-02-05",
+   "peak_day": "2016-01-26",
+   "peak_rp_y": 2.29,
+   "reach": {
+    "link": 230173352,
+    "dsarea_km2": 48.1,
+    "order": 2,
+    "lat": 53.681007385253906,
+    "lon": -8.272491455078125
+   },
+   "image": "2016-01-28",
+   "orbit": 1,
+   "lag_days": 2,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    53.681007385253906,
+    -8.272491455078125
+   ],
+   "bbox_at_search_point": [
+    -8.333159,
+    53.645075,
+    -8.211823,
+    53.71694
+   ],
+   "cluster": "mm_emsr154",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr154_1",
+   "code": "EMSR154",
+   "aoi_group": "EMSR154-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Roscommon",
+   "event": "2016-02-05",
+   "peak_day": "2016-01-27",
+   "peak_rp_y": 4.14,
+   "reach": {
+    "link": 230358323,
+    "dsarea_km2": 1264.3,
+    "order": 4,
+    "lat": 53.40222930908203,
+    "lon": -8.231691360473633
+   },
+   "image": "2016-01-28",
+   "orbit": 1,
+   "lag_days": 1,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    53.40222930908203,
+    -8.231691360473633
+   ],
+   "bbox_at_search_point": [
+    -8.291961,
+    53.366297,
+    -8.171422,
+    53.438162
+   ],
+   "cluster": "mm_emsr154",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr162_2",
+   "code": "EMSR162",
+   "aoi_group": "EMSR162-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Rudaki District, Tajikistan",
+   "event": "2016-05-16",
+   "peak_day": "2016-05-13",
+   "peak_rp_y": 21.75,
+   "reach": {
+    "link": 470236058,
+    "dsarea_km2": 3369.0,
+    "order": 5,
+    "lat": 38.495643615722656,
+    "lon": 68.78475189208984
+   },
+   "image": "2016-05-14",
+   "orbit": 151,
+   "lag_days": 1,
+   "baseline_passes": 2,
+   "baseline_year_before": false,
+   "search_point": [
+    38.495643615722656,
+    68.78475189208984
+   ],
+   "bbox_at_search_point": [
+    68.738841,
+    38.459711,
+    68.830663,
+    38.531576
+   ],
+   "cluster": "mm_emsr162",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr165_0",
+   "code": "EMSR165",
+   "aoi_group": "EMSR165-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Loiret",
+   "event": "2016-06-01",
+   "peak_day": "2016-06-02",
+   "peak_rp_y": 7.25,
+   "reach": {
+    "link": 230343283,
+    "dsarea_km2": 30038.8,
+    "order": 7,
+    "lat": 48.766231536865234,
+    "lon": 2.4123005867004395
+   },
+   "image": "2016-06-04",
+   "orbit": 110,
+   "lag_days": 2,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    48.766231536865234,
+    2.4123005867004395
+   ],
+   "bbox_at_search_point": [
+    2.357786,
+    48.730299,
+    2.466815,
+    48.802164
+   ],
+   "cluster": "mm_emsr165",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr165_2",
+   "code": "EMSR165",
+   "aoi_group": "EMSR165-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Loiret",
+   "event": "2016-06-01",
+   "peak_day": "2016-06-04",
+   "peak_rp_y": 4.58,
+   "reach": {
+    "link": 230365034,
+    "dsarea_km2": 61648.3,
+    "order": 7,
+    "lat": 48.98234176635742,
+    "lon": 1.728156328201294
+   },
+   "image": "2016-06-04",
+   "orbit": 110,
+   "lag_days": 0,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    48.98234176635742,
+    1.728156328201294
+   ],
+   "bbox_at_search_point": [
+    1.673406,
+    48.946409,
+    1.782907,
+    49.018274
+   ],
+   "cluster": "mm_emsr165",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr167_0",
+   "code": "EMSR167",
+   "aoi_group": "EMSR167-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Limburg Province, Belgium",
+   "event": "2016-06-02",
+   "peak_day": "2016-05-31",
+   "peak_rp_y": 1.74,
+   "reach": {
+    "link": 230471570,
+    "dsarea_km2": 774.0,
+    "order": 4,
+    "lat": 51.13045120239258,
+    "lon": 4.614846706390381
+   },
+   "image": "2016-05-30",
+   "orbit": 37,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    51.13045120239258,
+    4.614846706390381
+   ],
+   "bbox_at_search_point": [
+    4.557588,
+    51.094519,
+    4.672105,
+    51.166384
+   ],
+   "cluster": "mm_emsr167",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr167_1",
+   "code": "EMSR167",
+   "aoi_group": "EMSR167-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Limburg Province, Belgium",
+   "event": "2016-06-02",
+   "peak_day": "2016-05-31",
+   "peak_rp_y": 2.23,
+   "reach": {
+    "link": 230389971,
+    "dsarea_km2": 436.4,
+    "order": 4,
+    "lat": 51.084896087646484,
+    "lon": 4.920782566070557
+   },
+   "image": "2016-05-30",
+   "orbit": 37,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    51.084896087646484,
+    4.920782566070557
+   ],
+   "bbox_at_search_point": [
+    4.863581,
+    51.048964,
+    4.977985,
+    51.120829
+   ],
+   "cluster": "mm_emsr167",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr184_4",
+   "code": "EMSR184",
+   "aoi_group": "EMSR184-4",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in South Eastern Australia",
+   "event": "2016-09-26",
+   "peak_day": "2016-09-27",
+   "peak_rp_y": 2.56,
+   "reach": {
+    "link": 541183644,
+    "dsarea_km2": 23209.7,
+    "order": 6,
+    "lat": -33.156776428222656,
+    "lon": 147.28077697753906
+   },
+   "image": "2016-09-27",
+   "orbit": 45,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    -33.156776428222656,
+    147.28077697753906
+   ],
+   "bbox_at_search_point": [
+    147.237856,
+    -33.192709,
+    147.323698,
+    -33.120844
+   ],
+   "cluster": "mm_emsr184",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr184_5",
+   "code": "EMSR184",
+   "aoi_group": "EMSR184-5",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in South Eastern Australia",
+   "event": "2016-09-26",
+   "peak_day": "2016-09-24",
+   "peak_rp_y": 2.81,
+   "reach": {
+    "link": 541143333,
+    "dsarea_km2": 20995.4,
+    "order": 6,
+    "lat": -33.40577697753906,
+    "lon": 147.88877868652344
+   },
+   "image": "2016-09-27",
+   "orbit": 45,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    -33.40577697753906,
+    147.88877868652344
+   ],
+   "bbox_at_search_point": [
+    147.845735,
+    -33.441709,
+    147.931822,
+    -33.369845
+   ],
+   "cluster": "mm_emsr184",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr187_0",
+   "code": "EMSR187",
+   "aoi_group": "EMSR187-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Romania",
+   "event": "2016-10-12",
+   "peak_day": "2016-10-13",
+   "peak_rp_y": 21.75,
+   "reach": {
+    "link": 220553907,
+    "dsarea_km2": 1078.8,
+    "order": 4,
+    "lat": 45.462528228759766,
+    "lon": 27.76243019104004
+   },
+   "image": "2016-10-14",
+   "orbit": 109,
+   "lag_days": 1,
+   "baseline_passes": 7,
+   "baseline_year_before": false,
+   "search_point": [
+    45.462528228759766,
+    27.76243019104004
+   ],
+   "bbox_at_search_point": [
+    27.711199,
+    45.426596,
+    27.813662,
+    45.498461
+   ],
+   "cluster": "mm_emsr187",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr192_0",
+   "code": "EMSR192",
+   "aoi_group": "EMSR192-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Northern Italy",
+   "event": "2016-11-24",
+   "peak_day": "2016-11-25",
+   "peak_rp_y": 21.75,
+   "reach": {
+    "link": 210253641,
+    "dsarea_km2": 1353.1,
+    "order": 4,
+    "lat": 44.54666519165039,
+    "lon": 7.731555461883545
+   },
+   "image": "2016-11-28",
+   "orbit": 66,
+   "lag_days": 3,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    44.54666519165039,
+    7.731555461883545
+   ],
+   "bbox_at_search_point": [
+    7.681137,
+    44.510733,
+    7.781974,
+    44.582598
+   ],
+   "cluster": "mm_emsr192",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr192_1",
+   "code": "EMSR192",
+   "aoi_group": "EMSR192-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Northern Italy",
+   "event": "2016-11-24",
+   "peak_day": "2016-11-27",
+   "peak_rp_y": 87.0,
+   "reach": {
+    "link": 210220885,
+    "dsarea_km2": 4926.0,
+    "order": 5,
+    "lat": 44.874778747558594,
+    "lon": 8.331999778747559
+   },
+   "image": "2016-11-28",
+   "orbit": 66,
+   "lag_days": 1,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    44.874778747558594,
+    8.331999778747559
+   ],
+   "bbox_at_search_point": [
+    8.281294,
+    44.838846,
+    8.382705,
+    44.910711
+   ],
+   "cluster": "mm_emsr192",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr199_1",
+   "code": "EMSR199",
+   "aoi_group": "EMSR199-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Peru",
+   "event": "2017-03-22",
+   "peak_day": "2017-03-18",
+   "peak_rp_y": 8.7,
+   "reach": {
+    "link": 670055821,
+    "dsarea_km2": 14684.9,
+    "order": 5,
+    "lat": -4.890555381774902,
+    "lon": -80.69322204589844
+   },
+   "image": "2017-03-20",
+   "orbit": 40,
+   "lag_days": 2,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    -4.890555381774902,
+    -80.69322204589844
+   ],
+   "bbox_at_search_point": [
+    -80.729286,
+    -4.926488,
+    -80.657158,
+    -4.854623
+   ],
+   "cluster": "mm_emsr199",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr199_2",
+   "code": "EMSR199",
+   "aoi_group": "EMSR199-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Peru",
+   "event": "2017-03-22",
+   "peak_day": "2017-03-26",
+   "peak_rp_y": 7.91,
+   "reach": {
+    "link": 670049782,
+    "dsarea_km2": 185.3,
+    "order": 3,
+    "lat": -7.773889064788818,
+    "lon": -79.1247787475586
+   },
+   "image": "2017-03-27",
+   "orbit": 142,
+   "lag_days": 1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    -7.773889064788818,
+    -79.1247787475586
+   ],
+   "bbox_at_search_point": [
+    -79.161044,
+    -7.809822,
+    -79.088513,
+    -7.737957
+   ],
+   "cluster": "mm_emsr199",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr203_2",
+   "code": "EMSR203",
+   "aoi_group": "EMSR203-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Central US",
+   "event": "2017-04-29",
+   "peak_day": "2017-05-03",
+   "peak_rp_y": 21.75,
+   "reach": {
+    "link": 760665003,
+    "dsarea_km2": 11242.1,
+    "order": 6,
+    "lat": 36.6856575012207,
+    "lon": -93.07475280761719
+   },
+   "image": "2017-05-03",
+   "orbit": 63,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    36.6856575012207,
+    -93.07475280761719
+   ],
+   "bbox_at_search_point": [
+    -93.119561,
+    36.649725,
+    -93.029945,
+    36.72159
+   ],
+   "cluster": "mm_emsr203",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr203_3",
+   "code": "EMSR203",
+   "aoi_group": "EMSR203-3",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Central US",
+   "event": "2017-04-29",
+   "peak_day": "2017-05-02",
+   "peak_rp_y": 10.88,
+   "reach": {
+    "link": 760659966,
+    "dsarea_km2": 2811.4,
+    "order": 5,
+    "lat": 37.26454544067383,
+    "lon": -94.5428466796875
+   },
+   "image": "2017-05-03",
+   "orbit": 63,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    37.26454544067383,
+    -94.5428466796875
+   ],
+   "bbox_at_search_point": [
+    -94.587997,
+    37.228613,
+    -94.497697,
+    37.300478
+   ],
+   "cluster": "mm_emsr203",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr215_0",
+   "code": "EMSR215",
+   "aoi_group": "EMSR215-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Braunschweig",
+   "event": "2017-07-27",
+   "peak_day": "2017-07-26",
+   "peak_rp_y": 7.25,
+   "reach": {
+    "link": 230583588,
+    "dsarea_km2": 1159.0,
+    "order": 5,
+    "lat": 52.28733825683594,
+    "lon": 10.500603675842285
+   },
+   "image": "2017-07-26",
+   "orbit": 66,
+   "lag_days": 0,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    52.28733825683594,
+    10.500603675842285
+   ],
+   "bbox_at_search_point": [
+    10.441862,
+    52.251406,
+    10.559345,
+    52.323271
+   ],
+   "cluster": "mm_emsr215",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr258_3",
+   "code": "EMSR258",
+   "aoi_group": "EMSR258-3",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Albania",
+   "event": "2017-12-01",
+   "peak_day": "2017-12-02",
+   "peak_rp_y": 87.0,
+   "reach": {
+    "link": 210375279,
+    "dsarea_km2": 2990.7,
+    "order": 4,
+    "lat": 40.9367790222168,
+    "lon": 20.105222702026367
+   },
+   "image": "2017-12-05",
+   "orbit": 73,
+   "lag_days": 3,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    40.9367790222168,
+    20.105222702026367
+   ],
+   "bbox_at_search_point": [
+    20.057657,
+    40.900847,
+    20.152788,
+    40.972711
+   ],
+   "cluster": "mm_emsr258",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr258_5",
+   "code": "EMSR258",
+   "aoi_group": "EMSR258-5",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Albania",
+   "event": "2017-12-01",
+   "peak_day": "2017-12-01",
+   "peak_rp_y": 43.5,
+   "reach": {
+    "link": 210289753,
+    "dsarea_km2": 212.6,
+    "order": 3,
+    "lat": 40.732444763183594,
+    "lon": 19.602333068847656
+   },
+   "image": "2017-11-30",
+   "orbit": 175,
+   "lag_days": -1,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    40.732444763183594,
+    19.602333068847656
+   ],
+   "bbox_at_search_point": [
+    19.554914,
+    40.696512,
+    19.649752,
+    40.768377
+   ],
+   "cluster": "mm_emsr258",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr260_3",
+   "code": "EMSR260",
+   "aoi_group": "EMSR260-3",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Northern Italy",
+   "event": "2017-12-12",
+   "peak_day": "2017-12-12",
+   "peak_rp_y": 1.53,
+   "reach": {
+    "link": 210225123,
+    "dsarea_km2": 527.7,
+    "order": 4,
+    "lat": 44.631553649902344,
+    "lon": 10.416889190673828
+   },
+   "image": "2017-12-12",
+   "orbit": 168,
+   "lag_days": 0,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    44.631553649902344,
+    10.416889190673828
+   ],
+   "bbox_at_search_point": [
+    10.366397,
+    44.595621,
+    10.467382,
+    44.667486
+   ],
+   "cluster": "mm_emsr260",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr260_5",
+   "code": "EMSR260",
+   "aoi_group": "EMSR260-5",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Northern Italy",
+   "event": "2017-12-12",
+   "peak_day": "2017-12-12",
+   "peak_rp_y": 1.64,
+   "reach": {
+    "link": 210204000,
+    "dsarea_km2": 664.8,
+    "order": 4,
+    "lat": 44.73755645751953,
+    "lon": 10.432000160217285
+   },
+   "image": "2017-12-12",
+   "orbit": 168,
+   "lag_days": 0,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    44.73755645751953,
+    10.432000160217285
+   ],
+   "bbox_at_search_point": [
+    10.381415,
+    44.701624,
+    10.482585,
+    44.773489
+   ],
+   "cluster": "mm_emsr260",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr261_0",
+   "code": "EMSR261",
+   "aoi_group": "EMSR261-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Lower Saxony, Germany",
+   "event": "2017-12-14",
+   "peak_day": "2017-12-21",
+   "peak_rp_y": 1.58,
+   "reach": {
+    "link": 230547687,
+    "dsarea_km2": 3814.6,
+    "order": 5,
+    "lat": 52.175785064697266,
+    "lon": 9.784013748168945
+   },
+   "image": "2017-12-20",
+   "orbit": 117,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    52.175785064697266,
+    9.784013748168945
+   ],
+   "bbox_at_search_point": [
+    9.725419,
+    52.139853,
+    9.842608,
+    52.211718
+   ],
+   "cluster": "mm_emsr261",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr261_1",
+   "code": "EMSR261",
+   "aoi_group": "EMSR261-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Lower Saxony, Germany",
+   "event": "2017-12-14",
+   "peak_day": "2017-12-21",
+   "peak_rp_y": 1.61,
+   "reach": {
+    "link": 230511775,
+    "dsarea_km2": 5573.0,
+    "order": 5,
+    "lat": 52.38045120239258,
+    "lon": 9.691550254821777
+   },
+   "image": "2017-12-20",
+   "orbit": 117,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    52.38045120239258,
+    9.691550254821777
+   ],
+   "bbox_at_search_point": [
+    9.632685,
+    52.344519,
+    9.750416,
+    52.416384
+   ],
+   "cluster": "mm_emsr261",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr265_0",
+   "code": "EMSR265",
+   "aoi_group": "EMSR265-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Northern France",
+   "event": "2018-01-23",
+   "peak_day": "2018-01-23",
+   "peak_rp_y": 14.5,
+   "reach": {
+    "link": 230381380,
+    "dsarea_km2": 1571.3,
+    "order": 4,
+    "lat": 48.369232177734375,
+    "lon": 4.487431049346924
+   },
+   "image": "2018-01-22",
+   "orbit": 161,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    48.369232177734375,
+    4.487431049346924
+   ],
+   "bbox_at_search_point": [
+    4.433343,
+    48.3333,
+    4.541519,
+    48.405165
+   ],
+   "cluster": "mm_emsr265",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr265_1",
+   "code": "EMSR265",
+   "aoi_group": "EMSR265-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Northern France",
+   "event": "2018-01-23",
+   "peak_day": "2018-01-24",
+   "peak_rp_y": 5.12,
+   "reach": {
+    "link": 230333522,
+    "dsarea_km2": 8593.1,
+    "order": 6,
+    "lat": 48.02689743041992,
+    "lon": 3.3128421306610107
+   },
+   "image": "2018-01-25",
+   "orbit": 110,
+   "lag_days": 1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    48.02689743041992,
+    3.3128421306610107
+   ],
+   "bbox_at_search_point": [
+    3.259114,
+    47.990965,
+    3.36657,
+    48.06283
+   ],
+   "cluster": "mm_emsr265",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr267_0",
+   "code": "EMSR267",
+   "aoi_group": "EMSR267-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Silute, Lithuania",
+   "event": "2018-02-01",
+   "peak_day": "2018-02-08",
+   "peak_rp_y": 1.93,
+   "reach": {
+    "link": 240245017,
+    "dsarea_km2": 81454.6,
+    "order": 7,
+    "lat": 55.27139663696289,
+    "lon": 21.328014373779297
+   },
+   "image": "2018-02-07",
+   "orbit": 124,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    55.27139663696289,
+    21.328014373779297
+   ],
+   "bbox_at_search_point": [
+    21.264941,
+    55.235464,
+    21.391088,
+    55.307329
+   ],
+   "cluster": "mm_emsr267",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr271_0",
+   "code": "EMSR271",
+   "aoi_group": "EMSR271-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Central Greece",
+   "event": "2018-02-26",
+   "peak_day": "2018-02-28",
+   "peak_rp_y": 1.53,
+   "reach": {
+    "link": 210282414,
+    "dsarea_km2": 7267.1,
+    "order": 6,
+    "lat": 39.79255676269531,
+    "lon": 22.386110305786133
+   },
+   "image": "2018-02-28",
+   "orbit": 80,
+   "lag_days": 0,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    39.79255676269531,
+    22.386110305786133
+   ],
+   "bbox_at_search_point": [
+    22.339346,
+    39.756624,
+    22.432875,
+    39.828489
+   ],
+   "cluster": "mm_emsr271",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr271_1",
+   "code": "EMSR271",
+   "aoi_group": "EMSR271-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Central Greece",
+   "event": "2018-02-26",
+   "peak_day": "2018-02-26",
+   "peak_rp_y": 3.48,
+   "reach": {
+    "link": 210229637,
+    "dsarea_km2": 649.8,
+    "order": 4,
+    "lat": 39.36855697631836,
+    "lon": 22.174110412597656
+   },
+   "image": "2018-02-28",
+   "orbit": 80,
+   "lag_days": 2,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    39.36855697631836,
+    22.174110412597656
+   ],
+   "bbox_at_search_point": [
+    22.127631,
+    39.332625,
+    22.22059,
+    39.404489
+   ],
+   "cluster": "mm_emsr271",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr275_0",
+   "code": "EMSR275",
+   "aoi_group": "EMSR275-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Central Croatia",
+   "event": "2018-03-23",
+   "peak_day": "2018-03-22",
+   "peak_rp_y": 5.44,
+   "reach": {
+    "link": 220485126,
+    "dsarea_km2": 32160.8,
+    "order": 7,
+    "lat": 45.17774963378906,
+    "lon": 17.10480499267578
+   },
+   "image": "2018-03-21",
+   "orbit": 124,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    45.17774963378906,
+    17.10480499267578
+   ],
+   "bbox_at_search_point": [
+    17.05383,
+    45.141817,
+    17.15578,
+    45.213682
+   ],
+   "cluster": "mm_emsr275",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr275_1",
+   "code": "EMSR275",
+   "aoi_group": "EMSR275-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Central Croatia",
+   "event": "2018-03-23",
+   "peak_day": "2018-03-22",
+   "peak_rp_y": 3.78,
+   "reach": {
+    "link": 220525019,
+    "dsarea_km2": 25236.0,
+    "order": 7,
+    "lat": 45.332862854003906,
+    "lon": 16.771841049194336
+   },
+   "image": "2018-03-21",
+   "orbit": 124,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    45.332862854003906,
+    16.771841049194336
+   ],
+   "bbox_at_search_point": [
+    16.720727,
+    45.29693,
+    16.822955,
+    45.368795
+   ],
+   "cluster": "mm_emsr275",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr279_0",
+   "code": "EMSR279",
+   "aoi_group": "EMSR279-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in the Ebro river basin, Spain",
+   "event": "2018-04-13",
+   "peak_day": "2018-04-16",
+   "peak_rp_y": 3.48,
+   "reach": {
+    "link": 210431226,
+    "dsarea_km2": 58443.8,
+    "order": 7,
+    "lat": 41.31488800048828,
+    "lon": -0.006888888776302338
+   },
+   "image": "2018-04-18",
+   "orbit": 8,
+   "lag_days": 2,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    41.31488800048828,
+    -0.006888888776302338
+   ],
+   "bbox_at_search_point": [
+    -0.054729,
+    41.278956,
+    0.040951,
+    41.35082
+   ],
+   "cluster": "mm_emsr279",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr279_1",
+   "code": "EMSR279",
+   "aoi_group": "EMSR279-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in the Ebro river basin, Spain",
+   "event": "2018-04-13",
+   "peak_day": "2018-04-14",
+   "peak_rp_y": 3.62,
+   "reach": {
+    "link": 210411153,
+    "dsarea_km2": 48602.6,
+    "order": 7,
+    "lat": 41.47200012207031,
+    "lon": -0.5163333415985107
+   },
+   "image": "2018-04-13",
+   "orbit": 30,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    41.47200012207031,
+    -0.5163333415985107
+   ],
+   "bbox_at_search_point": [
+    -0.564289,
+    41.436068,
+    -0.468377,
+    41.507933
+   ],
+   "cluster": "mm_emsr279",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr284_4",
+   "code": "EMSR284",
+   "aoi_group": "EMSR284-4",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Finland",
+   "event": "2018-05-15",
+   "peak_day": "2018-05-14",
+   "peak_rp_y": 2.64,
+   "reach": {
+    "link": 240139576,
+    "dsarea_km2": 185.7,
+    "order": 3,
+    "lat": 65.99488067626953,
+    "lon": 24.149118423461914
+   },
+   "image": "2018-05-14",
+   "orbit": 124,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    65.99488067626953,
+    24.149118423461914
+   ],
+   "bbox_at_search_point": [
+    24.060793,
+    65.958948,
+    24.237444,
+    66.030813
+   ],
+   "cluster": "mm_emsr284",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr293_0",
+   "code": "EMSR293",
+   "aoi_group": "EMSR293-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Romania",
+   "event": "2018-06-30",
+   "peak_day": "2018-07-02",
+   "peak_rp_y": 1.64,
+   "reach": {
+    "link": 220498826,
+    "dsarea_km2": 25481.7,
+    "order": 6,
+    "lat": 46.00564193725586,
+    "lon": 27.230239868164062
+   },
+   "image": "2018-07-01",
+   "orbit": 131,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    46.00564193725586,
+    27.230239868164062
+   ],
+   "bbox_at_search_point": [
+    27.178508,
+    45.969709,
+    27.281972,
+    46.041574
+   ],
+   "cluster": "mm_emsr293",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr293_2",
+   "code": "EMSR293",
+   "aoi_group": "EMSR293-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Romania",
+   "event": "2018-06-30",
+   "peak_day": "2018-06-30",
+   "peak_rp_y": 1.58,
+   "reach": {
+    "link": 220652819,
+    "dsarea_km2": 617.4,
+    "order": 4,
+    "lat": 47.637977600097656,
+    "lon": 26.938125610351562
+   },
+   "image": "2018-06-29",
+   "orbit": 7,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    47.637977600097656,
+    26.938125610351562
+   ],
+   "bbox_at_search_point": [
+    26.884799,
+    47.602045,
+    26.991453,
+    47.67391
+   ],
+   "cluster": "mm_emsr293",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr314_1",
+   "code": "EMSR314",
+   "aoi_group": "EMSR314-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Nigeria",
+   "event": "2018-09-18",
+   "peak_day": "2018-09-19",
+   "peak_rp_y": 1.74,
+   "reach": {
+    "link": 140391529,
+    "dsarea_km2": 2057731.6,
+    "order": 9,
+    "lat": 6.002444267272949,
+    "lon": 6.715444564819336
+   },
+   "image": "2018-09-22",
+   "orbit": 22,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    6.002444267272949,
+    6.715444564819336
+   ],
+   "bbox_at_search_point": [
+    6.679314,
+    5.966512,
+    6.751575,
+    6.038377
+   ],
+   "cluster": "mm_emsr314",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr314_2",
+   "code": "EMSR314",
+   "aoi_group": "EMSR314-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Nigeria",
+   "event": "2018-09-18",
+   "peak_day": "2018-09-25",
+   "peak_rp_y": 1.74,
+   "reach": {
+    "link": 140525444,
+    "dsarea_km2": 8299.6,
+    "order": 5,
+    "lat": 6.44344425201416,
+    "lon": 6.873777866363525
+   },
+   "image": "2018-09-28",
+   "orbit": 30,
+   "lag_days": 3,
+   "baseline_passes": 6,
+   "baseline_year_before": false,
+   "search_point": [
+    6.44344425201416,
+    6.873777866363525
+   ],
+   "bbox_at_search_point": [
+    6.837617,
+    6.407512,
+    6.909939,
+    6.479377
+   ],
+   "cluster": "mm_emsr314",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr321_0",
+   "code": "EMSR321",
+   "aoi_group": "EMSR321-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Honduras and Nicaragua",
+   "event": "2018-10-09",
+   "peak_day": "2018-10-07",
+   "peak_rp_y": 4.58,
+   "reach": {
+    "link": 710053167,
+    "dsarea_km2": 47.1,
+    "order": 2,
+    "lat": 13.212333679199219,
+    "lon": -87.39755249023438
+   },
+   "image": "2018-10-07",
+   "orbit": 165,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    13.212333679199219,
+    -87.39755249023438
+   ],
+   "bbox_at_search_point": [
+    -87.434462,
+    13.176401,
+    -87.360643,
+    13.248266
+   ],
+   "cluster": "mm_emsr321",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr321_2",
+   "code": "EMSR321",
+   "aoi_group": "EMSR321-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Honduras and Nicaragua",
+   "event": "2018-10-09",
+   "peak_day": "2018-10-07",
+   "peak_rp_y": 3.11,
+   "reach": {
+    "link": 710051197,
+    "dsarea_km2": 1697.7,
+    "order": 4,
+    "lat": 13.023444175720215,
+    "lon": -86.98611450195312
+   },
+   "image": "2018-10-07",
+   "orbit": 165,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    13.023444175720215,
+    -86.98611450195312
+   ],
+   "bbox_at_search_point": [
+    -87.022996,
+    12.987512,
+    -86.949233,
+    13.059377
+   ],
+   "cluster": "mm_emsr321",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr324_0",
+   "code": "EMSR324",
+   "aoi_group": "EMSR324-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Aude, France",
+   "event": "2018-10-15",
+   "peak_day": "2018-10-16",
+   "peak_rp_y": 43.5,
+   "reach": {
+    "link": 210211471,
+    "dsarea_km2": 3533.9,
+    "order": 5,
+    "lat": 43.24855422973633,
+    "lon": 2.6808888912200928
+   },
+   "image": "2018-10-16",
+   "orbit": 110,
+   "lag_days": 0,
+   "baseline_passes": 18,
+   "baseline_year_before": false,
+   "search_point": [
+    43.24855422973633,
+    2.6808888912200928
+   ],
+   "bbox_at_search_point": [
+    2.631557,
+    43.212622,
+    2.73022,
+    43.284487
+   ],
+   "cluster": "mm_emsr324",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr324_1",
+   "code": "EMSR324",
+   "aoi_group": "EMSR324-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Aude, France",
+   "event": "2018-10-15",
+   "peak_day": "2018-10-16",
+   "peak_rp_y": 43.5,
+   "reach": {
+    "link": 210180850,
+    "dsarea_km2": 3281.4,
+    "order": 5,
+    "lat": 43.19244384765625,
+    "lon": 2.518444538116455
+   },
+   "image": "2018-10-16",
+   "orbit": 110,
+   "lag_days": 0,
+   "baseline_passes": 18,
+   "baseline_year_before": false,
+   "search_point": [
+    43.19244384765625,
+    2.518444538116455
+   ],
+   "bbox_at_search_point": [
+    2.469158,
+    43.156511,
+    2.567731,
+    43.228376
+   ],
+   "cluster": "mm_emsr324",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr330_2",
+   "code": "EMSR330",
+   "aoi_group": "EMSR330-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Sicily, Italy",
+   "event": "2018-10-25",
+   "peak_day": "2018-10-16",
+   "peak_rp_y": 5.8,
+   "reach": {
+    "link": 210268815,
+    "dsarea_km2": 835.1,
+    "order": 4,
+    "lat": 37.424888610839844,
+    "lon": 14.819999694824219
+   },
+   "image": "2018-10-16",
+   "orbit": 117,
+   "lag_days": 0,
+   "baseline_passes": 20,
+   "baseline_year_before": false,
+   "search_point": [
+    37.424888610839844,
+    14.819999694824219
+   ],
+   "bbox_at_search_point": [
+    14.774753,
+    37.388956,
+    14.865246,
+    37.460821
+   ],
+   "cluster": "mm_emsr330",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr332_2",
+   "code": "EMSR332",
+   "aoi_group": "EMSR332-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Veneto, Italy",
+   "event": "2018-11-01",
+   "peak_day": "2018-10-30",
+   "peak_rp_y": 5.8,
+   "reach": {
+    "link": 210217665,
+    "dsarea_km2": 1990.4,
+    "order": 5,
+    "lat": 45.82622146606445,
+    "lon": 12.579333305358887
+   },
+   "image": "2018-10-29",
+   "orbit": 44,
+   "lag_days": -1,
+   "baseline_passes": 20,
+   "baseline_year_before": false,
+   "search_point": [
+    45.82622146606445,
+    12.579333305358887
+   ],
+   "bbox_at_search_point": [
+    12.527768,
+    45.790289,
+    12.630898,
+    45.862154
+   ],
+   "cluster": "mm_emsr332",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr332_3",
+   "code": "EMSR332",
+   "aoi_group": "EMSR332-3",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Veneto, Italy",
+   "event": "2018-11-01",
+   "peak_day": "2018-11-01",
+   "peak_rp_y": 2.9,
+   "reach": {
+    "link": 210225079,
+    "dsarea_km2": 12804.0,
+    "order": 5,
+    "lat": 45.366554260253906,
+    "lon": 11.206222534179688
+   },
+   "image": "2018-11-01",
+   "orbit": 168,
+   "lag_days": 0,
+   "baseline_passes": 20,
+   "baseline_year_before": false,
+   "search_point": [
+    45.366554260253906,
+    11.206222534179688
+   ],
+   "bbox_at_search_point": [
+    11.155078,
+    45.330622,
+    11.257367,
+    45.402487
+   ],
+   "cluster": "mm_emsr332",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr333_0",
+   "code": "EMSR333",
+   "aoi_group": "EMSR333-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Sicily, Italy",
+   "event": "2018-11-04",
+   "peak_day": "2018-11-03",
+   "peak_rp_y": 3.22,
+   "reach": {
+    "link": 210227628,
+    "dsarea_km2": 402.6,
+    "order": 3,
+    "lat": 37.48466491699219,
+    "lon": 13.220666885375977
+   },
+   "image": "2018-11-03",
+   "orbit": 22,
+   "lag_days": 0,
+   "baseline_passes": 20,
+   "baseline_year_before": false,
+   "search_point": [
+    37.48466491699219,
+    13.220666885375977
+   ],
+   "bbox_at_search_point": [
+    13.175384,
+    37.448732,
+    13.265949,
+    37.520597
+   ],
+   "cluster": "mm_emsr333",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr337_0",
+   "code": "EMSR337",
+   "aoi_group": "EMSR337-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Western Greece",
+   "event": "2019-01-14",
+   "peak_day": "2019-01-11",
+   "peak_rp_y": 3.62,
+   "reach": {
+    "link": 210349060,
+    "dsarea_km2": 3140.1,
+    "order": 5,
+    "lat": 37.63133239746094,
+    "lon": 21.586111068725586
+   },
+   "image": "2019-01-12",
+   "orbit": 80,
+   "lag_days": 1,
+   "baseline_passes": 19,
+   "baseline_year_before": false,
+   "search_point": [
+    37.63133239746094,
+    21.586111068725586
+   ],
+   "bbox_at_search_point": [
+    21.540739,
+    37.5954,
+    21.631483,
+    37.667265
+   ],
+   "cluster": "mm_emsr337",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr342_3",
+   "code": "EMSR342",
+   "aoi_group": "EMSR342-3",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Townsville, Australia",
+   "event": "2019-02-01",
+   "peak_day": "2019-02-07",
+   "peak_rp_y": 10.88,
+   "reach": {
+    "link": 541490936,
+    "dsarea_km2": 13059.2,
+    "order": 6,
+    "lat": -20.726778030395508,
+    "lon": 143.15245056152344
+   },
+   "image": "2019-02-09",
+   "orbit": 60,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    -20.726778030395508,
+    143.15245056152344
+   ],
+   "bbox_at_search_point": [
+    143.114032,
+    -20.76271,
+    143.19087,
+    -20.690846
+   ],
+   "cluster": "mm_emsr342",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr342_5",
+   "code": "EMSR342",
+   "aoi_group": "EMSR342-5",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Townsville, Australia",
+   "event": "2019-02-01",
+   "peak_day": "2019-02-03",
+   "peak_rp_y": 8.7,
+   "reach": {
+    "link": 541460021,
+    "dsarea_km2": 5937.1,
+    "order": 5,
+    "lat": -20.586444854736328,
+    "lon": 140.51611328125
+   },
+   "image": "2019-02-02",
+   "orbit": 133,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    -20.586444854736328,
+    140.51611328125
+   ],
+   "bbox_at_search_point": [
+    140.47773,
+    -20.622377,
+    140.554497,
+    -20.550512
+   ],
+   "cluster": "mm_emsr342",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr358_0",
+   "code": "EMSR358",
+   "aoi_group": "EMSR358-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Bosnia and Herzegovina",
+   "event": "2019-05-14",
+   "peak_day": "2019-05-19",
+   "peak_rp_y": 1.89,
+   "reach": {
+    "link": 220421843,
+    "dsarea_km2": 53014.6,
+    "order": 7,
+    "lat": 44.992305755615234,
+    "lon": 18.73292350769043
+   },
+   "image": "2019-05-18",
+   "orbit": 175,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    44.992305755615234,
+    18.73292350769043
+   ],
+   "bbox_at_search_point": [
+    18.682114,
+    44.956373,
+    18.783733,
+    45.028238
+   ],
+   "cluster": "mm_emsr358",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr358_1",
+   "code": "EMSR358",
+   "aoi_group": "EMSR358-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Bosnia and Herzegovina",
+   "event": "2019-05-14",
+   "peak_day": "2019-05-16",
+   "peak_rp_y": 9.67,
+   "reach": {
+    "link": 220549797,
+    "dsarea_km2": 6120.5,
+    "order": 6,
+    "lat": 45.22886276245117,
+    "lon": 16.858444213867188
+   },
+   "image": "2019-05-15",
+   "orbit": 124,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    45.22886276245117,
+    16.858444213867188
+   ],
+   "bbox_at_search_point": [
+    16.807424,
+    45.19293,
+    16.909465,
+    45.264795
+   ],
+   "cluster": "mm_emsr358",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr388_0",
+   "code": "EMSR388",
+   "aoi_group": "EMSR388-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in the Southeast of Spain",
+   "event": "2019-09-12",
+   "peak_day": "2019-09-13",
+   "peak_rp_y": 87.0,
+   "reach": {
+    "link": 210283582,
+    "dsarea_km2": 155.5,
+    "order": 3,
+    "lat": 37.7425537109375,
+    "lon": -0.8723333477973938
+   },
+   "image": "2019-09-16",
+   "orbit": 8,
+   "lag_days": 3,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    37.7425537109375,
+    -0.8723333477973938
+   ],
+   "bbox_at_search_point": [
+    -0.917773,
+    37.706621,
+    -0.826893,
+    37.778486
+   ],
+   "cluster": "mm_emsr388",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr388_1",
+   "code": "EMSR388",
+   "aoi_group": "EMSR388-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in the Southeast of Spain",
+   "event": "2019-09-12",
+   "peak_day": "2019-09-15",
+   "peak_rp_y": 87.0,
+   "reach": {
+    "link": 210297291,
+    "dsarea_km2": 13823.2,
+    "order": 6,
+    "lat": 38.0991096496582,
+    "lon": -0.6594444513320923
+   },
+   "image": "2019-09-16",
+   "orbit": 8,
+   "lag_days": 1,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    38.0991096496582,
+    -0.6594444513320923
+   ],
+   "bbox_at_search_point": [
+    -0.705105,
+    38.063177,
+    -0.613784,
+    38.135042
+   ],
+   "cluster": "mm_emsr388",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr397_0",
+   "code": "EMSR397",
+   "aoi_group": "EMSR397-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Segre River Basin, Spain",
+   "event": "2019-10-22",
+   "peak_day": "2019-10-24",
+   "peak_rp_y": 2.07,
+   "reach": {
+    "link": 210423816,
+    "dsarea_km2": 11906.3,
+    "order": 6,
+    "lat": 41.62188720703125,
+    "lon": 0.6430000066757202
+   },
+   "image": "2019-10-23",
+   "orbit": 30,
+   "lag_days": -1,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    41.62188720703125,
+    0.6430000066757202
+   ],
+   "bbox_at_search_point": [
+    0.594933,
+    41.585955,
+    0.691067,
+    41.65782
+   ],
+   "cluster": "mm_emsr397",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr407_0",
+   "code": "EMSR407",
+   "aoi_group": "EMSR407-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Severe Flooding in Northern England",
+   "event": "2019-11-12",
+   "peak_day": "2019-11-09",
+   "peak_rp_y": 4.35,
+   "reach": {
+    "link": 230232103,
+    "dsarea_km2": 2235.4,
+    "order": 5,
+    "lat": 53.70400619506836,
+    "lon": -1.0579941272735596
+   },
+   "image": "2019-11-08",
+   "orbit": 81,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    53.70400619506836,
+    -1.0579941272735596
+   ],
+   "bbox_at_search_point": [
+    -1.118695,
+    53.668074,
+    -0.997293,
+    53.739939
+   ],
+   "cluster": "mm_emsr407",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr407_1",
+   "code": "EMSR407",
+   "aoi_group": "EMSR407-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Severe Flooding in Northern England",
+   "event": "2019-11-12",
+   "peak_day": "2019-11-08",
+   "peak_rp_y": 3.78,
+   "reach": {
+    "link": 230485634,
+    "dsarea_km2": 2450.2,
+    "order": 5,
+    "lat": 53.069671630859375,
+    "lon": -0.19644314050674438
+   },
+   "image": "2019-11-07",
+   "orbit": 154,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    53.069671630859375,
+    -0.19644314050674438
+   ],
+   "bbox_at_search_point": [
+    -0.256246,
+    53.033739,
+    -0.13664,
+    53.105604
+   ],
+   "cluster": "mm_emsr407",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr411_0",
+   "code": "EMSR411",
+   "aoi_group": "EMSR411-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in South East France",
+   "event": "2019-11-23",
+   "peak_day": "2019-11-24",
+   "peak_rp_y": 87.0,
+   "reach": {
+    "link": 210205125,
+    "dsarea_km2": 2787.4,
+    "order": 5,
+    "lat": 43.41899871826172,
+    "lon": 6.694777965545654
+   },
+   "image": "2019-11-24",
+   "orbit": 139,
+   "lag_days": 0,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    43.41899871826172,
+    6.694777965545654
+   ],
+   "bbox_at_search_point": [
+    6.645308,
+    43.383066,
+    6.744248,
+    43.454931
+   ],
+   "cluster": "mm_emsr411",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr416_1",
+   "code": "EMSR416",
+   "aoi_group": "EMSR416-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Landes, France",
+   "event": "2019-12-13",
+   "peak_day": "2019-12-15",
+   "peak_rp_y": 12.43,
+   "reach": {
+    "link": 230186826,
+    "dsarea_km2": 13936.7,
+    "order": 6,
+    "lat": 43.5185661315918,
+    "lon": -1.2437560558319092
+   },
+   "image": "2019-12-14",
+   "orbit": 81,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    43.5185661315918,
+    -1.2437560558319092
+   ],
+   "bbox_at_search_point": [
+    -1.293308,
+    43.482634,
+    -1.194204,
+    43.554499
+   ],
+   "cluster": "mm_emsr416",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr417_0",
+   "code": "EMSR417",
+   "aoi_group": "EMSR417-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Portugal",
+   "event": "2019-12-23",
+   "peak_day": "2019-12-22",
+   "peak_rp_y": 12.43,
+   "reach": {
+    "link": 230173911,
+    "dsarea_km2": 5662.4,
+    "order": 5,
+    "lat": 40.1389045715332,
+    "lon": -8.815991401672363
+   },
+   "image": "2019-12-23",
+   "orbit": 45,
+   "lag_days": 1,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    40.1389045715332,
+    -8.815991401672363
+   ],
+   "bbox_at_search_point": [
+    -8.862994,
+    40.102972,
+    -8.768989,
+    40.174837
+   ],
+   "cluster": "mm_emsr417",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr419_1",
+   "code": "EMSR419",
+   "aoi_group": "EMSR419-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in South East Iran",
+   "event": "2020-01-13",
+   "peak_day": "2020-01-12",
+   "peak_rp_y": 2.12,
+   "reach": {
+    "link": 290698375,
+    "dsarea_km2": 540.1,
+    "order": 4,
+    "lat": 25.298555374145508,
+    "lon": 60.797000885009766
+   },
+   "image": "2020-01-13",
+   "orbit": 86,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    25.298555374145508,
+    60.797000885009766
+   ],
+   "bbox_at_search_point": [
+    60.757257,
+    25.262623,
+    60.836745,
+    25.334488
+   ],
+   "cluster": "mm_emsr419",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr419_3",
+   "code": "EMSR419",
+   "aoi_group": "EMSR419-3",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in South East Iran",
+   "event": "2020-01-13",
+   "peak_day": "2020-01-12",
+   "peak_rp_y": 7.91,
+   "reach": {
+    "link": 290838684,
+    "dsarea_km2": 1311.2,
+    "order": 5,
+    "lat": 26.185888290405273,
+    "lon": 60.18722152709961
+   },
+   "image": "2020-01-12",
+   "orbit": 159,
+   "lag_days": 0,
+   "baseline_passes": 8,
+   "baseline_year_before": false,
+   "search_point": [
+    26.185888290405273,
+    60.18722152709961
+   ],
+   "bbox_at_search_point": [
+    60.147179,
+    26.149956,
+    60.227264,
+    26.221821
+   ],
+   "cluster": "mm_emsr419",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr421_1",
+   "code": "EMSR421",
+   "aoi_group": "EMSR421-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Occitanie, France",
+   "event": "2020-01-22",
+   "peak_day": "2020-01-23",
+   "peak_rp_y": 12.43,
+   "reach": {
+    "link": 210364622,
+    "dsarea_km2": 1280.3,
+    "order": 4,
+    "lat": 42.682220458984375,
+    "lon": 2.776888847351074
+   },
+   "image": "2020-01-22",
+   "orbit": 37,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    42.682220458984375,
+    2.776888847351074
+   ],
+   "bbox_at_search_point": [
+    2.728009,
+    42.646288,
+    2.825768,
+    42.718153
+   ],
+   "cluster": "mm_emsr421",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr421_2",
+   "code": "EMSR421",
+   "aoi_group": "EMSR421-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Occitanie, France",
+   "event": "2020-01-22",
+   "peak_day": "2020-01-23",
+   "peak_rp_y": 1.74,
+   "reach": {
+    "link": 230289114,
+    "dsarea_km2": 861.4,
+    "order": 4,
+    "lat": 43.15245819091797,
+    "lon": 1.7291311025619507
+   },
+   "image": "2020-01-22",
+   "orbit": 132,
+   "lag_days": -1,
+   "baseline_passes": 8,
+   "baseline_year_before": false,
+   "search_point": [
+    43.15245819091797,
+    1.7291311025619507
+   ],
+   "bbox_at_search_point": [
+    1.679877,
+    43.116526,
+    1.778385,
+    43.188391
+   ],
+   "cluster": "mm_emsr421",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr422_1",
+   "code": "EMSR422",
+   "aoi_group": "EMSR422-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Girona and Mediterranean coast,...",
+   "event": "2020-01-23",
+   "peak_day": "2020-01-22",
+   "peak_rp_y": 3.35,
+   "reach": {
+    "link": 210278195,
+    "dsarea_km2": 993.7,
+    "order": 4,
+    "lat": 39.66733169555664,
+    "lon": -0.19911110401153564
+   },
+   "image": "2020-01-21",
+   "orbit": 30,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    39.66733169555664,
+    -0.19911110401153564
+   ],
+   "bbox_at_search_point": [
+    -0.245791,
+    39.631399,
+    -0.152431,
+    39.703264
+   ],
+   "cluster": "mm_emsr422",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr422_4",
+   "code": "EMSR422",
+   "aoi_group": "EMSR422-4",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Girona and Mediterranean coast,...",
+   "event": "2020-01-23",
+   "peak_day": "2020-01-23",
+   "peak_rp_y": 14.5,
+   "reach": {
+    "link": 210422736,
+    "dsarea_km2": 3086.6,
+    "order": 5,
+    "lat": 42.04066848754883,
+    "lon": 3.1026666164398193
+   },
+   "image": "2020-01-22",
+   "orbit": 37,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    42.04066848754883,
+    3.1026666164398193
+   ],
+   "bbox_at_search_point": [
+    3.054284,
+    42.004736,
+    3.151049,
+    42.076601
+   ],
+   "cluster": "mm_emsr422",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr427_0",
+   "code": "EMSR427",
+   "aoi_group": "EMSR427-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Vastra Gotaland, Sweden",
+   "event": "2020-02-18",
+   "peak_day": "2020-02-25",
+   "peak_rp_y": 4.58,
+   "reach": {
+    "link": 240263380,
+    "dsarea_km2": 5252.3,
+    "order": 5,
+    "lat": 56.51028823852539,
+    "lon": 13.438053131103516
+   },
+   "image": "2020-02-24",
+   "orbit": 168,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    56.51028823852539,
+    13.438053131103516
+   ],
+   "bbox_at_search_point": [
+    13.372933,
+    56.474356,
+    13.503173,
+    56.546221
+   ],
+   "cluster": "mm_emsr427",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr427_2",
+   "code": "EMSR427",
+   "aoi_group": "EMSR427-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Vastra Gotaland, Sweden",
+   "event": "2020-02-18",
+   "peak_day": "2020-02-25",
+   "peak_rp_y": 2.9,
+   "reach": {
+    "link": 240250697,
+    "dsarea_km2": 477.3,
+    "order": 4,
+    "lat": 56.66762161254883,
+    "lon": 14.137073516845703
+   },
+   "image": "2020-02-24",
+   "orbit": 168,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    56.66762161254883,
+    14.137073516845703
+   ],
+   "bbox_at_search_point": [
+    14.071682,
+    56.631689,
+    14.202465,
+    56.703554
+   ],
+   "cluster": "mm_emsr427",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr429_1",
+   "code": "EMSR429",
+   "aoi_group": "EMSR429-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Clare, Ireland",
+   "event": "2020-02-24",
+   "peak_day": "2020-02-24",
+   "peak_rp_y": 10.88,
+   "reach": {
+    "link": 230217960,
+    "dsarea_km2": 208.2,
+    "order": 3,
+    "lat": 53.67022705078125,
+    "lon": -9.108420372009277
+   },
+   "image": "2020-02-23",
+   "orbit": 74,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    53.67022705078125,
+    -9.108420372009277
+   ],
+   "bbox_at_search_point": [
+    -9.169073,
+    53.634295,
+    -9.047768,
+    53.706159
+   ],
+   "cluster": "mm_emsr429",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr429_3",
+   "code": "EMSR429",
+   "aoi_group": "EMSR429-3",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Clare, Ireland",
+   "event": "2020-02-24",
+   "peak_day": "2020-02-29",
+   "peak_rp_y": 6.69,
+   "reach": {
+    "link": 230185301,
+    "dsarea_km2": 2661.4,
+    "order": 5,
+    "lat": 54.17500686645508,
+    "lon": -7.472908020019531
+   },
+   "image": "2020-02-29",
+   "orbit": 74,
+   "lag_days": 0,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    54.17500686645508,
+    -7.472908020019531
+   ],
+   "bbox_at_search_point": [
+    -7.534298,
+    54.139074,
+    -7.411518,
+    54.210939
+   ],
+   "cluster": "mm_emsr429",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr437_0",
+   "code": "EMSR437",
+   "aoi_group": "EMSR437-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in South West of France",
+   "event": "2020-05-10",
+   "peak_day": "2020-05-12",
+   "peak_rp_y": 14.5,
+   "reach": {
+    "link": 230093252,
+    "dsarea_km2": 851.3,
+    "order": 4,
+    "lat": 43.662235260009766,
+    "lon": -0.883790135383606
+   },
+   "image": "2020-05-12",
+   "orbit": 81,
+   "lag_days": 0,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    43.662235260009766,
+    -0.883790135383606
+   ],
+   "bbox_at_search_point": [
+    -0.93346,
+    43.626303,
+    -0.83412,
+    43.698168
+   ],
+   "cluster": "mm_emsr437",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr437_1",
+   "code": "EMSR437",
+   "aoi_group": "EMSR437-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in South West of France",
+   "event": "2020-05-10",
+   "peak_day": "2020-05-11",
+   "peak_rp_y": 87.0,
+   "reach": {
+    "link": 230105212,
+    "dsarea_km2": 600.3,
+    "order": 4,
+    "lat": 43.90745544433594,
+    "lon": -0.21983744204044342
+   },
+   "image": "2020-05-13",
+   "orbit": 8,
+   "lag_days": 2,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    43.90745544433594,
+    -0.21983744204044342
+   ],
+   "bbox_at_search_point": [
+    -0.269712,
+    43.871523,
+    -0.169963,
+    43.943388
+   ],
+   "cluster": "mm_emsr437",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr438_6",
+   "code": "EMSR438",
+   "aoi_group": "EMSR438-6",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Uganda",
+   "event": "2020-05-15",
+   "peak_day": "2020-05-14",
+   "peak_rp_y": 5.12,
+   "reach": {
+    "link": 160200709,
+    "dsarea_km2": 329160.3,
+    "order": 8,
+    "lat": 1.6956666707992554,
+    "lon": 32.09633255004883
+   },
+   "image": "2020-05-13",
+   "orbit": 101,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    1.6956666707992554,
+    32.09633255004883
+   ],
+   "bbox_at_search_point": [
+    32.060384,
+    1.659734,
+    32.132281,
+    1.731599
+   ],
+   "cluster": "mm_emsr438",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr441_1",
+   "code": "EMSR441",
+   "aoi_group": "EMSR441-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Lapland, Finland",
+   "event": "2020-06-01",
+   "peak_day": "2020-06-08",
+   "peak_rp_y": 87.0,
+   "reach": {
+    "link": 250191982,
+    "dsarea_km2": 3620.0,
+    "order": 5,
+    "lat": 68.71918487548828,
+    "lon": 27.618972778320312
+   },
+   "image": "2020-06-07",
+   "orbit": 116,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    68.71918487548828,
+    27.618972778320312
+   ],
+   "bbox_at_search_point": [
+    27.519969,
+    68.683252,
+    27.717977,
+    68.755117
+   ],
+   "cluster": "mm_emsr441",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr441_2",
+   "code": "EMSR441",
+   "aoi_group": "EMSR441-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Lapland, Finland",
+   "event": "2020-06-01",
+   "peak_day": "2020-06-08",
+   "peak_rp_y": 5.8,
+   "reach": {
+    "link": 240191388,
+    "dsarea_km2": 62480.9,
+    "order": 7,
+    "lat": 66.48143768310547,
+    "lon": 25.648958206176758
+   },
+   "image": "2020-06-08",
+   "orbit": 124,
+   "lag_days": 0,
+   "baseline_passes": 7,
+   "baseline_year_before": false,
+   "search_point": [
+    66.48143768310547,
+    25.648958206176758
+   ],
+   "bbox_at_search_point": [
+    25.558912,
+    66.445505,
+    25.739004,
+    66.51737
+   ],
+   "cluster": "mm_emsr441",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr442_0",
+   "code": "EMSR442",
+   "aoi_group": "EMSR442-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Northern Norway",
+   "event": "2020-06-09",
+   "peak_day": "2020-06-16",
+   "peak_rp_y": 43.5,
+   "reach": {
+    "link": 250078819,
+    "dsarea_km2": 16361.7,
+    "order": 6,
+    "lat": 70.45952606201172,
+    "lon": 28.29971694946289
+   },
+   "image": "2020-06-15",
+   "orbit": 51,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    70.45952606201172,
+    28.29971694946289
+   ],
+   "bbox_at_search_point": [
+    28.192287,
+    70.423594,
+    28.407147,
+    70.495459
+   ],
+   "cluster": "mm_emsr442",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr442_1",
+   "code": "EMSR442",
+   "aoi_group": "EMSR442-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Northern Norway",
+   "event": "2020-06-09",
+   "peak_day": "2020-06-15",
+   "peak_rp_y": 3.78,
+   "reach": {
+    "link": 250143329,
+    "dsarea_km2": 2399.6,
+    "order": 5,
+    "lat": 69.74540710449219,
+    "lon": 21.096529006958008
+   },
+   "image": "2020-06-15",
+   "orbit": 58,
+   "lag_days": 0,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    69.74540710449219,
+    21.096529006958008
+   ],
+   "bbox_at_search_point": [
+    20.992736,
+    69.709475,
+    21.200322,
+    69.78134
+   ],
+   "cluster": "mm_emsr442",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr444_3",
+   "code": "EMSR444",
+   "aoi_group": "EMSR444-3",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Western Oblasts, Ukraine",
+   "event": "2020-06-25",
+   "peak_day": "2020-06-26",
+   "peak_rp_y": 4.83,
+   "reach": {
+    "link": 220766988,
+    "dsarea_km2": 8096.4,
+    "order": 6,
+    "lat": 48.208091735839844,
+    "lon": 26.246179580688477
+   },
+   "image": "2020-06-25",
+   "orbit": 109,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    48.208091735839844,
+    26.246179580688477
+   ],
+   "bbox_at_search_point": [
+    26.192262,
+    48.172159,
+    26.300098,
+    48.244024
+   ],
+   "cluster": "mm_emsr444",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr445_1",
+   "code": "EMSR445",
+   "aoi_group": "EMSR445-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Romania",
+   "event": "2020-06-26",
+   "peak_day": "2020-06-28",
+   "peak_rp_y": 4.14,
+   "reach": {
+    "link": 220780748,
+    "dsarea_km2": 9833.1,
+    "order": 6,
+    "lat": 48.16175842285156,
+    "lon": 26.960750579833984
+   },
+   "image": "2020-06-27",
+   "orbit": 58,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    48.16175842285156,
+    26.960750579833984
+   ],
+   "bbox_at_search_point": [
+    26.906881,
+    48.125826,
+    27.01462,
+    48.197691
+   ],
+   "cluster": "mm_emsr445",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr465_0",
+   "code": "EMSR465",
+   "aoi_group": "EMSR465-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods in Thessaly Region, Greece",
+   "event": "2020-09-19",
+   "peak_day": "2020-09-20",
+   "peak_rp_y": 1.61,
+   "reach": {
+    "link": 210272917,
+    "dsarea_km2": 6523.8,
+    "order": 6,
+    "lat": 39.65133285522461,
+    "lon": 22.309110641479492
+   },
+   "image": "2020-09-21",
+   "orbit": 80,
+   "lag_days": 1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    39.65133285522461,
+    22.309110641479492
+   ],
+   "bbox_at_search_point": [
+    22.262442,
+    39.6154,
+    22.35578,
+    39.687265
+   ],
+   "cluster": "mm_emsr465",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr467_2",
+   "code": "EMSR467",
+   "aoi_group": "EMSR467-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Alpes-Maritimes, France",
+   "event": "2020-10-03",
+   "peak_day": "2020-10-04",
+   "peak_rp_y": 4.14,
+   "reach": {
+    "link": 210205111,
+    "dsarea_km2": 3055.3,
+    "order": 5,
+    "lat": 43.65299987792969,
+    "lon": 7.197999954223633
+   },
+   "image": "2020-10-03",
+   "orbit": 88,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    43.65299987792969,
+    7.197999954223633
+   ],
+   "bbox_at_search_point": [
+    7.148338,
+    43.617067,
+    7.247662,
+    43.688932
+   ],
+   "cluster": "mm_emsr467",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr468_0",
+   "code": "EMSR468",
+   "aoi_group": "EMSR468-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Piedmont region, Italy",
+   "event": "2020-10-04",
+   "peak_day": "2020-10-05",
+   "peak_rp_y": 3.11,
+   "reach": {
+    "link": 210218761,
+    "dsarea_km2": 18655.9,
+    "order": 6,
+    "lat": 45.080665588378906,
+    "lon": 8.614555358886719
+   },
+   "image": "2020-10-04",
+   "orbit": 15,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    45.080665588378906,
+    8.614555358886719
+   ],
+   "bbox_at_search_point": [
+    8.563668,
+    45.044733,
+    8.665443,
+    45.116598
+   ],
+   "cluster": "mm_emsr468",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr471_3",
+   "code": "EMSR471",
+   "aoi_group": "EMSR471-3",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Slovakia",
+   "event": "2020-10-14",
+   "peak_day": "2020-10-14",
+   "peak_rp_y": 6.21,
+   "reach": {
+    "link": 220766982,
+    "dsarea_km2": 3309.1,
+    "order": 5,
+    "lat": 48.28586959838867,
+    "lon": 20.338041305541992
+   },
+   "image": "2020-10-13",
+   "orbit": 51,
+   "lag_days": -1,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    48.28586959838867,
+    20.338041305541992
+   ],
+   "bbox_at_search_point": [
+    20.284041,
+    48.249937,
+    20.392041,
+    48.321802
+   ],
+   "cluster": "mm_emsr471",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr471_4",
+   "code": "EMSR471",
+   "aoi_group": "EMSR471-4",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Slovakia",
+   "event": "2020-10-14",
+   "peak_day": "2020-10-16",
+   "peak_rp_y": 2.23,
+   "reach": {
+    "link": 220709142,
+    "dsarea_km2": 9504.7,
+    "order": 5,
+    "lat": 48.94431686401367,
+    "lon": 18.092384338378906
+   },
+   "image": "2020-10-15",
+   "orbit": 175,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    48.94431686401367,
+    18.092384338378906
+   ],
+   "bbox_at_search_point": [
+    18.037675,
+    48.908384,
+    18.147093,
+    48.980249
+   ],
+   "cluster": "mm_emsr471",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr487_0",
+   "code": "EMSR487",
+   "aoi_group": "EMSR487-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Emilia-Romagna Region, Italy",
+   "event": "2020-12-06",
+   "peak_day": "2020-12-07",
+   "peak_rp_y": 2.56,
+   "reach": {
+    "link": 210236739,
+    "dsarea_km2": 1093.1,
+    "order": 4,
+    "lat": 44.729000091552734,
+    "lon": 11.043000221252441
+   },
+   "image": "2020-12-08",
+   "orbit": 168,
+   "lag_days": 1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    44.729000091552734,
+    11.043000221252441
+   ],
+   "bbox_at_search_point": [
+    10.992423,
+    44.693068,
+    11.093578,
+    44.764933
+   ],
+   "cluster": "mm_emsr487",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr496_0",
+   "code": "EMSR496",
+   "aoi_group": "EMSR496-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Lazio Region, Italy",
+   "event": "2021-01-27",
+   "peak_day": "2021-01-25",
+   "peak_rp_y": 1.55,
+   "reach": {
+    "link": 210410044,
+    "dsarea_km2": 1430.2,
+    "order": 4,
+    "lat": 42.44033432006836,
+    "lon": 12.794111251831055
+   },
+   "image": "2021-01-26",
+   "orbit": 95,
+   "lag_days": 1,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    42.44033432006836,
+    12.794111251831055
+   ],
+   "bbox_at_search_point": [
+    12.745421,
+    42.404402,
+    12.842801,
+    42.476267
+   ],
+   "cluster": "mm_emsr496",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr498_0",
+   "code": "EMSR498",
+   "aoi_group": "EMSR498-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Corr\u00e8ze department, France",
+   "event": "2021-02-02",
+   "peak_day": "2021-02-03",
+   "peak_rp_y": 9.67,
+   "reach": {
+    "link": 230143249,
+    "dsarea_km2": 6635.7,
+    "order": 5,
+    "lat": 44.92634582519531,
+    "lon": 1.6615939140319824
+   },
+   "image": "2021-02-02",
+   "orbit": 110,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    44.92634582519531,
+    1.6615939140319824
+   ],
+   "bbox_at_search_point": [
+    1.610843,
+    44.890413,
+    1.712345,
+    44.962278
+   ],
+   "cluster": "mm_emsr498",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr502_0",
+   "code": "EMSR502",
+   "aoi_group": "EMSR502-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Southern Ireland",
+   "event": "2021-02-23",
+   "peak_day": "2021-02-27",
+   "peak_rp_y": 17.4,
+   "reach": {
+    "link": 230465010,
+    "dsarea_km2": 1212.6,
+    "order": 4,
+    "lat": 51.892784118652344,
+    "lon": -8.502396583557129
+   },
+   "image": "2021-02-26",
+   "orbit": 23,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    51.892784118652344,
+    -8.502396583557129
+   ],
+   "bbox_at_search_point": [
+    -8.560621,
+    51.856852,
+    -8.444172,
+    51.928717
+   ],
+   "cluster": "mm_emsr502",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr502_1",
+   "code": "EMSR502",
+   "aoi_group": "EMSR502-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Southern Ireland",
+   "event": "2021-02-23",
+   "peak_day": "2021-02-27",
+   "peak_rp_y": 21.75,
+   "reach": {
+    "link": 230441080,
+    "dsarea_km2": 424.4,
+    "order": 3,
+    "lat": 51.74934005737305,
+    "lon": -8.72130012512207
+   },
+   "image": "2021-02-26",
+   "orbit": 23,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    51.74934005737305,
+    -8.72130012512207
+   ],
+   "bbox_at_search_point": [
+    -8.77934,
+    51.713408,
+    -8.663261,
+    51.785273
+   ],
+   "cluster": "mm_emsr502",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr504_0",
+   "code": "EMSR504",
+   "aoi_group": "EMSR504-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods, Australia",
+   "event": "2021-03-20",
+   "peak_day": "2021-03-24",
+   "peak_rp_y": 4.14,
+   "reach": {
+    "link": 541700999,
+    "dsarea_km2": 3702.9,
+    "order": 5,
+    "lat": -30.974332809448242,
+    "lon": 150.857666015625
+   },
+   "image": "2021-03-24",
+   "orbit": 147,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    -30.974332809448242,
+    150.857666015625
+   ],
+   "bbox_at_search_point": [
+    150.815757,
+    -31.010265,
+    150.899575,
+    -30.9384
+   ],
+   "cluster": "mm_emsr504",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr504_1",
+   "code": "EMSR504",
+   "aoi_group": "EMSR504-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Floods, Australia",
+   "event": "2021-03-20",
+   "peak_day": "2021-03-23",
+   "peak_rp_y": 3.48,
+   "reach": {
+    "link": 541766739,
+    "dsarea_km2": 1399.6,
+    "order": 4,
+    "lat": -27.97422218322754,
+    "lon": 152.9788818359375
+   },
+   "image": "2021-03-24",
+   "orbit": 147,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    -27.97422218322754,
+    152.9788818359375
+   ],
+   "bbox_at_search_point": [
+    152.938196,
+    -28.010155,
+    153.019568,
+    -27.93829
+   ],
+   "cluster": "mm_emsr504",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr507_2",
+   "code": "EMSR507",
+   "aoi_group": "EMSR507-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Timor-Leste",
+   "event": "2021-04-04",
+   "peak_day": "2021-04-04",
+   "peak_rp_y": 5.12,
+   "reach": {
+    "link": 510167669,
+    "dsarea_km2": 1338.4,
+    "order": 4,
+    "lat": -8.524555206298828,
+    "lon": 126.00033569335938
+   },
+   "image": "2021-04-05",
+   "orbit": 141,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    -8.524555206298828,
+    126.00033569335938
+   ],
+   "bbox_at_search_point": [
+    125.964002,
+    -8.560488,
+    126.03667,
+    -8.488623
+   ],
+   "cluster": "mm_emsr507",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr511_1",
+   "code": "EMSR511",
+   "aoi_group": "EMSR511-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Lapland, Finland",
+   "event": "2021-05-21",
+   "peak_day": "2021-05-28",
+   "peak_rp_y": 2.9,
+   "reach": {
+    "link": 240192474,
+    "dsarea_km2": 9969.2,
+    "order": 6,
+    "lat": 67.63288116455078,
+    "lon": 24.975147247314453
+   },
+   "image": "2021-05-27",
+   "orbit": 22,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    67.63288116455078,
+    24.975147247314453
+   ],
+   "bbox_at_search_point": [
+    24.880722,
+    67.596949,
+    25.069572,
+    67.668814
+   ],
+   "cluster": "mm_emsr511",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr514_0",
+   "code": "EMSR514",
+   "aoi_group": "EMSR514-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Guyana",
+   "event": "2021-06-14",
+   "peak_day": "2021-06-06",
+   "peak_rp_y": 29.0,
+   "reach": {
+    "link": 610315497,
+    "dsarea_km2": 2413.1,
+    "order": 4,
+    "lat": 7.357555389404297,
+    "lon": -58.494998931884766
+   },
+   "image": "2021-06-06",
+   "orbit": 91,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    7.357555389404297,
+    -58.494998931884766
+   ],
+   "bbox_at_search_point": [
+    -58.53123,
+    7.321623,
+    -58.458768,
+    7.393488
+   ],
+   "cluster": "mm_emsr514",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr517_1",
+   "code": "EMSR517",
+   "aoi_group": "EMSR517-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Western Germany",
+   "event": "2021-07-13",
+   "peak_day": "2021-07-20",
+   "peak_rp_y": 3.0,
+   "reach": {
+    "link": 230534684,
+    "dsarea_km2": 142848.3,
+    "order": 8,
+    "lat": 50.909339904785156,
+    "lon": 6.9794816970825195
+   },
+   "image": "2021-07-19",
+   "orbit": 15,
+   "lag_days": -1,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    50.909339904785156,
+    6.9794816970825195
+   ],
+   "bbox_at_search_point": [
+    6.922496,
+    50.873407,
+    7.036468,
+    50.945272
+   ],
+   "cluster": "mm_emsr517",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr517_2",
+   "code": "EMSR517",
+   "aoi_group": "EMSR517-2",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Western Germany",
+   "event": "2021-07-13",
+   "peak_day": "2021-07-16",
+   "peak_rp_y": 87.0,
+   "reach": {
+    "link": 230415047,
+    "dsarea_km2": 4272.9,
+    "order": 5,
+    "lat": 49.81278610229492,
+    "lon": 6.52287483215332
+   },
+   "image": "2021-07-15",
+   "orbit": 37,
+   "lag_days": -1,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    49.81278610229492,
+    6.52287483215332
+   ],
+   "bbox_at_search_point": [
+    6.46719,
+    49.776854,
+    6.578559,
+    49.848719
+   ],
+   "cluster": "mm_emsr517",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr518_0",
+   "code": "EMSR518",
+   "aoi_group": "EMSR518-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Belgium",
+   "event": "2021-07-14",
+   "peak_day": "2021-07-15",
+   "peak_rp_y": 6.21,
+   "reach": {
+    "link": 230424815,
+    "dsarea_km2": 1555.1,
+    "order": 5,
+    "lat": 50.424564361572266,
+    "lon": 5.53571891784668
+   },
+   "image": "2021-07-15",
+   "orbit": 37,
+   "lag_days": 0,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    50.424564361572266,
+    5.53571891784668
+   ],
+   "bbox_at_search_point": [
+    5.479318,
+    50.388632,
+    5.592119,
+    50.460497
+   ],
+   "cluster": "mm_emsr518",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr518_1",
+   "code": "EMSR518",
+   "aoi_group": "EMSR518-1",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Belgium",
+   "event": "2021-07-14",
+   "peak_day": "2021-07-17",
+   "peak_rp_y": 2.42,
+   "reach": {
+    "link": 230519441,
+    "dsarea_km2": 22627.4,
+    "order": 6,
+    "lat": 51.148563385009766,
+    "lon": 5.881202697753906
+   },
+   "image": "2021-07-18",
+   "orbit": 88,
+   "lag_days": 1,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    51.148563385009766,
+    5.881202697753906
+   ],
+   "bbox_at_search_point": [
+    5.823922,
+    51.112631,
+    5.938484,
+    51.184496
+   ],
+   "cluster": "mm_emsr518",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3mm_emsr520_0",
+   "code": "EMSR520",
+   "aoi_group": "EMSR520-0",
+   "tags": [
+    "fluvial"
+   ],
+   "title": "Flood in Netherlands",
+   "event": "2021-07-15",
+   "peak_day": "2021-07-18",
+   "peak_rp_y": 3.35,
+   "reach": {
+    "link": 230433476,
+    "dsarea_km2": 26377.1,
+    "order": 6,
+    "lat": 51.4493408203125,
+    "lon": 6.161377429962158
+   },
+   "image": "2021-07-18",
+   "orbit": 88,
+   "lag_days": 0,
+   "baseline_passes": 9,
+   "baseline_year_before": false,
+   "search_point": [
+    51.4493408203125,
+    6.161377429962158
+   ],
+   "bbox_at_search_point": [
+    6.10372,
+    51.413408,
+    6.219035,
+    51.485273
+   ],
+   "cluster": "mm_emsr520",
+   "source": "MMFlood event list; v3 Sentinel-1 label"
+  }
+ ],
+ "refused": [
+  {
+   "unit": "EMSR107",
+   "code": "EMSR107",
+   "why": "before 2015"
+  },
+  {
+   "unit": "r3mm_emsr118_0",
+   "code": "EMSR118",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.12
+  },
+  {
+   "unit": "r3mm_emsr118_1",
+   "code": "EMSR118",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.1
+  },
+  {
+   "unit": "r3mm_emsr118_2",
+   "code": "EMSR118",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr118_3",
+   "code": "EMSR118",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.14
+  },
+  {
+   "unit": "r3mm_emsr118_4",
+   "code": "EMSR118",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.12
+  },
+  {
+   "unit": "EMSR141",
+   "code": "EMSR141",
+   "why": "type flash_flood not taken on the Sentinel-1 route (DIAGNOSIS \u00a7e)"
+  },
+  {
+   "unit": "r3mm_emsr156_0",
+   "code": "EMSR156",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.21
+  },
+  {
+   "unit": "r3mm_emsr156_1",
+   "code": "EMSR156",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.14
+  },
+  {
+   "unit": "r3mm_emsr162_0",
+   "code": "EMSR162",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr166_0",
+   "code": "EMSR166",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.05
+  },
+  {
+   "unit": "r3mm_emsr184_0",
+   "code": "EMSR184",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + MAX_LAG]",
+   "peak": "2016-09-16"
+  },
+  {
+   "unit": "r3mm_emsr184_2",
+   "code": "EMSR184",
+   "why": "fewer than 2 same-orbit baseline passes",
+   "t0": "2016-09-29"
+  },
+  {
+   "unit": "r3mm_emsr199_0",
+   "code": "EMSR199",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + MAX_LAG]",
+   "peak": "2017-03-13"
+  },
+  {
+   "unit": "r3mm_emsr238_2",
+   "code": "EMSR238",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3mm_emsr260_0",
+   "code": "EMSR260",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr260_4",
+   "code": "EMSR260",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr268_0",
+   "code": "EMSR268",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr268_1",
+   "code": "EMSR268",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.3
+  },
+  {
+   "unit": "r3mm_emsr273_1",
+   "code": "EMSR273",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3mm_emsr273_2",
+   "code": "EMSR273",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3mm_emsr277_0",
+   "code": "EMSR277",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.04
+  },
+  {
+   "unit": "r3mm_emsr277_1",
+   "code": "EMSR277",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3mm_emsr277_2",
+   "code": "EMSR277",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3mm_emsr280_0",
+   "code": "EMSR280",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.4
+  },
+  {
+   "unit": "r3mm_emsr280_1",
+   "code": "EMSR280",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.02
+  },
+  {
+   "unit": "r3mm_emsr280_3",
+   "code": "EMSR280",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.02
+  },
+  {
+   "unit": "r3mm_emsr280_4",
+   "code": "EMSR280",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.06
+  },
+  {
+   "unit": "r3mm_emsr283_0",
+   "code": "EMSR283",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.04
+  },
+  {
+   "unit": "r3mm_emsr283_1",
+   "code": "EMSR283",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.02
+  },
+  {
+   "unit": "r3mm_emsr283_2",
+   "code": "EMSR283",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.01
+  },
+  {
+   "unit": "r3mm_emsr283_3",
+   "code": "EMSR283",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.47
+  },
+  {
+   "unit": "r3mm_emsr283_4",
+   "code": "EMSR283",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.05
+  },
+  {
+   "unit": "r3mm_emsr283_5",
+   "code": "EMSR283",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.07
+  },
+  {
+   "unit": "r3mm_emsr283_6",
+   "code": "EMSR283",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.06
+  },
+  {
+   "unit": "r3mm_emsr283_7",
+   "code": "EMSR283",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.07
+  },
+  {
+   "unit": "r3mm_emsr283_8",
+   "code": "EMSR283",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.07
+  },
+  {
+   "unit": "r3mm_emsr283_9",
+   "code": "EMSR283",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.47
+  },
+  {
+   "unit": "r3mm_emsr284_0",
+   "code": "EMSR284",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.3
+  },
+  {
+   "unit": "r3mm_emsr284_1",
+   "code": "EMSR284",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.3
+  },
+  {
+   "unit": "r3mm_emsr284_2",
+   "code": "EMSR284",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.3
+  },
+  {
+   "unit": "r3mm_emsr284_3",
+   "code": "EMSR284",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.3
+  },
+  {
+   "unit": "r3mm_emsr287_3",
+   "code": "EMSR287",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.01
+  },
+  {
+   "unit": "r3mm_emsr293_1",
+   "code": "EMSR293",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3mm_emsr314_0",
+   "code": "EMSR314",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + MAX_LAG]",
+   "peak": "2018-09-18"
+  },
+  {
+   "unit": "r3mm_emsr319_0",
+   "code": "EMSR319",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr319_1",
+   "code": "EMSR319",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr319_2",
+   "code": "EMSR319",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr319_3",
+   "code": "EMSR319",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.01
+  },
+  {
+   "unit": "r3mm_emsr321_1",
+   "code": "EMSR321",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "EMSR326",
+   "code": "EMSR326",
+   "why": "type flash_flood not taken on the Sentinel-1 route (DIAGNOSIS \u00a7e)"
+  },
+  {
+   "unit": "r3mm_emsr342_0",
+   "code": "EMSR342",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + MAX_LAG]",
+   "peak": "2019-02-01"
+  },
+  {
+   "unit": "r3mm_emsr342_2",
+   "code": "EMSR342",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + MAX_LAG]",
+   "peak": "2019-02-08"
+  },
+  {
+   "unit": "r3mm_emsr399_0",
+   "code": "EMSR399",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.01
+  },
+  {
+   "unit": "r3mm_emsr410_0",
+   "code": "EMSR410",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.32
+  },
+  {
+   "unit": "r3mm_emsr414_0",
+   "code": "EMSR414",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.26
+  },
+  {
+   "unit": "r3mm_emsr419_2",
+   "code": "EMSR419",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr421_0",
+   "code": "EMSR421",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.0
+  },
+  {
+   "unit": "r3mm_emsr422_2",
+   "code": "EMSR422",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.43
+  },
+  {
+   "unit": "EMSR424",
+   "code": "EMSR424",
+   "why": "type flash_flood not taken on the Sentinel-1 route (DIAGNOSIS \u00a7e)"
+  },
+  {
+   "unit": "r3mm_emsr427_1",
+   "code": "EMSR427",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.4
+  },
+  {
+   "unit": "r3mm_emsr429_0",
+   "code": "EMSR429",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr429_2",
+   "code": "EMSR429",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3mm_emsr438_0",
+   "code": "EMSR438",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr438_1",
+   "code": "EMSR438",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.01
+  },
+  {
+   "unit": "r3mm_emsr438_3",
+   "code": "EMSR438",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr438_4",
+   "code": "EMSR438",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + MAX_LAG]",
+   "peak": "2020-05-11"
+  },
+  {
+   "unit": "r3mm_emsr438_5",
+   "code": "EMSR438",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + MAX_LAG]",
+   "peak": "2020-05-11"
+  },
+  {
+   "unit": "r3mm_emsr444_0",
+   "code": "EMSR444",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.06
+  },
+  {
+   "unit": "r3mm_emsr444_1",
+   "code": "EMSR444",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr445_0",
+   "code": "EMSR445",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.34
+  },
+  {
+   "unit": "r3mm_emsr446_0",
+   "code": "EMSR446",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.01
+  },
+  {
+   "unit": "r3mm_emsr446_1",
+   "code": "EMSR446",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.0
+  },
+  {
+   "unit": "r3mm_emsr450_0",
+   "code": "EMSR450",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.24
+  },
+  {
+   "unit": "r3mm_emsr456_3",
+   "code": "EMSR456",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr456_5",
+   "code": "EMSR456",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.01
+  },
+  {
+   "unit": "r3mm_emsr467_1",
+   "code": "EMSR467",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr468_1",
+   "code": "EMSR468",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.09
+  },
+  {
+   "unit": "r3mm_emsr470_0",
+   "code": "EMSR470",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.13
+  },
+  {
+   "unit": "r3mm_emsr471_0",
+   "code": "EMSR471",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.38
+  },
+  {
+   "unit": "r3mm_emsr479_0",
+   "code": "EMSR479",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.28
+  },
+  {
+   "unit": "r3mm_emsr479_1",
+   "code": "EMSR479",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.3
+  },
+  {
+   "unit": "r3mm_emsr492_0",
+   "code": "EMSR492",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.0
+  },
+  {
+   "unit": "r3mm_emsr497_0",
+   "code": "EMSR497",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.0
+  },
+  {
+   "unit": "r3mm_emsr501_0",
+   "code": "EMSR501",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3mm_emsr511_0",
+   "code": "EMSR511",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.13
+  },
+  {
+   "unit": "r3mm_emsr511_2",
+   "code": "EMSR511",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.32
+  },
+  {
+   "unit": "r3mm_emsr511_3",
+   "code": "EMSR511",
+   "why": "no GEOGloWS reach inside the footprint"
+  },
+  {
+   "unit": "r3mm_emsr517_0",
+   "code": "EMSR517",
+   "why": "river driver check failed (return period < 1.5 y)",
+   "rp_y": 1.36
+  },
+  {
+   "unit": "r3mm_emsr548_0",
+   "code": "EMSR548",
+   "why": "no Sentinel-1 pass in [peak - 1 d, peak + MAX_LAG]",
+   "peak": "2021-10-27"
+  }
+ ]
+}
