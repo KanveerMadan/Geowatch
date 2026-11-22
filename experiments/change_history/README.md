@@ -67,6 +67,8 @@ The report includes precision, recall including abstentions, stable-cell false p
 
 ## Existing evidence
 
+The [round 2 report](../change_round2/REPORT_ROUND2.md) evaluates radar water detection, tropical forest loss, and 200 m building additions and removals. It also records the start of six-city silent monitoring.
+
 The [reservoir check](REPORT.md) and [wildfire check](VEGETATION.md) cover four deliberately selected cells with independent reference observations. The [building-survey check](SURVEY.md) measures polygon differences where two survey epochs have common coverage. The [held-out building benchmark](BUILDING_ENDPOINT_RESULTS.md) compares an experimental satellite estimator against zero and median change. The detector can also be exercised on synthetic histories with `python -m experiments.change_history.benchmark`.
 
 At Navi Mumbai airport the original 2019–2024 dry-season test counted 138 vegetation increases and 75 decreases. It expected clearing to dominate change across the airport boundary. The airport's environmental impact assessment records that land development began in April 2017. The baseline already fell during project works. The airport boundary supplies no independent label for individual cells, and the cause of the increases remains unresolved. [Original test](../../05_BUILD_MANUAL.md) · [Airport environmental impact assessment](https://www.nmiairport.co.in/-/media/Project/NMIA/Circulars/NMIA_EIA_Report_2021.pdf)

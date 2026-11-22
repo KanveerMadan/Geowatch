@@ -166,7 +166,7 @@ def carry_forward(store,cutoff,previous):
         if body(old/"blind"/(prev_id+".png"))==body(current/"blind"/(ident+".png")):
             labels[ident]=sealed["cases"][prev_id]
     return {"reviewer":sealed["reviewer"],"prediction_blind":True,"cases":labels,
-            "carried_from":previous}
+            "carried_from":previous,"carried_ids":sorted(labels)}
 
 
 def join(store,cutoff,labels_path):
@@ -175,6 +175,12 @@ def join(store,cutoff,labels_path):
     labels=data.read(labels_path)
     evidence={c["id"]:data.read(dest/"data"/(c["id"]+".json")) for c in cases}
     outcome=assess(cases,labels,evidence)
+    if "carried_from" in labels:
+        previous=carry_forward(store,cutoff,labels["carried_from"])
+        if labels.get("carried_ids")!=previous["carried_ids"] or any(
+                labels["cases"][key]!=value for key,value in previous["cases"].items()):
+            raise ValueError("carried decisions must match verified sealed review")
+        outcome.update(carried_from=previous["carried_from"],carried_ids=previous["carried_ids"])
     seal(dest/"sealed_labels.json",labels)
     return {"cutoff":cutoff,"method":fingerprint(),**outcome}
 

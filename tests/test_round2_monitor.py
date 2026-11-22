@@ -87,3 +87,33 @@ def test_unobserved_quiet_never_counts_as_a_correct_negative():
     assert r["sample_counts"]["water_loss"]=={"abstained_reference_negative":1}
     assert r["recall_including_abstentions"]["water_gain"]==0
     assert r["silent_on_judged_subset"]["water_loss"]=={}
+
+
+def test_carry_needs_same_physical_scene_and_pixels(tmp_path, monkeypatch):
+    from PIL import Image
+    from experiments.change_round2 import data
+    first, second, cutoff="a"*64,"b"*64,"2025-01-14"
+    monkeypatch.setattr(monitor_review, "fingerprint", lambda: second)
+    case=dict(site="city",cell="1",start="2025-01-01",end="2025-01-15")
+    evidence={"usable":{"prior":["X_20241220"],"during":["X_20250105"]},"inventory":["scene"]}
+    verdict={"water":"unknown","vegetation":"unknown","reason":"Indistinct boundaries."}
+    for method,ident in [(first,"old"),(second,"new")]:
+        path=tmp_path/"review"/method/cutoff
+        (path/"data").mkdir(parents=True)
+        (path/"blind").mkdir()
+        data.save(path/"data/selection.json",[{**case,"id":ident}])
+        data.save(path/"data"/(ident+".json"),evidence)
+        strip=Image.new("RGB",(100,100),"green")
+        strip.putpixel((1,1),(255,0,0) if ident=="old" else (0,0,255))
+        strip.save(path/"blind"/(ident+".png"))
+        if ident=="old":
+            monitor_review.seal(path/"sealed_labels.json",dict(reviewer="blind",cases={ident:verdict}))
+    result=monitor_review.carry_forward(tmp_path,cutoff,first)
+    assert result["cases"]=={"new":verdict}
+    assert result["carried_ids"]==["new"]
+    png=tmp_path/"review"/second/cutoff/"blind/new.png"
+    with Image.open(png) as current:
+        strip=current.copy()
+    strip.putpixel((1,24),(0,0,255))
+    strip.save(png)
+    assert not monitor_review.carry_forward(tmp_path,cutoff,first)["cases"]
