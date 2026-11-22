@@ -33,6 +33,14 @@ CITIES = {
         "since": "2010-01-01", "centre": (40.70, -73.95),
         "bbox": (-74.26, 40.49, -73.70, 40.92), "tide_station": "8518750",
     },
+    "chicago": {
+        "apis": ("https://data.cityofchicago.org/resource/v6vf-nfxy.json",),
+        "time": "created_date", "kind": "sr_type", "lat": "latitude", "lon": "longitude",
+        "flood": ("Water On Street Complaint",),
+        "ambiguous": ("Water in Basement Complaint",),
+        "since": "2018-12-18", "centre": (41.84, -87.68),
+        "bbox": (-87.94, 41.64, -87.52, 42.03), "tide_station": None,      # lake city: no surge check
+    },
 }
 
 
@@ -128,7 +136,7 @@ def drivers():
     evs = json.load(open(os.path.join(OUT, "r311_events.json")))
     for city, rows in evs.items():
         c = CITIES[city]
-        minor = _json(FLOODLEVELS.format(c["tide_station"]))["nos_minor"]
+        minor = _json(FLOODLEVELS.format(c["tide_station"]))["nos_minor"] if c["tide_station"] else None
         for e in rows:
             if "type" in e:
                 continue
@@ -146,9 +154,9 @@ def drivers():
             i = near[int(np.argmax(k3[near]))]          # the storm of the report days, not an earlier one
             peak = dt.date.fromisoformat(days[i])
             w0, w1 = (peak - dt.timedelta(days=1)).isoformat(), (peak + dt.timedelta(days=1)).isoformat()
-            tide = tide_max_ft(c["tide_station"], w0, w1)
+            tide = tide_max_ft(c["tide_station"], w0, w1) if c["tide_station"] else None
             rain3 = float(k3[i])
-            coastal = tide is not None and tide >= minor
+            coastal = tide is not None and minor is not None and tide >= minor
             if coastal:
                 ty = "compound" if rain3 >= 50 else "coastal"
             elif rain3 >= 20:
@@ -194,7 +202,7 @@ def reports(city, e) -> list:
     p = os.path.join(CACHE, f"reports_{city}_{e['event']}.json")
     if not os.path.exists(p):
         w0, w1 = e["window"]
-        rows, api = [], c["apis"][0] if w0 < "2020-01-01" else c["apis"][1]
+        rows, api = [], c["apis"][0] if (w0 < "2020-01-01" or len(c["apis"]) == 1) else c["apis"][1]
         off = 0
         while True:
             page = _soql(api, {"$select": f"{c['kind']},{c['lat']},{c['lon']}",
