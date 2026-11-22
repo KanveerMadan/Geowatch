@@ -69,7 +69,8 @@ def load_tables():
 
 def _fine():
     from experiments.flood_round3 import fine_feats as FF
-    return FF.ALL
+    from experiments.flood_round3 import sfincs_drain as SD
+    return FF.ALL + SD.FEATS
 
 
 def load_311():
@@ -96,6 +97,13 @@ def load_311():
         ev = {k: np.full(len(y), np.nan, np.float32) for k in EV_FEATS}
         ev.update(FF.extras_311(n))
         ev.update(FF.drainage_311(n))
+        from experiments.flood_round3 import sfincs_drain as SD
+        sp = os.path.join(SD.CACHE, f"{n}.npz")
+        if os.path.exists(sp):                     # SFINCS drainage features (R29); NaN until the run exists
+            z2 = np.load(sp)
+            ev.update({k: z2[k] for k in SD.FEATS})
+        else:
+            ev.update({k: np.full(len(y), np.nan, np.float32) for k in SD.FEATS})
         out[n] = {"X": z["X"], "C": z["C"], "y": y, "F": list(m["features"]), "shape": tuple(m["shape"]),
                   "ev": ev, "tags": [u.get("type", "pluvial")],
                   "region": f"r311_{u.get('city', n.split('_')[1])}", "cluster": u["cluster"], "grid": m["grid"],
