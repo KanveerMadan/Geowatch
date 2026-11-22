@@ -1,0 +1,1078 @@
+[
+ {
+  "city": "nyc",
+  "event": "2016-11-29",
+  "type": "pluvial",
+  "peak": "2016-11-30",
+  "post_day": "2016-11-30",
+  "window": [
+   "2016-11-29T00:00:00",
+   "2016-12-02T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "106_225770_IW3",
+    "post": "S1_225770_IW3_20161130T225907_VV_489B-BURST",
+    "pre1": "S1_225770_IW3_20161118T225907_VV_5C04-BURST",
+    "pre2": "S1_225770_IW3_20161106T225907_VV_F961-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "106_225769_IW3",
+    "post": "S1_225769_IW3_20161130T225904_VV_489B-BURST",
+    "pre1": "S1_225769_IW3_20161118T225905_VV_5C04-BURST",
+    "pre2": "S1_225769_IW3_20161106T225905_VV_F961-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "106_225768_IW3",
+    "post": "S1_225768_IW3_20161130T225901_VV_489B-BURST",
+    "pre1": "S1_225768_IW3_20161118T225902_VV_5C04-BURST",
+    "pre2": "S1_225768_IW3_20161106T225902_VV_F961-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "nyc",
+  "event": "2017-01-24",
+  "type": "compound",
+  "peak": "2017-01-23",
+  "post_day": "2017-01-24",
+  "window": [
+   "2017-01-22T00:00:00",
+   "2017-01-25T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "033_068975_IW1",
+    "post": "S1_068975_IW1_20170124T225059_VV_457C-BURST",
+    "pre1": "S1_068975_IW1_20170112T225059_VV_A17F-BURST",
+    "pre2": "S1_068975_IW1_20161231T225101_VV_73E1-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW2",
+    "post": "S1_068974_IW2_20170124T225057_VV_457C-BURST",
+    "pre1": "S1_068974_IW2_20170112T225057_VV_A17F-BURST",
+    "pre2": "S1_068974_IW2_20161231T225059_VV_73E1-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW1",
+    "post": "S1_068974_IW1_20170124T225056_VV_457C-BURST",
+    "pre1": "S1_068974_IW1_20170112T225056_VV_A17F-BURST",
+    "pre2": "S1_068974_IW1_20161231T225058_VV_73E1-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW2",
+    "post": "S1_068973_IW2_20170124T225054_VV_457C-BURST",
+    "pre1": "S1_068973_IW2_20170112T225055_VV_A17F-BURST",
+    "pre2": "S1_068973_IW2_20161231T225056_VV_73E1-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW1",
+    "post": "S1_068973_IW1_20170124T225053_VV_457C-BURST",
+    "pre1": "S1_068973_IW1_20170112T225054_VV_A17F-BURST",
+    "pre2": "S1_068973_IW1_20161231T225055_VV_73E1-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW2",
+    "post": "S1_068972_IW2_20170124T225052_VV_457C-BURST",
+    "pre1": "S1_068972_IW2_20170112T225052_VV_A17F-BURST",
+    "pre2": "S1_068972_IW2_20161231T225053_VV_73E1-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW1",
+    "post": "S1_068972_IW1_20170124T225051_VV_457C-BURST",
+    "pre1": "S1_068972_IW1_20170112T225051_VV_A17F-BURST",
+    "pre2": "S1_068972_IW1_20161231T225052_VV_73E1-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068971_IW2",
+    "post": "S1_068971_IW2_20170124T225049_VV_457C-BURST",
+    "pre1": "S1_068971_IW2_20170112T225049_VV_A17F-BURST",
+    "pre2": "S1_068971_IW2_20161231T225050_VV_73E1-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "nyc",
+  "event": "2017-03-31",
+  "type": "pluvial",
+  "peak": "2017-03-30",
+  "post_day": "2017-03-30",
+  "window": [
+   "2017-03-29T00:00:00",
+   "2017-04-01T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "106_225770_IW3",
+    "post": "S1_225770_IW3_20170330T225904_VV_453E-BURST",
+    "pre1": "S1_225770_IW3_20170318T225904_VV_2DD6-BURST",
+    "pre2": "S1_225770_IW3_20170222T225904_VV_2A36-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 24
+   },
+   {
+    "burst": "106_225769_IW3",
+    "post": "S1_225769_IW3_20170330T225901_VV_453E-BURST",
+    "pre1": "S1_225769_IW3_20170318T225901_VV_2DD6-BURST",
+    "pre2": "S1_225769_IW3_20170222T225901_VV_2A36-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 24
+   },
+   {
+    "burst": "106_225768_IW3",
+    "post": "S1_225768_IW3_20170330T225859_VV_453E-BURST",
+    "pre1": "S1_225768_IW3_20170318T225858_VV_2DD6-BURST",
+    "pre2": "S1_225768_IW3_20170222T225858_VV_2A36-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 24
+   }
+  ]
+ },
+ {
+  "city": "nyc",
+  "event": "2017-04-06",
+  "type": "pluvial",
+  "peak": "2017-04-05",
+  "post_day": "2017-04-06",
+  "window": [
+   "2017-04-04T00:00:00",
+   "2017-04-07T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "033_068975_IW1",
+    "post": "S1_068975_IW1_20170406T225059_VV_4EFF-BURST",
+    "pre1": "S1_068975_IW1_20170325T225059_VV_6819-BURST",
+    "pre2": "S1_068975_IW1_20170313T225058_VV_B816-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW2",
+    "post": "S1_068974_IW2_20170406T225057_VV_4EFF-BURST",
+    "pre1": "S1_068974_IW2_20170325T225057_VV_6819-BURST",
+    "pre2": "S1_068974_IW2_20170313T225057_VV_B816-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW1",
+    "post": "S1_068974_IW1_20170406T225056_VV_4EFF-BURST",
+    "pre1": "S1_068974_IW1_20170325T225056_VV_6819-BURST",
+    "pre2": "S1_068974_IW1_20170313T225056_VV_B816-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW2",
+    "post": "S1_068973_IW2_20170406T225055_VV_4EFF-BURST",
+    "pre1": "S1_068973_IW2_20170325T225054_VV_6819-BURST",
+    "pre2": "S1_068973_IW2_20170313T225054_VV_B816-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW1",
+    "post": "S1_068973_IW1_20170406T225054_VV_4EFF-BURST",
+    "pre1": "S1_068973_IW1_20170325T225053_VV_6819-BURST",
+    "pre2": "S1_068973_IW1_20170313T225053_VV_B816-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW2",
+    "post": "S1_068972_IW2_20170406T225052_VV_4EFF-BURST",
+    "pre1": "S1_068972_IW2_20170325T225051_VV_6819-BURST",
+    "pre2": "S1_068972_IW2_20170313T225051_VV_B816-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW1",
+    "post": "S1_068972_IW1_20170406T225051_VV_4EFF-BURST",
+    "pre1": "S1_068972_IW1_20170325T225050_VV_6819-BURST",
+    "pre2": "S1_068972_IW1_20170313T225050_VV_B816-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068971_IW2",
+    "post": "S1_068971_IW2_20170406T225049_VV_4EFF-BURST",
+    "pre1": "S1_068971_IW2_20170325T225049_VV_6819-BURST",
+    "pre2": "S1_068971_IW2_20170313T225048_VV_B816-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "nyc",
+  "event": "2017-05-05",
+  "type": "pluvial",
+  "peak": "2017-05-05",
+  "post_day": "2017-05-05",
+  "window": [
+   "2017-05-04T00:00:00",
+   "2017-05-07T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "106_225770_IW3",
+    "post": "S1_225770_IW3_20170505T225906_VV_FA97-BURST",
+    "pre1": "S1_225770_IW3_20170423T225905_VV_C4CE-BURST",
+    "pre2": "S1_225770_IW3_20170411T225905_VV_C267-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "106_225769_IW3",
+    "post": "S1_225769_IW3_20170505T225903_VV_FA97-BURST",
+    "pre1": "S1_225769_IW3_20170423T225902_VV_C4CE-BURST",
+    "pre2": "S1_225769_IW3_20170411T225902_VV_C267-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "106_225768_IW3",
+    "post": "S1_225768_IW3_20170505T225900_VV_FA97-BURST",
+    "pre1": "S1_225768_IW3_20170423T225900_VV_C4CE-BURST",
+    "pre2": "S1_225768_IW3_20170411T225859_VV_C267-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "nyc",
+  "event": "2018-11-13",
+  "type": "pluvial",
+  "peak": "2018-11-14",
+  "post_day": "2018-11-15",
+  "window": [
+   "2018-11-13T00:00:00",
+   "2018-11-16T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "033_068975_IW1",
+    "post": "S1_068975_IW1_20181115T225114_VV_E7C6-BURST",
+    "pre1": "S1_068975_IW1_20181103T225115_VV_53D3-BURST",
+    "pre2": "S1_068975_IW1_20181022T225115_VV_B981-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW2",
+    "post": "S1_068974_IW2_20181115T225113_VV_E7C6-BURST",
+    "pre1": "S1_068974_IW2_20181103T225113_VV_53D3-BURST",
+    "pre2": "S1_068974_IW2_20181022T225113_VV_B981-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW1",
+    "post": "S1_068974_IW1_20181115T225112_VV_E7C6-BURST",
+    "pre1": "S1_068974_IW1_20181103T225112_VV_53D3-BURST",
+    "pre2": "S1_068974_IW1_20181022T225112_VV_B981-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW2",
+    "post": "S1_068973_IW2_20181115T225110_VV_E7C6-BURST",
+    "pre1": "S1_068973_IW2_20181103T225110_VV_53D3-BURST",
+    "pre2": "S1_068973_IW2_20181022T225110_VV_B981-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW1",
+    "post": "S1_068973_IW1_20181115T225109_VV_E7C6-BURST",
+    "pre1": "S1_068973_IW1_20181103T225109_VV_53D3-BURST",
+    "pre2": "S1_068973_IW1_20181022T225109_VV_B981-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW2",
+    "post": "S1_068972_IW2_20181115T225107_VV_E7C6-BURST",
+    "pre1": "S1_068972_IW2_20181103T225107_VV_53D3-BURST",
+    "pre2": "S1_068972_IW2_20181022T225108_VV_B981-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW1",
+    "post": "S1_068972_IW1_20181115T225106_VV_E7C6-BURST",
+    "pre1": "S1_068972_IW1_20181103T225106_VV_53D3-BURST",
+    "pre2": "S1_068972_IW1_20181022T225107_VV_B981-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068971_IW2",
+    "post": "S1_068971_IW2_20181115T225104_VV_E7C6-BURST",
+    "pre1": "S1_068971_IW2_20181103T225105_VV_53D3-BURST",
+    "pre2": "S1_068971_IW2_20181022T225105_VV_B981-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "nyc",
+  "event": "2018-12-21",
+  "type": "compound",
+  "peak": "2018-12-21",
+  "post_day": "2018-12-21",
+  "window": [
+   "2018-12-20T00:00:00",
+   "2018-12-23T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "033_068975_IW1",
+    "post": "S1_068975_IW1_20181221T225113_VV_C419-BURST",
+    "pre1": "S1_068975_IW1_20181127T225114_VV_0044-BURST",
+    "pre2": "S1_068975_IW1_20181115T225114_VV_E7C6-BURST",
+    "dt_co_days": 24,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW2",
+    "post": "S1_068974_IW2_20181221T225111_VV_C419-BURST",
+    "pre1": "S1_068974_IW2_20181127T225112_VV_0044-BURST",
+    "pre2": "S1_068974_IW2_20181115T225113_VV_E7C6-BURST",
+    "dt_co_days": 24,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW1",
+    "post": "S1_068974_IW1_20181221T225110_VV_C419-BURST",
+    "pre1": "S1_068974_IW1_20181127T225111_VV_0044-BURST",
+    "pre2": "S1_068974_IW1_20181115T225112_VV_E7C6-BURST",
+    "dt_co_days": 24,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW2",
+    "post": "S1_068973_IW2_20181221T225109_VV_C419-BURST",
+    "pre1": "S1_068973_IW2_20181127T225109_VV_0044-BURST",
+    "pre2": "S1_068973_IW2_20181115T225110_VV_E7C6-BURST",
+    "dt_co_days": 24,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW1",
+    "post": "S1_068973_IW1_20181221T225108_VV_C419-BURST",
+    "pre1": "S1_068973_IW1_20181127T225108_VV_0044-BURST",
+    "pre2": "S1_068973_IW1_20181115T225109_VV_E7C6-BURST",
+    "dt_co_days": 24,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW2",
+    "post": "S1_068972_IW2_20181221T225106_VV_C419-BURST",
+    "pre1": "S1_068972_IW2_20181127T225107_VV_0044-BURST",
+    "pre2": "S1_068972_IW2_20181115T225107_VV_E7C6-BURST",
+    "dt_co_days": 24,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW1",
+    "post": "S1_068972_IW1_20181221T225105_VV_C419-BURST",
+    "pre1": "S1_068972_IW1_20181127T225106_VV_0044-BURST",
+    "pre2": "S1_068972_IW1_20181115T225106_VV_E7C6-BURST",
+    "dt_co_days": 24,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068971_IW2",
+    "post": "S1_068971_IW2_20181221T225103_VV_C419-BURST",
+    "pre1": "S1_068971_IW2_20181127T225104_VV_0044-BURST",
+    "pre2": "S1_068971_IW2_20181115T225104_VV_E7C6-BURST",
+    "dt_co_days": 24,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "nyc",
+  "event": "2019-05-30",
+  "type": "pluvial",
+  "peak": "2019-05-30",
+  "post_day": "2019-05-31",
+  "window": [
+   "2019-05-29T00:00:00",
+   "2019-06-01T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "106_225770_IW3",
+    "post": "S1_225770_IW3_20190531T225920_VV_EE16-BURST",
+    "pre1": "S1_225770_IW3_20190519T225919_VV_3110-BURST",
+    "pre2": "S1_225770_IW3_20190507T225918_VV_4944-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "106_225769_IW3",
+    "post": "S1_225769_IW3_20190531T225917_VV_EE16-BURST",
+    "pre1": "S1_225769_IW3_20190519T225916_VV_3110-BURST",
+    "pre2": "S1_225769_IW3_20190507T225915_VV_4944-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "106_225768_IW3",
+    "post": "S1_225768_IW3_20190531T225914_VV_EE16-BURST",
+    "pre1": "S1_225768_IW3_20190519T225914_VV_3110-BURST",
+    "pre2": "S1_225768_IW3_20190507T225913_VV_4944-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "nyc",
+  "event": "2019-06-18",
+  "type": "pluvial",
+  "peak": "2019-06-19",
+  "post_day": "2019-06-19",
+  "window": [
+   "2019-06-18T00:00:00",
+   "2019-06-21T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "033_068975_IW1",
+    "post": "S1_068975_IW1_20190619T225115_VV_EC2C-BURST",
+    "pre1": "S1_068975_IW1_20190607T225115_VV_B3AE-BURST",
+    "pre2": "S1_068975_IW1_20190526T225114_VV_9040-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW2",
+    "post": "S1_068974_IW2_20190619T225114_VV_EC2C-BURST",
+    "pre1": "S1_068974_IW2_20190607T225113_VV_B3AE-BURST",
+    "pre2": "S1_068974_IW2_20190526T225112_VV_9040-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW1",
+    "post": "S1_068974_IW1_20190619T225113_VV_EC2C-BURST",
+    "pre1": "S1_068974_IW1_20190607T225112_VV_B3AE-BURST",
+    "pre2": "S1_068974_IW1_20190526T225111_VV_9040-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW2",
+    "post": "S1_068973_IW2_20190619T225111_VV_EC2C-BURST",
+    "pre1": "S1_068973_IW2_20190607T225110_VV_B3AE-BURST",
+    "pre2": "S1_068973_IW2_20190526T225109_VV_9040-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW1",
+    "post": "S1_068973_IW1_20190619T225110_VV_EC2C-BURST",
+    "pre1": "S1_068973_IW1_20190607T225109_VV_B3AE-BURST",
+    "pre2": "S1_068973_IW1_20190526T225109_VV_9040-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW2",
+    "post": "S1_068972_IW2_20190619T225108_VV_EC2C-BURST",
+    "pre1": "S1_068972_IW2_20190607T225107_VV_B3AE-BURST",
+    "pre2": "S1_068972_IW2_20190526T225107_VV_9040-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW1",
+    "post": "S1_068972_IW1_20190619T225107_VV_EC2C-BURST",
+    "pre1": "S1_068972_IW1_20190607T225106_VV_B3AE-BURST",
+    "pre2": "S1_068972_IW1_20190526T225106_VV_9040-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068971_IW2",
+    "post": "S1_068971_IW2_20190619T225105_VV_EC2C-BURST",
+    "pre1": "S1_068971_IW2_20190607T225105_VV_B3AE-BURST",
+    "pre2": "S1_068971_IW2_20190526T225104_VV_9040-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "nyc",
+  "event": "2019-12-17",
+  "type": "pluvial",
+  "peak": "2019-12-15",
+  "post_day": "2019-12-16",
+  "window": [
+   "2019-12-14T00:00:00",
+   "2019-12-17T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "033_068975_IW1",
+    "post": "S1_068975_IW1_20191216T225120_VV_7AE1-BURST",
+    "pre1": "S1_068975_IW1_20191204T225120_VV_8EF5-BURST",
+    "pre2": "S1_068975_IW1_20191122T225121_VV_B1D8-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW2",
+    "post": "S1_068974_IW2_20191216T225118_VV_7AE1-BURST",
+    "pre1": "S1_068974_IW2_20191204T225118_VV_8EF5-BURST",
+    "pre2": "S1_068974_IW2_20191122T225119_VV_B1D8-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068974_IW1",
+    "post": "S1_068974_IW1_20191216T225117_VV_7AE1-BURST",
+    "pre1": "S1_068974_IW1_20191204T225117_VV_8EF5-BURST",
+    "pre2": "S1_068974_IW1_20191122T225118_VV_B1D8-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW2",
+    "post": "S1_068973_IW2_20191216T225115_VV_7AE1-BURST",
+    "pre1": "S1_068973_IW2_20191204T225116_VV_8EF5-BURST",
+    "pre2": "S1_068973_IW2_20191122T225116_VV_B1D8-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068973_IW1",
+    "post": "S1_068973_IW1_20191216T225114_VV_7AE1-BURST",
+    "pre1": "S1_068973_IW1_20191204T225115_VV_8EF5-BURST",
+    "pre2": "S1_068973_IW1_20191122T225115_VV_B1D8-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW2",
+    "post": "S1_068972_IW2_20191216T225113_VV_7AE1-BURST",
+    "pre1": "S1_068972_IW2_20191204T225113_VV_8EF5-BURST",
+    "pre2": "S1_068972_IW2_20191122T225113_VV_B1D8-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068972_IW1",
+    "post": "S1_068972_IW1_20191216T225112_VV_7AE1-BURST",
+    "pre1": "S1_068972_IW1_20191204T225112_VV_8EF5-BURST",
+    "pre2": "S1_068972_IW1_20191122T225113_VV_B1D8-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "033_068971_IW2",
+    "post": "S1_068971_IW2_20191216T225110_VV_7AE1-BURST",
+    "pre1": "S1_068971_IW2_20191204T225110_VV_8EF5-BURST",
+    "pre2": "S1_068971_IW2_20191122T225111_VV_B1D8-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "nyc",
+  "event": "2020-07-10",
+  "type": "pluvial",
+  "peak": "2020-07-11",
+  "post_day": "2020-07-12",
+  "window": [
+   "2020-07-10T00:00:00",
+   "2020-07-13T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "106_225770_IW3",
+    "post": "S1_225770_IW3_20200712T225929_VV_D868-BURST",
+    "pre1": "S1_225770_IW3_20200630T225928_VV_E5FD-BURST",
+    "pre2": "S1_225770_IW3_20200618T225927_VV_0DED-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "106_225769_IW3",
+    "post": "S1_225769_IW3_20200712T225926_VV_D868-BURST",
+    "pre1": "S1_225769_IW3_20200630T225925_VV_E5FD-BURST",
+    "pre2": "S1_225769_IW3_20200618T225925_VV_0DED-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "106_225768_IW3",
+    "post": "S1_225768_IW3_20200712T225923_VV_D868-BURST",
+    "pre1": "S1_225768_IW3_20200630T225922_VV_E5FD-BURST",
+    "pre2": "S1_225768_IW3_20200618T225922_VV_0DED-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "chicago",
+  "event": "2019-04-12",
+  "type": "pluvial",
+  "peak": "2019-04-13",
+  "post_day": "2019-04-14",
+  "window": [
+   "2019-04-12T00:00:00",
+   "2019-04-15T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "121_258000_IW1",
+    "post": "S1_258000_IW1_20190414T234055_VV_433E-BURST",
+    "pre1": "S1_258000_IW1_20190402T234054_VV_603F-BURST",
+    "pre2": "S1_258000_IW1_20190321T234054_VV_4160-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257999_IW1",
+    "post": "S1_257999_IW1_20190414T234052_VV_433E-BURST",
+    "pre1": "S1_257999_IW1_20190402T234052_VV_603F-BURST",
+    "pre2": "S1_257999_IW1_20190321T234051_VV_4160-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257998_IW1",
+    "post": "S1_257998_IW1_20190414T234049_VV_433E-BURST",
+    "pre1": "S1_257998_IW1_20190402T234049_VV_603F-BURST",
+    "pre2": "S1_257998_IW1_20190321T234049_VV_4160-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257997_IW1",
+    "post": "S1_257997_IW1_20190414T234046_VV_FEE5-BURST",
+    "pre1": "S1_257997_IW1_20190402T234046_VV_BDC9-BURST",
+    "pre2": "S1_257997_IW1_20190321T234046_VV_3E04-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "chicago",
+  "event": "2019-05-09",
+  "type": "pluvial",
+  "peak": "2019-05-08",
+  "post_day": "2019-05-08",
+  "window": [
+   "2019-05-07T00:00:00",
+   "2019-05-10T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "121_258000_IW1",
+    "post": "S1_258000_IW1_20190508T234055_VV_FC6A-BURST",
+    "pre1": "S1_258000_IW1_20190426T234055_VV_DC18-BURST",
+    "pre2": "S1_258000_IW1_20190414T234055_VV_433E-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257999_IW1",
+    "post": "S1_257999_IW1_20190508T234053_VV_FC6A-BURST",
+    "pre1": "S1_257999_IW1_20190426T234053_VV_DC18-BURST",
+    "pre2": "S1_257999_IW1_20190414T234052_VV_433E-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257998_IW1",
+    "post": "S1_257998_IW1_20190508T234050_VV_FC6A-BURST",
+    "pre1": "S1_257998_IW1_20190426T234050_VV_DC18-BURST",
+    "pre2": "S1_257998_IW1_20190414T234049_VV_433E-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257997_IW1",
+    "post": "S1_257997_IW1_20190508T234047_VV_A856-BURST",
+    "pre1": "S1_257997_IW1_20190426T234047_VV_321C-BURST",
+    "pre2": "S1_257997_IW1_20190414T234046_VV_FEE5-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "chicago",
+  "event": "2019-09-27",
+  "type": "pluvial",
+  "peak": "2019-09-28",
+  "post_day": "2019-09-29",
+  "window": [
+   "2019-09-27T00:00:00",
+   "2019-09-30T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "121_258000_IW1",
+    "post": "S1_258000_IW1_20190929T234104_VV_D7A1-BURST",
+    "pre1": "S1_258000_IW1_20190917T234103_VV_3E8D-BURST",
+    "pre2": "S1_258000_IW1_20190905T234103_VV_3B2B-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257999_IW1",
+    "post": "S1_257999_IW1_20190929T234101_VV_D7A1-BURST",
+    "pre1": "S1_257999_IW1_20190917T234100_VV_3E8D-BURST",
+    "pre2": "S1_257999_IW1_20190905T234100_VV_3B2B-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257998_IW1",
+    "post": "S1_257998_IW1_20190929T234058_VV_D7A1-BURST",
+    "pre1": "S1_257998_IW1_20190917T234057_VV_3E8D-BURST",
+    "pre2": "S1_257998_IW1_20190905T234057_VV_3B2B-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257997_IW1",
+    "post": "S1_257997_IW1_20190929T234055_VV_1BFA-BURST",
+    "pre1": "S1_257997_IW1_20190917T234055_VV_A26B-BURST",
+    "pre2": "S1_257997_IW1_20190905T234054_VV_50F8-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "chicago",
+  "event": "2020-03-28",
+  "type": "pluvial",
+  "peak": "2020-03-27",
+  "post_day": "2020-03-27",
+  "window": [
+   "2020-03-26T00:00:00",
+   "2020-03-29T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "121_258000_IW1",
+    "post": "S1_258000_IW1_20200327T234101_VV_A406-BURST",
+    "pre1": "S1_258000_IW1_20200315T234100_VV_71E7-BURST",
+    "pre2": "S1_258000_IW1_20200303T234100_VV_EFBB-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257999_IW1",
+    "post": "S1_257999_IW1_20200327T234058_VV_A406-BURST",
+    "pre1": "S1_257999_IW1_20200315T234058_VV_71E7-BURST",
+    "pre2": "S1_257999_IW1_20200303T234057_VV_EFBB-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257998_IW1",
+    "post": "S1_257998_IW1_20200327T234055_VV_A406-BURST",
+    "pre1": "S1_257998_IW1_20200315T234055_VV_71E7-BURST",
+    "pre2": "S1_257998_IW1_20200303T234055_VV_EFBB-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257997_IW1",
+    "post": "S1_257997_IW1_20200327T234052_VV_22F9-BURST",
+    "pre1": "S1_257997_IW1_20200315T234052_VV_1F73-BURST",
+    "pre2": "S1_257997_IW1_20200303T234052_VV_F92B-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "chicago",
+  "event": "2021-06-21",
+  "type": "pluvial",
+  "peak": "2021-06-19",
+  "post_day": "2021-06-19",
+  "window": [
+   "2021-06-18T00:00:00",
+   "2021-06-21T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "019_038909_IW3",
+    "post": "S1_038909_IW3_20210619T234920_VV_57F8-BURST",
+    "pre1": "S1_038909_IW3_20210607T234919_VV_AAAE-BURST",
+    "pre2": "S1_038909_IW3_20210526T234918_VV_55C9-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "019_038909_IW2",
+    "post": "S1_038909_IW2_20210619T234919_VV_57F8-BURST",
+    "pre1": "S1_038909_IW2_20210607T234918_VV_AAAE-BURST",
+    "pre2": "S1_038909_IW2_20210526T234917_VV_55C9-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "019_038908_IW3",
+    "post": "S1_038908_IW3_20210619T234917_VV_57F8-BURST",
+    "pre1": "S1_038908_IW3_20210607T234916_VV_AAAE-BURST",
+    "pre2": "S1_038908_IW3_20210526T234915_VV_55C9-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "019_038908_IW2",
+    "post": "S1_038908_IW2_20210619T234916_VV_57F8-BURST",
+    "pre1": "S1_038908_IW2_20210607T234915_VV_AAAE-BURST",
+    "pre2": "S1_038908_IW2_20210526T234914_VV_55C9-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "019_038907_IW3",
+    "post": "S1_038907_IW3_20210619T234914_VV_57F8-BURST",
+    "pre1": "S1_038907_IW3_20210607T234913_VV_AAAE-BURST",
+    "pre2": "S1_038907_IW3_20210526T234913_VV_55C9-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "019_038907_IW2",
+    "post": "S1_038907_IW2_20210619T234913_VV_57F8-BURST",
+    "pre1": "S1_038907_IW2_20210607T234912_VV_AAAE-BURST",
+    "pre2": "S1_038907_IW2_20210526T234912_VV_55C9-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "019_038906_IW3",
+    "post": "S1_038906_IW3_20210619T234911_VV_57F8-BURST",
+    "pre1": "S1_038906_IW3_20210607T234911_VV_AAAE-BURST",
+    "pre2": "S1_038906_IW3_20210526T234910_VV_55C9-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "chicago",
+  "event": "2021-06-24",
+  "type": "pluvial",
+  "peak": "2021-06-25",
+  "post_day": "2021-06-26",
+  "window": [
+   "2021-06-24T00:00:00",
+   "2021-06-27T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "121_258000_IW1",
+    "post": "S1_258000_IW1_20210626T234111_VV_AADF-BURST",
+    "pre1": "S1_258000_IW1_20210614T234110_VV_812A-BURST",
+    "pre2": "S1_258000_IW1_20210521T234109_VV_45B1-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 24
+   },
+   {
+    "burst": "121_257999_IW1",
+    "post": "S1_257999_IW1_20210626T234108_VV_AADF-BURST",
+    "pre1": "S1_257999_IW1_20210614T234108_VV_812A-BURST",
+    "pre2": "S1_257999_IW1_20210521T234106_VV_45B1-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 24
+   },
+   {
+    "burst": "121_257998_IW1",
+    "post": "S1_257998_IW1_20210626T234105_VV_AADF-BURST",
+    "pre1": "S1_257998_IW1_20210614T234105_VV_812A-BURST",
+    "pre2": "S1_257998_IW1_20210521T234103_VV_45B1-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 24
+   },
+   {
+    "burst": "121_257997_IW1",
+    "post": "S1_257997_IW1_20210626T234103_VV_9A69-BURST",
+    "pre1": "S1_257997_IW1_20210614T234102_VV_B2E5-BURST",
+    "pre2": "S1_257997_IW1_20210521T234100_VV_6846-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 24
+   }
+  ]
+ },
+ {
+  "city": "chicago",
+  "event": "2021-08-24",
+  "type": "pluvial",
+  "peak": "2021-08-25",
+  "post_day": "2021-08-25",
+  "window": [
+   "2021-08-24T00:00:00",
+   "2021-08-27T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "121_258000_IW1",
+    "post": "S1_258000_IW1_20210825T234114_VV_32D6-BURST",
+    "pre1": "S1_258000_IW1_20210813T234114_VV_1067-BURST",
+    "pre2": "S1_258000_IW1_20210801T234113_VV_365D-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257999_IW1",
+    "post": "S1_257999_IW1_20210825T234112_VV_32D6-BURST",
+    "pre1": "S1_257999_IW1_20210813T234111_VV_1067-BURST",
+    "pre2": "S1_257999_IW1_20210801T234110_VV_365D-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257998_IW1",
+    "post": "S1_257998_IW1_20210825T234109_VV_32D6-BURST",
+    "pre1": "S1_257998_IW1_20210813T234108_VV_1067-BURST",
+    "pre2": "S1_257998_IW1_20210801T234108_VV_365D-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257997_IW1",
+    "post": "S1_257997_IW1_20210825T234106_VV_8671-BURST",
+    "pre1": "S1_257997_IW1_20210813T234105_VV_2755-BURST",
+    "pre2": "S1_257997_IW1_20210801T234105_VV_3F43-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "chicago",
+  "event": "2021-10-11",
+  "type": "pluvial",
+  "peak": "2021-10-12",
+  "post_day": "2021-10-12",
+  "window": [
+   "2021-10-11T00:00:00",
+   "2021-10-14T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "121_258000_IW1",
+    "post": "S1_258000_IW1_20211012T234116_VV_C2B6-BURST",
+    "pre1": "S1_258000_IW1_20210930T234116_VV_9AF2-BURST",
+    "pre2": "S1_258000_IW1_20210918T234115_VV_3C8F-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257999_IW1",
+    "post": "S1_257999_IW1_20211012T234113_VV_C2B6-BURST",
+    "pre1": "S1_257999_IW1_20210930T234113_VV_9AF2-BURST",
+    "pre2": "S1_257999_IW1_20210918T234113_VV_3C8F-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257998_IW1",
+    "post": "S1_257998_IW1_20211012T234110_VV_C2B6-BURST",
+    "pre1": "S1_257998_IW1_20210930T234110_VV_9AF2-BURST",
+    "pre2": "S1_257998_IW1_20210918T234110_VV_3C8F-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257997_IW1",
+    "post": "S1_257997_IW1_20211012T234108_VV_A69A-BURST",
+    "pre1": "S1_257997_IW1_20210930T234107_VV_2F60-BURST",
+    "pre2": "S1_257997_IW1_20210918T234107_VV_5E84-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ },
+ {
+  "city": "chicago",
+  "event": "2021-10-25",
+  "type": "pluvial",
+  "peak": "2021-10-24",
+  "post_day": "2021-10-24",
+  "window": [
+   "2021-10-23T00:00:00",
+   "2021-10-26T00:00:00"
+  ],
+  "pairs": [
+   {
+    "burst": "121_258000_IW1",
+    "post": "S1_258000_IW1_20211024T234116_VV_AF3D-BURST",
+    "pre1": "S1_258000_IW1_20211012T234116_VV_C2B6-BURST",
+    "pre2": "S1_258000_IW1_20210930T234116_VV_9AF2-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257999_IW1",
+    "post": "S1_257999_IW1_20211024T234113_VV_AF3D-BURST",
+    "pre1": "S1_257999_IW1_20211012T234113_VV_C2B6-BURST",
+    "pre2": "S1_257999_IW1_20210930T234113_VV_9AF2-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257998_IW1",
+    "post": "S1_257998_IW1_20211024T234110_VV_AF3D-BURST",
+    "pre1": "S1_257998_IW1_20211012T234110_VV_C2B6-BURST",
+    "pre2": "S1_257998_IW1_20210930T234110_VV_9AF2-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   },
+   {
+    "burst": "121_257997_IW1",
+    "post": "S1_257997_IW1_20211024T234108_VV_6FA4-BURST",
+    "pre1": "S1_257997_IW1_20211012T234108_VV_A69A-BURST",
+    "pre2": "S1_257997_IW1_20210930T234107_VV_2F60-BURST",
+    "dt_co_days": 12,
+    "dt_pre_days": 12
+   }
+  ]
+ }
+]
