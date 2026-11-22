@@ -206,9 +206,13 @@ def _osm_features(elements, project):
     return out
 
 
-def vector_sources(bounds, crs, cache):
-    """Query footprints and OSM serially. Receipts distinguish empty coverage from source errors."""
-    project = Transformer.from_crs(4326, crs, always_xy=True).transform
+def vector_sources(tile_dir, cache):
+    """Read source geometries only for a registered tile, even when called outside the generator."""
+    from rasterio.warp import transform_bounds
+    from .guard import authorize_tile
+    tile = authorize_tile(tile_dir)
+    bounds = transform_bounds(tile.crs, 4326, *tile.bounds)
+    project = Transformer.from_crs(4326, tile.crs, always_xy=True).transform
     output, receipts = [], {}
     for source in ("open_buildings", "microsoft", "osm"):
         key = ["tile-vector-v1" if source != "osm" else "tile-map-v2", list(bounds), source]

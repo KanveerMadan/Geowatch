@@ -10,7 +10,7 @@ from rasterio.io import MemoryFile
 from shapely.geometry import Polygon, box
 
 from tools.labelling import generate as gen
-from tools.labelling.candidate_imagery import imagery_candidates, rgb_masks
+from tools.labelling.candidate_imagery import _imagery_candidates, rgb_masks
 from tools.labelling.candidate_sources import _map_elements, _osm_features, _suggest
 
 
@@ -58,7 +58,7 @@ def test_texture_hints_shadow_and_unobserved_pixels_are_separate():
                      transform=Affine.translation(320000,2500000)*Affine.scale(1,-1),photometric="RGB") as src:
             src.write(rgb)
             src.write_mask(valid.astype("uint8")*255)
-            rows, receipt=imagery_candidates(src,"test")
+            rows, receipt=_imagery_candidates(src,"test")
     assert receipt["mask_valid_cells"]==210
     assert any(r["class"]=="vegetation" and not r["hint_only"] for r in rows)
     assert all(r["hint_only"] and r["needs_check"] for r in rows if r["class"] in ("water","shadow_full"))
@@ -97,3 +97,38 @@ def test_gate_precedes_source_or_pixel_access(tmp_path,monkeypatch):
     monkeypatch.setattr(gen.rasterio,"open",lambda *a:pytest.fail("image read before guard"))
     with pytest.raises(ValueError,match="held out"):gen.generate(tmp_path)
     assert calls==["guard"] and not (tmp_path/"prelabels.gpkg").exists()
+
+
+def test_vector_query_entrypoint_refuses_unregistered_heldout_and_makes_no_cache(tmp_path):
+    from tools.labelling.candidate_sources import vector_sources
+    from tools.labelling.guard import TileRefused
+    heldout=tmp_path/"makoko"
+    heldout.mkdir()
+    with pytest.raises(TileRefused):
+        vector_sources(heldout,tmp_path/"untouched")
+    assert not (tmp_path/"untouched").exists()
+
+
+def test_generate_in_private_practice_copy_and_preserve_existing_files(tmp_path,monkeypatch):
+    """Set ITEM21_PRACTICE_COPY to a private practice tile to exercise real image/metadata geometry."""
+    import hashlib
+    import os
+    import shutil
+    available=os.getenv("ITEM21_PRACTICE_COPY")
+    if not available:
+        pytest.skip("set ITEM21_PRACTICE_COPY to an existing practice tile for the offline smoke test")
+    source=Path(available).resolve()
+    assert source.name.startswith("PRACTICE_")
+    target=tmp_path/"practice"/source.name
+    target.mkdir(parents=True)
+    for name in ("hr.tif","tile.geojson","cells.geojson","metadata.json","labels.gpkg"):
+        shutil.copyfile(source/name,target/name)
+    def checksums():
+        return {f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in target.iterdir() if f.name!="prelabels.gpkg"}
+    before=checksums()
+    monkeypatch.setattr(gen,"vector_sources",lambda *a:([],{"osm":{"status":"offline_test"}}))
+    receipt=gen.generate(target,cache=tmp_path/"cache")
+    assert (target/"prelabels.gpkg").is_file() and receipt["sources"]["tile_rgb"]["status"]=="available"
+    with pytest.raises(FileExistsError):
+        gen.generate(target,cache=tmp_path/"cache")
+    assert before==checksums()

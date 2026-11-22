@@ -9,3 +9,5 @@ Phase 1 complete. Eight private training/practice GeoPackages passed geometry, i
 Phase 2 complete. QGIS 3.44.14 LTR reopened all 100 layers across eight relocated private projects. Their relative sources, guide forms, tile bookmarks and snapping survived relocation.
 
 Phase 3 complete. Keyboard review, explicit source attribution, native vertex edits, rejection log, drawing, remaining-area overlay, user-controlled timer and Mark tile done passed the QGIS edit lifecycle checks on a private practice copy.
+
+Phase 4 complete. Mark tile done validates exact vector coverage and runs the existing one-metre coverage, class-flag, 10 m fraction and metadata rules. Sun lines are resolved on private copies. Kept features are checked against their actual source class and geometry, and the report separates shares by area and count. Legacy labels with no provenance remain unknown; nothing is backfilled.

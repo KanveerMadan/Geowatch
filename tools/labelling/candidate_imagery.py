@@ -28,7 +28,7 @@ def rgb_masks(channels, observed):
     return {"vegetation_rgb":green, "hint_water_rgb":blue, "hint_shadow_rgb":shadow}
 
 
-def imagery_candidates(src, imagery_version):
+def _imagery_candidates(src, imagery_version):
     if src.dtypes[:3] != ("uint8",) * 3 or not all(c in src.colorinterp for c in
             (ColorInterp.red, ColorInterp.green, ColorInterp.blue)):
         return [], {"status":"unavailable", "reason":"RGB candidate rules require identified 8-bit RGB bands"}

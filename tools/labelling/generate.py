@@ -13,11 +13,10 @@ import numpy as np
 import pandas as pd
 import pyogrio
 import rasterio
-from rasterio.warp import transform_bounds
 import shapely
 from shapely.geometry import box
 
-from .candidate_imagery import imagery_candidates
+from .candidate_imagery import _imagery_candidates
 from .candidate_sources import check_disk, vector_sources
 from .guard import authorize_tile
 
@@ -110,10 +109,9 @@ def generate(tile_dir, *, cache=None, output_dir=None):
         bounds = tuple(src.bounds)
         if src.crs.to_string() != spec.crs or not np.allclose(bounds,spec.bounds,rtol=0,atol=1e-4):
             raise ValueError("The image header changed after authorization")
-        rgb, rgb_status = imagery_candidates(src, imagery_version)
+        rgb, rgb_status = _imagery_candidates(src, imagery_version)
         affine = src.transform
-    ext = transform_bounds(spec.crs,4326,*bounds)
-    vector, sources = vector_sources(ext, spec.crs, cache)
+    vector, sources = vector_sources(folder, cache)
     rows, duplicates = clean_candidates(vector + rgb,bounds,affine,spec.tile_id)
     counts = {layer:sum(r["layer"]==layer for r in rows) for layer in LAYERS}
     receipt = {"tile_id":spec.tile_id,"bounds":bounds,"crs":spec.crs,"version":"item21-assist-v1",
