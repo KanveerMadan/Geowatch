@@ -58,9 +58,9 @@ CITIES = {
     },
     "miami_dade": {
         "arcgis": {**{y: ("https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/data_311_%d/FeatureServer/0" % y,
-                          "ticket_created_date_time", ("issue_type",)) for y in range(2014, 2024)},
+                          "ticket_created_date_time", ("issue_type",), ("longitude", "latitude")) for y in range(2014, 2024)},
                    **{y: ("https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/data_311_%d/FeatureServer/0" % y,
-                          "Created_Date", ("Subject", "SubType")) for y in range(2025, 2027)}},
+                          "Created_Date", ("Subject", "SubType"), ("Longitude", "Latitude")) for y in range(2025, 2027)}},
         "flood": ("FLOODING / STANDING WATER - LOCALIZED", "Flooding or Standing Water for Days"),
         "ambiguous": (), "since": "2014-01-01", "bbox": (-80.55, 25.40, -80.10, 25.98), "tide_station": "8723214",
         "note": "2024 layer needs a token: no 2024 events; 2025+ Subject 'Flooding or Drainage Issue' is not FLOODED (C2)",
@@ -101,7 +101,7 @@ def arc_rows(city, d0, d1, flood_only=False):
     """ArcGIS city: [(kind_text, lon, lat, day)] with time in [d0, d1) (ISO days), across the yearly layers."""
     c = CITIES[city]
     out = []
-    for y, (url, tf, kf) in sorted(c["arcgis"].items()):
+    for y, (url, tf, kf, xy) in sorted(c["arcgis"].items()):
         if not (str(y) <= d1[:4] and str(y) >= d0[:4]):
             continue
         w = f"{tf} >= TIMESTAMP '{d0} 00:00:00' AND {tf} < TIMESTAMP '{d1} 00:00:00'"
@@ -110,13 +110,13 @@ def arc_rows(city, d0, d1, flood_only=False):
             w += f" AND {kf[-1]} IN ({ks})"
         off = 0
         while True:
-            j = _arc(url, {"where": w, "outFields": ",".join((tf,) + kf), "returnGeometry": "true", "outSR": 4326,
+            j = _arc(url, {"where": w, "outFields": ",".join((tf,) + kf + xy), "returnGeometry": "false",
                            "resultOffset": off, "resultRecordCount": 2000})
             for f in j.get("features", []):
-                g = f.get("geometry") or {}
-                if "x" not in g or g["x"] is None:
-                    continue
                 a = f["attributes"]
+                g = {"x": a.get(xy[0]), "y": a.get(xy[1])}         # these layers are tables with lon/lat fields
+                if g["x"] in (None, 0) or g["y"] in (None, 0):
+                    continue
                 t = a.get(tf)
                 day = dt.datetime.fromtimestamp(t / 1000, dt.timezone.utc).date().isoformat() if isinstance(t, (int, float)) else str(t)[:10]
                 out.append((" | ".join(str(a.get(k) or "") for k in kf), float(g["x"]), float(g["y"]), day))
