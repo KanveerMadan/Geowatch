@@ -101,3 +101,32 @@ This replaces R24's rule, before any round-3 candidate was listed. R24's text ab
   - This is the rule every earlier unit used. It is mechanical and runs at build time, after the freeze, identically for every method.
   - R24's "box on the reach" is dropped: the reach point is now only the Sentinel-1-route search point (RESERVE_CRITERIA_R3 §8.3).
 - **DEV:** the Phase 4 DEV CV runs on 8 km boxes around the burned units' own round-2 centres (`build_r3.py`; round 2's feature pipeline; v3 labels). The method choice and the target n are made at the size that is tested.
+
+## R26 (2026-11-22) Phase 0b result: the Ida compound SFINCS run does not beat the terrain baselines
+`results/ida_sfincs_r3.json`. Four members, one at a time, Docker capped at 3 GB (peak ~300 MB, ~1–1.7 h each). Domain 661 km², IMERG rain (145.7 mm domain mean), NOAA gauge 8761724 surge (residual peak 1.63 m).
+
+| member | AUC of hmax | HAND | low elevation | wet share of box |
+|---|---|---|---|---|
+| base | 0.639 | 0.661 | 0.646 | 0.998 |
+| surge × 2 | 0.637 | 0.661 | 0.646 | 1.000 |
+| datum + 0.3 m | 0.634 | 0.661 | 0.646 | 1.000 |
+| 3DEP lidar DEM (e1) | 0.626 | 0.661 | 0.646 | 0.999 |
+
+**Reading:**
+- Rain-on-grid with no infiltration wets almost the whole box at the 0.1 m threshold. Ranking by peak depth then mostly rewards closed depressions, and that ranks worse than HAND.
+- This is a failure of this configuration, not of physics as a feature class: no infiltration and no drainage network.
+- Before the Phase 4 DEV CV, a compound/coastal physics feature needs at least:
+  - infiltration (SFINCS curve-number or Horton);
+  - a check that the wet share is below 1 on DEV.
+- It remains a candidate feature in the anchored learner, not a stand-alone method.
+
+## R27 (2026-11-22) Fresh-event sources settled without the EMS account
+- **River:** MMFlood on the Sentinel-1 route (RESERVE_CRITERIA_R3 §8) gives 111 candidate units from 68 never-used activations (`results/r3_mmflood_candidates.json`). 90 were refused, each with its reason:
+  - 52: no flood wave (return period < 1.5 y);
+  - 17: no reach inside the footprint;
+  - 8: no Sentinel-1 pass in the window;
+  - 8: within 20 km of a burned unit.
+  - The EMS 2022+ list adds 7 river and 4 rain AOIs (R23).
+- **Rain:** 311 street-flooding reports (RAIN_311_DESIGN.md), NYC and Chicago: 113 reserve events (2022 onwards), plus 110 DEV events. On DEV, about 1 in 3 events puts ≥ 50 flood reports in one 8 km box.
+- **Coastal and compound:** NYC 311 storm days typed by the Battery tide gauge (reserve: 5 coastal, 3 compound), plus EMS and Sentinel-1 storm candidates. These two types remain the thinnest.
+- **Flash and waterlogging:** no new peak-time source yet. They are next.

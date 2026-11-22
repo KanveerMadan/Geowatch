@@ -1,0 +1,91 @@
+{
+ "settings": {
+  "huthresh": 0.001,
+  "dtmax": 4.0,
+  "manning": 0.04,
+  "wet_m": 0.1,
+  "sea_floor_m": -1.5,
+  "domain_km2": 661.5,
+  "gauge": "8761724",
+  "datum": "MSL"
+ },
+ "prep": {
+  "datum_offset_3dep_minus_glo30_m": 0.18064463138580322,
+  "water_cells": 294213,
+  "z3dep_finite": 1.0,
+  "imerg_frames": 120,
+  "rain_domain_mean_total_mm": 145.69320678710938,
+  "gauge_peak_m": 1.5768000000000002,
+  "residual_peak_m": 1.6298000000000001
+ },
+ "members": {
+  "base": {
+   "wall_s": 3865.31,
+   "disk_mb": 208.0,
+   "peak_rss_mib": 300.7,
+   "wall_s_per_km2": 5.843,
+   "disk_mb_per_km2": 0.3144,
+   "auc_hmax": 0.6392,
+   "auc_hand": 0.661,
+   "auc_low_elevation": 0.6456,
+   "iou_wet": 0.1475,
+   "wet_share": 0.998,
+   "observed_share": 0.1472,
+   "cells": [
+    1579,
+    9148
+   ]
+  },
+  "datum03": {
+   "wall_s": 6267.65,
+   "disk_mb": 200.3,
+   "peak_rss_mib": 300.8,
+   "wall_s_per_km2": 9.475,
+   "disk_mb_per_km2": 0.3028,
+   "auc_hmax": 0.6335,
+   "auc_hand": 0.661,
+   "auc_low_elevation": 0.6456,
+   "iou_wet": 0.1472,
+   "wet_share": 0.9998,
+   "observed_share": 0.1472,
+   "cells": [
+    1579,
+    9148
+   ]
+  },
+  "lidar_e1": {
+   "wall_s": 3630.84,
+   "disk_mb": 210.6,
+   "peak_rss_mib": 300.1,
+   "wall_s_per_km2": 5.489,
+   "disk_mb_per_km2": 0.3184,
+   "auc_hmax": 0.6256,
+   "auc_hand": 0.661,
+   "auc_low_elevation": 0.6456,
+   "iou_wet": 0.1474,
+   "wet_share": 0.9988,
+   "observed_share": 0.1472,
+   "cells": [
+    1579,
+    9148
+   ]
+  },
+  "surge2x": {
+   "wall_s": 3888.97,
+   "disk_mb": 201.4,
+   "peak_rss_mib": 300.8,
+   "wall_s_per_km2": 5.879,
+   "disk_mb_per_km2": 0.3045,
+   "auc_hmax": 0.6367,
+   "auc_hand": 0.661,
+   "auc_low_elevation": 0.6456,
+   "iou_wet": 0.1472,
+   "wet_share": 1.0,
+   "observed_share": 0.1472,
+   "cells": [
+    1579,
+    9148
+   ]
+  }
+ }
+}
