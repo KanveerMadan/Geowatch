@@ -39,7 +39,7 @@ MONOTONE = {  # +1: higher value -> more flood-prone; -1: less
     "elev_glo30": -1, "elev_pct": -1, "elev_above_p10_m": -1, "hand_merit": -1, "handmap_glo30": -1,
     "hand_d8_m": -1, "dist_water_m": -1, "sea_spill_m": -1,
     "ev_depth_below_stage_m": +1, "ev_rain_3d_mm": +1, "ev_rain_weighted_acc": +1, "ev_fillspill": +1,
-    "ev_surge_depth_m": +1, "ev_sfincs_hmax_m": +1,
+    "ev_surge_depth_m": +1, "ev_sfincs_hmax_m": +1, "ev_q_ratio": +1, "ev_q_rp": +1,
 }
 
 

@@ -93,11 +93,15 @@ def build_one(n: str) -> dict:
     rp = os.path.join(REFS, f"{n}.npz")
     if not os.path.exists(rp):
         ee = _init()
-        lat, lon = row["centre"]
+        if row.get("centre"):
+            lat, lon = row["centre"]
+        else:                       # the round-2 box was centred on the same point
+            b = row["bbox"]
+            lat, lon = (b[1] + b[3]) / 2, (b[0] + b[2]) / 2
         bbox = R.square_bbox(lat, lon, SIDE_M)
         t, shape, crs = utm_grid(bbox)
         y, lm = label(ee, n, row, t, shape, crs, bbox)
-        meta = {"unit": n, "event": row["event"], "bbox": list(bbox), "centre": row["centre"], "side_m": SIDE_M,
+        meta = {"unit": n, "event": row["event"], "bbox": list(bbox), "centre": [lat, lon], "side_m": SIDE_M,
                 "grid": {"crs": crs, "transform": list(t)[:6], "shape": list(shape)}, "block": 1,
                 "label_v3": lm, "flooded_cells": int((y == L.FLOODED).sum()), "dry_cells": int((y == L.DRY).sum())}
         np.savez_compressed(rp + ".tmp.npz", flooded=(y == L.FLOODED), valid=(y == L.FLOODED) | (y == L.DRY),
