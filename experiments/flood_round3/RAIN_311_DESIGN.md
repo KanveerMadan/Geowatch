@@ -38,13 +38,24 @@
 - **DEV / reserve split, fixed now:**
   - events before 2022-01-01 are DEV (free for development);
   - events on or after 2022-01-01 are the round-3 reserve, sealed with the rest before any Phase 4 model.
+- **One labelled event per storm (R28, `rain311 storms`):**
+  - events whose label windows overlap are chained into one storm;
+  - the event with the most city-wide flood reports is kept (ties go to the earliest); the others are refused as "same storm as …";
+  - metadata only, the same for DEV and reserve. Without it, two events with the same rain peak got identical labels (for example Chicago 2021-10-11 and 2021-10-14).
 
 ## Candidate cities (open 311 APIs; licences to be listed in LICENCES.md before use)
 In use:
 - New York: NYC Open Data `76ig-c548` (2010–2019) and `erm2-nwe9` (2020 onwards); tide gauge 8518750.
 - Chicago: `v6vf-nfxy`, from 2018-07; lake city, so no surge check.
 
-**Counts so far (metadata):** rain 110 DEV / 113 reserve events; NYC coastal 9 / 5, compound 13 / 3. On DEV, 41 units on 17 lattice boxes reach ≥ 50 flood reports in one box (37 rain, 3 compound, 1 coastal).
+**Counts so far (metadata, after R28):**
+
+| | DEV rain | reserve rain | DEV coastal | reserve coastal | DEV compound | reserve compound |
+|---|---|---|---|---|---|---|
+| NYC | 64 | 20 | 8 | 5 | 13 | 3 |
+| Chicago | 36 | 75 | – | – | – | – |
+
+On DEV, 36 units on 16 lattice boxes reach ≥ 50 flood reports in one box: 32 from Chicago, 4 from NYC. NYC storms are spread across the city (median 98 flood reports per storm), so an 8 km box rarely holds 50. This is open (DIAGNOSIS §k).
 
 Still to check: Chicago, Philadelphia, Washington DC, Baltimore, Boston, Toronto, San Francisco, Houston, Detroit.
 

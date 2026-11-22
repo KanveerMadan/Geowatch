@@ -56,7 +56,35 @@ def load_tables():
         tabs[n] = {"X": z["X"], "C": z["C"], "y": y, "F": list(m["features"]), "shape": tuple(m["shape"]),
                    "ev": ev, "tags": cat[n]["tags"], "region": cat[n]["region"], "cluster": cat[n]["cluster"],
                    "grid": m["grid"], "event": m["event"]}
+    tabs.update(load_311())
     return tabs
+
+
+def load_311():
+    """311 DEV units: the box's feature table with the event's own label (RAIN_311_DESIGN).
+    Region = city (a held-out fold never shares a box with training); cluster = storm."""
+    from experiments.flood_round3 import rain311 as R3
+    p = os.path.join(R3.REFS, "units.json")
+    if not os.path.exists(p):
+        return {}
+    out = {}
+    for n, u in json.load(open(p)).items():
+        tp = os.path.join(TABLES, f"{u['box']}.npz")
+        if not os.path.exists(tp):
+            continue
+        z = np.load(tp, allow_pickle=False)
+        m = json.loads(str(z["meta"]))
+        y = np.load(os.path.join(R3.REFS, f"{n}.npz"))["y3"].ravel().astype(np.int8)
+        if len(y) != len(z["y"]):
+            raise ValueError(f"{n}: label cells {len(y)} != table cells {len(z['y'])}")
+        y = np.where(np.isin(y, (0, 1)), y, -1).astype(np.int8)
+        if (y == 1).sum() < 50 or (y == 0).sum() < 50:
+            continue
+        out[n] = {"X": z["X"], "C": z["C"], "y": y, "F": list(m["features"]), "shape": tuple(m["shape"]),
+                  "ev": {k: np.full(len(y), np.nan, np.float32) for k in EV_FEATS}, "tags": [u.get("type", "pluvial")],
+                  "region": f"r311_{u.get('city', n.split('_')[1])}", "cluster": u["cluster"], "grid": m["grid"],
+                  "event": u["event"], "source": "311"}
+    return out
 
 
 def ev():

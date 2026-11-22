@@ -243,3 +243,27 @@ Round-2 test, compound (5 units):
   - Bigger units help only a little: river would need ≈ 47 units instead of 62.
   - What helps more is a method whose gain is consistent across events: the anchored learner, which can fall back to its anchor (λ → 0) where the correction does not help.
 - **Assumption behind the projection:** the within-unit variance scales with 1 / blocks, and the gain itself does not change with box size. That is untested; the DEV CV in Phase 4 is re-run on bigger boxes before the freeze.
+
+## k. 311 rain labels: terrain works in NYC, not in Chicago, and report history works in both
+DEV only, after R28. "Recurrence" asks: is a storm's flood report nearer (≤ 90 m) to another DEV storm's flood report than a random other 311 report from the same storm is? 95 % CI from bootstrapping storms.
+
+| city | storms | elevation AUC per unit | HAND AUC per unit | flood report near another storm's | random 311 report near one | excess (95 % CI) | report-history AUC (median) |
+|---|---|---|---|---|---|---|---|
+| Chicago | 36 | 0.35–0.56 (29 units) | 0.37–0.57 | 0.62 | 0.52 | 0.10 [0.07, 0.13] | 0.66 |
+| NYC | 83 | 0.58–0.68 (4 units) | 0.64–0.77 | 0.67 | 0.23 | 0.44 [0.42, 0.45] | 0.75 |
+
+**Reading:**
+- **Chicago:** flood reports do come back to the same places, so they are not noise. But no static feature in the 57-feature table separates them: the best mean per-unit AUC is 0.454 (clay) or 0.533 (elevation, wrong sign).
+  - The relief inside the boxes is small (elevation SD ≈ 3 m, about the DEM's own error), and street water there follows sewers and railway underpasses, which a 30 m DEM cannot see.
+  - The geolocation is fine: flood and dry cells are equally built-up (0.34 vs 0.33).
+- **NYC:** terrain ranks the reports (HAND up to 0.77), and the reports recur strongly. But only 4 NYC DEV units qualify, because NYC storms spread their reports across the city.
+- **Report history:**
+  - The feature is the count of other storms' flood reports within 150 m, ranked city-wide.
+  - These medians are a ceiling: on DEV they use other storms both before and after.
+  - A causal version, built only from storms strictly before the event, is a candidate feature for the rain learner. For the reserve, that means only pre-2022 (DEV) reports. Baselines stay unchanged.
+  - The product only has it where a city publishes report history; that limit is stated.
+- **Note on the check itself:** a first version scaled longitude per storm, which shifted storms by kilometres relative to each other and wrongly showed no recurrence in Chicago. The fixed version uses one scale per city.
+
+**Open:**
+1. NYC unit yield under R25's 8 km box. A larger 311 unit is justified by how the labels are made (sparse points), but it would be a unit change and needs pre-registering with DEV numbers.
+2. Whether a causal history feature lifts Chicago to AUC ≥ 0.70 inside 8 km boxes.

@@ -171,6 +171,40 @@ def drivers():
     return 0
 
 
+def storms():
+    """One labelled event per storm (RAIN_311_DESIGN §2a). Events whose label windows overlap are
+    chained into one storm; the event with the most flood reports (metadata, ties -> earliest) is kept,
+    the others are refused as "same storm". Same rule for DEV and reserve; no label is read."""
+    evs = json.load(open(os.path.join(OUT, "r311_events.json")))
+    for city, rows in evs.items():
+        typed = sorted((e for e in rows if e.get("window") and not (e.get("refused") or "").startswith("same storm")),
+                       key=lambda e: e["window"][0])
+        groups, cur = [], []
+        for e in typed:
+            if cur and e["window"][0] < max(x["window"][1] for x in cur):
+                cur.append(e)
+            else:
+                if cur:
+                    groups.append(cur)
+                cur = [e]
+        if cur:
+            groups.append(cur)
+        n = 0
+        for g in groups:
+            ok = [e for e in g if e.get("type")]
+            if not ok:
+                continue
+            keep = max(ok, key=lambda e: (e["flood_reports"], -dt.date.fromisoformat(e["event"]).toordinal()))
+            for e in ok:
+                if e is not keep:
+                    e["refused"], e["type"], n = f"same storm as {keep['event']}", None, n + 1
+                    e["storm"] = keep["event"]
+            keep["storm"] = keep["event"]
+        print(city, "refused as same storm:", n, flush=True)
+    json.dump(evs, open(os.path.join(OUT, "r311_events.json"), "w"), indent=1)
+    return 0
+
+
 LATTICE_KM, STEP_KM = 8.0, 4.0          # R25 boxes on a fixed lattice, so features are built once per box
 FEATURE_YEAR_EVENT = "2021-07-01"     # one feature build per box (WorldCover / NDVI year); all methods alike
 REFS = os.path.expanduser("~/.cache/geowatch/flood_round3/big/r311_refs")
@@ -302,7 +336,7 @@ def build_dev():
 def main(argv=None):
     import sys
     a = argv or sys.argv[1:]
-    return {"events": events, "drivers": drivers, "build_dev": build_dev}[a[0]]()
+    return {"events": events, "drivers": drivers, "storms": storms, "build_dev": build_dev}[a[0]]()
 
 
 if __name__ == "__main__":

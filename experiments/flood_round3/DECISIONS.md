@@ -130,3 +130,14 @@ This replaces R24's rule, before any round-3 candidate was listed. R24's text ab
 - **Rain:** 311 street-flooding reports (RAIN_311_DESIGN.md), NYC and Chicago: 113 reserve events (2022 onwards), plus 110 DEV events. On DEV, about 1 in 3 events puts ≥ 50 flood reports in one 8 km box.
 - **Coastal and compound:** NYC 311 storm days typed by the Battery tide gauge (reserve: 5 coastal, 3 compound), plus EMS and Sentinel-1 storm candidates. These two types remain the thinnest.
 - **Flash and waterlogging:** no new peak-time source yet. They are next.
+
+## R28 (2026-11-22) 311: one labelled event per storm
+- **Found:** events were days with ≥ 50 flood reports, and each got a label window around its own rain peak. When two events picked the same rain peak, they got the same window and therefore identical labels. That affected 5 NYC and 18 Chicago windows; Chicago 2021-10-11 and 2021-10-14 were two copies of one storm in the DEV set.
+- **Rule (RAIN_311_DESIGN, `rain311 storms`):**
+  - events whose label windows overlap are one storm;
+  - keep the event with the most city-wide flood reports (ties go to the earliest);
+  - refuse the rest as "same storm".
+- **Scope:** metadata only. It applies the same way to DEV and reserve, before the seal, and is independent of any method.
+- **Effect:** 6 NYC and 23 Chicago events refused.
+  - NYC: rain 64 DEV / 20 reserve, coastal 8 / 5, compound 13 / 3.
+  - Chicago: rain 36 DEV / 75 reserve.
