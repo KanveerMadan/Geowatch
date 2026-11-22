@@ -177,7 +177,9 @@ def drainage_feats(city, grid, before, key, bbox, ee):
     else:
         out["rail_bridge_dist_m"] = np.full(H * W, 5000.0, np.float32)
     img = ee.Image(ee.ImageCollection("USGS/NLCD_RELEASES/2021_REL/NLCD").first()).select("impervious").toFloat()
-    arr = compute_pixels(img.rename("imp"), grid["transform"], tuple(grid["shape"]), grid["crs"], "nlcd impervious")
+    from affine import Affine
+    arr = compute_pixels(img.rename("imp"), Affine(*grid["transform"][:6]), tuple(grid["shape"]), grid["crs"],
+                         "nlcd impervious")
     imp = np.asarray(arr["imp"], np.float64)
     if not np.isfinite(imp).any():
         out["nlcd_imperv"], out["nlcd_imperv_250"] = nan.copy(), nan.copy()

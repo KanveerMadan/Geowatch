@@ -311,16 +311,24 @@ S1ROUTE_CATALOG = os.path.join(OUT, "s1route_catalog.json")
 
 
 def s1route_catalog(cands: str = "se_flash_candidates"):
-    """DEV catalog rows for built Sentinel-1-route units: tags, region (US census region; folds for
-    leave-region-out), cluster (episode). Everything else in the US is us_south."""
+    """DEV catalog rows for Sentinel-1-route units, for every route file present:
+    Storm Events flash (region = US census region) and R29 plains (region = the plain).
+    Folds for leave-region-out; clusters = episode / plain-year. `cands` is kept for the CLI."""
     eps = {e["episode"]: e for e in json.load(open(os.path.join(OUT, "se_flash_episodes.json")))}
     cat = json.load(open(S1ROUTE_CATALOG)) if os.path.exists(S1ROUTE_CATALOG) else {}
-    for r in json.load(open(os.path.join(OUT, f"{cands}.json")))["candidates"]:
-        if r.get("split") != "dev":
+    for stem in ("se_flash_candidates", "plains_candidates"):
+        p = os.path.join(OUT, f"{stem}.json")
+        if not os.path.exists(p):
             continue
-        st = eps.get(r.get("episode"), {}).get("state", "")
-        cat[r["unit"]] = {"role": "dev", "tags": r["tags"], "region": US_REGION.get(st, "us_south"),
-                          "cluster": r["cluster"], "event": r["event"], "kind": "s1_vvdrop", "source": r["source"]}
+        for r in json.load(open(p))["candidates"]:
+            if r.get("split") != "dev":
+                continue
+            if stem == "plains_candidates":
+                region = f"plains_{r['plain']}"
+            else:
+                region = US_REGION.get(eps.get(r.get("episode"), {}).get("state", ""), "us_south")
+            cat[r["unit"]] = {"role": "dev", "tags": r["tags"], "region": region, "cluster": r["cluster"],
+                              "event": r["event"], "kind": "s1_vvdrop", "source": r["source"]}
     json.dump(cat, open(S1ROUTE_CATALOG, "w"), indent=1, sort_keys=True)
     return cat
 
