@@ -44,7 +44,7 @@ Branch `exp/flood-round3` (from `07e9920`, round 2's result), worktree gw-floodp
 | type | round 2 | main cause found | what it needs to pass | outlook now |
 |---|---|---|---|---|
 | River | 0.91, +0.015 (CI crosses 0) | gain real but small; too few events | ~60 fresh events at the current gain, or a bigger gain from event water levels / physics | best placed; needs the bigger fresh pool |
-| Flash | 0.82, +0.016 | labels mostly 3+ days late | peak-time labels (≤ 2 d) on ~30 events; terrain headroom +0.06 exists | needs new peak-time sources |
+| Flash | 0.82, +0.016 | labels mostly 3+ days late | peak-time labels (≤ 2 d) on ~30 events; terrain headroom +0.06 exists | new source: NOAA Storm Events + Sentinel-1 inside 2 days (FLASH_SE_DESIGN). DEV: 77 usable units; reserve projected ≈ 30 |
 | Waterlogging | 0.72, +0.012 | gain noisy between events | ~40–100 events, or less noisy gains; terrain headroom +0.04 | needs a much bigger pool |
 | Rain | 0.61 (elevation) | labels were noise and too late | urban, peak-time labels (coherence, VHR); scoring on open cells only otherwise | 311 street-flood reports give real labels (R28, DIAGNOSIS §k). NYC: lidar + report history reach 0.79 on DEV. Chicago (flat) reaches only 0.64, below the 0.70 floor. |
 | Compound | 0.66, −0.08 | one marsh box plus one late, mistyped unit | anchored model; physics (Ida SFINCS) for a real gain; ~90 events at today's spread | hard: little terrain headroom |

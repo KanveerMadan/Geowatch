@@ -36,6 +36,28 @@
    - ≥ 2 same-orbit baseline passes in [t0 − 60 d, t0 − 6 d], or the same window a year earlier.
 6. **Order:** ascending date, then episode id. No other ordering.
 
+## DEV yield (2015–2021; reserve not screened)
+- **Screen:** 360 DEV episodes give 106 candidates. Refused:
+  - 195: no Sentinel-1 pass inside 2 days;
+  - 45: IMERG below 20 mm;
+  - 9: too few baseline passes;
+  - 3: same place and month;
+  - 2: inside a 311 city.
+- **Labels** (`build_r3 s1route`):
+  - 77 of 106 have ≥ 50 flooded and ≥ 50 dry cells.
+  - 10 dropped because round 4's `place()` found no January–March baseline image on the search square.
+  - The rest have too few flooded cells.
+- **By damage:**
+
+  | damage | candidates | qualifying |
+  |---|---|---|
+  | ≥ $1 M | 106 | 77 |
+  | ≥ $3 M | 58 | 43 |
+  | ≥ $10 M | 34 | 27 |
+
+- **The $1 M threshold stays.** Raising it does not improve the qualifying rate.
+- **Reserve projection:** 182 episodes × ~0.25 passing the screen × ~0.7 qualifying ≈ 30 units. That is above the 5-event floor even at lower post-2021 revisit.
+
 ## Unit and label (at build time, after the freeze)
 - **Unit:** the 8 km box (R25), placed by round 4's `place()` inside the 20 km Sentinel-1 search square centred on the point.
 - **Label:** v3 Sentinel-1 (labels_r3), the same code as the river route.
