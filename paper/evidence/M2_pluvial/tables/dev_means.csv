@@ -1,0 +1,16 @@
+type,score,is_chosen,mean_auc,ci_lo,ci_hi,minus_hand,minus_hand_ci_lo,minus_hand_ci_hi,n_units,n_clusters,source_file,source_commit,source_commit_date
+pluvial,neg_elev_glo30,False,0.7046,0.5935,0.8005,0.0424,-0.07,0.148,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,lro:open__lgbm,True,0.6755,0.5833,0.7405,0.0133,-0.0831,0.0804,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,hand,False,0.6622,0.5943,0.7326,,,,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,lro:no_landcover__lgbm,False,0.6583,0.5785,0.7371,-0.0039,-0.0939,0.0857,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,lro:full__lgbm,False,0.6577,0.5772,0.7396,-0.0045,-0.0907,0.0943,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,lro:full__logreg,False,0.6549,0.56,0.7312,-0.0073,-0.1411,0.1007,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,lro:open__logreg,False,0.6443,0.526,0.7236,-0.0179,-0.1765,0.0923,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,lro:no_landcover__logreg,False,0.6088,0.4579,0.7204,-0.0534,-0.2474,0.0742,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,waterlogging,False,0.6076,0.5154,0.6861,-0.0546,-0.1637,0.0215,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,fluvial,False,0.5925,0.4928,0.6944,-0.0697,-0.1585,0.0139,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,pluvial,False,0.5861,0.4923,0.6977,-0.0902,-0.1839,0.0198,6,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,flash_flood,False,0.5476,0.4161,0.656,-0.1146,-0.2763,0.0019,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,dist_water,False,0.5374,0.4202,0.6444,-0.1248,-0.2222,-0.0282,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,occurrence,False,0.5366,0.4853,0.6227,-0.1256,-0.1841,-0.0569,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+pluvial,neg_dist_coast,False,0.4867,0.3738,0.5959,-0.1755,-0.3322,-0.0244,11,9,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30

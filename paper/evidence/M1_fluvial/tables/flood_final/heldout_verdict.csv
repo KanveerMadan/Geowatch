@@ -1,0 +1,3 @@
+type,test,chosen,verdict,mean_auc,minus_hand,minus_hand_ci,units,clusters,source_file,source_commit,source_commit_date
+fluvial,learned (pre-registered choice),open__logreg,passed,0.7913,0.095,"[0.011, 0.1923]",8,7,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30
+fluvial,fluvial module (validated config) re-test,fluvial,failed,0.5777,-0.1186,"[-0.2374, -0.019]",8,7,experiments/flood_final/results/heldout.json,2b2653f,2026-11-20T19:51:34+05:30

@@ -1,0 +1,6 @@
+event,date,split,reference,flooded_cells,dry_cells,auc,qualifies,source_file,source_commit,source_commit_date
+hanoi,2024-09-09,held-out,Copernicus EMS EMSR754 AOI03 (Hanoi) DEL monitoring 0,940,13776,0.9162,True,experiments/flood_validation/result_round2_2026-10-28.json,2832dc8,2026-10-28T23:55:52+05:30
+kolonnawa,2025-11-30,held-out,Copernicus EMS EMSR851 AOI02 (Kelani Ganga River) DEL monitoring 0,573,8617,0.7996,True,experiments/flood_validation/result_round2_2026-10-28.json,2832dc8,2026-10-28T23:55:52+05:30
+nysa,2024-09-14,held-out,Copernicus EMS EMSR756 AOI03 (Nysa) DEL monitoring 0,2,17782,,False,experiments/flood_validation/result_round2_2026-10-28.json,2832dc8,2026-10-28T23:55:52+05:30
+hue,2025-10-29,held-out,Copernicus EMS EMSR848 AOI06 (East Hue) DEL monitoring 0,10,12668,,False,experiments/flood_validation/result_round2_2026-10-28.json,2832dc8,2026-10-28T23:55:52+05:30
+MEAN over qualifying held-out (verdict),,,verdict=validated; bar 0.70; pooled diagnostic 0.8851,,,0.8579,2,experiments/flood_validation/result_round2_2026-10-28.json,2832dc8,2026-10-28T23:55:52+05:30

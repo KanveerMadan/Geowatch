@@ -1,0 +1,3 @@
+event,auc_fluvial,auc_hand,flooded_cells,dry_cells,reference,pixel_m,source_file,source_commit,source_commit_date
+hanoi,0.9162,0.481,940,13776,Copernicus EMS EMSR754 AOI03 (Hanoi) DEL monitoring 0,30,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30
+assam_2026,0.3878,0.7495,5327,13059,"COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2026 Jan-Mar median",30,experiments/flood_baselines/results/baselines.json,d1894e4,2026-11-17T12:16:09+05:30

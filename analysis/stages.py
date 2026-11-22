@@ -37,6 +37,11 @@ STAGE_TIMEOUT_S = {
     # design storm and two multi-year water-history reductions (JRC monthly,
     # Sentinel-1), each with its own 1200 s request deadline
     "hydro_rasters": 3000,
+    # The elevation ranking's inputs: one Earth Engine stack (GLO-30, JRC
+    # occurrence, WorldCover and GHSL built share). It replaced the learned
+    # model's 3600 s stage (2026-11-22) and keeps that limit: same grid, a
+    # subset of the same calls.
+    "ranking_inputs": 3600,
 }
 
 

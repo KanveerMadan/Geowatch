@@ -9,7 +9,7 @@
     "min_wards": 20
   },
   "sources": {
-    "a": "/Users/kanveermadan/geowatch/data/pipeline_runs/phase12b_ward_landcover_v2.json hydrological_surfaces.impervious_fraction_pct / 100",
+    "a": "<repo>/data/pipeline_runs/phase12b_ward_landcover_v2.json hydrological_surfaces.impervious_fraction_pct / 100",
     "b": "Open Buildings v3 footprint union area fraction (2 m paint)",
     "c": "built + max(0, 1 - built - veg - water), S2 2025-11-01..2026-08-22"
   },

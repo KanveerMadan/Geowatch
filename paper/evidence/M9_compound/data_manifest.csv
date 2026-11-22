@@ -1,0 +1,14 @@
+event,split,date,tags,region,bbox_w,bbox_s,bbox_e,bbox_n,reference,flooded_cells,dry_cells,storm_cluster,source_file,centre_lon,centre_lat,heldout_status
+beira,DEV,,coastal compound,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),661,18545,2,experiments/flood_final/results/dev_report.json,,,
+black_river,DEV,,coastal compound,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),1260,10746,4,experiments/flood_final/results/dev_report.json,,,
+fort_myers_beach,DEV,,coastal compound,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),578,5378,10,experiments/flood_final/results/dev_report.json,,,
+kyaukpyu,DEV,,coastal compound,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),381,8869,15,experiments/flood_final/results/dev_report.json,,,
+paiporta,DEV,,compound flash_flood,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),3683,14103,17,experiments/flood_final/results/dev_report.json,,,
+sittwe,DEV,,coastal compound,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),216,11121,15,experiments/flood_final/results/dev_report.json,,,
+valencia_2024,DEV,,compound flash_flood pluvial,batch0,,,,,flood_learned batch 0 (see experiments/flood_learned/REPORT.md),2847,14924,17,experiments/flood_final/results/dev_report.json,,,
+r_emsr734_aoi09,RESERVED,2024-07-01,coastal compound,americas,,,,,ems EMSR734 9 0 GRA,,,EMSR734,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,-61.234330910532826,13.010522053267435,not qualifying
+r_emsr734_aoi17,RESERVED,2024-07-01,coastal compound,americas,,,,,ems EMSR734 17 0 GRA,250,12415,EMSR734,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,-90.50562582948959,19.838053797304248,scored
+r_emsr858_aoi08,RESERVED,2026-01-20,coastal compound,europe_mediterranean,,,,,ems EMSR858 8 0 DEL,618,17124,EMSR858,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,9.365508794174481,39.62186142130137,scored
+r_emsr858_aoi10,RESERVED,2026-01-20,coastal compound,europe_mediterranean,,,,,ems EMSR858 10 0 DEL,805,16962,EMSR858,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,9.511947080278155,40.30254492291426,scored
+r_emsr864_aoi01,RESERVED,2026-02-03,flash_flood compound,europe_mediterranean,,,,,ems EMSR864 1 0 DEL,4179,13207,EMSR864,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,-8.384036118954743,37.88490183091149,scored
+r_emsr864_aoi02,RESERVED,2026-02-03,flash_flood compound,europe_mediterranean,,,,,ems EMSR864 2 0 DEL,3330,13545,EMSR864,experiments/flood_final/registry_units.json; experiments/flood_final/results/heldout.json,-8.494129108876754,38.314751574271796,scored

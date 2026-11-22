@@ -8,10 +8,12 @@ the module's own label, its pinned Tier 2 verdict, and its inputs' labels
 flood round 4's new methods (bluespot fill-and-spill; persistence, clay,
 relief and backwater; stream power on valley floors), all per-pixel on the
 hydrology grid, and round 4 failed all three (rounds 1-3's verdicts were on
-the retired methods). Coastal is `failed` (round 2). Fluvial reads `validated`,
-with its scope note, only while it runs exactly the configuration round 2
-validated (C70, analysis.contract.VALIDATED_CONFIGS); otherwise its
-experimental raster inputs cap it.
+the retired methods). Coastal is `failed` (round 2). Fluvial is demoted to
+`experimental` (C78, analysis.contract.DEMOTED) after round 4 and flood_final
+failed its validated configuration. River and waterlogging floods are also
+ranked by plain elevation (flood_ranking, `experimental`): it replaced the
+learned model on 2026-11-22, because flood round 2 did not confirm the learned
+gain over elevation (exp/flood-round2, DECISIONS R17).
 """
 from __future__ import annotations
 
@@ -21,6 +23,31 @@ from analysis import contract as C
 from analysis.stages import STAGE_TIMEOUT_S, run_stage, summary
 
 HAZARDS = ("pluvial", "fluvial", "coastal", "flash_flood", "waterlogging")
+# One more output, not a flood type of its own (docs/flood_taxonomy.md is
+# unchanged): the river (M1) and waterlogging (M3) ranking. Since 2026-11-22 it
+# ranks by plain GLO-30 elevation (susceptibility/flood_ranking.py), labelled
+# `experimental`; flood round 3's winners replace it.
+RANKING = "flood_ranking"
+RANKING_TYPES = ("M1", "M3")
+
+
+def percentile_map(smap: np.ndarray) -> np.ndarray:
+    """Each finite cell's percentile (0-1) among the AOI's finite cells;
+    NaN stays NaN. Ties share their mean rank."""
+    from scipy.stats import rankdata
+    out = np.full(smap.shape, np.nan, np.float32)
+    ok = np.isfinite(smap)
+    if ok.sum() > 1:
+        out[ok] = (rankdata(smap[ok]) - 1) / (ok.sum() - 1)
+    elif ok.any():
+        out[ok] = 0.5
+    return out
+
+
+def output_names(modules: dict) -> tuple:
+    """The flood outputs a run produced: the five modules, plus the ranking
+    output when it ran."""
+    return HAZARDS + ((RANKING,) if RANKING in modules else ())
 
 CONTEXT_SOURCES = {
     "hand": "MERIT/Hydro/v1_0_1 (hnd, upa)",
@@ -31,6 +58,8 @@ CONTEXT_SOURCES = {
     "relative_elevation": "COPERNICUS/DEM/GLO30_2024_1 (AOI-relative proxy, NOT HAND)",
     "hydro_rasters": ("per-pixel MERIT/Hydro/v1_0_1 (hnd, upa), FABDEM slope, "
                       "CHIRPS and IMERG V07 (susceptibility/hydro_rasters.py)"),
+    "ranking_inputs": ("GLO-30 elevation, JRC occurrence, WorldCover and GHSL built share "
+                       "(susceptibility/flood_ranking.py)"),
 }
 
 # Which context layers each module reads. Fluvial, flash flood and
@@ -45,6 +74,7 @@ MODULE_CONTEXT = {
     "coastal": ("coastline", "fabdem"),
     "flash_flood": ("hydro_rasters",),
     "waterlogging": ("hydro_rasters",),
+    "flood_ranking": ("ranking_inputs",),
 }
 
 
@@ -105,7 +135,8 @@ def applicability_for(ctx: dict, impervious: dict | None) -> dict:
     return finalize_applicability(app, {"impervious_fraction_pct": mean_pct(impervious)})
 
 
-def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict, rasters: dict = None) -> dict:
+def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict, rasters: dict = None,
+                learned: dict | None = None, shape=None) -> dict:
     """Run the five modules. `surfaces`: dem, impervious, conduits (declared
     surfaces); any may be absent. `rasters`: susceptibility.hydro_rasters
     output on the same grid, or None. `waterway_dist` is no longer read by
@@ -114,6 +145,7 @@ def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict, rasters: di
     from susceptibility.coastal import compute_coastal_susceptibility
     from susceptibility.flash_flood import compute_flash_flood_susceptibility
     from susceptibility.fluvial import compute_fluvial_susceptibility
+    from susceptibility.flood_ranking import compute_flood_ranking
     from susceptibility.pluvial import compute_pluvial_susceptibility
     from susceptibility.waterlogging import compute_waterlogging_susceptibility
     return {
@@ -125,6 +157,9 @@ def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict, rasters: di
                                                   applicability=app),
         "flash_flood": compute_flash_flood_susceptibility(rasters, applicability=app),
         "waterlogging": compute_waterlogging_susceptibility(rasters, applicability=app),
+        # `learned` is susceptibility.flood_ranking.fetch_inputs()'s result
+        # (None when that stage did not finish), on the hydrology grid.
+        RANKING: compute_flood_ranking(learned, shape),
     }
 
 
@@ -169,7 +204,7 @@ def hazard_outputs(modules: dict, mv: dict, verdicts: dict, *, has_waterways: bo
     did arrive. A tier from a partial input set is what made two runs of the
     same wards disagree; a status says why they differ."""
     out = {}
-    for name in HAZARDS:
+    for name in output_names(modules):
         mod = modules[name]
         score = mod.get("aoi_mean_score")
         bad = incomplete_inputs(name, ctx or {}, stage_status)
@@ -198,6 +233,12 @@ def hazard_outputs(modules: dict, mv: dict, verdicts: dict, *, has_waterways: bo
                  "applicability": mod.get("applicability"),
                  "limitations": mod.get("limitations", []),
                  "method": mod.get("method")}
+        if name in C.DEMOTED:
+            extra["demoted"] = dict(C.DEMOTED[name])
+        if name == RANKING:
+            extra.update(flood_types=list(RANKING_TYPES), not_assessed=mod.get("not_assessed"),
+                         score_kind="within-AOI elevation ranking; not a probability",
+                         value_kind=mod.get("aoi_score_kind"), evidence=mod.get("evidence"))
         if score is None:
             status = {"not_applicable": "not_applicable"}.get(mod.get("status"),
                                                                "insufficient_evidence")

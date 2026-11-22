@@ -1,0 +1,16 @@
+type,score,is_chosen,mean_auc,ci_lo,ci_hi,minus_hand,minus_hand_ci_lo,minus_hand_ci_hi,n_units,n_clusters,source_file,source_commit,source_commit_date
+coastal,neg_elev_glo30,False,0.7778,0.6238,0.8626,0.0988,0.0386,0.1638,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,lro:open__lgbm,True,0.763,0.5868,0.8796,0.084,-0.0341,0.1899,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,lro:full__lgbm,False,0.7506,0.5537,0.8843,0.0716,-0.0472,0.1707,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,lro:full__logreg,False,0.7437,0.603,0.8478,0.0647,-0.0514,0.168,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,lro:open__logreg,False,0.7247,0.5755,0.8431,0.0457,-0.0974,0.1754,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,waterlogging,False,0.7055,0.582,0.7677,0.0265,-0.0122,0.0497,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,lro:no_landcover__lgbm,False,0.6998,0.4972,0.831,0.0208,-0.0973,0.1134,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,fluvial,False,0.68,0.4686,0.8218,0.001,-0.1443,0.0965,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,hand,False,0.679,0.5582,0.7486,,,,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,lro:no_landcover__logreg,False,0.6612,0.4825,0.7813,-0.0178,-0.151,0.0673,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,flash_flood,False,0.5946,0.4705,0.7077,-0.0845,-0.1672,-0.0038,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,pluvial,False,0.5691,0.4865,0.6818,-0.1099,-0.204,0.0274,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,neg_dist_coast,False,0.5664,0.4164,0.6928,-0.1126,-0.2668,0.1023,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,dist_water,False,0.5373,0.4264,0.6112,-0.1417,-0.2287,0.001,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
+coastal,occurrence,False,0.5146,0.4664,0.5795,-0.1644,-0.2738,-0.0026,5,4,experiments/flood_final/results/dev_report.json,81ff7b1,2026-11-20T11:31:46+05:30
