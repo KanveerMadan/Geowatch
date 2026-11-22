@@ -336,9 +336,24 @@ def s1route_catalog(cands: str = "se_flash_candidates"):
 def s1route_features(cands: str = "se_flash_candidates"):
     """Feature tables for qualifying DEV Sentinel-1-route units, one subprocess each (memory)."""
     from experiments.flood_baselines.build import check_disk
-    s1route_catalog(cands)
+    cat = s1route_catalog(cands)
     log = json.load(open(S1ROUTE_LOG))
-    for n, v in sorted(log.items()):
+    # Order: round-robin over clusters (episodes / plain-years), alternating the two routes, so a partial build
+    # is a balanced DEV sample. DEV only; the order uses catalog metadata, not labels.
+    by = {}
+    for n in sorted(log):
+        if n in cat:
+            by.setdefault(cat[n]["cluster"], []).append(n)
+    routes = {"r3se": sorted(c for c in by if c.startswith("se_")), "r3pl": sorted(c for c in by if c.startswith("pl_"))}
+    order, k = [], 0
+    while any(by[c] for r in routes.values() for c in r):
+        for r in ("r3se", "r3pl"):
+            cs = [c for c in routes[r] if by[c]]
+            if cs:
+                order.append(by[cs[k % len(cs)]].pop(0))
+        k += 1
+    for n in order:
+        v = log[n]
         if not (v.get("done") and v.get("flooded", 0) >= 50 and v.get("dry", 0) >= 50) or v.get("table_done"):
             continue
         if v.get("ftries", 0) >= TRIES:
