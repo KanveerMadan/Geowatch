@@ -2,12 +2,17 @@
 
 Branch `exp/flood-round3` (from `07e9920`, round 2's result), worktree gw-floodproto. Read this first on any restart, and never redo a phase marked done. Judgement calls are in DECISIONS.md (R18 onwards). The diagnosis is in DIAGNOSIS.md.
 
-## Waiting on the owner (everything else continues)
-1. **EMS account (only you can create it).** Pre-2022 Copernicus EMS activations need a login. They hold the image times and reported extents of 2015–2021 floods, including MMFlood's 95 never-used activations. Without it, the fresh pool with checkable timing is 11 AOIs (R23).
-2. **Optional:**
-   - accept the CEMS Early Warning Data Store terms (GloFAS) at https://ewds.climate.copernicus.eu/licences/terms-of-use-cems;
-   - authorise "NASA GESDISC DATA ARCHIVE" in your Earthdata profile.
-   - Both have open substitutes in use (GEOGloWS, IMERG through Earth Engine).
+## Waiting on the owner: accounts (being created 2026-11-23; nothing waits on them)
+Open substitutes are in use. This is what each account will add when it exists:
+
+| account | open substitute in use now | what the account adds |
+|---|---|---|
+| **Copernicus EMS** | MMFlood footprints plus our own Sentinel-1 labels (river); 2022+ public EMS list (11 AOIs) | image times and reported extents for 2015–2021 activations: checkable R19 timing for MMFlood's 95 activations and more analyst-made (optical/VHR) labels for river, flash, rain and compound |
+| **GFM** (`~/.config/geowatch/gfm.json`, `{"email","password"}`, chmod 600) | our v3 Sentinel-1 label (κ 0.82 vs radar EMS for waterlogging) | an independent ensemble Sentinel-1 flood extent to cross-check waterlogging plains and river units; GFM rain/urban events for the coherence route |
+| **GES DISC** (Earthdata app authorisation) | IMERG V07 through Earth Engine | direct IMERG files (only needed if Earth Engine throttles) |
+| **EWDS terms (GloFAS)** | GEOGloWS v2 discharge | a second discharge source for river and compound driver checks and event features |
+
+- **311 data:** approved for validation (2026-11-22). Each city's portal is cited in LICENCES.md, and raw reports never enter the repo.
 
 ## Credentials (checked 2026-11-22; the files are never printed, logged or committed)
 | service | state |
