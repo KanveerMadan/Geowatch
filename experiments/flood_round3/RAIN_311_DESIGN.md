@@ -15,10 +15,11 @@
 1. **Window:** [peak − 1 d, peak + 2 d) in UTC days. The peak is the IMERG day with the largest centred 3-day sum within [first report day − 2 d, + 1 d]. This allows reports up to one day after the rain peak (R19's 1-day lag) plus the peak day itself.
 2. **FLOODED:** 30 m cells holding ≥ 1 report in the window whose descriptor is surface flooding:
    - NYC: `Street Flooding (SJ)`, `Highway Flooding (SH)`;
+   - Chicago: `Water On Street Complaint`. Water-main breaks also file under it; inside a storm window they are a small share, and that noise is the same for every method;
    - other cities: their nearest equivalents, listed per city before use.
    - **Ambiguous, so neither flooded nor dry:**
      - `Catch Basin Clogged/Flooding (SC)` mixes "clogged" and "flooding";
-     - sewer backup, manhole overflow and water in basement are driven by the sewer network, not by surface water.
+     - sewer backup, manhole overflow and water in basement (NYC SA / SA1; Chicago `Water in Basement Complaint`) are driven by the sewer network, not by surface water.
 3. **DRY (reporting-propensity control):** cells holding ≥ 1 report of any kind other than flood or ambiguous in the same window, with no flood report within 90 m (3 cells).
    - This compares flooded places with places where people were out reporting other problems during the same storm.
    - So the AUC does not reward a score for simply tracking where people report.
@@ -39,7 +40,13 @@
   - events on or after 2022-01-01 are the round-3 reserve, sealed with the rest before any Phase 4 model.
 
 ## Candidate cities (open 311 APIs; licences to be listed in LICENCES.md before use)
-New York (NYC Open Data, Socrata `erm2-nwe9`), plus cities still to check: Chicago, Philadelphia, Washington DC, Baltimore, Boston, Toronto, San Francisco, Houston, Detroit.
+In use:
+- New York: NYC Open Data `76ig-c548` (2010–2019) and `erm2-nwe9` (2020 onwards); tide gauge 8518750.
+- Chicago: `v6vf-nfxy`, from 2018-07; lake city, so no surge check.
+
+**Counts so far (metadata):** rain 110 DEV / 113 reserve events; NYC coastal 9 / 5, compound 13 / 3. On DEV, 41 units on 17 lattice boxes reach ≥ 50 flood reports in one box (37 rain, 3 compound, 1 coastal).
+
+Still to check: Chicago, Philadelphia, Washington DC, Baltimore, Boston, Toronto, San Francisco, Houston, Detroit.
 
 ## Known limits (to be stated in the pre-registration)
 - These are case-control labels on report locations, not a complete flood map. A cell with no report is unobserved, not dry.

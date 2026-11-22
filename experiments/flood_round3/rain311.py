@@ -276,7 +276,7 @@ def build_dev():
     for city, rows in evs.items():
         L = lattice(city)
         for e in rows:
-            if e.get("split") != "dev" or e.get("type") != "pluvial":
+            if e.get("split") != "dev" or e.get("type") not in ("pluvial", "coastal", "compound"):
                 continue
             rep = reports(city, e)
             boxes, cnt = place_boxes(city, rep)
@@ -291,7 +291,8 @@ def build_dev():
                             "reports": {k: sum(1 for r in rep if r[0] == k) for k in ("flood", "ambiguous", "other")}}
                     np.savez_compressed(p, y3=y, meta=np.array(json.dumps(meta)))
                     print(n, meta["flooded_cells"], meta["dry_cells"], flush=True)
-                units[n] = {"box": b, "event": e["event"], "cluster": f"r311_{city}_{e['event']}"}
+                units[n] = {"box": b, "event": e["event"], "type": e["type"], "city": city,
+                            "cluster": f"r311_{city}_{e['event']}"}
             time.sleep(0.5)
     json.dump(units, open(os.path.join(REFS, "units.json"), "w"), indent=1)
     print(len(units), "units on", len({u["box"] for u in units.values()}), "boxes")
