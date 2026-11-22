@@ -109,3 +109,9 @@ The mask and SAR tiles are never read.
 
 ## 7. Order inside a type
 Candidates that pass §1–§4 are taken in **ascending activation code**, then AOI number. Sentinel-1 candidates come in ascending date. Taking stops when the target is met. No other ordering is allowed, so no one can pick "easy" events.
+
+## 9. Flat-vs-hilly split (R29), reported in addition to the verdict
+- **Terrain number:** the standard deviation of GLO-30 elevation (`elev_glo30`) over all cells of the unit's 8 km box. It is computed from the DEM alone, never from labels.
+- **Flat:** < 4 m, the Copernicus DEM's stated absolute vertical accuracy (LE90). **Hilly:** ≥ 4 m.
+- **Reporting:** the held-out report gives, for every type, the bar's numbers on all units, flat units only and hilly units only, with units and clusters counted.
+- **The pass / fail verdict uses all units (the full domain), unchanged.** The split is not a domain restriction and decides nothing.

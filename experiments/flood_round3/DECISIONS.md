@@ -141,3 +141,34 @@ This replaces R24's rule, before any round-3 candidate was listed. R24's text ab
 - **Effect:** 6 NYC and 23 Chicago events refused.
   - NYC: rain 64 DEV / 20 reserve, coastal 8 / 5, compound 13 / 3.
   - Chicago: rain 36 DEV / 75 reserve.
+
+## R29 (2026-11-22) Rain: keep Chicago and fix the cause (owner directive)
+The owner decided: Chicago stays in the rain test and the scope is not narrowed. Rules fixed now, before any result under them is seen:
+1. **311 classes (`rain311.classify`, `WET_TYPES`):**
+   - FLOODED is street-flooding types only: NYC SJ / SH; Chicago "Water On Street Complaint". This is unchanged.
+   - New: any report whose type names water, sewers or drainage (keywords: water, sewer, sewage, drain, basin, flood, hydrant, leak, manhole, cave-in, backup, plumbing, culvert, rain) is **neither flooded nor dry**.
+   - Before R29, such reports were dry controls unless listed as ambiguous. Examples: Chicago sewer-cleaning, cave-in and alley-sewer requests (about 61,000 before 2022); NYC "WATER LEAK | HEAVY FLOW" (1,335 during Ida) and "Excessive Water In Basement".
+   - Justified by how the labels are made: these reports sit where water may have stood, so they cannot be dry.
+   - Basement and sewer-backup types were never in FLOODED; they stay out of both classes.
+   - Applied to DEV and reserve alike. The pre-R29 DEV labels are kept in `big/r311_refs_preR29` for comparison.
+2. **Drainage features (`fine_feats.FEATS2`; NaN where a city publishes no such layer):**
+   - past drainage-complaint density (NYC "Sewer" types except SJ/SH; Chicago sewer and basement requests);
+   - Chicago "Viaduct Light Out" density, which marks the railway underpasses;
+   - NYC DEP catch basins within 90 m;
+   - distance to an OpenStreetMap railway bridge;
+   - NLCD 2021 impervious share (cell and 250 m mean).
+   - All complaint histories use only reports before the label window and before 2022.
+   - SFINCS with a drainage loss is next (rain-on-grid with infiltration / sewer loss), as a feature.
+3. **Flat-vs-hilly split, reported in addition to the verdict, which stays on the full domain:**
+   - A unit is **flat** if the standard deviation of GLO-30 elevation over all cells of its 8 km box is < 4 m. 4 m is the Copernicus DEM's stated absolute vertical accuracy (LE90).
+   - The rule is computed from the DEM only, never from labels.
+   - The interquartile range was also checked and gives the same split for every 311 DEV unit.
+   - On DEV: 5 of 11 Chicago boxes are flat, 0 of 6 NYC boxes; waterlogging 6 of 10, river 6 of 29.
+   - Every type's score is reported for all units, flat units and hilly units.
+4. **Non-US rain (to bring Chicago under ~40 % of the rain test):**
+   - HyP3 InSAR coherence labels for urban rain events, plus GFM.
+   - **GFM needs an account** (API `/auth/register`, or GloFAS sign-in). Only the owner can create it. Until then our own v3 Sentinel-1 label stands in, and GFM is the independent check once the account exists.
+5. **Waterlogging (owner directive):**
+   - standing water on flat plains: Pakistan Sindh 2022, Bangladesh, Punjab, South Sudan, Nigeria;
+   - near-peak Sentinel-1 passes (MAX_LAG 14 d);
+   - selected mechanically from metadata (WATERLOG_PLAINS_DESIGN, to follow).

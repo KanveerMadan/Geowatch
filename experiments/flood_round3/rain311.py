@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import re
 import os
 import time
 import urllib.parse
@@ -25,7 +26,7 @@ CITIES = {
     "nyc": {
         "apis": ("https://data.cityofnewyork.us/resource/76ig-c548.json",    # 2010-2019 archive
                  "https://data.cityofnewyork.us/resource/erm2-nwe9.json"),   # 2020 onwards
-        "time": "created_date", "kind": "descriptor", "lat": "latitude", "lon": "longitude",
+        "time": "created_date", "kind": "descriptor", "kind2": "complaint_type", "lat": "latitude", "lon": "longitude",
         "flood": ("Street Flooding (SJ)", "Highway Flooding (SH)"),
         # neither flooded nor dry: mixed meaning (clogging OR flooding) or sewer-driven
         "ambiguous": ("Catch Basin Clogged/Flooding (Use Comments) (SC)", "Sewer Backup (Use Comments) (SA)",
@@ -230,16 +231,35 @@ def lattice(city):
     return out
 
 
-def reports(city, e) -> list:
-    """All geocoded reports in the event window: [(kind_class, lon, lat)], kind_class in flood / ambiguous / other."""
+# R29 (owner directive): FLOODED is street-flooding types only. Any report whose type names water, sewers or
+# drainage may sit where water stood, so it is neither flooded nor dry (it was a dry control before R29 unless
+# listed in "ambiguous"). Matched on "complaint type | descriptor" (NYC) or the request type (Chicago).
+WET_TYPES = re.compile(r"water|sewer|sewage|drain|basin|flood|hydrant|leak|manhole|cave-in|cave in|backup|"
+                       r"plumbing|culvert|rain", re.I)
+
+
+def classify(city, kind_text) -> str:
     c = CITIES[city]
-    p = os.path.join(CACHE, f"reports_{city}_{e['event']}.json")
+    k = kind_text.split(" | ")[-1]
+    if k in c["flood"]:
+        return "flood"
+    if k in c["ambiguous"] or WET_TYPES.search(kind_text):
+        return "ambiguous"
+    return "other"
+
+
+def reports(city, e) -> list:
+    """All geocoded reports in the event window: [(kind_class, lon, lat)], kind_class in flood / ambiguous / other
+    (classify, R29). Raw types are cached so the class rule is applied at read time."""
+    c = CITIES[city]
+    p = os.path.join(CACHE, f"reports2_{city}_{e['event']}.json")
     if not os.path.exists(p):
         w0, w1 = e["window"]
         rows, api = [], c["apis"][0] if (w0 < "2020-01-01" or len(c["apis"]) == 1) else c["apis"][1]
         off = 0
         while True:
-            page = _soql(api, {"$select": f"{c['kind']},{c['lat']},{c['lon']}",
+            sel = ",".join(x for x in (c.get("kind2"), c["kind"], c["lat"], c["lon"]) if x)
+            page = _soql(api, {"$select": sel,
                                "$where": f"{c['time']} >= '{w0}' AND {c['time']} < '{w1}' AND {c['lat']} IS NOT NULL",
                                "$order": ":id", "$limit": 50000, "$offset": off})
             rows += page
@@ -248,11 +268,11 @@ def reports(city, e) -> list:
             off += 50000
         out = []
         for r in rows:
-            k = r.get(c["kind"]) or ""
-            cls = "flood" if k in c["flood"] else "ambiguous" if k in c["ambiguous"] else "other"
-            out.append((cls, float(r[c["lon"]]), float(r[c["lat"]])))
-        json.dump(out, open(p, "w"))
-    return [tuple(x) for x in json.load(open(p))]
+            k = " | ".join(r.get(x) or "" for x in (c.get("kind2"), c["kind"]) if x)
+            out.append((k, float(r[c["lon"]]), float(r[c["lat"]])))
+        json.dump(out, open(p + ".part", "w"))
+        os.replace(p + ".part", p)
+    return [(classify(city, k), lo, la) for k, lo, la in json.load(open(p))]
 
 
 HIST_RADIUS_M = 150.0
@@ -307,6 +327,69 @@ def hist_feature(city, grid, before, radius_m=HIST_RADIUS_M):
     X, Y = Transformer.from_crs(4326, grid["crs"], always_xy=True).transform(z["lon"][m], z["lat"][m])
     T = cKDTree(np.c_[X, Y])
     n = T.query_ball_point(np.c_[x, y], radius_m, return_length=True)
+    return np.log1p(n).astype(np.float32)
+
+
+# R29 drainage features: other 311 types whose history marks drainage failures or viaducts (pre-2022 only).
+HIST_KINDS = {
+    "drain": {"nyc": ("complaint_type", ("Sewer",)),
+              "chicago": ("sr_type", ("Sewer Cleaning Inspection Request", "Sewer Cave-In Inspection Request",
+                                      "Alley Sewer Inspection Request", "Water in Basement Complaint"))},
+    "viaduct": {"chicago": ("sr_type", ("Viaduct Light Out Complaint",))},
+}
+
+
+def history_kind(name, city):
+    """Points (lon, lat, day) of HIST_KINDS[name][city] reports before RESERVE_FROM (NYC "Sewer" excludes the
+    street-flooding descriptors, which are the label). Cached npz; None if the city has no such type."""
+    import numpy as np
+    spec = HIST_KINDS[name].get(city)
+    if spec is None:
+        return None
+    p = os.path.join(CACHE, f"history_{name}_{city}.npz")
+    if not os.path.exists(p):
+        c = CITIES[city]
+        field, kinds = spec
+        ks = ",".join("'" + k.replace("'", "''") + "'" for k in kinds)
+        lon, lat, day = [], [], []
+        for api in c["apis"]:
+            off = 0
+            while True:
+                page = _soql(api, {"$select": f"{c['time']},{c['lat']},{c['lon']},{c['kind']}",
+                                   "$where": f"{field} in ({ks}) AND {c['time']} >= '{c['since']}T00:00:00' AND "
+                                             f"{c['time']} < '{RESERVE_FROM}T00:00:00' AND {c['lat']} IS NOT NULL",
+                                   "$order": ":id", "$limit": 50000, "$offset": off})
+                for r in page:
+                    if r.get(c["kind"]) in c["flood"]:
+                        continue
+                    lon.append(float(r[c["lon"]])); lat.append(float(r[c["lat"]])); day.append(r[c["time"]][:10])
+                if len(page) < 50000:
+                    break
+                off += 50000
+                time.sleep(0.5)
+        d = np.array(day, dtype="datetime64[D]").astype(np.int64)
+        k = np.unique(np.c_[lon, lat, d], axis=0) if lon else np.zeros((0, 3))
+        np.savez_compressed(p, lon=k[:, 0], lat=k[:, 1], day=k[:, 2].astype(np.int64))
+        print(city, name, "history reports:", len(k), flush=True)
+    return np.load(p)
+
+
+def density_feature(z, grid, before, radius_m=HIST_RADIUS_M):
+    """log1p(count of points of z (lon, lat, day) within radius_m of each cell centre, dated strictly before
+    `before` and before RESERVE_FROM). Shared by hist_feature and the R29 drainage features."""
+    import numpy as np
+    from pyproj import Transformer
+    from scipy.spatial import cKDTree
+    H, W = grid["shape"]
+    cut = min(np.datetime64(before, "D"), np.datetime64(RESERVE_FROM, "D")).astype(np.int64)
+    m = z["day"] < cut
+    if not m.any():
+        return np.zeros(H * W, np.float32)
+    t = grid["transform"]
+    r, c = np.divmod(np.arange(H * W), W)
+    x, y = t[2] + (c + 0.5) * t[0], t[5] + (r + 0.5) * t[4]
+    X, Y = Transformer.from_crs(4326, grid["crs"], always_xy=True).transform(z["lon"][m], z["lat"][m])
+    n = cKDTree(np.c_[X, Y]).query_ball_point(np.c_[x, y], radius_m, return_length=True)
     return np.log1p(n).astype(np.float32)
 
 

@@ -69,7 +69,7 @@ def load_tables():
 
 def _fine():
     from experiments.flood_round3 import fine_feats as FF
-    return FF.FEATS
+    return FF.ALL
 
 
 def load_311():
@@ -95,6 +95,7 @@ def load_311():
         from experiments.flood_round3 import fine_feats as FF
         ev = {k: np.full(len(y), np.nan, np.float32) for k in EV_FEATS}
         ev.update(FF.extras_311(n))
+        ev.update(FF.drainage_311(n))
         out[n] = {"X": z["X"], "C": z["C"], "y": y, "F": list(m["features"]), "shape": tuple(m["shape"]),
                   "ev": ev, "tags": [u.get("type", "pluvial")],
                   "region": f"r311_{u.get('city', n.split('_')[1])}", "cluster": u["cluster"], "grid": m["grid"],

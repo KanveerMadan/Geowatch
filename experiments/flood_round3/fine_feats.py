@@ -26,6 +26,10 @@ OUTD = os.path.join(BIG, "extras")
 DEMD = os.path.expanduser("~/.cache/geowatch/flood_round3/dem3dep10")
 RADII = (30, 60, 120, 250)
 FEATS = ("hist90", "l10_elev") + tuple(f"l10_min{r}" for r in RADII) + tuple(f"l10_tpi{r}" for r in RADII)
+# R29 drainage features (owner directive): NaN where a city publishes no such layer.
+FEATS2 = ("drain_hist90", "viaduct_hist150", "cb_count90", "rail_bridge_dist_m", "nlcd_imperv", "nlcd_imperv_250")
+ALL = FEATS + FEATS2
+OVERPASS = "https://overpass-api.de/api/interpreter"
 
 
 def _disk(r_m, px=10.0):
@@ -105,6 +109,104 @@ def extras_311(n, ee=None):
     return out
 
 
+def _cells_xy(grid):
+    H, W = grid["shape"]
+    t = grid["transform"]
+    r, c = np.divmod(np.arange(H * W), W)
+    return t[2] + (c + 0.5) * t[0], t[5] + (r + 0.5) * t[4]
+
+
+def rail_bridges(key, bbox):
+    """OpenStreetMap railway bridges (rail over road/water: Chicago's viaducts) in bbox: vertex lon/lat array.
+    Overpass, cached per box. OSM data (c) OpenStreetMap contributors, ODbL."""
+    import urllib.parse
+    import urllib.request
+    p = os.path.join(OUTD, f"osm_railbridge_{key}.npy")
+    if os.path.exists(p):
+        return np.load(p)
+    w, s_, e, n = bbox
+    q = (f'[out:json][timeout:120];way["railway"~"^(rail|light_rail|subway|narrow_gauge)$"]["bridge"]'
+         f'({s_},{w},{n},{e});out geom;')
+    req = urllib.request.Request(OVERPASS, data=urllib.parse.urlencode({"data": q}).encode(),
+                                 headers={"User-Agent": "geowatch-research"})
+    for k in range(4):
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r:
+                js = json.load(r)
+            break
+        except Exception as ex:          # noqa: BLE001
+            print("overpass:", type(ex).__name__, str(ex)[:100], flush=True)
+            time.sleep(30 * (k + 1))
+    else:
+        raise RuntimeError("overpass failed")
+    pts = [(g["lon"], g["lat"]) for el in js.get("elements", []) for g in el.get("geometry", [])]
+    a = np.array(pts, np.float64).reshape(-1, 2)
+    os.makedirs(OUTD, exist_ok=True)
+    np.save(p, a)
+    time.sleep(5)
+    return a
+
+
+def drainage_feats(city, grid, before, key, bbox, ee):
+    """R29 drainage features on the 30 m grid -> dict of flat float32 arrays (FEATS2)."""
+    from pyproj import Transformer
+    from scipy import ndimage as nd
+    from scipy.spatial import cKDTree
+    from experiments.flood_round3 import rain311 as R3
+    from susceptibility.hydro_rasters import compute_pixels
+    H, W = grid["shape"]
+    nan = np.full(H * W, np.nan, np.float32)
+    out = {}
+    z = R3.history_kind("drain", city)
+    out["drain_hist90"] = nan.copy() if z is None else R3.density_feature(z, grid, before, 90.0)
+    z = R3.history_kind("viaduct", city)
+    out["viaduct_hist150"] = nan.copy() if z is None else R3.density_feature(z, grid, before, 150.0)
+    x, y = _cells_xy(grid)
+    tr = Transformer.from_crs(4326, grid["crs"], always_xy=True)
+    cbp = os.path.join(R3.CACHE, f"catch_basins_{city}.npz")
+    if os.path.exists(cbp):
+        cb = np.load(cbp)
+        X, Y = tr.transform(cb["lon"], cb["lat"])
+        out["cb_count90"] = cKDTree(np.c_[X, Y]).query_ball_point(np.c_[x, y], 90.0, return_length=True).astype(np.float32)
+    else:
+        out["cb_count90"] = nan.copy()
+    rb = rail_bridges(key, bbox)
+    if len(rb):
+        X, Y = tr.transform(rb[:, 0], rb[:, 1])
+        out["rail_bridge_dist_m"] = np.minimum(cKDTree(np.c_[X, Y]).query(np.c_[x, y])[0], 5000.0).astype(np.float32)
+    else:
+        out["rail_bridge_dist_m"] = np.full(H * W, 5000.0, np.float32)
+    img = ee.Image(ee.ImageCollection("USGS/NLCD_RELEASES/2021_REL/NLCD").first()).select("impervious").toFloat()
+    arr = compute_pixels(img.rename("imp"), grid["transform"], tuple(grid["shape"]), grid["crs"], "nlcd impervious")
+    imp = np.asarray(arr["imp"], np.float64)
+    if not np.isfinite(imp).any():
+        out["nlcd_imperv"], out["nlcd_imperv_250"] = nan.copy(), nan.copy()
+    else:
+        out["nlcd_imperv"] = imp.ravel().astype(np.float32)
+        f = np.where(np.isfinite(imp), imp, 0.0)
+        wgt = nd.uniform_filter(np.isfinite(imp).astype(float), 17)
+        with np.errstate(invalid="ignore", divide="ignore"):
+            out["nlcd_imperv_250"] = (nd.uniform_filter(f, 17) / wgt).ravel().astype(np.float32)
+    return out
+
+
+def drainage_311(n, ee=None):
+    """Cached R29 drainage features for one 311 unit."""
+    from experiments.flood_round3 import rain311 as R3
+    p = os.path.join(OUTD, f"{n}__drain.npz")
+    if os.path.exists(p):
+        z = np.load(p)
+        return {k: z[k] for k in FEATS2}
+    meta = json.loads(str(np.load(os.path.join(R3.REFS, f"{n}.npz"))["meta"]))
+    if ee is None:
+        from experiments.flood_round3 import diagnose_ee as D
+        ee = D._init()
+    out = drainage_feats(n.split("_")[1], meta["grid"], meta["window"][0][:10], meta["box"], meta["bbox"], ee)
+    os.makedirs(OUTD, exist_ok=True)
+    np.savez_compressed(p, **out)
+    return out
+
+
 def main(argv=None):
     from experiments.flood_round3 import rain311 as R3
     from experiments.flood_round3 import diagnose_ee as D
@@ -112,7 +214,8 @@ def main(argv=None):
     units = json.load(open(os.path.join(R3.REFS, "units.json")))
     for n in sorted(units):
         e = extras_311(n, ee)
-        print(n, {k: round(float(np.nanmean(v)), 2) for k, v in e.items() if k in ("hist90", "l10_min120")}, flush=True)
+        e.update(drainage_311(n, ee))
+        print(n, {k: round(float(np.nanmean(v)), 2) for k, v in e.items() if k in ("hist90", "l10_min120", "drain_hist90", "nlcd_imperv")}, flush=True)
     return 0
 
 
