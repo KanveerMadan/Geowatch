@@ -1,0 +1,8318 @@
+{
+ "assam_2026": {
+  "role": "dev",
+  "tags": [
+   "fluvial",
+   "waterlogging"
+  ],
+  "region": "south_asia",
+  "cluster": "c0",
+  "table": "~/.cache/geowatch/flood_round2/tables/assam_2026.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round4/test/fluvial__assam_2026.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2026 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2026-07-20",
+  "images": [
+   "2026-07-22"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   26.933487,
+   94.731373
+  ],
+  "bbox": [
+   94.711221,
+   26.915521,
+   94.751525,
+   26.951453
+  ],
+  "grid": {
+   "crs": "EPSG:32646",
+   "transform": [
+    30.0,
+    0.0,
+    669840.0,
+    0.0,
+    -30.0,
+    2982270.0
+   ],
+   "shape": [
+    135,
+    137
+   ]
+  },
+  "flooded": 5327,
+  "dry": 13059,
+  "unobserved": 109
+ },
+ "bad_neuenahr": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c1",
+  "table": "~/.cache/geowatch/flood_round2/tables/bad_neuenahr.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/flash_flood__bad_neuenahr.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+  "kind": "s1_vvdrop",
+  "event": "2021-07-14",
+  "images": [
+   "2021-07-15"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": null,
+  "bbox": [
+   7.09,
+   50.53,
+   7.13,
+   50.56
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    364620.0,
+    0.0,
+    -30.0,
+    5602650.0
+   ],
+   "shape": [
+    114,
+    98
+   ]
+  },
+  "flooded": 206,
+  "dry": 10966,
+  "unobserved": 0
+ },
+ "beira": {
+  "role": "dev",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c2",
+  "table": "~/.cache/geowatch/flood_round2/tables/beira.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/coastal__beira.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+  "kind": "s1_vvdrop",
+  "event": "2019-03-15",
+  "images": [
+   "2019-03-19"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": null,
+  "bbox": [
+   34.83,
+   -19.85,
+   34.87,
+   -19.81
+  ],
+  "grid": {
+   "crs": "EPSG:32736",
+   "transform": [
+    30.0,
+    0.0,
+    691620.0,
+    0.0,
+    -30.0,
+    7808520.0
+   ],
+   "shape": [
+    150,
+    142
+   ]
+  },
+  "flooded": 671,
+  "dry": 18766,
+  "unobserved": 1863
+ },
+ "belize_city": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "americas",
+  "cluster": "c3",
+  "table": "~/.cache/geowatch/flood_round2/tables/belize_city.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/pluvial__belize_city.npz",
+  "source": "Copernicus EMS EMSR777 AOI01 (Belize City) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-11-15",
+  "images": [
+   "2024-11-17T23:32:00",
+   "2024-11-17T12:02:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed",
+   "COSMO-SkyMed Second Generation"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   17.5046,
+   -88.1962
+  ],
+  "bbox": [
+   -88.215039,
+   17.486634,
+   -88.177361,
+   17.522566
+  ],
+  "grid": {
+   "crs": "EPSG:32616",
+   "transform": [
+    30.0,
+    0.0,
+    370980.0,
+    0.0,
+    -30.0,
+    1937790.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 1074,
+  "dry": 16622,
+  "unobserved": 664
+ },
+ "bihar_2026": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "south_asia",
+  "cluster": "c0",
+  "table": "~/.cache/geowatch/flood_round2/tables/bihar_2026.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round4/test/fluvial__bihar_2026.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2026 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2026-09-11",
+  "images": [
+   "2026-09-12"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   25.441835,
+   87.245626
+  ],
+  "bbox": [
+   87.22573,
+   25.423869,
+   87.265522,
+   25.459801
+  ],
+  "grid": {
+   "crs": "EPSG:32645",
+   "transform": [
+    30.0,
+    0.0,
+    522690.0,
+    0.0,
+    -30.0,
+    2815890.0
+   ],
+   "shape": [
+    133,
+    134
+   ]
+  },
+  "flooded": 8923,
+  "dry": 8786,
+  "unobserved": 113
+ },
+ "black_river": {
+  "role": "dev",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "americas",
+  "cluster": "c4",
+  "table": "~/.cache/geowatch/flood_round2/tables/black_river.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/coastal__black_river.npz",
+  "source": "Copernicus EMS EMSR847 AOI15 (West Jamaica) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-10-28",
+  "images": [
+   "2025-10-28T23:09:00"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   18.0264,
+   -77.8487
+  ],
+  "bbox": [
+   -77.867594,
+   18.008434,
+   -77.829806,
+   18.044366
+  ],
+  "grid": {
+   "crs": "EPSG:32618",
+   "transform": [
+    30.0,
+    0.0,
+    196320.0,
+    0.0,
+    -30.0,
+    1997460.0
+   ],
+   "shape": [
+    136,
+    137
+   ]
+  },
+  "flooded": 1260,
+  "dry": 10755,
+  "unobserved": 6617
+ },
+ "choloma": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "americas",
+  "cluster": "c3",
+  "table": "~/.cache/geowatch/flood_round2/tables/choloma.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/flash_flood__choloma.npz",
+  "source": "Copernicus EMS EMSR778 AOI10 (Choloma) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-11-16",
+  "images": [
+   "2024-11-22T11:37:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "lag_days_min": 6,
+  "lag_days_max": 6,
+  "centre": [
+   15.6133,
+   -87.9531
+  ],
+  "bbox": [
+   -87.971755,
+   15.595334,
+   -87.934445,
+   15.631266
+  ],
+  "grid": {
+   "crs": "EPSG:32616",
+   "transform": [
+    30.0,
+    0.0,
+    395790.0,
+    0.0,
+    -30.0,
+    1728390.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 4604,
+  "dry": 12374,
+  "unobserved": 978
+ },
+ "derna": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c5",
+  "table": "~/.cache/geowatch/flood_round2/tables/derna.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/flash_flood__derna.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+  "kind": "s1_vvdrop",
+  "event": "2023-09-11",
+  "images": [
+   "2023-09-12"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": null,
+  "bbox": [
+   22.62,
+   32.75,
+   22.66,
+   32.78
+  ],
+  "grid": {
+   "crs": "EPSG:32634",
+   "transform": [
+    30.0,
+    0.0,
+    651690.0,
+    0.0,
+    -30.0,
+    3628140.0
+   ],
+   "shape": [
+    114,
+    128
+   ]
+  },
+  "flooded": 408,
+  "dry": 9240,
+  "unobserved": 4944
+ },
+ "derna_2023": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c5",
+  "table": "~/.cache/geowatch/flood_round2/tables/derna_2023.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round4/test/flash_flood__derna_2023.npz",
+  "source": "Copernicus EMS EMSR696 AOI01 (Derna) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2023-09-11",
+  "images": [
+   "2023-09-13T09:13:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   32.748202,
+   22.627637
+  ],
+  "bbox": [
+   22.606275,
+   32.730236,
+   22.648999,
+   32.766168
+  ],
+  "grid": {
+   "crs": "EPSG:32634",
+   "transform": [
+    30.0,
+    0.0,
+    650430.0,
+    0.0,
+    -30.0,
+    3626580.0
+   ],
+   "shape": [
+    136,
+    137
+   ]
+  },
+  "flooded": 1767,
+  "dry": 14275,
+  "unobserved": 2590
+ },
+ "dharavi": {
+  "role": "dev",
+  "tags": [
+   "pluvial",
+   "waterlogging"
+  ],
+  "region": "south_asia",
+  "cluster": "c6",
+  "table": "~/.cache/geowatch/flood_round2/tables/dharavi.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/pluvial__dharavi.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+  "kind": "s1_vvdrop",
+  "event": "2017-08-29",
+  "images": [
+   "2017-08-29"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": null,
+  "bbox": [
+   72.836,
+   19.037,
+   72.862,
+   19.06
+  ],
+  "grid": {
+   "crs": "EPSG:32643",
+   "transform": [
+    30.0,
+    0.0,
+    272220.0,
+    0.0,
+    -30.0,
+    2108880.0
+   ],
+   "shape": [
+    87,
+    94
+   ]
+  },
+  "flooded": 489,
+  "dry": 7386,
+  "unobserved": 303
+ },
+ "dubai_2024": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c7",
+  "table": "~/.cache/geowatch/flood_round2/tables/dubai_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round4/test/pluvial__dubai_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-04-16",
+  "images": [
+   "2024-04-24"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 8,
+  "lag_days_max": 8,
+  "centre": [
+   25.190272,
+   55.294865
+  ],
+  "bbox": [
+   55.275011,
+   25.172306,
+   55.314719,
+   25.208238
+  ],
+  "grid": {
+   "crs": "EPSG:32640",
+   "transform": [
+    30.0,
+    0.0,
+    326130.0,
+    0.0,
+    -30.0,
+    2789130.0
+   ],
+   "shape": [
+    135,
+    137
+   ]
+  },
+  "flooded": 591,
+  "dry": 17889,
+  "unobserved": 15
+ },
+ "emsr662_aoi01": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c8",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr662_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr662_aoi01.npz",
+  "source": "Copernicus EMS EMSR662 AOI01 (Nkozi) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-05-11",
+  "images": [
+   "2023-05-14T07:56:00"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   0.061793,
+   31.781253
+  ],
+  "bbox": [
+   31.763287,
+   0.043827,
+   31.799219,
+   0.079759
+  ],
+  "grid": {
+   "crs": "EPSG:32636",
+   "transform": [
+    30.0,
+    0.0,
+    362370.0,
+    0.0,
+    -30.0,
+    8820.0
+   ],
+   "shape": [
+    133,
+    134
+   ]
+  },
+  "flooded": 408,
+  "dry": 17280,
+  "unobserved": 134
+ },
+ "emsr664_aoi02": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c9",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr664_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/emsr664_aoi02.npz",
+  "source": "Copernicus EMS EMSR664 AOI02 (Lugo) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2023-05-16",
+  "images": [
+   "2023-05-21T10:08:00",
+   "2023-05-20T00:00:00"
+  ],
+  "sensors": [
+   "SPOT-6-7",
+   "aerial"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 5,
+  "centre": [
+   44.522743,
+   11.82449
+  ],
+  "bbox": [
+   11.799291,
+   44.504777,
+   11.849689,
+   44.540709
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    722370.0,
+    0.0,
+    -30.0,
+    4935900.0
+   ],
+   "shape": [
+    139,
+    139
+   ]
+  },
+  "flooded": 11033,
+  "dry": 6756,
+  "unobserved": 1532
+ },
+ "emsr664_aoi03": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c9",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr664_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/emsr664_aoi03.npz",
+  "source": "Copernicus EMS EMSR664 AOI03 (Castel Bolognese) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2023-05-16",
+  "images": [
+   "2023-05-22T10:26:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 6,
+  "lag_days_max": 6,
+  "centre": [
+   44.296041,
+   11.780508
+  ],
+  "bbox": [
+   11.755406,
+   44.278075,
+   11.80561,
+   44.314007
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    719730.0,
+    0.0,
+    -30.0,
+    4910580.0
+   ],
+   "shape": [
+    138,
+    139
+   ]
+  },
+  "flooded": 2709,
+  "dry": 13479,
+  "unobserved": 2994
+ },
+ "emsr664_aoi07": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c9",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr664_aoi07.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/emsr664_aoi07.npz",
+  "source": "Copernicus EMS EMSR664 AOI07 (Ravenna) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2023-05-16",
+  "images": [
+   "2023-05-21T10:08:00"
+  ],
+  "sensors": [
+   "SPOT-6-7"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   44.424456,
+   12.167716
+  ],
+  "bbox": [
+   12.142559,
+   44.40649,
+   12.192873,
+   44.442422
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    272460.0,
+    0.0,
+    -30.0,
+    4925010.0
+   ],
+   "shape": [
+    139,
+    139
+   ]
+  },
+  "flooded": 8940,
+  "dry": 8853,
+  "unobserved": 1528
+ },
+ "emsr680_aoi04": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c10",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr680_aoi04.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr680_aoi04.npz",
+  "source": "Copernicus EMS EMSR680 AOI04 (Murska) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-08-04",
+  "images": [
+   "2023-08-05T16:50:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   46.590564,
+   16.201278
+  ],
+  "bbox": [
+   16.175134,
+   46.572598,
+   16.227422,
+   46.60853
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    589980.0,
+    0.0,
+    -30.0,
+    5162400.0
+   ],
+   "shape": [
+    136,
+    136
+   ]
+  },
+  "flooded": 254,
+  "dry": 17504,
+  "unobserved": 738
+ },
+ "emsr680_aoi07": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c10",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr680_aoi07.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr680_aoi07.npz",
+  "source": "Copernicus EMS EMSR680 AOI07 (Ljubno) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2023-08-04",
+  "images": [
+   "2023-08-10T10:11:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 6,
+  "lag_days_max": 6,
+  "centre": [
+   46.344307,
+   14.835365
+  ],
+  "bbox": [
+   14.809339,
+   46.326341,
+   14.861391,
+   46.362273
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    485310.0,
+    0.0,
+    -30.0,
+    5134320.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 865,
+  "dry": 10859,
+  "unobserved": 6366
+ },
+ "emsr680_aoi13": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c10",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr680_aoi13.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr680_aoi13.npz",
+  "source": "Copernicus EMS EMSR680 AOI13 (Dolnja Bistrica) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2023-08-04",
+  "images": [
+   "2023-08-11T10:04:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 7,
+  "lag_days_max": 7,
+  "centre": [
+   46.548698,
+   16.290662
+  ],
+  "bbox": [
+   16.264538,
+   46.530732,
+   16.316786,
+   46.566664
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    596910.0,
+    0.0,
+    -30.0,
+    5157870.0
+   ],
+   "shape": [
+    136,
+    136
+   ]
+  },
+  "flooded": 563,
+  "dry": 10649,
+  "unobserved": 7284
+ },
+ "emsr694_aoi02": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c11",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr694_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr694_aoi02.npz",
+  "source": "Copernicus EMS EMSR694 AOI02 (Calalberche) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2023-09-03",
+  "images": [
+   "2023-09-08T11:04:00"
+  ],
+  "sensors": [
+   "Pleiades Neo"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   40.227287,
+   -4.276435
+  ],
+  "bbox": [
+   -4.299967,
+   40.209321,
+   -4.252903,
+   40.245253
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    389370.0,
+    0.0,
+    -30.0,
+    4455810.0
+   ],
+   "shape": [
+    136,
+    136
+   ]
+  },
+  "flooded": 965,
+  "dry": 7517,
+  "unobserved": 10014
+ },
+ "emsr694_aoi03": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c11",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr694_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr694_aoi03.npz",
+  "source": "Copernicus EMS EMSR694 AOI03 (El Alamo) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2023-09-03",
+  "images": [
+   "2023-09-08T11:29:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   40.223666,
+   -3.991937
+  ],
+  "bbox": [
+   -4.015467,
+   40.2057,
+   -3.968407,
+   40.241632
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    413550.0,
+    0.0,
+    -30.0,
+    4455090.0
+   ],
+   "shape": [
+    136,
+    136
+   ]
+  },
+  "flooded": 1684,
+  "dry": 15422,
+  "unobserved": 1390
+ },
+ "emsr697_aoi01": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c12",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr697_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/emsr697_aoi01.npz",
+  "source": "Copernicus EMS EMSR697 AOI01 (Lamia) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-09-27",
+  "images": [
+   "2023-09-28T16:09:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   38.851252,
+   22.511702
+  ],
+  "bbox": [
+   22.488632,
+   38.833286,
+   22.534772,
+   38.869218
+  ],
+  "grid": {
+   "crs": "EPSG:32634",
+   "transform": [
+    30.0,
+    0.0,
+    629130.0,
+    0.0,
+    -30.0,
+    4303410.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 1471,
+  "dry": 16294,
+  "unobserved": 1004
+ },
+ "emsr705_aoi03": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c13",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr705_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/emsr705_aoi03.npz",
+  "source": "Copernicus EMS EMSR705 AOI03 (Pontedera) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-11-02",
+  "images": [
+   "2023-11-04T05:04:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   43.627705,
+   10.552641
+  ],
+  "bbox": [
+   10.52782,
+   43.609739,
+   10.577462,
+   43.645671
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    623190.0,
+    0.0,
+    -30.0,
+    4833750.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 1275,
+  "dry": 15982,
+  "unobserved": 1512
+ },
+ "emsr711_aoi01": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c14",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr711_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr711_aoi01.npz",
+  "source": "Copernicus EMS EMSR711 AOI01 (Rochefort) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-12-14",
+  "images": [
+   "2023-12-15T17:41:00"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   45.715946,
+   -0.521002
+  ],
+  "bbox": [
+   -0.546734,
+   45.69798,
+   -0.49527,
+   45.733912
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    690840.0,
+    0.0,
+    -30.0,
+    5067540.0
+   ],
+   "shape": [
+    138,
+    139
+   ]
+  },
+  "flooded": 2297,
+  "dry": 15336,
+  "unobserved": 1549
+ },
+ "emsr711_aoi02": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c14",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr711_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr711_aoi02.npz",
+  "source": "Copernicus EMS EMSR711 AOI02 (Saintes) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-12-14",
+  "images": [
+   "2023-12-16T05:41:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   45.727954,
+   -0.59673
+  ],
+  "bbox": [
+   -0.622467,
+   45.709988,
+   -0.570993,
+   45.74592
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    684930.0,
+    0.0,
+    -30.0,
+    5068710.0
+   ],
+   "shape": [
+    138,
+    138
+   ]
+  },
+  "flooded": 4362,
+  "dry": 9120,
+  "unobserved": 5562
+ },
+ "emsr711_aoi03": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c14",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr711_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr711_aoi03.npz",
+  "source": "Copernicus EMS EMSR711 AOI03 (Angouleme) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-12-14",
+  "images": [
+   "2023-12-16T17:38:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   45.683336,
+   0.097704
+  ],
+  "bbox": [
+   0.071987,
+   45.66537,
+   0.123421,
+   45.701302
+  ],
+  "grid": {
+   "crs": "EPSG:32631",
+   "transform": [
+    30.0,
+    0.0,
+    271890.0,
+    0.0,
+    -30.0,
+    5065050.0
+   ],
+   "shape": [
+    139,
+    140
+   ]
+  },
+  "flooded": 849,
+  "dry": 10260,
+  "unobserved": 8351
+ },
+ "emsr757_aoi01": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c10",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr757_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr757_aoi01.npz",
+  "source": "Copernicus EMS EMSR757 AOI01 (Morava) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-09-13",
+  "images": [
+   "2024-09-15T05:02:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   48.307739,
+   16.944692
+  ],
+  "bbox": [
+   16.91768,
+   48.289773,
+   16.971704,
+   48.325705
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    642120.0,
+    0.0,
+    -30.0,
+    5354400.0
+   ],
+   "shape": [
+    138,
+    138
+   ]
+  },
+  "flooded": 3850,
+  "dry": 13936,
+  "unobserved": 1258
+ },
+ "emsr757_aoi02": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c10",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr757_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr757_aoi02.npz",
+  "source": "Copernicus EMS EMSR757 AOI02 (Myjava) DEL monitoring 1",
+  "kind": "ems",
+  "event": "2024-09-13",
+  "images": [
+   "2024-09-18T09:50:00"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   48.659624,
+   17.321306
+  ],
+  "bbox": [
+   17.294106,
+   48.641658,
+   17.348506,
+   48.67759
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    668850.0,
+    0.0,
+    -30.0,
+    5394300.0
+   ],
+   "shape": [
+    138,
+    139
+   ]
+  },
+  "flooded": 768,
+  "dry": 17041,
+  "unobserved": 1373
+ },
+ "emsr761_aoi01": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c15",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr761_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/emsr761_aoi01.npz",
+  "source": "Copernicus EMS EMSR761 AOI01 (Dresden) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-09-18",
+  "images": [
+   "2024-09-19T10:35:00"
+  ],
+  "sensors": [
+   "WorldView-2"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   51.060664,
+   13.72902
+  ],
+  "bbox": [
+   13.700434,
+   51.042698,
+   13.757606,
+   51.07863
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    408870.0,
+    0.0,
+    -30.0,
+    5659380.0
+   ],
+   "shape": [
+    136,
+    137
+   ]
+  },
+  "flooded": 1184,
+  "dry": 16116,
+  "unobserved": 1332
+ },
+ "emsr762_aoi02": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c9",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr762_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/emsr762_aoi02.npz",
+  "source": "Copernicus EMS EMSR762 AOI02 (Idice) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-09-18",
+  "images": [
+   "2024-09-19T17:04:00"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   44.55687,
+   11.673705
+  ],
+  "bbox": [
+   11.648491,
+   44.538904,
+   11.698919,
+   44.574836
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    710280.0,
+    0.0,
+    -30.0,
+    4939290.0
+   ],
+   "shape": [
+    139,
+    138
+   ]
+  },
+  "flooded": 1812,
+  "dry": 15991,
+  "unobserved": 1379
+ },
+ "emsr762_aoi04": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c9",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr762_aoi04.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/emsr762_aoi04.npz",
+  "source": "Copernicus EMS EMSR762 AOI04 (Molinella) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2024-09-18",
+  "images": [
+   "2024-09-22T07:00:00"
+  ],
+  "sensors": [
+   "Drone Imagery"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   44.564586,
+   11.640607
+  ],
+  "bbox": [
+   11.61539,
+   44.54662,
+   11.665824,
+   44.582552
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    707610.0,
+    0.0,
+    -30.0,
+    4940040.0
+   ],
+   "shape": [
+    138,
+    139
+   ]
+  },
+  "flooded": 4831,
+  "dry": 12960,
+  "unobserved": 1391
+ },
+ "emsr762_aoi06": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c9",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr762_aoi06.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/emsr762_aoi06.npz",
+  "source": "Copernicus EMS EMSR762 AOI06 (Bagnacavallo) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2024-09-18",
+  "images": [
+   "2024-09-22T09:51:00",
+   "2024-09-22T07:00:00"
+  ],
+  "sensors": [
+   "Drone Imagery",
+   "GeoEye-1"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   44.457314,
+   12.032152
+  ],
+  "bbox": [
+   12.006981,
+   44.439348,
+   12.057323,
+   44.47528
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    261810.0,
+    0.0,
+    -30.0,
+    4929030.0
+   ],
+   "shape": [
+    139,
+    139
+   ]
+  },
+  "flooded": 7123,
+  "dry": 10680,
+  "unobserved": 1518
+ },
+ "emsr770_aoi01": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c10",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr770_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr770_aoi01.npz",
+  "source": "Copernicus EMS EMSR770 AOI01 (Konjic) DEL monitoring 1",
+  "kind": "ems",
+  "event": "2024-10-04",
+  "images": [
+   "2024-10-07T09:34:00"
+  ],
+  "sensors": [
+   "SPOT-6-7"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   43.732303,
+   17.817606
+  ],
+  "bbox": [
+   17.792742,
+   43.714337,
+   17.84247,
+   43.750269
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    724830.0,
+    0.0,
+    -30.0,
+    4848090.0
+   ],
+   "shape": [
+    139,
+    139
+   ]
+  },
+  "flooded": 217,
+  "dry": 8524,
+  "unobserved": 10580
+ },
+ "emsr770_aoi03": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c10",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr770_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr770_aoi03.npz",
+  "source": "Copernicus EMS EMSR770 AOI03 (Bakovici) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2024-10-04",
+  "images": [
+   "2024-10-08T09:52:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   43.909398,
+   17.946668
+  ],
+  "bbox": [
+   17.92173,
+   43.891432,
+   17.971606,
+   43.927364
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    734520.0,
+    0.0,
+    -30.0,
+    4868100.0
+   ],
+   "shape": [
+    138,
+    139
+   ]
+  },
+  "flooded": 348,
+  "dry": 4902,
+  "unobserved": 13932
+ },
+ "emsr774_aoi01": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "americas",
+  "cluster": "c16",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr774_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr774_aoi01.npz",
+  "source": "Copernicus EMS EMSR774 AOI01 (Tlacotalpan) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-10-28",
+  "images": [
+   "2024-10-29T12:18:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   18.41399,
+   -95.581377
+  ],
+  "bbox": [
+   -95.600313,
+   18.396024,
+   -95.562441,
+   18.431956
+  ],
+  "grid": {
+   "crs": "EPSG:32615",
+   "transform": [
+    30.0,
+    0.0,
+    225240.0,
+    0.0,
+    -30.0,
+    2039970.0
+   ],
+   "shape": [
+    136,
+    137
+   ]
+  },
+  "flooded": 7209,
+  "dry": 10327,
+  "unobserved": 1096
+ },
+ "emsr774_aoi02": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "americas",
+  "cluster": "c16",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr774_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr774_aoi02.npz",
+  "source": "Copernicus EMS EMSR774 AOI02 (Minatitlan) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-10-28",
+  "images": [
+   "2024-11-01T00:31:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   17.766274,
+   -94.664318
+  ],
+  "bbox": [
+   -94.683184,
+   17.748308,
+   -94.645452,
+   17.78424
+  ],
+  "grid": {
+   "crs": "EPSG:32615",
+   "transform": [
+    30.0,
+    0.0,
+    321540.0,
+    0.0,
+    -30.0,
+    1967130.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 879,
+  "dry": 16516,
+  "unobserved": 830
+ },
+ "emsr776_aoi01": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "americas",
+  "cluster": "c17",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr776_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr776_aoi01.npz",
+  "source": "Copernicus EMS EMSR776 AOI01 (Tonosi) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-11-04",
+  "images": [
+   "2024-11-06T11:23:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   7.387318,
+   -80.41029
+  ],
+  "bbox": [
+   -80.428407,
+   7.369352,
+   -80.392173,
+   7.405284
+  ],
+  "grid": {
+   "crs": "EPSG:32617",
+   "transform": [
+    30.0,
+    0.0,
+    563070.0,
+    0.0,
+    -30.0,
+    818610.0
+   ],
+   "shape": [
+    133,
+    134
+   ]
+  },
+  "flooded": 1167,
+  "dry": 16629,
+  "unobserved": 26
+ },
+ "emsr779_aoi01": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c18",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr779_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr779_aoi01.npz",
+  "source": "Copernicus EMS EMSR779 AOI01 (Yagoua) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-11-21",
+  "images": [
+   "2024-11-23T09:22:00"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   10.528708,
+   15.063886
+  ],
+  "bbox": [
+   15.045612,
+   10.510742,
+   15.08216,
+   10.546674
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    504990.0,
+    0.0,
+    -30.0,
+    1165860.0
+   ],
+   "shape": [
+    133,
+    134
+   ]
+  },
+  "flooded": 217,
+  "dry": 17472,
+  "unobserved": 133
+ },
+ "emsr779_aoi02": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c18",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr779_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr779_aoi02.npz",
+  "source": "Copernicus EMS EMSR779 AOI02 (Makari) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-11-21",
+  "images": [
+   "2024-11-23T09:22:00",
+   "2024-11-23T04:47:00"
+  ],
+  "sensors": [
+   "Sentinel-1",
+   "Sentinel-2"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   12.475363,
+   14.612296
+  ],
+  "bbox": [
+   14.593895,
+   12.457397,
+   14.630697,
+   12.493329
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    455850.0,
+    0.0,
+    -30.0,
+    1381140.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 3374,
+  "dry": 14315,
+  "unobserved": 266
+ },
+ "emsr779_aoi03": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c18",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr779_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr779_aoi03.npz",
+  "source": "Copernicus EMS EMSR779 AOI03 (Waza) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-11-21",
+  "images": [
+   "2024-11-23T09:22:00"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   12.047984,
+   14.874237
+  ],
+  "bbox": [
+   14.855866,
+   12.030018,
+   14.892608,
+   12.06595
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    484290.0,
+    0.0,
+    -30.0,
+    1333860.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 2557,
+  "dry": 15132,
+  "unobserved": 266
+ },
+ "emsr799_aoi02": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "americas",
+  "cluster": "c19",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr799_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr799_aoi02.npz",
+  "source": "Copernicus EMS EMSR799 AOI02 (Rio Desaguadero) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-04-04",
+  "images": [
+   "2025-04-12T14:47:00"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "lag_days_min": 8,
+  "lag_days_max": 8,
+  "centre": [
+   -16.846257,
+   -68.887168
+  ],
+  "bbox": [
+   -68.90594,
+   -16.864223,
+   -68.868396,
+   -16.828291
+  ],
+  "grid": {
+   "crs": "EPSG:32719",
+   "transform": [
+    30.0,
+    0.0,
+    510000.0,
+    0.0,
+    -30.0,
+    8139450.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 213,
+  "dry": 17476,
+  "unobserved": 266
+ },
+ "emsr799_aoi03": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "americas",
+  "cluster": "c19",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr799_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr799_aoi03.npz",
+  "source": "Copernicus EMS EMSR799 AOI03 (Rio Mamore) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-04-04",
+  "images": [
+   "2025-04-12T17:46:00"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "lag_days_min": 8,
+  "lag_days_max": 8,
+  "centre": [
+   -14.743235,
+   -64.952671
+  ],
+  "bbox": [
+   -64.971249,
+   -14.761201,
+   -64.934093,
+   -14.725269
+  ],
+  "grid": {
+   "crs": "EPSG:32720",
+   "transform": [
+    30.0,
+    0.0,
+    287760.0,
+    0.0,
+    -30.0,
+    8371170.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 1041,
+  "dry": 16555,
+  "unobserved": 494
+ },
+ "emsr799_aoi04": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "americas",
+  "cluster": "c19",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr799_aoi04.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr799_aoi04.npz",
+  "source": "Copernicus EMS EMSR799 AOI04 (Toledo) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-04-04",
+  "images": [
+   "2025-04-12T14:37:00"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "lag_days_min": 8,
+  "lag_days_max": 8,
+  "centre": [
+   -18.238771,
+   -67.446038
+  ],
+  "bbox": [
+   -67.464955,
+   -18.256737,
+   -67.427121,
+   -18.220805
+  ],
+  "grid": {
+   "crs": "EPSG:32719",
+   "transform": [
+    30.0,
+    0.0,
+    662280.0,
+    0.0,
+    -30.0,
+    7984710.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 1904,
+  "dry": 15813,
+  "unobserved": 373
+ },
+ "emsr813_aoi01": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "americas",
+  "cluster": "c19",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr813_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr813_aoi01.npz",
+  "source": "Copernicus EMS EMSR813 AOI01 (Cumbaratza) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2025-07-03",
+  "images": [
+   "2025-07-14T15:55:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 11,
+  "lag_days_max": 11,
+  "centre": [
+   -3.992936,
+   -78.858329
+  ],
+  "bbox": [
+   -78.876339,
+   -4.010902,
+   -78.840319,
+   -3.97497
+  ],
+  "grid": {
+   "crs": "EPSG:32717",
+   "transform": [
+    30.0,
+    0.0,
+    735780.0,
+    0.0,
+    -30.0,
+    9560340.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 173,
+  "dry": 17458,
+  "unobserved": 324
+ },
+ "emsr838_aoi01": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "south_asia",
+  "cluster": "c20",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr838_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr838_aoi01.npz",
+  "source": "Copernicus EMS EMSR838 AOI01 (Rasoo Nagar) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-08-29",
+  "images": [
+   "2025-08-28T01:07:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": -1,
+  "lag_days_max": -1,
+  "centre": [
+   32.325638,
+   73.758198
+  ],
+  "bbox": [
+   73.736937,
+   32.307672,
+   73.779459,
+   32.343604
+  ],
+  "grid": {
+   "crs": "EPSG:32643",
+   "transform": [
+    30.0,
+    0.0,
+    381090.0,
+    0.0,
+    -30.0,
+    3579240.0
+   ],
+   "shape": [
+    135,
+    136
+   ]
+  },
+  "flooded": 9092,
+  "dry": 8658,
+  "unobserved": 610
+ },
+ "emsr838_aoi03": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "south_asia",
+  "cluster": "c20",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr838_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr838_aoi03.npz",
+  "source": "Copernicus EMS EMSR838 AOI03 (Pir Khalis) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-08-29",
+  "images": [
+   "2025-08-28T01:07:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": -1,
+  "lag_days_max": -1,
+  "centre": [
+   30.2035,
+   73.356888
+  ],
+  "bbox": [
+   73.3361,
+   30.185534,
+   73.377676,
+   30.221466
+  ],
+  "grid": {
+   "crs": "EPSG:32643",
+   "transform": [
+    30.0,
+    0.0,
+    339780.0,
+    0.0,
+    -30.0,
+    3344520.0
+   ],
+   "shape": [
+    136,
+    137
+   ]
+  },
+  "flooded": 7261,
+  "dry": 10481,
+  "unobserved": 890
+ },
+ "emsr838_aoi07": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "south_asia",
+  "cluster": "c20",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr838_aoi07.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr838_aoi07.npz",
+  "source": "Copernicus EMS EMSR838 AOI07 (Sahuka) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-08-29",
+  "images": [
+   "2025-08-31T00:45:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   30.037083,
+   73.015642
+  ],
+  "bbox": [
+   72.994889,
+   30.019117,
+   73.036395,
+   30.055049
+  ],
+  "grid": {
+   "crs": "EPSG:32643",
+   "transform": [
+    30.0,
+    0.0,
+    306600.0,
+    0.0,
+    -30.0,
+    3326580.0
+   ],
+   "shape": [
+    136,
+    137
+   ]
+  },
+  "flooded": 11360,
+  "dry": 6389,
+  "unobserved": 883
+ },
+ "emsr844_aoi01": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "southeast_asia",
+  "cluster": "c21",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr844_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr844_aoi01.npz",
+  "source": "Copernicus EMS EMSR844 AOI01 (Quang Chau) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-10-08",
+  "images": [
+   "2025-10-09T03:26:00"
+  ],
+  "sensors": [
+   "Sentinel-2"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   21.207438,
+   106.098572
+  ],
+  "bbox": [
+   106.079301,
+   21.189472,
+   106.117843,
+   21.225404
+  ],
+  "grid": {
+   "crs": "EPSG:32648",
+   "transform": [
+    30.0,
+    0.0,
+    612000.0,
+    0.0,
+    -30.0,
+    2347530.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 398,
+  "dry": 15488,
+  "unobserved": 2339
+ },
+ "emsr853_aoi02": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "americas",
+  "cluster": "c19",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr853_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr853_aoi02.npz",
+  "source": "Copernicus EMS EMSR853 AOI02 (Santa Rosa del Sara) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-12-13",
+  "images": [
+   "2025-12-18T09:50:00",
+   "2025-12-17T10:22:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed",
+   "Sentinel-1"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 5,
+  "centre": [
+   -16.668923,
+   -63.656387
+  ],
+  "bbox": [
+   -63.675141,
+   -16.686889,
+   -63.637633,
+   -16.650957
+  ],
+  "grid": {
+   "crs": "EPSG:32720",
+   "transform": [
+    30.0,
+    0.0,
+    427980.0,
+    0.0,
+    -30.0,
+    8158950.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 2776,
+  "dry": 14932,
+  "unobserved": 247
+ },
+ "emsr853_aoi04": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "americas",
+  "cluster": "c19",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr853_aoi04.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr853_aoi04.npz",
+  "source": "Copernicus EMS EMSR853 AOI04 (El Torno) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2025-12-13",
+  "images": [
+   "2025-12-18T14:13:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   -17.979128,
+   -63.439307
+  ],
+  "bbox": [
+   -63.458196,
+   -17.997094,
+   -63.420418,
+   -17.961162
+  ],
+  "grid": {
+   "crs": "EPSG:32720",
+   "transform": [
+    30.0,
+    0.0,
+    451470.0,
+    0.0,
+    -30.0,
+    8014080.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 280,
+  "dry": 5313,
+  "unobserved": 12497
+ },
+ "emsr853_aoi08": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "americas",
+  "cluster": "c19",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr853_aoi08.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr853_aoi08.npz",
+  "source": "Copernicus EMS EMSR853 AOI08 (La Caranda) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-12-13",
+  "images": [
+   "2025-12-17T10:22:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   -17.444193,
+   -63.238646
+  ],
+  "bbox": [
+   -63.257478,
+   -17.462159,
+   -63.219814,
+   -17.426227
+  ],
+  "grid": {
+   "crs": "EPSG:32720",
+   "transform": [
+    30.0,
+    0.0,
+    472650.0,
+    0.0,
+    -30.0,
+    8073300.0
+   ],
+   "shape": [
+    134,
+    134
+   ]
+  },
+  "flooded": 244,
+  "dry": 13615,
+  "unobserved": 4097
+ },
+ "emsr865_aoi01": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "americas",
+  "cluster": "c22",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr865_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr865_aoi01.npz",
+  "source": "Copernicus EMS EMSR865 AOI01 (Monter\u00eca) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-01-26",
+  "images": [
+   "2026-02-02T23:14:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 7,
+  "lag_days_max": 7,
+  "centre": [
+   8.8015,
+   -75.922655
+  ],
+  "bbox": [
+   -75.940835,
+   8.783534,
+   -75.904475,
+   8.819466
+  ],
+  "grid": {
+   "crs": "EPSG:32618",
+   "transform": [
+    30.0,
+    0.0,
+    396510.0,
+    0.0,
+    -30.0,
+    975030.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 1937,
+  "dry": 15783,
+  "unobserved": 235
+ },
+ "emsr868_aoi01": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c23",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr868_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr868_aoi01.npz",
+  "source": "Copernicus EMS EMSR868 AOI01 (Orestiada) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-02-18",
+  "images": [
+   "2026-02-19T16:07:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   41.349598,
+   26.510709
+  ],
+  "bbox": [
+   26.486776,
+   41.331632,
+   26.534642,
+   41.367564
+  ],
+  "grid": {
+   "crs": "EPSG:32635",
+   "transform": [
+    30.0,
+    0.0,
+    457050.0,
+    0.0,
+    -30.0,
+    4579710.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 4874,
+  "dry": 11211,
+  "unobserved": 2140
+ },
+ "emsr868_aoi02": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c23",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr868_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr868_aoi02.npz",
+  "source": "Copernicus EMS EMSR868 AOI02 (Feres) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-02-18",
+  "images": [
+   "2026-02-19T16:07:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   40.841642,
+   26.100299
+  ],
+  "bbox": [
+   26.07655,
+   40.823676,
+   26.124048,
+   40.859608
+  ],
+  "grid": {
+   "crs": "EPSG:32635",
+   "transform": [
+    30.0,
+    0.0,
+    422100.0,
+    0.0,
+    -30.0,
+    4523610.0
+   ],
+   "shape": [
+    136,
+    136
+   ]
+  },
+  "flooded": 1756,
+  "dry": 16030,
+  "unobserved": 710
+ },
+ "emsr870_aoi05": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "americas",
+  "cluster": "c24",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr870_aoi05.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr870_aoi05.npz",
+  "source": "Copernicus EMS EMSR870 AOI05 (La Selva) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-03-02",
+  "images": [
+   "2026-03-09T11:00:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 7,
+  "lag_days_max": 7,
+  "centre": [
+   0.544261,
+   -79.934442
+  ],
+  "bbox": [
+   -79.952409,
+   0.526295,
+   -79.916475,
+   0.562227
+  ],
+  "grid": {
+   "crs": "EPSG:32617",
+   "transform": [
+    30.0,
+    0.0,
+    616560.0,
+    0.0,
+    -30.0,
+    62160.0
+   ],
+   "shape": [
+    133,
+    134
+   ]
+  },
+  "flooded": 1489,
+  "dry": 16330,
+  "unobserved": 3
+ },
+ "emsr870_aoi08": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "americas",
+  "cluster": "c24",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr870_aoi08.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr870_aoi08.npz",
+  "source": "Copernicus EMS EMSR870 AOI08 (Montalvo) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-03-02",
+  "images": [
+   "2026-03-13T23:36:00",
+   "2026-03-13T23:37:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 11,
+  "lag_days_max": 11,
+  "centre": [
+   -1.870647,
+   -79.361122
+  ],
+  "bbox": [
+   -79.379098,
+   -1.888613,
+   -79.343146,
+   -1.852681
+  ],
+  "grid": {
+   "crs": "EPSG:32717",
+   "transform": [
+    30.0,
+    0.0,
+    680280.0,
+    0.0,
+    -30.0,
+    9795150.0
+   ],
+   "shape": [
+    133,
+    134
+   ]
+  },
+  "flooded": 1931,
+  "dry": 15884,
+  "unobserved": 7
+ },
+ "emsr870_aoi13": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "americas",
+  "cluster": "c24",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr870_aoi13.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr870_aoi13.npz",
+  "source": "Copernicus EMS EMSR870 AOI13 (Babahoyo) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2026-03-02",
+  "images": [
+   "2026-03-19T21:17:00"
+  ],
+  "sensors": [
+   "Legion"
+  ],
+  "lag_days_min": 17,
+  "lag_days_max": 17,
+  "centre": [
+   -1.80091,
+   -79.513999
+  ],
+  "bbox": [
+   -79.531974,
+   -1.818876,
+   -79.496024,
+   -1.782944
+  ],
+  "grid": {
+   "crs": "EPSG:32717",
+   "transform": [
+    30.0,
+    0.0,
+    663270.0,
+    0.0,
+    -30.0,
+    9802890.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 8858,
+  "dry": 8577,
+  "unobserved": 655
+ },
+ "emsr935_aoi01": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c25",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr935_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr935_aoi01.npz",
+  "source": "Copernicus EMS EMSR935 AOI01 (Moraira) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-10-19",
+  "images": [
+   "2026-10-20T10:09:00"
+  ],
+  "sensors": [
+   "SPOT-6-7"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   38.867151,
+   -0.053973
+  ],
+  "bbox": [
+   -0.077048,
+   38.849185,
+   -0.030898,
+   38.885117
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    753510.0,
+    0.0,
+    -30.0,
+    4308240.0
+   ],
+   "shape": [
+    138,
+    139
+   ]
+  },
+  "flooded": 8596,
+  "dry": 6298,
+  "unobserved": 4288
+ },
+ "emsr935_aoi02": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c25",
+  "table": "~/.cache/geowatch/flood_round2/tables/emsr935_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_learned/heldout/refs/emsr935_aoi02.npz",
+  "source": "Copernicus EMS EMSR935 AOI02 (Gandia) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2026-10-19",
+  "images": [
+   "2026-10-20T11:15:00",
+   "2026-10-20T10:09:00"
+  ],
+  "sensors": [
+   "GeoEye-1",
+   "SPOT-6-7"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   38.904471,
+   -0.074915
+  ],
+  "bbox": [
+   -0.098002,
+   38.886505,
+   -0.051828,
+   38.922437
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    751560.0,
+    0.0,
+    -30.0,
+    4312320.0
+   ],
+   "shape": [
+    138,
+    139
+   ]
+  },
+  "flooded": 404,
+  "dry": 11371,
+  "unobserved": 7407
+ },
+ "encantado": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "americas",
+  "cluster": "c26",
+  "table": "~/.cache/geowatch/flood_round2/tables/encantado.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/fluvial__encantado.npz",
+  "source": "Copernicus EMS EMSR720 AOI02 (Encantado) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-05-02",
+  "images": [
+   "2024-05-04T22:10:00",
+   "2024-05-04T22:10:00"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   -29.236,
+   -51.87
+  ],
+  "bbox": [
+   -51.890589,
+   -29.253966,
+   -51.849411,
+   -29.218034
+  ],
+  "grid": {
+   "crs": "EPSG:32722",
+   "transform": [
+    30.0,
+    0.0,
+    413430.0,
+    0.0,
+    -30.0,
+    6767580.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 725,
+  "dry": 16160,
+  "unobserved": 1340
+ },
+ "faenza": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c9",
+  "table": "~/.cache/geowatch/flood_round2/tables/faenza.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/fluvial__faenza.npz",
+  "source": "Copernicus EMS EMSR659 AOI02 (Lamone-Faenza) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-05-02",
+  "images": [
+   "2023-05-04T10:15:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   44.2856,
+   11.8833
+  ],
+  "bbox": [
+   11.858203,
+   44.267634,
+   11.908397,
+   44.303566
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    727980.0,
+    0.0,
+    -30.0,
+    4909710.0
+   ],
+   "shape": [
+    138,
+    139
+   ]
+  },
+  "flooded": 219,
+  "dry": 8427,
+  "unobserved": 10536
+ },
+ "fort_myers_beach": {
+  "role": "dev",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "americas",
+  "cluster": "c27",
+  "table": "~/.cache/geowatch/flood_round2/tables/fort_myers_beach.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/coastal__fort_myers_beach.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+  "kind": "s1_vvdrop",
+  "event": "2022-09-28",
+  "images": [
+   "2022-10-02"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": null,
+  "bbox": [
+   -81.97,
+   26.43,
+   -81.93,
+   26.47
+  ],
+  "grid": {
+   "crs": "EPSG:32617",
+   "transform": [
+    30.0,
+    0.0,
+    403260.0,
+    0.0,
+    -30.0,
+    2928120.0
+   ],
+   "shape": [
+    150,
+    135
+   ]
+  },
+  "flooded": 578,
+  "dry": 5378,
+  "unobserved": 14294
+ },
+ "hai_phong": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "southeast_asia",
+  "cluster": "c28",
+  "table": "~/.cache/geowatch/flood_round2/tables/hai_phong.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/pluvial__hai_phong.npz",
+  "source": "Copernicus EMS EMSR754 AOI05 (Hai Phong) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-09-07",
+  "images": [
+   "2024-09-14T03:42:00"
+  ],
+  "sensors": [
+   "WorldView-2"
+  ],
+  "lag_days_min": 7,
+  "lag_days_max": 7,
+  "centre": [
+   20.8449,
+   106.6881
+  ],
+  "bbox": [
+   106.668875,
+   20.826934,
+   106.707325,
+   20.862866
+  ],
+  "grid": {
+   "crs": "EPSG:32648",
+   "transform": [
+    30.0,
+    0.0,
+    673620.0,
+    0.0,
+    -30.0,
+    2307930.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 236,
+  "dry": 8244,
+  "unobserved": 9745
+ },
+ "hanoi": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "southeast_asia",
+  "cluster": "c28",
+  "table": "~/.cache/geowatch/flood_round2/tables/hanoi.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/fluvial__hanoi.npz",
+  "source": "Copernicus EMS EMSR754 AOI03 (Hanoi) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-09-09",
+  "images": [
+   "2024-09-14T03:44:00"
+  ],
+  "sensors": [
+   "WorldView-3"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   21.0285,
+   105.8542
+  ],
+  "bbox": [
+   105.834952,
+   21.010534,
+   105.873448,
+   21.046466
+  ],
+  "grid": {
+   "crs": "EPSG:32648",
+   "transform": [
+    30.0,
+    0.0,
+    586740.0,
+    0.0,
+    -30.0,
+    2327550.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 940,
+  "dry": 13776,
+  "unobserved": 3374
+ },
+ "himachal_2023": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "south_asia",
+  "cluster": "c20",
+  "table": "~/.cache/geowatch/flood_round2/tables/himachal_2023.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round4/test/flash_flood__himachal_2023.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2023 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2023-07-10",
+  "images": [
+   "2023-07-11"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   31.965409,
+   77.14184
+  ],
+  "bbox": [
+   77.120663,
+   31.947443,
+   77.163017,
+   31.983375
+  ],
+  "grid": {
+   "crs": "EPSG:32643",
+   "transform": [
+    30.0,
+    0.0,
+    700350.0,
+    0.0,
+    -30.0,
+    3540660.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 520,
+  "dry": 18227,
+  "unobserved": 22
+ },
+ "kerala_2018": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "south_asia",
+  "cluster": "c29",
+  "table": "~/.cache/geowatch/flood_round2/tables/kerala_2018.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round4/test/waterlogging__kerala_2018.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2018 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2018-08-16",
+  "images": [
+   "2018-08-21"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   9.422994,
+   76.437982
+  ],
+  "bbox": [
+   76.41977,
+   9.405028,
+   76.456194,
+   9.44096
+  ],
+  "grid": {
+   "crs": "EPSG:32643",
+   "transform": [
+    30.0,
+    0.0,
+    655860.0,
+    0.0,
+    -30.0,
+    1043940.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 10866,
+  "dry": 7224,
+  "unobserved": 0
+ },
+ "kolonnawa": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "south_asia",
+  "cluster": "c30",
+  "table": "~/.cache/geowatch/flood_round2/tables/kolonnawa.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/fluvial__kolonnawa.npz",
+  "source": "Copernicus EMS EMSR851 AOI02 (Kelani Ganga River) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-11-30",
+  "images": [
+   "2025-11-30T05:39:00"
+  ],
+  "sensors": [
+   "PlanetScope"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   6.9333,
+   79.8833
+  ],
+  "bbox": [
+   79.865201,
+   6.915334,
+   79.901399,
+   6.951266
+  ],
+  "grid": {
+   "crs": "EPSG:32644",
+   "transform": [
+    30.0,
+    0.0,
+    374610.0,
+    0.0,
+    -30.0,
+    768540.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 573,
+  "dry": 8617,
+  "unobserved": 8900
+ },
+ "kyaukpyu": {
+  "role": "dev",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "southeast_asia",
+  "cluster": "c31",
+  "table": "~/.cache/geowatch/flood_round2/tables/kyaukpyu.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/coastal__kyaukpyu.npz",
+  "source": "Copernicus EMS EMSR661 AOI02 (Kyaukpyu) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-05-14",
+  "images": [
+   "2023-05-14T23:36:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   19.429,
+   93.5494
+  ],
+  "bbox": [
+   93.530349,
+   19.411034,
+   93.568451,
+   19.446966
+  ],
+  "grid": {
+   "crs": "EPSG:32646",
+   "transform": [
+    30.0,
+    0.0,
+    555660.0,
+    0.0,
+    -30.0,
+    2150400.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 381,
+  "dry": 8934,
+  "unobserved": 8775
+ },
+ "milagro": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "americas",
+  "cluster": "c24",
+  "table": "~/.cache/geowatch/flood_round2/tables/milagro.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/pluvial__milagro.npz",
+  "source": "Copernicus EMS EMSR796 AOI06 (Milagro) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-02-26",
+  "images": [
+   "2025-04-05T08:34:00"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "lag_days_min": 38,
+  "lag_days_max": 38,
+  "centre": [
+   -2.1347,
+   -79.5872
+  ],
+  "bbox": [
+   -79.605179,
+   -2.152666,
+   -79.569221,
+   -2.116734
+  ],
+  "grid": {
+   "crs": "EPSG:32717",
+   "transform": [
+    30.0,
+    0.0,
+    655110.0,
+    0.0,
+    -30.0,
+    9765990.0
+   ],
+   "shape": [
+    134,
+    134
+   ]
+  },
+  "flooded": 154,
+  "dry": 17535,
+  "unobserved": 266
+ },
+ "nam_dinh": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "southeast_asia",
+  "cluster": "c28",
+  "table": "~/.cache/geowatch/flood_round2/tables/nam_dinh.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/waterlogging__nam_dinh.npz",
+  "source": "Copernicus EMS EMSR754 AOI07 (Nam Dinh) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-09-09",
+  "images": [
+   "2024-09-14T03:45:00"
+  ],
+  "sensors": [
+   "WorldView-2"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   20.42,
+   106.1683
+  ],
+  "bbox": [
+   106.149129,
+   20.402034,
+   106.187471,
+   20.437966
+  ],
+  "grid": {
+   "crs": "EPSG:32648",
+   "transform": [
+    30.0,
+    0.0,
+    619860.0,
+    0.0,
+    -30.0,
+    2260410.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 2733,
+  "dry": 12502,
+  "unobserved": 2990
+ },
+ "paiporta": {
+  "role": "dev",
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c32",
+  "table": "~/.cache/geowatch/flood_round2/tables/paiporta.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/flash_flood__paiporta.npz",
+  "source": "Copernicus EMS EMSR773 AOI03 (Horta Sud) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-10-29",
+  "images": [
+   "2024-10-31T10:22:00",
+   "2024-10-31T10:22:00"
+  ],
+  "sensors": [
+   "GeoEye-1",
+   "WorldView-2"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   39.428,
+   -0.4177
+  ],
+  "bbox": [
+   -0.44096,
+   39.410034,
+   -0.39444,
+   39.445966
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    720180.0,
+    0.0,
+    -30.0,
+    4369530.0
+   ],
+   "shape": [
+    138,
+    139
+   ]
+  },
+  "flooded": 3683,
+  "dry": 14103,
+  "unobserved": 1396
+ },
+ "pakistan_2022": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "south_asia",
+  "cluster": "c20",
+  "table": "~/.cache/geowatch/flood_round2/tables/pakistan_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round4/test/fluvial__pakistan_2022.npz",
+  "source": "UNOSAT FL20220808PAK_S2_20220831 FloodExtent (Sentinel-2 2022-08-31), 'Flood Water'",
+  "kind": "unosat",
+  "event": "2022-08-31",
+  "images": [],
+  "sensors": [],
+  "lag_days_min": null,
+  "lag_days_max": null,
+  "centre": [
+   27.598635,
+   68.201671
+  ],
+  "bbox": [
+   68.181398,
+   27.580669,
+   68.221944,
+   27.616601
+  ],
+  "grid": {
+   "crs": "EPSG:32642",
+   "transform": [
+    30.0,
+    0.0,
+    419190.0,
+    0.0,
+    -30.0,
+    3055020.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 10153,
+  "dry": 7570,
+  "unobserved": 502
+ },
+ "r_emsr703_aoi01": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "americas",
+  "cluster": "c33",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr703_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr703_aoi01.npz",
+  "source": "Copernicus EMS EMSR703 AOI01 (Acapulco Coast) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2023-10-25",
+  "images": [
+   "2023-10-26T17:13:00"
+  ],
+  "sensors": [
+   "Pleiades Neo"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   16.794681,
+   -99.796219
+  ],
+  "bbox": [
+   -99.814986,
+   16.776715,
+   -99.777452,
+   16.812647
+  ],
+  "grid": {
+   "crs": "EPSG:32614",
+   "transform": [
+    30.0,
+    0.0,
+    413130.0,
+    0.0,
+    -30.0,
+    1859010.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 1287,
+  "dry": 12956,
+  "unobserved": 3847
+ },
+ "r_emsr703_aoi02": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "americas",
+  "cluster": "c33",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr703_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr703_aoi02.npz",
+  "source": "Copernicus EMS EMSR703 AOI02 (Acapulco Inland) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2023-10-25",
+  "images": [
+   "2023-10-26T17:13:00"
+  ],
+  "sensors": [
+   "Pleiades Neo"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   16.888794,
+   -99.809258
+  ],
+  "bbox": [
+   -99.828034,
+   16.870828,
+   -99.790482,
+   16.90676
+  ],
+  "grid": {
+   "crs": "EPSG:32614",
+   "transform": [
+    30.0,
+    0.0,
+    411780.0,
+    0.0,
+    -30.0,
+    1869450.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 3331,
+  "dry": 10729,
+  "unobserved": 4030
+ },
+ "r_emsr712_aoi02": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c34",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr712_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr712_aoi02.npz",
+  "source": "Copernicus EMS EMSR712 AOI02 (Hunte River) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-12-24",
+  "images": [
+   "2023-12-25T17:09:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   52.714813,
+   8.350809
+  ],
+  "bbox": [
+   8.321151,
+   52.696847,
+   8.380467,
+   52.732779
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    454110.0,
+    0.0,
+    -30.0,
+    5842770.0
+   ],
+   "shape": [
+    135,
+    136
+   ]
+  },
+  "flooded": 1641,
+  "dry": 7963,
+  "unobserved": 8756
+ },
+ "r_emsr734_aoi17": {
+  "role": "dev",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "americas",
+  "cluster": "c35",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr734_aoi17.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr734_aoi17.npz",
+  "source": "Copernicus EMS EMSR734 AOI17 (Campeche) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2024-07-01",
+  "images": [
+   "2024-07-07T16:47:00"
+  ],
+  "sensors": [
+   "GeoEye-1"
+  ],
+  "lag_days_min": 6,
+  "lag_days_max": 6,
+  "centre": [
+   19.833444,
+   -90.47457
+  ],
+  "bbox": [
+   -90.493669,
+   19.815478,
+   -90.455471,
+   19.85141
+  ],
+  "grid": {
+   "crs": "EPSG:32615",
+   "transform": [
+    30.0,
+    0.0,
+    762480.0,
+    0.0,
+    -30.0,
+    2197050.0
+   ],
+   "shape": [
+    135,
+    136
+   ]
+  },
+  "flooded": 250,
+  "dry": 12415,
+  "unobserved": 5695
+ },
+ "r_emsr742_aoi01": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c36",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr742_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr742_aoi01.npz",
+  "source": "Copernicus EMS EMSR742 AOI01 (Jelgava) DEL monitoring 1",
+  "kind": "ems",
+  "event": "2024-07-28",
+  "images": [
+   "2024-07-30T08:17:00"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   56.745234,
+   23.63228
+  ],
+  "bbox": [
+   23.599517,
+   56.727268,
+   23.665043,
+   56.7632
+  ],
+  "grid": {
+   "crs": "EPSG:32634",
+   "transform": [
+    30.0,
+    0.0,
+    658890.0,
+    0.0,
+    -30.0,
+    6294210.0
+   ],
+   "shape": [
+    139,
+    139
+   ]
+  },
+  "flooded": 187,
+  "dry": 17538,
+  "unobserved": 1596
+ },
+ "r_emsr742_aoi03": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c36",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr742_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr742_aoi03.npz",
+  "source": "Copernicus EMS EMSR742 AOI03 (Bauska) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-07-28",
+  "images": [
+   "2024-08-04T04:07:00",
+   "2024-08-04T04:19:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed",
+   "COSMO-SkyMed Second Generation"
+  ],
+  "lag_days_min": 7,
+  "lag_days_max": 7,
+  "centre": [
+   56.5098,
+   23.588076
+  ],
+  "bbox": [
+   23.555516,
+   56.491834,
+   23.620636,
+   56.527766
+  ],
+  "grid": {
+   "crs": "EPSG:32634",
+   "transform": [
+    30.0,
+    0.0,
+    657180.0,
+    0.0,
+    -30.0,
+    6267900.0
+   ],
+   "shape": [
+    139,
+    139
+   ]
+  },
+  "flooded": 248,
+  "dry": 17591,
+  "unobserved": 1482
+ },
+ "r_emsr780_aoi08": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c37",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr780_aoi08.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr780_aoi08.npz",
+  "source": "Copernicus EMS EMSR780 AOI08 (Dembeni) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2024-12-14",
+  "images": [
+   "2024-12-17T07:26:00",
+   "2024-12-21T07:21:00"
+  ],
+  "sensors": [
+   "Pleiades",
+   "Pleiades Neo"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 7,
+  "centre": [
+   -12.846832,
+   45.180244
+  ],
+  "bbox": [
+   45.161816,
+   -12.864798,
+   45.198672,
+   -12.828866
+  ],
+  "grid": {
+   "crs": "EPSG:32738",
+   "transform": [
+    30.0,
+    0.0,
+    517530.0,
+    0.0,
+    -30.0,
+    8581800.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 1524,
+  "dry": 10396,
+  "unobserved": 6170
+ },
+ "r_emsr781_aoi01": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c38",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr781_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr781_aoi01.npz",
+  "source": "Copernicus EMS EMSR781 AOI01 (Pemba) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-12-15",
+  "images": [
+   "2024-12-16T15:40:00"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   -13.109072,
+   40.473558
+  ],
+  "bbox": [
+   40.455111,
+   -13.127038,
+   40.492005,
+   -13.091106
+  ],
+  "grid": {
+   "crs": "EPSG:32737",
+   "transform": [
+    30.0,
+    0.0,
+    657720.0,
+    0.0,
+    -30.0,
+    8552340.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 105,
+  "dry": 10901,
+  "unobserved": 7084
+ },
+ "r_emsr790_aoi02": {
+  "role": "dev",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c39",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr790_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr790_aoi02.npz",
+  "source": "Copernicus EMS EMSR790 AOI02 (Saint Denis) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2025-02-27",
+  "images": [
+   "2025-03-02T06:42:00"
+  ],
+  "sensors": [
+   "WorldView-3"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   -20.89999,
+   55.464301
+  ],
+  "bbox": [
+   55.445069,
+   -20.917956,
+   55.483533,
+   -20.882024
+  ],
+  "grid": {
+   "crs": "EPSG:32740",
+   "transform": [
+    30.0,
+    0.0,
+    338250.0,
+    0.0,
+    -30.0,
+    7690170.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 283,
+  "dry": 16949,
+  "unobserved": 993
+ },
+ "r_emsr793_aoi01": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c40",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr793_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr793_aoi01.npz",
+  "source": "Copernicus EMS EMSR793 AOI01 (Monapo) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-03-10",
+  "images": [
+   "2025-03-11T14:34:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   -15.037302,
+   40.415421
+  ],
+  "bbox": [
+   40.396818,
+   -15.055268,
+   40.434024,
+   -15.019336
+  ],
+  "grid": {
+   "crs": "EPSG:32737",
+   "transform": [
+    30.0,
+    0.0,
+    650130.0,
+    0.0,
+    -30.0,
+    8339070.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 1310,
+  "dry": 16360,
+  "unobserved": 420
+ },
+ "r_emsr793_aoi02": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c40",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr793_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr793_aoi02.npz",
+  "source": "Copernicus EMS EMSR793 AOI02 (Mogincual) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-03-10",
+  "images": [
+   "2025-03-13T14:22:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   -15.554342,
+   40.338756
+  ],
+  "bbox": [
+   40.320107,
+   -15.572308,
+   40.357405,
+   -15.536376
+  ],
+  "grid": {
+   "crs": "EPSG:32737",
+   "transform": [
+    30.0,
+    0.0,
+    641520.0,
+    0.0,
+    -30.0,
+    8281920.0
+   ],
+   "shape": [
+    134,
+    136
+   ]
+  },
+  "flooded": 775,
+  "dry": 16921,
+  "unobserved": 528
+ },
+ "r_emsr805_aoi01": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "americas",
+  "cluster": "c41",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr805_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr805_aoi01.npz",
+  "source": "Copernicus EMS EMSR805 AOI01 (Acapulco) DEL monitoring 1",
+  "kind": "ems",
+  "event": "2025-06-19",
+  "images": [
+   "2025-06-21T00:46:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   16.968938,
+   -100.021316
+  ],
+  "bbox": [
+   -100.0401,
+   16.950972,
+   -100.002532,
+   16.986904
+  ],
+  "grid": {
+   "crs": "EPSG:32614",
+   "transform": [
+    30.0,
+    0.0,
+    389250.0,
+    0.0,
+    -30.0,
+    1878420.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 184,
+  "dry": 6316,
+  "unobserved": 11590
+ },
+ "r_emsr805_aoi03": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "americas",
+  "cluster": "c41",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr805_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr805_aoi03.npz",
+  "source": "Copernicus EMS EMSR805 AOI03 (Corralero) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-06-19",
+  "images": [
+   "2025-06-20T12:32:00",
+   "2025-06-20T05:19:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed",
+   "ICEYE"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   16.313782,
+   -98.351785
+  ],
+  "bbox": [
+   -98.370505,
+   16.295816,
+   -98.333065,
+   16.331748
+  ],
+  "grid": {
+   "crs": "EPSG:32614",
+   "transform": [
+    30.0,
+    0.0,
+    567210.0,
+    0.0,
+    -30.0,
+    1805760.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 83,
+  "dry": 17611,
+  "unobserved": 396
+ },
+ "r_emsr845_aoi02": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "americas",
+  "cluster": "c42",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr845_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr845_aoi02.npz",
+  "source": "Copernicus EMS EMSR845 AOI02 (Cazones de Herrera) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2025-10-12",
+  "images": [
+   "2025-10-18T17:04:00"
+  ],
+  "sensors": [
+   "Legion"
+  ],
+  "lag_days_min": 6,
+  "lag_days_max": 6,
+  "centre": [
+   20.668103,
+   -97.369746
+  ],
+  "bbox": [
+   -97.388948,
+   20.650137,
+   -97.350544,
+   20.686069
+  ],
+  "grid": {
+   "crs": "EPSG:32614",
+   "transform": [
+    30.0,
+    0.0,
+    667770.0,
+    0.0,
+    -30.0,
+    2288280.0
+   ],
+   "shape": [
+    134,
+    136
+   ]
+  },
+  "flooded": 771,
+  "dry": 16955,
+  "unobserved": 498
+ },
+ "r_emsr845_aoi03": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "americas",
+  "cluster": "c42",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr845_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr845_aoi03.npz",
+  "source": "Copernicus EMS EMSR845 AOI03 (Poza Rica) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2025-10-12",
+  "images": [
+   "2025-10-19T17:17:00"
+  ],
+  "sensors": [
+   "GeoEye-1"
+  ],
+  "lag_days_min": 7,
+  "lag_days_max": 7,
+  "centre": [
+   20.541505,
+   -97.475221
+  ],
+  "bbox": [
+   -97.494407,
+   20.523539,
+   -97.456035,
+   20.559471
+  ],
+  "grid": {
+   "crs": "EPSG:32614",
+   "transform": [
+    30.0,
+    0.0,
+    656940.0,
+    0.0,
+    -30.0,
+    2274180.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 1896,
+  "dry": 14615,
+  "unobserved": 1714
+ },
+ "r_emsr850_aoi02": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c43",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr850_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr850_aoi02.npz",
+  "source": "Copernicus EMS EMSR850 AOI02 (Gjirokaster) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-11-18",
+  "images": [
+   "2025-11-20T08:16:00"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   40.085872,
+   20.154186
+  ],
+  "bbox": [
+   20.130703,
+   40.067906,
+   20.177669,
+   40.103838
+  ],
+  "grid": {
+   "crs": "EPSG:32634",
+   "transform": [
+    30.0,
+    0.0,
+    425850.0,
+    0.0,
+    -30.0,
+    4439670.0
+   ],
+   "shape": [
+    136,
+    136
+   ]
+  },
+  "flooded": 595,
+  "dry": 17159,
+  "unobserved": 742
+ },
+ "r_emsr850_aoi03": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c43",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr850_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr850_aoi03.npz",
+  "source": "Copernicus EMS EMSR850 AOI03 (Mamurras) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-11-18",
+  "images": [
+   "2025-11-22T21:46:00"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   41.567245,
+   19.646339
+  ],
+  "bbox": [
+   19.622326,
+   41.549279,
+   19.670352,
+   41.585211
+  ],
+  "grid": {
+   "crs": "EPSG:32634",
+   "transform": [
+    30.0,
+    0.0,
+    385080.0,
+    0.0,
+    -30.0,
+    4604670.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 1305,
+  "dry": 16468,
+  "unobserved": 996
+ },
+ "r_emsr856_aoi01": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c43",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr856_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr856_aoi01.npz",
+  "source": "Copernicus EMS EMSR856 AOI01 (Velipoje) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-01-06",
+  "images": [
+   "2026-01-09T04:09:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   41.958696,
+   19.424966
+  ],
+  "bbox": [
+   19.400806,
+   41.94073,
+   19.449126,
+   41.976662
+  ],
+  "grid": {
+   "crs": "EPSG:32634",
+   "transform": [
+    30.0,
+    0.0,
+    367410.0,
+    0.0,
+    -30.0,
+    4648440.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 3340,
+  "dry": 14440,
+  "unobserved": 989
+ },
+ "r_emsr856_aoi02": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c43",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr856_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr856_aoi02.npz",
+  "source": "Copernicus EMS EMSR856 AOI02 (Spiten) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-01-06",
+  "images": [
+   "2026-01-10T04:47:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   41.732575,
+   19.673954
+  ],
+  "bbox": [
+   19.649879,
+   41.714609,
+   19.698029,
+   41.750541
+  ],
+  "grid": {
+   "crs": "EPSG:32634",
+   "transform": [
+    30.0,
+    0.0,
+    387660.0,
+    0.0,
+    -30.0,
+    4622970.0
+   ],
+   "shape": [
+    136,
+    137
+   ]
+  },
+  "flooded": 1554,
+  "dry": 12340,
+  "unobserved": 4738
+ },
+ "r_emsr857_aoi01": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c44",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr857_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr857_aoi01.npz",
+  "source": "Copernicus EMS EMSR857 AOI01 (Chibabel) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-01-10",
+  "images": [
+   "2026-01-18T14:55:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "lag_days_min": 8,
+  "lag_days_max": 8,
+  "centre": [
+   -24.703009,
+   33.317265
+  ],
+  "bbox": [
+   33.297489,
+   -24.720975,
+   33.337041,
+   -24.685043
+  ],
+  "grid": {
+   "crs": "EPSG:32736",
+   "transform": [
+    30.0,
+    0.0,
+    530070.0,
+    0.0,
+    -30.0,
+    7269900.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 14927,
+  "dry": 2762,
+  "unobserved": 401
+ },
+ "r_emsr857_aoi02": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c44",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr857_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr857_aoi02.npz",
+  "source": "Copernicus EMS EMSR857 AOI02 (Massiguita) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-01-10",
+  "images": [
+   "2026-01-20T10:54:00"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "lag_days_min": 10,
+  "lag_days_max": 10,
+  "centre": [
+   -25.213488,
+   32.485576
+  ],
+  "bbox": [
+   32.465718,
+   -25.231454,
+   32.505434,
+   -25.195522
+  ],
+  "grid": {
+   "crs": "EPSG:32736",
+   "transform": [
+    30.0,
+    0.0,
+    446160.0,
+    0.0,
+    -30.0,
+    7213320.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 2390,
+  "dry": 15208,
+  "unobserved": 492
+ },
+ "r_emsr858_aoi08": {
+  "role": "dev",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c45",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr858_aoi08.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr858_aoi08.npz",
+  "source": "Copernicus EMS EMSR858 AOI08 (Muravera) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-01-20",
+  "images": [
+   "2026-01-21T09:06:00"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   39.432731,
+   9.585268
+  ],
+  "bbox": [
+   9.562007,
+   39.414765,
+   9.608529,
+   39.450697
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    548340.0,
+    0.0,
+    -30.0,
+    4366980.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 618,
+  "dry": 17124,
+  "unobserved": 483
+ },
+ "r_emsr858_aoi10": {
+  "role": "dev",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c45",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr858_aoi10.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr858_aoi10.npz",
+  "source": "Copernicus EMS EMSR858 AOI10 (Orosei) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-01-20",
+  "images": [
+   "2026-01-21T10:50:00"
+  ],
+  "sensors": [
+   "ICEYE"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   40.394103,
+   9.618186
+  ],
+  "bbox": [
+   9.594596,
+   40.376137,
+   9.641776,
+   40.412069
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    550440.0,
+    0.0,
+    -30.0,
+    4473720.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 805,
+  "dry": 16962,
+  "unobserved": 458
+ },
+ "r_emsr863_aoi02": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c46",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr863_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr863_aoi02.npz",
+  "source": "Copernicus EMS EMSR863 AOI02 (Manakambahiny) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2026-01-30",
+  "images": [
+   "2026-02-03T06:33:00"
+  ],
+  "sensors": [
+   "Legion"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   -19.275031,
+   48.930725
+  ],
+  "bbox": [
+   48.911692,
+   -19.292997,
+   48.949758,
+   -19.257065
+  ],
+  "grid": {
+   "crs": "EPSG:32739",
+   "transform": [
+    30.0,
+    0.0,
+    280500.0,
+    0.0,
+    -30.0,
+    7869480.0
+   ],
+   "shape": [
+    135,
+    136
+   ]
+  },
+  "flooded": 2811,
+  "dry": 13507,
+  "unobserved": 2042
+ },
+ "r_emsr864_aoi01": {
+  "role": "dev",
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c47",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr864_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr864_aoi01.npz",
+  "source": "Copernicus EMS EMSR864 AOI01 (Ermidas Sado) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-02-03",
+  "images": [
+   "2026-02-05T18:28:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   37.893128,
+   -8.440489
+  ],
+  "bbox": [
+   -8.463255,
+   37.875162,
+   -8.417723,
+   37.911094
+  ],
+  "grid": {
+   "crs": "EPSG:32629",
+   "transform": [
+    30.0,
+    0.0,
+    547170.0,
+    0.0,
+    -30.0,
+    4196130.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 4179,
+  "dry": 13207,
+  "unobserved": 839
+ },
+ "r_emsr864_aoi02": {
+  "role": "dev",
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c47",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr864_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr864_aoi02.npz",
+  "source": "Copernicus EMS EMSR864 AOI02 (Rio de Moinhos) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-02-03",
+  "images": [
+   "2026-02-05T18:28:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed Second Generation"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   38.274308,
+   -8.402023
+  ],
+  "bbox": [
+   -8.424908,
+   38.256342,
+   -8.379138,
+   38.292274
+  ],
+  "grid": {
+   "crs": "EPSG:32629",
+   "transform": [
+    30.0,
+    0.0,
+    550290.0,
+    0.0,
+    -30.0,
+    4238430.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 3330,
+  "dry": 13545,
+  "unobserved": 1215
+ },
+ "r_emsr867_aoi01": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c46",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr867_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr867_aoi01.npz",
+  "source": "Copernicus EMS EMSR867 AOI01 (Toamasina) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2026-02-10",
+  "images": [
+   "2026-02-15T04:15:00"
+  ],
+  "sensors": [
+   "Legion"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   -18.171694,
+   49.357244
+  ],
+  "bbox": [
+   49.338335,
+   -18.18966,
+   49.376153,
+   -18.153728
+  ],
+  "grid": {
+   "crs": "EPSG:32739",
+   "transform": [
+    30.0,
+    0.0,
+    324210.0,
+    0.0,
+    -30.0,
+    7992060.0
+   ],
+   "shape": [
+    135,
+    136
+   ]
+  },
+  "flooded": 212,
+  "dry": 11601,
+  "unobserved": 6547
+ },
+ "r_emsr867_aoi03": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c46",
+  "table": "~/.cache/geowatch/flood_round2/tables/r_emsr867_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/r_emsr867_aoi03.npz",
+  "source": "Copernicus EMS EMSR867 AOI03 (Ambatondrazaka) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2026-02-10",
+  "images": [
+   "2026-02-14T07:02:00"
+  ],
+  "sensors": [
+   "WorldView-3"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   -17.850642,
+   48.400834
+  ],
+  "bbox": [
+   48.381959,
+   -17.868608,
+   48.419709,
+   -17.832676
+  ],
+  "grid": {
+   "crs": "EPSG:32739",
+   "transform": [
+    30.0,
+    0.0,
+    222480.0,
+    0.0,
+    -30.0,
+    8026440.0
+   ],
+   "shape": [
+    135,
+    137
+   ]
+  },
+  "flooded": 1535,
+  "dry": 16190,
+  "unobserved": 770
+ },
+ "s1_amphan_sundarbans_2020": {
+  "role": "dev",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "south_asia",
+  "cluster": "c48",
+  "table": "~/.cache/geowatch/flood_round2/tables/s1_amphan_sundarbans_2020.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/s1_amphan_sundarbans_2020.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2020 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2020-05-21",
+  "images": [
+   "2020-05-22"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   22.182549,
+   88.801108
+  ],
+  "bbox": [
+   88.781706,
+   22.164583,
+   88.82051,
+   22.200515
+  ],
+  "grid": {
+   "crs": "EPSG:32645",
+   "transform": [
+    30.0,
+    0.0,
+    683670.0,
+    0.0,
+    -30.0,
+    2456160.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 1346,
+  "dry": 13563,
+  "unobserved": 3316
+ },
+ "s1_assam_morigaon_2024": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "south_asia",
+  "cluster": "c0",
+  "table": "~/.cache/geowatch/flood_round2/tables/s1_assam_morigaon_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/s1_assam_morigaon_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-07-03",
+  "images": [
+   "2024-07-11"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 8,
+  "lag_days_max": 8,
+  "centre": [
+   26.24934,
+   92.320746
+  ],
+  "bbox": [
+   92.300714,
+   26.231374,
+   92.340778,
+   26.267306
+  ],
+  "grid": {
+   "crs": "EPSG:32646",
+   "transform": [
+    30.0,
+    0.0,
+    430140.0,
+    0.0,
+    -30.0,
+    2905500.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 3344,
+  "dry": 14878,
+  "unobserved": 3
+ },
+ "s1_fani_puri_2019": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "south_asia",
+  "cluster": "c49",
+  "table": "~/.cache/geowatch/flood_round2/tables/s1_fani_puri_2019.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/s1_fani_puri_2019.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2019 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2019-05-03",
+  "images": [
+   "2019-05-04"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   19.871476,
+   85.899612
+  ],
+  "bbox": [
+   85.880508,
+   19.85351,
+   85.918716,
+   19.889442
+  ],
+  "grid": {
+   "crs": "EPSG:32645",
+   "transform": [
+    30.0,
+    0.0,
+    382770.0,
+    0.0,
+    -30.0,
+    2199660.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 9851,
+  "dry": 8374,
+  "unobserved": 0
+ },
+ "s1_ida_lafitte_2021": {
+  "role": "dev",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "americas",
+  "cluster": "c50",
+  "table": "~/.cache/geowatch/flood_round2/tables/s1_ida_lafitte_2021.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/s1_ida_lafitte_2021.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2021 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2021-08-30",
+  "images": [
+   "2021-09-10"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 11,
+  "lag_days_max": 11,
+  "centre": [
+   29.65983,
+   -90.118628
+  ],
+  "bbox": [
+   -90.139303,
+   29.641864,
+   -90.097953,
+   29.677796
+  ],
+  "grid": {
+   "crs": "EPSG:32615",
+   "transform": [
+    30.0,
+    0.0,
+    776850.0,
+    0.0,
+    -30.0,
+    3286620.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 1579,
+  "dry": 9148,
+  "unobserved": 8042
+ },
+ "s1_kelantan_2024": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "southeast_asia",
+  "cluster": "c51",
+  "table": "~/.cache/geowatch/flood_round2/tables/s1_kelantan_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/s1_kelantan_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-11-30",
+  "images": [
+   "2024-12-05"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   6.082996,
+   102.092621
+  ],
+  "bbox": [
+   102.074553,
+   6.06503,
+   102.110689,
+   6.100962
+  ],
+  "grid": {
+   "crs": "EPSG:32648",
+   "transform": [
+    30.0,
+    0.0,
+    176130.0,
+    0.0,
+    -30.0,
+    675270.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 826,
+  "dry": 17399,
+  "unobserved": 0
+ },
+ "s1_laura_cameron_2020": {
+  "role": "dev",
+  "tags": [
+   "coastal"
+  ],
+  "region": "americas",
+  "cluster": "c52",
+  "table": "~/.cache/geowatch/flood_round2/tables/s1_laura_cameron_2020.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/dev_refs/refs/s1_laura_cameron_2020.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2020 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2020-08-27",
+  "images": [
+   "2020-08-27"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   29.868854,
+   -93.226509
+  ],
+  "bbox": [
+   -93.247227,
+   29.850888,
+   -93.205791,
+   29.88682
+  ],
+  "grid": {
+   "crs": "EPSG:32615",
+   "transform": [
+    30.0,
+    0.0,
+    476100.0,
+    0.0,
+    -30.0,
+    3306270.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 515,
+  "dry": 8265,
+  "unobserved": 9175
+ },
+ "s1_lokoja_2022": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c53",
+  "table": "~/.cache/geowatch/flood_round2/tables/s1_lokoja_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/s1_lokoja_2022.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2022 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2022-10-10",
+  "images": [
+   "2022-10-13"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   7.824547,
+   6.783807
+  ],
+  "bbox": [
+   6.765672,
+   7.806581,
+   6.801942,
+   7.842513
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    253590.0,
+    0.0,
+    -30.0,
+    867570.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 10350,
+  "dry": 4099,
+  "unobserved": 3776
+ },
+ "s1_sunamganj_2024": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "south_asia",
+  "cluster": "c0",
+  "table": "~/.cache/geowatch/flood_round2/tables/s1_sunamganj_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/s1_sunamganj_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-06-19",
+  "images": [
+   "2024-06-19"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   25.052119,
+   91.403754
+  ],
+  "bbox": [
+   91.383922,
+   25.034153,
+   91.423586,
+   25.070085
+  ],
+  "grid": {
+   "crs": "EPSG:32646",
+   "transform": [
+    30.0,
+    0.0,
+    336930.0,
+    0.0,
+    -30.0,
+    2773710.0
+   ],
+   "shape": [
+    136,
+    136
+   ]
+  },
+  "flooded": 9149,
+  "dry": 8816,
+  "unobserved": 531
+ },
+ "s1_tabasco_2020": {
+  "role": "dev",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "americas",
+  "cluster": "c54",
+  "table": "~/.cache/geowatch/flood_round2/tables/s1_tabasco_2020.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/s1_tabasco_2020.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2020 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2020-11-08",
+  "images": [
+   "2020-11-09"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   17.970147,
+   -92.910796
+  ],
+  "bbox": [
+   -92.929684,
+   17.952181,
+   -92.891908,
+   17.988113
+  ],
+  "grid": {
+   "crs": "EPSG:32615",
+   "transform": [
+    30.0,
+    0.0,
+    507420.0,
+    0.0,
+    -30.0,
+    1988880.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 4891,
+  "dry": 12903,
+  "unobserved": 161
+ },
+ "s1_yenagoa_2022": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "c55",
+  "table": "~/.cache/geowatch/flood_round2/tables/s1_yenagoa_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_final/heldout/refs/s1_yenagoa_2022.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2022 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2022-10-15",
+  "images": [
+   "2022-10-18"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   4.944593,
+   6.284923
+  ],
+  "bbox": [
+   6.26689,
+   4.926627,
+   6.302956,
+   4.962559
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    196860.0,
+    0.0,
+    -30.0,
+    549180.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 2773,
+  "dry": 14959,
+  "unobserved": 493
+ },
+ "sittwe": {
+  "role": "dev",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "southeast_asia",
+  "cluster": "c31",
+  "table": "~/.cache/geowatch/flood_round2/tables/sittwe.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/coastal__sittwe.npz",
+  "source": "Copernicus EMS EMSR661 AOI01 (Sittwe City) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-05-14",
+  "images": [
+   "2023-05-15T11:34:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   20.1462,
+   92.8983
+  ],
+  "bbox": [
+   92.879163,
+   20.128234,
+   92.917437,
+   20.164166
+  ],
+  "grid": {
+   "crs": "EPSG:32646",
+   "transform": [
+    30.0,
+    0.0,
+    487350.0,
+    0.0,
+    -30.0,
+    2229660.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 216,
+  "dry": 11284,
+  "unobserved": 6455
+ },
+ "sylhet_2022": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "south_asia",
+  "cluster": "c0",
+  "table": "~/.cache/geowatch/flood_round2/tables/sylhet_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round4/test/waterlogging__sylhet_2022.npz",
+  "source": "UNOSAT FL20220525BGD_RCM1_20220618 FloodExtent (RCM-1 2022-06-18), 'Flood Water'",
+  "kind": "unosat",
+  "event": "2022-06-18",
+  "images": [],
+  "sensors": [],
+  "lag_days_min": null,
+  "lag_days_max": null,
+  "centre": [
+   24.898045,
+   91.789112
+  ],
+  "bbox": [
+   91.769305,
+   24.880079,
+   91.808919,
+   24.916011
+  ],
+  "grid": {
+   "crs": "EPSG:32646",
+   "transform": [
+    30.0,
+    0.0,
+    375660.0,
+    0.0,
+    -30.0,
+    2756220.0
+   ],
+   "shape": [
+    135,
+    136
+   ]
+  },
+  "flooded": 8872,
+  "dry": 8564,
+  "unobserved": 924
+ },
+ "thai_binh": {
+  "role": "dev",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "southeast_asia",
+  "cluster": "c28",
+  "table": "~/.cache/geowatch/flood_round2/tables/thai_binh.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/waterlogging__thai_binh.npz",
+  "source": "Copernicus EMS EMSR754 AOI06 (Thai Binh) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-09-09",
+  "images": [
+   "2024-09-20T03:27:00"
+  ],
+  "sensors": [
+   "WorldView-2"
+  ],
+  "lag_days_min": 11,
+  "lag_days_max": 11,
+  "centre": [
+   20.4463,
+   106.3366
+  ],
+  "bbox": [
+   106.317426,
+   20.428334,
+   106.355774,
+   20.464266
+  ],
+  "grid": {
+   "crs": "EPSG:32648",
+   "transform": [
+    30.0,
+    0.0,
+    637410.0,
+    0.0,
+    -30.0,
+    2263470.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 506,
+  "dry": 16402,
+  "unobserved": 1182
+ },
+ "valencia_2024": {
+  "role": "dev",
+  "tags": [
+   "compound",
+   "flash_flood",
+   "pluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c32",
+  "table": "~/.cache/geowatch/flood_round2/tables/valencia_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round4/test/pluvial__valencia_2024.npz",
+  "source": "Copernicus EMS EMSR773 AOI03 (Horta Sud) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-10-29",
+  "images": [
+   "2024-10-31T10:22:00",
+   "2024-10-31T10:22:00"
+  ],
+  "sensors": [
+   "GeoEye-1",
+   "WorldView-2"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   39.447072,
+   -0.498408
+  ],
+  "bbox": [
+   -0.521674,
+   39.429106,
+   -0.475142,
+   39.465038
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    713190.0,
+    0.0,
+    -30.0,
+    4371450.0
+   ],
+   "shape": [
+    138,
+    138
+   ]
+  },
+  "flooded": 2847,
+  "dry": 14924,
+  "unobserved": 1273
+ },
+ "volos": {
+  "role": "dev",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "c5",
+  "table": "~/.cache/geowatch/flood_round2/tables/volos.npz",
+  "ref_path": "~/.cache/geowatch/flood_refs/round2/flash_flood__volos.npz",
+  "source": "Copernicus EMS EMSR692 AOI01 (Magnesia) DEL monitoring 3",
+  "kind": "ems",
+  "event": "2023-09-05",
+  "images": [
+   "2023-09-09T09:31:00"
+  ],
+  "sensors": [
+   "WorldView-3"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   39.3622,
+   22.942
+  ],
+  "bbox": [
+   22.918762,
+   39.344234,
+   22.965238,
+   39.380166
+  ],
+  "grid": {
+   "crs": "EPSG:32634",
+   "transform": [
+    30.0,
+    0.0,
+    665250.0,
+    0.0,
+    -30.0,
+    4360830.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 10911,
+  "dry": 6872,
+  "unobserved": 577
+ },
+ "r_emsr866_aoi02": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR866",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr866_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr866_aoi02.npz",
+  "source": "Copernicus EMS EMSR866 AOI02 (Libourne) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-02-12",
+  "images": [
+   "2026-02-12T17:55:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   45.109861,
+   -0.168609
+  ],
+  "bbox": [
+   -0.194066,
+   45.091895,
+   -0.143152,
+   45.127827
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    720630.0,
+    0.0,
+    -30.0,
+    5001150.0
+   ],
+   "shape": [
+    139,
+    140
+   ]
+  },
+  "flooded": 128,
+  "dry": 10856,
+  "unobserved": 8476
+ },
+ "r_emsr860_aoi02": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR860",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr860_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr860_aoi02.npz",
+  "source": "Copernicus EMS EMSR860 AOI02 (County Kilkenny) DEL monitoring 1",
+  "kind": "ems",
+  "event": "2026-01-27",
+  "images": [
+   "2026-01-29T18:13:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   52.640737,
+   -7.21333
+  ],
+  "bbox": [
+   -7.242938,
+   52.622771,
+   -7.183722,
+   52.658703
+  ],
+  "grid": {
+   "crs": "EPSG:32629",
+   "transform": [
+    30.0,
+    0.0,
+    618810.0,
+    0.0,
+    -30.0,
+    5835870.0
+   ],
+   "shape": [
+    138,
+    138
+   ]
+  },
+  "flooded": 112,
+  "dry": 17711,
+  "unobserved": 1221
+ },
+ "r_emsr849_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR849",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr849_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr849_aoi01.npz",
+  "source": "Copernicus EMS EMSR849 AOI01 (Athlone) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-11-14",
+  "images": [
+   "2025-11-14T06:47:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   53.287621,
+   -7.978886
+  ],
+  "bbox": [
+   -8.00894,
+   53.269655,
+   -7.948832,
+   53.305587
+  ],
+  "grid": {
+   "crs": "EPSG:32629",
+   "transform": [
+    30.0,
+    0.0,
+    566010.0,
+    0.0,
+    -30.0,
+    5906790.0
+   ],
+   "shape": [
+    136,
+    137
+   ]
+  },
+  "flooded": 938,
+  "dry": 16882,
+  "unobserved": 812
+ },
+ "r_emsr849_aoi02": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR849",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr849_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr849_aoi02.npz",
+  "source": "Copernicus EMS EMSR849 AOI02 (Mountmellick) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-11-14",
+  "images": [
+   "2025-11-14T06:47:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   53.147413,
+   -7.123823
+  ],
+  "bbox": [
+   -7.153779,
+   53.129447,
+   -7.093867,
+   53.165379
+  ],
+  "grid": {
+   "crs": "EPSG:32629",
+   "transform": [
+    30.0,
+    0.0,
+    623400.0,
+    0.0,
+    -30.0,
+    5892390.0
+   ],
+   "shape": [
+    138,
+    138
+   ]
+  },
+  "flooded": 950,
+  "dry": 15136,
+  "unobserved": 2958
+ },
+ "r_emsr855_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR855",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr855_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr855_aoi01.npz",
+  "source": "Copernicus EMS EMSR855 AOI01 (Aniene River) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-01-06",
+  "images": [
+   "2026-01-07T05:11:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   41.927088,
+   12.664447
+  ],
+  "bbox": [
+   12.640299,
+   41.909122,
+   12.688595,
+   41.945054
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    304290.0,
+    0.0,
+    -30.0,
+    4646370.0
+   ],
+   "shape": [
+    137,
+    138
+   ]
+  },
+  "flooded": 485,
+  "dry": 17307,
+  "unobserved": 1114
+ },
+ "r_emsr728_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR728",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr728_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr728_aoi01.npz",
+  "source": "Copernicus EMS EMSR728 AOI01 (Stuttgart) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-05-31",
+  "images": [
+   "2024-06-01T05:06:00",
+   "2024-06-01T05:06:00",
+   "2024-06-01T05:43:00",
+   "2024-06-01T05:43:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed",
+   "PAZ"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   48.943432,
+   9.195335
+  ],
+  "bbox": [
+   9.167981,
+   48.925466,
+   9.222689,
+   48.961398
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    512280.0,
+    0.0,
+    -30.0,
+    5423190.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 140,
+  "dry": 17554,
+  "unobserved": 396
+ },
+ "r_emsr728_aoi03": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR728",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr728_aoi03.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr728_aoi03.npz",
+  "source": "Copernicus EMS EMSR728 AOI03 (Regensburg) DEL monitoring 1",
+  "kind": "ems",
+  "event": "2024-05-31",
+  "images": [
+   "2024-06-03T06:13:00",
+   "2024-06-03T06:13:00"
+  ],
+  "sensors": [
+   "PAZ"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   48.90674,
+   12.652848
+  ],
+  "bbox": [
+   12.625514,
+   48.888774,
+   12.680182,
+   48.924706
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    325920.0,
+    0.0,
+    -30.0,
+    5421810.0
+   ],
+   "shape": [
+    138,
+    139
+   ]
+  },
+  "flooded": 1410,
+  "dry": 15920,
+  "unobserved": 1852
+ },
+ "r_emsr722_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR722",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr722_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr722_aoi01.npz",
+  "source": "Copernicus EMS EMSR722 AOI01 (Blies) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-05-17",
+  "images": [
+   "2024-05-18T17:21:00",
+   "2024-05-18T17:21:00"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   49.260764,
+   7.271826
+  ],
+  "bbox": [
+   7.244297,
+   49.242798,
+   7.299355,
+   49.27873
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    372210.0,
+    0.0,
+    -30.0,
+    5459940.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 2316,
+  "dry": 4619,
+  "unobserved": 11834
+ },
+ "r_emsr722_aoi02": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR722",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr722_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr722_aoi02.npz",
+  "source": "Copernicus EMS EMSR722 AOI02 (Saar) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2024-05-17",
+  "images": [
+   "2024-05-18T17:21:00",
+   "2024-05-18T17:21:00"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   49.436111,
+   6.626028
+  ],
+  "bbox": [
+   6.5984,
+   49.418145,
+   6.653656,
+   49.454077
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    325800.0,
+    0.0,
+    -30.0,
+    5480730.0
+   ],
+   "shape": [
+    139,
+    139
+   ]
+  },
+  "flooded": 1494,
+  "dry": 9425,
+  "unobserved": 8402
+ },
+ "r_emsr698_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR698",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr698_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr698_aoi01.npz",
+  "source": "Copernicus EMS EMSR698 AOI01 (River Spey) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-10-07",
+  "images": [
+   "2023-10-08T18:00:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   57.136203,
+   -3.9036
+  ],
+  "bbox": [
+   -3.936709,
+   57.118237,
+   -3.870491,
+   57.154169
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    443250.0,
+    0.0,
+    -30.0,
+    6334950.0
+   ],
+   "shape": [
+    136,
+    137
+   ]
+  },
+  "flooded": 857,
+  "dry": 16727,
+  "unobserved": 1048
+ },
+ "r_emsr698_aoi02": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR698",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr698_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr698_aoi02.npz",
+  "source": "Copernicus EMS EMSR698 AOI02 (River Tay) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-10-07",
+  "images": [
+   "2023-10-08T18:00:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   56.580924,
+   -3.622958
+  ],
+  "bbox": [
+   -3.655579,
+   56.562958,
+   -3.590337,
+   56.59889
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    459690.0,
+    0.0,
+    -30.0,
+    6272940.0
+   ],
+   "shape": [
+    135,
+    136
+   ]
+  },
+  "flooded": 490,
+  "dry": 17336,
+  "unobserved": 534
+ },
+ "r_emsr684_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR684",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr684_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr684_aoi01.npz",
+  "source": "Copernicus EMS EMSR684 AOI01 (Mora) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-08-15",
+  "images": [
+   "2023-08-17T04:39:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   60.73844,
+   15.009689
+  ],
+  "bbox": [
+   14.972933,
+   60.720474,
+   15.046445,
+   60.756406
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    498510.0,
+    0.0,
+    -30.0,
+    6735660.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 439,
+  "dry": 14074,
+  "unobserved": 3577
+ },
+ "r_emsr684_aoi05": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR684",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr684_aoi05.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr684_aoi05.npz",
+  "source": "Copernicus EMS EMSR684 AOI05 (Marma) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-08-15",
+  "images": [
+   "2023-08-16T16:34:00"
+  ],
+  "sensors": [
+   "RADARSAT-2"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   60.453332,
+   17.370513
+  ],
+  "bbox": [
+   17.33408,
+   60.435366,
+   17.406946,
+   60.471298
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    628290.0,
+    0.0,
+    -30.0,
+    6706320.0
+   ],
+   "shape": [
+    139,
+    140
+   ]
+  },
+  "flooded": 1741,
+  "dry": 14955,
+  "unobserved": 2764
+ },
+ "r_emsr668_aoi02": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial",
+   "snowmelt"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR668",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr668_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr668_aoi02.npz",
+  "source": "Copernicus EMS EMSR668 AOI02 (Amot) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-05-22",
+  "images": [
+   "2023-05-23T17:04:00"
+  ],
+  "sensors": [
+   "COSMO-SkyMed"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   60.070667,
+   9.832485
+  ],
+  "bbox": [
+   9.796476,
+   60.052701,
+   9.868494,
+   60.088633
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    544290.0,
+    0.0,
+    -30.0,
+    6661620.0
+   ],
+   "shape": [
+    136,
+    136
+   ]
+  },
+  "flooded": 81,
+  "dry": 14327,
+  "unobserved": 4088
+ },
+ "r_emsr657_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial",
+   "snowmelt"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR657",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr657_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr657_aoi01.npz",
+  "source": "Copernicus EMS EMSR657 AOI01 (DaugavaRiver) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2023-03-30",
+  "images": [
+   "2023-04-01T16:04:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   56.029627,
+   26.357279
+  ],
+  "bbox": [
+   26.325125,
+   56.011661,
+   26.389433,
+   56.047593
+  ],
+  "grid": {
+   "crs": "EPSG:32635",
+   "transform": [
+    30.0,
+    0.0,
+    457920.0,
+    0.0,
+    -30.0,
+    6211590.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 7218,
+  "dry": 9409,
+  "unobserved": 1598
+ },
+ "r_emsr871_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR871",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr871_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr871_aoi01.npz",
+  "source": "Copernicus EMS EMSR871 AOI01 (Romualdi) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-03-31",
+  "images": [
+   "2026-04-02T05:03:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   41.912885,
+   14.96218
+  ],
+  "bbox": [
+   14.938037,
+   41.894919,
+   14.986323,
+   41.930851
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    494850.0,
+    0.0,
+    -30.0,
+    4642110.0
+   ],
+   "shape": [
+    134,
+    134
+   ]
+  },
+  "flooded": 3078,
+  "dry": 14105,
+  "unobserved": 773
+ },
+ "r_emsr871_aoi02": {
+  "role": "r2_test",
+  "tags": [
+   "fluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR871",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr871_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr871_aoi02.npz",
+  "source": "Copernicus EMS EMSR871 AOI02 (Montero di Bisaccia) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2026-03-31",
+  "images": [
+   "2026-04-02T05:03:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   42.048349,
+   14.820361
+  ],
+  "bbox": [
+   14.796167,
+   42.030383,
+   14.844555,
+   42.066315
+  ],
+  "grid": {
+   "crs": "EPSG:32633",
+   "transform": [
+    30.0,
+    0.0,
+    483120.0,
+    0.0,
+    -30.0,
+    4657170.0
+   ],
+   "shape": [
+    134,
+    134
+   ]
+  },
+  "flooded": 298,
+  "dry": 9853,
+  "unobserved": 7805
+ },
+ "r_emsr721_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR721",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr721_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr721_aoi01.npz",
+  "source": "Copernicus EMS EMSR721 AOI01 (Gorgonzola) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2024-05-14",
+  "images": [
+   "2024-05-18T10:40:00",
+   "2024-05-18T09:52:00"
+  ],
+  "sensors": [
+   "GeoEye-1",
+   "Pleiades"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   45.489144,
+   9.389106
+  ],
+  "bbox": [
+   9.363478,
+   45.471178,
+   9.414734,
+   45.50711
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    528390.0,
+    0.0,
+    -30.0,
+    5039400.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 163,
+  "dry": 17647,
+  "unobserved": 415
+ },
+ "r_emsr802_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR802",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr802_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr802_aoi01.npz",
+  "source": "Copernicus EMS EMSR802 AOI01 (Ghimbav) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-05-26",
+  "images": [
+   "2025-05-29T04:29:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   45.840797,
+   25.567715
+  ],
+  "bbox": [
+   25.541926,
+   45.822831,
+   25.593504,
+   45.858763
+  ],
+  "grid": {
+   "crs": "EPSG:32635",
+   "transform": [
+    30.0,
+    0.0,
+    386730.0,
+    0.0,
+    -30.0,
+    5079390.0
+   ],
+   "shape": [
+    136,
+    137
+   ]
+  },
+  "flooded": 131,
+  "dry": 12968,
+  "unobserved": 5533
+ },
+ "r_emsr802_aoi02": {
+  "role": "r2_test",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR802",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr802_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr802_aoi02.npz",
+  "source": "Copernicus EMS EMSR802 AOI02 (Lunca Marcusului) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-05-26",
+  "images": [
+   "2025-05-29T04:29:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   45.777763,
+   25.832164
+  ],
+  "bbox": [
+   25.806404,
+   45.759797,
+   25.857924,
+   45.795729
+  ],
+  "grid": {
+   "crs": "EPSG:32635",
+   "transform": [
+    30.0,
+    0.0,
+    407160.0,
+    0.0,
+    -30.0,
+    5072070.0
+   ],
+   "shape": [
+    136,
+    137
+   ]
+  },
+  "flooded": 4888,
+  "dry": 12907,
+  "unobserved": 837
+ },
+ "r_emsr795_aoi02": {
+  "role": "r2_test",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR795",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr795_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr795_aoi02.npz",
+  "source": "Copernicus EMS EMSR795 AOI02 (Sesto Fiorentino) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-03-14",
+  "images": [
+   "2025-03-17T05:28:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   43.817715,
+   11.070826
+  ],
+  "bbox": [
+   11.045926,
+   43.799749,
+   11.095726,
+   43.835681
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    664470.0,
+    0.0,
+    -30.0,
+    4855770.0
+   ],
+   "shape": [
+    137,
+    138
+   ]
+  },
+  "flooded": 1563,
+  "dry": 12004,
+  "unobserved": 5339
+ },
+ "r_emsr795_aoi06": {
+  "role": "r2_test",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "europe_mediterranean",
+  "cluster": "EMSR795",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr795_aoi06.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr795_aoi06.npz",
+  "source": "Copernicus EMS EMSR795 AOI06 (Montelupo) DEL monitoring 0",
+  "kind": "ems",
+  "event": "2025-03-14",
+  "images": [
+   "2025-03-17T05:27:00"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   43.814047,
+   10.746053
+  ],
+  "bbox": [
+   10.721155,
+   43.796081,
+   10.770951,
+   43.832013
+  ],
+  "grid": {
+   "crs": "EPSG:32632",
+   "transform": [
+    30.0,
+    0.0,
+    638370.0,
+    0.0,
+    -30.0,
+    4854750.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 268,
+  "dry": 17516,
+  "unobserved": 985
+ },
+ "r_emsr750_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "flash_flood",
+   "dam_breach"
+  ],
+  "region": "africa",
+  "cluster": "EMSR750",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr750_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr750_aoi01.npz",
+  "source": "Copernicus EMS EMSR750 AOI01 (Arbaat Dam) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2024-08-25",
+  "images": [
+   "2024-08-29T08:27:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   19.836725,
+   36.977979
+  ],
+  "bbox": [
+   36.958879,
+   19.818759,
+   36.997079,
+   19.854691
+  ],
+  "grid": {
+   "crs": "EPSG:32637",
+   "transform": [
+    30.0,
+    0.0,
+    286200.0,
+    0.0,
+    -30.0,
+    2196720.0
+   ],
+   "shape": [
+    136,
+    136
+   ]
+  },
+  "flooded": 5659,
+  "dry": 4751,
+  "unobserved": 8086
+ },
+ "r_emsr750_aoi02": {
+  "role": "r2_test",
+  "tags": [
+   "flash_flood",
+   "dam_breach"
+  ],
+  "region": "africa",
+  "cluster": "EMSR750",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr750_aoi02.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr750_aoi02.npz",
+  "source": "Copernicus EMS EMSR750 AOI02 (Khor Maluqirm) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2024-08-25",
+  "images": [
+   "2024-08-29T08:27:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   19.81484,
+   37.064588
+  ],
+  "bbox": [
+   37.045491,
+   19.796874,
+   37.083685,
+   19.832806
+  ],
+  "grid": {
+   "crs": "EPSG:32637",
+   "transform": [
+    30.0,
+    0.0,
+    295230.0,
+    0.0,
+    -30.0,
+    2194170.0
+   ],
+   "shape": [
+    135,
+    136
+   ]
+  },
+  "flooded": 7110,
+  "dry": 6788,
+  "unobserved": 4462
+ },
+ "r_emsr663_aoi01": {
+  "role": "r2_test",
+  "tags": [
+   "compound"
+  ],
+  "region": "africa",
+  "cluster": "EMSR663",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/r_emsr663_aoi01.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/r_emsr663_aoi01.npz",
+  "source": "Copernicus EMS EMSR663 AOI01 (Burnett) GRA monitoring 0",
+  "kind": "ems",
+  "event": "2023-03-12",
+  "images": [
+   "2023-05-18T07:55:00"
+  ],
+  "sensors": [
+   "Pleiades"
+  ],
+  "lag_days_min": 67,
+  "lag_days_max": 67,
+  "centre": [
+   -15.240891,
+   35.812075
+  ],
+  "bbox": [
+   35.793454,
+   -15.258857,
+   35.830696,
+   -15.222925
+  ],
+  "grid": {
+   "crs": "EPSG:32736",
+   "transform": [
+    30.0,
+    0.0,
+    800040.0,
+    0.0,
+    -30.0,
+    8315100.0
+   ],
+   "shape": [
+    135,
+    136
+   ]
+  },
+  "flooded": 9578,
+  "dry": 8128,
+  "unobserved": 654
+ },
+ "s1_helene_steinhatchee_2024": {
+  "role": "r2_test",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "americas",
+  "cluster": "s1_helene_steinhatchee_2024",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_helene_steinhatchee_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_helene_steinhatchee_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-09-27",
+  "images": [
+   "2024-10-08"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 11,
+  "lag_days_max": 11,
+  "centre": [
+   29.670405,
+   -83.375773
+  ],
+  "bbox": [
+   -83.39645,
+   29.652439,
+   -83.355096,
+   29.688371
+  ],
+  "grid": {
+   "crs": "EPSG:32617",
+   "transform": [
+    30.0,
+    0.0,
+    268020.0,
+    0.0,
+    -30.0,
+    3286680.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 281,
+  "dry": 18169,
+  "unobserved": 319
+ },
+ "s1_remal_satkhira_2024": {
+  "role": "r2_test",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "south_asia",
+  "cluster": "s1_remal_satkhira_2024",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_remal_satkhira_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_remal_satkhira_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-05-27",
+  "images": [
+   "2024-05-31"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 4,
+  "lag_days_max": 4,
+  "centre": [
+   22.320808,
+   89.108613
+  ],
+  "bbox": [
+   89.089192,
+   22.302842,
+   89.128034,
+   22.338774
+  ],
+  "grid": {
+   "crs": "EPSG:32645",
+   "transform": [
+    30.0,
+    0.0,
+    715140.0,
+    0.0,
+    -30.0,
+    2471880.0
+   ],
+   "shape": [
+    135,
+    137
+   ]
+  },
+  "flooded": 4159,
+  "dry": 14326,
+  "unobserved": 10
+ },
+ "s1_francine_terrebonne_2024": {
+  "role": "r2_test",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "americas",
+  "cluster": "s1_francine_terrebonne_2024",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_francine_terrebonne_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_francine_terrebonne_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-09-12",
+  "images": [
+   "2024-09-18"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 6,
+  "lag_days_max": 6,
+  "centre": [
+   29.264915,
+   -90.666179
+  ],
+  "bbox": [
+   -90.686774,
+   29.246949,
+   -90.645584,
+   29.282881
+  ],
+  "grid": {
+   "crs": "EPSG:32615",
+   "transform": [
+    30.0,
+    0.0,
+    724710.0,
+    0.0,
+    -30.0,
+    3241650.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 823,
+  "dry": 10093,
+  "unobserved": 7853
+ },
+ "s1_dana_kendrapara_2024": {
+  "role": "r2_test",
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "region": "south_asia",
+  "cluster": "s1_dana_kendrapara_2024",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_dana_kendrapara_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_dana_kendrapara_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-10-25",
+  "images": [
+   "2024-10-28"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   20.663734,
+   86.917867
+  ],
+  "bbox": [
+   86.898665,
+   20.645768,
+   86.937069,
+   20.6817
+  ],
+  "grid": {
+   "crs": "EPSG:32645",
+   "transform": [
+    30.0,
+    0.0,
+    489420.0,
+    0.0,
+    -30.0,
+    2286930.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 353,
+  "dry": 17602,
+  "unobserved": 0
+ },
+ "s1_jowhar_2023": {
+  "role": "r2_test",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "africa",
+  "cluster": "s1_jowhar_2023",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_jowhar_2023.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_jowhar_2023.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2023 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2023-11-20",
+  "images": [
+   "2023-11-21"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   2.774726,
+   45.506582
+  ],
+  "bbox": [
+   45.488595,
+   2.75676,
+   45.524569,
+   2.792692
+  ],
+  "grid": {
+   "crs": "EPSG:32638",
+   "transform": [
+    30.0,
+    0.0,
+    554280.0,
+    0.0,
+    -30.0,
+    308700.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 338,
+  "dry": 17617,
+  "unobserved": 0
+ },
+ "s1_ubon_2022": {
+  "role": "r2_test",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "southeast_asia",
+  "cluster": "s1_ubon_2022",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_ubon_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_ubon_2022.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2022 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2022-10-05",
+  "images": [
+   "2022-10-05"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   15.237813,
+   104.849378
+  ],
+  "bbox": [
+   104.830757,
+   15.219847,
+   104.867999,
+   15.255779
+  ],
+  "grid": {
+   "crs": "EPSG:32648",
+   "transform": [
+    30.0,
+    0.0,
+    481800.0,
+    0.0,
+    -30.0,
+    1686630.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 2104,
+  "dry": 15301,
+  "unobserved": 550
+ },
+ "s1_garsen_2023": {
+  "role": "r2_test",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "africa",
+  "cluster": "s1_garsen_2023",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_garsen_2023.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_garsen_2023.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2023 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2023-12-01",
+  "images": [
+   "2023-12-04"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   -2.253612,
+   40.166262
+  ],
+  "bbox": [
+   40.148282,
+   -2.271578,
+   40.184242,
+   -2.235646
+  ],
+  "grid": {
+   "crs": "EPSG:32737",
+   "transform": [
+    30.0,
+    0.0,
+    627660.0,
+    0.0,
+    -30.0,
+    9752850.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 3598,
+  "dry": 14357,
+  "unobserved": 0
+ },
+ "s1_sukhothai_2024": {
+  "role": "r2_test",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "southeast_asia",
+  "cluster": "s1_sukhothai_2024",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_sukhothai_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_sukhothai_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-09-01",
+  "images": [
+   "2024-09-03"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   16.988137,
+   99.841732
+  ],
+  "bbox": [
+   99.822946,
+   16.970171,
+   99.860518,
+   17.006103
+  ],
+  "grid": {
+   "crs": "EPSG:32647",
+   "transform": [
+    30.0,
+    0.0,
+    587580.0,
+    0.0,
+    -30.0,
+    1880460.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 2580,
+  "dry": 15645,
+  "unobserved": 0
+ },
+ "s1_jeddah_2022": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "s1_jeddah_2022",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_jeddah_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_jeddah_2022.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2022 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2022-11-24",
+  "images": [
+   "2022-11-29"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   21.531303,
+   39.210561
+  ],
+  "bbox": [
+   39.191247,
+   21.513337,
+   39.229875,
+   21.549269
+  ],
+  "grid": {
+   "crs": "EPSG:32637",
+   "transform": [
+    30.0,
+    0.0,
+    519780.0,
+    0.0,
+    -30.0,
+    2382960.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 2111,
+  "dry": 15844,
+  "unobserved": 0
+ },
+ "s1_kinshasa_2022": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "africa",
+  "cluster": "s1_kinshasa_2022",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_kinshasa_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_kinshasa_2022.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2022 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2022-12-13",
+  "images": [
+   "2022-12-18"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   -4.375625,
+   15.319549
+  ],
+  "bbox": [
+   15.30153,
+   -4.393591,
+   15.337568,
+   -4.357659
+  ],
+  "grid": {
+   "crs": "EPSG:32733",
+   "transform": [
+    30.0,
+    0.0,
+    533430.0,
+    0.0,
+    -30.0,
+    9518340.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 492,
+  "dry": 17463,
+  "unobserved": 0
+ },
+ "s1_baghlan_2024": {
+  "role": "r2_test",
+  "tags": [
+   "flash_flood"
+  ],
+  "region": "south_asia",
+  "cluster": "s1_baghlan_2024",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_baghlan_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_baghlan_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-05-11",
+  "images": [
+   "2024-05-14"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   36.128664,
+   68.685879
+  ],
+  "bbox": [
+   68.663635,
+   36.110698,
+   68.708123,
+   36.14663
+  ],
+  "grid": {
+   "crs": "EPSG:32642",
+   "transform": [
+    30.0,
+    0.0,
+    469710.0,
+    0.0,
+    -30.0,
+    4000290.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 2463,
+  "dry": 15762,
+  "unobserved": 0
+ },
+ "s1_seoul_2022": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "east_asia",
+  "cluster": "s1_seoul_2022",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_seoul_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_seoul_2022.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2022 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2022-08-08",
+  "images": [
+   "2022-08-09"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   37.492364,
+   127.041878
+  ],
+  "bbox": [
+   127.019234,
+   37.474398,
+   127.064522,
+   37.51033
+  ],
+  "grid": {
+   "crs": "EPSG:32652",
+   "transform": [
+    30.0,
+    0.0,
+    324840.0,
+    0.0,
+    -30.0,
+    4153350.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 172,
+  "dry": 18597,
+  "unobserved": 0
+ },
+ "s1_bengaluru_2022": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "south_asia",
+  "cluster": "s1_bengaluru_2022",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_bengaluru_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_bengaluru_2022.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2022 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2022-09-05",
+  "images": [
+   "2022-09-05"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   12.955165,
+   77.716604
+  ],
+  "bbox": [
+   77.698169,
+   12.937199,
+   77.735039,
+   12.973131
+  ],
+  "grid": {
+   "crs": "EPSG:32643",
+   "transform": [
+    30.0,
+    0.0,
+    792720.0,
+    0.0,
+    -30.0,
+    1435770.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 736,
+  "dry": 17475,
+  "unobserved": 14
+ },
+ "s1_hyderabad_2020": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "south_asia",
+  "cluster": "s1_hyderabad_2020",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_hyderabad_2020.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_hyderabad_2020.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2020 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2020-10-14",
+  "images": [
+   "2020-10-21"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 7,
+  "lag_days_max": 7,
+  "centre": [
+   17.377183,
+   78.477282
+  ],
+  "bbox": [
+   78.458457,
+   17.359217,
+   78.496107,
+   17.395149
+  ],
+  "grid": {
+   "crs": "EPSG:32644",
+   "transform": [
+    30.0,
+    0.0,
+    229890.0,
+    0.0,
+    -30.0,
+    1925070.0
+   ],
+   "shape": [
+    135,
+    137
+   ]
+  },
+  "flooded": 238,
+  "dry": 18257,
+  "unobserved": 0
+ },
+ "s1_durban_2022": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "africa",
+  "cluster": "s1_durban_2022",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_durban_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_durban_2022.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2022 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2022-04-12",
+  "images": [
+   "2022-04-17"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   -29.855122,
+   30.950526
+  ],
+  "bbox": [
+   30.929811,
+   -29.873088,
+   30.971241,
+   -29.837156
+  ],
+  "grid": {
+   "crs": "EPSG:32736",
+   "transform": [
+    30.0,
+    0.0,
+    299970.0,
+    0.0,
+    -30.0,
+    6697560.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 314,
+  "dry": 18452,
+  "unobserved": 3
+ },
+ "s1_nairobi_2024": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "africa",
+  "cluster": "s1_nairobi_2024",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_nairobi_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_nairobi_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-04-24",
+  "images": [
+   "2024-04-24"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   -1.245156,
+   36.849879
+  ],
+  "bbox": [
+   36.831909,
+   -1.263122,
+   36.867849,
+   -1.22719
+  ],
+  "grid": {
+   "crs": "EPSG:32737",
+   "transform": [
+    30.0,
+    0.0,
+    258720.0,
+    0.0,
+    -30.0,
+    9864270.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 262,
+  "dry": 17690,
+  "unobserved": 3
+ },
+ "s1_fortlauderdale_2023": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "americas",
+  "cluster": "s1_fortlauderdale_2023",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_fortlauderdale_2023.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_fortlauderdale_2023.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2023 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2023-04-13",
+  "images": [
+   "2023-04-19"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 6,
+  "lag_days_max": 6,
+  "centre": [
+   26.20934,
+   -80.091662
+  ],
+  "bbox": [
+   -80.111687,
+   26.191374,
+   -80.071637,
+   26.227306
+  ],
+  "grid": {
+   "crs": "EPSG:32617",
+   "transform": [
+    30.0,
+    0.0,
+    588720.0,
+    0.0,
+    -30.0,
+    2901210.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 65,
+  "dry": 725,
+  "unobserved": 17435
+ },
+ "s1_auckland_2023": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "oceania",
+  "cluster": "s1_auckland_2023",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_auckland_2023.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_auckland_2023.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2023 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2023-01-27",
+  "images": [
+   "2023-02-01"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   -36.876898,
+   174.757157
+  ],
+  "bbox": [
+   174.734697,
+   -36.894864,
+   174.779617,
+   -36.858932
+  ],
+  "grid": {
+   "crs": "EPSG:32760",
+   "transform": [
+    30.0,
+    0.0,
+    298050.0,
+    0.0,
+    -30.0,
+    5918490.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 608,
+  "dry": 18161,
+  "unobserved": 0
+ },
+ "s1_klang_2021": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "southeast_asia",
+  "cluster": "s1_klang_2021",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_klang_2021.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_klang_2021.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2021 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2021-12-18",
+  "images": [
+   "2021-12-20"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   3.070948,
+   101.518397
+  ],
+  "bbox": [
+   101.500405,
+   3.052982,
+   101.536389,
+   3.088914
+  ],
+  "grid": {
+   "crs": "EPSG:32647",
+   "transform": [
+    30.0,
+    0.0,
+    777900.0,
+    0.0,
+    -30.0,
+    341760.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 531,
+  "dry": 17374,
+  "unobserved": 50
+ },
+ "s1_antananarivo_2022": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "africa",
+  "cluster": "s1_antananarivo_2022",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_antananarivo_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_antananarivo_2022.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2022 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2022-01-18",
+  "images": [
+   "2022-01-27"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 9,
+  "lag_days_max": 9,
+  "centre": [
+   -18.924311,
+   47.505647
+  ],
+  "bbox": [
+   47.486654,
+   -18.942277,
+   47.52464,
+   -18.906345
+  ],
+  "grid": {
+   "crs": "EPSG:32738",
+   "transform": [
+    30.0,
+    0.0,
+    761850.0,
+    0.0,
+    -30.0,
+    7907700.0
+   ],
+   "shape": [
+    135,
+    137
+   ]
+  },
+  "flooded": 1474,
+  "dry": 17013,
+  "unobserved": 8
+ },
+ "s1_recife_2022": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "americas",
+  "cluster": "s1_recife_2022",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_recife_2022.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_recife_2022.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2022 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2022-05-28",
+  "images": [
+   "2022-05-28"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   -8.074495,
+   -34.983523
+  ],
+  "bbox": [
+   -35.001669,
+   -8.092461,
+   -34.965377,
+   -8.056529
+  ],
+  "grid": {
+   "crs": "EPSG:32725",
+   "transform": [
+    30.0,
+    0.0,
+    279390.0,
+    0.0,
+    -30.0,
+    9108960.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 271,
+  "dry": 17834,
+  "unobserved": 120
+ },
+ "s1_abidjan_2018": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "africa",
+  "cluster": "s1_abidjan_2018",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_abidjan_2018.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_abidjan_2018.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2018 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2018-06-19",
+  "images": [
+   "2018-06-30"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 11,
+  "lag_days_max": 11,
+  "centre": [
+   5.338786,
+   -4.00888
+  ],
+  "bbox": [
+   -4.026925,
+   5.32082,
+   -3.990835,
+   5.356752
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    386190.0,
+    0.0,
+    -30.0,
+    592200.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 237,
+  "dry": 16384,
+  "unobserved": 1334
+ },
+ "s1_portauprince_2023": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "americas",
+  "cluster": "s1_portauprince_2023",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_portauprince_2023.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_portauprince_2023.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2023 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2023-06-03",
+  "images": [
+   "2023-06-03"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   18.570742,
+   -72.285372
+  ],
+  "bbox": [
+   -72.304325,
+   18.552776,
+   -72.266419,
+   18.588708
+  ],
+  "grid": {
+   "crs": "EPSG:32618",
+   "transform": [
+    30.0,
+    0.0,
+    784470.0,
+    0.0,
+    -30.0,
+    2057520.0
+   ],
+   "shape": [
+    135,
+    137
+   ]
+  },
+  "flooded": 100,
+  "dry": 18395,
+  "unobserved": 0
+ },
+ "s1_lagos_2021": {
+  "role": "r2_test",
+  "tags": [
+   "pluvial"
+  ],
+  "region": "africa",
+  "cluster": "s1_lagos_2021",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_lagos_2021.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_lagos_2021.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2021 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2021-07-10",
+  "images": [
+   "2021-07-12"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 2,
+  "lag_days_max": 2,
+  "centre": [
+   6.52057,
+   3.368983
+  ],
+  "bbox": [
+   3.3509,
+   6.502604,
+   3.387066,
+   6.538536
+  ],
+  "grid": {
+   "crs": "EPSG:32631",
+   "transform": [
+    30.0,
+    0.0,
+    538770.0,
+    0.0,
+    -30.0,
+    722760.0
+   ],
+   "shape": [
+    133,
+    135
+   ]
+  },
+  "flooded": 342,
+  "dry": 17613,
+  "unobserved": 0
+ },
+ "s1_budalangi_2020": {
+  "role": "r2_test",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "africa",
+  "cluster": "s1_budalangi_2020",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_budalangi_2020.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_budalangi_2020.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2020 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2020-05-15",
+  "images": [
+   "2020-05-16"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   0.08674,
+   34.040933
+  ],
+  "bbox": [
+   34.022967,
+   0.068774,
+   34.058899,
+   0.104706
+  ],
+  "grid": {
+   "crs": "EPSG:32636",
+   "transform": [
+    30.0,
+    0.0,
+    613830.0,
+    0.0,
+    -30.0,
+    11580.0
+   ],
+   "shape": [
+    133,
+    134
+   ]
+  },
+  "flooded": 4876,
+  "dry": 12945,
+  "unobserved": 1
+ },
+ "s1_battambang_2020": {
+  "role": "r2_test",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "southeast_asia",
+  "cluster": "s1_battambang_2020",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_battambang_2020.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_battambang_2020.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2020 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2020-10-20",
+  "images": [
+   "2020-10-20"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 0,
+  "lag_days_max": 0,
+  "centre": [
+   13.123455,
+   103.173455
+  ],
+  "bbox": [
+   103.155007,
+   13.105489,
+   103.191903,
+   13.141421
+  ],
+  "grid": {
+   "crs": "EPSG:32648",
+   "transform": [
+    30.0,
+    0.0,
+    299970.0,
+    0.0,
+    -30.0,
+    1453530.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 4400,
+  "dry": 13825,
+  "unobserved": 0
+ },
+ "s1_ayutthaya_2021": {
+  "role": "r2_test",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "southeast_asia",
+  "cluster": "s1_ayutthaya_2021",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_ayutthaya_2021.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_ayutthaya_2021.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2021 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2021-10-05",
+  "images": [
+   "2021-10-08"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 3,
+  "lag_days_max": 3,
+  "centre": [
+   14.339842,
+   100.554452
+  ],
+  "bbox": [
+   100.535908,
+   14.321876,
+   100.572996,
+   14.357808
+  ],
+  "grid": {
+   "crs": "EPSG:32647",
+   "transform": [
+    30.0,
+    0.0,
+    665610.0,
+    0.0,
+    -30.0,
+    1587900.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 1057,
+  "dry": 16896,
+  "unobserved": 272
+ },
+ "s1_khuzestan_2019": {
+  "role": "r2_test",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "africa_west_asia",
+  "cluster": "s1_khuzestan_2019",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_khuzestan_2019.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_khuzestan_2019.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2019 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2019-04-15",
+  "images": [
+   "2019-04-20"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 5,
+  "lag_days_max": 5,
+  "centre": [
+   31.329153,
+   48.650683
+  ],
+  "bbox": [
+   48.62965,
+   31.311187,
+   48.671716,
+   31.347119
+  ],
+  "grid": {
+   "crs": "EPSG:32639",
+   "transform": [
+    30.0,
+    0.0,
+    274410.0,
+    0.0,
+    -30.0,
+    3470520.0
+   ],
+   "shape": [
+    137,
+    137
+   ]
+  },
+  "flooded": 565,
+  "dry": 18050,
+  "unobserved": 154
+ },
+ "s1_kebbi_2020": {
+  "role": "r2_test",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "africa",
+  "cluster": "s1_kebbi_2020",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_kebbi_2020.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_kebbi_2020.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2020 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2020-09-15",
+  "images": [
+   "2020-09-22"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 7,
+  "lag_days_max": 7,
+  "centre": [
+   12.494805,
+   4.196236
+  ],
+  "bbox": [
+   4.177834,
+   12.476839,
+   4.214638,
+   12.512771
+  ],
+  "grid": {
+   "crs": "EPSG:32631",
+   "transform": [
+    30.0,
+    0.0,
+    627960.0,
+    0.0,
+    -30.0,
+    1383570.0
+   ],
+   "shape": [
+    134,
+    135
+   ]
+  },
+  "flooded": 11682,
+  "dry": 6408,
+  "unobserved": 0
+ },
+ "s1_mopti_2024": {
+  "role": "r2_test",
+  "tags": [
+   "waterlogging"
+  ],
+  "region": "africa",
+  "cluster": "s1_mopti_2024",
+  "table": "~/.cache/geowatch/flood_round2/heldout/tables_r2/s1_mopti_2024.npz",
+  "ref_path": "~/.cache/geowatch/flood_round2/heldout/refs/s1_mopti_2024.npz",
+  "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2024 Jan-Mar median",
+  "kind": "s1_vvdrop",
+  "event": "2024-09-20",
+  "images": [
+   "2024-09-21"
+  ],
+  "sensors": [
+   "Sentinel-1"
+  ],
+  "lag_days_min": 1,
+  "lag_days_max": 1,
+  "centre": [
+   14.466661,
+   -4.197057
+  ],
+  "bbox": [
+   -4.215612,
+   14.448695,
+   -4.178502,
+   14.484627
+  ],
+  "grid": {
+   "crs": "EPSG:32630",
+   "transform": [
+    30.0,
+    0.0,
+    368970.0,
+    0.0,
+    -30.0,
+    1601700.0
+   ],
+   "shape": [
+    135,
+    135
+   ]
+  },
+  "flooded": 5855,
+  "dry": 11006,
+  "unobserved": 1364
+ }
+}

@@ -1,0 +1,2224 @@
+{
+ "assam_2026": {
+  "event": "2026-07-20",
+  "rain_peak_day": "2026-07-11",
+  "peak_minus_event_days": -9,
+  "image_minus_rain_peak_days": 11,
+  "peak_3day_mm": 56.0,
+  "total_mm": 243.1,
+  "max_day_mm": 27.2,
+  "tags": [
+   "fluvial",
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "bad_neuenahr": {
+  "event": "2021-07-14",
+  "rain_peak_day": "2021-07-13",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 81.5,
+  "total_mm": 130.4,
+  "max_day_mm": 69.7,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "beira": {
+  "event": "2019-03-15",
+  "rain_peak_day": "2019-03-15",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 171.8,
+  "total_mm": 217.7,
+  "max_day_mm": 80.3,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "belize_city": {
+  "event": "2024-11-15",
+  "rain_peak_day": "2024-11-16",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 229.2,
+  "total_mm": 292.5,
+  "max_day_mm": 125.6,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "bihar_2026": {
+  "event": "2026-09-11",
+  "rain_peak_day": "2026-09-01",
+  "peak_minus_event_days": -10,
+  "image_minus_rain_peak_days": 11,
+  "peak_3day_mm": 27.9,
+  "total_mm": 103.0,
+  "max_day_mm": 20.2,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "black_river": {
+  "event": "2025-10-28",
+  "rain_peak_day": "2025-10-28",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 0,
+  "peak_3day_mm": 334.4,
+  "total_mm": 441.3,
+  "max_day_mm": 245.6,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "ems"
+ },
+ "choloma": {
+  "event": "2024-11-16",
+  "rain_peak_day": "2024-11-16",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 306.4,
+  "total_mm": 369.4,
+  "max_day_mm": 161.4,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "derna": {
+  "event": "2023-09-11",
+  "rain_peak_day": "2023-09-10",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 106.9,
+  "total_mm": 119.1,
+  "max_day_mm": 83.1,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "derna_2023": {
+  "event": "2023-09-11",
+  "rain_peak_day": "2023-09-10",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 107.8,
+  "total_mm": 120.0,
+  "max_day_mm": 82.2,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "dharavi": {
+  "event": "2017-08-29",
+  "rain_peak_day": "2017-08-28",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 263.5,
+  "total_mm": 471.8,
+  "max_day_mm": 130.7,
+  "tags": [
+   "pluvial",
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "dubai_2024": {
+  "event": "2024-04-16",
+  "rain_peak_day": "2024-04-16",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 8,
+  "peak_3day_mm": 119.0,
+  "total_mm": 120.3,
+  "max_day_mm": 101.5,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "emsr662_aoi01": {
+  "event": "2023-05-11",
+  "rain_peak_day": "2023-04-30",
+  "peak_minus_event_days": -11,
+  "image_minus_rain_peak_days": 14,
+  "peak_3day_mm": 74.3,
+  "total_mm": 100.6,
+  "max_day_mm": 35.9,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr664_aoi02": {
+  "event": "2023-05-16",
+  "rain_peak_day": "2023-05-17",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 95.9,
+  "total_mm": 221.5,
+  "max_day_mm": 62.9,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr664_aoi03": {
+  "event": "2023-05-16",
+  "rain_peak_day": "2023-05-17",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 5,
+  "peak_3day_mm": 93.0,
+  "total_mm": 203.9,
+  "max_day_mm": 62.9,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr664_aoi07": {
+  "event": "2023-05-16",
+  "rain_peak_day": "2023-05-17",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 94.0,
+  "total_mm": 203.5,
+  "max_day_mm": 67.5,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr680_aoi04": {
+  "event": "2023-08-04",
+  "rain_peak_day": "2023-07-25",
+  "peak_minus_event_days": -10,
+  "image_minus_rain_peak_days": 11,
+  "peak_3day_mm": 47.1,
+  "total_mm": 155.7,
+  "max_day_mm": 36.9,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "emsr680_aoi07": {
+  "event": "2023-08-04",
+  "rain_peak_day": "2023-08-04",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 144.0,
+  "total_mm": 264.9,
+  "max_day_mm": 96.4,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "emsr680_aoi13": {
+  "event": "2023-08-04",
+  "rain_peak_day": "2023-07-25",
+  "peak_minus_event_days": -10,
+  "image_minus_rain_peak_days": 17,
+  "peak_3day_mm": 44.7,
+  "total_mm": 148.1,
+  "max_day_mm": 35.8,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "emsr694_aoi02": {
+  "event": "2023-09-03",
+  "rain_peak_day": "2023-09-03",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 5,
+  "peak_3day_mm": 73.2,
+  "total_mm": 75.8,
+  "max_day_mm": 50.7,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr694_aoi03": {
+  "event": "2023-09-03",
+  "rain_peak_day": "2023-09-03",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 5,
+  "peak_3day_mm": 73.1,
+  "total_mm": 76.2,
+  "max_day_mm": 38.6,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr697_aoi01": {
+  "event": "2023-09-27",
+  "rain_peak_day": "2023-09-26",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 77.2,
+  "total_mm": 85.0,
+  "max_day_mm": 40.4,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr705_aoi03": {
+  "event": "2023-11-02",
+  "rain_peak_day": "2023-11-03",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 93.7,
+  "total_mm": 244.7,
+  "max_day_mm": 81.4,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "emsr711_aoi01": {
+  "event": "2023-12-14",
+  "rain_peak_day": "2023-12-11",
+  "peak_minus_event_days": -3,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 55.7,
+  "total_mm": 119.0,
+  "max_day_mm": 25.3,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr711_aoi02": {
+  "event": "2023-12-14",
+  "rain_peak_day": "2023-12-11",
+  "peak_minus_event_days": -3,
+  "image_minus_rain_peak_days": 5,
+  "peak_3day_mm": 55.8,
+  "total_mm": 119.8,
+  "max_day_mm": 24.7,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr711_aoi03": {
+  "event": "2023-12-14",
+  "rain_peak_day": "2023-12-11",
+  "peak_minus_event_days": -3,
+  "image_minus_rain_peak_days": 5,
+  "peak_3day_mm": 56.9,
+  "total_mm": 110.5,
+  "max_day_mm": 25.2,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr757_aoi01": {
+  "event": "2024-09-13",
+  "rain_peak_day": "2024-09-14",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 115.0,
+  "total_mm": 177.3,
+  "max_day_mm": 46.2,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr757_aoi02": {
+  "event": "2024-09-13",
+  "rain_peak_day": "2024-09-14",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 120.4,
+  "total_mm": 183.6,
+  "max_day_mm": 42.7,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr761_aoi01": {
+  "event": "2024-09-18",
+  "rain_peak_day": "2024-09-13",
+  "peak_minus_event_days": -5,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 42.7,
+  "total_mm": 80.5,
+  "max_day_mm": 29.4,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr762_aoi02": {
+  "event": "2024-09-18",
+  "rain_peak_day": "2024-09-08",
+  "peak_minus_event_days": -10,
+  "image_minus_rain_peak_days": 11,
+  "peak_3day_mm": 67.3,
+  "total_mm": 162.8,
+  "max_day_mm": 64.3,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr762_aoi04": {
+  "event": "2024-09-18",
+  "rain_peak_day": "2024-09-08",
+  "peak_minus_event_days": -10,
+  "image_minus_rain_peak_days": 14,
+  "peak_3day_mm": 68.6,
+  "total_mm": 161.8,
+  "max_day_mm": 65.9,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr762_aoi06": {
+  "event": "2024-09-18",
+  "rain_peak_day": "2024-09-18",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 71.1,
+  "total_mm": 169.0,
+  "max_day_mm": 45.3,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr770_aoi01": {
+  "event": "2024-10-04",
+  "rain_peak_day": "2024-10-04",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 83.0,
+  "total_mm": 96.4,
+  "max_day_mm": 47.9,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "emsr770_aoi03": {
+  "event": "2024-10-04",
+  "rain_peak_day": "2024-10-04",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 78.2,
+  "total_mm": 97.9,
+  "max_day_mm": 42.4,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "emsr774_aoi01": {
+  "event": "2024-10-28",
+  "rain_peak_day": "2024-10-21",
+  "peak_minus_event_days": -7,
+  "image_minus_rain_peak_days": 8,
+  "peak_3day_mm": 284.3,
+  "total_mm": 360.0,
+  "max_day_mm": 137.0,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr774_aoi02": {
+  "event": "2024-10-28",
+  "rain_peak_day": "2024-10-20",
+  "peak_minus_event_days": -8,
+  "image_minus_rain_peak_days": 12,
+  "peak_3day_mm": 195.2,
+  "total_mm": 292.0,
+  "max_day_mm": 104.4,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr776_aoi01": {
+  "event": "2024-11-04",
+  "rain_peak_day": "2024-11-03",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 288.5,
+  "total_mm": 475.3,
+  "max_day_mm": 151.0,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr779_aoi01": {
+  "event": "2024-11-21",
+  "rain_peak_day": "2024-11-07",
+  "peak_minus_event_days": -14,
+  "image_minus_rain_peak_days": 16,
+  "peak_3day_mm": 0.0,
+  "total_mm": 0.0,
+  "max_day_mm": 0.0,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "ems"
+ },
+ "emsr779_aoi02": {
+  "event": "2024-11-21",
+  "rain_peak_day": "2024-11-08",
+  "peak_minus_event_days": -13,
+  "image_minus_rain_peak_days": 15,
+  "peak_3day_mm": 1.4,
+  "total_mm": 1.7,
+  "max_day_mm": 0.7,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "ems"
+ },
+ "emsr779_aoi03": {
+  "event": "2024-11-21",
+  "rain_peak_day": "2024-11-08",
+  "peak_minus_event_days": -13,
+  "image_minus_rain_peak_days": 15,
+  "peak_3day_mm": 4.2,
+  "total_mm": 6.9,
+  "max_day_mm": 2.3,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "ems"
+ },
+ "emsr799_aoi02": {
+  "event": "2025-04-04",
+  "rain_peak_day": "2025-04-06",
+  "peak_minus_event_days": 2,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 18.2,
+  "total_mm": 51.2,
+  "max_day_mm": 9.4,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "ems"
+ },
+ "emsr799_aoi03": {
+  "event": "2025-04-04",
+  "rain_peak_day": "2025-03-31",
+  "peak_minus_event_days": -4,
+  "image_minus_rain_peak_days": 12,
+  "peak_3day_mm": 66.0,
+  "total_mm": 139.1,
+  "max_day_mm": 45.7,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "ems"
+ },
+ "emsr799_aoi04": {
+  "event": "2025-04-04",
+  "rain_peak_day": "2025-04-04",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 8,
+  "peak_3day_mm": 24.0,
+  "total_mm": 44.4,
+  "max_day_mm": 13.0,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "ems"
+ },
+ "emsr813_aoi01": {
+  "event": "2025-07-03",
+  "rain_peak_day": "2025-06-26",
+  "peak_minus_event_days": -7,
+  "image_minus_rain_peak_days": 18,
+  "peak_3day_mm": 51.8,
+  "total_mm": 92.2,
+  "max_day_mm": 29.1,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "emsr838_aoi01": {
+  "event": "2025-08-29",
+  "rain_peak_day": "2025-08-30",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": -2,
+  "peak_3day_mm": 168.9,
+  "total_mm": 251.7,
+  "max_day_mm": 147.4,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr838_aoi03": {
+  "event": "2025-08-29",
+  "rain_peak_day": "2025-08-30",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": -2,
+  "peak_3day_mm": 38.3,
+  "total_mm": 59.7,
+  "max_day_mm": 18.3,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr838_aoi07": {
+  "event": "2025-08-29",
+  "rain_peak_day": "2025-08-23",
+  "peak_minus_event_days": -6,
+  "image_minus_rain_peak_days": 8,
+  "peak_3day_mm": 39.3,
+  "total_mm": 69.2,
+  "max_day_mm": 30.1,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr844_aoi01": {
+  "event": "2025-10-08",
+  "rain_peak_day": "2025-10-06",
+  "peak_minus_event_days": -2,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 395.8,
+  "total_mm": 611.4,
+  "max_day_mm": 235.3,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr853_aoi02": {
+  "event": "2025-12-13",
+  "rain_peak_day": "2025-12-07",
+  "peak_minus_event_days": -6,
+  "image_minus_rain_peak_days": 10,
+  "peak_3day_mm": 95.1,
+  "total_mm": 179.3,
+  "max_day_mm": 79.6,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr853_aoi04": {
+  "event": "2025-12-13",
+  "rain_peak_day": "2025-12-12",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 132.6,
+  "total_mm": 300.6,
+  "max_day_mm": 131.6,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr853_aoi08": {
+  "event": "2025-12-13",
+  "rain_peak_day": "2025-12-15",
+  "peak_minus_event_days": 2,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 87.7,
+  "total_mm": 165.6,
+  "max_day_mm": 87.7,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr865_aoi01": {
+  "event": "2026-01-26",
+  "rain_peak_day": "2026-01-15",
+  "peak_minus_event_days": -11,
+  "image_minus_rain_peak_days": 18,
+  "peak_3day_mm": 16.6,
+  "total_mm": 37.3,
+  "max_day_mm": 10.3,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr868_aoi01": {
+  "event": "2026-02-18",
+  "rain_peak_day": "2026-02-16",
+  "peak_minus_event_days": -2,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 54.8,
+  "total_mm": 152.0,
+  "max_day_mm": 37.3,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr868_aoi02": {
+  "event": "2026-02-18",
+  "rain_peak_day": "2026-02-20",
+  "peak_minus_event_days": 2,
+  "image_minus_rain_peak_days": -1,
+  "peak_3day_mm": 84.2,
+  "total_mm": 241.9,
+  "max_day_mm": 49.9,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr870_aoi05": {
+  "event": "2026-03-02",
+  "rain_peak_day": "2026-02-24",
+  "peak_minus_event_days": -6,
+  "image_minus_rain_peak_days": 13,
+  "peak_3day_mm": 73.5,
+  "total_mm": 291.4,
+  "max_day_mm": 50.2,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "emsr870_aoi08": {
+  "event": "2026-03-02",
+  "rain_peak_day": "2026-03-02",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 11,
+  "peak_3day_mm": 165.3,
+  "total_mm": 534.0,
+  "max_day_mm": 102.5,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "emsr870_aoi13": {
+  "event": "2026-03-02",
+  "rain_peak_day": "2026-03-02",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 17,
+  "peak_3day_mm": 180.9,
+  "total_mm": 573.0,
+  "max_day_mm": 105.3,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "emsr935_aoi01": {
+  "event": "2026-10-19",
+  "rain_peak_day": "2026-10-19",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 134.9,
+  "total_mm": 151.7,
+  "max_day_mm": 94.1,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "emsr935_aoi02": {
+  "event": "2026-10-19",
+  "rain_peak_day": "2026-10-19",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 133.5,
+  "total_mm": 148.0,
+  "max_day_mm": 90.6,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "encantado": {
+  "event": "2024-05-02",
+  "rain_peak_day": "2024-05-01",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 387.3,
+  "total_mm": 554.5,
+  "max_day_mm": 137.6,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "faenza": {
+  "event": "2023-05-02",
+  "rain_peak_day": "2023-05-02",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 40.1,
+  "total_mm": 62.1,
+  "max_day_mm": 19.9,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "fort_myers_beach": {
+  "event": "2022-09-28",
+  "rain_peak_day": "2022-09-27",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 5,
+  "peak_3day_mm": 185.1,
+  "total_mm": 241.9,
+  "max_day_mm": 118.2,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "hai_phong": {
+  "event": "2024-09-07",
+  "rain_peak_day": "2024-09-06",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 8,
+  "peak_3day_mm": 249.8,
+  "total_mm": 457.2,
+  "max_day_mm": 164.7,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "hanoi": {
+  "event": "2024-09-09",
+  "rain_peak_day": "2024-09-08",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 231.2,
+  "total_mm": 380.5,
+  "max_day_mm": 107.4,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "himachal_2023": {
+  "event": "2023-07-10",
+  "rain_peak_day": "2023-07-09",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 334.1,
+  "total_mm": 408.3,
+  "max_day_mm": 137.5,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "kerala_2018": {
+  "event": "2018-08-16",
+  "rain_peak_day": "2018-08-15",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 193.7,
+  "total_mm": 418.6,
+  "max_day_mm": 81.0,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "kolonnawa": {
+  "event": "2025-11-30",
+  "rain_peak_day": "2025-11-27",
+  "peak_minus_event_days": -3,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 150.8,
+  "total_mm": 314.1,
+  "max_day_mm": 75.8,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "kyaukpyu": {
+  "event": "2023-05-14",
+  "rain_peak_day": "2023-05-13",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 114.9,
+  "total_mm": 123.7,
+  "max_day_mm": 62.0,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "ems"
+ },
+ "milagro": {
+  "event": "2025-02-26",
+  "rain_peak_day": "2025-02-27",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 37,
+  "peak_3day_mm": 118.6,
+  "total_mm": 396.5,
+  "max_day_mm": 61.8,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "nam_dinh": {
+  "event": "2024-09-09",
+  "rain_peak_day": "2024-09-08",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 317.0,
+  "total_mm": 533.6,
+  "max_day_mm": 173.2,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "ems"
+ },
+ "paiporta": {
+  "event": "2024-10-29",
+  "rain_peak_day": "2024-10-28",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 57.2,
+  "total_mm": 113.0,
+  "max_day_mm": 52.9,
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "pakistan_2022": {
+  "event": "2022-08-31",
+  "rain_peak_day": "2022-08-21",
+  "peak_minus_event_days": -10,
+  "image_minus_rain_peak_days": null,
+  "peak_3day_mm": 240.7,
+  "total_mm": 605.3,
+  "max_day_mm": 120.1,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "unosat"
+ },
+ "r_emsr657_aoi01": {
+  "event": "2023-03-30",
+  "rain_peak_day": "2023-03-24",
+  "peak_minus_event_days": -6,
+  "image_minus_rain_peak_days": 8,
+  "peak_3day_mm": 32.5,
+  "total_mm": 39.7,
+  "max_day_mm": 23.0,
+  "tags": [
+   "fluvial",
+   "snowmelt"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr663_aoi01": {
+  "event": "2023-03-12",
+  "rain_peak_day": "2023-03-13",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 66,
+  "peak_3day_mm": 208.2,
+  "total_mm": 297.8,
+  "max_day_mm": 92.2,
+  "tags": [
+   "compound"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr668_aoi02": {
+  "event": "2023-05-22",
+  "rain_peak_day": "2023-05-23",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 0,
+  "peak_3day_mm": 6.9,
+  "total_mm": 13.8,
+  "max_day_mm": 5.3,
+  "tags": [
+   "fluvial",
+   "snowmelt"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr684_aoi01": {
+  "event": "2023-08-15",
+  "rain_peak_day": "2023-08-06",
+  "peak_minus_event_days": -9,
+  "image_minus_rain_peak_days": 11,
+  "peak_3day_mm": 51.1,
+  "total_mm": 132.8,
+  "max_day_mm": 26.9,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr684_aoi05": {
+  "event": "2023-08-15",
+  "rain_peak_day": "2023-08-07",
+  "peak_minus_event_days": -8,
+  "image_minus_rain_peak_days": 9,
+  "peak_3day_mm": 44.4,
+  "total_mm": 136.9,
+  "max_day_mm": 20.8,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr698_aoi01": {
+  "event": "2023-10-07",
+  "rain_peak_day": "2023-10-07",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 138.4,
+  "total_mm": 205.1,
+  "max_day_mm": 71.3,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr698_aoi02": {
+  "event": "2023-10-07",
+  "rain_peak_day": "2023-10-07",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 149.9,
+  "total_mm": 208.2,
+  "max_day_mm": 70.1,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr703_aoi01": {
+  "event": "2023-10-25",
+  "rain_peak_day": "2023-10-24",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 99.4,
+  "total_mm": 127.3,
+  "max_day_mm": 80.4,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr703_aoi02": {
+  "event": "2023-10-25",
+  "rain_peak_day": "2023-10-24",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 83.3,
+  "total_mm": 105.7,
+  "max_day_mm": 70.0,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr712_aoi02": {
+  "event": "2023-12-24",
+  "rain_peak_day": "2023-12-24",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 50.1,
+  "total_mm": 137.8,
+  "max_day_mm": 25.3,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr721_aoi01": {
+  "event": "2024-05-14",
+  "rain_peak_day": "2024-05-15",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 80.0,
+  "total_mm": 157.8,
+  "max_day_mm": 51.8,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr722_aoi01": {
+  "event": "2024-05-17",
+  "rain_peak_day": "2024-05-16",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 84.6,
+  "total_mm": 135.8,
+  "max_day_mm": 49.3,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr722_aoi02": {
+  "event": "2024-05-17",
+  "rain_peak_day": "2024-05-16",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 95.0,
+  "total_mm": 129.7,
+  "max_day_mm": 63.3,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr728_aoi01": {
+  "event": "2024-05-31",
+  "rain_peak_day": "2024-06-01",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 0,
+  "peak_3day_mm": 66.3,
+  "total_mm": 164.2,
+  "max_day_mm": 26.4,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr728_aoi03": {
+  "event": "2024-05-31",
+  "rain_peak_day": "2024-06-01",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 45.7,
+  "total_mm": 173.0,
+  "max_day_mm": 23.1,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr734_aoi17": {
+  "event": "2024-07-01",
+  "rain_peak_day": "2024-06-18",
+  "peak_minus_event_days": -13,
+  "image_minus_rain_peak_days": 19,
+  "peak_3day_mm": 100.3,
+  "total_mm": 265.9,
+  "max_day_mm": 66.7,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr742_aoi01": {
+  "event": "2024-07-28",
+  "rain_peak_day": "2024-07-28",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 93.7,
+  "total_mm": 123.6,
+  "max_day_mm": 56.4,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr742_aoi03": {
+  "event": "2024-07-28",
+  "rain_peak_day": "2024-07-28",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 7,
+  "peak_3day_mm": 91.3,
+  "total_mm": 123.6,
+  "max_day_mm": 50.5,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr750_aoi01": {
+  "event": "2024-08-25",
+  "rain_peak_day": "2024-08-23",
+  "peak_minus_event_days": -2,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 8.2,
+  "total_mm": 8.7,
+  "max_day_mm": 5.0,
+  "tags": [
+   "flash_flood",
+   "dam_breach"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr750_aoi02": {
+  "event": "2024-08-25",
+  "rain_peak_day": "2024-08-23",
+  "peak_minus_event_days": -2,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 9.0,
+  "total_mm": 9.4,
+  "max_day_mm": 4.8,
+  "tags": [
+   "flash_flood",
+   "dam_breach"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr780_aoi08": {
+  "event": "2024-12-14",
+  "rain_peak_day": "2024-12-14",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 59.9,
+  "total_mm": 83.2,
+  "max_day_mm": 55.2,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr781_aoi01": {
+  "event": "2024-12-15",
+  "rain_peak_day": "2024-12-15",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 107.0,
+  "total_mm": 110.1,
+  "max_day_mm": 87.6,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr790_aoi02": {
+  "event": "2025-02-27",
+  "rain_peak_day": "2025-02-27",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 175.1,
+  "total_mm": 260.0,
+  "max_day_mm": 135.4,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr793_aoi01": {
+  "event": "2025-03-10",
+  "rain_peak_day": "2025-03-10",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 320.7,
+  "total_mm": 399.7,
+  "max_day_mm": 181.1,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr793_aoi02": {
+  "event": "2025-03-10",
+  "rain_peak_day": "2025-03-10",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 279.6,
+  "total_mm": 382.0,
+  "max_day_mm": 159.2,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr795_aoi02": {
+  "event": "2025-03-14",
+  "rain_peak_day": "2025-03-13",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 107.8,
+  "total_mm": 139.2,
+  "max_day_mm": 67.6,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr795_aoi06": {
+  "event": "2025-03-14",
+  "rain_peak_day": "2025-03-13",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 101.6,
+  "total_mm": 146.3,
+  "max_day_mm": 57.8,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr802_aoi01": {
+  "event": "2025-05-26",
+  "rain_peak_day": "2025-05-26",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 81.9,
+  "total_mm": 156.8,
+  "max_day_mm": 31.4,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr802_aoi02": {
+  "event": "2025-05-26",
+  "rain_peak_day": "2025-05-26",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 71.8,
+  "total_mm": 143.9,
+  "max_day_mm": 30.8,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr805_aoi01": {
+  "event": "2025-06-19",
+  "rain_peak_day": "2025-06-13",
+  "peak_minus_event_days": -6,
+  "image_minus_rain_peak_days": 8,
+  "peak_3day_mm": 146.5,
+  "total_mm": 357.6,
+  "max_day_mm": 85.0,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr805_aoi03": {
+  "event": "2025-06-19",
+  "rain_peak_day": "2025-06-18",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 169.6,
+  "total_mm": 385.8,
+  "max_day_mm": 94.2,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr845_aoi02": {
+  "event": "2025-10-12",
+  "rain_peak_day": "2025-10-08",
+  "peak_minus_event_days": -4,
+  "image_minus_rain_peak_days": 10,
+  "peak_3day_mm": 341.5,
+  "total_mm": 403.3,
+  "max_day_mm": 221.3,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr845_aoi03": {
+  "event": "2025-10-12",
+  "rain_peak_day": "2025-10-09",
+  "peak_minus_event_days": -3,
+  "image_minus_rain_peak_days": 10,
+  "peak_3day_mm": 328.8,
+  "total_mm": 384.6,
+  "max_day_mm": 197.2,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr849_aoi01": {
+  "event": "2025-11-14",
+  "rain_peak_day": "2025-11-12",
+  "peak_minus_event_days": -2,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 70.8,
+  "total_mm": 145.9,
+  "max_day_mm": 44.2,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr849_aoi02": {
+  "event": "2025-11-14",
+  "rain_peak_day": "2025-11-12",
+  "peak_minus_event_days": -2,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 50.1,
+  "total_mm": 125.5,
+  "max_day_mm": 30.1,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr850_aoi02": {
+  "event": "2025-11-18",
+  "rain_peak_day": "2025-11-19",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 215.0,
+  "total_mm": 405.1,
+  "max_day_mm": 95.1,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr850_aoi03": {
+  "event": "2025-11-18",
+  "rain_peak_day": "2025-11-18",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 133.0,
+  "total_mm": 222.9,
+  "max_day_mm": 102.7,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr855_aoi01": {
+  "event": "2026-01-06",
+  "rain_peak_day": "2026-01-05",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 142.8,
+  "total_mm": 226.9,
+  "max_day_mm": 54.9,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr856_aoi01": {
+  "event": "2026-01-06",
+  "rain_peak_day": "2026-01-06",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 185.4,
+  "total_mm": 274.0,
+  "max_day_mm": 93.6,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr856_aoi02": {
+  "event": "2026-01-06",
+  "rain_peak_day": "2026-01-06",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 224.7,
+  "total_mm": 308.2,
+  "max_day_mm": 119.5,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr857_aoi01": {
+  "event": "2026-01-10",
+  "rain_peak_day": "2026-01-12",
+  "peak_minus_event_days": 2,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 97.4,
+  "total_mm": 150.1,
+  "max_day_mm": 51.8,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr857_aoi02": {
+  "event": "2026-01-10",
+  "rain_peak_day": "2026-01-12",
+  "peak_minus_event_days": 2,
+  "image_minus_rain_peak_days": 8,
+  "peak_3day_mm": 93.3,
+  "total_mm": 179.3,
+  "max_day_mm": 55.5,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr858_aoi08": {
+  "event": "2026-01-20",
+  "rain_peak_day": "2026-01-20",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 132.0,
+  "total_mm": 216.3,
+  "max_day_mm": 95.4,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr858_aoi10": {
+  "event": "2026-01-20",
+  "rain_peak_day": "2026-01-19",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 69.1,
+  "total_mm": 129.1,
+  "max_day_mm": 34.5,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr860_aoi02": {
+  "event": "2026-01-27",
+  "rain_peak_day": "2026-01-29",
+  "peak_minus_event_days": 2,
+  "image_minus_rain_peak_days": 0,
+  "peak_3day_mm": 26.4,
+  "total_mm": 88.4,
+  "max_day_mm": 22.9,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr863_aoi02": {
+  "event": "2026-01-30",
+  "rain_peak_day": "2026-01-17",
+  "peak_minus_event_days": -13,
+  "image_minus_rain_peak_days": 17,
+  "peak_3day_mm": 108.7,
+  "total_mm": 270.2,
+  "max_day_mm": 62.4,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr864_aoi01": {
+  "event": "2026-02-03",
+  "rain_peak_day": "2026-02-03",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 151.6,
+  "total_mm": 374.2,
+  "max_day_mm": 70.8,
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr864_aoi02": {
+  "event": "2026-02-03",
+  "rain_peak_day": "2026-02-03",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 140.1,
+  "total_mm": 357.1,
+  "max_day_mm": 71.7,
+  "tags": [
+   "compound",
+   "flash_flood"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr866_aoi02": {
+  "event": "2026-02-12",
+  "rain_peak_day": "2026-02-11",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 75.1,
+  "total_mm": 216.4,
+  "max_day_mm": 36.7,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr867_aoi01": {
+  "event": "2026-02-10",
+  "rain_peak_day": "2026-02-11",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 187.1,
+  "total_mm": 274.0,
+  "max_day_mm": 143.5,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr867_aoi03": {
+  "event": "2026-02-10",
+  "rain_peak_day": "2026-02-11",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 103.9,
+  "total_mm": 270.1,
+  "max_day_mm": 53.7,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr871_aoi01": {
+  "event": "2026-03-31",
+  "rain_peak_day": "2026-03-31",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 190.9,
+  "total_mm": 296.4,
+  "max_day_mm": 79.7,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "r_emsr871_aoi02": {
+  "event": "2026-03-31",
+  "rain_peak_day": "2026-03-31",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 201.0,
+  "total_mm": 333.7,
+  "max_day_mm": 87.2,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "ems"
+ },
+ "s1_abidjan_2018": {
+  "event": "2018-06-19",
+  "rain_peak_day": "2018-06-18",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 12,
+  "peak_3day_mm": 93.1,
+  "total_mm": 158.4,
+  "max_day_mm": 73.7,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_amphan_sundarbans_2020": {
+  "event": "2020-05-21",
+  "rain_peak_day": "2020-05-19",
+  "peak_minus_event_days": -2,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 107.4,
+  "total_mm": 114.2,
+  "max_day_mm": 66.6,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_antananarivo_2022": {
+  "event": "2022-01-18",
+  "rain_peak_day": "2022-01-10",
+  "peak_minus_event_days": -8,
+  "image_minus_rain_peak_days": 17,
+  "peak_3day_mm": 79.7,
+  "total_mm": 295.7,
+  "max_day_mm": 42.2,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_assam_morigaon_2024": {
+  "event": "2024-07-03",
+  "rain_peak_day": "2024-06-30",
+  "peak_minus_event_days": -3,
+  "image_minus_rain_peak_days": 11,
+  "peak_3day_mm": 123.9,
+  "total_mm": 338.1,
+  "max_day_mm": 62.6,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_auckland_2023": {
+  "event": "2023-01-27",
+  "rain_peak_day": "2023-01-28",
+  "peak_minus_event_days": 1,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 181.9,
+  "total_mm": 238.7,
+  "max_day_mm": 120.0,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_ayutthaya_2021": {
+  "event": "2021-10-05",
+  "rain_peak_day": "2021-09-24",
+  "peak_minus_event_days": -11,
+  "image_minus_rain_peak_days": 14,
+  "peak_3day_mm": 93.7,
+  "total_mm": 248.7,
+  "max_day_mm": 60.8,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_baghlan_2024": {
+  "event": "2024-05-11",
+  "rain_peak_day": "2024-04-28",
+  "peak_minus_event_days": -13,
+  "image_minus_rain_peak_days": 16,
+  "peak_3day_mm": 14.9,
+  "total_mm": 33.5,
+  "max_day_mm": 7.6,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_battambang_2020": {
+  "event": "2020-10-20",
+  "rain_peak_day": "2020-10-09",
+  "peak_minus_event_days": -11,
+  "image_minus_rain_peak_days": 11,
+  "peak_3day_mm": 124.4,
+  "total_mm": 270.8,
+  "max_day_mm": 74.5,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_bengaluru_2022": {
+  "event": "2022-09-05",
+  "rain_peak_day": "2022-08-26",
+  "peak_minus_event_days": -10,
+  "image_minus_rain_peak_days": 10,
+  "peak_3day_mm": 97.9,
+  "total_mm": 288.9,
+  "max_day_mm": 40.7,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_budalangi_2020": {
+  "event": "2020-05-15",
+  "rain_peak_day": "2020-05-10",
+  "peak_minus_event_days": -5,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 45.7,
+  "total_mm": 164.9,
+  "max_day_mm": 24.7,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_dana_kendrapara_2024": {
+  "event": "2024-10-25",
+  "rain_peak_day": "2024-10-24",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 230.2,
+  "total_mm": 244.3,
+  "max_day_mm": 118.0,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_durban_2022": {
+  "event": "2022-04-12",
+  "rain_peak_day": "2022-04-11",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 181.7,
+  "total_mm": 247.2,
+  "max_day_mm": 92.8,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_fani_puri_2019": {
+  "event": "2019-05-03",
+  "rain_peak_day": "2019-05-02",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 114.2,
+  "total_mm": 136.8,
+  "max_day_mm": 63.3,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_fortlauderdale_2023": {
+  "event": "2023-04-13",
+  "rain_peak_day": "2023-04-12",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 7,
+  "peak_3day_mm": 74.6,
+  "total_mm": 97.2,
+  "max_day_mm": 51.7,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_francine_terrebonne_2024": {
+  "event": "2024-09-12",
+  "rain_peak_day": "2024-09-06",
+  "peak_minus_event_days": -6,
+  "image_minus_rain_peak_days": 12,
+  "peak_3day_mm": 324.2,
+  "total_mm": 600.7,
+  "max_day_mm": 162.9,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_garsen_2023": {
+  "event": "2023-12-01",
+  "rain_peak_day": "2023-11-25",
+  "peak_minus_event_days": -6,
+  "image_minus_rain_peak_days": 9,
+  "peak_3day_mm": 50.3,
+  "total_mm": 142.9,
+  "max_day_mm": 28.8,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_helene_steinhatchee_2024": {
+  "event": "2024-09-27",
+  "rain_peak_day": "2024-09-26",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 12,
+  "peak_3day_mm": 164.8,
+  "total_mm": 228.2,
+  "max_day_mm": 73.7,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_hyderabad_2020": {
+  "event": "2020-10-14",
+  "rain_peak_day": "2020-10-12",
+  "peak_minus_event_days": -2,
+  "image_minus_rain_peak_days": 9,
+  "peak_3day_mm": 162.6,
+  "total_mm": 214.4,
+  "max_day_mm": 125.5,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_ida_lafitte_2021": {
+  "event": "2021-08-30",
+  "rain_peak_day": "2021-08-30",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 11,
+  "peak_3day_mm": 149.8,
+  "total_mm": 241.3,
+  "max_day_mm": 98.1,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_jeddah_2022": {
+  "event": "2022-11-24",
+  "rain_peak_day": "2022-11-24",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 5,
+  "peak_3day_mm": 63.1,
+  "total_mm": 63.9,
+  "max_day_mm": 62.2,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_jowhar_2023": {
+  "event": "2023-11-20",
+  "rain_peak_day": "2023-11-18",
+  "peak_minus_event_days": -2,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 20.2,
+  "total_mm": 69.5,
+  "max_day_mm": 10.1,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_kebbi_2020": {
+  "event": "2020-09-15",
+  "rain_peak_day": "2020-09-05",
+  "peak_minus_event_days": -10,
+  "image_minus_rain_peak_days": 17,
+  "peak_3day_mm": 70.9,
+  "total_mm": 191.7,
+  "max_day_mm": 45.5,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_kelantan_2024": {
+  "event": "2024-11-30",
+  "rain_peak_day": "2024-11-27",
+  "peak_minus_event_days": -3,
+  "image_minus_rain_peak_days": 8,
+  "peak_3day_mm": 408.6,
+  "total_mm": 908.1,
+  "max_day_mm": 163.8,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_khuzestan_2019": {
+  "event": "2019-04-15",
+  "rain_peak_day": "2019-04-17",
+  "peak_minus_event_days": 2,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 10.3,
+  "total_mm": 28.9,
+  "max_day_mm": 9.5,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_kinshasa_2022": {
+  "event": "2022-12-13",
+  "rain_peak_day": "2022-12-13",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 5,
+  "peak_3day_mm": 59.9,
+  "total_mm": 177.2,
+  "max_day_mm": 45.0,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_klang_2021": {
+  "event": "2021-12-18",
+  "rain_peak_day": "2021-12-17",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 290.8,
+  "total_mm": 411.5,
+  "max_day_mm": 189.2,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_lagos_2021": {
+  "event": "2021-07-10",
+  "rain_peak_day": "2021-06-27",
+  "peak_minus_event_days": -13,
+  "image_minus_rain_peak_days": 15,
+  "peak_3day_mm": 74.7,
+  "total_mm": 177.2,
+  "max_day_mm": 60.0,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_laura_cameron_2020": {
+  "event": "2020-08-27",
+  "rain_peak_day": "2020-08-27",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 0,
+  "peak_3day_mm": 106.5,
+  "total_mm": 133.7,
+  "max_day_mm": 78.1,
+  "tags": [
+   "coastal"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_lokoja_2022": {
+  "event": "2022-10-10",
+  "rain_peak_day": "2022-09-28",
+  "peak_minus_event_days": -12,
+  "image_minus_rain_peak_days": 15,
+  "peak_3day_mm": 34.1,
+  "total_mm": 136.0,
+  "max_day_mm": 23.1,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_mopti_2024": {
+  "event": "2024-09-20",
+  "rain_peak_day": "2024-09-22",
+  "peak_minus_event_days": 2,
+  "image_minus_rain_peak_days": -1,
+  "peak_3day_mm": 15.4,
+  "total_mm": 47.0,
+  "max_day_mm": 9.0,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_nairobi_2024": {
+  "event": "2024-04-24",
+  "rain_peak_day": "2024-04-21",
+  "peak_minus_event_days": -3,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 127.1,
+  "total_mm": 397.9,
+  "max_day_mm": 50.4,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_portauprince_2023": {
+  "event": "2023-06-03",
+  "rain_peak_day": "2023-06-02",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 144.9,
+  "total_mm": 247.3,
+  "max_day_mm": 142.5,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_recife_2022": {
+  "event": "2022-05-28",
+  "rain_peak_day": "2022-05-24",
+  "peak_minus_event_days": -4,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 197.6,
+  "total_mm": 350.1,
+  "max_day_mm": 128.1,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_remal_satkhira_2024": {
+  "event": "2024-05-27",
+  "rain_peak_day": "2024-05-26",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 5,
+  "peak_3day_mm": 111.7,
+  "total_mm": 169.5,
+  "max_day_mm": 51.6,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_seoul_2022": {
+  "event": "2022-08-08",
+  "rain_peak_day": "2022-08-08",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 1,
+  "peak_3day_mm": 188.1,
+  "total_mm": 328.5,
+  "max_day_mm": 98.5,
+  "tags": [
+   "pluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_sukhothai_2024": {
+  "event": "2024-09-01",
+  "rain_peak_day": "2024-08-28",
+  "peak_minus_event_days": -4,
+  "image_minus_rain_peak_days": 6,
+  "peak_3day_mm": 47.6,
+  "total_mm": 115.6,
+  "max_day_mm": 23.9,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_sunamganj_2024": {
+  "event": "2024-06-19",
+  "rain_peak_day": "2024-06-17",
+  "peak_minus_event_days": -2,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 384.6,
+  "total_mm": 931.5,
+  "max_day_mm": 145.1,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_tabasco_2020": {
+  "event": "2020-11-08",
+  "rain_peak_day": "2020-10-30",
+  "peak_minus_event_days": -9,
+  "image_minus_rain_peak_days": 10,
+  "peak_3day_mm": 285.2,
+  "total_mm": 400.3,
+  "max_day_mm": 224.2,
+  "tags": [
+   "fluvial"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_ubon_2022": {
+  "event": "2022-10-05",
+  "rain_peak_day": "2022-09-27",
+  "peak_minus_event_days": -8,
+  "image_minus_rain_peak_days": 8,
+  "peak_3day_mm": 157.8,
+  "total_mm": 364.3,
+  "max_day_mm": 96.5,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "s1_yenagoa_2022": {
+  "event": "2022-10-15",
+  "rain_peak_day": "2022-10-06",
+  "peak_minus_event_days": -9,
+  "image_minus_rain_peak_days": 12,
+  "peak_3day_mm": 50.3,
+  "total_mm": 153.3,
+  "max_day_mm": 27.4,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "s1_vvdrop"
+ },
+ "sittwe": {
+  "event": "2023-05-14",
+  "rain_peak_day": "2023-05-13",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 2,
+  "peak_3day_mm": 156.6,
+  "total_mm": 171.5,
+  "max_day_mm": 83.4,
+  "tags": [
+   "coastal",
+   "compound"
+  ],
+  "kind": "ems"
+ },
+ "sylhet_2022": {
+  "event": "2022-06-18",
+  "rain_peak_day": "2022-06-17",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": null,
+  "peak_3day_mm": 472.9,
+  "total_mm": 1100.2,
+  "max_day_mm": 194.6,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "unosat"
+ },
+ "thai_binh": {
+  "event": "2024-09-09",
+  "rain_peak_day": "2024-09-08",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 12,
+  "peak_3day_mm": 341.0,
+  "total_mm": 577.9,
+  "max_day_mm": 212.7,
+  "tags": [
+   "waterlogging"
+  ],
+  "kind": "ems"
+ },
+ "valencia_2024": {
+  "event": "2024-10-29",
+  "rain_peak_day": "2024-10-28",
+  "peak_minus_event_days": -1,
+  "image_minus_rain_peak_days": 3,
+  "peak_3day_mm": 73.4,
+  "total_mm": 119.8,
+  "max_day_mm": 69.9,
+  "tags": [
+   "compound",
+   "flash_flood",
+   "pluvial"
+  ],
+  "kind": "ems"
+ },
+ "volos": {
+  "event": "2023-09-05",
+  "rain_peak_day": "2023-09-05",
+  "peak_minus_event_days": 0,
+  "image_minus_rain_peak_days": 4,
+  "peak_3day_mm": 181.9,
+  "total_mm": 216.7,
+  "max_day_mm": 126.1,
+  "tags": [
+   "flash_flood"
+  ],
+  "kind": "ems"
+ }
+}

@@ -87,7 +87,11 @@ def run(d: str, poll_s: float = 0.25) -> dict:
              "v=$(awk '/VmHWM/{print $2}' /proc/$p/status 2>/dev/null); "
              "[ -n \"$v\" ] && [ \"$v\" -gt \"$hwm\" ] && hwm=$v; sleep 0.05; done; "
              "wait $p; rc=$?; echo \"VMHWM_KB=$hwm\"; exit $rc")
+    # Memory cap per container (8 GB Mac; one SFINCS job at a time). Does not
+    # change results; a run that needs more is killed, not swapped.
+    mem = os.environ.get("SFINCS_DOCKER_MEMORY", "3g")
     subprocess.run(["docker", "run", "-d", "--name", name, "--platform", "linux/amd64",
+                    "--memory", mem, "--memory-swap", mem,
                     "-v", f"{os.path.abspath(d)}:/data", "--entrypoint", "sh", IMAGE, "-c", probe],
                    check=True, capture_output=True)
     peak = 0.0
