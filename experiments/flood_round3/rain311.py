@@ -255,6 +255,61 @@ def reports(city, e) -> list:
     return [tuple(x) for x in json.load(open(p))]
 
 
+HIST_RADIUS_M = 150.0
+
+
+def history(city=None):
+    """Flood-category reports (lon, lat, day) before RESERVE_FROM: the causal "flood memory" feature's
+    only input. Nothing on or after the reserve start is fetched, so no reserve label is read."""
+    import numpy as np
+    for cty in ([city] if city else CITIES):
+        c = CITIES[cty]
+        p = os.path.join(CACHE, f"history_{cty}.npz")
+        if os.path.exists(p):
+            continue
+        kinds = ",".join("'" + k.replace("'", "''") + "'" for k in c["flood"])
+        lon, lat, day = [], [], []
+        for api in c["apis"]:
+            off = 0
+            while True:
+                page = _soql(api, {"$select": f"{c['time']},{c['lat']},{c['lon']}",
+                                   "$where": f"{c['kind']} in ({kinds}) AND {c['time']} >= '{c['since']}T00:00:00' AND "
+                                             f"{c['time']} < '{RESERVE_FROM}T00:00:00' AND {c['lat']} IS NOT NULL",
+                                   "$order": ":id", "$limit": 50000, "$offset": off})
+                for r in page:
+                    lon.append(float(r[c["lon"]])); lat.append(float(r[c["lat"]])); day.append(r[c["time"]][:10])
+                if len(page) < 50000:
+                    break
+                off += 50000
+                time.sleep(0.5)
+        d = np.array(day, dtype="datetime64[D]")
+        k = np.unique(np.c_[lon, lat, d.astype(np.int64)], axis=0)       # the two NYC APIs overlap at the seam
+        np.savez_compressed(p, lon=k[:, 0], lat=k[:, 1], day=k[:, 2].astype(np.int64))
+        print(cty, "history reports:", len(k), flush=True)
+    return 0
+
+
+def hist_feature(city, grid, before, radius_m=HIST_RADIUS_M):
+    """log1p(count of the city's flood reports within radius_m of each cell centre, dated strictly before
+    `before` (ISO day) and before RESERVE_FROM). grid = {crs, transform, shape}. Returns float32 cells."""
+    import numpy as np
+    from pyproj import Transformer
+    from scipy.spatial import cKDTree
+    z = np.load(os.path.join(CACHE, f"history_{city}.npz"))
+    cut = min(np.datetime64(before, "D"), np.datetime64(RESERVE_FROM, "D")).astype(np.int64)
+    m = z["day"] < cut
+    H, W = grid["shape"]
+    t = grid["transform"]
+    r, c = np.divmod(np.arange(H * W), W)
+    x, y = t[2] + (c + 0.5) * t[0], t[5] + (r + 0.5) * t[4]
+    if not m.any():
+        return np.zeros(H * W, np.float32)
+    X, Y = Transformer.from_crs(4326, grid["crs"], always_xy=True).transform(z["lon"][m], z["lat"][m])
+    T = cKDTree(np.c_[X, Y])
+    n = T.query_ball_point(np.c_[x, y], radius_m, return_length=True)
+    return np.log1p(n).astype(np.float32)
+
+
 def place_boxes(city, rep):
     """At build time: the lattice box with the most flood reports, then a second
     non-overlapping one with >= MIN_FLOODED (RAIN_311_DESIGN units)."""
@@ -336,7 +391,7 @@ def build_dev():
 def main(argv=None):
     import sys
     a = argv or sys.argv[1:]
-    return {"events": events, "drivers": drivers, "storms": storms, "build_dev": build_dev}[a[0]]()
+    return {"events": events, "drivers": drivers, "storms": storms, "history": history, "build_dev": build_dev}[a[0]]()
 
 
 if __name__ == "__main__":

@@ -264,6 +264,22 @@ DEV only, after R28. "Recurrence" asks: is a storm's flood report nearer (≤ 90
   - The product only has it where a city publishes report history; that limit is stated.
 - **Note on the check itself:** a first version scaled longitude per storm, which shifted storms by kilometres relative to each other and wrongly showed no recurrence in Chicago. The fixed version uses one scale per city.
 
+**Follow-up checks (same DEV units, per-unit AUC):**
+
+| feature | Chicago (24 units) median, range | NYC (4 units) median, range |
+|---|---|---|
+| 30 m elevation (the anchor) | 0.47, 0.35–0.56 | 0.67, 0.58–0.68 |
+| report history, all flood reports before the window and before 2022, 90 m (`rain311.hist_feature`) | 0.63, 0.57–0.75 | 0.76, 0.64–0.78 |
+| same, 150 m | 0.61 | 0.73 |
+| same, 300 m | 0.59 | 0.69 |
+| 10 m 3DEP lidar: height above the local minimum within 120 m | ≈ 0.55, 0.47–0.67 | 0.70, 0.69–0.82 |
+| 10 m 3DEP lidar: local relief within 60 m | ≈ 0.53, 0.42–0.65 | 0.57, 0.49–0.62 |
+
+- History input: `rain311 history` fetches only flood-category reports dated before 2022-01-01 (NYC 30,312; Chicago 23,553, deduplicated by place and day). No reserve-period report is read.
+- **Can Chicago's labels be dropped?** No. Its quiet-day share of reports matches NYC's (23 % vs 25 % fall on days below twice the median), so there is no label-side reason to drop it. Chicago stays in the rain domain.
+- **NYC:** the 10 m feature beats HAND on 3 of 4 units, and history beats both. There is real headroom.
+- **Chicago:** lidar and history each lift it well above 30 m terrain. Neither reaches 0.70 alone; whether together they do is a Phase 4 DEV question.
+
 **Open:**
 1. NYC unit yield under R25's 8 km box. A larger 311 unit is justified by how the labels are made (sparse points), but it would be a unit change and needs pre-registering with DEV numbers.
 2. Whether a causal history feature lifts Chicago to AUC ≥ 0.70 inside 8 km boxes.
