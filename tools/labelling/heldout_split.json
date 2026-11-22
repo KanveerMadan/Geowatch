@@ -1,0 +1,27 @@
+{
+  "item": 27,
+  "recorded": "2026-10-28",
+  "rule": "Held out by validation site. The hand-traced fraction tiles of Makoko, Kibera and Rocinha are the validation set: sealed in batch 1 / batch 2, never read by training. The item 21 firewall (05_BUILD_MANUAL.md: 'no training in any city containing a validation site -- Lagos, Nairobi and Rio are excluded from training entirely') is city-level, so a record naming a host city is held out too. Records are registered by path and ID pattern only; no label or tile file was read to build this list. A record is held out if any contiguous run of its path components matches a path pattern, any path component or its tile_id matches a tile ID pattern, or it names a held-out site or city. Matching is case-insensitive and independent of the repo root (main checkout or worktree).",
+  "sites": {
+    "makoko":  {"city": "lagos",   "tile_crs": "EPSG:32631"},
+    "kibera":  {"city": "nairobi", "tile_crs": "EPSG:32737"},
+    "rocinha": {"city": "rio",     "tile_crs": "EPSG:32723"}
+  },
+  "path_patterns": [
+    "makoko",
+    "kibera",
+    "rocinha",
+    "validation/*/batch_*"
+  ],
+  "tile_id_patterns": [
+    "EPSG32631_*",
+    "EPSG32737_*",
+    "EPSG32723_*"
+  ],
+  "notes": [
+    "Validation tiles are not selected yet (configs/labelling.yaml on item-21-phase-a: section 9.3 sets 2 per stratum per site, 22 tiles; section 8 splits them 11 + 11 into batch 1 / batch 2). They are therefore registered by pattern, not by tile ID: a directory named for a validation site anywhere in the path (the Stage 1 layout data/stage1/tiles/<site>/<tile_id>/, the LabelStore tree <root>/validation/<site>/batch_<B>/<tile_id>/), and any sealed validation batch whatever its site.",
+    "Tile IDs are <EPSG code>_<x0>_<y1> (labelling/tiles.py tile_id), and each validation site has its own UTM zone, distinct from every training site's (cape_town 32734, karachi 32642, monrovia 32629, lima 32718). A validation tile misfiled under a training site's directory is still caught. A future training site in one of these zones would be refused loudly, never admitted silently; that is the intended failure direction.",
+    "The validation set is drawn from the FULL RASTER, not from annotated segments (08_STATE.md section RETIRED, carried lesson 1). Annotator-selected segments covered 4.8%-68.4% of the raster and were biased toward easy pixels; a threshold learned there over-rejected everywhere else. So a validation tile is a whole 200 m tile with every pixel labelled (LABELLING_GUIDE.md section 3), scored on every one of its 10 m cells that passes the excluded-share rule, never on a subset of segments someone chose to annotate. Held-out records are whole tiles for the same reason.",
+    "The 331 legacy human labels (data/pipeline_runs/) belong to the retired 7-class pipeline (08_STATE.md section RETIRED) and are not covered here."
+  ]
+}
