@@ -46,17 +46,24 @@ Branch `exp/flood-round3` (from `07e9920`, round 2's result), worktree gw-floodp
 | River | 0.91, +0.015 (CI crosses 0) | gain real but small; too few events | ~60 fresh events at the current gain, or a bigger gain from event water levels / physics | best placed; needs the bigger fresh pool |
 | Flash | 0.82, +0.016 | labels mostly 3+ days late | peak-time labels (≤ 2 d) on ~30 events; terrain headroom +0.06 exists | needs new peak-time sources |
 | Waterlogging | 0.72, +0.012 | gain noisy between events | ~40–100 events, or less noisy gains; terrain headroom +0.04 | needs a much bigger pool |
-| Rain | 0.61 (elevation) | labels were noise and too late | urban, peak-time labels (coherence, VHR); scoring on open cells only otherwise | cannot be tested on today's labels |
+| Rain | 0.61 (elevation) | labels were noise and too late | urban, peak-time labels (coherence, VHR); scoring on open cells only otherwise | 311 street-flood reports give real labels (R28, DIAGNOSIS §k). NYC: lidar + report history reach 0.79 on DEV. Chicago (flat) reaches only 0.64, below the 0.70 floor. |
 | Compound | 0.66, −0.08 | one marsh box plus one late, mistyped unit | anchored model; physics (Ida SFINCS) for a real gain; ~90 events at today's spread | hard: little terrain headroom |
 | Coastal | not judged (4 events) | too few events; noisy labels | ≥ 12 storm candidates with a pass inside 2 days; physics or surge height for a gain | hard: little terrain headroom |
 
 ## Running now
-- Ida SFINCS queue (Docker).
-- MMFlood footprints from DEM tile headers (`mmflood_meta.py`).
-- 8 km DEV tables (`build_r3.py dev`, two shards; logs `~/.cache/geowatch/flood_round3/big_dev_*.log`).
-- 311 driver checks (`rain311.py drivers`).
+- 8 km DEV tables (`build_r3.py dev`, two shards; 40 of 77 built; logs `~/.cache/geowatch/flood_round3/big_dev_*.log`). bad_neuenahr is rerun after the shards finish.
+- Done: Ida SFINCS (R26), MMFlood screen (R27), 311 driver checks and box features.
 
 ## New since the Phase 1–2 checkpoint
 - **Gain spread (DIAGNOSIS §j):** for coastal and compound it is mostly noise inside units that are too small (25 blocks). For river and waterlogging it is mostly real event-to-event difference. So round 3 uses 8 km units (R24, R25).
 - **Rain gets a real label source:** city 311 street-flooding reports, timestamped during the storm, with other reports in the same window as the dry control. NYC has 133 storm events from 2010 onwards. Typing uses IMERG rain and the Battery tide gauge (surge days become coastal or compound).
 - **MMFlood without the EMS account:** the criteria now take its 95 activations on a Sentinel-1 route, for river and waterlogging only. The discharge peak, Sentinel-1 pass times and baselines all come from metadata.
+- **311 fixes and checks (R28, DIAGNOSIS §k):**
+  - one labelled event per storm (identical duplicate labels were removed);
+  - Chicago's street-flood reports do not follow 30 m terrain (AUC ≈ 0.47), but they do recur by place, so a causal report-history feature (pre-2022 reports only) and 10 m US lidar terrain are now candidates;
+  - combined, on DEV: NYC 0.79, Chicago 0.64.
+- **Flash and waterlogging sources searched, none fit yet:**
+  - the CC BY Zenodo 10 m set is Copernicus EMS products (our EMS route);
+  - Urban Flood Observations (CC BY 4.0, PlanetScope) is 12 of 14 river events, includes a used event, and its images are mostly days after the peak;
+  - Kuro Siwo (MIT) is Sentinel-1 on EMS activations, and Sentinel-1 is at chance for flash (DIAGNOSIS §e).
+  - Re-typing MMFlood's "no river wave" refusals as waterlogging is rejected: DEV waterlogging is river-driven (median return period 4.7 y), so it would change the type's meaning between DEV and reserve.
