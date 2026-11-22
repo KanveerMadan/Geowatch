@@ -81,3 +81,14 @@ Every AUC falls about 0.02–0.03 per lag step (≤ 1, 2–3, 4–7 d), and thes
 - **MMFlood** (CC BY 4.0, Zenodo 6534637): 95 EMS activations from 2014–2021, none used before (7 within 20 km of a used unit), 465 AOI delineations. Its metadata (`activations.json`, read by HTTP range request; no imagery or labels) has no image acquisition times, so R19 timing cannot be checked from it alone.
 - **Pre-2022 EMS metadata** (image times, reported extent) needs an EMS account. **Only the owner can create one.** With it, MMFlood's 95 activations, and the rest of the 2015–2021 archive, become usable under RESERVE_CRITERIA_R3.
 - **Targets at Δ = 0.03 on v3 labels are 38–109 units per type.** That is several times what any open fresh source supplies with peak-time imagery.
+
+## R24 (2026-11-22) Round-3 units are 7.98 km boxes where the source allows (test design, all methods equally)
+- **Why:** DIAGNOSIS §j. A 3.99 km unit holds only ~25 blocks of 990 m. For coastal (100 %) and compound (71 %), most of the per-unit gain variance is sampling noise inside the unit, not event difference.
+- **Justification:** this choice comes from the bootstrap's resolution, not from comparing methods. The bar is unchanged: within-event AUC, the 990 m block bootstrap, the same scorer.
+- **Rule:**
+  - A round-3 unit is a square of side 7.98 km (4× round 2's area, ~100 blocks), centred as the source's rule says (§4 / §8 of RESERVE_CRITERIA_R3).
+  - Where the footprint cannot hold it, the side is the largest multiple of 0.99 km ≥ 3.99 km that fits, and the side is recorded per unit.
+  - It applies to every method and every type.
+- **Effects:**
+  - The EMS AOI-extent floor becomes "a 3.99 km box fits" (≥ 16 km², as before). Bigger AOIs simply get bigger boxes.
+  - The Phase 4 DEV CV is re-run on 7.98 km boxes around the burned units (tables rebuilt, labels by v3), so the method choice and the target n are made at the size that is tested.

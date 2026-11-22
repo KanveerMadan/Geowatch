@@ -220,3 +220,26 @@ Round-2 test, compound (5 units):
 1. **S1 baseline in the flood / wet season** (table above): 8 of 50 S1 units.
 2. **S1 VV-drop alone is not a water detector.** Without an absolute low-backscatter test it fires on wet soil and vegetation change. This is the main reason the rain labels carry almost no signal.
 3. **Underpowered design** (f). This is not a modelling flaw. With the per-unit spread of rounds 1–2, a few dozen events can only confirm gains of ~0.04–0.05.
+
+## j. Where the per-unit gain spread comes from (`noise_split.py`, `results/noise_split.json`)
+**Method:** on burned v3 units, the paired 990 m block bootstrap gives each unit's within-unit variance of the gain (learned minus the better baseline). The rest of the spread between units is true event-to-event difference.
+
+**Result:** a 3.99 km unit holds a median of only 25 blocks (min 9).
+
+| type | units | gain | SD total | SD within a unit | SD between events | within share of variance |
+|---|---|---|---|---|---|---|
+| river | 31 | +0.017 | 0.064 | 0.036 | 0.053 | 32 % |
+| waterlogging | 18 | −0.007 | 0.084 | 0.043 | 0.072 | 26 % |
+| coastal | 14 | −0.017 | 0.050 | 0.059 | 0.000 | 100 % |
+| compound | 9 | −0.006 | 0.077 | 0.065 | 0.041 | 71 % |
+| flash | 4 | −0.011 | 0.045 | 0.029 | 0.034 | 43 % |
+| rain | 3 | +0.022 | 0.026 | 0.020 | 0.017 | 59 % |
+
+**Reading:**
+- **Coastal and compound:** the spread is mostly sampling noise inside units that are too small.
+  - With about 4× the blocks per unit, the within-unit SD roughly halves. Coastal's projected total SD becomes ≈ 0.03 and compound's ≈ 0.05.
+  - At Δ 0.03 the units needed would drop from 38 to ≈ 13 for coastal, and from 90 to ≈ 38 for compound.
+- **River and waterlogging:** the spread is mostly real difference between events.
+  - Bigger units help only a little: river would need ≈ 47 units instead of 62.
+  - What helps more is a method whose gain is consistent across events: the anchored learner, which can fall back to its anchor (λ → 0) where the correction does not help.
+- **Assumption behind the projection:** the within-unit variance scales with 1 / blocks, and the gain itself does not change with box size. That is untested; the DEV CV in Phase 4 is re-run on bigger boxes before the freeze.
