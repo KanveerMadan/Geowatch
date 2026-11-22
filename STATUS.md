@@ -1,13 +1,7 @@
-# Item 21 labelling tools
+# Item 21 labelling status
 
-Phase 1 is in progress. The read-only inventory identified six remaining training tiles and two unscored practice tiles. Original tile assets were fingerprinted before preparation. The firewall checks the training register, both Item 27 path and ID rules and the actual imagery footprint. Work is staged on private copies.
+**Ready.** Phases 1–4 are complete. Six training tiles and both unscored practice tiles have installed, verified candidate packages and QGIS projects. The default QGIS profile has the plugin link. Kanveer can enable the plugin and begin. [Three-step start, counts and screenshots](REPORT.md)
 
-Next are the candidate packages, QGIS projects and keyboard workflow, provenance and coverage checks, then the timed human trial. Each phase is published to tools/labelling.
+**Verified.** The firewall, source provenance, coverage and geometry checks, QGIS project relocation and practice-copy edit lifecycle passed. Original checksums matched for all 62 inventoried tile files. The existing tracked-files regression was corrected to recognize exactly two Cape Town QC files already archived in the Phase A base. No generated suggestions or real tile imagery are committed.
 
-Phase 1 complete. Eight private training/practice GeoPackages passed geometry, identity, source and count checks. All six scored target tiles and both practice tiles have candidates. No validation packages were generated.
-
-Phase 2 complete. QGIS 3.44.14 LTR reopened all 100 layers across eight relocated private projects. Their relative sources, guide forms, tile bookmarks and snapping survived relocation.
-
-Phase 3 complete. Keyboard review, explicit source attribution, native vertex edits, rejection log, drawing, remaining-area overlay, user-controlled timer and Mark tile done passed the QGIS edit lifecycle checks on a private practice copy.
-
-Phase 4 complete. Mark tile done validates exact vector coverage and runs the existing one-metre coverage, class-flag, 10 m fraction and metadata rules. Sun lines are resolved on private copies. Kept features are checked against their actual source class and geometry, and the report separates shares by area and count. Legacy labels with no provenance remain unknown; nothing is backfilled.
+**Pending human measurement.** The Phase 5 protocol and form are ready. Assisted tracing time and speed-up await Kanveer's first completed timed training tile. [Timing protocol](tools/labelling/TIMING.md)

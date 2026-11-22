@@ -67,4 +67,12 @@ def test_prepared_tile(site, chosen):
 def test_only_labeller_layers_and_records_are_tracked():
     tracked = subprocess.run(["git", "ls-files", "data/stage1/tiles"], cwd=REPO,
                              capture_output=True, text=True, check=True).stdout.split()
-    assert all(pathlib.PurePath(p).name in {"labels.gpkg", "metadata.json", "sun.gpkg"} for p in tracked)
+    # The Phase A base commit archived these two reviewed derivatives for its first formal tile.
+    # Keep the exception exact so new candidate packages, QGIS projects and rasters still fail.
+    archived = {
+        "data/stage1/tiles/cape_town/EPSG32734_282400_6233800/labels_valid.gpkg",
+        "data/stage1/tiles/cape_town/EPSG32734_282400_6233800/labels_resolved.gpkg",
+    }
+    unexpected = [p for p in tracked if pathlib.PurePath(p).name not in
+                  {"labels.gpkg", "metadata.json", "sun.gpkg"} and p not in archived]
+    assert not unexpected, unexpected
