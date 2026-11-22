@@ -10,6 +10,8 @@ Candidates, in tie-break order (simplest first):
 - `elev_hand_lr`: logistic regression on [elev pct, hand pct].
 - `anc_elev_lgbm`: anchored on elevation, static features of the type's family (round 2's FULL / FLASH / COASTAL).
 - `anc_elev_lgbm_ev`: as above, plus the river event features (event_feats). Only for river-led types.
+- `anc_elev_lgbm_fine`: as `anc_elev_lgbm`, plus fine_feats (311 report history, 10 m US lidar terrain). Only for rain.
+  These are NaN outside 311 units.
 
 Training pools all DEV units (every type); each type is scored on its own units. Folds are leave-region-out (catalog region); clusters for the bootstrap come from the catalog.
 """
@@ -28,6 +30,7 @@ TABLES = os.path.join(BIG, "tables")
 EV = os.path.join(BIG, "ev")
 EV_FEATS = ("ev_q_ratio", "ev_q_rp", "ev_depth_below_stage_m")
 RIVER_LED = ("fluvial", "waterlogging", "compound")
+FINE_TYPES = ("pluvial",)
 TYPES = ("fluvial", "pluvial", "waterlogging", "flash_flood", "coastal", "compound")
 
 
@@ -53,11 +56,17 @@ def load_tables():
             ev = {k: e[k] for k in EV_FEATS}
         else:
             ev = {k: np.full(len(y), np.nan, np.float32) for k in EV_FEATS}
+        ev.update({k: np.full(len(y), np.nan, np.float32) for k in _fine()})   # fine_feats exist only on 311 units
         tabs[n] = {"X": z["X"], "C": z["C"], "y": y, "F": list(m["features"]), "shape": tuple(m["shape"]),
                    "ev": ev, "tags": cat[n]["tags"], "region": cat[n]["region"], "cluster": cat[n]["cluster"],
                    "grid": m["grid"], "event": m["event"]}
     tabs.update(load_311())
     return tabs
+
+
+def _fine():
+    from experiments.flood_round3 import fine_feats as FF
+    return FF.FEATS
 
 
 def load_311():
@@ -80,8 +89,11 @@ def load_311():
         y = np.where(np.isin(y, (0, 1)), y, -1).astype(np.int8)
         if (y == 1).sum() < 50 or (y == 0).sum() < 50:
             continue
+        from experiments.flood_round3 import fine_feats as FF
+        ev = {k: np.full(len(y), np.nan, np.float32) for k in EV_FEATS}
+        ev.update(FF.extras_311(n))
         out[n] = {"X": z["X"], "C": z["C"], "y": y, "F": list(m["features"]), "shape": tuple(m["shape"]),
-                  "ev": {k: np.full(len(y), np.nan, np.float32) for k in EV_FEATS}, "tags": [u.get("type", "pluvial")],
+                  "ev": ev, "tags": [u.get("type", "pluvial")],
                   "region": f"r311_{u.get('city', n.split('_')[1])}", "cluster": u["cluster"], "grid": m["grid"],
                   "event": u["event"], "source": "311"}
     return out
@@ -133,7 +145,7 @@ def cv():
     lams = {}
     for fam_ty in ("fluvial", "flash_flood", "coastal"):
         feats = [f for f in family(fam_ty) if f in tabs[names[0]]["F"]]
-        for suffix, fs in (("", feats), ("_ev", feats + list(EV_FEATS))):
+        for suffix, fs in (("", feats), ("_ev", feats + list(EV_FEATS)), ("_fine", feats + list(_fine()))):
             if suffix and fam_ty != "fluvial":
                 continue
             key = f"anc_elev_lgbm{suffix}@{fam_ty}"
@@ -151,6 +163,8 @@ def cv():
                  "anc_elev_lgbm": f"anc_elev_lgbm@{fam}"}
         if ty in RIVER_LED:
             cands["anc_elev_lgbm_ev"] = "anc_elev_lgbm_ev@fluvial"
+        if ty in FINE_TYPES:
+            cands["anc_elev_lgbm_fine"] = "anc_elev_lgbm_fine@fluvial"
         sub = {"elev": runs["elev"], "hand": runs["hand"]}
         out = {}
         for c, k in cands.items():
