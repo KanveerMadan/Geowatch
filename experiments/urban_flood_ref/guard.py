@@ -29,7 +29,7 @@ def metadata():
     if hashlib.sha256(path.read_bytes()).hexdigest() != PIN:
         raise ValueError('registry does not match flood-final preregistration')
     upstream = registry.load(str(path))['units']
-    sites = json.loads((HERE/'sites.json').read_text())
+    sites = json.loads((HERE/'sites.json').read_text()) + json.loads((HERE/'historic_sites.json').read_text())
     if len({s['unit'] for s in sites}) != len(sites):
         raise ValueError('duplicate approved site identity')
     return upstream, sites, json.loads((HERE/'round3_exclusions.json').read_text())
@@ -73,7 +73,10 @@ def authorize(unit):
                  products=record['products'], geometry={'type':'boxes','boxes':[{'bbox':padded}]})
     if record.get('basins'):
         probe['basins'] = record['basins']
-    if any(x['event_id']==unit or connected(probe,x) for x in excluded()):
+    intersections = record.get('basin_intersections', {})
+    if any(x['event_id']==unit or connected(probe,x) or any(
+            x.get('basins',{}).get(key) in intersections.get(key,[]) for key in ('hybas_6','main_bas'))
+           for x in excluded()):
         raise ValueError('reserved event or linked site')
     for x in round3:
         if x['product'] in activation(probe):

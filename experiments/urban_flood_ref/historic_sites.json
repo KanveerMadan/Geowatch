@@ -1,0 +1,743 @@
+[
+  {
+    "unit": "mabi_2018",
+    "city": "Mabi, Kurashiki",
+    "country": "JP",
+    "date": "2018-07-07",
+    "bbox": [
+      133.667126,
+      34.608,
+      133.710874,
+      34.644
+    ],
+    "incident": "west_japan_jul_2018",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://www.nilim.go.jp/english/nnl/no65p.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 4040039450,
+      "hybas_6": 4060041320,
+      "main_bas": 4060041320
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        4060041320
+      ],
+      "main_bas": [
+        4060041320
+      ]
+    }
+  },
+  {
+    "unit": "nagano_2019",
+    "city": "Naganuma, Nagano",
+    "country": "JP",
+    "date": "2019-10-13",
+    "bbox": [
+      138.230551,
+      36.679,
+      138.275449,
+      36.715
+    ],
+    "incident": "hagibis_2019",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://www.jstage.jst.go.jp/article/journalofjsce/10/1/10_206/_pdf/-char/en",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 4040039450,
+      "hybas_6": 4060043170,
+      "main_bas": 4060043170
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        4060043170
+      ],
+      "main_bas": [
+        4060043170
+      ]
+    }
+  },
+  {
+    "unit": "hitoyoshi_2020",
+    "city": "Hitoyoshi",
+    "country": "JP",
+    "date": "2020-07-04",
+    "bbox": [
+      130.734726,
+      32.193,
+      130.777274,
+      32.229
+    ],
+    "incident": "kuma_jul_2020",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://www.kumamoto-archive.jp/en/about-rain",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 4040039450,
+      "hybas_6": 4060039600,
+      "main_bas": 4060039600
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        4060039600
+      ],
+      "main_bas": [
+        4060039600
+      ]
+    }
+  },
+  {
+    "unit": "hyderabad_2020",
+    "city": "Hyderabad, Old City",
+    "country": "IN",
+    "date": "2020-10-13",
+    "bbox": [
+      78.456141,
+      17.343,
+      78.493859,
+      17.379
+    ],
+    "incident": "bay_bengal_depression_oct_2020",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://mausamjournal.imd.gov.in/index.php/MAUSAM/article/view/6047",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 4040027940,
+      "hybas_6": 4061092490,
+      "main_bas": 4060027940
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        4061092490
+      ],
+      "main_bas": [
+        4060027940
+      ]
+    }
+  },
+  {
+    "unit": "bima_2016",
+    "city": "Bima",
+    "country": "ID",
+    "date": "2016-12-21",
+    "bbox": [
+      118.731802,
+      -8.473,
+      118.768198,
+      -8.437
+    ],
+    "incident": "bima_dec_2016",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://bnpb.go.id/storage/app/media/uploads/24/infobencana/2016/info-bencana-desember2016.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 5040011800,
+      "hybas_6": 5060012090,
+      "main_bas": 5060012090
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        5060012090
+      ],
+      "main_bas": [
+        5060012090
+      ]
+    }
+  },
+  {
+    "unit": "sentani_2019",
+    "city": "Sentani, Jayapura Regency",
+    "country": "ID",
+    "date": "2019-03-16",
+    "bbox": [
+      140.482982,
+      -2.588,
+      140.519018,
+      -2.552
+    ],
+    "incident": "sentani_mar_2019",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://ahacentre.org/wp-content/uploads/2019/03/FlashUpdate_01_18Mar_ID_Flooding-in-Sentani-District.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 5040046920,
+      "hybas_6": 5060047370,
+      "main_bas": 5060047370
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        5060047370
+      ],
+      "main_bas": [
+        5060047370
+      ]
+    }
+  },
+  {
+    "unit": "shah_alam_2021",
+    "city": "Taman Sri Muda, Shah Alam",
+    "country": "MY",
+    "date": "2021-12-18",
+    "bbox": [
+      101.518975,
+      3.012,
+      101.555025,
+      3.048
+    ],
+    "incident": "selangor_dec_2021",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://www.nadma.gov.my/images/2023/GarisPanduan/rujukanluar/LAPORAN_KHAS_IMPAK_BANJIR_DI_MALAYSIA_2021_DOSM_1.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 4040018350,
+      "hybas_6": 4060020630,
+      "main_bas": 4060020630
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        4060020630
+      ],
+      "main_bas": [
+        4060020630
+      ]
+    }
+  },
+  {
+    "unit": "hue_2020",
+    "city": "Hue",
+    "country": "VN",
+    "date": "2020-10-16",
+    "bbox": [
+      107.57123,
+      16.451,
+      107.60877,
+      16.487
+    ],
+    "incident": "vietnam_oct_2020_chain",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://vietnam.un.org/en/96307-viet-nam-floods-landslides-and-storms-flash-update-no-1-1-6-october-20-20",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 4040015090,
+      "hybas_6": 4060015430,
+      "main_bas": 4060015430
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        4060015430
+      ],
+      "main_bas": [
+        4060015430
+      ]
+    }
+  },
+  {
+    "unit": "beledweyne_2019",
+    "city": "Beledweyne",
+    "country": "SO",
+    "date": "2019-10-25",
+    "bbox": [
+      45.185938,
+      4.718,
+      45.222062,
+      4.754
+    ],
+    "incident": "shabelle_deyr_2019",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://faoswalim.org/resources/site_files/Somalia_Flood_Update-25102019.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 1041115400,
+      "hybas_6": 1061047240,
+      "main_bas": 1060008100
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        1061047240
+      ],
+      "main_bas": [
+        1060008100
+      ]
+    }
+  },
+  {
+    "unit": "bor_2020",
+    "city": "Bor",
+    "country": "SS",
+    "date": "2020-08-08",
+    "bbox": [
+      31.540894,
+      6.194,
+      31.577106,
+      6.23
+    ],
+    "incident": "jonglei_aug_2020",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://peacekeeping.un.org/en/news/unmiss-engineering-troops-battling-flooding-in-bor-and-beyond-as-135000-people",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 1040837890,
+      "hybas_6": 1060965920,
+      "main_bas": 1060034260
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        1060921740,
+        1060965920
+      ],
+      "main_bas": [
+        1060034260
+      ]
+    }
+  },
+  {
+    "unit": "bozkurt_2021",
+    "city": "Bozkurt, Kastamonu",
+    "country": "TR",
+    "date": "2021-08-11",
+    "bbox": [
+      33.988795,
+      41.939,
+      34.037205,
+      41.975
+    ],
+    "incident": "western_black_sea_aug_2021",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://www.kastamonu.gov.tr/11-agustos-2021de-sel-felaketini-yasayan-bozkurt-3-yilda-yeniden-insa-edildi",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 2040003560,
+      "hybas_6": 2060003560,
+      "main_bas": 2060003560
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        2060003560
+      ],
+      "main_bas": [
+        2060003560
+      ]
+    }
+  },
+  {
+    "unit": "shiraz_2019",
+    "city": "Quran Gate, Shiraz",
+    "country": "IR",
+    "date": "2019-03-25",
+    "bbox": [
+      52.540291,
+      29.618,
+      52.581709,
+      29.654
+    ],
+    "incident": "iran_mar_2019",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://pubmed.ncbi.nlm.nih.gov/32638682/",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 2040085930,
+      "hybas_6": 2060086920,
+      "main_bas": 2060086920
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        2060086920
+      ],
+      "main_bas": [
+        2060086920
+      ]
+    }
+  },
+  {
+    "unit": "marikina_2020",
+    "city": "Marikina",
+    "country": "PH",
+    "date": "2020-11-12",
+    "bbox": [
+      121.081396,
+      14.617,
+      121.118604,
+      14.653
+    ],
+    "incident": "vamco_2020",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://ndrrmc.gov.ph/attachments/article/4138/SitRep_no_27_re_TY_ULYSSES_as_of_07DEC2020.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 5040022500,
+      "hybas_6": 5060028890,
+      "main_bas": 5060028890
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        5060028890
+      ],
+      "main_bas": [
+        5060028890
+      ]
+    }
+  },
+  {
+    "unit": "belo_horizonte_2020",
+    "city": "Belo Horizonte",
+    "country": "BR",
+    "date": "2020-01-24",
+    "bbox": [
+      -43.957146,
+      -19.941,
+      -43.918854,
+      -19.905
+    ],
+    "incident": "minas_gerais_jan_2020",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://portal.inmet.gov.br/uploads/informartivos/informativo_meteorologico_-n04.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 6040639920,
+      "hybas_6": 6060652910,
+      "main_bas": 6060011780
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        6060652910
+      ],
+      "main_bas": [
+        6060011780
+      ]
+    }
+  },
+  {
+    "unit": "durban_2019",
+    "city": "Durban",
+    "country": "ZA",
+    "date": "2019-04-22",
+    "bbox": [
+      31.002245,
+      -29.876,
+      31.043755,
+      -29.84
+    ],
+    "incident": "kzn_april_2019",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://emergency.durban.gov.za/uploads/0000/6/2025/10/06/2018-2019-annual-report-final.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 1040012820,
+      "hybas_6": 1060013210,
+      "main_bas": 1060013210
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        1060013210
+      ],
+      "main_bas": [
+        1060013210
+      ]
+    }
+  },
+  {
+    "unit": "jakarta_new_year_2020",
+    "city": "Kampung Melayu, Jakarta",
+    "country": "ID",
+    "date": "2020-01-01",
+    "bbox": [
+      106.848893,
+      -6.243,
+      106.885107,
+      -6.207
+    ],
+    "incident": "jakarta_new_year_2020",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://jakita.jakarta.go.id/media/download/eng/edisi_1_2020.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 5040007690,
+      "hybas_6": 5060008510,
+      "main_bas": 5060008510
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        5060008510
+      ],
+      "main_bas": [
+        5060008510
+      ]
+    }
+  },
+  {
+    "unit": "edgecumbe_2017",
+    "city": "Edgecumbe",
+    "country": "NZ",
+    "date": "2017-04-06",
+    "bbox": [
+      176.805165,
+      -37.995,
+      176.850835,
+      -37.959
+    ],
+    "incident": "debbie_2017",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://www.mpi.govt.nz/dmsdocument/51184/direct",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 5040085040,
+      "hybas_6": 5060086740,
+      "main_bas": 5060086740
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        5060086740
+      ],
+      "main_bas": [
+        5060086740
+      ]
+    }
+  },
+  {
+    "unit": "rio_2019",
+    "city": "Jardim Botanico, Rio de Janeiro",
+    "country": "BR",
+    "date": "2019-04-08",
+    "bbox": [
+      -43.243549,
+      -22.981,
+      -43.204451,
+      -22.945
+    ],
+    "incident": "rio_apr_2019",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://prefeitura.rio/rio-faz-noticias/crivella-decreta-estado-de-calamidade-publica/",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 6040013760,
+      "hybas_6": 6060013760,
+      "main_bas": 6060013760
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        6060013760
+      ],
+      "main_bas": [
+        6060013760
+      ]
+    }
+  },
+  {
+    "unit": "tbilisi_2015",
+    "city": "Vere valley, Tbilisi",
+    "country": "GE",
+    "date": "2015-06-13",
+    "bbox": [
+      44.746888,
+      41.693,
+      44.795112,
+      41.729
+    ],
+    "incident": "vere_jun_2015",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://www.gfdrr.org/sites/default/files/publication/pda-2015-tbilisi.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 2040070050,
+      "hybas_6": 2060616700,
+      "main_bas": 2060070050
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        2060616700
+      ],
+      "main_bas": [
+        2060070050
+      ]
+    }
+  },
+  {
+    "unit": "puri_2019",
+    "city": "Puri",
+    "country": "IN",
+    "date": "2019-05-03",
+    "bbox": [
+      85.810868,
+      19.79,
+      85.849132,
+      19.826
+    ],
+    "incident": "fani_2019",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://srcodisha.nic.in/newspapper/SgqXBpL0SITREP-FANI%20Date%2003.05.2019%20%206.00%20PM.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 4040027110,
+      "hybas_6": 4060027280,
+      "main_bas": 4060027280
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        4060027110,
+        4060027280
+      ],
+      "main_bas": [
+        4060027110,
+        4060027280
+      ]
+    }
+  },
+  {
+    "unit": "marsh_harbour_2019",
+    "city": "Marsh Harbour, Great Abaco",
+    "country": "BS",
+    "date": "2019-09-01",
+    "bbox": [
+      -77.08512,
+      26.522,
+      -77.04488,
+      26.558
+    ],
+    "incident": "dorian_2019",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://www.nhc.noaa.gov/data/tcr/AL052019_Dorian.pdf",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 7040069860,
+      "hybas_6": 7060069860,
+      "main_bas": 7060069860
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        7060069860
+      ],
+      "main_bas": [
+        7060069860
+      ]
+    }
+  },
+  {
+    "unit": "gatineau_2017",
+    "city": "Pointe-Gatineau, Gatineau",
+    "country": "CA",
+    "date": "2017-05-06",
+    "bbox": [
+      -75.728664,
+      45.445,
+      -75.677336,
+      45.481
+    ],
+    "incident": "ottawa_may_2017",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://www.gatineau.ca/portail/default.aspx?id=1494074469&p=nouvelles_annonces%2Fcommuniques%2Fcommunique_2015",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 7040402320,
+      "hybas_6": 7060400540,
+      "main_bas": 7060034520
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        7060398580,
+        7060400540,
+        7060400760
+      ],
+      "main_bas": [
+        7060034520
+      ]
+    }
+  },
+  {
+    "unit": "mocoa_2017",
+    "city": "Mocoa",
+    "country": "CO",
+    "date": "2017-04-01",
+    "bbox": [
+      -76.665004,
+      1.131,
+      -76.628996,
+      1.167
+    ],
+    "incident": "mocoa_apr_2017",
+    "products": [
+      "S1"
+    ],
+    "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+    "evidence_url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=85235",
+    "peak_date": null,
+    "basins": {
+      "hybas_4": 6040280410,
+      "hybas_6": 6060211140,
+      "main_bas": 6060007000
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        6060211140
+      ],
+      "main_bas": [
+        6060007000
+      ]
+    }
+  }
+]

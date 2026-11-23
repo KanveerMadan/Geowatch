@@ -5,8 +5,8 @@ Active branch `exp/urban-flood-ref`. The study is restricted to non-US storms be
 | Phase | Status |
 |---|---|
 | Isolation and leakage | Independent clone. Pinned flood-final registry and Round 3 pre-2022 candidate exclusions. The July 2021 western European storm is excluded across national borders. |
-| Historic incident catalogue | Initial cleared development sites cover Mumbai, Beira, Kerala and Henan. Additional historical cities are being verified. |
-| Radar and independent references | The first real 10 m and 30 m development products exist for the first Weihui tile. Same-sensor benchmark and archived intensity retrieval implemented. |
+| Historic incident catalogue | 27 historical storms cleared, including three boxes from the one Henan incident. Settlement centres and intersecting drainage basins were verified for the 23 additional nominations. |
+| Radar and independent references | Six original event tiles and six controls processed. A one-job Earth Engine queue is measuring the historical expansion. Weihui confirmed an urban recall shortfall against published same-sensor annotations. |
 | Evidence and handoff | Pending completion of event, control and independent-reference evaluations. |
 
 Resume from the approved site registry and verified per-event manifests. Check the handoff before importing any training data. Caches and source imagery are separate from the published label package.
