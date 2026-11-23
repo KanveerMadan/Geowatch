@@ -333,11 +333,18 @@ def s1route_catalog(cands: str = "se_flash_candidates"):
     return cat
 
 
-def s1route_features(cands: str = "se_flash_candidates"):
-    """Feature tables for qualifying DEV Sentinel-1-route units, one subprocess each (memory)."""
+def s1route_features(cands: str = "se_flash_candidates", shard: int = 0, shards: int = 1):
+    """Feature tables for qualifying DEV Sentinel-1-route units, one subprocess each (memory).
+    shard/shards: the round-robin order is split k % shards == shard; each shard keeps its own status file,
+    and a unit whose table already exists is skipped, so shards never write the same record."""
     from experiments.flood_baselines.build import check_disk
+    from experiments.flood_round2 import features_r2 as FR2
+    FR2.CACHE = TABLES
     cat = s1route_catalog(cands)
-    log = json.load(open(S1ROUTE_LOG))
+    labels = json.load(open(S1ROUTE_LOG))
+    st_p = S1ROUTE_LOG.replace(".json", f"_feat_{shard}of{shards}.json")
+    status = json.load(open(st_p)) if os.path.exists(st_p) else {}
+    log = {n: {**v, **status.get(n, {})} for n, v in labels.items()}
     # Order: round-robin over clusters (episodes / plain-years), alternating the two routes, so a partial build
     # is a balanced DEV sample. DEV only; the order uses catalog metadata, not labels.
     by = {}
@@ -352,7 +359,11 @@ def s1route_features(cands: str = "se_flash_candidates"):
             if cs:
                 order.append(by[cs[k % len(cs)]].pop(0))
         k += 1
-    for n in order:
+    for i, n in enumerate(order):
+        if i % shards != shard:
+            continue
+        if os.path.exists(FR2.path(n)):
+            continue
         v = log[n]
         if not (v.get("done") and v.get("flooded", 0) >= 50 and v.get("dry", 0) >= 50) or v.get("table_done"):
             continue
@@ -368,8 +379,10 @@ def s1route_features(cands: str = "se_flash_candidates"):
             ok, tail = False, [f"killed after {UNIT_KILL_S} s"]
         v["ftries"] = v.get("ftries", 0) + 1
         v.update(table_done=ok, ftail=tail, fs=round(time.time() - t0))
+        status[n] = {k: v[k] for k in ("ftries", "table_done", "ftail", "fs")}
         print(n, ok, round(time.time() - t0), tail[-1][:150] if tail else "", flush=True)
-        json.dump(log, open(S1ROUTE_LOG, "w"), indent=1)
+        json.dump(status, open(st_p + ".part", "w"), indent=1)
+        os.replace(st_p + ".part", st_p)
     return 0
 
 
@@ -384,8 +397,10 @@ def main(argv=None):
         rp = os.path.join(REFS, f"{a[1]}.npz")
         print("RESULT " + json.dumps({"table": _features(a[1], rp, json.loads(str(np.load(rp)["meta"])))}))
         return 0
-    if a[0] == "s1feat":
-        return s1route_features(*a[1:2])
+    if a[0] == "s1feat":            # s1feat [cands] [shard shards]
+        cands = a[1] if len(a) > 1 and not a[1].isdigit() else "se_flash_candidates"
+        nums = [int(x) for x in a[1:] if x.isdigit()]
+        return s1route_features(cands, *(nums[:2] if len(nums) >= 2 else (0, 1)))
     if a[0] == "s1route":           # s1route <candidates file stem> [dev]
         return s1route(a[1], a[2] if len(a) > 2 else "dev")
     if a[0] == "--one":
