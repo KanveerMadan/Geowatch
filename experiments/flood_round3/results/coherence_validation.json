@@ -1,0 +1,177 @@
+[
+ {
+  "city": "nyc",
+  "event": "2016-11-29",
+  "post_day": "2016-11-30",
+  "peak": "2016-11-30",
+  "flood_reports": 0,
+  "dry_reports": 59
+ },
+ {
+  "city": "nyc",
+  "event": "2017-01-24",
+  "post_day": "2017-01-24",
+  "peak": "2017-01-23",
+  "flood_reports": 78,
+  "dry_reports": 13699,
+  "auc_drop": 0.541
+ },
+ {
+  "city": "nyc",
+  "event": "2017-03-31",
+  "post_day": "2017-03-30",
+  "peak": "2017-03-30",
+  "flood_reports": 1,
+  "dry_reports": 65
+ },
+ {
+  "city": "nyc",
+  "event": "2017-04-06",
+  "post_day": "2017-04-06",
+  "peak": "2017-04-05",
+  "flood_reports": 153,
+  "dry_reports": 14882,
+  "auc_drop": 0.47
+ },
+ {
+  "city": "nyc",
+  "event": "2017-05-05",
+  "post_day": "2017-05-05",
+  "peak": "2017-05-05",
+  "flood_reports": 2,
+  "dry_reports": 66
+ },
+ {
+  "city": "nyc",
+  "event": "2018-11-13",
+  "post_day": "2018-11-15",
+  "peak": "2018-11-14",
+  "flood_reports": 98,
+  "dry_reports": 15347,
+  "auc_drop": 0.592
+ },
+ {
+  "city": "nyc",
+  "event": "2018-12-21",
+  "post_day": "2018-12-21",
+  "peak": "2018-12-21",
+  "flood_reports": 121,
+  "dry_reports": 14401,
+  "auc_drop": 0.467
+ },
+ {
+  "city": "nyc",
+  "event": "2019-05-30",
+  "post_day": "2019-05-31",
+  "peak": "2019-05-30",
+  "flood_reports": 0,
+  "dry_reports": 103
+ },
+ {
+  "city": "nyc",
+  "event": "2019-06-18",
+  "post_day": "2019-06-19",
+  "peak": "2019-06-19",
+  "flood_reports": 122,
+  "dry_reports": 19523,
+  "auc_drop": 0.457
+ },
+ {
+  "city": "nyc",
+  "event": "2019-12-17",
+  "post_day": "2019-12-16",
+  "peak": "2019-12-15",
+  "flood_reports": 70,
+  "dry_reports": 13858,
+  "auc_drop": 0.445
+ },
+ {
+  "city": "nyc",
+  "event": "2020-07-10",
+  "post_day": "2020-07-12",
+  "peak": "2020-07-11",
+  "flood_reports": 2,
+  "dry_reports": 108
+ },
+ {
+  "city": "chicago",
+  "event": "2019-04-12",
+  "post_day": "2019-04-14",
+  "peak": "2019-04-13",
+  "flood_reports": 140,
+  "dry_reports": 8152,
+  "auc_drop": 0.516
+ },
+ {
+  "city": "chicago",
+  "event": "2019-05-09",
+  "post_day": "2019-05-08",
+  "peak": "2019-05-08",
+  "flood_reports": 306,
+  "dry_reports": 11402,
+  "auc_drop": 0.403
+ },
+ {
+  "city": "chicago",
+  "event": "2019-09-27",
+  "post_day": "2019-09-29",
+  "peak": "2019-09-28",
+  "flood_reports": 180,
+  "dry_reports": 11988,
+  "auc_drop": 0.743
+ },
+ {
+  "city": "chicago",
+  "event": "2020-03-28",
+  "post_day": "2020-03-27",
+  "peak": "2020-03-27",
+  "flood_reports": 137,
+  "dry_reports": 14149,
+  "auc_drop": 0.252
+ },
+ {
+  "city": "chicago",
+  "event": "2021-06-21",
+  "post_day": "2021-06-19",
+  "peak": "2021-06-19",
+  "flood_reports": 58,
+  "dry_reports": 13655,
+  "auc_drop": 0.383
+ },
+ {
+  "city": "chicago",
+  "event": "2021-06-24",
+  "post_day": "2021-06-26",
+  "peak": "2021-06-25",
+  "flood_reports": 668,
+  "dry_reports": 12533,
+  "auc_drop": 0.398
+ },
+ {
+  "city": "chicago",
+  "event": "2021-08-24",
+  "post_day": "2021-08-25",
+  "peak": "2021-08-25",
+  "flood_reports": 143,
+  "dry_reports": 13754,
+  "auc_drop": 0.32
+ },
+ {
+  "city": "chicago",
+  "event": "2021-10-11",
+  "post_day": "2021-10-12",
+  "peak": "2021-10-12",
+  "flood_reports": 336,
+  "dry_reports": 11718,
+  "auc_drop": 0.669
+ },
+ {
+  "city": "chicago",
+  "event": "2021-10-25",
+  "post_day": "2021-10-24",
+  "peak": "2021-10-24",
+  "flood_reports": 302,
+  "dry_reports": 10487,
+  "auc_drop": 0.324
+ }
+]

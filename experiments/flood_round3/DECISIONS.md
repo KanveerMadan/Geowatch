@@ -202,3 +202,28 @@ The owner decided: add cities, do not cap Chicago.
 - **Existing cities:** NYC and Chicago events are kept exactly as they were (`rain311 events` now adds only missing cities).
 - **GFM:** the owner is creating the account. Credentials go in `~/.config/geowatch/gfm.json` (`{"email": …, "password": …}`, chmod 600). The secrets scan blocks that file name, `.netrc`, `.cdsapirc` and the file's values.
 - **Coherence:** if it validates against 311, it is run on every unused EMS and GFM rain event.
+
+## R31 (2026-11-23) Overnight findings: coherence fails, Ida is a timing problem, feature build sped up
+1. **Coherence (HyP3 InSAR, 40 m) does not validate as a rain label.**
+   - The coherence drop (pre-event pair minus co-event pair) was checked against 311 reports, on DEV storms with a Sentinel-1 pass on the peak day or the day after (200 jobs, 200 credits).
+   - Result: 15 storms with ≥ 20 flood and dry reports; AUC median 0.46, range 0.25–0.74, i.e. no better than chance.
+   - Per R30's condition, it is **not** run on the unused EMS / GFM rain events. `results/coherence_validation.json`.
+2. **Ida with infiltration (R26's prerequisite) changes nothing:**
+
+   | member | AUC of hmax | wet share |
+   |---|---|---|
+   | qinf 5 mm/h | 0.640 | 0.998 |
+   | qinf 10 mm/h | 0.640 | 0.998 |
+   | HAND | 0.661 | – |
+
+   - SFINCS applied the infiltration (the log reports it).
+   - But 99 % of the domain is below 1 m and the 1.6 m surge covers it, with a median peak depth of 1.87 m.
+   - The reference is a Sentinel-1 pass 11 days later (residual ponding, R10). So peak depth cannot rank this label; this is a timing mismatch, not a physics one.
+   - Compound and coastal physics need labels near the peak (within 2 days, R19) before SFINCS can be judged. `results/ida_sfincs_infil_r3.json`.
+3. **Flash / waterlogging feature build:**
+   - A one-unit profile found 96 % of 17 min was network waiting: the three rainfall-climatology Earth Engine requests (~600 s) and four Overpass queries (~350 s).
+   - `tilecache_r3` now caches the CHIRPS annual and design-day layers per 4° tile. This is exact: the annual layer was identical, max difference 0.0.
+   - It also caches OSM water clauses per 0.25° tile, filtered to each unit's box by geometry. This is equivalent: the set matched exactly on the clause tested.
+   - The IMERG 99.9th-percentile layer timed out at 4° tiles and stays per unit.
+   - The build runs as 2 shards (owner-approved), with a guard that pauses shard 1 when free memory falls below 15 % and resumes it above 25 %.
+   - Public Overpass endpoints were failing (502/504) during the run. Unavailable clauses are recorded, never read as zero.
