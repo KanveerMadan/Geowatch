@@ -89,6 +89,12 @@ def lidar_feats(dem_path, grid):
     return out
 
 
+def city_of(meta):
+    """City key from the unit's box id ("<city>_bII_JJ"); city keys may contain "_" (miami_dade, ...)."""
+    b = meta["box"]
+    return b[:b.rindex("_b")]
+
+
 def extras_311(n, ee=None):
     """Cached extras for one 311 unit -> dict of flat float32 arrays (FEATS)."""
     from experiments.flood_round3 import rain311 as R3
@@ -98,7 +104,7 @@ def extras_311(n, ee=None):
         return {k: z[k] for k in FEATS}
     meta = json.loads(str(np.load(os.path.join(R3.REFS, f"{n}.npz"))["meta"]))
     g = meta["grid"]
-    city = n.split("_")[1]
+    city = city_of(meta)
     out = {"hist90": R3.hist_feature(city, g, meta["window"][0][:10], 90.0)}
     if ee is None:
         from experiments.flood_round3 import diagnose_ee as D
@@ -203,7 +209,7 @@ def drainage_311(n, ee=None):
     if ee is None:
         from experiments.flood_round3 import diagnose_ee as D
         ee = D._init()
-    out = drainage_feats(n.split("_")[1], meta["grid"], meta["window"][0][:10], meta["box"], meta["bbox"], ee)
+    out = drainage_feats(city_of(meta), meta["grid"], meta["window"][0][:10], meta["box"], meta["bbox"], ee)
     os.makedirs(OUTD, exist_ok=True)
     np.savez_compressed(p, **out)
     return out
