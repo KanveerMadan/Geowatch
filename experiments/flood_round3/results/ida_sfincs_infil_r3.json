@@ -1,0 +1,58 @@
+{
+ "settings": {
+  "huthresh": 0.001,
+  "dtmax": 4.0,
+  "manning": 0.04,
+  "wet_m": 0.1,
+  "sea_floor_m": -1.5,
+  "domain_km2": 661.5,
+  "gauge": "8761724",
+  "datum": "MSL"
+ },
+ "prep": {
+  "datum_offset_3dep_minus_glo30_m": 0.18064463138580322,
+  "water_cells": 294213,
+  "z3dep_finite": 1.0,
+  "imerg_frames": 120,
+  "rain_domain_mean_total_mm": 145.69320678710938,
+  "gauge_peak_m": 1.5768000000000002,
+  "residual_peak_m": 1.6298000000000001
+ },
+ "members": {
+  "base_qinf10": {
+   "wall_s": 36522.84,
+   "disk_mb": null,
+   "peak_rss_mib": 309.4,
+   "wall_s_per_km2": 55.212,
+   "disk_mb_per_km2": null,
+   "auc_hmax": 0.6398,
+   "auc_hand": 0.661,
+   "auc_low_elevation": 0.6456,
+   "iou_wet": 0.1475,
+   "wet_share": 0.9977,
+   "observed_share": 0.1472,
+   "cells": [
+    1579,
+    9148
+   ]
+  },
+  "base_qinf5": {
+   "wall_s": 2813.69,
+   "disk_mb": null,
+   "peak_rss_mib": 309.1,
+   "wall_s_per_km2": 4.253,
+   "disk_mb_per_km2": null,
+   "auc_hmax": 0.6396,
+   "auc_hand": 0.661,
+   "auc_low_elevation": 0.6456,
+   "iou_wet": 0.1475,
+   "wet_share": 0.9979,
+   "observed_share": 0.1472,
+   "cells": [
+    1579,
+    9148
+   ]
+  }
+ },
+ "note": "R26 rerun with infiltration (qinf); round-2 Ida case unchanged"
+}

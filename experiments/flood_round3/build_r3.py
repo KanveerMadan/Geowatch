@@ -394,6 +394,8 @@ def main(argv=None):
     if a[0] == "r311":
         return r311()
     if a[0] == "--s1feat":
+        from experiments.flood_round3 import tilecache_r3
+        tilecache_r3.install()                  # shared-tile caches (R31); exact for the rain layers
         rp = os.path.join(REFS, f"{a[1]}.npz")
         print("RESULT " + json.dumps({"table": _features(a[1], rp, json.loads(str(np.load(rp)["meta"])))}))
         return 0
