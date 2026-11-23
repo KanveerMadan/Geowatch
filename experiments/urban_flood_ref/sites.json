@@ -1,0 +1,128 @@
+[
+  {
+    "unit": "dharavi",
+    "city": "Dharavi, Mumbai",
+    "country": "IN",
+    "date": "2017-08-29",
+    "bbox": [
+      72.836,
+      19.037,
+      72.862,
+      19.06
+    ],
+    "incident": "mumbai_2017",
+    "products": [
+      "S1"
+    ],
+    "basis": "flood-core development registry",
+    "peak_date": null
+  },
+  {
+    "unit": "beira",
+    "city": "Beira",
+    "country": "MZ",
+    "date": "2019-03-15",
+    "bbox": [
+      34.83,
+      -19.85,
+      34.87,
+      -19.81
+    ],
+    "incident": "idai_2019",
+    "products": [
+      "S1"
+    ],
+    "basis": "flood-core development registry",
+    "peak_date": null
+  },
+  {
+    "unit": "bad_neuenahr",
+    "city": "Bad Neuenahr",
+    "country": "DE",
+    "date": "2021-07-14",
+    "bbox": [
+      7.09,
+      50.53,
+      7.13,
+      50.56
+    ],
+    "incident": "bernd_2021",
+    "products": [
+      "S1"
+    ],
+    "basis": "flood-core development registry",
+    "peak_date": null
+  },
+  {
+    "unit": "kerala_2018",
+    "city": "Kerala development AOI",
+    "country": "IN",
+    "date": "2018-08-16",
+    "bbox": [
+      76.41977,
+      9.405028,
+      76.456194,
+      9.44096
+    ],
+    "incident": "monsoon_2018_kl",
+    "products": [
+      "S1"
+    ],
+    "basis": "flood-core development registry",
+    "peak_date": null
+  },
+  {
+    "unit": "usf_weihui_1",
+    "city": "Henan, Weihui study box 1",
+    "country": "CN",
+    "date": "2021-07-27",
+    "bbox": [
+      114.039108,
+      35.390758,
+      114.083195,
+      35.42669
+    ],
+    "incident": "henan_jul_2021",
+    "products": [
+      "UrbanSARFloods:Weihui_20210727"
+    ],
+    "basis": "flood-final documented development diagnostic",
+    "peak_date": null
+  },
+  {
+    "unit": "usf_weihui_2",
+    "city": "Henan, Weihui study box 2",
+    "country": "CN",
+    "date": "2021-07-27",
+    "bbox": [
+      113.412241,
+      35.367416,
+      113.456315,
+      35.403348
+    ],
+    "incident": "henan_jul_2021",
+    "products": [
+      "UrbanSARFloods:Weihui_20210727"
+    ],
+    "basis": "flood-final documented development diagnostic",
+    "peak_date": null
+  },
+  {
+    "unit": "usf_weihui_3",
+    "city": "Henan, Weihui study box 3",
+    "country": "CN",
+    "date": "2021-07-27",
+    "bbox": [
+      115.456279,
+      35.254041,
+      115.500291,
+      35.289973
+    ],
+    "incident": "henan_jul_2021",
+    "products": [
+      "UrbanSARFloods:Weihui_20210727"
+    ],
+    "basis": "flood-final documented development diagnostic",
+    "peak_date": null
+  }
+]
