@@ -1,0 +1,68 @@
+[
+  {
+    "unit": "beira_ufo_1ynv",
+    "city": "Beira region, UFO optical chip 1ynv",
+    "country": "MZ",
+    "date": "2019-03-15",
+    "bbox": [
+      34.81276069078011,
+      -19.776110506563196,
+      34.84177593459003,
+      -19.74709526275327
+    ],
+    "incident": "idai_2019",
+    "products": [
+      "UFO:BEI_20190326_072743_1021_1ynv",
+      "S1"
+    ],
+    "basis": "Supplemental development chip selected by independent optical archive footprint; same incident as Beira.",
+    "peak_date": null,
+    "evidence_url": "https://doi.org/10.5281/zenodo.19698577",
+    "basins": {
+      "hybas_6": 1060011670,
+      "main_bas": 1060011670
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        1060011670
+      ],
+      "main_bas": [
+        1060011670
+      ]
+    },
+    "ufo_item": "BEI_20190326_072743_1021_1ynv"
+  },
+  {
+    "unit": "beira_ufo_a69z",
+    "city": "Beira region, UFO optical chip a69z",
+    "country": "MZ",
+    "date": "2019-03-15",
+    "bbox": [
+      34.66768447173048,
+      -19.776110506563196,
+      34.696699715540404,
+      -19.74709526275327
+    ],
+    "incident": "idai_2019",
+    "products": [
+      "UFO:BEI_20190326_072743_1021_a69z",
+      "S1"
+    ],
+    "basis": "Supplemental development chip selected by independent optical archive footprint; same incident as Beira.",
+    "peak_date": null,
+    "evidence_url": "https://doi.org/10.5281/zenodo.19698577",
+    "basins": {
+      "hybas_6": 1060011970,
+      "main_bas": 1060011970
+    },
+    "basin_intersections": {
+      "hybas_6": [
+        1060011970
+      ],
+      "main_bas": [
+        1060011970
+      ]
+    },
+    "ufo_item": "BEI_20190326_072743_1021_a69z"
+  }
+]

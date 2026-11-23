@@ -1,0 +1,6 @@
+earthengine-api
+numpy
+rasterio
+pyproj
+scipy
+requests

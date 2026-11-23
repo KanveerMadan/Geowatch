@@ -29,7 +29,7 @@ def metadata():
     if hashlib.sha256(path.read_bytes()).hexdigest() != PIN:
         raise ValueError('registry does not match flood-final preregistration')
     upstream = registry.load(str(path))['units']
-    sites = json.loads((HERE/'sites.json').read_text()) + json.loads((HERE/'historic_sites.json').read_text())
+    sites = json.loads((HERE/'sites.json').read_text()) + json.loads((HERE/'historic_sites.json').read_text()) + json.loads((HERE/'ufo_sites.json').read_text())
     if len({s['unit'] for s in sites}) != len(sites):
         raise ValueError('duplicate approved site identity')
     return upstream, sites, json.loads((HERE/'round3_exclusions.json').read_text())
