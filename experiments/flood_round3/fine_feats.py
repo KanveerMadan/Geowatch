@@ -176,8 +176,14 @@ def drainage_feats(city, grid, before, key, bbox, ee):
         out["cb_count90"] = cKDTree(np.c_[X, Y]).query_ball_point(np.c_[x, y], 90.0, return_length=True).astype(np.float32)
     else:
         out["cb_count90"] = nan.copy()
-    rb = rail_bridges(key, bbox)
-    if len(rb):
+    try:
+        rb = rail_bridges(key, bbox)
+    except RuntimeError as ex:              # Overpass outage: NaN, recorded; refetched on a later pass
+        print("rail bridges unavailable:", key, ex, flush=True)
+        rb = None
+    if rb is None:
+        out["rail_bridge_dist_m"] = nan.copy()
+    elif len(rb):
         X, Y = tr.transform(rb[:, 0], rb[:, 1])
         out["rail_bridge_dist_m"] = np.minimum(cKDTree(np.c_[X, Y]).query(np.c_[x, y])[0], 5000.0).astype(np.float32)
     else:
@@ -211,6 +217,8 @@ def drainage_311(n, ee=None):
         ee = D._init()
     out = drainage_feats(city_of(meta), meta["grid"], meta["window"][0][:10], meta["box"], meta["bbox"], ee)
     os.makedirs(OUTD, exist_ok=True)
+    if np.isnan(out["rail_bridge_dist_m"]).all():
+        return out                          # not cached: a later pass refetches the rail bridges
     np.savez_compressed(p, **out)
     return out
 
