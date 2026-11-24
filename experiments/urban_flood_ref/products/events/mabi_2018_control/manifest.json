@@ -1,0 +1,205 @@
+{
+  "unit": "mabi_2018_control",
+  "city": "Mabi, Kurashiki",
+  "country": "JP",
+  "date": "2018-07-07",
+  "bbox": [
+    133.66652690152392,
+    34.60736346113726,
+    133.7116037800799,
+    34.64462552997769
+  ],
+  "incident": "west_japan_jul_2018",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://www.nilim.go.jp/english/nnl/no65p.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 4040039450,
+    "hybas_6": 4060041320,
+    "main_bas": 4060041320
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      4060041320
+    ],
+    "main_bas": [
+      4060041320
+    ]
+  },
+  "event": "2018-07-07",
+  "role": "dev",
+  "pre_dates": [
+    "2018-02-04",
+    "2018-02-16",
+    "2018-02-28",
+    "2018-03-12",
+    "2018-03-24",
+    "2018-04-05",
+    "2018-04-17",
+    "2018-04-29",
+    "2018-05-11",
+    "2018-05-23"
+  ],
+  "post_date": "2018-06-04",
+  "days_from_anchor": -33,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20180604T210817_20180604T210842_022212_02672C_A700",
+      "pass": "DESCENDING",
+      "track": 90,
+      "platform": "A",
+      "date": "2018-06-04"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180204T210814_20180204T210839_020462_022FD0_8842",
+        "pass": "DESCENDING",
+        "track": 90,
+        "platform": "A",
+        "date": "2018-02-04"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180216T210814_20180216T210839_020637_023565_5E48",
+        "pass": "DESCENDING",
+        "track": 90,
+        "platform": "A",
+        "date": "2018-02-16"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180228T210814_20180228T210839_020812_023AF6_1868",
+        "pass": "DESCENDING",
+        "track": 90,
+        "platform": "A",
+        "date": "2018-02-28"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180312T210814_20180312T210839_020987_02407D_A2E6",
+        "pass": "DESCENDING",
+        "track": 90,
+        "platform": "A",
+        "date": "2018-03-12"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180324T210814_20180324T210839_021162_02460C_D571",
+        "pass": "DESCENDING",
+        "track": 90,
+        "platform": "A",
+        "date": "2018-03-24"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180405T210814_20180405T210839_021337_024B86_EDB0",
+        "pass": "DESCENDING",
+        "track": 90,
+        "platform": "A",
+        "date": "2018-04-05"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180417T210815_20180417T210840_021512_025107_8E61",
+        "pass": "DESCENDING",
+        "track": 90,
+        "platform": "A",
+        "date": "2018-04-17"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180429T210815_20180429T210840_021687_02567D_7268",
+        "pass": "DESCENDING",
+        "track": 90,
+        "platform": "A",
+        "date": "2018-04-29"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180511T210816_20180511T210841_021862_025C14_BB6B",
+        "pass": "DESCENDING",
+        "track": 90,
+        "platform": "A",
+        "date": "2018-05-11"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180523T210817_20180523T210842_022037_0261A2_F2E6",
+        "pass": "DESCENDING",
+        "track": 90,
+        "platform": "A",
+        "date": "2018-05-23"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32653",
+    "transform": [
+      30.0,
+      0.0,
+      377790.0,
+      0.0,
+      -30.0,
+      3834390.0
+    ],
+    "shape": [
+      136,
+      136
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/mabi_2018_control.npz": "86b9fb0028cfb1f6d3db454a9751891ee58e40b9b0e66556aac175f677e4f81d",
+    "events/mabi_2018_control/model_ref.npz": "86b9fb0028cfb1f6d3db454a9751891ee58e40b9b0e66556aac175f677e4f81d",
+    "events/mabi_2018_control/reference_30m.tif": "66f032f8da20ebf91e3ce91ce473dfb89ace4e32e1fd415c768564269299e0ba",
+    "events/mabi_2018_control/reference_10m.tif": "b39402028892fd077602f2588020854251efe614028a33df361d894cd1bcb3f7"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 418,
+        "mean": 0.5939497351646423
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 24,
+        "mean": 0.6122796087353318
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 5839,
+    "confident_dry": 0,
+    "confident_flooded": 24,
+    "ambiguous": 12633
+  }
+}

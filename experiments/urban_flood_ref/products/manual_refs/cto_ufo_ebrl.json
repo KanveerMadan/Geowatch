@@ -1,0 +1,60 @@
+{
+  "unit": "cto_ufo_ebrl",
+  "incident": "can_tho_2019_tidal",
+  "event": "2019-10-02",
+  "date": "2019-10-02",
+  "post_date": "2019-10-02",
+  "role": "dev",
+  "block": 1,
+  "grid": {
+    "crs": "EPSG:32648",
+    "transform": [
+      30,
+      0,
+      587400,
+      0,
+      -30,
+      1109760
+    ],
+    "shape": [
+      104,
+      103
+    ]
+  },
+  "bbox": [
+    105.79764468671819,
+    10.01024188739658,
+    105.82562620943534,
+    10.038223410113737
+  ],
+  "licence": "CC BY 4.0",
+  "source": "https://doi.org/10.5281/zenodo.19698577",
+  "source_item": "CTO_20191002_021755_1049_ebrl",
+  "label_member": "ufo-dataset/urbanFloodsObservationsPUBLIC/labels/CTO_20191002_021755_1049_ebrl.tif",
+  "source_sha256": "a0e919999280768e10f002510eac8f500b539383cf6c252866e41a2387b1c59f",
+  "attribution": "Mukherjee et al., Urban Flood Observations, doi:10.5281/zenodo.19698577. Derived from hand-annotated PlanetScope optical surface water. Contains modified Copernicus Sentinel data and EC JRC/Google water history.",
+  "method": "Published hand-annotated visible water, with two pre-event clear land dates and JRC nonpermanent mask. All contributing source pixels and fine cells must agree. Dry only over mapped grassland/barren outside the urban stratum.",
+  "pre_sentinel2_assets": [
+    "20190804T031549_20190804T032944_T48PWS",
+    "20190809T031541_20190809T032155_T48PWS",
+    "20190814T031549_20190814T032755_T48PWS",
+    "20190819T031541_20190819T033221_T48PWS",
+    "20190824T031549_20190824T033502_T48PWS",
+    "20190829T031541_20190829T033306_T48PWS",
+    "20190903T031539_20190903T033015_T48PWS",
+    "20190908T031541_20190908T031647_T48PWS",
+    "20190913T031539_20190913T033147_T48PWS",
+    "20190918T031541_20190918T033218_T48PWS"
+  ],
+  "reference_date": "2019-10-02",
+  "kind": "published manual optical with automated screening",
+  "wet": 0,
+  "dry": 0,
+  "unknown": 10712,
+  "urban_wet": 0,
+  "training_status": "development labels; group all tiles from the same incident; fresh testing elsewhere",
+  "file": "manual_refs/cto_ufo_ebrl.npz",
+  "sha256": "2e806ab21d62a72230e2a868d502c3e560d66f9190ccc016acf3466daae00d95",
+  "source_raster": "independent/cto_ufo_ebrl/ufo_surface.tif",
+  "source_receipt": "independent/cto_ufo_ebrl/ufo_reference.json"
+}

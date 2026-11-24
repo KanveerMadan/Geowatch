@@ -1,0 +1,46 @@
+{
+  "unit": "usf_weihui_2",
+  "date": "2021-07-27",
+  "grid": {
+    "crs": "EPSG:32649",
+    "transform": [
+      30.0,
+      0.0,
+      719040.0,
+      0.0,
+      -30.0,
+      3920550.0
+    ],
+    "shape": [
+      137,
+      138
+    ]
+  },
+  "source": "UrbanSARFloods v1 \u2014 20210727_Weihui_GT",
+  "attribution": "Jie Zhao, Zhitong Xiong and Xiao Xiang Zhu, 2024",
+  "source_url": "https://huggingface.co/datasets/S1Floodbenchmark/UrbanSARFloods_v1/tree/main",
+  "method_url": "https://openaccess.thecvf.com/content/CVPR2024W/EarthVision/html/Zhao_UrbanSARFloods_Sentinel-1_SLC-Based_Benchmark_Dataset_for_Urban_and_Open-Area_Flood_CVPRW_2024_paper.html",
+  "licence": "CC BY 4.0",
+  "licence_source": "https://github.com/aliecen/UrbanSARFloods_Dataset",
+  "pixel_counts": {
+    "weihui_gt": {
+      "0": 18027,
+      "1": 879,
+      "255": 0
+    },
+    "weihui_fu": {
+      "0": 0,
+      "1": 879,
+      "255": 18027
+    },
+    "weihui_fo": {
+      "0": 0,
+      "1": 0,
+      "255": 18906
+    }
+  },
+  "input_sha256": "8d35ace860035aef1e6f4db509bde0ae177372832a4460871e3629ead05ea20e",
+  "interpretation": "UrbanSARFloods is an external shared-Sentinel-1 benchmark interpreted using intensity and coherence. Class 0 is reference non-flood. It is not surveyed dry ground.",
+  "selection": "Three enriched Weihui windows selected in the upstream DEV experiment by flooded-urban pixel count; one storm.",
+  "derivation": "Retained upstream exclusion of permanent water and area-majority 30 m labels. FO-only and FU-only evaluate positive recall; non-positive cells are unknown in those files."
+}

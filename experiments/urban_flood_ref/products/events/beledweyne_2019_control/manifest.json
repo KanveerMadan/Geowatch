@@ -1,0 +1,205 @@
+{
+  "unit": "beledweyne_2019_control",
+  "city": "Beledweyne",
+  "country": "SO",
+  "date": "2019-10-25",
+  "bbox": [
+    45.18566170421844,
+    4.717941133431677,
+    45.22219223289519,
+    4.754047978904944
+  ],
+  "incident": "shabelle_deyr_2019",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://faoswalim.org/resources/site_files/Somalia_Flood_Update-25102019.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 1041115400,
+    "hybas_6": 1061047240,
+    "main_bas": 1060008100
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      1061047240
+    ],
+    "main_bas": [
+      1060008100
+    ]
+  },
+  "event": "2019-10-25",
+  "role": "dev",
+  "pre_dates": [
+    "2019-05-27",
+    "2019-06-08",
+    "2019-06-20",
+    "2019-07-02",
+    "2019-07-14",
+    "2019-07-26",
+    "2019-08-07",
+    "2019-08-19",
+    "2019-08-31",
+    "2019-09-12"
+  ],
+  "post_date": "2019-09-24",
+  "days_from_anchor": -31,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20190924T024550_20190924T024615_029157_034F79_322E",
+      "pass": "DESCENDING",
+      "track": 35,
+      "platform": "A",
+      "date": "2019-09-24"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190527T024543_20190527T024608_027407_031771_2FA0",
+        "pass": "DESCENDING",
+        "track": 35,
+        "platform": "A",
+        "date": "2019-05-27"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190608T024544_20190608T024609_027582_031CD2_436A",
+        "pass": "DESCENDING",
+        "track": 35,
+        "platform": "A",
+        "date": "2019-06-08"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190620T024545_20190620T024610_027757_03220F_12D1",
+        "pass": "DESCENDING",
+        "track": 35,
+        "platform": "A",
+        "date": "2019-06-20"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190702T024545_20190702T024610_027932_032753_C6E5",
+        "pass": "DESCENDING",
+        "track": 35,
+        "platform": "A",
+        "date": "2019-07-02"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190714T024546_20190714T024611_028107_032C9F_7B69",
+        "pass": "DESCENDING",
+        "track": 35,
+        "platform": "A",
+        "date": "2019-07-14"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190726T024547_20190726T024612_028282_0331ED_9376",
+        "pass": "DESCENDING",
+        "track": 35,
+        "platform": "A",
+        "date": "2019-07-26"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190807T024548_20190807T024613_028457_033742_2DDE",
+        "pass": "DESCENDING",
+        "track": 35,
+        "platform": "A",
+        "date": "2019-08-07"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190819T024549_20190819T024614_028632_033D4E_1DCC",
+        "pass": "DESCENDING",
+        "track": 35,
+        "platform": "A",
+        "date": "2019-08-19"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190831T024549_20190831T024614_028807_03436E_FF31",
+        "pass": "DESCENDING",
+        "track": 35,
+        "platform": "A",
+        "date": "2019-08-31"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190912T024549_20190912T024614_028982_034982_CD91",
+        "pass": "DESCENDING",
+        "track": 35,
+        "platform": "A",
+        "date": "2019-09-12"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32638",
+    "transform": [
+      30.0,
+      0.0,
+      520590.0,
+      0.0,
+      -30.0,
+      525480.0
+    ],
+    "shape": [
+      133,
+      135
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/beledweyne_2019_control.npz": "7ddd88f4355421db1fa200f6a5e7eb02d710514f5f87e788fe85019471f9a760",
+    "events/beledweyne_2019_control/model_ref.npz": "7ddd88f4355421db1fa200f6a5e7eb02d710514f5f87e788fe85019471f9a760",
+    "events/beledweyne_2019_control/reference_30m.tif": "8dd68803d48d24cf37f30410e5f89243b61aa42b58dfaf6756244f927615ef1a",
+    "events/beledweyne_2019_control/reference_10m.tif": "be9c77c1efd441d7cbfaf229b75ddb4a3bab033875f1b539a229c22f6971eebe"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 190,
+        "mean": 0.5325114130973816
+      },
+      "confident_flooded": {
+        "count": 67,
+        "mean": 0.5719524025917053
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 7,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 17948
+  }
+}

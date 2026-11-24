@@ -1,0 +1,45 @@
+{
+  "unit": "cto_ufo_0p0o",
+  "event": "2019-10-02",
+  "incident": "can_tho_2019_tidal",
+  "date": "2019-10-02",
+  "reference_date": "2019-10-02",
+  "block": 1,
+  "grid": {
+    "crs": "EPSG:32648",
+    "transform": [
+      30,
+      0,
+      586110,
+      0,
+      -30,
+      1113390
+    ],
+    "shape": [
+      105,
+      104
+    ]
+  },
+  "bbox": [
+    105.78610091631946,
+    10.04296491485328,
+    105.81408678650129,
+    10.07095078503512
+  ],
+  "role": "dev",
+  "source_raster": "independent/cto_ufo_0p0o/ufo_urban_wet_children.tif",
+  "source_receipt": "independent/cto_ufo_0p0o/ufo_reference.json",
+  "source": "https://doi.org/10.5281/zenodo.19698577",
+  "licence": "CC BY 4.0",
+  "attribution": "Mukherjee et al., Urban Flood Observations, doi:10.5281/zenodo.19698577. Derived from hand-annotated PlanetScope optical surface water. Contains modified Copernicus Sentinel data and EC JRC/Google water history.",
+  "source_item": "CTO_20191002_021756_1049_0p0o",
+  "source_raster_sha256": "939f8a407bac0a7662b7fe8d8489a112b903ea631d93794893dfb1153dbb5799",
+  "definition": "Some new visible water in a built-up 30 m neighbourhood. One or more homogeneous, previously clear-land 10 m patches in GHSL built-up context, all nine children known nonpermanent. Source cannot identify a particular street. Unknown cells have no negative training label.",
+  "training_status": "Optional positive-only partial-cell presence target. Keep separate from whole-cell inundation. Same incident and source as manual_refs.",
+  "file": "partial_water_refs/cto_ufo_0p0o.npz",
+  "sha256": "01a9e0224175e0bdcc6184d82238cc2b861c16d1f497eac460f8bbb4c0914838",
+  "wet": 0,
+  "dry": 0,
+  "unknown": 10920,
+  "confirmed_wet_children": 0
+}

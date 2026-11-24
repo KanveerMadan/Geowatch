@@ -1,0 +1,197 @@
+{
+  "unit": "tbilisi_2015",
+  "city": "Vere valley, Tbilisi",
+  "country": "GE",
+  "date": "2015-06-13",
+  "bbox": [
+    44.746537091416435,
+    41.69288942280976,
+    44.79534825352266,
+    41.72919479386666
+  ],
+  "incident": "vere_jun_2015",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://www.gfdrr.org/sites/default/files/publication/pda-2015-tbilisi.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 2040070050,
+    "hybas_6": 2060616700,
+    "main_bas": 2060070050
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      2060616700
+    ],
+    "main_bas": [
+      2060070050
+    ]
+  },
+  "event": "2015-06-13",
+  "role": "dev",
+  "pre_dates": [
+    "2015-02-25",
+    "2015-03-09",
+    "2015-03-21",
+    "2015-04-02",
+    "2015-04-14",
+    "2015-04-26",
+    "2015-05-08",
+    "2015-05-20",
+    "2015-06-01"
+  ],
+  "post_date": "2015-06-13",
+  "days_from_anchor": 0,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20150613T030750_20150613T030815_006349_0085B9_B850",
+      "pass": "DESCENDING",
+      "track": 152,
+      "platform": "A",
+      "date": "2015-06-13"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20150225T030745_20150225T030810_004774_005EC8_4499",
+        "pass": "DESCENDING",
+        "track": 152,
+        "platform": "A",
+        "date": "2015-02-25"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20150309T030745_20150309T030810_004949_006305_662B",
+        "pass": "DESCENDING",
+        "track": 152,
+        "platform": "A",
+        "date": "2015-03-09"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20150321T030746_20150321T030811_005124_006735_03C0",
+        "pass": "DESCENDING",
+        "track": 152,
+        "platform": "A",
+        "date": "2015-03-21"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20150402T030746_20150402T030811_005299_006B4A_4A0A",
+        "pass": "DESCENDING",
+        "track": 152,
+        "platform": "A",
+        "date": "2015-04-02"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20150414T030746_20150414T030811_005474_006FD6_0DC1",
+        "pass": "DESCENDING",
+        "track": 152,
+        "platform": "A",
+        "date": "2015-04-14"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20150426T030751_20150426T030816_005649_0073E6_0FF6",
+        "pass": "DESCENDING",
+        "track": 152,
+        "platform": "A",
+        "date": "2015-04-26"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20150508T030748_20150508T030813_005824_0077E1_826B",
+        "pass": "DESCENDING",
+        "track": 152,
+        "platform": "A",
+        "date": "2015-05-08"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20150520T030748_20150520T030813_005999_007BBB_E029",
+        "pass": "DESCENDING",
+        "track": 152,
+        "platform": "A",
+        "date": "2015-05-20"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20150601T030749_20150601T030814_006174_00809A_BD1D",
+        "pass": "DESCENDING",
+        "track": 152,
+        "platform": "A",
+        "date": "2015-06-01"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32638",
+    "transform": [
+      30.0,
+      0.0,
+      478920.0,
+      0.0,
+      -30.0,
+      4619730.0
+    ],
+    "shape": [
+      134,
+      135
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/tbilisi_2015.npz": "d5624608f2c0e603a097bf09d7db6be1f354c725ffcdcea0d359e2b2a36f4440",
+    "events/tbilisi_2015/model_ref.npz": "d5624608f2c0e603a097bf09d7db6be1f354c725ffcdcea0d359e2b2a36f4440",
+    "events/tbilisi_2015/reference_30m.tif": "84ee4f2554af78f28186101cdb44e136005ae26200a6848216f293f31b6c30a2",
+    "events/tbilisi_2015/reference_10m.tif": "43c6e1282d0caf5e35b2516fb2784e9036507b84788d67c507400b3df21b5ab0"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 80,
+        "mean": 0.5374994277954102
+      },
+      "confident_flooded": {
+        "count": 4,
+        "mean": 0.562994658946991
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 5547,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 12543
+  }
+}

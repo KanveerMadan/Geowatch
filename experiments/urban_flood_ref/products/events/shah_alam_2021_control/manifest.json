@@ -1,0 +1,197 @@
+{
+  "unit": "shah_alam_2021_control",
+  "city": "Taman Sri Muda, Shah Alam",
+  "country": "MY",
+  "date": "2021-12-18",
+  "bbox": [
+    101.51866439464513,
+    3.011886975750321,
+    101.55516002468632,
+    3.048306001438134
+  ],
+  "incident": "selangor_dec_2021",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://www.nadma.gov.my/images/2023/GarisPanduan/rujukanluar/LAPORAN_KHAS_IMPAK_BANJIR_DI_MALAYSIA_2021_DOSM_1.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 4040018350,
+    "hybas_6": 4060020630,
+    "main_bas": 4060020630
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      4060020630
+    ],
+    "main_bas": [
+      4060020630
+    ]
+  },
+  "event": "2021-12-18",
+  "role": "dev",
+  "pre_dates": [
+    "2021-07-18",
+    "2021-07-30",
+    "2021-08-11",
+    "2021-08-23",
+    "2021-09-04",
+    "2021-09-16",
+    "2021-09-28",
+    "2021-10-10",
+    "2021-10-22"
+  ],
+  "post_date": "2021-11-15",
+  "days_from_anchor": -33,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20211115T225608_20211115T225633_040588_04D08D_DE82",
+      "pass": "DESCENDING",
+      "track": 91,
+      "platform": "A",
+      "date": "2021-11-15"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210718T225605_20210718T225630_038838_04953E_523B",
+        "pass": "DESCENDING",
+        "track": 91,
+        "platform": "A",
+        "date": "2021-07-18"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210730T225606_20210730T225631_039013_049A70_4DBD",
+        "pass": "DESCENDING",
+        "track": 91,
+        "platform": "A",
+        "date": "2021-07-30"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210811T225606_20210811T225631_039188_04A02E_81DE",
+        "pass": "DESCENDING",
+        "track": 91,
+        "platform": "A",
+        "date": "2021-08-11"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210823T225607_20210823T225632_039363_04A637_F1A0",
+        "pass": "DESCENDING",
+        "track": 91,
+        "platform": "A",
+        "date": "2021-08-23"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210904T225607_20210904T225632_039538_04AC3C_799F",
+        "pass": "DESCENDING",
+        "track": 91,
+        "platform": "A",
+        "date": "2021-09-04"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210916T225608_20210916T225633_039713_04B236_009C",
+        "pass": "DESCENDING",
+        "track": 91,
+        "platform": "A",
+        "date": "2021-09-16"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210928T225608_20210928T225633_039888_04B839_551E",
+        "pass": "DESCENDING",
+        "track": 91,
+        "platform": "A",
+        "date": "2021-09-28"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20211010T225609_20211010T225634_040063_04BE3F_0AA1",
+        "pass": "DESCENDING",
+        "track": 91,
+        "platform": "A",
+        "date": "2021-10-10"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20211022T225609_20211022T225634_040238_04C45A_4F95",
+        "pass": "DESCENDING",
+        "track": 91,
+        "platform": "A",
+        "date": "2021-10-22"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32647",
+    "transform": [
+      30.0,
+      0.0,
+      779970.0,
+      0.0,
+      -30.0,
+      337260.0
+    ],
+    "shape": [
+      134,
+      135
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/shah_alam_2021_control.npz": "2ac9d5dcabb9ec6605a25b4091cb9bff129e2e5bc790b5e3ea77c872958a9e33",
+    "events/shah_alam_2021_control/model_ref.npz": "2ac9d5dcabb9ec6605a25b4091cb9bff129e2e5bc790b5e3ea77c872958a9e33",
+    "events/shah_alam_2021_control/reference_30m.tif": "7a3fe051a0a46dd82c65ae55d10f98762491c44c517bdd70329ab4b04d94db76",
+    "events/shah_alam_2021_control/reference_10m.tif": "41d678e2e67fe5317a0dba00f74937325703b1dee12c4b1d220317a659229119"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 4,
+        "mean": 0.6281652450561523
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 199,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 17891
+  }
+}

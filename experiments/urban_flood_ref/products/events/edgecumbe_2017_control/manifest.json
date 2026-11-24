@@ -1,0 +1,149 @@
+{
+  "unit": "edgecumbe_2017_control",
+  "city": "Edgecumbe",
+  "country": "NZ",
+  "date": "2017-04-06",
+  "bbox": [
+    176.80501850345084,
+    -37.9951738460891,
+    176.8512173760762,
+    -37.958874631652925
+  ],
+  "incident": "debbie_2017",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://www.mpi.govt.nz/dmsdocument/51184/direct",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 5040085040,
+    "hybas_6": 5060086740,
+    "main_bas": 5060086740
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      5060086740
+    ],
+    "main_bas": [
+      5060086740
+    ]
+  },
+  "event": "2017-04-06",
+  "role": "dev",
+  "pre_dates": [
+    "2017-01-17",
+    "2017-02-10",
+    "2017-02-22"
+  ],
+  "post_date": "2017-03-06",
+  "days_from_anchor": -31,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1B_IW_GRDH_1SDV_20170306T065830_20170306T065859_004584_007FDB_35BC",
+      "pass": "ASCENDING",
+      "track": 8,
+      "platform": "B",
+      "date": "2017-03-06"
+    },
+    "pre": [
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170117T065831_20170117T065859_003884_006B05_2377",
+        "pass": "ASCENDING",
+        "track": 8,
+        "platform": "B",
+        "date": "2017-01-17"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170210T065831_20170210T065859_004234_007575_280A",
+        "pass": "ASCENDING",
+        "track": 8,
+        "platform": "B",
+        "date": "2017-02-10"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170222T065831_20170222T065859_004409_007AC0_EB38",
+        "pass": "ASCENDING",
+        "track": 8,
+        "platform": "B",
+        "date": "2017-02-22"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32760",
+    "transform": [
+      30.0,
+      0.0,
+      482880.0,
+      0.0,
+      -30.0,
+      5798730.0
+    ],
+    "shape": [
+      134,
+      135
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/edgecumbe_2017_control.npz": "f2acfbbe3a05822ffe18cb90a198b84fb54f50d1513893845c4f1dea4bf5ab70",
+    "events/edgecumbe_2017_control/model_ref.npz": "f2acfbbe3a05822ffe18cb90a198b84fb54f50d1513893845c4f1dea4bf5ab70",
+    "events/edgecumbe_2017_control/reference_30m.tif": "a8a91b40da51fb937f341587863c47ad2aaa6dac178c52ad5ee2fb1953be9de8",
+    "events/edgecumbe_2017_control/reference_10m.tif": "7a4a44f668ab046f55d4c2719c55fe93f7481a7815d993680dd9bd31f3cc8c9c"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 6711,
+        "mean": 0.5725939273834229
+      },
+      "confident_flooded": {
+        "count": 31,
+        "mean": 0.6052097082138062
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 24,
+        "mean": 0.5740373591581981
+      },
+      "confident_flooded": {
+        "count": 1,
+        "mean": 0.6413264751434327
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 0,
+    "confident_dry": 24,
+    "confident_flooded": 1,
+    "ambiguous": 18065
+  }
+}

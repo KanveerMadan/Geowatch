@@ -1,0 +1,45 @@
+{
+  "unit": "beira_ufo_a69z",
+  "event": "2019-03-15",
+  "incident": "idai_2019",
+  "date": "2019-03-26",
+  "reference_date": "2019-03-26",
+  "block": 1,
+  "grid": {
+    "crs": "EPSG:32736",
+    "transform": [
+      30,
+      0,
+      674700,
+      0,
+      -30,
+      7815660
+    ],
+    "shape": [
+      109,
+      103
+    ]
+  },
+  "bbox": [
+    34.66768447173048,
+    -19.776110506563196,
+    34.696699715540404,
+    -19.74709526275327
+  ],
+  "role": "dev",
+  "source_raster": "independent/beira_ufo_a69z/ufo_urban_wet_children.tif",
+  "source_receipt": "independent/beira_ufo_a69z/ufo_reference.json",
+  "source": "https://doi.org/10.5281/zenodo.19698577",
+  "licence": "CC BY 4.0",
+  "attribution": "Mukherjee et al., Urban Flood Observations, doi:10.5281/zenodo.19698577. Derived from hand-annotated PlanetScope optical surface water. Contains modified Copernicus Sentinel data and EC JRC/Google water history.",
+  "source_item": "BEI_20190326_072743_1021_a69z",
+  "source_raster_sha256": "415a78c5ee39c10119951253c56061a5eb02947a56799e8d07b20e72eb25d2f9",
+  "definition": "Some new visible water in a built-up 30 m neighbourhood. One or more homogeneous, previously clear-land 10 m patches in GHSL built-up context, all nine children known nonpermanent. Source cannot identify a particular street. Unknown cells have no negative training label.",
+  "training_status": "Optional positive-only partial-cell presence target. Keep separate from whole-cell inundation. Same incident and source as manual_refs.",
+  "file": "partial_water_refs/beira_ufo_a69z.npz",
+  "sha256": "72c2931437b9493781a2be303b104c258476df173d849c666fd8dd171eac61d3",
+  "wet": 0,
+  "dry": 0,
+  "unknown": 11227,
+  "confirmed_wet_children": 0
+}

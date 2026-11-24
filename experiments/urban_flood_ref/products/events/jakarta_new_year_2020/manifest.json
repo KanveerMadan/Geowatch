@@ -1,0 +1,205 @@
+{
+  "unit": "jakarta_new_year_2020",
+  "city": "Kampung Melayu, Jakarta",
+  "country": "ID",
+  "date": "2020-01-01",
+  "bbox": [
+    106.84869101375972,
+    -6.243312723019795,
+    106.88541059994124,
+    -6.206836816999046
+  ],
+  "incident": "jakarta_new_year_2020",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://jakita.jakarta.go.id/media/download/eng/edisi_1_2020.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 5040007690,
+    "hybas_6": 5060008510,
+    "main_bas": 5060008510
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      5060008510
+    ],
+    "main_bas": [
+      5060008510
+    ]
+  },
+  "event": "2020-01-01",
+  "role": "dev",
+  "pre_dates": [
+    "2019-09-04",
+    "2019-09-16",
+    "2019-09-28",
+    "2019-10-10",
+    "2019-10-22",
+    "2019-11-03",
+    "2019-11-15",
+    "2019-11-27",
+    "2019-12-09",
+    "2019-12-21"
+  ],
+  "post_date": "2020-01-02",
+  "days_from_anchor": 1,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20200102T111515_20200102T111540_030620_038227_CF59",
+      "pass": "ASCENDING",
+      "track": 98,
+      "platform": "A",
+      "date": "2020-01-02"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190904T111516_20190904T111541_028870_0345A8_DF0F",
+        "pass": "ASCENDING",
+        "track": 98,
+        "platform": "A",
+        "date": "2019-09-04"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190916T111517_20190916T111542_029045_034BBF_A377",
+        "pass": "ASCENDING",
+        "track": 98,
+        "platform": "A",
+        "date": "2019-09-16"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190928T111517_20190928T111542_029220_0351B7_E1D0",
+        "pass": "ASCENDING",
+        "track": 98,
+        "platform": "A",
+        "date": "2019-09-28"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20191010T111517_20191010T111542_029395_0357B7_896B",
+        "pass": "ASCENDING",
+        "track": 98,
+        "platform": "A",
+        "date": "2019-10-10"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20191022T111517_20191022T111542_029570_035DC2_EE55",
+        "pass": "ASCENDING",
+        "track": 98,
+        "platform": "A",
+        "date": "2019-10-22"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20191103T111517_20191103T111542_029745_0363DF_E7A9",
+        "pass": "ASCENDING",
+        "track": 98,
+        "platform": "A",
+        "date": "2019-11-03"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20191115T111517_20191115T111542_029920_036A01_03AB",
+        "pass": "ASCENDING",
+        "track": 98,
+        "platform": "A",
+        "date": "2019-11-15"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20191127T111517_20191127T111542_030095_037015_18A7",
+        "pass": "ASCENDING",
+        "track": 98,
+        "platform": "A",
+        "date": "2019-11-27"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20191209T111517_20191209T111542_030270_037614_463C",
+        "pass": "ASCENDING",
+        "track": 98,
+        "platform": "A",
+        "date": "2019-12-09"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20191221T111516_20191221T111541_030445_037C21_E0C5",
+        "pass": "ASCENDING",
+        "track": 98,
+        "platform": "A",
+        "date": "2019-12-21"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32748",
+    "transform": [
+      30.0,
+      0.0,
+      704550.0,
+      0.0,
+      -30.0,
+      9313560.0
+    ],
+    "shape": [
+      134,
+      135
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/jakarta_new_year_2020.npz": "d5a62342be4e39bae792678eefc088018f2ef862affaf053f8fd554084925f42",
+    "events/jakarta_new_year_2020/model_ref.npz": "d5a62342be4e39bae792678eefc088018f2ef862affaf053f8fd554084925f42",
+    "events/jakarta_new_year_2020/reference_30m.tif": "8c526fdaf5574afe0cbd2c0770784e2ffd2f8d7eb4b09144f12351b3b4b7c6dc",
+    "events/jakarta_new_year_2020/reference_10m.tif": "f486aeac3bdae151741653a537fe5739f9eb18c0783de0b8d56e8b28aea7c29d"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 19,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 18071
+  }
+}

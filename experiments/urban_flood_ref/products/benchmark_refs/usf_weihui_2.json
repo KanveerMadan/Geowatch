@@ -1,0 +1,51 @@
+{
+  "unit": "usf_weihui_2",
+  "role": "dev",
+  "event": "2021-07-27",
+  "grid": {
+    "crs": "EPSG:32649",
+    "transform": [
+      30.0,
+      0.0,
+      719040.0,
+      0.0,
+      -30.0,
+      3920550.0
+    ],
+    "shape": [
+      137,
+      138
+    ]
+  },
+  "bbox": [
+    113.41098095112788,
+    35.3663382865486,
+    113.45763647932176,
+    35.4042822087098
+  ],
+  "block": 1,
+  "parent_incident": "henan_jul_2021",
+  "reference_date": "2021-07-27",
+  "source_kind": "benchmark",
+  "source": "Published shared-Sentinel-1 intensity/coherence flooded-urban class",
+  "interpretation": "Positive-only development aid. Keep all three tiles in one storm group and exclude them from any later independent test.",
+  "rights": {
+    "licence": "CC BY 4.0",
+    "licence_uri": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "Jie Zhao, Zhitong Xiong and Xiao Xiang Zhu, 2024",
+    "source": "https://huggingface.co/datasets/S1Floodbenchmark/UrbanSARFloods_v1/tree/main",
+    "licence_source": "https://github.com/jie666-6/UrbanSARFloods#license",
+    "method": "https://openaccess.thecvf.com/content/CVPR2024W/EarthVision/html/Zhao_UrbanSARFloods_Sentinel-1_SLC-Based_Benchmark_Dataset_for_Urban_and_Open-Area_Flood_CVPRW_2024_paper.html",
+    "change": "Cropped, area-aggregated and masked; FU-only Boolean model input."
+  },
+  "raster_sha256": "9f709f05ca0f858496fa4c2a11323c6582d48b47857c83176b5822d9cc42ffd4",
+  "provenance_sha256": "9b008591e80f4b78f0ced92d6ccfc8794808220c21171f9931d0bac1bfa11516",
+  "source_raster": "independent/usf_weihui_2/weihui_fu.tif",
+  "source_receipt": "independent/usf_weihui_2/weihui_reference.json",
+  "permanent_water_exclusion": "Inherited upstream JRC occurrence <80% and finite; benchmark observation support required",
+  "file": "benchmark_refs/usf_weihui_2.npz",
+  "sha256": "855af6765a10b1401b4c9865fafdcb6ae26801d693bd6baa643cf59b9c40b619",
+  "wet": 879,
+  "dry": 0,
+  "unknown": 18027
+}

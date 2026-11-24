@@ -1,0 +1,183 @@
+{
+  "unit": "dharavi_control",
+  "city": "Dharavi, Mumbai",
+  "country": "IN",
+  "date": "2017-08-29",
+  "bbox": [
+    72.83544708151719,
+    19.03650217630986,
+    72.86253309579295,
+    19.06038590002089
+  ],
+  "incident": "mumbai_2017",
+  "products": [
+    "S1"
+  ],
+  "basis": "flood-core development registry",
+  "peak_date": null,
+  "event": "2017-08-29",
+  "role": "dev",
+  "pre_dates": [
+    "2017-03-26",
+    "2017-04-07",
+    "2017-04-19",
+    "2017-05-01",
+    "2017-05-13",
+    "2017-05-25",
+    "2017-06-06",
+    "2017-06-30",
+    "2017-07-12"
+  ],
+  "post_date": "2017-07-24",
+  "days_from_anchor": -36,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20170724T010247_20170724T010312_017606_01D758_0468",
+      "pass": "DESCENDING",
+      "track": 34,
+      "platform": "A",
+      "date": "2017-07-24"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20170326T010240_20170326T010305_015856_01A20B_1F1E",
+        "pass": "DESCENDING",
+        "track": 34,
+        "platform": "A",
+        "date": "2017-03-26"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20170407T010241_20170407T010306_016031_01A740_D856",
+        "pass": "DESCENDING",
+        "track": 34,
+        "platform": "A",
+        "date": "2017-04-07"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20170419T010241_20170419T010306_016206_01ACA2_52A8",
+        "pass": "DESCENDING",
+        "track": 34,
+        "platform": "A",
+        "date": "2017-04-19"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20170501T010242_20170501T010307_016381_01B1EF_E8C6",
+        "pass": "DESCENDING",
+        "track": 34,
+        "platform": "A",
+        "date": "2017-05-01"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20170513T010243_20170513T010308_016556_01B73B_AE3D",
+        "pass": "DESCENDING",
+        "track": 34,
+        "platform": "A",
+        "date": "2017-05-13"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20170525T010243_20170525T010308_016731_01BC9E_2F38",
+        "pass": "DESCENDING",
+        "track": 34,
+        "platform": "A",
+        "date": "2017-05-25"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20170606T010244_20170606T010309_016906_01C214_E449",
+        "pass": "DESCENDING",
+        "track": 34,
+        "platform": "A",
+        "date": "2017-06-06"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20170630T010245_20170630T010310_017256_01CCBD_30C3",
+        "pass": "DESCENDING",
+        "track": 34,
+        "platform": "A",
+        "date": "2017-06-30"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20170712T010246_20170712T010311_017431_01D20B_FEA4",
+        "pass": "DESCENDING",
+        "track": 34,
+        "platform": "A",
+        "date": "2017-07-12"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32643",
+    "transform": [
+      30.0,
+      0.0,
+      272220.0,
+      0.0,
+      -30.0,
+      2108880.0
+    ],
+    "shape": [
+      87,
+      94
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/dharavi_control.npz": "a6b7eb4d0125df17a1cdd1f76f74aa2c23454e0780f6bb49a70788ab94ac26bc",
+    "events/dharavi_control/model_ref.npz": "a6b7eb4d0125df17a1cdd1f76f74aa2c23454e0780f6bb49a70788ab94ac26bc",
+    "events/dharavi_control/reference_30m.tif": "5cfa88a7ff0b5723b37f32a4d65c1d4735258f7eae00daa490645ceb7663e575",
+    "events/dharavi_control/reference_10m.tif": "672c48bd1262d5d641fb5ce77ac91b8befa7dae920325de50e2e488d8d8fb0aa"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 1,
+        "mean": 0.5812424421310425
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 342,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 7836
+  }
+}

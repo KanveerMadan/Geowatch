@@ -1,0 +1,56 @@
+{
+  "unit": "beira_ufo_a69z",
+  "incident": "idai_2019",
+  "event": "2019-03-15",
+  "date": "2019-03-26",
+  "post_date": "2019-03-26",
+  "role": "dev",
+  "block": 1,
+  "grid": {
+    "crs": "EPSG:32736",
+    "transform": [
+      30,
+      0,
+      674700,
+      0,
+      -30,
+      7815660
+    ],
+    "shape": [
+      109,
+      103
+    ]
+  },
+  "bbox": [
+    34.66768447173048,
+    -19.776110506563196,
+    34.696699715540404,
+    -19.74709526275327
+  ],
+  "licence": "CC BY 4.0",
+  "source": "https://doi.org/10.5281/zenodo.19698577",
+  "source_item": "BEI_20190326_072743_1021_a69z",
+  "label_member": "ufo-dataset/urbanFloodsObservationsPUBLIC/labels/BEI_20190326_072743_1021_a69z.tif",
+  "source_sha256": "b8de988479451c6dcab14300beecb29c299b5affa0e56d20c83a3ad6cfcd300b",
+  "attribution": "Mukherjee et al., Urban Flood Observations, doi:10.5281/zenodo.19698577. Derived from hand-annotated PlanetScope optical surface water. Contains modified Copernicus Sentinel data and EC JRC/Google water history.",
+  "method": "Published hand-annotated visible water, with two pre-event clear land dates and JRC nonpermanent mask. All contributing source pixels and fine cells must agree. Dry only over mapped grassland/barren outside the urban stratum.",
+  "pre_sentinel2_assets": [
+    "20190116T073241_20190116T075052_T36KXD",
+    "20190121T073229_20190121T075414_T36KXD",
+    "20190126T073201_20190126T075019_T36KXD",
+    "20190131T073139_20190131T074730_T36KXD",
+    "20190205T073111_20190205T075010_T36KXD",
+    "20190210T073039_20190210T074611_T36KXD",
+    "20190215T073011_20190215T074659_T36KXD",
+    "20190220T072939_20190220T075233_T36KXD",
+    "20190225T072901_20190225T075255_T36KXD",
+    "20190302T072829_20190302T074728_T36KXD"
+  ],
+  "reference_date": "2019-03-26",
+  "kind": "published manual optical with automated screening",
+  "wet": 806,
+  "dry": 1389,
+  "unknown": 9032,
+  "urban_wet": 0,
+  "training_status": "development labels; group all three Beira tiles as one storm; fresh testing elsewhere"
+}

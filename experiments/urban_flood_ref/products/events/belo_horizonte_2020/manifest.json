@@ -1,0 +1,197 @@
+{
+  "unit": "belo_horizonte_2020",
+  "city": "Belo Horizonte",
+  "country": "BR",
+  "date": "2020-01-24",
+  "bbox": [
+    -43.95750937797578,
+    -19.94144219028868,
+    -43.91857344129658,
+    -19.904618467603918
+  ],
+  "incident": "minas_gerais_jan_2020",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://portal.inmet.gov.br/uploads/informartivos/informativo_meteorologico_-n04.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 6040639920,
+    "hybas_6": 6060652910,
+    "main_bas": 6060011780
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      6060652910
+    ],
+    "main_bas": [
+      6060011780
+    ]
+  },
+  "event": "2020-01-24",
+  "role": "dev",
+  "pre_dates": [
+    "2019-09-26",
+    "2019-10-08",
+    "2019-10-20",
+    "2019-11-01",
+    "2019-11-13",
+    "2019-11-25",
+    "2019-12-19",
+    "2019-12-31",
+    "2020-01-12"
+  ],
+  "post_date": "2020-01-24",
+  "days_from_anchor": 0,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1B_IW_GRDH_1SDV_20200124T082115_20200124T082140_019956_025BFE_2A1A",
+      "pass": "DESCENDING",
+      "track": 155,
+      "platform": "B",
+      "date": "2020-01-24"
+    },
+    "pre": [
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190926T082118_20190926T082143_018206_02247D_E700",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-09-26"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20191008T082118_20191008T082143_018381_022A06_278A",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-10-08"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20191020T082118_20191020T082143_018556_022F66_9A4C",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-10-20"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20191101T082118_20191101T082143_018731_0234E2_036C",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-11-01"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20191113T082118_20191113T082143_018906_023A88_2C00",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-11-13"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20191125T082118_20191125T082143_019081_024029_D206",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-11-25"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20191219T082117_20191219T082142_019431_024B45_C357",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-12-19"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20191231T082116_20191231T082141_019606_0250DD_4C9F",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-12-31"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20200112T082116_20200112T082141_019781_025668_6367",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2020-01-12"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32723",
+    "transform": [
+      30.0,
+      0.0,
+      609120.0,
+      0.0,
+      -30.0,
+      7798710.0
+    ],
+    "shape": [
+      135,
+      135
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/belo_horizonte_2020.npz": "dd0412b02e59e18ec6ca1f1a920b96ac5cb72713cfae91f2091761122f4f168b",
+    "events/belo_horizonte_2020/model_ref.npz": "dd0412b02e59e18ec6ca1f1a920b96ac5cb72713cfae91f2091761122f4f168b",
+    "events/belo_horizonte_2020/reference_30m.tif": "10c72225446dab8da1954605c0618b1a251f6c7e4c69aa825b2fcc0e15377e40",
+    "events/belo_horizonte_2020/reference_10m.tif": "21bb66a8695ff2028dd4b2220502a7d91d5dd7c24ea259ce5c57e569b526aaf0"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 1823,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 16402
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "unit": "ktm_ufo_P6SA",
+  "incident": "nile_khartoum_2020",
+  "event": "2020-08-29",
+  "date": "2020-08-29",
+  "post_date": "2020-08-29",
+  "role": "dev",
+  "block": 1,
+  "grid": {
+    "crs": "EPSG:32636",
+    "transform": [
+      30,
+      0,
+      449520,
+      0,
+      -30,
+      1726650
+    ],
+    "shape": [
+      106,
+      102
+    ]
+  },
+  "bbox": [
+    32.52922495859543,
+    15.588607592238553,
+    32.55759319327874,
+    15.616975826921863
+  ],
+  "licence": "CC BY 4.0",
+  "source": "https://doi.org/10.5281/zenodo.19698577",
+  "source_item": "KTM_20200829_073334_69_P6SA",
+  "label_member": "ufo-dataset/urbanFloodsObservationsPUBLIC/labels/KTM_20200829_073334_69_P6SA.tif",
+  "source_sha256": "72cea0f1abce6e736bfdeb4e03405cd842837332a359b6a8baacdeb21b24429a",
+  "attribution": "Mukherjee et al., Urban Flood Observations, doi:10.5281/zenodo.19698577. Derived from hand-annotated PlanetScope optical surface water. Contains modified Copernicus Sentinel data and EC JRC/Google water history.",
+  "method": "Published hand-annotated visible water, with two pre-event clear land dates and JRC nonpermanent mask. All contributing source pixels and fine cells must agree. Dry only over mapped grassland/barren outside the urban stratum.",
+  "pre_sentinel2_assets": [
+    "20200701T080611_20200701T082515_T36PVC",
+    "20200706T080609_20200706T081947_T36PVC",
+    "20200711T080611_20200711T081106_T36PVC",
+    "20200716T080609_20200716T082254_T36PVC",
+    "20200721T080611_20200721T081831_T36PVC",
+    "20200726T080609_20200726T082005_T36PVC",
+    "20200731T080611_20200731T081835_T36PVC",
+    "20200805T080609_20200805T082046_T36PVC",
+    "20200810T080611_20200810T081940_T36PVC",
+    "20200815T080609_20200815T082521_T36PVC"
+  ],
+  "reference_date": "2020-08-29",
+  "kind": "published manual optical with automated screening",
+  "wet": 31,
+  "dry": 0,
+  "unknown": 10781,
+  "urban_wet": 0,
+  "training_status": "development labels; group all tiles from the same incident; fresh testing elsewhere",
+  "file": "manual_refs/ktm_ufo_P6SA.npz",
+  "sha256": "0b840e1b0ac8200c56f3e48787a146d232780f250b8881904455f7b2341d65b8",
+  "source_raster": "independent/ktm_ufo_P6SA/ufo_surface.tif",
+  "source_receipt": "independent/ktm_ufo_P6SA/ufo_reference.json"
+}

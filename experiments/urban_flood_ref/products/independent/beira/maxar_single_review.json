@@ -1,0 +1,302 @@
+{
+  "unit": "beira",
+  "grid": {
+    "crs": "EPSG:32736",
+    "transform": [
+      30,
+      0,
+      691620,
+      0,
+      -30,
+      7808520
+    ],
+    "shape": [
+      150,
+      142
+    ]
+  },
+  "acquisition_dates": {
+    "pre": "2019-03-04",
+    "post": "2019-03-26"
+  },
+  "radar_date": "2019-03-26",
+  "source_urls": [
+    "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif",
+    "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/103001008ECDC900/0023320.tif",
+    "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/10400100488A7000/0023320.tif"
+  ],
+  "source": "Maxar Open Data, legacy DigitalGlobe Cyclone Idai",
+  "attribution": "Imagery \u00a9 Maxar Technologies, Maxar Open Data Program; derived visual interpretation by GeoWatch.",
+  "licence": "CC BY-NC 4.0 \u2014 non-commercial research only",
+  "licence_url": "https://maxar-marketing.s3.amazonaws.com/files/downloads/119757_opendataprotocol_2020_04.pdf",
+  "licence_uri": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "reviewer": "Codex VHR reader A",
+  "review_status": "Single detector-blind assistant interpretation. No independent human adjudication.",
+  "selection": "3 x 3 fixed positions at 20%, 50% and 80% of the model grid; detector-blind",
+  "evidence_resolution": "Vendor 1 m overview of approximately 0.5 m RGB imagery. The 150 m context and marked 30 m central cell were viewed for both dates.",
+  "eligible_for_dev_sidecar": false,
+  "limitations": [
+    "The optical and radar view dates match, 11 days after the incident anchor. Conditions at peak are unknown.",
+    "Only visibly exposed surfaces can be classified; occluded streets and unknown cells remain unlabelled.",
+    "Nine systematic cells cannot establish accuracy or city-wide flood extent. Optical coverage is independent of SAR; the reviewer is an AI assistant."
+  ],
+  "pixel_counts": {
+    "0": 3,
+    "1": 0,
+    "255": 21297
+  },
+  "cells": [
+    {
+      "id": "S01",
+      "row": 30,
+      "col": 28,
+      "source_dates": [
+        "2019-03-04",
+        "2019-03-26"
+      ],
+      "observed": {
+        "2019-03-04": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/103001008ECDC900/0023320.tif",
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/10400100488A7000/0023320.tif"
+          ]
+        },
+        "2019-03-26": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif"
+          ]
+        }
+      },
+      "label": "dry",
+      "reason": "An exposed paved port yard occupies most of the cell; lanes, vehicle gaps and shadows remain visible."
+    },
+    {
+      "id": "S02",
+      "row": 30,
+      "col": 71,
+      "source_dates": [
+        "2019-03-04",
+        "2019-03-26"
+      ],
+      "observed": {
+        "2019-03-04": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/103001008ECDC900/0023320.tif",
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/10400100488A7000/0023320.tif"
+          ]
+        },
+        "2019-03-26": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif"
+          ]
+        }
+      },
+      "label": "ambiguous",
+      "reason": "The before view is hazy and a linear roof/wall and dark green surface divide the after cell. Their wetness is unresolved."
+    },
+    {
+      "id": "S03",
+      "row": 30,
+      "col": 113,
+      "source_dates": [
+        "2019-03-04",
+        "2019-03-26"
+      ],
+      "observed": {
+        "2019-03-04": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/103001008ECDC900/0023320.tif",
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/10400100488A7000/0023320.tif"
+          ]
+        },
+        "2019-03-26": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif"
+          ]
+        }
+      },
+      "label": "ambiguous",
+      "reason": "Small roofs, branches and shaded yards hide much of the ground."
+    },
+    {
+      "id": "S04",
+      "row": 75,
+      "col": 28,
+      "source_dates": [
+        "2019-03-04",
+        "2019-03-26"
+      ],
+      "observed": {
+        "2019-03-04": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/103001008ECDC900/0023320.tif",
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/10400100488A7000/0023320.tif"
+          ]
+        },
+        "2019-03-26": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif"
+          ]
+        }
+      },
+      "label": "dry",
+      "reason": "The same exposed L-shaped road junction surrounds a small corner building. Road texture and boundaries remain visible on most of the cell."
+    },
+    {
+      "id": "S05",
+      "row": 75,
+      "col": 71,
+      "source_dates": [
+        "2019-03-04",
+        "2019-03-26"
+      ],
+      "observed": {
+        "2019-03-04": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/103001008ECDC900/0023320.tif",
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/10400100488A7000/0023320.tif"
+          ]
+        },
+        "2019-03-26": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif"
+          ]
+        }
+      },
+      "label": "ambiguous",
+      "reason": "A central exposed road band looks clear, but structures and verges occupy roughly half the cell."
+    },
+    {
+      "id": "S06",
+      "row": 75,
+      "col": 113,
+      "source_dates": [
+        "2019-03-04",
+        "2019-03-26"
+      ],
+      "observed": {
+        "2019-03-04": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/103001008ECDC900/0023320.tif",
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/10400100488A7000/0023320.tif"
+          ]
+        },
+        "2019-03-26": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif"
+          ]
+        }
+      },
+      "label": "ambiguous",
+      "reason": "Tree canopies, roofs and shadows conceal much of the potentially flooded ground."
+    },
+    {
+      "id": "S07",
+      "row": 120,
+      "col": 28,
+      "source_dates": [
+        "2019-03-04",
+        "2019-03-26"
+      ],
+      "observed": {
+        "2019-03-04": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/103001008ECDC900/0023320.tif",
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/10400100488A7000/0023320.tif"
+          ]
+        },
+        "2019-03-26": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif"
+          ]
+        }
+      },
+      "label": "ambiguous",
+      "reason": "The area near the shed darkens across a low-lying area; water, wet vegetation and shaded ground cannot be reliably separated within the cell."
+    },
+    {
+      "id": "S08",
+      "row": 120,
+      "col": 71,
+      "source_dates": [
+        "2019-03-04",
+        "2019-03-26"
+      ],
+      "observed": {
+        "2019-03-04": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/103001008ECDC900/0023320.tif",
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/10400100488A7000/0023320.tif"
+          ]
+        },
+        "2019-03-26": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif"
+          ]
+        }
+      },
+      "label": "dry",
+      "reason": "An exposed track and low green field have continuous land texture on both dates; no connected standing water is visible."
+    },
+    {
+      "id": "S09",
+      "row": 120,
+      "col": 113,
+      "source_dates": [
+        "2019-03-04",
+        "2019-03-26"
+      ],
+      "observed": {
+        "2019-03-04": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/103001008ECDC900/0023320.tif",
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/pre-event/2019-03-04/10400100488A7000/0023320.tif"
+          ]
+        },
+        "2019-03-26": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif"
+          ]
+        }
+      },
+      "label": "ambiguous",
+      "reason": "Dense buildings and trees obscure streets, making a whole-cell claim unsupported."
+    }
+  ]
+}

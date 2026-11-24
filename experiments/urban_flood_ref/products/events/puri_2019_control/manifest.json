@@ -1,0 +1,207 @@
+{
+  "unit": "puri_2019_control",
+  "city": "Puri",
+  "country": "IN",
+  "date": "2019-05-03",
+  "bbox": [
+    85.8104137911943,
+    19.78972176182549,
+    85.84962798877447,
+    19.826297531827827
+  ],
+  "incident": "fani_2019",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://srcodisha.nic.in/newspapper/SgqXBpL0SITREP-FANI%20Date%2003.05.2019%20%206.00%20PM.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 4040027110,
+    "hybas_6": 4060027280,
+    "main_bas": 4060027280
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      4060027110,
+      4060027280
+    ],
+    "main_bas": [
+      4060027110,
+      4060027280
+    ]
+  },
+  "event": "2019-05-03",
+  "role": "dev",
+  "pre_dates": [
+    "2018-12-04",
+    "2018-12-16",
+    "2018-12-28",
+    "2019-01-09",
+    "2019-01-21",
+    "2019-02-02",
+    "2019-02-14",
+    "2019-02-26",
+    "2019-03-10",
+    "2019-03-22"
+  ],
+  "post_date": "2019-04-03",
+  "days_from_anchor": -30,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20190403T001325_20190403T001350_026618_02FC5A_33AC",
+      "pass": "DESCENDING",
+      "track": 121,
+      "platform": "A",
+      "date": "2019-04-03"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181204T001327_20181204T001352_024868_02BD16_E98F",
+        "pass": "DESCENDING",
+        "track": 121,
+        "platform": "A",
+        "date": "2018-12-04"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181216T001327_20181216T001352_025043_02C349_763A",
+        "pass": "DESCENDING",
+        "track": 121,
+        "platform": "A",
+        "date": "2018-12-16"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181228T001326_20181228T001351_025218_02C9A1_089D",
+        "pass": "DESCENDING",
+        "track": 121,
+        "platform": "A",
+        "date": "2018-12-28"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190109T001326_20190109T001351_025393_02CFF3_EAC1",
+        "pass": "DESCENDING",
+        "track": 121,
+        "platform": "A",
+        "date": "2019-01-09"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190121T001326_20190121T001351_025568_02D64D_F21E",
+        "pass": "DESCENDING",
+        "track": 121,
+        "platform": "A",
+        "date": "2019-01-21"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190202T001325_20190202T001350_025743_02DCAD_29C0",
+        "pass": "DESCENDING",
+        "track": 121,
+        "platform": "A",
+        "date": "2019-02-02"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190214T001325_20190214T001350_025918_02E2E0_B80E",
+        "pass": "DESCENDING",
+        "track": 121,
+        "platform": "A",
+        "date": "2019-02-14"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190226T001325_20190226T001350_026093_02E927_B2BC",
+        "pass": "DESCENDING",
+        "track": 121,
+        "platform": "A",
+        "date": "2019-02-26"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190310T001325_20190310T001350_026268_02EF76_BAEF",
+        "pass": "DESCENDING",
+        "track": 121,
+        "platform": "A",
+        "date": "2019-03-10"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190322T001325_20190322T001350_026443_02F5E3_98C2",
+        "pass": "DESCENDING",
+        "track": 121,
+        "platform": "A",
+        "date": "2019-03-22"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32645",
+    "transform": [
+      30.0,
+      0.0,
+      375420.0,
+      0.0,
+      -30.0,
+      2192670.0
+    ],
+    "shape": [
+      134,
+      136
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/puri_2019_control.npz": "ed0722f5858e641a66883ebc0ec209065615ca946e01896bc13109cefd4581c1",
+    "events/puri_2019_control/model_ref.npz": "ed0722f5858e641a66883ebc0ec209065615ca946e01896bc13109cefd4581c1",
+    "events/puri_2019_control/reference_30m.tif": "b7d92c9546c1a3eca8c6d7a5c736b0745b5f7e98ead1095ac48a2935d926603f",
+    "events/puri_2019_control/reference_10m.tif": "99cc4666614c20e309e5c074c7539ba117a6c22d63508a789720c20eb8011d43"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 43,
+        "mean": 0.6625349521636963
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 4,
+        "mean": 0.7119789730934869
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 2927,
+    "confident_dry": 0,
+    "confident_flooded": 4,
+    "ambiguous": 15293
+  }
+}

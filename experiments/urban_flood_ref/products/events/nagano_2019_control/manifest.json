@@ -1,0 +1,149 @@
+{
+  "unit": "nagano_2019_control",
+  "city": "Naganuma, Nagano",
+  "country": "JP",
+  "date": "2019-10-13",
+  "bbox": [
+    138.22907724676193,
+    36.6779336100703,
+    138.27703280363255,
+    36.71628885593832
+  ],
+  "incident": "hagibis_2019",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://www.jstage.jst.go.jp/article/journalofjsce/10/1/10_206/_pdf/-char/en",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 4040039450,
+    "hybas_6": 4060043170,
+    "main_bas": 4060043170
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      4060043170
+    ],
+    "main_bas": [
+      4060043170
+    ]
+  },
+  "event": "2019-10-13",
+  "role": "dev",
+  "pre_dates": [
+    "2019-05-14",
+    "2019-08-18",
+    "2019-08-30"
+  ],
+  "post_date": "2019-09-11",
+  "days_from_anchor": -32,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1B_IW_GRDH_1SDV_20190911T084958_20190911T085023_017988_021DD7_7BA4",
+      "pass": "ASCENDING",
+      "track": 112,
+      "platform": "B",
+      "date": "2019-09-11"
+    },
+    "pre": [
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190514T084951_20190514T085016_016238_01E8F8_AB0A",
+        "pass": "ASCENDING",
+        "track": 112,
+        "platform": "B",
+        "date": "2019-05-14"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190818T084956_20190818T085021_017638_0212E9_A0B2",
+        "pass": "ASCENDING",
+        "track": 112,
+        "platform": "B",
+        "date": "2019-08-18"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190830T084957_20190830T085022_017813_02185F_A901",
+        "pass": "ASCENDING",
+        "track": 112,
+        "platform": "B",
+        "date": "2019-08-30"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32654",
+    "transform": [
+      30.0,
+      0.0,
+      252510.0,
+      0.0,
+      -30.0,
+      4066860.0
+    ],
+    "shape": [
+      138,
+      139
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/nagano_2019_control.npz": "1925fe376b273bd51b296d7978eb3b666969772a51e8e8e4faa8043e82ac096c",
+    "events/nagano_2019_control/model_ref.npz": "1925fe376b273bd51b296d7978eb3b666969772a51e8e8e4faa8043e82ac096c",
+    "events/nagano_2019_control/reference_30m.tif": "18ee71d59e7be4e5c49d381121e954d9de9bde08c226c684bc5b714eda01b6f6",
+    "events/nagano_2019_control/reference_10m.tif": "e96b8169838db699967d504f86d749c8fc042364fec7f4297d4664346984e690"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 87,
+        "mean": 0.580575168132782
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 3379,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 15803
+  }
+}

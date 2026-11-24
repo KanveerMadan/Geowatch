@@ -1,0 +1,183 @@
+{
+  "unit": "beira",
+  "city": "Beira",
+  "country": "MZ",
+  "date": "2019-03-15",
+  "bbox": [
+    34.829411901372474,
+    -19.850526446617565,
+    34.87054224206411,
+    -19.809460291651707
+  ],
+  "incident": "idai_2019",
+  "products": [
+    "S1"
+  ],
+  "basis": "flood-core development registry",
+  "peak_date": null,
+  "event": "2019-03-15",
+  "role": "dev",
+  "pre_dates": [
+    "2018-11-26",
+    "2018-12-08",
+    "2018-12-20",
+    "2019-01-01",
+    "2019-01-13",
+    "2019-01-25",
+    "2019-02-06",
+    "2019-02-18",
+    "2019-03-14"
+  ],
+  "post_date": "2019-03-26",
+  "days_from_anchor": 11,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1B_IW_GRDH_1SDV_20190326T160653_20190326T160722_015527_01D1AB_971D",
+      "pass": "ASCENDING",
+      "track": 101,
+      "platform": "B",
+      "date": "2019-03-26"
+    },
+    "pre": [
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181126T160656_20181126T160725_013777_019887_19E1",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2018-11-26"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181208T160655_20181208T160724_013952_019E39_0A09",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2018-12-08"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181220T160655_20181220T160724_014127_01A3F5_0533",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2018-12-20"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190101T160654_20190101T160723_014302_01A9C4_68FC",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-01-01"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190113T160654_20190113T160723_014477_01AF67_B26E",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-01-13"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190125T160654_20190125T160723_014652_01B4FD_9F2F",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-01-25"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190206T160653_20190206T160722_014827_01BABE_8777",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-02-06"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190218T160653_20190218T160722_015002_01C07E_D1A3",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-02-18"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190314T160646_20190314T160711_015352_01CBEE_21E5",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-03-14"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32736",
+    "transform": [
+      30.0,
+      0.0,
+      691620.0,
+      0.0,
+      -30.0,
+      7808520.0
+    ],
+    "shape": [
+      150,
+      142
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/beira.npz": "9131940c9cf2d378f2c139edc6606c436263cd7d3ab2266d320623eb7ee6a8f0",
+    "events/beira/model_ref.npz": "9131940c9cf2d378f2c139edc6606c436263cd7d3ab2266d320623eb7ee6a8f0",
+    "events/beira/reference_30m.tif": "d8519436bc09233066c4be4714752f0964e93b66a227747747baf98ab71cbcf7",
+    "events/beira/reference_10m.tif": "6bc170b9f41d4f10d472a4fccc7b13d94789f5e03111345731b49534b95af9a7"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 38,
+        "mean": 0.5923218727111816
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 2,
+        "mean": 0.6012709856033325
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 1872,
+    "confident_dry": 0,
+    "confident_flooded": 2,
+    "ambiguous": 19426
+  }
+}

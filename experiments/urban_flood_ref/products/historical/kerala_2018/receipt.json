@@ -1,0 +1,38 @@
+{
+  "unit": "kerala_2018",
+  "event": "2018-08-16",
+  "grid": {
+    "crs": "EPSG:32643",
+    "transform": [
+      30.0,
+      0.0,
+      655860.0,
+      0.0,
+      -30.0,
+      1043940.0
+    ],
+    "shape": [
+      134,
+      135
+    ]
+  },
+  "archive": "flood_refs/round4/test/waterlogging__kerala_2018.npz",
+  "source_sha256": "878f31e7384faf000db6e4c306165c221f50c3b64d2212a191335854fad2d538",
+  "sha256": "2e38a937780ade6716046fe4f131fdfbba3b3409c0df4da464e89c8d7b211d02",
+  "reference": {
+    "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2018 Jan-Mar median",
+    "resolution": "10 m -> 30 m",
+    "event_image_date": "2018-08-21",
+    "days_after_event": 5,
+    "relative_orbits": [
+      165,
+      173
+    ],
+    "event_images": 3,
+    "baseline_images": 8
+  },
+  "licence": "Copernicus Sentinel data terms; legacy derived comparator",
+  "valid": 18090,
+  "wet": 10866,
+  "grid_source": "archive metadata"
+}

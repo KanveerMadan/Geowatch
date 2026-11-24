@@ -1,0 +1,37 @@
+{
+  "unit": "usf_weihui_1",
+  "event": "2021-07-27",
+  "grid": {
+    "crs": "EPSG:32650",
+    "transform": [
+      30.0,
+      0.0,
+      231060.0,
+      0.0,
+      -30.0,
+      3924420.0
+    ],
+    "shape": [
+      138,
+      138
+    ]
+  },
+  "archive": "flood_final/urban/usf_weihui_1__s1.npz",
+  "source_sha256": "db61f2053477196c077b8c41ad4c64ca0880611045e14611bc14effdae30449f",
+  "sha256": "09d673892d212ccb264733c4457206df8d7ebd5438739646152026581dde98e9",
+  "reference": {
+    "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB vs same-orbit 2021 Jan-Mar median",
+    "resolution": "10 m -> 30 m",
+    "event_image_date": "2021-07-27",
+    "days_after_event": 0,
+    "relative_orbits": [
+      40
+    ],
+    "event_images": 1,
+    "baseline_images": 8
+  },
+  "licence": "Copernicus Sentinel data terms; legacy derived comparator",
+  "valid": 19044,
+  "wet": 1418,
+  "grid_source": "usf_weihui_1.npz companion and matching weihui.py producer"
+}

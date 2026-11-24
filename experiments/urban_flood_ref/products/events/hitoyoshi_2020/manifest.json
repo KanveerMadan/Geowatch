@@ -1,0 +1,205 @@
+{
+  "unit": "hitoyoshi_2020",
+  "city": "Hitoyoshi",
+  "country": "JP",
+  "date": "2020-07-04",
+  "bbox": [
+    130.73397143692006,
+    32.192245404435496,
+    130.77827087442617,
+    32.229641506928736
+  ],
+  "incident": "kuma_jul_2020",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://www.kumamoto-archive.jp/en/about-rain",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 4040039450,
+    "hybas_6": 4060039600,
+    "main_bas": 4060039600
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      4060039600
+    ],
+    "main_bas": [
+      4060039600
+    ]
+  },
+  "event": "2020-07-04",
+  "role": "dev",
+  "pre_dates": [
+    "2020-03-06",
+    "2020-03-18",
+    "2020-03-30",
+    "2020-04-11",
+    "2020-04-23",
+    "2020-05-05",
+    "2020-05-17",
+    "2020-05-29",
+    "2020-06-10",
+    "2020-06-22"
+  ],
+  "post_date": "2020-07-04",
+  "days_from_anchor": 0,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20200704T211711_20200704T211736_033310_03DC00_02C7",
+      "pass": "DESCENDING",
+      "track": 163,
+      "platform": "A",
+      "date": "2020-07-04"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200306T211706_20200306T211731_031560_03A2E1_B794",
+        "pass": "DESCENDING",
+        "track": 163,
+        "platform": "A",
+        "date": "2020-03-06"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200318T211706_20200318T211731_031735_03A8FA_A29D",
+        "pass": "DESCENDING",
+        "track": 163,
+        "platform": "A",
+        "date": "2020-03-18"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200330T211706_20200330T211731_031910_03AF21_27C9",
+        "pass": "DESCENDING",
+        "track": 163,
+        "platform": "A",
+        "date": "2020-03-30"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200411T211707_20200411T211732_032085_03B54C_941B",
+        "pass": "DESCENDING",
+        "track": 163,
+        "platform": "A",
+        "date": "2020-04-11"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200423T211707_20200423T211732_032260_03BB6F_5D43",
+        "pass": "DESCENDING",
+        "track": 163,
+        "platform": "A",
+        "date": "2020-04-23"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200505T211708_20200505T211733_032435_03C19A_25E3",
+        "pass": "DESCENDING",
+        "track": 163,
+        "platform": "A",
+        "date": "2020-05-05"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200517T211708_20200517T211733_032610_03C6F0_B036",
+        "pass": "DESCENDING",
+        "track": 163,
+        "platform": "A",
+        "date": "2020-05-17"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200529T211709_20200529T211734_032785_03CC37_9919",
+        "pass": "DESCENDING",
+        "track": 163,
+        "platform": "A",
+        "date": "2020-05-29"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200610T211710_20200610T211735_032960_03D161_E89A",
+        "pass": "DESCENDING",
+        "track": 163,
+        "platform": "A",
+        "date": "2020-06-10"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200622T211711_20200622T211736_033135_03D6B2_E858",
+        "pass": "DESCENDING",
+        "track": 163,
+        "platform": "A",
+        "date": "2020-06-22"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32652",
+    "transform": [
+      30.0,
+      0.0,
+      663450.0,
+      0.0,
+      -30.0,
+      3567210.0
+    ],
+    "shape": [
+      136,
+      137
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/hitoyoshi_2020.npz": "ac8e20e698597de6515446185e7327312c62f3eb29cff4ff4fefd1fce509f4ea",
+    "events/hitoyoshi_2020/model_ref.npz": "ac8e20e698597de6515446185e7327312c62f3eb29cff4ff4fefd1fce509f4ea",
+    "events/hitoyoshi_2020/reference_30m.tif": "407081a9f4505ad272bbe169f4e7453e54d2f027aa55d4a7fa94f9606a6969b7",
+    "events/hitoyoshi_2020/reference_10m.tif": "ef15495cf01195e96e5e9048929934323cc20bf69894f9ed31e91472bcf422bc"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 4,
+        "mean": 0.5077481865882874
+      },
+      "confident_flooded": {
+        "count": 974,
+        "mean": 0.6091210842132568
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 75,
+        "mean": 0.6286815601934201
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 2710,
+    "confident_dry": 0,
+    "confident_flooded": 75,
+    "ambiguous": 15847
+  }
+}

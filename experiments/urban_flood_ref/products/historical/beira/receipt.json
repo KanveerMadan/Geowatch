@@ -1,0 +1,38 @@
+{
+  "unit": "beira",
+  "event": "2019-03-15",
+  "grid": {
+    "crs": "EPSG:32736",
+    "transform": [
+      30.0,
+      0.0,
+      691620.0,
+      0.0,
+      -30.0,
+      7808520.0
+    ],
+    "shape": [
+      150,
+      142
+    ]
+  },
+  "archive": "flood_refs/round2/coastal__beira.npz",
+  "source_sha256": "14293af92b06a867580ab79ee527d1101cd3c58e670425a62e6d6d6125c74f8f",
+  "sha256": "16af99fc321811a4daf45ad2492d89a33e0e13d138ebdb74e0bc9b19cbe2053b",
+  "reference": {
+    "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+    "resolution": "10 m -> 30 m",
+    "event_window_days": 13,
+    "event_image_date": "2019-03-19",
+    "days_after_event": 4,
+    "event_images": 1,
+    "relative_orbits": [
+      174
+    ],
+    "pre_event_images": 1
+  },
+  "licence": "Copernicus Sentinel data terms; legacy derived comparator",
+  "valid": 19437,
+  "wet": 671,
+  "grid_source": "archive metadata"
+}

@@ -36,15 +36,15 @@ def publish(root, output):
         if entry['historical']:
             for name in ['intensity.tif','receipt.json']:copy(Path('historical')/u/name)
         if entry['kind']=='event':
-            for k in ['reviewed_refs','benchmark_refs','manual_refs']:
+            for k in ['reviewed_refs','benchmark_refs','manual_refs','partial_water_refs']:
                 path=Path(k)/(u+'.json')
                 if (root/path).is_file():
                     info=json.loads((root/path).read_text());file=Path(info['file'])
                     if file!=Path(k)/(u+'.npz') or info['sha256']!=sha(root/file):raise ValueError('Sidecar mismatch')
                     copy(path);copy(file)
-                    for field in ['source_raster','source_receipt','nonpermanent_mask']:
+                    for field in ['source_raster','source_receipt','nonpermanent_support']:
                         if isinstance(info.get(field),str) and (root/info[field]).is_file():copy(info[field])
-            for name in ['ufo_surface_10m.tif','ufo_surface.tif','ufo_reference.json','maxar_review.json','maxar_review.tif',
+            for name in ['ufo_urban_wet_children.tif','ufo_surface_10m.tif','ufo_surface.tif','ufo_reference.json','maxar_review.json','maxar_review.tif','maxar_single_review.json','maxar_single_review.tif',
                          'weihui_reference.json','weihui_fo.tif','weihui_fu.tif','weihui_gt.tif']:
                 path=Path('independent')/base/name
                 if (root/path).is_file():copy(path)

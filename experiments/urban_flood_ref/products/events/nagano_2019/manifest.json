@@ -1,0 +1,165 @@
+{
+  "unit": "nagano_2019",
+  "city": "Naganuma, Nagano",
+  "country": "JP",
+  "date": "2019-10-13",
+  "bbox": [
+    138.22907724676193,
+    36.6779336100703,
+    138.27703280363255,
+    36.71628885593832
+  ],
+  "incident": "hagibis_2019",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://www.jstage.jst.go.jp/article/journalofjsce/10/1/10_206/_pdf/-char/en",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 4040039450,
+    "hybas_6": 4060043170,
+    "main_bas": 4060043170
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      4060043170
+    ],
+    "main_bas": [
+      4060043170
+    ]
+  },
+  "event": "2019-10-13",
+  "role": "dev",
+  "pre_dates": [
+    "2019-08-18",
+    "2019-08-30",
+    "2019-09-11",
+    "2019-09-23",
+    "2019-10-05"
+  ],
+  "post_date": "2019-10-17",
+  "days_from_anchor": 4,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1B_IW_GRDH_1SDV_20191017T084958_20191017T085023_018513_022E20_8CDE",
+      "pass": "ASCENDING",
+      "track": 112,
+      "platform": "B",
+      "date": "2019-10-17"
+    },
+    "pre": [
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190818T084956_20190818T085021_017638_0212E9_A0B2",
+        "pass": "ASCENDING",
+        "track": 112,
+        "platform": "B",
+        "date": "2019-08-18"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190830T084957_20190830T085022_017813_02185F_A901",
+        "pass": "ASCENDING",
+        "track": 112,
+        "platform": "B",
+        "date": "2019-08-30"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190911T084958_20190911T085023_017988_021DD7_7BA4",
+        "pass": "ASCENDING",
+        "track": 112,
+        "platform": "B",
+        "date": "2019-09-11"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190923T084958_20190923T085023_018163_02233F_57E6",
+        "pass": "ASCENDING",
+        "track": 112,
+        "platform": "B",
+        "date": "2019-09-23"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20191005T084958_20191005T085023_018338_0228BC_9330",
+        "pass": "ASCENDING",
+        "track": 112,
+        "platform": "B",
+        "date": "2019-10-05"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32654",
+    "transform": [
+      30.0,
+      0.0,
+      252510.0,
+      0.0,
+      -30.0,
+      4066860.0
+    ],
+    "shape": [
+      138,
+      139
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/nagano_2019.npz": "23c40b51acdfebedcf22bd0b49f4aa55103ac2414408e396b575351cd724d879",
+    "events/nagano_2019/model_ref.npz": "23c40b51acdfebedcf22bd0b49f4aa55103ac2414408e396b575351cd724d879",
+    "events/nagano_2019/reference_30m.tif": "526e75c6a004d21476774938019ac9e6bb19bdb415c4d1a785a389e324d6f841",
+    "events/nagano_2019/reference_10m.tif": "2ad7f8e45eea655d8816b53988c2e64d2c7ffc03cc56856c1acf93259cbb48ae"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 73,
+        "mean": 0.5548257231712341
+      },
+      "confident_flooded": {
+        "count": 28,
+        "mean": 0.623816967010498
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 3379,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 15803
+  }
+}

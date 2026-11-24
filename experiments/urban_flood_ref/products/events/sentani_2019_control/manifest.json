@@ -1,0 +1,205 @@
+{
+  "unit": "sentani_2019_control",
+  "city": "Sentani, Jayapura Regency",
+  "country": "ID",
+  "date": "2019-03-16",
+  "bbox": [
+    140.48274491551933,
+    -2.5882366729304516,
+    140.51919037732907,
+    -2.551854286829271
+  ],
+  "incident": "sentani_mar_2019",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://ahacentre.org/wp-content/uploads/2019/03/FlashUpdate_01_18Mar_ID_Flooding-in-Sentani-District.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 5040046920,
+    "hybas_6": 5060047370,
+    "main_bas": 5060047370
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      5060047370
+    ],
+    "main_bas": [
+      5060047370
+    ]
+  },
+  "event": "2019-03-16",
+  "role": "dev",
+  "pre_dates": [
+    "2018-10-15",
+    "2018-10-27",
+    "2018-11-08",
+    "2018-11-20",
+    "2018-12-02",
+    "2018-12-14",
+    "2018-12-26",
+    "2019-01-07",
+    "2019-01-19",
+    "2019-01-31"
+  ],
+  "post_date": "2019-02-12",
+  "days_from_anchor": -32,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20190212T202050_20190212T202119_025901_02E242_2C7D",
+      "pass": "DESCENDING",
+      "track": 104,
+      "platform": "A",
+      "date": "2019-02-12"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181015T202053_20181015T202122_024151_02A42D_4526",
+        "pass": "DESCENDING",
+        "track": 104,
+        "platform": "A",
+        "date": "2018-10-15"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181027T202053_20181027T202122_024326_02A9CE_BF47",
+        "pass": "DESCENDING",
+        "track": 104,
+        "platform": "A",
+        "date": "2018-10-27"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181108T202053_20181108T202122_024501_02AFEE_E2DB",
+        "pass": "DESCENDING",
+        "track": 104,
+        "platform": "A",
+        "date": "2018-11-08"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181120T202053_20181120T202122_024676_02B663_6C21",
+        "pass": "DESCENDING",
+        "track": 104,
+        "platform": "A",
+        "date": "2018-11-20"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181202T202052_20181202T202121_024851_02BC88_0436",
+        "pass": "DESCENDING",
+        "track": 104,
+        "platform": "A",
+        "date": "2018-12-02"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181214T202052_20181214T202121_025026_02C2A9_0676",
+        "pass": "DESCENDING",
+        "track": 104,
+        "platform": "A",
+        "date": "2018-12-14"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181226T202052_20181226T202121_025201_02C8FC_5809",
+        "pass": "DESCENDING",
+        "track": 104,
+        "platform": "A",
+        "date": "2018-12-26"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190107T202051_20190107T202120_025376_02CF4B_8E80",
+        "pass": "DESCENDING",
+        "track": 104,
+        "platform": "A",
+        "date": "2019-01-07"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190119T202051_20190119T202120_025551_02D5A1_2E66",
+        "pass": "DESCENDING",
+        "track": 104,
+        "platform": "A",
+        "date": "2019-01-19"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190131T202050_20190131T202119_025726_02DC06_E3E9",
+        "pass": "DESCENDING",
+        "track": 104,
+        "platform": "A",
+        "date": "2019-01-31"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32754",
+    "transform": [
+      30.0,
+      0.0,
+      442500.0,
+      0.0,
+      -30.0,
+      9717930.0
+    ],
+    "shape": [
+      134,
+      135
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/sentani_2019_control.npz": "67bea1ad5cf7c1617f72d92d0f8036f9d8c163c65e2290536e55e20795def080",
+    "events/sentani_2019_control/model_ref.npz": "67bea1ad5cf7c1617f72d92d0f8036f9d8c163c65e2290536e55e20795def080",
+    "events/sentani_2019_control/reference_30m.tif": "defffd5f8d045eb1d5e2fd1076f8fbcb8af8f6d70cb505173ed659b43467828c",
+    "events/sentani_2019_control/reference_10m.tif": "4fb5567a140b76b9f4f10c021615874a55f3bbb7008a6c0f6ae27e68e1c54332"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 569,
+        "mean": 0.535097599029541
+      },
+      "confident_flooded": {
+        "count": 4,
+        "mean": 0.6253125071525574
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 411,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 17679
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "unit": "marikina_2020_control",
+  "city": "Marikina",
+  "country": "PH",
+  "date": "2020-11-12",
+  "bbox": [
+    121.08081009745534,
+    14.616558408232232,
+    121.11899156130745,
+    14.653465327380635
+  ],
+  "incident": "vamco_2020",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://ndrrmc.gov.ph/attachments/article/4138/SitRep_no_27_re_TY_ULYSSES_as_of_07DEC2020.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 5040022500,
+    "hybas_6": 5060028890,
+    "main_bas": 5060028890
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      5060028890
+    ],
+    "main_bas": [
+      5060028890
+    ]
+  },
+  "event": "2020-11-12",
+  "role": "dev",
+  "pre_dates": [
+    "2020-06-15",
+    "2020-06-27",
+    "2020-07-09",
+    "2020-07-21",
+    "2020-08-02",
+    "2020-08-14",
+    "2020-08-26",
+    "2020-09-07",
+    "2020-09-19",
+    "2020-10-01"
+  ],
+  "post_date": "2020-10-13",
+  "days_from_anchor": -30,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1B_IW_GRDH_1SDV_20201013T100624_20201013T100649_023793_02D367_9203",
+      "pass": "ASCENDING",
+      "track": 142,
+      "platform": "B",
+      "date": "2020-10-13"
+    },
+    "pre": [
+      {
+        "id": "S1B_IW_GRDH_1SDV_20200615T100619_20200615T100644_022043_029D57_F210",
+        "pass": "ASCENDING",
+        "track": 142,
+        "platform": "B",
+        "date": "2020-06-15"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20200627T100619_20200627T100644_022218_02A2AD_CBB5",
+        "pass": "ASCENDING",
+        "track": 142,
+        "platform": "B",
+        "date": "2020-06-27"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20200709T100620_20200709T100645_022393_02A802_0E22",
+        "pass": "ASCENDING",
+        "track": 142,
+        "platform": "B",
+        "date": "2020-07-09"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20200721T100621_20200721T100646_022568_02AD54_527D",
+        "pass": "ASCENDING",
+        "track": 142,
+        "platform": "B",
+        "date": "2020-07-21"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20200802T100622_20200802T100647_022743_02B2A0_A544",
+        "pass": "ASCENDING",
+        "track": 142,
+        "platform": "B",
+        "date": "2020-08-02"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20200814T100622_20200814T100647_022918_02B806_AB74",
+        "pass": "ASCENDING",
+        "track": 142,
+        "platform": "B",
+        "date": "2020-08-14"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20200826T100623_20200826T100648_023093_02BD8A_DA88",
+        "pass": "ASCENDING",
+        "track": 142,
+        "platform": "B",
+        "date": "2020-08-26"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20200907T100624_20200907T100649_023268_02C2FF_FE0E",
+        "pass": "ASCENDING",
+        "track": 142,
+        "platform": "B",
+        "date": "2020-09-07"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20200919T100624_20200919T100649_023443_02C879_E2BC",
+        "pass": "ASCENDING",
+        "track": 142,
+        "platform": "B",
+        "date": "2020-09-19"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20201001T100624_20201001T100649_023618_02CDF8_1789",
+        "pass": "ASCENDING",
+        "track": 142,
+        "platform": "B",
+        "date": "2020-10-01"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32651",
+    "transform": [
+      30.0,
+      0.0,
+      293310.0,
+      0.0,
+      -30.0,
+      1620840.0
+    ],
+    "shape": [
+      135,
+      136
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/marikina_2020_control.npz": "f76490649fd04682a25ba75e755841289f77166226b167c3b472b0e9be466a64",
+    "events/marikina_2020_control/model_ref.npz": "f76490649fd04682a25ba75e755841289f77166226b167c3b472b0e9be466a64",
+    "events/marikina_2020_control/reference_30m.tif": "f17a2f5f821be870a61a287cd4aa21672ca6c07c3f1df856d4844d408ef67f4f",
+    "events/marikina_2020_control/reference_10m.tif": "5beafa7aa5e2c85fa692f1a73bd9cfa4bee4333897735c2651d5567c5c5d74ca"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 159,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 18201
+  }
+}

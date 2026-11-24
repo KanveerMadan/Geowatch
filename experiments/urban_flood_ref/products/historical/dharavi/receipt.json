@@ -1,0 +1,38 @@
+{
+  "unit": "dharavi",
+  "event": "2017-08-29",
+  "grid": {
+    "crs": "EPSG:32643",
+    "transform": [
+      30.0,
+      0.0,
+      272220.0,
+      0.0,
+      -30.0,
+      2108880.0
+    ],
+    "shape": [
+      87,
+      94
+    ]
+  },
+  "archive": "flood_refs/round2/pluvial__dharavi.npz",
+  "source_sha256": "4f5598d65057da57feea9108dddc6884dba45fe9c2ca3fa813c32b6a3f593116",
+  "sha256": "bc9f93ed48dba545453e82baffd9017dbdf45a1432b577b0071536e912078813",
+  "reference": {
+    "source": "COPERNICUS/S1_GRD IW VV, drop <= -3.0 dB",
+    "resolution": "10 m -> 30 m",
+    "event_window_days": 3,
+    "event_image_date": "2017-08-29",
+    "days_after_event": 0,
+    "event_images": 1,
+    "relative_orbits": [
+      34
+    ],
+    "pre_event_images": 2
+  },
+  "licence": "Copernicus Sentinel data terms; legacy derived comparator",
+  "valid": 7875,
+  "wet": 489,
+  "grid_source": "archive metadata"
+}

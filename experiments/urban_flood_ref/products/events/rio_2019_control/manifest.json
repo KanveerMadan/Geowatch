@@ -1,0 +1,205 @@
+{
+  "unit": "rio_2019_control",
+  "city": "Jardim Botanico, Rio de Janeiro",
+  "country": "BR",
+  "date": "2019-04-08",
+  "bbox": [
+    -43.24410089559036,
+    -22.981685455537065,
+    -43.20383762797942,
+    -22.94440096460938
+  ],
+  "incident": "rio_apr_2019",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://prefeitura.rio/rio-faz-noticias/crivella-decreta-estado-de-calamidade-publica/",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 6040013760,
+    "hybas_6": 6060013760,
+    "main_bas": 6060013760
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      6060013760
+    ],
+    "main_bas": [
+      6060013760
+    ]
+  },
+  "event": "2019-04-08",
+  "role": "dev",
+  "pre_dates": [
+    "2018-11-06",
+    "2018-11-18",
+    "2018-11-30",
+    "2018-12-12",
+    "2018-12-24",
+    "2019-01-05",
+    "2019-01-17",
+    "2019-01-29",
+    "2019-02-10",
+    "2019-02-22"
+  ],
+  "post_date": "2019-03-06",
+  "days_from_anchor": -33,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1B_IW_GRDH_1SDV_20190306T082133_20190306T082158_015231_01C7EC_7969",
+      "pass": "DESCENDING",
+      "track": 155,
+      "platform": "B",
+      "date": "2019-03-06"
+    },
+    "pre": [
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181106T082136_20181106T082201_013481_018F1A_27E0",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2018-11-06"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181118T082136_20181118T082201_013656_01949C_F704",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2018-11-18"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181130T082136_20181130T082201_013831_019A31_E53B",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2018-11-30"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181212T082135_20181212T082200_014006_019FDF_86DC",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2018-12-12"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181224T082135_20181224T082200_014181_01A5A9_A2E2",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2018-12-24"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190105T082135_20190105T082200_014356_01AB66_E74C",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-01-05"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190117T082134_20190117T082159_014531_01B10C_49C3",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-01-17"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190129T082134_20190129T082159_014706_01B6AE_A3B5",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-01-29"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190210T082134_20190210T082159_014881_01BC6A_4173",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-02-10"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190222T082133_20190222T082158_015056_01C223_56DE",
+        "pass": "DESCENDING",
+        "track": 155,
+        "platform": "B",
+        "date": "2019-02-22"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32723",
+    "transform": [
+      30.0,
+      0.0,
+      680040.0,
+      0.0,
+      -30.0,
+      7461510.0
+    ],
+    "shape": [
+      136,
+      136
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/rio_2019_control.npz": "b3d37a3d05244183f6bfa9f26eaf6cb2f00337e0cd0d95ff77bb1c10dae7a7a8",
+    "events/rio_2019_control/model_ref.npz": "b3d37a3d05244183f6bfa9f26eaf6cb2f00337e0cd0d95ff77bb1c10dae7a7a8",
+    "events/rio_2019_control/reference_30m.tif": "cb025bab07586791e35d638813cf7ab824a5dc1f37436b71cc7d6e028a6ac32d",
+    "events/rio_2019_control/reference_10m.tif": "a7c2cd30001a09a5f5d17f7662e8a4890742d62399766e3b96f9452caa0f714f"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 12895,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 5601
+  }
+}

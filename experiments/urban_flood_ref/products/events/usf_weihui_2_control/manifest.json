@@ -1,0 +1,191 @@
+{
+  "unit": "usf_weihui_2_control",
+  "city": "Henan, Weihui study box 2",
+  "country": "CN",
+  "date": "2021-07-27",
+  "bbox": [
+    113.41098095112788,
+    35.3663382865486,
+    113.45763647932176,
+    35.4042822087098
+  ],
+  "incident": "henan_jul_2021",
+  "products": [
+    "UrbanSARFloods:Weihui_20210727"
+  ],
+  "basis": "flood-final documented development diagnostic",
+  "peak_date": null,
+  "event": "2021-07-27",
+  "role": "dev",
+  "pre_dates": [
+    "2021-02-21",
+    "2021-03-05",
+    "2021-03-17",
+    "2021-03-29",
+    "2021-04-10",
+    "2021-04-22",
+    "2021-05-04",
+    "2021-05-16",
+    "2021-05-28",
+    "2021-06-09"
+  ],
+  "post_date": "2021-06-21",
+  "days_from_anchor": -36,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20210621T102059_20210621T102124_038437_04891E_FD59",
+      "pass": "ASCENDING",
+      "track": 40,
+      "platform": "A",
+      "date": "2021-06-21"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210221T102055_20210221T102120_036687_044FB1_B22E",
+        "pass": "ASCENDING",
+        "track": 40,
+        "platform": "A",
+        "date": "2021-02-21"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210305T102055_20210305T102120_036862_0455BC_F64C",
+        "pass": "ASCENDING",
+        "track": 40,
+        "platform": "A",
+        "date": "2021-03-05"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210317T102055_20210317T102120_037037_045BE0_D47E",
+        "pass": "ASCENDING",
+        "track": 40,
+        "platform": "A",
+        "date": "2021-03-17"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210329T102055_20210329T102120_037212_0461E8_2E49",
+        "pass": "ASCENDING",
+        "track": 40,
+        "platform": "A",
+        "date": "2021-03-29"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210410T102056_20210410T102121_037387_0467F0_D58C",
+        "pass": "ASCENDING",
+        "track": 40,
+        "platform": "A",
+        "date": "2021-04-10"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210422T102056_20210422T102121_037562_046E03_FAD1",
+        "pass": "ASCENDING",
+        "track": 40,
+        "platform": "A",
+        "date": "2021-04-22"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210504T102056_20210504T102121_037737_04741D_94A3",
+        "pass": "ASCENDING",
+        "track": 40,
+        "platform": "A",
+        "date": "2021-05-04"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210516T102057_20210516T102122_037912_04796C_CFF7",
+        "pass": "ASCENDING",
+        "track": 40,
+        "platform": "A",
+        "date": "2021-05-16"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210528T102058_20210528T102123_038087_047EB6_3063",
+        "pass": "ASCENDING",
+        "track": 40,
+        "platform": "A",
+        "date": "2021-05-28"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210609T102059_20210609T102124_038262_0483E2_0D67",
+        "pass": "ASCENDING",
+        "track": 40,
+        "platform": "A",
+        "date": "2021-06-09"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32649",
+    "transform": [
+      30.0,
+      0.0,
+      719040.0,
+      0.0,
+      -30.0,
+      3920550.0
+    ],
+    "shape": [
+      137,
+      138
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/usf_weihui_2_control.npz": "32d191da942a0adb8561bb7f52105933d5d6f84521b806ed82c1e3e38349c1c0",
+    "events/usf_weihui_2_control/model_ref.npz": "32d191da942a0adb8561bb7f52105933d5d6f84521b806ed82c1e3e38349c1c0",
+    "events/usf_weihui_2_control/reference_30m.tif": "a7e0de3b6daddb5ef67aa7263f268a1d51a9de21bce64ed017d18e0015c671af",
+    "events/usf_weihui_2_control/reference_10m.tif": "5a131a92a1c2121d9ccfcd8f3f876bcde74ad4b633577a4189fbbf031473ce4c"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 1,
+        "mean": 0.5491045713424683
+      },
+      "confident_flooded": {
+        "count": 1,
+        "mean": 0.5703252553939819
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 237,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 18669
+  }
+}

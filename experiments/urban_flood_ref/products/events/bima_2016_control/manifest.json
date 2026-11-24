@@ -1,0 +1,165 @@
+{
+  "unit": "bima_2016_control",
+  "city": "Bima",
+  "country": "ID",
+  "date": "2016-12-21",
+  "bbox": [
+    118.73150686882273,
+    -8.473416832853447,
+    118.76844838859193,
+    -8.43663587471636
+  ],
+  "incident": "bima_dec_2016",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://bnpb.go.id/storage/app/media/uploads/24/infobencana/2016/info-bencana-desember2016.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 5040011800,
+    "hybas_6": 5060012090,
+    "main_bas": 5060012090
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      5060012090
+    ],
+    "main_bas": [
+      5060012090
+    ]
+  },
+  "event": "2016-12-21",
+  "role": "dev",
+  "pre_dates": [
+    "2016-07-23",
+    "2016-08-16",
+    "2016-09-09",
+    "2016-10-03",
+    "2016-10-27"
+  ],
+  "post_date": "2016-11-20",
+  "days_from_anchor": -31,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20161120T214443_20161120T214513_014031_0169E9_782C",
+      "pass": "DESCENDING",
+      "track": 134,
+      "platform": "A",
+      "date": "2016-11-20"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20160723T214440_20160723T214510_012281_013185_167C",
+        "pass": "DESCENDING",
+        "track": 134,
+        "platform": "A",
+        "date": "2016-07-23"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20160816T214442_20160816T214511_012631_013D15_E636",
+        "pass": "DESCENDING",
+        "track": 134,
+        "platform": "A",
+        "date": "2016-08-16"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20160909T214442_20160909T214512_012981_0148AD_2FF4",
+        "pass": "DESCENDING",
+        "track": 134,
+        "platform": "A",
+        "date": "2016-09-09"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20161003T214443_20161003T214513_013331_015414_BBA6",
+        "pass": "DESCENDING",
+        "track": 134,
+        "platform": "A",
+        "date": "2016-10-03"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20161027T214443_20161027T214513_013681_015F0A_B35E",
+        "pass": "DESCENDING",
+        "track": 134,
+        "platform": "A",
+        "date": "2016-10-27"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32750",
+    "transform": [
+      30.0,
+      0.0,
+      690630.0,
+      0.0,
+      -30.0,
+      9066990.0
+    ],
+    "shape": [
+      135,
+      135
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/bima_2016_control.npz": "d2ef85c13eaacd0ab4091c7d11e7e67f3e88bc75e9d9d74eb4cc560e11902094",
+    "events/bima_2016_control/model_ref.npz": "d2ef85c13eaacd0ab4091c7d11e7e67f3e88bc75e9d9d74eb4cc560e11902094",
+    "events/bima_2016_control/reference_30m.tif": "f6457081d0b655ece2f83ce2e2a135373166dba567f0312f99099273aeacdec6",
+    "events/bima_2016_control/reference_10m.tif": "079bc5f4e178d2c9ce5e98ee4edfb38ee3b58edaa55563c984af448b425bae3a"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 3936,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 14289
+  }
+}

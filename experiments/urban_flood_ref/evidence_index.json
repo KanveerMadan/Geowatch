@@ -1,0 +1,1636 @@
+[
+  {
+    "event_id": "dharavi",
+    "unit": "dharavi",
+    "kind": "event",
+    "incident": "mumbai_2017",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/dharavi/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/dharavi/s2_event.json"
+      }
+    ],
+    "historical": true,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "dharavi",
+    "unit": "dharavi_control",
+    "kind": "pre_event_control",
+    "incident": "mumbai_2017",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/dharavi/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/dharavi/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "beira",
+    "unit": "beira",
+    "kind": "event",
+    "incident": "idai_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/beira/s2_event.tif",
+        "date": "2019-03-27",
+        "dates": [
+          "2019-03-27"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/beira/s2_event.json"
+      },
+      {
+        "name": "Maxar visual review",
+        "path": "independent/beira/maxar_review.tif",
+        "date": "2019-03-26",
+        "role": "Independent sensor, assistant visual interpretation",
+        "source": "Maxar Open Data optical imagery",
+        "receipt": "independent/beira/maxar_review.json"
+      }
+    ],
+    "historical": true,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "beira",
+    "unit": "beira_control",
+    "kind": "pre_event_control",
+    "incident": "idai_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/beira/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/beira/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "kerala_2018",
+    "unit": "kerala_2018",
+    "kind": "event",
+    "incident": "monsoon_2018_kl",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/kerala_2018/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/kerala_2018/s2_event.json"
+      }
+    ],
+    "historical": true,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "kerala_2018",
+    "unit": "kerala_2018_control",
+    "kind": "pre_event_control",
+    "incident": "monsoon_2018_kl",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/kerala_2018/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/kerala_2018/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "usf_weihui_1",
+    "unit": "usf_weihui_1",
+    "kind": "event",
+    "incident": "henan_jul_2021",
+    "references": [
+      {
+        "name": "All flood",
+        "path": "independent/usf_weihui_1/weihui_gt.tif",
+        "date": "2021-07-27",
+        "role": "Shared-Sentinel-1 external benchmark",
+        "source": "UrbanSARFloods v1 \u2014 20210727_Weihui_GT",
+        "receipt": "independent/usf_weihui_1/weihui_reference.json"
+      },
+      {
+        "name": "Flooded urban",
+        "path": "independent/usf_weihui_1/weihui_fu.tif",
+        "date": "2021-07-27",
+        "role": "Shared-Sentinel-1 external benchmark",
+        "source": "UrbanSARFloods v1 \u2014 20210727_Weihui_GT",
+        "receipt": "independent/usf_weihui_1/weihui_reference.json"
+      },
+      {
+        "name": "Flooded open",
+        "path": "independent/usf_weihui_1/weihui_fo.tif",
+        "date": "2021-07-27",
+        "role": "Shared-Sentinel-1 external benchmark",
+        "source": "UrbanSARFloods v1 \u2014 20210727_Weihui_GT",
+        "receipt": "independent/usf_weihui_1/weihui_reference.json"
+      },
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/usf_weihui_1/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/usf_weihui_1/s2_event.json"
+      }
+    ],
+    "historical": true,
+    "optional_dev_labels": [
+      "benchmark_refs/usf_weihui_1.npz"
+    ]
+  },
+  {
+    "event_id": "usf_weihui_1",
+    "unit": "usf_weihui_1_control",
+    "kind": "pre_event_control",
+    "incident": "henan_jul_2021",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/usf_weihui_1/s2_control.tif",
+        "date": "2021-06-21",
+        "dates": [
+          "2021-06-21"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/usf_weihui_1/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "usf_weihui_2",
+    "unit": "usf_weihui_2",
+    "kind": "event",
+    "incident": "henan_jul_2021",
+    "references": [
+      {
+        "name": "All flood",
+        "path": "independent/usf_weihui_2/weihui_gt.tif",
+        "date": "2021-07-27",
+        "role": "Shared-Sentinel-1 external benchmark",
+        "source": "UrbanSARFloods v1 \u2014 20210727_Weihui_GT",
+        "receipt": "independent/usf_weihui_2/weihui_reference.json"
+      },
+      {
+        "name": "Flooded urban",
+        "path": "independent/usf_weihui_2/weihui_fu.tif",
+        "date": "2021-07-27",
+        "role": "Shared-Sentinel-1 external benchmark",
+        "source": "UrbanSARFloods v1 \u2014 20210727_Weihui_GT",
+        "receipt": "independent/usf_weihui_2/weihui_reference.json"
+      },
+      {
+        "name": "Flooded open",
+        "path": "independent/usf_weihui_2/weihui_fo.tif",
+        "date": "2021-07-27",
+        "role": "Shared-Sentinel-1 external benchmark",
+        "source": "UrbanSARFloods v1 \u2014 20210727_Weihui_GT",
+        "receipt": "independent/usf_weihui_2/weihui_reference.json"
+      },
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/usf_weihui_2/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/usf_weihui_2/s2_event.json"
+      }
+    ],
+    "historical": true,
+    "optional_dev_labels": [
+      "benchmark_refs/usf_weihui_2.npz"
+    ]
+  },
+  {
+    "event_id": "usf_weihui_2",
+    "unit": "usf_weihui_2_control",
+    "kind": "pre_event_control",
+    "incident": "henan_jul_2021",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/usf_weihui_2/s2_control.tif",
+        "date": "2021-06-21",
+        "dates": [
+          "2021-06-21"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/usf_weihui_2/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "usf_weihui_3",
+    "unit": "usf_weihui_3",
+    "kind": "event",
+    "incident": "henan_jul_2021",
+    "references": [
+      {
+        "name": "All flood",
+        "path": "independent/usf_weihui_3/weihui_gt.tif",
+        "date": "2021-07-27",
+        "role": "Shared-Sentinel-1 external benchmark",
+        "source": "UrbanSARFloods v1 \u2014 20210727_Weihui_GT",
+        "receipt": "independent/usf_weihui_3/weihui_reference.json"
+      },
+      {
+        "name": "Flooded urban",
+        "path": "independent/usf_weihui_3/weihui_fu.tif",
+        "date": "2021-07-27",
+        "role": "Shared-Sentinel-1 external benchmark",
+        "source": "UrbanSARFloods v1 \u2014 20210727_Weihui_GT",
+        "receipt": "independent/usf_weihui_3/weihui_reference.json"
+      },
+      {
+        "name": "Flooded open",
+        "path": "independent/usf_weihui_3/weihui_fo.tif",
+        "date": "2021-07-27",
+        "role": "Shared-Sentinel-1 external benchmark",
+        "source": "UrbanSARFloods v1 \u2014 20210727_Weihui_GT",
+        "receipt": "independent/usf_weihui_3/weihui_reference.json"
+      },
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/usf_weihui_3/s2_event.tif",
+        "date": "2021-07-28",
+        "dates": [
+          "2021-07-28"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/usf_weihui_3/s2_event.json"
+      }
+    ],
+    "historical": true,
+    "optional_dev_labels": [
+      "benchmark_refs/usf_weihui_3.npz"
+    ]
+  },
+  {
+    "event_id": "usf_weihui_3",
+    "unit": "usf_weihui_3_control",
+    "kind": "pre_event_control",
+    "incident": "henan_jul_2021",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/usf_weihui_3/s2_control.tif",
+        "date": "2021-06-28",
+        "dates": [
+          "2021-06-28"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/usf_weihui_3/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "mabi_2018",
+    "unit": "mabi_2018",
+    "kind": "event",
+    "incident": "west_japan_jul_2018",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/mabi_2018/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/mabi_2018/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "mabi_2018",
+    "unit": "mabi_2018_control",
+    "kind": "pre_event_control",
+    "incident": "west_japan_jul_2018",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/mabi_2018/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/mabi_2018/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "nagano_2019",
+    "unit": "nagano_2019",
+    "kind": "event",
+    "incident": "hagibis_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/nagano_2019/s2_event.tif",
+        "date": "2019-10-18",
+        "dates": [
+          "2019-10-18"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/nagano_2019/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "nagano_2019",
+    "unit": "nagano_2019_control",
+    "kind": "pre_event_control",
+    "incident": "hagibis_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/nagano_2019/s2_control.tif",
+        "date": "2019-09-10",
+        "dates": [
+          "2019-09-10"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/nagano_2019/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "hitoyoshi_2020",
+    "unit": "hitoyoshi_2020",
+    "kind": "event",
+    "incident": "kuma_jul_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/hitoyoshi_2020/s2_event.tif",
+        "date": "2020-07-05",
+        "dates": [
+          "2020-07-05"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/hitoyoshi_2020/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "hitoyoshi_2020",
+    "unit": "hitoyoshi_2020_control",
+    "kind": "pre_event_control",
+    "incident": "kuma_jul_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/hitoyoshi_2020/s2_control.tif",
+        "date": "2020-06-05",
+        "dates": [
+          "2020-06-05"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/hitoyoshi_2020/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "hyderabad_2020",
+    "unit": "hyderabad_2020",
+    "kind": "event",
+    "incident": "bay_bengal_depression_oct_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/hyderabad_2020/s2_event.tif",
+        "date": "2020-10-20",
+        "dates": [
+          "2020-10-20"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/hyderabad_2020/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "hyderabad_2020",
+    "unit": "hyderabad_2020_control",
+    "kind": "pre_event_control",
+    "incident": "bay_bengal_depression_oct_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/hyderabad_2020/s2_control.tif",
+        "date": "2020-09-15",
+        "dates": [
+          "2020-09-15"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/hyderabad_2020/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "bima_2016",
+    "unit": "bima_2016_control",
+    "kind": "pre_event_control",
+    "incident": "bima_dec_2016",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/bima_2016/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/bima_2016/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "sentani_2019",
+    "unit": "sentani_2019",
+    "kind": "event",
+    "incident": "sentani_mar_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/sentani_2019/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/sentani_2019/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "sentani_2019",
+    "unit": "sentani_2019_control",
+    "kind": "pre_event_control",
+    "incident": "sentani_mar_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/sentani_2019/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/sentani_2019/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "shah_alam_2021",
+    "unit": "shah_alam_2021",
+    "kind": "event",
+    "incident": "selangor_dec_2021",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/shah_alam_2021/s2_event.tif",
+        "date": "2021-12-19",
+        "dates": [
+          "2021-12-19"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/shah_alam_2021/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "shah_alam_2021",
+    "unit": "shah_alam_2021_control",
+    "kind": "pre_event_control",
+    "incident": "selangor_dec_2021",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/shah_alam_2021/s2_control.tif",
+        "date": "2021-11-14",
+        "dates": [
+          "2021-11-14"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/shah_alam_2021/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "hue_2020",
+    "unit": "hue_2020",
+    "kind": "event",
+    "incident": "vietnam_oct_2020_chain",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/hue_2020/s2_event.tif",
+        "date": "2020-10-22",
+        "dates": [
+          "2020-10-22"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/hue_2020/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "hue_2020",
+    "unit": "hue_2020_control",
+    "kind": "pre_event_control",
+    "incident": "vietnam_oct_2020_chain",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/hue_2020/s2_control.tif",
+        "date": "2020-09-17",
+        "dates": [
+          "2020-09-17"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/hue_2020/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "beledweyne_2019",
+    "unit": "beledweyne_2019",
+    "kind": "event",
+    "incident": "shabelle_deyr_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/beledweyne_2019/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/beledweyne_2019/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "beledweyne_2019",
+    "unit": "beledweyne_2019_control",
+    "kind": "pre_event_control",
+    "incident": "shabelle_deyr_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/beledweyne_2019/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/beledweyne_2019/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "bor_2020",
+    "unit": "bor_2020",
+    "kind": "event",
+    "incident": "jonglei_aug_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/bor_2020/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/bor_2020/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "bor_2020",
+    "unit": "bor_2020_control",
+    "kind": "pre_event_control",
+    "incident": "jonglei_aug_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/bor_2020/s2_control.tif",
+        "date": "2020-07-06",
+        "dates": [
+          "2020-07-06"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/bor_2020/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "bozkurt_2021",
+    "unit": "bozkurt_2021",
+    "kind": "event",
+    "incident": "western_black_sea_aug_2021",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/bozkurt_2021/s2_event.tif",
+        "date": "2021-08-11",
+        "dates": [
+          "2021-08-11"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/bozkurt_2021/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "bozkurt_2021",
+    "unit": "bozkurt_2021_control",
+    "kind": "pre_event_control",
+    "incident": "western_black_sea_aug_2021",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/bozkurt_2021/s2_control.tif",
+        "date": "2021-07-12",
+        "dates": [
+          "2021-07-12"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/bozkurt_2021/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "shiraz_2019",
+    "unit": "shiraz_2019",
+    "kind": "event",
+    "incident": "iran_mar_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/shiraz_2019/s2_event.tif",
+        "date": "2019-03-26",
+        "dates": [
+          "2019-03-26"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/shiraz_2019/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "shiraz_2019",
+    "unit": "shiraz_2019_control",
+    "kind": "pre_event_control",
+    "incident": "iran_mar_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/shiraz_2019/s2_control.tif",
+        "date": "2019-02-19",
+        "dates": [
+          "2019-02-19"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/shiraz_2019/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "marikina_2020",
+    "unit": "marikina_2020",
+    "kind": "event",
+    "incident": "vamco_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/marikina_2020/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/marikina_2020/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "marikina_2020",
+    "unit": "marikina_2020_control",
+    "kind": "pre_event_control",
+    "incident": "vamco_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/marikina_2020/s2_control.tif",
+        "date": "2020-10-14",
+        "dates": [
+          "2020-10-14"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/marikina_2020/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "belo_horizonte_2020",
+    "unit": "belo_horizonte_2020",
+    "kind": "event",
+    "incident": "minas_gerais_jan_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/belo_horizonte_2020/s2_event.tif",
+        "date": "2020-01-24",
+        "dates": [
+          "2020-01-24"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/belo_horizonte_2020/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "belo_horizonte_2020",
+    "unit": "belo_horizonte_2020_control",
+    "kind": "pre_event_control",
+    "incident": "minas_gerais_jan_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/belo_horizonte_2020/s2_control.tif",
+        "date": "",
+        "dates": [
+          "2019-12-23",
+          "2019-12-25"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/belo_horizonte_2020/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "durban_2019",
+    "unit": "durban_2019",
+    "kind": "event",
+    "incident": "kzn_april_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/durban_2019/s2_event.tif",
+        "date": "2019-04-29",
+        "dates": [
+          "2019-04-29"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/durban_2019/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "durban_2019",
+    "unit": "durban_2019_control",
+    "kind": "pre_event_control",
+    "incident": "kzn_april_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/durban_2019/s2_control.tif",
+        "date": "2019-03-25",
+        "dates": [
+          "2019-03-25"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/durban_2019/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "jakarta_new_year_2020",
+    "unit": "jakarta_new_year_2020",
+    "kind": "event",
+    "incident": "jakarta_new_year_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/jakarta_new_year_2020/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/jakarta_new_year_2020/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "jakarta_new_year_2020",
+    "unit": "jakarta_new_year_2020_control",
+    "kind": "pre_event_control",
+    "incident": "jakarta_new_year_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/jakarta_new_year_2020/s2_control.tif",
+        "date": "2019-12-06",
+        "dates": [
+          "2019-12-06"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/jakarta_new_year_2020/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "edgecumbe_2017",
+    "unit": "edgecumbe_2017",
+    "kind": "event",
+    "incident": "debbie_2017",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/edgecumbe_2017/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/edgecumbe_2017/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "edgecumbe_2017",
+    "unit": "edgecumbe_2017_control",
+    "kind": "pre_event_control",
+    "incident": "debbie_2017",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/edgecumbe_2017/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/edgecumbe_2017/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "rio_2019",
+    "unit": "rio_2019",
+    "kind": "event",
+    "incident": "rio_apr_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/rio_2019/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/rio_2019/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "rio_2019",
+    "unit": "rio_2019_control",
+    "kind": "pre_event_control",
+    "incident": "rio_apr_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/rio_2019/s2_control.tif",
+        "date": "2019-03-05",
+        "dates": [
+          "2019-03-05"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/rio_2019/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "tbilisi_2015",
+    "unit": "tbilisi_2015",
+    "kind": "event",
+    "incident": "vere_jun_2015",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/tbilisi_2015/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/tbilisi_2015/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "tbilisi_2015",
+    "unit": "tbilisi_2015_control",
+    "kind": "pre_event_control",
+    "incident": "vere_jun_2015",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/tbilisi_2015/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/tbilisi_2015/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "puri_2019",
+    "unit": "puri_2019",
+    "kind": "event",
+    "incident": "fani_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/puri_2019/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/puri_2019/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "puri_2019",
+    "unit": "puri_2019_control",
+    "kind": "pre_event_control",
+    "incident": "fani_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/puri_2019/s2_control.tif",
+        "date": "2019-04-03",
+        "dates": [
+          "2019-04-03"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/puri_2019/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "marsh_harbour_2019",
+    "unit": "marsh_harbour_2019",
+    "kind": "event",
+    "incident": "dorian_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/marsh_harbour_2019/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/marsh_harbour_2019/s2_event.json"
+      },
+      {
+        "name": "Maxar visual review",
+        "path": "independent/marsh_harbour_2019/maxar_review.tif",
+        "date": "2019-09-05",
+        "role": "Independent sensor, assistant visual interpretation",
+        "source": "Maxar Open Data optical imagery",
+        "receipt": "independent/marsh_harbour_2019/maxar_review.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "marsh_harbour_2019",
+    "unit": "marsh_harbour_2019_control",
+    "kind": "pre_event_control",
+    "incident": "dorian_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/marsh_harbour_2019/s2_control.tif",
+        "date": "2019-08-06",
+        "dates": [
+          "2019-08-06"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/marsh_harbour_2019/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "gatineau_2017",
+    "unit": "gatineau_2017",
+    "kind": "event",
+    "incident": "ottawa_may_2017",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/gatineau_2017/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/gatineau_2017/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "gatineau_2017",
+    "unit": "gatineau_2017_control",
+    "kind": "pre_event_control",
+    "incident": "ottawa_may_2017",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/gatineau_2017/s2_control.tif",
+        "date": "2017-04-06",
+        "dates": [
+          "2017-04-06"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/gatineau_2017/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "mocoa_2017",
+    "unit": "mocoa_2017",
+    "kind": "event",
+    "incident": "mocoa_apr_2017",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/mocoa_2017/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/mocoa_2017/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "mocoa_2017",
+    "unit": "mocoa_2017_control",
+    "kind": "pre_event_control",
+    "incident": "mocoa_apr_2017",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/mocoa_2017/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/mocoa_2017/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "beira_ufo_1ynv",
+    "unit": "beira_ufo_1ynv",
+    "kind": "event",
+    "incident": "idai_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/beira_ufo_1ynv/s2_event.tif",
+        "date": "2019-03-27",
+        "dates": [
+          "2019-03-27"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/beira_ufo_1ynv/s2_event.json"
+      },
+      {
+        "name": "UFO PlanetScope visible water",
+        "path": "independent/beira_ufo_1ynv/ufo_surface.tif",
+        "date": "2019-03-26",
+        "role": "Independent sensor, published human optical interpretation",
+        "source": "https://doi.org/10.5281/zenodo.19698577",
+        "receipt": "independent/beira_ufo_1ynv/ufo_reference.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": [
+      "manual_refs/beira_ufo_1ynv.npz",
+      "partial_water_refs/beira_ufo_1ynv.npz"
+    ]
+  },
+  {
+    "event_id": "beira_ufo_1ynv",
+    "unit": "beira_ufo_1ynv_control",
+    "kind": "pre_event_control",
+    "incident": "idai_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/beira_ufo_1ynv/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/beira_ufo_1ynv/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "beira_ufo_a69z",
+    "unit": "beira_ufo_a69z",
+    "kind": "event",
+    "incident": "idai_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/beira_ufo_a69z/s2_event.tif",
+        "date": "2019-03-27",
+        "dates": [
+          "2019-03-27"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/beira_ufo_a69z/s2_event.json"
+      },
+      {
+        "name": "UFO PlanetScope visible water",
+        "path": "independent/beira_ufo_a69z/ufo_surface.tif",
+        "date": "2019-03-26",
+        "role": "Independent sensor, published human optical interpretation",
+        "source": "https://doi.org/10.5281/zenodo.19698577",
+        "receipt": "independent/beira_ufo_a69z/ufo_reference.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": [
+      "manual_refs/beira_ufo_a69z.npz",
+      "partial_water_refs/beira_ufo_a69z.npz"
+    ]
+  },
+  {
+    "event_id": "beira_ufo_a69z",
+    "unit": "beira_ufo_a69z_control",
+    "kind": "pre_event_control",
+    "incident": "idai_2019",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/beira_ufo_a69z/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/beira_ufo_a69z/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "cto_ufo_0p0o",
+    "unit": "cto_ufo_0p0o",
+    "kind": "event",
+    "incident": "can_tho_2019_tidal",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/cto_ufo_0p0o/s2_event.tif",
+        "date": "2019-10-03",
+        "dates": [
+          "2019-10-03"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/cto_ufo_0p0o/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": [
+      "manual_refs/cto_ufo_0p0o.npz",
+      "partial_water_refs/cto_ufo_0p0o.npz"
+    ]
+  },
+  {
+    "event_id": "cto_ufo_0p0o",
+    "unit": "cto_ufo_0p0o_control",
+    "kind": "pre_event_control",
+    "incident": "can_tho_2019_tidal",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/cto_ufo_0p0o/s2_control.tif",
+        "date": "2019-09-03",
+        "dates": [
+          "2019-09-03"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/cto_ufo_0p0o/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "cto_ufo_ebrl",
+    "unit": "cto_ufo_ebrl",
+    "kind": "event",
+    "incident": "can_tho_2019_tidal",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/cto_ufo_ebrl/s2_event.tif",
+        "date": "2019-10-03",
+        "dates": [
+          "2019-10-03"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/cto_ufo_ebrl/s2_event.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": [
+      "manual_refs/cto_ufo_ebrl.npz",
+      "partial_water_refs/cto_ufo_ebrl.npz"
+    ]
+  },
+  {
+    "event_id": "cto_ufo_ebrl",
+    "unit": "cto_ufo_ebrl_control",
+    "kind": "pre_event_control",
+    "incident": "can_tho_2019_tidal",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/cto_ufo_ebrl/s2_control.tif",
+        "date": "2019-09-03",
+        "dates": [
+          "2019-09-03"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/cto_ufo_ebrl/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "ktm_ufo_P6SA",
+    "unit": "ktm_ufo_P6SA",
+    "kind": "event",
+    "incident": "nile_khartoum_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/ktm_ufo_P6SA/s2_event.tif",
+        "date": "2020-08-30",
+        "dates": [
+          "2020-08-30"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/ktm_ufo_P6SA/s2_event.json"
+      },
+      {
+        "name": "UFO PlanetScope visible water",
+        "path": "independent/ktm_ufo_P6SA/ufo_surface.tif",
+        "date": "2020-08-29",
+        "role": "Independent sensor, published human optical interpretation",
+        "source": "https://doi.org/10.5281/zenodo.19698577",
+        "receipt": "independent/ktm_ufo_P6SA/ufo_reference.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": [
+      "manual_refs/ktm_ufo_P6SA.npz",
+      "partial_water_refs/ktm_ufo_P6SA.npz"
+    ]
+  },
+  {
+    "event_id": "ktm_ufo_P6SA",
+    "unit": "ktm_ufo_P6SA_control",
+    "kind": "pre_event_control",
+    "incident": "nile_khartoum_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/ktm_ufo_P6SA/s2_control.tif",
+        "date": "2020-07-26",
+        "dates": [
+          "2020-07-26"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/ktm_ufo_P6SA/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "ktm_ufo_L895",
+    "unit": "ktm_ufo_L895",
+    "kind": "event",
+    "incident": "nile_khartoum_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/ktm_ufo_L895/s2_event.tif",
+        "date": "2020-08-30",
+        "dates": [
+          "2020-08-30"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/ktm_ufo_L895/s2_event.json"
+      },
+      {
+        "name": "UFO PlanetScope visible water",
+        "path": "independent/ktm_ufo_L895/ufo_surface.tif",
+        "date": "2020-08-29",
+        "role": "Independent sensor, published human optical interpretation",
+        "source": "https://doi.org/10.5281/zenodo.19698577",
+        "receipt": "independent/ktm_ufo_L895/ufo_reference.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": [
+      "manual_refs/ktm_ufo_L895.npz",
+      "partial_water_refs/ktm_ufo_L895.npz"
+    ]
+  },
+  {
+    "event_id": "ktm_ufo_L895",
+    "unit": "ktm_ufo_L895_control",
+    "kind": "pre_event_control",
+    "incident": "nile_khartoum_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/ktm_ufo_L895/s2_control.tif",
+        "date": "2020-07-26",
+        "dates": [
+          "2020-07-26"
+        ],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/ktm_ufo_L895/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "sps_ufo_7ev7",
+    "unit": "sps_ufo_7ev7",
+    "kind": "event",
+    "incident": "iota_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/sps_ufo_7ev7/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/sps_ufo_7ev7/s2_event.json"
+      },
+      {
+        "name": "UFO PlanetScope visible water",
+        "path": "independent/sps_ufo_7ev7/ufo_surface.tif",
+        "date": "2020-11-25",
+        "role": "Independent sensor, published human optical interpretation",
+        "source": "https://doi.org/10.5281/zenodo.19698577",
+        "receipt": "independent/sps_ufo_7ev7/ufo_reference.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": [
+      "manual_refs/sps_ufo_7ev7.npz",
+      "partial_water_refs/sps_ufo_7ev7.npz"
+    ]
+  },
+  {
+    "event_id": "sps_ufo_7ev7",
+    "unit": "sps_ufo_7ev7_control",
+    "kind": "pre_event_control",
+    "incident": "iota_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/sps_ufo_7ev7/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/sps_ufo_7ev7/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  },
+  {
+    "event_id": "sps_ufo_6oqt",
+    "unit": "sps_ufo_6oqt",
+    "kind": "event",
+    "incident": "iota_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/sps_ufo_6oqt/s2_event.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/sps_ufo_6oqt/s2_event.json"
+      },
+      {
+        "name": "UFO PlanetScope visible water",
+        "path": "independent/sps_ufo_6oqt/ufo_surface.tif",
+        "date": "2020-11-25",
+        "role": "Independent sensor, published human optical interpretation",
+        "source": "https://doi.org/10.5281/zenodo.19698577",
+        "receipt": "independent/sps_ufo_6oqt/ufo_reference.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": [
+      "manual_refs/sps_ufo_6oqt.npz",
+      "partial_water_refs/sps_ufo_6oqt.npz"
+    ]
+  },
+  {
+    "event_id": "sps_ufo_6oqt",
+    "unit": "sps_ufo_6oqt_control",
+    "kind": "pre_event_control",
+    "incident": "iota_2020",
+    "references": [
+      {
+        "name": "Sentinel-2 visible water",
+        "path": "independent/sps_ufo_6oqt/s2_control.tif",
+        "date": "",
+        "dates": [],
+        "role": "Independent sensor, automated optical",
+        "source": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+        "receipt": "independent/sps_ufo_6oqt/s2_control.json"
+      }
+    ],
+    "historical": false,
+    "optional_dev_labels": []
+  }
+]

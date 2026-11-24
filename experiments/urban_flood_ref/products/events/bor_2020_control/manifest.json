@@ -1,0 +1,198 @@
+{
+  "unit": "bor_2020_control",
+  "city": "Bor",
+  "country": "SS",
+  "date": "2020-08-08",
+  "bbox": [
+    31.540682507234056,
+    6.193713456163076,
+    31.57737959339855,
+    6.230167496210315
+  ],
+  "incident": "jonglei_aug_2020",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://peacekeeping.un.org/en/news/unmiss-engineering-troops-battling-flooding-in-bor-and-beyond-as-135000-people",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 1040837890,
+    "hybas_6": 1060965920,
+    "main_bas": 1060034260
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      1060921740,
+      1060965920
+    ],
+    "main_bas": [
+      1060034260
+    ]
+  },
+  "event": "2020-08-08",
+  "role": "dev",
+  "pre_dates": [
+    "2020-03-09",
+    "2020-03-21",
+    "2020-04-14",
+    "2020-04-26",
+    "2020-05-08",
+    "2020-05-20",
+    "2020-06-01",
+    "2020-06-13",
+    "2020-06-25"
+  ],
+  "post_date": "2020-07-07",
+  "days_from_anchor": -32,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20200707T034255_20200707T034320_033343_03DCF9_9FA5",
+      "pass": "DESCENDING",
+      "track": 21,
+      "platform": "A",
+      "date": "2020-07-07"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200309T034249_20200309T034314_031593_03A3F5_094E",
+        "pass": "DESCENDING",
+        "track": 21,
+        "platform": "A",
+        "date": "2020-03-09"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200321T034250_20200321T034315_031768_03AA15_8ABA",
+        "pass": "DESCENDING",
+        "track": 21,
+        "platform": "A",
+        "date": "2020-03-21"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200414T034250_20200414T034315_032118_03B66A_0C61",
+        "pass": "DESCENDING",
+        "track": 21,
+        "platform": "A",
+        "date": "2020-04-14"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200426T034251_20200426T034316_032293_03BC8A_A991",
+        "pass": "DESCENDING",
+        "track": 21,
+        "platform": "A",
+        "date": "2020-04-26"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200508T034251_20200508T034316_032468_03C290_9EED",
+        "pass": "DESCENDING",
+        "track": 21,
+        "platform": "A",
+        "date": "2020-05-08"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200520T034252_20200520T034317_032643_03C7E1_1A24",
+        "pass": "DESCENDING",
+        "track": 21,
+        "platform": "A",
+        "date": "2020-05-20"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200601T034253_20200601T034318_032818_03CD27_B7F6",
+        "pass": "DESCENDING",
+        "track": 21,
+        "platform": "A",
+        "date": "2020-06-01"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200613T034253_20200613T034318_032993_03D258_8B81",
+        "pass": "DESCENDING",
+        "track": 21,
+        "platform": "A",
+        "date": "2020-06-13"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200625T034254_20200625T034319_033168_03D7A7_9D79",
+        "pass": "DESCENDING",
+        "track": 21,
+        "platform": "A",
+        "date": "2020-06-25"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32636",
+    "transform": [
+      30.0,
+      0.0,
+      338550.0,
+      0.0,
+      -30.0,
+      688860.0
+    ],
+    "shape": [
+      134,
+      135
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/bor_2020_control.npz": "6dd1d6f85e7493b96290550e174c5c703f3bdd6f09c88e6d8e43edeb3c37330e",
+    "events/bor_2020_control/model_ref.npz": "6dd1d6f85e7493b96290550e174c5c703f3bdd6f09c88e6d8e43edeb3c37330e",
+    "events/bor_2020_control/reference_30m.tif": "5b083ebe9824c27563c6d4382abdad83182948ab02802dd7426e21ef04a4e5ee",
+    "events/bor_2020_control/reference_10m.tif": "fb2af7a50861a0df7130cc106204120f0e6ebb3b60641419eca61ab19ebbd24d"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 228,
+        "mean": 0.5388654470443726
+      },
+      "confident_flooded": {
+        "count": 486,
+        "mean": 0.5972774624824524
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 1,
+        "mean": 0.5217485427856445
+      },
+      "confident_flooded": {
+        "count": 45,
+        "mean": 0.6005347105350866
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 11,
+    "confident_dry": 1,
+    "confident_flooded": 45,
+    "ambiguous": 18033
+  }
+}

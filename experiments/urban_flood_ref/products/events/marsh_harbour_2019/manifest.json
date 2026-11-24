@@ -1,0 +1,205 @@
+{
+  "unit": "marsh_harbour_2019",
+  "city": "Marsh Harbour, Great Abaco",
+  "country": "BS",
+  "date": "2019-09-01",
+  "bbox": [
+    -77.08606656991897,
+    26.521338576188423,
+    -77.04417543045585,
+    26.558751129132624
+  ],
+  "incident": "dorian_2019",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://www.nhc.noaa.gov/data/tcr/AL052019_Dorian.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 7040069860,
+    "hybas_6": 7060069860,
+    "main_bas": 7060069860
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      7060069860
+    ],
+    "main_bas": [
+      7060069860
+    ]
+  },
+  "event": "2019-09-01",
+  "role": "dev",
+  "pre_dates": [
+    "2019-05-05",
+    "2019-05-17",
+    "2019-05-29",
+    "2019-06-10",
+    "2019-06-22",
+    "2019-07-04",
+    "2019-07-16",
+    "2019-07-28",
+    "2019-08-09",
+    "2019-08-21"
+  ],
+  "post_date": "2019-09-02",
+  "days_from_anchor": 1,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20190902T231151_20190902T231216_028849_0344E3_1356",
+      "pass": "ASCENDING",
+      "track": 77,
+      "platform": "A",
+      "date": "2019-09-02"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190505T231144_20190505T231209_027099_030DCB_3E56",
+        "pass": "ASCENDING",
+        "track": 77,
+        "platform": "A",
+        "date": "2019-05-05"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190517T231145_20190517T231210_027274_03134B_78B7",
+        "pass": "ASCENDING",
+        "track": 77,
+        "platform": "A",
+        "date": "2019-05-17"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190529T231145_20190529T231210_027449_0318C3_F0D2",
+        "pass": "ASCENDING",
+        "track": 77,
+        "platform": "A",
+        "date": "2019-05-29"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190610T231146_20190610T231211_027624_031E1D_A74D",
+        "pass": "ASCENDING",
+        "track": 77,
+        "platform": "A",
+        "date": "2019-06-10"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190622T231146_20190622T231211_027799_032359_768D",
+        "pass": "ASCENDING",
+        "track": 77,
+        "platform": "A",
+        "date": "2019-06-22"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190704T231147_20190704T231212_027974_0328A0_3CC9",
+        "pass": "ASCENDING",
+        "track": 77,
+        "platform": "A",
+        "date": "2019-07-04"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190716T231148_20190716T231213_028149_032DF0_3171",
+        "pass": "ASCENDING",
+        "track": 77,
+        "platform": "A",
+        "date": "2019-07-16"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190728T231149_20190728T231214_028324_033346_0AD9",
+        "pass": "ASCENDING",
+        "track": 77,
+        "platform": "A",
+        "date": "2019-07-28"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190809T231150_20190809T231215_028499_0338B3_A11A",
+        "pass": "ASCENDING",
+        "track": 77,
+        "platform": "A",
+        "date": "2019-08-09"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190821T231150_20190821T231215_028674_033ECD_D5DC",
+        "pass": "ASCENDING",
+        "track": 77,
+        "platform": "A",
+        "date": "2019-08-21"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32618",
+    "transform": [
+      30.0,
+      0.0,
+      292200.0,
+      0.0,
+      -30.0,
+      2939190.0
+    ],
+    "shape": [
+      136,
+      137
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/marsh_harbour_2019.npz": "30c19625e337bf48bebd861be5e7ee2a1df79150d20c0e8573f089d4e1ddd426",
+    "events/marsh_harbour_2019/model_ref.npz": "30c19625e337bf48bebd861be5e7ee2a1df79150d20c0e8573f089d4e1ddd426",
+    "events/marsh_harbour_2019/reference_30m.tif": "d904e6713d6b04b7489b0d92eae8cb765c823ff2edd96fde7c453f082ab33dbb",
+    "events/marsh_harbour_2019/reference_10m.tif": "98ac5b327e370702a23f1eba2b85c878c528b1f27494eeab05a86c2cf34515d1"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 54,
+        "mean": 0.5373701453208923
+      },
+      "confident_flooded": {
+        "count": 2600,
+        "mean": 0.6447990536689758
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 232,
+        "mean": 0.6510362237406417
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 7866,
+    "confident_dry": 0,
+    "confident_flooded": 232,
+    "ambiguous": 10534
+  }
+}

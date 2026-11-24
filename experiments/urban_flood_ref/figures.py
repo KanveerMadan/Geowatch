@@ -36,7 +36,7 @@ def write_map(path, title, state, base, urban, truth, grid, ref_name, *, baselin
     new[urban.astype(bool) & (base==2)] = 2
     new[urban.astype(bool) & (state==2) & (base!=2)] = 4
     items = [(baseline_title,base),("Urban detector",state),("Urban additions",new),(ref_name,independent)]
-    svg = ['<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1120 435" width="1120" height="435">',
+    svg = ['<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1120 456" width="1120" height="456">',
            '<style>text{font:14px sans-serif;fill:#202d36}.title{font:bold 22px sans-serif}.small{font-size:12px}</style>',
            '<rect width="100%" height="100%" fill="white"/>',
            f'<text x="20" y="30" class="title">{e(title)}</text>']
@@ -50,7 +50,10 @@ def write_map(path, title, state, base, urban, truth, grid, ref_name, *, baselin
         rgb = PALETTE[colour]
         svg.append(f'<rect x="{x}" y="342" width="14" height="14" fill="rgb({rgb[0]},{rgb[1]},{rgb[2]})"/>')
         svg.append(f'<text x="{x+20}" y="354">{e(label)}</text>')
+    dry_note=("Archived VV drop: tan marks an observed cell without the old darkening signature. "
+              if baseline_title=="Archived VV drop" else "")
     svg.extend([f'<text x="20" y="380" class="small">Urban additions panel: grey outside urban mask, purple urban background, teal baseline wet, orange newly mapped wet. North is up.</text>',
                 f'<text x="20" y="404" class="small">{e(grid["crs"])} · upper-left grid edge {origin[2]:.0f} m E, {origin[5]:.0f} m N · {w*30:,} m × {h*30:,} m · 30 m cells</text>',
+                f'<text x="20" y="427" class="small">{dry_note}Reference panel: grey = unknown; tan = observed non-water where supplied.</text>',
                 '</svg>'])
     Path(path).write_text("\n".join(svg)+"\n")

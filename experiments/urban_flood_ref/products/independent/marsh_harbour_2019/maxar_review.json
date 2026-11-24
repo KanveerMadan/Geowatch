@@ -1,0 +1,299 @@
+{
+  "unit": "marsh_harbour_2019",
+  "grid": {
+    "crs": "EPSG:32618",
+    "transform": [
+      30,
+      0,
+      292200,
+      0,
+      -30,
+      2939190
+    ],
+    "shape": [
+      136,
+      137
+    ]
+  },
+  "reviewer": "GeoWatch detector-blind assistant visual review, one machine reader; no human adjudication",
+  "design": "3 x 3 fixed positions at 20%, 50% and 80% of the model grid; detector-blind",
+  "acquisition_dates": {
+    "pre": "2019-04-17",
+    "post": "2019-09-05"
+  },
+  "reference_date": "2019-09-05",
+  "sar_post_date": "2019-09-02",
+  "optical_minus_sar_calendar_days": 3,
+  "eligible_for_dev_sidecar": false,
+  "eligible_for_sar_validation": false,
+  "source": "Maxar Open Data, Hurricane Dorian, public legacy DigitalGlobe archive",
+  "provider_archive": "https://s3.amazonaws.com/dg-opendata/?list-type=2&prefix=hurricane-dorian%2F&delimiter=%2F",
+  "source_registry": "https://registry.opendata.aws/maxar-open-data/",
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "licence": "CC BY-NC 4.0 (Maxar Open Data Program); credit Maxar Technologies / DigitalGlobe",
+  "licence_protocol": "https://maxar-marketing.s3.amazonaws.com/files/downloads/119757_opendataprotocol_2020_04.pdf",
+  "observed_centers_pre": 0,
+  "observed_centers_post": 9,
+  "usable_pairs": 0,
+  "reviewed_centers": 9,
+  "counts": {
+    "wet": 0,
+    "dry": 0,
+    "unknown": 18632
+  },
+  "codes": {
+    "0": "dry",
+    "1": "new water",
+    "255": "unknown / unobserved"
+  },
+  "confidence": "descriptive only",
+  "review_scope": "The nine fixed center cells have zero usable before coverage despite intersecting source footprints. Four post centers show coastal open water and two include exposed roads. All nine lack paired flood labels. Other cells were unsampled. The post optical acquisition also came three calendar days after radar.",
+  "contact_sheet": "maxar_cache/systematic_review.jpg",
+  "contact_sheet_sha256": "a6fa6ab8263341dc2b598cb6ccedd242c9b4f580544bcb3f5e5eda2489617220",
+  "raster_sha256": "bd64e16f160e2898dff13c687aa3e69b331d200d036963e248fb35df2874d70b",
+  "cells": [
+    {
+      "id": "S01",
+      "row": 27,
+      "col": 27,
+      "source_dates": [
+        "2019-04-17",
+        "2019-09-05"
+      ],
+      "observed": {
+        "2019-04-17": {
+          "raw_valid_fraction": 0.0,
+          "center_raw_valid_fraction": 0.0,
+          "assets": []
+        },
+        "2019-09-05": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/hurricane-dorian/post-event/2019-09-05/105001001875DA00/0212231.tif"
+          ]
+        }
+      },
+      "paired_flood_label": "unobserved",
+      "paired_code": 255,
+      "post_visible_surface_note": "Open sea with wave texture.",
+      "reason": "No usable pre-event image at the sampled center."
+    },
+    {
+      "id": "S02",
+      "row": 27,
+      "col": 68,
+      "source_dates": [
+        "2019-04-17",
+        "2019-09-05"
+      ],
+      "observed": {
+        "2019-04-17": {
+          "raw_valid_fraction": 0.0,
+          "center_raw_valid_fraction": 0.0,
+          "assets": []
+        },
+        "2019-09-05": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/hurricane-dorian/post-event/2019-09-05/105001001875DA00/0212231.tif"
+          ]
+        }
+      },
+      "paired_flood_label": "unobserved",
+      "paired_code": 255,
+      "post_visible_surface_note": "Coastal open water, close to shore.",
+      "reason": "No usable pre-event image at the sampled center."
+    },
+    {
+      "id": "S03",
+      "row": 27,
+      "col": 109,
+      "source_dates": [
+        "2019-04-17",
+        "2019-09-05"
+      ],
+      "observed": {
+        "2019-04-17": {
+          "raw_valid_fraction": 0.0,
+          "center_raw_valid_fraction": 0.0,
+          "assets": []
+        },
+        "2019-09-05": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/hurricane-dorian/post-event/2019-09-05/105001001875DA00/0212231.tif"
+          ]
+        }
+      },
+      "paired_flood_label": "unobserved",
+      "paired_code": 255,
+      "post_visible_surface_note": "Open water offshore from a dwelling.",
+      "reason": "No usable pre-event image at the sampled center."
+    },
+    {
+      "id": "S04",
+      "row": 68,
+      "col": 27,
+      "source_dates": [
+        "2019-04-17",
+        "2019-09-05"
+      ],
+      "observed": {
+        "2019-04-17": {
+          "raw_valid_fraction": 0.0,
+          "center_raw_valid_fraction": 0.0,
+          "assets": []
+        },
+        "2019-09-05": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/hurricane-dorian/post-event/2019-09-05/105001001875DA00/0212213.tif"
+          ]
+        }
+      },
+      "paired_flood_label": "unobserved",
+      "paired_code": 255,
+      "post_visible_surface_note": "Exposed paved road through low cover.",
+      "reason": "No usable pre-event image at the sampled center."
+    },
+    {
+      "id": "S05",
+      "row": 68,
+      "col": 68,
+      "source_dates": [
+        "2019-04-17",
+        "2019-09-05"
+      ],
+      "observed": {
+        "2019-04-17": {
+          "raw_valid_fraction": 0.0,
+          "center_raw_valid_fraction": 0.0,
+          "assets": []
+        },
+        "2019-09-05": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/hurricane-dorian/post-event/2019-09-05/105001001875DA00/0212213.tif"
+          ]
+        }
+      },
+      "paired_flood_label": "unobserved",
+      "paired_code": 255,
+      "post_visible_surface_note": "Exposed road, rubble and building fragments within a mixed cell.",
+      "reason": "No usable pre-event image at the sampled center."
+    },
+    {
+      "id": "S06",
+      "row": 68,
+      "col": 109,
+      "source_dates": [
+        "2019-04-17",
+        "2019-09-05"
+      ],
+      "observed": {
+        "2019-04-17": {
+          "raw_valid_fraction": 0.0,
+          "center_raw_valid_fraction": 0.0,
+          "assets": []
+        },
+        "2019-09-05": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/hurricane-dorian/post-event/2019-09-05/105001001875DA00/0212213.tif"
+          ]
+        }
+      },
+      "paired_flood_label": "unobserved",
+      "paired_code": 255,
+      "post_visible_surface_note": "Dense green vegetation with obscured ground.",
+      "reason": "No usable pre-event image at the sampled center."
+    },
+    {
+      "id": "S07",
+      "row": 108,
+      "col": 27,
+      "source_dates": [
+        "2019-04-17",
+        "2019-09-05"
+      ],
+      "observed": {
+        "2019-04-17": {
+          "raw_valid_fraction": 0.0,
+          "center_raw_valid_fraction": 0.0,
+          "assets": []
+        },
+        "2019-09-05": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/hurricane-dorian/post-event/2019-09-05/105001001875DA00/0212213.tif"
+          ]
+        }
+      },
+      "paired_flood_label": "unobserved",
+      "paired_code": 255,
+      "post_visible_surface_note": "Low vegetation and darker grass or scrub.",
+      "reason": "No usable pre-event image at the sampled center."
+    },
+    {
+      "id": "S08",
+      "row": 108,
+      "col": 68,
+      "source_dates": [
+        "2019-04-17",
+        "2019-09-05"
+      ],
+      "observed": {
+        "2019-04-17": {
+          "raw_valid_fraction": 0.0,
+          "center_raw_valid_fraction": 0.0,
+          "assets": []
+        },
+        "2019-09-05": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/hurricane-dorian/post-event/2019-09-05/105001001875DA00/0212213.tif"
+          ]
+        }
+      },
+      "paired_flood_label": "unobserved",
+      "paired_code": 255,
+      "post_visible_surface_note": "Vegetation and exposed mixed surfaces near shoreline.",
+      "reason": "No usable pre-event image at the sampled center."
+    },
+    {
+      "id": "S09",
+      "row": 108,
+      "col": 109,
+      "source_dates": [
+        "2019-04-17",
+        "2019-09-05"
+      ],
+      "observed": {
+        "2019-04-17": {
+          "raw_valid_fraction": 0.0,
+          "center_raw_valid_fraction": 0.0,
+          "assets": []
+        },
+        "2019-09-05": {
+          "raw_valid_fraction": 1.0,
+          "center_raw_valid_fraction": 1.0,
+          "assets": [
+            "https://s3.amazonaws.com/dg-opendata/hurricane-dorian/post-event/2019-09-05/105001001875DA00/0212213.tif"
+          ]
+        }
+      },
+      "paired_flood_label": "unobserved",
+      "paired_code": 255,
+      "post_visible_surface_note": "Open sea with wave texture.",
+      "reason": "No usable pre-event image at the sampled center."
+    }
+  ]
+}

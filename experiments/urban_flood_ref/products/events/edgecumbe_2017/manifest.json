@@ -1,0 +1,173 @@
+{
+  "unit": "edgecumbe_2017",
+  "city": "Edgecumbe",
+  "country": "NZ",
+  "date": "2017-04-06",
+  "bbox": [
+    176.80501850345084,
+    -37.9951738460891,
+    176.8512173760762,
+    -37.958874631652925
+  ],
+  "incident": "debbie_2017",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://www.mpi.govt.nz/dmsdocument/51184/direct",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 5040085040,
+    "hybas_6": 5060086740,
+    "main_bas": 5060086740
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      5060086740
+    ],
+    "main_bas": [
+      5060086740
+    ]
+  },
+  "event": "2017-04-06",
+  "role": "dev",
+  "pre_dates": [
+    "2017-01-17",
+    "2017-02-10",
+    "2017-02-22",
+    "2017-03-06",
+    "2017-03-18",
+    "2017-03-30"
+  ],
+  "post_date": "2017-04-11",
+  "days_from_anchor": 5,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1B_IW_GRDH_1SDV_20170411T065831_20170411T065900_005109_008F11_0BD0",
+      "pass": "ASCENDING",
+      "track": 8,
+      "platform": "B",
+      "date": "2017-04-11"
+    },
+    "pre": [
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170117T065831_20170117T065859_003884_006B05_2377",
+        "pass": "ASCENDING",
+        "track": 8,
+        "platform": "B",
+        "date": "2017-01-17"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170210T065831_20170210T065859_004234_007575_280A",
+        "pass": "ASCENDING",
+        "track": 8,
+        "platform": "B",
+        "date": "2017-02-10"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170222T065831_20170222T065859_004409_007AC0_EB38",
+        "pass": "ASCENDING",
+        "track": 8,
+        "platform": "B",
+        "date": "2017-02-22"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170306T065830_20170306T065859_004584_007FDB_35BC",
+        "pass": "ASCENDING",
+        "track": 8,
+        "platform": "B",
+        "date": "2017-03-06"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170318T065831_20170318T065859_004759_008507_A2CC",
+        "pass": "ASCENDING",
+        "track": 8,
+        "platform": "B",
+        "date": "2017-03-18"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170330T065831_20170330T065859_004934_008A0A_24EA",
+        "pass": "ASCENDING",
+        "track": 8,
+        "platform": "B",
+        "date": "2017-03-30"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32760",
+    "transform": [
+      30.0,
+      0.0,
+      482880.0,
+      0.0,
+      -30.0,
+      5798730.0
+    ],
+    "shape": [
+      134,
+      135
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/edgecumbe_2017.npz": "03501a4f2184f6a07059620cc4002646b94adbdade01e9dd6bad9f7e229c7772",
+    "events/edgecumbe_2017/model_ref.npz": "03501a4f2184f6a07059620cc4002646b94adbdade01e9dd6bad9f7e229c7772",
+    "events/edgecumbe_2017/reference_30m.tif": "47e3cf56b7427f1bae3c4081780e7f223e97bf69e469fbde37ee839fffe1e94c",
+    "events/edgecumbe_2017/reference_10m.tif": "417cb649d55358f460e1f6ab78a3a306c2df125a8b8bb6cd900805a6f3c1975c"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 3405,
+        "mean": 0.5455369353294373
+      },
+      "confident_flooded": {
+        "count": 5983,
+        "mean": 0.6336907744407654
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 6,
+        "mean": 0.5582576632499694
+      },
+      "confident_flooded": {
+        "count": 657,
+        "mean": 0.6375180136742421
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 0,
+    "confident_dry": 6,
+    "confident_flooded": 657,
+    "ambiguous": 17427
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "unit": "beira_ufo_1ynv",
+  "city": "Beira region, UFO optical chip 1ynv",
+  "country": "MZ",
+  "date": "2019-03-15",
+  "bbox": [
+    34.81237823824766,
+    -19.776447511627556,
+    34.84219514914366,
+    -19.74661080373162
+  ],
+  "incident": "idai_2019",
+  "products": [
+    "UFO:BEI_20190326_072743_1021_1ynv",
+    "S1"
+  ],
+  "basis": "Supplemental development chip selected by independent optical archive footprint; same incident as Beira.",
+  "peak_date": null,
+  "evidence_url": "https://doi.org/10.5281/zenodo.19698577",
+  "basins": {
+    "hybas_6": 1060011670,
+    "main_bas": 1060011670
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      1060011670
+    ],
+    "main_bas": [
+      1060011670
+    ]
+  },
+  "ufo_item": "BEI_20190326_072743_1021_1ynv",
+  "event": "2019-03-15",
+  "role": "dev",
+  "pre_dates": [
+    "2018-11-26",
+    "2018-12-08",
+    "2018-12-20",
+    "2019-01-01",
+    "2019-01-13",
+    "2019-01-25",
+    "2019-02-06",
+    "2019-02-18",
+    "2019-03-14"
+  ],
+  "post_date": "2019-03-26",
+  "days_from_anchor": 11,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1B_IW_GRDH_1SDV_20190326T160653_20190326T160722_015527_01D1AB_971D",
+      "pass": "ASCENDING",
+      "track": 101,
+      "platform": "B",
+      "date": "2019-03-26"
+    },
+    "pre": [
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181126T160656_20181126T160725_013777_019887_19E1",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2018-11-26"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181208T160655_20181208T160724_013952_019E39_0A09",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2018-12-08"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181220T160655_20181220T160724_014127_01A3F5_0533",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2018-12-20"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190101T160654_20190101T160723_014302_01A9C4_68FC",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-01-01"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190113T160654_20190113T160723_014477_01AF67_B26E",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-01-13"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190125T160654_20190125T160723_014652_01B4FD_9F2F",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-01-25"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190206T160653_20190206T160722_014827_01BABE_8777",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-02-06"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190218T160653_20190218T160722_015002_01C07E_D1A3",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-02-18"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190314T160646_20190314T160711_015352_01CBEE_21E5",
+        "pass": "ASCENDING",
+        "track": 101,
+        "platform": "B",
+        "date": "2019-03-14"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32736",
+    "transform": [
+      30.0,
+      0.0,
+      689910.0,
+      0.0,
+      -30.0,
+      7815510.0
+    ],
+    "shape": [
+      109,
+      103
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/beira_ufo_1ynv.npz": "2e1a29aed6057c81961e70d0565d5e9eec632db69148c760044e3997015263de",
+    "events/beira_ufo_1ynv/model_ref.npz": "2e1a29aed6057c81961e70d0565d5e9eec632db69148c760044e3997015263de",
+    "events/beira_ufo_1ynv/reference_30m.tif": "c9c93d7cb88227fd0f10481ddf8639dca2f3e3b9ea235b5abad9ee79be0a2f89",
+    "events/beira_ufo_1ynv/reference_10m.tif": "0e0832742862ca9bce82ae37089fcc2acdd1c0e37dcf0f49e25064b796a844b9"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 70,
+        "mean": 0.528611421585083
+      },
+      "confident_flooded": {
+        "count": 9,
+        "mean": 0.5861449837684631
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 1,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 11226
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "event_id": "edgecumbe_2017",
+  "sensor": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+  "source_documentation": "https://sentiwiki.copernicus.eu/web/s2-processing",
+  "source_terms": "https://dataspace.copernicus.eu/terms-and-conditions",
+  "attribution": "Contains modified Copernicus Sentinel data",
+  "effective_resolution_metres": 20,
+  "grid": {
+    "crs": "EPSG:32760",
+    "transform": [
+      30.0,
+      0.0,
+      482880.0,
+      0.0,
+      -30.0,
+      5798730.0
+    ],
+    "shape": [
+      134,
+      135
+    ]
+  },
+  "label_codes": {
+    "0": "optically visible non-water",
+    "1": "new optically visible water",
+    "255": "unobserved or ambiguous"
+  },
+  "method": "new clear-surface water vs repeatedly clear pre-event land, homogeneous 30 m support",
+  "radar_utc_date": "2017-04-11",
+  "search_intervals_utc_end_exclusive": {
+    "pre": [
+      "2017-02-05",
+      "2017-03-28"
+    ],
+    "post": [
+      "2017-04-10",
+      "2017-04-13"
+    ]
+  },
+  "acquisitions": {
+    "pre": [
+      "20170210T221551_20170210T221554_T60HVD",
+      "20170302T221551_20170302T221553_T60HVD"
+    ],
+    "post": []
+  },
+  "pixel_counts": {
+    "0": 0,
+    "1": 0,
+    "255": 18090
+  },
+  "limitations": [
+    "Automated optical corroboration. Streets beneath roofs, vegetation and shadow can be invisible.",
+    "A clear non-water return applies to the visible surface. It cannot rule out water on a street beneath a roof.",
+    "Up to one UTC calendar date of offset permits inundation to change between sensors.",
+    "Cloud and mixed boundaries reduce eligible coverage. Clear-only samples can favour open places.",
+    "The baseline excludes previously visible water. Seasonal water appearing for the first time can still qualify."
+  ],
+  "control": false,
+  "reference_date": null,
+  "product_role": "automated visible-surface corroboration; urban dry may be roofs"
+}

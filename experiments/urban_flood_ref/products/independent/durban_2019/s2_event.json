@@ -1,0 +1,105 @@
+{
+  "event_id": "durban_2019",
+  "sensor": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+  "source_documentation": "https://sentiwiki.copernicus.eu/web/s2-processing",
+  "source_terms": "https://dataspace.copernicus.eu/terms-and-conditions",
+  "attribution": "Contains modified Copernicus Sentinel data",
+  "effective_resolution_metres": 20,
+  "grid": {
+    "crs": "EPSG:32736",
+    "transform": [
+      30.0,
+      0.0,
+      306990.0,
+      0.0,
+      -30.0,
+      6697350.0
+    ],
+    "shape": [
+      136,
+      137
+    ]
+  },
+  "label_codes": {
+    "0": "optically visible non-water",
+    "1": "new optically visible water",
+    "255": "unobserved or ambiguous"
+  },
+  "method": "new clear-surface water vs repeatedly clear pre-event land, homogeneous 30 m support",
+  "radar_utc_date": "2019-04-30",
+  "search_intervals_utc_end_exclusive": {
+    "pre": [
+      "2019-02-21",
+      "2019-04-13"
+    ],
+    "post": [
+      "2019-04-29",
+      "2019-05-02"
+    ]
+  },
+  "acquisitions": {
+    "pre": [
+      "20190223T073919_20190223T075720_T36JTM",
+      "20190223T073919_20190223T075720_T36JTN",
+      "20190223T073919_20190223T075720_T36JUM",
+      "20190223T073919_20190223T075720_T36JUN",
+      "20190228T073841_20190228T080137_T36JTM",
+      "20190228T073841_20190228T080137_T36JTN",
+      "20190228T073841_20190228T080137_T36JUM",
+      "20190228T073841_20190228T080137_T36JUN",
+      "20190305T073809_20190305T080422_T36JTM",
+      "20190305T073809_20190305T080422_T36JTN",
+      "20190305T073809_20190305T080422_T36JUM",
+      "20190305T073809_20190305T080422_T36JUN",
+      "20190310T073731_20190310T080100_T36JTM",
+      "20190310T073731_20190310T080100_T36JTN",
+      "20190310T073731_20190310T080100_T36JUM",
+      "20190310T073731_20190310T080100_T36JUN",
+      "20190315T073659_20190315T080639_T36JTM",
+      "20190315T073659_20190315T080639_T36JTN",
+      "20190315T073659_20190315T080639_T36JUM",
+      "20190315T073659_20190315T080639_T36JUN",
+      "20190320T073621_20190320T080729_T36JTM",
+      "20190320T073621_20190320T080729_T36JTN",
+      "20190320T073621_20190320T080729_T36JUM",
+      "20190320T073621_20190320T080729_T36JUN",
+      "20190325T073609_20190325T080652_T36JTM",
+      "20190325T073609_20190325T080652_T36JTN",
+      "20190325T073609_20190325T080652_T36JUM",
+      "20190325T073609_20190325T080652_T36JUN",
+      "20190330T073611_20190330T080645_T36JTM",
+      "20190330T073611_20190330T080645_T36JTN",
+      "20190330T073611_20190330T080645_T36JUM",
+      "20190330T073611_20190330T080645_T36JUN",
+      "20190404T073619_20190404T080232_T36JTM",
+      "20190404T073619_20190404T080232_T36JTN",
+      "20190404T073619_20190404T080232_T36JUM",
+      "20190404T073619_20190404T080232_T36JUN",
+      "20190409T073611_20190409T080712_T36JTM",
+      "20190409T073611_20190409T080712_T36JTN",
+      "20190409T073611_20190409T080712_T36JUM",
+      "20190409T073611_20190409T080712_T36JUN"
+    ],
+    "post": [
+      "20190429T073621_20190429T080547_T36JTM",
+      "20190429T073621_20190429T080547_T36JTN",
+      "20190429T073621_20190429T080547_T36JUM",
+      "20190429T073621_20190429T080547_T36JUN"
+    ]
+  },
+  "pixel_counts": {
+    "0": 10787,
+    "1": 0,
+    "255": 7845
+  },
+  "limitations": [
+    "Automated optical corroboration. Streets beneath roofs, vegetation and shadow can be invisible.",
+    "A clear non-water return applies to the visible surface. It cannot rule out water on a street beneath a roof.",
+    "Up to one UTC calendar date of offset permits inundation to change between sensors.",
+    "Cloud and mixed boundaries reduce eligible coverage. Clear-only samples can favour open places.",
+    "The baseline excludes previously visible water. Seasonal water appearing for the first time can still qualify."
+  ],
+  "control": false,
+  "reference_date": "2019-04-29",
+  "product_role": "automated visible-surface corroboration; urban dry may be roofs"
+}

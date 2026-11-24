@@ -13,7 +13,7 @@ import ee
 import numpy as np
 import rasterio
 from rasterio.io import MemoryFile
-from rasterio.warp import Resampling,reproject,transform
+from rasterio.warp import Resampling,reproject,transform,transform_bounds
 from rasterio.transform import Affine
 import requests
 
@@ -75,8 +75,14 @@ def build(unit,root):
         data=archive.read(label_members[0])
     with MemoryFile(data) as mem, mem.open() as ds:
         native=ds.read(1)
-        if not set(np.unique(native)).issubset({0,1}) or ds.crs.to_epsg()!=4326 or list(ds.shape)!=[1024,1024]:
-            raise ValueError(f'Unexpected native label encoding {np.unique(native)} or geometry')
+        if ds.crs is None or not set(np.unique(native)).issubset({0,1}) or min(ds.shape)<512 or max(ds.shape)>2048:
+            raise ValueError(f'Unexpected source geometry or label encoding: {ds.crs} {ds.shape} {np.unique(native)}')
+        bounds=transform_bounds(ds.crs,'EPSG:4326',*ds.bounds,densify_pts=21)
+        # Original labels may retain a projected CRS while discovery bounds are
+        # in WGS84. A one-native-pixel tolerance covers serialization rounding.
+        pixel=max((bounds[2]-bounds[0])/ds.width,(bounds[3]-bounds[1])/ds.height)
+        if not np.allclose(bounds,item['bbox'],rtol=0,atol=pixel):
+            raise ValueError(f'Native label footprint differs from authorized STAC item: {bounds} vs {item["bbox"]}')
         h,w=[n*3 for n in grid['shape']]
         frac=np.full((h,w),-1,dtype=np.float32)
         reproject(native.astype('float32'),frac,src_transform=ds.transform,src_crs=ds.crs,dst_transform=t,dst_crs=grid['crs'],

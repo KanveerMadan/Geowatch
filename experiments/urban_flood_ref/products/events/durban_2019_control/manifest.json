@@ -1,0 +1,181 @@
+{
+  "unit": "durban_2019_control",
+  "city": "Durban",
+  "country": "ZA",
+  "date": "2019-04-22",
+  "bbox": [
+    31.00149596741942,
+    -29.876705459658563,
+    31.044749341215635,
+    -29.83926923735085
+  ],
+  "incident": "kzn_april_2019",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://emergency.durban.gov.za/uploads/0000/6/2025/10/06/2018-2019-annual-report-final.pdf",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 1040012820,
+    "hybas_6": 1060013210,
+    "main_bas": 1060013210
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      1060013210
+    ],
+    "main_bas": [
+      1060013210
+    ]
+  },
+  "event": "2019-04-22",
+  "role": "dev",
+  "pre_dates": [
+    "2018-11-25",
+    "2018-12-19",
+    "2018-12-31",
+    "2019-01-24",
+    "2019-02-05",
+    "2019-02-17",
+    "2019-03-13"
+  ],
+  "post_date": "2019-03-25",
+  "days_from_anchor": -28,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1B_IW_GRDH_1SDV_20190325T031918_20190325T031948_015505_01D0E3_8D7A",
+      "pass": "DESCENDING",
+      "track": 79,
+      "platform": "B",
+      "date": "2019-03-25"
+    },
+    "pre": [
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181125T031906_20181125T031931_013755_0197CE_004D",
+        "pass": "DESCENDING",
+        "track": 79,
+        "platform": "B",
+        "date": "2018-11-25"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181219T031905_20181219T031930_014105_01A339_B712",
+        "pass": "DESCENDING",
+        "track": 79,
+        "platform": "B",
+        "date": "2018-12-19"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20181231T031905_20181231T031930_014280_01A906_EC67",
+        "pass": "DESCENDING",
+        "track": 79,
+        "platform": "B",
+        "date": "2018-12-31"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190124T031904_20190124T031929_014630_01B445_4F7D",
+        "pass": "DESCENDING",
+        "track": 79,
+        "platform": "B",
+        "date": "2019-01-24"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190205T031904_20190205T031929_014805_01BA00_F8FE",
+        "pass": "DESCENDING",
+        "track": 79,
+        "platform": "B",
+        "date": "2019-02-05"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190217T031903_20190217T031928_014980_01BFBF_D1BC",
+        "pass": "DESCENDING",
+        "track": 79,
+        "platform": "B",
+        "date": "2019-02-17"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20190313T031901_20190313T031926_015330_01CB36_581E",
+        "pass": "DESCENDING",
+        "track": 79,
+        "platform": "B",
+        "date": "2019-03-13"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32736",
+    "transform": [
+      30.0,
+      0.0,
+      306990.0,
+      0.0,
+      -30.0,
+      6697350.0
+    ],
+    "shape": [
+      136,
+      137
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/durban_2019_control.npz": "b9a00dd09b642a8da331061cfea97abeb548713bd36396929a0b650e89d18e5f",
+    "events/durban_2019_control/model_ref.npz": "b9a00dd09b642a8da331061cfea97abeb548713bd36396929a0b650e89d18e5f",
+    "events/durban_2019_control/reference_30m.tif": "29f7b17c3070d6fa2b254c2d756d377398dde14ee861ef47ec98e61d9d868707",
+    "events/durban_2019_control/reference_10m.tif": "337ce7541e29be6fdb645d93d2ab0d8cb4e5ea1bcc6aca369e9cfab8ca0259ec"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 1,
+        "mean": 0.5246347188949585
+      },
+      "confident_flooded": {
+        "count": 4,
+        "mean": 0.575176477432251
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 4792,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 13840
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "event_id": "beira_ufo_a69z",
+  "sensor": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+  "source_documentation": "https://sentiwiki.copernicus.eu/web/s2-processing",
+  "source_terms": "https://dataspace.copernicus.eu/terms-and-conditions",
+  "attribution": "Contains modified Copernicus Sentinel data",
+  "effective_resolution_metres": 20,
+  "grid": {
+    "crs": "EPSG:32736",
+    "transform": [
+      30.0,
+      0.0,
+      674700.0,
+      0.0,
+      -30.0,
+      7815660.0
+    ],
+    "shape": [
+      109,
+      103
+    ]
+  },
+  "label_codes": {
+    "0": "optically visible non-water",
+    "1": "new optically visible water",
+    "255": "unobserved or ambiguous"
+  },
+  "method": "new clear-surface water vs repeatedly clear pre-event land, homogeneous 30 m support",
+  "radar_utc_date": "2019-03-26",
+  "search_intervals_utc_end_exclusive": {
+    "pre": [
+      "2019-01-14",
+      "2019-03-06"
+    ],
+    "post": [
+      "2019-03-25",
+      "2019-03-28"
+    ]
+  },
+  "acquisitions": {
+    "pre": [
+      "20190116T073241_20190116T075052_T36KXD",
+      "20190121T073229_20190121T075414_T36KXD",
+      "20190126T073201_20190126T075019_T36KXD",
+      "20190131T073139_20190131T074730_T36KXD",
+      "20190205T073111_20190205T075010_T36KXD",
+      "20190210T073039_20190210T074611_T36KXD",
+      "20190215T073011_20190215T074659_T36KXD",
+      "20190220T072939_20190220T075233_T36KXD",
+      "20190225T072901_20190225T075255_T36KXD",
+      "20190302T072829_20190302T074728_T36KXD"
+    ],
+    "post": [
+      "20190327T072731_20190327T074847_T36KXD"
+    ]
+  },
+  "pixel_counts": {
+    "0": 553,
+    "1": 62,
+    "255": 10612
+  },
+  "limitations": [
+    "Automated optical corroboration. Streets beneath roofs, vegetation and shadow can be invisible.",
+    "A clear non-water return applies to the visible surface. It cannot rule out water on a street beneath a roof.",
+    "Up to one UTC calendar date of offset permits inundation to change between sensors.",
+    "Cloud and mixed boundaries reduce eligible coverage. Clear-only samples can favour open places.",
+    "The baseline excludes previously visible water. Seasonal water appearing for the first time can still qualify."
+  ],
+  "control": false,
+  "reference_date": "2019-03-27",
+  "product_role": "automated visible-surface corroboration; urban dry may be roofs"
+}

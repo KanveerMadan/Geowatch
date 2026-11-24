@@ -1,0 +1,60 @@
+{
+  "unit": "sps_ufo_6oqt",
+  "incident": "iota_2020",
+  "event": "2020-11-25",
+  "date": "2020-11-25",
+  "post_date": "2020-11-25",
+  "role": "dev",
+  "block": 1,
+  "grid": {
+    "crs": "EPSG:32616",
+    "transform": [
+      30,
+      0,
+      395550,
+      0,
+      -30,
+      1712310
+    ],
+    "shape": [
+      104,
+      104
+    ]
+  },
+  "bbox": [
+    -87.97355748619671,
+    15.458024328441853,
+    -87.94479508957804,
+    15.485917929489375
+  ],
+  "licence": "CC BY 4.0",
+  "source": "https://doi.org/10.5281/zenodo.19698577",
+  "source_item": "SPS_20201125_160451_0f22_6oqt",
+  "label_member": "ufo-dataset/urbanFloodsObservationsPUBLIC/labels/SPS_20201125_160451_0f22_6oqt.tif",
+  "source_sha256": "cdb4e32b42a8c560b60676fef08f51a099ed8bbbdfb3fd4086182d5af08b6f4c",
+  "attribution": "Mukherjee et al., Urban Flood Observations, doi:10.5281/zenodo.19698577. Derived from hand-annotated PlanetScope optical surface water. Contains modified Copernicus Sentinel data and EC JRC/Google water history.",
+  "method": "Published hand-annotated visible water, with two pre-event clear land dates and JRC nonpermanent mask. All contributing source pixels and fine cells must agree. Dry only over mapped grassland/barren outside the urban stratum.",
+  "pre_sentinel2_assets": [
+    "20200928T160949_20200928T162839_T16PCC",
+    "20201003T161121_20201003T162654_T16PCC",
+    "20201008T161059_20201008T161722_T16PCC",
+    "20201013T161231_20201013T161902_T16PCC",
+    "20201018T161209_20201018T162428_T16PCC",
+    "20201023T161341_20201023T162128_T16PCC",
+    "20201028T161359_20201028T161901_T16PCC",
+    "20201102T161431_20201102T162323_T16PCC",
+    "20201107T161459_20201107T162000_T16PCC",
+    "20201112T161531_20201112T162502_T16PCC"
+  ],
+  "reference_date": "2020-11-25",
+  "kind": "published manual optical with automated screening",
+  "wet": 325,
+  "dry": 0,
+  "unknown": 10491,
+  "urban_wet": 47,
+  "training_status": "development labels; group all tiles from the same incident; fresh testing elsewhere",
+  "file": "manual_refs/sps_ufo_6oqt.npz",
+  "sha256": "506a69faeef20e812a3c6548294b1bb96f7445afe31bd528cd39d7160c57dcfc",
+  "source_raster": "independent/sps_ufo_6oqt/ufo_surface.tif",
+  "source_receipt": "independent/sps_ufo_6oqt/ufo_reference.json"
+}

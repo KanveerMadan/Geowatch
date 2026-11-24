@@ -1,0 +1,205 @@
+{
+  "unit": "bozkurt_2021_control",
+  "city": "Bozkurt, Kastamonu",
+  "country": "TR",
+  "date": "2021-08-11",
+  "bbox": [
+    33.98809010572962,
+    41.93842575996685,
+    34.037896064950246,
+    41.975601826996964
+  ],
+  "incident": "western_black_sea_aug_2021",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://www.kastamonu.gov.tr/11-agustos-2021de-sel-felaketini-yasayan-bozkurt-3-yilda-yeniden-insa-edildi",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 2040003560,
+    "hybas_6": 2060003560,
+    "main_bas": 2060003560
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      2060003560
+    ],
+    "main_bas": [
+      2060003560
+    ]
+  },
+  "event": "2021-08-11",
+  "role": "dev",
+  "pre_dates": [
+    "2021-03-14",
+    "2021-03-26",
+    "2021-04-07",
+    "2021-04-19",
+    "2021-05-01",
+    "2021-05-13",
+    "2021-05-25",
+    "2021-06-06",
+    "2021-06-18",
+    "2021-06-30"
+  ],
+  "post_date": "2021-07-12",
+  "days_from_anchor": -30,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20210712T034937_20210712T035002_038739_049240_F152",
+      "pass": "DESCENDING",
+      "track": 167,
+      "platform": "A",
+      "date": "2021-07-12"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210314T034932_20210314T034957_036989_045A3D_F650",
+        "pass": "DESCENDING",
+        "track": 167,
+        "platform": "A",
+        "date": "2021-03-14"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210326T034932_20210326T034957_037164_046045_D360",
+        "pass": "DESCENDING",
+        "track": 167,
+        "platform": "A",
+        "date": "2021-03-26"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210407T034932_20210407T034957_037339_046655_EB2A",
+        "pass": "DESCENDING",
+        "track": 167,
+        "platform": "A",
+        "date": "2021-04-07"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210419T034933_20210419T034958_037514_046C5F_7B05",
+        "pass": "DESCENDING",
+        "track": 167,
+        "platform": "A",
+        "date": "2021-04-19"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210501T034933_20210501T034958_037689_047272_8E90",
+        "pass": "DESCENDING",
+        "track": 167,
+        "platform": "A",
+        "date": "2021-05-01"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210513T034934_20210513T034959_037864_04780A_A26B",
+        "pass": "DESCENDING",
+        "track": 167,
+        "platform": "A",
+        "date": "2021-05-13"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210525T034934_20210525T034959_038039_047D53_7A71",
+        "pass": "DESCENDING",
+        "track": 167,
+        "platform": "A",
+        "date": "2021-05-25"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210606T034935_20210606T035000_038214_048287_3B53",
+        "pass": "DESCENDING",
+        "track": 167,
+        "platform": "A",
+        "date": "2021-06-06"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210618T034936_20210618T035001_038389_0487BA_D0A5",
+        "pass": "DESCENDING",
+        "track": 167,
+        "platform": "A",
+        "date": "2021-06-18"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20210630T034937_20210630T035002_038564_048CF7_6EE1",
+        "pass": "DESCENDING",
+        "track": 167,
+        "platform": "A",
+        "date": "2021-06-30"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32636",
+    "transform": [
+      30.0,
+      0.0,
+      581910.0,
+      0.0,
+      -30.0,
+      4647540.0
+    ],
+    "shape": [
+      136,
+      136
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/bozkurt_2021_control.npz": "a06605944b00315fee8a48ae491fe316952e5852da18566cb1caf6e7c81aa8f8",
+    "events/bozkurt_2021_control/model_ref.npz": "a06605944b00315fee8a48ae491fe316952e5852da18566cb1caf6e7c81aa8f8",
+    "events/bozkurt_2021_control/reference_30m.tif": "fdeaf42e2477a805e52d72ea47b060fde448ef3d0752e9a31fc857e87e4d1730",
+    "events/bozkurt_2021_control/reference_10m.tif": "04bc213b1bb068ceee8223c3e0c95250f19a360b95c832a694130e4b0d411fdb"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 13829,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 4667
+  }
+}

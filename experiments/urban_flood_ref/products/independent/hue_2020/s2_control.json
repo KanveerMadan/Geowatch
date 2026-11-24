@@ -1,0 +1,72 @@
+{
+  "event_id": "hue_2020",
+  "sensor": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+  "source_documentation": "https://sentiwiki.copernicus.eu/web/s2-processing",
+  "source_terms": "https://dataspace.copernicus.eu/terms-and-conditions",
+  "attribution": "Contains modified Copernicus Sentinel data",
+  "effective_resolution_metres": 20,
+  "grid": {
+    "crs": "EPSG:32648",
+    "transform": [
+      30.0,
+      0.0,
+      774480.0,
+      0.0,
+      -30.0,
+      1824630.0
+    ],
+    "shape": [
+      136,
+      137
+    ]
+  },
+  "label_codes": {
+    "0": "optically visible non-water",
+    "1": "new optically visible water",
+    "255": "unobserved or ambiguous"
+  },
+  "method": "new clear-surface water vs repeatedly clear pre-event land, homogeneous 30 m support",
+  "radar_utc_date": "2020-09-16",
+  "search_intervals_utc_end_exclusive": {
+    "pre": [
+      "2020-07-18",
+      "2020-09-07"
+    ],
+    "post": [
+      "2020-09-15",
+      "2020-09-18"
+    ]
+  },
+  "acquisitions": {
+    "pre": [
+      "20200719T031539_20200719T032500_T48QYD",
+      "20200724T031551_20200724T032157_T48QYD",
+      "20200729T031539_20200729T032541_T48QYD",
+      "20200803T031551_20200803T033047_T48QYD",
+      "20200808T031539_20200808T032718_T48QYD",
+      "20200813T031551_20200813T033047_T48QYD",
+      "20200818T031549_20200818T033023_T48QYD",
+      "20200823T031551_20200823T033101_T48QYD",
+      "20200828T031539_20200828T033055_T48QYD",
+      "20200902T031541_20200902T033100_T48QYD"
+    ],
+    "post": [
+      "20200917T031539_20200917T033202_T48QYD"
+    ]
+  },
+  "pixel_counts": {
+    "0": 0,
+    "1": 0,
+    "255": 18632
+  },
+  "limitations": [
+    "Automated optical corroboration. Streets beneath roofs, vegetation and shadow can be invisible.",
+    "A clear non-water return applies to the visible surface. It cannot rule out water on a street beneath a roof.",
+    "Up to one UTC calendar date of offset permits inundation to change between sensors.",
+    "Cloud and mixed boundaries reduce eligible coverage. Clear-only samples can favour open places.",
+    "The baseline excludes previously visible water. Seasonal water appearing for the first time can still qualify."
+  ],
+  "control": true,
+  "reference_date": "2020-09-17",
+  "product_role": "automated visible-surface corroboration; urban dry may be roofs"
+}

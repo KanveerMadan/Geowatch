@@ -1,0 +1,191 @@
+{
+  "unit": "kerala_2018",
+  "city": "Kerala development AOI",
+  "country": "IN",
+  "date": "2018-08-16",
+  "bbox": [
+    76.41949281637064,
+    9.404633727346424,
+    76.4565224080885,
+    9.441133119038344
+  ],
+  "incident": "monsoon_2018_kl",
+  "products": [
+    "S1"
+  ],
+  "basis": "flood-core development registry",
+  "peak_date": null,
+  "event": "2018-08-16",
+  "role": "dev",
+  "pre_dates": [
+    "2018-04-23",
+    "2018-05-05",
+    "2018-05-17",
+    "2018-05-29",
+    "2018-06-10",
+    "2018-06-22",
+    "2018-07-04",
+    "2018-07-16",
+    "2018-07-28",
+    "2018-08-09"
+  ],
+  "post_date": "2018-08-21",
+  "days_from_anchor": 5,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20180821T004109_20180821T004134_023337_0289D5_B2B2",
+      "pass": "DESCENDING",
+      "track": 165,
+      "platform": "A",
+      "date": "2018-08-21"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180423T004102_20180423T004127_021587_02534E_3EEF",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2018-04-23"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180505T004103_20180505T004127_021762_0258D8_7EA7",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2018-05-05"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180517T004103_20180517T004128_021937_025E66_7E56",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2018-05-17"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180529T004104_20180529T004129_022112_026403_3CB0",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2018-05-29"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180610T004105_20180610T004130_022287_02697B_0E62",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2018-06-10"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180622T004106_20180622T004130_022462_026EC7_D660",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2018-06-22"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180704T004106_20180704T004131_022637_0273E1_B4B0",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2018-07-04"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180716T004107_20180716T004132_022812_02792A_E888",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2018-07-16"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180728T004108_20180728T004132_022987_027EB1_1406",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2018-07-28"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20180809T004108_20180809T004133_023162_02842B_FEE2",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2018-08-09"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32643",
+    "transform": [
+      30.0,
+      0.0,
+      655860.0,
+      0.0,
+      -30.0,
+      1043940.0
+    ],
+    "shape": [
+      134,
+      135
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/kerala_2018.npz": "9602e57e1eb4552c9f9d11d34191da286d48c5cb4820cdc19b14d30edaeb0cce",
+    "events/kerala_2018/model_ref.npz": "9602e57e1eb4552c9f9d11d34191da286d48c5cb4820cdc19b14d30edaeb0cce",
+    "events/kerala_2018/reference_30m.tif": "3004f864d5a741c9b913a1e2880d6d7bced8276f78a0a85320f7a389dbda9c04",
+    "events/kerala_2018/reference_10m.tif": "2d6207b5c7e37277736080473bbc2197f9c7c44a429806e73cc08913e25e9b66"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 21,
+        "mean": 0.536715030670166
+      },
+      "confident_flooded": {
+        "count": 4859,
+        "mean": 0.597008466720581
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 482,
+        "mean": 0.6060216815172664
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 13,
+    "confident_dry": 0,
+    "confident_flooded": 482,
+    "ambiguous": 17595
+  }
+}

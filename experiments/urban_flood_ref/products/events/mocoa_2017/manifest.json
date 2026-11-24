@@ -1,0 +1,173 @@
+{
+  "unit": "mocoa_2017",
+  "city": "Mocoa",
+  "country": "CO",
+  "date": "2017-04-01",
+  "bbox": [
+    -76.66508210466067,
+    1.1307938706791583,
+    -76.62894236497337,
+    1.1671697576647317
+  ],
+  "incident": "mocoa_apr_2017",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=85235",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 6040280410,
+    "hybas_6": 6060211140,
+    "main_bas": 6060007000
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      6060211140
+    ],
+    "main_bas": [
+      6060007000
+    ]
+  },
+  "event": "2017-04-01",
+  "role": "dev",
+  "pre_dates": [
+    "2016-12-14",
+    "2017-01-07",
+    "2017-01-31",
+    "2017-02-24",
+    "2017-03-08",
+    "2017-03-20"
+  ],
+  "post_date": "2017-04-01",
+  "days_from_anchor": 0,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1B_IW_GRDH_1SDV_20170401T232023_20170401T232048_004973_008B27_8C4A",
+      "pass": "ASCENDING",
+      "track": 47,
+      "platform": "B",
+      "date": "2017-04-01"
+    },
+    "pre": [
+      {
+        "id": "S1B_IW_GRDH_1SDV_20161214T232025_20161214T232050_003398_005CE4_7F41",
+        "pass": "ASCENDING",
+        "track": 47,
+        "platform": "B",
+        "date": "2016-12-14"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170107T232023_20170107T232048_003748_006714_C990",
+        "pass": "ASCENDING",
+        "track": 47,
+        "platform": "B",
+        "date": "2017-01-07"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170131T232022_20170131T232047_004098_00716B_5620",
+        "pass": "ASCENDING",
+        "track": 47,
+        "platform": "B",
+        "date": "2017-01-31"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170224T232022_20170224T232047_004448_007BE1_D6B5",
+        "pass": "ASCENDING",
+        "track": 47,
+        "platform": "B",
+        "date": "2017-02-24"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170308T232022_20170308T232047_004623_0080FD_5E47",
+        "pass": "ASCENDING",
+        "track": 47,
+        "platform": "B",
+        "date": "2017-03-08"
+      },
+      {
+        "id": "S1B_IW_GRDH_1SDV_20170320T232022_20170320T232047_004798_00861A_A431",
+        "pass": "ASCENDING",
+        "track": 47,
+        "platform": "B",
+        "date": "2017-03-20"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32618",
+    "transform": [
+      30.0,
+      0.0,
+      314730.0,
+      0.0,
+      -30.0,
+      129060.0
+    ],
+    "shape": [
+      134,
+      134
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/mocoa_2017.npz": "b65f6d3c9d8a22cfe8372f8995dad5c7b39b2f2c1c2fbba796362b49e0ce2d86",
+    "events/mocoa_2017/model_ref.npz": "b65f6d3c9d8a22cfe8372f8995dad5c7b39b2f2c1c2fbba796362b49e0ce2d86",
+    "events/mocoa_2017/reference_30m.tif": "07b542c27f676b484416a566e57bc9eb544f743772dff1034255b2ad6a858e6c",
+    "events/mocoa_2017/reference_10m.tif": "ba2cf033ccfe852c6013d1d4ef199ee1d6ca054bbf1b2782e71b20b744cfdfc3"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 5,
+        "mean": 0.5267919898033142
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 3286,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 14670
+  }
+}

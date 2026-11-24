@@ -1,0 +1,205 @@
+{
+  "unit": "shiraz_2019_control",
+  "city": "Quran Gate, Shiraz",
+  "country": "IR",
+  "date": "2019-03-25",
+  "bbox": [
+    52.53943882386639,
+    29.617431879646716,
+    52.58245048217283,
+    29.65474024794658
+  ],
+  "incident": "iran_mar_2019",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://pubmed.ncbi.nlm.nih.gov/32638682/",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 2040085930,
+    "hybas_6": 2060086920,
+    "main_bas": 2060086920
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      2060086920
+    ],
+    "main_bas": [
+      2060086920
+    ]
+  },
+  "event": "2019-03-25",
+  "role": "dev",
+  "pre_dates": [
+    "2018-10-22",
+    "2018-11-03",
+    "2018-11-15",
+    "2018-11-27",
+    "2018-12-09",
+    "2018-12-21",
+    "2019-01-02",
+    "2019-01-14",
+    "2019-01-26",
+    "2019-02-07"
+  ],
+  "post_date": "2019-02-19",
+  "days_from_anchor": -34,
+  "kind": "pre_event_control",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20190219T143409_20190219T143434_026000_02E5BF_796B",
+      "pass": "ASCENDING",
+      "track": 28,
+      "platform": "A",
+      "date": "2019-02-19"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181022T143412_20181022T143437_024250_02A753_BF8B",
+        "pass": "ASCENDING",
+        "track": 28,
+        "platform": "A",
+        "date": "2018-10-22"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181103T143412_20181103T143437_024425_02AD29_E009",
+        "pass": "ASCENDING",
+        "track": 28,
+        "platform": "A",
+        "date": "2018-11-03"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181115T143412_20181115T143437_024600_02B391_F738",
+        "pass": "ASCENDING",
+        "track": 28,
+        "platform": "A",
+        "date": "2018-11-15"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181127T143412_20181127T143437_024775_02BA0B_D0E4",
+        "pass": "ASCENDING",
+        "track": 28,
+        "platform": "A",
+        "date": "2018-11-27"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181209T143411_20181209T143436_024950_02BFE3_60F6",
+        "pass": "ASCENDING",
+        "track": 28,
+        "platform": "A",
+        "date": "2018-12-09"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20181221T143411_20181221T143436_025125_02C638_6498",
+        "pass": "ASCENDING",
+        "track": 28,
+        "platform": "A",
+        "date": "2018-12-21"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190102T143410_20190102T143435_025300_02CC87_F9DF",
+        "pass": "ASCENDING",
+        "track": 28,
+        "platform": "A",
+        "date": "2019-01-02"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190114T143410_20190114T143435_025475_02D2D1_E06D",
+        "pass": "ASCENDING",
+        "track": 28,
+        "platform": "A",
+        "date": "2019-01-14"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190126T143410_20190126T143435_025650_02D93E_FAF5",
+        "pass": "ASCENDING",
+        "track": 28,
+        "platform": "A",
+        "date": "2019-01-26"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20190207T143409_20190207T143434_025825_02DF81_4130",
+        "pass": "ASCENDING",
+        "track": 28,
+        "platform": "A",
+        "date": "2019-02-07"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32639",
+    "transform": [
+      30.0,
+      0.0,
+      649050.0,
+      0.0,
+      -30.0,
+      3281520.0
+    ],
+    "shape": [
+      136,
+      137
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/shiraz_2019_control.npz": "79b8131658b2c72f4e206c96f33cdc01f50aa41544dc53d27564194af865ad11",
+    "events/shiraz_2019_control/model_ref.npz": "79b8131658b2c72f4e206c96f33cdc01f50aa41544dc53d27564194af865ad11",
+    "events/shiraz_2019_control/reference_30m.tif": "b3f5f52aee07f811fe33fbd3796a5e2c7920ca434c880b033f8ade1d1ad4af22",
+    "events/shiraz_2019_control/reference_10m.tif": "48f9023c9c2b6a8d955c8133c83c437654354c36dd2c3df4420b56834a3c57b5"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 1,
+        "mean": 0.5155605673789978
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 0,
+        "mean": null
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 7725,
+    "confident_dry": 0,
+    "confident_flooded": 0,
+    "ambiguous": 10907
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "unit": "hyderabad_2020",
+  "city": "Hyderabad, Old City",
+  "country": "IN",
+  "date": "2020-10-13",
+  "bbox": [
+    78.45538468978422,
+    17.342365230987436,
+    78.49453875128837,
+    17.379697652001592
+  ],
+  "incident": "bay_bengal_depression_oct_2020",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://mausamjournal.imd.gov.in/index.php/MAUSAM/article/view/6047",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 4040027940,
+    "hybas_6": 4061092490,
+    "main_bas": 4060027940
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      4061092490
+    ],
+    "main_bas": [
+      4060027940
+    ]
+  },
+  "event": "2020-10-13",
+  "role": "dev",
+  "pre_dates": [
+    "2020-06-23",
+    "2020-07-05",
+    "2020-07-17",
+    "2020-07-29",
+    "2020-08-10",
+    "2020-08-22",
+    "2020-09-03",
+    "2020-09-15",
+    "2020-09-27",
+    "2020-10-09"
+  ],
+  "post_date": "2020-10-21",
+  "days_from_anchor": 8,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20201021T003858_20201021T003923_034887_041153_BC76",
+      "pass": "DESCENDING",
+      "track": 165,
+      "platform": "A",
+      "date": "2020-10-21"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200623T003853_20200623T003918_033137_03D6C0_D85D",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2020-06-23"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200705T003853_20200705T003918_033312_03DC0E_A670",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2020-07-05"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200717T003854_20200717T003919_033487_03E166_2916",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2020-07-17"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200729T003855_20200729T003920_033662_03E6C5_1385",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2020-07-29"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200810T003856_20200810T003921_033837_03EC6D_849C",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2020-08-10"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200822T003856_20200822T003921_034012_03F294_242C",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2020-08-22"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200903T003857_20200903T003922_034187_03F8BE_9B9D",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2020-09-03"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200915T003857_20200915T003922_034362_03FEE7_1111",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2020-09-15"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200927T003858_20200927T003923_034537_04050F_7C03",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2020-09-27"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20201009T003858_20201009T003923_034712_040B2C_3D53",
+        "pass": "DESCENDING",
+        "track": 165,
+        "platform": "A",
+        "date": "2020-10-09"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32644",
+    "transform": [
+      30.0,
+      0.0,
+      229620.0,
+      0.0,
+      -30.0,
+      1923300.0
+    ],
+    "shape": [
+      136,
+      137
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/hyderabad_2020.npz": "5cf4cdd116dc0787ce9cbb9012ec651f259872771af25e06f4f5566d423defe0",
+    "events/hyderabad_2020/model_ref.npz": "5cf4cdd116dc0787ce9cbb9012ec651f259872771af25e06f4f5566d423defe0",
+    "events/hyderabad_2020/reference_30m.tif": "50d84778a2c16317ee867e9dbbcb4a8d3a1bc15f270658eb787d6f19b59462ec",
+    "events/hyderabad_2020/reference_10m.tif": "c542a2404f28a5b26c5ec285201365f87dbfba425fae4ee54d8bcb82f1b99d25"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 149,
+        "mean": 0.6063262224197388
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 7,
+        "mean": 0.6131031465368206
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 51,
+    "confident_dry": 0,
+    "confident_flooded": 7,
+    "ambiguous": 18574
+  }
+}

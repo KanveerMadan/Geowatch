@@ -1,0 +1,205 @@
+{
+  "unit": "hue_2020",
+  "city": "Hue",
+  "country": "VN",
+  "date": "2020-10-16",
+  "bbox": [
+    107.5705513150706,
+    16.45036134838706,
+    107.60950679827106,
+    16.48768269426444
+  ],
+  "incident": "vietnam_oct_2020_chain",
+  "products": [
+    "S1"
+  ],
+  "basis": "Named historical settlement and event from public incident reporting. Nominal 4 km city-center tile set before scene or reference inspection.",
+  "evidence_url": "https://vietnam.un.org/en/96307-viet-nam-floods-landslides-and-storms-flash-update-no-1-1-6-october-20-20",
+  "peak_date": null,
+  "basins": {
+    "hybas_4": 4040015090,
+    "hybas_6": 4060015430,
+    "main_bas": 4060015430
+  },
+  "basin_intersections": {
+    "hybas_6": [
+      4060015430
+    ],
+    "main_bas": [
+      4060015430
+    ]
+  },
+  "event": "2020-10-16",
+  "role": "dev",
+  "pre_dates": [
+    "2020-06-24",
+    "2020-07-06",
+    "2020-07-18",
+    "2020-07-30",
+    "2020-08-11",
+    "2020-08-23",
+    "2020-09-04",
+    "2020-09-16",
+    "2020-09-28",
+    "2020-10-10"
+  ],
+  "post_date": "2020-10-22",
+  "days_from_anchor": 6,
+  "kind": "event",
+  "acquisitions": {
+    "post": {
+      "id": "S1A_IW_GRDH_1SDV_20201022T224410_20201022T224435_034915_04123B_DFCD",
+      "pass": "DESCENDING",
+      "track": 18,
+      "platform": "A",
+      "date": "2020-10-22"
+    },
+    "pre": [
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200624T224405_20200624T224430_033165_03D795_5961",
+        "pass": "DESCENDING",
+        "track": 18,
+        "platform": "A",
+        "date": "2020-06-24"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200706T224406_20200706T224431_033340_03DCE2_6F92",
+        "pass": "DESCENDING",
+        "track": 18,
+        "platform": "A",
+        "date": "2020-07-06"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200718T224407_20200718T224432_033515_03E23C_AF12",
+        "pass": "DESCENDING",
+        "track": 18,
+        "platform": "A",
+        "date": "2020-07-18"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200730T224407_20200730T224432_033690_03E79C_D1F6",
+        "pass": "DESCENDING",
+        "track": 18,
+        "platform": "A",
+        "date": "2020-07-30"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200811T224408_20200811T224433_033865_03ED61_EB68",
+        "pass": "DESCENDING",
+        "track": 18,
+        "platform": "A",
+        "date": "2020-08-11"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200823T224409_20200823T224434_034040_03F38B_F96D",
+        "pass": "DESCENDING",
+        "track": 18,
+        "platform": "A",
+        "date": "2020-08-23"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200904T224409_20200904T224434_034215_03F9B2_93A7",
+        "pass": "DESCENDING",
+        "track": 18,
+        "platform": "A",
+        "date": "2020-09-04"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200916T224410_20200916T224435_034390_03FFD9_B87B",
+        "pass": "DESCENDING",
+        "track": 18,
+        "platform": "A",
+        "date": "2020-09-16"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20200928T224410_20200928T224435_034565_040609_E16B",
+        "pass": "DESCENDING",
+        "track": 18,
+        "platform": "A",
+        "date": "2020-09-28"
+      },
+      {
+        "id": "S1A_IW_GRDH_1SDV_20201010T224410_20201010T224435_034740_040C29_6DBD",
+        "pass": "DESCENDING",
+        "track": 18,
+        "platform": "A",
+        "date": "2020-10-10"
+      }
+    ]
+  },
+  "method_name": "same-track GRD dual-pol change; no interferometric input",
+  "lineage": "Copernicus Sentinel-1, GHSL JRC, EC JRC/Google Global Surface Water, SRTM, MODIS MCD12Q1",
+  "rights": "See SOURCES.md; satellite-derived development candidates",
+  "training_status": "requires independent review",
+  "grid": {
+    "crs": "EPSG:32648",
+    "transform": [
+      30.0,
+      0.0,
+      774480.0,
+      0.0,
+      -30.0,
+      1824630.0
+    ],
+    "shape": [
+      136,
+      137
+    ]
+  },
+  "block": 1,
+  "state_codes": {
+    "unobserved": 0,
+    "confident_dry": 1,
+    "confident_flooded": 2,
+    "ambiguous": 3
+  },
+  "bands": [
+    "state",
+    "confidence",
+    "method",
+    "baseline_state",
+    "urban",
+    "observed_fraction",
+    "flooded_fraction",
+    "pre_first_day",
+    "pre_last_day",
+    "post_day",
+    "days_from_peak"
+  ],
+  "nodata": -9999,
+  "sha256": {
+    "refs/hue_2020.npz": "7f8c920515a09c721e5dda888a1b91222741941ab62093d9d3b6e693794eef8d",
+    "events/hue_2020/model_ref.npz": "7f8c920515a09c721e5dda888a1b91222741941ab62093d9d3b6e693794eef8d",
+    "events/hue_2020/reference_30m.tif": "623c9ef1281d0a1a588f44491ff49c8c7c53de428f93dd39288f33b2f373323c",
+    "events/hue_2020/reference_10m.tif": "6f8d239067c9175ffd480479148a74e16a28817bd8a823d11cc2bd2be11f1e3a"
+  },
+  "confidence_type": "uncalibrated radar evidence score",
+  "confidence_summary": {
+    "10": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 101,
+        "mean": 0.6105871796607971
+      }
+    },
+    "30": {
+      "confident_dry": {
+        "count": 0,
+        "mean": null
+      },
+      "confident_flooded": {
+        "count": 3,
+        "mean": 0.6444566223356459
+      }
+    }
+  },
+  "counts30": {
+    "unobserved": 900,
+    "confident_dry": 0,
+    "confident_flooded": 3,
+    "ambiguous": 17729
+  }
+}

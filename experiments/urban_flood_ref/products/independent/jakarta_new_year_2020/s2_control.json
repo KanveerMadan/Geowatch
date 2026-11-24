@@ -1,0 +1,85 @@
+{
+  "event_id": "jakarta_new_year_2020",
+  "sensor": "Sentinel-2 Level-2A / Sen2Cor SCL (Earth Engine COPERNICUS/S2_SR_HARMONIZED)",
+  "source_documentation": "https://sentiwiki.copernicus.eu/web/s2-processing",
+  "source_terms": "https://dataspace.copernicus.eu/terms-and-conditions",
+  "attribution": "Contains modified Copernicus Sentinel data",
+  "effective_resolution_metres": 20,
+  "grid": {
+    "crs": "EPSG:32748",
+    "transform": [
+      30.0,
+      0.0,
+      704550.0,
+      0.0,
+      -30.0,
+      9313560.0
+    ],
+    "shape": [
+      134,
+      135
+    ]
+  },
+  "label_codes": {
+    "0": "optically visible non-water",
+    "1": "new optically visible water",
+    "255": "unobserved or ambiguous"
+  },
+  "method": "new clear-surface water vs repeatedly clear pre-event land, homogeneous 30 m support",
+  "radar_utc_date": "2019-12-05",
+  "search_intervals_utc_end_exclusive": {
+    "pre": [
+      "2019-10-06",
+      "2019-11-26"
+    ],
+    "post": [
+      "2019-12-04",
+      "2019-12-07"
+    ]
+  },
+  "acquisitions": {
+    "pre": [
+      "20191007T025609_20191007T031756_T48MXU",
+      "20191007T025609_20191007T031756_T48MYU",
+      "20191012T025641_20191012T031830_T48MXU",
+      "20191012T025641_20191012T031830_T48MYU",
+      "20191017T025709_20191017T031412_T48MXU",
+      "20191017T025709_20191017T031412_T48MYU",
+      "20191022T025751_20191022T030336_T48MXU",
+      "20191022T025751_20191022T030336_T48MYU",
+      "20191027T025819_20191027T031900_T48MXU",
+      "20191027T025819_20191027T031900_T48MYU",
+      "20191101T025841_20191101T031431_T48MXU",
+      "20191101T025841_20191101T031431_T48MYU",
+      "20191106T025909_20191106T031023_T48MXU",
+      "20191106T025909_20191106T031023_T48MYU",
+      "20191111T025941_20191111T030436_T48MXU",
+      "20191111T025941_20191111T030436_T48MYU",
+      "20191116T025959_20191116T031415_T48MXU",
+      "20191116T025959_20191116T031415_T48MYU",
+      "20191121T030021_20191121T031007_T48MXU",
+      "20191121T030021_20191121T031007_T48MYU",
+      "20191121T030021_20191121T031941_T48MXU",
+      "20191121T030021_20191121T031941_T48MYU"
+    ],
+    "post": [
+      "20191206T030109_20191206T031705_T48MXU",
+      "20191206T030109_20191206T031705_T48MYU"
+    ]
+  },
+  "pixel_counts": {
+    "0": 0,
+    "1": 0,
+    "255": 18090
+  },
+  "limitations": [
+    "Automated optical corroboration. Streets beneath roofs, vegetation and shadow can be invisible.",
+    "A clear non-water return applies to the visible surface. It cannot rule out water on a street beneath a roof.",
+    "Up to one UTC calendar date of offset permits inundation to change between sensors.",
+    "Cloud and mixed boundaries reduce eligible coverage. Clear-only samples can favour open places.",
+    "The baseline excludes previously visible water. Seasonal water appearing for the first time can still qualify."
+  ],
+  "control": true,
+  "reference_date": "2019-12-06",
+  "product_role": "automated visible-surface corroboration; urban dry may be roofs"
+}
