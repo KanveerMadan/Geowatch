@@ -1,0 +1,230 @@
+[
+  {
+    "event": "Harvey",
+    "examined_imagery": [
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2017_Hurricane_Harvey/20170830_RGB/20170830aC0953730w294630n.tif",
+        "date": "2017-08-30"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2017_Hurricane_Harvey/20170830_RGB/20170830aC0952400w294500n.tif",
+        "date": "2017-08-30"
+      }
+    ],
+    "accepted_entries": [
+      "Harveyalt_0",
+      "Harveyalt_1",
+      "Harveyalt_6",
+      "Harveyalt_9"
+    ],
+    "limitation": "See per-cell basis and temporal flags in review.json."
+  },
+  {
+    "event": "Florence",
+    "examined_imagery": [
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Florence/20180919a_RGB/20180919aC0773600w351630n.tif",
+        "date": "2018-09-19"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Florence/20180919a_RGB/20180919aC0770300w350730n.tif",
+        "date": "2018-09-19"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Florence/20180917a_RGB/20180917aC0765830w344200n.tif",
+        "date": "2018-09-17"
+      }
+    ],
+    "accepted_entries": [
+      "Florencealt_6",
+      "FlorenceKinston_3",
+      "FlorenceKinston_4",
+      "FlorenceKinston_6",
+      "FlorenceKinston_11"
+    ],
+    "limitation": "See per-cell basis and temporal flags in review.json."
+  },
+  {
+    "event": "Irma",
+    "examined_imagery": [
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2017_Hurricane_Irma/20170913a_RGB/20170913aC0812230w244030n.tif",
+        "date": "2017-09-13"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2017_Hurricane_Irma/20170914b_RGB/20170914bC0814030w301930n.tif",
+        "date": "2017-09-14"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2017_Hurricane_Irma/20170911a_RGB/20170911aC0814800w243300n.tif",
+        "date": "2017-09-11"
+      }
+    ],
+    "accepted_entries": [
+      "Irmaalt_3"
+    ],
+    "limitation": "See per-cell basis and temporal flags in review.json."
+  },
+  {
+    "event": "Michael",
+    "examined_imagery": [
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Michael/20181011a_RGB/20181011aC0851930w294930n.tif",
+        "date": "2018-10-11"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Michael/20181011a_RGB/20181011aC0852530w295830n.tif",
+        "date": "2018-10-11"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Michael/20181011a_RGB/20181011aC0852400w295700n.tif",
+        "date": "2018-10-11"
+      }
+    ],
+    "accepted_entries": [
+      "Michael_7"
+    ],
+    "limitation": "See per-cell basis and temporal flags in review.json."
+  },
+  {
+    "event": "Laura",
+    "examined_imagery": [
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2020_Hurricane_Laura/20200829b_RGB/20200829bC0931930w294800n.tif",
+        "date": "2020-08-29"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2020_Hurricane_Laura/20200828a_RGB/20200828aC0930730w294930n.tif",
+        "date": "2020-08-28"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2020_Hurricane_Laura/20200828a_RGB/20200828aC0932100w294800n.tif",
+        "date": "2020-08-28"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2020_Hurricane_Laura/20200828a_RGB/20200828aC0931930w300730n.tif",
+        "date": "2020-08-28"
+      }
+    ],
+    "accepted_entries": [
+      "LauraCity_7"
+    ],
+    "limitation": "See per-cell basis and temporal flags in review.json."
+  },
+  {
+    "event": "Sally",
+    "examined_imagery": [
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2020_Hurricane_Sally/20200919a_RGB/20200919aC0873600w301800n.tif",
+        "date": "2020-09-19"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2020_Hurricane_Sally/20200919a_RGB/20200919aC0874200w301630n.tif",
+        "date": "2020-09-19"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2020_Hurricane_Sally/20200919a_RGB/20200919aC0874030w301800n.tif",
+        "date": "2020-09-19"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2020_Hurricane_Sally/20200918a_RGB/20200918aC0871330w302530n.tif",
+        "date": "2020-09-18"
+      }
+    ],
+    "accepted_entries": [
+      "SallyTown_7"
+    ],
+    "limitation": "See per-cell basis and temporal flags in review.json."
+  },
+  {
+    "event": "Ida",
+    "examined_imagery": [
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210831a_RGB/20210831aC0895700w293815n.tif",
+        "date": "2021-08-31"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210831a_RGB/20210831aC0895830w293945n.tif",
+        "date": "2021-08-31"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210830a_RGB/20210830aC0900645w294415n.tif",
+        "date": "2021-08-30"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210901a_RGB/20210901aC0902915w300515n.tif",
+        "date": "2021-09-01"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210831a_RGB/20210831aC0895830w294115n.tif",
+        "date": "2021-08-31"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210831a_RGB/20210831aC0895745w293945n.tif",
+        "date": "2021-08-31"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210830a_RGB/20210830aC0900730w294500n.tif",
+        "date": "2021-08-30"
+      },
+      {
+        "url": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210830b_RGB/20210830bC0900600w294115n.tif",
+        "date": "2021-08-30"
+      }
+    ],
+    "accepted_entries": [
+      "IdaLaplace_6",
+      "IdaEast_1",
+      "IdaEast_2",
+      "IdaEast_5",
+      "IdaEast_7",
+      "IdaPlant_1",
+      "IdaPlant_2",
+      "IdaPlant_6"
+    ],
+    "limitation": "See per-cell basis and temporal flags in review.json."
+  },
+  {
+    "event": "Beira",
+    "examined_imagery": [
+      {
+        "url": "https://doi.org/10.5281/zenodo.19698577#BEI_20190326_072743_1021_a69z",
+        "date": "2019-03-26",
+        "same_date_published_wet_cells": 806,
+        "source_licence": "CC BY 4.0"
+      }
+    ],
+    "accepted_entries": [
+      "Beira_S01",
+      "Beira_S04",
+      "Beira_paired_wet"
+    ],
+    "limitation": "See per-cell basis and temporal flags in review.json."
+  },
+  {
+    "event": "Khartoum",
+    "examined_imagery": [
+      {
+        "url": "https://doi.org/10.5281/zenodo.19698577#KTM_20200829_073334_69_L895",
+        "date": "2020-08-29",
+        "same_date_published_wet_cells": 494,
+        "source_licence": "CC BY 4.0"
+      }
+    ],
+    "accepted_entries": [],
+    "limitation": "Native PlanetScope chips and published nonwater masks could not resolve a confidently dry 30 m street surface in the inspected squares. Mixed roofs, shade and narrow roads."
+  },
+  {
+    "event": "San_Pedro_Sula",
+    "examined_imagery": [
+      {
+        "url": "https://doi.org/10.5281/zenodo.19698577#SPS_20201125_160451_0f22_6oqt",
+        "date": "2020-11-25",
+        "same_date_published_wet_cells": 325,
+        "source_licence": "CC BY 4.0"
+      }
+    ],
+    "accepted_entries": [],
+    "limitation": "Native PlanetScope chips and published nonwater masks could not resolve a confidently dry 30 m street surface in the inspected squares. Mixed roofs, shade and narrow roads."
+  }
+]

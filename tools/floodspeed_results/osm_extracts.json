@@ -1,0 +1,52 @@
+[
+  {
+    "extract": "BD.osm.pbf",
+    "bytes": 356179788,
+    "md5": "26daf15c4ed5064e0cc04d2ceaeecae4"
+  },
+  {
+    "extract": "CA.osm.pbf",
+    "bytes": 1337645263,
+    "md5": "269e5b50fcfe7f24997119f20323d7ff"
+  },
+  {
+    "extract": "FL.osm.pbf",
+    "bytes": 661908007,
+    "md5": "da17a6cbe2d417a12ef07f562e936b93"
+  },
+  {
+    "extract": "IL.osm.pbf",
+    "bytes": 364174846,
+    "md5": "f4d23e78a0d05bcc2a5145eb9c196a0c"
+  },
+  {
+    "extract": "IN.osm.pbf",
+    "bytes": 1717419514,
+    "md5": "d6f78178723593eee9621515fee25946"
+  },
+  {
+    "extract": "LA.osm.pbf",
+    "bytes": 148014121,
+    "md5": "3351476afb8a6190556cdbd2f23a8324"
+  },
+  {
+    "extract": "NG.osm.pbf",
+    "bytes": 718742861,
+    "md5": "b1b48a585596abd0aa63c777c8280a8a"
+  },
+  {
+    "extract": "NY.osm.pbf",
+    "bytes": 499272289,
+    "md5": "8329af29d8d5383b3db205e2bba14802"
+  },
+  {
+    "extract": "PK.osm.pbf",
+    "bytes": 158217713,
+    "md5": "0c82734ed9e721582b4927e82705bfa4"
+  },
+  {
+    "extract": "SS.osm.pbf",
+    "bytes": 139543940,
+    "md5": "07f79020ec04839ee2d24b4f5ba24665"
+  }
+]

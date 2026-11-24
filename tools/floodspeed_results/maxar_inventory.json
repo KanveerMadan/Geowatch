@@ -1,0 +1,109 @@
+{
+  "Ida": {
+    "root": [
+      "hurricane-ida21/15/",
+      "hurricane-ida21/acquisition_collections/",
+      "hurricane-ida21/order_collections/",
+      "hurricane-ida21/post/",
+      "hurricane-ida21/pre/"
+    ],
+    "post_dates": [],
+    "example_asset": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/POST-event/10300100C46F5900_0_18_12.tif",
+    "licence": "Maxar Open Data Program CC BY-NC 4.0",
+    "use": "Post-Ida SpaceNet 8 chip inspected. Exact acquisition day unverified. Water or rubble can trigger a positive road annotation."
+  },
+  "Harvey": {
+    "root": [
+      "hurricane-harvey/post-event/",
+      "hurricane-harvey/pre-event/",
+      "hurricane-harvey/vector-data/"
+    ],
+    "post_dates": [
+      "hurricane-harvey/post-event/2017-08-29/",
+      "hurricane-harvey/post-event/2017-08-30/",
+      "hurricane-harvey/post-event/2017-08-31/",
+      "hurricane-harvey/post-event/2017-09-01/",
+      "hurricane-harvey/post-event/2017-09-02/",
+      "hurricane-harvey/post-event/2017-09-03/"
+    ],
+    "example_asset": "https://dg-opendata.s3.amazonaws.com/hurricane-harvey/post-event/2017-08-29/1040010030BE1200/2110112.tif",
+    "licence": "Maxar Open Data Program CC BY-NC 4.0",
+    "use": "Imagery inventory only.",
+    "overlap_check": {
+      "url": "https://dg-opendata.s3.amazonaws.com/hurricane-harvey/post-event/2017-08-30/103001006F884000/3020020.tif",
+      "date": "2017-08-30",
+      "finding": "All source RGB values in the sampled overlapping window were 255. Other checked same-day strips gave no usable view of this targeted road. The wet and dry labels use NOAA."
+    }
+  },
+  "Florence": {
+    "root": [
+      "hurricane-florence/post-event/",
+      "hurricane-florence/pre-event/",
+      "hurricane-florence/vector-data/"
+    ],
+    "post_dates": [
+      "hurricane-florence/post-event/2018-09-15/",
+      "hurricane-florence/post-event/2018-09-17/",
+      "hurricane-florence/post-event/2018-09-18/",
+      "hurricane-florence/post-event/2018-09-20/",
+      "hurricane-florence/post-event/2018-09-21/",
+      "hurricane-florence/post-event/2018-09-22/"
+    ],
+    "example_asset": "https://dg-opendata.s3.amazonaws.com/hurricane-florence/post-event/2018-09-15/10500100122F6000/0000000.tif",
+    "licence": "Maxar Open Data Program CC BY-NC 4.0",
+    "use": "Imagery inventory only."
+  },
+  "Michael": {
+    "root": [
+      "hurricane-michael/post-event/",
+      "hurricane-michael/pre-event/"
+    ],
+    "post_dates": [
+      "hurricane-michael/post-event/2018-10-12/",
+      "hurricane-michael/post-event/2018-10-13/"
+    ],
+    "example_asset": "https://dg-opendata.s3.amazonaws.com/hurricane-michael/post-event/2018-10-12/102001007B5E7E00/2130110.tif",
+    "licence": "Maxar Open Data Program CC BY-NC 4.0",
+    "use": "Imagery inventory only."
+  },
+  "Irma": {
+    "root": [
+      "hurricane-irma/post-event/",
+      "hurricane-irma/pre-event/",
+      "hurricane-irma/vector-data/"
+    ],
+    "post_dates": [
+      "hurricane-irma/post-event/2017-09-07/",
+      "hurricane-irma/post-event/2017-09-08/",
+      "hurricane-irma/post-event/2017-09-09/",
+      "hurricane-irma/post-event/2017-09-10/",
+      "hurricane-irma/post-event/2017-09-11/",
+      "hurricane-irma/post-event/2017-09-12/",
+      "hurricane-irma/post-event/2017-09-13/",
+      "hurricane-irma/post-event/2017-09-14/"
+    ],
+    "example_asset": "https://dg-opendata.s3.amazonaws.com/hurricane-irma/post-event/2017-09-07/105001000BB08E00/2013332.tif",
+    "licence": "Maxar Open Data Program CC BY-NC 4.0",
+    "use": "Imagery inventory only.",
+    "post_dates_note": "Collection begins in the Caribbean before Florida landfall. Floridian controls use the dated NOAA aerials."
+  },
+  "Laura": {
+    "root": [],
+    "post_dates": [],
+    "example_asset": null,
+    "licence": "Maxar Open Data Program CC BY-NC 4.0",
+    "use": "Imagery inventory only."
+  },
+  "Sally": {
+    "root": [],
+    "post_dates": [],
+    "example_asset": null,
+    "licence": "Maxar Open Data Program CC BY-NC 4.0",
+    "use": "Imagery inventory only."
+  },
+  "Beira": {
+    "example_asset": "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif",
+    "licence": "Imagery \u00a9 Maxar Technologies, CC BY-NC 4.0",
+    "use": "Research diagnostic: prior two-reader interpretations reused."
+  }
+}

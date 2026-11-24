@@ -1,0 +1,789 @@
+[
+  {
+    "id": "Harveyalt_0",
+    "event": "Harvey",
+    "scene": "Harveyalt",
+    "date": "2017-08-30",
+    "state": 2,
+    "epsg": 32615,
+    "col": 8265,
+    "row": 109843,
+    "center_lonlat": [
+      -95.60653108615286,
+      29.762401061184576
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2017_Hurricane_Harvey/20170830_RGB/20170830aC0953730w294630n.tif",
+    "evidence": "evidence/Harveyalt_0.jpg",
+    "basis": "Muddy standing water surrounds vehicles and trees on the road approach.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2017-08-29 04:18",
+    "station_id": "8771450",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_Harveyalt_32615_129_1716.npz",
+    "evidence_sha256": "5d0a26725eb136fec373c0e0bdf8c2ac26790ed3f614bec515c584cc49dcaf3a"
+  },
+  {
+    "id": "Harveyalt_1",
+    "event": "Harvey",
+    "scene": "Harveyalt",
+    "date": "2017-08-30",
+    "state": 2,
+    "epsg": 32615,
+    "col": 8267,
+    "row": 109843,
+    "center_lonlat": [
+      -95.60591110470735,
+      29.762413284011835
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2017_Hurricane_Harvey/20170830_RGB/20170830aC0953730w294630n.tif",
+    "evidence": "evidence/Harveyalt_1.jpg",
+    "basis": "Water crosses the road approach above and alongside the visible bridge deck.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2017-08-29 04:18",
+    "station_id": "8771450",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_Harveyalt_32615_129_1716.npz",
+    "evidence_sha256": "b761253ce3b960e75d274c2788ee9995225df0d0c92b656ef0a183b5ac703b67"
+  },
+  {
+    "id": "Harveyalt_6",
+    "event": "Harvey",
+    "scene": "Harveyalt",
+    "date": "2017-08-30",
+    "state": 1,
+    "epsg": 32615,
+    "col": 8266,
+    "row": 109871,
+    "center_lonlat": [
+      -95.6064172584526,
+      29.769980242904733
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2017_Hurricane_Harvey/20170830_RGB/20170830aC0953730w294630n.tif",
+    "evidence": "evidence/Harveyalt_6.jpg",
+    "basis": "Lane markings, vehicles and exposed pavement are visible across the intersection.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2017-08-29 04:18",
+    "station_id": "8771450",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_Harveyalt_32615_129_1716.npz",
+    "evidence_sha256": "b42cfe15af04afbbbef6160b527cfb40f5dd8c14b85d30a6e1c06ddbc30d3d64"
+  },
+  {
+    "id": "Harveyalt_9",
+    "event": "Harvey",
+    "scene": "Harveyalt",
+    "date": "2017-08-30",
+    "state": 1,
+    "epsg": 32615,
+    "col": 8233,
+    "row": 109815,
+    "center_lonlat": [
+      -95.61625388161998,
+      29.754632083273
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2017_Hurricane_Harvey/20170830_RGB/20170830aC0953730w294630n.tif",
+    "evidence": "evidence/Harveyalt_9.jpg",
+    "basis": "Exposed junction, driveways and verge; road edges remain distinct.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2017-08-29 04:18",
+    "station_id": "8771450",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_Harveyalt_32615_128_1715.npz",
+    "evidence_sha256": "588370f2a04bf1d3d507f5bc73fda7c99a711a5ebe04908f6ae16fe28e9cdb92"
+  },
+  {
+    "id": "Florencealt_6",
+    "event": "Florence",
+    "scene": "Florencealt",
+    "date": "2018-09-19",
+    "state": 1,
+    "epsg": 32618,
+    "col": 10470,
+    "row": 129565,
+    "center_lonlat": [
+      -77.03960496649854,
+      35.108376338921275
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Florence/20180919a_RGB/20180919aC0770300w350730n.tif",
+    "evidence": "evidence/Florencealt_6.jpg",
+    "basis": "Crosswalks, exposed carriageway and sidewalk are visible on both intersecting streets.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": false,
+    "station_peak_utc": "2018-09-14 19:30",
+    "station_id": "8658120",
+    "over_48h_after_station_peak": "yes",
+    "over_48h_after_local_peak": "unknown",
+    "use": "acquisition_only",
+    "file": "acquisition_only/optical_Florencealt_32618_163_2024.npz",
+    "evidence_sha256": "d6918852ccf7b99983a4bbab1c927469e077205629fa757b4053ed65c4e9fbf3"
+  },
+  {
+    "id": "Irmaalt_3",
+    "event": "Irma",
+    "scene": "Irmaalt",
+    "date": "2017-09-14",
+    "state": 1,
+    "epsg": 32617,
+    "col": 14572,
+    "row": 111789,
+    "center_lonlat": [
+      -81.65344484946215,
+      30.313316385537988
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2017_Hurricane_Irma/20170914b_RGB/20170914bC0814030w301930n.tif",
+    "evidence": "evidence/Irmaalt_3.jpg",
+    "basis": "An open paved urban parking area shows exposed parking stalls and vehicles.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": false,
+    "station_peak_utc": "2017-09-10 17:42",
+    "station_id": "8724580",
+    "over_48h_after_station_peak": "yes",
+    "over_48h_after_local_peak": "unknown",
+    "use": "acquisition_only",
+    "file": "acquisition_only/optical_Irmaalt_32617_227_1746.npz",
+    "evidence_sha256": "65bdd06a2fba8d353ca2267b3b2b188ed2b6faa8390613fe8d980d6673e5564e"
+  },
+  {
+    "id": "Michael_7",
+    "event": "Michael",
+    "scene": "Michael",
+    "date": "2018-10-11",
+    "state": 1,
+    "epsg": 32616,
+    "col": 21827,
+    "row": 110420,
+    "center_lonlat": [
+      -85.39588319766965,
+      29.934552744493608
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Michael/20181011a_RGB/20181011aC0852400w295700n.tif",
+    "evidence": "evidence/Michael_7.jpg",
+    "basis": "Exposed road pavement and its adjoining open verges run across the square.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": false,
+    "station_peak_utc": "2018-10-10 18:06",
+    "station_id": "8729108",
+    "over_48h_after_station_peak": "no",
+    "over_48h_after_local_peak": "unknown",
+    "use": "acquisition_only",
+    "file": "acquisition_only/optical_Michael_32616_341_1725.npz",
+    "evidence_sha256": "290829105dbd4b68dccbf36626fdb2b465bd236d12d3b77b964ba7ca5670aab6"
+  },
+  {
+    "id": "LauraCity_7",
+    "event": "Laura",
+    "scene": "LauraCity",
+    "date": "2020-08-29",
+    "state": 1,
+    "epsg": 32615,
+    "col": 15694,
+    "row": 109843,
+    "center_lonlat": [
+      -93.30175114213574,
+      29.787751215943384
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2020_Hurricane_Laura/20200829b_RGB/20200829bC0931930w294800n.tif",
+    "evidence": "evidence/LauraCity_7.jpg",
+    "basis": "Exposed asphalt, continuous lane markings and a junction are visible across the square.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": false,
+    "station_peak_utc": "2020-08-27 06:00",
+    "station_id": "8768094",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "acquisition_only",
+    "file": "acquisition_only/optical_LauraCity_32615_245_1716.npz",
+    "evidence_sha256": "82e670633181304055416064046d1f28af5216bbba2603f03f6e0f4241caf775"
+  },
+  {
+    "id": "SallyTown_7",
+    "event": "Sally",
+    "scene": "SallyTown",
+    "date": "2020-09-19",
+    "state": 1,
+    "epsg": 32616,
+    "col": 14459,
+    "row": 111624,
+    "center_lonlat": [
+      -87.6883902675513,
+      30.26846893702911
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2020_Hurricane_Sally/20200919a_RGB/20200919aC0874200w301630n.tif",
+    "evidence": "evidence/SallyTown_7.jpg",
+    "basis": "The carriageway fills most of the square; lane divisions, turn markings and curbs remain visible.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": false,
+    "station_peak_utc": "2020-09-16 12:36",
+    "station_id": "8729840",
+    "over_48h_after_station_peak": "yes",
+    "over_48h_after_local_peak": "unknown",
+    "use": "acquisition_only",
+    "file": "acquisition_only/optical_SallyTown_32616_225_1744.npz",
+    "evidence_sha256": "ea8a22f10da709e334027cce625896086fd7f724e2de94120d028da777f22488"
+  },
+  {
+    "id": "IdaLaplace_6",
+    "event": "Ida",
+    "scene": "IdaLaplace",
+    "date": "2021-09-01",
+    "state": 1,
+    "epsg": 32615,
+    "col": 24769,
+    "row": 111018,
+    "center_lonlat": [
+      -90.47794985044378,
+      30.08200514935234
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210901a_RGB/20210901aC0902915w300515n.tif",
+    "evidence": "evidence/IdaLaplace_6.jpg",
+    "basis": "Exposed streets and their intersection dominate the square; vehicles and road edges are visible.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": false,
+    "station_peak_utc": "2021-08-29 18:42",
+    "station_id": "8761724",
+    "over_48h_after_station_peak": "yes",
+    "over_48h_after_local_peak": "unknown",
+    "use": "acquisition_only",
+    "file": "acquisition_only/optical_IdaLaplace_32615_387_1734.npz",
+    "evidence_sha256": "e3709077432c760a3ab0f9b99d6ed6fb8f0b2e1e00e8222348f1134e72ecdd46"
+  },
+  {
+    "id": "IdaEast_1",
+    "event": "Ida",
+    "scene": "IdaEast",
+    "date": "2021-08-31",
+    "state": 1,
+    "epsg": 32616,
+    "col": 7176,
+    "row": 109401,
+    "center_lonlat": [
+      -89.9405663873705,
+      29.63580156396823
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210831a_RGB/20210831aC0895700w293815n.tif",
+    "evidence": "evidence/IdaEast_1.jpg",
+    "basis": "Exposed levee access road and adjoining dry ground remain visible in the same frame as the inundated fields.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2021-08-29 18:42",
+    "station_id": "8761724",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_IdaEast_32616_112_1709.npz",
+    "before_sources": [
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/la/2019/la_60cm_2019/29089/m_2908925_nw_16_060_20190707.tif",
+        "date": "2019-07-07"
+      },
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/la/2019/la_60cm_2019/29089/m_2908917_sw_16_060_20190707.tif",
+        "date": "2019-07-07"
+      }
+    ],
+    "before_evidence": "evidence/IdaEast_1_before.jpg",
+    "evidence_sha256": "538332582d8d7bdd2213922ab185092b37e56141e8b1f16f6761256093188ae7"
+  },
+  {
+    "id": "IdaEast_2",
+    "event": "Ida",
+    "scene": "IdaEast",
+    "date": "2021-08-31",
+    "state": 1,
+    "epsg": 32616,
+    "col": 7182,
+    "row": 109398,
+    "center_lonlat": [
+      -89.93868572862104,
+      29.63503157299096
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210831a_RGB/20210831aC0895700w293815n.tif",
+    "evidence": "evidence/IdaEast_2.jpg",
+    "basis": "Exposed pale road surface and textured verge on the raised bank.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2021-08-29 18:42",
+    "station_id": "8761724",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_IdaEast_32616_112_1709.npz",
+    "before_sources": [
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/la/2019/la_60cm_2019/29089/m_2908925_nw_16_060_20190707.tif",
+        "date": "2019-07-07"
+      },
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/la/2019/la_60cm_2019/29089/m_2908917_sw_16_060_20190707.tif",
+        "date": "2019-07-07"
+      }
+    ],
+    "before_evidence": "evidence/IdaEast_2_before.jpg",
+    "evidence_sha256": "eae24c7d300932aa6e0434b3a49a5f7674045f63a04e8e7b00a9c0d4dc76f363"
+  },
+  {
+    "id": "IdaEast_5",
+    "event": "Ida",
+    "scene": "IdaEast",
+    "date": "2021-08-31",
+    "state": 2,
+    "epsg": 32616,
+    "col": 7149,
+    "row": 109398,
+    "center_lonlat": [
+      -89.94889958499112,
+      29.63480467803903
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210831a_RGB/20210831aC0895700w293815n.tif",
+    "evidence": "evidence/IdaEast_5.jpg",
+    "basis": "Standing water and emergent tree crowns cover field and access ground visible in the USDA before aerial.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2021-08-29 18:42",
+    "station_id": "8761724",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_IdaEast_32616_111_1709.npz",
+    "before_sources": [
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/la/2019/la_60cm_2019/29089/m_2908925_nw_16_060_20190707.tif",
+        "date": "2019-07-07"
+      },
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/la/2019/la_60cm_2019/29089/m_2908917_sw_16_060_20190707.tif",
+        "date": "2019-07-07"
+      }
+    ],
+    "before_evidence": "evidence/IdaEast_5_before.jpg",
+    "evidence_sha256": "f3d76e422e562ffaec7c2eca3367a99282216b7c95f8b5878b3b37692ff17879"
+  },
+  {
+    "id": "IdaEast_7",
+    "event": "Ida",
+    "scene": "IdaEast",
+    "date": "2021-08-31",
+    "state": 2,
+    "epsg": 32616,
+    "col": 7151,
+    "row": 109401,
+    "center_lonlat": [
+      -89.94830421382947,
+      29.635629632175814
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210831a_RGB/20210831aC0895700w293815n.tif",
+    "evidence": "evidence/IdaEast_7.jpg",
+    "basis": "Sun glint and emergent tree crowns over formerly exposed drainage-side land.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2021-08-29 18:42",
+    "station_id": "8761724",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_IdaEast_32616_111_1709.npz",
+    "before_sources": [
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/la/2019/la_60cm_2019/29089/m_2908925_nw_16_060_20190707.tif",
+        "date": "2019-07-07"
+      },
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/la/2019/la_60cm_2019/29089/m_2908917_sw_16_060_20190707.tif",
+        "date": "2019-07-07"
+      }
+    ],
+    "before_evidence": "evidence/IdaEast_7_before.jpg",
+    "evidence_sha256": "d34373e96556fe2cf3f032db3f5a7625f5ccf3e59f1ab77f49cfc5ec095ec9a9"
+  },
+  {
+    "id": "IdaPlant_1",
+    "event": "Ida",
+    "scene": "IdaPlant",
+    "date": "2021-08-31",
+    "state": 2,
+    "epsg": 32616,
+    "col": 7075,
+    "row": 109572,
+    "center_lonlat": [
+      -89.97318700649478,
+      29.681340311457603
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210831a_RGB/20210831aC0895830w294115n.tif",
+    "evidence": "evidence/IdaPlant_1.jpg",
+    "basis": "Dark continuous water around the building replaces the exposed paved industrial yard seen in the pre-storm SpaceNet image.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2021-08-29 18:42",
+    "station_id": "8761724",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_IdaPlant_32616_110_1712.npz",
+    "before_sources": [
+      {
+        "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/PRE-event/105001001A0FFC00_0_18_12.tif",
+        "purpose": "same-cell pre-event surface comparison",
+        "licence": "SpaceNet release CC BY-SA 4.0; original Maxar imagery CC BY-NC 4.0"
+      }
+    ],
+    "incident_corroboration": "https://www.ap.org/news-highlights/best-of-the-week/2021/ap-ahead-on-hurricane-ida-oil-spills/",
+    "evidence_sha256": "715b3e5b11ff342521cc8e410e3af9df3bc394b297313c1cb52a159ef1467937"
+  },
+  {
+    "id": "IdaPlant_2",
+    "event": "Ida",
+    "scene": "IdaPlant",
+    "date": "2021-08-31",
+    "state": 2,
+    "epsg": 32616,
+    "col": 7080,
+    "row": 109572,
+    "center_lonlat": [
+      -89.97163878181226,
+      29.681375072617364
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210831a_RGB/20210831aC0895830w294115n.tif",
+    "evidence": "evidence/IdaPlant_2.jpg",
+    "basis": "Floodwater under elevated pipe racks covers normally exposed refinery ground.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2021-08-29 18:42",
+    "station_id": "8761724",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_IdaPlant_32616_110_1712.npz",
+    "before_sources": [
+      {
+        "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/PRE-event/105001001A0FFC00_0_18_12.tif",
+        "purpose": "same-cell pre-event surface comparison",
+        "licence": "SpaceNet release CC BY-SA 4.0; original Maxar imagery CC BY-NC 4.0"
+      }
+    ],
+    "incident_corroboration": "https://www.ap.org/news-highlights/best-of-the-week/2021/ap-ahead-on-hurricane-ida-oil-spills/",
+    "evidence_sha256": "a29dd40a323146b89687118c593b18b8167377d7979e9035af1d270e463b6cc3"
+  },
+  {
+    "id": "IdaPlant_6",
+    "event": "Ida",
+    "scene": "IdaPlant",
+    "date": "2021-08-31",
+    "state": 2,
+    "epsg": 32616,
+    "col": 7085,
+    "row": 109574,
+    "center_lonlat": [
+      -89.97010646558819,
+      29.681950588310837
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2021_Hurricane_Ida/20210831a_RGB/20210831aC0895830w294115n.tif",
+    "evidence": "evidence/IdaPlant_6.jpg",
+    "basis": "A continuous water surface with a sheen covers the formerly grassy plot beside the raised road.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2021-08-29 18:42",
+    "station_id": "8761724",
+    "over_48h_after_station_peak": "uncertain",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_IdaPlant_32616_110_1712.npz",
+    "before_sources": [
+      {
+        "url": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN8_floods/Louisiana-East_Training_Public/PRE-event/105001001A0FFC00_0_18_12.tif",
+        "purpose": "same-cell pre-event surface comparison",
+        "licence": "SpaceNet release CC BY-SA 4.0; original Maxar imagery CC BY-NC 4.0"
+      }
+    ],
+    "incident_corroboration": "https://www.ap.org/news-highlights/best-of-the-week/2021/ap-ahead-on-hurricane-ida-oil-spills/",
+    "evidence_sha256": "0596432137d0ecb50ae7ac81a7796768d92e44f4cc4a32b0f82e5f6b8560e2a0"
+  },
+  {
+    "id": "FlorenceKinston_3",
+    "event": "Florence",
+    "scene": "FlorenceKinston",
+    "date": "2018-09-19",
+    "state": 2,
+    "epsg": 32618,
+    "col": 8802,
+    "row": 130167,
+    "center_lonlat": [
+      -77.59338421759705,
+      35.260583229990814
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Florence/20180919a_RGB/20180919aC0773600w351630n.tif",
+    "evidence": "evidence/FlorenceKinston_3.jpg",
+    "basis": "Floodwater covers the three-way path junction visible in the 2016 USDA image; tree crowns and utility lines remain visible.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2018-09-14 19:30",
+    "station_id": "8658120",
+    "over_48h_after_station_peak": "yes",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_FlorenceKinston_32618_137_2033.npz",
+    "before_sources": [
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/nc/2016/nc_100cm_2016/35077/m_3507752_nw_18_1_20160613.tif",
+        "date": "2016-06-13"
+      },
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/nc/2016/nc_100cm_2016/35077/m_3507744_sw_18_1_20160613.tif",
+        "date": "2016-06-13"
+      }
+    ],
+    "before_evidence": "evidence/FlorenceKinston_3_before.jpg",
+    "evidence_sha256": "897e845224bdc3c10b3fe37aca35d36b0089f473037c5ac914b06ad3102c11ad"
+  },
+  {
+    "id": "FlorenceKinston_4",
+    "event": "Florence",
+    "scene": "FlorenceKinston",
+    "date": "2018-09-19",
+    "state": 2,
+    "epsg": 32618,
+    "col": 8798,
+    "row": 130164,
+    "center_lonlat": [
+      -77.59467624422214,
+      35.25974425795281
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Florence/20180919a_RGB/20180919aC0773600w351630n.tif",
+    "evidence": "evidence/FlorenceKinston_4.jpg",
+    "basis": "Continuous standing water extends across former open grass and a path outside the normal river channel.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2018-09-14 19:30",
+    "station_id": "8658120",
+    "over_48h_after_station_peak": "yes",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_FlorenceKinston_32618_137_2033.npz",
+    "before_sources": [
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/nc/2016/nc_100cm_2016/35077/m_3507752_nw_18_1_20160613.tif",
+        "date": "2016-06-13"
+      },
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/nc/2016/nc_100cm_2016/35077/m_3507744_sw_18_1_20160613.tif",
+        "date": "2016-06-13"
+      }
+    ],
+    "before_evidence": "evidence/FlorenceKinston_4_before.jpg",
+    "evidence_sha256": "d10fbae7aec57016c80cd50d11f5faeabfa48825e40811fa35c3d8a85f0fff14"
+  },
+  {
+    "id": "FlorenceKinston_6",
+    "event": "Florence",
+    "scene": "FlorenceKinston",
+    "date": "2018-09-19",
+    "state": 1,
+    "epsg": 32618,
+    "col": 8835,
+    "row": 130160,
+    "center_lonlat": [
+      -77.58245155002932,
+      35.25892427202563
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Florence/20180919a_RGB/20180919aC0773600w351630n.tif",
+    "evidence": "evidence/FlorenceKinston_6.jpg",
+    "basis": "The exposed urban carriageway has visible markings, moving-lane geometry and adjoining parking.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2018-09-14 19:30",
+    "station_id": "8658120",
+    "over_48h_after_station_peak": "yes",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_FlorenceKinston_32618_138_2033.npz",
+    "before_sources": [
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/nc/2016/nc_100cm_2016/35077/m_3507752_nw_18_1_20160613.tif",
+        "date": "2016-06-13"
+      },
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/nc/2016/nc_100cm_2016/35077/m_3507744_sw_18_1_20160613.tif",
+        "date": "2016-06-13"
+      }
+    ],
+    "before_evidence": "evidence/FlorenceKinston_6_before.jpg",
+    "evidence_sha256": "b5677d756b1551435cba5d4cb05f854b6f460e68ca326b4830dc62f7a6a0a585"
+  },
+  {
+    "id": "FlorenceKinston_11",
+    "event": "Florence",
+    "scene": "FlorenceKinston",
+    "date": "2018-09-19",
+    "state": 1,
+    "epsg": 32618,
+    "col": 8834,
+    "row": 130168,
+    "center_lonlat": [
+      -77.58284965601294,
+      35.26107912345714
+    ],
+    "all_rgb_present": true,
+    "source": "https://noaa-eri-pds.s3.amazonaws.com/2018_Hurricane_Florence/20180919a_RGB/20180919aC0773600w351630n.tif",
+    "evidence": "evidence/FlorenceKinston_11.jpg",
+    "basis": "Exposed multi-lane road, crosswalk and vehicles in the same scene as the inundated paths.",
+    "reviewer": "GeoWatch assistant visual reading of the outlined 30 m square",
+    "licence": "US NOAA NGS federal aerial imagery",
+    "same_day_pair": true,
+    "station_peak_utc": "2018-09-14 19:30",
+    "station_id": "8658120",
+    "over_48h_after_station_peak": "yes",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_development",
+    "file": "paired_development/optical_FlorenceKinston_32618_138_2033.npz",
+    "before_sources": [
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/nc/2016/nc_100cm_2016/35077/m_3507752_nw_18_1_20160613.tif",
+        "date": "2016-06-13"
+      },
+      {
+        "url": "https://naipeuwest.blob.core.windows.net/naip/v002/nc/2016/nc_100cm_2016/35077/m_3507744_sw_18_1_20160613.tif",
+        "date": "2016-06-13"
+      }
+    ],
+    "before_evidence": "evidence/FlorenceKinston_11_before.jpg",
+    "evidence_sha256": "a20d817b0fff2b03d6c700925cd3f6f494b920eccbb641675da08279c37effb7"
+  },
+  {
+    "id": "Beira_S01",
+    "event": "Beira",
+    "scene": "Beira_Maxar",
+    "date": "2019-03-26",
+    "state": 1,
+    "epsg": 32736,
+    "col": 23082,
+    "row": 260253,
+    "source": "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif",
+    "basis": "An exposed paved port yard occupies most of the cell; lanes, vehicle gaps and shadows remain visible. Most container-yard pavement is exposed.",
+    "reviewer": "Codex VHR reader A and Codex VHR reader B",
+    "evidence": "Prior independent/beira/maxar_review.json, S01",
+    "licence": "Imagery \u00a9 Maxar Technologies, CC BY-NC 4.0",
+    "same_day_pair": true,
+    "station_peak_utc": null,
+    "station_id": null,
+    "over_48h_after_station_peak": "unknown",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_research_diagnostic",
+    "center_lonlat": [
+      34.83766649651214,
+      -19.81806210295607
+    ],
+    "file": "paired_research_diagnostic/optical_Beira_Maxar_32736_360_4066.npz",
+    "landfall_context": "2019-03-15 (Beira vicinity)",
+    "days_since_landfall": 11,
+    "over_48h_after_landfall": "yes"
+  },
+  {
+    "id": "Beira_S04",
+    "event": "Beira",
+    "scene": "Beira_Maxar",
+    "date": "2019-03-26",
+    "state": 1,
+    "epsg": 32736,
+    "col": 23082,
+    "row": 260208,
+    "source": "https://s3.amazonaws.com/dg-opendata/cyclone_idai/post-event/2019-03-26/103001008FABA300/0023320.tif",
+    "basis": "The same exposed L-shaped road junction surrounds a small corner building. Road texture and boundaries remain visible on most of the cell. Exposed tan road and yard extend around the roof and cover most of the central cell.",
+    "reviewer": "Codex VHR reader A and Codex VHR reader B",
+    "evidence": "Prior independent/beira/maxar_review.json, S04",
+    "licence": "Imagery \u00a9 Maxar Technologies, CC BY-NC 4.0",
+    "same_day_pair": true,
+    "station_peak_utc": null,
+    "station_id": null,
+    "over_48h_after_station_peak": "unknown",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_research_diagnostic",
+    "center_lonlat": [
+      34.8378067003521,
+      -19.83025556530066
+    ],
+    "file": "paired_research_diagnostic/optical_Beira_Maxar_32736_360_4065.npz",
+    "landfall_context": "2019-03-15 (Beira vicinity)",
+    "days_since_landfall": 11,
+    "over_48h_after_landfall": "yes"
+  },
+  {
+    "id": "Beira_paired_wet",
+    "event": "Beira",
+    "scene": "BEI_20190326_072743_1021_1ynv",
+    "date": "2019-03-26",
+    "state": 2,
+    "epsg": 32736,
+    "col": 23036,
+    "row": 260410,
+    "source": "https://doi.org/10.5281/zenodo.19698577#BEI_20190326_072743_1021_1ynv",
+    "basis": "Published human water outline with pre-event dry-land and permanent-water screening.",
+    "reviewer": "Mukherjee et al., Urban Flood Observations, doi:10.5281/zenodo.19698577. Derived from hand-annotated PlanetScope optical surface water. Contains modified Copernicus Sentinel data and EC JRC/Google water history.",
+    "evidence": "manual_refs/beira_ufo_1ynv.npz sha256 3cb05a12d7c944b36d95df7f5162521d7a57a4aa5226d7b2966e44a227538764",
+    "licence": "Urban Flood Observations CC BY 4.0; contains modified Copernicus data",
+    "same_day_pair": true,
+    "station_peak_utc": null,
+    "station_id": null,
+    "over_48h_after_station_peak": "unknown",
+    "over_48h_after_local_peak": "unknown",
+    "use": "paired_research_diagnostic",
+    "center_lonlat": [
+      34.82401102620414,
+      -19.77565511628158
+    ],
+    "file": "paired_research_diagnostic/optical_BEI_20190326_072743_1021_1ynv_32736_359_4068.npz",
+    "landfall_context": "2019-03-15 (Beira vicinity)",
+    "days_since_landfall": 11,
+    "over_48h_after_landfall": "yes"
+  }
+]

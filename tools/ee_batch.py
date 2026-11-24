@@ -1,5 +1,5 @@
 """Export the production rain reducers on the exact native cells of historic unit grids."""
-import csv,fcntl,hashlib,json,math,os,time
+import csv,fcntl,hashlib,json,math,time
 from datetime import date
 from pathlib import Path
 import ee
@@ -9,7 +9,12 @@ from susceptibility import hydro_rasters as hydro
 
 def cells(units):
     needed={}
+    ids=set()
     for u in units:
+        unit_id=u['id']
+        if not isinstance(unit_id,str) or not unit_id or ',' in unit_id or unit_id in ids:
+            raise ValueError('Each unit needs a unique, nonempty ID without commas')
+        ids.add(unit_id)
         day=date.fromisoformat(u['date'])
         if day.year>=2022:raise ValueError('Pre-2022 units only')
         transform,shape,crs=hydro.utm_grid(u['bbox'])
@@ -29,6 +34,8 @@ def export(units,cache,project,poll_seconds=20):
     cache=Path(cache);cache.mkdir(exist_ok=True,parents=True)
     tag='gw_rain_'+hashlib.sha256(json.dumps(sorted((y,n,x,a,sorted(v)) for (y,n,x,a),v in needed.items())).encode()).hexdigest()[:24]
     dest=cache/(tag+'.csv');state=cache/(tag+'.task')
+    if dest.is_file():
+        return dest  # Published locally only by atomic rename after verification.
     with open('/private/tmp/geowatch-change-round2-ee.lock','a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         if dest.exists():return dest
@@ -37,8 +44,22 @@ def export(units,cache,project,poll_seconds=20):
         query=drive.files().list(q=f"name='{tag}.csv' and trashed=false",fields='files(id,name)')
         files=query.execute()['files']
         if not files:
-            if state.exists():tid=state.read_text().strip()
-            else:
+            tid=state.read_text().strip() if state.exists() else None
+            if tid and ee.data.getTaskStatus(tid)[0]['state'] in ('FAILED','CANCELLED','UNKNOWN'):
+                tid=None
+            if not tid:
+                # A crash can occur between task.start() and persisting its ID.
+                active_states={'READY','RUNNING','SUBMITTED','CANCEL_REQUESTED'}
+                while True:
+                    tasks=ee.data.getTaskList()
+                    existing=[task for task in tasks if task.get('description')==tag and task['state'] in active_states]
+                    if existing:
+                        tid=existing[0]['id']
+                        break
+                    if not any(task['state'] in active_states for task in tasks):
+                        break
+                    time.sleep(poll_seconds)
+            if not tid:
                 all_rows=[]
                 for year in sorted({k[0] for k in needed}):
                     for name,img in hydro._rain_images(year).items():
