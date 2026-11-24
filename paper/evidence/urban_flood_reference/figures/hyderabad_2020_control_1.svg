@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1120 456" width="1120" height="456">
+<style>text{font:14px sans-serif;fill:#202d36}.title{font:bold 22px sans-serif}.small{font-size:12px}</style>
+<rect width="100%" height="100%" fill="white"/>
+<text x="20" y="30" class="title">hyderabad 2020 control</text>
+<text x="20" y="57">Intensity only</text>
+<image x="20" y="70" width="257.0" height="255.12408759124088" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIkAAACICAIAAABcGl87AAABlklEQVR4nO3bOwrCQBRA0dm+e7Bza4LgKiwECRr8oZlbHDhFkibF5Q3TvLHfHW6Op/PV8iOzjGUMbVLGsoc2Kett5CkYyx7apIzbkyo1498/4GvadGnTpU2XNl3adGnTpU2XNl3adGnTpU2XNl3adGnTpU2XNl3adGnTpU2XNl3adGnTpU2XNl3adGnTpU2XNl3adGnTtV0bmz2f2qiNjbgvONO6ftzGZPyQuenSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpmu9zfF0fvLKNlbaPIaRaorXbZjlvs3q0Kg1xVt3AW2muACGrdsHKLq26QAAAABJRU5ErkJggg=="/>
+<text x="294" y="57">Urban detector</text>
+<image x="294" y="70" width="257.0" height="255.12408759124088" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIkAAACICAIAAABcGl87AAABlklEQVR4nO3bOwrCQBRA0dm+e7Bza4LgKiwECRr8oZlbHDhFkibF5Q3TvLHfHW6Op/PV8iOzjGUMbVLGsoc2Kett5CkYyx7apIzbkyo1498/4GvadGnTpU2XNl3adGnTpU2XNl3adGnTpU2XNl3adGnTpU2XNl3adGnTpU2XNl3adGnTpU2XNl3adGnTpU2XNl3adGnTtV0bmz2f2qiNjbgvONO6ftzGZPyQuenSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpkubLm26tOnSpmu9zfF0fvLKNlbaPIaRaorXbZjlvs3q0Kg1xVt3AW2muACGrdsHKLq26QAAAABJRU5ErkJggg=="/>
+<text x="568" y="57">Urban additions</text>
+<image x="568" y="70" width="257.0" height="255.12408759124088" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIkAAACICAIAAABcGl87AAACJElEQVR4nO3dUYriQBRA0Wy/9+DfbK1hYFbRDA3SaExsUesmOXC/RKTyDklKQZ1OH3+++/z777vzI5EKCzuv4Wf3P/NXnV9qun7F4Ri3DnX4Yt688kub4YfE5tJGT4/NnmPTjU03NjNFNiBsZirAnNhcFzlpTmyuY9ONTbcIzInNRbdOmiFgbNZtRl3l2MzbzD7IJhebbqN2B2xWGrilZjPPUNhJs1mCYZOITWL0qx4FmCPa3AJjMxiGTaXV0Qc9DmHzGAybrs3wZe/KZrujZ8NmCzbDl7o3m4dv6dsl2YbNkWHYpHuhza9mtO8pd23AtGycNC2b1cka/cZsho8g24M2s5NdHT2bl9u4NL2np9kMP5L99fj9hs2rG/y5AN2F2HS7tHnzpMAsNNhGC7Hp9t/GnrjZ5I1ktnmb4cvS6cJm+Gr0swlMNjbd2HSbwGRj041NNzbdJjDZ2HRj041Nt/T3CA4em25surHpxqYbm25surHpxqYbm25surHpxqYbm25surHpxqYbm25surHpxqYbm25surHpxqYbm25surHpxqYbm25sur3k96GHH9U+YtPtaTZ+s+jpud90O5bNts7sA9ls7qrLptuBbDYXm25surHpxqYbm25surHpxqYbm25surHpxqYbm25surHpxqYbm25surF5fvf/9ePyE9iwOVJsttr9cmzY6DYMm+3Fphubbmy6senGphubbmy6senGptsXBkvbGsmWey8AAAAASUVORK5CYII="/>
+<text x="842" y="57">Sentinel-2 visible water</text>
+<image x="842" y="70" width="257.0" height="255.12408759124088" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIkAAACICAIAAABcGl87AAABU0lEQVR4nO3RwQkAIBDAsNt/TkFwCifwbR+BDFDorH1omu8FvHjT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U2XN13edHnT5U3XBXQiEPREg4W9AAAAAElFTkSuQmCC"/>
+<rect x="20" y="342" width="14" height="14" fill="rgb(228,231,234)"/>
+<text x="40" y="354">Unobserved / excluded</text>
+<rect x="215" y="342" width="14" height="14" fill="rgb(242,224,188)"/>
+<text x="235" y="354">Confident dry</text>
+<rect x="360" y="342" width="14" height="14" fill="rgb(8,107,126)"/>
+<text x="380" y="354">Confident flood</text>
+<rect x="517" y="342" width="14" height="14" fill="rgb(156,137,163)"/>
+<text x="537" y="354">Ambiguous</text>
+<rect x="655" y="342" width="14" height="14" fill="rgb(218,109,34)"/>
+<text x="675" y="354">Additional urban flood candidate</text>
+<text x="20" y="380" class="small">Urban additions panel: grey outside urban mask, purple urban background, teal baseline wet, orange newly mapped wet. North is up.</text>
+<text x="20" y="404" class="small">EPSG:32644 · upper-left grid edge 229620 m E, 1923300 m N · 4,110 m × 4,080 m · 30 m cells</text>
+<text x="20" y="427" class="small">Reference panel: grey = unknown; tan = observed non-water where supplied.</text>
+</svg>

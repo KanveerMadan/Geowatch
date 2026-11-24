@@ -1,12 +1,13 @@
 # Urban flood reference study
 
-Active branch `exp/urban-flood-ref`. The study is restricted to non-US storms before 2022. Source, reference and output readers use the approved event ID.
+Completed on isolated branch `exp/urban-flood-ref`. The short [handoff](HANDOFF.md) and [report](REPORT.md) give the training targets, outcomes and remaining scientific limits.
 
-| Phase | Status |
+| Phase | Outcome |
 |---|---|
-| Isolation and leakage | Independent clone. Pinned flood-final registry and Round 3 pre-2022 candidate exclusions. The July 2021 western European storm is excluded across national borders. |
-| Historic incident catalogue | 27 historical storms cleared, including three boxes from the one Henan incident. Settlement centres and intersecting drainage basins were verified for the 23 additional nominations. |
-| Radar and independent references | Six original event tiles and six controls processed. A one-job Earth Engine queue is measuring the historical expansion. Weihui confirmed an urban recall shortfall against published same-sensor annotations. |
-| Evidence and handoff | Pending completion of event, control and independent-reference evaluations. |
+| Catalogue and leakage | 30 pre-2022 non-US incidents cleared using the pinned flood-final registry and historical Round 3 candidate metadata. Bernd was excluded at storm level. |
+| Measurement | 36 event and 37 control tiles. Bima lacked a qualifying event pass. Each shipped map has a nested 10 m grid, exact 30 m model grid, provenance and four-state verdict. |
+| Independent checks | Dated human optical annotations on eight footprints, independent automated optical checks, two Maxar reviews, the Weihui shared-sensor comparison and matched historical intensity maps where available. |
+| Model delivery | Portable files under `experiments/urban_flood_ref/products`, plus the event catalogue, model reader example, per-file checksums, handoff and empirical limitations. |
+| Evidence | Reproducible per-tile scores, spatial intervals and maps under `paper/evidence/urban_flood_reference`. |
 
-Resume from the approved site registry and verified per-event manifests. Check the handoff before importing any training data. Caches and source imagery are separate from the published label package.
+Status of the scientific method: radar-only urban reference generation remains experimental. Can Tho supplied no surviving human optical training cells. Marsh Harbour lacked usable pre-event Maxar pixels. Street-level dry specificity remains unresolved.

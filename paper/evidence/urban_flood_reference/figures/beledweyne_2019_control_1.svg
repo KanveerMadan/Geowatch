@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1120 456" width="1120" height="456">
+<style>text{font:14px sans-serif;fill:#202d36}.title{font:bold 22px sans-serif}.small{font-size:12px}</style>
+<rect width="100%" height="100%" fill="white"/>
+<text x="20" y="30" class="title">beledweyne 2019 control</text>
+<text x="20" y="57">Intensity only</text>
+<image x="20" y="70" width="257.0" height="253.19259259259258" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAACFCAIAAAD+TXxWAAABcklEQVR4nO3bwQnCQBBA0bRvD7nZmiCkilwFDxoxm8/y4BUw8GGYyyzr7U7NcvkEvFOlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlaJIqj+d2+Qx/NEmVyahSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSdLjKZD/UTceqSDLGLxtMm7N9VeU1gyQDfK4iw3husCJVilQpUqVIlSJVinaKuPwYYujeQQAAAABJRU5ErkJggg=="/>
+<text x="294" y="57">Urban detector</text>
+<image x="294" y="70" width="257.0" height="253.19259259259258" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAACFCAIAAAD+TXxWAAABcklEQVR4nO3bwQnCQBBA0bRvD7nZmiCkilwFDxoxm8/y4BUw8GGYyyzr7U7NcvkEvFOlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlSJUiVYpUKVKlaJIqj+d2+Qx/NEmVyahSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSpEqRKkWqFKlSdLjKZD/UTceqSDLGLxtMm7N9VeU1gyQDfK4iw3husCJVilQpUqVIlSJVinaKuPwYYujeQQAAAABJRU5ErkJggg=="/>
+<text x="568" y="57">Urban additions</text>
+<image x="568" y="70" width="257.0" height="253.19259259259258" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAACFCAIAAAD+TXxWAAACzklEQVR4nO3cS07DQBCE4VyfO7DjapGQOAULJFCC45nx9KN65pdqmdjV/ZE4ViJu728fnbl/fkmlv/lT+ctPNOxzfrqbU8U1VPz6WKpk8VhNq6/yE1RQqaYyNCkqNoVtR0YFFVTiVSYPWk4l0RUVVORJVlNpNhDHsLIMLomKsEqz1uXeqFxROa8y37u0SnNSVPZWeR/5xIJKnIph7/VUAs4lqpJugAoqnirzbOmrFwkqihFSSd+FThr39gEkQ09M3xcqqFRQSV/W7iobvj5QUc+fivcKqt9FBuR3/FvYRlDp3w8qKslRGaqVviNUUEFFNQcq6Z2sVMq5Hl5Wl1Ip92p79WEHFZWRz64rIhXT95W7B1QUg4pinq8rPatx2h0qDypDq/HbHSrSKulLSc/Bvf3/xKhEnkI8qCgGFcUMqwQnuJvCyKicnQ4VVEqp9O/RXCVx/HVUTHoqjH8//C4yvRYqqKCCym4qtkdDJYetZ3APb1Set3+BxPyNEZWHjbxaEypyiVdpHhaVLhhUUOlW2ZzH1rgnqKCinfmpTUhQ8eVEBRWCSnqa46OCCiqDP4cPVUlfDSqQjKmYk6CCStT6/FTCggoqqEyqpG/ZZDtqKp2HPVZJN7BajazK+ZFRQeXqRkb3pfAHsanKq8GcOqCCSgWVZje/KWxVOnlWVjEZBBVUTlUSqSbniVGZf8B5UEHFVCWmMypjPCIqHtOtrOJXAxVUBDDmVQL6oIKKDAkqK6gk9vSYFJX8oKKYpVTSt+k3HSqK06GiOJ3W9ytrS0ypyHZFRbHrjirpRZdXaU6HiuJ0qChOV1VFQehyMVSWUEn3QCVfZWj75VTmgwoqqAypNKe9vC+n3utJoIIKKiYqh8MH14pRSZ8ClTIkqIhm7L+2pafupWJZldIXcFRQKSuUPgIqqKCyrcraQUUxqCgGFcWgohhUFIOKYlBRDCqK+Qb/Ysr+ndx2ZgAAAABJRU5ErkJggg=="/>
+<text x="842" y="57">Sentinel-2 visible water</text>
+<image x="842" y="70" width="257.0" height="253.19259259259258" image-rendering="pixelated" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAACFCAIAAAD+TXxWAAABTElEQVR4nO3RUQkAIBTAwNc/pyCYwgAGcB8HF2CwWftQM98LeLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0WuFLlS5EqRK0UXq4Xn00Y3fLAAAAAASUVORK5CYII="/>
+<rect x="20" y="342" width="14" height="14" fill="rgb(228,231,234)"/>
+<text x="40" y="354">Unobserved / excluded</text>
+<rect x="215" y="342" width="14" height="14" fill="rgb(242,224,188)"/>
+<text x="235" y="354">Confident dry</text>
+<rect x="360" y="342" width="14" height="14" fill="rgb(8,107,126)"/>
+<text x="380" y="354">Confident flood</text>
+<rect x="517" y="342" width="14" height="14" fill="rgb(156,137,163)"/>
+<text x="537" y="354">Ambiguous</text>
+<rect x="655" y="342" width="14" height="14" fill="rgb(218,109,34)"/>
+<text x="675" y="354">Additional urban flood candidate</text>
+<text x="20" y="380" class="small">Urban additions panel: grey outside urban mask, purple urban background, teal baseline wet, orange newly mapped wet. North is up.</text>
+<text x="20" y="404" class="small">EPSG:32638 · upper-left grid edge 520590 m E, 525480 m N · 4,050 m × 3,990 m · 30 m cells</text>
+<text x="20" y="427" class="small">Reference panel: grey = unknown; tan = observed non-water where supplied.</text>
+</svg>

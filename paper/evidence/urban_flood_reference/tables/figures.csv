@@ -1,0 +1,104 @@
+unit,kind,reference,figure
+dharavi,event,Sentinel-2 visible water,figures/dharavi_1_historical.svg
+dharavi,event,Sentinel-2 visible water,figures/dharavi_1.svg
+dharavi_control,pre_event_control,Sentinel-2 visible water,figures/dharavi_control_1.svg
+beira,event,Sentinel-2 visible water,figures/beira_1.svg
+beira,event,Maxar visual review,figures/beira_2.svg
+beira_control,pre_event_control,Sentinel-2 visible water,figures/beira_control_1.svg
+kerala_2018,event,Sentinel-2 visible water,figures/kerala_2018_1.svg
+kerala_2018_control,pre_event_control,Sentinel-2 visible water,figures/kerala_2018_control_1.svg
+usf_weihui_1,event,All flood,figures/usf_weihui_1_1_historical.svg
+usf_weihui_1,event,All flood,figures/usf_weihui_1_1.svg
+usf_weihui_1,event,Flooded urban,figures/usf_weihui_1_2_historical.svg
+usf_weihui_1,event,Flooded urban,figures/usf_weihui_1_2.svg
+usf_weihui_1,event,Flooded open,figures/usf_weihui_1_3_historical.svg
+usf_weihui_1,event,Flooded open,figures/usf_weihui_1_3.svg
+usf_weihui_1,event,Sentinel-2 visible water,figures/usf_weihui_1_4_historical.svg
+usf_weihui_1,event,Sentinel-2 visible water,figures/usf_weihui_1_4.svg
+usf_weihui_1_control,pre_event_control,Sentinel-2 visible water,figures/usf_weihui_1_control_1.svg
+usf_weihui_2,event,All flood,figures/usf_weihui_2_1_historical.svg
+usf_weihui_2,event,All flood,figures/usf_weihui_2_1.svg
+usf_weihui_2,event,Flooded urban,figures/usf_weihui_2_2_historical.svg
+usf_weihui_2,event,Flooded urban,figures/usf_weihui_2_2.svg
+usf_weihui_2,event,Flooded open,figures/usf_weihui_2_3_historical.svg
+usf_weihui_2,event,Flooded open,figures/usf_weihui_2_3.svg
+usf_weihui_2,event,Sentinel-2 visible water,figures/usf_weihui_2_4_historical.svg
+usf_weihui_2,event,Sentinel-2 visible water,figures/usf_weihui_2_4.svg
+usf_weihui_2_control,pre_event_control,Sentinel-2 visible water,figures/usf_weihui_2_control_1.svg
+usf_weihui_3,event,All flood,figures/usf_weihui_3_1_historical.svg
+usf_weihui_3,event,All flood,figures/usf_weihui_3_1.svg
+usf_weihui_3,event,Flooded urban,figures/usf_weihui_3_2_historical.svg
+usf_weihui_3,event,Flooded urban,figures/usf_weihui_3_2.svg
+usf_weihui_3,event,Flooded open,figures/usf_weihui_3_3_historical.svg
+usf_weihui_3,event,Flooded open,figures/usf_weihui_3_3.svg
+usf_weihui_3,event,Sentinel-2 visible water,figures/usf_weihui_3_4_historical.svg
+usf_weihui_3,event,Sentinel-2 visible water,figures/usf_weihui_3_4.svg
+usf_weihui_3_control,pre_event_control,Sentinel-2 visible water,figures/usf_weihui_3_control_1.svg
+mabi_2018,event,Sentinel-2 visible water,figures/mabi_2018_1.svg
+mabi_2018_control,pre_event_control,Sentinel-2 visible water,figures/mabi_2018_control_1.svg
+nagano_2019,event,Sentinel-2 visible water,figures/nagano_2019_1.svg
+nagano_2019_control,pre_event_control,Sentinel-2 visible water,figures/nagano_2019_control_1.svg
+hitoyoshi_2020,event,Sentinel-2 visible water,figures/hitoyoshi_2020_1.svg
+hitoyoshi_2020_control,pre_event_control,Sentinel-2 visible water,figures/hitoyoshi_2020_control_1.svg
+hyderabad_2020,event,Sentinel-2 visible water,figures/hyderabad_2020_1.svg
+hyderabad_2020_control,pre_event_control,Sentinel-2 visible water,figures/hyderabad_2020_control_1.svg
+bima_2016_control,pre_event_control,Sentinel-2 visible water,figures/bima_2016_control_1.svg
+sentani_2019,event,Sentinel-2 visible water,figures/sentani_2019_1.svg
+sentani_2019_control,pre_event_control,Sentinel-2 visible water,figures/sentani_2019_control_1.svg
+shah_alam_2021,event,Sentinel-2 visible water,figures/shah_alam_2021_1.svg
+shah_alam_2021_control,pre_event_control,Sentinel-2 visible water,figures/shah_alam_2021_control_1.svg
+hue_2020,event,Sentinel-2 visible water,figures/hue_2020_1.svg
+hue_2020_control,pre_event_control,Sentinel-2 visible water,figures/hue_2020_control_1.svg
+beledweyne_2019,event,Sentinel-2 visible water,figures/beledweyne_2019_1.svg
+beledweyne_2019_control,pre_event_control,Sentinel-2 visible water,figures/beledweyne_2019_control_1.svg
+bor_2020,event,Sentinel-2 visible water,figures/bor_2020_1.svg
+bor_2020_control,pre_event_control,Sentinel-2 visible water,figures/bor_2020_control_1.svg
+bozkurt_2021,event,Sentinel-2 visible water,figures/bozkurt_2021_1.svg
+bozkurt_2021_control,pre_event_control,Sentinel-2 visible water,figures/bozkurt_2021_control_1.svg
+shiraz_2019,event,Sentinel-2 visible water,figures/shiraz_2019_1.svg
+shiraz_2019_control,pre_event_control,Sentinel-2 visible water,figures/shiraz_2019_control_1.svg
+marikina_2020,event,Sentinel-2 visible water,figures/marikina_2020_1.svg
+marikina_2020_control,pre_event_control,Sentinel-2 visible water,figures/marikina_2020_control_1.svg
+belo_horizonte_2020,event,Sentinel-2 visible water,figures/belo_horizonte_2020_1.svg
+belo_horizonte_2020_control,pre_event_control,Sentinel-2 visible water,figures/belo_horizonte_2020_control_1.svg
+durban_2019,event,Sentinel-2 visible water,figures/durban_2019_1.svg
+durban_2019_control,pre_event_control,Sentinel-2 visible water,figures/durban_2019_control_1.svg
+jakarta_new_year_2020,event,Sentinel-2 visible water,figures/jakarta_new_year_2020_1.svg
+jakarta_new_year_2020_control,pre_event_control,Sentinel-2 visible water,figures/jakarta_new_year_2020_control_1.svg
+edgecumbe_2017,event,Sentinel-2 visible water,figures/edgecumbe_2017_1.svg
+edgecumbe_2017_control,pre_event_control,Sentinel-2 visible water,figures/edgecumbe_2017_control_1.svg
+rio_2019,event,Sentinel-2 visible water,figures/rio_2019_1.svg
+rio_2019_control,pre_event_control,Sentinel-2 visible water,figures/rio_2019_control_1.svg
+tbilisi_2015,event,Sentinel-2 visible water,figures/tbilisi_2015_1.svg
+tbilisi_2015_control,pre_event_control,Sentinel-2 visible water,figures/tbilisi_2015_control_1.svg
+puri_2019,event,Sentinel-2 visible water,figures/puri_2019_1.svg
+puri_2019_control,pre_event_control,Sentinel-2 visible water,figures/puri_2019_control_1.svg
+marsh_harbour_2019,event,Sentinel-2 visible water,figures/marsh_harbour_2019_1.svg
+marsh_harbour_2019,event,Maxar visual review,figures/marsh_harbour_2019_2.svg
+marsh_harbour_2019_control,pre_event_control,Sentinel-2 visible water,figures/marsh_harbour_2019_control_1.svg
+gatineau_2017,event,Sentinel-2 visible water,figures/gatineau_2017_1.svg
+gatineau_2017_control,pre_event_control,Sentinel-2 visible water,figures/gatineau_2017_control_1.svg
+mocoa_2017,event,Sentinel-2 visible water,figures/mocoa_2017_1.svg
+mocoa_2017_control,pre_event_control,Sentinel-2 visible water,figures/mocoa_2017_control_1.svg
+beira_ufo_1ynv,event,Sentinel-2 visible water,figures/beira_ufo_1ynv_1.svg
+beira_ufo_1ynv,event,UFO PlanetScope visible water,figures/beira_ufo_1ynv_2.svg
+beira_ufo_1ynv_control,pre_event_control,Sentinel-2 visible water,figures/beira_ufo_1ynv_control_1.svg
+beira_ufo_a69z,event,Sentinel-2 visible water,figures/beira_ufo_a69z_1.svg
+beira_ufo_a69z,event,UFO PlanetScope visible water,figures/beira_ufo_a69z_2.svg
+beira_ufo_a69z_control,pre_event_control,Sentinel-2 visible water,figures/beira_ufo_a69z_control_1.svg
+cto_ufo_0p0o,event,Sentinel-2 visible water,figures/cto_ufo_0p0o_1.svg
+cto_ufo_0p0o_control,pre_event_control,Sentinel-2 visible water,figures/cto_ufo_0p0o_control_1.svg
+cto_ufo_ebrl,event,Sentinel-2 visible water,figures/cto_ufo_ebrl_1.svg
+cto_ufo_ebrl_control,pre_event_control,Sentinel-2 visible water,figures/cto_ufo_ebrl_control_1.svg
+ktm_ufo_P6SA,event,Sentinel-2 visible water,figures/ktm_ufo_P6SA_1.svg
+ktm_ufo_P6SA,event,UFO PlanetScope visible water,figures/ktm_ufo_P6SA_2.svg
+ktm_ufo_P6SA_control,pre_event_control,Sentinel-2 visible water,figures/ktm_ufo_P6SA_control_1.svg
+ktm_ufo_L895,event,Sentinel-2 visible water,figures/ktm_ufo_L895_1.svg
+ktm_ufo_L895,event,UFO PlanetScope visible water,figures/ktm_ufo_L895_2.svg
+ktm_ufo_L895_control,pre_event_control,Sentinel-2 visible water,figures/ktm_ufo_L895_control_1.svg
+sps_ufo_7ev7,event,Sentinel-2 visible water,figures/sps_ufo_7ev7_1.svg
+sps_ufo_7ev7,event,UFO PlanetScope visible water,figures/sps_ufo_7ev7_2.svg
+sps_ufo_7ev7_control,pre_event_control,Sentinel-2 visible water,figures/sps_ufo_7ev7_control_1.svg
+sps_ufo_6oqt,event,Sentinel-2 visible water,figures/sps_ufo_6oqt_1.svg
+sps_ufo_6oqt,event,UFO PlanetScope visible water,figures/sps_ufo_6oqt_2.svg
+sps_ufo_6oqt_control,pre_event_control,Sentinel-2 visible water,figures/sps_ufo_6oqt_control_1.svg

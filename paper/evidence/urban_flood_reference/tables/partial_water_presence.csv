@@ -1,0 +1,9 @@
+unit,incident,source_date,positive_neighbourhoods,confirmed_wet_10m_cells,unknown,source,label_file
+beira_ufo_1ynv,idai_2019,2019-03-26,25,50,11202,independent/beira_ufo_1ynv/ufo_urban_wet_children.tif,partial_water_refs/beira_ufo_1ynv.npz
+beira_ufo_a69z,idai_2019,2019-03-26,0,0,11227,independent/beira_ufo_a69z/ufo_urban_wet_children.tif,partial_water_refs/beira_ufo_a69z.npz
+cto_ufo_0p0o,can_tho_2019_tidal,2019-10-02,0,0,10920,independent/cto_ufo_0p0o/ufo_urban_wet_children.tif,partial_water_refs/cto_ufo_0p0o.npz
+cto_ufo_ebrl,can_tho_2019_tidal,2019-10-02,0,0,10712,independent/cto_ufo_ebrl/ufo_urban_wet_children.tif,partial_water_refs/cto_ufo_ebrl.npz
+ktm_ufo_P6SA,nile_khartoum_2020,2020-08-29,3,6,10809,independent/ktm_ufo_P6SA/ufo_urban_wet_children.tif,partial_water_refs/ktm_ufo_P6SA.npz
+ktm_ufo_L895,nile_khartoum_2020,2020-08-29,37,83,10881,independent/ktm_ufo_L895/ufo_urban_wet_children.tif,partial_water_refs/ktm_ufo_L895.npz
+sps_ufo_7ev7,iota_2020,2020-11-25,113,452,10807,independent/sps_ufo_7ev7/ufo_urban_wet_children.tif,partial_water_refs/sps_ufo_7ev7.npz
+sps_ufo_6oqt,iota_2020,2020-11-25,266,1166,10550,independent/sps_ufo_6oqt/ufo_urban_wet_children.tif,partial_water_refs/sps_ufo_6oqt.npz

@@ -1,0 +1,13 @@
+# Limits
+
+- One radar pass can miss street flooding between tall buildings or after the water drains. Brightening can come from building orientation, construction, wet roofs or speckle. Coherence needs verified interferometric input; a GRD intensity anomaly alone cannot establish coherence.
+- The 10 m radar lattice samples mixed surfaces and may share information between adjacent pixels. A 30 m confident cell does not identify an individual street or building. Requiring complete subpixel observation can reduce coverage in dense urban areas.
+- Optical masks observe visible surfaces on a particular date. Cloud, shadow, roof cover and different acquisition timing restrict the comparison. The Weihui benchmark also uses SAR intensity/coherence, so correlated errors are possible. Report those results separately from sensor-independent evidence.
+- Pre-event dates may include ordinary water, unreported flooding or irrigation. Their detector-positive fraction is an apparent alarm rate. A true dry-date false-positive rate requires documented contemporaneous dry observations.
+- Analyst selection of footprints, the historical archive, regional sensor coverage and the allowed development registry affect representativeness. Three tiles from one flood are one incident. Spatial intervals describe within-tile variation and do not estimate transfer to new floods.
+- Confidence measures support from selected radar signals. No calibration experiment establishes that it is a probability. The study does not validate a susceptibility model or authorize operational alerts.
+
+
+Published UFO annotations are interpreted manually from independent 3 m optical PlanetScope scenes. Their observation can be a day apart from the radar target. Visibility, coverage and event-related water screens can leave few newly flooded urban cells after aggregation to 30 m. Inundation can change between acquisitions. A visible non-water mask cannot certify that streets beneath opaque roofs were dry. Assistant visual interpretation of dated Maxar imagery has a separate evidence role and its own receipt; it does not establish independent human adjudication.
+
+Two timing details matter for independent optical comparisons. Both San Pedro Sula chips share the radar UTC date and provide 64 whole-cell urban positives together. Khartoum contributes one additional whole-cell urban positive observed one day earlier. The 444 positive-only partial-cell examples answer a different question. They include some of the same physical locations as whole-cell positives and cannot enlarge the denominator for whole-cell accuracy.
