@@ -64,8 +64,17 @@ def _rain_tile(img, name, year, tx, ty, deg):
 def cached_rain_layer(img, name, bbox, transform, shape, crs):
     from susceptibility import hydro_rasters as HR
     if name == HR.IMERG_LAYER:
-        # a 10-year half-hourly percentile per cell: a 4 deg tile timed out on Earth Engine (2026-11-23),
-        # so this layer stays per unit, exactly as before
+        # A 4 deg tile timed out (2026-11-23). The unit's own window is prefetched in parallel by
+        # imerg_prefetch (R32) and cached per native cell; any cell missing -> the original per-unit request.
+        from experiments.flood_round3 import imerg_prefetch as IP
+        deg = HR.RAIN_NATIVE_DEG[name]
+        x0, y1, cols, rows = HR.native_grid(HR.grid_lonlat_bounds(transform, shape, crs), deg)
+        have = IP.load_cells(_STATE["year"])
+        c0, r0 = int(round(x0 / deg)), int(round(y1 / deg))
+        keys = [[f"{c0 + c},{r0 - r - 1}" for c in range(cols)] for r in range(rows)]
+        if all(k in have for row in keys for k in row):
+            v = np.array([[np.nan if have[k] is None else have[k] for k in row] for row in keys], np.float64)
+            return HR.nearest_from_native(v, x0, y1, deg, transform, shape, crs)
         return _ORIG["rain_layer"](img, name, bbox, transform, shape, crs)
     deg = HR.RAIN_NATIVE_DEG[name]
     x0, y1, cols, rows = HR.native_grid(HR.grid_lonlat_bounds(transform, shape, crs), deg)

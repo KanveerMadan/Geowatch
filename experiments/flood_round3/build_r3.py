@@ -333,6 +333,41 @@ def s1route_catalog(cands: str = "se_flash_candidates"):
     return cat
 
 
+S1ROUTE_TARGET = {"r3se": 50, "r3pl": 50}      # R32: balanced DEV units per route, from the power numbers
+
+
+def s1route_order(cands: str = "se_flash_candidates", only_missing: bool = False, target: bool = True):
+    """Qualifying DEV Sentinel-1-route units in round-robin cluster order (alternating routes), cut to
+    S1ROUTE_TARGET per route when `target`. Metadata order only (catalog clusters), not labels."""
+    from experiments.flood_round2 import features_r2 as FR2
+    FR2.CACHE = TABLES
+    cat = s1route_catalog(cands)
+    log = json.load(open(S1ROUTE_LOG))
+    ok = [n for n, v in log.items() if v.get("done") and v.get("flooded", 0) >= 50 and v.get("dry", 0) >= 50 and n in cat]
+    by = {}
+    for n in sorted(ok):
+        by.setdefault(cat[n]["cluster"], []).append(n)
+    routes = {"r3se": sorted(c for c in by if c.startswith("se_")), "r3pl": sorted(c for c in by if c.startswith("pl_"))}
+    order, k = [], 0
+    while any(by[c] for r in routes.values() for c in r):
+        for r in ("r3se", "r3pl"):
+            cs = [c for c in routes[r] if by[c]]
+            if cs:
+                order.append(by[cs[k % len(cs)]].pop(0))
+        k += 1
+    if target:
+        cnt, cut = {}, []
+        for n in order:
+            r = n[:4]
+            if cnt.get(r, 0) < S1ROUTE_TARGET.get(r, 10 ** 9):
+                cut.append(n)
+                cnt[r] = cnt.get(r, 0) + 1
+        order = cut
+    if only_missing:
+        order = [n for n in order if not os.path.exists(FR2.path(n))]
+    return order
+
+
 def s1route_features(cands: str = "se_flash_candidates", shard: int = 0, shards: int = 1):
     """Feature tables for qualifying DEV Sentinel-1-route units, one subprocess each (memory).
     shard/shards: the round-robin order is split k % shards == shard; each shard keeps its own status file,
@@ -345,20 +380,7 @@ def s1route_features(cands: str = "se_flash_candidates", shard: int = 0, shards:
     st_p = S1ROUTE_LOG.replace(".json", f"_feat_{shard}of{shards}.json")
     status = json.load(open(st_p)) if os.path.exists(st_p) else {}
     log = {n: {**v, **status.get(n, {})} for n, v in labels.items()}
-    # Order: round-robin over clusters (episodes / plain-years), alternating the two routes, so a partial build
-    # is a balanced DEV sample. DEV only; the order uses catalog metadata, not labels.
-    by = {}
-    for n in sorted(log):
-        if n in cat:
-            by.setdefault(cat[n]["cluster"], []).append(n)
-    routes = {"r3se": sorted(c for c in by if c.startswith("se_")), "r3pl": sorted(c for c in by if c.startswith("pl_"))}
-    order, k = [], 0
-    while any(by[c] for r in routes.values() for c in r):
-        for r in ("r3se", "r3pl"):
-            cs = [c for c in routes[r] if by[c]]
-            if cs:
-                order.append(by[cs[k % len(cs)]].pop(0))
-        k += 1
+    order = s1route_order(cands, target=True)
     for i, n in enumerate(order):
         if i % shards != shard:
             continue
