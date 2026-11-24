@@ -1,0 +1,132 @@
+{
+  "batch_lookup_seconds": 940.9560590829933,
+  "comparisons": [
+    {
+      "unit": "beira",
+      "layer": "rain_annual_mm",
+      "pixels": 21300,
+      "valid": 10572,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0
+    },
+    {
+      "unit": "beira",
+      "layer": "rain_intensity_mm_h",
+      "pixels": 21300,
+      "valid": 21300,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0
+    },
+    {
+      "unit": "beira",
+      "layer": "rain_design_day_mm",
+      "pixels": 21300,
+      "valid": 10572,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0,
+      "unit_elapsed_s": 525.2255298750242
+    },
+    {
+      "unit": "dharavi",
+      "layer": "rain_annual_mm",
+      "pixels": 8178,
+      "valid": 8178,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0
+    },
+    {
+      "unit": "dharavi",
+      "layer": "rain_intensity_mm_h",
+      "pixels": 8178,
+      "valid": 8178,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0
+    },
+    {
+      "unit": "dharavi",
+      "layer": "rain_design_day_mm",
+      "pixels": 8178,
+      "valid": 8178,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0,
+      "unit_elapsed_s": 142.61182720796205
+    },
+    {
+      "unit": "kerala_2018",
+      "layer": "rain_annual_mm",
+      "pixels": 18090,
+      "valid": 18090,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0
+    },
+    {
+      "unit": "kerala_2018",
+      "layer": "rain_intensity_mm_h",
+      "pixels": 18090,
+      "valid": 18090,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0
+    },
+    {
+      "unit": "kerala_2018",
+      "layer": "rain_design_day_mm",
+      "pixels": 18090,
+      "valid": 18090,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0,
+      "unit_elapsed_s": 119.42493508302141
+    },
+    {
+      "unit": "s1_ida_lafitte_2021",
+      "layer": "rain_annual_mm",
+      "pixels": 18769,
+      "valid": 18769,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0
+    },
+    {
+      "unit": "s1_ida_lafitte_2021",
+      "layer": "rain_intensity_mm_h",
+      "pixels": 18769,
+      "valid": 18769,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0
+    },
+    {
+      "unit": "s1_ida_lafitte_2021",
+      "layer": "rain_design_day_mm",
+      "pixels": 18769,
+      "valid": 18769,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0,
+      "unit_elapsed_s": 108.28034954197938
+    },
+    {
+      "unit": "s1_laura_cameron_2020",
+      "layer": "rain_annual_mm",
+      "pixels": 17955,
+      "valid": 17955,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0
+    },
+    {
+      "unit": "s1_laura_cameron_2020",
+      "layer": "rain_intensity_mm_h",
+      "pixels": 17955,
+      "valid": 17955,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0
+    },
+    {
+      "unit": "s1_laura_cameron_2020",
+      "layer": "rain_design_day_mm",
+      "pixels": 17955,
+      "valid": 17955,
+      "nodata_mismatches": 0,
+      "max_abs": 0.0,
+      "unit_elapsed_s": 99.2548249589745
+    }
+  ],
+  "cold_batch_elapsed_s": 1230.3864910419798,
+  "direct_elapsed_s": 994.7974666669616
+}
