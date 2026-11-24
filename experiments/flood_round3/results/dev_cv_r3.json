@@ -1,0 +1,570 @@
+{
+ "units": {
+  "fluvial": [
+   "bihar_2026",
+   "emsr664_aoi02",
+   "emsr697_aoi01",
+   "emsr757_aoi01",
+   "emsr838_aoi01",
+   "emsr838_aoi03",
+   "emsr844_aoi01",
+   "emsr853_aoi08",
+   "emsr868_aoi01",
+   "emsr868_aoi02",
+   "encantado",
+   "faenza",
+   "kolonnawa",
+   "r_emsr668_aoi02",
+   "r_emsr698_aoi01",
+   "r_emsr698_aoi02",
+   "r_emsr712_aoi02",
+   "r_emsr722_aoi01",
+   "r_emsr722_aoi02",
+   "r_emsr728_aoi01",
+   "r_emsr728_aoi03",
+   "r_emsr849_aoi01",
+   "r_emsr849_aoi02",
+   "r_emsr855_aoi01",
+   "r_emsr860_aoi02",
+   "r_emsr866_aoi02",
+   "r_emsr871_aoi01",
+   "r_emsr871_aoi02",
+   "s1_kelantan_2024",
+   "s1_sunamganj_2024",
+   "s1_tabasco_2020"
+  ],
+  "pluvial": [
+   "dharavi",
+   "emsr935_aoi01",
+   "emsr935_aoi02",
+   "r311_chicago_2019-03-14_b09_05",
+   "r311_chicago_2019-04-29_b03_07",
+   "r311_chicago_2019-04-29_b09_04",
+   "r311_chicago_2019-05-09_b08_05",
+   "r311_chicago_2019-05-22_b03_07",
+   "r311_chicago_2019-05-22_b08_05",
+   "r311_chicago_2019-05-27_b02_06",
+   "r311_chicago_2019-05-27_b09_05",
+   "r311_chicago_2019-06-04_b08_05",
+   "r311_chicago_2019-07-01_b08_05",
+   "r311_chicago_2019-10-03_b09_05",
+   "r311_chicago_2019-10-26_b08_05",
+   "r311_chicago_2020-04-28_b03_07",
+   "r311_chicago_2020-04-28_b08_05",
+   "r311_chicago_2020-05-17_b08_04",
+   "r311_chicago_2020-05-17_b10_05",
+   "r311_chicago_2020-06-22_b08_04",
+   "r311_chicago_2020-06-26_b08_04",
+   "r311_chicago_2020-08-02_b04_07",
+   "r311_chicago_2021-06-24_b02_07",
+   "r311_chicago_2021-06-24_b08_04",
+   "r311_chicago_2021-10-11_b07_05",
+   "r311_chicago_2021-10-11_b09_05",
+   "r311_chicago_2021-10-25_b09_05",
+   "r311_nyc_2017-05-05_b03_03",
+   "r311_nyc_2021-09-01_b03_03",
+   "r311_nyc_2021-09-01_b07_09",
+   "r311_san_francisco_2008-11-01_francisco_b02_02",
+   "r311_san_francisco_2009-10-13_francisco_b02_02",
+   "r311_san_francisco_2010-01-18_francisco_b02_02",
+   "r311_san_francisco_2011-02-17_francisco_b02_02",
+   "r311_san_francisco_2012-12-02_francisco_b02_02",
+   "r311_san_francisco_2013-11-20_francisco_b02_02",
+   "r311_san_francisco_2014-12-02_francisco_b02_02",
+   "r311_san_francisco_2014-12-11_francisco_b00_02",
+   "r311_san_francisco_2014-12-11_francisco_b02_02",
+   "r311_san_francisco_2015-02-08_francisco_b02_02",
+   "r311_san_francisco_2015-12-13_francisco_b02_02",
+   "r311_san_francisco_2015-12-21_francisco_b02_02",
+   "r311_san_francisco_2016-01-05_francisco_b02_02",
+   "r311_san_francisco_2016-01-19_francisco_b02_02",
+   "r311_san_francisco_2016-03-12_francisco_b02_02",
+   "r311_san_francisco_2016-11-19_francisco_b02_02",
+   "r311_san_francisco_2016-12-15_francisco_b02_02",
+   "r311_san_francisco_2017-01-10_francisco_b02_02",
+   "r311_san_francisco_2017-01-20_francisco_b01_02",
+   "r311_san_francisco_2017-11-16_francisco_b02_02",
+   "r311_san_francisco_2018-01-08_francisco_b02_02",
+   "r311_san_francisco_2018-03-01_francisco_b02_02",
+   "r311_san_francisco_2018-04-06_francisco_b02_02",
+   "r311_san_francisco_2018-11-21_francisco_b02_02",
+   "r311_san_francisco_2018-11-28_francisco_b02_02",
+   "r311_san_francisco_2019-01-06_francisco_b02_02",
+   "r311_san_francisco_2019-01-16_francisco_b02_02",
+   "r311_san_francisco_2019-02-13_francisco_b02_02",
+   "r311_san_francisco_2019-11-26_francisco_b02_02",
+   "r311_san_francisco_2020-01-16_francisco_b02_02",
+   "r311_san_francisco_2021-10-24_francisco_b02_00",
+   "r311_san_francisco_2021-10-24_francisco_b02_02",
+   "r311_san_francisco_2021-12-13_francisco_b02_02",
+   "s1_abidjan_2018",
+   "s1_portauprince_2023"
+  ],
+  "waterlogging": [
+   "dharavi",
+   "emsr799_aoi02",
+   "emsr799_aoi03",
+   "emsr799_aoi04",
+   "kerala_2018",
+   "r3pl_bangladesh_2016_005_001",
+   "r3pl_bangladesh_2017_006_008",
+   "r3pl_bangladesh_2018_006_007",
+   "r3pl_bangladesh_2019_008_013",
+   "r3pl_bangladesh_2020_008_015",
+   "r3pl_bangladesh_2021_005_001",
+   "r3pl_nigeria_2016_000_020",
+   "r3pl_nigeria_2017_032_045",
+   "r3pl_nigeria_2018_000_020",
+   "r3pl_nigeria_2019_034_060",
+   "r3pl_nigeria_2020_032_033",
+   "r3pl_nigeria_2021_000_020",
+   "r3pl_punjab_2017_011_036",
+   "r3pl_punjab_2018_009_015",
+   "r_emsr856_aoi01",
+   "r_emsr856_aoi02",
+   "s1_ayutthaya_2021",
+   "s1_battambang_2020",
+   "s1_budalangi_2020",
+   "s1_garsen_2023",
+   "s1_jowhar_2023",
+   "s1_kebbi_2020",
+   "s1_khuzestan_2019",
+   "s1_mopti_2024",
+   "s1_sukhothai_2024",
+   "s1_ubon_2022",
+   "s1_yenagoa_2022"
+  ],
+  "flash_flood": [
+   "bad_neuenahr",
+   "emsr705_aoi03",
+   "r3se_103788",
+   "r3se_107666",
+   "r3se_114084",
+   "r3se_116524",
+   "r3se_117502",
+   "r3se_117751",
+   "r3se_118638",
+   "r3se_119157",
+   "r3se_94009",
+   "r_emsr850_aoi02",
+   "r_emsr864_aoi01",
+   "r_emsr864_aoi02"
+  ],
+  "coastal": [
+   "black_river",
+   "kyaukpyu",
+   "r_emsr703_aoi01",
+   "r_emsr703_aoi02",
+   "r_emsr781_aoi01",
+   "r_emsr793_aoi01",
+   "r_emsr805_aoi03",
+   "r_emsr858_aoi08",
+   "r_emsr858_aoi10",
+   "s1_amphan_sundarbans_2020",
+   "s1_fani_puri_2019",
+   "s1_francine_terrebonne_2024",
+   "s1_laura_cameron_2020",
+   "sittwe"
+  ],
+  "compound": [
+   "black_river",
+   "kyaukpyu",
+   "r311_nyc_2018-11-25_b04_06",
+   "r_emsr858_aoi08",
+   "r_emsr858_aoi10",
+   "r_emsr864_aoi01",
+   "r_emsr864_aoi02",
+   "s1_amphan_sundarbans_2020",
+   "s1_francine_terrebonne_2024",
+   "sittwe"
+  ]
+ },
+ "lambdas": {
+  "anc_elev_lgbm@fluvial": {
+   "africa": 0.25,
+   "africa_west_asia": 0.25,
+   "americas": 0.25,
+   "europe_mediterranean": 0.5,
+   "plains_bangladesh": 0.75,
+   "plains_nigeria": 0.5,
+   "plains_punjab": 0.5,
+   "r311_chicago": 0.5,
+   "r311_nyc": 0.25,
+   "r311_san_francisco": 0.5,
+   "south_asia": 0.25,
+   "southeast_asia": 0.25,
+   "us_midwest": 0.25,
+   "us_northeast": 0.25,
+   "us_south": 0.5,
+   "us_west": 0.25
+  },
+  "anc_elev_lgbm_ev@fluvial": {
+   "africa": 0.25,
+   "africa_west_asia": 0.25,
+   "americas": 0.5,
+   "europe_mediterranean": 0.5,
+   "plains_bangladesh": 0.5,
+   "plains_nigeria": 0.5,
+   "plains_punjab": 0.5,
+   "r311_chicago": 0.5,
+   "r311_nyc": 0.25,
+   "r311_san_francisco": 0.5,
+   "south_asia": 0.5,
+   "southeast_asia": 0.25,
+   "us_midwest": 0.25,
+   "us_northeast": 0.25,
+   "us_south": 0.25,
+   "us_west": 0.25
+  },
+  "anc_elev_lgbm_fine@fluvial": {
+   "africa": 1.0,
+   "africa_west_asia": 1.0,
+   "americas": 1.0,
+   "europe_mediterranean": 1.0,
+   "plains_bangladesh": 1.0,
+   "plains_nigeria": 1.0,
+   "plains_punjab": 1.0,
+   "r311_chicago": 0.75,
+   "r311_nyc": 0.75,
+   "r311_san_francisco": 1.0,
+   "south_asia": 1.0,
+   "southeast_asia": 1.0,
+   "us_midwest": 1.0,
+   "us_northeast": 1.0,
+   "us_south": 1.0,
+   "us_west": 1.0
+  },
+  "anc_elev_lgbm@flash_flood": {
+   "africa": 0.25,
+   "africa_west_asia": 0.25,
+   "americas": 0.25,
+   "europe_mediterranean": 0.5,
+   "plains_bangladesh": 0.25,
+   "plains_nigeria": 0.5,
+   "plains_punjab": 0.25,
+   "r311_chicago": 0.5,
+   "r311_nyc": 0.25,
+   "r311_san_francisco": 0.25,
+   "south_asia": 0.25,
+   "southeast_asia": 0.5,
+   "us_midwest": 0.25,
+   "us_northeast": 0.25,
+   "us_south": 0.25,
+   "us_west": 0.25
+  },
+  "anc_elev_lgbm@coastal": {
+   "africa": 0.25,
+   "africa_west_asia": 0.25,
+   "americas": 0.5,
+   "europe_mediterranean": 0.25,
+   "plains_bangladesh": 0.5,
+   "plains_nigeria": 0.25,
+   "plains_punjab": 0.25,
+   "r311_chicago": 0.5,
+   "r311_nyc": 0.25,
+   "r311_san_francisco": 0.25,
+   "south_asia": 0.25,
+   "southeast_asia": 0.25,
+   "us_midwest": 0.25,
+   "us_northeast": 0.25,
+   "us_south": 0.25,
+   "us_west": 0.25
+  }
+ },
+ "by_type": {
+  "fluvial": {
+   "units": 31,
+   "clusters": 22,
+   "candidates": {
+    "elev": {
+     "vs": "hand",
+     "gain": 0.1504,
+     "ci": [
+      0.1148,
+      0.188
+     ],
+     "mean_auc": 0.7983
+    },
+    "hand": {
+     "vs": "elev",
+     "gain": -0.1504,
+     "ci": [
+      -0.188,
+      -0.1148
+     ],
+     "mean_auc": 0.6479
+    },
+    "elev_hand_lr": {
+     "vs": "elev",
+     "gain": -0.0006,
+     "ci": [
+      -0.0042,
+      0.0022
+     ],
+     "mean_auc": 0.7977
+    },
+    "anc_elev_lgbm": {
+     "vs": "elev",
+     "gain": 0.0177,
+     "ci": [
+      -0.0026,
+      0.0404
+     ],
+     "mean_auc": 0.816
+    },
+    "anc_elev_lgbm_ev": {
+     "vs": "elev",
+     "gain": 0.0231,
+     "ci": [
+      0.0028,
+      0.0436
+     ],
+     "mean_auc": 0.8214
+    }
+   },
+   "chosen": "elev"
+  },
+  "pluvial": {
+   "units": 65,
+   "clusters": 54,
+   "candidates": {
+    "elev": {
+     "vs": "hand",
+     "gain": -0.0212,
+     "ci": [
+      -0.0372,
+      -0.0009
+     ],
+     "mean_auc": 0.5214
+    },
+    "hand": {
+     "vs": "elev",
+     "gain": 0.0212,
+     "ci": [
+      0.0009,
+      0.0372
+     ],
+     "mean_auc": 0.5427
+    },
+    "elev_hand_lr": {
+     "vs": "hand",
+     "gain": -0.0206,
+     "ci": [
+      -0.0363,
+      -0.0011
+     ],
+     "mean_auc": 0.5221
+    },
+    "anc_elev_lgbm": {
+     "vs": "hand",
+     "gain": -0.0176,
+     "ci": [
+      -0.0348,
+      0.0026
+     ],
+     "mean_auc": 0.5251
+    },
+    "anc_elev_lgbm_fine": {
+     "vs": "hand",
+     "gain": 0.0485,
+     "ci": [
+      0.0331,
+      0.0652
+     ],
+     "mean_auc": 0.5911
+    }
+   },
+   "chosen": "anc_elev_lgbm_fine"
+  },
+  "waterlogging": {
+   "units": 32,
+   "clusters": 29,
+   "candidates": {
+    "elev": {
+     "vs": "hand",
+     "gain": 0.1457,
+     "ci": [
+      0.1068,
+      0.1868
+     ],
+     "mean_auc": 0.7748
+    },
+    "hand": {
+     "vs": "elev",
+     "gain": -0.1457,
+     "ci": [
+      -0.1868,
+      -0.1068
+     ],
+     "mean_auc": 0.6291
+    },
+    "elev_hand_lr": {
+     "vs": "elev",
+     "gain": -0.001,
+     "ci": [
+      -0.0036,
+      0.0006
+     ],
+     "mean_auc": 0.7738
+    },
+    "anc_elev_lgbm": {
+     "vs": "elev",
+     "gain": -0.011,
+     "ci": [
+      -0.0463,
+      0.0152
+     ],
+     "mean_auc": 0.7638
+    },
+    "anc_elev_lgbm_ev": {
+     "vs": "elev",
+     "gain": -0.0029,
+     "ci": [
+      -0.0217,
+      0.0128
+     ],
+     "mean_auc": 0.772
+    }
+   },
+   "chosen": "elev"
+  },
+  "flash_flood": {
+   "units": 14,
+   "clusters": 13,
+   "candidates": {
+    "elev": {
+     "vs": "hand",
+     "gain": 0.0304,
+     "ci": [
+      -0.0138,
+      0.0706
+     ],
+     "mean_auc": 0.697
+    },
+    "hand": {
+     "vs": "elev",
+     "gain": -0.0304,
+     "ci": [
+      -0.0706,
+      0.0138
+     ],
+     "mean_auc": 0.6666
+    },
+    "elev_hand_lr": {
+     "vs": "elev",
+     "gain": 0.0037,
+     "ci": [
+      0.0013,
+      0.006
+     ],
+     "mean_auc": 0.7007
+    },
+    "anc_elev_lgbm": {
+     "vs": "elev",
+     "gain": 0.0063,
+     "ci": [
+      -0.0113,
+      0.0241
+     ],
+     "mean_auc": 0.7033
+    }
+   },
+   "chosen": "elev_hand_lr"
+  },
+  "coastal": {
+   "units": 14,
+   "clusters": 11,
+   "candidates": {
+    "elev": {
+     "vs": "hand",
+     "gain": 0.0941,
+     "ci": [
+      0.0424,
+      0.1335
+     ],
+     "mean_auc": 0.7632
+    },
+    "hand": {
+     "vs": "elev",
+     "gain": -0.0941,
+     "ci": [
+      -0.1335,
+      -0.0424
+     ],
+     "mean_auc": 0.6691
+    },
+    "elev_hand_lr": {
+     "vs": "elev",
+     "gain": -0.0004,
+     "ci": [
+      -0.0028,
+      0.0024
+     ],
+     "mean_auc": 0.7629
+    },
+    "anc_elev_lgbm": {
+     "vs": "elev",
+     "gain": -0.0036,
+     "ci": [
+      -0.0459,
+      0.0294
+     ],
+     "mean_auc": 0.7596
+    }
+   },
+   "chosen": "elev"
+  },
+  "compound": {
+   "units": 10,
+   "clusters": 7,
+   "candidates": {
+    "elev": {
+     "vs": "hand",
+     "gain": 0.0742,
+     "ci": [
+      0.01,
+      0.1268
+     ],
+     "mean_auc": 0.7589
+    },
+    "hand": {
+     "vs": "elev",
+     "gain": -0.0742,
+     "ci": [
+      -0.1268,
+      -0.01
+     ],
+     "mean_auc": 0.6847
+    },
+    "elev_hand_lr": {
+     "vs": "elev",
+     "gain": 0.0004,
+     "ci": [
+      -0.0037,
+      0.0038
+     ],
+     "mean_auc": 0.7593
+    },
+    "anc_elev_lgbm": {
+     "vs": "elev",
+     "gain": 0.0057,
+     "ci": [
+      -0.0496,
+      0.0333
+     ],
+     "mean_auc": 0.7647
+    },
+    "anc_elev_lgbm_ev": {
+     "vs": "elev",
+     "gain": 0.0186,
+     "ci": [
+      -0.0053,
+      0.0361
+     ],
+     "mean_auc": 0.7776
+    }
+   },
+   "chosen": "elev"
+  }
+ }
+}
