@@ -1,0 +1,22 @@
+{
+  "use": "Historical development. Keep all tiles of one incident in the same split.",
+  "datum": "USGS 3DEP in the continental US and STN marks in NAVD88. Never subtract a NOAA MLLW peak from this terrain.",
+  "terrain": "https://developers.google.com/earth-engine/datasets/catalog/USGS_3DEP_10m_collection",
+  "permanent_water": "https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_GlobalSurfaceWater",
+  "seasonal_mask_limitation": "The 1984–2021 water mask uses later observations for some incidents. This is a retrospective reference filter only.",
+  "method": "Only the mark-containing 30 m UTM cell qualifies. Require mark within half a pixel (15 m) of its centre, JRC occurrence below 80% with a valid water-history observation, and peak height above local 10 m terrain by more than 1 m plus the available survey margin (at least 0.2 ft). The 1 m guard is a conservative engineering allowance for DEM and point-to-pixel mismatch. It is not a validated error bound. Multiple different supported states in the same cell abstain.",
+  "scope": "A wet cell contains evidence of inundation close to its centre. The survey supplies neither the flooded fraction nor a causal type. A survey documenting a physical trace days later can still capture the peak. It does not date the land surface in a later aerial photograph.",
+  "survey_rights": "The underlying USGS federal field observations are public-domain US government data. The ArcGIS mirrors list no additional explicit licence. Attribute USGS, the named mirror, and the EC JRC/Google water data. Treat the Rutgers Manville repackaging as research-only pending confirmation of reuse terms.",
+  "surveys": {
+    "Harvey": "https://www.arcgis.com/home/item.html?id=8017e9a1337e45a5bc933c4e8c5ac4bf",
+    "Irma": "https://www.arcgis.com/home/item.html?id=d342e77fb9644b948e1d70cee0204a2a",
+    "Florence": "https://www.arcgis.com/home/item.html?id=f42f6dad7e664522b9575e6453e3d7af",
+    "Michael": "https://www.arcgis.com/home/item.html?id=52a15e7f4e994ef49d91b58ef2b69dbc",
+    "Ida": "https://services1.arcgis.com/ze0XBzU1FXj94DJq/ArcGIS/rest/services/Manville_Ida_Dashboard_WFL1/FeatureServer/3",
+    "Ida_primary": "https://data.usgs.gov/datacatalog/data/USGS%3A616872bbd34e65377001107e"
+  },
+  "other_events": {
+    "Sally": {"url":"https://www.nhc.noaa.gov/data/tcr/AL192020_Sally.pdf","finding":"NHC and SallyTCRData provide rounded station or survey positions. A location rounded to 0.01 degree cannot select a 30 m cell."},
+    "Laura": {"url":"https://www.weather.gov/lch/2020Laura-Surge","finding":"NWS mapped NAVD elevations and NHC reported surveyed points. The cartographic point positions and rounded NHC coordinates could not be verified to 30 m."}
+  }
+}

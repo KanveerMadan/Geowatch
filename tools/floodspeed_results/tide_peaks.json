@@ -1,0 +1,156 @@
+[
+  {
+    "storm": "Harvey",
+    "station": "8771450",
+    "metadata": {
+      "id": "8771450",
+      "name": "Galveston Pier 21",
+      "lat": "29.31",
+      "lon": "-94.7933"
+    },
+    "time_utc": "2017-08-29 04:18",
+    "metres_above_MLLW": 1.251,
+    "samples": 2640,
+    "first": "2017-08-25 00:00",
+    "last": "2017-09-04 23:54",
+    "requested": [
+      "2017-08-25",
+      "2017-09-04"
+    ],
+    "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8771450&begin_date=20170825&end_date=20170904&product=water_level&datum=MLLW&units=metric&time_zone=gmt&format=json&application=GeoWatch",
+    "licence": "US NOAA federal government data",
+    "use": "Station maximum within event window only; MLLW is not NAVD88 terrain elevation."
+  },
+  {
+    "storm": "Irma",
+    "station": "8724580",
+    "metadata": {
+      "id": "8724580",
+      "name": "Key West",
+      "lat": "24.5557",
+      "lon": "-81.8079"
+    },
+    "time_utc": "2017-09-10 17:42",
+    "metres_above_MLLW": 1.371,
+    "samples": 1680,
+    "first": "2017-09-08 00:00",
+    "last": "2017-09-14 23:54",
+    "requested": [
+      "2017-09-08",
+      "2017-09-14"
+    ],
+    "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8724580&begin_date=20170908&end_date=20170914&product=water_level&datum=MLLW&units=metric&time_zone=gmt&format=json&application=GeoWatch",
+    "licence": "US NOAA federal government data",
+    "use": "Station maximum within event window only; MLLW is not NAVD88 terrain elevation."
+  },
+  {
+    "storm": "Florence",
+    "station": "8658120",
+    "metadata": {
+      "id": "8658120",
+      "name": "Wilmington",
+      "lat": "34.2267",
+      "lon": "-77.9533"
+    },
+    "time_utc": "2018-09-14 19:30",
+    "metres_above_MLLW": 2.523,
+    "samples": 2640,
+    "first": "2018-09-12 00:00",
+    "last": "2018-09-22 23:54",
+    "requested": [
+      "2018-09-12",
+      "2018-09-22"
+    ],
+    "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8658120&begin_date=20180912&end_date=20180922&product=water_level&datum=MLLW&units=metric&time_zone=gmt&format=json&application=GeoWatch",
+    "licence": "US NOAA federal government data",
+    "use": "Station maximum within event window only; MLLW is not NAVD88 terrain elevation."
+  },
+  {
+    "storm": "Michael",
+    "station": "8729108",
+    "metadata": {
+      "id": "8729108",
+      "name": "Panama City",
+      "lat": "30.1497",
+      "lon": "-85.6644"
+    },
+    "time_utc": "2018-10-10 18:06",
+    "metres_above_MLLW": 2.026,
+    "samples": 1440,
+    "first": "2018-10-08 00:00",
+    "last": "2018-10-13 23:54",
+    "requested": [
+      "2018-10-08",
+      "2018-10-13"
+    ],
+    "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8729108&begin_date=20181008&end_date=20181013&product=water_level&datum=MLLW&units=metric&time_zone=gmt&format=json&application=GeoWatch",
+    "licence": "US NOAA federal government data",
+    "use": "Station maximum within event window only; MLLW is not NAVD88 terrain elevation."
+  },
+  {
+    "storm": "Laura",
+    "station": "8768094",
+    "metadata": {
+      "id": "8768094",
+      "name": "Calcasieu Pass",
+      "lat": "29.7682",
+      "lon": "-93.3429"
+    },
+    "time_utc": "2020-08-27 06:00",
+    "metres_above_MLLW": 3.367,
+    "samples": 1920,
+    "first": "2020-08-24 00:00",
+    "last": "2020-08-31 23:54",
+    "requested": [
+      "2020-08-24",
+      "2020-08-31"
+    ],
+    "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8768094&begin_date=20200824&end_date=20200831&product=water_level&datum=MLLW&units=metric&time_zone=gmt&format=json&application=GeoWatch",
+    "licence": "US NOAA federal government data",
+    "use": "Station maximum within event window only; MLLW is not NAVD88 terrain elevation."
+  },
+  {
+    "storm": "Sally",
+    "station": "8729840",
+    "metadata": {
+      "id": "8729840",
+      "name": "Pensacola",
+      "lat": "30.4044",
+      "lon": "-87.2112"
+    },
+    "time_utc": "2020-09-16 12:36",
+    "metres_above_MLLW": 2.09,
+    "samples": 1920,
+    "first": "2020-09-13 00:00",
+    "last": "2020-09-20 23:54",
+    "requested": [
+      "2020-09-13",
+      "2020-09-20"
+    ],
+    "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8729840&begin_date=20200913&end_date=20200920&product=water_level&datum=MLLW&units=metric&time_zone=gmt&format=json&application=GeoWatch",
+    "licence": "US NOAA federal government data",
+    "use": "Station maximum within event window only; MLLW is not NAVD88 terrain elevation."
+  },
+  {
+    "storm": "Ida",
+    "station": "8761724",
+    "metadata": {
+      "id": "8761724",
+      "name": "Grand Isle",
+      "lat": "29.2633",
+      "lon": "-89.9567"
+    },
+    "time_utc": "2021-08-29 18:42",
+    "metres_above_MLLW": 1.812,
+    "samples": 2160,
+    "first": "2021-08-27 00:00",
+    "last": "2021-09-04 23:54",
+    "requested": [
+      "2021-08-27",
+      "2021-09-04"
+    ],
+    "url": "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station=8761724&begin_date=20210827&end_date=20210904&product=water_level&datum=MLLW&units=metric&time_zone=gmt&format=json&application=GeoWatch",
+    "licence": "US NOAA federal government data",
+    "use": "Station maximum within event window only; MLLW is not NAVD88 terrain elevation."
+  }
+]
