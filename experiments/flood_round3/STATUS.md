@@ -74,7 +74,7 @@ Open substitutes are in use. This is what each account will add when it exists:
   - Re-typing MMFlood's "no river wave" refusals as waterlogging is rejected: DEV waterlogging is river-driven (median return period 4.7 y), so it would change the type's meaning between DEV and reserve.
 
 <!-- DEV-CV:BEGIN -->
-## DEV comparison (auto-updated 2026-11-24 19:31; leave-region-out CV, DEV units only, reserve untouched)
+## DEV comparison (auto-updated 2026-11-25 09:46; leave-region-out CV, DEV units only, reserve untouched)
 
 - **gain** is the method's mean within-unit AUC minus the better of elevation and HAND (the bar's comparison), with its 95 % cluster-bootstrap CI.
 - **vs elevation** is the method's mean AUC minus elevation's.
@@ -87,32 +87,32 @@ Open substitutes are in use. This is what each account will add when it exists:
 |---|---|---|---|---|---|
 | elev | 0.798 | +0.000 | +0.150 | [0.1148, 0.188] | yes |
 | hand | 0.648 | -0.150 | -0.150 | [-0.188, -0.1148] | no |
-| elev_hand_lr | 0.798 | -0.001 | -0.001 | [-0.0042, 0.0022] | no |
-| anc_elev_lgbm | 0.816 | +0.018 | +0.018 | [-0.0026, 0.0404] | no |
-| anc_elev_lgbm_ev | 0.821 | +0.023 | +0.023 | [0.0028, 0.0436] | yes |
+| elev_hand_lr | 0.796 | -0.002 | -0.002 | [-0.0042, -0.0008] | no |
+| anc_elev_lgbm | 0.812 | +0.014 | +0.014 | [-0.013, 0.0386] | no |
+| anc_elev_lgbm_ev | 0.824 | +0.025 | +0.025 | [-0.0001, 0.0486] | no |
 
 - **Still missing:** nothing on DEV; the reserve test decides.
 
-### Flash (provisional): 14 units, 13 clusters; chosen **elev_hand_lr**
+### Flash (provisional): 57 units, 56 clusters; chosen **anc_elev_lgbm**
 
 | method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |
 |---|---|---|---|---|---|
-| elev | 0.697 | +0.000 | +0.030 | [-0.0138, 0.0706] | no |
-| hand | 0.667 | -0.030 | -0.030 | [-0.0706, 0.0138] | no |
-| elev_hand_lr | 0.701 | +0.004 | +0.004 | [0.0013, 0.006] | yes |
-| anc_elev_lgbm | 0.703 | +0.006 | +0.006 | [-0.0113, 0.0241] | no |
+| elev | 0.648 | +0.000 | +0.016 | [-0.0134, 0.0503] | no |
+| hand | 0.633 | -0.016 | -0.016 | [-0.0503, 0.0134] | no |
+| elev_hand_lr | 0.648 | -0.000 | -0.000 | [-0.0011, 0.0003] | no |
+| anc_elev_lgbm | 0.695 | +0.047 | +0.047 | [0.0282, 0.0643] | yes |
 
-- **Still missing:** nothing on DEV; the reserve test decides.
+- **Still missing:** mean AUC 0.6954 is below 0.70.
 
-### Waterlogging (provisional): 32 units, 29 clusters; chosen **elev**
+### Waterlogging (provisional): 68 units, 44 clusters; chosen **elev**
 
 | method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |
 |---|---|---|---|---|---|
-| elev | 0.775 | +0.000 | +0.146 | [0.1068, 0.1868] | yes |
-| hand | 0.629 | -0.146 | -0.146 | [-0.1868, -0.1068] | no |
-| elev_hand_lr | 0.774 | -0.001 | -0.001 | [-0.0036, 0.0006] | no |
-| anc_elev_lgbm | 0.764 | -0.011 | -0.011 | [-0.0463, 0.0152] | no |
-| anc_elev_lgbm_ev | 0.772 | -0.003 | -0.003 | [-0.0217, 0.0128] | no |
+| elev | 0.713 | +0.000 | +0.114 | [0.0795, 0.1518] | yes |
+| hand | 0.598 | -0.114 | -0.114 | [-0.1518, -0.0795] | no |
+| elev_hand_lr | 0.713 | +0.000 | +0.000 | [-0.0013, 0.0023] | no |
+| anc_elev_lgbm | 0.712 | -0.001 | -0.001 | [-0.0235, 0.0166] | no |
+| anc_elev_lgbm_ev | 0.698 | -0.015 | -0.015 | [-0.0529, 0.0146] | no |
 
 - **Still missing:** nothing on DEV; the reserve test decides.
 
@@ -122,11 +122,11 @@ Open substitutes are in use. This is what each account will add when it exists:
 |---|---|---|---|---|---|
 | elev | 0.521 | +0.000 | -0.021 | [-0.0372, -0.0009] | no |
 | hand | 0.543 | +0.021 | +0.021 | [0.0009, 0.0372] | yes |
-| elev_hand_lr | 0.522 | +0.001 | -0.021 | [-0.0363, -0.0011] | no |
-| anc_elev_lgbm | 0.525 | +0.004 | -0.018 | [-0.0348, 0.0026] | no |
-| anc_elev_lgbm_fine | 0.591 | +0.070 | +0.049 | [0.0331, 0.0652] | yes |
+| elev_hand_lr | 0.52 | -0.001 | -0.022 | [-0.0387, -0.0015] | no |
+| anc_elev_lgbm | 0.525 | +0.003 | -0.018 | [-0.0338, 0.0016] | no |
+| anc_elev_lgbm_fine | 0.602 | +0.080 | +0.059 | [0.043, 0.0757] | yes |
 
-- **Still missing:** mean AUC 0.5911 is below 0.70.
+- **Still missing:** mean AUC 0.6018 is below 0.70.
 
 ### Coastal: 14 units, 11 clusters; chosen **elev**
 
@@ -134,8 +134,8 @@ Open substitutes are in use. This is what each account will add when it exists:
 |---|---|---|---|---|---|
 | elev | 0.763 | +0.000 | +0.094 | [0.0424, 0.1335] | yes |
 | hand | 0.669 | -0.094 | -0.094 | [-0.1335, -0.0424] | no |
-| elev_hand_lr | 0.763 | -0.000 | -0.000 | [-0.0028, 0.0024] | no |
-| anc_elev_lgbm | 0.76 | -0.004 | -0.004 | [-0.0459, 0.0294] | no |
+| elev_hand_lr | 0.763 | -0.000 | -0.001 | [-0.0026, 0.0015] | no |
+| anc_elev_lgbm | 0.749 | -0.014 | -0.014 | [-0.0659, 0.0294] | no |
 
 - **Still missing:** nothing on DEV; the reserve test decides.
 
@@ -145,9 +145,9 @@ Open substitutes are in use. This is what each account will add when it exists:
 |---|---|---|---|---|---|
 | elev | 0.759 | +0.000 | +0.074 | [0.01, 0.1268] | yes |
 | hand | 0.685 | -0.074 | -0.074 | [-0.1268, -0.01] | no |
-| elev_hand_lr | 0.759 | +0.000 | +0.000 | [-0.0037, 0.0038] | no |
-| anc_elev_lgbm | 0.765 | +0.006 | +0.006 | [-0.0496, 0.0333] | no |
-| anc_elev_lgbm_ev | 0.778 | +0.019 | +0.019 | [-0.0053, 0.0361] | no |
+| elev_hand_lr | 0.757 | -0.002 | -0.002 | [-0.0045, 0.0002] | no |
+| anc_elev_lgbm | 0.756 | -0.003 | -0.003 | [-0.0757, 0.0361] | no |
+| anc_elev_lgbm_ev | 0.753 | -0.006 | -0.006 | [-0.0518, 0.0301] | no |
 
 - **Still missing:** nothing on DEV; the reserve test decides.
 

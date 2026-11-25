@@ -107,19 +107,55 @@
    "emsr799_aoi04",
    "kerala_2018",
    "r3pl_bangladesh_2016_005_001",
+   "r3pl_bangladesh_2016_005_002",
    "r3pl_bangladesh_2017_006_008",
+   "r3pl_bangladesh_2017_006_011",
    "r3pl_bangladesh_2018_006_007",
+   "r3pl_bangladesh_2018_006_008",
    "r3pl_bangladesh_2019_008_013",
+   "r3pl_bangladesh_2019_008_014",
    "r3pl_bangladesh_2020_008_015",
+   "r3pl_bangladesh_2020_016_015",
    "r3pl_bangladesh_2021_005_001",
+   "r3pl_bangladesh_2021_006_006",
    "r3pl_nigeria_2016_000_020",
+   "r3pl_nigeria_2016_002_020",
    "r3pl_nigeria_2017_032_045",
+   "r3pl_nigeria_2017_032_046",
    "r3pl_nigeria_2018_000_020",
+   "r3pl_nigeria_2018_001_020",
    "r3pl_nigeria_2019_034_060",
+   "r3pl_nigeria_2019_034_061",
    "r3pl_nigeria_2020_032_033",
+   "r3pl_nigeria_2020_033_033",
    "r3pl_nigeria_2021_000_020",
+   "r3pl_nigeria_2021_029_054",
+   "r3pl_punjab_2016_008_026",
+   "r3pl_punjab_2016_008_031",
    "r3pl_punjab_2017_011_036",
+   "r3pl_punjab_2017_012_035",
    "r3pl_punjab_2018_009_015",
+   "r3pl_punjab_2018_009_016",
+   "r3pl_punjab_2019_009_028",
+   "r3pl_punjab_2019_024_024",
+   "r3pl_punjab_2020_022_018",
+   "r3pl_punjab_2020_023_020",
+   "r3pl_punjab_2021_004_035",
+   "r3pl_punjab_2021_004_036",
+   "r3pl_sindh_2016_003_005",
+   "r3pl_sindh_2016_003_006",
+   "r3pl_sindh_2017_002_021",
+   "r3pl_sindh_2017_002_022",
+   "r3pl_sindh_2019_008_014",
+   "r3pl_sindh_2019_009_013",
+   "r3pl_sindh_2020_000_014",
+   "r3pl_sindh_2021_002_020",
+   "r3pl_south_sudan_2016_sudan_005_023",
+   "r3pl_south_sudan_2017_sudan_000_024",
+   "r3pl_south_sudan_2018_sudan_002_024",
+   "r3pl_south_sudan_2019_sudan_002_024",
+   "r3pl_south_sudan_2020_sudan_003_019",
+   "r3pl_south_sudan_2021_sudan_000_010",
    "r_emsr856_aoi01",
    "r_emsr856_aoi02",
    "s1_ayutthaya_2021",
@@ -139,12 +175,55 @@
    "emsr705_aoi03",
    "r3se_103788",
    "r3se_107666",
+   "r3se_113684",
    "r3se_114084",
+   "r3se_116304",
    "r3se_116524",
    "r3se_117502",
    "r3se_117751",
+   "r3se_118207",
    "r3se_118638",
    "r3se_119157",
+   "r3se_120357",
+   "r3se_122797",
+   "r3se_123057",
+   "r3se_125550",
+   "r3se_126459",
+   "r3se_126624",
+   "r3se_126801",
+   "r3se_129101",
+   "r3se_129710",
+   "r3se_131391",
+   "r3se_135262",
+   "r3se_135533",
+   "r3se_136821",
+   "r3se_137124",
+   "r3se_137312",
+   "r3se_137851",
+   "r3se_138835",
+   "r3se_138900",
+   "r3se_139516",
+   "r3se_140616",
+   "r3se_141240",
+   "r3se_141836",
+   "r3se_142104",
+   "r3se_145702",
+   "r3se_147906",
+   "r3se_148205",
+   "r3se_148908",
+   "r3se_151541",
+   "r3se_151832",
+   "r3se_152863",
+   "r3se_153456",
+   "r3se_155558",
+   "r3se_157248",
+   "r3se_157424",
+   "r3se_157472",
+   "r3se_158305",
+   "r3se_160029",
+   "r3se_161016",
+   "r3se_162538",
+   "r3se_163555",
    "r3se_94009",
    "r_emsr850_aoi02",
    "r_emsr864_aoi01",
@@ -181,40 +260,44 @@
  },
  "lambdas": {
   "anc_elev_lgbm@fluvial": {
-   "africa": 0.25,
-   "africa_west_asia": 0.25,
-   "americas": 0.25,
+   "africa": 0.5,
+   "africa_west_asia": 0.5,
+   "americas": 0.5,
    "europe_mediterranean": 0.5,
    "plains_bangladesh": 0.75,
    "plains_nigeria": 0.5,
    "plains_punjab": 0.5,
+   "plains_sindh": 0.5,
+   "plains_south_sudan": 0.5,
    "r311_chicago": 0.5,
-   "r311_nyc": 0.25,
-   "r311_san_francisco": 0.5,
-   "south_asia": 0.25,
-   "southeast_asia": 0.25,
-   "us_midwest": 0.25,
-   "us_northeast": 0.25,
-   "us_south": 0.5,
-   "us_west": 0.25
-  },
-  "anc_elev_lgbm_ev@fluvial": {
-   "africa": 0.25,
-   "africa_west_asia": 0.25,
-   "americas": 0.5,
-   "europe_mediterranean": 0.5,
-   "plains_bangladesh": 0.5,
-   "plains_nigeria": 0.5,
-   "plains_punjab": 0.5,
-   "r311_chicago": 0.5,
-   "r311_nyc": 0.25,
+   "r311_nyc": 0.5,
    "r311_san_francisco": 0.5,
    "south_asia": 0.5,
    "southeast_asia": 0.25,
    "us_midwest": 0.25,
-   "us_northeast": 0.25,
+   "us_northeast": 0.5,
    "us_south": 0.25,
    "us_west": 0.25
+  },
+  "anc_elev_lgbm_ev@fluvial": {
+   "africa": 0.5,
+   "africa_west_asia": 0.5,
+   "americas": 0.75,
+   "europe_mediterranean": 0.5,
+   "plains_bangladesh": 1.0,
+   "plains_nigeria": 0.5,
+   "plains_punjab": 0.5,
+   "plains_sindh": 0.5,
+   "plains_south_sudan": 0.5,
+   "r311_chicago": 0.5,
+   "r311_nyc": 0.5,
+   "r311_san_francisco": 0.5,
+   "south_asia": 0.5,
+   "southeast_asia": 0.5,
+   "us_midwest": 0.25,
+   "us_northeast": 0.25,
+   "us_south": 0.25,
+   "us_west": 0.5
   },
   "anc_elev_lgbm_fine@fluvial": {
    "africa": 1.0,
@@ -224,51 +307,57 @@
    "plains_bangladesh": 1.0,
    "plains_nigeria": 1.0,
    "plains_punjab": 1.0,
-   "r311_chicago": 0.75,
-   "r311_nyc": 0.75,
+   "plains_sindh": 1.0,
+   "plains_south_sudan": 1.0,
+   "r311_chicago": 1.0,
+   "r311_nyc": 1.0,
    "r311_san_francisco": 1.0,
    "south_asia": 1.0,
    "southeast_asia": 1.0,
    "us_midwest": 1.0,
    "us_northeast": 1.0,
-   "us_south": 1.0,
+   "us_south": 0.75,
    "us_west": 1.0
   },
   "anc_elev_lgbm@flash_flood": {
-   "africa": 0.25,
-   "africa_west_asia": 0.25,
-   "americas": 0.25,
-   "europe_mediterranean": 0.5,
-   "plains_bangladesh": 0.25,
+   "africa": 0.5,
+   "africa_west_asia": 0.5,
+   "americas": 0.75,
+   "europe_mediterranean": 0.75,
+   "plains_bangladesh": 0.75,
    "plains_nigeria": 0.5,
-   "plains_punjab": 0.25,
-   "r311_chicago": 0.5,
-   "r311_nyc": 0.25,
-   "r311_san_francisco": 0.25,
-   "south_asia": 0.25,
+   "plains_punjab": 0.5,
+   "plains_sindh": 0.5,
+   "plains_south_sudan": 0.5,
+   "r311_chicago": 0.75,
+   "r311_nyc": 0.5,
+   "r311_san_francisco": 0.5,
+   "south_asia": 0.5,
    "southeast_asia": 0.5,
-   "us_midwest": 0.25,
-   "us_northeast": 0.25,
-   "us_south": 0.25,
-   "us_west": 0.25
+   "us_midwest": 0.5,
+   "us_northeast": 0.5,
+   "us_south": 0.5,
+   "us_west": 0.5
   },
   "anc_elev_lgbm@coastal": {
-   "africa": 0.25,
-   "africa_west_asia": 0.25,
+   "africa": 0.5,
+   "africa_west_asia": 0.5,
    "americas": 0.5,
-   "europe_mediterranean": 0.25,
-   "plains_bangladesh": 0.5,
-   "plains_nigeria": 0.25,
-   "plains_punjab": 0.25,
+   "europe_mediterranean": 0.5,
+   "plains_bangladesh": 0.75,
+   "plains_nigeria": 0.5,
+   "plains_punjab": 0.5,
+   "plains_sindh": 0.5,
+   "plains_south_sudan": 0.5,
    "r311_chicago": 0.5,
-   "r311_nyc": 0.25,
-   "r311_san_francisco": 0.25,
-   "south_asia": 0.25,
-   "southeast_asia": 0.25,
-   "us_midwest": 0.25,
-   "us_northeast": 0.25,
+   "r311_nyc": 0.5,
+   "r311_san_francisco": 0.5,
+   "south_asia": 0.5,
+   "southeast_asia": 0.5,
+   "us_midwest": 0.5,
+   "us_northeast": 0.5,
    "us_south": 0.25,
-   "us_west": 0.25
+   "us_west": 0.5
   }
  },
  "by_type": {
@@ -296,30 +385,30 @@
     },
     "elev_hand_lr": {
      "vs": "elev",
-     "gain": -0.0006,
+     "gain": -0.0023,
      "ci": [
       -0.0042,
-      0.0022
+      -0.0008
      ],
-     "mean_auc": 0.7977
+     "mean_auc": 0.796
     },
     "anc_elev_lgbm": {
      "vs": "elev",
-     "gain": 0.0177,
+     "gain": 0.0139,
      "ci": [
-      -0.0026,
-      0.0404
+      -0.013,
+      0.0386
      ],
-     "mean_auc": 0.816
+     "mean_auc": 0.8121
     },
     "anc_elev_lgbm_ev": {
      "vs": "elev",
-     "gain": 0.0231,
+     "gain": 0.0252,
      "ci": [
-      0.0028,
-      0.0436
+      -0.0001,
+      0.0486
      ],
-     "mean_auc": 0.8214
+     "mean_auc": 0.8235
     }
    },
    "chosen": "elev"
@@ -348,128 +437,128 @@
     },
     "elev_hand_lr": {
      "vs": "hand",
-     "gain": -0.0206,
+     "gain": -0.0222,
      "ci": [
-      -0.0363,
-      -0.0011
+      -0.0387,
+      -0.0015
      ],
-     "mean_auc": 0.5221
+     "mean_auc": 0.5204
     },
     "anc_elev_lgbm": {
      "vs": "hand",
-     "gain": -0.0176,
+     "gain": -0.0179,
      "ci": [
-      -0.0348,
-      0.0026
+      -0.0338,
+      0.0016
      ],
-     "mean_auc": 0.5251
+     "mean_auc": 0.5248
     },
     "anc_elev_lgbm_fine": {
      "vs": "hand",
-     "gain": 0.0485,
+     "gain": 0.0592,
      "ci": [
-      0.0331,
-      0.0652
+      0.043,
+      0.0757
      ],
-     "mean_auc": 0.5911
+     "mean_auc": 0.6018
     }
    },
    "chosen": "anc_elev_lgbm_fine"
   },
   "waterlogging": {
-   "units": 32,
-   "clusters": 29,
+   "units": 68,
+   "clusters": 44,
    "candidates": {
     "elev": {
      "vs": "hand",
-     "gain": 0.1457,
+     "gain": 0.1141,
      "ci": [
-      0.1068,
-      0.1868
+      0.0795,
+      0.1518
      ],
-     "mean_auc": 0.7748
+     "mean_auc": 0.7125
     },
     "hand": {
      "vs": "elev",
-     "gain": -0.1457,
+     "gain": -0.1141,
      "ci": [
-      -0.1868,
-      -0.1068
+      -0.1518,
+      -0.0795
      ],
-     "mean_auc": 0.6291
+     "mean_auc": 0.5983
     },
     "elev_hand_lr": {
      "vs": "elev",
-     "gain": -0.001,
+     "gain": 0.0,
      "ci": [
-      -0.0036,
-      0.0006
+      -0.0013,
+      0.0023
      ],
-     "mean_auc": 0.7738
+     "mean_auc": 0.7125
     },
     "anc_elev_lgbm": {
      "vs": "elev",
-     "gain": -0.011,
+     "gain": -0.0009,
      "ci": [
-      -0.0463,
-      0.0152
+      -0.0235,
+      0.0166
      ],
-     "mean_auc": 0.7638
+     "mean_auc": 0.7116
     },
     "anc_elev_lgbm_ev": {
      "vs": "elev",
-     "gain": -0.0029,
+     "gain": -0.0148,
      "ci": [
-      -0.0217,
-      0.0128
+      -0.0529,
+      0.0146
      ],
-     "mean_auc": 0.772
+     "mean_auc": 0.6977
     }
    },
    "chosen": "elev"
   },
   "flash_flood": {
-   "units": 14,
-   "clusters": 13,
+   "units": 57,
+   "clusters": 56,
    "candidates": {
     "elev": {
      "vs": "hand",
-     "gain": 0.0304,
+     "gain": 0.0157,
      "ci": [
-      -0.0138,
-      0.0706
+      -0.0134,
+      0.0503
      ],
-     "mean_auc": 0.697
+     "mean_auc": 0.6484
     },
     "hand": {
      "vs": "elev",
-     "gain": -0.0304,
+     "gain": -0.0157,
      "ci": [
-      -0.0706,
-      0.0138
+      -0.0503,
+      0.0134
      ],
-     "mean_auc": 0.6666
+     "mean_auc": 0.6327
     },
     "elev_hand_lr": {
      "vs": "elev",
-     "gain": 0.0037,
+     "gain": -0.0003,
      "ci": [
-      0.0013,
-      0.006
+      -0.0011,
+      0.0003
      ],
-     "mean_auc": 0.7007
+     "mean_auc": 0.6481
     },
     "anc_elev_lgbm": {
      "vs": "elev",
-     "gain": 0.0063,
+     "gain": 0.047,
      "ci": [
-      -0.0113,
-      0.0241
+      0.0282,
+      0.0643
      ],
-     "mean_auc": 0.7033
+     "mean_auc": 0.6954
     }
    },
-   "chosen": "elev_hand_lr"
+   "chosen": "anc_elev_lgbm"
   },
   "coastal": {
    "units": 14,
@@ -495,21 +584,21 @@
     },
     "elev_hand_lr": {
      "vs": "elev",
-     "gain": -0.0004,
+     "gain": -0.0005,
      "ci": [
-      -0.0028,
-      0.0024
+      -0.0026,
+      0.0015
      ],
-     "mean_auc": 0.7629
+     "mean_auc": 0.7627
     },
     "anc_elev_lgbm": {
      "vs": "elev",
-     "gain": -0.0036,
+     "gain": -0.0141,
      "ci": [
-      -0.0459,
+      -0.0659,
       0.0294
      ],
-     "mean_auc": 0.7596
+     "mean_auc": 0.7491
     }
    },
    "chosen": "elev"
@@ -538,30 +627,30 @@
     },
     "elev_hand_lr": {
      "vs": "elev",
-     "gain": 0.0004,
+     "gain": -0.002,
      "ci": [
-      -0.0037,
-      0.0038
+      -0.0045,
+      0.0002
      ],
-     "mean_auc": 0.7593
+     "mean_auc": 0.757
     },
     "anc_elev_lgbm": {
      "vs": "elev",
-     "gain": 0.0057,
+     "gain": -0.0031,
      "ci": [
-      -0.0496,
-      0.0333
+      -0.0757,
+      0.0361
      ],
-     "mean_auc": 0.7647
+     "mean_auc": 0.7558
     },
     "anc_elev_lgbm_ev": {
      "vs": "elev",
-     "gain": 0.0186,
+     "gain": -0.0058,
      "ci": [
-      -0.0053,
-      0.0361
+      -0.0518,
+      0.0301
      ],
-     "mean_auc": 0.7776
+     "mean_auc": 0.7531
     }
    },
    "chosen": "elev"
