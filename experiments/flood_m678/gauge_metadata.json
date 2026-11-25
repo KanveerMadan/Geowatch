@@ -1,0 +1,154 @@
+{
+  "corwin-2022-06-12": {
+    "observed_max_end": "2022-06-13T21:00:00+00:00",
+    "observed_max_start": "2022-06-13T20:15:00+00:00",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-06191500&parameter_code=00065&datetime=2022-06-12T06%3A00%3A00%2B00%3A00%2F2022-06-16T06%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "06191500",
+    "status": "gap_in_gauge_record"
+  },
+  "fargo-1994-04-03": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-05054000&parameter_code=00065&datetime=1994-04-02T06%3A00%3A00%2B00%3A00%2F1994-04-05T05%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "05054000",
+    "status": "no_unambiguous_approved_series"
+  },
+  "fargo-1996-04-16": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-05054000&parameter_code=00065&datetime=1996-04-15T05%3A00%3A00%2B00%3A00%2F1996-04-18T05%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "05054000",
+    "status": "no_unambiguous_approved_series"
+  },
+  "fargo-2009-03-28": {
+    "end": "2009-03-28T05:30:00+00:00",
+    "gauge_max_ft": 40.84,
+    "observations": 289,
+    "sample_seconds": 900.0,
+    "series_id": "bce15b2fc3914424b1897e53aa0797c1",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-05054000&parameter_code=00065&datetime=2009-03-27T05%3A00%3A00%2B00%3A00%2F2009-03-30T05%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2009-03-28T05:00:00+00:00",
+    "station": "05054000",
+    "status": "gauge_bracket"
+  },
+  "mendenhall-2014-07-11": {
+    "end": "2014-07-12T01:00:00+00:00",
+    "gauge_max_ft": 11.85,
+    "observations": 289,
+    "sample_seconds": 900.0,
+    "series_id": "ea14ba368f76421196a37ad0ce7bd887",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15052500&parameter_code=00065&datetime=2014-07-10T08%3A00%3A00%2B00%3A00%2F2014-07-13T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2014-07-12T00:15:00+00:00",
+    "station": "15052500",
+    "status": "gauge_bracket"
+  },
+  "mendenhall-2016-07-01": {
+    "end": "2016-07-02T04:30:00+00:00",
+    "gauge_max_ft": 11.99,
+    "observations": 289,
+    "sample_seconds": 900.0,
+    "series_id": "ea14ba368f76421196a37ad0ce7bd887",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15052500&parameter_code=00065&datetime=2016-06-30T08%3A00%3A00%2B00%3A00%2F2016-07-03T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2016-07-02T04:00:00+00:00",
+    "station": "15052500",
+    "status": "gauge_bracket"
+  },
+  "mendenhall-2020-08-01": {
+    "end": "2020-08-01T11:00:00+00:00",
+    "gauge_max_ft": 11.55,
+    "observations": 289,
+    "sample_seconds": 900.0,
+    "series_id": "ea14ba368f76421196a37ad0ce7bd887",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15052500&parameter_code=00065&datetime=2020-07-31T08%3A00%3A00%2B00%3A00%2F2020-08-03T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2020-08-01T10:30:00+00:00",
+    "station": "15052500",
+    "status": "gauge_bracket"
+  },
+  "mendenhall-2021-08-14": {
+    "end": "2021-08-14T14:30:00+00:00",
+    "gauge_max_ft": 11.56,
+    "observations": 289,
+    "sample_seconds": 900.0,
+    "series_id": "ea14ba368f76421196a37ad0ce7bd887",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15052500&parameter_code=00065&datetime=2021-08-13T08%3A00%3A00%2B00%3A00%2F2021-08-16T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2021-08-14T13:30:00+00:00",
+    "station": "15052500",
+    "status": "gauge_bracket"
+  },
+  "mendenhall-2022-10-27": {
+    "end": "2022-10-28T02:45:00+00:00",
+    "gauge_max_ft": 10.33,
+    "observations": 289,
+    "sample_seconds": 900.0,
+    "series_id": "ea14ba368f76421196a37ad0ce7bd887",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15052500&parameter_code=00065&datetime=2022-10-26T08%3A00%3A00%2B00%3A00%2F2022-10-29T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2022-10-28T02:15:00+00:00",
+    "station": "15052500",
+    "status": "gauge_bracket"
+  },
+  "mendenhall-2023-08-05": {
+    "end": "2023-08-06T07:30:00+00:00",
+    "gauge_max_ft": 14.97,
+    "observations": 289,
+    "sample_seconds": 900.0,
+    "series_id": "ea14ba368f76421196a37ad0ce7bd887",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15052500&parameter_code=00065&datetime=2023-08-04T08%3A00%3A00%2B00%3A00%2F2023-08-07T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2023-08-06T07:00:00+00:00",
+    "station": "15052500",
+    "status": "gauge_bracket"
+  },
+  "mendenhall-2024-08-06": {
+    "end": "2024-08-06T11:30:00+00:00",
+    "gauge_max_ft": 15.99,
+    "observations": 289,
+    "sample_seconds": 900.0,
+    "series_id": "ea14ba368f76421196a37ad0ce7bd887",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15052500&parameter_code=00065&datetime=2024-08-05T08%3A00%3A00%2B00%3A00%2F2024-08-08T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2024-08-06T11:00:00+00:00",
+    "station": "15052500",
+    "status": "gauge_bracket"
+  },
+  "mendenhall-2024-10-21": {
+    "observed_max_end": "2024-10-21T07:30:00+00:00",
+    "observed_max_start": "2024-10-21T07:30:00+00:00",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15052500&parameter_code=00065&datetime=2024-10-20T08%3A00%3A00%2B00%3A00%2F2024-10-23T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15052500",
+    "status": "published_day_and_gauge_disagree"
+  },
+  "mendenhall-2025-08-13": {
+    "observed_max_end": "2025-08-13T15:15:00+00:00",
+    "observed_max_start": "2025-08-13T15:15:00+00:00",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15052500&parameter_code=00065&datetime=2025-08-12T08%3A00%3A00%2B00%3A00%2F2025-08-15T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15052500",
+    "status": "gap_in_gauge_record"
+  },
+  "midland-2020-05-19": {
+    "end": "2020-05-20T16:45:00+00:00",
+    "gauge_max_ft": 35.14,
+    "observations": 290,
+    "sample_seconds": 900.0,
+    "series_id": "c2c2688a7268459f856ae0eb289a4e4f",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-04156000&parameter_code=00065&datetime=2020-05-19T04%3A00%3A00%2B00%3A00%2F2020-05-22T04%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2020-05-20T16:15:00+00:00",
+    "station": "04156000",
+    "status": "gauge_bracket"
+  },
+  "rutland-2024-04-12": {
+    "end": "2024-04-13T18:15:00+00:00",
+    "gauge_max_ft": 8.99,
+    "observations": 289,
+    "sample_seconds": 900.0,
+    "series_id": "70642b17a9444b5bab8cc6d273b4db5e",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-04282000&parameter_code=00065&datetime=2024-04-12T04%3A00%3A00%2B00%3A00%2F2024-04-15T04%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2024-04-13T16:30:00+00:00",
+    "station": "04282000",
+    "status": "gauge_bracket"
+  },
+  "rutland-2025-03-16": {
+    "end": "2025-03-18T06:45:00+00:00",
+    "gauge_max_ft": 8.84,
+    "observations": 385,
+    "sample_seconds": 900.0,
+    "series_id": "70642b17a9444b5bab8cc6d273b4db5e",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-04282000&parameter_code=00065&datetime=2025-03-16T04%3A00%3A00%2B00%3A00%2F2025-03-20T04%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2025-03-18T04:30:00+00:00",
+    "station": "04282000",
+    "status": "gauge_bracket"
+  }
+}

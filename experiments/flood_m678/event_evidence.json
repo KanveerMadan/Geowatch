@@ -1,0 +1,725 @@
+{
+  "site_fields": [
+    "type",
+    "subtype",
+    "country",
+    "reach",
+    "zone",
+    "latitude",
+    "longitude",
+    "location_source"
+  ],
+  "sites": {
+    "mendenhall": [
+      "M6",
+      "glacial lake outburst",
+      "USA",
+      "Mendenhall River near Auke Bay",
+      "America/Juneau",
+      58.42972222,
+      -134.57277778,
+      "https://api.water.noaa.gov/nwps/v1/gauges/MNDA2"
+    ],
+    "midland": [
+      "M7",
+      "water-storage dam cascade",
+      "USA",
+      "Tittabawassee River at Midland",
+      "America/Detroit",
+      43.59530477,
+      -84.23554395,
+      "https://waterdata.usgs.gov/monitoring-location/USGS-04156000/"
+    ],
+    "fargo": [
+      "M8",
+      "snowmelt",
+      "USA",
+      "Red River at Fargo",
+      "America/Chicago",
+      46.86111111,
+      -96.78333333,
+      "https://api.water.noaa.gov/nwps/v1/gauges/FGON8"
+    ],
+    "thame": [
+      "M6",
+      "glacial lake outburst",
+      "Nepal",
+      "Thame",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "bhote-koshi": [
+      "M6",
+      "glacial lake outburst with debris entrainment",
+      "China / Nepal",
+      "Upper Bhotekoshi",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "shispare": [
+      "M6",
+      "ice-dammed lake",
+      "Pakistan",
+      "Hasanabad",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "south-lhonak": [
+      "M6",
+      "glacial lake outburst and downstream dam failure",
+      "India",
+      "Upper Teesta",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "chamoli": [
+      "M6",
+      "rock and ice avalanche",
+      "India",
+      "Chamoli",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "melamchi": [
+      "M6",
+      "landslide dam and debris cascade",
+      "Nepal",
+      "Melamchi",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "sardoba": [
+      "M7",
+      "water-storage dam breach",
+      "Uzbekistan / Kazakhstan",
+      "Sardoba downstream",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "xe-pian": [
+      "M7",
+      "saddle dam failure",
+      "Laos",
+      "Sanamxay",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "kherson": [
+      "M7",
+      "dam breach",
+      "Ukraine",
+      "Kherson",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "patel": [
+      "M7",
+      "water-storage dam breach",
+      "Kenya",
+      "Solai",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "taum-sauk": [
+      "M7",
+      "water-storage dam breach",
+      "USA",
+      "East Fork Black River",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "whaley": [
+      "M7",
+      "near failure",
+      "United Kingdom",
+      "Whaley Bridge",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "brumadinho": [
+      "M7",
+      "tailings dam failure",
+      "Brazil",
+      "Córrego do Feijão",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "mariana": [
+      "M7",
+      "tailings dam failure",
+      "Brazil",
+      "Fundão",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "galena": [
+      "M8",
+      "ice jam",
+      "USA",
+      "Yukon at Galena",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "circle": [
+      "M8",
+      "ice jam",
+      "USA",
+      "Yukon at Circle",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "grand-forks-bc": [
+      "M8",
+      "snowmelt and rain",
+      "Canada",
+      "Kettle and Granby Rivers",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "upper-mississippi": [
+      "M8",
+      "snowmelt",
+      "USA",
+      "Mississippi at Minnesota City",
+      "America/Chicago",
+      44.1595,
+      -91.81,
+      "https://api.water.noaa.gov/nwps/v1/gauges/MSCM5"
+    ],
+    "corwin": [
+      "M8",
+      "rain on melting snow",
+      "USA",
+      "Yellowstone River at Corwin Springs",
+      "America/Denver",
+      45.11211944,
+      -110.79366667,
+      "https://waterdata.usgs.gov/monitoring-location/USGS-06191500/"
+    ],
+    "rutland": [
+      "M8",
+      "rain and snowmelt",
+      "USA",
+      "Otter Creek at Center Rutland",
+      "America/New_York",
+      43.60370074,
+      -73.01329276,
+      "https://waterdata.usgs.gov/monitoring-location/USGS-04282000/"
+    ],
+    "kallio": [
+      "M8",
+      "snowmelt and rain",
+      "Finland / Sweden",
+      "Muonio at Kallio 2",
+      "Europe/Stockholm",
+      67.2233,
+      23.5512,
+      "https://opendata-download-hydroobs.smhi.se/api/version/1.0/parameter/2/station/2395.json"
+    ],
+    "kedarnath": [
+      "M6",
+      "glacial lake outburst",
+      "India",
+      "Kedarnath",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "derna": [
+      "M7",
+      "cascade of dam failures during Storm Daniel",
+      "Libya",
+      "Derna",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "braskereidfoss": [
+      "M7",
+      "embankment failure during Hans",
+      "Norway",
+      "Glomma",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "tuanzhou": [
+      "M7",
+      "lake dike breach",
+      "China",
+      "Dongting at Tuanzhou",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "riverlands": [
+      "M7",
+      "farm dam cascade",
+      "South Africa",
+      "Riverlands",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "taquari": [
+      "M7",
+      "partial dam failure in rain flooding",
+      "Brazil",
+      "Santa Tereza",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "jagersfontein": [
+      "M7",
+      "tailings failure",
+      "South Africa",
+      "Charlesville",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "orsk": [
+      "M7",
+      "river embankment failure",
+      "Russia",
+      "Orsk",
+      "",
+      null,
+      null,
+      ""
+    ],
+    "bc-atmospheric-river": [
+      "M8",
+      "rain with possible snowmelt contribution",
+      "Canada",
+      "Southwestern British Columbia",
+      "",
+      null,
+      null,
+      ""
+    ]
+  },
+  "events": [
+    {
+      "site": "mendenhall",
+      "date": "2014-07-11",
+      "crest_date": "2014-07-11",
+      "source": "https://www.weather.gov/media/ajk/suicideBasin/20250810_MendenhallFloodReport.pdf",
+      "note": "NWS table 1 reports a downstream gauge crest day.",
+      "stage_gauge": "15052500",
+      "stage_search_local_days": [
+        "2014-07-10",
+        "2014-07-12"
+      ]
+    },
+    {
+      "site": "mendenhall",
+      "date": "2016-07-01",
+      "crest_date": "2016-07-01",
+      "source": "https://www.weather.gov/media/ajk/suicideBasin/20250810_MendenhallFloodReport.pdf",
+      "note": "NWS table 1 reports a downstream gauge crest day.",
+      "stage_gauge": "15052500",
+      "stage_search_local_days": [
+        "2016-06-30",
+        "2016-07-02"
+      ]
+    },
+    {
+      "site": "mendenhall",
+      "date": "2020-08-01",
+      "crest_date": "2020-08-01",
+      "source": "https://www.weather.gov/media/ajk/suicideBasin/20250810_MendenhallFloodReport.pdf",
+      "note": "NWS table 1 reports a downstream gauge crest day.",
+      "stage_gauge": "15052500",
+      "stage_search_local_days": [
+        "2020-07-31",
+        "2020-08-02"
+      ]
+    },
+    {
+      "site": "mendenhall",
+      "date": "2021-08-14",
+      "crest_date": "2021-08-14",
+      "source": "https://www.weather.gov/media/ajk/suicideBasin/20250810_MendenhallFloodReport.pdf",
+      "note": "NWS table 1 reports a downstream gauge crest day.",
+      "stage_gauge": "15052500",
+      "stage_search_local_days": [
+        "2021-08-13",
+        "2021-08-15"
+      ]
+    },
+    {
+      "site": "mendenhall",
+      "date": "2022-10-27",
+      "crest_date": "2022-10-27",
+      "source": "https://www.weather.gov/media/ajk/suicideBasin/20250810_MendenhallFloodReport.pdf",
+      "note": "NWS table 1 also identifies excessive rainfall. Keep the compound-driver flag.",
+      "stage_gauge": "15052500",
+      "stage_search_local_days": [
+        "2022-10-26",
+        "2022-10-28"
+      ]
+    },
+    {
+      "site": "mendenhall",
+      "date": "2023-08-05",
+      "crest_date": "2023-08-05",
+      "source": "https://www.weather.gov/media/ajk/suicideBasin/20250810_MendenhallFloodReport.pdf",
+      "note": "NWS table 1 reports a downstream gauge crest day.",
+      "stage_gauge": "15052500",
+      "stage_search_local_days": [
+        "2023-08-04",
+        "2023-08-06"
+      ]
+    },
+    {
+      "site": "mendenhall",
+      "date": "2024-08-06",
+      "crest_date": "2024-08-06",
+      "source": "https://www.weather.gov/media/ajk/suicideBasin/20250810_MendenhallFloodReport.pdf",
+      "note": "NWS table 1 reports a downstream gauge crest day.",
+      "stage_gauge": "15052500",
+      "stage_search_local_days": [
+        "2024-08-05",
+        "2024-08-07"
+      ]
+    },
+    {
+      "site": "mendenhall",
+      "date": "2024-10-21",
+      "crest_date": "2024-10-21",
+      "source": "https://www.weather.gov/media/ajk/suicideBasin/20250810_MendenhallFloodReport.pdf",
+      "note": "NWS table 1 reports a downstream gauge crest day.",
+      "stage_gauge": "15052500",
+      "stage_search_local_days": [
+        "2024-10-20",
+        "2024-10-22"
+      ]
+    },
+    {
+      "site": "mendenhall",
+      "date": "2025-08-13",
+      "crest_date": "2025-08-13",
+      "source": "https://www.weather.gov/media/ajk/suicideBasin/20250810_MendenhallFloodReport.pdf",
+      "note": "NWS table 1 also identifies excessive rainfall. Keep the compound-driver flag.",
+      "stage_gauge": "15052500",
+      "stage_search_local_days": [
+        "2025-08-12",
+        "2025-08-14"
+      ]
+    },
+    {
+      "site": "midland",
+      "date": "2020-05-19",
+      "crest_date": "2020-05-20",
+      "source": "https://www.weather.gov/dtx/HistoricFlooding-May-17-20-2020",
+      "peak_source": "https://www.usgs.gov/centers/eros/dam-breaks-michigan",
+      "note": "Edenville and Sanford are a single cascade. Rain also contributed to the Midland crest.",
+      "stage_gauge": "04156000",
+      "stage_search_local_days": [
+        "2020-05-19",
+        "2020-05-21"
+      ]
+    },
+    {
+      "site": "fargo",
+      "date": "1994-04-03",
+      "crest_date": "1994-04-03",
+      "source": "https://www.weather.gov/fgf/AnatomyRedRiverSpringFlood",
+      "peak_source": "https://www.weather.gov/fgf/AnatomyRedRiverSpringFlood",
+      "note": "Flood and gauge crest documented at Fargo.",
+      "stage_gauge": "05054000",
+      "stage_search_local_days": [
+        "1994-04-02",
+        "1994-04-04"
+      ]
+    },
+    {
+      "site": "fargo",
+      "date": "1996-04-16",
+      "crest_date": "1996-04-16",
+      "source": "https://www.weather.gov/fgf/AnatomyRedRiverSpringFlood",
+      "peak_source": "https://www.weather.gov/fgf/AnatomyRedRiverSpringFlood",
+      "note": "Flood and gauge crest documented at Fargo.",
+      "stage_gauge": "05054000",
+      "stage_search_local_days": [
+        "1996-04-15",
+        "1996-04-17"
+      ]
+    },
+    {
+      "site": "fargo",
+      "date": "2009-03-28",
+      "crest_date": "2009-03-28",
+      "source": "https://pubs.usgs.gov/sir/2010/5225/pdf/sir2010-5225.pdf",
+      "peak_source": "https://www.usgs.gov/centers/dakota-water-science-center/red-river-north-fargo-north-dakota-110-years",
+      "note": "Flood and gauge crest documented at Fargo.",
+      "stage_gauge": "05054000",
+      "stage_search_local_days": [
+        "2009-03-27",
+        "2009-03-29"
+      ]
+    },
+    {
+      "site": "thame",
+      "date": "2024-08-16",
+      "source": "https://www.icimod.org/press-release/glof-from-thyanbo-glacial-lake-sweeps-away-thame-village",
+      "note": "The published time describes the lake breach."
+    },
+    {
+      "site": "bhote-koshi",
+      "date": "2016-07-05",
+      "source": "https://www.nature.com/articles/s41598-022-16337-6",
+      "note": "Downstream sediment and free-water inundation need separate evidence."
+    },
+    {
+      "site": "shispare",
+      "date": "2019-06-22",
+      "source": "https://pubmed.ncbi.nlm.nih.gov/32170170/",
+      "note": "The published incident spans June 22–23."
+    },
+    {
+      "site": "south-lhonak",
+      "date": "2023-10-03",
+      "source": "https://iris.unil.ch/bitstreams/8e6c0c1e-4ef1-4de4-b5ca-583103b5bfe2/download",
+      "note": "One cascade continued into October 4. Keep impact reaches in a common incident cluster."
+    },
+    {
+      "site": "chamoli",
+      "date": "2021-02-07",
+      "source": "https://pubs.usgs.gov/publication/70221399",
+      "note": "Exclude from lake-outburst scoring. Source attributes the event to a rock and ice avalanche.",
+      "excluded": true
+    },
+    {
+      "site": "melamchi",
+      "date": "2021-06-15",
+      "source": "https://www.icimod.org/article/the-melamchi-flood-disaster/",
+      "note": "Exclude from lake-outburst scoring. Multiple causes and no independently established glacier-lake release in the report.",
+      "excluded": true
+    },
+    {
+      "site": "sardoba",
+      "date": "2020-05-01",
+      "source": "https://un-spider.org/news-and-events/news/cssteap-analyses-sardoba-dam-failure",
+      "note": "Cross-border impacts are one incident."
+    },
+    {
+      "site": "xe-pian",
+      "date": "2018-07-23",
+      "source": "https://www.gdacs.org/Public/download.aspx?id=28&type=DC",
+      "note": "The failure time is documented. A downstream crest is still needed."
+    },
+    {
+      "site": "kherson",
+      "date": "2023-06-06",
+      "source": "https://ukraine.un.org/sites/default/files/2023-10/Kakhovka_Dam_Breach_Ukraine_Assessment.pdf",
+      "note": "Report gives June 8 at 03:00 at Kherson. Verify time convention and gauge location before screening imagery."
+    },
+    {
+      "site": "patel",
+      "date": "2018-05-09",
+      "source": "https://www.parliament.go.ke/sites/default/files/2017-05/Tuesday_15th_May_2018.pdf",
+      "note": "Need a village reach with independently timed peak evidence."
+    },
+    {
+      "site": "taum-sauk",
+      "date": "2005-12-14",
+      "source": "https://www.weather.gov/lsx/events",
+      "note": "Downstream impacts are documented; the time of the breach is insufficient."
+    },
+    {
+      "site": "whaley",
+      "date": "2019-08-01",
+      "source": "https://www.gov.uk/government/publications/regulating-for-people-the-environment-and-growth/regulating-for-people-the-environment-and-growth-2019",
+      "note": "Exclude from breach scoring. The regulator reports the breach was averted.",
+      "excluded": true
+    },
+    {
+      "site": "brumadinho",
+      "date": "2019-01-25",
+      "source": "https://www.gov.br/cvm/pt-br/assuntos/noticias/anexos/2024/20240930-pas-cvm-19957-007916-2019-38-relatorio-diretor-daniel-maeda.pdf",
+      "note": "Hold unless independent imagery distinguishes water from tailings."
+    },
+    {
+      "site": "mariana",
+      "date": "2015-11-05",
+      "source": "https://www.gov.br/cvm/pt-br/assuntos/noticias/anexos/2024/20240930-pas-cvm-19957-007916-2019-38-relatorio-diretor-daniel-maeda.pdf",
+      "note": "Hold unless independent imagery distinguishes water from tailings."
+    },
+    {
+      "site": "galena",
+      "date": "2013-05-26",
+      "source": "https://www.weather.gov/safety/flood-states-ak",
+      "note": "Reported rise at Galena. Several towns flooded during the same Yukon breakup."
+    },
+    {
+      "site": "circle",
+      "date": "2023-05-13",
+      "source": "https://www.weather.gov/media/aprfc/newsletter/fall23.pdf",
+      "note": "Verify downstream timing before using a scene."
+    },
+    {
+      "site": "grand-forks-bc",
+      "date": "2018-05-10",
+      "source": "https://www2.gov.bc.ca/assets/gov/environment/climate-change/adaptation/resources/social_impacts_grand_forks_flood.pdf",
+      "note": "Joint rain and snowmelt event."
+    },
+    {
+      "site": "upper-mississippi",
+      "date": "2023-04-25",
+      "source": "https://www.weather.gov/arx/flood2023",
+      "note": "NWS lists the crest at this reach on April 25. Multiple towns share the same spring flood.",
+      "crest_date": "2023-04-25"
+    },
+    {
+      "site": "rutland",
+      "date": "2024-04-12",
+      "source": "https://www.weather.gov/media/btv/e5/E5_BTV_2024-04.pdf",
+      "note": "NWS identifies this reach among those above flood stage; rain and residual snowmelt.",
+      "stage_gauge": "04282000",
+      "stage_search_local_days": [
+        "2024-04-12",
+        "2024-04-14"
+      ]
+    },
+    {
+      "site": "rutland",
+      "date": "2025-03-16",
+      "source": "https://www.weather.gov/media/btv/e5/E5_BTV_2025-03.pdf",
+      "note": "Flood stage exceeded on this reach. Regional ice jams occurred elsewhere.",
+      "stage_gauge": "04282000",
+      "stage_search_local_days": [
+        "2025-03-16",
+        "2025-03-19"
+      ]
+    },
+    {
+      "site": "corwin",
+      "date": "2022-06-12",
+      "source": "https://pubs.usgs.gov/publication/fs20243035/full",
+      "note": "Regional rain on melting snow. Check for round-3 compound-event overlap.",
+      "stage_gauge": "06191500",
+      "stage_search_local_days": [
+        "2022-06-12",
+        "2022-06-15"
+      ]
+    },
+    {
+      "site": "kallio",
+      "date": "2023-05-20",
+      "crest_date": "2023-05-20",
+      "source": "https://www.smhi.se/kunskapsbanken/hydrologi/historiska-oversvamningar/2023---kraftig-varflod-i-tornealven",
+      "note": "SMHI reports a May 20 crest on the Muonio. Pello and Kukkolankoski are downstream reaches of the same flood. Kallio 2 was in service in 2023."
+    },
+    {
+      "site": "shispare",
+      "date": "2020-05-29",
+      "source": "https://lib.icimod.org/records/yhbzy-zje46/preview/aaa1e44.pdf?include_deleted=0",
+      "note": "Subsequent drainage of the Shisper lake. The lake-emptying day is distinct from the Hassanabad crest."
+    },
+    {
+      "site": "shispare",
+      "date": "2022-05-07",
+      "source": "https://lib.icimod.org/records/yhbzy-zje46/preview/aaa1e44.pdf?include_deleted=0",
+      "note": "Subsequent drainage of the Shisper lake. The lake-emptying day is distinct from the Hassanabad crest."
+    },
+    {
+      "site": "kedarnath",
+      "date": "2013-06-17",
+      "source": "https://nidm.gov.in/pdf/pubs/india%20disaster%20report%202013.pdf",
+      "note": "Second of two flood pulses. Isolate lake-release inundation from the June 16 pulse."
+    },
+    {
+      "site": "derna",
+      "date": "2023-09-10",
+      "source": "https://wmo.int/media/news/libya-floods-show-need-multi-hazard-early-warnings-unified-response",
+      "note": "Exclude from reserve. Derna already appeared in GeoWatch evaluation.",
+      "excluded": true
+    },
+    {
+      "site": "braskereidfoss",
+      "date": "2023-08-09",
+      "source": "https://publikasjoner.nve.no/eksternrapport/2025/eksternrapport2025_24.pdf",
+      "note": "Separate regional rain flooding from water released by the failure."
+    },
+    {
+      "site": "tuanzhou",
+      "date": "2024-07-05",
+      "source": "https://english.www.gov.cn/news/202407/06/content_WS66888e5fc6d0868f4e8e8efd.html",
+      "note": "A polder water-level maximum is needed; lake stage outside the dike cannot establish it."
+    },
+    {
+      "site": "riverlands",
+      "date": "2024-08-08",
+      "source": "https://www.gov.za/news/media-statements/minister-pemmy-majodina-release-preliminary-investigation-failure-3-dams",
+      "note": "Treat the three failures as a single cascade."
+    },
+    {
+      "site": "taquari",
+      "date": "2024-05-02",
+      "source": "https://www.sgb.gov.br/w/rompimento-parcial-de-barragem-comeca-a-impactar-niveis-na-bacia-do-rio-taquari-no-rio-grande-do-sul",
+      "note": "The geological service reported a possible breach contribution. Independent attribution and overlap review required."
+    },
+    {
+      "site": "jagersfontein",
+      "date": "2022-09-11",
+      "source": "https://www.gov.za/tn/news/media-statements/minister-nkosazana-dlamini-zuma-activates-national-disaster-management-centre",
+      "note": "Tailings deposits alone cannot establish the primary water endpoint."
+    },
+    {
+      "site": "orsk",
+      "date": "2024-04-05",
+      "source": "https://www.bellingcat.com/news/2024/04/12/how-the-russian-city-of-orsk-went-underwater/",
+      "note": "Same regional snowmelt and rain episode affects M8. Do not count the same inundation twice."
+    },
+    {
+      "site": "bc-atmospheric-river",
+      "date": "2021-11-14",
+      "source": "https://sencanada.ca/en/content/sen/committee/441/agfo/11ev-55565-e",
+      "note": "Rainfall dominated. A specific reach with independent snowmelt attribution is needed."
+    }
+  ]
+}
