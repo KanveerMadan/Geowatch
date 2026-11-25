@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "unit": "midland-2020-05-19",
+    "event": "2020-05-19",
+    "role": "dev",
+    "incident": "midland-2020-05-19",
+    "block": 1,
+    "grid": {
+      "crs": "EPSG:32617",
+      "shape": [
+        266,
+        266
+      ],
+      "transform": [
+        30,
+        0,
+        234840.0,
+        0,
+        -30,
+        4836000.0
+      ]
+    },
+    "state_codes": {
+      "unobserved": 0,
+      "confident_dry": 1,
+      "confident_flooded": 2,
+      "ambiguous": 3
+    },
+    "before": "LC08_021030_20200504",
+    "after": "LC08_021030_20200520",
+    "acquisition": {
+      "collection": "landsat-c2-l2",
+      "lag_hours_max": 0.11292227416666667,
+      "lag_hours_min": -0.38707772583333333,
+      "scene": "LC08_L2SP_021030_20200520_02_T1",
+      "utc": "2020-05-20T16:21:46.520187Z"
+    },
+    "support": "Open-land optical change proxy from one Landsat pair, acquisition time only.",
+    "source": "USGS Landsat and NLCD; EC JRC/Google",
+    "recipe_sha256": "3df4a83cf714df5e607f8eb96728acc3cbb577ae77ffabbaa537f8394b43dbfb"
+  },
+  "counts": {
+    "unobserved": 60782,
+    "confident_dry": 2874,
+    "confident_flooded": 133,
+    "ambiguous": 6967
+  },
+  "sha256": "595774be631d9739f793cddc1ee7b0fb0d4fde38db68f8c1c3ea106326b9334e"
+}

@@ -6,3 +6,9 @@
 - NOAA National Weather Service. The catalogue derives event facts from named NWS reports and station metadata. NWS material is public domain unless otherwise indicated. This independent GeoWatch analysis carries no agency endorsement. [NWS notice](https://www.weather.gov/disclaimer)
 - European Union, Copernicus Sentinel data. The acquisition receipts use Sentinel-1 and Sentinel-2 metadata for the years shown in each row. Apply the official source and modification notices to any imagery-derived release. [Sentinel legal notice](https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice)
 - Other linked investigation and agency reports supply bibliographic references and independently restated event facts only. No third-party figures, report text, flood polygons, photographs or map products have been republished. Verify the individual product terms before reuse as a spatial label. The temporary imagery and stage query responses contain no redistributed paid imagery.
+
+## Midland development reference
+
+The 2019 National Land Cover Database layer is a USGS/MRLC land-cover product. Source USGS; the public land-cover data are used for observability. The Landsat surface reflectance and QA layers use the USGS policy above. [NLCD dataset and terms](https://developers.google.com/earth-engine/datasets/catalog/USGS_NLCD_RELEASES_2019_REL_NLCD) · [USGS Landsat quality bands](https://www.usgs.gov/landsat-missions/landsat-collection-2-quality-assessment-bands)
+
+Source: EC JRC/Google. Global Surface Water v1.4 occurrence and observation metadata are used under the Copernicus Programme's free-use terms with attribution. Cite J.-F. Pekel, A. Cottam, N. Gorelick and A. Belward, High-resolution mapping of global surface water and its long-term changes, Nature 540 (2016), 418–422. [Dataset terms and citation](https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_4_Metadata)

@@ -17,3 +17,9 @@ All eight timed M6 incidents are at the Mendenhall reach. Two of its post-2021 i
 **Resume** with independent downstream timing for non-Alaskan M6 and M7, including Kherson, Hassanabad and Riverlands. Expand acquisition searches for events with a verified crest. Obtain the round-3 metadata-only manifest or another reliable reconciliation of its event clusters. Use the frozen five-event floor and check actual event and geographic independence before sealing. No reserve has been sealed, no hazard model fitted, and no product trust label changed.
 
 See experiments/flood_m678/CATALOG.md for the reproducible commands and LICENCES.md for attribution.
+
+## First pre-2022 label pilot
+
+The branch now contains one observed-surface-water development tile for the 2020 Midland event and its QA receipt. The Landsat overpass fell inside the half-hour bracket around the measured crest. The tile has 133 flooded and 2,874 dry proxy cells out of 70,756. The other cells abstain. There is no independent cell-level validation or hazard-model score. See experiments/flood_m678/dev_references/README.md.
+
+Round-3 coordination can proceed using the published historical and candidate union, explicit treatment of shared storm and compound drivers, and a conservative hold on every uncertain incident. Requesting a private list from the user is unnecessary. Recheck round-3 metadata before sealing. Prioritise independent downstream timing and cover for M7 and geographically distinct M6 incidents.
