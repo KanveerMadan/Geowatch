@@ -139,7 +139,8 @@ class GeoWatchGateway:
 
     def classify(self, method: str, path: str, keyed: bool):
         """(kind, bucket): kind is health | preflight | public_key |
-        public | passthrough."""
+        public | hidden | passthrough. `hidden`: the bare results list, which
+        would show every visitor's analysed areas; a keyed caller still gets it."""
         if path == "/health" and method in ("GET", "HEAD"):
             return "health", None
         if method == "OPTIONS":
@@ -151,6 +152,8 @@ class GeoWatchGateway:
                 if bucket == "analysis" and not self.public_jobs:
                     return "passthrough", "read"
                 return "public_key", bucket
+        if method == "GET" and path.rstrip("/") == "/api/results":
+            return "hidden", None            # the list of everyone's areas is not public (audit M1)
         if method == "GET" and PUBLIC_READ.fullmatch(path):
             return "public", "read"
         return "passthrough", "read"
@@ -173,6 +176,9 @@ class GeoWatchGateway:
                 "method": method, "path": path, "status": code, "kind": kind,
                 "ms": round((time.monotonic() - t0) * 1000, 1), "client": client}})
 
+        if kind == "hidden":
+            await self._json(send, 404, {"detail": "Not found."}, cors)
+            return done(404)
         if kind == "health":
             code, body = self.health()
             await self._json(send, code, body, cors)

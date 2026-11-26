@@ -32,6 +32,11 @@ export default function AreaStatus({ place, bbox, maxKm2, job, wards, onAnalyse,
             </a>
           )}
         </div>
+        {reportHref && (
+          <p className="muted storage-note">
+            Results are kept only temporarily on this free server. A report link can stop working after a restart; run the area again if it does.
+          </p>
+        )}
         <p className="muted">
           {place?.region && <>{place.region}<span aria-hidden="true"> · </span></>}
           <span className={`area area-${st}`}>{fmtKm2(km2)}</span>

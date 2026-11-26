@@ -540,3 +540,8 @@ button.flrow-main { cursor: pointer; border-radius: var(--r-control); }
 .history-scenes { text-align: left; font-weight: normal; overflow-wrap: anywhere; }
 .history-scenes summary { cursor: pointer; white-space: nowrap; }
 .history-scenes p { margin-top: var(--s-1); }
+
+/* Audit 2026-11-26: the licence / non-commercial notice and the temporary-storage note. */
+.licence-note { margin-top: 16px; padding-top: 10px; border-top: 1px solid var(--c-rule, rgba(127,127,127,.25)); }
+.licence-note a { color: inherit; text-decoration: underline; }
+.storage-note { font-size: var(--t-caption-size); line-height: var(--t-caption-lh); margin: 4px 0 0; }
