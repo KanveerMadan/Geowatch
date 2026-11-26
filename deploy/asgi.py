@@ -64,7 +64,9 @@ def limits_from_env() -> dict:
         "poll": (_int("GEOWATCH_RATE_POLL_PER_MIN", 120), 60),
         "imagery": (_int("GEOWATCH_RATE_IMAGERY_PER_HOUR", 60), 3600),
         "analysis": (_int("GEOWATCH_RATE_ANALYSIS_PER_HOUR", 4), 3600),
-        "analysis_global_day": (_int("GEOWATCH_ANALYSIS_PER_DAY", 100), 86400),
+        # 2026-11-26 (fix/deploy-urgent): 100 -> 20 public analyses a day in total, to bound
+        # Earth Engine use on the project while access is keyless.
+        "analysis_global_day": (_int("GEOWATCH_ANALYSIS_PER_DAY", 20), 86400),
         "keyed": (_int("GEOWATCH_RATE_KEYED_PER_MIN", 600), 60),
     }
 

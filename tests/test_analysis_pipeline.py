@@ -79,10 +79,9 @@ def test_labels_after_flood_round4(run):
     for h in ("pluvial", "flash_flood", "waterlogging"):
         assert s[h]["validation_status"] == "failed", h
         assert s[h]["tier2_verdict"] == "failed", h
-    assert s["fluvial"]["validated_scope"]["not_covered"]["regions"]
-    assert s["fluvial"]["validation_status"] == "validated"
-    assert s["fluvial"]["validated_scope"]["regions"]
-    assert s["fluvial"]["tier2_verdict"] == "validated"
+    # Withdrawn 2026-11-26 (C.WITHDRAWN_VALIDATIONS): experimental, no scope.
+    assert s["fluvial"]["validation_status"] == "experimental"
+    assert s["fluvial"]["validated_scope"] is None
     assert s["coastal"]["validation_status"] == "failed"
     for h in ("fluvial", "flash_flood", "waterlogging"):
         assert s[h]["spatial"] is True, h
