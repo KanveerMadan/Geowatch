@@ -75,6 +75,9 @@ def hour_crop(t, box):
         w = from_bounds(*box, transform=s.transform).round_offsets().round_lengths()
         a = s.read(1, window=w).astype(np.float32)
         tr = s.window_transform(w)
+    if a.size == 0 or min(a.shape) < 2:            # box fell outside this product's grid
+        np.savez_compressed(p, a=np.zeros(0), t=np.zeros(6))
+        return None, None
     a[a < 0] = np.nan
     np.savez_compressed(p, a=a, t=np.array(tuple(tr)[:6]))
     return a, tuple(tr)[:6]
@@ -159,6 +162,10 @@ def unit_features(n, meta, ee):
             if stack and a.shape != stack[0].shape:
                 continue
             stack.append(a)
+    if stack:                                       # keep the most common crop shape only
+        from collections import Counter
+        shp = Counter(x.shape for x in stack).most_common(1)[0][0]
+        stack = [x for x in stack if x.shape == shp]
     if not stack:
         np.savez_compressed(p, **{k: np.full(H30 * W30, np.nan, np.float32) for k in FEATS}, hours=0)
         return "no MRMS"
