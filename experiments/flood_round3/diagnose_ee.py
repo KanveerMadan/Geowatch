@@ -27,6 +27,8 @@ BUFFER_M = 25_000          # rain over the box and its surroundings (upstream ca
 def _init():
     import ee
     from dotenv import dotenv_values
+    from experiments.flood_round3 import ee_lock
+    ee_lock.install()                      # R33: shared lock with other local EE clients
     env = dotenv_values(os.path.expanduser("~/geowatch/.env"))
     ee.Initialize(project=env.get("GEE_PROJECT_ID") or os.environ.get("GEE_PROJECT_ID"))
     return ee

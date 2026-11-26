@@ -27,6 +27,11 @@ BIG = os.path.expanduser("~/.cache/geowatch/flood_round3/big")
 os.environ.setdefault("GEOWATCH_BASELINE_CACHE", os.path.join(BIG, "baseline"))
 os.environ.setdefault("GEOWATCH_LEARNED_CACHE", os.path.join(BIG, "inputs"))
 os.environ.setdefault("GEOWATCH_LEARNED_TABLES", os.path.join(BIG, "tables_l"))
+try:                                    # R33: every EE call in this process shares the local EE lock
+    from experiments.flood_round3 import ee_lock as _ee_lock
+    _ee_lock.install()
+except ImportError:
+    pass
 
 import numpy as np  # noqa: E402
 
