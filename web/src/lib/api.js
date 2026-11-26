@@ -3,12 +3,13 @@
  * a development shared secret for a localhost tool, not client
  * authentication (the same caveat as C40 and the old UI's api.js).
  */
-export const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://127.0.0.1:8000'
-const KEY = import.meta.env.VITE_GEOWATCH_API_KEY
+export const API_BASE = import.meta.env.VITE_API_BASE ?? (import.meta.env.DEV ? 'http://127.0.0.1:8000' : '')
+const KEY = import.meta.env.DEV ? import.meta.env.VITE_GEOWATCH_API_KEY : undefined
 
 // Fixed 2026-10-29: how often a running job is asked for news.
 export const JOB_POLL_MS = 1500
-const REQUEST_TIMEOUT_MS = 30000
+// The first request can wake a sleeping free Render service.
+const REQUEST_TIMEOUT_MS = 90000
 
 export class ApiError extends Error {
   constructor(status, detail) {

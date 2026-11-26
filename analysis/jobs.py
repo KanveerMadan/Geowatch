@@ -19,6 +19,7 @@ then names the exception class.
 from __future__ import annotations
 
 import copy
+import os
 import re
 import secrets
 import threading
@@ -29,7 +30,9 @@ from datetime import datetime, timezone
 from analysis import store
 
 # Fixed 2026-10-29 with the job API, before any real-data run through it.
-MAX_CONCURRENT_RUNS = 2       # each run is EE- and Overpass-bound; more would queue at them anyway
+MAX_CONCURRENT_RUNS = int(os.getenv("GEOWATCH_JOB_WORKERS", "2"))
+if MAX_CONCURRENT_RUNS not in (1, 2):
+    raise ValueError("GEOWATCH_JOB_WORKERS must be 1 or 2")
 MAX_JOBS_KEPT = 200           # oldest finished jobs are forgotten first
 JOB_ID_PATTERN = re.compile(r"j[0-9a-f]{24}")
 
