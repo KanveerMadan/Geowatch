@@ -2,6 +2,22 @@
 
 Branch `exp/flood-round3` (from `07e9920`, round 2's result), worktree gw-floodproto. Read this first on any restart, and never redo a phase marked done. Judgement calls are in DECISIONS.md (R18 onwards). The diagnosis is in DIAGNOSIS.md.
 
+<!-- R33:BEGIN -->
+## Latest (2026-11-26), in plain words
+- **Rain:** the 311 labels themselves cannot show 0.70.
+  - Even an "oracle" that knows half of a storm's own flood reports predicts the other half at only about 0.60 (Chicago 0.59, San Francisco 0.59, NYC 0.67).
+  - Our rain model already reaches 0.60, so we stop tuning it.
+  - A better label is needed: same-day aerial photos, or FloodNet street sensors (2022+). Decision needed (DIAGNOSIS §l).
+- **Flash:** NOAA MRMS radar rain (1 km, hourly) replaces coarse satellite rain as event features: event total, wettest hour, and rain upstream of each cell. Computing now; then the DEV comparison reruns.
+- **Waterlogging:** new features are being computed now:
+  - how often each spot held water in the same season in past years (JRC, Sentinel-1);
+  - soil wetness the week before;
+  - distance to canals and drains (local OSM files).
+- **Coastal / compound:** Codex's hurricane high-water-mark cells are used only as a check. They have no dry cells, and they were chosen where water stood above the ground, which flatters elevation. Codex's aerial wet/dry labels are still to come.
+- **Tools:** local OSM extracts are now used instead of the public Overpass servers, and every Earth Engine call shares Codex's lock, so the two never overlap.
+- **Reserve:** still sealed and unopened. It waits for the GFM / EMS accounts.
+<!-- R33:END -->
+
 ## Waiting on the owner: accounts (being created 2026-11-23; nothing waits on them)
 Open substitutes are in use. This is what each account will add when it exists:
 
