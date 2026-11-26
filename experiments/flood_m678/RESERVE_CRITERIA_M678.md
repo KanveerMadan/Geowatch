@@ -37,5 +37,5 @@ This addendum supersedes the timing sentence above where they differ. DECISIONS_
   4. a published local day;
   5. a GEOGloWS v2 daily peak, only where none of the above exists and never for a dam or lake failure.
 - **Clusters:** one per river reach, lake or storm, whichever is coarser. Leave-cluster-out CV. The reserve and the five-event floor count clusters, not incidents. An incident from a storm used for one type is not used for another type.
-- **Box:** the 8 km box is placed by round 4's `place()` on the flood centre inside a 20 km search square around the reach point, as round 3's Sentinel-1 route does. The search square, not the box, must be covered by the label image. Placement runs mechanically at build time, identically for DEV and reserve.
+- **Box:** the 8 km box is placed by round 4's `place()` on the flood centre inside a 20 km search square around the reach point, as round 3's Sentinel-1 route does. The label image must cover the 8 km box centred on the reach point. The rest of the search square is used where observed and is unobserved elsewhere. Placement runs mechanically at build time, identically for DEV and reserve.
 - **Maximum lag per label:** recorded per label as image minus crest, in hours, with both bounds.
