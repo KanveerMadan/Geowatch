@@ -324,11 +324,11 @@
       "M7",
       "river embankment failure",
       "Russia",
-      "Orsk",
-      "",
-      null,
-      null,
-      ""
+      "Ural River at Old Orsk",
+      "Asia/Yekaterinburg",
+      51.2305,
+      58.4738,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
     ],
     "bc-atmospheric-river": [
       "M8",
@@ -428,6 +428,56 @@
       "Asia/Kolkata",
       14.25392,
       79.043258,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "pajaro": [
+      "M7",
+      "river levee breach",
+      "USA",
+      "Pajaro River at Pajaro",
+      "America/Los_Angeles",
+      36.90024,
+      -121.7397,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "tloul": [
+      "M7",
+      "embankment dam failure",
+      "Syria",
+      "Orontes at Al-Tlul, Salqin",
+      "Asia/Damascus",
+      36.20728,
+      36.399116,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "kosi-bhubhaul": [
+      "M7",
+      "river embankment breach",
+      "India",
+      "Kosi western embankment at Bhubhaul, Kiratpur",
+      "Asia/Kolkata",
+      25.995248,
+      86.365188,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "tutaekuri-awatoto": [
+      "M7",
+      "river levee breach",
+      "New Zealand",
+      "Tutaekuri River at Awatoto–Brookfields, Napier",
+      "Pacific/Auckland",
+      -39.53,
+      176.88,
+      "approximate reach point between Awatoto and Brookfields from the HBRC breach reports; reserve box placed by place() at build time"
+    ],
+    "ussuriysk": [
+      "M7",
+      "river levee breach",
+      "Russia",
+      "Rakovka at Ussuriysk",
+      "Asia/Vladivostok",
+      43.79724,
+      131.95207,
       "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
     ]
   },
@@ -782,7 +832,8 @@
       "site": "braskereidfoss",
       "date": "2023-08-09",
       "source": "https://publikasjoner.nve.no/eksternrapport/2025/eksternrapport2025_24.pdf",
-      "note": "Separate regional rain flooding from water released by the failure."
+      "note": "Separate regional rain flooding from water released by the failure. Excluded 2026-11-27: police reported no major downstream flooding from the breach itself, so the inundation cannot be attributed to the failure as distinct from Storm Hans rain flooding (M7 mechanism rule).",
+      "excluded": true
     },
     {
       "site": "tuanzhou",
@@ -812,7 +863,13 @@
       "site": "orsk",
       "date": "2024-04-05",
       "source": "https://www.bellingcat.com/news/2024/04/12/how-the-russian-city-of-orsk-went-underwater/",
-      "note": "Same regional snowmelt and rain episode affects M8. Do not count the same inundation twice."
+      "note": "Same regional snowmelt and rain episode affects M8. Do not count the same inundation twice. The embankment dam failed on the evening of April 5 (local). AllRivers via the press: 9.7 m at Orsk on April 7, and the ministry reported recession by April 9. The crest is bracketed by the local days April 7 and 8. The breach floor is 17:00 local on April 5.",
+      "crest_utc_bracket": [
+        "2024-04-06T19:00:00+00:00",
+        "2024-04-08T19:00:00+00:00"
+      ],
+      "peak_source": "https://www.themoscowtimes.com/2024/04/07/russian-flood-situation-critical-in-orsk-after-burst-dam-a84762",
+      "not_before_utc": "2024-04-05T12:00:00+00:00"
     },
     {
       "site": "bc-atmospheric-river",
@@ -938,12 +995,71 @@
       "source": "https://sandrp.in/2021/12/05/andhra-pradesh-dam-induced-flood-disaster-in-november-2021/",
       "note": "The left bund failed at about 05:30-06:00 IST on November 19. Downstream villages including Togurupeta, Mandapalli and Pulapathur were submerged the same day. The local day is the crest at the evaluation reach; there is no measured stage.",
       "not_before_utc": "2021-11-19T00:00:00+00:00"
+    },
+    {
+      "site": "pajaro",
+      "date": "2023-03-11",
+      "stage_gauge": "11159000",
+      "stage_search_local_days": [
+        "2023-03-09",
+        "2023-03-13"
+      ],
+      "source": "https://resources.ca.gov/Home/News/Blog/2023/Mar-23/DWR-Supports-Flood-Fight-Efforts-at-Pajaro-River-Levee-Break",
+      "peak_source": "https://api.water.noaa.gov/nwps/v1/gauges/aroc1",
+      "note": "NWS historic crest 29.11 ft at Pajaro River at Chittenden, 04:00 UTC March 11, 2023, 13 km upstream of the breach. Monterey County: seepage seen at 23:00 and the levee failed about 30 minutes later on March 10 (PST). DWR: around midnight. The breach floor is 23:30 PST. The USGS approved stage record has gaps, and its observed maximum is at 12:00 UTC. The bracket spans both readings.",
+      "not_before_utc": "2023-03-11T07:30:00+00:00",
+      "crest_utc_bracket": [
+        "2023-03-11T03:00:00+00:00",
+        "2023-03-11T13:00:00+00:00"
+      ]
+    },
+    {
+      "site": "tloul",
+      "date": "2023-02-09",
+      "crest_date": "2023-02-09",
+      "crest_kind": "published_day",
+      "source": "https://reliefweb.int/report/syrian-arab-republic/syria-dam-break-and-floods-noaa-cpc-un-ocha-media-floodlist-echo-daily-flash-14-february-2023",
+      "peak_source": "https://bianet.org/english/environment/274261-sharp-current-rise-in-orontes-river",
+      "note": "An earthen embankment on the Orontes failed on February 9, 2023 after the February 6 earthquake and heavy rain, and flooded Al-Tlul. Anadolu reports the Orontes rising from 15 to 130 m3/s on February 9. The collapse time is unknown, so images must postdate the end of February 9 local.",
+      "not_before_utc": "2023-02-09T21:00:00+00:00"
+    },
+    {
+      "site": "kosi-bhubhaul",
+      "date": "2024-09-29",
+      "geoglows_window_days": [
+        "2024-09-24",
+        "2024-10-06"
+      ],
+      "source": "https://www.downtoearth.org.in/natural-disasters/swollen-kosi-bagmati-gandak-breach-embankments-wreak-havoc-in-flood-hit-bihar",
+      "note": "Reports place the breach near Bhubhaul in Kiratpur block from late September 28 to the night of September 30. The latest report sets the breach floor at 24:00 IST on September 30. No crest at the breached reach is published, so the GEOGloWS daily peak is used.",
+      "not_before_utc": "2024-09-30T18:30:00+00:00"
+    },
+    {
+      "site": "tutaekuri-awatoto",
+      "date": "2023-02-14",
+      "crest_date": "2023-02-14",
+      "crest_kind": "published_day",
+      "source": "https://www.rnz.co.nz/news/national/486399/tutaekuri-river-suffers-worst-damage-from-cyclone-gabrielle-onslaught-council-says",
+      "peak_source": "https://niwa.co.nz/water-atmosphere/water-atmosphere-29-june-2023/wake-gabrielle",
+      "note": "Cyclone Gabrielle. Tutaekuri stopbanks gave way on February 14, 2023, flooding Awatoto and Brookfields. NIWA: the river rose well above the 1-in-100-year design level. The local day of the breach and peak stands for the crest. Compound storm; the cyclone is its own cluster.",
+      "not_before_utc": "2023-02-13T11:00:00+00:00"
+    },
+    {
+      "site": "ussuriysk",
+      "date": "2023-08-12",
+      "crest_date": "2023-08-12",
+      "crest_kind": "published_day",
+      "source": "https://www.fontanka.ru/2023/08/12/72593219/",
+      "peak_source": "https://novayagazeta.ru/articles/2023/08/12/vsekh-spasli-vse-zhivy-gusi-von-plavaiut",
+      "note": "Remnants of Typhoon Khanun. Overtopping overnight, then failure of the Ussuriysk flood dike on the morning of August 12, 2023 (city duty service). 117 mm of rain the day before. The local day of the failure stands for the crest at the breached reach.",
+      "not_before_utc": "2023-08-11T14:00:00+00:00"
     }
   ],
   "clusters": {
     "missouri-hamburg": "midwest-2019-03",
     "missouri-holt": "midwest-2019-03",
     "chikuma-hoyasu": "hagibis-2019-10",
-    "gulfport-miss": "midwest-2008-06"
+    "gulfport-miss": "midwest-2008-06",
+    "kosi-bhubhaul": "kosi"
   }
 }

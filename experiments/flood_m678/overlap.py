@@ -9,8 +9,19 @@ from pyproj import Geod
 from shapely.geometry import Point, box
 
 from screen_acquisitions import HERE, write_file
+from pyproj import CRS, Transformer
+from shapely.geometry import Polygon
 
-PIN = "52878831bb7082bd020c18708093ee06a22cce94"
+SEARCH_HALF_M = 10_000   # the 20 km search square that place() may use (criteria addendum)
+
+
+def search_square(lon, lat):
+    local = CRS.from_proj4(f"+proj=aeqd +lat_0={lat} +lon_0={lon} +datum=WGS84 +units=m")
+    t = Transformer.from_crs(local, "EPSG:4326", always_xy=True)
+    h = SEARCH_HALF_M
+    return Polygon([t.transform(x, y) for x, y in [(-h, -h), (h, -h), (h, h), (-h, h)]])
+
+PIN = "f28d71446f0c3f9d180b4415b7e6f8a4fe204f5f"  # round-3 head on 2026-11-27 (was 5287883)
 REGISTRIES = ("flood_core/registry/events.json", "flood_final/registry_units.json",
               "flood_round2/registry_units_round2.json")
 CANDIDATES = {"r3_ems_candidates":"bounds","r3_mmflood_candidates":"bbox_at_search_point",
@@ -66,7 +77,7 @@ def main():
         if eid not in scenes:
             out[eid]={"status":"needs_study_footprint"}
             continue
-        study=box(*scenes[eid]["bbox_wgs84"])
+        study=search_square(float(row["longitude"]),float(row["latitude"]))
         matches=sorted({(name,key) for name,key,other in pool if conflicts(study,other)})
         out[eid]={"status":"known_geographic_conflict" if matches else "no_match_in_available_geometry",
                   "matches":matches}

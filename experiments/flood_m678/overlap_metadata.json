@@ -23,6 +23,10 @@
       "matches": [],
       "status": "no_match_in_available_geometry"
     },
+    "kosi-bhubhaul-2024-09-29": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
     "mendenhall-2022-10-27": {
       "matches": [],
       "status": "no_match_in_available_geometry"
@@ -43,18 +47,33 @@
       "status": "no_match_in_available_geometry"
     },
     "orsk-2024-04-05": {
-      "status": "needs_study_footprint"
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "pajaro-2023-03-11": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
     },
     "riverlands-2024-08-08": {
       "status": "needs_study_footprint"
     },
     "rutland-2024-04-12": {
-      "matches": [],
-      "status": "no_match_in_available_geometry"
+      "matches": [
+        [
+          "se_flash_candidates",
+          "r3se_116778"
+        ]
+      ],
+      "status": "known_geographic_conflict"
     },
     "rutland-2025-03-16": {
-      "matches": [],
-      "status": "no_match_in_available_geometry"
+      "matches": [
+        [
+          "se_flash_candidates",
+          "r3se_116778"
+        ]
+      ],
+      "status": "known_geographic_conflict"
     },
     "shispare-2022-05-07": {
       "status": "needs_study_footprint"
@@ -75,14 +94,26 @@
     "thame-2024-08-16": {
       "status": "needs_study_footprint"
     },
+    "tloul-2023-02-09": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
     "tuanzhou-2024-07-05": {
       "status": "needs_study_footprint"
+    },
+    "tutaekuri-awatoto-2023-02-14": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
     },
     "upper-mississippi-2023-04-25": {
       "matches": [],
       "status": "no_match_in_available_geometry"
+    },
+    "ussuriysk-2023-08-12": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
     }
   },
-  "round3_commit": "52878831bb7082bd020c18708093ee06a22cce94",
+  "round3_commit": "f28d71446f0c3f9d180b4415b7e6f8a4fe204f5f",
   "sealed_manifest_available_at_commit": false
 }

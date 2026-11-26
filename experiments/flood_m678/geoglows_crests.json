@@ -1,0 +1,15 @@
+{
+  "kosi-bhubhaul-2024-09-29": {
+    "dsarea_km2": 1982.3,
+    "end": "2024-09-30T00:00:00+00:00",
+    "link": 441032489,
+    "peak_m3s": 1021.4,
+    "source": "https://geoglows.ecmwf.int/api/v2/retrospectivedaily/441032489?format=json",
+    "start": "2024-09-29T00:00:00+00:00",
+    "status": "geoglows_day",
+    "window": [
+      "2024-09-24",
+      "2024-10-06"
+    ]
+  }
+}

@@ -140,6 +140,13 @@
     "station": "06813500",
     "status": "gauge_bracket"
   },
+  "pajaro-2023-03-11": {
+    "observed_max_end": "2023-03-11T12:00:00+00:00",
+    "observed_max_start": "2023-03-11T12:00:00+00:00",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-11159000&parameter_code=00065&datetime=2023-03-09T08%3A00%3A00%2B00%3A00%2F2023-03-14T07%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "11159000",
+    "status": "gap_in_gauge_record"
+  },
   "pocahontas-black-2017-05-03": {
     "end": "2017-05-03T03:45:00+00:00",
     "gauge_max_ft": 28.99,
