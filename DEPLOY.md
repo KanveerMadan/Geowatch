@@ -12,6 +12,9 @@ service-account JSON as a Render secret file named `ee-key.json`. The
 service requires this file to start in production. Use an account with
 Earth Engine Resource Viewer and Service Usage Consumer on that project.
 
+The Render build installs the registered DataMeet Mumbai ward boundaries,
+checks their source checksum, and runs the existing geometry validation.
+
 The free deployment starts with one analysis at a time and a provisional
 4 km² area cap to limit memory use. Stored results live on the instance's
 ephemeral disk. Old report links can expire after sleep, restart, or deploy.
