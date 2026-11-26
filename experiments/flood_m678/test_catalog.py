@@ -63,7 +63,10 @@ class CatalogTests(unittest.TestCase):
                     ("2020-05-19T12:00:00Z","2020-05-20T12:00:00Z","2020-05-21T12:00:00Z")]
         with patch("screen_acquisitions.query",side_effect=query_stub):
             receipt=screen(event,site,{},None,None)
-        self.assertEqual([x["scene"] for x in receipt["scenes"]],["2020-05-20T12:00:00Z"])
+        self.assertEqual([x["scene"] for x in receipt["scenes"]],["2020-05-20T12:00:00Z","2020-05-21T12:00:00Z"])
+        with patch("screen_acquisitions.query",side_effect=query_stub):
+            receipt=screen({**event,"not_before_utc":"2020-05-21T00:00:00+00:00"},site,{},None,None)
+        self.assertEqual([x["scene"] for x in receipt["scenes"]],["2020-05-21T12:00:00Z"])
 
     def test_committed_receipts_reconcile(self):
         with (HERE/"catalog.csv").open() as f:
@@ -84,7 +87,7 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual(counts["radar"]+counts["optical"]>0,row["screening"]=="timed_footprint")
             for s in scenes:
                 self.assertGreaterEqual(s["lag_hours_min"],-24)
-                maximum=72 if row["type"]=="M8" and "ice jam" not in row["subtype"] else 24
+                maximum=72 if row["type"]=="M8" and "ice jam" not in row["subtype"] else 48
                 self.assertLessEqual(s["lag_hours_max"],maximum)
                 self.assertNotIn("assets",s)
 

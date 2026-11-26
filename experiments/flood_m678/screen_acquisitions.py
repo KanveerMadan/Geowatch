@@ -83,16 +83,36 @@ def radar_pair(a, b):
             "VV" in a["pol"] and "VV" in b["pol"])
 
 
-def screen(event, site, gauge, session, cache):
+def late_hours(site):
+    """Latest image after the crest (DECISIONS 2026-11-27): 72 h for sustained M8 melt,
+    48 h (same or next day) for M6, M7 and ice-jam releases."""
+    return 72 if site["type"]=="M8" and "ice jam" not in site["subtype"] else 48
+
+
+def crest_bounds(event, site, gauge):
+    """(lo, hi, kind): the UTC interval that contains the crest, in order of preference."""
     if gauge.get("status") == "gauge_bracket":
-        lo,hi = (datetime.fromisoformat(gauge[key]) for key in ("start","end"))
-    else:
-        lo,hi = crest_interval(event["crest_date"],site["zone"])
+        return (*(datetime.fromisoformat(gauge[key]) for key in ("start","end")), "gauge_bracket")
+    if event.get("crest_utc_bracket"):
+        lo,hi = (datetime.fromisoformat(x) for x in event["crest_utc_bracket"])
+        return lo,hi,"published_reading"
+    if event.get("crest_date"):
+        return (*crest_interval(event["crest_date"],site["zone"]), event.get("crest_kind","published_day"))
+    if gauge.get("status") == "geoglows_day":
+        return (*(datetime.fromisoformat(gauge[key]) for key in ("start","end")), "geoglows_day")
+    raise ValueError("no crest evidence")
+
+
+def screen(event, site, gauge, session, cache):
+    lo,hi,kind = crest_bounds(event,site,gauge)
     box = study_box(site["longitude"],site["latitude"])
-    late = 72 if site["type"]=="M8" and "ice jam" not in site["subtype"] else 24
+    late = late_hours(site)
     # Intersection over *all* possible peak timestamps. The reported local day is
     # [lo, hi); retaining the limiting endpoint is conservative at its boundary.
     start, end = hi-timedelta(hours=24), lo+timedelta(hours=late)
+    if event.get("not_before_utc"):
+        # Levee breach: before the breach the protected land is dry by construction.
+        start = max(start, datetime.fromisoformat(event["not_before_utc"]))
     scenes = []
     for collection in OPTICAL+("sentinel-1-grd",):
         for item in query(session,cache,collection,box,start,end):
@@ -115,8 +135,8 @@ def screen(event, site, gauge, session, cache):
                         break
             scenes.append(record)
     scenes.sort(key=lambda x:(x["utc"],x["scene"]))
-    return {"crest_utc_min":lo.isoformat(),"crest_utc_max":hi.isoformat(),
-            "bbox_wgs84":box.bounds,"scenes":scenes}
+    return {"crest_utc_min":lo.isoformat(),"crest_utc_max":hi.isoformat(),"crest_kind":kind,
+            "window_utc":[start.isoformat(),end.isoformat()],"bbox_wgs84":box.bounds,"scenes":scenes}
 
 
 def main():
@@ -127,6 +147,8 @@ def main():
     args.cache.mkdir(exist_ok=True,parents=True)
     data=json.loads((HERE/"event_evidence.json").read_text())
     gauges=json.loads((HERE/"gauge_metadata.json").read_text())
+    gp=HERE/"geoglows_crests.json"
+    geoglows=json.loads(gp.read_text()) if gp.exists() else {}
     if tuple(data["site_fields"])!=IDENTITY_FIELDS:
         raise ValueError("Unknown site schema")
     session=requests.Session()
@@ -145,11 +167,15 @@ def main():
                  crest_utc_max="",optical_scenes="",paired_radar_scenes="",
                  screening="excluded" if event.get("excluded") else "needs_reach_or_crest",
                  source=event["source"],peak_source=event.get("peak_source",""),
-                 location_source=site["location_source"],note=event["note"])
+                 location_source=site["location_source"],note=event["note"],cluster="",crest_kind="")
         gauge=gauges.get(eid,{})
+        if gauge.get("status")!="gauge_bracket" and geoglows.get(eid,{}).get("status")=="geoglows_day":
+            gauge=geoglows[eid]
+        row["cluster"]=data.get("clusters",{}).get(event["site"],event["site"])
         if gauge.get("status")=="published_day_and_gauge_disagree":
             row["screening"]="crest_sources_disagree"
-        elif (event.get("crest_date") or gauge.get("status")=="gauge_bracket") and site["latitude"] is not None:
+        elif (event.get("crest_date") or event.get("crest_utc_bracket") or gauge.get("status") in ("gauge_bracket","geoglows_day")) \
+                and site["latitude"] is not None and not event.get("excluded"):
             evidence=screen(event,site,gauge,session,args.cache)
             receipts[eid]=evidence
             usable=evidence["scenes"]
@@ -158,7 +184,8 @@ def main():
             row.update(crest_utc_min=evidence["crest_utc_min"],
                        crest_utc_max=evidence["crest_utc_max"],
                        optical_scenes=optical,paired_radar_scenes=radar,
-                       peak_source=gauge["source"] if gauge.get("status")=="gauge_bracket" else event.get("peak_source",event["source"]),
+                       crest_kind=evidence["crest_kind"],
+                       peak_source=gauge["source"] if gauge.get("status") in ("gauge_bracket","geoglows_day") else event.get("peak_source",event["source"]),
                        screening="timed_footprint" if optical+radar else "no_match_in_queried_catalogue")
         records.append(row)
     records.sort(key=lambda x:(x["type"],x["date"],x["incident_id"]))

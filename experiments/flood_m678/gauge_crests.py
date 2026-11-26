@@ -16,7 +16,8 @@ def bracket(features, lo, hi):
     groups = {}
     for feature in features:
         p=feature["properties"]
-        if p["approval_status"]!="Approved" or p["qualifier"] or p["value"] is None:
+        # "REVISED" marks an approved value that was revised before approval; it is not a quality flag.
+        if p["approval_status"]!="Approved" or [q for q in (p["qualifier"] or []) if q!="REVISED"] or p["value"] is None:
             continue
         if p["parameter_code"]!="00065" or p["unit_of_measure"]!="ft":
             continue

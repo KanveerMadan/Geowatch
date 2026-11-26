@@ -114,11 +114,11 @@
       "M7",
       "saddle dam failure",
       "Laos",
-      "Sanamxay",
-      "",
-      null,
-      null,
-      ""
+      "Xe Pian at Ban Mai–Hinlad, Sanamxay",
+      "Asia/Vientiane",
+      14.72,
+      106.51,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL); midpoint of Ban Mai and Ban Hinlad, the two villages MRC lists as hardest hit"
     ],
     "kherson": [
       "M7",
@@ -349,6 +349,86 @@
       64.07381343,
       -18.41056159,
       "https://doi.org/10.4211/hs.86117a5f36cc4b7c90a5d54e18161c91"
+    ],
+    "chikuma-hoyasu": [
+      "M7",
+      "river levee breach",
+      "Japan",
+      "Chikuma River at Hoyasu, Nagano",
+      "Asia/Tokyo",
+      36.684468,
+      138.271756,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "mabi-oda": [
+      "M7",
+      "river levee breach",
+      "Japan",
+      "Oda River at Mabi, Kurashiki",
+      "Asia/Tokyo",
+      34.645993,
+      133.708882,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "missouri-hamburg": [
+      "M7",
+      "river levee breach",
+      "USA",
+      "Missouri River at Hamburg, Fremont County",
+      "America/Chicago",
+      40.604446,
+      -95.657771,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "missouri-holt": [
+      "M7",
+      "river levee breach",
+      "USA",
+      "Missouri River at Big Lake, Holt County",
+      "America/Chicago",
+      40.081943,
+      -95.349979,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "pocahontas-black": [
+      "M7",
+      "river levee breach",
+      "USA",
+      "Black River at Pocahontas",
+      "America/Chicago",
+      36.261215,
+      -90.971102,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "gulfport-miss": [
+      "M7",
+      "river levee breach",
+      "USA",
+      "Mississippi River at Gulf Port, Henderson County",
+      "America/Chicago",
+      40.813928,
+      -91.086256,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "gandak-barauli": [
+      "M7",
+      "river embankment breach",
+      "India",
+      "Gandak at Barauli (Devapur breach), Gopalganj",
+      "Asia/Kolkata",
+      26.396579,
+      84.600451,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "annamayya": [
+      "M7",
+      "water-storage dam failure",
+      "India",
+      "Cheyyeru at Togurupeta",
+      "Asia/Kolkata",
+      14.25392,
+      79.043258,
+      "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
     ]
   },
   "events": [
@@ -561,7 +641,12 @@
       "site": "xe-pian",
       "date": "2018-07-23",
       "source": "https://www.gdacs.org/Public/download.aspx?id=28&type=DC",
-      "note": "The failure time is documented. A downstream crest is still needed."
+      "note": "UNDP and OCHA describe the flash flood reaching the Sanamxay villages on the night of 23-24 July. The bracket covers 18:00 on July 23 to 12:00 on July 24, local. No measured stage.",
+      "crest_utc_bracket": [
+        "2018-07-23T11:00:00+00:00",
+        "2018-07-24T05:00:00+00:00"
+      ],
+      "peak_source": "https://www.undp.org/node/221486"
     },
     {
       "site": "kherson",
@@ -766,6 +851,99 @@
       "date": "2024-08-20",
       "source": "https://www.vedur.is/um-vi/frettir/skaftarhlaup-i-haegum-vexti",
       "note": "A prolonged low-discharge release with an uncertain peak and uncertain overbank inundation."
+    },
+    {
+      "site": "chikuma-hoyasu",
+      "date": "2019-10-13",
+      "crest_utc_bracket": [
+        "2019-10-12T18:10:00+00:00",
+        "2019-10-12T18:30:00+00:00"
+      ],
+      "source": "https://www.jstage.jst.go.jp/article/jndsj/39/3/39_221/_article/-char/en",
+      "note": "Record 12.46 m at the Tategahana water-level station at 03:20 JST on October 13, about 4 km downstream of the 70 m Hoyasu breach. The bracket is the reading +/- 10 min. Breach time is not established, so the image must also fall after the crest.",
+      "not_before_utc": "2019-10-12T18:30:00+00:00"
+    },
+    {
+      "site": "mabi-oda",
+      "date": "2018-07-07",
+      "crest_date": "2018-07-07",
+      "crest_kind": "published_day",
+      "source": "https://www.cgr.mlit.go.jp/kisha/2018jul/180707-2top.pdf",
+      "note": "MLIT Chugoku confirmed the left-bank breach at 3k400 at about 06:52 JST on July 7 during the flood patrol, with inundation already under way. The local day of the breach stands for the crest at the breached reach. No measured stage maximum is cited.",
+      "not_before_utc": "2018-07-06T21:52:00+00:00"
+    },
+    {
+      "site": "missouri-hamburg",
+      "date": "2019-03-16",
+      "crest_date": "2019-03-16",
+      "crest_kind": "agency_crest_day",
+      "source": "https://www.pbs.org/newshour/nation/more-evacuations-in-midwest-as-floodwaters-head-downstream",
+      "peak_source": "https://api.water.noaa.gov/nwps/v1/gauges/NEBN1",
+      "note": "NWS historic crest 30.12 ft at Missouri River at Nebraska City on March 16, 2019 (local day). Fremont County reported 14 levee breaches; AP coverage of March 18 describes them as having occurred. The breach-time floor is the start of March 17, local, conservatively after the first reported breaches.",
+      "not_before_utc": "2019-03-17T05:00:00+00:00"
+    },
+    {
+      "site": "missouri-holt",
+      "date": "2019-03-17",
+      "stage_gauge": "06813500",
+      "stage_search_local_days": [
+        "2019-03-17",
+        "2019-03-24"
+      ],
+      "source": "https://www.washingtontimes.com/news/2019/mar/18/homes-flood-as-missouri-river-overtops-breeches-le/",
+      "peak_source": "https://api.water.noaa.gov/nwps/v1/gauges/RULN1",
+      "note": "USGS Missouri River at Rulo stage bracket; NWS historic crest 28.13 ft on March 20 (local). AP, March 18: water from three breached levees swept across 40,000 acres of Holt County. The image must follow that report.",
+      "not_before_utc": "2019-03-18T05:00:00+00:00"
+    },
+    {
+      "site": "pocahontas-black",
+      "date": "2017-05-03",
+      "stage_gauge": "07069000",
+      "stage_search_local_days": [
+        "2017-05-01",
+        "2017-05-05"
+      ],
+      "crest_date": "2017-05-02",
+      "source": "https://www.weather.gov/lzk/rain0417byr.htm",
+      "note": "NWS Little Rock: record crest of 29.0 ft at Pocahontas on May 2. NWS Memphis via the press: the Black River levee breached at about 08:30 CDT on May 3 near Pocahontas.",
+      "not_before_utc": "2017-05-03T13:30:00+00:00"
+    },
+    {
+      "site": "gulfport-miss",
+      "date": "2008-06-17",
+      "crest_date": "2008-06-17",
+      "crest_kind": "agency_crest_day",
+      "source": "https://www.deseret.com/2008/6/18/20258822/mississippi-breaches-illinois-levee",
+      "peak_source": "https://api.water.noaa.gov/nwps/v1/gauges/BRLI4",
+      "note": "NWS historic crest 25.73 ft at Mississippi River at Burlington on June 17, 2008, across the river from Gulf Port. AP: the Henderson County levee broke at about 5 a.m. on June 17.",
+      "not_before_utc": "2008-06-17T10:00:00+00:00"
+    },
+    {
+      "site": "gandak-barauli",
+      "date": "2020-07-24",
+      "crest_utc_bracket": [
+        "2020-07-23T23:30:00+00:00",
+        "2020-07-24T01:30:00+00:00"
+      ],
+      "source": "https://cwc.gov.in/sites/default/files/dfsitrepca-24072020.pdf",
+      "peak_source": "https://sandrp.in/2020/07/28/making-sense-of-2020-gandak-floods/",
+      "note": "CWC: Gandak at Dumariaghat peaked at 64.36 m at 06:00 IST on July 24 (bracket +/- 1 h for hourly readings). SANDRP: the Saran embankment breached at about 02:00 IST on July 24 at Devapur (Barauli) and Puraina (Majha).",
+      "not_before_utc": "2020-07-23T20:30:00+00:00"
+    },
+    {
+      "site": "annamayya",
+      "date": "2021-11-19",
+      "crest_date": "2021-11-19",
+      "crest_kind": "published_day",
+      "source": "https://sandrp.in/2021/12/05/andhra-pradesh-dam-induced-flood-disaster-in-november-2021/",
+      "note": "The left bund failed at about 05:30-06:00 IST on November 19. Downstream villages including Togurupeta, Mandapalli and Pulapathur were submerged the same day. The local day is the crest at the evaluation reach; there is no measured stage.",
+      "not_before_utc": "2021-11-19T00:00:00+00:00"
     }
-  ]
+  ],
+  "clusters": {
+    "missouri-hamburg": "midwest-2019-03",
+    "missouri-holt": "midwest-2019-03",
+    "chikuma-hoyasu": "hagibis-2019-10",
+    "gulfport-miss": "midwest-2008-06"
+  }
 }

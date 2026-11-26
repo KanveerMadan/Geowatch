@@ -129,6 +129,28 @@
     "station": "04156000",
     "status": "gauge_bracket"
   },
+  "missouri-holt-2019-03-17": {
+    "end": "2019-03-21T04:00:00+00:00",
+    "gauge_max_ft": 28.13,
+    "observations": 769,
+    "sample_seconds": 900.0,
+    "series_id": "4ac26cd5110d4e0b84a8597837a6d625",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-06813500&parameter_code=00065&datetime=2019-03-17T05%3A00%3A00%2B00%3A00%2F2019-03-25T05%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2019-03-21T03:00:00+00:00",
+    "station": "06813500",
+    "status": "gauge_bracket"
+  },
+  "pocahontas-black-2017-05-03": {
+    "end": "2017-05-03T03:45:00+00:00",
+    "gauge_max_ft": 28.99,
+    "observations": 481,
+    "sample_seconds": 900.0,
+    "series_id": "3b3e09b952d34affa39bdd17a3261acb",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-07069000&parameter_code=00065&datetime=2017-05-01T05%3A00%3A00%2B00%3A00%2F2017-05-06T05%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2017-05-03T02:15:00+00:00",
+    "station": "07069000",
+    "status": "gauge_bracket"
+  },
   "rutland-2024-04-12": {
     "end": "2024-04-13T18:15:00+00:00",
     "gauge_max_ft": 8.99,
