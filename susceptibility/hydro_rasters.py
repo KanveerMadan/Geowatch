@@ -78,12 +78,14 @@ NODATA = -9999.0
 EE_TIMEOUT_S = 600           # one computePixels must beat this
 EE_RETRIES = 2
 
-LAYERS = ("hand_m", "upa_near_km2", "slope_deg", "relief_slope_deg",
+LAYERS = ("hand_m", "upa_near_km2", "elev_m", "upa_km2", "slope_deg", "relief_slope_deg",
           "rain_annual_mm", "rain_intensity_mm_h",
           "upa_flash_km2", "clay_pct", "rain_design_day_mm", "jrc_water_freq", "s1_water_freq")
 SOURCES = {
     "hand_m": (MERIT_ASSET, "hnd, bilinear"),
     "upa_near_km2": (MERIT_ASSET, f"upa focal max r={FLUVIAL_DRAINAGE_SEARCH_RADIUS_M:g} m, nearest"),
+    "elev_m": (FABDEM_ASSET, "FABDEM elevation, bilinear (flood round 5, M6-M8)"),
+    "upa_km2": (MERIT_ASSET, "upa, nearest (flood round 5 trunk channel, M6-M8)"),
     "slope_deg": (FABDEM_ASSET, "ee.Terrain.slope, bilinear"),
     "relief_slope_deg": (FABDEM_ASSET, f"slope focal mean r={FLASH_FLOOD_RELIEF_RADIUS_M:g} m"),
     "rain_annual_mm": (CHIRPS_ASSET, f"mean annual total, {FLASH_FLOOD_INTENSITY_YEARS} years"),
@@ -219,6 +221,8 @@ def _terrain_image(bbox):
     return ee.Image.cat([
         merit.select("hnd").resample("bilinear").rename("hand_m"),
         upa_near.rename("upa_near_km2"),
+        dem.resample("bilinear").rename("elev_m"),
+        merit.select("upa").rename("upa_km2"),
         slope.resample("bilinear").rename("slope_deg"),
         relief.rename("relief_slope_deg"),
         upa_flash.rename("upa_flash_km2"),

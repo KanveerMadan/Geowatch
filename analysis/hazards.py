@@ -20,7 +20,10 @@ import numpy as np
 from analysis import contract as C
 from analysis.stages import STAGE_TIMEOUT_S, run_stage, summary
 
-HAZARDS = ("pluvial", "fluvial", "coastal", "flash_flood", "waterlogging")
+HAZARDS = ("pluvial", "fluvial", "coastal", "flash_flood", "waterlogging",
+           "debris_flow_glof", "embankment_dam_breach", "snowmelt_ice_jam")
+# Flood round 5 (M6-M8): where water goes IF the lake, dam/levee or melt event happens.
+CONDITIONAL = ("debris_flow_glof", "embankment_dam_breach", "snowmelt_ice_jam")
 
 CONTEXT_SOURCES = {
     "hand": "MERIT/Hydro/v1_0_1 (hnd, upa)",
@@ -31,6 +34,8 @@ CONTEXT_SOURCES = {
     "relative_elevation": "COPERNICUS/DEM/GLO30_2024_1 (AOI-relative proxy, NOT HAND)",
     "hydro_rasters": ("per-pixel MERIT/Hydro/v1_0_1 (hnd, upa), FABDEM slope, "
                       "CHIRPS and IMERG V07 (susceptibility/hydro_rasters.py)"),
+    "glacial_lakes": "Glacial Lake Outburst Flood Database v4.2 lake points (Lützow & Veh, CC BY 4.0)",
+    "snow": "MODIS/061/MOD10A1 NDSI snow cover, 2015-2024",
 }
 
 # Which context layers each module reads. Fluvial, flash flood and
@@ -45,12 +50,15 @@ MODULE_CONTEXT = {
     "coastal": ("coastline", "fabdem"),
     "flash_flood": ("hydro_rasters",),
     "waterlogging": ("hydro_rasters",),
+    "debris_flow_glof": ("hydro_rasters", "glacial_lakes"),
+    "embankment_dam_breach": ("hydro_rasters",),
+    "snowmelt_ice_jam": ("hydro_rasters", "snow"),
 }
 
 
 def _context_fns(bbox):
     w, s, e, n = bbox
-    from ingestion import coastal, hydrology, osm_dem, rainfall
+    from ingestion import coastal, hydrology, m678_context, osm_dem, rainfall
 
     def rain():
         import ee
@@ -63,6 +71,8 @@ def _context_fns(bbox):
         "rainfall": rain,
         "coastline": lambda: coastal.get_coastline_context(w, s, e, n),
         "relative_elevation": lambda: osm_dem.compute_relative_elevation_proxy(w, s, e, n),
+        "glacial_lakes": lambda: m678_context.glacial_lakes(w, s, e, n),
+        "snow": lambda: m678_context.snow_days(w, s, e, n),
     }
 
 
@@ -116,7 +126,9 @@ def run_modules(ctx: dict, surfaces: dict, waterway_dist, app: dict, rasters: di
     from susceptibility.fluvial import compute_fluvial_susceptibility
     from susceptibility.pluvial import compute_pluvial_susceptibility
     from susceptibility.waterlogging import compute_waterlogging_susceptibility
-    return {
+    from susceptibility import conditional_flood as CF
+    cond = {k: CF.compute(k, rasters, ctx) for k in CONDITIONAL}
+    return {**cond,
         "pluvial": compute_pluvial_susceptibility(
             dem=surfaces.get("dem"), impervious=surfaces.get("impervious"),
             conduits=surfaces.get("conduits"), rasters=rasters, applicability=app),
@@ -215,6 +227,10 @@ def hazard_outputs(modules: dict, mv: dict, verdicts: dict, *, has_waterways: bo
         out[name] = C.output(round(float(score), 4), validation_status=label, coverage=cov,
                              data_sources=_sources(name, mod, has_waterways),
                              model_version=mv, **extra)
+    for k in CONDITIONAL:
+        out[k]["flood_type"] = C.FLOOD_TAXONOMY_ID[k]
+        if modules[k].get("applicability"):
+            out[k]["applicability"] = modules[k]["applicability"]
     out.update(unbuilt_outputs(mv))
     return out
 

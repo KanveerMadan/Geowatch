@@ -74,3 +74,22 @@ Dropouts (no flooded cell, or too few flooded or dry cells), all from cloud or n
 - Pre-registration and freeze, then the one-shot test.
 - Product (contract, modules, API, web), tests, PR.
 - Evidence pack.
+
+## Resume note (2026-11-27, usage limit reached)
+
+- **Product wiring is drafted and imports cleanly, but is not yet tested.** It covers:
+  - `susceptibility/conditional_flood.py`;
+  - `configs/m678_constants.py` (METHODS are placeholders until the freeze);
+  - `ingestion/m678_context.py`;
+  - hazards, contract, wards and hydro_rasters edits.
+- **Still open in the product:**
+  - run the full suite and fix it;
+  - web blurbs and scenario note in `web/src/lib/flood.js`;
+  - an API scenario endpoint;
+  - a `VALIDATED_CONFIGS` entry if a type passes.
+- **DEV feature chain:** check it is finished, then reset the Grímsvötn entry in `~/.cache/geowatch/flood_m678/big/build_log.json` and rerun `features_m678 dev`.
+- **Then:**
+  - `dev_cv_m678 feats`, then `cv`;
+  - write `results/chosen_methods.json` and PREREGISTRATION_M678.md;
+  - `score_m678 freeze` and the freeze tag;
+  - reserve labels and features, then `score_m678 test` once.

@@ -29,7 +29,8 @@ from analysis import contract as C
 VECTOR_UNIT_TYPES = ("grid", "footprint", "path")
 BOUNDARY_ROOT = os.path.join("data", "boundaries")
 PLUVIAL = "pluvial_susceptibility"
-HAZARDS = ("pluvial", "fluvial", "coastal", "flash_flood", "waterlogging")
+HAZARDS = ("pluvial", "fluvial", "coastal", "flash_flood", "waterlogging",
+           "debris_flow_glof", "embankment_dam_breach", "snowmelt_ice_jam")
 
 
 def hazard_key(h: str) -> str:
@@ -179,7 +180,7 @@ def spatial_hazards(result: dict) -> tuple:
     """The flood types whose values were aggregated per unit. Results stored
     before Phase 4 Step B carry only pluvial's (it has no `per_unit` flag)."""
     s = result["outputs"]["susceptibility"]
-    return tuple(h for h in HAZARDS if s[h].get("per_unit") or h == "pluvial")
+    return tuple(h for h in HAZARDS if h in s and (s[h].get("per_unit") or h == "pluvial"))
 
 
 def ward_context(result: dict) -> dict:
@@ -195,7 +196,8 @@ def ward_context(result: dict) -> dict:
                             "data_sources": o["susceptibility"][h]["data_sources"],
                             "validated_scope": o["susceptibility"][h].get("validated_scope")}
                         for h in spatial},
-            "scalar_hazards": {h: o["susceptibility"][h] for h in HAZARDS if h not in spatial},
+            "scalar_hazards": {h: o["susceptibility"][h] for h in HAZARDS
+                               if h not in spatial and h in o["susceptibility"]},
             "observability_label": o.get("observability", {}).get(
                 "observed_fraction", {}).get("validation_status", "experimental")}
 

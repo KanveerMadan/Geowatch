@@ -145,11 +145,11 @@ FLOOD_TAXONOMY = {
     "M5": {"module": "coastal", "name": "coastal", "status": "failed; new method planned",
            "round": 5},
     "M6": {"module": "debris_flow_glof", "name": "debris flow / glacial lake outburst",
-           "status": "not built", "round": 5},
+           "status": "built (round 5): conditional ranking; trust from the M6-M8 reserve test", "round": 5},
     "M7": {"module": "embankment_dam_breach", "name": "embankment / dam breach",
-           "status": "not built", "round": 5},
-    "M8": {"module": "snowmelt_ice_jam", "name": "snowmelt / ice jam", "status": "not built",
-           "round": 5},
+           "status": "built (round 5): conditional ranking; trust from the M6-M8 reserve test", "round": 5},
+    "M8": {"module": "snowmelt_ice_jam", "name": "snowmelt / ice jam",
+           "status": "built (round 5): conditional ranking; trust from the M6-M8 reserve test", "round": 5},
     "M9": {"module": "compound", "name": "compound", "status": "not built; after M1-M3",
            "round": 6},
     "M10": {"module": "groundwater", "name": "groundwater",
@@ -159,10 +159,6 @@ FLOOD_TAXONOMY = {
 # {module: (ABSENT status, validation label, reason)} for the types no module
 # computes. `placeholder` as for every other not_computed output.
 UNBUILT_FLOOD_TYPES = {
-    "debris_flow_glof": ("not_computed", "placeholder", "not built; planned for flood round 5"),
-    "embankment_dam_breach": ("not_computed", "placeholder",
-                              "not built; planned for flood round 5"),
-    "snowmelt_ice_jam": ("not_computed", "placeholder", "not built; planned for flood round 5"),
     "compound": ("not_computed", "placeholder",
                  "not built; planned for flood round 6, after fluvial, pluvial and "
                  "waterlogging"),
@@ -170,6 +166,9 @@ UNBUILT_FLOOD_TYPES = {
                     "not measurable: no water-table observation to score or test against"),
     "tsunami": ("not_applicable", "placeholder", "out of scope"),
 }
+
+
+FLOOD_TAXONOMY_ID = {t["module"]: i for i, t in FLOOD_TAXONOMY.items()}
 
 
 class ContractError(ValueError):
