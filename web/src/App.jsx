@@ -591,6 +591,12 @@ export default function App() {
                 {tabBody}
               </m.div>
             </AnimatePresence>
+            <p className="caption licence-note">
+              Non-commercial research tool. Uses Google Earth Engine under its non-commercial terms, and data under
+              non-commercial licences (FABDEM, CC BY-NC-SA 4.0; MERIT Hydro, CC BY-NC 4.0). Data: Copernicus / ESA,
+              NASA, JRC, Google, USGS, UCSB CHG, © OpenStreetMap contributors (ODbL).{' '}
+              <a href="https://github.com/KanveerMadan/Geowatch/blob/master/LICENCES.md" target="_blank" rel="noopener">Sources and licences</a>
+            </p>
           </m.aside>
         ) : (
           <m.button key="reopen" type="button" className="panel-reopen" onClick={() => setPanelOpen(true)}

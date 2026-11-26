@@ -32,3 +32,12 @@ def test_public_site_can_submit_but_cannot_run_admin_routes(hosted):
     assert hosted.post("/api/analyze", json={}).status_code == 401
     preflight = hosted.options("/api/jobs", headers={"Origin": "https://site.example"})
     assert preflight.headers["access-control-allow-origin"] == "https://site.example"
+
+
+def test_the_list_of_everyones_areas_is_not_public(hosted):
+    assert hosted.get("/api/results").status_code == 404
+    assert hosted.get("/api/results/").status_code == 404
+    import api
+    assert hosted.get("/api/results", headers={"X-API-Key": api.API_KEY}).status_code == 200
+    missing = "r" + "0" * 24
+    assert hosted.get(f"/api/results/{missing}").status_code == 404      # one result by id stays public
