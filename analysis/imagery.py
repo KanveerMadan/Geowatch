@@ -62,7 +62,6 @@ def cached(rid: str, year: int, root: str = IMAGERY_ROOT):
 def fetch_png(bbox, start: str, end: str) -> tuple:
     """(png bytes, scene count), or (None, 0) when no scene covers the window."""
     import ee
-    import requests
     from ingestion.gee_client import initialize_gee
     from ingestion.sentinel2 import get_sentinel2_collection, mask_s2_clouds
     initialize_gee()
@@ -73,11 +72,30 @@ def fetch_png(bbox, start: str, end: str) -> tuple:
     if count == 0:
         return None, 0
     img = col.map(mask_s2_clouds).select(["Red", "Green", "Blue"]).median()
-    url = img.visualize(bands=["Red", "Green", "Blue"], **VIS).getThumbURL(
-        {"region": region, "dimensions": MAX_PX, "crs": "EPSG:3857", "format": "png"})
-    r = requests.get(url, timeout=120)
-    r.raise_for_status()
-    return r.content, int(count)
+    # 2026-11-26 (fix/imagery-live): an authenticated computePixels PNG, not getThumbURL + an
+    # unauthenticated download. The hosted service account failed the thumbnail path in ~2 s
+    # ("Imagery failed.") while the analysis's own computePixels calls succeed. Same picture:
+    # the bbox in Web Mercator, long side MAX_PX.
+    png = ee.data.computePixels({"expression": img.visualize(bands=["Red", "Green", "Blue"], **VIS),
+                                 "fileFormat": "PNG", "grid": mercator_grid(bbox)})
+    return bytes(png), int(count)
+
+
+def mercator_grid(bbox, max_px: int = MAX_PX) -> dict:
+    """The Earth Engine pixel grid of the swipe picture: the lon/lat bbox in EPSG:3857, long side
+    max_px pixels (getThumbURL's `dimensions`), north-up."""
+    from pyproj import Transformer
+    w, s, e, n = bbox
+    tr = Transformer.from_crs(4326, 3857, always_xy=True)
+    x0, y0 = tr.transform(w, s)
+    x1, y1 = tr.transform(e, n)
+    wm, hm = x1 - x0, y1 - y0
+    scale = max(wm, hm) / max_px
+    cols, rows = max(1, round(wm / scale)), max(1, round(hm / scale))
+    return {"dimensions": {"width": cols, "height": rows},
+            "affineTransform": {"scaleX": wm / cols, "shearX": 0, "translateX": x0,
+                                "shearY": 0, "scaleY": -hm / rows, "translateY": y1},
+            "crsCode": "EPSG:3857"}
 
 
 def get_year(rid: str, result: dict, year: int, *, root: str = IMAGERY_ROOT, fetch=None) -> tuple:

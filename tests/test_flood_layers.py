@@ -197,6 +197,29 @@ def test_imagery_is_protected_cached_and_honest_about_gaps(client, monkeypatch):
     assert client.get(f"/api/imagery/{rid}/1990", headers=_h()).status_code == 400
 
 
+def test_imagery_failure_names_the_exception_class(client, monkeypatch):
+    from analysis import imagery
+    rid = client.post("/api/analyze", json=REQ, headers=_h()).json()["result_id"]
+
+    def broken(bbox, start, end):
+        raise PermissionError("thumbnail denied")
+
+    monkeypatch.setattr(imagery, "fetch_png", broken)
+    y = client.get(f"/api/imagery/{rid}", headers=_h()).json()["years"][-1]
+    r = client.get(f"/api/imagery/{rid}/{y}", headers=_h())
+    assert r.status_code == 502 and r.json()["detail"] == "Imagery failed (PermissionError)."
+    assert "thumbnail denied" not in r.text                  # the message itself is not echoed
+
+
+def test_swipe_picture_grid_is_web_mercator_with_a_1024_long_side():
+    from analysis import imagery
+    g = imagery.mercator_grid((77.200, 28.600, 77.220, 28.618))
+    w, h = g["dimensions"]["width"], g["dimensions"]["height"]
+    assert g["crsCode"] == "EPSG:3857" and max(w, h) == imagery.MAX_PX and min(w, h) >= 1
+    at = g["affineTransform"]
+    assert at["scaleX"] > 0 and at["scaleY"] < 0 and abs(at["scaleX"] + at["scaleY"]) < 1e-3 * at["scaleX"]
+
+
 def test_window_in_moves_the_calendar_window():
     from analysis.imagery import window_in
     w = {"start": "2026-07-30", "end": "2026-10-28"}

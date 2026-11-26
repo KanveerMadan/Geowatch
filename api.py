@@ -928,8 +928,11 @@ def get_imagery_year(result_id: str, year: int):
     o = run_stage("imagery", imagery.get_year, result_id, r, year, root=str(IMAGERY_ROOT),
                   timeout_s=STAGE_TIMEOUT_S["context"])
     if o["status"] != "ok":
+        # Name the class at the HTTP boundary (items 54/55), never the message: a failure on
+        # the server is then diagnosable from the browser alone.
+        cls = f" ({o['exception_class']})" if o.get("exception_class") else ""
         raise HTTPException(status_code=504 if o["status"] == "timeout" else 502,
-                            detail=f"Imagery {o['status']}.")
+                            detail=f"Imagery {o['status']}{cls}.")
     png, note = o["value"]
     if png is None:
         raise HTTPException(status_code=404, detail=note["reason"])
