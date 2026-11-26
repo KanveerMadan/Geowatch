@@ -31,6 +31,33 @@ EV = os.path.join(BIG, "ev")
 EV_FEATS = ("ev_q_ratio", "ev_q_rp", "ev_depth_below_stage_m")
 RIVER_LED = ("fluvial", "waterlogging", "compound")
 FINE_TYPES = ("pluvial",)
+MRMS_TYPES = ("flash_flood",)          # R33: MRMS event rain (flash_mrms), US Storm Events units
+WL_TYPES = ("waterlogging",)           # R33: ponding history, soil moisture, canals (wl_feats)
+EV_MRMS = os.path.join(BIG, "ev_mrms")
+EV_WL = os.path.join(BIG, "ev_wl")
+
+
+def _mrms():
+    from experiments.flood_round3 import flash_mrms as FM
+    return FM.FEATS
+
+
+def _wl():
+    from experiments.flood_round3 import wl_feats as WF
+    return WF.FEATS
+
+
+def _extra(n, y):
+    """R33 per-unit extras (NaN where a unit has none)."""
+    ev = {}
+    for d, fs in ((EV_MRMS, _mrms()), (EV_WL, _wl())):
+        p = os.path.join(d, f"{n}.npz")
+        if os.path.exists(p):
+            z = np.load(p)
+            ev.update({k: z[k].astype(np.float32) for k in fs})
+        else:
+            ev.update({k: np.full(len(y), np.nan, np.float32) for k in fs})
+    return ev
 TYPES = ("fluvial", "pluvial", "waterlogging", "flash_flood", "coastal", "compound")
 
 
@@ -60,6 +87,7 @@ def load_tables():
         else:
             ev = {k: np.full(len(y), np.nan, np.float32) for k in EV_FEATS}
         ev.update({k: np.full(len(y), np.nan, np.float32) for k in _fine()})   # fine_feats exist only on 311 units
+        ev.update(_extra(n, y))
         tabs[n] = {"X": z["X"], "C": z["C"], "y": y, "F": list(m["features"]), "shape": tuple(m["shape"]),
                    "ev": ev, "tags": cat[n]["tags"], "region": cat[n]["region"], "cluster": cat[n]["cluster"],
                    "grid": m["grid"], "event": m["event"]}
@@ -104,6 +132,7 @@ def load_311():
             ev.update({k: z2[k] for k in SD.FEATS})
         else:
             ev.update({k: np.full(len(y), np.nan, np.float32) for k in SD.FEATS})
+        ev.update(_extra(n, y))
         out[n] = {"X": z["X"], "C": z["C"], "y": y, "F": list(m["features"]), "shape": tuple(m["shape"]),
                   "ev": ev, "tags": [u.get("type", "pluvial")],
                   "region": f"r311_{u.get('city', n.split('_')[1])}", "cluster": u["cluster"], "grid": m["grid"],
@@ -138,7 +167,8 @@ def _lr_pred(tabs, names, held):
     return {n: m.decision_function(X(tabs[n])).astype(np.float32) for n in held}
 
 
-def cv():
+def cv(only=None):
+    """only: a subset of TYPES to (re)compute; the other types' entries are kept from the existing result."""
     from experiments.flood_learned.model import LGBM_PARAMS
     from experiments.flood_round3 import model_r3 as M
     tabs = load_tables()
@@ -155,17 +185,36 @@ def cv():
     for _, held in sorted(folds.items()):
         runs["elev_hand_lr"].update(_lr_pred(tabs, [n for n in names if n not in held], held))
     lams = {}
+    types = tuple(only) if only else TYPES
+    need = set()
+    for ty in types:
+        fam = "flash_flood" if ty == "flash_flood" else "coastal" if ty in ("coastal", "compound") else "fluvial"
+        need.add(f"anc_elev_lgbm@{fam}")
+        if ty in RIVER_LED:
+            need.add("anc_elev_lgbm_ev@fluvial")
+        if ty in FINE_TYPES:
+            need.add("anc_elev_lgbm_fine@fluvial")
+        if ty in MRMS_TYPES:
+            need.add("anc_elev_lgbm_mrms@flash_flood")
+        if ty in WL_TYPES:
+            need.add("anc_elev_lgbm_wl@fluvial")
     for fam_ty in ("fluvial", "flash_flood", "coastal"):
         feats = [f for f in family(fam_ty) if f in tabs[names[0]]["F"]]
-        for suffix, fs in (("", feats), ("_ev", feats + list(EV_FEATS)), ("_fine", feats + list(_fine()))):
-            if suffix and fam_ty != "fluvial":
-                continue
+        for suffix, fs in (("", feats), ("_ev", feats + list(EV_FEATS)), ("_fine", feats + list(_fine())),
+                           ("_mrms", feats + list(_mrms())), ("_wl", feats + list(_wl()))):
             key = f"anc_elev_lgbm{suffix}@{fam_ty}"
+            if key not in need:
+                continue
             pred, lam = M.lro_predictions(tabs, names, region, fs, "elev", params)
             runs[key], lams[key] = pred, lam
             print(key, lam, flush=True)
     res = {"units": {ty: [n for n in names if ty in tabs[n]["tags"]] for ty in TYPES}, "lambdas": lams, "by_type": {}}
-    for ty in TYPES:
+    prev_p = os.path.join(OUT, "dev_cv_r3.json")
+    if only and os.path.exists(prev_p):
+        prev = json.load(open(prev_p))
+        res["by_type"] = {k: v for k, v in prev.get("by_type", {}).items() if k not in types}
+        res["lambdas"] = {**prev.get("lambdas", {}), **lams}
+    for ty in types:
         mem = res["units"][ty]
         if len(mem) < 3:
             res["by_type"][ty] = {"units": len(mem)}
@@ -177,6 +226,10 @@ def cv():
             cands["anc_elev_lgbm_ev"] = "anc_elev_lgbm_ev@fluvial"
         if ty in FINE_TYPES:
             cands["anc_elev_lgbm_fine"] = "anc_elev_lgbm_fine@fluvial"
+        if ty in MRMS_TYPES:
+            cands["anc_elev_lgbm_mrms"] = "anc_elev_lgbm_mrms@flash_flood"
+        if ty in WL_TYPES:
+            cands["anc_elev_lgbm_wl"] = "anc_elev_lgbm_wl@fluvial"
         sub = {"elev": runs["elev"], "hand": runs["hand"]}
         out = {}
         for c, k in cands.items():
@@ -193,6 +246,8 @@ def cv():
 
 def main(argv=None):
     a = argv or sys.argv[1:]
+    if a[0] == "cv" and len(a) > 1:
+        return cv(a[1].split(","))
     return {"ev": ev, "cv": cv}[a[0]]()
 
 

@@ -227,3 +227,34 @@ The owner decided: add cities, do not cap Chicago.
    - The IMERG 99.9th-percentile layer timed out at 4° tiles and stays per unit.
    - The build runs as 2 shards (owner-approved), with a guard that pauses shard 1 when free memory falls below 15 % and resumes it above 25 %.
    - Public Overpass endpoints were failing (502/504) during the run. Unavailable clauses are recorded, never read as zero.
+
+## R33 (2026-11-26) New features for flash and waterlogging; the rain label ceiling
+Fixed before their DEV comparison runs. They apply to every method alike; baselines are unchanged.
+1. **Flash: MRMS radar rain (`flash_mrms.py`).**
+   - Source: NOAA MRMS 1 km hourly QPE from the Iowa Environmental Mesonet archive. GaugeCorr_QPE_01H before 2020-10-14, MultiSensor_QPE_01H_Pass2 after.
+   - Window: [peak − 1 d, peak + 2 d).
+   - Features:
+     - event total;
+     - wettest hour;
+     - upstream-catchment mean event rain and log upstream volume (D8 on GLO-30 at 90 m over the box + 10 km).
+   - New candidate `anc_elev_lgbm_mrms`: the flash family plus these four. Flash only.
+   - The flash event selection (Storm Events + IMERG driver check) is unchanged.
+2. **Waterlogging (`wl_feats.py`).** All features are dated strictly before the event:
+   - JRC Monthly History water share in the event month ± 1, over the 5 prior years;
+   - Sentinel-1 VV < −15 dB share, same months, the 3 prior years;
+   - ERA5-Land layer-1 soil water, the 7 days before the peak;
+   - OSM drains/canals from local Geofabrik extracts (`tools/osm_local`, Codex): distance and density within 250 m;
+   - clay was already a feature.
+   - New candidate `anc_elev_lgbm_wl`: the full family plus these five. Waterlogging only.
+3. **Rain label ceiling (`label_ceiling.py rain`, DEV only).**
+   - A split-half oracle: half of a storm's own 311 flood reports predicts where the other half fell, against the same dry cells.
+   - Best over radii {90, 150, 300, 600} m: mean 0.60 over 61 units (Chicago 0.59, San Francisco 0.59, NYC 0.67, at 300 m).
+   - The rain learner's DEV AUC (0.602) is at that level.
+   - With 311 point reports as labels, the within-event AUC this test can show is about 0.60, below the 0.70 bar.
+   - The model is not tuned further for rain; a better label is proposed in DIAGNOSIS §l.
+   - FloodNet could not be used on DEV: only 14 of 496 sensors were installed before 2022. Its full network covers the sealed reserve period.
+4. **Coastal / compound: Codex's peak survey tiles (`tools/flood-speed` 86c7508) are DEV diagnostics only.**
+   - They are positive-only (no surveyed dry cells), so only a presence-vs-background AUC is possible.
+   - Marks were kept only where water exceeded 3DEP terrain by > 1 m, so low terrain is favoured by construction.
+   - Never a pass/fail unit. `label_ceiling.py hwm`.
+5. **Earth Engine:** every round-3 call takes a shared lock on Codex's lock file (`ee_lock.py`), so the two never overlap.

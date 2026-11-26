@@ -283,3 +283,27 @@ DEV only, after R28. "Recurrence" asks: is a storm's flood report nearer (≤ 90
 **Open:**
 1. NYC unit yield under R25's 8 km box. A larger 311 unit is justified by how the labels are made (sparse points), but it would be a unit change and needs pre-registering with DEV numbers.
 2. Whether a causal history feature lifts Chicago to AUC ≥ 0.70 inside 8 km boxes.
+
+## l. Rain: the 311 label cannot show 0.70 (DEV ceiling), and a better label
+- **Test:** split-half oracle (DECISIONS R33).
+
+  | city | units | oracle AUC (best radius, 300 m) |
+  |---|---|---|
+  | Chicago | 24 | 0.59 |
+  | San Francisco | 33 | 0.59 |
+  | NYC | 4 | 0.67 |
+  | all | 61 | 0.60 |
+
+  The rain learner reaches 0.602 on the same kind of units.
+- **Why the label caps out:**
+  - each report marks one 30 m cell where a person happened to report;
+  - the dry cells are other reports' cells;
+  - flood reports in one storm cluster only weakly beyond the street network that all reports share.
+- **What would make a better label, in order of feasibility:**
+  1. **Peak-time optical / aerial wet-and-dry labels** (NOAA NGS emergency aerials, same-day VHR). Codex is building these for hurricanes. For non-hurricane urban storms, same-day imagery is rare.
+  2. **FloodNet instrumented labels** (NYC, 2022+): sensors give measured wet *and* dry at fixed street points.
+     - A storm × city unit with sensor cells as the labelled cells would be independent of reporting behaviour.
+     - Most storms flood fewer than 50 sensors, so the bar's 50-flooded-cell floor would need pooling across storms or an owner decision.
+     - The design must be fixed before the seal.
+  3. **Coarser support for 311:** score report shares per block instead of per cell. The oracle at 300–600 m suggests this would gain little (0.59–0.60).
+- **Owner decision:** keep rain on the 311 label (it is expected to fail the 0.70 bar), or pre-register option 2 before the seal.

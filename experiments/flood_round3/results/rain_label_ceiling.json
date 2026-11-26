@@ -1,0 +1,401 @@
+{
+ "method": "a split-half oracle for the 311 labels. Per DEV 311 unit and seed, the storm's flood reports are split at\nrandom into halves A and B. Score = count of A's flood reports within 150 m of a cell. AUC is taken on B's flooded\ncells vs the unit's dry cells. It is a noisy oracle: it knows where this storm's other reports fell, which no\nmodel does, but A is itself a sample. If it cannot reach 0.70, the label cannot reward a model at 0.70.\nFloodNet: only 14 sensors were installed before 2022, so FloodNet cannot measure this on DEV. Its full network\n(~500) covers 2022+, the sealed reserve period.",
+ "radius_m": 150.0,
+ "seeds": 5,
+ "by_city": {
+  "chicago": {
+   "units": 24,
+   "median": 0.569,
+   "mean": 0.565,
+   "p25": 0.544,
+   "p75": 0.581
+  },
+  "nyc": {
+   "units": 4,
+   "median": 0.629,
+   "mean": 0.637,
+   "p25": 0.62,
+   "p75": 0.646
+  },
+  "san_francisco": {
+   "units": 33,
+   "median": 0.573,
+   "mean": 0.58,
+   "p25": 0.55,
+   "p75": 0.602
+  }
+ },
+ "all": {
+  "units": 61,
+  "mean": 0.578
+ },
+ "units": {
+  "r311_chicago_2019-03-14_b09_05": {
+   "city": "chicago",
+   "event": "2019-03-14",
+   "auc": 0.596,
+   "seeds": 5
+  },
+  "r311_chicago_2019-04-29_b03_07": {
+   "city": "chicago",
+   "event": "2019-04-29",
+   "auc": 0.559,
+   "seeds": 5
+  },
+  "r311_chicago_2019-04-29_b09_04": {
+   "city": "chicago",
+   "event": "2019-04-29",
+   "auc": 0.591,
+   "seeds": 5
+  },
+  "r311_chicago_2019-05-09_b08_05": {
+   "city": "chicago",
+   "event": "2019-05-09",
+   "auc": 0.565,
+   "seeds": 5
+  },
+  "r311_chicago_2019-05-22_b03_07": {
+   "city": "chicago",
+   "event": "2019-05-22",
+   "auc": 0.502,
+   "seeds": 5
+  },
+  "r311_chicago_2019-05-22_b08_05": {
+   "city": "chicago",
+   "event": "2019-05-22",
+   "auc": 0.538,
+   "seeds": 5
+  },
+  "r311_chicago_2019-05-27_b02_06": {
+   "city": "chicago",
+   "event": "2019-05-27",
+   "auc": 0.605,
+   "seeds": 5
+  },
+  "r311_chicago_2019-05-27_b09_05": {
+   "city": "chicago",
+   "event": "2019-05-27",
+   "auc": 0.591,
+   "seeds": 5
+  },
+  "r311_chicago_2019-06-04_b08_05": {
+   "city": "chicago",
+   "event": "2019-06-04",
+   "auc": 0.545,
+   "seeds": 5
+  },
+  "r311_chicago_2019-07-01_b08_05": {
+   "city": "chicago",
+   "event": "2019-07-01",
+   "auc": 0.583,
+   "seeds": 4
+  },
+  "r311_chicago_2019-10-03_b09_05": {
+   "city": "chicago",
+   "event": "2019-10-03",
+   "auc": 0.579,
+   "seeds": 5
+  },
+  "r311_chicago_2019-10-26_b08_05": {
+   "city": "chicago",
+   "event": "2019-10-26",
+   "auc": 0.579,
+   "seeds": 4
+  },
+  "r311_chicago_2020-04-28_b03_07": {
+   "city": "chicago",
+   "event": "2020-04-28",
+   "auc": 0.552,
+   "seeds": 5
+  },
+  "r311_chicago_2020-04-28_b08_05": {
+   "city": "chicago",
+   "event": "2020-04-28",
+   "auc": 0.563,
+   "seeds": 5
+  },
+  "r311_chicago_2020-05-17_b08_04": {
+   "city": "chicago",
+   "event": "2020-05-17",
+   "auc": 0.581,
+   "seeds": 5
+  },
+  "r311_chicago_2020-05-17_b10_05": {
+   "city": "chicago",
+   "event": "2020-05-17",
+   "auc": 0.609,
+   "seeds": 5
+  },
+  "r311_chicago_2020-06-22_b08_04": {
+   "city": "chicago",
+   "event": "2020-06-22",
+   "auc": 0.53,
+   "seeds": 5
+  },
+  "r311_chicago_2020-06-26_b08_04": {
+   "city": "chicago",
+   "event": "2020-06-26",
+   "auc": 0.539,
+   "seeds": 5
+  },
+  "r311_chicago_2020-08-02_b04_07": {
+   "city": "chicago",
+   "event": "2020-08-02",
+   "auc": 0.544,
+   "seeds": 5
+  },
+  "r311_chicago_2021-06-24_b02_07": {
+   "city": "chicago",
+   "event": "2021-06-24",
+   "auc": 0.541,
+   "seeds": 5
+  },
+  "r311_chicago_2021-06-24_b08_04": {
+   "city": "chicago",
+   "event": "2021-06-24",
+   "auc": 0.573,
+   "seeds": 5
+  },
+  "r311_chicago_2021-10-11_b07_05": {
+   "city": "chicago",
+   "event": "2021-10-11",
+   "auc": 0.543,
+   "seeds": 5
+  },
+  "r311_chicago_2021-10-11_b09_05": {
+   "city": "chicago",
+   "event": "2021-10-11",
+   "auc": 0.576,
+   "seeds": 5
+  },
+  "r311_chicago_2021-10-25_b09_05": {
+   "city": "chicago",
+   "event": "2021-10-25",
+   "auc": 0.574,
+   "seeds": 5
+  },
+  "r311_nyc_2017-05-05_b03_03": {
+   "city": "nyc",
+   "event": "2017-05-05",
+   "auc": 0.637,
+   "seeds": 5
+  },
+  "r311_nyc_2018-11-25_b04_06": {
+   "city": "nyc",
+   "event": "2018-11-25",
+   "auc": 0.617,
+   "seeds": 5
+  },
+  "r311_nyc_2021-09-01_b03_03": {
+   "city": "nyc",
+   "event": "2021-09-01",
+   "auc": 0.674,
+   "seeds": 5
+  },
+  "r311_nyc_2021-09-01_b07_09": {
+   "city": "nyc",
+   "event": "2021-09-01",
+   "auc": 0.621,
+   "seeds": 5
+  },
+  "r311_san_francisco_2008-11-01_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2008-11-01",
+   "auc": 0.554,
+   "seeds": 5
+  },
+  "r311_san_francisco_2009-10-13_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2009-10-13",
+   "auc": 0.608,
+   "seeds": 5
+  },
+  "r311_san_francisco_2010-01-18_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2010-01-18",
+   "auc": 0.575,
+   "seeds": 5
+  },
+  "r311_san_francisco_2011-02-17_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2011-02-17",
+   "auc": 0.551,
+   "seeds": 5
+  },
+  "r311_san_francisco_2012-12-02_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2012-12-02",
+   "auc": 0.536,
+   "seeds": 5
+  },
+  "r311_san_francisco_2013-11-20_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2013-11-20",
+   "auc": 0.573,
+   "seeds": 5
+  },
+  "r311_san_francisco_2014-12-02_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2014-12-02",
+   "auc": 0.569,
+   "seeds": 5
+  },
+  "r311_san_francisco_2014-12-11_francisco_b00_02": {
+   "city": "san_francisco",
+   "event": "2014-12-11",
+   "auc": 0.531,
+   "seeds": 5
+  },
+  "r311_san_francisco_2014-12-11_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2014-12-11",
+   "auc": 0.555,
+   "seeds": 5
+  },
+  "r311_san_francisco_2015-02-08_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2015-02-08",
+   "auc": 0.54,
+   "seeds": 5
+  },
+  "r311_san_francisco_2015-12-13_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2015-12-13",
+   "auc": 0.604,
+   "seeds": 5
+  },
+  "r311_san_francisco_2015-12-21_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2015-12-21",
+   "auc": 0.512,
+   "seeds": 5
+  },
+  "r311_san_francisco_2016-01-05_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2016-01-05",
+   "auc": 0.55,
+   "seeds": 5
+  },
+  "r311_san_francisco_2016-01-19_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2016-01-19",
+   "auc": 0.544,
+   "seeds": 5
+  },
+  "r311_san_francisco_2016-03-12_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2016-03-12",
+   "auc": 0.545,
+   "seeds": 5
+  },
+  "r311_san_francisco_2016-11-19_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2016-11-19",
+   "auc": 0.74,
+   "seeds": 5
+  },
+  "r311_san_francisco_2016-12-15_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2016-12-15",
+   "auc": 0.593,
+   "seeds": 5
+  },
+  "r311_san_francisco_2017-01-10_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2017-01-10",
+   "auc": 0.555,
+   "seeds": 5
+  },
+  "r311_san_francisco_2017-01-20_francisco_b01_02": {
+   "city": "san_francisco",
+   "event": "2017-01-20",
+   "auc": 0.542,
+   "seeds": 5
+  },
+  "r311_san_francisco_2017-11-16_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2017-11-16",
+   "auc": 0.6,
+   "seeds": 5
+  },
+  "r311_san_francisco_2018-01-08_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2018-01-08",
+   "auc": 0.563,
+   "seeds": 5
+  },
+  "r311_san_francisco_2018-03-01_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2018-03-01",
+   "auc": 0.579,
+   "seeds": 5
+  },
+  "r311_san_francisco_2018-04-06_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2018-04-06",
+   "auc": 0.652,
+   "seeds": 5
+  },
+  "r311_san_francisco_2018-11-21_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2018-11-21",
+   "auc": 0.579,
+   "seeds": 5
+  },
+  "r311_san_francisco_2018-11-28_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2018-11-28",
+   "auc": 0.611,
+   "seeds": 5
+  },
+  "r311_san_francisco_2019-01-06_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2019-01-06",
+   "auc": 0.544,
+   "seeds": 5
+  },
+  "r311_san_francisco_2019-01-16_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2019-01-16",
+   "auc": 0.593,
+   "seeds": 5
+  },
+  "r311_san_francisco_2019-02-13_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2019-02-13",
+   "auc": 0.588,
+   "seeds": 5
+  },
+  "r311_san_francisco_2019-11-26_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2019-11-26",
+   "auc": 0.602,
+   "seeds": 5
+  },
+  "r311_san_francisco_2020-01-16_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2020-01-16",
+   "auc": 0.565,
+   "seeds": 5
+  },
+  "r311_san_francisco_2021-10-24_francisco_b02_00": {
+   "city": "san_francisco",
+   "event": "2021-10-24",
+   "auc": 0.632,
+   "seeds": 5
+  },
+  "r311_san_francisco_2021-10-24_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2021-10-24",
+   "auc": 0.623,
+   "seeds": 5
+  },
+  "r311_san_francisco_2021-12-13_francisco_b02_02": {
+   "city": "san_francisco",
+   "event": "2021-12-13",
+   "auc": 0.622,
+   "seeds": 5
+  }
+ },
+ "floodnet": "14 sensors installed before 2022 (496 total); not usable on DEV"
+}
