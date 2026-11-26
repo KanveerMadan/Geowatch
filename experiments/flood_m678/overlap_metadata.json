@@ -12,6 +12,22 @@
     "derna-2023-09-10": {
       "status": "needs_study_footprint"
     },
+    "fargo-2022-05-14": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "fargo-2023-04-22": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "galena-2023-05-23": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "hay-river-2022-05-12": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
     "jagersfontein-2022-09-11": {
       "status": "needs_study_footprint"
     },
@@ -50,7 +66,15 @@
       "matches": [],
       "status": "no_match_in_available_geometry"
     },
+    "ottawa-britannia-2023-05-06": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
     "pajaro-2023-03-11": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "red-emerson-2022-05-08": {
       "matches": [],
       "status": "no_match_in_available_geometry"
     },
@@ -74,6 +98,10 @@
         ]
       ],
       "status": "known_geographic_conflict"
+    },
+    "saint-john-fredericton-2023-04-19": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
     },
     "shispare-2022-05-07": {
       "status": "needs_study_footprint"

@@ -129,6 +129,17 @@
     "station": "04156000",
     "status": "gauge_bracket"
   },
+  "minot-souris-2011-06-25": {
+    "end": "2011-06-26T01:00:00+00:00",
+    "gauge_max_ft": 24.37,
+    "observations": 769,
+    "sample_seconds": 900.0,
+    "series_id": "09656f76fa93486ea190ac6ec5f10e6d",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-05117500&parameter_code=00065&datetime=2011-06-22T05%3A00%3A00%2B00%3A00%2F2011-06-30T05%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2011-06-26T00:30:00+00:00",
+    "station": "05117500",
+    "status": "gauge_bracket"
+  },
   "missouri-holt-2019-03-17": {
     "end": "2019-03-21T04:00:00+00:00",
     "gauge_max_ft": 28.13,

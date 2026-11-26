@@ -184,11 +184,11 @@
       "M8",
       "ice jam",
       "USA",
-      "Yukon at Galena",
-      "",
-      null,
-      null,
-      ""
+      "Yukon River at Galena",
+      "America/Anchorage",
+      64.736111,
+      -156.900833,
+      "https://api.water.noaa.gov/nwps/v1/gauges/GYRA2"
     ],
     "circle": [
       "M8",
@@ -204,11 +204,11 @@
       "M8",
       "snowmelt and rain",
       "Canada",
-      "Kettle and Granby Rivers",
-      "",
-      null,
-      null,
-      ""
+      "Granby and Kettle Rivers at Grand Forks",
+      "America/Vancouver",
+      49.04327,
+      -118.44043,
+      "Water Survey of Canada station 08NN002 (GeoMet hydrometric-annual-peaks geometry)"
     ],
     "upper-mississippi": [
       "M8",
@@ -479,6 +479,76 @@
       43.79724,
       131.95207,
       "https://nominatim.openstreetmap.org (OSM place point; © OpenStreetMap contributors, ODbL)"
+    ],
+    "fort-mcmurray": [
+      "M8",
+      "ice jam",
+      "Canada",
+      "Athabasca and Clearwater Rivers at Fort McMurray",
+      "America/Edmonton",
+      56.78089,
+      -111.40258,
+      "Water Survey of Canada station 07DA001 (GeoMet hydrometric-annual-peaks geometry)"
+    ],
+    "fort-vermilion": [
+      "M8",
+      "ice jam",
+      "Canada",
+      "Peace River at Fort Vermilion",
+      "America/Edmonton",
+      58.38789,
+      -116.02875,
+      "Water Survey of Canada station 07HF001 (GeoMet hydrometric-annual-peaks geometry)"
+    ],
+    "hay-river": [
+      "M8",
+      "ice jam",
+      "Canada",
+      "Hay River at Hay River",
+      "America/Edmonton",
+      60.743,
+      -115.85964,
+      "Water Survey of Canada station 07OB001 (GeoMet hydrometric-annual-peaks geometry)"
+    ],
+    "saint-john-fredericton": [
+      "M8",
+      "snowmelt and rain",
+      "Canada",
+      "Saint John River at Fredericton",
+      "America/Moncton",
+      45.96619,
+      -66.65161,
+      "Water Survey of Canada station 01AK003 (GeoMet hydrometric-annual-peaks geometry)"
+    ],
+    "ottawa-britannia": [
+      "M8",
+      "snowmelt and rain",
+      "Canada",
+      "Ottawa River at Britannia",
+      "America/Toronto",
+      45.35125,
+      -75.82666,
+      "Water Survey of Canada station 02KF005 (GeoMet hydrometric-annual-peaks geometry)"
+    ],
+    "red-emerson": [
+      "M8",
+      "snowmelt",
+      "Canada",
+      "Red River at Emerson",
+      "America/Winnipeg",
+      49.00375,
+      -97.22383,
+      "Water Survey of Canada station 05OC001 (GeoMet hydrometric-annual-peaks geometry)"
+    ],
+    "minot-souris": [
+      "M8",
+      "snowmelt and rain",
+      "USA",
+      "Souris River at Minot",
+      "America/Chicago",
+      48.238056,
+      -101.295833,
+      "https://api.water.noaa.gov/nwps/v1/gauges/MION8"
     ]
   },
   "events": [
@@ -740,7 +810,10 @@
       "site": "galena",
       "date": "2013-05-26",
       "source": "https://www.weather.gov/safety/flood-states-ak",
-      "note": "Reported rise at Galena. Several towns flooded during the same Yukon breakup."
+      "note": "Reported rise at Galena. Several towns flooded during the same Yukon breakup. NWS historic crest 127.5 ft on May 27, 2013 (minor 124, major 128).",
+      "crest_date": "2013-05-27",
+      "crest_kind": "agency_crest_day",
+      "peak_source": "https://api.water.noaa.gov/nwps/v1/gauges/GYRA2"
     },
     {
       "site": "circle",
@@ -752,7 +825,12 @@
       "site": "grand-forks-bc",
       "date": "2018-05-10",
       "source": "https://www2.gov.bc.ca/assets/gov/environment/climate-change/adaptation/resources/social_impacts_grand_forks_flood.pdf",
-      "note": "Joint rain and snowmelt event."
+      "note": "Joint rain and snowmelt event. WSC annual maximum 4.68 m at 08NN002 (Granby at Grand Forks), 15:55 PST May 10; bracket +/- 15 min.",
+      "crest_utc_bracket": [
+        "2018-05-10T23:40:00+00:00",
+        "2018-05-11T00:10:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=08NN002"
     },
     {
       "site": "upper-mississippi",
@@ -1053,6 +1131,165 @@
       "peak_source": "https://novayagazeta.ru/articles/2023/08/12/vsekh-spasli-vse-zhivy-gusi-von-plavaiut",
       "note": "Remnants of Typhoon Khanun. Overtopping overnight, then failure of the Ussuriysk flood dike on the morning of August 12, 2023 (city duty service). 117 mm of rain the day before. The local day of the failure stands for the crest at the breached reach.",
       "not_before_utc": "2023-08-11T14:00:00+00:00"
+    },
+    {
+      "site": "fort-mcmurray",
+      "date": "2020-04-26",
+      "crest_utc_bracket": [
+        "2020-04-27T18:45:00+00:00",
+        "2020-04-27T19:15:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=07DA001",
+      "source": "https://www.cbc.ca/lite/story/1.5546029",
+      "note": "WSC annual maximum instantaneous water level 12.28 m at 07DA001, 2020-04-27T12:00 (UTC-7); bracket +/- 15 min. Ice jam on the Athabasca at Fort McMurray; downtown and Waterways flooded."
+    },
+    {
+      "site": "fort-vermilion",
+      "date": "2020-04-27",
+      "crest_utc_bracket": [
+        "2020-04-28T10:45:00+00:00",
+        "2020-04-28T11:15:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=07HF001",
+      "source": "https://globalnews.ca/news/6874924/alberta-fort-vermilion-mackenzie-county-flood",
+      "note": "WSC annual maximum instantaneous water level 14.25 m at 07HF001, 2020-04-28T04:00 (UTC-7); bracket +/- 15 min. Ice jam on the Peace River; Fort Vermilion and Mackenzie County flooded."
+    },
+    {
+      "site": "hay-river",
+      "date": "2021-05-10",
+      "crest_utc_bracket": [
+        "2021-05-10T11:00:00+00:00",
+        "2021-05-10T11:30:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=07OB001",
+      "source": "https://nnsl.com/hayriverhub/no-flooding-reported-after-vale-island-evacuated-but-area-still-under-threat-7264682",
+      "note": "WSC annual maximum instantaneous water level 10.19 m at 07OB001, 2021-05-10T04:15 (UTC-7); bracket +/- 15 min. Breakup ice jam at Hay River; minor flooding at Vale Island. Excluded: Vale Island was evacuated but no flooding occurred, so there is no documented inundation (M8 rule).",
+      "excluded": true
+    },
+    {
+      "site": "hay-river",
+      "date": "2022-05-12",
+      "crest_utc_bracket": [
+        "2022-05-12T13:40:00+00:00",
+        "2022-05-12T14:10:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=07OB001",
+      "source": "https://www.cbc.ca/lite/story/1.6450325",
+      "note": "WSC annual maximum instantaneous water level 12.76 m at 07OB001, 2022-05-12T06:55 (UTC-7); bracket +/- 15 min. Record breakup flood at Hay River and K'atl'odeeche First Nation."
+    },
+    {
+      "site": "saint-john-fredericton",
+      "date": "2018-05-01",
+      "crest_utc_bracket": [
+        "2018-05-01T15:52:00+00:00",
+        "2018-05-01T16:22:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=01AK003",
+      "source": "https://www.elgegl.gnb.ca/0001/en/Flood/Details/360",
+      "note": "WSC annual maximum instantaneous water level 8.31 m at 01AK003, 2018-05-01T12:07 (UTC-4); bracket +/- 15 min. Record spring flood on the lower Saint John."
+    },
+    {
+      "site": "saint-john-fredericton",
+      "date": "2019-04-24",
+      "crest_utc_bracket": [
+        "2019-04-24T02:55:00+00:00",
+        "2019-04-24T03:25:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=01AK003",
+      "source": "https://amp.cbc.ca/lite/story/1.5107001",
+      "note": "WSC annual maximum instantaneous water level 8.37 m at 01AK003, 2019-04-23T23:10 (UTC-4); bracket +/- 15 min. Spring flood at Fredericton, above 2018."
+    },
+    {
+      "site": "saint-john-fredericton",
+      "date": "2023-04-19",
+      "crest_utc_bracket": [
+        "2023-04-19T15:05:00+00:00",
+        "2023-04-19T15:35:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=01AK003",
+      "source": "https://canadianunderwriter.ca/2023/04/19/water-levels-reach-flood-stage-in-new-brunswick/",
+      "note": "WSC annual maximum instantaneous water level 7.47 m at 01AK003, 2023-04-19T11:20 (UTC-4); bracket +/- 15 min. Spring flood above the 6.5 m Fredericton flood stage."
+    },
+    {
+      "site": "ottawa-britannia",
+      "date": "2017-05-08",
+      "crest_utc_bracket": [
+        "2017-05-08T16:10:00+00:00",
+        "2017-05-08T16:40:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=02KF005",
+      "source": "https://ottawariver.ca/wp-content/uploads/2019/02/2017-Spring-Flood-Summary.pdf",
+      "note": "WSC annual maximum instantaneous water level 60.46 m at 02KF005, 2017-05-08T11:25 (UTC-5); bracket +/- 15 min. Spring flood on the Ottawa River; Britannia and Constance Bay flooded."
+    },
+    {
+      "site": "ottawa-britannia",
+      "date": "2019-05-01",
+      "crest_utc_bracket": [
+        "2019-05-01T01:00:00+00:00",
+        "2019-05-03T05:00:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=02KF005",
+      "source": "https://www.cbc.ca/lite/story/1.5119719",
+      "note": "WSC annual maximum instantaneous water level 60.7 m at 02KF005, 2019-04-30T20:15 (UTC-5); bracket +/- 15 min. Record spring flood on the Ottawa River. CBC reports the 60.70 m crest on Thursday May 2, so the level held its maximum from April 30 to May 2. The bracket spans the plateau."
+    },
+    {
+      "site": "ottawa-britannia",
+      "date": "2023-05-06",
+      "crest_utc_bracket": [
+        "2023-05-06T08:00:00+00:00",
+        "2023-05-06T08:30:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=02KF005",
+      "source": "https://Ottawa.ca/en/city-hall/city-news/newsroom/spring-flooding-2023-numbers",
+      "note": "WSC annual maximum instantaneous water level 60.35 m at 02KF005, 2023-05-06T03:15 (UTC-5); bracket +/- 15 min. Spring flood on the Ottawa River; Pontiac and Constance Bay flooding."
+    },
+    {
+      "site": "red-emerson",
+      "date": "2022-05-08",
+      "crest_utc_bracket": [
+        "2022-05-08T03:10:00+00:00",
+        "2022-05-08T03:40:00+00:00"
+      ],
+      "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=05OC001",
+      "source": "https://globalnews.ca/news/8803991/flooding-manitoba-states-of-emergency-hwy-75-closure",
+      "note": "WSC annual maximum instantaneous water level 240.58 m at 05OC001, 2022-05-07T21:25 (UTC-6); bracket +/- 15 min. Spring flood of the Red River in Manitoba."
+    },
+    {
+      "site": "galena",
+      "date": "2023-05-23",
+      "crest_date": "2023-05-23",
+      "crest_kind": "agency_crest_day",
+      "source": "https://api.water.noaa.gov/nwps/v1/gauges/GYRA2",
+      "note": "NWS historic crest 125.56 ft on May 23, 2023, above the 124 ft minor flood stage (NWS flood categories are the documented-inundation rule for agency crests)."
+    },
+    {
+      "site": "fargo",
+      "date": "2022-05-14",
+      "crest_date": "2022-05-14",
+      "crest_kind": "agency_crest_day",
+      "source": "https://api.water.noaa.gov/nwps/v1/gauges/FGON8",
+      "note": "NWS historic crest 26.49 ft on May 14, 2022, above moderate flood stage 25 ft."
+    },
+    {
+      "site": "fargo",
+      "date": "2023-04-22",
+      "crest_date": "2023-04-22",
+      "crest_kind": "agency_crest_day",
+      "source": "https://api.water.noaa.gov/nwps/v1/gauges/FGON8",
+      "note": "NWS historic crest 29.75 ft on April 22, 2023, above moderate flood stage 25 ft."
+    },
+    {
+      "site": "minot-souris",
+      "date": "2011-06-25",
+      "crest_date": "2011-06-25",
+      "crest_kind": "agency_crest_day",
+      "stage_gauge": "05117500",
+      "stage_search_local_days": [
+        "2011-06-22",
+        "2011-06-29"
+      ],
+      "source": "https://api.water.noaa.gov/nwps/v1/gauges/MION8",
+      "note": "NWS historic record crest at Souris River at Minot-Broadway Bridge on June 25, 2011 (major 1557 ft). Snowmelt and spring rain; dam releases upstream in Canada contributed."
     }
   ],
   "clusters": {
@@ -1060,6 +1297,17 @@
     "missouri-holt": "midwest-2019-03",
     "chikuma-hoyasu": "hagibis-2019-10",
     "gulfport-miss": "midwest-2008-06",
-    "kosi-bhubhaul": "kosi"
+    "kosi-bhubhaul": "kosi",
+    "fort-mcmurray": "athabasca",
+    "fort-vermilion": "peace",
+    "hay-river": "hay",
+    "saint-john-fredericton": "saint-john",
+    "ottawa-britannia": "ottawa",
+    "red-emerson": "red-river",
+    "fargo": "red-river",
+    "grand-forks-bc": "kettle-granby",
+    "galena": "yukon",
+    "circle": "yukon",
+    "minot-souris": "souris"
   }
 }
