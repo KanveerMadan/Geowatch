@@ -1,0 +1,404 @@
+{
+  "version": "seasonal-history-v1",
+  "detector_sha256": "92b06233ed26100a5342542fba664666df5a093ad19ad48d7daf88a9b48f5202",
+  "history_start": "2018-01-01",
+  "window": [
+    "2021-08-01",
+    "2021-11-01"
+  ],
+  "end_exclusive": true,
+  "sites": [
+    {
+      "site": "flatiron_ridge",
+      "lon_lat": [
+        -121.399,
+        40.456
+      ],
+      "cell_id": "EPSG:32610/635700/4479700",
+      "state": "change_detected",
+      "acquisitions": 277,
+      "usable_history": 157,
+      "usable_monitor": 7,
+      "episodes": [
+        {
+          "event_id": "5466ea51175f6cc4336d10d8",
+          "transition": "greenness_loss",
+          "detected_on": "2021-08-22",
+          "confirmed_on": "2021-08-27",
+          "onset": {
+            "after": "2021-08-12",
+            "by": "2021-08-22"
+          },
+          "last_evidence_on": "2021-08-27",
+          "lifecycle": "corroborated",
+          "detections": 2,
+          "track": "MSI:113"
+        },
+        {
+          "event_id": "e05d020c19a0a544c13e1d83",
+          "transition": "greenness_loss",
+          "detected_on": "2021-09-26",
+          "confirmed_on": "2021-10-01",
+          "onset": {
+            "after": "2021-08-12",
+            "by": "2021-09-26"
+          },
+          "last_evidence_on": "2021-10-01",
+          "lifecycle": "corroborated",
+          "detections": 2,
+          "track": "MSI:113"
+        },
+        {
+          "event_id": "f3606a10c0a5d37d2ae86254",
+          "transition": "built_surface_signal_gain",
+          "detected_on": "2021-09-26",
+          "confirmed_on": "2021-10-01",
+          "onset": {
+            "after": "2021-08-27",
+            "by": "2021-09-26"
+          },
+          "last_evidence_on": "2021-10-01",
+          "lifecycle": "corroborated",
+          "detections": 2,
+          "track": "MSI:113"
+        },
+        {
+          "event_id": "a29d3b92e5cbf7ae40cda7ba",
+          "transition": "greenness_loss",
+          "detected_on": "2021-10-16",
+          "confirmed_on": null,
+          "onset": {
+            "after": "2021-08-12",
+            "by": "2021-10-16"
+          },
+          "last_evidence_on": "2021-10-16",
+          "lifecycle": "candidate",
+          "detections": 1,
+          "track": "MSI:113"
+        },
+        {
+          "event_id": "b45b4530e0e9d3350627d11a",
+          "transition": "built_surface_signal_gain",
+          "detected_on": "2021-10-16",
+          "confirmed_on": null,
+          "onset": {
+            "after": "2021-08-27",
+            "by": "2021-10-16"
+          },
+          "last_evidence_on": "2021-10-16",
+          "lifecycle": "candidate",
+          "detections": 1,
+          "track": "MSI:113"
+        }
+      ],
+      "reference": {
+        "fires": [
+          {
+            "Event_ID": "CA3987612137920210714",
+            "Ig_Date": 1626246000000,
+            "Incid_Name": "DIXIE",
+            "Post_ID": "804403220220714",
+            "Pre_ID": "804403220200708"
+          }
+        ],
+        "landsat_september_october": {
+          "2020": [
+            {
+              "id": "LC08_044032_20200910",
+              "nbr_count": 12,
+              "nbr_median": 0.47570118974009534,
+              "ndvi_count": 12,
+              "ndvi_median": 0.7365090963349609
+            },
+            {
+              "id": "LC08_044032_20200926",
+              "nbr_count": 12,
+              "nbr_median": 0.48697276759348546,
+              "ndvi_count": 12,
+              "ndvi_median": 0.6122076259649473
+            },
+            {
+              "id": "LC08_044032_20201012",
+              "nbr_count": 12,
+              "nbr_median": 0.5843213634772092,
+              "ndvi_count": 12,
+              "ndvi_median": 0.7262444514775458
+            },
+            {
+              "id": "LC08_044032_20201028",
+              "nbr_count": 12,
+              "nbr_median": 0.6190714404963216,
+              "ndvi_count": 12,
+              "ndvi_median": 0.7565658765226215
+            }
+          ],
+          "2021": [
+            {
+              "id": "LC08_044032_20210913",
+              "nbr_count": 12,
+              "nbr_median": -0.32355088993784525,
+              "ndvi_count": 12,
+              "ndvi_median": 0.16953690970087082
+            },
+            {
+              "id": "LC08_044032_20210929",
+              "nbr_count": 12,
+              "nbr_median": -0.39612272661056586,
+              "ndvi_count": 12,
+              "ndvi_median": 0.20473520188852562
+            },
+            {
+              "id": "LC08_044032_20211015",
+              "nbr_count": 12,
+              "nbr_median": -0.3618651350128504,
+              "ndvi_count": 12,
+              "ndvi_median": 0.18260570566322823
+            },
+            {
+              "id": "LC08_044032_20211031",
+              "nbr_count": 0,
+              "nbr_median": null,
+              "ndvi_count": 0,
+              "ndvi_median": null
+            }
+          ]
+        },
+        "reference_severity_id": "mtbs_CONUS_2021",
+        "severity_pixel_counts": {
+          "Severity": {
+            "4": 12
+          }
+        }
+      },
+      "diagnostics": {
+        "calibration_window_days": 92,
+        "calibration_blocks": 3,
+        "query_days": 92,
+        "multichannel_envelope_multiplier": 1.8510918009868775
+      },
+      "series_support": {
+        "mndwi": "partial_observation",
+        "ndbi": "partial_observation",
+        "ndvi": "partial_observation"
+      },
+      "source_errors": []
+    },
+    {
+      "site": "west_park",
+      "lon_lat": [
+        -121.582,
+        40.531
+      ],
+      "cell_id": "EPSG:32610/620000/4487700",
+      "state": "candidate_change",
+      "acquisitions": 277,
+      "usable_history": 125,
+      "usable_monitor": 14,
+      "episodes": [
+        {
+          "event_id": "3f9d1f9f957ca3c5bafeead1",
+          "transition": "greenness_loss",
+          "detected_on": "2021-08-17",
+          "confirmed_on": null,
+          "onset": {
+            "after": "2021-08-12",
+            "by": "2021-08-17"
+          },
+          "last_evidence_on": "2021-08-17",
+          "lifecycle": "candidate",
+          "detections": 1,
+          "track": "MSI:113"
+        },
+        {
+          "event_id": "d934ff1e852526b93de5b738",
+          "transition": "open_water_signal_gain",
+          "detected_on": "2021-08-17",
+          "confirmed_on": null,
+          "onset": {
+            "after": "2021-08-12",
+            "by": "2021-08-17"
+          },
+          "last_evidence_on": "2021-08-17",
+          "lifecycle": "candidate",
+          "detections": 1,
+          "track": "MSI:113"
+        },
+        {
+          "event_id": "3b8c3a70237986827d5ec821",
+          "transition": "open_water_signal_gain",
+          "detected_on": "2021-08-27",
+          "confirmed_on": null,
+          "onset": {
+            "after": "2021-08-22",
+            "by": "2021-08-27"
+          },
+          "last_evidence_on": "2021-08-27",
+          "lifecycle": "candidate",
+          "detections": 1,
+          "track": "MSI:113"
+        },
+        {
+          "event_id": "aacf2f57bcf255325ae88840",
+          "transition": "greenness_loss",
+          "detected_on": "2021-08-27",
+          "confirmed_on": null,
+          "onset": {
+            "after": "2021-08-22",
+            "by": "2021-08-27"
+          },
+          "last_evidence_on": "2021-08-27",
+          "lifecycle": "candidate",
+          "detections": 1,
+          "track": "MSI:113"
+        },
+        {
+          "event_id": "3ec9c72fe3a8ab13aea36dac",
+          "transition": "built_surface_signal_gain",
+          "detected_on": "2021-09-06",
+          "confirmed_on": null,
+          "onset": {
+            "after": "2021-09-01",
+            "by": "2021-09-06"
+          },
+          "last_evidence_on": "2021-09-06",
+          "lifecycle": "candidate",
+          "detections": 1,
+          "track": "MSI:113"
+        }
+      ],
+      "reference": {
+        "fires": [],
+        "landsat_september_october": {
+          "2020": [
+            {
+              "id": "LC08_044032_20200910",
+              "nbr_count": 12,
+              "nbr_median": 0.7657591304723556,
+              "ndvi_count": 12,
+              "ndvi_median": 0.7721215201692366
+            },
+            {
+              "id": "LC08_044032_20200926",
+              "nbr_count": 12,
+              "nbr_median": 0.7111681298315529,
+              "ndvi_count": 12,
+              "ndvi_median": 0.7486809665709376
+            },
+            {
+              "id": "LC08_044032_20201012",
+              "nbr_count": 12,
+              "nbr_median": 0.8211104911090576,
+              "ndvi_count": 12,
+              "ndvi_median": 0.8497677266698247
+            },
+            {
+              "id": "LC08_044032_20201028",
+              "nbr_count": 12,
+              "nbr_median": 0.8516617325589246,
+              "ndvi_count": 12,
+              "ndvi_median": 0.8757440469147959
+            },
+            {
+              "id": "LC08_045032_20200901",
+              "nbr_count": 12,
+              "nbr_median": 0.7344610711179196,
+              "ndvi_count": 12,
+              "ndvi_median": 0.8416584608092756
+            },
+            {
+              "id": "LC08_045032_20200917",
+              "nbr_count": 0,
+              "nbr_median": null,
+              "ndvi_count": 0,
+              "ndvi_median": null
+            },
+            {
+              "id": "LC08_045032_20201003",
+              "nbr_count": 0,
+              "nbr_median": null,
+              "ndvi_count": 0,
+              "ndvi_median": null
+            },
+            {
+              "id": "LC08_045032_20201019",
+              "nbr_count": 0,
+              "nbr_median": null,
+              "ndvi_count": 0,
+              "ndvi_median": null
+            }
+          ],
+          "2021": [
+            {
+              "id": "LC08_044032_20210913",
+              "nbr_count": 12,
+              "nbr_median": 0.7711149504535088,
+              "ndvi_count": 12,
+              "ndvi_median": 0.8167519510019684
+            },
+            {
+              "id": "LC08_044032_20210929",
+              "nbr_count": 12,
+              "nbr_median": 0.8091921790396142,
+              "ndvi_count": 12,
+              "ndvi_median": 0.8317382732073466
+            },
+            {
+              "id": "LC08_044032_20211015",
+              "nbr_count": 12,
+              "nbr_median": 0.8238464636689156,
+              "ndvi_count": 12,
+              "ndvi_median": 0.832291507759715
+            },
+            {
+              "id": "LC08_044032_20211031",
+              "nbr_count": 12,
+              "nbr_median": 0.8447345972715283,
+              "ndvi_count": 12,
+              "ndvi_median": 0.8702874717489817
+            },
+            {
+              "id": "LC08_045032_20210904",
+              "nbr_count": 12,
+              "nbr_median": 0.7473294434433566,
+              "ndvi_count": 12,
+              "ndvi_median": 0.7141132617216825
+            },
+            {
+              "id": "LC08_045032_20210920",
+              "nbr_count": 12,
+              "nbr_median": 0.7985491143506263,
+              "ndvi_count": 12,
+              "ndvi_median": 0.8990980648100203
+            },
+            {
+              "id": "LC08_045032_20211006",
+              "nbr_count": 0,
+              "nbr_median": null,
+              "ndvi_count": 0,
+              "ndvi_median": null
+            }
+          ]
+        },
+        "reference_severity_id": "mtbs_CONUS_2021",
+        "severity_pixel_counts": {
+          "Severity": {
+            "null": 11
+          }
+        }
+      },
+      "diagnostics": {
+        "calibration_window_days": 92,
+        "calibration_blocks": 3,
+        "query_days": 92,
+        "multichannel_envelope_multiplier": 1.9479574828860327
+      },
+      "series_support": {
+        "mndwi": "partial_observation",
+        "ndbi": "partial_observation",
+        "ndvi": "partial_observation"
+      },
+      "source_errors": []
+    }
+  ],
+  "raw_output_sha256": "3c58544feba8d2ebe9c6a375253f1ab99fcc077eff7e60f9b7fa6e2599fdbd3a"
+}

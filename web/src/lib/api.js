@@ -78,3 +78,15 @@ export function aoiLabel(name) {
     .replace(/^_+|_+$/g, '').slice(0, 40)
   return s || 'area'
 }
+
+export const getChangeCell = (resultId, unitIndex, signal, query) =>
+  call(`/api/results/${resultId}/change/cells/${encodeURIComponent(unitIndex)}${query ? '?' + new URLSearchParams(query) : ''}`, { signal })
+
+export const compareChange = (resultId, query, signal) =>
+  call(`/api/results/${resultId}/change/compare?${new URLSearchParams(query)}`, { signal })
+
+export const getChangeZone = (resultId, type, id, signal) =>
+  call(`/api/results/${resultId}/change/summary/${encodeURIComponent(type)}/${encodeURIComponent(id)}`, { signal })
+
+export const getUnitPage = (resultId, type, offset, limit, signal) =>
+  call(`/api/results/${resultId}/wards/${encodeURIComponent(type)}?offset=${offset}&limit=${limit}`, { signal })

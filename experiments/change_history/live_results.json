@@ -1,0 +1,350 @@
+{
+  "run_date": "2026-11-19",
+  "use": "two purposive development cells",
+  "model_version": "seasonal-history-v1",
+  "detector_source_sha256": "92b06233ed26100a5342542fba664666df5a093ad19ad48d7daf88a9b48f5202",
+  "full_output_sha256": "9b350858aa6fa14a45143db94be338e309d0656681411d06da035b8caba9d30f",
+  "input": "COPERNICUS/S2_SR_HARMONIZED",
+  "reference": "USGS Landsat Collection 2 Level 2 QA_PIXEL clear water flag",
+  "history_start": "2020-01-01",
+  "monitoring": [
+    "2023-06-01",
+    "2023-09-01"
+  ],
+  "end_exclusive": true,
+  "reference_windows": {
+    "before": [
+      "2023-05-01",
+      "2023-06-06"
+    ],
+    "after": [
+      "2023-07-01",
+      "2023-09-01"
+    ]
+  },
+  "sites": [
+    {
+      "site": "kakhovka_interior",
+      "cell": "EPSG:32636/602000/5264400",
+      "bounds_wsen": [
+        34.35497177288452,
+        47.524104448785025,
+        34.356322984774174,
+        47.52501969123941
+      ],
+      "acquisitions": 526,
+      "complete_support_by_period": {
+        "history": 212,
+        "monitor": 25
+      },
+      "state": "change_detected",
+      "calibration": {
+        "calibration_window_days": 92,
+        "calibration_blocks": 3,
+        "query_days": 92,
+        "multichannel_envelope_multiplier": 1.5644277407917206
+      },
+      "episodes": [
+        {
+          "event_id": "a7deb9be8dc847c8288439b1",
+          "transition": "open_water_signal_loss",
+          "onset": {
+            "after": "2023-06-05",
+            "by": "2023-06-20"
+          },
+          "detected_on": "2023-06-20",
+          "confirmed_on": "2023-06-25",
+          "last_evidence_on": "2023-08-29",
+          "lifecycle": "corroborated",
+          "detections": 12,
+          "track": "MSI:64",
+          "strongest_date": "2023-08-29",
+          "observed": -0.3133300542831421,
+          "expected": 0.770360444444555,
+          "delta": -1.0836904987276972
+        },
+        {
+          "event_id": "0a2701b3a7f51c8423e9990f",
+          "transition": "built_surface_signal_gain",
+          "onset": {
+            "after": "2023-06-20",
+            "by": "2023-06-25"
+          },
+          "detected_on": "2023-06-25",
+          "confirmed_on": "2023-06-30",
+          "last_evidence_on": "2023-08-29",
+          "lifecycle": "corroborated",
+          "detections": 11,
+          "track": "MSI:64",
+          "strongest_date": "2023-08-29",
+          "observed": 0.1259724348783493,
+          "expected": -0.667877961339761,
+          "delta": 0.7938503962181103
+        },
+        {
+          "event_id": "2fcf0a75e99212b16737357e",
+          "transition": "open_water_signal_loss",
+          "onset": {
+            "after": "2023-07-03",
+            "by": "2023-08-02"
+          },
+          "detected_on": "2023-08-02",
+          "confirmed_on": "2023-08-07",
+          "last_evidence_on": "2023-08-27",
+          "lifecycle": "corroborated",
+          "detections": 6,
+          "track": "MSI:107",
+          "strongest_date": "2023-08-27",
+          "observed": -0.3101685345172882,
+          "expected": 0.710776081203172,
+          "delta": -1.0209446157204602
+        },
+        {
+          "event_id": "a74bc4b2f8c871b1bc20689d",
+          "transition": "built_surface_signal_gain",
+          "onset": {
+            "after": "2023-08-12",
+            "by": "2023-08-17"
+          },
+          "detected_on": "2023-08-17",
+          "confirmed_on": "2023-08-22",
+          "last_evidence_on": "2023-08-27",
+          "lifecycle": "corroborated",
+          "detections": 3,
+          "track": "MSI:107",
+          "strongest_date": "2023-08-22",
+          "observed": 0.1351654976606369,
+          "expected": -0.4719626884151328,
+          "delta": 0.6071281860757697
+        }
+      ],
+      "reference_clear_dates": {
+        "before": [
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_178027_20230517",
+            "date": "2023-05-17",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_178027_20230602",
+            "date": "2023-06-02",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          }
+        ],
+        "after": [
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_178027_20230704",
+            "date": "2023-07-04",
+            "clear_pixels": 12,
+            "water_pixels": 1
+          },
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_178027_20230805",
+            "date": "2023-08-05",
+            "clear_pixels": 12,
+            "water_pixels": 0
+          },
+          {
+            "id": "LANDSAT/LC08/C02/T1_L2/LC08_178027_20230813",
+            "date": "2023-08-13",
+            "clear_pixels": 12,
+            "water_pixels": 0
+          },
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_178027_20230821",
+            "date": "2023-08-21",
+            "clear_pixels": 12,
+            "water_pixels": 0
+          },
+          {
+            "id": "LANDSAT/LC08/C02/T1_L2/LC08_178027_20230829",
+            "date": "2023-08-29",
+            "clear_pixels": 7,
+            "water_pixels": 0
+          }
+        ]
+      },
+      "reference_all_acquisitions": {
+        "before": 5,
+        "after": 6
+      }
+    },
+    {
+      "site": "kremenchuk_upstream",
+      "cell": "EPSG:32636/462500/5463000",
+      "bounds_wsen": [
+        32.48400232195874,
+        49.31768191062287,
+        32.48538762935246,
+        49.318587520932184
+      ],
+      "acquisitions": 525,
+      "complete_support_by_period": {
+        "history": 182,
+        "monitor": 24
+      },
+      "state": "candidate_change",
+      "calibration": {
+        "calibration_window_days": 92,
+        "calibration_blocks": 3,
+        "query_days": 92,
+        "multichannel_envelope_multiplier": 1.9045328799272285
+      },
+      "episodes": [
+        {
+          "event_id": "92410fb2b13faddbff1c9aa5",
+          "transition": "greenness_gain",
+          "onset": {
+            "after": "2023-08-05",
+            "by": "2023-08-15"
+          },
+          "detected_on": "2023-08-15",
+          "confirmed_on": null,
+          "last_evidence_on": "2023-08-15",
+          "lifecycle": "candidate",
+          "detections": 1,
+          "track": "MSI:7",
+          "strongest_date": "2023-08-15",
+          "observed": 0.4602953791618347,
+          "expected": 0.037252679776542105,
+          "delta": 0.4230426993852926
+        },
+        {
+          "event_id": "d781f53da8ac62ecf9e266f1",
+          "transition": "greenness_gain",
+          "onset": {
+            "after": "2023-08-22",
+            "by": "2023-08-27"
+          },
+          "detected_on": "2023-08-27",
+          "confirmed_on": null,
+          "last_evidence_on": "2023-08-27",
+          "lifecycle": "candidate",
+          "detections": 1,
+          "track": "MSI:107",
+          "strongest_date": "2023-08-27",
+          "observed": 0.539454996585846,
+          "expected": -0.04209911967835775,
+          "delta": 0.5815541162642037
+        }
+      ],
+      "reference_clear_dates": {
+        "before": [
+          {
+            "id": "LANDSAT/LC08/C02/T1_L2/LC08_180026_20230507",
+            "date": "2023-05-07",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_180026_20230515",
+            "date": "2023-05-15",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC08/C02/T1_L2/LC08_180026_20230523",
+            "date": "2023-05-23",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_179026_20230524",
+            "date": "2023-05-24",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC08/C02/T1_L2/LC08_179026_20230601",
+            "date": "2023-06-01",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          }
+        ],
+        "after": [
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_180026_20230702",
+            "date": "2023-07-02",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC08/C02/T1_L2/LC08_180026_20230710",
+            "date": "2023-07-10",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_179026_20230711",
+            "date": "2023-07-11",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC08/C02/T1_L2/LC08_179026_20230719",
+            "date": "2023-07-19",
+            "clear_pixels": 12,
+            "water_pixels": 9
+          },
+          {
+            "id": "LANDSAT/LC08/C02/T1_L2/LC08_179026_20230804",
+            "date": "2023-08-04",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_179026_20230812",
+            "date": "2023-08-12",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_180026_20230819",
+            "date": "2023-08-19",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC08/C02/T1_L2/LC08_179026_20230820",
+            "date": "2023-08-20",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          },
+          {
+            "id": "LANDSAT/LC08/C02/T1_L2/LC08_180026_20230827",
+            "date": "2023-08-27",
+            "clear_pixels": 12,
+            "water_pixels": 0
+          },
+          {
+            "id": "LANDSAT/LC09/C02/T1_L2/LC09_179026_20230828",
+            "date": "2023-08-28",
+            "clear_pixels": 12,
+            "water_pixels": 12
+          }
+        ]
+      },
+      "reference_all_acquisitions": {
+        "before": 9,
+        "after": 16
+      }
+    }
+  ],
+  "historical_building_smoke": {
+    "source": "GOOGLE/Research/open-buildings-temporal/v1/3b_EPSG_32643_2022_06_30",
+    "location_lon_lat": [
+      73.054,
+      18.99
+    ],
+    "nominal_date": "2022-06-30",
+    "source_imagery": [
+      "2022-01-01",
+      "2022-12-27"
+    ],
+    "effective_evidence_date": "2022-12-27",
+    "coverage": 1,
+    "sampled_confidence": 0.0
+  }
+}

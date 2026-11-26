@@ -1,0 +1,12 @@
+{
+  "labels_sha256": "dc0e2d555339e544d51ee1c482b3e0ee857a07f4c287a7b6a6f2cdc8295fd14e",
+  "protocol_lock_sha256": "a615befd4f06c00723a0cbd2e2191d2aae8dbb906dee30887069eb3f575b63a5",
+  "reference_sha256": {
+    "almere-2024.jpg": "259632a5b5893ffcae792840127ab31010b320c02efcdc55af0f2cab5d6b3d71",
+    "almere-2025.jpg": "a809893f183269f5d22550c372191515a65f07f0a1186bd305ce20e42160e180",
+    "utrecht-2024.jpg": "1e06034ef3fc5278a3dc5ee1582c00ad1ad660666b60e5296563be47f5ea47b2",
+    "utrecht-2025.jpg": "84e52fcdfb0a606b018b8bfc3da517c6429d134a129d41ed22e63e048320c610",
+    "haarlem-2024.jpg": "769fca3237d86e698f6a5e772f48eb5bfa1aabeeb2d93acf49a0c1cd74cc0a9c",
+    "haarlem-2025.jpg": "8b86ebb191878f26e99fcc82d90dabddacfa19ce534d26d00b30f80ad34d6ffb"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "building_multisensor.py": "fccd358c53e91ec31653a7f2bf68fae71d81f2219f5dc26dc27cbe1945731b87",
+  "building_multisensor_protocol.md": "4a08e413d0d3a688b1703ab1bd16c7b4365a29f895cd872a09dbfaf56e8c08bd",
+  "building_multisensor_sites.json": "c6a64bb41dcbc91e1c9927c949c50a954ada6b9d6c51973acecb671be017c0e8",
+  "building_endpoints.py": "b8607788c11743b56253b0671aef512e0a8d5a65ddb678c87e518361c1a526e2",
+  "spacenet_survey.py": "c326d6dcc6def6d8975f13ba2ce4180df3dcbfcece3626e10c922b4738d75784",
+  "../../analysis/change_history.py": "2172c71ec5ad4dea3a1e5ce90e50cc29c329bbd7a5f51d1abe8ea4a556269249",
+  "../../vector/change_observations.py": "02d5ba28d1869cb736baeba7bf212fb6e06d7a12c882bfc3743afc61211e1eb3"
+}

@@ -509,3 +509,34 @@ button.flrow-main { cursor: pointer; border-radius: var(--r-control); }
   .hover-card { display: none; }
   .swipe-handle { width: 44px; height: 44px; margin-top: -22px; left: -23px; }
 }
+
+.history-panel, .history-detail {
+  display: grid; gap: var(--s-3); min-width: 0;
+}
+.history-panel h3 { margin: 0; }
+.history-panel label, .history-dates {
+  display: grid; gap: var(--s-1); min-width: 0;
+  color: var(--c-text2); font-size: var(--t-caption-size);
+}
+.history-panel select, .history-panel input {
+  min-width: 0; max-width: 100%; width: 100%; color-scheme: dark;
+  border: 1px solid var(--c-hairlineStrong); border-radius: var(--r-control);
+  background: var(--c-raised); color: var(--c-text); padding: var(--s-2);
+  font: inherit;
+}
+.history-panel .seg { flex-wrap: wrap; }
+.history-dates { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2); border: 0; }
+.history-dates legend { padding-bottom: var(--s-1); color: var(--c-text); }
+.history-detail > .chip { justify-self: start; }
+.obs-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.obs-table th, .obs-table td { padding: var(--s-1); border-bottom: 1px solid var(--c-hairline); text-align: right; }
+.obs-table th:first-child { text-align: left; }
+.history-pages { display: flex; gap: var(--s-2); align-items: center; justify-content: space-between; }
+.history-pages button { background: var(--c-raised); color: var(--c-text); border: 0; border-radius: var(--r-control); padding: var(--s-2); }
+.history-trace { background: var(--c-raised); border-radius: var(--r-control); padding: var(--s-2); }
+.history-trace svg { display: block; width: 100%; fill: var(--c-text2); }
+.history-trace figcaption { display: flex; justify-content: space-between; font-size: var(--t-caption-size); color: var(--c-text2); }
+
+.history-scenes { text-align: left; font-weight: normal; overflow-wrap: anywhere; }
+.history-scenes summary { cursor: pointer; white-space: nowrap; }
+.history-scenes p { margin-top: var(--s-1); }

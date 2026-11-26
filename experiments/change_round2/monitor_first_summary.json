@@ -1,0 +1,124 @@
+{
+  "method": "c9f3cd60718b6b066d3c71083caa1f3c4f57769360eca6e0e69a0ac509a58f30",
+  "sites": {
+    "kolkata": {
+      "counts": {
+        "cells": 9,
+        "confirmed_cells": 0,
+        "candidate_only_cells": 1,
+        "observable_some_target": 9,
+        "unjudged_quiet_cells": 0,
+        "water_candidate_observations": 1,
+        "forest_candidate_observations": 0,
+        "water_gain": 0,
+        "water_loss": 0,
+        "forest_loss": 0
+      },
+      "received": "2026-11-21T14:42:52.044419+00:00",
+      "cutoff": "2026-11-20",
+      "new_evidence": {
+        "candidate": 1
+      }
+    },
+    "bandung": {
+      "counts": {
+        "cells": 9,
+        "confirmed_cells": 0,
+        "candidate_only_cells": 0,
+        "observable_some_target": 9,
+        "unjudged_quiet_cells": 0,
+        "water_candidate_observations": 0,
+        "forest_candidate_observations": 0,
+        "water_gain": 0,
+        "water_loss": 0,
+        "forest_loss": 0
+      },
+      "received": "2026-11-21T14:43:23.946109+00:00",
+      "cutoff": "2026-11-20",
+      "new_evidence": {}
+    },
+    "pune": {
+      "counts": {
+        "cells": 9,
+        "confirmed_cells": 0,
+        "candidate_only_cells": 0,
+        "observable_some_target": 9,
+        "unjudged_quiet_cells": 0,
+        "water_candidate_observations": 0,
+        "forest_candidate_observations": 0,
+        "water_gain": 0,
+        "water_loss": 0,
+        "forest_loss": 0
+      },
+      "received": "2026-11-21T14:43:54.490670+00:00",
+      "cutoff": "2026-11-20",
+      "new_evidence": {}
+    },
+    "dakar": {
+      "counts": {
+        "cells": 9,
+        "confirmed_cells": 0,
+        "candidate_only_cells": 0,
+        "observable_some_target": 9,
+        "unjudged_quiet_cells": 0,
+        "water_candidate_observations": 0,
+        "forest_candidate_observations": 0,
+        "water_gain": 0,
+        "water_loss": 0,
+        "forest_loss": 0
+      },
+      "received": "2026-11-21T14:44:23.516059+00:00",
+      "cutoff": "2026-11-20",
+      "new_evidence": {}
+    },
+    "haarlem": {
+      "counts": {
+        "cells": 9,
+        "confirmed_cells": 0,
+        "candidate_only_cells": 0,
+        "observable_some_target": 9,
+        "unjudged_quiet_cells": 0,
+        "water_candidate_observations": 0,
+        "forest_candidate_observations": 0,
+        "water_gain": 0,
+        "water_loss": 0,
+        "forest_loss": 0
+      },
+      "received": "2026-11-21T14:44:53.662227+00:00",
+      "cutoff": "2026-11-20",
+      "new_evidence": {}
+    },
+    "utrecht": {
+      "counts": {
+        "cells": 9,
+        "confirmed_cells": 0,
+        "candidate_only_cells": 1,
+        "observable_some_target": 9,
+        "unjudged_quiet_cells": 0,
+        "water_candidate_observations": 0,
+        "forest_candidate_observations": 1,
+        "water_gain": 0,
+        "water_loss": 0,
+        "forest_loss": 0
+      },
+      "received": "2026-11-21T14:45:25.000337+00:00",
+      "cutoff": "2026-11-20",
+      "new_evidence": {
+        "candidate": 1
+      }
+    }
+  },
+  "total": {
+    "cells": 54,
+    "confirmed_cells": 0,
+    "candidate_only_cells": 2,
+    "observable_some_target": 54,
+    "unjudged_quiet_cells": 0,
+    "water_candidate_observations": 1,
+    "forest_candidate_observations": 1,
+    "water_gain": 0,
+    "water_loss": 0,
+    "forest_loss": 0
+  },
+  "zero_baseline_confirmed_cells": 0
+}

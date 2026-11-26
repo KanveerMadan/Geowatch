@@ -1,0 +1,32 @@
+{
+  "source_study": "169b3c039a510e4e2bf1fb4ac70be96fed903109013a20b7ea76ce6eaa64abe1",
+  "site": "bandung",
+  "mode": "live_silent",
+  "received_from_utc": "2026-11-21T04:11:02.755381+00:00",
+  "received_until_utc": "2026-11-21T04:12:29.713266+00:00",
+  "acquisition_cutoff": "2026-11-20",
+  "period": [
+    "2026-11-01",
+    "2026-12-01"
+  ],
+  "source_inventories": {
+    "sentinel2": 437,
+    "landsat8": 107,
+    "landsat9": 114,
+    "sentinel1": 277,
+    "open_buildings": 3
+  },
+  "newly_logged_signal_episodes": 0,
+  "cell_states": {
+    "insufficient_observation": 36
+  },
+  "cells_with_measurement_by_source": {
+    "sentinel2": 36,
+    "landsat8": 0,
+    "landsat9": 0,
+    "sentinel1": 36,
+    "open_buildings": 0
+  },
+  "candidate_episodes": 0,
+  "snapshot_sha256": "915f1ba7e6907438b0e904f947d2cde3328d7b7406ba35cf3ee7aed477cfa36e"
+}

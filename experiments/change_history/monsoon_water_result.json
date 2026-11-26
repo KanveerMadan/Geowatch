@@ -1,0 +1,1565 @@
+{
+ "manifest_sha256": "21098348fda2d304d07771b4d33289062ea4e73b44781552b8ae5983d1ba4192",
+ "cells": [
+  {
+   "id": "EPSG:32646/377000/2755200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378700/2755200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380200/2755200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377000/2755100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378300/2755100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378200/2755000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378300/2755000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380600/2755000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376500/2754900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376600/2754900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380600/2754900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380700/2754900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380400/2754700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380500/2754700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380800/2754700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381000/2754600",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381000/2754500",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376500/2754400",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380600/2754400",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377000/2754300",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381200/2754300",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380900/2754200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376700/2754100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377400/2754100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378000/2754100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381000/2754100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381100/2754100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381200/2754100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376700/2754000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377900/2754000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/379800/2754000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380900/2754000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381200/2754000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376900/2753900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378000/2753900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381100/2753900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381200/2753900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378300/2753800",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377600/2753700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378200/2753700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378300/2753700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380900/2753700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381100/2753700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378200/2753600",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378700/2753600",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380900/2753600",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378100/2753500",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378800/2753500",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381200/2753500",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376900/2753400",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378700/2753400",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377100/2753300",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376700/2753200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376900/2753200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377100/2753200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377900/2753200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381200/2753200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377000/2753100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377100/2753100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378300/2753100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381100/2753100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381200/2753100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376800/2753000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376900/2753000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378300/2753000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381100/2753000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381200/2753000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376800/2752900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377000/2752900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376500/2752400",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378300/2752400",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376500/2752300",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378300/2752300",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378500/2752300",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378900/2752300",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/379000/2752300",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377100/2752200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377300/2752200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377900/2752200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378100/2752200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378300/2752200",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377000/2752100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377300/2752100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378200/2752100",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377000/2752000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377100/2752000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377300/2752000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377400/2752000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377600/2752000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378600/2752000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380800/2752000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377000/2751900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377700/2751800",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377900/2751800",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378000/2751800",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381000/2751800",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377700/2751700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380800/2751700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380900/2751700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376500/2751600",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377200/2751600",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380900/2751600",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377100/2751500",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377300/2751500",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377200/2751400",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376500/2751300",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377100/2751300",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/381000/2751300",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377000/2751000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378900/2751000",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376700/2750900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378100/2750900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378800/2750900",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376700/2750800",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377000/2750800",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/378900/2750800",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376800/2750700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/376900/2750700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/377200/2750700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  },
+  {
+   "id": "EPSG:32646/380500/2750700",
+   "first_usable_in_june": null,
+   "first_usable_on_or_after_reference": null,
+   "2022-06-18": {
+    "confirmed": null,
+    "complete_window": false
+   },
+   "2022-06-30": {
+    "confirmed": null,
+    "complete_window": false
+   }
+  }
+ ]
+}

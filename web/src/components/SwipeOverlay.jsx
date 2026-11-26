@@ -11,7 +11,8 @@ const STEP = 0.02
  *  and the changed cells of one fraction drawn over both. Everything is in
  *  one square laid on the map by its four projected corners (lib/overlay.js),
  *  repositioned on every map frame without a React render. */
-export default function SwipeOverlay({ map, bbox, cells, fraction, before, after, split, onSplit, hoverId }) {
+export default function SwipeOverlay({ map, bbox, cells, fraction, before, after, split, onSplit, hoverId,
+  classify, selectedId, pictures = true }) {
   const root = useRef(null)
   const side = useRef(1024)
   const [px, setPx] = useState(1 / 1024) // one screen pixel in the square's units, once settled
@@ -47,14 +48,16 @@ export default function SwipeOverlay({ map, bbox, cells, fraction, before, after
   }, [map, place])
 
   const paths = useMemo(() => {
-    const by = { increase: [], decrease: [], unjudged: [] }
+    const by = { increase: [], decrease: [], unjudged: [], detected: [], candidate: [] }
     for (const c of cells ?? []) {
-      const k = cellChange(c.props, fraction)
+      const k = classify ? classify(c.props) : cellChange(c.props, fraction)
       if (by[k]) by[k].push(c)
     }
-    return { up: pathOf(by.increase), down: pathOf(by.decrease), unjudged: pathOf(by.unjudged) }
-  }, [cells, fraction])
+    return Object.fromEntries(Object.entries(by).map(([k, list]) => [k, pathOf(list)]))
+  }, [cells, fraction, classify])
   const hoverPath = useMemo(() => pathOf((cells ?? []).filter((c) => c.id === hoverId)), [cells, hoverId])
+
+  const selectedPath = useMemo(() => pathOf((cells ?? []).filter((c) => c.id === selectedId)), [cells, selectedId])
 
   // Dragging the handle: the pointer's longitude across the box is the split.
   const drag = useRef(false)
@@ -84,8 +87,8 @@ export default function SwipeOverlay({ map, bbox, cells, fraction, before, after
 
   return (
     <div ref={root} className="swipe-root" style={{ width: side.current, height: side.current }}>
-      {half(before, 'swipe-img')}
-      <div className="swipe-after" style={{ clipPath: `inset(0 0 0 ${split * 100}%)` }}>{half(after, 'swipe-img')}</div>
+      {pictures && half(before, 'swipe-img')}
+      {pictures && <div className="swipe-after" style={{ clipPath: `inset(0 0 0 ${split * 100}%)` }}>{half(after, 'swipe-img')}</div>}
       <svg className="swipe-cells" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <pattern id={`down-${pid}`} patternUnits="userSpaceOnUse" width={px * 6} height={px * 6} patternTransform="rotate(45)">
@@ -96,11 +99,14 @@ export default function SwipeOverlay({ map, bbox, cells, fraction, before, after
           </pattern>
         </defs>
         <path d={paths.unjudged} fill={`url(#na-${pid})`} opacity="0.85" />
-        <path d={paths.up} fill={hue} fillOpacity={changeStyle.fillOpacity} stroke={hue} strokeWidth="1" vectorEffect="non-scaling-stroke" />
-        <path d={paths.down} fill={`url(#down-${pid})`} fillOpacity={changeStyle.stripeOpacity} stroke={hue} strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <path d={paths.increase} fill={hue} fillOpacity={changeStyle.fillOpacity} stroke={hue} strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <path d={paths.decrease} fill={`url(#down-${pid})`} fillOpacity={changeStyle.stripeOpacity} stroke={hue} strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <path d={paths.detected} fill={color.trust.experimental} fillOpacity={changeStyle.fillOpacity} />
+        <path d={paths.candidate} fill={`url(#down-${pid})`} fillOpacity={changeStyle.stripeOpacity} />
+        {selectedPath && <path d={selectedPath} fill="none" stroke={color.select} strokeWidth="3" vectorEffect="non-scaling-stroke" />}
         {hoverPath && <path d={hoverPath} fill="none" stroke={color.select} strokeWidth="2" vectorEffect="non-scaling-stroke" />}
       </svg>
-      <div className="swipe-line" style={{ left: `${split * 100}%` }}>
+      {pictures && <div className="swipe-line" style={{ left: `${split * 100}%` }}>
         <span className="swipe-tag swipe-tag-l">{before?.year}</span>
         <span className="swipe-tag swipe-tag-r">{after?.year}</span>
         <button type="button" className="swipe-handle" role="slider" aria-label="Swipe between the before and after pictures"
@@ -109,7 +115,7 @@ export default function SwipeOverlay({ map, bbox, cells, fraction, before, after
           onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} onKeyDown={key}>
           <span aria-hidden="true" />
         </button>
-      </div>
+      </div>}
     </div>
   )
 }

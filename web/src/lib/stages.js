@@ -12,7 +12,7 @@ export const STAGE_TEXT = {
   waterways: 'Reading rivers and drains',
   context: 'Reading rainfall, terrain and coast',
   hydro_rasters: 'Reading flood inputs',
-  change: 'Comparing with five years earlier',
+  change: 'Measuring change over time',
 }
 
 // Display order; the run's own order agrees.

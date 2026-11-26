@@ -1,0 +1,448 @@
+[
+  {
+    "site": "nairobi",
+    "cell": "EPSG:32737/257400/9857700",
+    "start": "2021-11-01",
+    "blind_id": "0fa404e8f01e",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_168061_20211004"
+      ],
+      "during": [
+        "LANDSAT/LC09/C02/T1_L2/LC09_168061_20211124"
+      ]
+    },
+    "water_confirmations": [
+      [
+        "open_water_signal_loss",
+        "2021-11-09",
+        "2021-11-24",
+        "d1cbe0b0999e97c29062f3a7"
+      ]
+    ]
+  },
+  {
+    "site": "recife",
+    "cell": "EPSG:32725/290800/9109400",
+    "start": "2021-11-01",
+    "blind_id": "1a450fa1a41b",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "stable",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20210920",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211006",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211006",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211022",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211022"
+      ],
+      "during": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211107",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211107",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211123",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211123"
+      ]
+    },
+    "water_confirmations": []
+  },
+  {
+    "site": "recife",
+    "cell": "EPSG:32725/291300/9109400",
+    "start": "2021-11-01",
+    "blind_id": "1ee9bab1019d",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "stable",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20210920",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20210920",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211006",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211006",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211022",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211022"
+      ],
+      "during": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211107",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211107",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211123",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211123"
+      ]
+    },
+    "water_confirmations": [
+      [
+        "open_water_signal_gain",
+        "2021-11-13",
+        "2021-11-18",
+        "36f38761ad9588abf9ea20d4"
+      ]
+    ]
+  },
+  {
+    "site": "jakarta",
+    "cell": "EPSG:32748/700800/9313400",
+    "start": "2021-07-01",
+    "blind_id": "239e683723c7",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [],
+      "during": []
+    },
+    "water_confirmations": [
+      [
+        "open_water_signal_loss",
+        "2021-07-18",
+        "2021-07-28",
+        "fd04cd385722855a072ad619"
+      ]
+    ]
+  },
+  {
+    "site": "jakarta",
+    "cell": "EPSG:32748/701000/9313500",
+    "start": "2021-04-01",
+    "blind_id": "3cd4c0182393",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [],
+      "during": []
+    },
+    "water_confirmations": [
+      [
+        "open_water_signal_loss",
+        "2021-04-24",
+        "2021-04-29",
+        "47d5c2b924743450c165482c"
+      ]
+    ]
+  },
+  {
+    "site": "recife",
+    "cell": "EPSG:32725/291300/9109300",
+    "start": "2021-03-01",
+    "blind_id": "3f850279823e",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20210123",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20210123"
+      ],
+      "during": []
+    },
+    "water_confirmations": [
+      [
+        "open_water_signal_loss",
+        "2021-03-03",
+        "2021-03-08",
+        "7df8e6b3d6318c154251ba0e"
+      ]
+    ]
+  },
+  {
+    "site": "jakarta",
+    "cell": "EPSG:32748/700800/9313300",
+    "start": "2021-07-01",
+    "blind_id": "445c6ed6c7e1",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [],
+      "during": []
+    },
+    "water_confirmations": [
+      [
+        "open_water_signal_loss",
+        "2021-07-18",
+        "2021-07-28",
+        "0a98877045c12bcdb822038b"
+      ]
+    ]
+  },
+  {
+    "site": "recife",
+    "cell": "EPSG:32725/290900/9109300",
+    "start": "2021-10-01",
+    "blind_id": "446d39b3be2b",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "stable",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20210904",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20210904"
+      ],
+      "during": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211006",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211006",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211022",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211022"
+      ]
+    },
+    "water_confirmations": [
+      [
+        "open_water_signal_gain",
+        "2021-10-04",
+        "2021-10-14",
+        "db3a11b49c4cb98e963ddb91"
+      ]
+    ]
+  },
+  {
+    "site": "recife",
+    "cell": "EPSG:32725/290900/9109400",
+    "start": "2021-10-01",
+    "blind_id": "4ba227811d65",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "stable",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20210904",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20210904",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20210920"
+      ],
+      "during": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211006",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211006",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20211022",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20211022"
+      ]
+    },
+    "water_confirmations": []
+  },
+  {
+    "site": "nairobi",
+    "cell": "EPSG:32737/257300/9858000",
+    "start": "2021-11-01",
+    "blind_id": "4d73b2bc59cd",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_168061_20211004"
+      ],
+      "during": [
+        "LANDSAT/LC09/C02/T1_L2/LC09_168061_20211124"
+      ]
+    },
+    "water_confirmations": []
+  },
+  {
+    "site": "jakarta",
+    "cell": "EPSG:32748/700900/9313600",
+    "start": "2021-07-01",
+    "blind_id": "680279679d49",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [],
+      "during": []
+    },
+    "water_confirmations": [
+      [
+        "open_water_signal_loss",
+        "2021-07-18",
+        "2021-07-28",
+        "f28602829c3af97fe8f5aa83"
+      ]
+    ]
+  },
+  {
+    "site": "jakarta",
+    "cell": "EPSG:32748/701100/9313200",
+    "start": "2021-07-01",
+    "blind_id": "807c6b2fbfc1",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [],
+      "during": []
+    },
+    "water_confirmations": []
+  },
+  {
+    "site": "kolkata",
+    "cell": "EPSG:32645/650300/2493800",
+    "start": "2021-12-01",
+    "blind_id": "c44e6529a18e",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [
+        "LANDSAT/LC09/C02/T1_L2/LC09_138044_20211102",
+        "LANDSAT/LC09/C02/T1_L2/LC09_138045_20211102",
+        "LANDSAT/LC09/C02/T1_L2/LC09_138044_20211107",
+        "LANDSAT/LC09/C02/T1_L2/LC09_138045_20211107",
+        "LANDSAT/LC08/C02/T1_L2/LC08_138044_20211119",
+        "LANDSAT/LC08/C02/T1_L2/LC08_138045_20211119"
+      ],
+      "during": [
+        "LANDSAT/LC09/C02/T1_L2/LC09_138044_20211213",
+        "LANDSAT/LC09/C02/T1_L2/LC09_138045_20211213",
+        "LANDSAT/LC08/C02/T1_L2/LC08_138044_20211221"
+      ]
+    },
+    "water_confirmations": []
+  },
+  {
+    "site": "kolkata",
+    "cell": "EPSG:32645/650100/2493700",
+    "start": "2021-12-01",
+    "blind_id": "e7325ed8689a",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [
+        "LANDSAT/LC09/C02/T1_L2/LC09_138044_20211102",
+        "LANDSAT/LC09/C02/T1_L2/LC09_138045_20211102",
+        "LANDSAT/LC09/C02/T1_L2/LC09_138044_20211107",
+        "LANDSAT/LC09/C02/T1_L2/LC09_138045_20211107",
+        "LANDSAT/LC08/C02/T1_L2/LC08_138044_20211119",
+        "LANDSAT/LC08/C02/T1_L2/LC08_138045_20211119"
+      ],
+      "during": [
+        "LANDSAT/LC09/C02/T1_L2/LC09_138044_20211213",
+        "LANDSAT/LC09/C02/T1_L2/LC09_138045_20211213"
+      ]
+    },
+    "water_confirmations": [
+      [
+        "open_water_signal_loss",
+        "2021-12-20",
+        "2021-12-25",
+        "7cf8ddd816ed0355bc312bd4"
+      ]
+    ]
+  },
+  {
+    "site": "jakarta",
+    "cell": "EPSG:32748/701100/9313300",
+    "start": "2021-07-01",
+    "blind_id": "eb221fa9ca22",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [],
+      "during": []
+    },
+    "water_confirmations": []
+  },
+  {
+    "site": "jakarta",
+    "cell": "EPSG:32748/700600/9313400",
+    "start": "2021-04-01",
+    "blind_id": "f081e3ec3ef6",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [],
+      "during": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_122064_20210425"
+      ]
+    },
+    "water_confirmations": []
+  },
+  {
+    "site": "recife",
+    "cell": "EPSG:32725/291100/9109100",
+    "start": "2021-03-01",
+    "blind_id": "f22773e4632d",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [
+        "LANDSAT/LC08/C02/T1_L2/LC08_214065_20210123",
+        "LANDSAT/LC08/C02/T1_L2/LC08_214066_20210123"
+      ],
+      "during": []
+    },
+    "water_confirmations": []
+  },
+  {
+    "site": "jakarta",
+    "cell": "EPSG:32748/700900/9313700",
+    "start": "2021-07-01",
+    "blind_id": "fbc98306889e",
+    "reviewer": "Codex independent image interpretation",
+    "target": "water",
+    "verdict": "unknown",
+    "prediction_blind": true,
+    "independent_of_sentinel2": true,
+    "evidence_source": "USGS Landsat Collection 2 T1 L2 RGB and SWIR-NIR-red",
+    "evidence_id": {
+      "prior": [],
+      "during": []
+    },
+    "water_confirmations": []
+  }
+]

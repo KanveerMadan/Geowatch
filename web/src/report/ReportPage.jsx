@@ -4,6 +4,9 @@ import { color } from '../design/tokens.js'
 import { TRUST, fmtPct1, fractionRows, groundSummary, trustOf } from '../lib/contract.js'
 import { TIER_BREAKS, TIER_TEXT, floodRows, floodSummary, defaultFloodLayer, rankWards, wardUnitType } from '../lib/flood.js'
 import { changeRows, changeSummary } from '../lib/change.js'
+import { historyStates, historyText, num, periodText, stateName, summaryOf } from '../lib/changeHistory.js'
+import { DynamicWorldCredit } from '../components/ChangeHistory.jsx'
+import SurveyMeasures from '../components/SurveyMeasures.jsx'
 import { bboxAreaKm2, fmtKm2 } from '../lib/geo.js'
 import { areaNotes, sourcesOf } from '../lib/notes.js'
 import { getChangeFeatures, getFeatures, getResult } from '../lib/api.js'
@@ -77,13 +80,15 @@ export default function ReportPage({ resultId, name }) {
   const title = name ?? r.request.aoi_label.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
   const fRows = fractionRows(o.fractions)
   const hRows = floodRows(o.susceptibility)
-  const cRows = changeRows(o.change)
+  const history = o.change?.history
+  const summary = summaryOf(history)
+  const cRows = history ? [] : changeRows(o.change)
   const floodKey = defaultFloodLayer(o.susceptibility)
   const floodShown = hRows.find((h) => h.key === floodKey)
   const changeKey = cRows.find((c) => c.measured)?.key
   const notes = areaNotes(r)
   const wardRank = wards && floodKey ? rankWards(wards, floodKey) : null
-  const labelsUsed = [...new Set([...fRows, ...hRows, ...cRows].map((x) => x.trust.key))].sort((a, b) => Object.keys(TRUST).indexOf(a) - Object.keys(TRUST).indexOf(b))
+  const labelsUsed = [...new Set([...fRows, ...hRows, ...cRows, ...(history ? [{ trust: trustOf(history) }] : [])].map((x) => x.trust.key))].sort((a, b) => Object.keys(TRUST).indexOf(a) - Object.keys(TRUST).indexOf(b))
     .filter((k) => TRUST[k])
   const sources = [...new Set([
     ...sourcesOf(o.fractions), ...sourcesOf(o.susceptibility), ...sourcesOf(o.change), ...sourcesOf(o.observability),
@@ -202,6 +207,30 @@ export default function ReportPage({ resultId, name }) {
 
       <section className="rsec">
         <SectionHead title="Change over time" />
+        {history ? <>
+          <p className="rlead">{historyText(history)} <Badge of={history} /></p>
+          {summary && <>
+            <p className="rcap">Monitored from {periodText(summary.period)} against observations from {periodText(summary.training_period)}.</p>
+            <div className="rsplit">
+              <table className="rtable">
+                <thead><tr><th>Status</th><th className="rnum">Reporting cells</th></tr></thead>
+                <tbody>{Object.keys(historyStates).map((k) => <tr key={k}><th scope="row">{stateName(k)}</th>
+                  <td className="rnum">{num(summary.counts?.[k])}</td></tr>)}</tbody>
+              </table>
+              {!!change?.features?.length && <div>
+                <StaticMap bbox={bbox} height={230} label="Detection status by reporting cell"
+                  addLayers={cellsLayer(change, {
+                    'fill-color': ['match', ['get', 'state'], 'change_detected', color.trust.experimental,
+                      'candidate_change', color.warn, color.data.notMeasured],
+                    'fill-opacity': ['match', ['get', 'state'], 'no_change_detected', 0, 0.7],
+                  })} />
+                <p className="rcap">Purple marks detections, amber marks candidates and grey marks insufficient observations. Each mark covers a reporting cell.</p>
+              </div>}
+            </div>
+            <DynamicWorldCredit summary={summary} />
+            <SurveyMeasures surveys={summary.survey_measurements} provenance={summary.survey_sources} />
+          </>}
+        </> : <>
         <p className="rlead">{changeSummary(o.change)}</p>
         <div className="rsplit">
           <table className="rtable">
@@ -232,6 +261,7 @@ export default function ReportPage({ resultId, name }) {
             </div>
           )}
         </div>
+        </>}
       </section>
 
       <section className="rsec rsec-keep">
