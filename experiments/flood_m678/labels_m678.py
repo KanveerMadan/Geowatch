@@ -78,7 +78,10 @@ def init_ee():
     from dotenv import dotenv_values
     install_exclusive_lock()
     env = dotenv_values(os.path.expanduser("~/geowatch/.env"))
-    ee.Initialize(project=env.get("GEE_PROJECT_ID") or os.environ.get("GEE_PROJECT_ID"))
+    project = env.get("GEE_PROJECT_ID") or os.environ.get("GEE_PROJECT_ID")
+    if project:
+        os.environ["GEE_PROJECT_ID"] = project      # round 3's ingestion.gee_client reads the environment
+    ee.Initialize(project=project)
     return ee
 
 
