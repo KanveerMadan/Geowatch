@@ -109,7 +109,7 @@ def _request_for(api_module, method: str, path: str):
     concrete = (path.replace("{run_id}", "dharavi_20260629_122047")
                 .replace("{result_id}", "r" + "0" * 24).replace("{unit_type}", "grid")
                 .replace("{unit_id}", "0").replace("{name}", "pluvial_susceptibility")
-                .replace("{job_id}", "j" + "0" * 24))
+                .replace("{job_id}", "j" + "0" * 24).replace("{unit_index}", "0"))
     return method, concrete, bodies.get(path)
 
 
@@ -187,6 +187,9 @@ PUBLIC_READ_ROUTES = {
     "/api/results/{result_id}/features/{unit_type}",
     "/api/results/{result_id}/buildings",
     "/api/results/{result_id}/change/features",
+    "/api/results/{result_id}/change/cells/{unit_index}",
+    "/api/results/{result_id}/change/compare",
+    "/api/results/{result_id}/change/summary/{unit_type}/{unit_id}",
 }
 
 
