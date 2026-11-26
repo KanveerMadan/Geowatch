@@ -115,3 +115,14 @@ Candidates that pass §1–§4 are taken in **ascending activation code**, then 
 - **Flat:** < 4 m, the Copernicus DEM's stated absolute vertical accuracy (LE90). **Hilly:** ≥ 4 m.
 - **Reporting:** the held-out report gives, for every type, the bar's numbers on all units, flat units only and hilly units only, with units and clusters counted.
 - **The pass / fail verdict uses all units (the full domain), unchanged.** The split is not a domain restriction and decides nothing.
+
+## 10. Rain test label: FloodNet sensors (owner decision 2026-11-26)
+- The rain type's held-out test uses NYC FloodNet street sensors, as defined in `FLOODNET_TEST_DESIGN.md`. That file is part of this criteria file and is hashed with it at the seal. It sets:
+  - storms by IMERG;
+  - non-tidal sensors only, at least 100 active;
+  - wet means a FloodNet event of ≥ 1.0 in within the window, dry means an active sensor with no event;
+  - one cell per sensor;
+  - at least 50 wet and 50 dry sensor cells per unit;
+  - at least 5 usable units.
+- FloodNet is a test label only, never used in training or method choice.
+- 311 stays the DEV / training label. 311 reserve storms are scored as a secondary result.
