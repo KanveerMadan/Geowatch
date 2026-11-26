@@ -1,0 +1,12 @@
+M6–M8 reserve seal (metadata only; no reserve pixel, label, feature or score has been read)
+
+reserve_m678.json         sha256 cb43fde8bf6c9e2cae03d46b2fdba0cbcfa37da75734564c2391930ace636fdf
+RESERVE_CRITERIA_M678.md  sha256 a6f01648267ce0ed0c8ecd1a4a3475c8278003ce2a4c40e6967f8035e4ec7fdb
+event_evidence.json       sha256 b8ce8e1c7f79d26186e5dca6cfc6afd374d69cac64a0719ea54203fdc029590e
+sealed_utc                2026-11-26T18:56:00Z
+selector                  select_m678.py (mechanical; rules in its docstring and the criteria addendum)
+round-3 reconciliation    overlap.py at exp/flood-round3 f28d71446f0c3f9d180b4415b7e6f8a4fe204f5f (20 km search squares)
+
+Counts: M6 6 clusters / 10 incidents; M7 6 / 6; M8 7 / 8.
+The push of this commit to origin/feat/flood-m6-m8 is the publication record; its commit id is
+recorded in DECISIONS_M678.md immediately after the push.

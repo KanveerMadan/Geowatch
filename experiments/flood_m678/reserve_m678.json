@@ -1,0 +1,1332 @@
+{
+ "counts": {
+  "M6": {
+   "clusters": 6,
+   "incidents": 10
+  },
+  "M7": {
+   "clusters": 6,
+   "incidents": 6
+  },
+  "M8": {
+   "clusters": 7,
+   "incidents": 8
+  }
+ },
+ "criteria_sha256": "a6f01648267ce0ed0c8ecd1a4a3475c8278003ce2a4c40e6967f8035e4ec7fdb",
+ "per_cluster": 2,
+ "refused": {
+  "fargo-2023-04-22": "cluster already has 2 incidents",
+  "kennicott-2024-07-23": "cluster already has 2 incidents",
+  "kennicott-2025-07-08": "cluster already has 2 incidents",
+  "mendenhall-2024-08-06": "cluster already has 2 incidents",
+  "mendenhall-2025-08-13": "cluster already has 2 incidents",
+  "rutland-2024-04-12": "known_geographic_conflict",
+  "rutland-2025-03-16": "known_geographic_conflict",
+  "salmon-hyder-2024-07-19": "cluster already has 2 incidents",
+  "salmon-hyder-2025-07-08": "cluster already has 2 incidents",
+  "taku-2025-06-28": "cluster already has 2 incidents"
+ },
+ "reserve": {
+  "M6": {
+   "kenai-snow": [
+    {
+     "cluster": "kenai-snow",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2025-10-17T07:30:00+00:00",
+      "2025-10-17T08:00:00+00:00"
+     ],
+     "date": "2025-10-07",
+     "incident": "kenai-snow-2025-10-07",
+     "not_before_utc": null,
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2025-10-06T08%3A00%3A00%2B00%3A00%2F2025-10-20T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "Kenai River at Cooper Landing",
+     "reach_point": [
+      60.492201,
+      -149.809946
+     ],
+     "scenes": [
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20250817T162938_20250817T163003_060578_0788E7",
+        "S1A_IW_GRDH_1SDV_20250829T162938_20250829T163003_060753_078FCC",
+        "S1A_IW_GRDH_1SDV_20250910T162938_20250910T163003_060928_0796C5",
+        "S1A_IW_GRDH_1SDV_20250922T162939_20250922T163004_061103_079DCA"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": -15.00224917611111,
+       "lag_hours_min": -15.50224917611111,
+       "scene": "S1A_IW_GRDH_1SDV_20251016T162939_20251016T163004_061453_07ABE5",
+       "utc": "2025-10-16T16:29:51.902966Z"
+      },
+      {
+       "baseline": [
+        "S1C_IW_GRDH_1SDV_20250819T033517_20250819T033546_003736_007764",
+        "S1C_IW_GRDH_1SDV_20250831T033518_20250831T033547_003911_007CA0",
+        "S1C_IW_GRDH_1SDV_20250912T033518_20250912T033547_004086_0081F1",
+        "S1C_IW_GRDH_1SDV_20250924T033518_20250924T033548_004261_00873C"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 20.092723569444445,
+       "lag_hours_min": 19.592723569444445,
+       "scene": "S1C_IW_GRDH_1SDV_20251018T033519_20251018T033548_004611_0091E3",
+       "utc": "2025-10-18T03:35:33.804850Z"
+      },
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20250819T161316_20250819T161341_060607_078A0A",
+        "S1A_IW_GRDH_1SDV_20250831T161316_20250831T161341_060782_0790ED",
+        "S1A_IW_GRDH_1SDV_20250912T161317_20250912T161342_060957_0797EC",
+        "S1A_IW_GRDH_1SDV_20250924T161317_20250924T161342_061132_079EF2"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 32.7250782125,
+       "lag_hours_min": 32.2250782125,
+       "scene": "S1A_IW_GRDH_1SDV_20251018T161317_20251018T161342_061482_07AD06",
+       "utc": "2025-10-18T16:13:30.281565Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 37.638146023888886,
+       "lag_hours_min": 37.138146023888886,
+       "scene": "LC08_L2SP_068018_20251018_02_T1",
+       "utc": "2025-10-18T21:08:17.325686Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 38.09139555555556,
+       "lag_hours_min": 37.59139555555556,
+       "scene": "S2B_MSIL2A_20251018T213529_R086_T05VPH_20251018T220229",
+       "utc": "2025-10-18T21:35:29.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 38.09139555555556,
+       "lag_hours_min": 37.59139555555556,
+       "scene": "S2B_MSIL2A_20251018T213529_R086_T06VUN_20251018T220229",
+       "utc": "2025-10-18T21:35:29.024000Z"
+      }
+     ],
+     "source": "https://zenodo.org/records/23370149",
+     "subtype": "glacial lake outburst",
+     "type": "M6",
+     "window_utc": [
+      "2025-10-16T08:00:00+00:00",
+      "2025-10-19T07:30:00+00:00"
+     ]
+    }
+   ],
+   "kennicott": [
+    {
+     "cluster": "kennicott",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2022-07-15T03:15:00+00:00",
+      "2022-07-15T03:45:00+00:00"
+     ],
+     "date": "2022-07-11",
+     "incident": "kennicott-2022-07-11",
+     "not_before_utc": null,
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2022-07-10T08%3A00%3A00%2B00%3A00%2F2022-07-17T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "West Fork Kennicott River at McCarthy",
+     "reach_point": [
+      61.434167,
+      -142.940556
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": -6.408604444444444,
+       "lag_hours_min": -6.908604444444444,
+       "scene": "S2B_MSIL2A_20220714T205029_R057_T07VCJ_20220715T054845",
+       "utc": "2022-07-14T20:50:29.024000Z"
+      },
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20220516T154819_20220516T154844_043238_0529F2",
+        "S1A_IW_GRDH_1SDV_20220528T154820_20220528T154845_043413_052F1F",
+        "S1A_IW_GRDH_1SDV_20220609T154821_20220609T154846_043588_05344B",
+        "S1A_IW_GRDH_1SDV_20220621T154822_20220621T154847_043763_05398D",
+        "S1A_IW_GRDH_1SDV_20220703T154823_20220703T154848_043938_053EBC"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 12.560119355,
+       "lag_hours_min": 12.060119355,
+       "scene": "S1A_IW_GRDH_1SDV_20220715T154823_20220715T154848_044113_0543F9",
+       "utc": "2022-07-15T15:48:36.429678Z"
+      }
+     ],
+     "source": "https://zenodo.org/records/23370149",
+     "subtype": "glacial lake outburst",
+     "type": "M6",
+     "window_utc": [
+      "2022-07-14T03:45:00+00:00",
+      "2022-07-17T03:15:00+00:00"
+     ]
+    },
+    {
+     "cluster": "kennicott",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2023-07-10T16:45:00+00:00",
+      "2023-07-10T17:15:00+00:00"
+     ],
+     "date": "2023-07-07",
+     "incident": "kennicott-2023-07-07",
+     "not_before_utc": null,
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2023-07-06T08%3A00%3A00%2B00%3A00%2F2023-07-13T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "West Fork Kennicott River at McCarthy",
+     "reach_point": [
+      61.434167,
+      -142.940556
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": -19.908604444444443,
+       "lag_hours_min": -20.408604444444443,
+       "scene": "S2B_MSIL2A_20230709T205029_R057_T07VCJ_20230710T024732",
+       "utc": "2023-07-09T20:50:29.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": -19.908604444444443,
+       "lag_hours_min": -20.408604444444443,
+       "scene": "S2B_MSIL2A_20230709T205029_R057_T07VCJ_20241013T150909",
+       "utc": "2023-07-09T20:50:29.024000Z"
+      },
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20230511T154825_20230511T154850_048488_05D526",
+        "S1A_IW_GRDH_1SDV_20230523T154825_20230523T154850_048663_05DA56",
+        "S1A_IW_GRDH_1SDV_20230604T154826_20230604T154851_048838_05DF8A",
+        "S1A_IW_GRDH_1SDV_20230616T154827_20230616T154852_049013_05E4DF",
+        "S1A_IW_GRDH_1SDV_20230628T154827_20230628T154852_049188_05EA32"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": -0.9385388452777778,
+       "lag_hours_min": -1.4385388452777779,
+       "scene": "S1A_IW_GRDH_1SDV_20230710T154828_20230710T154853_049363_05EF9C",
+       "utc": "2023-07-10T15:48:41.260157Z"
+      }
+     ],
+     "source": "https://zenodo.org/records/23370149",
+     "subtype": "glacial lake outburst",
+     "type": "M6",
+     "window_utc": [
+      "2023-07-09T17:15:00+00:00",
+      "2023-07-12T16:45:00+00:00"
+     ]
+    }
+   ],
+   "mendenhall": [
+    {
+     "cluster": "mendenhall",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2022-10-28T02:15:00+00:00",
+      "2022-10-28T02:45:00+00:00"
+     ],
+     "date": "2022-10-27",
+     "incident": "mendenhall-2022-10-27",
+     "not_before_utc": null,
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15052500&parameter_code=00065&datetime=2022-10-26T08%3A00%3A00%2B00%3A00%2F2022-10-29T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "Mendenhall River near Auke Bay",
+     "reach_point": [
+      58.42972222,
+      -134.57277778
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 17.86792178111111,
+       "lag_hours_min": 17.36792178111111,
+       "scene": "LC09_L2SP_058019_20221028_02_T2",
+       "utc": "2022-10-28T20:07:04.518412Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 18.18084,
+       "lag_hours_min": 17.68084,
+       "scene": "S2A_MSIL2A_20221028T202551_R071_T08VNK_20221029T072403",
+       "utc": "2022-10-28T20:25:51.024000Z"
+      },
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20220830T023819_20220830T023844_044776_0558CA",
+        "S1A_IW_GRDH_1SDV_20220911T023820_20220911T023845_044951_055EA4",
+        "S1A_IW_GRDH_1SDV_20220923T023819_20220923T023844_045126_056488",
+        "S1A_IW_GRDH_1SDV_20221005T023820_20221005T023845_045301_056A6F",
+        "S1A_IW_GRDH_1SDV_20221017T023820_20221017T023845_045476_05701A"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 24.3925427,
+       "lag_hours_min": 23.8925427,
+       "scene": "S1A_IW_GRDH_1SDV_20221029T023820_20221029T023845_045651_05757A",
+       "utc": "2022-10-29T02:38:33.153720Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 41.768197785000005,
+       "lag_hours_min": 41.268197785000005,
+       "scene": "LC08_L2SP_057019_20221029_02_T2",
+       "utc": "2022-10-29T20:01:05.512026Z"
+      }
+     ],
+     "source": "https://www.weather.gov/media/ajk/suicideBasin/20250810_MendenhallFloodReport.pdf",
+     "subtype": "glacial lake outburst",
+     "type": "M6",
+     "window_utc": [
+      "2022-10-27T02:45:00+00:00",
+      "2022-10-30T02:15:00+00:00"
+     ]
+    },
+    {
+     "cluster": "mendenhall",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2023-08-06T07:00:00+00:00",
+      "2023-08-06T07:30:00+00:00"
+     ],
+     "date": "2023-08-05",
+     "incident": "mendenhall-2023-08-05",
+     "not_before_utc": null,
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15052500&parameter_code=00065&datetime=2023-08-04T08%3A00%3A00%2B00%3A00%2F2023-08-07T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "Mendenhall River near Auke Bay",
+     "reach_point": [
+      58.42972222,
+      -134.57277778
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": -10.996639399722222,
+       "lag_hours_min": -11.496639399722222,
+       "scene": "LC09_L2SP_057019_20230805_02_T1",
+       "utc": "2023-08-05T20:00:12.098161Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 13.149728888888887,
+       "lag_hours_min": 12.649728888888887,
+       "scene": "S2B_MSIL2A_20230806T200859_R028_T08VNK_20230807T020117",
+       "utc": "2023-08-06T20:08:59.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 13.149728888888887,
+       "lag_hours_min": 12.649728888888887,
+       "scene": "S2B_MSIL2A_20230806T200859_R028_T08VNK_20241021T092029",
+       "utc": "2023-08-06T20:08:59.024000Z"
+      }
+     ],
+     "source": "https://www.weather.gov/media/ajk/suicideBasin/20250810_MendenhallFloodReport.pdf",
+     "subtype": "glacial lake outburst",
+     "type": "M6",
+     "window_utc": [
+      "2023-08-05T07:30:00+00:00",
+      "2023-08-08T07:00:00+00:00"
+     ]
+    }
+   ],
+   "salmon-hyder": [
+    {
+     "cluster": "salmon-hyder",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2022-07-29T12:00:00+00:00",
+      "2022-07-29T12:30:00+00:00"
+     ],
+     "date": "2022-07-24",
+     "incident": "salmon-hyder-2022-07-24",
+     "not_before_utc": null,
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2022-07-23T08%3A00%3A00%2B00%3A00%2F2022-07-30T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "Salmon River near Hyder",
+     "reach_point": [
+      56.026111,
+      -130.065278
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": -16.28782354222222,
+       "lag_hours_min": -16.78782354222222,
+       "scene": "LC09_L2SP_054021_20220728_02_T1",
+       "utc": "2022-07-28T19:42:43.835248Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 7.615452739999999,
+       "lag_hours_min": 7.115452739999999,
+       "scene": "LC08_L2SP_053021_20220729_02_T1",
+       "utc": "2022-07-29T19:36:55.629864Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 7.983062222222222,
+       "lag_hours_min": 7.483062222222222,
+       "scene": "S2B_MSIL2A_20220729T195859_R128_T09VVC_20220730T220059",
+       "utc": "2022-07-29T19:58:59.024000Z"
+      }
+     ],
+     "source": "https://zenodo.org/records/23370149",
+     "subtype": "glacial lake outburst",
+     "type": "M6",
+     "window_utc": [
+      "2022-07-28T12:30:00+00:00",
+      "2022-07-31T12:00:00+00:00"
+     ]
+    },
+    {
+     "cluster": "salmon-hyder",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2023-10-31T05:00:00+00:00",
+      "2023-10-31T05:30:00+00:00"
+     ],
+     "date": "2023-10-25",
+     "incident": "salmon-hyder-2023-10-25",
+     "not_before_utc": null,
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2023-10-24T08%3A00%3A00%2B00%3A00%2F2023-10-31T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "Salmon River near Hyder",
+     "reach_point": [
+      56.026111,
+      -130.065278
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 39.09972888888889,
+       "lag_hours_min": 38.59972888888889,
+       "scene": "S2B_MSIL2A_20231101T200559_R128_T09VVC_20231101T222042",
+       "utc": "2023-11-01T20:05:59.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 39.09972888888889,
+       "lag_hours_min": 38.59972888888889,
+       "scene": "S2B_MSIL2A_20231101T200559_R128_T09VVC_20241030T014905",
+       "utc": "2023-11-01T20:05:59.024000Z"
+      }
+     ],
+     "source": "https://zenodo.org/records/23370149",
+     "subtype": "glacial lake outburst",
+     "type": "M6",
+     "window_utc": [
+      "2023-10-30T05:30:00+00:00",
+      "2023-11-02T05:00:00+00:00"
+     ]
+    }
+   ],
+   "sveinstindur": [
+    {
+     "cluster": "sveinstindur",
+     "crest_kind": "published_day",
+     "crest_utc": [
+      "2023-08-30T00:00:00+00:00",
+      "2023-08-31T00:00:00+00:00"
+     ],
+     "date": "2023-08-28",
+     "incident": "sveinstindur-2023-08-28",
+     "not_before_utc": null,
+     "peak_source": "https://www.vedur.is/media/vedurstofan-utgafa-2024/2024-12-30_Vedurstofa_Islands_arsskyrsla_2023.pdf",
+     "reach": "Skaft\u00e1 at Sveinstindur V299",
+     "reach_point": [
+      64.07381343,
+      -18.41056159
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 12.461575377222221,
+       "lag_hours_min": -11.538424622777779,
+       "scene": "LC08_L2SP_217015_20230830_02_T1",
+       "utc": "2023-08-30T12:27:41.671358Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 36.71917333333334,
+       "lag_hours_min": 12.719173333333332,
+       "scene": "S2B_MSIL2A_20230831T124309_R095_T27WXM_20230831T173522",
+       "utc": "2023-08-31T12:43:09.024000Z"
+      }
+     ],
+     "source": "https://www.vedur.is/media/vedurstofan-utgafa-2024/2024-12-30_Vedurstofa_Islands_arsskyrsla_2023.pdf",
+     "subtype": "subglacial lake outburst",
+     "type": "M6",
+     "window_utc": [
+      "2023-08-30T00:00:00+00:00",
+      "2023-09-01T00:00:00+00:00"
+     ]
+    }
+   ],
+   "taku": [
+    {
+     "cluster": "taku",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2023-06-28T01:15:00+00:00",
+      "2023-06-28T01:45:00+00:00"
+     ],
+     "date": "2023-06-24",
+     "incident": "taku-2023-06-24",
+     "not_before_utc": null,
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2023-06-23T08%3A00%3A00%2B00%3A00%2F2023-06-30T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "Taku River near Juneau",
+     "reach_point": [
+      58.538611,
+      -133.7
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": -5.100271111111111,
+       "lag_hours_min": -5.600271111111111,
+       "scene": "S2B_MSIL2A_20230627T200859_R028_T08VNK_20230628T082807",
+       "utc": "2023-06-27T20:08:59.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": -5.100271111111111,
+       "lag_hours_min": -5.600271111111111,
+       "scene": "S2B_MSIL2A_20230627T200859_R028_T08VNK_20241012T071201",
+       "utc": "2023-06-27T20:08:59.024000Z"
+      }
+     ],
+     "source": "https://zenodo.org/records/23370149",
+     "subtype": "glacial lake outburst",
+     "type": "M6",
+     "window_utc": [
+      "2023-06-27T01:45:00+00:00",
+      "2023-06-30T01:15:00+00:00"
+     ]
+    },
+    {
+     "cluster": "taku",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2024-07-01T20:30:00+00:00",
+      "2024-07-01T21:00:00+00:00"
+     ],
+     "date": "2024-06-28",
+     "incident": "taku-2024-06-28",
+     "not_before_utc": null,
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2024-06-27T08%3A00%3A00%2B00%3A00%2F2024-07-04T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "Taku River near Juneau",
+     "reach_point": [
+      58.538611,
+      -133.7
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": -0.35027111111111114,
+       "lag_hours_min": -0.8502711111111111,
+       "scene": "S2B_MSIL2A_20240701T200859_R028_T08VNK_20240702T012235",
+       "utc": "2024-07-01T20:08:59.024000Z"
+      },
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20240503T023822_20240503T023847_053701_0685F5",
+        "S1A_IW_GRDH_1SDV_20240515T023822_20240515T023847_053876_068C52",
+        "S1A_IW_GRDH_1SDV_20240527T023822_20240527T023847_054051_069260"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 6.142599098611111,
+       "lag_hours_min": 5.642599098611111,
+       "scene": "S1A_IW_GRDH_1SDV_20240702T023820_20240702T023845_054576_06A492",
+       "utc": "2024-07-02T02:38:33.356755Z"
+      }
+     ],
+     "source": "https://zenodo.org/records/23370149",
+     "subtype": "glacial lake outburst",
+     "type": "M6",
+     "window_utc": [
+      "2024-06-30T21:00:00+00:00",
+      "2024-07-03T20:30:00+00:00"
+     ]
+    }
+   ]
+  },
+  "M7": {
+   "kherson": [
+    {
+     "cluster": "kherson",
+     "crest_kind": "published_day",
+     "crest_utc": [
+      "2023-06-07T21:00:00+00:00",
+      "2023-06-08T21:00:00+00:00"
+     ],
+     "date": "2023-06-06",
+     "incident": "kherson-2023-06-06",
+     "not_before_utc": null,
+     "peak_source": "https://ukraine.un.org/sites/default/files/2023-10/Kakhovka_Dam_Breach_Ukraine_Assessment.pdf",
+     "reach": "Dnipro at Kherson waterfront",
+     "reach_point": [
+      46.63333333333333,
+      32.61666666666667
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 11.76695111111111,
+       "lag_hours_min": -12.23304888888889,
+       "scene": "S2A_MSIL2A_20230608T084601_R107_T36TVS_20230608T153329",
+       "utc": "2023-06-08T08:46:01.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 11.76695111111111,
+       "lag_hours_min": -12.23304888888889,
+       "scene": "S2A_MSIL2A_20230608T084601_R107_T36TVS_20240909T163659",
+       "utc": "2023-06-08T08:46:01.024000Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 33.50766180666667,
+       "lag_hours_min": 9.507661806666666,
+       "scene": "LE07_L2SP_179028_20230609_02_T1",
+       "utc": "2023-06-09T06:30:27.582504Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 35.6172286525,
+       "lag_hours_min": 11.6172286525,
+       "scene": "LC09_L2SP_179027_20230609_02_T1",
+       "utc": "2023-06-09T08:37:02.023149Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 35.623862692222225,
+       "lag_hours_min": 11.623862692222222,
+       "scene": "LC09_L2SP_179028_20230609_02_T1",
+       "utc": "2023-06-09T08:37:25.905692Z"
+      },
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20230410T153654_20230410T153719_048036_05C623",
+        "S1A_IW_GRDH_1SDV_20230422T153655_20230422T153720_048211_05CBFC",
+        "S1A_IW_GRDH_1SDV_20230504T153655_20230504T153720_048386_05D1DB",
+        "S1A_IW_GRDH_1SDV_20230516T153656_20230516T153721_048561_05D746",
+        "S1A_IW_GRDH_1SDV_20230528T153657_20230528T153722_048736_05DC77"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 42.61940317472222,
+       "lag_hours_min": 18.619403174722223,
+       "scene": "S1A_IW_GRDH_1SDV_20230609T153657_20230609T153722_048911_05E1BA",
+       "utc": "2023-06-09T15:37:09.851429Z"
+      }
+     ],
+     "source": "https://ukraine.un.org/sites/default/files/2023-10/Kakhovka_Dam_Breach_Ukraine_Assessment.pdf",
+     "subtype": "dam breach",
+     "type": "M7",
+     "window_utc": [
+      "2023-06-07T21:00:00+00:00",
+      "2023-06-09T21:00:00+00:00"
+     ]
+    }
+   ],
+   "orsk": [
+    {
+     "cluster": "orsk",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2024-04-06T19:00:00+00:00",
+      "2024-04-08T19:00:00+00:00"
+     ],
+     "date": "2024-04-05",
+     "incident": "orsk-2024-04-05",
+     "not_before_utc": "2024-04-05T12:00:00+00:00",
+     "peak_source": "https://www.themoscowtimes.com/2024/04/07/russian-flood-situation-critical-in-orsk-after-burst-dam-a84762",
+     "reach": "Ural River at Old Orsk",
+     "reach_point": [
+      51.2305,
+      58.4738
+     ],
+     "scenes": [
+      {
+       "baseline": [],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 31.283723881944447,
+       "lag_hours_min": -16.716276118055553,
+       "scene": "S1A_IW_GRDH_1SDV_20240408T021643_20240408T021719_053336_06778E",
+       "utc": "2024-04-08T02:17:01.405975Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 35.9587408075,
+       "lag_hours_min": -12.0412591925,
+       "scene": "LC09_L2SP_163024_20240408_02_T2",
+       "utc": "2024-04-08T06:57:31.466907Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 36.10528444444444,
+       "lag_hours_min": -11.894715555555557,
+       "scene": "S2B_MSIL2A_20240408T070619_R106_T40UEB_20240408T104845",
+       "utc": "2024-04-08T07:06:19.024000Z"
+      }
+     ],
+     "source": "https://www.bellingcat.com/news/2024/04/12/how-the-russian-city-of-orsk-went-underwater/",
+     "subtype": "river embankment failure",
+     "type": "M7",
+     "window_utc": [
+      "2024-04-07T19:00:00+00:00",
+      "2024-04-08T19:00:00+00:00"
+     ]
+    }
+   ],
+   "pajaro": [
+    {
+     "cluster": "pajaro",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2023-03-11T03:00:00+00:00",
+      "2023-03-11T13:00:00+00:00"
+     ],
+     "date": "2023-03-11",
+     "incident": "pajaro-2023-03-11",
+     "not_before_utc": "2023-03-11T07:30:00+00:00",
+     "peak_source": "https://api.water.noaa.gov/nwps/v1/gauges/aroc1",
+     "reach": "Pajaro River at Pajaro",
+     "reach_point": [
+      36.90024,
+      -121.7397
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 13.846661206944445,
+       "lag_hours_min": 3.8466612069444444,
+       "scene": "LE07_L2SP_044034_20230311_02_T2",
+       "utc": "2023-03-11T16:50:47.980345Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 15.767650736666665,
+       "lag_hours_min": 5.767650736666667,
+       "scene": "LC08_L2SP_044034_20230311_02_T1",
+       "utc": "2023-03-11T18:46:03.542652Z"
+      }
+     ],
+     "source": "https://resources.ca.gov/Home/News/Blog/2023/Mar-23/DWR-Supports-Flood-Fight-Efforts-at-Pajaro-River-Levee-Break",
+     "subtype": "river levee breach",
+     "type": "M7",
+     "window_utc": [
+      "2023-03-11T07:30:00+00:00",
+      "2023-03-13T03:00:00+00:00"
+     ]
+    }
+   ],
+   "tloul": [
+    {
+     "cluster": "tloul",
+     "crest_kind": "published_day",
+     "crest_utc": [
+      "2023-02-08T21:00:00+00:00",
+      "2023-02-09T21:00:00+00:00"
+     ],
+     "date": "2023-02-09",
+     "incident": "tloul-2023-02-09",
+     "not_before_utc": "2023-02-09T21:00:00+00:00",
+     "peak_source": "https://bianet.org/english/environment/274261-sharp-current-rise-in-orontes-river",
+     "reach": "Orontes at Al-Tlul, Salqin",
+     "reach_point": [
+      36.20728,
+      36.399116
+     ],
+     "scenes": [
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20221212T033455_20221212T033520_046293_058B47",
+        "S1A_IW_GRDH_1SDV_20221224T033454_20221224T033519_046468_059144",
+        "S1A_IW_GRDH_1SDV_20230105T033454_20230105T033519_046643_05972C",
+        "S1A_IW_GRDH_1SDV_20230117T033453_20230117T033518_046818_059D16",
+        "S1A_IW_GRDH_1SDV_20230129T033453_20230129T033518_046993_05A2FE"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 30.5847678575,
+       "lag_hours_min": 6.5847678575,
+       "scene": "S1A_IW_GRDH_1SDV_20230210T033452_20230210T033517_047168_05A8CD",
+       "utc": "2023-02-10T03:35:05.164287Z"
+      }
+     ],
+     "source": "https://reliefweb.int/report/syrian-arab-republic/syria-dam-break-and-floods-noaa-cpc-un-ocha-media-floodlist-echo-daily-flash-14-february-2023",
+     "subtype": "embankment dam failure",
+     "type": "M7",
+     "window_utc": [
+      "2023-02-09T21:00:00+00:00",
+      "2023-02-10T21:00:00+00:00"
+     ]
+    }
+   ],
+   "tutaekuri-awatoto": [
+    {
+     "cluster": "tutaekuri-awatoto",
+     "crest_kind": "published_day",
+     "crest_utc": [
+      "2023-02-13T11:00:00+00:00",
+      "2023-02-14T11:00:00+00:00"
+     ],
+     "date": "2023-02-14",
+     "incident": "tutaekuri-awatoto-2023-02-14",
+     "not_before_utc": "2023-02-13T11:00:00+00:00",
+     "peak_source": "https://niwa.co.nz/water-atmosphere/water-atmosphere-29-june-2023/wake-gabrielle",
+     "reach": "Tutaekuri River at Awatoto\u2013Brookfields, Napier",
+     "reach_point": [
+      -39.53,
+      176.88
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 35.266395555555555,
+       "lag_hours_min": 11.266395555555555,
+       "scene": "S2B_MSIL2A_20230214T221559_R129_T60HVB_20230215T071006",
+       "utc": "2023-02-14T22:15:59.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 35.266395555555555,
+       "lag_hours_min": 11.266395555555555,
+       "scene": "S2B_MSIL2A_20230214T221559_R129_T60HVB_20240730T201549",
+       "utc": "2023-02-14T22:15:59.024000Z"
+      }
+     ],
+     "source": "https://www.rnz.co.nz/news/national/486399/tutaekuri-river-suffers-worst-damage-from-cyclone-gabrielle-onslaught-council-says",
+     "subtype": "river levee breach",
+     "type": "M7",
+     "window_utc": [
+      "2023-02-13T11:00:00+00:00",
+      "2023-02-15T11:00:00+00:00"
+     ]
+    }
+   ],
+   "ussuriysk": [
+    {
+     "cluster": "ussuriysk",
+     "crest_kind": "published_day",
+     "crest_utc": [
+      "2023-08-11T14:00:00+00:00",
+      "2023-08-12T14:00:00+00:00"
+     ],
+     "date": "2023-08-12",
+     "incident": "ussuriysk-2023-08-12",
+     "not_before_utc": "2023-08-11T14:00:00+00:00",
+     "peak_source": "https://novayagazeta.ru/articles/2023/08/12/vsekh-spasli-vse-zhivy-gusi-von-plavaiut",
+     "reach": "Rakovka at Ussuriysk",
+     "reach_point": [
+      43.79724,
+      131.95207
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 12.116395555555554,
+       "lag_hours_min": -11.883604444444446,
+       "scene": "S2B_MSIL2A_20230812T020659_R103_T52TGP_20230812T073439",
+       "utc": "2023-08-12T02:06:59.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 12.116395555555554,
+       "lag_hours_min": -11.883604444444446,
+       "scene": "S2B_MSIL2A_20230812T020659_R103_T52TGP_20241022T012916",
+       "utc": "2023-08-12T02:06:59.024000Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 35.94314333333333,
+       "lag_hours_min": 11.943143333333333,
+       "scene": "LC08_L2SP_114029_20230813_02_T1",
+       "utc": "2023-08-13T01:56:35.316000Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 35.94977973388889,
+       "lag_hours_min": 11.949779733888889,
+       "scene": "LC08_L2SP_114030_20230813_02_T2",
+       "utc": "2023-08-13T01:56:59.207042Z"
+      }
+     ],
+     "source": "https://www.fontanka.ru/2023/08/12/72593219/",
+     "subtype": "river levee breach",
+     "type": "M7",
+     "window_utc": [
+      "2023-08-11T14:00:00+00:00",
+      "2023-08-13T14:00:00+00:00"
+     ]
+    }
+   ]
+  },
+  "M8": {
+   "hay": [
+    {
+     "cluster": "hay",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2022-05-12T13:40:00+00:00",
+      "2022-05-12T14:10:00+00:00"
+     ],
+     "date": "2022-05-12",
+     "incident": "hay-river-2022-05-12",
+     "not_before_utc": null,
+     "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=07OB001",
+     "reach": "Hay River at Hay River",
+     "reach_point": [
+      60.743,
+      -115.85964
+     ],
+     "scenes": [
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20220325T011643_20220325T011708_042471_051098",
+        "S1A_IW_GRDH_1SDV_20220406T011643_20220406T011708_042646_051684",
+        "S1A_IW_GRDH_1SDV_20220418T011643_20220418T011708_042821_051C65",
+        "S1A_IW_GRDH_1SDV_20220430T011644_20220430T011709_042996_052220"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": -12.384063925277777,
+       "lag_hours_min": -12.884063925277777,
+       "scene": "S1A_IW_GRDH_1SDV_20220512T011644_20220512T011709_043171_0527E3",
+       "utc": "2022-05-12T01:16:57.369869Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 5.321951111111112,
+       "lag_hours_min": 4.821951111111112,
+       "scene": "S2B_MSIL2A_20220512T185919_R013_T11VNH_20220515T080153",
+       "utc": "2022-05-12T18:59:19.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 5.321951111111112,
+       "lag_hours_min": 4.821951111111112,
+       "scene": "S2B_MSIL2A_20220512T185919_R013_T11VNH_20240613T014334",
+       "utc": "2022-05-12T18:59:19.024000Z"
+      }
+     ],
+     "source": "https://www.cbc.ca/lite/story/1.6450325",
+     "subtype": "ice jam",
+     "type": "M8",
+     "window_utc": [
+      "2022-05-11T14:10:00+00:00",
+      "2022-05-14T13:40:00+00:00"
+     ]
+    }
+   ],
+   "kallio": [
+    {
+     "cluster": "kallio",
+     "crest_kind": "published_day",
+     "crest_utc": [
+      "2023-05-19T22:00:00+00:00",
+      "2023-05-20T22:00:00+00:00"
+     ],
+     "date": "2023-05-20",
+     "incident": "kallio-2023-05-20",
+     "not_before_utc": null,
+     "peak_source": "https://www.smhi.se/kunskapsbanken/hydrologi/historiska-oversvamningar/2023---kraftig-varflod-i-tornealven",
+     "reach": "Muonio at Kallio 2",
+     "reach_point": [
+      67.2233,
+      23.5512
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 9.799109963055555,
+       "lag_hours_min": -14.200890036944445,
+       "scene": "LE07_L2SP_192013_20230520_02_T1",
+       "utc": "2023-05-20T07:47:56.795867Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 36.269173333333335,
+       "lag_hours_min": 12.269173333333333,
+       "scene": "S2B_MSIL2A_20230521T101609_R065_T34WFV_20230521T132633",
+       "utc": "2023-05-21T10:16:09.024000Z"
+      },
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20230322T155041_20230322T155106_047759_05BCCA",
+        "S1A_IW_GRDH_1SDV_20230403T155041_20230403T155106_047934_05C2AA",
+        "S1A_IW_GRDH_1SDV_20230415T155042_20230415T155107_048109_05C896",
+        "S1A_IW_GRDH_1SDV_20230427T155042_20230427T155107_048284_05CE72",
+        "S1A_IW_GRDH_1SDV_20230509T155043_20230509T155108_048459_05D443"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 41.849004085555556,
+       "lag_hours_min": 17.849004085555556,
+       "scene": "S1A_IW_GRDH_1SDV_20230521T155043_20230521T155108_048634_05D971",
+       "utc": "2023-05-21T15:50:56.414708Z"
+      }
+     ],
+     "source": "https://www.smhi.se/kunskapsbanken/hydrologi/historiska-oversvamningar/2023---kraftig-varflod-i-tornealven",
+     "subtype": "snowmelt and rain",
+     "type": "M8",
+     "window_utc": [
+      "2023-05-19T22:00:00+00:00",
+      "2023-05-22T22:00:00+00:00"
+     ]
+    }
+   ],
+   "ottawa": [
+    {
+     "cluster": "ottawa",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2023-05-06T08:00:00+00:00",
+      "2023-05-06T08:30:00+00:00"
+     ],
+     "date": "2023-05-06",
+     "incident": "ottawa-britannia-2023-05-06",
+     "not_before_utc": null,
+     "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=02KF005",
+     "reach": "Ottawa River at Britannia",
+     "reach_point": [
+      45.35125,
+      -75.82666
+     ],
+     "scenes": [
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20230318T225241_20230318T225306_047705_05BB01",
+        "S1A_IW_GRDH_1SDV_20230411T225242_20230411T225307_048055_05C6CF"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": -9.117816814166666,
+       "lag_hours_min": -9.617816814166666,
+       "scene": "S1A_IW_GRDH_1SDV_20230505T225243_20230505T225308_048405_05D287",
+       "utc": "2023-05-05T22:52:55.859469Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 55.98361777777778,
+       "lag_hours_min": 55.48361777777778,
+       "scene": "S2A_MSIL2A_20230508T155901_R097_T18TVR_20230509T013206",
+       "utc": "2023-05-08T15:59:01.024000Z"
+      }
+     ],
+     "source": "https://Ottawa.ca/en/city-hall/city-news/newsroom/spring-flooding-2023-numbers",
+     "subtype": "snowmelt and rain",
+     "type": "M8",
+     "window_utc": [
+      "2023-05-05T08:30:00+00:00",
+      "2023-05-09T08:00:00+00:00"
+     ]
+    }
+   ],
+   "red-river": [
+    {
+     "cluster": "red-river",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2022-05-08T03:10:00+00:00",
+      "2022-05-08T03:40:00+00:00"
+     ],
+     "date": "2022-05-08",
+     "incident": "red-emerson-2022-05-08",
+     "not_before_utc": null,
+     "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=05OC001",
+     "reach": "Red River at Emerson",
+     "reach_point": [
+      49.00375,
+      -97.22383
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 14.203781031944445,
+       "lag_hours_min": 13.703781031944445,
+       "scene": "LC09_L2SP_031026_20220508_02_T1",
+       "utc": "2022-05-08T17:22:13.611715Z"
+      },
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20220310T124246_20220310T124311_042259_050964",
+        "S1A_IW_GRDH_1SDV_20220322T124246_20220322T124311_042434_050F5B",
+        "S1A_IW_GRDH_1SDV_20220403T124246_20220403T124311_042609_05154C",
+        "S1A_IW_GRDH_1SDV_20220415T124246_20220415T124311_042784_051B32",
+        "S1A_IW_GRDH_1SDV_20220427T124247_20220427T124312_042959_0520F0"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 33.550195960277776,
+       "lag_hours_min": 33.050195960277776,
+       "scene": "S1A_IW_GRDH_1SDV_20220509T124248_20220509T124313_043134_0526C6",
+       "utc": "2022-05-09T12:43:00.705457Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 38.10427789277778,
+       "lag_hours_min": 37.60427789277778,
+       "scene": "LC08_L2SP_030026_20220509_02_T2",
+       "utc": "2022-05-09T17:16:15.400414Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 62.31695111111111,
+       "lag_hours_min": 61.81695111111111,
+       "scene": "S2A_MSIL2A_20220510T172901_R055_T14UPV_20220511T204534",
+       "utc": "2022-05-10T17:29:01.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 62.31695111111111,
+       "lag_hours_min": 61.81695111111111,
+       "scene": "S2A_MSIL2A_20220510T172901_R055_T14UPV_20240617T121153",
+       "utc": "2022-05-10T17:29:01.024000Z"
+      }
+     ],
+     "source": "https://globalnews.ca/news/8803991/flooding-manitoba-states-of-emergency-hwy-75-closure",
+     "subtype": "snowmelt",
+     "type": "M8",
+     "window_utc": [
+      "2022-05-07T03:40:00+00:00",
+      "2022-05-11T03:10:00+00:00"
+     ]
+    },
+    {
+     "cluster": "red-river",
+     "crest_kind": "agency_crest_day",
+     "crest_utc": [
+      "2022-05-14T05:00:00+00:00",
+      "2022-05-15T05:00:00+00:00"
+     ],
+     "date": "2022-05-14",
+     "incident": "fargo-2022-05-14",
+     "not_before_utc": null,
+     "peak_source": "https://api.water.noaa.gov/nwps/v1/gauges/FGON8",
+     "reach": "Red River at Fargo",
+     "reach_point": [
+      46.86111111,
+      -96.78333333
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 36.48306222222222,
+       "lag_hours_min": 12.483062222222221,
+       "scene": "S2B_MSIL2A_20220515T172859_R055_T14TPS_20220518T044623",
+       "utc": "2022-05-15T17:28:59.024000Z"
+      }
+     ],
+     "source": "https://api.water.noaa.gov/nwps/v1/gauges/FGON8",
+     "subtype": "snowmelt",
+     "type": "M8",
+     "window_utc": [
+      "2022-05-14T05:00:00+00:00",
+      "2022-05-17T05:00:00+00:00"
+     ]
+    }
+   ],
+   "saint-john": [
+    {
+     "cluster": "saint-john",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2023-04-19T15:05:00+00:00",
+      "2023-04-19T15:35:00+00:00"
+     ],
+     "date": "2023-04-19",
+     "incident": "saint-john-fredericton-2023-04-19",
+     "not_before_utc": null,
+     "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=01AK003",
+     "reach": "Saint John River at Fredericton",
+     "reach_point": [
+      45.96619,
+      -66.65161
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 46.02490029277778,
+       "lag_hours_min": 45.52490029277778,
+       "scene": "LE07_L2SP_009028_20230421_02_T1",
+       "utc": "2023-04-21T13:06:29.641054Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 48.35806222222222,
+       "lag_hours_min": 47.85806222222222,
+       "scene": "S2B_MSIL2A_20230421T152629_R068_T19TFL_20230421T223420",
+       "utc": "2023-04-21T15:26:29.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 48.35806222222222,
+       "lag_hours_min": 47.85806222222222,
+       "scene": "S2B_MSIL2A_20230421T152629_R068_T19TFL_20240902T104634",
+       "utc": "2023-04-21T15:26:29.024000Z"
+      }
+     ],
+     "source": "https://canadianunderwriter.ca/2023/04/19/water-levels-reach-flood-stage-in-new-brunswick/",
+     "subtype": "snowmelt and rain",
+     "type": "M8",
+     "window_utc": [
+      "2023-04-18T15:35:00+00:00",
+      "2023-04-22T15:05:00+00:00"
+     ]
+    }
+   ],
+   "upper-mississippi": [
+    {
+     "cluster": "upper-mississippi",
+     "crest_kind": "published_day",
+     "crest_utc": [
+      "2023-04-25T05:00:00+00:00",
+      "2023-04-26T05:00:00+00:00"
+     ],
+     "date": "2023-04-25",
+     "incident": "upper-mississippi-2023-04-25",
+     "not_before_utc": null,
+     "peak_source": "https://www.weather.gov/arx/flood2023",
+     "reach": "Mississippi at Minnesota City",
+     "reach_point": [
+      44.1595,
+      -91.81
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 33.8268806625,
+       "lag_hours_min": 9.8268806625,
+       "scene": "LE07_L2SP_026029_20230426_02_T1",
+       "utc": "2023-04-26T14:49:36.770385Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 35.98084,
+       "lag_hours_min": 11.980839999999999,
+       "scene": "S2A_MSIL2A_20230426T165851_R069_T15TWJ_20230427T014225",
+       "utc": "2023-04-26T16:58:51.024000Z"
+      },
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20230226T235807_20230226T235832_047414_05B11D",
+        "S1A_IW_GRDH_1SDV_20230310T235807_20230310T235832_047589_05B707",
+        "S1A_IW_GRDH_1SDV_20230322T235807_20230322T235832_047764_05BCF3",
+        "S1A_IW_GRDH_1SDV_20230403T235808_20230403T235833_047939_05C2D5",
+        "S1A_IW_GRDH_1SDV_20230415T235808_20230415T235833_048114_05C8C1"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 66.97260613666667,
+       "lag_hours_min": 42.97260613666667,
+       "scene": "S1A_IW_GRDH_1SDV_20230427T235808_20230427T235833_048289_05CE9D",
+       "utc": "2023-04-27T23:58:21.382092Z"
+      }
+     ],
+     "source": "https://www.weather.gov/arx/flood2023",
+     "subtype": "snowmelt",
+     "type": "M8",
+     "window_utc": [
+      "2023-04-25T05:00:00+00:00",
+      "2023-04-28T05:00:00+00:00"
+     ]
+    }
+   ],
+   "yukon": [
+    {
+     "cluster": "yukon",
+     "crest_kind": "agency_crest_day",
+     "crest_utc": [
+      "2023-05-23T08:00:00+00:00",
+      "2023-05-24T08:00:00+00:00"
+     ],
+     "date": "2023-05-23",
+     "incident": "galena-2023-05-23",
+     "not_before_utc": null,
+     "peak_source": "https://api.water.noaa.gov/nwps/v1/gauges/GYRA2",
+     "reach": "Yukon River at Galena",
+     "reach_point": [
+      64.736111,
+      -156.900833
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 11.692826990277778,
+       "lag_hours_min": -12.307173009722222,
+       "scene": "LE07_L2SP_074015_20230523_02_T1",
+       "utc": "2023-05-23T19:41:34.177165Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 13.823376725555557,
+       "lag_hours_min": -10.176623274444443,
+       "scene": "LC08_L2SP_075015_20230523_02_T1",
+       "utc": "2023-05-23T21:49:24.156212Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 37.72328724944444,
+       "lag_hours_min": 13.723287249444445,
+       "scene": "LC09_L2SP_074015_20230524_02_T1",
+       "utc": "2023-05-24T21:43:23.834098Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 38.26084,
+       "lag_hours_min": 14.26084,
+       "scene": "S2B_MSIL2A_20230524T221539_R115_T04WES_20230525T021955",
+       "utc": "2023-05-24T22:15:39.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 38.26084,
+       "lag_hours_min": 14.26084,
+       "scene": "S2B_MSIL2A_20230524T221539_R115_T04WES_20240907T134435",
+       "utc": "2023-05-24T22:15:39.024000Z"
+      }
+     ],
+     "source": "https://api.water.noaa.gov/nwps/v1/gauges/GYRA2",
+     "subtype": "ice jam",
+     "type": "M8",
+     "window_utc": [
+      "2023-05-23T08:00:00+00:00",
+      "2023-05-25T08:00:00+00:00"
+     ]
+    }
+   ]
+  }
+ },
+ "withheld_dev_incidents": [
+  "fargo-1994-04-03",
+  "fargo-2009-03-28",
+  "galena-2013-05-26",
+  "kenai-snow-2015-08-30",
+  "kenai-snow-2020-06-20",
+  "kenai-snow-2020-10-25",
+  "kenai-snow-2021-09-11",
+  "kennicott-2016-07-24",
+  "kennicott-2017-07-13",
+  "kennicott-2018-07-14",
+  "kennicott-2019-07-05",
+  "kennicott-2020-07-09",
+  "kennicott-2021-07-12",
+  "mendenhall-2014-07-11",
+  "mendenhall-2016-07-01",
+  "mendenhall-2020-08-01",
+  "mendenhall-2021-08-14",
+  "ottawa-britannia-2017-05-08",
+  "ottawa-britannia-2019-05-01",
+  "saint-john-fredericton-2018-05-01",
+  "saint-john-fredericton-2019-04-24",
+  "salmon-hyder-2016-08-21",
+  "salmon-hyder-2018-07-13",
+  "salmon-hyder-2019-07-08",
+  "salmon-hyder-2020-07-28",
+  "sveinstindur-2015-10-01",
+  "taku-2013-07-01",
+  "taku-2014-07-13",
+  "taku-2015-06-29",
+  "taku-2017-05-27",
+  "taku-2017-07-09",
+  "taku-2018-06-29",
+  "taku-2019-06-21",
+  "taku-2019-07-06",
+  "taku-2020-07-02",
+  "taku-2021-06-27"
+ ]
+}

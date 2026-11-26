@@ -35,6 +35,35 @@
       "matches": [],
       "status": "no_match_in_available_geometry"
     },
+    "kenai-snow-2022-08-31": {
+      "status": "needs_study_footprint"
+    },
+    "kenai-snow-2023-09-03": {
+      "status": "needs_study_footprint"
+    },
+    "kenai-snow-2024-11-14": {
+      "status": "needs_study_footprint"
+    },
+    "kenai-snow-2025-10-07": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "kennicott-2022-07-11": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "kennicott-2023-07-07": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "kennicott-2024-07-23": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "kennicott-2025-07-08": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
     "kherson-2023-06-06": {
       "matches": [],
       "status": "no_match_in_available_geometry"
@@ -103,6 +132,25 @@
       "matches": [],
       "status": "no_match_in_available_geometry"
     },
+    "salmon-hyder-2022-07-24": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "salmon-hyder-2023-06-24": {
+      "status": "needs_study_footprint"
+    },
+    "salmon-hyder-2023-10-25": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "salmon-hyder-2024-07-19": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "salmon-hyder-2025-07-08": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
     "shispare-2022-05-07": {
       "status": "needs_study_footprint"
     },
@@ -115,6 +163,21 @@
     },
     "sveinstindur-2024-08-20": {
       "status": "needs_study_footprint"
+    },
+    "taku-2022-06-27": {
+      "status": "needs_study_footprint"
+    },
+    "taku-2023-06-24": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "taku-2024-06-28": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
+    },
+    "taku-2025-06-28": {
+      "matches": [],
+      "status": "no_match_in_available_geometry"
     },
     "taquari-2024-05-02": {
       "status": "needs_study_footprint"

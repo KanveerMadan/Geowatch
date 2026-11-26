@@ -1,0 +1,635 @@
+{
+ "counts": {
+  "M6": {
+   "clusters": 1,
+   "incidents": 1
+  },
+  "M7": {
+   "clusters": 8,
+   "incidents": 9
+  },
+  "M8": {
+   "clusters": 4,
+   "incidents": 4
+  }
+ },
+ "dev": {
+  "M6": {
+   "grimsvotn-gigjukvisl": [
+    {
+     "cluster": "grimsvotn-gigjukvisl",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2021-12-04T00:00:00+00:00",
+      "2021-12-06T00:00:00+00:00"
+     ],
+     "date": "2021-12-04",
+     "incident": "grimsvotn-gigjukvisl-2021-12-04",
+     "not_before_utc": null,
+     "peak_source": "https://en.wikipedia.org/wiki/Gr%C3%ADmsv%C3%B6tn",
+     "reach": "G\u00edgjukv\u00edsl on Skei\u00f0ar\u00e1rsandur",
+     "reach_point": [
+      63.95,
+      -17.4
+     ],
+     "scenes": [
+      {
+       "baseline": [
+        "S1B_IW_GRDH_1SDV_20211006T073330_20211006T073355_029012_03764A",
+        "S1A_IW_GRDH_1SDV_20211012T073358_20211012T073423_040083_04BEF5",
+        "S1B_IW_GRDH_1SDV_20211018T073330_20211018T073355_029187_037BB4",
+        "S1A_IW_GRDH_1SDV_20211024T073358_20211024T073423_040258_04C511",
+        "S1A_IW_GRDH_1SDV_20211105T073357_20211105T073422_040433_04CB29",
+        "S1B_IW_GRDH_1SDV_20211111T073330_20211111T073355_029537_038672",
+        "S1A_IW_GRDH_1SDV_20211117T073357_20211117T073422_040608_04D132",
+        "S1B_IW_GRDH_1SDV_20211123T073329_20211123T073354_029712_038BE3"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 31.56160074861111,
+       "lag_hours_min": -16.43839925138889,
+       "scene": "S1B_IW_GRDH_1SDV_20211205T073329_20211205T073354_029887_039162",
+       "utc": "2021-12-05T07:33:41.762695Z"
+      },
+      {
+       "baseline": [
+        "S1B_IW_GRDH_1SDV_20211006T184959_20211006T185024_029019_03767B",
+        "S1A_IW_GRDH_1SDV_20211012T185048_20211012T185113_040090_04BF3C",
+        "S1B_IW_GRDH_1SDV_20211018T184959_20211018T185024_029194_037BEC",
+        "S1A_IW_GRDH_1SDV_20211024T185048_20211024T185113_040265_04C558",
+        "S1A_IW_GRDH_1SDV_20211105T185048_20211105T185113_040440_04CB70",
+        "S1B_IW_GRDH_1SDV_20211111T184959_20211111T185024_029544_0386A3",
+        "S1A_IW_GRDH_1SDV_20211117T185048_20211117T185113_040615_04D179",
+        "S1B_IW_GRDH_1SDV_20211123T184959_20211123T185024_029719_038C16"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 42.836401343055556,
+       "lag_hours_min": -5.163598656944444,
+       "scene": "S1B_IW_GRDH_1SDV_20211205T184958_20211205T185023_029894_039195",
+       "utc": "2021-12-05T18:50:11.044835Z"
+      }
+     ],
+     "source": "https://meetingorganizer.copernicus.org/EGU22/EGU22-8240.html",
+     "subtype": "subglacial lake outburst",
+     "type": "M6",
+     "window_utc": [
+      "2021-12-05T00:00:00+00:00",
+      "2021-12-06T00:00:00+00:00"
+     ]
+    }
+   ]
+  },
+  "M7": {
+   "annamayya": [
+    {
+     "cluster": "annamayya",
+     "crest_kind": "published_day",
+     "crest_utc": [
+      "2021-11-18T18:30:00+00:00",
+      "2021-11-19T18:30:00+00:00"
+     ],
+     "date": "2021-11-19",
+     "incident": "annamayya-2021-11-19",
+     "not_before_utc": "2021-11-19T00:00:00+00:00",
+     "peak_source": "https://sandrp.in/2021/12/05/andhra-pradesh-dam-induced-flood-disaster-in-november-2021/",
+     "reach": "Cheyyeru at Togurupeta",
+     "reach_point": [
+      14.25392,
+      79.043258
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 10.686395555555555,
+       "lag_hours_min": -13.313604444444445,
+       "scene": "S2A_MSIL2A_20211119T051111_R019_T44PKA_20211119T141158",
+       "utc": "2021-11-19T05:11:11.024000Z"
+      }
+     ],
+     "source": "https://sandrp.in/2021/12/05/andhra-pradesh-dam-induced-flood-disaster-in-november-2021/",
+     "subtype": "water-storage dam failure",
+     "type": "M7",
+     "window_utc": [
+      "2021-11-19T00:00:00+00:00",
+      "2021-11-20T18:30:00+00:00"
+     ]
+    }
+   ],
+   "gandak-barauli": [
+    {
+     "cluster": "gandak-barauli",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2020-07-23T23:30:00+00:00",
+      "2020-07-24T01:30:00+00:00"
+     ],
+     "date": "2020-07-24",
+     "incident": "gandak-barauli-2020-07-24",
+     "not_before_utc": "2020-07-23T20:30:00+00:00",
+     "peak_source": "https://sandrp.in/2020/07/28/making-sense-of-2020-gandak-floods/",
+     "reach": "Gandak at Barauli (Devapur breach), Gopalganj",
+     "reach_point": [
+      26.396579,
+      84.600451
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 4.801061305277778,
+       "lag_hours_min": 2.8010613052777775,
+       "scene": "LE07_L2SP_141042_20200724_02_T2",
+       "utc": "2020-07-24T04:18:03.820699Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 5.450284444444445,
+       "lag_hours_min": 3.4502844444444443,
+       "scene": "S2A_MSIL2A_20200724T045701_R119_T45RTK_20200817T081525",
+       "utc": "2020-07-24T04:57:01.024000Z"
+      },
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20200601T001944_20200601T002009_032816_03CD18",
+        "S1A_IW_GRDH_1SDV_20200613T001945_20200613T002010_032991_03D249",
+        "S1A_IW_GRDH_1SDV_20200625T001945_20200625T002010_033166_03D79C",
+        "S1A_IW_GRDH_1SDV_20200707T001946_20200707T002011_033341_03DCEA",
+        "S1B_IW_GRDH_1SDV_20200713T001857_20200713T001933_022445_02A995"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 24.82482146611111,
+       "lag_hours_min": 22.82482146611111,
+       "scene": "S1B_IW_GRDH_1SDV_20200725T001916_20200725T001941_022620_02AEE2",
+       "utc": "2020-07-25T00:19:29.357278Z"
+      }
+     ],
+     "source": "https://cwc.gov.in/sites/default/files/dfsitrepca-24072020.pdf",
+     "subtype": "river embankment breach",
+     "type": "M7",
+     "window_utc": [
+      "2020-07-23T20:30:00+00:00",
+      "2020-07-25T23:30:00+00:00"
+     ]
+    }
+   ],
+   "hagibis-2019-10": [
+    {
+     "cluster": "hagibis-2019-10",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2019-10-12T18:10:00+00:00",
+      "2019-10-12T18:30:00+00:00"
+     ],
+     "date": "2019-10-13",
+     "incident": "chikuma-hoyasu-2019-10-13",
+     "not_before_utc": "2019-10-12T18:30:00+00:00",
+     "peak_source": "https://www.jstage.jst.go.jp/article/jndsj/39/3/39_221/_article/-char/en",
+     "reach": "Chikuma River at Hoyasu, Nagano",
+     "reach_point": [
+      36.684468,
+      138.271756
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 7.449728888888889,
+       "lag_hours_min": 7.116395555555556,
+       "scene": "S2B_MSIL2A_20191013T013659_R117_T53SQA_20201004T015129",
+       "utc": "2019-10-13T01:36:59.024000Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 7.449728888888889,
+       "lag_hours_min": 7.116395555555556,
+       "scene": "S2B_MSIL2A_20191013T013659_R117_T54STF_20201004T015131",
+       "utc": "2019-10-13T01:36:59.024000Z"
+      }
+     ],
+     "source": "https://www.jstage.jst.go.jp/article/jndsj/39/3/39_221/_article/-char/en",
+     "subtype": "river levee breach",
+     "type": "M7",
+     "window_utc": [
+      "2019-10-12T18:30:00+00:00",
+      "2019-10-14T18:10:00+00:00"
+     ]
+    }
+   ],
+   "mabi-oda": [
+    {
+     "cluster": "mabi-oda",
+     "crest_kind": "published_day",
+     "crest_utc": [
+      "2018-07-06T15:00:00+00:00",
+      "2018-07-07T15:00:00+00:00"
+     ],
+     "date": "2018-07-07",
+     "incident": "mabi-oda-2018-07-07",
+     "not_before_utc": "2018-07-06T21:52:00+00:00",
+     "peak_source": "https://www.cgr.mlit.go.jp/kisha/2018jul/180707-2top.pdf",
+     "reach": "Oda River at Mabi, Kurashiki",
+     "reach_point": [
+      34.645993,
+      133.708882
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 34.780840000000005,
+       "lag_hours_min": 10.78084,
+       "scene": "S2A_MSIL2A_20180708T014651_R017_T53SLU_20201011T131420",
+       "utc": "2018-07-08T01:46:51.024000Z"
+      }
+     ],
+     "source": "https://www.cgr.mlit.go.jp/kisha/2018jul/180707-2top.pdf",
+     "subtype": "river levee breach",
+     "type": "M7",
+     "window_utc": [
+      "2018-07-06T21:52:00+00:00",
+      "2018-07-08T15:00:00+00:00"
+     ]
+    }
+   ],
+   "midland": [
+    {
+     "cluster": "midland",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2020-05-20T16:15:00+00:00",
+      "2020-05-20T16:45:00+00:00"
+     ],
+     "date": "2020-05-19",
+     "incident": "midland-2020-05-19",
+     "not_before_utc": null,
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-04156000&parameter_code=00065&datetime=2020-05-19T04%3A00%3A00%2B00%3A00%2F2020-05-22T04%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "Tittabawassee River at Midland",
+     "reach_point": [
+      43.59530477,
+      -84.23554395
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 0.11292227416666667,
+       "lag_hours_min": -0.38707772583333333,
+       "scene": "LC08_L2SP_021030_20200520_02_T1",
+       "utc": "2020-05-20T16:21:46.520187Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 23.571071813333333,
+       "lag_hours_min": 23.071071813333333,
+       "scene": "LE07_L2SP_020030_20200521_02_T1",
+       "utc": "2020-05-21T15:49:15.858528Z"
+      }
+     ],
+     "source": "https://www.weather.gov/dtx/HistoricFlooding-May-17-20-2020",
+     "subtype": "water-storage dam cascade",
+     "type": "M7",
+     "window_utc": [
+      "2020-05-19T16:45:00+00:00",
+      "2020-05-22T16:15:00+00:00"
+     ]
+    }
+   ],
+   "midwest-2008-06": [
+    {
+     "cluster": "midwest-2008-06",
+     "crest_kind": "agency_crest_day",
+     "crest_utc": [
+      "2008-06-17T05:00:00+00:00",
+      "2008-06-18T05:00:00+00:00"
+     ],
+     "date": "2008-06-17",
+     "incident": "gulfport-miss-2008-06-17",
+     "not_before_utc": "2008-06-17T10:00:00+00:00",
+     "peak_source": "https://api.water.noaa.gov/nwps/v1/gauges/BRLI4",
+     "reach": "Mississippi River at Gulf Port, Henderson County",
+     "reach_point": [
+      40.813928,
+      -91.086256
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 11.523185482777778,
+       "lag_hours_min": -12.476814517222222,
+       "scene": "LE07_L2SP_024032_20080617_02_T1",
+       "utc": "2008-06-17T16:31:23.467738Z"
+      }
+     ],
+     "source": "https://www.deseret.com/2008/6/18/20258822/mississippi-breaches-illinois-levee",
+     "subtype": "river levee breach",
+     "type": "M7",
+     "window_utc": [
+      "2008-06-17T10:00:00+00:00",
+      "2008-06-19T05:00:00+00:00"
+     ]
+    }
+   ],
+   "midwest-2019-03": [
+    {
+     "cluster": "midwest-2019-03",
+     "crest_kind": "agency_crest_day",
+     "crest_utc": [
+      "2019-03-16T05:00:00+00:00",
+      "2019-03-17T05:00:00+00:00"
+     ],
+     "date": "2019-03-16",
+     "incident": "missouri-hamburg-2019-03-16",
+     "not_before_utc": "2019-03-17T05:00:00+00:00",
+     "peak_source": "https://api.water.noaa.gov/nwps/v1/gauges/NEBN1",
+     "reach": "Missouri River at Hamburg, Fremont County",
+     "reach_point": [
+      40.604446,
+      -95.657771
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 35.88473326333333,
+       "lag_hours_min": 11.884733263333334,
+       "scene": "LE07_L2SP_027032_20190317_02_T1",
+       "utc": "2019-03-17T16:53:05.039748Z"
+      },
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20190117T001304_20190117T001329_025510_02D41B",
+        "S1A_IW_GRDH_1SDV_20190129T001304_20190129T001329_025685_02DA7E",
+        "S1A_IW_GRDH_1SDV_20190210T001303_20190210T001328_025860_02E0CB",
+        "S1A_IW_GRDH_1SDV_20190222T001303_20190222T001328_026035_02E700"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 43.221255635000006,
+       "lag_hours_min": 19.221255635,
+       "scene": "S1A_IW_GRDH_1SDV_20190318T001304_20190318T001329_026385_02F3B5",
+       "utc": "2019-03-18T00:13:16.520286Z"
+      }
+     ],
+     "source": "https://www.pbs.org/newshour/nation/more-evacuations-in-midwest-as-floodwaters-head-downstream",
+     "subtype": "river levee breach",
+     "type": "M7",
+     "window_utc": [
+      "2019-03-17T05:00:00+00:00",
+      "2019-03-18T05:00:00+00:00"
+     ]
+    },
+    {
+     "cluster": "midwest-2019-03",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2019-03-21T03:00:00+00:00",
+      "2019-03-21T04:00:00+00:00"
+     ],
+     "date": "2019-03-17",
+     "incident": "missouri-holt-2019-03-17",
+     "not_before_utc": "2019-03-18T05:00:00+00:00",
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-06813500&parameter_code=00065&datetime=2019-03-17T05%3A00%3A00%2B00%3A00%2F2019-03-25T05%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "Missouri River at Big Lake, Holt County",
+     "reach_point": [
+      40.081943,
+      -95.349979
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 14.169728888888889,
+       "lag_hours_min": 13.169728888888889,
+       "scene": "S2A_MSIL2A_20190321T171011_R112_T15TTE_20201007T085820",
+       "utc": "2019-03-21T17:10:11.024000Z"
+      }
+     ],
+     "source": "https://www.washingtontimes.com/news/2019/mar/18/homes-flood-as-missouri-river-overtops-breeches-le/",
+     "subtype": "river levee breach",
+     "type": "M7",
+     "window_utc": [
+      "2019-03-20T04:00:00+00:00",
+      "2019-03-23T03:00:00+00:00"
+     ]
+    }
+   ],
+   "xe-pian": [
+    {
+     "cluster": "xe-pian",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2018-07-23T11:00:00+00:00",
+      "2018-07-24T05:00:00+00:00"
+     ],
+     "date": "2018-07-23",
+     "incident": "xe-pian-2018-07-23",
+     "not_before_utc": null,
+     "peak_source": "https://www.undp.org/node/221486",
+     "reach": "Xe Pian at Ban Mai\u2013Hinlad, Sanamxay",
+     "reach_point": [
+      14.72,
+      106.51
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 40.26139555555556,
+       "lag_hours_min": 22.261395555555556,
+       "scene": "S2A_MSIL2A_20180725T031541_R118_T48PXB_20201011T194352",
+       "utc": "2018-07-25T03:15:41.024000Z"
+      }
+     ],
+     "source": "https://www.gdacs.org/Public/download.aspx?id=28&type=DC",
+     "subtype": "saddle dam failure",
+     "type": "M7",
+     "window_utc": [
+      "2018-07-23T05:00:00+00:00",
+      "2018-07-25T11:00:00+00:00"
+     ]
+    }
+   ]
+  },
+  "M8": {
+   "athabasca": [
+    {
+     "cluster": "athabasca",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2020-04-27T18:45:00+00:00",
+      "2020-04-27T19:15:00+00:00"
+     ],
+     "date": "2020-04-26",
+     "incident": "fort-mcmurray-2020-04-26",
+     "not_before_utc": null,
+     "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=07DA001",
+     "reach": "Athabasca and Clearwater Rivers at Fort McMurray",
+     "reach_point": [
+      56.78089,
+      -111.40258
+     ],
+     "scenes": [
+      {
+       "baseline": [
+        "S1A_IW_GRDH_1SDV_20200228T011516_20200228T011541_031446_039ECF",
+        "S1A_IW_GRDH_1SDV_20200311T011516_20200311T011541_031621_03A4E3",
+        "S1A_IW_GRDH_1SDV_20200323T011516_20200323T011541_031796_03AB0B",
+        "S1A_IW_GRDH_1SDV_20200404T011516_20200404T011541_031971_03B132",
+        "S1A_IW_GRDH_1SDV_20200416T011517_20200416T011542_032146_03B75C"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 6.508363223888889,
+       "lag_hours_min": 6.008363223888889,
+       "scene": "S1A_IW_GRDH_1SDV_20200428T011517_20200428T011542_032321_03BD81",
+       "utc": "2020-04-28T01:15:30.107606Z"
+      },
+      {
+       "baseline": [
+        "S1B_IW_GRDH_1SDV_20200229T010638_20200229T010703_020477_026CC7",
+        "S1B_IW_GRDH_1SDV_20200312T010638_20200312T010703_020652_027256",
+        "S1B_IW_GRDH_1SDV_20200405T010638_20200405T010704_021002_027D64",
+        "S1B_IW_GRDH_1SDV_20200417T010639_20200417T010704_021177_0282EF"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 30.36459527,
+       "lag_hours_min": 29.86459527,
+       "scene": "S1B_IW_GRDH_1SDV_20200429T010639_20200429T010705_021352_028875",
+       "utc": "2020-04-29T01:06:52.542972Z"
+      },
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": 47.29322359166667,
+       "lag_hours_min": 46.79322359166667,
+       "scene": "LE07_L2SP_042020_20200429_02_T1",
+       "utc": "2020-04-29T18:02:35.604930Z"
+      }
+     ],
+     "source": "https://www.cbc.ca/lite/story/1.5546029",
+     "subtype": "ice jam",
+     "type": "M8",
+     "window_utc": [
+      "2020-04-26T19:15:00+00:00",
+      "2020-04-29T18:45:00+00:00"
+     ]
+    }
+   ],
+   "kettle-granby": [
+    {
+     "cluster": "kettle-granby",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2018-05-10T23:40:00+00:00",
+      "2018-05-11T00:10:00+00:00"
+     ],
+     "date": "2018-05-10",
+     "incident": "grand-forks-bc-2018-05-10",
+     "not_before_utc": null,
+     "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=08NN002",
+     "reach": "Granby and Kettle Rivers at Grand Forks",
+     "reach_point": [
+      49.04327,
+      -118.44043
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": -4.841936944444445,
+       "lag_hours_min": -5.341936944444445,
+       "scene": "S2B_MSIL2A_20180510T184929_R113_T11ULQ_20201012T082042",
+       "utc": "2018-05-10T18:49:29.027000Z"
+      },
+      {
+       "baseline": [
+        "S1B_IW_GRDH_1SDV_20180312T014504_20180312T014529_009992_0121D4",
+        "S1B_IW_GRDH_1SDV_20180324T014504_20180324T014529_010167_012780",
+        "S1B_IW_GRDH_1SDV_20180405T014505_20180405T014530_010342_012D33",
+        "S1B_IW_GRDH_1SDV_20180417T014505_20180417T014530_010517_0132C8",
+        "S1B_IW_GRDH_1SDV_20180429T014506_20180429T014531_010692_013864"
+       ],
+       "collection": "sentinel-1-grd",
+       "lag_hours_max": 2.0886417005555558,
+       "lag_hours_min": 1.5886417005555555,
+       "scene": "S1B_IW_GRDH_1SDV_20180511T014506_20180511T014531_010867_013E0A",
+       "utc": "2018-05-11T01:45:19.110122Z"
+      },
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": 67.32195194444445,
+       "lag_hours_min": 66.82195194444445,
+       "scene": "S2B_MSIL2A_20180513T185919_R013_T11ULQ_20201012T093323",
+       "utc": "2018-05-13T18:59:19.027000Z"
+      }
+     ],
+     "source": "https://www2.gov.bc.ca/assets/gov/environment/climate-change/adaptation/resources/social_impacts_grand_forks_flood.pdf",
+     "subtype": "snowmelt and rain",
+     "type": "M8",
+     "window_utc": [
+      "2018-05-10T00:10:00+00:00",
+      "2018-05-13T23:40:00+00:00"
+     ]
+    }
+   ],
+   "peace": [
+    {
+     "cluster": "peace",
+     "crest_kind": "published_reading",
+     "crest_utc": [
+      "2020-04-28T10:45:00+00:00",
+      "2020-04-28T11:15:00+00:00"
+     ],
+     "date": "2020-04-27",
+     "incident": "fort-vermilion-2020-04-27",
+     "not_before_utc": null,
+     "peak_source": "https://api.weather.gc.ca/collections/hydrometric-annual-peaks/items?f=json&STATION_NUMBER=07HF001",
+     "reach": "Peace River at Fort Vermilion",
+     "reach_point": [
+      58.38789,
+      -116.02875
+     ],
+     "scenes": [
+      {
+       "collection": "sentinel-2-l2a",
+       "lag_hours_max": -15.760826666666667,
+       "lag_hours_min": -16.260826666666667,
+       "scene": "S2A_MSIL2A_20200427T185921_R013_T11VNE_20200922T074750",
+       "utc": "2020-04-27T18:59:21.024000Z"
+      }
+     ],
+     "source": "https://globalnews.ca/news/6874924/alberta-fort-vermilion-mackenzie-county-flood",
+     "subtype": "ice jam",
+     "type": "M8",
+     "window_utc": [
+      "2020-04-27T11:15:00+00:00",
+      "2020-04-30T10:45:00+00:00"
+     ]
+    }
+   ],
+   "souris": [
+    {
+     "cluster": "souris",
+     "crest_kind": "gauge_bracket",
+     "crest_utc": [
+      "2011-06-26T00:30:00+00:00",
+      "2011-06-26T01:00:00+00:00"
+     ],
+     "date": "2011-06-25",
+     "incident": "minot-souris-2011-06-25",
+     "not_before_utc": null,
+     "peak_source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-05117500&parameter_code=00065&datetime=2011-06-22T05%3A00%3A00%2B00%3A00%2F2011-06-30T05%3A00%3A00%2B00%3A00&f=json&limit=10000",
+     "reach": "Souris River at Minot",
+     "reach_point": [
+      48.238056,
+      -101.295833
+     ],
+     "scenes": [
+      {
+       "collection": "landsat-c2-l2",
+       "lag_hours_max": -7.025870359444444,
+       "lag_hours_min": -7.525870359444444,
+       "scene": "LE07_L2SP_033026_20110625_02_T1",
+       "utc": "2011-06-25T17:28:26.866706Z"
+      }
+     ],
+     "source": "https://api.water.noaa.gov/nwps/v1/gauges/MION8",
+     "subtype": "snowmelt and rain",
+     "type": "M8",
+     "window_utc": [
+      "2011-06-25T01:00:00+00:00",
+      "2011-06-29T00:30:00+00:00"
+     ]
+    }
+   ]
+  }
+ }
+}

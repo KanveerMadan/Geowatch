@@ -27,6 +27,229 @@
     "station": "05054000",
     "status": "gauge_bracket"
   },
+  "kenai-snow-2013-10-06": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2013-10-05T08%3A00%3A00%2B00%3A00%2F2013-10-12T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15258000",
+    "status": "crest_unbounded"
+  },
+  "kenai-snow-2014-07-30": {
+    "end": "2014-08-05T08:00:00+00:00",
+    "gauge_max_ft": 10.02,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f38df00bf30c48a69d0449d5303d3fe5",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2014-07-29T08%3A00%3A00%2B00%3A00%2F2014-08-05T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2014-08-05T07:30:00+00:00",
+    "station": "15258000",
+    "status": "gauge_bracket"
+  },
+  "kenai-snow-2015-06-16": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2015-06-15T08%3A00%3A00%2B00%3A00%2F2015-06-22T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15258000",
+    "status": "no_unambiguous_approved_series"
+  },
+  "kenai-snow-2015-08-22": {
+    "observed_max_end": "2015-08-25T11:45:00+00:00",
+    "observed_max_start": "2015-08-25T09:30:00+00:00",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2015-08-21T08%3A00%3A00%2B00%3A00%2F2015-08-28T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15258000",
+    "status": "gap_in_gauge_record"
+  },
+  "kenai-snow-2015-08-30": {
+    "end": "2015-09-04T06:00:00+00:00",
+    "gauge_max_ft": 13.6,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f38df00bf30c48a69d0449d5303d3fe5",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2015-08-29T08%3A00%3A00%2B00%3A00%2F2015-09-05T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2015-09-04T05:30:00+00:00",
+    "station": "15258000",
+    "status": "gauge_bracket"
+  },
+  "kenai-snow-2017-09-14": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2017-09-13T08%3A00%3A00%2B00%3A00%2F2017-09-20T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15258000",
+    "status": "crest_unbounded"
+  },
+  "kenai-snow-2019-07-12": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2019-07-11T08%3A00%3A00%2B00%3A00%2F2019-07-19T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15258000",
+    "status": "crest_unbounded"
+  },
+  "kenai-snow-2019-08-18": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2019-08-17T08%3A00%3A00%2B00%3A00%2F2019-08-24T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15258000",
+    "status": "crest_unbounded"
+  },
+  "kenai-snow-2020-06-20": {
+    "end": "2020-06-22T03:15:00+00:00",
+    "gauge_max_ft": 10.49,
+    "observations": 1345,
+    "sample_seconds": 900.0,
+    "series_id": "f38df00bf30c48a69d0449d5303d3fe5",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2020-06-19T08%3A00%3A00%2B00%3A00%2F2020-07-03T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2020-06-22T00:15:00+00:00",
+    "station": "15258000",
+    "status": "gauge_bracket"
+  },
+  "kenai-snow-2020-10-25": {
+    "end": "2020-10-24T12:45:00+00:00",
+    "gauge_max_ft": 8.14,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f38df00bf30c48a69d0449d5303d3fe5",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2020-10-24T08%3A00%3A00%2B00%3A00%2F2020-10-31T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2020-10-24T12:15:00+00:00",
+    "station": "15258000",
+    "status": "gauge_bracket"
+  },
+  "kenai-snow-2021-09-11": {
+    "end": "2021-09-14T12:00:00+00:00",
+    "gauge_max_ft": 9.24,
+    "observations": 865,
+    "sample_seconds": 900.0,
+    "series_id": "f38df00bf30c48a69d0449d5303d3fe5",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2021-09-10T08%3A00%3A00%2B00%3A00%2F2021-09-19T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2021-09-14T11:30:00+00:00",
+    "station": "15258000",
+    "status": "gauge_bracket"
+  },
+  "kenai-snow-2022-08-31": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2022-08-30T08%3A00%3A00%2B00%3A00%2F2022-09-06T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15258000",
+    "status": "crest_unbounded"
+  },
+  "kenai-snow-2023-09-03": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2023-09-02T08%3A00%3A00%2B00%3A00%2F2023-09-09T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15258000",
+    "status": "crest_unbounded"
+  },
+  "kenai-snow-2024-11-14": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2024-11-13T09%3A00%3A00%2B00%3A00%2F2024-11-20T09%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15258000",
+    "status": "crest_unbounded"
+  },
+  "kenai-snow-2025-10-07": {
+    "end": "2025-10-17T08:00:00+00:00",
+    "gauge_max_ft": 10.93,
+    "observations": 1345,
+    "sample_seconds": 900.0,
+    "series_id": "f38df00bf30c48a69d0449d5303d3fe5",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15258000&parameter_code=00065&datetime=2025-10-06T08%3A00%3A00%2B00%3A00%2F2025-10-20T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2025-10-17T07:30:00+00:00",
+    "station": "15258000",
+    "status": "gauge_bracket"
+  },
+  "kennicott-2016-07-24": {
+    "end": "2016-07-27T02:15:00+00:00",
+    "gauge_max_ft": 1348.57,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "631fa789cb4d4e328d57ea263aee865d",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2016-07-23T08%3A00%3A00%2B00%3A00%2F2016-07-30T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2016-07-27T01:45:00+00:00",
+    "station": "15209700",
+    "status": "gauge_bracket"
+  },
+  "kennicott-2017-07-13": {
+    "end": "2017-07-17T13:45:00+00:00",
+    "gauge_max_ft": 1345.66,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "631fa789cb4d4e328d57ea263aee865d",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2017-07-12T08%3A00%3A00%2B00%3A00%2F2017-07-19T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2017-07-17T12:00:00+00:00",
+    "station": "15209700",
+    "status": "gauge_bracket"
+  },
+  "kennicott-2018-07-14": {
+    "end": "2018-07-19T06:30:00+00:00",
+    "gauge_max_ft": 1345.67,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "631fa789cb4d4e328d57ea263aee865d",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2018-07-13T08%3A00%3A00%2B00%3A00%2F2018-07-20T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2018-07-19T06:00:00+00:00",
+    "station": "15209700",
+    "status": "gauge_bracket"
+  },
+  "kennicott-2019-07-05": {
+    "end": "2019-07-08T12:30:00+00:00",
+    "gauge_max_ft": 1348.93,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "631fa789cb4d4e328d57ea263aee865d",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2019-07-04T08%3A00%3A00%2B00%3A00%2F2019-07-11T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2019-07-08T12:00:00+00:00",
+    "station": "15209700",
+    "status": "gauge_bracket"
+  },
+  "kennicott-2020-07-09": {
+    "end": "2020-07-13T06:30:00+00:00",
+    "gauge_max_ft": 1347.37,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "631fa789cb4d4e328d57ea263aee865d",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2020-07-08T08%3A00%3A00%2B00%3A00%2F2020-07-15T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2020-07-13T06:00:00+00:00",
+    "station": "15209700",
+    "status": "gauge_bracket"
+  },
+  "kennicott-2021-07-12": {
+    "end": "2021-07-16T13:45:00+00:00",
+    "gauge_max_ft": 1346.08,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "631fa789cb4d4e328d57ea263aee865d",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2021-07-11T08%3A00%3A00%2B00%3A00%2F2021-07-18T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2021-07-16T13:15:00+00:00",
+    "station": "15209700",
+    "status": "gauge_bracket"
+  },
+  "kennicott-2022-07-11": {
+    "end": "2022-07-15T03:45:00+00:00",
+    "gauge_max_ft": 1345.63,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "631fa789cb4d4e328d57ea263aee865d",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2022-07-10T08%3A00%3A00%2B00%3A00%2F2022-07-17T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2022-07-15T03:15:00+00:00",
+    "station": "15209700",
+    "status": "gauge_bracket"
+  },
+  "kennicott-2023-07-07": {
+    "end": "2023-07-10T17:15:00+00:00",
+    "gauge_max_ft": 1347.35,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "631fa789cb4d4e328d57ea263aee865d",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2023-07-06T08%3A00%3A00%2B00%3A00%2F2023-07-13T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2023-07-10T16:45:00+00:00",
+    "station": "15209700",
+    "status": "gauge_bracket"
+  },
+  "kennicott-2024-07-23": {
+    "end": "2024-07-26T09:45:00+00:00",
+    "gauge_max_ft": 1347.74,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "631fa789cb4d4e328d57ea263aee865d",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2024-07-22T08%3A00%3A00%2B00%3A00%2F2024-07-29T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2024-07-26T09:15:00+00:00",
+    "station": "15209700",
+    "status": "gauge_bracket"
+  },
+  "kennicott-2025-07-08": {
+    "end": "2025-07-12T18:45:00+00:00",
+    "gauge_max_ft": 1344.1,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "631fa789cb4d4e328d57ea263aee865d",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15209700&parameter_code=00065&datetime=2025-07-07T08%3A00%3A00%2B00%3A00%2F2025-07-14T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2025-07-12T18:15:00+00:00",
+    "station": "15209700",
+    "status": "gauge_bracket"
+  },
   "mendenhall-2014-07-11": {
     "end": "2014-07-12T01:00:00+00:00",
     "gauge_max_ft": 11.85,
@@ -189,6 +412,295 @@
     "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-04282000&parameter_code=00065&datetime=2025-03-16T04%3A00%3A00%2B00%3A00%2F2025-03-20T04%3A00%3A00%2B00%3A00&f=json&limit=10000",
     "start": "2025-03-18T04:30:00+00:00",
     "station": "04282000",
+    "status": "gauge_bracket"
+  },
+  "salmon-hyder-2013-08-06": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2013-08-05T08%3A00%3A00%2B00%3A00%2F2013-08-12T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15008000",
+    "status": "crest_unbounded"
+  },
+  "salmon-hyder-2014-07-16": {
+    "end": "2014-07-19T22:45:00+00:00",
+    "gauge_max_ft": 27.65,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "0d876b40d1744522b7b9fef475590d52",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2014-07-15T08%3A00%3A00%2B00%3A00%2F2014-07-22T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2014-07-19T22:15:00+00:00",
+    "station": "15008000",
+    "status": "gauge_bracket"
+  },
+  "salmon-hyder-2016-07-18": {
+    "observed_max_end": "2016-07-23T18:30:00+00:00",
+    "observed_max_start": "2016-07-23T18:30:00+00:00",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2016-07-17T08%3A00%3A00%2B00%3A00%2F2016-07-24T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15008000",
+    "status": "gap_in_gauge_record"
+  },
+  "salmon-hyder-2016-08-21": {
+    "end": "2016-08-26T08:00:00+00:00",
+    "gauge_max_ft": 22.42,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "0d876b40d1744522b7b9fef475590d52",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2016-08-20T08%3A00%3A00%2B00%3A00%2F2016-08-27T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2016-08-26T07:30:00+00:00",
+    "station": "15008000",
+    "status": "gauge_bracket"
+  },
+  "salmon-hyder-2017-07-01": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2017-06-30T08%3A00%3A00%2B00%3A00%2F2017-07-07T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15008000",
+    "status": "crest_unbounded"
+  },
+  "salmon-hyder-2018-07-13": {
+    "end": "2018-07-18T16:45:00+00:00",
+    "gauge_max_ft": 26.66,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "0d876b40d1744522b7b9fef475590d52",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2018-07-12T08%3A00%3A00%2B00%3A00%2F2018-07-19T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2018-07-18T16:15:00+00:00",
+    "station": "15008000",
+    "status": "gauge_bracket"
+  },
+  "salmon-hyder-2019-07-08": {
+    "end": "2019-07-13T16:15:00+00:00",
+    "gauge_max_ft": 27.07,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "0d876b40d1744522b7b9fef475590d52",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2019-07-07T08%3A00%3A00%2B00%3A00%2F2019-07-14T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2019-07-13T15:45:00+00:00",
+    "station": "15008000",
+    "status": "gauge_bracket"
+  },
+  "salmon-hyder-2020-07-28": {
+    "end": "2020-08-01T06:15:00+00:00",
+    "gauge_max_ft": 28.17,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "0d876b40d1744522b7b9fef475590d52",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2020-07-27T08%3A00%3A00%2B00%3A00%2F2020-08-03T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2020-08-01T05:45:00+00:00",
+    "station": "15008000",
+    "status": "gauge_bracket"
+  },
+  "salmon-hyder-2021-06-05": {
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2021-06-04T08%3A00%3A00%2B00%3A00%2F2021-06-11T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15008000",
+    "status": "crest_unbounded"
+  },
+  "salmon-hyder-2022-07-24": {
+    "end": "2022-07-29T12:30:00+00:00",
+    "gauge_max_ft": 28.1,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "0d876b40d1744522b7b9fef475590d52",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2022-07-23T08%3A00%3A00%2B00%3A00%2F2022-07-30T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2022-07-29T12:00:00+00:00",
+    "station": "15008000",
+    "status": "gauge_bracket"
+  },
+  "salmon-hyder-2023-06-24": {
+    "observed_max_end": "2023-06-29T04:15:00+00:00",
+    "observed_max_start": "2023-06-29T04:15:00+00:00",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2023-06-23T08%3A00%3A00%2B00%3A00%2F2023-06-30T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15008000",
+    "status": "gap_in_gauge_record"
+  },
+  "salmon-hyder-2023-10-25": {
+    "end": "2023-10-31T05:30:00+00:00",
+    "gauge_max_ft": 18.49,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "0d876b40d1744522b7b9fef475590d52",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2023-10-24T08%3A00%3A00%2B00%3A00%2F2023-10-31T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2023-10-31T05:00:00+00:00",
+    "station": "15008000",
+    "status": "gauge_bracket"
+  },
+  "salmon-hyder-2024-07-19": {
+    "end": "2024-07-25T04:15:00+00:00",
+    "gauge_max_ft": 27.06,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "0d876b40d1744522b7b9fef475590d52",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2024-07-18T08%3A00%3A00%2B00%3A00%2F2024-07-25T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2024-07-25T03:45:00+00:00",
+    "station": "15008000",
+    "status": "gauge_bracket"
+  },
+  "salmon-hyder-2025-07-08": {
+    "end": "2025-07-11T11:30:00+00:00",
+    "gauge_max_ft": 26.35,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "0d876b40d1744522b7b9fef475590d52",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15008000&parameter_code=00065&datetime=2025-07-07T08%3A00%3A00%2B00%3A00%2F2025-07-14T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2025-07-11T11:00:00+00:00",
+    "station": "15008000",
+    "status": "gauge_bracket"
+  },
+  "taku-2013-07-01": {
+    "end": "2013-07-06T00:45:00+00:00",
+    "gauge_max_ft": 42.02,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2013-06-30T08%3A00%3A00%2B00%3A00%2F2013-07-07T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2013-07-06T00:15:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2014-07-13": {
+    "end": "2014-07-16T21:45:00+00:00",
+    "gauge_max_ft": 43.95,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2014-07-12T08%3A00%3A00%2B00%3A00%2F2014-07-19T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2014-07-16T21:15:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2015-06-29": {
+    "end": "2015-07-02T20:45:00+00:00",
+    "gauge_max_ft": 42.03,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2015-06-28T08%3A00%3A00%2B00%3A00%2F2015-07-05T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2015-07-02T20:15:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2016-05-30": {
+    "end": "2016-06-04T17:30:00+00:00",
+    "gauge_max_ft": 38.68,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2016-05-29T08%3A00%3A00%2B00%3A00%2F2016-06-05T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2016-06-04T17:00:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2017-05-27": {
+    "end": "2017-06-02T07:00:00+00:00",
+    "gauge_max_ft": 38.09,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2017-05-26T08%3A00%3A00%2B00%3A00%2F2017-06-02T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2017-06-02T06:30:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2017-07-09": {
+    "end": "2017-07-12T10:00:00+00:00",
+    "gauge_max_ft": 39.42,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2017-07-08T08%3A00%3A00%2B00%3A00%2F2017-07-15T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2017-07-12T09:30:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2018-06-29": {
+    "end": "2018-07-03T09:00:00+00:00",
+    "gauge_max_ft": 36.49,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2018-06-28T08%3A00%3A00%2B00%3A00%2F2018-07-05T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2018-07-03T08:30:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2019-06-21": {
+    "end": "2019-06-25T04:30:00+00:00",
+    "gauge_max_ft": 40.56,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2019-06-20T08%3A00%3A00%2B00%3A00%2F2019-06-27T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2019-06-25T02:00:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2019-07-06": {
+    "end": "2019-07-10T10:45:00+00:00",
+    "gauge_max_ft": 38.92,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2019-07-05T08%3A00%3A00%2B00%3A00%2F2019-07-12T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2019-07-10T10:15:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2020-07-02": {
+    "end": "2020-07-05T11:45:00+00:00",
+    "gauge_max_ft": 42.52,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2020-07-01T08%3A00%3A00%2B00%3A00%2F2020-07-08T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2020-07-05T11:15:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2021-06-27": {
+    "end": "2021-06-30T17:30:00+00:00",
+    "gauge_max_ft": 45.54,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2021-06-26T08%3A00%3A00%2B00%3A00%2F2021-07-03T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2021-06-30T17:00:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2022-06-27": {
+    "observed_max_end": "2022-07-01T11:45:00+00:00",
+    "observed_max_start": "2022-07-01T11:45:00+00:00",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2022-06-26T08%3A00%3A00%2B00%3A00%2F2022-07-03T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "station": "15041200",
+    "status": "gap_in_gauge_record"
+  },
+  "taku-2023-06-24": {
+    "end": "2023-06-28T01:45:00+00:00",
+    "gauge_max_ft": 42.21,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2023-06-23T08%3A00%3A00%2B00%3A00%2F2023-06-30T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2023-06-28T01:15:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2024-06-28": {
+    "end": "2024-07-01T21:00:00+00:00",
+    "gauge_max_ft": 42.41,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2024-06-27T08%3A00%3A00%2B00%3A00%2F2024-07-04T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2024-07-01T20:30:00+00:00",
+    "station": "15041200",
+    "status": "gauge_bracket"
+  },
+  "taku-2025-06-28": {
+    "end": "2025-07-01T10:45:00+00:00",
+    "gauge_max_ft": 40.97,
+    "observations": 673,
+    "sample_seconds": 900.0,
+    "series_id": "f0989b5060174b10a977784ada18dfa2",
+    "source": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous/items?monitoring_location_id=USGS-15041200&parameter_code=00065&datetime=2025-06-27T08%3A00%3A00%2B00%3A00%2F2025-07-04T08%3A00%3A00%2B00%3A00&f=json&limit=10000",
+    "start": "2025-07-01T10:15:00+00:00",
+    "station": "15041200",
     "status": "gauge_bracket"
   }
 }
