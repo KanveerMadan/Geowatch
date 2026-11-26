@@ -157,14 +157,19 @@ def _hz(mod, verdicts=None):
     return H.hazard_outputs(mods, MV, verdicts or C.flood_verdicts(), has_waterways=False)["fluvial"]
 
 
-def test_fluvial_with_its_validated_inputs_reads_validated_with_its_scope():
+def test_fluvial_validation_is_withdrawn_even_with_its_validated_inputs():
+    """2026-11-26: the round-2 claim is withdrawn (C.WITHDRAWN_VALIDATIONS), so the
+    exact validated configuration reads experimental with no scope."""
     o = _hz(_fluvial())
-    assert o["validation_status"] == "validated"
-    sc = o["validated_scope"]
-    assert all(sc[k] for k in C.SCOPE_KEYS)
-    assert any("hanoi" in e for e in sc["events"]) and any("kolonnawa" in e for e in sc["events"])
-    assert sc["input_versions"] == {"MERIT/Hydro": "v1_0_1"}
+    assert o["validation_status"] == "experimental"
+    assert o["validated_scope"] is None
+    assert "fluvial" in C.WITHDRAWN_VALIDATIONS
     C.check_output(o)
+
+
+def test_no_flood_module_reads_validated_today():
+    for name in C.VALIDATED_CONFIGS:
+        assert C.validated_scope(name, _fluvial(), "validated") is None, name
 
 
 @pytest.mark.parametrize("change", [

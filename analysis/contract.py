@@ -200,9 +200,23 @@ def module_config(mod: dict) -> dict:
                        for k, i in (mod.get("inputs") or {}).items() if isinstance(i, dict)}}
 
 
+# Withdrawn validations (2026-11-26, fix/deploy-urgent). Flood round 2 of
+# experiments/flood_round2 (Nov 2026) found plain elevation ranks river floods
+# better than this HAND method (DEV within-event AUC 0.80 vs 0.65), and the
+# owner withdrew the claim (PR #1). The record above stays as history; the
+# module no longer reads `validated` anywhere. No flood type is validated.
+WITHDRAWN_VALIDATIONS = {
+    "fluvial": "withdrawn 2026-11-26: flood round 2 found plain elevation beats this HAND "
+               "method on river floods (DEV mean AUC 0.80 vs 0.65); experimental until a "
+               "method passes the round-3 held-out test",
+}
+
+
 def validated_scope(name: str, mod: dict, verdict: str | None) -> dict | None:
     """C70: the scope note when module `name` passed Tier 2 and ran exactly
-    its validated configuration; None otherwise."""
+    its validated configuration; None otherwise (always None once withdrawn)."""
+    if name in WITHDRAWN_VALIDATIONS:
+        return None
     cfg = VALIDATED_CONFIGS.get(name)
     if cfg is None or verdict_label(verdict) != "validated" or module_config(mod) != cfg["config"]:
         return None
