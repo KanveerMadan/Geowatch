@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: geowatch-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r deploy/requirements-api.txt
+    startCommand: uvicorn deploy.asgi:app --host 0.0.0.0 --port $PORT --workers 1 --no-access-log
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.13
+      - key: GEOWATCH_ENV
+        value: production
+      - key: GEOWATCH_API_KEY
+        generateValue: true
+      - key: GEE_PROJECT_ID
+        sync: false
+      - key: GEE_SERVICE_ACCOUNT_KEY_FILE
+        value: /etc/secrets/ee-key.json
+      - key: GEOWATCH_CORS_ORIGINS
+        sync: false
+      - key: GEOWATCH_JOB_WORKERS
+        value: "1"
+      - key: GEOWATCH_MAX_AREA_KM2
+        value: "4"
+      - key: OPENBLAS_NUM_THREADS
+        value: "1"

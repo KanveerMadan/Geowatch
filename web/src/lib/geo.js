@@ -68,7 +68,7 @@ export function boxForPlace({ lat, lon, bbox }, maxKm2) {
     const a = bboxAreaKm2(bbox)
     if (a >= MIN_PLACE_KM2 && a <= maxKm2) return bbox
   }
-  return boxAround(lat, lon)
+  return boxAround(lat, lon, Math.min(DEFAULT_BOX_KM, maxBoxKm(maxKm2)))
 }
 
 /** Bounding box [w, s, e, n] of drawn points [[lon, lat], ...]. */

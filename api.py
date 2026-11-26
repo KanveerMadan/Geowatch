@@ -175,7 +175,9 @@ app.mount("/runs", StaticFiles(directory="data/pipeline_runs"), name="runs")
 # through wildly different real-world areas depending on where on Earth
 # the AOI sat. Fixed via pyproj.Geod's geodesic polygon area, which is
 # latitude-correct everywhere.
-MAX_AOI_AREA_KM2 = 100.0  # roughly ~10km x 10km, matches the original intent
+MAX_AOI_AREA_KM2 = float(os.getenv("GEOWATCH_MAX_AREA_KM2", "100"))
+if not 0 < MAX_AOI_AREA_KM2 <= 100:
+    raise ValueError("GEOWATCH_MAX_AREA_KM2 must be in (0, 100]")
 # C2 / item 52: this cap is the ONE AOI size limit. tiler.py used to document
 # "< 5 sq km", 20x below it. Measured live, the tiler exports and validates at
 # least ingestion.tiler.MEASURED_MAX_EXPORT_AREA_KM2 (895 km²), so the
