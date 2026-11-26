@@ -8,7 +8,8 @@ R = os.path.join(HERE, "results", "dev_cv_r3.json")
 S = os.path.join(HERE, "STATUS.md")
 NAMES = {"fluvial": "River", "flash_flood": "Flash", "waterlogging": "Waterlogging", "pluvial": "Rain",
          "coastal": "Coastal", "compound": "Compound"}
-PROVISIONAL = {"flash_flood", "waterlogging"}
+PROVISIONAL = set()          # flash and waterlogging reached their 50-unit build targets (R32)
+BASELINES = ("elev", "hand")
 BEGIN, END = "<!-- DEV-CV:BEGIN -->", "<!-- DEV-CV:END -->"
 
 
@@ -21,7 +22,7 @@ def main():
            "- **gain** is the method's mean within-unit AUC minus the better of elevation and HAND (the bar's comparison), with its 95 % cluster-bootstrap CI.",
            "- **vs elevation** is the method's mean AUC minus elevation's.",
            "- **chosen** is picked by the pre-registered rule: highest lower CI bound, ties within 0.005 go to the simpler method.",
-           "- **provisional:** the flash and waterlogging rows rest on a partial build that is still filling up.", ""]
+           "- **A type is ready only if a non-baseline method clears the CI and reaches AUC 0.70.** If the rule picks elevation or HAND itself, no method beats the baseline on DEV.", ""]
     for ty in ("fluvial", "flash_flood", "waterlogging", "pluvial", "coastal", "compound"):
         b = r.get("by_type", {}).get(ty, {})
         tag = " (provisional)" if ty in PROVISIONAL else ""
@@ -39,12 +40,19 @@ def main():
             ok = "yes" if ci[0] is not None and ci[0] > 0 else "no"
             out.append(f"| {k} | {ma if ma is None else round(ma, 3)} | {'' if ve is None else f'{ve:+.3f}'} | "
                        f"{v.get('gain') if v.get('gain') is None else f'{v['gain']:+.3f}'} | {ci} | {ok} |")
-        ch = c[b["chosen"]]
+        learned = {k: v for k, v in c.items() if k not in BASELINES}
+        best = max(learned, key=lambda k: ((learned[k].get("ci") or [-9])[0] or -9)) if learned else None
         miss = []
-        if (ch.get("mean_auc") or 0) < 0.70:
-            miss.append(f"mean AUC {ch.get('mean_auc')} is below 0.70")
-        if not ((ch.get("ci") or [0])[0] or 0) > 0:
-            miss.append("the gain's CI does not clear 0")
+        if b["chosen"] in BASELINES:
+            bl = learned.get(best, {})
+            miss.append(f"no method beats the baseline: the best learned method, {best}, gains "
+                        f"{bl.get('gain', 0):+.3f} with CI {bl.get('ci')}")
+        else:
+            ch = c[b["chosen"]]
+            if (ch.get("mean_auc") or 0) < 0.70:
+                miss.append(f"mean AUC {round(ch.get('mean_auc'), 3)} is below 0.70")
+            if not ((ch.get("ci") or [0])[0] or 0) > 0:
+                miss.append("the gain's CI does not clear 0")
         if b["units"] < 5:
             miss.append("fewer than 5 units")
         out += ["", "- **Still missing:** " + ("; ".join(miss) if miss else "nothing on DEV; the reserve test decides") + ".", ""]

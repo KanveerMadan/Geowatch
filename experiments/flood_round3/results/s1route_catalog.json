@@ -1,4 +1,1918 @@
 {
+ "r3pl_bangladesh_2016_005_001": {
+  "cluster": "pl_bangladesh_2016",
+  "event": "2016-07-04",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2016_005_002": {
+  "cluster": "pl_bangladesh_2016",
+  "event": "2016-07-04",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2016_006_001": {
+  "cluster": "pl_bangladesh_2016",
+  "event": "2016-07-04",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2016_006_002": {
+  "cluster": "pl_bangladesh_2016",
+  "event": "2016-07-04",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2016_006_003": {
+  "cluster": "pl_bangladesh_2016",
+  "event": "2016-07-04",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2016_011_017": {
+  "cluster": "pl_bangladesh_2016",
+  "event": "2016-07-04",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2017_006_008": {
+  "cluster": "pl_bangladesh_2017",
+  "event": "2017-07-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2017_006_011": {
+  "cluster": "pl_bangladesh_2017",
+  "event": "2017-07-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2017_007_011": {
+  "cluster": "pl_bangladesh_2017",
+  "event": "2017-07-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2017_007_012": {
+  "cluster": "pl_bangladesh_2017",
+  "event": "2017-07-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2017_008_011": {
+  "cluster": "pl_bangladesh_2017",
+  "event": "2017-07-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2017_008_012": {
+  "cluster": "pl_bangladesh_2017",
+  "event": "2017-07-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2018_006_007": {
+  "cluster": "pl_bangladesh_2018",
+  "event": "2018-06-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2018_006_008": {
+  "cluster": "pl_bangladesh_2018",
+  "event": "2018-06-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2018_006_011": {
+  "cluster": "pl_bangladesh_2018",
+  "event": "2018-06-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2018_007_012": {
+  "cluster": "pl_bangladesh_2018",
+  "event": "2018-06-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2018_011_017": {
+  "cluster": "pl_bangladesh_2018",
+  "event": "2018-06-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2018_012_017": {
+  "cluster": "pl_bangladesh_2018",
+  "event": "2018-06-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2019_008_013": {
+  "cluster": "pl_bangladesh_2019",
+  "event": "2019-07-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2019_008_014": {
+  "cluster": "pl_bangladesh_2019",
+  "event": "2019-07-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2019_008_015": {
+  "cluster": "pl_bangladesh_2019",
+  "event": "2019-07-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2019_010_016": {
+  "cluster": "pl_bangladesh_2019",
+  "event": "2019-07-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2019_011_016": {
+  "cluster": "pl_bangladesh_2019",
+  "event": "2019-07-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2019_011_017": {
+  "cluster": "pl_bangladesh_2019",
+  "event": "2019-07-10",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2020_008_015": {
+  "cluster": "pl_bangladesh_2020",
+  "event": "2020-07-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2020_016_015": {
+  "cluster": "pl_bangladesh_2020",
+  "event": "2020-07-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2020_017_013": {
+  "cluster": "pl_bangladesh_2020",
+  "event": "2020-07-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2020_017_014": {
+  "cluster": "pl_bangladesh_2020",
+  "event": "2020-07-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2020_017_015": {
+  "cluster": "pl_bangladesh_2020",
+  "event": "2020-07-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2020_018_015": {
+  "cluster": "pl_bangladesh_2020",
+  "event": "2020-07-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2021_005_001": {
+  "cluster": "pl_bangladesh_2021",
+  "event": "2021-07-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2021_006_006": {
+  "cluster": "pl_bangladesh_2021",
+  "event": "2021-07-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2021_006_007": {
+  "cluster": "pl_bangladesh_2021",
+  "event": "2021-07-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2021_006_008": {
+  "cluster": "pl_bangladesh_2021",
+  "event": "2021-07-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2021_006_011": {
+  "cluster": "pl_bangladesh_2021",
+  "event": "2021-07-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_bangladesh_2021_007_008": {
+  "cluster": "pl_bangladesh_2021",
+  "event": "2021-07-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_bangladesh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2016_000_020": {
+  "cluster": "pl_nigeria_2016",
+  "event": "2016-08-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2016_001_020": {
+  "cluster": "pl_nigeria_2016",
+  "event": "2016-08-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2016_002_020": {
+  "cluster": "pl_nigeria_2016",
+  "event": "2016-08-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2016_032_042": {
+  "cluster": "pl_nigeria_2016",
+  "event": "2016-08-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2016_032_043": {
+  "cluster": "pl_nigeria_2016",
+  "event": "2016-08-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2016_032_044": {
+  "cluster": "pl_nigeria_2016",
+  "event": "2016-08-27",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2017_032_045": {
+  "cluster": "pl_nigeria_2017",
+  "event": "2017-08-03",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2017_032_046": {
+  "cluster": "pl_nigeria_2017",
+  "event": "2017-08-03",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2017_033_046": {
+  "cluster": "pl_nigeria_2017",
+  "event": "2017-08-03",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2017_033_047": {
+  "cluster": "pl_nigeria_2017",
+  "event": "2017-08-03",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2017_034_053": {
+  "cluster": "pl_nigeria_2017",
+  "event": "2017-08-03",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2017_037_040": {
+  "cluster": "pl_nigeria_2017",
+  "event": "2017-08-03",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2018_000_020": {
+  "cluster": "pl_nigeria_2018",
+  "event": "2018-09-06",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2018_001_020": {
+  "cluster": "pl_nigeria_2018",
+  "event": "2018-09-06",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2018_002_020": {
+  "cluster": "pl_nigeria_2018",
+  "event": "2018-09-06",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2018_028_060": {
+  "cluster": "pl_nigeria_2018",
+  "event": "2018-09-06",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2018_034_032": {
+  "cluster": "pl_nigeria_2018",
+  "event": "2018-09-06",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2018_035_040": {
+  "cluster": "pl_nigeria_2018",
+  "event": "2018-09-06",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2019_034_060": {
+  "cluster": "pl_nigeria_2019",
+  "event": "2019-08-28",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2019_034_061": {
+  "cluster": "pl_nigeria_2019",
+  "event": "2019-08-28",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2019_034_062": {
+  "cluster": "pl_nigeria_2019",
+  "event": "2019-08-28",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2019_035_060": {
+  "cluster": "pl_nigeria_2019",
+  "event": "2019-08-28",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2019_035_061": {
+  "cluster": "pl_nigeria_2019",
+  "event": "2019-08-28",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2019_035_062": {
+  "cluster": "pl_nigeria_2019",
+  "event": "2019-08-28",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2020_032_033": {
+  "cluster": "pl_nigeria_2020",
+  "event": "2020-08-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2020_033_033": {
+  "cluster": "pl_nigeria_2020",
+  "event": "2020-08-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2020_034_032": {
+  "cluster": "pl_nigeria_2020",
+  "event": "2020-08-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2020_034_033": {
+  "cluster": "pl_nigeria_2020",
+  "event": "2020-08-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2020_035_033": {
+  "cluster": "pl_nigeria_2020",
+  "event": "2020-08-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2020_035_034": {
+  "cluster": "pl_nigeria_2020",
+  "event": "2020-08-20",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2021_000_020": {
+  "cluster": "pl_nigeria_2021",
+  "event": "2021-09-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2021_001_020": {
+  "cluster": "pl_nigeria_2021",
+  "event": "2021-09-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2021_029_054": {
+  "cluster": "pl_nigeria_2021",
+  "event": "2021-09-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2021_031_033": {
+  "cluster": "pl_nigeria_2021",
+  "event": "2021-09-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2021_031_034": {
+  "cluster": "pl_nigeria_2021",
+  "event": "2021-09-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_nigeria_2021_035_049": {
+  "cluster": "pl_nigeria_2021",
+  "event": "2021-09-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_nigeria",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2016_007_031": {
+  "cluster": "pl_punjab_2016",
+  "event": "2016-07-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2016_008_026": {
+  "cluster": "pl_punjab_2016",
+  "event": "2016-07-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2016_008_031": {
+  "cluster": "pl_punjab_2016",
+  "event": "2016-07-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2016_008_032": {
+  "cluster": "pl_punjab_2016",
+  "event": "2016-07-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2016_009_031": {
+  "cluster": "pl_punjab_2016",
+  "event": "2016-07-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2016_010_030": {
+  "cluster": "pl_punjab_2016",
+  "event": "2016-07-02",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2017_011_036": {
+  "cluster": "pl_punjab_2017",
+  "event": "2017-08-31",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2017_012_035": {
+  "cluster": "pl_punjab_2017",
+  "event": "2017-08-31",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2017_012_036": {
+  "cluster": "pl_punjab_2017",
+  "event": "2017-08-31",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2017_013_035": {
+  "cluster": "pl_punjab_2017",
+  "event": "2017-08-31",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2017_013_036": {
+  "cluster": "pl_punjab_2017",
+  "event": "2017-08-31",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2017_016_033": {
+  "cluster": "pl_punjab_2017",
+  "event": "2017-08-31",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2018_009_015": {
+  "cluster": "pl_punjab_2018",
+  "event": "2018-07-17",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2018_009_016": {
+  "cluster": "pl_punjab_2018",
+  "event": "2018-07-17",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2018_009_029": {
+  "cluster": "pl_punjab_2018",
+  "event": "2018-07-17",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2018_016_031": {
+  "cluster": "pl_punjab_2018",
+  "event": "2018-07-17",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2018_016_032": {
+  "cluster": "pl_punjab_2018",
+  "event": "2018-07-17",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2018_016_033": {
+  "cluster": "pl_punjab_2018",
+  "event": "2018-07-17",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2019_009_028": {
+  "cluster": "pl_punjab_2019",
+  "event": "2019-07-26",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2019_024_024": {
+  "cluster": "pl_punjab_2019",
+  "event": "2019-07-26",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2019_025_023": {
+  "cluster": "pl_punjab_2019",
+  "event": "2019-07-26",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2019_025_024": {
+  "cluster": "pl_punjab_2019",
+  "event": "2019-07-26",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2019_026_023": {
+  "cluster": "pl_punjab_2019",
+  "event": "2019-07-26",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2019_026_024": {
+  "cluster": "pl_punjab_2019",
+  "event": "2019-07-26",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2020_022_018": {
+  "cluster": "pl_punjab_2020",
+  "event": "2020-08-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2020_023_020": {
+  "cluster": "pl_punjab_2020",
+  "event": "2020-08-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2020_023_022": {
+  "cluster": "pl_punjab_2020",
+  "event": "2020-08-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2020_024_020": {
+  "cluster": "pl_punjab_2020",
+  "event": "2020-08-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2020_024_021": {
+  "cluster": "pl_punjab_2020",
+  "event": "2020-08-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2020_024_022": {
+  "cluster": "pl_punjab_2020",
+  "event": "2020-08-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2021_004_035": {
+  "cluster": "pl_punjab_2021",
+  "event": "2021-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2021_004_036": {
+  "cluster": "pl_punjab_2021",
+  "event": "2021-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2021_005_036": {
+  "cluster": "pl_punjab_2021",
+  "event": "2021-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2021_006_033": {
+  "cluster": "pl_punjab_2021",
+  "event": "2021-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2021_024_022": {
+  "cluster": "pl_punjab_2021",
+  "event": "2021-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_punjab_2021_025_022": {
+  "cluster": "pl_punjab_2021",
+  "event": "2021-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_punjab",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2016_003_005": {
+  "cluster": "pl_sindh_2016",
+  "event": "2016-08-05",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2016_003_006": {
+  "cluster": "pl_sindh_2016",
+  "event": "2016-08-05",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2016_003_012": {
+  "cluster": "pl_sindh_2016",
+  "event": "2016-08-05",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2016_004_005": {
+  "cluster": "pl_sindh_2016",
+  "event": "2016-08-05",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2016_004_006": {
+  "cluster": "pl_sindh_2016",
+  "event": "2016-08-05",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2016_005_010": {
+  "cluster": "pl_sindh_2016",
+  "event": "2016-08-05",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2017_002_021": {
+  "cluster": "pl_sindh_2017",
+  "event": "2017-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2017_002_022": {
+  "cluster": "pl_sindh_2017",
+  "event": "2017-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2017_003_005": {
+  "cluster": "pl_sindh_2017",
+  "event": "2017-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2017_003_019": {
+  "cluster": "pl_sindh_2017",
+  "event": "2017-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2017_005_009": {
+  "cluster": "pl_sindh_2017",
+  "event": "2017-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2017_025_017": {
+  "cluster": "pl_sindh_2017",
+  "event": "2017-07-19",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2019_008_014": {
+  "cluster": "pl_sindh_2019",
+  "event": "2019-07-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2019_009_013": {
+  "cluster": "pl_sindh_2019",
+  "event": "2019-07-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2019_009_015": {
+  "cluster": "pl_sindh_2019",
+  "event": "2019-07-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2019_010_013": {
+  "cluster": "pl_sindh_2019",
+  "event": "2019-07-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2019_010_014": {
+  "cluster": "pl_sindh_2019",
+  "event": "2019-07-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2019_014_008": {
+  "cluster": "pl_sindh_2019",
+  "event": "2019-07-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2020_000_014": {
+  "cluster": "pl_sindh_2020",
+  "event": "2020-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2020_002_013": {
+  "cluster": "pl_sindh_2020",
+  "event": "2020-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2020_002_014": {
+  "cluster": "pl_sindh_2020",
+  "event": "2020-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2020_002_015": {
+  "cluster": "pl_sindh_2020",
+  "event": "2020-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2020_002_016": {
+  "cluster": "pl_sindh_2020",
+  "event": "2020-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2020_003_012": {
+  "cluster": "pl_sindh_2020",
+  "event": "2020-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2021_002_019": {
+  "cluster": "pl_sindh_2021",
+  "event": "2021-09-09",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2021_002_020": {
+  "cluster": "pl_sindh_2021",
+  "event": "2021-09-09",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2021_002_021": {
+  "cluster": "pl_sindh_2021",
+  "event": "2021-09-09",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2021_003_019": {
+  "cluster": "pl_sindh_2021",
+  "event": "2021-09-09",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2021_009_015": {
+  "cluster": "pl_sindh_2021",
+  "event": "2021-09-09",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_sindh_2021_011_014": {
+  "cluster": "pl_sindh_2021",
+  "event": "2021-09-09",
+  "kind": "s1_vvdrop",
+  "region": "plains_sindh",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2016_sudan_005_023": {
+  "cluster": "pl_south_sudan_2016",
+  "event": "2016-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2016_sudan_005_024": {
+  "cluster": "pl_south_sudan_2016",
+  "event": "2016-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2016_sudan_006_023": {
+  "cluster": "pl_south_sudan_2016",
+  "event": "2016-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2016_sudan_006_025": {
+  "cluster": "pl_south_sudan_2016",
+  "event": "2016-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2016_sudan_006_026": {
+  "cluster": "pl_south_sudan_2016",
+  "event": "2016-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2016_sudan_007_026": {
+  "cluster": "pl_south_sudan_2016",
+  "event": "2016-08-24",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2017_sudan_000_024": {
+  "cluster": "pl_south_sudan_2017",
+  "event": "2017-08-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2017_sudan_011_012": {
+  "cluster": "pl_south_sudan_2017",
+  "event": "2017-08-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2017_sudan_013_010": {
+  "cluster": "pl_south_sudan_2017",
+  "event": "2017-08-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2017_sudan_014_011": {
+  "cluster": "pl_south_sudan_2017",
+  "event": "2017-08-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2017_sudan_014_012": {
+  "cluster": "pl_south_sudan_2017",
+  "event": "2017-08-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2017_sudan_016_007": {
+  "cluster": "pl_south_sudan_2017",
+  "event": "2017-08-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2018_sudan_002_024": {
+  "cluster": "pl_south_sudan_2018",
+  "event": "2018-08-23",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2018_sudan_002_025": {
+  "cluster": "pl_south_sudan_2018",
+  "event": "2018-08-23",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2018_sudan_003_024": {
+  "cluster": "pl_south_sudan_2018",
+  "event": "2018-08-23",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2018_sudan_014_007": {
+  "cluster": "pl_south_sudan_2018",
+  "event": "2018-08-23",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2018_sudan_015_007": {
+  "cluster": "pl_south_sudan_2018",
+  "event": "2018-08-23",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2018_sudan_015_008": {
+  "cluster": "pl_south_sudan_2018",
+  "event": "2018-08-23",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2019_sudan_002_024": {
+  "cluster": "pl_south_sudan_2019",
+  "event": "2019-08-22",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2019_sudan_004_020": {
+  "cluster": "pl_south_sudan_2019",
+  "event": "2019-08-22",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2019_sudan_005_020": {
+  "cluster": "pl_south_sudan_2019",
+  "event": "2019-08-22",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2019_sudan_006_019": {
+  "cluster": "pl_south_sudan_2019",
+  "event": "2019-08-22",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2019_sudan_006_020": {
+  "cluster": "pl_south_sudan_2019",
+  "event": "2019-08-22",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2019_sudan_006_021": {
+  "cluster": "pl_south_sudan_2019",
+  "event": "2019-08-22",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2020_sudan_003_019": {
+  "cluster": "pl_south_sudan_2020",
+  "event": "2020-09-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2020_sudan_003_025": {
+  "cluster": "pl_south_sudan_2020",
+  "event": "2020-09-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2020_sudan_005_018": {
+  "cluster": "pl_south_sudan_2020",
+  "event": "2020-09-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2020_sudan_005_019": {
+  "cluster": "pl_south_sudan_2020",
+  "event": "2020-09-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2020_sudan_013_024": {
+  "cluster": "pl_south_sudan_2020",
+  "event": "2020-09-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2020_sudan_013_025": {
+  "cluster": "pl_south_sudan_2020",
+  "event": "2020-09-29",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2021_sudan_000_010": {
+  "cluster": "pl_south_sudan_2021",
+  "event": "2021-08-14",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2021_sudan_001_013": {
+  "cluster": "pl_south_sudan_2021",
+  "event": "2021-08-14",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2021_sudan_005_004": {
+  "cluster": "pl_south_sudan_2021",
+  "event": "2021-08-14",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2021_sudan_008_008": {
+  "cluster": "pl_south_sudan_2021",
+  "event": "2021-08-14",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2021_sudan_012_011": {
+  "cluster": "pl_south_sudan_2021",
+  "event": "2021-08-14",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
+ "r3pl_south_sudan_2021_sudan_013_018": {
+  "cluster": "pl_south_sudan_2021",
+  "event": "2021-08-14",
+  "kind": "s1_vvdrop",
+  "region": "plains_south_sudan",
+  "role": "dev",
+  "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label",
+  "tags": [
+   "waterlogging"
+  ]
+ },
  "r3se_103788": {
   "cluster": "se_103788",
   "event": "2016-04-17",

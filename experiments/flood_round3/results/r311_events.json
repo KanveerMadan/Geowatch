@@ -7671,5 +7671,64 @@
    "refused": null,
    "storm": "2024-04-10"
   }
+ ],
+ "miami_dade": [
+  {
+   "event": "2020-05-27",
+   "days": [
+    "2020-05-27"
+   ],
+   "flood_reports": 134,
+   "split": "dev",
+   "rain_peak_day": "2020-05-25",
+   "rain_3day_mm": 188.2,
+   "tide_max_ft": 13.015,
+   "tide_minor_ft": 14.07,
+   "window": [
+    "2020-05-24T00:00:00",
+    "2020-05-27T00:00:00"
+   ],
+   "type": "pluvial",
+   "refused": null,
+   "storm": "2020-05-27"
+  },
+  {
+   "event": "2020-11-09",
+   "days": [
+    "2020-11-09"
+   ],
+   "flood_reports": 128,
+   "split": "dev",
+   "rain_peak_day": "2020-11-08",
+   "rain_3day_mm": 140.8,
+   "tide_max_ft": 14.308,
+   "tide_minor_ft": 14.07,
+   "window": [
+    "2020-11-07T00:00:00",
+    "2020-11-10T00:00:00"
+   ],
+   "type": "compound",
+   "refused": null,
+   "storm": "2020-11-09"
+  },
+  {
+   "event": "2022-06-04",
+   "days": [
+    "2022-06-04"
+   ],
+   "flood_reports": 103,
+   "split": "reserve",
+   "rain_peak_day": "2022-06-03",
+   "rain_3day_mm": 153.2,
+   "tide_max_ft": 13.107,
+   "tide_minor_ft": 14.07,
+   "window": [
+    "2022-06-02T00:00:00",
+    "2022-06-05T00:00:00"
+   ],
+   "type": "pluvial",
+   "refused": null,
+   "storm": "2022-06-04"
+  }
  ]
 }

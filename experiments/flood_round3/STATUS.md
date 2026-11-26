@@ -79,7 +79,7 @@ Open substitutes are in use. This is what each account will add when it exists:
 - **gain** is the method's mean within-unit AUC minus the better of elevation and HAND (the bar's comparison), with its 95 % cluster-bootstrap CI.
 - **vs elevation** is the method's mean AUC minus elevation's.
 - **chosen** is picked by the pre-registered rule: highest lower CI bound, ties within 0.005 go to the simpler method.
-- **provisional:** the flash and waterlogging rows rest on a partial build that is still filling up.
+- **A type is ready only if a non-baseline method clears the CI and reaches AUC 0.70.** If the rule picks elevation or HAND itself, no method beats the baseline on DEV.
 
 ### River: 31 units, 22 clusters; chosen **elev**
 
@@ -91,9 +91,9 @@ Open substitutes are in use. This is what each account will add when it exists:
 | anc_elev_lgbm | 0.812 | +0.014 | +0.014 | [-0.013, 0.0386] | no |
 | anc_elev_lgbm_ev | 0.824 | +0.025 | +0.025 | [-0.0001, 0.0486] | no |
 
-- **Still missing:** nothing on DEV; the reserve test decides.
+- **Still missing:** no method beats the baseline: the best learned method, anc_elev_lgbm_ev, gains +0.025 with CI [-0.0001, 0.0486].
 
-### Flash (provisional): 57 units, 56 clusters; chosen **anc_elev_lgbm**
+### Flash: 57 units, 56 clusters; chosen **anc_elev_lgbm**
 
 | method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |
 |---|---|---|---|---|---|
@@ -102,9 +102,9 @@ Open substitutes are in use. This is what each account will add when it exists:
 | elev_hand_lr | 0.648 | -0.000 | -0.000 | [-0.0011, 0.0003] | no |
 | anc_elev_lgbm | 0.695 | +0.047 | +0.047 | [0.0282, 0.0643] | yes |
 
-- **Still missing:** mean AUC 0.6954 is below 0.70.
+- **Still missing:** mean AUC 0.695 is below 0.70.
 
-### Waterlogging (provisional): 68 units, 44 clusters; chosen **elev**
+### Waterlogging: 68 units, 44 clusters; chosen **elev**
 
 | method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |
 |---|---|---|---|---|---|
@@ -114,7 +114,7 @@ Open substitutes are in use. This is what each account will add when it exists:
 | anc_elev_lgbm | 0.712 | -0.001 | -0.001 | [-0.0235, 0.0166] | no |
 | anc_elev_lgbm_ev | 0.698 | -0.015 | -0.015 | [-0.0529, 0.0146] | no |
 
-- **Still missing:** nothing on DEV; the reserve test decides.
+- **Still missing:** no method beats the baseline: the best learned method, elev_hand_lr, gains +0.000 with CI [-0.0013, 0.0023].
 
 ### Rain: 65 units, 54 clusters; chosen **anc_elev_lgbm_fine**
 
@@ -126,7 +126,7 @@ Open substitutes are in use. This is what each account will add when it exists:
 | anc_elev_lgbm | 0.525 | +0.003 | -0.018 | [-0.0338, 0.0016] | no |
 | anc_elev_lgbm_fine | 0.602 | +0.080 | +0.059 | [0.043, 0.0757] | yes |
 
-- **Still missing:** mean AUC 0.6018 is below 0.70.
+- **Still missing:** mean AUC 0.602 is below 0.70.
 
 ### Coastal: 14 units, 11 clusters; chosen **elev**
 
@@ -137,7 +137,7 @@ Open substitutes are in use. This is what each account will add when it exists:
 | elev_hand_lr | 0.763 | -0.000 | -0.001 | [-0.0026, 0.0015] | no |
 | anc_elev_lgbm | 0.749 | -0.014 | -0.014 | [-0.0659, 0.0294] | no |
 
-- **Still missing:** nothing on DEV; the reserve test decides.
+- **Still missing:** no method beats the baseline: the best learned method, elev_hand_lr, gains -0.001 with CI [-0.0026, 0.0015].
 
 ### Compound: 10 units, 7 clusters; chosen **elev**
 
@@ -149,6 +149,6 @@ Open substitutes are in use. This is what each account will add when it exists:
 | anc_elev_lgbm | 0.756 | -0.003 | -0.003 | [-0.0757, 0.0361] | no |
 | anc_elev_lgbm_ev | 0.753 | -0.006 | -0.006 | [-0.0518, 0.0301] | no |
 
-- **Still missing:** nothing on DEV; the reserve test decides.
+- **Still missing:** no method beats the baseline: the best learned method, elev_hand_lr, gains -0.002 with CI [-0.0045, 0.0002].
 
 <!-- DEV-CV:END -->
