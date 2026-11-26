@@ -21,3 +21,21 @@ Use the downstream crest at the evaluation reach when available. Record the sour
 Use all qualifying independent incidents from the declared search, recording gaps by region and subtype. An acquisition must cover the study reach and have an identifiable source and permitted use. Hold unsettled licences or indistinguishable mechanism cases out of scoring. A published product's acquisition date and coverage must be distinguishable from its publication date. A SAR candidate needs a compatible same-track baseline. Check availability using acquisition metadata only.
 
 Push the criteria before selecting. Push the manifest with its SHA256 and record evidence of remote publication before model work. Freeze methods and the one-shot scoring protocol before opening reserve labels. Four states are flooded, independently observed dry, ambiguous and unobserved. Follow the round-3 cell and spatial-block eligibility rules at scoring time and document every dropout. Never replace a dropout based on scores. Report achieved power and independent event counts. Fewer than five usable independent events cannot validate a type.
+
+## Addendum, 2026-11-27, before any reserve selection
+
+This addendum supersedes the timing sentence above where they differ. DECISIONS_M678.md has the reasons.
+
+- **Window, for every possible crest time:**
+  - M6, M7 and abrupt M8 ice-jam releases: [crest − 24 h, crest + 48 h]. For a crest known to the local day D, this is an image on D or D+1.
+  - Sustained M8 melt: [crest − 24 h, crest + 72 h].
+- **M7 levee and embankment breaches:** the crest is the river crest at the breached reach, and the image must also be later than the reported breach time.
+- **Crest source:** record the source kind per incident, in this order of preference:
+  1. an approved gauge bracket;
+  2. an agency crest record;
+  3. a published reading with its clock time;
+  4. a published local day;
+  5. a GEOGloWS v2 daily peak, only where none of the above exists and never for a dam or lake failure.
+- **Clusters:** one per river reach, lake or storm, whichever is coarser. Leave-cluster-out CV. The reserve and the five-event floor count clusters, not incidents. An incident from a storm used for one type is not used for another type.
+- **Box:** the 8 km box is placed by round 4's `place()` on the flood centre inside a 20 km search square around the reach point, as round 3's Sentinel-1 route does. The search square, not the box, must be covered by the label image. Placement runs mechanically at build time, identically for DEV and reserve.
+- **Maximum lag per label:** recorded per label as image minus crest, in hours, with both bounds.
