@@ -64,6 +64,28 @@ def wsc_discharge():
     return by
 
 
+def geoglows_q(m):
+    """(peak Q in [crest - 3 d, crest + 3 d], median annual max 1984-2021, source) at the GEOGloWS reach
+    with the largest upstream area inside the 8 km box (v1's geoglows_crests helpers)."""
+    import geoglows_crests as G
+    ix = {k: v for k, v in np.load(G.REACHES).items()}
+    r = G.reach(ix, tuple(m["bbox"]))
+    if r is None:
+        return None, None, "no GEOGloWS reach"
+    t, q = G.series(r["link"])
+    c = m["crest_utc"][0][:10]
+    from datetime import date, timedelta
+    d0 = date.fromisoformat(c)
+    win = [(d0 + timedelta(days=k)).isoformat() for k in range(-3, 4)]
+    qp = max((float(v) for x, v in zip(t, q) if x in win), default=None)
+    years = {}
+    for x, v in zip(t, q):
+        if "1984" <= x[:4] <= "2021":
+            years[x[:4]] = max(years.get(x[:4], 0.0), float(v))
+    med = float(np.median(list(years.values()))) if len(years) >= 5 else None
+    return qp, med, f"GEOGloWS v2 reach {r['link']} (no WSC discharge)"
+
+
 def terrain(ee, grid_bbox):
     from experiments.flood_learned import fetch as Fe
     from susceptibility.hydro_rasters import compute_pixels, utm_grid
@@ -136,7 +158,9 @@ def main():
         yr = m["date"][:4]
         q_g = qtab.get(stn, {}).get(yr)
         hist = [v for y, v in qtab.get(stn, {}).items() if "1984" <= y <= "2021"]
-        meds[f] = (q_g, float(np.median(hist)) if len(hist) >= 5 else None)
+        meds[f] = (q_g, float(np.median(hist)) if len(hist) >= 5 else None, "WSC annual maximum discharge")
+        if q_g is None:                                          # water-level-only station: GEOGloWS (last resort)
+            meds[f] = geoglows_q(m)
         if os.path.exists(p):
             continue
         lat, lon = m["centre"]
@@ -148,6 +172,7 @@ def main():
         ri, ci = shape[0] // 2, shape[1] // 2
         upa_g = float(np.nanmax(T["upa"]))                       # gauge reach: the trunk in the domain
         res = {}
+        q_g = meds[f][0]
         for name, q in (("phys", q_g), ("phys_seasonal", meds[f][1])):
             ch, st = stages(T, q, upa_g)
             ps, nc = scores(T, ch, st, crop)
@@ -157,11 +182,11 @@ def main():
         sl = (slice(r0, r0 + bshape[0]), slice(c0, c0 + bshape[1]))
         np.savez_compressed(p + ".tmp.npz", y=np.load(os.path.join(ldir, f))["y"], elev=-T["z"][sl], hand=-T["hand"][sl],
                             **{k: v.astype(np.float32) for k, v in res.items()},
-                            meta=np.array(json.dumps({**m, "q_peak": q_g, "q_median": meds[f][1], "upa_gauge": upa_g,
+                            meta=np.array(json.dumps({**m, "q_peak": q_g, "q_median": meds[f][1], "q_source": meds[f][2], "upa_gauge": upa_g,
                                                       "domain": list(dom)})))
         os.replace(p + ".tmp.npz", p)
         print(f, "Q", q_g, "Qmed", meds[f][1], flush=True)
-    json.dump({f: {"q_peak": a, "q_median": b} for f, (a, b) in meds.items()},
+    json.dump({f: {"q_peak": a, "q_median": b, "source": c} for f, (a, b, c) in meds.items()},
               open(S.dev_path("tables", "forcing_index.json"), "w"), indent=1)
     print("tables", len(units))
 
