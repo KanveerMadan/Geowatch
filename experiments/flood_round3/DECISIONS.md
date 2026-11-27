@@ -278,3 +278,15 @@ Fixed before their DEV comparison runs. They apply to every method alike; baseli
   - Non-baseline rows (every learned, physics and LR candidate) are unchanged; their comparator was already the stronger baseline.
   - The `elev` and `hand` rows of earlier DEV tables used the old contrast. They stay in history as recorded and are read under R35 from now on.
   - The choice rule (highest lower bound) is unchanged.
+
+## R36 (2026-11-27): the R34 DEV results rescored under R35; waterlogging's choice changes
+- **What happened:** chain R34's scorer was loaded at 10:44, before R35 (15:09). So its `elev` and `hand` rows for flash and waterlogging used the old contrast (a baseline compared with the other baseline).
+- **The fix:**
+  - The two pre-R35 `elev` score files were set aside (`big/cvlean/pre_r35/`).
+  - `cv_lean` was rerun. It reused every cached fit and score, and rescored only those rows with the R35 `gain_lower_bound`.
+  - Every non-baseline row is identical to R34, as R35 states.
+- **Flash:** the choice is unchanged, `anc_elev_lgbm_mrms`. Mean AUC 0.720, gain +0.071, CI [0.051, 0.091].
+- **Waterlogging:** under the old contrast the rule picked `elev` (+0.114 against HAND). Under R35, `elev` reads 0 [0, 0], and the rule picks `anc_elev_lgbm_wl`.
+  - Mean AUC 0.741, gain over elevation +0.028, CI [0.0052, 0.052].
+  - The lower bound is small: it clears 0 and is just above the 0.005 tie margin with elevation (0.0052 against 0.005).
+- **River, rain, coastal, compound:** their rows date from 2026-11-25 and stay as recorded. `run/status_dev_cv.py` now shows them as R35 reads them: the stronger baseline's row is 0 [0, 0], and the weaker baseline's row is unchanged. No choice changes. River, coastal and compound keep elevation, so no method passes; rain keeps `anc_elev_lgbm_fine`, at AUC 0.602.

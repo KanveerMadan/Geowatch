@@ -33,13 +33,22 @@ def main():
         e = c.get("elev", {}).get("mean_auc")
         out += [f"### {NAMES[ty]}{tag}: {b['units']} units, {b.get('clusters', '?')} clusters; chosen **{b['chosen']}**", "",
                 "| method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |", "|---|---|---|---|---|---|"]
+        # R35: every row is read against the stronger baseline. A row recorded before R35 for the stronger baseline
+        # (compared then with the weaker one) reads gain 0, CI [0, 0]; the weaker baseline's row is unchanged.
+        strong = "elev" if (c.get("elev", {}).get("mean_auc") or 0) >= (c.get("hand", {}).get("mean_auc") or 0) else "hand"
+        r35 = False
         for k, v in c.items():
+            if k == strong and v.get("vs") != strong:
+                v = {**v, "vs": strong, "gain": 0.0, "ci": [0.0, 0.0]}
+                r35 = True
             ma = v.get("mean_auc")
             ve = None if (ma is None or e is None) else ma - e
             ci = v.get("ci") or [None, None]
             ok = "yes" if ci[0] is not None and ci[0] > 0 else "no"
             out.append(f"| {k} | {ma if ma is None else round(ma, 3)} | {'' if ve is None else f'{ve:+.3f}'} | "
                        f"{v.get('gain') if v.get('gain') is None else f'{v['gain']:+.3f}'} | {ci} | {ok} |")
+        if r35:
+            out.append(f"\n_The {strong} row was recorded before R35 (against the other baseline) and is shown as R35 reads it: gain 0 against itself._")
         learned = {k: v for k, v in c.items() if k not in BASELINES}
         best = max(learned, key=lambda k: ((learned[k].get("ci") or [-9])[0] or -9)) if learned else None
         miss = []

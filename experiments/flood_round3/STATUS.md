@@ -12,6 +12,10 @@ Branch `exp/flood-round3` (from `07e9920`, round 2's result), worktree gw-floodp
   - The candidate is not a baseline, so R35 does not change this row.
   - It is not yet in `results/dev_cv_r3.json`, which the chain rewrites when the run finishes.
   - This is a DEV result: it validates nothing on its own, and the auto-generated DEV table below still shows the pre-MRMS selection until that file is rewritten.
+- **Update 2026-11-27 17:46:** both results are now in `results/dev_cv_r3.json`, rescored under R35 (DECISIONS R36).
+  - **Flash** keeps the MRMS learner (as above).
+  - **Waterlogging** now picks the ponding / soil-moisture / canal learner (`anc_elev_lgbm_wl`): mean AUC 0.741, gain +0.028 over elevation, CI [0.005, 0.052]. That clears the bar on DEV, narrowly.
+  - The reserve test decides both.
 
 <!-- R33:BEGIN -->
 ## Latest (2026-11-26), in plain words
@@ -101,7 +105,7 @@ Open substitutes are in use. This is what each account will add when it exists:
   - Re-typing MMFlood's "no river wave" refusals as waterlogging is rejected: DEV waterlogging is river-driven (median return period 4.7 y), so it would change the type's meaning between DEV and reserve.
 
 <!-- DEV-CV:BEGIN -->
-## DEV comparison (auto-updated 2026-11-27 15:38; leave-region-out CV, DEV units only, reserve untouched)
+## DEV comparison (auto-updated 2026-11-27 17:46; leave-region-out CV, DEV units only, reserve untouched)
 
 - **gain** is the method's mean within-unit AUC minus the better of elevation and HAND (the bar's comparison), with its 95 % cluster-bootstrap CI.
 - **vs elevation** is the method's mean AUC minus elevation's.
@@ -112,11 +116,13 @@ Open substitutes are in use. This is what each account will add when it exists:
 
 | method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |
 |---|---|---|---|---|---|
-| elev | 0.798 | +0.000 | +0.150 | [0.1148, 0.188] | yes |
+| elev | 0.798 | +0.000 | +0.000 | [0.0, 0.0] | no |
 | hand | 0.648 | -0.150 | -0.150 | [-0.188, -0.1148] | no |
 | elev_hand_lr | 0.796 | -0.002 | -0.002 | [-0.0042, -0.0008] | no |
 | anc_elev_lgbm | 0.812 | +0.014 | +0.014 | [-0.013, 0.0386] | no |
 | anc_elev_lgbm_ev | 0.824 | +0.025 | +0.025 | [-0.0001, 0.0486] | no |
+
+_The elev row was recorded before R35 (against the other baseline) and is shown as R35 reads it: gain 0 against itself._
 
 - **Still missing:** no method beats the baseline: the best learned method, anc_elev_lgbm_ev, gains +0.025 with CI [-0.0001, 0.0486].
 
@@ -124,7 +130,7 @@ Open substitutes are in use. This is what each account will add when it exists:
 
 | method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |
 |---|---|---|---|---|---|
-| elev | 0.648 | +0.000 | +0.016 | [-0.0134, 0.0503] | no |
+| elev | 0.648 | +0.000 | +0.000 | [0.0, 0.0] | no |
 | hand | 0.633 | -0.016 | -0.016 | [-0.0503, 0.0134] | no |
 | elev_hand_lr | 0.648 | -0.000 | -0.000 | [-0.0011, 0.0003] | no |
 | anc_elev_lgbm | 0.695 | +0.047 | +0.047 | [0.0282, 0.0643] | yes |
@@ -132,28 +138,30 @@ Open substitutes are in use. This is what each account will add when it exists:
 
 - **Still missing:** nothing on DEV; the reserve test decides.
 
-### Waterlogging: 68 units, 44 clusters; chosen **elev**
+### Waterlogging: 68 units, 44 clusters; chosen **anc_elev_lgbm_wl**
 
 | method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |
 |---|---|---|---|---|---|
-| elev | 0.713 | +0.000 | +0.114 | [0.0795, 0.1518] | yes |
+| elev | 0.713 | +0.000 | +0.000 | [0.0, 0.0] | no |
 | hand | 0.598 | -0.114 | -0.114 | [-0.1518, -0.0795] | no |
 | elev_hand_lr | 0.713 | +0.000 | +0.000 | [-0.0013, 0.0023] | no |
 | anc_elev_lgbm | 0.706 | -0.007 | -0.007 | [-0.0383, 0.0198] | no |
 | anc_elev_lgbm_ev | 0.708 | -0.004 | -0.004 | [-0.0402, 0.023] | no |
 | anc_elev_lgbm_wl | 0.741 | +0.028 | +0.028 | [0.0052, 0.052] | yes |
 
-- **Still missing:** no method beats the baseline: the best learned method, anc_elev_lgbm_wl, gains +0.028 with CI [0.0052, 0.052].
+- **Still missing:** nothing on DEV; the reserve test decides.
 
 ### Rain: 65 units, 54 clusters; chosen **anc_elev_lgbm_fine**
 
 | method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |
 |---|---|---|---|---|---|
 | elev | 0.521 | +0.000 | -0.021 | [-0.0372, -0.0009] | no |
-| hand | 0.543 | +0.021 | +0.021 | [0.0009, 0.0372] | yes |
+| hand | 0.543 | +0.021 | +0.000 | [0.0, 0.0] | no |
 | elev_hand_lr | 0.52 | -0.001 | -0.022 | [-0.0387, -0.0015] | no |
 | anc_elev_lgbm | 0.525 | +0.003 | -0.018 | [-0.0338, 0.0016] | no |
 | anc_elev_lgbm_fine | 0.602 | +0.080 | +0.059 | [0.043, 0.0757] | yes |
+
+_The hand row was recorded before R35 (against the other baseline) and is shown as R35 reads it: gain 0 against itself._
 
 - **Still missing:** mean AUC 0.602 is below 0.70.
 
@@ -161,10 +169,12 @@ Open substitutes are in use. This is what each account will add when it exists:
 
 | method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |
 |---|---|---|---|---|---|
-| elev | 0.763 | +0.000 | +0.094 | [0.0424, 0.1335] | yes |
+| elev | 0.763 | +0.000 | +0.000 | [0.0, 0.0] | no |
 | hand | 0.669 | -0.094 | -0.094 | [-0.1335, -0.0424] | no |
 | elev_hand_lr | 0.763 | -0.000 | -0.001 | [-0.0026, 0.0015] | no |
 | anc_elev_lgbm | 0.749 | -0.014 | -0.014 | [-0.0659, 0.0294] | no |
+
+_The elev row was recorded before R35 (against the other baseline) and is shown as R35 reads it: gain 0 against itself._
 
 - **Still missing:** no method beats the baseline: the best learned method, elev_hand_lr, gains -0.001 with CI [-0.0026, 0.0015].
 
@@ -172,11 +182,13 @@ Open substitutes are in use. This is what each account will add when it exists:
 
 | method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |
 |---|---|---|---|---|---|
-| elev | 0.759 | +0.000 | +0.074 | [0.01, 0.1268] | yes |
+| elev | 0.759 | +0.000 | +0.000 | [0.0, 0.0] | no |
 | hand | 0.685 | -0.074 | -0.074 | [-0.1268, -0.01] | no |
 | elev_hand_lr | 0.757 | -0.002 | -0.002 | [-0.0045, 0.0002] | no |
 | anc_elev_lgbm | 0.756 | -0.003 | -0.003 | [-0.0757, 0.0361] | no |
 | anc_elev_lgbm_ev | 0.753 | -0.006 | -0.006 | [-0.0518, 0.0301] | no |
+
+_The elev row was recorded before R35 (against the other baseline) and is shown as R35 reads it: gain 0 against itself._
 
 - **Still missing:** no method beats the baseline: the best learned method, elev_hand_lr, gains -0.002 with CI [-0.0045, 0.0002].
 

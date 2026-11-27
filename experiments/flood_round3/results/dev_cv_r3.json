@@ -605,11 +605,11 @@
    "clusters": 56,
    "candidates": {
     "elev": {
-     "vs": "hand",
-     "gain": 0.0157,
+     "vs": "elev",
+     "gain": 0.0,
      "ci": [
-      -0.0134,
-      0.0503
+      0.0,
+      0.0
      ],
      "mean_auc": 0.6484
     },
@@ -657,11 +657,11 @@
    "clusters": 44,
    "candidates": {
     "elev": {
-     "vs": "hand",
-     "gain": 0.1141,
+     "vs": "elev",
+     "gain": 0.0,
      "ci": [
-      0.0795,
-      0.1518
+      0.0,
+      0.0
      ],
      "mean_auc": 0.7125
     },
@@ -711,7 +711,7 @@
      "mean_auc": 0.7409
     }
    },
-   "chosen": "elev"
+   "chosen": "anc_elev_lgbm_wl"
   }
  },
  "run": "cv_lean (R34): same method as dev_cv_r3.cv, lean and checkpointed"
