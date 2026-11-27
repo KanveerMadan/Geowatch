@@ -47,7 +47,7 @@ def corridor_mask(T):
 
 def phys_for(T, q, upa_g):
     ch, st = DT.stages(T, q, upa_g)
-    g, lv = R.channel_groups(T["z"], ch, st, nbins=16)
+    g, lv = R.channel_groups(T["z"], ch, st)          # same 8 bins as the box score
     return R.physics_score(T["z"], g, lv) if g else np.full(T["z"].shape, np.nan)
 
 
