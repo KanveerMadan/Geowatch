@@ -223,3 +223,51 @@ The reserve stays sealed. Nothing is promoted from DEV.
 - GFM credentials are in place. Round 3 is checking GFM against EMS optical maps today (`results/gfm_gate.json`). GFM will be used as a second, independent radar check only if it passes.
 
 **Running unattended:** the DEV labels, then the DEV tables, then the corridor (now with per-reach forcing). Log: `~/.cache/geowatch/m678v2/dev_chain.log`.
+
+## Addendum seal 2.2 (2026-11-28, tag `m678v2-seal-2.2`): both owner approvals applied
+
+**Done**
+- **Rules written and pushed before any affected label** (SELECTION.md Amendment 4 and 4a, decisions.md):
+  1. Levee and embankment breaches: an image may be up to 3 days after the breach. Dam breaches keep same day or next day. The same rule applies to DEV and reserve, and each label records its lag to the breach.
+  2. Keyed random split: the key (`split_key.txt`, its sha256 in decisions.md) was published before any component was assigned. It applies to newly entering components that have a pre-2022 incident nobody has inspected. Anything previously used, labelled or inspected stays DEV-only or excluded, and all earlier seal assignments are fixed.
+- **Effect of the 3-day window on the hand-located 2022+ breaches:**
+  - Budameru (Vijayawada), Bagmati and Kosi (Bihar) now have an image in their window.
+  - Tuanzhou still has none.
+  - Alau is a dam failure, so the same/next-day rule still applies, and it has no image.
+- **Seal 2.2:** every seal 2.1 group kept its side (621 of 621).
+
+  | submode | reserve groups | DEV groups |
+  |---|---:|---:|
+  | M7 dam/levee breach | **3** (2 levee, 1 dam) | 5 |
+  | M8 snowmelt | 254 | 301 |
+  | M8 ice jam | 8 | 52 |
+
+**Still to do for M7 (next session)**
+- **Recruit older documented breaches.** The keyed split can now send them to the reserve, but each needs an anchor and a breach time. Sources:
+  - EMS 2015–2021: the 2019 Mondego dike breach in Portugal (EMSR417), Greece 2015 (EMSR122), Lazio 2021 (EMSR496), and a full-text search of older activations, whose detail endpoint fails for most codes before EMSR655;
+  - USGS dam-failure peaks (code 3; already in, 5 DEV groups);
+  - DFO pre-2022 dam and levee records, which are country-only and need hand-locating;
+  - national reports such as India CWC, Bangladesh BWDB and China MWR, plus USACE after-action reports.
+- **Owner downloads that would help** (save exactly here):
+  1. ASDSO Dam Incident Database: open https://damsafety.org/incidents, click "Reset All Filters", then "Export Table to CSV". Save as `~/.cache/geowatch/m678v2/sources/asdso/asdso_incidents.csv`.
+  2. NPDP dam incidents: open https://npdp.stanford.edu/data_access/dam_incidents_list.php and save the full table (CSV or "Save Page As… complete HTML") as `~/.cache/geowatch/m678v2/sources/npdp/dam_incidents.html` or `.csv`.
+  3. National Inventory of Dams, to locate those US dams by name: https://nid.sec.usace.army.mil, "Download All Data (CSV)". Save as `~/.cache/geowatch/m678v2/sources/nid/nation.csv`.
+
+**Where to resume after /clear**
+- **Worktree:** `~/gw-m678v2` (branch `feat/m678-v2-impl`). Round-3 code runs from `~/gw-r3pin-r35` (with the R35 fix). Run order and plain status are in this file. Rules: SELECTION.md (Amendments 1–4a). Decisions: decisions.md. Seals: SEAL.md, `seal_2.*.json`.
+- **Running unattended:** DEV labels (M8 snowmelt), then DEV tables, then the corridor (with per-reach forcing).
+  - log: `~/.cache/geowatch/m678v2/dev_chain.log`;
+  - check: `grep -v "EE ok" ~/.cache/geowatch/m678v2/dev_chain.log | tail -20`.
+- **Next steps, in order:**
+  1. When the corridor finishes, evaluate the stop rule (≥ 20 units, per-reach forcing). If forcing still changes nothing, stop M8 snowmelt at experimental.
+  2. Blind label QA and the DEV funnel.
+  3. The full DEV comparison (elevation, HAND, physics, physics with a learned correction, river and flash transfer) with the ablations.
+  4. Power for the joint pass rule (≥ 0.80) before any reserve opens.
+  5. M7 older-breach recruitment, then seal 2.3, then DEV labels for M7.
+- **Constraints:**
+  - one heavy worker at a time;
+  - pause below 20 % free memory;
+  - stop downloads below 15 GB free disk;
+  - the Earth Engine lock is held exclusively for heavy calls;
+  - LightGBM comes from `~/.cache/geowatch/flood_learned/pylib` (add it to PYTHONPATH);
+  - the reserve stays sealed until its power receipt exists, and nothing is ever promoted from DEV.

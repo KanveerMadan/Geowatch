@@ -4199,12 +4199,12 @@ glof:glof-v4.2:1935,cglof_glof-v4.2_1870,reserve,M6,water_release,2025-12-26,,,,
 ems_peer:EMSR927,cems_peer_EMSR927,reserve,M6,water_release,2026-08-25,,,,,,,no_crest
 usgs_peaks:02358000:2023-04-01,cusgs_peaks_02358000_2023-04-01,reserve,M7,reservoir_breach,2023-04-01,,2023-03-31T12:00:00+00:00,2023-04-02T12:00:00+00:00,agency_day_tz_unknown,4,0,timed_footprint
 usgs_peaks:05020500:2024-06-17,cusgs_peaks_05020500_2024-06-17,reserve,M7,reservoir_breach,2024-06-17,,2024-06-16T12:00:00+00:00,2024-06-18T12:00:00+00:00,agency_day_tz_unknown,0,0,no_scene_in_window
-handlocated:tuanzhou-2024,chandlocated_tuanzhou-2024,reserve,M7,levee_breach,2024-07-05,,,,,,,no_crest
-handlocated:budameru-2024,chandlocated_budameru-2024,reserve,M7,levee_breach,2024-09-01,,2024-08-31T18:30:00+00:00,2024-09-02T18:30:00+00:00,published_days,0,0,no_scene_in_window
+handlocated:tuanzhou-2024,chandlocated_tuanzhou-2024,reserve,M7,levee_breach,2024-07-05,,2024-07-05T09:48:00+00:00,2024-07-05T09:48:00+00:00,breach_time,0,0,no_scene_in_window
+handlocated:budameru-2024,chandlocated_budameru-2024,reserve,M7,levee_breach,2024-09-01,,2024-08-31T18:30:00+00:00,2024-09-02T18:30:00+00:00,published_days,1,1,timed_footprint
 ems_peer:EMSR753,cems_peer_EMSR753,reserve,M7,reservoir_breach,2024-09-10,,,,,,,no_crest
 handlocated:EMSR753,cems_peer_EMSR753,reserve,M7,reservoir_breach,2024-09-10,,2024-09-09T23:00:00+00:00,2024-09-11T23:00:00+00:00,published_days,0,0,no_scene_in_window
-handlocated:bagmati-belsand-2024,chandlocated_bagmati-belsand-2024,reserve,M7,levee_breach,2024-09-29,,2024-09-30T00:00:00+00:00,2024-10-01T00:00:00+00:00,geoglows_day reach 441121910,0,0,no_scene_in_window
-handlocated:kosi-bhubhol-2024,chandlocated_bagmati-belsand-2024,reserve,M7,levee_breach,2024-09-29,,2024-09-29T00:00:00+00:00,2024-09-30T00:00:00+00:00,geoglows_day reach 441032489,0,0,no_scene_in_window
+handlocated:bagmati-belsand-2024,chandlocated_bagmati-belsand-2024,reserve,M7,levee_breach,2024-09-29,,2024-09-30T00:00:00+00:00,2024-10-01T00:00:00+00:00,geoglows_day reach 441121910,0,1,timed_footprint
+handlocated:kosi-bhubhol-2024,chandlocated_bagmati-belsand-2024,reserve,M7,levee_breach,2024-09-29,,2024-09-29T00:00:00+00:00,2024-09-30T00:00:00+00:00,geoglows_day reach 441032489,1,0,timed_footprint
 ems_peer:EMSR557,cems_peer_EMSR557,reserve,M8,sustained_melt,2022-01-11,,,,,,,no_crest
 usgs_peaks:15297609:2022-02-23,cusgs_peaks_15297609_2009-04-28,reserve,M8,,2022-02-23,,,,,,,cause_unconfirmed
 wsc_melt:02GB010:2022-03-03T02:30,cwsc_melt_02GB010_2007-03-16T06_55,reserve,M8,sustained_melt,2022-03-03,0.26,,,,,,not_nival
