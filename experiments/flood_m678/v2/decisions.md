@@ -68,3 +68,7 @@
 - **The stop rule is evaluated on `reach` against `reach_seasonal`,** with the same thresholds: median |ΔAUC| < 0.005 and median Spearman > 0.99, over ≥ 20 usable corridor units.
 - The uniform-scaling result is kept and reported as what it is: a property of that forcing design.
 - **Engineering:** terrain is requested one band per call (the 40 km domain exceeded Earth Engine's per-request memory), and a failing unit is logged and skipped, never fatal.
+
+2026-11-28. **Addendum seal 2.2 rules (owner approved both), before any label of an affected lead.**
+1. Levee/embankment breach window: [breach, breach + 72 h]. Dam breaches unchanged. Lag per label to the breach.
+2. Keyed random split for newly entering components. Key sha256 `742b0d6f05365c71cb4151e28ce7c4a2ef6b9ec65364d6a9771163bd7f5abb8b` (`split_key.txt`), published with SELECTION.md Amendment 4 before assignment. Previously used, labelled or inspected units stay DEV-only. Seal 2.0/2.1 sides are fixed.

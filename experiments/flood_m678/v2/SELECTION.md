@@ -105,3 +105,14 @@ New lead sources, under the same rules:
 Changes to joining and sealing:
 - **Storm tags:** leads sharing a storm tag are one component.
 - **Stable assignment in an addendum seal:** a component that shares any lead with a sealed component keeps that component's side. One that would merge a sealed DEV component with a sealed reserve component is excluded. Seal 2.0 assignments never change.
+
+## Amendment 4 = addendum seal 2.2 rules (owner approval 2026-11-28; written before any label of an affected lead)
+
+1. **Levee and embankment breaches: image window up to 3 days after the breach.** The window is [breach time, breach time + 72 h]; a lead needs a reported breach time. The protected land stays flooded for days, so the late bound runs from the breach, not the river crest. Dam and reservoir breaches keep the same-day/next-day rule ([crest − 24 h, crest + 48 h]). Applied identically to DEV and reserve. Each label records its lag to the breach in hours.
+2. **Fresh reserve by a keyed random split, for uninspected pre-2022 incidents.**
+   - Key: `split_key.txt` (sha256 `742b0d6f05365c71cb4151e28ce7c4a2ef6b9ec65364d6a9771163bd7f5abb8b`), committed with these rules before any component is assigned under them.
+   - A component newly entering in seal 2.2 or later (in no earlier seal) is reserve if `int(HMAC-SHA256(key, component_id)[:8], 16) / 2^32 < 0.5`, otherwise DEV, for every date.
+   - The following stay DEV-only (or excluded) whatever the key says: any component containing a previously used, labelled or inspected unit, meaning v1 DEV incidents, round-3 DEV units, or any v2 DEV label already built.
+   - Components that touch v1 reserve or round-3 footprints stay excluded, as before.
+   - Components already in seal 2.0 or 2.1 keep their side.
+   - On the reserve side, all of a component's timed incidents count, of any date (no 2022 cut for keyed components).
