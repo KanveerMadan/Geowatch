@@ -141,7 +141,7 @@ def _wsc(kind):
     by = {}
     for f in _wsc_all():
         p = f["properties"]
-        if p["DATE"][:4].isdigit() and int(p["DATE"][:4]) >= MIN_YEAR:
+        if p.get("DATE") and p.get("PEAK") is not None and p["DATE"][:4].isdigit() and int(p["DATE"][:4]) >= MIN_YEAR:
             by.setdefault(p["STATION_NUMBER"], []).append(f)
     for stn, fs in by.items():
         thr = p80([f["properties"]["PEAK"] for f in fs])
@@ -159,8 +159,9 @@ def _wsc(kind):
             yield {"source": f"wsc_{kind}", "source_row": f"{stn}:{p['DATE']}", "type": "M8",
                    "submode": "ice_jam" if kind == "ice" else "sustained_melt",
                    "cause": "WSC annual maximum water level" + (", Ice Conditions" if ice else ", open water, Mar-Jul"),
-                   "date": p["DATE"][:10], "crest_local": f"{p['DATE']} UTC{int(p['TIMEZONE_OFFSET']):+d}",
-                   "crest_kind": "agency_crest_reading", "lat": lat, "lon": lon, "anchor": f"WSC {stn} {p['STATION_NAME']}",
+                   "date": p["DATE"][:10], "crest_local": f"{p['DATE']} UTC{float(p['TIMEZONE_OFFSET']):+g}" if p.get("TIMEZONE_OFFSET") is not None else f"{p['DATE']} (offset unknown)",
+                   "crest_kind": "agency_crest_reading" if p.get("TIMEZONE_OFFSET") is not None else "agency_crest_day",
+                   "lat": lat, "lon": lon, "anchor": f"WSC {stn} {p['STATION_NAME']}",
                    "country": "Canada", "region": p["PROV_TERR_STATE_LOC"], "peak_value": p["PEAK"], "peak_unit": "m",
                    "station_p80": thr}
 
