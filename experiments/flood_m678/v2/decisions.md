@@ -32,3 +32,13 @@
     - stop downloads below 15 GB free disk;
     - caffeinate, checkpoint and resume.
   - **Reporting:** STATUS.md after each step, a push after each step, and a PR to master only for product changes.
+
+2026-11-27. **Step 2 labels, before any v2 label.**
+- v1's labeller reproduces its published DEV counts on two pinned fixtures, from this branch's code into the v2 DEV store:
+  - Midland (optical): 3,706 flooded / 5,378 dry;
+  - Grand Forks BC (optical with radar fill): 2,191 / 20,610.
+- v2 `labels.py` keeps v1's five-state rules unchanged (imported, not copied) and changes three things:
+  1. **No union across flood phases.** A cell takes the in-window observation nearest the local crest, optical first; radar fills only cells no optical scene decides. The union is kept as a secondary layer, for the label-QA comparison only.
+  2. **Per-cell provenance:** sensor family, scene and offset.
+  3. **The 8 km box is labelled on its own grid** when it extends past the search square (v1's defect).
+- DEV takes at most two leads per component, earliest first, and builds M8 sustained melt first.
