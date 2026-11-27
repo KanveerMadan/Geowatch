@@ -303,3 +303,16 @@ Fixed before their DEV comparison runs. They apply to every method alike; baseli
   - Why: the API's per-product download returns one 300 km grid tile, which can miss the unit (seen on a probe), and its clipped download returned errors.
   - "The first GFM product" is the first Sentinel-1 IW slice over the unit centre (Earth Engine collection metadata, as in §8) that has a GFM item. All GFM items of that pass are merged.
   - The first, tile-mismatched probe outputs were discarded unread (`gfm/dev_bad_v1`).
+
+## R38 (2026-11-27): GFM DEV gate result (GFM_DESIGN §2, results/gfm_gate.json)
+GFM was read only on DEV EMS units (the §e set), with the product picked by Sentinel-1 slice metadata.
+- **River: accepted.** 36 units. Median κ against EMS (all sensors) 0.538, against our own Sentinel-1 label's 0.525 on the same units. It passes the rule (≥), by a small margin.
+- **Waterlogging: refused.** 8 units. κ 0.109 against our Sentinel-1 label's 0.45.
+- **Rain, flash, coastal: refused.** Median κ 0.00 against optical/VHR EMS maps (6, 11 and 6 units).
+  - GFM observes 41–74 % of the EMS-flooded cells but marks them dry. Flooding among buildings and vegetation is invisible to its radar, as DIAGNOSIS §e found for our own Sentinel-1 label.
+- **Compound: refused.** 3 optical units, below the 5 required, and κ 0.00.
+- **Consequence:**
+  - GFM may label river reserve units only.
+  - Rain, flash, coastal and compound keep analyst/VHR maps (EMS optical), surveyed marks and the FloodNet test (rain).
+  - Waterlogging keeps our Sentinel-1 labels.
+  - GFM product times remain usable as metadata for every type.
