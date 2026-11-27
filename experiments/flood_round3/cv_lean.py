@@ -197,8 +197,8 @@ def run_candidate(tabs, names, region, key, U, F0, params):
         for n in folds[a] + folds[b]:
             bb, ff = parts(m, tabs[n], idx)
             aucs[n] = [M.within_auc(bb + lam * ff, tabs[n]["y"]) for lam in M.LAMBDAS]
-        json.dump(aucs, open(p + ".tmp", "w"))
-        os.replace(p + ".tmp", p)
+        json.dump(aucs, open(p + f".{os.getpid()}.tmp", "w"))
+        os.replace(p + f".{os.getpid()}.tmp", p)
         _log(key, "pair", a, b, f"{time.time() - t0:.0f}s")
     pred, lams = {}, {}
     for o in regs:
@@ -224,8 +224,8 @@ def run_candidate(tabs, names, region, key, U, F0, params):
             for n in folds[o]:
                 bb, ff = parts(m, tabs[n], idx)
                 out[n] = (bb + lam * ff).astype(np.float32)
-            np.savez(p + ".tmp.npz", **out)
-            os.replace(p + ".tmp.npz", p)
+            np.savez(p + f".{os.getpid()}.tmp.npz", **out)
+            os.replace(p + f".{os.getpid()}.tmp.npz", p)
             _log(key, "outer", o, "lambda", lam, f"{time.time() - t0:.0f}s")
         z = np.load(p)
         pred.update({n: z[n] for n in z.files})
@@ -243,8 +243,8 @@ def lr_pred(tabs, names, region):
     out = {}
     for _, held in sorted(folds.items()):
         out.update(D._lr_pred(tabs, [n for n in names if n not in held], held))
-    np.savez(p + ".tmp.npz", **out)
-    os.replace(p + ".tmp.npz", p)
+    np.savez(p + f".{os.getpid()}.tmp.npz", **out)
+    os.replace(p + f".{os.getpid()}.tmp.npz", p)
     return out
 
 
