@@ -6,7 +6,7 @@ LOG="$HOME/.cache/geowatch/flood_m678/chain_dev.log"
 PY="$HOME/geowatch/geowatch-env/bin/python"
 mkdir -p "$(dirname "$LOG")"
 cd "$HOME/gw-r3pin" || exit 1
-export PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=".:$HOME/gw-m678/experiments/flood_m678"
+export PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=".:$HOME/gw-m678/experiments/flood_m678:$HOME/.cache/geowatch/flood_learned/pylib"  # LightGBM lives in round 2/3's private pylib
 echo "== $(date -u) labels dev" >> "$LOG"
 "$PY" -B -m labels_m678 dev >> "$LOG" 2>&1
 echo "== $(date -u) features dev" >> "$LOG"

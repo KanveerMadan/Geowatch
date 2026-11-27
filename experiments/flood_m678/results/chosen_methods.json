@@ -1,0 +1,2 @@
+{"chosen": {"M6": "phys_laharz", "M7": "elev", "M8": "elev"},
+ "rule": "M7/M8: model_r3.choose on results/dev_cv_m678.json; the best lower bound is <= 0 (M7 elev_hand_lr -0.022, M8 elev_hand_lr -0.002), so the type keeps its better DEV baseline (model_r3 docstring). M6: physics only by owner instruction (one DEV cluster)."}

@@ -1,0 +1,18 @@
+{
+ "M7": {
+  "method": "elev",
+  "dev_gain_vs_hand": 0.1611,
+  "dev_cluster_sd": 0.2522,
+  "target_clusters": 34,
+  "reserve_clusters": 6,
+  "achieved_power": 0.346
+ },
+ "M8": {
+  "method": "elev",
+  "dev_gain_vs_hand": 0.1117,
+  "dev_cluster_sd": 0.1951,
+  "target_clusters": 42,
+  "reserve_clusters": 7,
+  "achieved_power": 0.328
+ }
+}

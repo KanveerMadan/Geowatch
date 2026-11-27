@@ -1,0 +1,328 @@
+{
+ "units": {
+  "fort-mcmurray-2020-04-26": {
+   "type": "M8",
+   "cluster": "athabasca",
+   "flooded": 514,
+   "dry": 50840
+  },
+  "gandak-barauli-2020-07-24": {
+   "type": "M7",
+   "cluster": "gandak-barauli",
+   "flooded": 35583,
+   "dry": 34006
+  },
+  "grand-forks-bc-2018-05-10": {
+   "type": "M8",
+   "cluster": "kettle-granby",
+   "flooded": 2191,
+   "dry": 20610
+  },
+  "grimsvotn-gigjukvisl-2021-12-04": {
+   "type": "M6",
+   "cluster": "grimsvotn-gigjukvisl",
+   "flooded": 18987,
+   "dry": 52480
+  },
+  "gulfport-miss-2008-06-17": {
+   "type": "M7",
+   "cluster": "midwest-2008-06",
+   "flooded": 13673,
+   "dry": 2390
+  },
+  "midland-2020-05-19": {
+   "type": "M7",
+   "cluster": "midland",
+   "flooded": 3706,
+   "dry": 5378
+  },
+  "minot-souris-2011-06-25": {
+   "type": "M8",
+   "cluster": "souris",
+   "flooded": 1470,
+   "dry": 4975
+  },
+  "missouri-hamburg-2019-03-16": {
+   "type": "M7",
+   "cluster": "midwest-2019-03",
+   "flooded": 5209,
+   "dry": 34686
+  },
+  "missouri-holt-2019-03-17": {
+   "type": "M7",
+   "cluster": "midwest-2019-03",
+   "flooded": 5014,
+   "dry": 8079
+  }
+ },
+ "lambdas": {
+  "anc_elev_lgbm": {
+   "athabasca": 0.0,
+   "gandak-barauli": 0.0,
+   "grimsvotn-gigjukvisl": 0.0,
+   "kettle-granby": 0.0,
+   "midland": 0.0,
+   "midwest-2008-06": 0.0,
+   "midwest-2019-03": 0.25,
+   "souris": 0.0
+  },
+  "anc_elev_lgbm_ev": {
+   "athabasca": 0.0,
+   "gandak-barauli": 0.0,
+   "grimsvotn-gigjukvisl": 0.0,
+   "kettle-granby": 0.0,
+   "midland": 0.0,
+   "midwest-2008-06": 0.0,
+   "midwest-2019-03": 1.0,
+   "souris": 0.0
+  },
+  "anc_elev_lgbm_main": {
+   "athabasca": 0.0,
+   "gandak-barauli": 0.0,
+   "grimsvotn-gigjukvisl": 0.0,
+   "kettle-granby": 0.0,
+   "midland": 0.25,
+   "midwest-2008-06": 0.0,
+   "midwest-2019-03": 0.25,
+   "souris": 0.0
+  }
+ },
+ "by_type": {
+  "M6": {
+   "units": 1,
+   "clusters": 1,
+   "note": "fewer than 2 DEV clusters: no CV comparison"
+  },
+  "M7": {
+   "units": 5,
+   "clusters": 4,
+   "candidates": {
+    "elev": {
+     "vs": "hand",
+     "gain": 0.1792,
+     "ci": [
+      -0.0474,
+      0.3554
+     ],
+     "mean_auc": 0.7947
+    },
+    "hand": {
+     "vs": "elev",
+     "gain": -0.1792,
+     "ci": [
+      -0.3554,
+      0.0474
+     ],
+     "mean_auc": 0.6155
+    },
+    "phys_stage": {
+     "skipped": "undefined on 1 of 5 units"
+    },
+    "phys_main": {
+     "vs": "elev",
+     "gain": -0.085,
+     "ci": [
+      -0.1701,
+      0.0174
+     ],
+     "mean_auc": 0.7097
+    },
+    "elev_hand_lr": {
+     "vs": "elev",
+     "gain": -0.0094,
+     "ci": [
+      -0.0222,
+      0.007
+     ],
+     "mean_auc": 0.7853
+    },
+    "anc_elev_lgbm": {
+     "vs": "elev",
+     "gain": -0.0203,
+     "ci": [
+      -0.0481,
+      0.0
+     ],
+     "mean_auc": 0.7744
+    },
+    "anc_elev_lgbm_ev": {
+     "vs": "elev",
+     "gain": -0.0497,
+     "ci": [
+      -0.113,
+      0.0
+     ],
+     "mean_auc": 0.745
+    },
+    "anc_elev_lgbm_main": {
+     "vs": "elev",
+     "gain": -0.0344,
+     "ci": [
+      -0.0635,
+      0.0
+     ],
+     "mean_auc": 0.7603
+    }
+   },
+   "chosen": "elev_hand_lr",
+   "per_unit": {
+    "gandak-barauli-2020-07-24": {
+     "elev": 0.5105,
+     "hand": 0.6387,
+     "phys_main": 0.5799,
+     "elev_hand_lr": 0.5237,
+     "anc_elev_lgbm": 0.5105,
+     "anc_elev_lgbm_ev": 0.5105,
+     "anc_elev_lgbm_main": 0.5105
+    },
+    "gulfport-miss-2008-06-17": {
+     "elev": 0.6903,
+     "hand": 0.6287,
+     "phys_main": 0.621,
+     "elev_hand_lr": 0.6889,
+     "anc_elev_lgbm": 0.6903,
+     "anc_elev_lgbm_ev": 0.6903,
+     "anc_elev_lgbm_main": 0.6903
+    },
+    "midland-2020-05-19": {
+     "elev": 0.9383,
+     "hand": 0.4789,
+     "phys_main": 0.7461,
+     "elev_hand_lr": 0.9125,
+     "anc_elev_lgbm": 0.9383,
+     "anc_elev_lgbm_ev": 0.9383,
+     "anc_elev_lgbm_main": 0.8607
+    },
+    "missouri-hamburg-2019-03-16": {
+     "elev": 0.9591,
+     "hand": 0.8819,
+     "phys_main": 0.9458,
+     "elev_hand_lr": 0.9616,
+     "anc_elev_lgbm": 0.9519,
+     "anc_elev_lgbm_ev": 0.9585,
+     "anc_elev_lgbm_main": 0.9632
+    },
+    "missouri-holt-2019-03-17": {
+     "elev": 0.8752,
+     "hand": 0.4491,
+     "phys_main": 0.6557,
+     "elev_hand_lr": 0.8398,
+     "anc_elev_lgbm": 0.7809,
+     "anc_elev_lgbm_ev": 0.6272,
+     "anc_elev_lgbm_main": 0.7766
+    }
+   }
+  },
+  "M8": {
+   "units": 3,
+   "clusters": 3,
+   "candidates": {
+    "elev": {
+     "vs": "hand",
+     "gain": 0.1116,
+     "ci": [
+      -0.0774,
+      0.2916
+     ],
+     "mean_auc": 0.8634
+    },
+    "hand": {
+     "vs": "elev",
+     "gain": -0.1116,
+     "ci": [
+      -0.2916,
+      0.0774
+     ],
+     "mean_auc": 0.7518
+    },
+    "phys_stage": {
+     "vs": "elev",
+     "gain": -0.1322,
+     "ci": [
+      -0.2884,
+      0.0699
+     ],
+     "mean_auc": 0.7312
+    },
+    "phys_main": {
+     "vs": "elev",
+     "gain": 0.0135,
+     "ci": [
+      -0.0257,
+      0.0548
+     ],
+     "mean_auc": 0.8769
+    },
+    "elev_hand_lr": {
+     "vs": "elev",
+     "gain": 0.0123,
+     "ci": [
+      -0.0019,
+      0.0358
+     ],
+     "mean_auc": 0.8758
+    },
+    "anc_elev_lgbm": {
+     "vs": "elev",
+     "gain": 0.0,
+     "ci": [
+      0.0,
+      0.0
+     ],
+     "mean_auc": 0.8634
+    },
+    "anc_elev_lgbm_ev": {
+     "vs": "elev",
+     "gain": 0.0,
+     "ci": [
+      0.0,
+      0.0
+     ],
+     "mean_auc": 0.8634
+    },
+    "anc_elev_lgbm_main": {
+     "vs": "elev",
+     "gain": 0.0,
+     "ci": [
+      0.0,
+      0.0
+     ],
+     "mean_auc": 0.8634
+    }
+   },
+   "chosen": "elev_hand_lr",
+   "per_unit": {
+    "fort-mcmurray-2020-04-26": {
+     "elev": 0.9246,
+     "hand": 0.6207,
+     "phys_stage": 0.6485,
+     "phys_main": 0.9246,
+     "elev_hand_lr": 0.9237,
+     "anc_elev_lgbm": 0.9246,
+     "anc_elev_lgbm_ev": 0.9246,
+     "anc_elev_lgbm_main": 0.9246
+    },
+    "grand-forks-bc-2018-05-10": {
+     "elev": 0.6922,
+     "hand": 0.7784,
+     "phys_stage": 0.767,
+     "phys_main": 0.7287,
+     "elev_hand_lr": 0.7281,
+     "anc_elev_lgbm": 0.6922,
+     "anc_elev_lgbm_ev": 0.6922,
+     "anc_elev_lgbm_main": 0.6922
+    },
+    "minot-souris-2011-06-25": {
+     "elev": 0.9736,
+     "hand": 0.8563,
+     "phys_stage": 0.7782,
+     "phys_main": 0.9774,
+     "elev_hand_lr": 0.9755,
+     "anc_elev_lgbm": 0.9736,
+     "anc_elev_lgbm_ev": 0.9736,
+     "anc_elev_lgbm_main": 0.9736
+    }
+   }
+  }
+ }
+}
