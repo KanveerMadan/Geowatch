@@ -43,9 +43,19 @@ def nival_shares():
 
 def crest_bounds(lead):
     """(lo, hi, kind) in UTC from the lead's crest fields."""
-    c = lead["crest_local"].strip()
+    c = (lead.get("crest_local") or "").strip()
+    if not c and lead.get("crest_kind") == "geoglows":
+        return geoglows_crest(lead)
     if not c:
         return None
+    if " / " in c:                                   # "D1 / D2 Zone": the local days D1..D2
+        from zoneinfo import ZoneInfo
+        days, zone = c.rsplit(" ", 1)
+        d1, d2 = (x.strip() for x in days.split("/"))
+        z = ZoneInfo(zone)
+        lo = datetime.fromisoformat(d1).replace(tzinfo=z).astimezone(timezone.utc)
+        hi = (datetime.fromisoformat(d2) + timedelta(days=1)).replace(tzinfo=z).astimezone(timezone.utc)
+        return lo, hi, "published_days"
     if " UTC" in c:
         t, off = c.split(" UTC")
         dt = datetime.fromisoformat(t.strip()).replace(tzinfo=timezone(timedelta(hours=float(off))))
@@ -55,12 +65,33 @@ def crest_bounds(lead):
     return day - timedelta(hours=12), day + timedelta(hours=36), "agency_day_tz_unknown"   # day in any zone
 
 
+def geoglows_crest(lead):
+    """GEOGloWS v2 daily peak (UTC day) at the largest reach in the 8 km box, in [date - 3 d, date + 5 d].
+    Levee breaches and melt only (SELECTION §2); a tie or an edge maximum leaves the lead untimed."""
+    sys.path.insert(0, V1)
+    import numpy as np
+    import geoglows_crests as G
+    import screen_acquisitions as SA
+    ix = {k: v for k, v in np.load(G.REACHES).items()}
+    r = G.reach(ix, SA.study_box(float(lead["lon"]), float(lead["lat"])).bounds)
+    if r is None:
+        return None
+    t, q = G.series(r["link"])
+    d0 = datetime.fromisoformat(lead["date"][:10])
+    res = G.peak_day(t, q, (d0 - timedelta(days=3)).date().isoformat(), (d0 + timedelta(days=5)).date().isoformat())
+    if res.get("status") != "geoglows_day":
+        return None
+    return datetime.fromisoformat(res["start"]), datetime.fromisoformat(res["end"]), f"geoglows_day reach {r['link']}"
+
+
 def screen_lead(lead, lo, hi, session):
     sys.path.insert(0, V1)
     import screen_acquisitions as S
     site = {"type": lead["type"], "subtype": "ice jam" if lead["submode"] == "ice_jam" else lead["submode"],
             "zone": "UTC", "longitude": float(lead["lon"]), "latitude": float(lead["lat"])}
     ev = {"date": lead["date"][:10], "crest_utc_bracket": [lo.isoformat(), hi.isoformat()]}
+    if lead.get("not_before_utc"):
+        ev["not_before_utc"] = lead["not_before_utc"]                # breach floor (levee/dam)
     return S.screen(ev, site, {}, session, __import__("pathlib").Path(STAC_CACHE))
 
 
@@ -99,6 +130,10 @@ def main(which="all"):
         row = {"lead_id": l["lead_id"], "component": cid, "side": side, "type": l["type"], "submode": l["submode"],
                "date": l["date"][:10], "nival_share": "", "crest_utc_min": "", "crest_utc_max": "", "crest_kind": "",
                "optical": "", "paired_radar": "", "status": ""}
+        if not l["submode"]:
+            row["status"] = "cause_unconfirmed"          # e.g. USGS code 9 without a second source (Amendment 2)
+            out[l["lead_id"]] = row
+            continue
         stn = l["anchor"].split(" ")[1] if l["anchor"].startswith("WSC") else None
         if l["submode"] == "sustained_melt" and stn:
             ns = nival.get(stn)

@@ -94,3 +94,14 @@ Leads without a coordinate anchor (country-only) cannot be joined or screened. T
 ## Amendment 2 (2026-11-27, before the screen runs)
 
 Sustained-melt cause from gauge history (metadata only): a WSC station is nival when at least 60 % of its 1984–2021 annual maximum water levels fall in April–June. Spring peaks at other stations are refused as `not_nival` (likely rain-driven). Other M8 leads need a cause from their source: a USGS code 9 lead needs a second source naming snowmelt or ice, and a CRID HM peak is break-up by definition. A WSC crest reading gets a ±15 min bracket from its UTC offset. A crest day without a time zone gets a window wide enough for any zone (local day −12 h to +36 h UTC).
+
+## Amendment 3 (2026-11-27, before addendum seal 2.1 and before any v2 label of these leads)
+
+New lead sources, under the same rules:
+- **USGS annual peaks:** code 3 gives M7 dam failures. Code 9 peaks stay `cause_unconfirmed` until a second source names snowmelt or ice.
+- **Copernicus EMS activations** keyword-matched by the round-3 session (metadata; the EMS centroid is the anchor; no crest unless found elsewhere).
+- **Hand-located breaches** (`handlocated.csv`): coordinates from OSM place points, times as reported, and the retrieved source URL for each.
+
+Changes to joining and sealing:
+- **Storm tags:** leads sharing a storm tag are one component.
+- **Stable assignment in an addendum seal:** a component that shares any lead with a sealed component keeps that component's side. One that would merge a sealed DEV component with a sealed reserve component is excluded. Seal 2.0 assignments never change.

@@ -30,20 +30,30 @@ def sha(p):
 
 def build(version):
     scr = list(csv.DictReader(open(os.path.join(HERE, "screening.csv"))))
-    prev = {}
+    prev, lead_side = {}, {}
     for f in sorted(os.listdir(HERE)):
         if f.startswith("seal_") and f.endswith(".json") and f != f"seal_{version}.json":
             for side in ("reserve", "dev"):
                 for c in json.load(open(os.path.join(HERE, f)))[side]:
                     prev[c["component"]] = side
+                    for x in c["leads"]:
+                        lead_side[x["lead_id"]] = (side, c["component"])
+    cluster_of = {r["id"]: r["component"] for r in csv.DictReader(open(os.path.join(HERE, "clusters.csv")))}
     comps = {}
     for r in scr:
         if r["status"] != "timed_footprint":
             continue
-        comps.setdefault(r["component"], {"side": r["side"], "leads": []})["leads"].append(r)
-    out = {"reserve": [], "dev": []}
+        cid = cluster_of.get(r["lead_id"], r["component"])          # the current join decides grouping
+        comps.setdefault(cid, {"side": r["side"], "leads": []})["leads"].append(r)
+    out = {"reserve": [], "dev": [], "excluded_addendum": []}
     for cid, c in sorted(comps.items()):
-        side = prev.get(cid, c["side"])                   # earlier assignments never change
+        # Earlier assignments never change: a component sharing any lead with a sealed component keeps
+        # that side; one that merges components from both sides is excluded (conservative).
+        sides = {lead_side[x["lead_id"]][0] for x in c["leads"] if x["lead_id"] in lead_side}
+        if len(sides) > 1:
+            out["excluded_addendum"].append({"component": cid, "reason": "joins sealed DEV and reserve components"})
+            continue
+        side = sides.pop() if sides else prev.get(cid, c["side"])
         if side == "reserve":
             c["leads"] = [x for x in c["leads"] if x["date"] >= "2022-01-01"]
         if not c["leads"]:
@@ -52,7 +62,7 @@ def build(version):
         out[side].append({"component": cid, "type": ty.split("/")[0], "submode": ty.split("/")[1],
                           "leads": [{k: x[k] for k in ("lead_id", "date", "crest_utc_min", "crest_utc_max",
                                                        "crest_kind", "optical", "paired_radar")} for x in c["leads"]]})
-    counts = {side: dict(Counter(f"{c['type']}/{c['submode']}" for c in out[side])) for side in out}
+    counts = {side: dict(Counter(f"{c['type']}/{c['submode']}" for c in out[side])) for side in ("reserve", "dev")}
     seal = {"version": version, "sealed_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "inputs_sha256": {f: sha(f) for f in FILES}, "counts_components": counts, **out}
     p = os.path.join(HERE, f"seal_{version}.json")

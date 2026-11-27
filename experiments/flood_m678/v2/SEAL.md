@@ -13,3 +13,15 @@ Each seal is metadata only and pushed before any v2 model work on its DEV split 
 - components, reserve: {"M8/ice_jam": 7, "M8/sustained_melt": 254}
 - components, DEV: {"M8/ice_jam": 52, "M8/sustained_melt": 301}
 - metadata only: no v2 label, feature or score existed when this was written.
+
+## Seal 2.1 (2026-11-27T17:20:26+00:00)
+
+- `seal_2.1.json` sha256 `c70d3ccf17d2f5bb52f364ef1295ec928ba6e271a41e47011b85f7dc187ab99b`
+- `registry.json` sha256 `19632c94397cf6c638a408641ab53ea2dbdb5a9e518910aadebf7c37f4b7976e`
+- `SELECTION.md` sha256 `087f920d1d47b56b098ee9e14049b6baa45d0150257da5bd49ed953da01d3354`
+- `leads.csv` sha256 `3e84cc99a9cadb74abf209ad7dbd55a56af5533cf769280b88107683ebeb685e`
+- `clusters.csv` sha256 `1fc2a52f8e9c7ec12e94567e8feb4bfeb3dba86baa0db9c011c6e28893b3d937`
+- `screening.csv` sha256 `7d7cee4ff292f31dee0eb6667b298200ee8e38de8eb36f96d51253f919829490`
+- components, reserve: {"M7/reservoir_breach": 1, "M8/ice_jam": 8, "M8/sustained_melt": 254}
+- components, DEV: {"M7/reservoir_breach": 5, "M8/ice_jam": 52, "M8/sustained_melt": 301}
+- metadata only: no v2 label, feature or score existed when this was written.

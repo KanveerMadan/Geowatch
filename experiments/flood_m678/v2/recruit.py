@@ -35,7 +35,8 @@ SRC = os.path.expanduser("~/.cache/geowatch/m678v2/sources")
 OUT = os.path.join(HERE, "leads.csv")
 YIELD = os.path.join(HERE, "yield_leads.json")
 FIELDS = ("lead_id", "source", "source_row", "type", "submode", "cause", "date", "crest_local", "crest_kind",
-          "lat", "lon", "anchor", "country", "region", "peak_value", "peak_unit", "station_p80")
+          "lat", "lon", "anchor", "country", "region", "peak_value", "peak_unit", "station_p80", "not_before_utc",
+          "storm", "source_url")
 MIN_YEAR = 1984
 P_OVERBANK = 80
 STATES = ("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC "
@@ -312,7 +313,33 @@ def wiki_dams():
                "country": country, "region": country, "peak_value": "", "peak_unit": "", "station_p80": ""}
 
 
-ADAPTERS = {"usgs_peaks": usgs_peaks, "wsc_ice": wsc_ice, "wsc_melt": wsc_melt, "crid": crid, "dfo": dfo, "glof": glof, "wiki_dams": wiki_dams}
+# ------------------------------------------------------------------ hand-located (owner instruction) and EMS leads
+def handlocated():
+    """Hand-located breaches and jams with coordinates, times and the retrieved source URL (handlocated.csv)."""
+    for r in csv.DictReader(open(os.path.join(HERE, "handlocated.csv"))):
+        yield {k: r.get(k, "") for k in FIELDS}
+
+
+def ems_peer():
+    """EMS activations keyword-matched by the round-3 session (metadata only): centroid anchors, no crest."""
+    p = os.path.expanduser("~/.cache/geowatch/m678_v2_leads/ems_gfm_leads_m678_v2.json")
+    d = json.load(open(p))
+    for x in d["leads"]:
+        t = (x.get("types") or [""])[0]
+        ty, sub = {"M7_breach": ("M7", "reservoir_breach"), "M8_melt_icejam": ("M8", "sustained_melt"),
+                   "M6_glof": ("M6", "water_release")}.get(t, (None, None))
+        if not ty:
+            continue
+        lon, lat = (float(v) for v in x["centroid"].replace("POINT (", "").rstrip(")").split())
+        yield {"source": "ems_peer", "source_row": x["code"], "type": ty, "submode": sub,
+               "cause": (x.get("name") or "")[:120], "date": str(x.get("event"))[:10], "crest_local": "", "crest_kind": "",
+               "lat": lat, "lon": lon, "anchor": f"EMS centroid {x['code']}", "country": ",".join(x.get("countries") or [])[:40],
+               "region": "", "peak_value": "", "peak_unit": "", "station_p80": "", "not_before_utc": "", "storm": x["code"],
+               "source_url": f"https://emergency.copernicus.eu/{x['code']}"}
+
+
+ADAPTERS = {"usgs_peaks": usgs_peaks, "wsc_ice": wsc_ice, "wsc_melt": wsc_melt, "crid": crid, "dfo": dfo, "glof": glof, "wiki_dams": wiki_dams,
+            "handlocated": handlocated, "ems_peer": ems_peer}
 
 
 def run(names):

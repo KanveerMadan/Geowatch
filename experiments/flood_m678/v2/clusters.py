@@ -58,7 +58,8 @@ def nodes():
         out.append({"id": r["lead_id"], "kind": "lead", "type": r["type"], "submode": r["submode"], "date": r["date"][:10],
                     "lat": lat, "lon": lon, "station": r["anchor"].split(" ")[1] if r["anchor"].startswith(("USGS", "WSC")) else None,
                     "lake": r["anchor"][5:].split(" / ")[0] if r["anchor"].startswith("lake ") else None,
-                    "river": river_token(r["anchor"]), "region": r["region"], "country": r["country"]})
+                    "river": river_token(r["anchor"]), "region": r["region"], "country": r["country"],
+                    "storm": r.get("storm") or None})
     cat = list(csv.DictReader(R.show(R.PINS["v1_reserve_seal"], "experiments/flood_m678/catalog.csv").decode().splitlines()))
     quar, devonly = set(reg["v1"]["incidents"]), set(reg["v1"]["dev_only_incidents"])
     for r in cat:
@@ -82,7 +83,7 @@ def nodes():
 def join(ns):
     from scipy.spatial import cKDTree
     uf = UF(len(ns))
-    for key in ("station", "lake"):
+    for key in ("station", "lake", "storm"):
         first = {}
         for i, n in enumerate(ns):
             k = n.get(key)
