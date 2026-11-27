@@ -101,7 +101,7 @@ Open substitutes are in use. This is what each account will add when it exists:
   - Re-typing MMFlood's "no river wave" refusals as waterlogging is rejected: DEV waterlogging is river-driven (median return period 4.7 y), so it would change the type's meaning between DEV and reserve.
 
 <!-- DEV-CV:BEGIN -->
-## DEV comparison (auto-updated 2026-11-25 09:46; leave-region-out CV, DEV units only, reserve untouched)
+## DEV comparison (auto-updated 2026-11-27 15:38; leave-region-out CV, DEV units only, reserve untouched)
 
 - **gain** is the method's mean within-unit AUC minus the better of elevation and HAND (the bar's comparison), with its 95 % cluster-bootstrap CI.
 - **vs elevation** is the method's mean AUC minus elevation's.
@@ -120,7 +120,7 @@ Open substitutes are in use. This is what each account will add when it exists:
 
 - **Still missing:** no method beats the baseline: the best learned method, anc_elev_lgbm_ev, gains +0.025 with CI [-0.0001, 0.0486].
 
-### Flash: 57 units, 56 clusters; chosen **anc_elev_lgbm**
+### Flash: 57 units, 56 clusters; chosen **anc_elev_lgbm_mrms**
 
 | method | mean AUC | vs elevation | gain vs better baseline | 95 % CI | clears CI? |
 |---|---|---|---|---|---|
@@ -128,8 +128,9 @@ Open substitutes are in use. This is what each account will add when it exists:
 | hand | 0.633 | -0.016 | -0.016 | [-0.0503, 0.0134] | no |
 | elev_hand_lr | 0.648 | -0.000 | -0.000 | [-0.0011, 0.0003] | no |
 | anc_elev_lgbm | 0.695 | +0.047 | +0.047 | [0.0282, 0.0643] | yes |
+| anc_elev_lgbm_mrms | 0.72 | +0.071 | +0.071 | [0.0505, 0.0911] | yes |
 
-- **Still missing:** mean AUC 0.695 is below 0.70.
+- **Still missing:** nothing on DEV; the reserve test decides.
 
 ### Waterlogging: 68 units, 44 clusters; chosen **elev**
 
@@ -138,10 +139,11 @@ Open substitutes are in use. This is what each account will add when it exists:
 | elev | 0.713 | +0.000 | +0.114 | [0.0795, 0.1518] | yes |
 | hand | 0.598 | -0.114 | -0.114 | [-0.1518, -0.0795] | no |
 | elev_hand_lr | 0.713 | +0.000 | +0.000 | [-0.0013, 0.0023] | no |
-| anc_elev_lgbm | 0.712 | -0.001 | -0.001 | [-0.0235, 0.0166] | no |
-| anc_elev_lgbm_ev | 0.698 | -0.015 | -0.015 | [-0.0529, 0.0146] | no |
+| anc_elev_lgbm | 0.706 | -0.007 | -0.007 | [-0.0383, 0.0198] | no |
+| anc_elev_lgbm_ev | 0.708 | -0.004 | -0.004 | [-0.0402, 0.023] | no |
+| anc_elev_lgbm_wl | 0.741 | +0.028 | +0.028 | [0.0052, 0.052] | yes |
 
-- **Still missing:** no method beats the baseline: the best learned method, elev_hand_lr, gains +0.000 with CI [-0.0013, 0.0023].
+- **Still missing:** no method beats the baseline: the best learned method, anc_elev_lgbm_wl, gains +0.028 with CI [0.0052, 0.052].
 
 ### Rain: 65 units, 54 clusters; chosen **anc_elev_lgbm_fine**
 

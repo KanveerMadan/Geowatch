@@ -260,43 +260,43 @@
  },
  "lambdas": {
   "anc_elev_lgbm@fluvial": {
-   "africa": 0.5,
-   "africa_west_asia": 0.5,
-   "americas": 0.5,
-   "europe_mediterranean": 0.5,
-   "plains_bangladesh": 0.75,
-   "plains_nigeria": 0.5,
-   "plains_punjab": 0.5,
-   "plains_sindh": 0.5,
-   "plains_south_sudan": 0.5,
-   "r311_chicago": 0.5,
-   "r311_nyc": 0.5,
-   "r311_san_francisco": 0.5,
-   "south_asia": 0.5,
-   "southeast_asia": 0.25,
-   "us_midwest": 0.25,
-   "us_northeast": 0.5,
-   "us_south": 0.25,
-   "us_west": 0.25
-  },
-  "anc_elev_lgbm_ev@fluvial": {
-   "africa": 0.5,
+   "africa": 0.75,
    "africa_west_asia": 0.5,
    "americas": 0.75,
-   "europe_mediterranean": 0.5,
+   "europe_mediterranean": 1.0,
    "plains_bangladesh": 1.0,
-   "plains_nigeria": 0.5,
-   "plains_punjab": 0.5,
-   "plains_sindh": 0.5,
-   "plains_south_sudan": 0.5,
-   "r311_chicago": 0.5,
+   "plains_nigeria": 0.75,
+   "plains_punjab": 0.75,
+   "plains_sindh": 0.75,
+   "plains_south_sudan": 0.75,
+   "r311_chicago": 0.75,
+   "r311_nyc": 0.75,
+   "r311_san_francisco": 0.75,
+   "south_asia": 0.75,
+   "southeast_asia": 0.75,
+   "us_midwest": 0.5,
+   "us_northeast": 0.5,
+   "us_south": 0.5,
+   "us_west": 0.5
+  },
+  "anc_elev_lgbm_ev@fluvial": {
+   "africa": 0.75,
+   "africa_west_asia": 0.5,
+   "americas": 1.0,
+   "europe_mediterranean": 1.0,
+   "plains_bangladesh": 1.0,
+   "plains_nigeria": 0.75,
+   "plains_punjab": 0.75,
+   "plains_sindh": 0.75,
+   "plains_south_sudan": 0.75,
+   "r311_chicago": 0.75,
    "r311_nyc": 0.5,
    "r311_san_francisco": 0.5,
    "south_asia": 0.5,
    "southeast_asia": 0.5,
-   "us_midwest": 0.25,
-   "us_northeast": 0.25,
-   "us_south": 0.25,
+   "us_midwest": 0.5,
+   "us_northeast": 0.5,
+   "us_south": 0.5,
    "us_west": 0.5
   },
   "anc_elev_lgbm_fine@fluvial": {
@@ -358,6 +358,46 @@
    "us_northeast": 0.5,
    "us_south": 0.25,
    "us_west": 0.5
+  },
+  "anc_elev_lgbm_mrms@flash_flood": {
+   "africa": 1.0,
+   "africa_west_asia": 0.75,
+   "americas": 1.0,
+   "europe_mediterranean": 1.0,
+   "plains_bangladesh": 1.0,
+   "plains_nigeria": 0.75,
+   "plains_punjab": 0.75,
+   "plains_sindh": 1.0,
+   "plains_south_sudan": 1.0,
+   "r311_chicago": 1.0,
+   "r311_nyc": 0.75,
+   "r311_san_francisco": 0.75,
+   "south_asia": 1.0,
+   "southeast_asia": 0.75,
+   "us_midwest": 0.75,
+   "us_northeast": 0.75,
+   "us_south": 0.5,
+   "us_west": 0.75
+  },
+  "anc_elev_lgbm_wl@fluvial": {
+   "africa": 1.0,
+   "africa_west_asia": 1.0,
+   "americas": 1.0,
+   "europe_mediterranean": 1.0,
+   "plains_bangladesh": 1.0,
+   "plains_nigeria": 1.0,
+   "plains_punjab": 1.0,
+   "plains_sindh": 1.0,
+   "plains_south_sudan": 1.0,
+   "r311_chicago": 1.0,
+   "r311_nyc": 1.0,
+   "r311_san_francisco": 1.0,
+   "south_asia": 1.0,
+   "southeast_asia": 1.0,
+   "us_midwest": 0.75,
+   "us_northeast": 0.75,
+   "us_south": 0.75,
+   "us_west": 0.75
   }
  },
  "by_type": {
@@ -465,101 +505,6 @@
    },
    "chosen": "anc_elev_lgbm_fine"
   },
-  "waterlogging": {
-   "units": 68,
-   "clusters": 44,
-   "candidates": {
-    "elev": {
-     "vs": "hand",
-     "gain": 0.1141,
-     "ci": [
-      0.0795,
-      0.1518
-     ],
-     "mean_auc": 0.7125
-    },
-    "hand": {
-     "vs": "elev",
-     "gain": -0.1141,
-     "ci": [
-      -0.1518,
-      -0.0795
-     ],
-     "mean_auc": 0.5983
-    },
-    "elev_hand_lr": {
-     "vs": "elev",
-     "gain": 0.0,
-     "ci": [
-      -0.0013,
-      0.0023
-     ],
-     "mean_auc": 0.7125
-    },
-    "anc_elev_lgbm": {
-     "vs": "elev",
-     "gain": -0.0009,
-     "ci": [
-      -0.0235,
-      0.0166
-     ],
-     "mean_auc": 0.7116
-    },
-    "anc_elev_lgbm_ev": {
-     "vs": "elev",
-     "gain": -0.0148,
-     "ci": [
-      -0.0529,
-      0.0146
-     ],
-     "mean_auc": 0.6977
-    }
-   },
-   "chosen": "elev"
-  },
-  "flash_flood": {
-   "units": 57,
-   "clusters": 56,
-   "candidates": {
-    "elev": {
-     "vs": "hand",
-     "gain": 0.0157,
-     "ci": [
-      -0.0134,
-      0.0503
-     ],
-     "mean_auc": 0.6484
-    },
-    "hand": {
-     "vs": "elev",
-     "gain": -0.0157,
-     "ci": [
-      -0.0503,
-      0.0134
-     ],
-     "mean_auc": 0.6327
-    },
-    "elev_hand_lr": {
-     "vs": "elev",
-     "gain": -0.0003,
-     "ci": [
-      -0.0011,
-      0.0003
-     ],
-     "mean_auc": 0.6481
-    },
-    "anc_elev_lgbm": {
-     "vs": "elev",
-     "gain": 0.047,
-     "ci": [
-      0.0282,
-      0.0643
-     ],
-     "mean_auc": 0.6954
-    }
-   },
-   "chosen": "anc_elev_lgbm"
-  },
   "coastal": {
    "units": 14,
    "clusters": 11,
@@ -654,6 +599,120 @@
     }
    },
    "chosen": "elev"
+  },
+  "flash_flood": {
+   "units": 57,
+   "clusters": 56,
+   "candidates": {
+    "elev": {
+     "vs": "hand",
+     "gain": 0.0157,
+     "ci": [
+      -0.0134,
+      0.0503
+     ],
+     "mean_auc": 0.6484
+    },
+    "hand": {
+     "vs": "elev",
+     "gain": -0.0157,
+     "ci": [
+      -0.0503,
+      0.0134
+     ],
+     "mean_auc": 0.6327
+    },
+    "elev_hand_lr": {
+     "vs": "elev",
+     "gain": -0.0003,
+     "ci": [
+      -0.0011,
+      0.0003
+     ],
+     "mean_auc": 0.6481
+    },
+    "anc_elev_lgbm": {
+     "vs": "elev",
+     "gain": 0.047,
+     "ci": [
+      0.0282,
+      0.0643
+     ],
+     "mean_auc": 0.6954
+    },
+    "anc_elev_lgbm_mrms": {
+     "vs": "elev",
+     "gain": 0.0711,
+     "ci": [
+      0.0505,
+      0.0911
+     ],
+     "mean_auc": 0.7195
+    }
+   },
+   "chosen": "anc_elev_lgbm_mrms"
+  },
+  "waterlogging": {
+   "units": 68,
+   "clusters": 44,
+   "candidates": {
+    "elev": {
+     "vs": "hand",
+     "gain": 0.1141,
+     "ci": [
+      0.0795,
+      0.1518
+     ],
+     "mean_auc": 0.7125
+    },
+    "hand": {
+     "vs": "elev",
+     "gain": -0.1141,
+     "ci": [
+      -0.1518,
+      -0.0795
+     ],
+     "mean_auc": 0.5983
+    },
+    "elev_hand_lr": {
+     "vs": "elev",
+     "gain": 0.0,
+     "ci": [
+      -0.0013,
+      0.0023
+     ],
+     "mean_auc": 0.7125
+    },
+    "anc_elev_lgbm": {
+     "vs": "elev",
+     "gain": -0.0068,
+     "ci": [
+      -0.0383,
+      0.0198
+     ],
+     "mean_auc": 0.7057
+    },
+    "anc_elev_lgbm_ev": {
+     "vs": "elev",
+     "gain": -0.0042,
+     "ci": [
+      -0.0402,
+      0.023
+     ],
+     "mean_auc": 0.7082
+    },
+    "anc_elev_lgbm_wl": {
+     "vs": "elev",
+     "gain": 0.0284,
+     "ci": [
+      0.0052,
+      0.052
+     ],
+     "mean_auc": 0.7409
+    }
+   },
+   "chosen": "elev"
   }
- }
+ },
+ "run": "cv_lean (R34): same method as dev_cv_r3.cv, lean and checkpointed"
 }
