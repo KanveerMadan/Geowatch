@@ -1,0 +1,60 @@
+{
+ "method": "m6_physics.resolve_volumes (rules a-e)",
+ "volumes": {
+  "grimsvotn-gigjukvisl-2021-12-04": {
+   "detail": "EGU22-8240: about 0.92 km3 released 14 Nov - 10 Dec 2021",
+   "rule": "d: published",
+   "volume_m3": 920000000.0
+  },
+  "kenai-snow-2025-10-07": {
+   "detail": "9 records",
+   "rule": "c: lake median V0",
+   "volume_m3": 135680000.0
+  },
+  "kennicott-2022-07-11": {
+   "detail": "Hidden Creek Lake 2022-07-13",
+   "rule": "a: GLOF v4.2 V0",
+   "volume_m3": 35410000.0
+  },
+  "kennicott-2023-07-07": {
+   "detail": "Hidden Creek Lake 2023-07-09, A = 641237 m2",
+   "rule": "b: Huggel 2002 from lake area",
+   "volume_m3": 18323132.0
+  },
+  "mendenhall-2022-10-27": {
+   "detail": "Suicide Lake 2022-10-24",
+   "rule": "a: GLOF v4.2 V0",
+   "volume_m3": 35600000.0
+  },
+  "mendenhall-2023-08-05": {
+   "detail": "Suicide Lake 2023-08-03",
+   "rule": "a: GLOF v4.2 V0",
+   "volume_m3": 54889860.0
+  },
+  "salmon-hyder-2022-07-24": {
+   "detail": "Summit Lake 2022-07-26, A = 293142 m2",
+   "rule": "b: Huggel 2002 from lake area",
+   "volume_m3": 6029540.0
+  },
+  "salmon-hyder-2023-10-25": {
+   "detail": "Summit Lake 2023-10-27",
+   "rule": "a: GLOF v4.2 V0",
+   "volume_m3": 7010000.0
+  },
+  "sveinstindur-2023-08-28": {
+   "detail": "55 records",
+   "rule": "e: default (median ice-dammed V0 since 2013)",
+   "volume_m3": 60590000.0
+  },
+  "taku-2023-06-24": {
+   "detail": "Lake No Lake 2023-06-26, A = 1884716 m2",
+   "rule": "b: Huggel 2002 from lake area",
+   "volume_m3": 84699831.0
+  },
+  "taku-2024-06-28": {
+   "detail": "Lake No Lake 2024-06-30",
+   "rule": "a: GLOF v4.2 V0",
+   "volume_m3": 94740000.0
+  }
+ }
+}
