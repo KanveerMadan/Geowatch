@@ -60,3 +60,11 @@
   - the share of corridor cells whose predicted wet status (score > 0) changes;
   - whether predicted wet extent increases with Q (direction check).
 - **Stop rule for M8 sustained melt:** over ≥ 20 usable corridor units, if the median |AUC(real) − AUC(seasonal)| < 0.005 AND the median Spearman(real, seasonal) > 0.99, forcing changes nothing that matters. The M8 snowmelt bid for spatial skill then stops at experimental (ARCHITECTURE_V2 item 5). Otherwise development continues. The corridor never replaces the 8 km box as the primary footprint.
+
+2026-11-27. **Corridor diagnostic: the forcing must be able to vary between reaches (recorded before any per-reach number exists).**
+- **Finding** on the first 3 corridor units: physics AUC is identical under real, seasonal, ×0.5 and ×2 forcing, Spearman(real, seasonal) ≥ 0.9998, and ≤ 0.008 % of corridor cells change predicted wet status.
+- **Why:** the forcing scales one gauge discharge to every reach by upstream area, so every stage shifts by nearly the same factor. The order of cells cannot move by construction. The stop rule as written would therefore be met trivially, and that would say nothing about forcing as such.
+- **Added variant `reach`:** per-reach GEOGloWS v2 forcing. Each channel cell takes the event peak (in [crest − 3 d, crest + 5 d]) of its nearest GEOGloWS reach, and the seasonal comparator `reach_seasonal` takes each reach's own median annual maximum (1984–2021). This is the "routed discharge per reach" of ARCHITECTURE_V2 (M8 adapter). Tributaries can now carry a different event magnitude from the trunk.
+- **The stop rule is evaluated on `reach` against `reach_seasonal`,** with the same thresholds: median |ΔAUC| < 0.005 and median Spearman > 0.99, over ≥ 20 usable corridor units.
+- The uniform-scaling result is kept and reported as what it is: a property of that forcing design.
+- **Engineering:** terrain is requested one band per call (the 40 km domain exceeded Earth Engine's per-request memory), and a failing unit is logged and skipped, never fatal.
