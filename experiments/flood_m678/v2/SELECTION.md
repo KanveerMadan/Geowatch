@@ -75,3 +75,18 @@ Leads with anchors within 20 km and dates within 30 days are joined as well. Com
 - **Copernicus EMS / GFM** when the owner grants access.
 
 Each lead keeps its source row, cause text, date fields and anchor. Yield is logged by region and submode at every stage: lead → joined component → crest → scene → (DEV only) label.
+
+## Amendment 1 (2026-11-27, before any v2 selection or component split has run)
+
+§5's whole-component rule is replaced, because almost every gauge or lake has pre-2022 history, so a recurring reach would always fall to DEV. The reserve then could not approach the 34–42 clusters per type that the power target needs. The rule is now v1's (DECISIONS_M678 2026-11-27):
+- A component with any v1-reserve incident is excluded from v2.
+- A component containing an inspected unit (v1 DEV incident or round-3 DEV unit) is DEV-only.
+- Any other component with a timed, full-box incident on or after 2022-01-01 is a reserve component. Its pre-2022 incidents are withheld from DEV training, CV and method choice.
+- Every remaining component is DEV.
+
+Joining edges (transitive), across all types:
+- the same station or anchor id (any date);
+- the same lake name (any date);
+- anchors within 20 km and dates within 30 days;
+- anchors within 20 km on the same named river (river token in the station names), any date.
+Leads without a coordinate anchor (country-only) cannot be joined or screened. They stay in the lead log until geolocated.
