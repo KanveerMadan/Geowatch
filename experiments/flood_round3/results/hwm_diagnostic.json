@@ -1,0 +1,38 @@
+{
+ "source": "tools/flood-speed 86c7508 peak survey tiles (Codex); DEV only",
+ "caveat": "positive-only (no surveyed dry cells): presence-vs-background AUC, not the bar's metric. Marks were kept only where water exceeded 3DEP terrain by > 1 m, which favours low terrain by construction.",
+ "events": {
+  "Harvey": {
+   "tiles": 234,
+   "wet_cells": 254,
+   "background_cells": 957599,
+   "auc_low_elevation": 0.537,
+   "auc_low_hand": 0.549
+  },
+  "Irma": {
+   "tiles": 71,
+   "wet_cells": 80,
+   "background_cells": 258284,
+   "auc_low_elevation": 0.576,
+   "auc_low_hand": 0.516
+  },
+  "Florence": {
+   "wet_cells": 0,
+   "note": "too few wet cells"
+  },
+  "Michael": {
+   "tiles": 60,
+   "wet_cells": 88,
+   "background_cells": 146338,
+   "auc_low_elevation": 0.56,
+   "auc_low_hand": 0.472
+  },
+  "Ida": {
+   "tiles": 2,
+   "wet_cells": 5,
+   "background_cells": 8192,
+   "auc_low_elevation": 0.759,
+   "auc_low_hand": 0.629
+  }
+ }
+}
