@@ -2,6 +2,17 @@
 
 Branch `exp/flood-round3` (from `07e9920`, round 2's result), worktree gw-floodproto. Read this first on any restart, and never redo a phase marked done. Judgement calls are in DECISIONS.md (R18 onwards). The diagnosis is in DIAGNOSIS.md.
 
+<!-- PINNED (not auto-updated) -->
+## Pinned results
+- **Flash, MRMS candidate (`anc_elev_lgbm_mrms`), DEV only, 2026-11-27 12:14 (local).**
+  - 57 units, 56 clusters.
+  - Mean within-unit AUC 0.7195 (≈ 0.720).
+  - Gain over the stronger baseline (elevation) +0.0711, 95 % cluster × 990 m block bootstrap CI [0.0505, 0.0911].
+  - Source: `cv_lean.py` at code commit e9306c3, log `~/.cache/geowatch/flood_round3/cv_lean.log`, lines 613–614. The run is chain R34's checkpointed lean rerun of the R33 comparison.
+  - The candidate is not a baseline, so R35 does not change this row.
+  - It is not yet in `results/dev_cv_r3.json`, which the chain rewrites when the run finishes.
+  - This is a DEV result: it validates nothing on its own, and the auto-generated DEV table below still shows the pre-MRMS selection until that file is rewritten.
+
 <!-- R33:BEGIN -->
 ## Latest (2026-11-26), in plain words
 - **Rain:** the 311 labels themselves cannot show 0.70.

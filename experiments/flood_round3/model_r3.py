@@ -183,9 +183,11 @@ def gain_lower_bound(tables, members, cluster, runs, cand):
                                            (t["y"] == 1).reshape(shape), ok.reshape(shape),
                                            BS.BLOCK_CELLS, BS.REPS, BS._seed(n))
     me = {k: float(np.mean([recs[n]["point"][k] for n in members])) for k in ("elev", "hand")}
+    # The comparator is ALWAYS the stronger of elevation and HAND (higher mean on these units).
+    # R35 (2026-11-27): the former exception -- a baseline candidate compared with the OTHER
+    # baseline -- is removed. A baseline's gain over the stronger baseline is <= 0, so a type whose
+    # method is elevation or HAND cannot pass; equality fails (the lower bound must be > 0).
     base = "elev" if me["elev"] >= me["hand"] else "hand"
-    if cand in ("elev", "hand"):
-        base = "hand" if cand == "elev" else "elev"
     db = B.cluster_mean_bootstrap({n: recs[n]["reps"][cand] - recs[n]["reps"][base] for n in members},
                                   cluster, BS.REPS, BS.SEED)
     lo, hi = B.ci(db)

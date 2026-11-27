@@ -269,3 +269,12 @@ Fixed before their DEV comparison runs. They apply to every method alike; baseli
   - Inner leave-region-out fits are shared between the two outer folds that use the same training set (all regions except A and B). That gives C(R,2) + R fits per candidate instead of R².
   - Every fit, outer prediction and score is saved as it finishes, so a restart skips finished work.
 - **Equivalence check:** on held-out units, the lean fit's predictions match `model_r3.fit_anchored` exactly (maximum difference 0.0) for `anc_elev_lgbm_mrms` and `anc_elev_lgbm_wl`. Peak memory is 0.6 GB.
+
+## R35 (2026-11-27) The scorer has no baseline exemption (owner directive, before the round-3 reserve is sealed)
+- **Found:** `model_r3.gain_lower_bound` swapped the comparator when the candidate was itself a baseline: elevation was compared with HAND, and HAND with elevation. The bar's comparison is the gain over the *stronger* of elevation and HAND, so the exception let a baseline "pass" against the weaker one.
+- **Rule now:** every candidate, baselines included, is compared with the stronger of elevation and HAND, by the higher mean AUC on the identical eligible units. A baseline's gain is therefore ≤ 0, and equality fails (the 95 % lower bound must be > 0). A type whose chosen method is elevation or HAND cannot pass.
+- **Test:** `test_round3.py::test_gain_lower_bound_has_no_baseline_exemption`. It checks that elevation gets gain 0 and a lower bound ≤ 0 against itself, that HAND loses to the stronger elevation, and that a genuinely better candidate still clears the bound.
+- **Effect on recorded results:**
+  - Non-baseline rows (every learned, physics and LR candidate) are unchanged; their comparator was already the stronger baseline.
+  - The `elev` and `hand` rows of earlier DEV tables used the old contrast. They stay in history as recorded and are read under R35 from now on.
+  - The choice rule (highest lower bound) is unchanged.

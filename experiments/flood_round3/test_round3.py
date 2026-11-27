@@ -110,3 +110,30 @@ def test_tiff_header_parser_reads_georeference():
     assert h["w"] == 100 and h["h"] == 50
     assert h["bounds"] == pytest.approx([10.0, 45.0 - 50 * 0.002, 10.0 + 100 * 0.001, 45.0])
     assert MM.parse_tiff_header(buf[:20]) is None
+
+
+def _unit(rng, n=66, wet_low=True):
+    z = rng.normal(0, 1, (n, n)).cumsum(0) + rng.normal(0, 0.3, (n, n))
+    w = z + rng.normal(0, 1.5, (n, n))                 # wetness only partly follows terrain
+    y = (w < np.quantile(w, 0.3)).astype(np.int8).ravel()
+    return {"shape": (n, n), "y": y}, -z.ravel(), -(z + rng.normal(0, 3.0, (n, n))).ravel()
+
+
+def test_gain_lower_bound_has_no_baseline_exemption():
+    """R35: elevation or HAND is compared with the STRONGER baseline, so its gain is 0 or less and
+    it cannot pass; a real improvement still can."""
+    rng = np.random.default_rng(7)
+    tabs, runs = {}, {"elev": {}, "hand": {}, "good": {}}
+    for i in range(6):
+        t, elev, hand = _unit(rng)
+        n = f"u{i}"
+        tabs[n] = t
+        runs["elev"][n], runs["hand"][n] = elev, hand
+        runs["good"][n] = elev + 2.0 * (t["y"] == 1)          # strictly better than elevation
+    cl = {n: n for n in tabs}
+    e = M.gain_lower_bound(tabs, list(tabs), cl, runs, "elev")
+    assert e["vs"] == "elev" and e["gain"] == 0.0 and e["ci"][0] <= 0.0      # equality fails
+    h = M.gain_lower_bound(tabs, list(tabs), cl, runs, "hand")
+    assert h["vs"] == "elev" and h["gain"] < 0
+    g = M.gain_lower_bound(tabs, list(tabs), cl, runs, "good")
+    assert g["vs"] == "elev" and g["ci"][0] > 0
