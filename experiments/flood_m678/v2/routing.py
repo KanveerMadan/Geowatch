@@ -97,3 +97,33 @@ def volume_limited(z, source, level_max, volume_m3, cell_area_m2, **kw):
         else:
             b = m
     return a, vol(a)[1]
+
+
+def physics_score(z, seed_groups, levels):
+    """Per cell: max over source groups of (W_g - B_g,i), with B the minimax spill elevation from the
+    group's cells. On freely connected ground B_g,i = z_i, so the score is the water depth; behind a
+    ridge or levee it is the (negative) rise still needed to reach the cell. One continuous ranking,
+    no ties at zero. Groups bin the channel cells by level (a few bins keep it tractable)."""
+    best = np.full(z.shape, -np.inf)
+    for seeds, w in zip(seed_groups, levels):
+        if len(seeds[0]) == 0:
+            continue
+        B = minimax_spill(z, seeds)
+        best = np.fmax(best, np.where(np.isfinite(B), w - B, -np.inf))
+    return np.where(np.isfinite(best), best, np.nan)
+
+
+def channel_groups(z, channel, stage, nbins=8):
+    """Bin channel cells by water-surface elevation (z + stage) into nbins groups."""
+    rr, cc = np.nonzero(channel & np.isfinite(z) & np.isfinite(stage))
+    if len(rr) == 0:
+        return [], []
+    w = z[rr, cc] + stage[rr, cc]
+    qs = np.unique(np.quantile(w, np.linspace(0, 1, nbins + 1)))
+    groups, levels = [], []
+    for a, b in zip(qs[:-1], qs[1:]):
+        m = (w >= a) & ((w < b) | (b == qs[-1]))
+        if m.any():
+            groups.append((rr[m], cc[m]))
+            levels.append(float(np.mean(w[m])))
+    return groups, levels

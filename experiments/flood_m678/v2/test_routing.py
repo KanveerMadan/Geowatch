@@ -111,3 +111,14 @@ def test_rating_curve_monotone_and_invertible():
 def test_discharge_scaling():
     assert F.scale_discharge(100.0, 1000.0, 1000.0) == 100.0
     assert F.scale_discharge(100.0, 1000.0, 500.0) == pytest.approx(100 * 0.5 ** 0.8)
+
+
+def test_physics_score_is_depth_when_connected_and_margin_behind_ridge():
+    z = valley()
+    z[:, 30] = 110.0                            # ridge at column 30
+    s = R.physics_score(z, [river_cells()], [102.0])
+    assert s[5, 20] == pytest.approx(2.0)       # depth in the channel
+    assert s[5, 22] == pytest.approx(1.0)       # 1 m deep on the bank
+    assert s[5, 32] == pytest.approx(102.0 - 110.0)   # behind the ridge: needs 8 m more
+    assert np.isfinite(s).all()
+    assert s[5, 26] > s[5, 32]                  # same terrain height class, but connected beats blocked
