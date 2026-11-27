@@ -90,3 +90,7 @@ Joining edges (transitive), across all types:
 - anchors within 20 km and dates within 30 days;
 - anchors within 20 km on the same named river (river token in the station names), any date.
 Leads without a coordinate anchor (country-only) cannot be joined or screened. They stay in the lead log until geolocated.
+
+## Amendment 2 (2026-11-27, before the screen runs)
+
+Sustained-melt cause from gauge history (metadata only): a WSC station is nival when at least 60 % of its 1984–2021 annual maximum water levels fall in April–June. Spring peaks at other stations are refused as `not_nival` (likely rain-driven). Other M8 leads need a cause from their source: a USGS code 9 lead needs a second source naming snowmelt or ice, and a CRID HM peak is break-up by definition. A WSC crest reading gets a ±15 min bracket from its UTC offset. A crest day without a time zone gets a window wide enough for any zone (local day −12 h to +36 h UTC).
