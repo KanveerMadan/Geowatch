@@ -176,3 +176,50 @@
 6. Power for the actual joint pass rule.
 
 The reserve stays sealed. Nothing is promoted from DEV.
+
+## Owner follow-ups (2026-11-27): corridor check and M7 recruitment
+
+### 1. Corridor check (40 km along the river network, tributaries included)
+- Defined in decisions.md before any corridor number, including the stop rule: over at least 20 usable units, if forcing changes the AUC by less than 0.005 (median) and the rank correlation stays above 0.99, the M8 snowmelt bid stops at experimental.
+- First 3 units, discharge scaled from the gauge to every reach:
+
+  | unit | physics AUC (same under real, seasonal, ×½, ×2) | elevation | HAND | cells flipping wet/dry |
+  |---|---:|---:|---:|---:|
+  | 01BC001 2018 | 0.390 | 0.419 | 0.473 | 0.008 % |
+  | 03NF001 2020 | 0.594 | 0.785 | 0.741 | 0.001 % |
+  | 05AB044 2006 | 0.501 | 0.627 | 0.817 | 0.001 % |
+
+- **Honest reading:**
+  - With discharge scaled by drainage area from one gauge, every water level moves up or down by nearly the same factor, so the ranking cannot change. That is a property of the forcing design, not yet a fact about snowmelt floods. The stop rule as first written would have been met trivially, and I would rather not stop the type on that.
+  - So, recorded before any such number: the corridor now also uses per-reach GEOGloWS discharge. Each reach gets its own event peak against its own normal year, so tributaries can differ from the main river. The stop rule is judged on that.
+  - Physics also scores below elevation and HAND on all 3 corridors.
+- The 4th unit hit an Earth Engine memory limit. Fixed: one band per request, and a failing unit is skipped and logged.
+- The corridor runs again by itself after the DEV labels finish, on all units with discharge.
+
+### 2. M7 recruitment, addendum seal 2.1 (tag `m678v2-seal-2.1`, metadata only, before any label)
+- **Added:**
+  - USGS dam-failure peaks (code 3);
+  - 21 EMS activations (from the round-3 session's list);
+  - hand-located 2022+ breaches with source links: Bagmati and Kosi, Bihar 2024 (one storm); the Budameru canal, Vijayawada 2024; Alau, Maiduguri 2024; Tuanzhou, Dongting 2024;
+  - the Daugava ice jam, Latvia 2023 (M8).
+- **Excluded by the round-3 or v1 rules:**
+  - Emilia-Romagna 2023 and 2024, Derna, Arbaat and EMSR871 were used before;
+  - Pakistan 2022 and Rio Grande do Sul 2024 sit inside round-3 footprints;
+  - Pajaro, Orsk, Kherson, Al-Tlul, Gabrielle and Ussuriysk are quarantined v1 reserve.
+- **Result:**
+
+  | | reserve groups | DEV groups |
+  |---|---:|---:|
+  | M7 | **1** | 5 |
+  | M8 ice jam | 8 (+1 Latvia) | 52 |
+  | M8 snowmelt | 254 | 301 |
+
+  All 614 seal-2.0 groups kept their side.
+- **Why M7 is still stuck:** every hand-located 2022+ breach fails on timing, not data. No satellite image falls on the crest day or the day after (the brief's same-day/next-day window). Tuanzhou has no usable discharge peak at all. GFM does not change this: it is built from the same Sentinel-1 passes.
+- **What would unlock M7** (owner decisions, not mine to take):
+  1. A wider image window for levee breaches, where protected land stays flooded for days (for example up to 3 days after the breach, as round 3 allowed for river floods), with lag reported per label.
+  2. Allowing pre-2022 incidents into a fresh reserve when nobody has inspected them (a keyed random split by component instead of the 2022 date rule). That would open the hundreds of documented older breaches.
+  3. A breach list with exact coordinates and times. ASDSO's dam-incident table only exports from a browser, and NPDP's list is a web table, so either needs a manual export. USACE after-action reports are scattered PDFs.
+- GFM credentials are in place. Round 3 is checking GFM against EMS optical maps today (`results/gfm_gate.json`). GFM will be used as a second, independent radar check only if it passes.
+
+**Running unattended:** the DEV labels, then the DEV tables, then the corridor (now with per-reach forcing). Log: `~/.cache/geowatch/m678v2/dev_chain.log`.
