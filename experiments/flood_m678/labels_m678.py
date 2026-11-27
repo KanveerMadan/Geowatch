@@ -24,8 +24,9 @@ Sources, per incident, from the scenes the sealed screen listed (scene ids and t
   * every clear scene in the window counts (maximum extent, as R3-S1-3).
 - Snow and ice: MODIS Terra MOD10A1 NDSI snow cover >= 10 on the image day is UNOBSERVED for
   every source (brief rule 4 for M8; applied to all types because snow cannot be judged).
-- Primary label: radar where a paired pass exists, otherwise optical. When both exist, the other
-  is kept as the independent QA label and their agreement is recorded.
+- Label (owner rule, DECISIONS 2026-11-27): optical first; where optical is neither FLOODED nor
+  DRY (cloud, shadow, ambiguity), the cell takes the Sentinel-1 radar state from a screened
+  same-orbit pass. Both source labels are kept, and their agreement (kappa) is the label QA.
 
 Box: round 4's s1_flood_centre on the primary label's flooded and valid cells of the search square,
 then an 8 km square (R25) cropped on the same 30 m lattice. No flooded cell, no box (a dropout).
@@ -326,7 +327,15 @@ def build(rec, ee=None):
     snow = snow_mask(ee, days, t, shape, crs) if days else np.zeros(shape, bool)
     for k in labels:
         labels[k][snow & (labels[k] != L.PERMANENT)] = L.UNOBSERVED
-    primary = "radar" if "radar" in labels else "optical" if "optical" in labels else None
+    # Owner rule (DECISIONS 2026-11-27): optical first; Sentinel-1 radar fills, cell by cell, where
+    # optical gives neither FLOODED nor DRY (cloud, shadow, ambiguity). Identical for DEV and reserve.
+    if "optical" in labels and "radar" in labels:
+        o_, r_ = labels["optical"], labels["radar"]
+        labels["merged"] = np.where(np.isin(o_, (L.FLOODED, L.DRY)), o_,
+                                    np.where(np.isin(r_, (L.FLOODED, L.DRY)), r_, o_)).astype(np.int8)
+        primary = "merged"
+    else:
+        primary = "optical" if "optical" in labels else "radar" if "radar" in labels else None
     meta = {"incident": n, "type": rec["type"], "subtype": rec["subtype"], "cluster": rec["cluster"],
             "event": rec["date"], "crest_utc": rec["crest_utc"], "crest_kind": rec["crest_kind"],
             "window_utc": rec["window_utc"], "search_square": list(sq), "sources": meta_src, "primary": primary,
@@ -337,9 +346,12 @@ def build(rec, ee=None):
         np.savez_compressed(out_p, meta=np.array(json.dumps(meta)))
         return meta
     y = labels[primary]
-    other = [k for k in labels if k != primary]
+    if primary == "merged":
+        meta["merge"] = {"optical_cells": int(np.isin(labels["optical"], (0, 1)).sum()),
+                         "radar_fill_cells": int((np.isin(labels["radar"], (0, 1)) & ~np.isin(labels["optical"], (0, 1))).sum())}
+    other = ["radar"] if primary == "merged" else []
     if other:
-        meta["qa_kappa"], meta["qa_cells"] = kappa(y, labels[other[0]])
+        meta["qa_kappa"], meta["qa_cells"] = kappa(labels["optical"], labels["radar"])
     centre = s1_flood_centre(y == L.FLOODED, np.isin(y, (0, 1)), t, crs)
     if centre is None:
         meta["dropout"] = "no flooded cell in the search square"
@@ -358,7 +370,7 @@ def build(rec, ee=None):
                 ambiguous_cells=int((yb == AMBIGUOUS).sum()), unobserved_cells=int((yb == L.UNOBSERVED).sum()),
                 permanent_cells=int((yb == L.PERMANENT).sum()))
     if other:
-        meta["qa_kappa_box"], meta["qa_cells_box"] = kappa(yb, ob[other[0]])
+        meta["qa_kappa_box"], meta["qa_cells_box"] = kappa(ob["optical"], ob["radar"])
     extra = {f"y_{k}": v.astype(np.int8) for k, v in ob.items()}
     np.savez_compressed(out_p + ".tmp.npz", flooded=(yb == L.FLOODED), valid=np.isin(yb, (0, 1)), y3=yb.astype(np.int8),
                         meta=np.array(json.dumps(meta, default=str)), **extra)

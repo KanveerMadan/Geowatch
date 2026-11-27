@@ -73,20 +73,38 @@ def main_channel(ee, grid):
     return {"m678_hmain_m": h.ravel().astype(np.float32), "m678_dmain_m": (d * abs(t[0])).ravel().astype(np.float32)}
 
 
-def feats():
+def _elev_upa(ee, grid):
+    from experiments.flood_learned import fetch as F
+    from rasterio.transform import Affine
+    from susceptibility.hydro_rasters import compute_pixels, grid_lonlat_bounds
+    tr, shape, crs = Affine(*grid["transform"]), tuple(grid["shape"]), grid["crs"]
+    region = ee.Geometry.Rectangle(list(grid_lonlat_bounds(tr, shape, crs)))
+    img = ee.Image.cat([F._mosaic(F.GLO30_ASSET, region, "DEM").rename("z"),
+                        ee.Image("MERIT/Hydro/v1_0_1").select("upa").rename("upa")]).toFloat()
+    a = compute_pixels(img, tr, shape, crs, "m6 terrain")
+    return np.asarray(a["z"], float), np.nan_to_num(np.asarray(a["upa"], float))
+
+
+def feats(split="dev"):
     import labels_m678 as LM
     from experiments.flood_round3 import diagnose_ee as D
     from experiments.flood_round3 import event_feats as E
     ee = LM.init_ee()
     os.makedirs(EV, exist_ok=True)
     ix = None
-    for n, r in sorted(units().items()):
+    vols = json.load(open(os.path.join(HERE, "lake_volumes_m678.json")))["volumes"]
+    for n, r in sorted(units(split).items()):
         p = os.path.join(EV, f"{n}.npz")
         if os.path.exists(p):
             continue
         z = np.load(os.path.join(TABLES, f"{n}.npz"), allow_pickle=False)
         m = json.loads(str(z["meta"]))
         out = main_channel(ee, m["grid"])
+        if r["type"] == "M6":                      # owner rule: M6 is physics only (m6_physics)
+            import m6_physics as P6
+            elev, upa = _elev_upa(ee, m["grid"])
+            sc = P6.laharz_score(elev, upa, vols[n]["volume_m3"])
+            out["phys_laharz"] = (sc.ravel() if sc is not None else np.full(len(z["y"]), np.nan)).astype(np.float32)
         if not any(w in r["subtype"] for w in NO_GEOGLOWS) or "levee" in r["subtype"]:
             ix = ix if ix is not None else D._reach_index()
             f = E.river_features(m["grid"], m["event"], z["X"][:, list(m["features"]).index("hand_merit")], ix=ix)
@@ -110,13 +128,14 @@ def load_tables(split="dev"):
         ev = {k: e[k] for k in EV_FEATS + MAIN_FEATS}
         ev["phys_stage"] = ev["ev_depth_below_stage_m"]
         ev["phys_main"] = -ev["m678_hmain_m"]
+        ev["phys_laharz"] = e["phys_laharz"] if "phys_laharz" in e.files else np.full(len(y), np.nan, np.float32)
         tabs[n] = {"X": z["X"], "C": z["C"], "y": y, "F": list(m["features"]), "shape": tuple(m["shape"]), "ev": ev,
                    "tags": [r["type"]], "region": r["cluster"], "cluster": r["cluster"], "grid": m["grid"],
                    "event": m["event"], "subtype": r["subtype"]}
     return tabs
 
 
-CANDS = {"M6": ("elev", "hand", "phys_main", "elev_hand_lr", "anc_elev_lgbm", "anc_elev_lgbm_main"),
+CANDS = {"M6": ("elev", "hand", "phys_laharz", "phys_main"),     # physics only (owner rule)
          "M7": ("elev", "hand", "phys_stage", "phys_main", "elev_hand_lr", "anc_elev_lgbm", "anc_elev_lgbm_ev", "anc_elev_lgbm_main"),
          "M8": ("elev", "hand", "phys_stage", "phys_main", "elev_hand_lr", "anc_elev_lgbm", "anc_elev_lgbm_ev", "anc_elev_lgbm_main")}
 
@@ -130,7 +149,7 @@ def predictions(tabs):
     params = {k: v for k, v in LGBM_PARAMS.items() if k != "verbose"}
     runs = {"elev": {n: M.anchor_score(tabs[n], "elev") for n in names},
             "hand": {n: M.anchor_score(tabs[n], "hand") for n in names}}
-    for k in ("phys_stage", "phys_main"):
+    for k in ("phys_stage", "phys_main", "phys_laharz"):
         runs[k] = {n: np.asarray(tabs[n]["ev"][k], np.float64) for n in names}
     folds = {}
     for n in names:
@@ -185,7 +204,9 @@ def cv():
 
 def main(argv=None):
     a = argv or sys.argv[1:]
-    return {"feats": feats, "cv": cv}[a[0]]()
+    if a[0] == "feats":
+        return feats(a[1] if len(a) > 1 else "dev")
+    return {"cv": cv}[a[0]]()
 
 
 if __name__ == "__main__":

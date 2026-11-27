@@ -27,7 +27,6 @@ OUT = os.path.join(HERE, "results")
 FROZEN = os.path.join(OUT, "frozen_models")
 CHOSEN_P = os.path.join(OUT, "chosen_methods.json")
 MIN_CLUSTERS, MIN_AUC = 5, 0.70
-TYPE_OF = {"M6": "M6", "M7": "M7", "M8": "M8"}
 
 
 def _features_for(method):
@@ -58,7 +57,7 @@ def freeze():
     os.makedirs(FROZEN, exist_ok=True)
     hashes = {}
     for ty, method in sorted(chosen.items()):
-        if method in ("elev", "hand", "phys_main", "phys_stage"):
+        if method in ("elev", "hand", "phys_main", "phys_stage", "phys_laharz"):
             continue
         p = os.path.join(FROZEN, f"{ty}_{method}.pkl")
         if method == "elev_hand_lr":
@@ -84,7 +83,7 @@ def predict(method, ty, t):
     from experiments.flood_round3 import model_r3 as M
     if method in ("elev", "hand"):
         return M.anchor_score(t, method)
-    if method in ("phys_main", "phys_stage"):
+    if method in ("phys_main", "phys_stage", "phys_laharz"):
         return np.asarray(t["ev"][method], np.float64)
     obj = pickle.load(open(os.path.join(FROZEN, f"{ty}_{method}.pkl"), "rb"))
     if obj["kind"] == "lr":
