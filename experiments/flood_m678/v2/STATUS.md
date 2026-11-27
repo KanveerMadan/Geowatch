@@ -90,3 +90,39 @@
 - Finish the screen.
 - Seal v2.0: components, split and hashes, pushed before any v2 model work.
 - Then step 2 (DEV labels), starting with M8 sustained melt.
+
+## Step 1 result: seal 2.0 published (2026-11-27, tag `m678v2-seal-2.0`, commit ae935ef)
+
+**The image screen** (metadata only, 4,294 leads):
+
+| | DEV leads | reserve leads (2022+) |
+|---|---:|---:|
+| M8 melt with a crest reading and a full-box scene in the window | 881 | 389 |
+| M8 melt refused as not snowmelt-driven (station peaks not mostly April–June) | 1,034 | 379 |
+| M8 melt with no scene in the window | 442 | 10 |
+| M8 ice jam timed with a scene | 113 | 7 |
+| M8 ice jam with no scene | 554 | 5 |
+| M6 lake outbursts with no downstream crest time | 296 | 168 |
+| M7 breaches with no crest time | 16 | 0 |
+
+**Seal 2.0, independent groups:**
+
+| submode | DEV groups | reserve groups |
+|---|---:|---:|
+| M8 sustained melt | 301 | **254** |
+| M8 ice jam | 52 | 7 |
+| M7 | 0 | 0 |
+| M6 | 0 | 0 |
+
+**What this means, simply**
+- **M8 snowmelt** now has far more independent held-out groups (254) than the ~34–42 a properly powered test needs, even after the losses expected when labels are built. It also has 301 DEV groups to develop on. It is the type to build first.
+- **M8 ice jam** has only 7 reserve groups: too few for its own test. It stays in development, and recruiting continues: 2016+ WSC daily ice flags, CRREL, Nordic gauges.
+- **M7 and M6** have no group with an independent crest time. The unlock list above stands for M7. M6 needs downstream gauge timing for lakes outside the quarantined Alaskan and Icelandic ones.
+- **USGS:** 1,362 leads came in after the screen started, so they wait for addendum seal 2.1:
+  - 11 dam-failure gauge records (M7);
+  - 1,304 "snowmelt, hurricane, ice jam or debris" peaks, which need a second source naming the cause.
+
+**Next: step 2 (DEV labels), M8 sustained melt first**
+1. Reproduce v1's published DEV label counts on a pinned v1 fixture (Midland: 3,706 flooded / 5,378 dry) before changing anything.
+2. Build a provenance record for every cell (sensor, time, offset from the local crest).
+3. Show the DEV inclusion funnel by submode, region, crest precision and lag.
