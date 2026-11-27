@@ -443,6 +443,37 @@ def validate_boundary_layer_id(bid: str) -> str:
     return bid
 
 
+class ScenarioRequest(BaseModel):
+    """Flood round 5 scenario: an illustrative depth map if a named lake or dam released a volume.
+    Never validated; the response says so."""
+    kind: str                      # "embankment_dam_breach" | "debris_flow_glof"
+    west: float
+    south: float
+    east: float
+    north: float
+    volume_m3: float
+    height_m: float | None = None  # dam height; required for a dam
+
+
+def run_scenario(req: "ScenarioRequest", fetch=None) -> dict:
+    """Terrain only (no rainfall, no water history), one hydrology grid, then
+    susceptibility.conditional_flood.scenario_depth. `fetch` is injectable for tests."""
+    import numpy as np
+    from susceptibility import conditional_flood as CF
+    from susceptibility.hydro_rasters import fetch_hydro_rasters, utm_grid
+    bbox = (req.west, req.south, req.east, req.north)
+    t, shape, crs = utm_grid(bbox)
+    rasters = (fetch or fetch_hydro_rasters)(bbox, t, shape, crs, None, rainfall=False, water_history=False)
+    out = CF.scenario_depth(req.kind, rasters, req.volume_m3, req.height_m)
+    d = out.pop("depth_map_m", None)
+    if d is not None and np.isfinite(d).any():
+        out["depth_m"] = {"max": round(float(np.nanmax(d)), 2), "mean_wet": round(float(np.nanmean(d[d > 0])), 2)
+                          if (d > 0).any() else 0.0, "p90": round(float(np.nanpercentile(d, 90)), 2)}
+    out.update(kind=req.kind, bbox=list(bbox), method_references=CF.peak_reference(),
+               label_text="Scenario: illustrative, not validated, not a forecast.")
+    return out
+
+
 class InundationRequest(BaseModel):
     """Phase 8: separate request shape, deliberately NOT reusing
     AnalyzeRequest's single start_date/end_date pair, per the master
@@ -617,6 +648,24 @@ def analyze_inundation(req: InundationRequest):
         # Items 54/55: the right broad catch at the HTTP boundary, so it
         # names the class. "EEException: quota" and "KeyError: 'hnd'" are
         # different failures and must not read the same.
+        raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}")
+
+
+@app.post("/api/scenario")
+def scenario(req: ScenarioRequest):
+    """Flood round 5 (M6/M7): "what if this lake or dam fails". Labelled `scenario`."""
+    if req.kind not in ("embankment_dam_breach", "debris_flow_glof"):
+        raise HTTPException(status_code=400, detail="kind must be embankment_dam_breach or debris_flow_glof")
+    if req.west >= req.east or req.south >= req.north:
+        raise HTTPException(status_code=400, detail="Invalid bounding box.")
+    if req.volume_m3 <= 0 or (req.kind == "embankment_dam_breach" and not (req.height_m and req.height_m > 0)):
+        raise HTTPException(status_code=400, detail="A positive volume is needed, and a dam needs its height.")
+    aoi_geo = compute_aoi_geodesics(req.west, req.south, req.east, req.north)
+    if aoi_geo["area_km2"] > MAX_AOI_AREA_KM2:
+        raise HTTPException(status_code=400, detail=f"AOI too large: {aoi_geo['area_km2']:.2f} km². Keep under {MAX_AOI_AREA_KM2} km².")
+    try:
+        return run_scenario(req)
+    except Exception as e:
         raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}")
 
 
