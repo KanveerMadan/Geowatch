@@ -129,7 +129,10 @@ def build(lead, comp, ee):
         if not stacks:
             return None
         days = [_utc(u["utc"]).date().isoformat() for u in used]
-        snow = LM.snow_mask(ee, days, t, shape, crs)
+        modis_days = [d for d in days if d >= "2000-02-24"]       # MODIS Terra snow begins 2000-02-24
+        snow = LM.snow_mask(ee, modis_days, t, shape, crs) if modis_days else np.zeros(shape, bool)
+        if len(modis_days) < len(days):
+            used.append({"note": "MODIS snow unavailable before 2000-02-24: the sensors' own snow flags only"})
         for y in stacks:
             y[snow & (y != L.PERMANENT)] = L.UNOBSERVED
         state, fam, idx, off = nearest_merge(stacks, offs, fams)
@@ -179,7 +182,8 @@ def dev_leads(limit=None):
     order = {"sustained_melt": 0, "ice_jam": 1}
     out = []
     for c in sorted(seal["dev"], key=lambda c: (order.get(c["submode"], 9), c["component"])):
-        for x in sorted(c["leads"], key=lambda x: x["date"])[:MAX_PER_COMPONENT]:
+        same = [x for x in c["leads"] if leads[x["lead_id"]]["submode"] == c["submode"]]
+        for x in sorted(same, key=lambda x: x["date"])[:MAX_PER_COMPONENT]:
             out.append((c["component"], {**leads[x["lead_id"]], **x}))
     return out[:limit] if limit else out
 
@@ -189,7 +193,7 @@ def provenance_table():
     d = S.dev_path("labels")
     for f in sorted(os.listdir(d)) if os.path.isdir(d) else []:
         m = json.loads(str(np.load(os.path.join(d, f), allow_pickle=False)["meta"]))
-        offs = [s["offset_h"] for s in m.get("scenes", [])]
+        offs = [s["offset_h"] for s in m.get("scenes", []) if "offset_h" in s]
         rows.append({"lead": m["lead"], "component": m["component"], "type": m["type"], "submode": m["submode"],
                      "date": m["date"], "flooded": m.get("flooded_cells"), "dry": m.get("dry_cells"),
                      "usable": bool((m.get("flooded_cells") or 0) >= 50 and (m.get("dry_cells") or 0) >= 50),
