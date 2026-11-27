@@ -40,8 +40,9 @@ RULES = [
     ("sk_key", re.compile(r"\bsk-(ant-)?[A-Za-z0-9_-]{24,}\b")),
 ]
 GENERIC_HOMES = {"runner", "user", "username", "you", "me", "name", "example", "<name>"}
-BAD_FILES = re.compile(r"(^|/)(\.env(\..*)?|.*\.pem|credentials(\.json)?|.*\.p12|id_rsa.*|\.netrc|\.cdsapirc|gfm\.json)$")
+BAD_FILES = re.compile(r"(^|/)(\.env(\..*)?|.*\.pem|credentials(\.json)?|.*\.p12|id_rsa.*|\.netrc|\.cdsapirc|gfm\.json|ems\.json)$")
 GFM_CREDS = os.path.expanduser("~/.config/geowatch/gfm.json")      # GFM login (R30); values blocked, never printed
+EMS_CREDS = os.path.expanduser("~/.config/geowatch/ems.json")      # EMS session cookie (R39); values blocked, never printed
 
 
 def git(*a, cwd=None) -> str:
@@ -71,10 +72,12 @@ def env_values(root: str) -> list:
             v = line.split("=", 1)[1].strip().strip("'\"")
             if len(v) >= 6 and v.lower() not in ("true", "false"):
                 vals.append(v)
-    if os.path.exists(GFM_CREDS):
+    for cred in (GFM_CREDS, EMS_CREDS):
+        if not os.path.exists(cred):
+            continue
         try:
             import json
-            for v in json.load(open(GFM_CREDS)).values():
+            for v in json.load(open(cred)).values():
                 if isinstance(v, str) and len(v) >= 6:
                     vals.append(v)
         except Exception:          # noqa: BLE001  (unreadable file: the file-name rule still applies)

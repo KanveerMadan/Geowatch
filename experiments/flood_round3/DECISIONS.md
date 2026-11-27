@@ -316,3 +316,12 @@ GFM was read only on DEV EMS units (the §e set), with the product picked by Sen
   - Rain, flash, coastal and compound keep analyst/VHR maps (EMS optical), surveyed marks and the FloodNet test (rain).
   - Waterlogging keeps our Sentinel-1 labels.
   - GFM product times remain usable as metadata for every type.
+
+## R39 (2026-11-27): pre-2022 EMS metadata needs a login after all
+- **What was found:** the public dashboard API reads 2022+ activations without a login, but returns HTTP 403 ("Authentication credentials were not provided") for 254 of 379 flood and storm activations from 2015 on, mostly pre-2022. That confirms R23.
+  - It authenticates by session cookie (EU Login).
+  - The newer portal API gives activation summaries only, with no AOIs or products.
+- **What changes:**
+  - `ems_client.py` reads the same activation, AOI and product metadata as `select_r3`, using a pasted session cookie in `~/.config/geowatch/ems.json` (`{"cookie": ...}`).
+  - The secrets scan blocks the file name and its value.
+- **Why it matters:** these older activations carry EMS analyst maps (optical and VHR), the only label besides surveyed marks that the gates accept for rain, flash, coastal and compound (DIAGNOSIS §e, R38). MMFlood's 95 activations (2014–2021) are among them.
