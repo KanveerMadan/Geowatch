@@ -126,3 +126,10 @@ Candidates that pass §1–§4 are taken in **ascending activation code**, then 
   - at least 5 usable units.
 - FloodNet is a test label only, never used in training or method choice.
 - 311 stays the DEV / training label. 311 reserve storms are scored as a secondary result.
+
+## 11. GFM labels and storm joining (added 2026-11-27, before any GFM event product or candidate was read)
+- `GFM_DESIGN.md` is part of this criteria file and is hashed with it at the seal. It sets:
+  - the GFM label rule on the 30 m grid;
+  - the DEV gate that decides, per type, whether GFM may label reserve units;
+  - the joining of related storms across sources before counting.
+- A type that fails the gate gets no GFM labels in round 3.

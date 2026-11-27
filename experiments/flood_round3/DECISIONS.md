@@ -290,3 +290,12 @@ Fixed before their DEV comparison runs. They apply to every method alike; baseli
   - Mean AUC 0.741, gain over elevation +0.028, CI [0.0052, 0.052].
   - The lower bound is small: it clears 0 and is just above the 0.005 tie margin with elevation (0.0052 against 0.005).
 - **River, rain, coastal, compound:** their rows date from 2026-11-25 and stay as recorded. `run/status_dev_cv.py` now shows them as R35 reads them: the stronger baseline's row is 0 [0, 0], and the weaker baseline's row is unchanged. No choice changes. River, coastal and compound keep elevation, so no method passes; rain keeps `anc_elev_lgbm_fine`, at AUC 0.602.
+
+## R37 (2026-11-27): GFM rules pre-registered (GFM_DESIGN.md, criteria §11)
+- All four owner accounts were tested with tiny requests:
+  - CDS: ERA5-Land;
+  - EWDS: GloFAS v5, which now uses `year/month/day`, `version_5_0` and `timespan`;
+  - GES DISC: IMERG through the Earthdata login;
+  - GFM: login (`gfm_client.py check`).
+- EMS products download publicly, so EMS needs no login.
+- Before any GFM event product was read, three things were fixed: the GFM label rule, a DEV acceptance gate per type against EMS maps (independent optical maps for rain, flash, coastal and compound), and storm joining across sources.
