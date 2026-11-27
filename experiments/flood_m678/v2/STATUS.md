@@ -126,3 +126,53 @@
 1. Reproduce v1's published DEV label counts on a pinned v1 fixture (Midland: 3,706 flooded / 5,378 dry) before changing anything.
 2. Build a provenance record for every cell (sensor, time, offset from the local crest).
 3. Show the DEV inclusion funnel by submode, region, crest precision and lag.
+
+## Steps 2–3: DEV labels and physics, in progress (2026-11-27)
+
+**Done**
+- **Label rules pinned:** v1's labeller, run from this branch, reproduces its published DEV counts exactly on two fixtures:
+  - Midland: 3,706 flooded / 5,378 dry;
+  - Grand Forks BC, optical with radar fill: 2,191 / 20,610.
+- **v2 labels** (`labels.py`):
+  - each cell takes the observation nearest the local crest, optical first, radar only where optical says nothing (no mixing of different flood phases);
+  - every cell records which sensor and how many hours from the crest;
+  - DEV storage only.
+- **Physics** (`routing.py`, `forcing.py`), 11 synthetic tests passing, covering:
+  - zero release;
+  - a hollow behind a ridge staying dry;
+  - an intact levee protecting and a breached one flooding;
+  - a tributary below its bed;
+  - finite volume (conserved within 2 %);
+  - datum shift;
+  - ice-jam backwater raising only the upstream reach;
+  - unknown terrain;
+  - rating-curve inversion.
+- **The physics score:** water depth where land is connected to the river at the event water level; elsewhere, how much higher the water would need to be (a negative number). It ranks every cell with no ties.
+
+**First DEV numbers (too few to conclude: 2 units with full forcing)**
+
+| unit | elevation | HAND | physics | physics, seasonal forcing | stage minus HAND |
+|---|---:|---:|---:|---:|---:|
+| 01BC001, 2018 | 0.394 | 0.514 | 0.367 | 0.367 | 0.520 |
+| 03NF001, 2020 | 0.868 | 0.762 | 0.629 | 0.629 | 0.769 |
+
+- **Real and seasonal forcing give identical rankings.** Inside one 8 km box, a larger discharge raises every water level about equally, so the order of cells does not move. This is exactly the design's warning. If it holds over many units, M8 melt's validation bid for spatial skill stops, and the physical gain is documented instead.
+- Elevation below 0.5 at 01BC001 (radar-only label) needs a blind label check before anything is read into it.
+
+**Running now (unattended, one heavy worker at a time)**
+- **DEV labels for M8 melt:** 20 built so far, about 2–3 min each, roughly a third usable.
+  - log: `~/.cache/geowatch/m678v2/labels_dev.log`;
+  - check: `grep -v "EE ok" ~/.cache/geowatch/m678v2/labels_dev.log | tail -20`.
+- **DEV tables** (terrain, forcing, physics and ablations): start by themselves when the labels finish.
+  - log: `~/.cache/geowatch/m678v2/tables_dev.log`.
+- Earth Engine is slow at the moment: one request took nearly 2 hours to time out and retry.
+
+**Next**
+1. Finish DEV labels and tables.
+2. Blind label QA (wet and dry examples, paddy and shadow).
+3. The DEV funnel.
+4. The full comparison: elevation, HAND, physics, physics plus learned correction, and river and flash transfer.
+5. The forcing, exchange and connectivity ablations.
+6. Power for the actual joint pass rule.
+
+The reserve stays sealed. Nothing is promoted from DEV.
