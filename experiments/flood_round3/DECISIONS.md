@@ -258,3 +258,14 @@ Fixed before their DEV comparison runs. They apply to every method alike; baseli
    - Marks were kept only where water exceeded 3DEP terrain by > 1 m, so low terrain is favoured by construction.
    - Never a pass/fail unit. `label_ceiling.py hwm`.
 5. **Earth Engine:** every round-3 call takes a shared lock on Codex's lock file (`ee_lock.py`), so the two never overlap.
+
+## R34 (2026-11-27): the R33 DEV comparison is rerun lean and checkpointed; the method is unchanged
+- **What happened:** `dev_cv_r3 cv flash_flood,waterlogging` ran for 10 h and finished 1 of its 5 models.
+  - It held every unit's full table in RAM as float64. Each 311 unit also carried a copy of its box's table.
+  - The 8 GB machine swapped (6 GB of swap in use). Nothing had been saved, because results were written only at the end.
+  - It was stopped by hand. `results/dev_cv_r3.json` was not touched.
+- **Rerun with `cv_lean.py`:** the same candidates, feature lists, folds, lambda grid, row subsample, seeds, choice rule and scorer.
+  - Only the needed columns are kept, as float32 on disk. The tables are float32 already, so nothing is lost.
+  - Inner leave-region-out fits are shared between the two outer folds that use the same training set (all regions except A and B). That gives C(R,2) + R fits per candidate instead of R².
+  - Every fit, outer prediction and score is saved as it finishes, so a restart skips finished work.
+- **Equivalence check:** on held-out units, the lean fit's predictions match `model_r3.fit_anchored` exactly (maximum difference 0.0) for `anc_elev_lgbm_mrms` and `anc_elev_lgbm_wl`. Peak memory is 0.6 GB.
