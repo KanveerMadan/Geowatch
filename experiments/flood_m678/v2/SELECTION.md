@@ -116,3 +116,7 @@ Changes to joining and sealing:
    - Components that touch v1 reserve or round-3 footprints stay excluded, as before.
    - Components already in seal 2.0 or 2.1 keep their side.
    - On the reserve side, all of a component's timed incidents count, of any date (no 2022 cut for keyed components).
+
+### Amendment 4a (2026-11-28, before any component is assigned under Amendment 4)
+
+Matching the owner's instruction ("a keyed random split by component for uninspected pre-2022 incidents"), the keyed split applies only to newly entering components with at least one timed pre-2022 incident. A newly entering component whose timed incidents are all from 2022 onwards is reserve by the date rule, as before. Everything else in Amendment 4 stands.

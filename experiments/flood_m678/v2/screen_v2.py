@@ -90,6 +90,11 @@ def screen_lead(lead, lo, hi, session):
     site = {"type": lead["type"], "subtype": "ice jam" if lead["submode"] == "ice_jam" else lead["submode"],
             "zone": "UTC", "longitude": float(lead["lon"]), "latitude": float(lead["lat"])}
     ev = {"date": lead["date"][:10], "crest_utc_bracket": [lo.isoformat(), hi.isoformat()]}
+    if lead["submode"] == "levee_breach" and lead.get("not_before_utc"):
+        # Seal 2.2 rule: window [breach, breach + 72 h] (v1's 72 h late bound, anchored on the breach).
+        b = lead["not_before_utc"]
+        ev["crest_utc_bracket"] = [b, b]
+        site = {**site, "type": "M8", "subtype": "levee window"}      # v1 late_hours -> 72 h
     if lead.get("not_before_utc"):
         ev["not_before_utc"] = lead["not_before_utc"]                # breach floor (levee/dam)
     return S.screen(ev, site, {}, session, __import__("pathlib").Path(STAC_CACHE))
@@ -143,6 +148,9 @@ def main(which="all"):
                 out[l["lead_id"]] = row
                 continue
         cb = crest_bounds(l)
+        if cb is None and l["submode"] == "levee_breach" and l.get("not_before_utc"):
+            b = datetime.fromisoformat(l["not_before_utc"])          # seal 2.2: the window runs from the breach
+            cb = (b, b, "breach_time")
         if cb is None:
             row["status"] = "no_crest"
             out[l["lead_id"]] = row

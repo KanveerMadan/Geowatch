@@ -28,7 +28,27 @@ def sha(p):
     return hashlib.sha256(open(os.path.join(HERE, p), "rb").read()).hexdigest()
 
 
+KEYED_FROM = (2, 2)                     # Amendment 4: keyed split for components entering from seal 2.2
+
+
+def version_tuple(v):
+    return tuple(int(x) for x in v.split("."))
+
+
+def keyed_side(cid):
+    import hmac
+    key = open(os.path.join(HERE, "split_key.txt")).read().strip().encode()
+    h = hmac.new(key, cid.encode(), hashlib.sha256).hexdigest()
+    return "reserve" if int(h[:8], 16) / 2 ** 32 < 0.5 else "dev"
+
+
+def labelled_leads():
+    d = os.path.expanduser("~/.cache/geowatch/m678v2/dev/labels")
+    return {f[:-4].replace("__", ":") for f in os.listdir(d)} if os.path.isdir(d) else set()
+
+
 def build(version):
+    labelled = labelled_leads()
     scr = list(csv.DictReader(open(os.path.join(HERE, "screening.csv"))))
     prev, lead_side = {}, {}
     for f in sorted(os.listdir(HERE)):
@@ -38,13 +58,16 @@ def build(version):
                     prev[c["component"]] = side
                     for x in c["leads"]:
                         lead_side[x["lead_id"]] = (side, c["component"])
-    cluster_of = {r["id"]: r["component"] for r in csv.DictReader(open(os.path.join(HERE, "clusters.csv")))}
+    crow = list(csv.DictReader(open(os.path.join(HERE, "clusters.csv"))))
+    cluster_of = {r["id"]: r["component"] for r in crow}
+    status_of = {r["component"]: r["status"] for r in crow}
     comps = {}
     for r in scr:
         if r["status"] != "timed_footprint":
             continue
         cid = cluster_of.get(r["lead_id"], r["component"])          # the current join decides grouping
-        comps.setdefault(cid, {"side": r["side"], "leads": []})["leads"].append(r)
+        st = status_of.get(cid)
+        comps.setdefault(cid, {"side": "dev_only" if st == "dev_only_inspected" else r["side"], "leads": []})["leads"].append(r)
     out = {"reserve": [], "dev": [], "excluded_addendum": []}
     for cid, c in sorted(comps.items()):
         # Earlier assignments never change: a component sharing any lead with a sealed component keeps
@@ -53,8 +76,23 @@ def build(version):
         if len(sides) > 1:
             out["excluded_addendum"].append({"component": cid, "reason": "joins sealed DEV and reserve components"})
             continue
-        side = sides.pop() if sides else prev.get(cid, c["side"])
-        if side == "reserve":
+        keyed = False
+        if sides:
+            side = sides.pop()
+        elif cid in prev:
+            side = prev[cid]
+        elif KEYED_FROM and version_tuple(version) >= KEYED_FROM:
+            inspected = c["side"] == "dev_only" or any(x["lead_id"] in labelled for x in c["leads"])
+            has_pre = any(x["date"] < "2022-01-01" for x in c["leads"])
+            if inspected:
+                side = "dev"
+            elif has_pre:                                  # Amendment 4a: keyed only with a pre-2022 incident
+                side, keyed = keyed_side(cid), True
+            else:
+                side = "reserve"
+        else:
+            side = "dev" if c["side"] == "dev_only" else c["side"]
+        if side == "reserve" and not keyed:
             c["leads"] = [x for x in c["leads"] if x["date"] >= "2022-01-01"]
         if not c["leads"]:
             continue
