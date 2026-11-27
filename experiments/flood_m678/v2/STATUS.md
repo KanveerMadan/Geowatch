@@ -37,3 +37,56 @@
   - gauges.
 - Join related storms, then split into DEV and reserve by whole clusters.
 - Push the seal before any v2 model work.
+
+## Step 1, new seal: in progress (2026-11-27)
+
+**Done so far**
+- Wrote the rules before choosing any event (`SELECTION.md`: what counts as an event, the six submodes, time windows, the 8 km box, how related events are joined, exclusions, and the DEV and reserve split). Two amendments were also written before any split or screen:
+  - recurring reaches go to the reserve, as in v1;
+  - the snowmelt cause rule: a station counts as snowmelt-driven if at least 60 % of its yearly peaks fall in April–June.
+- Collected event leads from open sources (`leads.csv`):
+
+  | source | leads |
+  |---|---:|
+  | GLOF v4.2 lake outbursts (M6) | 1,896 |
+  | DFO dam/levee (M7) and snowmelt/ice (M8) | 223 |
+  | Wikipedia dam-failure list (M7) | 46 |
+  | Canadian River Ice Database break-up peaks, 1984–2015 (M8 ice jam) | 1,067 |
+  | WSC spring annual peaks at or above each gauge's 1-in-5-year level (M8 melt) | 5,957 |
+  | USGS peak codes 3 (dam failure) and 9 (snowmelt/ice) | downloading (6 of 102 state files) |
+
+- Joined related leads into independent groups: 1,753 groups. 7 touch v1's quarantined reserve and are excluded; 3 contain already-inspected units and are DEV-only.
+
+**What the pool looks like before the image screen** (groups with a map location)
+
+| submode | DEV groups | clean 2022+ groups (reserve candidates) |
+|---|---:|---:|
+| M7 dam/levee breach | 16 | **0** |
+| M8 sustained melt | 627 | 418 |
+| M8 ice jam | 111 | 44 |
+| M6 lake outburst | 21 | 28 |
+
+254 more groups have no map location (country-only records) and cannot be screened until they are located.
+
+**What this means**
+- **M8 sustained melt** is the only submode with enough supply for a properly powered test (about 34–42 usable groups needed per type). It also has a large DEV supply.
+- **M7 is blocked on data**, not method: open structured sources give no located, clean 2022+ breach. What would unlock M7:
+  1. Copernicus EMS / GFM access (activation footprints and image times for 2022+ breaches);
+  2. a breach list with coordinates and times, such as USACE levee-breach after-action reports, NPDP/ASDSO dam incidents, or national investigations;
+  3. hand-locating the 2022+ DFO dam/levee records;
+  4. USGS dam-failure peak codes, still downloading.
+  Recruiting continues; M7 stays experimental until a powered reserve exists.
+- **M6** stays a labelled scenario unless its own evidence qualifies.
+
+**Running now**
+- Image-availability screen (metadata only):
+  - log: `~/.cache/geowatch/m678v2/screen.log`;
+  - check: `tail -5 ~/.cache/geowatch/m678v2/screen.log`.
+- USGS downloads:
+  - log: `~/.cache/geowatch/m678v2/recruit.log`;
+  - check: `ls ~/.cache/geowatch/m678v2/sources/usgs | wc -l` (102 files when done).
+
+**Next**
+- Finish the screen.
+- Seal v2.0: components, split and hashes, pushed before any v2 model work.
+- Then step 2 (DEV labels), starting with M8 sustained melt.
