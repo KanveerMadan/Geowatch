@@ -299,3 +299,7 @@ Fixed before their DEV comparison runs. They apply to every method alike; baseli
   - GFM: login (`gfm_client.py check`).
 - EMS products download publicly, so EMS needs no login.
 - Before any GFM event product was read, three things were fixed: the GFM label rule, a DEV acceptance gate per type against EMS maps (independent optical maps for rain, flash, coastal and compound), and storm joining across sources.
+- **Implementation note (2026-11-27, before any gate result):** GFM is read from EODC's public STAC catalogue (collection `GFM`), only within the unit window.
+  - Why: the API's per-product download returns one 300 km grid tile, which can miss the unit (seen on a probe), and its clipped download returned errors.
+  - "The first GFM product" is the first Sentinel-1 IW slice over the unit centre (Earth Engine collection metadata, as in §8) that has a GFM item. All GFM items of that pass are merged.
+  - The first, tile-mismatched probe outputs were discarded unread (`gfm/dev_bad_v1`).
