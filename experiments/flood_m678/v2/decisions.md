@@ -42,3 +42,21 @@
   2. **Per-cell provenance:** sensor family, scene and offset.
   3. **The 8 km box is labelled on its own grid** when it extends past the search square (v1's defect).
 - DEV takes at most two leads per component, earliest first, and builds M8 sustained melt first.
+
+2026-11-27. **Corridor diagnostic (the design's predeclared secondary footprint), fixed before any corridor number exists (owner instruction).**
+- **Domain:** a 40 km square centred on the lead's anchor (the gauge).
+- **Network:** MERIT upstream area ≥ 10 km², so tributaries are included.
+- **Corridor footprint:** cells within 1.5 km of the network with HAND ≤ 30 m. This spans several reaches, tributaries and levee compartments, where stage really varies.
+- **Labels:** v2's rules over the whole domain (nearest-to-crest merge, optical first, radar fill), scored on corridor cells, needing ≥ 50 flooded and ≥ 50 dry.
+- **Physics:** the same score as the box (`routing.physics_score`), with per-cell discharge Q = Q_gauge × (upa / upa_gauge)^0.8 and HAND rating-curve stage per upstream-area band.
+- **Forcing variants:**
+  - real (the event peak);
+  - seasonal (station median annual maximum, 1984–2021);
+  - exchanged (another DEV unit's peak/median ratio, paired in sorted order);
+  - ×0.5 and ×2.
+- **Reported per unit:**
+  - AUC of each variant, plus elevation and HAND on the same corridor cells;
+  - Spearman correlation of physics scores, real against seasonal;
+  - the share of corridor cells whose predicted wet status (score > 0) changes;
+  - whether predicted wet extent increases with Q (direction check).
+- **Stop rule for M8 sustained melt:** over ≥ 20 usable corridor units, if the median |AUC(real) − AUC(seasonal)| < 0.005 AND the median Spearman(real, seasonal) > 0.99, forcing changes nothing that matters. The M8 snowmelt bid for spatial skill then stops at experimental (ARCHITECTURE_V2 item 5). Otherwise development continues. The corridor never replaces the 8 km box as the primary footprint.
