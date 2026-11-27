@@ -25,6 +25,7 @@ import shutil
 import subprocess
 import sys
 import time
+import urllib.parse
 import urllib.request
 
 import numpy as np
@@ -261,7 +262,57 @@ def glof():
                "region": r["country"], "peak_value": "", "peak_unit": "", "station_p80": ""}
 
 
-ADAPTERS = {"usgs_peaks": usgs_peaks, "wsc_ice": wsc_ice, "wsc_melt": wsc_melt, "crid": crid, "dfo": dfo, "glof": glof}
+# ------------------------------------------------------------------ Wikipedia "Dam failure" list (facts, CC BY-SA)
+def _wiki_coords(titles):
+    out = {}
+    for i in range(0, len(titles), 40):
+        q = "|".join(titles[i:i + 40])
+        u = ("https://en.wikipedia.org/w/api.php?action=query&prop=coordinates&redirects=1&format=json&titles="
+             + urllib.parse.quote(q))
+        p = fetch(u, os.path.join(SRC, "wikipedia", f"coords_{i}.json"))
+        d = json.load(open(p))["query"]
+        alias = {r["from"]: r["to"] for r in d.get("redirects", []) + d.get("normalized", [])}
+        got = {pg["title"]: pg["coordinates"][0] for pg in d.get("pages", {}).values() if pg.get("coordinates")}
+        for t in titles[i:i + 40]:
+            tt = alias.get(alias.get(t, t), alias.get(t, t))
+            if tt in got:
+                out[t] = (got[tt]["lat"], got[tt]["lon"])
+    return out
+
+
+def wiki_dams():
+    import re
+    p = fetch("https://en.wikipedia.org/w/api.php?action=parse&page=Dam%20failure&prop=wikitext&format=json",
+              os.path.join(SRC, "wikipedia", "dam_failure.json"))
+    w = json.load(open(p))["parse"]["wikitext"]["*"]
+    rows = w[w.find("List of major dam failures"):].split("\n|-")[1:]
+    recs = []
+    for r in rows:
+        cells = [c.strip() for c in r.strip().split("\n|") if c.strip()]
+        cells = [re.sub(r"^\|\s*", "", c) for c in cells]
+        if len(cells) < 4:
+            continue
+        m = re.search(r"\[\[([^\]|]+)", cells[0])
+        title = m.group(1) if m else None
+        dt = re.sub(r"<[^>]+>|\{\{[^}]*\}\}", "", cells[1]).strip()
+        if not re.match(r"^(19[89]\d|20\d\d)", dt) or not title:
+            continue
+        recs.append((title, dt[:10], re.sub(r"\[\[(?:[^\]|]*\|)?([^\]]+)\]\]", r"\1", cells[2])[:80], cells[3][:40],
+                     re.sub(r"\[\[(?:[^\]|]*\|)?([^\]]+)\]\]", r"\1", cells[-1])[:160]))
+    co = _wiki_coords([t for t, *_ in recs])
+    for title, dt, place, country, cause in recs:
+        lat, lon = co.get(title, (None, None))
+        low = cause.lower() + " " + title.lower()
+        if "tailing" in low or "slurry" in low or "ash" in low:
+            continue                                         # tailings: not a water-extent endpoint
+        yield {"source": "wiki_dams", "source_row": title, "type": "M7",
+               "submode": "levee_breach" if "levee" in low or "dike" in low else "reservoir_breach",
+               "cause": f"Wikipedia 'Dam failure' list: {cause}", "date": dt, "crest_local": "", "crest_kind": "",
+               "lat": lat, "lon": lon, "anchor": f"dam {title}" if lat is not None else "country only",
+               "country": country, "region": country, "peak_value": "", "peak_unit": "", "station_p80": ""}
+
+
+ADAPTERS = {"usgs_peaks": usgs_peaks, "wsc_ice": wsc_ice, "wsc_melt": wsc_melt, "crid": crid, "dfo": dfo, "glof": glof, "wiki_dams": wiki_dams}
 
 
 def run(names):
