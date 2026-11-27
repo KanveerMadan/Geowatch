@@ -45,6 +45,53 @@ def corridor_mask(T):
     return (d <= BUFFER_M) & (np.nan_to_num(T["hand"], nan=1e9) <= HAND_MAX)
 
 
+def reach_forcing(T, dom, crest_day):
+    """Per-cell (event peak, seasonal median) discharge from the nearest GEOGloWS v2 reach (decisions 2026-11-27)."""
+    from datetime import date, timedelta
+    from scipy.spatial import cKDTree
+    from pyproj import Transformer
+    import geoglows_crests as G
+    ix = {k: v for k, v in np.load(G.REACHES).items()}
+    w, s_, e, n = dom
+    m = (ix["lon"] >= w) & (ix["lon"] <= e) & (ix["lat"] >= s_) & (ix["lat"] <= n) & (ix["dsarea"] / 1e6 >= UPA_NET)
+    if not m.any():
+        return None, None
+    d0 = date.fromisoformat(crest_day)
+    win = {(d0 + timedelta(days=k)).isoformat() for k in range(-3, 6)}
+    pts, pk, med = [], [], []
+    for i in np.flatnonzero(m):
+        t, q = G.series(int(ix["link"][i]))
+        ev = [float(v) for x, v in zip(t, q) if x in win]
+        yrs = {}
+        for x, v in zip(t, q):
+            if "1984" <= x[:4] <= "2021":
+                yrs[x[:4]] = max(yrs.get(x[:4], 0.0), float(v))
+        if ev and len(yrs) >= 5:
+            pts.append((ix["lon"][i], ix["lat"][i])); pk.append(max(ev)); med.append(float(np.median(list(yrs.values()))))
+    if not pts:
+        return None, None
+    return np.array(pts), (np.array(pk), np.array(med))
+
+
+def per_cell(T, t, crs, pts, vals):
+    from pyproj import Transformer
+    from scipy.spatial import cKDTree
+    H, W = T["z"].shape
+    r, c = np.mgrid[0:H, 0:W]
+    x = t[2] + (c + 0.5) * t[0]
+    y = t[5] + (r + 0.5) * t[4]
+    lon, lat = Transformer.from_crs(crs, 4326, always_xy=True).transform(x.ravel(), y.ravel())
+    k = cKDTree(pts * [np.cos(np.radians(pts[:, 1].mean())), 1.0])
+    _, j = k.query(np.c_[np.asarray(lon) * np.cos(np.radians(pts[:, 1].mean())), lat])
+    return vals[j].reshape(H, W)
+
+
+def phys_q(T, qcell):
+    ch, st = DT.stages_q(T, qcell)
+    g, lv = R.channel_groups(T["z"], ch, st)
+    return R.physics_score(T["z"], g, lv) if g else np.full(T["z"].shape, np.nan)
+
+
 def phys_for(T, q, upa_g):
     ch, st = DT.stages(T, q, upa_g)
     g, lv = R.channel_groups(T["z"], ch, st)          # same 8 bins as the box score
@@ -80,6 +127,15 @@ def run(limit=None):
     for k, (f, m) in enumerate(units[:limit] if limit else units):
         if f in done:
             continue
+        try:
+            _one(k, f, m, done, ratios, ee, qtab, LM, requests, spearmanr, Rf)
+        except Exception as e:      # noqa: BLE001
+            print(f, "ERROR", type(e).__name__, str(e)[:200], flush=True)
+    summarize(done)
+
+
+def _one(k, f, m, done, ratios, ee, qtab, LM, requests, spearmanr, Rf):
+    if True:
         lead = {"lead_id": m["lead"], "type": m["type"], "submode": m["submode"], "date": m["date"],
                 "crest_utc_min": m["crest_utc"][0], "crest_utc_max": m["crest_utc"][1]}
         lat0, lon0 = (np.mean(m["search_square"][1::2]), np.mean(m["search_square"][0::2]))
@@ -92,7 +148,7 @@ def run(limit=None):
         lab = LB.domain_labels(ee, optical, radar, lo, hi, dom, t, shape, crs)
         if lab is None:
             done[f] = {"dropout": "no label source on the corridor domain"}
-            continue
+            return
         y = lab["state"]
         cm = corridor_mask(T)
         upa_g = float(np.nanmax(T["upa"]))
@@ -100,34 +156,46 @@ def run(limit=None):
         other = ratios[(k + 1) % len(ratios)] if len(ratios) > 1 else q / qmed
         var = {"real": q, "seasonal": qmed, "exchanged": qmed * other, "half": 0.5 * q, "double": 2.0 * q}
         sc = {v: phys_for(T, qq, upa_g) for v, qq in var.items()}
+        pts, pv = reach_forcing(T, dom, m["crest_utc"][0][:10])
+        if pts is not None:
+            sc["reach"] = phys_q(T, per_cell(T, t, crs, pts, pv[0]))
+            sc["reach_seasonal"] = phys_q(T, per_cell(T, t, crs, pts, pv[1]))
         res = {"flooded": int(((y == 1) & cm).sum()), "dry": int(((y == 0) & cm).sum()),
                "corridor_cells": int(cm.sum()), "q": var}
         res["auc"] = {v: auc(s, y, cm) for v, s in sc.items()}
         res["auc"]["elev"] = auc(-T["z"], y, cm)
         res["auc"]["hand"] = auc(-T["hand"], y, cm)
-        ok = cm & np.isfinite(sc["real"]) & np.isfinite(sc["seasonal"])
-        res["spearman_real_seasonal"] = round(float(spearmanr(sc["real"][ok], sc["seasonal"][ok]).correlation), 5) if ok.sum() > 100 else None
-        res["wet_flip_share"] = round(float(((sc["real"] > 0) != (sc["seasonal"] > 0))[ok].mean()), 5) if ok.sum() else None
+        for a_, b_, tag in (("real", "seasonal", ""), ("reach", "reach_seasonal", "_reach")):
+            if a_ not in sc:
+                continue
+            ok = cm & np.isfinite(sc[a_]) & np.isfinite(sc[b_])
+            res["spearman" + tag + ("_real_seasonal" if not tag else "")] = (round(float(spearmanr(sc[a_][ok], sc[b_][ok]).correlation), 5)
+                                                                            if ok.sum() > 100 else None)
+            res["wet_flip_share" + tag] = round(float(((sc[a_] > 0) != (sc[b_] > 0))[ok].mean()), 5) if ok.sum() else None
         wet = {v: float((s[cm] > 0).mean()) for v, s in sc.items() if np.isfinite(s[cm]).any()}
         res["wet_extent"] = {k2: round(v2, 4) for k2, v2 in wet.items()}
         res["direction_ok"] = bool(wet.get("half", 0) <= wet.get("real", 0) <= wet.get("double", 0))
         done[f] = res
         json.dump(done, open(OUT, "w"), indent=1, sort_keys=True)
-        print(f, json.dumps({k3: res[k3] for k3 in ("flooded", "dry", "auc", "spearman_real_seasonal", "wet_flip_share", "direction_ok")}), flush=True)
-    summarize(done)
+        print(f, json.dumps({k3: res.get(k3) for k3 in ("flooded", "dry", "auc", "spearman_real_seasonal", "spearman_reach",
+                                                         "wet_flip_share_reach", "direction_ok")}), flush=True)
 
 
 def summarize(done):
-    use = [r for r in done.values() if r.get("auc") and r["auc"].get("real") is not None and r["auc"].get("seasonal") is not None]
+    # Stop rule on the per-reach forcing pair (decisions 2026-11-27); uniform scaling reported alongside.
+    use = [r for r in done.values() if isinstance(r, dict) and r.get("auc") and r["auc"].get("reach") is not None
+           and r["auc"].get("reach_seasonal") is not None]
+    uni = [r for r in done.values() if isinstance(r, dict) and r.get("auc") and r["auc"].get("real") is not None]
     if not use:
         print("no usable corridor units yet")
         return
-    d = [abs(r["auc"]["real"] - r["auc"]["seasonal"]) for r in use]
-    sp = [r["spearman_real_seasonal"] for r in use if r["spearman_real_seasonal"] is not None]
+    d = [abs(r["auc"]["reach"] - r["auc"]["reach_seasonal"]) for r in use]
+    sp = [r["spearman_reach"] for r in use if r.get("spearman_reach") is not None]
     s = {"usable_units": len(use), "median_abs_auc_real_minus_seasonal": round(float(np.median(d)), 4),
          "median_spearman_real_seasonal": round(float(np.median(sp)), 5) if sp else None,
          "stop_rule_met": bool(len(use) >= 20 and np.median(d) < 0.005 and sp and np.median(sp) > 0.99),
-         "stop_rule_evaluable": len(use) >= 20}
+         "stop_rule_evaluable": len(use) >= 20, "uniform_units": len(uni),
+         "uniform_median_abs_auc": round(float(np.median([abs(r["auc"]["real"] - r["auc"]["seasonal"]) for r in uni])), 4) if uni else None}
     print(json.dumps(s))
     json.dump({**done, "_summary": s}, open(OUT, "w"), indent=1, sort_keys=True)
 

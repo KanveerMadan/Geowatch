@@ -93,10 +93,35 @@ def terrain(ee, grid_bbox):
     region = ee.Geometry.Rectangle(list(grid_bbox))
     dem = Fe._mosaic(Fe.GLO30_ASSET, region, "DEM")
     merit = ee.Image("MERIT/Hydro/v1_0_1")
-    img = ee.Image.cat([dem.rename("z"), merit.select("hnd").rename("hand"), merit.select("upa").rename("upa"),
-                        ee.Terrain.slope(dem).rename("slope")]).toFloat()
-    a = compute_pixels(img, t, shape, crs, "v2 terrain")
-    return t, shape, crs, {k: np.asarray(v, float) for k, v in a.items()}
+    bands = {"z": dem, "hand": merit.select("hnd"), "upa": merit.select("upa"), "slope": ee.Terrain.slope(dem)}
+    out = {}
+    for k, im in bands.items():                       # one band per request (40 km domains hit EE's memory limit)
+        a = compute_pixels(im.rename(k).toFloat(), t, shape, crs, f"v2 terrain {k}")
+        out[k] = np.asarray(a[k], float)
+    return t, shape, crs, out
+
+
+def stages_q(T, qcell):
+    """Per-cell stage from a per-cell discharge field (per-reach forcing): one rating per upa band,
+    driven by the band's median discharge."""
+    from scipy.ndimage import distance_transform_edt
+    upa, hand, slope = np.nan_to_num(T["upa"]), T["hand"], np.tan(np.radians(np.nan_to_num(T["slope"])))
+    ch = (upa >= UPA_CHANNEL) & np.isfinite(qcell)
+    st = np.full(upa.shape, np.nan)
+    if not ch.any():
+        return ch, st
+    _, (ri, ci) = distance_transform_edt(~ch, return_indices=True)
+    band = np.floor(np.log2(np.maximum(upa, 1e-3))).astype(int)
+    cellband = band[ri, ci]
+    s_bed = max(float(np.nanmedian(slope[ch])), 1e-4)
+    for b in np.unique(band[ch]):
+        mem = ch & (band == b)
+        cat = cellband == b
+        ys, Q = F.rating(hand[cat], slope[cat], 900.0, mem.sum() * 30.0, s_bed)
+        for qv in np.unique(np.round(qcell[mem], 1)):
+            sel = mem & (np.round(qcell, 1) == qv)
+            st[sel] = F.stage_for(float(qv), ys, Q)
+    return ch, st
 
 
 def stages(T, q_g, upa_g):

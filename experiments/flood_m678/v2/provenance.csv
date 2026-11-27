@@ -1,0 +1,8 @@
+lead,component,type,submode,date,flooded,dry,usable,dropout,optical_share,n_scenes,min_abs_offset_h,union_flooded,own_grid
+crid:01BC001:2008-2009,ccrid_01BC001_1986-1987,M8,ice_jam,2009-04-06,,,False,no flooded cell in the search square,,1,0.0,,False
+wsc_melt:01BC001:2018-04-28T02:50,ccrid_01BC001_1986-1987,M8,sustained_melt,2018-04-28,498,23718,True,,0.0,2,39.25016145888889,498,False
+wsc_melt:01BC001:2020-04-14T13:50,ccrid_01BC001_1986-1987,M8,sustained_melt,2020-04-14,,,False,no flooded cell in the search square,,1,1.9830488888888889,,False
+wsc_melt:01BQ001:2017-04-13T20:50,ccrid_01BP001_1983-1984,M8,sustained_melt,2017-04-13,4,1,False,,1.0,2,9.37278317861111,4,False
+wsc_melt:01BQ001:2018-04-26T14:45,ccrid_01BP001_1983-1984,M8,sustained_melt,2018-04-26,,,False,no flooded cell in the search square,,1,20.44139638888889,,False
+wsc_melt:03NF001:2020-06-14T07:00,ccrid_03NF001_1984-1985,M8,sustained_melt,2020-06-14,306,45258,True,,0.0,2,10.712835400833333,306,False
+wsc_melt:03NF001:2021-06-05T19:00,ccrid_03NF001_1984-1985,M8,sustained_melt,2021-06-05,,,False,no flooded cell in the search square,,3,7.308048888888888,,False

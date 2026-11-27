@@ -1,0 +1,95 @@
+{
+ "wsc_melt__01BC001__2018-04-28T02__50.npz": {
+  "auc": {
+   "double": 0.3899,
+   "elev": 0.4187,
+   "exchanged": 0.3895,
+   "half": 0.389,
+   "hand": 0.4733,
+   "real": 0.3895,
+   "seasonal": 0.3895
+  },
+  "corridor_cells": 619927,
+  "direction_ok": true,
+  "dry": 188897,
+  "flooded": 4988,
+  "q": {
+   "double": 2100.0,
+   "exchanged": 789.5383104125738,
+   "half": 525.0,
+   "real": 1050.0,
+   "seasonal": 643.0
+  },
+  "spearman_real_seasonal": 0.99986,
+  "wet_extent": {
+   "double": 0.7002,
+   "exchanged": 0.7,
+   "half": 0.6999,
+   "real": 0.7,
+   "seasonal": 0.6999
+  },
+  "wet_flip_share": 8e-05
+ },
+ "wsc_melt__03NF001__2020-06-14T07__00.npz": {
+  "auc": {
+   "double": 0.5938,
+   "elev": 0.7853,
+   "exchanged": 0.5938,
+   "half": 0.5937,
+   "hand": 0.7409,
+   "real": 0.5938,
+   "seasonal": 0.5938
+  },
+  "corridor_cells": 760797,
+  "direction_ok": true,
+  "dry": 332974,
+  "flooded": 1296,
+  "q": {
+   "double": 2500.0,
+   "exchanged": 2281.867380770212,
+   "half": 625.0,
+   "real": 1250.0,
+   "seasonal": 1018.0
+  },
+  "spearman_real_seasonal": 1.0,
+  "wet_extent": {
+   "double": 0.8943,
+   "exchanged": 0.8942,
+   "half": 0.8942,
+   "real": 0.8942,
+   "seasonal": 0.8942
+  },
+  "wet_flip_share": 1e-05
+ },
+ "wsc_melt__05AB044__2006-06-15T14__45.npz": {
+  "auc": {
+   "double": 0.5012,
+   "elev": 0.6269,
+   "exchanged": 0.5012,
+   "half": 0.5012,
+   "hand": 0.8171,
+   "real": 0.5012,
+   "seasonal": 0.5012
+  },
+  "corridor_cells": 871186,
+  "direction_ok": true,
+  "dry": 61087,
+  "flooded": 4123,
+  "q": {
+   "double": 175.78,
+   "exchanged": 15.48874419523762,
+   "half": 43.945,
+   "real": 87.89,
+   "seasonal": 39.209999999999994
+  },
+  "spearman_real_seasonal": 1.0,
+  "wet_extent": {
+   "double": 0.9393,
+   "exchanged": 0.9393,
+   "half": 0.9393,
+   "real": 0.9393,
+   "seasonal": 0.9393
+  },
+  "wet_flip_share": 1e-05
+ }
+}
