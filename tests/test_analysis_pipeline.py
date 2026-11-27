@@ -35,7 +35,8 @@ def test_chain_order_is_all_present(run):
                       "susceptibility", "change", "aggregation"}
     # the five built modules plus the six unbuilt flood types (docs/flood_taxonomy.md)
     assert set(o["susceptibility"]) == {"pluvial", "fluvial", "coastal", "flash_flood",
-                                        "waterlogging", *C.UNBUILT_FLOOD_TYPES}
+                                        "waterlogging", "debris_flow_glof", "embankment_dam_breach",
+                                        "snowmelt_ice_jam", *C.UNBUILT_FLOOD_TYPES}
 
 
 def test_osm_coverage_for_an_aoi_outside_the_reference_set(run):

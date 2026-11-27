@@ -21,9 +21,14 @@ const TYPES = {
   flash_flood: { name: 'Flash flood', long: 'flash flooding', term: 'flash flood', blurb: 'Fast runoff from steep ground after intense rain.' },
   waterlogging: { name: 'Waterlogging', long: 'waterlogging', term: 'waterlogging', blurb: 'Flat, low ground where water stands for days after rain.' },
   // The taxonomy's types no module computes yet (analysis/contract.py).
-  debris_flow_glof: { name: 'Debris flow and glacial lake outburst', long: 'debris flow and glacial lake outburst', term: 'debris flow / GLOF' },
-  embankment_dam_breach: { name: 'Embankment or dam breach', long: 'embankment or dam breach', term: 'embankment / dam breach' },
-  snowmelt_ice_jam: { name: 'Snowmelt and ice jam', long: 'snowmelt and ice jam', term: 'snowmelt / ice jam' },
+  // Flood round 5: conditional types. They rank where water would go IF the event happens,
+  // never how likely it is; "not computed" (no lake, no snow) is not a zero.
+  debris_flow_glof: { name: 'Glacial lake outburst', long: 'glacial lake outburst flooding', term: 'debris flow / GLOF', conditional: true,
+    blurb: 'Where water would run if a glacial lake upstream burst. It does not say whether a lake will burst.' },
+  embankment_dam_breach: { name: 'Dam or levee breach', long: 'dam or levee breach flooding', term: 'embankment / dam breach', conditional: true,
+    blurb: 'Where water would spread if a dam, levee or embankment upstream gave way. It does not say whether one will.' },
+  snowmelt_ice_jam: { name: 'Snowmelt and ice jam', long: 'snowmelt and ice-jam flooding', term: 'snowmelt / ice jam', conditional: true,
+    blurb: 'Where spring meltwater or an ice jam on the river would push water. It does not forecast a melt season.' },
   compound: { name: 'Compound', long: 'compound flooding', term: 'compound' },
   groundwater: { name: 'Groundwater', long: 'groundwater flooding', term: 'groundwater' },
   tsunami: { name: 'Tsunami', long: 'tsunami', term: 'tsunami' },
@@ -51,6 +56,9 @@ export function floodRows(susceptibility) {
       long: t?.long ?? key.replace(/_/g, ' '),
       term: t?.term ?? key.replace(/_/g, ' '),
       blurb: t?.blurb ?? null,
+      conditional: !!t?.conditional,
+      // Why a conditional type was not computed here (no inventoried lake, little snow): shown, never a zero.
+      notApplicable: o?.status === 'not_applicable' ? (o?.applicability?.reason ?? o?.reason ?? null) : null,
       ...r,
       tier,
       tierText: tier ? TIER_TEXT[tier] : r.text,

@@ -165,7 +165,7 @@ def test_compute_pixels_uses_a_hard_timeout(monkeypatch):
 
 def _fake_terrain(monkeypatch):
     def fake_pixels(img, transform, shape, crs, label, timeout=None):
-        return {n: np.ones(shape) for n in ("hand_m", "upa_near_km2", "slope_deg",
+        return {n: np.ones(shape) for n in ("hand_m", "upa_near_km2", "elev_m", "upa_km2", "slope_deg",
                                              "relief_slope_deg", "upa_flash_km2", "clay_pct")}
     monkeypatch.setattr(hydro_rasters, "compute_pixels", fake_pixels)
     monkeypatch.setattr(hydro_rasters, "_terrain_image", lambda bbox: None)

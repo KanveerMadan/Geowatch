@@ -27,6 +27,8 @@ function FloodRow({ r, chosen, onChoose }) {
       <span className={`flrow-val${r.measured ? '' : ' frow-absent-text'}`}>{r.tierText}</span>
       {r.measured ? <TierMeter tier={r.tier} /> : <span />}
       <span className="flrow-blurb">{r.blurb}</span>
+      {r.conditional && r.measured && <span className="flrow-scope-note">If it happens: a ranking of where water would go, not a likelihood.</span>}
+      {r.notApplicable && <span className="flrow-scope-note">Not computed here: {r.notApplicable}</span>}
       {r.trust.scope && <span className="flrow-scope-note">{r.trust.scope}</span>}
     </>
   )
