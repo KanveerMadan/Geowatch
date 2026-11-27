@@ -94,6 +94,40 @@ def scenes_for(lead, lat, lon, ses):
     return SA.screen(ev, site, {}, ses, Path(os.path.expanduser("~/.cache/geowatch/m678v2/stac")))["scenes"], lo, hi
 
 
+def domain_labels(ee, optical, radar, lo, hi, bb, t, shape, crs):
+    """v2 labels on any grid (box, search square or corridor domain), by the rules in the docstring."""
+    import labels_m678 as LM
+    from experiments.flood_round3 import labels_r3 as L
+    obs = L.observability(ee, t, shape, crs)
+    stacks, offs, fams, used = [], [], [], []
+    for sc in optical:
+        o, u = LM.optical_label(ee, [sc], lo, t, shape, crs)
+        if o is not None:
+            stacks.append(LM.optical_states(o, obs)); offs.append(offset_h(sc["utc"], lo, hi)); fams.append(1)
+            used.append({"scene": sc["scene"], "family": "optical", "utc": sc["utc"], "offset_h": offs[-1]})
+    for sc in radar:
+        try:
+            lab = LM.radar_label(ee, bb, [sc], lo, t, shape, crs)
+        except LookupError:
+            continue
+        stacks.append(L.s1_states(lab, obs)); offs.append(offset_h(sc["utc"], lo, hi)); fams.append(2)
+        used.append({"scene": sc["scene"], "family": "radar", "utc": sc["utc"], "offset_h": offs[-1]})
+    if not stacks:
+        return None
+    days = [_utc(u["utc"]).date().isoformat() for u in used]
+    modis_days = [d for d in days if d >= "2000-02-24"]       # MODIS Terra snow begins 2000-02-24
+    snow = LM.snow_mask(ee, modis_days, t, shape, crs) if modis_days else np.zeros(shape, bool)
+    if len(modis_days) < len(days):
+        used.append({"note": "MODIS snow unavailable before 2000-02-24: the sensors' own snow flags only"})
+    for y in stacks:
+        y[snow & (y != L.PERMANENT)] = L.UNOBSERVED
+    state, fam, idx, off = nearest_merge(stacks, offs, fams)
+    union = np.where(np.any([np.isin(y, (1,)) for y in stacks], axis=0), 1,
+                     np.where(np.any([y == 0 for y in stacks], axis=0), 0, state)).astype(np.int8)
+    return {"state": state, "family": fam, "scene": idx, "offset": off, "union": union, "scenes": used}
+
+
+
 def build(lead, comp, ee):
     import labels_m678 as LM
     from experiments.flood_round3 import labels_r3 as L
@@ -112,33 +146,7 @@ def build(lead, comp, ee):
     optical = [s for s in scenes if s["collection"] != "sentinel-1-grd"]
 
     def labels_on(bb, t, shape, crs):
-        obs = L.observability(ee, t, shape, crs)
-        stacks, offs, fams, used = [], [], [], []
-        for sc in optical:
-            o, u = LM.optical_label(ee, [sc], lo, t, shape, crs)
-            if o is not None:
-                stacks.append(LM.optical_states(o, obs)); offs.append(offset_h(sc["utc"], lo, hi)); fams.append(1)
-                used.append({"scene": sc["scene"], "family": "optical", "utc": sc["utc"], "offset_h": offs[-1]})
-        for sc in radar:
-            try:
-                lab = LM.radar_label(ee, bb, [sc], lo, t, shape, crs)
-            except LookupError:
-                continue
-            stacks.append(L.s1_states(lab, obs)); offs.append(offset_h(sc["utc"], lo, hi)); fams.append(2)
-            used.append({"scene": sc["scene"], "family": "radar", "utc": sc["utc"], "offset_h": offs[-1]})
-        if not stacks:
-            return None
-        days = [_utc(u["utc"]).date().isoformat() for u in used]
-        modis_days = [d for d in days if d >= "2000-02-24"]       # MODIS Terra snow begins 2000-02-24
-        snow = LM.snow_mask(ee, modis_days, t, shape, crs) if modis_days else np.zeros(shape, bool)
-        if len(modis_days) < len(days):
-            used.append({"note": "MODIS snow unavailable before 2000-02-24: the sensors' own snow flags only"})
-        for y in stacks:
-            y[snow & (y != L.PERMANENT)] = L.UNOBSERVED
-        state, fam, idx, off = nearest_merge(stacks, offs, fams)
-        union = np.where(np.any([np.isin(y, (1,)) for y in stacks], axis=0), 1,
-                         np.where(np.any([y == 0 for y in stacks], axis=0), 0, state)).astype(np.int8)
-        return {"state": state, "family": fam, "scene": idx, "offset": off, "union": union, "scenes": used}
+        return domain_labels(ee, optical, radar, lo, hi, bb, t, shape, crs)
 
     sq = R.square_bbox(lat, lon, SEARCH_M)
     t, shape, crs = utm_grid(sq)
