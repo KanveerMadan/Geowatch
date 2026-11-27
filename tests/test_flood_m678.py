@@ -134,3 +134,20 @@ def test_validation_label_comes_only_from_test_file(tmp_path, monkeypatch):
     assert K.validation_status("embankment_dam_breach") == "validated"
     assert K.validation_status("snowmelt_ice_jam") == "experimental"
     assert "only 3" in K.trust_note("snowmelt_ice_jam")
+
+
+def test_product_laharz_matches_frozen_experiment():
+    """The product's M6 method is the pre-registered one (experiments/flood_m678/m6_physics.py)."""
+    import importlib.util
+    import pathlib
+    p = pathlib.Path(__file__).resolve().parents[1] / "experiments" / "flood_m678" / "m6_physics.py"
+    spec = importlib.util.spec_from_file_location("m6p", p)
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    r = rasters()
+    elev, upa = r["layers"]["elev_m"]["raster"], r["layers"]["upa_km2"]["raster"]
+    a = CF.laharz_score(elev, upa, 3e7)
+    b = m.laharz_score(elev, upa, 3e7)
+    assert np.allclose(a, b, atol=1e-3, equal_nan=True)
+    out = CF.compute("debris_flow_glof", r, {"glacial_lakes": {"count_within_km": 1, "volume_m3": 3e7}})
+    assert out["method"] == "phys_laharz" and out["status"] == "computed"

@@ -14,6 +14,8 @@ experiments/flood_m678/PREREGISTRATION_M678.md, read from configs/m678_constants
   hand        minus MERIT HAND;
   phys_main   minus the height above the nearest trunk-channel cell (MERIT upa >= 25 % of the
               area maximum): the flood arrives down the trunk river, not the side streams.
+  phys_laharz LAHARZ-style routed inundation from the nearest inventoried lake's typical released
+              volume (M6, pre-registered physics-only method).
 The trust label comes only from the one-shot reserve test (experiments/flood_m678/results/test_m678.json).
 
 Scenario mode (scenario_depth): for a user-named lake or dam, an illustrative depth map from a
@@ -56,7 +58,38 @@ def trunk_height(elev, upa):
     return h, d
 
 
-def score_map(method: str, rasters: dict):
+def laharz_score(elev, upa, volume_m3, c=0.05, cell=30.0):
+    """LAHARZ-style routed inundation (Iverson et al. 1998), as pre-registered for M6
+    (experiments/flood_m678/m6_physics.py): each trunk cross-section fills to the level that
+    floods A = c * V^(2/3); score = that level minus the cell's height above the trunk."""
+    h, _ = trunk_height(elev, upa)
+    if h is None:
+        return None
+    from scipy.ndimage import distance_transform_edt
+    u = np.nan_to_num(upa, nan=0.0)
+    _, (ri, ci) = distance_transform_edt(~(u >= K.TRUNK_SHARE * u.max()), return_indices=True)
+    sec = (ri * elev.shape[1] + ci).ravel()
+    hv = h.ravel()
+    target = c * volume_m3 ** (2.0 / 3.0)
+    out = np.full(hv.shape, np.nan)
+    ok = np.flatnonzero(np.isfinite(hv))
+    order = ok[np.argsort(sec[ok], kind="stable")]
+    s_sorted = sec[order]
+    cuts = np.flatnonzero(np.diff(s_sorted)) + 1
+    for a, b in zip(np.r_[0, cuts], np.r_[cuts, len(order)]):
+        idx = order[a:b]
+        hs = hv[idx]
+        lo, hi = float(hs.min()), float(hs.min()) + 1.0
+        while np.clip(hi - hs, 0, None).sum() * cell < target and hi - lo < 1e4:
+            hi = lo + 2 * (hi - lo)
+        for _ in range(40):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if np.clip(mid - hs, 0, None).sum() * cell < target else (lo, mid)
+        out[idx] = hi - hs
+    return out.reshape(elev.shape)
+
+
+def score_map(method: str, rasters: dict, ctx: dict | None = None):
     """Higher = more flood-prone, within-area percentile; None when the inputs are missing."""
     elev, hand, upa = layer(rasters, "elev_m"), layer(rasters, "hand_m"), layer(rasters, "upa_km2")
     if method == "elev":
@@ -66,6 +99,10 @@ def score_map(method: str, rasters: dict):
     if method == "phys_main":
         h, _ = trunk_height(elev, upa)
         return None if h is None else _pct(-h)
+    if method == "phys_laharz":
+        v = ((ctx or {}).get("glacial_lakes") or {}).get("volume_m3") or K.DEFAULT_LAKE_VOLUME_M3
+        sc = laharz_score(elev, upa, v) if elev is not None and upa is not None else None
+        return None if sc is None else _pct(sc)
     raise ValueError(f"unknown method {method!r}")
 
 
@@ -101,7 +138,7 @@ def compute(kind: str, rasters: dict | None, ctx: dict | None = None) -> dict:
     if not ok:
         return {**base, "status": "not_applicable", "reason": why, "aoi_mean_score": None,
                 "susceptibility_map": None}
-    m = score_map(method, rasters) if rasters else None
+    m = score_map(method, rasters, ctx) if rasters else None
     if m is None or not np.isfinite(m).any():
         return {**base, "status": "insufficient_evidence", "aoi_mean_score": None, "susceptibility_map": None,
                 "reason": "terrain layers unavailable for this method"

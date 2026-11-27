@@ -17,8 +17,9 @@ PREREG = os.path.join(ROOT, "experiments", "flood_m678", "PREREGISTRATION_M678.m
 FLOOD_TYPE_ID = {"debris_flow_glof": "M6", "embankment_dam_breach": "M7", "snowmelt_ice_jam": "M8"}
 _TYPE_KIND = {v: k for k, v in FLOOD_TYPE_ID.items()}
 
-# Pre-registered methods (PREREGISTRATION_M678.md, "Method per type"). Filled at the freeze.
-METHODS = {"debris_flow_glof": "hand", "embankment_dam_breach": "elev", "snowmelt_ice_jam": "elev"}
+# Pre-registered methods (PREREGISTRATION_M678.md §6, tag m678-freeze).
+METHODS = {"debris_flow_glof": "phys_laharz", "embankment_dam_breach": "elev", "snowmelt_ice_jam": "elev"}
+DEFAULT_LAKE_VOLUME_M3 = 60.59e6   # median ice-dammed GLOF v4.2 V0 since 2013 (m6_physics rule e)
 
 TRUNK_SHARE = 0.25           # trunk channel: MERIT upa >= 25 % of the area maximum (as in DEV)
 MIN_TRUNK_UPA_KM2 = 10.0     # no trunk channel below this upstream area

@@ -31,10 +31,13 @@ def glacial_lakes(w, s, e, n, search_km: float = K.LAKE_SEARCH_KM) -> dict:
         for r in csv.DictReader(fh):
             d = _km(lat, lon, float(r["lat"]), float(r["lon"]))
             if d <= search_km + half:
-                near.append({"lake": r["lake"], "km": round(d, 1)})
+                v = r.get("median_flood_volume_m3")
+                near.append({"lake": r["lake"], "km": round(d, 1), "volume_m3": float(v) if v else None})
     near.sort(key=lambda x: x["km"])
+    vols = [x["volume_m3"] for x in near if x["volume_m3"]]
     return {"status": "available", "count_within_km": len(near), "search_km": search_km,
-            "nearest": near[:5], "source": "GLOF v4.2 (Lützow & Veh), CC BY 4.0"}
+            "nearest": near[:5], "volume_m3": vols[0] if vols else None,
+            "source": "GLOF v4.2 (Lützow & Veh), CC BY 4.0"}
 
 
 def snow_days(w, s, e, n) -> dict:
