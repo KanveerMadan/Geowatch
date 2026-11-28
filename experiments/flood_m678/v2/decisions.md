@@ -89,5 +89,5 @@
 - M7: levees and large reservoirs (≥ 3 million m³) are primary; small dams are scenario-only unless a label survives.
 - Power is reported, not a gate.
 - **DEV observation behind the M7 split:** the two small-dam DEV labels that passed the floor come from tiny reservoirs (about 37,000 and 61,000 m³). Their flooded cells are more likely the storm's ordinary flooding than breach water. Label QA checks where those cells lie relative to the dam's downstream valley before they count as M7 evidence.
-- Batch export: `ee_batch.py` (interactive request → batch export to an asset → read back on the same grid) is written. It stays inactive, because the project has no asset root. To turn it on, the owner opens the Earth Engine Code Editor for the project once and creates the home asset folder (free).
+- Batch export: `ee_batch.py` (interactive request → batch export to an asset → read back on the same grid) is written. It stays inactive, because the project has no asset root. A likely fix (not yet tested here) is for the owner to open the Earth Engine Code Editor for this project once and create its home asset folder, which is free.
 - The corridor now stops when 20 units are usable (`--until-usable 20`), which is when the stop rule is judged.
