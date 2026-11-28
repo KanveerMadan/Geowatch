@@ -1,8 +1,619 @@
 lead,component,type,submode,date,flooded,dry,usable,dropout,optical_share,n_scenes,min_abs_offset_h,union_flooded,own_grid
+crid:01AN002:2002-2003,ccrid_01AN002_1986-1987,M8,ice_jam,2003-03-31,,,False,no flooded cell in the search square,,1,0.0,,False
 crid:01BC001:2008-2009,ccrid_01BC001_1986-1987,M8,ice_jam,2009-04-06,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:01BH005:2011-2012,ccrid_01BH005_1999-2000,M8,ice_jam,2012-03-22,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:01BO001:2008-2009,ccrid_01BO001_1983-1984,M8,ice_jam,2009-04-08,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:02OA054:2011-2012,ccrid_02OA054_2007-2008,M8,ice_jam,2012-03-09,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:02OA054:2013-2014,ccrid_02OA054_2007-2008,M8,ice_jam,2014-04-09,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:02QA002:1993-1994,ccrid_02QA002_1993-1994,M8,ice_jam,1994-04-12,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:02QA002:2007-2008,ccrid_02QA002_1993-1994,M8,ice_jam,2008-04-19,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:02RD002:2000-2001,ccrid_02RD002_1998-1999,M8,ice_jam,2001-04-29,1,38600,False,,1.0,1,0.0,1,False
+crid:02RG005:2009-2010,ccrid_02RG005_2001-2002,M8,ice_jam,2010-04-06,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:02UC002:1987-1988,ccrid_02UC002_1987-1988,M8,ice_jam,1988-05-06,4,4450,False,,1.0,1,0.0,4,True
+crid:02XA003:1984-1985,ccrid_02XA003_1984-1985,M8,ice_jam,1985-05-25,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:02XA003:2000-2001,ccrid_02XA003_1984-1985,M8,ice_jam,2001-05-13,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:02YO012:2003-2004,ccrid_02YO012_1991-1992,M8,ice_jam,2004-04-07,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:03BF001:2014-2015,ccrid_03BF001_1993-1994,M8,ice_jam,2015-05-01,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:03DD002:1990-1991,ccrid_03DD002_1989-1990,M8,ice_jam,1991-05-09,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:03MB002:2013-2014,ccrid_03MB002_1992-1993,M8,ice_jam,2014-05-26,,,False,no flooded cell in the search square,,2,0.0,,False
+crid:03MD001:2010-2011,ccrid_03MD001_2010-2011,M8,ice_jam,2011-06-05,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:04ME003:2008-2009,ccrid_04ME003_1984-1985,M8,ice_jam,2009-04-29,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:04ME003:2012-2013,ccrid_04ME003_1984-1985,M8,ice_jam,2013-05-02,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:05AC003:1995-1996,ccrid_05AC003_1985-1986,M8,ice_jam,1996-03-11,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:05AC003:2008-2009,ccrid_05AC003_1985-1986,M8,ice_jam,2009-04-16,146,58590,True,,1.0,1,0.0,146,False
+crid:05CB001:2004-2005,ccrid_05CB001_1989-1990,M8,ice_jam,2005-03-10,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:05GC006:1984-1985,ccrid_05GC006_1984-1985,M8,ice_jam,1985-04-09,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:05LH005:2012-2013,ccrid_05LH005_1983-1984,M8,ice_jam,2013-04-19,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:05LH005:2013-2014,ccrid_05LH005_1983-1984,M8,ice_jam,2014-04-22,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:05LM006:2013-2014,ccrid_05LM006_2005-2006,M8,ice_jam,2014-04-23,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:06BD001:2000-2001,ccrid_06BD001_1984-1985,M8,ice_jam,2001-04-28,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:06LC001:1985-1986,ccrid_06LC001_1985-1986,M8,ice_jam,1986-06-01,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:06LC001:1986-1987,ccrid_06LC001_1985-1986,M8,ice_jam,1987-06-22,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07AE001:2017-2018,ccrid_07AE001_1990-1991,M8,ice_jam,2018-04-28,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07AE001:2019-2020,ccrid_07AE001_1990-1991,M8,ice_jam,2020-04-22,1,1189,False,,1.0,1,0.0,1,False
+crid:07CD001:1996-1997,ccrid_07CD001_1983-1984,M8,ice_jam,1997-04-22,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07CD004:2009-2010,ccrid_07CD001_1983-1984,M8,ice_jam,2010-04-18,5,6409,False,,1.0,1,0.0,5,True
+crid:07DC001:2019-2020,ccrid_07DC001_1984-1985,M8,ice_jam,2020-05-01,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07FB001:2008-2009,ccrid_07FB001_2004-2005,M8,ice_jam,2009-04-24,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07FB001:2019-2020,ccrid_07FB001_2004-2005,M8,ice_jam,2020-04-22,348,27675,True,,0.0,1,0.0,348,False
+crid:07GJ001:1995-1996,ccrid_07GJ001_1984-1985,M8,ice_jam,1996-04-08,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07GJ001:2017-2018,ccrid_07GJ001_1984-1985,M8,ice_jam,2018-04-29,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07HA001:2004-2005,ccrid_07HA001_1991-1992,M8,ice_jam,2005-04-01,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07HA001:2019-2020,ccrid_07HA001_1991-1992,M8,ice_jam,2020-04-21,658,23558,True,,0.0,1,0.0,658,False
+crid:07KC001:1993-1994,ccrid_07KC001_1993-1994,M8,ice_jam,1994-04-28,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07KC001:1996-1997,ccrid_07KC001_1993-1994,M8,ice_jam,1997-04-29,1,23357,False,,1.0,1,0.0,1,True
+crid:07QD007:2020-2021,ccrid_07QD007_2000-2001,M8,ice_jam,2021-05-17,506,46170,True,,0.0,3,0.0,506,False
+crid:07SC004:2015-2016,ccrid_07SC004_2015-2016,M8,ice_jam,2016-05-03,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07SC004:2016-2017,ccrid_07SC004_2015-2016,M8,ice_jam,2017-05-14,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07SC005:2019-2020,ccrid_07SC005_2013-2014,M8,ice_jam,2020-06-08,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:07SC005:2020-2021,ccrid_07SC005_2013-2014,M8,ice_jam,2021-06-10,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:08AB001:1985-1986,ccrid_08AB001_1985-1986,M8,ice_jam,1986-04-22,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:08AB001:2008-2009,ccrid_08AB001_1985-1986,M8,ice_jam,2009-05-06,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:08EE004:2008-2009,ccrid_08EE004_1995-1996,M8,ice_jam,2009-04-22,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:08LG048:2004-2005,ccrid_08LG048_1983-1984,M8,ice_jam,2005-01-18,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:08MB005:1993-1994,ccrid_08MB005_1983-1984,M8,ice_jam,1994-03-23,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:08NB005:2010-2011,ccrid_08NB005_1995-1996,M8,ice_jam,2011-03-18,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:08NB005:2013-2014,ccrid_08NB005_1995-1996,M8,ice_jam,2014-03-18,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:08NL007:2011-2012,ccrid_08NL007_1983-1984,M8,ice_jam,2012-01-23,66,5,False,,1.0,1,0.0,66,True
+crid:08NL038:2004-2005,ccrid_08NL038_1985-1986,M8,ice_jam,2005-01-19,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:08NL038:2006-2007,ccrid_08NL038_1985-1986,M8,ice_jam,2007-02-09,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:09CD001:2007-2008,ccrid_09CD001_2002-2003,M8,ice_jam,2008-05-08,11,10201,False,,1.0,1,0.0,11,True
+crid:10CC002:2002-2003,ccrid_10CC002_1993-1994,M8,ice_jam,2003-04-23,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10EA003:2002-2003,ccrid_10EA003_1994-1995,M8,ice_jam,2003-04-28,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10EA003:2020-2021,ccrid_10EA003_1994-1995,M8,ice_jam,2021-05-06,61,4112,True,,1.0,1,0.0,61,True
+crid:10EB001:2001-2002,ccrid_10EB001_1983-1984,M8,ice_jam,2002-05-18,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10EB001:2007-2008,ccrid_10EB001_1983-1984,M8,ice_jam,2008-05-10,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10EC001:1988-1989,ccrid_10EC001_1988-1989,M8,ice_jam,1989-04-29,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10ED001:1988-1989,ccrid_10ED001_1988-1989,M8,ice_jam,1989-05-01,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10LC002:2005-2006,ccrid_10LC002_1984-1985,M8,ice_jam,2006-05-28,14,7202,False,,1.0,1,0.0,14,False
+crid:10LC014:1991-1992,ccrid_10LC014_1985-1986,M8,ice_jam,1992-05-31,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10LC014:2004-2005,ccrid_10LC014_1985-1986,M8,ice_jam,2005-05-19,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10MA001:2010-2011,ccrid_10MA001_1994-1995,M8,ice_jam,2011-05-20,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10MC002:1991-1992,ccrid_10MC002_1990-1991,M8,ice_jam,1992-05-29,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10MC002:2015-2016,ccrid_10MC002_1990-1991,M8,ice_jam,2016-05-11,,,False,no flooded cell in the search square,,2,0.0,,False
+crid:10QC001:2000-2001,ccrid_10QC001_1992-1993,M8,ice_jam,2001-06-10,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10QC001:2003-2004,ccrid_10QC001_1992-1993,M8,ice_jam,2004-06-08,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:10QD001:1997-1998,ccrid_10QD001_1997-1998,M8,ice_jam,1998-06-10,,,False,no flooded cell in the search square,,1,0.0,,False
+crid:11AA005:1995-1996,ccrid_11AA005_1985-1986,M8,ice_jam,1996-03-11,,,False,no flooded cell in the search square,,1,0.0,,False
+wsc_melt:01AD003:2011-05-06T18:00,cwsc_melt_01AD003_2011-05-06T18_00,M8,sustained_melt,2011-05-06,,,False,no flooded cell in the search square,,1,6.600819418333334,,False
+wsc_melt:01AD003:2018-04-29T17:10,cwsc_melt_01AD003_2011-05-06T18_00,M8,sustained_melt,2018-04-29,,,False,no flooded cell in the search square,,3,17.99490362138889,,False
+wsc_melt:01AD004:1991-04-12,cwsc_melt_01AD004_1991-04-12,M8,sustained_melt,1991-04-12,,,False,no flooded cell in the search square,,1,34.43747084388889,,False
+wsc_melt:01AF002:2011-05-07T00:15,cwsc_melt_01AF002_2011-05-07T00_15,M8,sustained_melt,2011-05-07,,,False,no flooded cell in the search square,,1,12.850819418333334,,False
+wsc_melt:01AF002:2019-04-23T13:05,cwsc_melt_01AF002_2011-05-07T00_15,M8,sustained_melt,2019-04-23,299,44326,True,,0.6768627450980392,3,29.00189825,347,False
+wsc_melt:01AF009:2011-05-05T03:00,cwsc_melt_01AD004_1991-04-12,M8,sustained_melt,2011-05-05,,,False,no flooded cell in the search square,,2,8.068832494722223,,False
+wsc_melt:01AG003:2018-04-28T05:45,cwsc_melt_01AG003_2014-04-16T15_50,M8,sustained_melt,2018-04-28,1017,24621,True,,0.0,2,36.333494792222226,1017,False
+wsc_melt:01AO003:2005-05-03T14:12,cwsc_melt_01AO003_1984-05-03T13_03,M8,sustained_melt,2005-05-03,,,False,no flooded cell in the search square,,1,68.60273495638889,,False
+wsc_melt:01AO003:2008-05-03T15:29,cwsc_melt_01AO003_1984-05-03T13_03,M8,sustained_melt,2008-05-03,18,7046,False,,1.0,1,67.30496723444445,18,True
+wsc_melt:01AP003:1994-04-20T22:01,cwsc_melt_01AP003_1984-05-05T04_26,M8,sustained_melt,1994-04-20,,,False,no flooded cell in the search square,,1,60.188306112777774,,False
+wsc_melt:01AP003:2005-05-03T22:56,cwsc_melt_01AP003_1984-05-05T04_26,M8,sustained_melt,2005-05-03,15,952,False,,1.0,1,59.86940162305555,15,True
+wsc_melt:01AP005:1994-04-21T07:56,cwsc_melt_01AP005_1987-04-08T08_39,M8,sustained_melt,1994-04-21,3,3125,False,,1.0,1,50.278259184166664,3,True
+wsc_melt:01AP005:2008-05-04T22:55,cwsc_melt_01AP005_1987-04-08T08_39,M8,sustained_melt,2008-05-04,177,8785,True,,1.0,2,35.87163390111111,177,False
+wsc_melt:01AQ007:1984-06-04T10:50,cwsc_melt_01AQ007_1984-06-04T10_50,M8,sustained_melt,1984-06-04,,,False,no flooded cell in the search square,,1,23.611527781388887,,False
+wsc_melt:01AQ007:2009-04-12T00:31,cwsc_melt_01AQ007_1984-06-04T10_50,M8,sustained_melt,2009-04-12,,,False,no flooded cell in the search square,,1,58.34859640111111,,False
+wsc_melt:01AR009:1984-06-03T14:00,cwsc_melt_01AR009_1984-06-03T14_00,M8,sustained_melt,1984-06-03,21,2328,False,,1.0,1,43.44486111472222,21,False
+wsc_melt:01AR009:1989-05-16T01:30,cwsc_melt_01AR009_1984-06-03T14_00,M8,sustained_melt,1989-05-16,112,17,False,,1.0,1,55.94948529333333,112,False
+wsc_melt:01AR010:1984-07-12T13:14,cwsc_melt_01AR010_1984-07-12T13_14,M8,sustained_melt,1984-07-12,,,False,no flooded cell in the search square,,1,45.32354668916666,,False
+wsc_melt:01AR010:1989-06-09T06:41,cwsc_melt_01AR010_1984-07-12T13_14,M8,sustained_melt,1989-06-09,,,False,no flooded cell in the search square,,1,27.863474739722225,,False
 wsc_melt:01BC001:2018-04-28T02:50,ccrid_01BC001_1986-1987,M8,sustained_melt,2018-04-28,498,23718,True,,0.0,2,39.25016145888889,498,False
 wsc_melt:01BC001:2020-04-14T13:50,ccrid_01BC001_1986-1987,M8,sustained_melt,2020-04-14,,,False,no flooded cell in the search square,,1,1.9830488888888889,,False
+wsc_melt:01BE001:2011-05-05T23:35,cwsc_melt_01BE001_2011-05-05T23_35,M8,sustained_melt,2011-05-05,,,False,no flooded cell in the search square,,1,11.315847248333332,,False
+wsc_melt:01BJ007:2015-04-22T18:30,cwsc_melt_01BE001_2011-05-05T23_35,M8,sustained_melt,2015-04-22,,,False,no flooded cell in the search square,,2,16.559776798055555,,False
+wsc_melt:01BJ012:2016-04-02T20:00,cwsc_melt_01BJ012_2014-05-11T03_45,M8,sustained_melt,2016-04-02,,,False,no flooded cell in the search square,,2,8.494542603333334,,False
+wsc_melt:01BJ012:2017-05-06T14:15,cwsc_melt_01BJ012_2014-05-11T03_45,M8,sustained_melt,2017-05-06,,,False,no flooded cell in the search square,,3,2.6889696844444444,,False
+wsc_melt:01BL002:2018-04-28T00:35,cwsc_melt_01BL002_2011-05-06T05_05,M8,sustained_melt,2018-04-28,,,False,no flooded cell in the search square,,2,12.891936944444444,,False
 wsc_melt:01BQ001:2017-04-13T20:50,ccrid_01BP001_1983-1984,M8,sustained_melt,2017-04-13,4,1,False,,1.0,2,9.37278317861111,4,False
 wsc_melt:01BQ001:2018-04-26T14:45,ccrid_01BP001_1983-1984,M8,sustained_melt,2018-04-26,,,False,no flooded cell in the search square,,1,20.44139638888889,,False
+wsc_melt:01FB003:2017-05-08T10:30,cwsc_melt_01FB003_2017-05-08T10_30,M8,sustained_melt,2017-05-08,,,False,no flooded cell in the search square,,1,48.15651119361111,,False
+wsc_melt:01FJ002:2018-04-29T17:00,cwsc_melt_01FJ002_2018-04-29T17_00,M8,sustained_melt,2018-04-29,,,False,no flooded cell in the search square,,2,6.052679719166667,,False
+wsc_melt:02BC006:2008-04-23T08:31,cwsc_melt_02BC006_2008-04-23T08_31,M8,sustained_melt,2008-04-23,,,False,no flooded cell in the search square,,2,2.620116620277778,,False
+wsc_melt:02BC006:2013-05-22T04:36,cwsc_melt_02BC006_2008-04-23T08_31,M8,sustained_melt,2013-05-22,6,260,False,,1.0,2,30.632424526111112,13,False
+wsc_melt:02DC012:2019-05-11T11:35,cwsc_melt_02DC012_2002-04-21T01_00,M8,sustained_melt,2019-05-11,941,36401,True,,0.0,2,6.446548789722223,941,False
+wsc_melt:02DD012:2009-04-04T23:00,cwsc_melt_02DD012_2009-04-04T23_00,M8,sustained_melt,2009-04-04,,,False,no flooded cell in the search square,,1,35.68666335416667,,False
+wsc_melt:02DD022:2009-04-06T11:45,cwsc_melt_02DD022_2009-04-06T11_45,M8,sustained_melt,2009-04-06,,,False,no flooded cell in the search square,,1,0.5633366458333333,,False
+wsc_melt:02DD022:2019-04-21T21:45,cwsc_melt_02DD022_2009-04-06T11_45,M8,sustained_melt,2019-04-21,1074,53671,True,,0.0,2,13.153062222222221,1074,False
+wsc_melt:02EA011:2014-04-19T05:45,cwsc_melt_02EA011_2009-04-07T20_55,M8,sustained_melt,2014-04-19,,,False,no flooded cell in the search square,,1,29.15138241888889,,False
+wsc_melt:02EA011:2015-04-23T14:20,cwsc_melt_02EA011_2009-04-07T20_55,M8,sustained_melt,2015-04-23,,,False,no flooded cell in the search square,,1,2.94127467,,False
+wsc_melt:02EC015:1991-04-30T16:04,cwsc_melt_02EC015_1984-04-30T15_16,M8,sustained_melt,1991-04-30,2,10259,False,,1.0,1,5.390107751666666,2,False
+wsc_melt:02EC015:1992-05-17T17:11,cwsc_melt_02EC015_1984-04-30T15_16,M8,sustained_melt,1992-05-17,2,2187,False,,1.0,1,17.01752168222222,2,True
+wsc_melt:02GC027:1986-06-24T08:15,cwsc_melt_02GC027_1985-04-06T03_45,M8,sustained_melt,1986-06-24,,,False,no flooded cell in the search square,,1,50.056076411388894,,False
+wsc_melt:02GF002:1997-06-21T23:00,cwsc_melt_02GF002_1985-03-31T07_45,M8,sustained_melt,1997-06-21,2,27487,False,,1.0,1,59.41902974666667,2,False
+wsc_melt:02HA018:1986-05-01T18:00,cwsc_melt_02HA018_1984-04-30T16_00,M8,sustained_melt,1986-05-01,18,5102,False,,1.0,1,16.230126685833334,18,False
+wsc_melt:02HA018:1991-04-30T16:15,cwsc_melt_02HA018_1984-04-30T16_00,M8,sustained_melt,1991-04-30,45,5432,False,,1.0,1,5.566805546944445,45,True
+wsc_melt:02HB017:1986-06-17T01:30,cwsc_melt_02HB017_1986-06-17T01_30,M8,sustained_melt,1986-06-17,,,False,no flooded cell in the search square,,1,56.706846666666664,,False
+wsc_melt:02HC048:1984-05-29T02:45,cwsc_melt_02HC048_1984-05-29T02_45,M8,sustained_melt,1984-05-29,,,False,no flooded cell in the search square,,1,15.970578041666668,,False
+wsc_melt:02HC048:1998-04-16T19:30,cwsc_melt_02HC048_1984-05-29T02_45,M8,sustained_melt,1998-04-16,,,False,no flooded cell in the search square,,1,14.930071121666666,,False
+wsc_melt:02HK005:2009-04-07T04:55,cwsc_melt_02HK005_1998-04-04T02_00,M8,sustained_melt,2009-04-07,,,False,no flooded cell in the search square,,1,29.57124751222222,,False
+wsc_melt:02HK005:2016-04-02T21:55,cwsc_melt_02HK005_1998-04-04T02_00,M8,sustained_melt,2016-04-02,9,6531,False,,1.0,1,12.823127890833334,9,True
+wsc_melt:02HM008:1991-05-01T16:30,cwsc_melt_02HM008_1984-04-30T18_30,M8,sustained_melt,1991-05-01,,,False,no flooded cell in the search square,,1,17.47118724138889,,False
+wsc_melt:02HM008:1998-04-17T14:00,cwsc_melt_02HM008_1984-04-30T18_30,M8,sustained_melt,1998-04-17,,,False,no flooded cell in the search square,,1,44.217851135555556,,False
+wsc_melt:02JE027:2008-04-25T21:05,cwsc_melt_02JE027_2008-04-25T21_05,M8,sustained_melt,2008-04-25,,,False,no flooded cell in the search square,,1,61.53265307472223,,False
+wsc_melt:02JE028:2014-05-04T15:30,cwsc_melt_02JE028_2014-05-04T15_30,M8,sustained_melt,2014-05-04,,,False,no flooded cell in the search square,,2,43.39018866611111,,False
+wsc_melt:02JE028:2018-05-07T13:40,cwsc_melt_02JE028_2014-05-04T15_30,M8,sustained_melt,2018-05-07,,,False,no flooded cell in the search square,,4,2.266382222222222,,False
+wsc_melt:02KC005:1985-04-29T14:07,cwsc_melt_02KC005_1985-04-29T14_07,M8,sustained_melt,1985-04-29,363,7625,True,,1.0,1,43.98029278138888,363,True
+wsc_melt:02KC005:1991-04-22T17:56,cwsc_melt_02KC005_1985-04-29T14_07,M8,sustained_melt,1991-04-22,,,False,no flooded cell in the search square,,1,16.130820845555554,,False
+wsc_melt:02KF020:2017-05-09T14:10,cwsc_melt_02KF020_2014-04-18T07_30,M8,sustained_melt,2017-05-09,,,False,no flooded cell in the search square,,1,3.0766726530555557,,False
+wsc_melt:02KF020:2018-05-02T14:05,cwsc_melt_02KF020_2014-04-18T07_30,M8,sustained_melt,2018-05-02,,,False,no flooded cell in the search square,,2,44.52381922277778,,False
+wsc_melt:02LB010:1985-04-30T04:54,cwsc_melt_02LB010_1985-04-30T04_54,M8,sustained_melt,1985-04-30,133,22411,True,,1.0,1,29.196959448055555,133,True
+wsc_melt:02LB010:1996-05-05T10:33,cwsc_melt_02LB010_1985-04-30T04_54,M8,sustained_melt,1996-05-05,3,13073,False,,1.0,1,71.11932195305556,3,False
+wsc_melt:02MB007:1997-05-16T14:30,cwsc_melt_02MB007_1993-04-25T14_30,M8,sustained_melt,1997-05-16,23,4272,False,,1.0,1,43.575072793333334,23,False
+wsc_melt:02MB007:2000-06-25T13:00,cwsc_melt_02MB007_1993-04-25T14_30,M8,sustained_melt,2000-06-25,1,1956,False,,1.0,2,45.21157807805555,1,False
+wsc_melt:02MB008:1996-05-13T18:15,cwsc_melt_02MB008_1991-04-11T18_00,M8,sustained_melt,1996-05-13,46,4335,False,,1.0,1,39.535688623333336,46,False
+wsc_melt:02MB008:1998-04-03T17:15,cwsc_melt_02MB008_1991-04-11T18_00,M8,sustained_melt,1998-04-03,,,False,no flooded cell in the search square,,1,6.535453308888889,,False
+wsc_melt:02OC016:1998-04-02T22:15,cwsc_melt_02OC016_1987-04-02T09_38,M8,sustained_melt,1998-04-02,,,False,no flooded cell in the search square,,1,59.75241168916667,,False
+wsc_melt:02OH001:1996-05-16T13:40,cwsc_melt_02OH001_1993-04-26T07_17,M8,sustained_melt,1996-05-16,745,1274,True,,1.0,1,19.914875555555554,745,True
+wsc_melt:02OH001:1998-04-05T16:00,cwsc_melt_02OH001_1993-04-26T07_17,M8,sustained_melt,1998-04-05,,,False,no flooded cell in the search square,,1,5.490978041666666,,False
+wsc_melt:02OJ016:1996-05-16T18:00,cwsc_melt_02OJ007_2000-05-18T13_30,M8,sustained_melt,1996-05-16,28,4046,False,,1.0,2,15.5749463925,28,True
+wsc_melt:02OJ016:1998-04-06T04:30,cwsc_melt_02OJ007_2000-05-18T13_30,M8,sustained_melt,1998-04-06,,,False,no flooded cell in the search square,,2,17.990978041666665,,False
+wsc_melt:02YK005:2013-04-28T17:30,cwsc_melt_02YK005_2013-04-28T17_30,M8,sustained_melt,2013-04-28,,,False,no flooded cell in the search square,,1,65.4774790475,,False
+wsc_melt:02YK005:2018-05-02T11:05,cwsc_melt_02YK005_2013-04-28T17_30,M8,sustained_melt,2018-05-02,,,False,no flooded cell in the search square,,1,24.125284444444446,,False
+wsc_melt:02YN002:2018-04-30T17:30,cwsc_melt_02YN002_2013-04-27T21_30,M8,sustained_melt,2018-04-30,,,False,no flooded cell in the search square,,2,6.140886277777779,,False
+wsc_melt:02YO006:2014-04-17T14:15,cwsc_melt_02YO006_2014-04-17T14_15,M8,sustained_melt,2014-04-17,,,False,no flooded cell in the search square,,2,44.54702586083334,,False
+wsc_melt:02YO006:2018-04-30T20:15,cwsc_melt_02YO006_2014-04-17T14_15,M8,sustained_melt,2018-04-30,1,0,False,,1.0,4,8.699715555555555,1,False
+wsc_melt:02YO011:2013-05-02T17:30,cwsc_melt_02YO011_2013-05-02T17_30,M8,sustained_melt,2013-05-02,,,False,no flooded cell in the search square,,1,6.223509246666667,,False
+wsc_melt:02YO011:2020-06-03T22:50,cwsc_melt_02YO011_2013-05-02T17_30,M8,sustained_melt,2020-06-03,51,39659,True,,0.03996474439687736,4,11.283604444444444,52,False
+wsc_melt:02YQ001:2014-04-18T13:30,cwsc_melt_02YQ001_2014-04-18T13_30,M8,sustained_melt,2014-04-18,,,False,no flooded cell in the search square,,1,45.240029308055554,,False
+wsc_melt:02YQ001:2021-04-14T03:30,cwsc_melt_02YQ001_2014-04-18T13_30,M8,sustained_melt,2021-04-14,,,False,no flooded cell in the search square,,1,7.547506666666667,,False
+wsc_melt:02YR001:2015-04-30T17:55,cwsc_melt_02YR001_2015-04-30T17_55,M8,sustained_melt,2015-04-30,,,False,no flooded cell in the search square,,1,40.70874531055556,,False
+wsc_melt:02YR001:2021-04-13T20:00,cwsc_melt_02YR001_2015-04-30T17_55,M8,sustained_melt,2021-04-13,726,28265,True,,0.0,4,15.047506666666665,726,False
+wsc_melt:02YS005:2015-05-02T05:50,cwsc_melt_02YS003_2021-04-13T03_20,M8,sustained_melt,2015-05-02,,,False,no flooded cell in the search square,,1,4.792078643888889,,False
+wsc_melt:02YS005:2020-05-10T12:45,cwsc_melt_02YS003_2021-04-13T03_20,M8,sustained_melt,2020-05-10,,,False,no flooded cell in the search square,,2,22.141395555555558,,False
+wsc_melt:02YS006:2014-04-17T18:15,cwsc_melt_02YS006_2014-04-17T18_15,M8,sustained_melt,2014-04-17,,,False,no flooded cell in the search square,,1,64.49002930805555,,False
+wsc_melt:02YS006:2021-04-14T01:40,cwsc_melt_02YS006_2014-04-17T18_15,M8,sustained_melt,2021-04-14,195,31996,True,,0.0,4,9.38084,195,False
+wsc_melt:03NE003:1997-06-08T22:00,cwsc_melt_03NE002_2016-05-12T01_00,M8,sustained_melt,1997-06-08,,,False,no flooded cell in the search square,,1,12.416963637222223,,False
+wsc_melt:03NE003:1998-05-10T01:30,cwsc_melt_03NE002_2016-05-12T01_00,M8,sustained_melt,1998-05-10,,,False,no flooded cell in the search square,,1,33.05251584388889,,False
 wsc_melt:03NF001:2020-06-14T07:00,ccrid_03NF001_1984-1985,M8,sustained_melt,2020-06-14,306,45258,True,,0.0,2,10.712835400833333,306,False
 wsc_melt:03NF001:2021-06-05T19:00,ccrid_03NF001_1984-1985,M8,sustained_melt,2021-06-05,,,False,no flooded cell in the search square,,3,7.308048888888888,,False
+wsc_melt:03OC003:2012-05-30T11:50,cwsc_melt_03OC003_2012-05-30T11_50,M8,sustained_melt,2012-05-30,,,False,no flooded cell in the search square,,1,47.119348353333336,,False
+wsc_melt:03OC003:2015-06-08T15:00,cwsc_melt_03OC003_2012-05-30T11_50,M8,sustained_melt,2015-06-08,,,False,no flooded cell in the search square,,2,44.039067311388884,,False
+wsc_melt:03OE010:2012-05-18T03:00,cwsc_melt_03OE010_2012-05-18T03_00,M8,sustained_melt,2012-05-18,,,False,no flooded cell in the search square,,1,55.545008564722224,,False
+wsc_melt:03OE010:2018-06-02T15:30,cwsc_melt_03OE010_2012-05-18T03_00,M8,sustained_melt,2018-06-02,66,37388,True,,0.05719015325465905,3,19.530284444444447,66,False
+wsc_melt:03PC001:2014-05-19T06:00,cwsc_melt_03PC001_2012-05-16T07_00,M8,sustained_melt,2014-05-19,,,False,no flooded cell in the search square,,1,18.87421300888889,,False
+wsc_melt:03PC001:2017-05-18T17:00,cwsc_melt_03PC001_2012-05-16T07_00,M8,sustained_melt,2017-05-18,,,False,no flooded cell in the search square,,1,5.824601240555555,,False
+wsc_melt:04FA001:2009-05-25T20:46,cwsc_melt_04FA001_2009-05-25T20_46,M8,sustained_melt,2009-05-25,,,False,no flooded cell in the search square,,1,8.869949701388888,,False
+wsc_melt:04FA001:2014-05-23T16:06,cwsc_melt_04FA001_2009-05-25T20_46,M8,sustained_melt,2014-05-23,1,226,False,,1.0,1,4.010936339722222,1,True
+wsc_melt:04LA004:2008-04-23T21:05,cwsc_melt_04LA002_2008-04-28T07_00,M8,sustained_melt,2008-04-23,,,False,no flooded cell in the search square,,1,61.72628444611111,,False
+wsc_melt:04LC003:2008-04-27T00:00,cwsc_melt_04LC002_2008-04-27T14_05,M8,sustained_melt,2008-04-27,,,False,no flooded cell in the search square,,1,12.683762767222222,,False
+wsc_melt:04LC003:2013-05-08T10:00,cwsc_melt_04LC002_2008-04-27T14_05,M8,sustained_melt,2013-05-08,,,False,no flooded cell in the search square,,1,25.026924740555554,,False
+wsc_melt:04LE002:2019-04-29T00:30,cwsc_melt_04LE002_2008-04-27T05_00,M8,sustained_melt,2019-04-29,2,97,False,,1.0,2,12.766382222222223,2,True
+wsc_melt:04LG004:2014-05-03T17:00,cwsc_melt_04LG004_1999-04-19T17_39,M8,sustained_melt,2014-05-03,,,False,no flooded cell in the search square,,2,18.083487088055556,,False
+wsc_melt:04LM001:2014-05-02T05:00,ccrid_04LM001_1984-1985,M8,sustained_melt,2014-05-02,,,False,no flooded cell in the search square,,1,54.083487088055556,,False
+wsc_melt:04LM001:2015-04-20T18:30,ccrid_04LM001_1984-1985,M8,sustained_melt,2015-04-20,,,False,no flooded cell in the search square,,2,6.820797555,,False
+wsc_melt:04MD004:2009-04-30T02:25,cwsc_melt_04LA002_2008-04-28T07_00,M8,sustained_melt,2009-04-30,,,False,no flooded cell in the search square,,1,15.133007215277777,,False
+wsc_melt:04ME005:2013-05-09T07:01,cwsc_melt_04ME005_2012-03-22T14_01,M8,sustained_melt,2013-05-09,,,False,no flooded cell in the search square,,1,4.0036244025,,False
+wsc_melt:05AA008:2013-06-20T07:30,cwsc_melt_05AA008_2013-06-20T07_30,M8,sustained_melt,2013-06-20,42,2585,False,,1.0,2,27.784045373888887,42,False
+wsc_melt:05AA008:2014-06-18T02:00,cwsc_melt_05AA008_2013-06-20T07_30,M8,sustained_melt,2014-06-18,,,False,no flooded cell in the search square,,1,14.3489013075,,False
+wsc_melt:05AB044:2005-06-07T22:45,ccrid_05AB021_1985-1986,M8,sustained_melt,2005-06-07,,,False,no flooded cell in the search square,,2,11.172631690000001,,False
+wsc_melt:05AB044:2006-06-15T14:45,ccrid_05AB021_1985-1986,M8,sustained_melt,2006-06-15,217,5514,True,,1.0,1,68.37947667888889,217,False
+wsc_melt:05AC022:2010-05-04T08:00,cwsc_melt_05AC022_2010-05-04T08_00,M8,sustained_melt,2010-05-04,,,False,no flooded cell in the search square,,1,26.996222234444442,,False
+wsc_melt:05AC022:2015-06-12T13:00,cwsc_melt_05AC022_2010-05-04T08_00,M8,sustained_melt,2015-06-12,1054,50203,True,,0.0,2,1.3573332380555556,1054,False
+wsc_melt:05AC901:2005-07-01T03:00,cwsc_melt_05AC031_2013-06-22T05_15,M8,sustained_melt,2005-07-01,502,3153,True,,1.0,2,8.045944736111112,502,False
+wsc_melt:05AC901:2006-06-25T07:00,cwsc_melt_05AC031_2013-06-22T05_15,M8,sustained_melt,2006-06-25,637,3260,True,,1.0,2,28.084490228333333,641,False
+wsc_melt:05AC919:1999-06-05T17:00,cwsc_melt_05AC919_1998-05-27T19_00,M8,sustained_melt,1999-06-05,63,34107,True,,1.0,1,65.78218779861112,63,False
+wsc_melt:05AC919:2002-06-29T20:00,cwsc_melt_05AC919_1998-05-27T19_00,M8,sustained_melt,2002-06-29,,,False,no flooded cell in the search square,,1,62.7461080625,,False
+wsc_melt:05AD007:2013-06-22T01:15,cwsc_melt_05AD007_2013-06-22T01_15,M8,sustained_melt,2013-06-22,160,3294,True,,1.0,2,9.826169510833333,161,False
+wsc_melt:05AD007:2020-07-01T23:20,cwsc_melt_05AD007_2013-06-22T01_15,M8,sustained_melt,2020-07-01,38,1655,False,,1.0,5,11.905284444444444,38,False
+wsc_melt:05AD010:2013-06-20T09:30,cwsc_melt_05AD010_2013-06-20T09_30,M8,sustained_melt,2013-06-20,267,357,True,,1.0,2,25.790679419722224,267,True
+wsc_melt:05AD010:2020-06-30T15:55,cwsc_melt_05AD010_2013-06-20T09_30,M8,sustained_melt,2020-06-30,875,38469,True,,0.03258438389589264,5,2.3230471925,880,False
+wsc_melt:05AD026:2018-06-20T05:25,ccrid_05AD028_1985-1986,M8,sustained_melt,2018-06-20,3143,45664,True,,0.03304853811953203,6,5.732590393611111,3232,False
+wsc_melt:05AF030:1987-06-04T14:55,cwsc_melt_05AF030_1987-06-04T14_55,M8,sustained_melt,1987-06-04,24,16436,False,,1.0,1,67.64580835083333,24,False
+wsc_melt:05AF030:1989-06-05T14:45,cwsc_melt_05AF030_1987-06-04T14_55,M8,sustained_melt,1989-06-05,171,42137,True,,1.0,1,3.72707942,171,False
+wsc_melt:05AG006:2013-06-22T20:30,cwsc_melt_05AG006_2013-06-22T20_30,M8,sustained_melt,2013-06-22,9,1118,False,,1.0,1,14.578340948055557,9,True
+wsc_melt:05AG006:2017-03-17T09:50,cwsc_melt_05AG006_2013-06-22T20_30,M8,sustained_melt,2017-03-17,1751,56779,True,,0.0,1,2.9311972625,1751,False
+wsc_melt:05AH048:2015-04-11T08:01,cwsc_melt_05AH048_1985-05-22T11_55,M8,sustained_melt,2015-04-11,25,55356,False,,1.0,2,2.91316447,27,True
+wsc_melt:05BA001:2012-06-06T22:37,cwsc_melt_05BA001_2012-06-06T22_37,M8,sustained_melt,2012-06-06,,,False,no flooded cell in the search square,,1,36.74076576805555,,False
+wsc_melt:05BA002:2012-06-06T10:00,cwsc_melt_05BA001_2012-06-06T22_37,M8,sustained_melt,2012-06-06,,,False,no flooded cell in the search square,,1,49.35743243472222,,False
+wsc_melt:05BB001:2017-06-10T00:45,cwsc_melt_05BB001_2012-06-07T15_00,M8,sustained_melt,2017-06-10,1073,16846,True,,0.0,1,17.491070925555555,1073,False
+wsc_melt:05BH004:2012-06-25T12:30,ccrid_05BJ001_1988-1989,M8,sustained_melt,2012-06-25,,,False,no flooded cell in the search square,,1,22.65382869222222,,False
+wsc_melt:05BH005:2013-06-22T00:45,cwsc_melt_05BH005_2013-06-22T00_45,M8,sustained_melt,2013-06-22,,,False,no flooded cell in the search square,,1,12.972588671944443,,False
+wsc_melt:05BH005:2014-03-01T12:15,cwsc_melt_05BH005_2013-06-22T00_45,M8,sustained_melt,2014-03-01,1,3451,False,,1.0,2,47.04478667222222,1,True
+wsc_melt:05BH013:2019-06-21T15:20,cwsc_melt_05BH013_2012-06-06T03_30,M8,sustained_melt,2019-06-21,81,7847,True,,0.014757820383451059,5,3.4252711111111114,81,False
+wsc_melt:05BJ010:2012-06-24T17:31,ccrid_05BJ001_1988-1989,M8,sustained_melt,2012-06-24,,,False,no flooded cell in the search square,,2,41.637162025555554,,False
+wsc_melt:05BK001:2020-04-20T23:20,ccrid_05BJ004_2006-2007,M8,sustained_melt,2020-04-20,1011,40919,True,,0.0604102074886716,3,11.91143473638889,1100,False
+wsc_melt:05CC007:2017-04-02T14:50,ccrid_05CC007_1984-1985,M8,sustained_melt,2017-04-02,,,False,no flooded cell in the search square,,3,44.501168050555556,,False
+wsc_melt:05CC013:2017-04-02T14:50,ccrid_05CC007_1984-1985,M8,sustained_melt,2017-04-02,,,False,no flooded cell in the search square,,3,44.501168050555556,,False
+wsc_melt:05CD005:2012-07-04T07:45,cwsc_melt_05CD005_2012-07-04T07_45,M8,sustained_melt,2012-07-04,70,29,False,,1.0,1,27.303401723611113,70,True
+wsc_melt:05CD005:2014-06-01T19:15,cwsc_melt_05CD005_2012-07-04T07_45,M8,sustained_melt,2014-06-01,60,6433,True,,1.0,2,7.613884891388889,60,False
+wsc_melt:05CD905:1997-04-15T11:10,cwsc_melt_05CD006_2017-03-21T03_45,M8,sustained_melt,1997-04-15,9,49466,False,,1.0,1,0.06859888361111112,9,False
+wsc_melt:05CD905:2003-04-15T05:25,cwsc_melt_05CD006_2017-03-21T03_45,M8,sustained_melt,2003-04-15,6,65087,False,,1.0,2,5.634939607500001,6,True
+wsc_melt:05CH011:2015-03-12T01:01,cwsc_melt_05CH011_2012-06-29T19_31,M8,sustained_melt,2015-03-12,3421,64592,True,,0.0,1,40.958210325277776,3421,False
+wsc_melt:05CH011:2018-04-22T01:20,cwsc_melt_05CH011_2012-06-29T19_31,M8,sustained_melt,2018-04-22,,,False,no flooded cell in the search square,,1,57.90528527777778,,False
+wsc_melt:05DE002:2020-06-23T16:25,cwsc_melt_05DE002_2013-07-02T20_31,M8,sustained_melt,2020-06-23,1336,40507,True,,0.37396936166144873,5,4.3441600000000005,3142,False
+wsc_melt:05DE002:2021-05-27T21:15,cwsc_melt_05DE002_2013-07-02T20_31,M8,sustained_melt,2021-05-27,1161,26129,True,,0.3508977647489923,2,2.627528584722222,1336,False
+wsc_melt:05EA001:2019-04-01T13:50,cwsc_melt_05EA001_2019-04-01T13_50,M8,sustained_melt,2019-04-01,,,False,no flooded cell in the search square,,5,21.374051370833335,,False
+wsc_melt:05EA001:2020-04-20T09:35,cwsc_melt_05EA001_2019-04-01T13_50,M8,sustained_melt,2020-04-20,149,70034,True,,0.8791160252482795,8,1.3350860541666667,1024,False
+wsc_melt:05ED002:2016-04-03T09:40,cwsc_melt_05ED002_2016-04-03T09_40,M8,sustained_melt,2016-04-03,,,False,no flooded cell in the search square,,2,1.4567713036111112,,False
+wsc_melt:05ED002:2018-04-24T08:20,cwsc_melt_05ED002_2016-04-03T09_40,M8,sustained_melt,2018-04-24,200,68632,True,,0.9780334728033473,5,2.905285277777778,605,False
+wsc_melt:05EE005:2013-04-26T01:30,cwsc_melt_05EE005_2013-04-26T01_30,M8,sustained_melt,2013-04-26,,,False,no flooded cell in the search square,,2,33.66519145722222,,False
+wsc_melt:05EE007:2013-04-27T07:30,cwsc_melt_05EE005_2013-04-26T01_30,M8,sustained_melt,2013-04-27,,,False,no flooded cell in the search square,,2,3.6651914572222224,,False
+wsc_melt:05EE008:1997-05-01T10:15,cwsc_melt_05EE008_1990-04-02T22_48,M8,sustained_melt,1997-05-01,17,13017,False,,1.0,1,0.3508711319444444,17,True
+wsc_melt:05EE008:2011-04-14T00:30,cwsc_melt_05EE008_1990-04-02T22_48,M8,sustained_melt,2011-04-14,,,False,no flooded cell in the search square,,1,34.36210611805556,,False
+wsc_melt:05EE010:2018-05-01T12:05,cwsc_melt_05EE010_2018-05-01T12_05,M8,sustained_melt,2018-05-01,574,63701,True,,1.0,3,23.32250666666667,1116,False
+wsc_melt:05EE011:2018-05-01T12:55,cwsc_melt_05EE010_2018-05-01T12_05,M8,sustained_melt,2018-05-01,574,63701,True,,1.0,3,22.489173333333333,1116,False
+wsc_melt:05EF001:2013-06-25T08:00,cwsc_melt_05EF001_2013-06-25T08_00,M8,sustained_melt,2013-06-25,6,836,False,,1.0,1,20.643397141111112,6,False
+wsc_melt:05EF001:2018-04-25T17:05,cwsc_melt_05EF001_2013-06-25T08_00,M8,sustained_melt,2018-04-25,300,72126,True,,0.9389721923066302,4,18.958661340555555,3663,False
+wsc_melt:05EG003:1985-05-17T14:30,cwsc_melt_05EG003_1984-04-16T15_10,M8,sustained_melt,1985-05-17,169,19977,True,,1.0,1,20.931909180555554,169,False
+wsc_melt:05EG003:2013-06-25T13:55,cwsc_melt_05EG003_1984-04-16T15_10,M8,sustained_melt,2013-06-25,,,False,no flooded cell in the search square,,1,1.557347635,,False
+wsc_melt:05FA001:2020-04-20T05:15,cwsc_melt_05FA001_2014-04-14T17_45,M8,sustained_melt,2020-04-20,,,False,no flooded cell in the search square,,3,29.98150350666667,,False
+wsc_melt:05FA012:2018-04-19T09:01,cwsc_melt_05FA011_2014-04-23T15_00,M8,sustained_melt,2018-04-19,1855,55733,True,,0.0,1,69.50528744972222,1855,False
+wsc_melt:05FA016:2018-04-24T21:45,cwsc_melt_05FA011_2014-04-23T15_00,M8,sustained_melt,2018-04-24,6041,69162,True,,0.8208981024693164,5,10.001387699444445,9558,True
+wsc_melt:05FA020:2015-03-31T17:30,cwsc_melt_05FA020_2013-04-29T18_15,M8,sustained_melt,2015-03-31,25,54274,False,,1.0,2,5.776725858611112,25,False
+wsc_melt:05FA020:2017-04-10T23:00,cwsc_melt_05FA020_2013-04-29T18_15,M8,sustained_melt,2017-04-10,2158,54179,True,,0.0,2,16.111558229444444,2158,False
+wsc_melt:05FB002:2018-04-17T14:11,cwsc_melt_05FB002_2018-04-17T14_11,M8,sustained_melt,2018-04-17,386,70569,True,,0.9324219575787471,4,2.53565118,3650,False
+wsc_melt:05FB002:2020-04-25T08:20,cwsc_melt_05FB002_2018-04-17T14_11,M8,sustained_melt,2020-04-25,4066,44266,True,,0.0,1,57.660580771388894,4066,False
+wsc_melt:05FC001:2014-04-15T10:30,cwsc_melt_05FC001_2014-04-15T10_30,M8,sustained_melt,2014-04-15,,,False,no flooded cell in the search square,,1,22.864287235,,False
+wsc_melt:05FC001:2020-05-05T18:35,cwsc_melt_05FC001_2014-04-15T10_30,M8,sustained_melt,2020-05-05,5265,49961,True,,0.002390178539093905,5,11.550691993333334,5267,False
+wsc_melt:05FD007:2017-06-02T16:36,cwsc_melt_05FD007_2017-06-02T16_36,M8,sustained_melt,2017-06-02,,,False,no flooded cell in the search square,,2,5.066768689722222,,False
+wsc_melt:05FD007:2019-04-17T17:40,cwsc_melt_05FD007_2017-06-02T16_36,M8,sustained_melt,2019-04-17,14,35236,False,,1.0,2,41.57472888888889,14,True
+wsc_melt:05FE004:2017-04-05T11:20,cwsc_melt_05FE004_2017-04-05T11_20,M8,sustained_melt,2017-04-05,739,54961,True,,0.6271095152603232,2,48.73769298916667,1566,False
+wsc_melt:05FE004:2018-04-25T05:49,cwsc_melt_05FE004_2017-04-05T11_20,M8,sustained_melt,2018-04-25,173,73124,True,,0.992578140988035,6,17.078048055555556,3551,False
+wsc_melt:05GG001:2013-05-01T02:55,ccrid_05GG001_1984-1985,M8,sustained_melt,2013-05-01,,,False,no flooded cell in the search square,,2,8.837121453888889,,False
+wsc_melt:05GG001:2016-04-08T04:40,ccrid_05GG001_1984-1985,M8,sustained_melt,2016-04-08,,,False,no flooded cell in the search square,,1,16.448863139166665,,False
+wsc_melt:05GG005:2011-06-26T20:45,cwsc_melt_05GG005_1985-04-22T10_46,M8,sustained_melt,2011-06-26,78,52,True,,1.0,3,38.96230538611111,78,True
+wsc_melt:05HA064:1986-05-28T12:12,cwsc_melt_05HA063_1987-04-11T04_13,M8,sustained_melt,1986-05-28,26,33509,False,,1.0,1,47.04408835583333,26,False
+wsc_melt:05HA064:1987-04-05T11:30,cwsc_melt_05HA063_1987-04-11T04_13,M8,sustained_melt,1987-04-05,209,59203,True,,1.0,1,23.820879456666667,209,False
+wsc_melt:05HD033:1994-03-16T23:52,cwsc_melt_05HD033_1987-05-02T13_42,M8,sustained_melt,1994-03-16,61,58151,True,,1.0,1,11.316765015555555,61,True
+wsc_melt:05JG009:1997-04-12T05:25,cwsc_melt_05JG009_1994-03-29T12_07,M8,sustained_melt,1997-04-12,,,False,no flooded cell in the search square,,1,5.671288338611111,,False
+wsc_melt:05JG009:1999-04-01T13:45,cwsc_melt_05JG009_1994-03-29T12_07,M8,sustained_melt,1999-04-01,1,60066,False,,1.0,1,21.529220834999997,1,False
+wsc_melt:05JH004:1997-05-11T16:15,cwsc_melt_05JH004_1996-05-16T19_00,M8,sustained_melt,1997-05-11,42,21762,False,,1.0,2,66.84964417027777,42,True
+wsc_melt:05JH004:1999-05-26T07:45,cwsc_melt_05JH004_1996-05-16T19_00,M8,sustained_melt,1999-05-26,17537,18109,True,,1.0,1,27.616637796944442,17537,False
+wsc_melt:05JJ003:2011-04-18T23:35,cwsc_melt_05JJ003_2011-04-18T23_35,M8,sustained_melt,2011-04-18,38,11172,False,,1.0,2,11.459566097777778,38,False
+wsc_melt:05JJ003:2013-05-02T04:20,cwsc_melt_05JJ003_2011-04-18T23_35,M8,sustained_melt,2013-05-02,,,False,no flooded cell in the search square,,2,7.226073543333333,,False
+wsc_melt:05JM006:1999-04-04T00:00,cwsc_melt_05JM006_1999-04-04T00_00,M8,sustained_melt,1999-04-04,,,False,no flooded cell in the search square,,1,11.073127791666666,,False
+wsc_melt:05JM006:2011-06-25T07:05,cwsc_melt_05JM006_1999-04-04T00_00,M8,sustained_melt,2011-06-25,,,False,no flooded cell in the search square,,1,19.333931383611112,,False
+wsc_melt:05JM007:2011-05-06T15:50,cwsc_melt_05JM007_2010-07-10T08_25,M8,sustained_melt,2011-05-06,55,35951,True,,1.0,2,3.9086757030555557,55,False
+wsc_melt:05JM007:2013-05-10T16:10,cwsc_melt_05JM007_2010-07-10T08_25,M8,sustained_melt,2013-05-10,71,52713,True,,1.0,2,19.295773113055557,71,False
+wsc_melt:05KD003:2011-06-27T20:25,cwsc_melt_05KD003_2011-06-27T20_25,M8,sustained_melt,2011-06-27,66,23,False,,1.0,1,63.09630831583333,66,False
+wsc_melt:05KD003:2013-06-28T08:25,cwsc_melt_05KD003_2011-06-27T20_25,M8,sustained_melt,2013-06-28,,,False,no flooded cell in the search square,,3,3.027211495,,False
+wsc_melt:05KE008:1985-05-04T04:50,cwsc_melt_05KE008_1985-05-04T04_50,M8,sustained_melt,1985-05-04,,,False,no flooded cell in the search square,,1,6.3931205747222215,,False
+wsc_melt:05KE008:2006-06-05T23:50,cwsc_melt_05KE008_1985-05-04T04_50,M8,sustained_melt,2006-06-05,25,508,False,,1.0,3,11.860896131944443,25,False
+wsc_melt:05KH007:2006-04-29T17:14,ccrid_05KH007_1985-1986,M8,sustained_melt,2006-04-29,,,False,no flooded cell in the search square,,1,18.14987612166667,,False
+wsc_melt:05KH007:2007-05-02T14:37,ccrid_05KH007_1985-1986,M8,sustained_melt,2007-05-02,,,False,no flooded cell in the search square,,1,20.811732522499998,,False
+wsc_melt:05KJ001:2007-04-23T12:55,ccrid_05KJ001_1984-1985,M8,sustained_melt,2007-04-23,,,False,no flooded cell in the search square,,2,46.43591464027778,,False
+wsc_melt:05KJ001:2013-07-11T20:30,ccrid_05KJ001_1984-1985,M8,sustained_melt,2013-07-11,52,935,True,,1.0,1,62.93442328722222,52,False
+wsc_melt:05LC001:2017-04-04T06:15,ccrid_05LC001_1985-1986,M8,sustained_melt,2017-04-04,780,72353,True,,0.7159148400858709,3,5.3055288336111115,888,False
+wsc_melt:05LC001:2018-04-23T21:50,ccrid_05LC001_1985-1986,M8,sustained_melt,2018-04-23,615,75284,True,,0.7171372481850881,4,9.805446256388889,709,False
+wsc_melt:05LC003:1988-05-12T12:27,cwsc_melt_05LC003_1984-06-16T16_09,M8,sustained_melt,1988-05-12,464,155,True,,1.0,1,46.574234168333334,464,False
+wsc_melt:05LD001:2005-04-10T02:00,cwsc_melt_05LD001_2005-04-10T02_00,M8,sustained_melt,2005-04-10,,,False,no flooded cell in the search square,,2,33.30330890111111,,False
+wsc_melt:05LG004:2012-06-18T16:50,cwsc_melt_05LG004_2007-05-24T11_00,M8,sustained_melt,2012-06-18,,,False,no flooded cell in the search square,,1,5.004300704444445,,False
+wsc_melt:05LJ019:2010-06-19T00:35,cwsc_melt_05LJ019_2010-06-19T00_35,M8,sustained_melt,2010-06-19,,,False,no flooded cell in the search square,,1,58.68162195666667,,False
+wsc_melt:05LJ019:2012-06-18T16:30,cwsc_melt_05LJ019_2010-06-19T00_35,M8,sustained_melt,2012-06-18,,,False,no flooded cell in the search square,,1,4.670967371111111,,False
+wsc_melt:05LJ045:2011-04-13T01:20,cwsc_melt_05LJ045_2010-06-18T23_45,M8,sustained_melt,2011-04-13,,,False,no flooded cell in the search square,,1,33.81445306083334,,False
+wsc_melt:05LL005:2020-07-02T13:00,cwsc_melt_05LL005_2006-04-12T03_40,M8,sustained_melt,2020-07-02,,,False,no flooded cell in the search square,,3,1.0969377777777778,,False
+wsc_melt:05LL809:1986-03-31T04:00,cwsc_melt_05LL809_1986-03-31T04_00,M8,sustained_melt,1986-03-31,,,False,no flooded cell in the search square,,1,54.65064028833333,,False
+wsc_melt:05LL809:2013-04-29T08:23,cwsc_melt_05LL809_1986-03-31T04_00,M8,sustained_melt,2013-04-29,4,51523,False,,1.0,1,20.6317541525,4,True
+wsc_melt:05LN004:1986-06-11T11:44,cwsc_melt_05LN004_1986-06-11T11_44,M8,sustained_melt,1986-06-11,,,False,no flooded cell in the search square,,1,70.7820225225,,False
+wsc_melt:05LN004:1988-06-01T16:20,cwsc_melt_05LN004_1986-06-11T11_44,M8,sustained_melt,1988-06-01,,,False,no flooded cell in the search square,,1,42.29424250527777,,False
+wsc_melt:05MA011:2014-06-30T09:58,cwsc_melt_05MA011_2011-04-14T05_48,M8,sustained_melt,2014-06-30,1497,3149,True,,1.0,2,1.6569386575,1497,False
+wsc_melt:05MB009:1985-04-13T07:46,cwsc_melt_05MB009_1985-04-13T07_46,M8,sustained_melt,1985-04-13,,,False,no flooded cell in the search square,,1,3.1600344513888885,,False
+wsc_melt:05MB009:1986-04-04T20:26,cwsc_melt_05MB009_1985-04-13T07_46,M8,sustained_melt,1986-04-04,21,73476,False,,1.0,1,62.51788890444445,21,True
+wsc_melt:05MC001:2011-04-26T05:44,cwsc_melt_05MC001_2011-04-26T05_44,M8,sustained_melt,2011-04-26,,,False,no flooded cell in the search square,,1,53.61853446888889,,False
+wsc_melt:05MC003:2011-04-13T16:04,cwsc_melt_05MC001_2011-04-26T05_44,M8,sustained_melt,2011-04-13,,,False,no flooded cell in the search square,,1,4.251533710277777,,False
+wsc_melt:05MD004:2011-04-20T01:58,ccrid_05MD004_1984-1985,M8,sustained_melt,2011-04-20,1002,26536,True,,1.0,2,9.451076164166667,1002,False
+wsc_melt:05MD004:2014-07-06T21:20,ccrid_05MD004_1984-1985,M8,sustained_melt,2014-07-06,4309,540,True,,1.0,1,62.18874452722223,4309,False
+wsc_melt:05ME003:2005-04-05T23:45,cwsc_melt_05ME003_2005-04-05T23_45,M8,sustained_melt,2005-04-05,,,False,no flooded cell in the search square,,1,12.097577111944446,,False
+wsc_melt:05ME003:2011-05-07T08:40,cwsc_melt_05ME003_2005-04-05T23_45,M8,sustained_melt,2011-05-07,11,14143,False,,1.0,2,2.5883075016666663,11,True
+wsc_melt:05ME005:2017-04-03T15:50,cwsc_melt_05ME005_2004-04-03T16_15,M8,sustained_melt,2017-04-03,1516,64783,True,,0.7600416295871733,4,43.58062845111111,2090,False
+wsc_melt:05ME010:2017-04-03T10:55,cwsc_melt_05ME005_2004-04-03T16_15,M8,sustained_melt,2017-04-03,588,54193,True,,0.6932330552563846,4,22.849715,650,False
+wsc_melt:05MF019:1995-04-18T20:04,cwsc_melt_05MF019_1995-04-18T20_04,M8,sustained_melt,1995-04-18,,,False,no flooded cell in the search square,,1,9.094888053888889,,False
+wsc_melt:05MF019:2005-07-10T02:55,cwsc_melt_05MF019_1995-04-18T20_04,M8,sustained_melt,2005-07-10,1,30,False,,1.0,2,8.232304327222222,1,True
+wsc_melt:05MH007:2002-06-08T03:28,cwsc_melt_05LL014_2005-04-03T20_10,M8,sustained_melt,2002-06-08,,,False,no flooded cell in the search square,,1,31.56477253611111,,False
+wsc_melt:05MH007:2005-07-11T22:45,cwsc_melt_05LL014_2005-04-03T20_10,M8,sustained_melt,2005-07-11,,,False,no flooded cell in the search square,,1,11.232585550277777,,False
+wsc_melt:05NC002:1996-04-17T21:30,cwsc_melt_05NC002_1996-04-17T21_30,M8,sustained_melt,1996-04-17,,,False,no flooded cell in the search square,,1,13.189932524444444,,False
+wsc_melt:05NC002:1997-04-21T11:00,cwsc_melt_05NC002_1996-04-17T21_30,M8,sustained_melt,1997-04-21,,,False,no flooded cell in the search square,,1,0.0,,False
+wsc_melt:05ND012:2001-06-09T18:00,cwsc_melt_05ND012_2001-06-09T18_00,M8,sustained_melt,2001-06-09,,,False,no flooded cell in the search square,,1,65.10748500527778,,False
+wsc_melt:05ND012:2012-05-14T17:59,cwsc_melt_05ND012_2001-06-09T18_00,M8,sustained_melt,2012-05-14,,,False,no flooded cell in the search square,,1,65.36357106,,False
+wsc_melt:05NF010:2011-04-14T16:25,cwsc_melt_05NF010_2011-04-14T16_25,M8,sustained_melt,2011-04-14,,,False,no flooded cell in the search square,,1,4.755561940833333,,False
+wsc_melt:05NF010:2017-03-27T13:15,cwsc_melt_05NF010_2011-04-14T16_25,M8,sustained_melt,2017-03-27,5,14550,False,,1.0,2,22.21547670944444,5,True
+wsc_melt:05NG012:2011-04-12T16:50,ccrid_05NG021_2008-2009,M8,sustained_melt,2011-04-12,,,False,no flooded cell in the search square,,2,42.32111222583333,,False
+wsc_melt:05NG012:2014-06-30T16:00,ccrid_05NG021_2008-2009,M8,sustained_melt,2014-06-30,378,6232,True,,1.0,1,67.28376167861111,378,False
+wsc_melt:05NG024:2015-03-17T17:25,cwsc_melt_05NG024_2011-04-15T21_53,M8,sustained_melt,2015-03-17,285,52692,True,,0.0,1,1.0019624027777778,285,False
+wsc_melt:05NG024:2017-04-02T12:45,cwsc_melt_05NG024_2011-04-15T21_53,M8,sustained_melt,2017-04-02,1,69510,False,,1.0,3,0.6830483333333334,1,False
+wsc_melt:05NG814:1985-06-25T06:57,cwsc_melt_05NG814_1985-06-25T06_57,M8,sustained_melt,1985-06-25,,,False,no flooded cell in the search square,,1,3.882759451388889,,False
+wsc_melt:05NG814:2006-04-06T00:00,cwsc_melt_05NG814_1985-06-25T06_57,M8,sustained_melt,2006-04-06,44,52910,False,,1.0,1,59.16590007805556,44,True
+wsc_melt:05OB014:1987-04-06T00:33,cwsc_melt_05OB014_1987-04-06T00_33,M8,sustained_melt,1987-04-06,2,37900,False,,1.0,1,13.44411943388889,2,True
+wsc_melt:05OB014:2007-03-27T03:00,cwsc_melt_05OB014_1987-04-06T00_33,M8,sustained_melt,2007-03-27,,,False,no flooded cell in the search square,,2,8.143905008611112,,False
+wsc_melt:05OB018:1992-04-08T18:38,cwsc_melt_05OB018_1987-04-16T00_28,M8,sustained_melt,1992-04-08,,,False,no flooded cell in the search square,,1,63.89229751916667,,False
+wsc_melt:05OF008:2006-04-11T10:15,cwsc_melt_05OF008_1996-04-18T13_00,M8,sustained_melt,2006-04-11,,,False,no flooded cell in the search square,,1,22.790263786666667,,False
+wsc_melt:05OF009:2006-04-10T08:55,cwsc_melt_05OF008_1996-04-18T13_00,M8,sustained_melt,2006-04-10,,,False,no flooded cell in the search square,,2,2.0430695466666666,,False
+wsc_melt:05OJ019:2006-04-02T06:33,cwsc_melt_05OJ019_2005-06-30T21_20,M8,sustained_melt,2006-04-02,,,False,no flooded cell in the search square,,2,4.427328895833333,,False
+wsc_melt:05OJ020:2006-04-02T06:33,cwsc_melt_05OJ019_2005-06-30T21_20,M8,sustained_melt,2006-04-02,,,False,no flooded cell in the search square,,2,4.427328895833333,,False
+wsc_melt:05PA010:1986-05-16T22:02,cwsc_melt_05PA010_1986-05-16T22_02,M8,sustained_melt,1986-05-16,,,False,no flooded cell in the search square,,1,12.09057972388889,,False
+wsc_melt:05PA010:1996-05-21T17:05,cwsc_melt_05PA010_1986-05-16T22_02,M8,sustained_melt,1996-05-21,7,885,False,,1.0,1,6.781765833333333,7,False
+wsc_melt:05PA011:1996-05-27T17:45,cwsc_melt_05PA011_1996-05-27T17_45,M8,sustained_melt,1996-05-27,75,410,True,,1.0,1,16.16116835777778,75,False
+wsc_melt:05PA011:2001-05-25T15:37,cwsc_melt_05PA011_1996-05-27T17_45,M8,sustained_melt,2001-05-25,,,False,no flooded cell in the search square,,1,18.768251944444444,,False
+wsc_melt:05PA012:2008-05-14T19:00,cwsc_melt_05PA012_2008-05-14T19_00,M8,sustained_melt,2008-05-14,34,345,False,,1.0,1,8.049320949444445,34,False
+wsc_melt:05PA012:2014-05-23T01:00,cwsc_melt_05PA012_2008-05-14T19_00,M8,sustained_melt,2014-05-23,32,488,False,,1.0,3,10.608969327777777,32,True
+wsc_melt:05QD009:1995-05-23T17:58,cwsc_melt_05PD021_1992-07-08T11_02,M8,sustained_melt,1995-05-23,,,False,no flooded cell in the search square,,1,16.066184177222222,,False
+wsc_melt:05QD022:1989-04-04T18:12,cwsc_melt_05PD021_1992-07-08T11_02,M8,sustained_melt,1989-04-04,,,False,no flooded cell in the search square,,1,16.1986258525,,False
+wsc_melt:05RE002:1990-05-12T21:46,cwsc_melt_05RE002_1990-05-12T21_46,M8,sustained_melt,1990-05-12,,,False,no flooded cell in the search square,,1,60.7800525225,,False
+wsc_melt:05RE002:2009-05-20T04:16,cwsc_melt_05RE002_1990-05-12T21_46,M8,sustained_melt,2009-05-20,,,False,no flooded cell in the search square,,1,16.760280833333333,,False
+wsc_melt:05SB003:1986-05-12T15:26,cwsc_melt_05SB003_1986-05-12T15_26,M8,sustained_melt,1986-05-12,1152,30983,True,,1.0,1,19.097813354166668,1152,True
+wsc_melt:05SB003:1987-04-14T12:29,cwsc_melt_05SB003_1986-05-12T15_26,M8,sustained_melt,1987-04-14,,,False,no flooded cell in the search square,,1,1.4821249861111112,,False
+wsc_melt:05TG002:2005-06-08T01:55,cwsc_melt_05TG002_2005-06-08T01_55,M8,sustained_melt,2005-06-08,273,2882,True,,1.0,2,9.206991800833334,449,False
+wsc_melt:05TG002:2017-05-16T23:10,cwsc_melt_05TG002_2005-06-08T01_55,M8,sustained_melt,2017-05-16,,,False,no flooded cell in the search square,,2,11.377191574444446,,False
+wsc_melt:05TG003:2017-05-31T09:10,cwsc_melt_05TG003_2005-07-31T08_00,M8,sustained_melt,2017-05-31,784,3135,True,,1.0,3,26.125481116944446,800,False
+wsc_melt:05TG003:2020-07-06T14:30,cwsc_melt_05TG003_2005-07-31T08_00,M8,sustained_melt,2020-07-06,75,604,True,,1.0,1,20.902506666666667,75,False
+wsc_melt:05UF004:2007-05-08T10:30,cwsc_melt_05UF004_2007-05-08T10_30,M8,sustained_melt,2007-05-08,,,False,no flooded cell in the search square,,1,22.99760303472222,,False
+wsc_melt:05UF004:2015-06-14T23:52,cwsc_melt_05UF004_2007-05-08T10_30,M8,sustained_melt,2015-06-14,,,False,no flooded cell in the search square,,1,12.285973915555555,,False
+wsc_melt:05UG001:2004-05-24T04:30,cwsc_melt_05UG001_2004-05-24T04_30,M8,sustained_melt,2004-05-24,,,False,no flooded cell in the search square,,1,17.330674980833333,,False
+wsc_melt:05UG001:2005-04-16T13:25,cwsc_melt_05UG001_2004-05-24T04_30,M8,sustained_melt,2005-04-16,,,False,no flooded cell in the search square,,1,2.1011961222222224,,False
+wsc_melt:05UH001:2007-04-27T22:39,cwsc_melt_05UH001_2007-04-27T22_39,M8,sustained_melt,2007-04-27,,,False,no flooded cell in the search square,,1,60.25056474305556,,False
+wsc_melt:05UH001:2013-05-13T17:15,cwsc_melt_05UH001_2007-04-27T22_39,M8,sustained_melt,2013-05-13,,,False,no flooded cell in the search square,,1,65.77275020083333,,False
+wsc_melt:06AA002:2018-04-24T22:50,cwsc_melt_06AA002_2018-04-24T22_50,M8,sustained_melt,2018-04-24,131,66474,True,,0.7906313339839351,6,11.091353711111111,303,False
+wsc_melt:06AA002:2020-06-09T03:30,cwsc_melt_06AA002_2018-04-24T22_50,M8,sustained_melt,2020-06-09,1575,40915,True,,0.02666509767004001,4,7.162464589166667,1585,False
+wsc_melt:06AB001:2013-06-20T05:30,cwsc_melt_06AA001_2018-04-26T20_10,M8,sustained_melt,2013-06-20,,,False,no flooded cell in the search square,,2,29.764144413055554,,False
+wsc_melt:06AB001:2017-07-31T05:20,cwsc_melt_06AA001_2018-04-26T20_10,M8,sustained_melt,2017-07-31,446,52539,True,,0.04522034538076814,3,6.071951944444444,514,False
+wsc_melt:06AB002:2013-06-19T08:31,cwsc_melt_06AB002_2013-06-19T08_31,M8,sustained_melt,2013-06-19,1,11,False,,1.0,1,50.74747774638889,1,True
+wsc_melt:06AB002:2017-05-23T05:25,cwsc_melt_06AB002_2013-06-19T08_31,M8,sustained_melt,2017-05-23,690,21396,True,,0.020374898125509373,4,5.857446220277778,727,False
+wsc_melt:06AC001:2012-07-04T13:00,cwsc_melt_06AC001_2012-07-04T13_00,M8,sustained_melt,2012-07-04,3,499,False,,1.0,1,22.04013650472222,3,False
+wsc_melt:06AC001:2017-04-12T04:25,cwsc_melt_06AC001_2012-07-04T13_00,M8,sustained_melt,2017-04-12,,,False,no flooded cell in the search square,,2,54.75171507083333,,False
+wsc_melt:06AC007:1988-05-05T14:13,cwsc_melt_06AC007_1987-04-25,M8,sustained_melt,1988-05-05,12,22583,False,,1.0,1,68.41799279527777,12,False
+wsc_melt:06AC007:1989-06-10T06:31,cwsc_melt_06AC007_1987-04-25,M8,sustained_melt,1989-06-10,15,1060,False,,1.0,1,52.079061680555554,15,False
+wsc_melt:06AD006:2018-04-26T11:40,ccrid_06AD006_1995-1996,M8,sustained_melt,2018-04-26,445,64054,True,,0.650971332888882,3,0.1313046336111111,1701,False
+wsc_melt:06AD006:2020-06-14T03:30,ccrid_06AD006_1995-1996,M8,sustained_melt,2020-06-14,2333,54295,True,,0.0,1,38.35141063527778,2333,False
+wsc_melt:06BB005:2014-05-01T23:25,cwsc_melt_06BB005_2014-05-01T23_25,M8,sustained_melt,2014-05-01,,,False,no flooded cell in the search square,,2,10.943279519722223,,False
+wsc_melt:06BB005:2018-04-26T16:45,cwsc_melt_06BB005_2014-05-01T23_25,M8,sustained_melt,2018-04-26,,,False,no flooded cell in the search square,,6,4.1774933333333335,,False
+wsc_melt:06DC001:2020-06-26T20:30,cwsc_melt_06DC001_2020-06-26T20_30,M8,sustained_melt,2020-06-26,427,19,False,,1.0,4,8.094715555555554,428,False
+wsc_melt:06DC001:2021-06-19T06:30,cwsc_melt_06DC001_2020-06-26T20_30,M8,sustained_melt,2021-06-19,140,47689,True,,0.015032720734282549,3,5.572506666666667,140,False
+wsc_melt:06FD002:2017-05-28T05:05,cwsc_melt_06FD002_2002-05-28T08_56,M8,sustained_melt,2017-05-28,6595,58782,True,,0.0,1,36.542646455833335,6595,False
+wsc_melt:06GD001:2021-06-06T14:05,ccrid_06GD001_1991-1992,M8,sustained_melt,2021-06-06,,,False,no flooded cell in the search square,,2,21.316951111111113,,False
+wsc_melt:06JB001:2016-06-14T11:35,cwsc_melt_06JB001_2015-06-14T13_00,M8,sustained_melt,2016-06-14,,,False,no flooded cell in the search square,,2,0.0,,False
+wsc_melt:06JB001:2021-06-22T13:40,cwsc_melt_06JB001_2015-06-14T13_00,M8,sustained_melt,2021-06-22,2444,48225,True,,0.014801949910201504,3,1.9274933333333333,2543,False
+wsc_melt:06JC002:2019-06-18T13:55,ccrid_06JC002_1989-1990,M8,sustained_melt,2019-06-18,19466,35429,True,,0.0,4,2.175271111111111,19466,False
+wsc_melt:06JC002:2020-06-22T19:10,ccrid_06JC002_1989-1990,M8,sustained_melt,2020-06-22,541,543,True,,1.0,2,7.428048888888888,543,True
+wsc_melt:06LC004:1987-07-03T20:16,cwsc_melt_06LC004_1987-07-03T20_16,M8,sustained_melt,1987-07-03,14,1252,False,,1.0,1,62.72458140972223,14,False
+wsc_melt:06LC004:1991-06-19T17:08,cwsc_melt_06LC004_1987-07-03T20_16,M8,sustained_melt,1991-06-19,,,False,no flooded cell in the search square,,1,65.92758944611111,,False
+wsc_melt:06MA006:2016-06-26T09:55,cwsc_melt_06MA006_2006-06-17T10_55,M8,sustained_melt,2016-06-26,,,False,no flooded cell in the search square,,4,0.7443377633333333,,False
+wsc_melt:06MA006:2020-07-06T10:25,cwsc_melt_06MA006_2006-06-17T10_55,M8,sustained_melt,2020-07-06,10,1,False,,1.0,5,0.48861777777777776,10,False
+wsc_melt:07AA001:2020-06-24T23:55,cwsc_melt_07AA001_2012-06-07T05_30,M8,sustained_melt,2020-06-24,269,25700,True,,0.0006546266702606954,2,7.024372766666667,269,False
+wsc_melt:07AA001:2021-06-04T00:30,cwsc_melt_07AA001_2012-06-07T05_30,M8,sustained_melt,2021-06-04,179,15219,True,,0.0,4,12.42804888888889,393,False
+wsc_melt:07AC001:2020-07-02T17:00,cwsc_melt_07AC001_2012-06-10T10_30,M8,sustained_melt,2020-07-02,17,23697,False,,0.0,1,9.701495299722222,17,False
+wsc_melt:07AD002:2020-07-03T03:25,cwsc_melt_07AD002_2012-06-08T09_00,M8,sustained_melt,2020-07-03,163,32884,True,,0.0781008866160317,2,8.15584,166,False
+wsc_melt:07AF013:2018-07-04T14:25,cwsc_melt_07AF013_2013-06-21T00_00,M8,sustained_melt,2018-07-04,95,26718,True,,0.1326595308246,3,2.3413822222222223,99,False
+wsc_melt:07AF013:2020-07-01T21:10,cwsc_melt_07AF013_2013-06-21T00_00,M8,sustained_melt,2020-07-01,106,29124,True,,0.023366404379062608,3,8.928048888888888,106,True
+wsc_melt:07AG007:2019-07-08T23:15,cwsc_melt_07AG007_2018-04-26T16_40,M8,sustained_melt,2019-07-08,560,50421,True,,0.0,2,12.322506666666666,560,False
+wsc_melt:07AH002:2012-07-25T14:15,cwsc_melt_07AH002_2012-07-25T14_15,M8,sustained_melt,2012-07-25,20,196,False,,1.0,1,21.103300933055554,20,True
+wsc_melt:07AH002:2017-05-14T22:30,cwsc_melt_07AH002_2012-07-25T14_15,M8,sustained_melt,2017-05-14,564,59763,True,,0.0,3,10.623161490277779,619,False
+wsc_melt:07BF008:1996-06-27T18:00,cwsc_melt_07BF008_1996-06-27T18_00,M8,sustained_melt,1996-06-27,762,271,True,,1.0,1,6.740740277777778,762,False
+wsc_melt:07BF009:2013-06-27T23:45,cwsc_melt_07BF009_2013-06-27T23_45,M8,sustained_melt,2013-06-27,7,0,False,,1.0,1,11.892162903611112,7,False
+wsc_melt:07BF009:2018-06-13T10:05,cwsc_melt_07BF009_2013-06-27T23_45,M8,sustained_melt,2018-06-13,6127,53579,True,,0.02445315378688909,3,20.56903729388889,6161,True
+wsc_melt:07BF010:2013-05-07T20:30,cwsc_melt_07BF008_1996-06-27T18_00,M8,sustained_melt,2013-05-07,171,7879,True,,1.0,1,62.862918083333334,171,False
+wsc_melt:07BK007:2014-04-27T21:31,cwsc_melt_07BK005_2014-04-27T10_30,M8,sustained_melt,2014-04-27,6,3455,False,,1.0,3,9.6314283925,8,False
+wsc_melt:07BK007:2018-04-28T23:45,cwsc_melt_07BK005_2014-04-27T10_30,M8,sustained_melt,2018-04-28,8,34882,False,,1.0,4,35.66794099305555,8,True
+wsc_melt:07BK008:1997-06-29T18:57,cwsc_melt_07BK008_1997-06-29T18_57,M8,sustained_melt,1997-06-29,6,1,False,,1.0,1,63.879453633611114,6,False
+wsc_melt:07BK008:2007-05-11T17:00,cwsc_melt_07BK008_1997-06-29T18_57,M8,sustained_melt,2007-05-11,259,9492,True,,1.0,1,5.262218876666667,259,True
+wsc_melt:07CA012:2016-06-15T03:15,cwsc_melt_07CA012_2013-06-15T07_31,M8,sustained_melt,2016-06-15,,,False,no flooded cell in the search square,,2,15.027214722222222,,False
+wsc_melt:07CA012:2020-06-09T22:25,cwsc_melt_07CA012_2013-06-15T07_31,M8,sustained_melt,2020-06-09,1900,50390,True,,0.022509083954867087,4,8.102696390277778,1926,False
+wsc_melt:07CD005:2018-04-27T09:01,cwsc_melt_07CD005_2018-04-27T09_01,M8,sustained_melt,2018-04-27,489,62542,True,,0.8429344290904476,5,2.388618611111111,575,False
+wsc_melt:07CD005:2020-04-29T16:30,cwsc_melt_07CD005_2018-04-27T09_01,M8,sustained_melt,2020-04-29,329,46096,True,,0.5860420032310177,6,5.206776408333333,357,False
+wsc_melt:07CE002:2014-04-29T12:31,cwsc_melt_07CE002_2014-04-29T12_31,M8,sustained_melt,2014-04-29,,,False,no flooded cell in the search square,,1,0.8373271494444445,,False
+wsc_melt:07CE002:2020-06-09T23:55,cwsc_melt_07CE002_2014-04-29T12_31,M8,sustained_melt,2020-06-09,1371,59593,True,,1.6403123154648645e-05,4,6.595751993055555,1371,False
+wsc_melt:07CE906:2014-06-07T06:00,cwsc_melt_07CE005_2020-06-11T16_25,M8,sustained_melt,2014-06-07,20,916,False,,1.0,2,29.220295153055556,20,False
+wsc_melt:07CE906:2016-06-15T12:00,cwsc_melt_07CE005_2020-06-11T16_25,M8,sustained_melt,2016-06-15,,,False,no flooded cell in the search square,,1,71.23945194444444,,False
+wsc_melt:07DA018:2013-06-10T22:46,ccrid_07DA006_2006-2007,M8,sustained_melt,2013-06-10,,,False,no flooded cell in the search square,,2,36.58868465638889,,False
+wsc_melt:07DA018:2014-05-30T10:46,ccrid_07DA006_2006-2007,M8,sustained_melt,2014-05-30,198,18536,True,,1.0,2,0.5485456558333334,198,False
+wsc_melt:07EA007:2013-06-27T23:11,cwsc_melt_07EA007_2013-06-27T23_11,M8,sustained_melt,2013-06-27,15,234,False,,1.0,2,11.888710648333332,15,True
+wsc_melt:07EA007:2021-06-03T12:50,cwsc_melt_07EA007_2013-06-27T23_11,M8,sustained_melt,2021-06-03,218,12309,True,,0.018759479524227667,6,0.9330488888888889,363,False
+wsc_melt:07EB002:2012-06-08T06:31,cwsc_melt_07EB002_2011-06-24T20_16,M8,sustained_melt,2012-06-08,87,749,True,,1.0,1,28.535482070277777,87,True
+wsc_melt:07EB002:2021-06-03T12:05,cwsc_melt_07EB002_2011-06-24T20_16,M8,sustained_melt,2021-06-03,39,8596,False,,0.012970469021424435,6,0.5375156733333334,146,False
+wsc_melt:07ED003:2011-05-24T01:18,cwsc_melt_07ED003_2011-05-24T01_18,M8,sustained_melt,2011-05-24,,,False,no flooded cell in the search square,,1,9.539824751388888,,False
+wsc_melt:07EE007:2015-03-16T22:05,cwsc_melt_07EE007_2015-03-16T22_05,M8,sustained_melt,2015-03-16,,,False,no flooded cell in the search square,,2,10.646997658888889,,False
+wsc_melt:07EE009:2013-05-13T04:15,cwsc_melt_07EE009_2011-05-12T09_35,M8,sustained_melt,2013-05-13,976,2993,True,,1.0,2,6.634651905555556,978,True
+wsc_melt:07EE010:2013-05-13T10:21,cwsc_melt_07EE010_2011-05-18T07_01,M8,sustained_melt,2013-05-13,206,2140,True,,1.0,1,0.5346519055555555,206,False
+wsc_melt:07EE010:2021-05-09T05:45,cwsc_melt_07EE010_2011-05-18T07_01,M8,sustained_melt,2021-05-09,278,35611,True,,0.14399955418094681,7,18.18027111111111,487,False
+wsc_melt:07FA006:2011-06-26T08:01,cwsc_melt_07FA006_2011-06-26T08_01,M8,sustained_melt,2011-06-26,,,False,no flooded cell in the search square,,1,2.6480066875,,False
+wsc_melt:07FA006:2013-06-28T18:46,cwsc_melt_07FA006_2011-06-26T08_01,M8,sustained_melt,2013-06-28,1,1413,False,,1.0,2,40.10560083,1,False
+wsc_melt:07FB002:2011-07-10T00:55,cwsc_melt_07FB002_2011-07-10T00_55,M8,sustained_melt,2011-07-10,,,False,no flooded cell in the search square,,1,57.74628973277778,,False
+wsc_melt:07FB002:2017-06-10T20:00,cwsc_melt_07FB002_2011-07-10T00_55,M8,sustained_melt,2017-06-10,213,26752,True,,0.004561468570368997,4,8.661639955833333,494,False
+wsc_melt:07FB006:2011-07-10T09:10,cwsc_melt_07FB006_2011-07-10T09_10,M8,sustained_melt,2011-07-10,,,False,no flooded cell in the search square,,1,49.50290918583333,,False
+wsc_melt:07FB008:2018-05-01T08:10,cwsc_melt_07FB008_2011-06-27T21_51,M8,sustained_melt,2018-05-01,,,False,no flooded cell in the search square,,2,2.739173333333333,,False
+wsc_melt:07FB008:2020-04-26T09:20,cwsc_melt_07FB008_2011-06-27T21_51,M8,sustained_melt,2020-04-26,,,False,no flooded cell in the search square,,2,21.930826666666665,,False
+wsc_melt:07FB009:2011-07-09T16:30,cwsc_melt_07FB006_2011-07-10T09_10,M8,sustained_melt,2011-07-09,,,False,no flooded cell in the search square,,2,66.16295639944445,,False
+wsc_melt:07FC001:2017-05-14T13:45,ccrid_07FC001_2006-2007,M8,sustained_melt,2017-05-14,2070,41414,True,,0.13837273479900652,3,45.15584055555556,2128,False
+wsc_melt:07FC001:2020-07-05T03:55,ccrid_07FC001_2006-2007,M8,sustained_melt,2020-07-05,6,764,False,,1.0,4,6.331500128888888,6,False
+wsc_melt:07FC003:2013-06-28T11:15,cwsc_melt_07FC003_2012-06-07T22_05,M8,sustained_melt,2013-06-28,,,False,no flooded cell in the search square,,1,47.615635033055554,,False
+wsc_melt:07FC003:2017-05-13T17:05,cwsc_melt_07FC003_2012-06-07T22_05,M8,sustained_melt,2017-05-13,,,False,no flooded cell in the search square,,2,65.82250722222223,,False
+wsc_melt:07FD012:2014-04-24T22:30,cwsc_melt_07FD012_2014-04-24T22_30,M8,sustained_melt,2014-04-24,,,False,no flooded cell in the search square,,2,10.261724519444446,,False
+wsc_melt:07FD012:2018-04-25T23:05,cwsc_melt_07FD012_2014-04-24T22_30,M8,sustained_melt,2018-04-25,211,27960,True,,0.8023499343296298,5,12.819174166666667,525,False
+wsc_melt:07FD013:2014-04-23T19:01,cwsc_melt_07FD013_2014-04-23T19_01,M8,sustained_melt,2014-04-23,,,False,no flooded cell in the search square,,2,16.72160881388889,,False
+wsc_melt:07FD013:2018-04-28T04:01,cwsc_melt_07FD013_2014-04-23T19_01,M8,sustained_melt,2018-04-28,125,69970,True,,0.5559312361794707,3,7.60758783,352,False
+wsc_melt:07GA001:2012-07-24T13:01,cwsc_melt_07GA001_2012-07-24T13_01,M8,sustained_melt,2012-07-24,,,False,no flooded cell in the search square,,1,0.9576315480555556,,False
+wsc_melt:07GA001:2017-06-09T21:20,cwsc_melt_07GA001_2012-07-24T13_01,M8,sustained_melt,2017-06-09,609,1881,True,,1.0,4,38.45743212027777,650,True
+wsc_melt:07GB001:2017-06-10T01:56,cwsc_melt_07GB001_2017-06-10T01_56,M8,sustained_melt,2017-06-10,3,1083,False,,1.0,3,33.85743212027778,3,False
+wsc_melt:07GB001:2019-06-29T07:05,cwsc_melt_07GB001_2017-06-10T01_56,M8,sustained_melt,2019-06-29,179,14897,True,,0.00829132395860971,3,11.316514805277778,192,False
+wsc_melt:07GD001:2018-04-29T01:40,cwsc_melt_07GD001_2018-04-29T01_40,M8,sustained_melt,2018-04-29,1188,68343,True,,0.7642634220707311,4,13.427493333333334,3143,False
+wsc_melt:07GD001:2019-04-01T21:05,cwsc_melt_07GD001_2018-04-29T01_40,M8,sustained_melt,2019-04-01,1387,36168,True,,0.3625615763546798,3,8.672493333333334,2929,False
+wsc_melt:07GD004:2013-05-08T09:45,cwsc_melt_07GD004_2013-05-08T09_45,M8,sustained_melt,2013-05-08,4,29434,False,,1.0,1,1.8256533755555557,4,False
+wsc_melt:07GD004:2018-04-28T18:35,cwsc_melt_07GD004_2013-05-08T09_45,M8,sustained_melt,2018-04-28,835,75388,True,,0.8528790522545688,4,6.34416,3537,False
+wsc_melt:07GE002:2018-04-22T17:50,cwsc_melt_07GE002_2014-04-10T16_31,M8,sustained_melt,2018-04-22,560,12437,True,,0.012926059859967684,2,17.90528527777778,560,True
+wsc_melt:07GE002:2020-04-18T17:05,cwsc_melt_07GE002_2014-04-10T16_31,M8,sustained_melt,2020-04-18,167,4724,True,,0.2553670006133715,4,5.456952330833333,466,True
+wsc_melt:07GE003:2016-06-16T01:55,cwsc_melt_07GE003_2016-06-16T01_55,M8,sustained_melt,2016-06-16,294,3395,True,,1.0,3,9.819033563888889,302,False
+wsc_melt:07GE003:2020-04-21T20:35,cwsc_melt_07GE003_2016-06-16T01_55,M8,sustained_melt,2020-04-21,298,57376,True,,0.8521517494885044,3,15.152506666666666,350,False
+wsc_melt:07GE007:2013-04-20T17:46,cwsc_melt_07GE007_2013-04-20T17_46,M8,sustained_melt,2013-04-20,,,False,no flooded cell in the search square,,2,18.00379225916667,,False
+wsc_melt:07GE007:2018-04-26T05:51,cwsc_melt_07GE007_2013-04-20T17_46,M8,sustained_melt,2018-04-26,89,4851,True,,0.11639676113360324,6,6.0525075,120,True
+wsc_melt:07GF001:2018-04-28T13:36,cwsc_melt_07GF001_2018-04-28T13_36,M8,sustained_melt,2018-04-28,18,53823,False,,1.0,5,1.3608266666666666,101,False
+wsc_melt:07GF001:2019-06-29T20:00,cwsc_melt_07GF001_2018-04-28T13_36,M8,sustained_melt,2019-06-29,1084,41895,True,,0.014890993275785849,5,1.100151861388889,1696,False
+wsc_melt:07GH003:2017-05-29T01:36,cwsc_melt_07GH003_2017-05-29T01_36,M8,sustained_melt,2017-05-29,241,30163,True,,0.015228259439547427,3,13.516343450555556,902,False
+wsc_melt:07GH003:2018-05-11T16:06,cwsc_melt_07GH003_2017-05-29T01_36,M8,sustained_melt,2018-05-11,1779,33033,True,,0.44559347351487993,5,3.69416,2332,False
+wsc_melt:07HA003:2018-04-25T01:06,cwsc_melt_07HA003_2013-04-27T05_16,M8,sustained_melt,2018-04-25,888,42825,True,,0.7498227072038066,2,5.822081556666666,1061,False
+wsc_melt:07HA003:2020-04-22T09:10,cwsc_melt_07HA003_2013-04-27T05_16,M8,sustained_melt,2020-04-22,,,False,no flooded cell in the search square,,1,2.569173333333333,,False
+wsc_melt:07HB001:2014-05-05T02:45,cwsc_melt_07HB001_2013-07-07T13_30,M8,sustained_melt,2014-05-05,10,3587,False,,1.0,1,14.761592780277777,10,True
+wsc_melt:07HB001:2020-06-17T15:00,cwsc_melt_07HB001_2013-07-07T13_30,M8,sustained_melt,2020-06-17,520,64406,True,,0.0020484859686412224,5,20.57195111111111,648,False
+wsc_melt:07HF001:1987-04-22T05:00,cv1_fort-vermilion-2020-04-27,M8,sustained_melt,1987-04-22,,,False,no flooded cell in the search square,,1,30.01125780388889,,False
+wsc_melt:07HF002:2013-05-15T08:01,cwsc_melt_07HF002_2013-05-15T08_01,M8,sustained_melt,2013-05-15,,,False,no flooded cell in the search square,,2,3.648703596388889,,False
+wsc_melt:07HF002:2020-07-06T21:30,cwsc_melt_07HF002_2013-05-15T08_01,M8,sustained_melt,2020-07-06,401,72021,True,,0.002747783822595344,4,2.7093869241666666,401,False
+wsc_melt:07JD004:2018-04-23T15:40,cwsc_melt_07JD004_2013-05-04T23_00,M8,sustained_melt,2018-04-23,,,False,no flooded cell in the search square,,2,3.4280480555555557,,False
+wsc_melt:07JD004:2021-04-15T18:30,cwsc_melt_07JD004_2013-05-04T23_00,M8,sustained_melt,2021-04-15,69,27456,True,,0.4532970027247956,3,6.096937777777778,160,False
+wsc_melt:07JF003:2013-05-14T21:45,cv1_fort-vermilion-2020-04-27,M8,sustained_melt,2013-05-14,5,41067,False,,1.0,2,37.90757417499999,5,False
+wsc_melt:07KC005:1994-04-30T13:00,cwsc_melt_07KC005_1994-04-30T13_00,M8,sustained_melt,1994-04-30,25,35800,False,,1.0,1,1.9576919427777777,25,False
+wsc_melt:07NA007:1987-04-25T15:30,cwsc_melt_07NA001_2011-07-16T20_00,M8,sustained_melt,1987-04-25,,,False,no flooded cell in the search square,,1,43.101219184166666,,False
+wsc_melt:07NA007:1989-05-07T12:05,cwsc_melt_07NA001_2011-07-16T20_00,M8,sustained_melt,1989-05-07,,,False,no flooded cell in the search square,,1,46.709748335,,False
+wsc_melt:07OB003:2020-07-12T06:40,ccrid_07OB003_1984-1985,M8,sustained_melt,2020-07-12,53,60829,True,,0.0003613547518149864,5,0.3846512302777778,53,False
+wsc_melt:07OB003:2021-06-25T08:10,ccrid_07OB003_1984-1985,M8,sustained_melt,2021-06-25,116,60647,True,,0.023007422280005924,3,0.6139917905555555,122,False
+wsc_melt:07SB013:2006-05-10T09:45,cwsc_melt_07SB013_2006-05-10T09_45,M8,sustained_melt,2006-05-10,,,False,no flooded cell in the search square,,1,49.79203527888889,,False
+wsc_melt:07SB013:2009-05-17T15:55,cwsc_melt_07SB013_2006-05-10T09_45,M8,sustained_melt,2009-05-17,,,False,no flooded cell in the search square,,1,67.63158540305555,,False
+wsc_melt:08AC001:2012-06-08T14:55,cwsc_melt_08AC001_2011-06-01T01_00,M8,sustained_melt,2012-06-08,,,False,no flooded cell in the search square,,1,2.4509476347222225,,False
+wsc_melt:08AC002:2012-06-25T03:15,cwsc_melt_08AC001_2011-06-01T01_00,M8,sustained_melt,2012-06-25,22,3296,False,,1.0,1,14.782042139166666,22,False
+wsc_melt:08CD001:2013-05-30T10:45,cwsc_melt_08CD001_2012-06-08T11_25,M8,sustained_melt,2013-05-30,,,False,no flooded cell in the search square,,2,0.8338633727777779,,False
+wsc_melt:08CD001:2021-06-03T08:08,cwsc_melt_08CD001_2012-06-08T11_25,M8,sustained_melt,2021-06-03,48,205,False,,1.0,2,19.735826666666664,48,True
+wsc_melt:08EC001:1997-06-05T13:50,cwsc_melt_08EC001_1997-06-05T13_50,M8,sustained_melt,1997-06-05,35,342,False,,1.0,2,68.80639835583334,37,False
+wsc_melt:08EC003:2007-06-13T19:00,cwsc_melt_08EC003_2007-06-13T19_00,M8,sustained_melt,2007-06-13,,,False,no flooded cell in the search square,,1,7.542169435833334,,False
+wsc_melt:08EC003:2015-06-01T21:27,cwsc_melt_08EC003_2007-06-13T19_00,M8,sustained_melt,2015-06-01,17,47,False,,1.0,2,13.701643275,17,True
+wsc_melt:08EC013:2011-06-06T14:26,cwsc_melt_08EC001_1997-06-05T13_50,M8,sustained_melt,2011-06-06,21,103,False,,1.0,2,2.8539049963888887,21,False
+wsc_melt:08ED001:2012-06-24T21:16,cwsc_melt_08ED001_2012-06-24T21_16,M8,sustained_melt,2012-06-24,,,False,no flooded cell in the search square,,2,13.80086091777778,,False
+wsc_melt:08ED001:2015-05-28T04:51,cwsc_melt_08ED001_2012-06-24T21_16,M8,sustained_melt,2015-05-28,655,9606,True,,0.0,1,13.23555213361111,655,False
+wsc_melt:08ED002:2015-05-29T03:40,cwsc_melt_08ED002_2012-06-26T12_46,M8,sustained_melt,2015-05-29,609,12729,True,,0.0,1,9.081114533055556,609,False
+wsc_melt:08ED002:2021-07-01T08:55,cwsc_melt_08ED002_2012-06-26T12_46,M8,sustained_melt,2021-07-01,207,31145,True,,0.04608956366420005,4,21.18027111111111,215,False
+wsc_melt:08EE003:2011-05-28T08:26,cwsc_melt_08EE003_2011-05-28T08_26,M8,sustained_melt,2011-05-28,402,1976,True,,1.0,2,26.72239558388889,402,False
+wsc_melt:08EE005:2011-05-28T04:41,cwsc_melt_08EE005_2011-05-28T04_41,M8,sustained_melt,2011-05-28,169,1092,True,,1.0,2,30.47239558388889,169,False
+wsc_melt:08EE005:2018-05-10T13:50,cwsc_melt_08EE005_2011-05-28T04_41,M8,sustained_melt,2018-05-10,1370,43691,True,,0.3910698830474246,3,1.930271111111111,1436,False
+wsc_melt:08EE013:2011-05-28T02:00,cwsc_melt_08EE003_2011-05-28T08_26,M8,sustained_melt,2011-05-28,468,730,True,,1.0,2,33.15572891722222,468,False
+wsc_melt:08JB002:2011-06-06T18:36,cwsc_melt_08JB002_2011-06-06T18_36,M8,sustained_melt,2011-06-06,400,1327,True,,1.0,1,40.27969417527778,400,True
+wsc_melt:08JB002:2018-05-20T01:15,cwsc_melt_08JB002_2011-06-06T18_36,M8,sustained_melt,2018-05-20,2520,21859,True,,0.31609171828212806,8,13.680825833333333,3201,False
+wsc_melt:08JB003:2011-06-02T04:01,cwsc_melt_08JB003_2011-06-02T04_01,M8,sustained_melt,2011-06-02,43,600,False,,1.0,1,16.7388608125,43,False
+wsc_melt:08JB003:2018-05-15T20:10,cwsc_melt_08JB003_2011-06-02T04_01,M8,sustained_melt,2018-05-15,679,28107,True,,0.10508580559994442,3,34.041310270555556,712,False
+wsc_melt:08JB007:2002-05-30T04:22,cwsc_melt_08JB007_1997-05-17T06_35,M8,sustained_melt,2002-05-30,,,False,no flooded cell in the search square,,1,16.897011618055554,,False
+wsc_melt:08JB007:2011-05-27T22:20,cwsc_melt_08JB007_1997-05-17T06_35,M8,sustained_melt,2011-05-27,,,False,no flooded cell in the search square,,2,36.82239558388889,,False
+wsc_melt:08JE001:2011-07-03T14:31,cwsc_melt_08JE001_2011-07-03T14_31,M8,sustained_melt,2011-07-03,,,False,no flooded cell in the search square,,1,3.2431349755555554,,False
+wsc_melt:08JE001:2015-06-11T15:51,cwsc_melt_08JE001_2011-07-03T14_31,M8,sustained_melt,2015-06-11,2471,45827,True,,0.007971344569133298,3,4.300256986111111,2478,False
+wsc_melt:08JE004:2018-04-25T09:20,cwsc_melt_08JE004_2012-04-27T16_06,M8,sustained_melt,2018-04-25,2,145,False,,0.0,6,1.6293637691666665,2,False
+wsc_melt:08JE004:2020-04-24T01:20,cwsc_melt_08JE004_2012-04-27T16_06,M8,sustained_melt,2020-04-24,823,48054,True,,0.010086543773144833,3,4.870950622777778,832,False
+wsc_melt:08KA004:2011-07-10T21:46,cwsc_melt_08KA004_2011-07-10T21_46,M8,sustained_melt,2011-07-10,14,22,False,,1.0,2,36.90290918583333,14,False
+wsc_melt:08KA004:2012-06-19T22:46,cwsc_melt_08KA004_2011-07-10T21_46,M8,sustained_melt,2012-06-19,1182,17,False,,1.0,1,11.991393359166667,1182,True
+wsc_melt:08KA005:2020-06-25T07:15,cwsc_melt_08KA001_2011-06-29T18_06,M8,sustained_melt,2020-06-25,4178,34975,True,,0.04012463923581846,4,0.8089605666666667,4178,False
+wsc_melt:08KA007:2020-06-25T09:15,cwsc_melt_08KA007_2012-06-25T05_51,M8,sustained_melt,2020-06-25,67,5995,True,,0.0001649620587264929,5,2.808960566666667,67,False
+wsc_melt:08KA007:2021-06-30T12:10,cwsc_melt_08KA007_2012-06-25T05_51,M8,sustained_melt,2021-06-30,185,16922,True,,0.5580756415502426,7,5.229692300833333,281,True
+wsc_melt:08KE018:2008-05-22T11:00,ccrid_08KB001_1989-1990,M8,sustained_melt,2008-05-22,363,4999,True,,1.0,3,23.758388618055555,363,False
+wsc_melt:08KE018:2011-07-11T08:15,ccrid_08KB001_1989-1990,M8,sustained_melt,2011-07-11,,,False,no flooded cell in the search square,,2,26.4195758525,,False
+wsc_melt:08KH030:2020-07-02T20:10,cwsc_melt_08KH030_2011-06-29T04_51,M8,sustained_melt,2020-07-02,,,False,no flooded cell in the search square,,2,38.738617777777776,,False
+wsc_melt:08LA012:1989-06-15T22:00,cwsc_melt_08LA012_1986-06-02T07_58,M8,sustained_melt,1989-06-15,,,False,no flooded cell in the search square,,1,11.378337767222222,,False
+wsc_melt:08LA012:1993-05-17T07:19,cwsc_melt_08LA012_1986-06-02T07_58,M8,sustained_melt,1993-05-17,3,199,False,,1.0,1,20.681337479166665,3,True
+wsc_melt:08LB047:2014-05-25T02:00,cwsc_melt_08LB047_2014-05-25T02_00,M8,sustained_melt,2014-05-25,292,78,True,,1.0,1,56.61378902444444,292,False
+wsc_melt:08LB047:2017-06-02T03:15,cwsc_melt_08LB047_2014-05-25T02_00,M8,sustained_melt,2017-06-02,82,58,True,,1.0,1,55.450525203055555,82,False
+wsc_melt:08LB064:2014-05-26T01:15,cwsc_melt_08LB064_2014-05-26T01_15,M8,sustained_melt,2014-05-26,126,389,True,,1.0,1,33.36378902444444,126,False
+wsc_melt:08LB064:2017-06-03T05:25,cwsc_melt_08LB064_2014-05-26T01_15,M8,sustained_melt,2017-06-03,79,1762,True,,1.0,2,29.28385853638889,79,False
+wsc_melt:08LC002:2018-05-20T13:55,cwsc_melt_08LC002_2012-06-26T20_10,M8,sustained_melt,2018-05-20,1990,13956,True,,0.16455537438856138,6,2.844714722222222,2113,False
+wsc_melt:08LC002:2020-06-03T15:00,cwsc_melt_08LC002_2012-06-26T20_10,M8,sustained_melt,2020-06-03,1107,14094,True,,0.09308598118544832,6,3.9274933333333335,1156,False
+wsc_melt:08LC018:2012-06-25T01:35,cwsc_melt_08LC018_2012-06-25T01_35,M8,sustained_melt,2012-06-25,,,False,no flooded cell in the search square,,1,14.717023072222222,,False
+wsc_melt:08LC018:2020-06-01T16:05,cwsc_melt_08LC018_2012-06-25T01_35,M8,sustained_melt,2020-06-01,648,4674,True,,0.037391957910559936,3,4.844715555555555,649,False
+wsc_melt:08LF002:2011-06-03T00:30,cwsc_melt_08LF002_2011-06-03T00_30,M8,sustained_melt,2011-06-03,70,34535,True,,1.0,2,10.091430835,70,False
+wsc_melt:08LF002:2014-06-02T15:51,cwsc_melt_08LF002_2011-06-03T00_30,M8,sustained_melt,2014-06-02,61,17574,True,,1.0,2,18.873945191111112,61,True
+wsc_melt:08LF085:1984-07-02T20:08,cwsc_melt_08LF085_1984-07-02T20_08,M8,sustained_melt,1984-07-02,3651,37605,True,,1.0,1,14.006474722222222,3651,False
+wsc_melt:08LF085:1986-06-04T16:52,cwsc_melt_08LF085_1984-07-02T20_08,M8,sustained_melt,1986-06-04,35,10710,False,,1.0,1,65.19739834194445,35,False
+wsc_melt:08MC023:1990-06-29T18:00,cwsc_melt_08MC023_1985-04-20T13_24,M8,sustained_melt,1990-06-29,,,False,no flooded cell in the search square,,1,64.19952501916667,,False
+wsc_melt:08MC045:2015-03-14T21:01,cwsc_melt_08MC045_2013-04-05T20_26,M8,sustained_melt,2015-03-14,,,False,no flooded cell in the search square,,1,61.83350083277777,,False
+wsc_melt:08MC045:2020-04-20T23:15,cwsc_melt_08MC045_2013-04-05T20_26,M8,sustained_melt,2020-04-20,283,23377,True,,0.2721048182586644,4,11.846937777777779,357,False
+wsc_melt:08MD031:1991-06-28,cwsc_melt_08MD031_1991-06-28,M8,sustained_melt,1991-06-28,72,24,False,,1.0,1,0.0,72,False
+wsc_melt:08MD035:2019-07-07T01:40,cwsc_melt_08MD035_2011-06-06T21_15,M8,sustained_melt,2019-07-07,8,12142,False,,0.1957201646090535,4,19.082492279166665,23,False
+wsc_melt:08MG020:1997-06-18T16:04,cwsc_melt_08MG020_1997-06-18T16_04,M8,sustained_melt,1997-06-18,31,37,False,,1.0,1,18.296596680555552,31,False
+wsc_melt:08MG020:1999-06-17T11:57,cwsc_melt_08MG020_1997-06-18T16_04,M8,sustained_melt,1999-06-17,,,False,no flooded cell in the search square,,1,22.449686951388887,,False
+wsc_melt:08NA002:1991-07-07T16:23,cwsc_melt_08NA002_1990-06-30T14_46,M8,sustained_melt,1991-07-07,,,False,no flooded cell in the search square,,1,42.45513113194444,,False
+wsc_melt:08NA002:2007-06-10T11:15,cwsc_melt_08NA002_1990-06-30T14_46,M8,sustained_melt,2007-06-10,178,1389,True,,1.0,2,24.03936402111111,178,False
+wsc_melt:08NA011:2017-06-09T13:21,cwsc_melt_08NA011_2012-06-24T14_16,M8,sustained_melt,2017-06-09,5144,18932,True,,0.0,2,28.891070925555557,6225,False
+wsc_melt:08NA011:2021-06-29T06:45,cwsc_melt_08NA011_2012-06-24T14_16,M8,sustained_melt,2021-06-29,5456,20149,True,,0.07525873852763132,3,18.67749333333333,5460,False
+wsc_melt:08ND012:2020-06-27T16:55,cwsc_melt_08ND012_2012-06-24T15_50,M8,sustained_melt,2020-06-27,162,14175,True,,0.025598102810908838,4,17.655284444444444,162,False
+wsc_melt:08NE008:2012-06-24T19:00,cwsc_melt_08NE008_2012-06-24T19_00,M8,sustained_melt,2012-06-24,,,False,no flooded cell in the search square,,1,8.13368973888889,,False
+wsc_melt:08NE008:2020-06-01T20:25,cwsc_melt_08NE008_2012-06-24T19_00,M8,sustained_melt,2020-06-01,148,2118,True,,0.037069726390114736,3,9.17804888888889,148,False
+wsc_melt:08NE077:2012-06-23T19:20,cwsc_melt_08NE077_2012-06-23T19_20,M8,sustained_melt,2012-06-23,,,False,no flooded cell in the search square,,1,15.032976927777778,,False
+wsc_melt:08NE077:2013-05-22T12:15,cwsc_melt_08NE077_2012-06-23T19_20,M8,sustained_melt,2013-05-22,,,False,no flooded cell in the search square,,1,70.34543277694445,,False
+wsc_melt:08NE114:2012-05-22T05:55,cwsc_melt_08NE114_2012-05-22T05_55,M8,sustained_melt,2012-05-22,,,False,no flooded cell in the search square,,1,28.458455615555557,,False
+wsc_melt:08NE114:2018-05-16T21:05,cwsc_melt_08NE114_2012-05-22T05_55,M8,sustained_melt,2018-05-16,42,345,False,,1.0,2,10.1351425675,42,True
+wsc_melt:08NF001:2020-06-02T04:25,cwsc_melt_08NF001_2012-06-24T22_26,M8,sustained_melt,2020-06-02,5,3441,False,,1.0,1,31.15584,5,False
+wsc_melt:08NG002:2013-06-20T16:21,cwsc_melt_08NG002_2012-06-06T13_11,M8,sustained_melt,2013-06-20,,,False,no flooded cell in the search square,,2,4.56757052638889,,False
+wsc_melt:08NG002:2020-05-31T19:35,cwsc_melt_08NG002_2012-06-06T13_11,M8,sustained_melt,2020-05-31,,,False,no flooded cell in the search square,,2,7.677493333333333,,False
+wsc_melt:08NG065:2013-06-22T08:19,cwsc_melt_08NG065_2012-06-07T04_44,M8,sustained_melt,2013-06-22,,,False,no flooded cell in the search square,,1,20.525987246944442,,False
+wsc_melt:08NG065:2020-06-01T17:40,cwsc_melt_08NG065_2012-06-07T04_44,M8,sustained_melt,2020-06-01,1598,2540,True,,1.0,1,41.905840000000005,1598,False
+wsc_melt:08NG077:2013-06-20T04:02,cwsc_melt_08NG077_2012-06-05T11_12,M8,sustained_melt,2013-06-20,,,False,no flooded cell in the search square,,1,7.249096140277778,,False
+wsc_melt:08NG077:2020-05-31T17:40,cwsc_melt_08NG077_2012-06-05T11_12,M8,sustained_melt,2020-05-31,102,8976,True,,0.08504075787618418,3,5.7608266666666665,103,True
+wsc_melt:08NH005:2012-07-01T06:26,cwsc_melt_08NH005_2012-07-01T06_26,M8,sustained_melt,2012-07-01,,,False,no flooded cell in the search square,,1,51.832127987499995,,False
+wsc_melt:08NH119:2012-06-24T01:16,cwsc_melt_08NH119_2012-06-24T01_16,M8,sustained_melt,2012-06-24,,,False,no flooded cell in the search square,,1,9.099643594444444,,False
+wsc_melt:08NH119:2020-05-31T20:55,cwsc_melt_08NH119_2012-06-24T01_16,M8,sustained_melt,2020-05-31,,,False,no flooded cell in the search square,,1,61.655840000000005,,False
+wsc_melt:08NH132:2012-07-01T05:00,cwsc_melt_08NH005_2012-07-01T06_26,M8,sustained_melt,2012-07-01,,,False,no flooded cell in the search square,,1,53.26546132083333,,False
+wsc_melt:08NJ009:1996-06-11T16:55,cwsc_melt_08NJ009_1995-06-05T10_13,M8,sustained_melt,1996-06-11,,,False,no flooded cell in the search square,,1,40.65729833694444,,False
+wsc_melt:08NJ013:2012-06-23T22:01,cwsc_melt_08NJ013_2012-06-23T22_01,M8,sustained_melt,2012-06-23,88,1990,True,,1.0,1,12.356276382777779,88,False
+wsc_melt:08NJ013:2017-06-01T02:30,cwsc_melt_08NJ013_2012-06-23T22_01,M8,sustained_melt,2017-06-01,112,10926,True,,0.0,1,20.186529148055556,112,False
+wsc_melt:08NJ114:1996-06-12T22:30,cwsc_melt_08NJ009_1995-06-05T10_13,M8,sustained_melt,1996-06-12,,,False,no flooded cell in the search square,,1,11.07396500361111,,False
+wsc_melt:08NK018:2013-06-20T22:01,cwsc_melt_08NK018_2013-06-20T22_01,M8,sustained_melt,2013-06-20,,,False,no flooded cell in the search square,,1,13.267378707222223,,False
+wsc_melt:08NK026:2017-05-05T23:46,cwsc_melt_08NK026_2017-05-05T23_46,M8,sustained_melt,2017-05-05,74,15600,True,,0.0,3,5.033099661666666,74,False
+wsc_melt:08NK026:2020-05-31T00:50,cwsc_melt_08NK026_2017-05-05T23_46,M8,sustained_melt,2020-05-31,,,False,no flooded cell in the search square,,4,9.960652505833334,,False
+wsc_melt:08NK030:2013-06-22T00:06,cwsc_melt_08NK030_2013-06-22T00_06,M8,sustained_melt,2013-06-22,,,False,no flooded cell in the search square,,1,12.309320580277777,,False
+wsc_melt:08NK030:2020-05-31T19:55,cwsc_melt_08NK030_2013-06-22T00_06,M8,sustained_melt,2020-05-31,,,False,no flooded cell in the search square,,2,8.010826666666667,,False
+wsc_melt:08NL070:2018-05-16T03:45,cwsc_melt_08NL070_2018-05-16T03_45,M8,sustained_melt,2018-05-16,18,11523,False,,0.07061779741790139,3,9.603215071944446,21,False
+wsc_melt:08NL070:2020-05-31T02:55,cwsc_melt_08NL070_2018-05-16T03_45,M8,sustained_melt,2020-05-31,41,11585,False,,0.048683984173404436,2,27.044861225555554,43,False
+wsc_melt:08NM073:2011-06-13T00:00,cwsc_melt_08NM073_1984-06-08,M8,sustained_melt,2011-06-13,1167,2167,True,,1.0,2,10.461084175833333,1171,True
+wsc_melt:08NM134:2011-05-20T01:40,cwsc_melt_08NM134_2011-05-20T01_40,M8,sustained_melt,2011-05-20,370,2182,True,,1.0,2,8.720371390555556,370,False
+wsc_melt:08NM134:2013-05-06T19:11,cwsc_melt_08NM134_2011-05-20T01_40,M8,sustained_melt,2013-05-06,4,1201,False,,1.0,1,39.41222019333333,4,False
+wsc_melt:08NM230:1989-06-15T02:35,cwsc_melt_08NM230_1985-05-25T04_05,M8,sustained_melt,1989-06-15,4,122,False,,1.0,1,55.33893474472222,4,False
+wsc_melt:08NM230:1990-06-24T19:53,cwsc_melt_08NM230_1985-05-25T04_05,M8,sustained_melt,1990-06-24,,,False,no flooded cell in the search square,,1,62.01394557472222,,False
+wsc_melt:08NN002:2017-05-06T16:20,cv1_grand-forks-bc-2018-05-10,M8,sustained_melt,2017-05-06,2013,25398,True,,0.0,1,13.479847993055555,2013,False
+wsc_melt:08NN002:2018-05-10T15:55,cv1_grand-forks-bc-2018-05-10,M8,sustained_melt,2018-05-10,2191,20610,True,,0.20735932634533574,3,1.5886417005555555,2352,False
+wsc_melt:08NN023:2017-05-05T23:00,cwsc_melt_08NN023_2017-05-05T23_00,M8,sustained_melt,2017-05-05,81,5298,True,,0.0,2,11.99409739361111,81,False
+wsc_melt:08NN023:2018-05-09T17:55,cwsc_melt_08NN023_2017-05-05T23_00,M8,sustained_melt,2018-05-09,53,4654,True,,0.0,3,16.658063055555555,53,False
+wsc_melt:09AC007:2013-06-01T14:52,cwsc_melt_09AC007_2011-06-01T11_52,M8,sustained_melt,2013-06-01,,,False,no flooded cell in the search square,,2,45.22070342333333,,False
+wsc_melt:09AH003:2020-04-21T01:50,cwsc_melt_09AH003_2012-04-23T17_40,M8,sustained_melt,2020-04-21,,,False,no flooded cell in the search square,,2,34.585840000000005,,False
+wsc_melt:09AH003:2021-05-02T02:25,cwsc_melt_09AH003_2012-04-23T17_40,M8,sustained_melt,2021-05-02,,,False,no flooded cell in the search square,,4,10.00584,,False
+wsc_melt:09DC006:1985-06-11T02:24,cwsc_melt_09DC004_1986-06-30T15_14,M8,sustained_melt,1985-06-11,2,123,False,,1.0,1,56.24460168416667,2,True
+wsc_melt:09FB002:2015-05-19T04:55,cwsc_melt_09FB002_2015-05-19T04_55,M8,sustained_melt,2015-05-19,,,False,no flooded cell in the search square,,2,31.506170573333332,,False
+wsc_melt:09FB002:2018-05-12T04:15,cwsc_melt_09FB002_2015-05-19T04_55,M8,sustained_melt,2018-05-12,801,32462,True,,0.15431560592850915,11,8.172847385833332,841,False
+wsc_melt:10AB002:1985-06-08T12:11,cwsc_melt_10AB002_1985-06-08T12_11,M8,sustained_melt,1985-06-08,4,484,False,,1.0,1,45.959661394166666,4,False
+wsc_melt:10AC005:2013-05-30T00:06,cwsc_melt_10AC005_2012-06-08T08_01,M8,sustained_melt,2013-05-30,,,False,no flooded cell in the search square,,1,35.48573580083333,,False
+wsc_melt:10AC005:2021-06-03T01:20,cwsc_melt_10AC005_2012-06-08T08_01,M8,sustained_melt,2021-06-03,,,False,no flooded cell in the search square,,1,34.39972888888889,,False
+wsc_melt:10CD003:2012-06-07T15:55,cwsc_melt_10CD003_2012-06-07T15_55,M8,sustained_melt,2012-06-07,,,False,no flooded cell in the search square,,1,43.12884987777778,,False
+wsc_melt:10CD005:2016-06-16T11:00,cwsc_melt_10CD004_2020-06-15T02_20,M8,sustained_melt,2016-06-16,,,False,no flooded cell in the search square,,2,0.23667416666666669,,False
+wsc_melt:10CD005:2020-06-15T01:40,cwsc_melt_10CD004_2020-06-15T02_20,M8,sustained_melt,2020-06-15,332,48143,True,,0.0,5,9.569728888888887,332,False
+wsc_melt:10ED007:2006-04-29T00:50,cwsc_melt_10ED007_2003-04-25T02_50,M8,sustained_melt,2006-04-29,,,False,no flooded cell in the search square,,2,11.22988745888889,,False
+wsc_melt:10FA002:2008-05-04T12:15,cwsc_melt_10FA002_2006-04-28T07_15,M8,sustained_melt,2008-05-04,,,False,no flooded cell in the search square,,2,47.60723555,,False
+wsc_melt:10FB005:2002-05-21T12:45,cwsc_melt_10ED009_2002-05-16T14_00,M8,sustained_melt,2002-05-21,5,8266,False,,1.0,1,23.084703423055554,5,True
+wsc_melt:10FB005:2006-06-08T02:45,cwsc_melt_10ED009_2002-05-16T14_00,M8,sustained_melt,2006-06-08,7,166,False,,1.0,1,57.148190855833334,7,False
+wsc_melt:10FB006:2007-05-02T05:05,cwsc_melt_10FB006_2006-05-05T10_40,M8,sustained_melt,2007-05-02,,,False,no flooded cell in the search square,,1,30.95329222388889,,False
+wsc_melt:10GB006:2002-05-19T04:05,ccrid_10GB006_1991-1992,M8,sustained_melt,2002-05-19,14,4674,False,,1.0,1,31.95102811472222,14,True
+wsc_melt:10GB006:2016-05-04T03:30,ccrid_10GB006_1991-1992,M8,sustained_melt,2016-05-04,,,False,no flooded cell in the search square,,2,14.840693885833334,,False
+wsc_melt:10GC001:2006-05-05T17:20,ccrid_10ED002_1984-1985,M8,sustained_melt,2006-05-05,,,False,no flooded cell in the search square,,1,66.62727415138889,,False
+wsc_melt:10GC003:2002-05-21T21:00,cwsc_melt_10GC003_2002-05-21T21_00,M8,sustained_melt,2002-05-21,,,False,no flooded cell in the search square,,1,14.834703423055556,,False
+wsc_melt:10GC003:2008-05-06T15:20,cwsc_melt_10GC003_2002-05-21T21_00,M8,sustained_melt,2008-05-06,,,False,no flooded cell in the search square,,1,2.9760977833333335,,False
+wsc_melt:10KA001:2002-05-22T12:00,ccrid_10KA001_2001-2002,M8,sustained_melt,2002-05-22,47,2987,False,,1.0,1,24.535687480833335,47,False
+wsc_melt:10KB001:2008-07-10T09:45,cwsc_melt_10KB001_2002-07-29T15_00,M8,sustained_melt,2008-07-10,117,1575,True,,1.0,2,2.7985991633333334,117,False
+wsc_melt:10KB001:2011-05-23T12:00,cwsc_melt_10KB001_2002-07-29T15_00,M8,sustained_melt,2011-05-23,,,False,no flooded cell in the search square,,2,24.549804444444444,,False
+wsc_melt:10LA002:2011-05-24T17:35,ccrid_10LA002_1984-1985,M8,sustained_melt,2011-05-24,,,False,no flooded cell in the search square,,1,67.47446695305555,,False
+wsc_melt:10LA002:2014-05-08T19:45,ccrid_10LA002_1984-1985,M8,sustained_melt,2014-05-08,,,False,no flooded cell in the search square,,1,65.43755454055555,,False
+wsc_melt:10LB005:2006-05-30T03:30,cwsc_melt_10LB005_2006-05-30T03_30,M8,sustained_melt,2006-05-30,,,False,no flooded cell in the search square,,3,13.902359142222222,,False
+wsc_melt:10LC007:2006-05-21T03:30,cwsc_melt_10LC007_2006-05-21T03_30,M8,sustained_melt,2006-05-21,1,10941,False,,1.0,2,13.801592769166668,1,True
+wsc_melt:10LC012:1986-06-08T04:33,cwsc_melt_10LC012_1985-06-03T18_42,M8,sustained_melt,1986-06-08,,,False,no flooded cell in the search square,,1,15.424132479166666,,False
+wsc_melt:10LC013:2011-05-29T19:05,cwsc_melt_10LC013_1992-06-09T15_08,M8,sustained_melt,2011-05-29,,,False,no flooded cell in the search square,,1,66.26958446,,False
+wsc_melt:10LC013:2012-06-02T06:20,cwsc_melt_10LC013_1992-06-09T15_08,M8,sustained_melt,2012-06-02,,,False,no flooded cell in the search square,,1,54.99766241083333,,False
+wsc_melt:10LC015:2008-05-25T10:45,cwsc_melt_10LC015_2008-05-25T10_45,M8,sustained_melt,2008-05-25,18,1497,False,,1.0,3,2.3831805608333334,18,False
+wsc_melt:10LC015:2011-05-26T07:50,cwsc_melt_10LC015_2008-05-25T10_45,M8,sustained_melt,2011-05-26,32,2397,False,,1.0,3,5.388968490833333,32,True
+wsc_melt:10LC019:2006-05-31T18:00,cwsc_melt_10LC019_2000-05-29T21_00,M8,sustained_melt,2006-05-31,,,False,no flooded cell in the search square,,1,67.40145028472223,,False
+wsc_melt:10LC020:2013-06-06T20:30,cwsc_melt_10LC019_2000-05-29T21_00,M8,sustained_melt,2013-06-06,89,1,False,,1.0,3,6.437620111944444,89,False
+wsc_melt:10MC003:2006-05-27T22:15,cwsc_melt_10MC003_1992-06-05T03_30,M8,sustained_melt,2006-05-27,,,False,no flooded cell in the search square,,3,8.447026095555556,,False
+wsc_melt:10MC003:2011-05-27T13:20,cwsc_melt_10MC003_1992-06-05T03_30,M8,sustained_melt,2011-05-27,5,4235,False,,1.0,1,0.0,5,False
+wsc_melt:10MC008:1986-06-06T16:40,cwsc_melt_10MC008_1986-06-06T16_40,M8,sustained_melt,1986-06-06,2,9601,False,,1.0,1,19.959200854166667,2,False
+wsc_melt:10MC008:2011-05-28T05:45,cwsc_melt_10MC008_1986-06-06T16_40,M8,sustained_melt,2011-05-28,,,False,no flooded cell in the search square,,1,16.198819165,,False
+wsc_melt:10MC011:1991-05-27T10:04,cwsc_melt_10LC012_1985-06-03T18_42,M8,sustained_melt,1991-05-27,46,1176,False,,1.0,1,2.6399444549999997,46,True
+wsc_melt:10MC022:2013-05-29T02:10,cwsc_melt_10MC022_2013-05-29T02_10,M8,sustained_melt,2013-05-29,,,False,no flooded cell in the search square,,2,35.299671396111115,,False
+wsc_melt:10MC022:2016-05-14T01:00,cwsc_melt_10MC022_2013-05-29T02_10,M8,sustained_melt,2016-05-14,,,False,no flooded cell in the search square,,4,12.472147580555557,,False
+wsc_melt:10MC023:2004-06-05T07:45,cwsc_melt_10MC023_2004-06-05T07_45,M8,sustained_melt,2004-06-05,34,766,False,,1.0,4,5.596811983055556,34,True
+wsc_melt:10NC001:2004-05-30T18:45,ccrid_10NC001_1989-1990,M8,sustained_melt,2004-05-30,,,False,no flooded cell in the search square,,2,42.05061223972223,,False
+wsc_melt:10NC001:2011-05-21T13:45,ccrid_10NC001_1989-1990,M8,sustained_melt,2011-05-21,,,False,no flooded cell in the search square,,3,0.33702197166666664,,False
+wsc_melt:10ND002:2006-06-07T12:00,cwsc_melt_10ND002_2006-06-07T12_00,M8,sustained_melt,2006-06-07,,,False,no flooded cell in the search square,,1,22.439979633055554,,False
+wsc_melt:10ND002:2009-05-29T00:15,cwsc_melt_10ND002_2006-06-07T12_00,M8,sustained_melt,2009-05-29,11,14069,False,,1.0,2,10.620768875,12,True
+wsc_melt:10OB001:2011-06-18T03:35,cwsc_melt_10OB001_2011-06-18T03_35,M8,sustained_melt,2011-06-18,5,29085,False,,1.0,2,8.839834722222221,5,False
+wsc_melt:10OB001:2012-05-31T18:05,cwsc_melt_10OB001_2011-06-18T03_35,M8,sustained_melt,2012-05-31,4,42791,False,,1.0,1,66.52708837277777,4,False
+wsc_melt:10PA001:2006-05-18T02:50,cwsc_melt_10PA001_2006-05-18T02_50,M8,sustained_melt,2006-05-18,,,False,no flooded cell in the search square,,1,56.73686861111111,,False
+wsc_melt:10PA001:2021-06-13T15:15,cwsc_melt_10PA001_2006-05-18T02_50,M8,sustained_melt,2021-06-13,,,False,no flooded cell in the search square,,6,20.441530645555556,,False
+wsc_melt:10RA001:2007-06-20T12:45,ccrid_10RA001_1987-1988,M8,sustained_melt,2007-06-20,,,False,no flooded cell in the search square,,1,22.328374734444445,,False
+wsc_melt:10RA001:2012-05-31T21:40,ccrid_10RA001_1987-1988,M8,sustained_melt,2012-05-31,1,12590,False,,1.0,1,13.522454307777776,1,False
+wsc_melt:10RC001:2015-06-23T03:35,ccrid_10RC001_1986-1987,M8,sustained_melt,2015-06-23,,,False,no flooded cell in the search square,,3,7.170733005833333,,False
+wsc_melt:10RC001:2021-06-28T17:35,ccrid_10RC001_1986-1987,M8,sustained_melt,2021-06-28,439,8092,True,,1.0,5,6.3474933333333325,439,False
+wsc_melt:10UH005:2012-06-18T22:40,cwsc_melt_10UH005_2012-06-18T22_40,M8,sustained_melt,2012-06-18,,,False,no flooded cell in the search square,,1,13.545429498611112,,False
+wsc_melt:10UH005:2014-06-21T20:20,cwsc_melt_10UH005_2012-06-18T22_40,M8,sustained_melt,2014-06-21,,,False,no flooded cell in the search square,,1,60.33800991972222,,False
+wsc_melt:11AA001:2014-06-19T02:00,cwsc_melt_05AE002_2014-06-19T07_15,M8,sustained_melt,2014-06-19,,,False,no flooded cell in the search square,,1,14.490435245277778,,False
+wsc_melt:11AA001:2017-03-15T11:55,cwsc_melt_05AE002_2014-06-19T07_15,M8,sustained_melt,2017-03-15,777,32523,True,,0.0,1,42.485469404166665,777,False
+wsc_melt:11AB095:2002-06-10T00:00,cwsc_melt_11AB095_2002-06-10T00_00,M8,sustained_melt,2002-06-10,,,False,no flooded cell in the search square,,2,11.752253867499999,,False
+wsc_melt:11AB095:2017-03-16T15:00,cwsc_melt_11AB095_2002-06-10T00_00,M8,sustained_melt,2017-03-16,853,61215,True,,0.8803248050525231,3,2.6579989766666667,3193,False
+wsc_melt:11AC037:2017-05-12T22:30,cwsc_melt_11AB118_2011-03-14T09_09,M8,sustained_melt,2017-05-12,5647,42964,True,,0.0,2,14.858697223611111,9875,False
+wsc_melt:11AC037:2018-05-09T21:00,cwsc_melt_11AB118_2011-03-14T09_09,M8,sustained_melt,2018-05-09,6341,29359,True,,0.0,2,39.07195194444444,6341,False
+wsc_melt:11AC056:1987-04-07T13:00,cwsc_melt_11AC056_1987-04-07T13_00,M8,sustained_melt,1987-04-07,,,False,no flooded cell in the search square,,1,22.122630838611112,,False
+wsc_melt:11AC063:1991-06-30T06:43,cwsc_melt_11AC056_1987-04-07T13_00,M8,sustained_melt,1991-06-30,179,5375,True,,1.0,1,18.984478321111112,179,True
+wsc_melt:11AE013:1986-03-03T16:45,cwsc_melt_11AE013_1986-03-03T16_45,M8,sustained_melt,1986-03-03,,,False,no flooded cell in the search square,,1,66.22514778305556,,False
+wsc_melt:11AE013:2012-04-06T09:00,cwsc_melt_11AE013_1986-03-03T16_45,M8,sustained_melt,2012-04-06,,,False,no flooded cell in the search square,,1,2.439031399722222,,False

@@ -290,6 +290,6 @@ The reserve stays sealed. Nothing is promoted from DEV.
 
 **Corridor (heavy job, still running)**
 - 28 of 175 units have run in 9 hours. About half fail on Earth Engine memory limits, so only 12 are usable so far. The stop rule needs 20.
-- So far, per-reach forcing changes the physics AUC by at most about 0.03, with rank correlation ≥ 0.997. That leans toward the stop rule, but it is not judged before 20 units.
+- So far (11 units with per-reach values), real against seasonal per-reach forcing changes the physics AUC by 0.000 in the median unit and 0.060 at most, with rank correlation ≥ 0.979. That leans toward the stop rule, but it is not judged before 20 units.
 
 **Next:** finish NPDP, then rejoin the groups, screen the new leads for a satellite image in the window (light, no Earth Engine), build seal 2.3, and only then make M7 DEV labels.

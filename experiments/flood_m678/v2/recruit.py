@@ -358,6 +358,7 @@ def _us_date(s):
 
 
 def _nid():
+    csv.field_size_limit(1 << 26)
     p = os.path.join(SRC, "nid", "nation.csv")
     fh = open(p, encoding="utf-8-sig", errors="replace")
     next(fh)                                             # "Data Last Updated:" line
