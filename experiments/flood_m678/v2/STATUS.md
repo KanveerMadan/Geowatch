@@ -287,6 +287,7 @@ The reserve stays sealed. Nothing is promoted from DEV.
   - New rule: a levee breach known only to the day gets the window [end of that day, start of that day + 3 days].
 - **EMSR753 (Alau dam)** is excluded by name. The round-3 session asked for this, and I checked that it is in round 3's reserve pool. It was never in a v2 seal.
 - **Gap found and fixed:** the seal script never tested SELECTION §4 (stay out of round 3's footprints) itself. I checked by hand: no reserve group in seals 2.0–2.2 touches one. From seal 2.3 the script tests it against the pinned footprints and round 3's live candidate pools.
+- **Round 3 sealed its reserve today** (tag `r3-reserve-seal`). Its 40 plains squares, 2 EMSR771 river areas and New York City (for its 12 FloodNet storms) are now off-limits to the v2 reserve as well. That makes 1,538 round-3 boxes in all. None of v2's already-sealed reserve groups touches any of them.
 
 **Corridor (heavy job, still running)**
 - 28 of 175 units have run in 9 hours. About half fail on Earth Engine memory limits, so only 12 are usable so far. The stop rule needs 20.
