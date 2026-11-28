@@ -401,7 +401,8 @@ def asdso():
         yield {"source": "asdso", "source_row": (r.get("Incident ID") or "").strip(), "type": "M7",
                "submode": "reservoir_breach",
                "cause": f"ASDSO failure: {r.get('Incident Driver', '')}; {r.get('Incident Mechanism 1', '')}"[:120],
-               "date": d, "crest_local": d, "crest_kind": "published_day", "lat": lat, "lon": lon, "anchor": anchor,
+               "date": d, "crest_local": "" if d[8:] == "01" else d, "crest_kind": "day_unknown" if d[8:] == "01" else "published_day",
+               "lat": lat, "lon": lon, "anchor": anchor,
                "country": "USA", "region": (r.get("State") or "").strip(), "peak_value": "", "peak_unit": "",
                "station_p80": "", "not_before_utc": "", "storm": f"asdso:{storm.lower()}" if storm else "",
                "source_url": "https://damsafety.org/incidents"}
@@ -425,7 +426,8 @@ def npdp():
             lat = lon = None
         yield {"source": "npdp", "source_row": r["event_id"], "type": "M7", "submode": "reservoir_breach",
                "cause": f"NPDP uncontrolled release: {r.get('incident_type', '')}; {r.get('initiating_event', '')}"[:120],
-               "date": d, "crest_local": d, "crest_kind": "published_day", "lat": lat, "lon": lon,
+               "date": d, "crest_local": "" if d[8:] == "01" else d, "crest_kind": "day_unknown" if d[8:] == "01" else "published_day",
+               "lat": lat, "lon": lon,
                "anchor": f"dam {r['dam_name']}" if lat is not None else "country only",
                "country": "USA", "region": r.get("state", ""), "peak_value": "", "peak_unit": "", "station_p80": "",
                "not_before_utc": "", "storm": "", "source_url": r["source_url"]}
