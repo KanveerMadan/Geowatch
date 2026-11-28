@@ -303,16 +303,25 @@ The reserve stays sealed. Nothing is promoted from DEV.
 - The key sent 29 of 42 older groups to the reserve, more than the expected half (a 2 % chance). I checked: every group follows the key, and over all 2,763 groups the key splits evenly (1,409 to 1,354). So it is chance, not a bug.
 - Caveat: these are mostly small US dams. A dam-break flood often drains within a day, so many will not show flooded cells. The DEV labels will show how many survive.
 
-**Now running (the one heavy job):** M7 DEV labels (23 leads in 18 groups; at most 2 leads per group), then the corridor resumes by itself. Because M7 comes before M8, I paused the corridor between units; it saves after every unit, and nothing was lost.
+**Running (the one heavy job):** the corridor has resumed by itself after the M7 DEV labels. Because M7 comes before M8, I paused the corridor between units; it saves after every unit, and nothing was lost.
 - Log: `~/.cache/geowatch/m678v2/m7_chain.log`.
 - First result: the two Hurricane Floyd 1999 leads show no flooded cell.
+
+**M7 DEV labels: done (23 leads in 18 groups, 14 minutes).** A label is usable if it has at least 50 flooded and 50 dry cells.
+- **Usable, 3 groups:**
+  - Mondego 2019 levee breach: 27,556 flooded cells, all from radar;
+  - a Georgia dam, 2019: 446 flooded;
+  - a Virginia dam, 2014: 63 flooded. ASDSO and NPDP list the same failure, so it is one group.
+- **Too small, 2:** an NPDP dam, 1999, with 22 flooded cells, and a USGS dam-failure peak, 1996, with 40.
+- **No flooded cell seen, 13 groups** (Hurricane Floyd 1999, Mississippi 2020, the North Carolina storm of 2016, and others). As expected, a small-dam flood has mostly drained by the time a satellite passes.
+- **What this means:** about 2 in 17 dam groups (12 %) give a usable label. If the reserve behaves the same, its 46 dam groups would give about 5 or 6 usable units. Levee breaches do far better (Mondego). The power step will say whether that is enough. It is not looked at before then.
 
 **Earth Engine warning.** Earth Engine says the project has gone over its free (noncommercial) compute quota and is in "restricted mode". That probably explains the "memory limit" failures that cost the corridor about half its units. Jobs still run, but more slowly and with more failures. **Owner decision:** wait for the quota to reset, or raise it in the Google Cloud console.
 
 **Corridor so far:** 13 units, 11 with per-reach values. Real against seasonal forcing changes the AUC by 0.000 in the median unit and 0.060 at most; rank correlation is at least 0.979. The stop rule needs 20 usable units, so it is not judged yet.
 
 **Next, in order**
-1. Finish the M7 DEV labels, then the corridor stop rule once 20 units are usable.
+1. The corridor stop rule, once 20 units are usable.
 2. Blind label QA and the DEV funnel.
 3. The full DEV comparison.
 4. Power for the joint pass rule.
