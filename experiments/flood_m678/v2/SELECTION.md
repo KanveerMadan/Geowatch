@@ -138,3 +138,8 @@ Matching the owner's instruction ("a keyed random split by component for uninspe
    - **Added:** the Mondego, Portugal, 22 Dec 2019 (EMSR417), the second dike collapse, opposite Casal Novo do Rio (ECO/Lusa). The anchor is the Montemor-o-Velho town point, because the breach locality is not in OSM and the town is within a few km of it. The first breach (21 Dec) has no retrieved location or time, so it is not added.
    - **Not added:** Evros, Greece, March 2015 (EMSR122). The retrieved sources say many embankments broke but give no site or date for any one breach.
    - **Not added:** Lazio, January 2021 (EMSR496). No retrieved source reports a breach; the Turano dam was emptied, not breached.
+8. **Round 3's sealed reserve** (tag `r3-reserve-seal`, 1aae79a, sealed 2026-11-28) joins the §4 footprints:
+   - its 40 waterlogging plains squares and 2 EMSR771 river AOIs (square or bounds in `reserve_r3.json`);
+   - New York City as a whole for its 12 FloodNet storm windows, using round 3's own city box (-74.26, 40.49, -73.70, 40.92) from `rain311.py`.
+   - All of `r3_ems_candidates.json` stays round-3 territory, whether round 3 refused a unit or not.
+   - Rechecked: none of the 265 seal-2.2 reserve components touches any of the 1,538 boxes.

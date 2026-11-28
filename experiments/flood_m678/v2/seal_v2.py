@@ -35,6 +35,7 @@ EXCLUDED_LEADS = {                      # Amendment 5: named exclusions (compone
     "handlocated:EMSR753": "round-3 public EMS reserve pool (r3_emsr753_aoi01); round 3 keeps it",
 }
 R3_LIVE = ("~/gw-floodproto", "exp/flood-round3")   # round 3's reserve metadata, rechecked at seal time (§4)
+R3_SEAL_TAG = "r3-reserve-seal"                       # round 3's sealed reserve (1aae79a, 2026-11-28)
 
 
 def version_tuple(v):
@@ -66,7 +67,16 @@ def exclusion_boxes():
         except subprocess.CalledProcessError:
             continue
         geo += [row[key] for row in d["candidates"] if row.get(key)]
-    return geo, head
+    # Round 3's sealed reserve (tag r3-reserve-seal): unit squares/AOI bounds, and NYC city-wide for FloodNet storms
+    import re
+    tag = subprocess.check_output(["git", "-C", repo, "rev-parse", R3_SEAL_TAG + "^{commit}"], text=True).strip()
+    res = json.loads(subprocess.check_output(["git", "-C", repo, "show", f"{tag}:experiments/flood_round3/results/reserve_r3.json"]))
+    geo += [u.get("square") or u.get("bounds") for u in res["units"] if u.get("square") or u.get("bounds")]
+    if res.get("floodnet_storms"):
+        src = subprocess.check_output(["git", "-C", repo, "show", f"{tag}:experiments/flood_round3/rain311.py"], text=True)
+        m = re.search(r'"bbox":\s*\(([-\d.]+),\s*([-\d.]+),\s*([-\d.]+),\s*([-\d.]+)\)', src)
+        geo.append([float(v) for v in m.groups()])
+    return geo, f"{head} (reserve seal {tag})"
 
 
 def touches(lead, boxes, km=10.0):
