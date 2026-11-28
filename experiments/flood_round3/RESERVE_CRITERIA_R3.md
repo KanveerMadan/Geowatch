@@ -133,3 +133,35 @@ Candidates that pass §1–§4 are taken in **ascending activation code**, then 
   - the DEV gate that decides, per type, whether GFM may label reserve units;
   - the joining of related storms across sources before counting.
 - A type that fails the gate gets no GFM labels in round 3.
+
+## 12. Login-free sources only, and what each type is tested on (owner decision 2026-11-28, before any new candidate is listed)
+The owner will not provide an EMS login, so login-gated EMS products (most activations before 2022) are not used. Admitted reserve sources, each unit carrying its **label family**:
+
+| source | types | label (family) |
+|---|---|---|
+| public EMS activations (the public dashboard list, §1–§4) | any | the EMS analyst map, any sensor (**EMS**) |
+| FloodNet sensors (§10) | rain (decides the verdict) | sensor depth (**FloodNet**) |
+| Sentinel-1 route, plains (`plains.py`, reserve years 2022–2025; R29 rules unchanged: IMERG driver ≥ 20 mm, GLO-30 relief < 4 m, pass in [peak − 1 d, peak + 14 d], ≥ 2 same-orbit baselines, 20 km from used units) | waterlogging | our v3 Sentinel-1 label (**S1v3**) |
+
+- **DEV comparison:** the DEV EMS units (burned catalog) are the same family as reserve EMS labels. The reserve report states the family of every unit, and the type's numbers by family.
+
+**Not used, with the reason:**
+- **MMFlood masks** (CC BY 4.0, EMS-derived): their image times are not public, so §3 timing cannot be checked. MMFlood stays a footprint source for the §8 river route.
+- **Kuro Siwo** (CC BY): radar annotations, so they could only add river or waterlogging units, which already have radar routes.
+- **NOAA emergency aerials, USGS high-water marks, Maxar Open Data:** no validated wet/dry label rule gives the bar's 50 wet and 50 dry cells per unit. Codex's NOAA/HWM tiles are DEV-only (owner, 2026-11-26), positive-only or a few cells each.
+- **GFM:** accepted for river only (R38). It is not needed, because river's verdict is fixed (below).
+
+**Per type:**
+- **River, coastal, compound:** the DEV rule chose elevation (R35/R36), so no method can pass, whatever the reserve shows. Their verdict is "no method beats the baseline on DEV". Public EMS units of these types are scored for information only. The §8 river route is not built, since it would only add informational numbers.
+- **Flash:** the two public EMS flash AOIs fail the metadata rules:
+  - EMSR800 AOI01: AOI 8.4 km² < 16 km² (§4);
+  - EMSR936 AOI01: within 20 km of a used unit (§1).
+  - So flash has no login-free reserve unit with an accepted label (§8 refuses Sentinel-1 labels for flash). It is reported as **not testable in round 3**. That is not a pass.
+- **Waterlogging:** plains-route units (S1v3), plus any public EMS waterlogging AOI (EMS).
+- **Rain:** FloodNet decides (§10). Public EMS rain AOIs (EMS) and 311 reserve storms are scored as secondary results.
+
+**Size and joining:**
+- **No power gate:** a type with fewer units than its §6 target is still tested, and its achieved power is reported. The bar's own floor stays: ≥ 5 usable units, each with ≥ 50 flooded and ≥ 50 dry cells.
+- **Joining:** candidates are joined by §11 / GFM_DESIGN §3, with at most 2 units per joined event.
+  - A plains event is one (plain, year).
+  - Its first two squares in the screen's own order (square IMERG total at the peak, then lattice id) are taken.

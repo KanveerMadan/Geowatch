@@ -325,3 +325,12 @@ GFM was read only on DEV EMS units (the §e set), with the product picked by Sen
   - `ems_client.py` reads the same activation, AOI and product metadata as `select_r3`, using a pasted session cookie in `~/.config/geowatch/ems.json` (`{"cookie": ...}`).
   - The secrets scan blocks the file name and its value.
 - **Why it matters:** these older activations carry EMS analyst maps (optical and VHR), the only label besides surveyed marks that the gates accept for rain, flash, coastal and compound (DIAGNOSIS §e, R38). MMFlood's 95 activations (2014–2021) are among them.
+
+## R40 (2026-11-28): owner decision: login-free sources only; the test plan per type (criteria §12)
+- **Sources:** no EMS login now or later. Reserve sources are public EMS activations, FloodNet, and the Sentinel-1 plains route for waterlogging. Every unit carries its label family.
+  - MMFlood masks, Kuro Siwo, NOAA aerials, USGS HWM and Maxar are not used, for the reasons in criteria §12.
+  - A probe of EMS product storage for pre-2022 packages was stopped by the session's permission check. Those products sit behind the login, so the probe was not retried.
+- **River, coastal, compound:** fixed by R35. Elevation was chosen, so these types cannot pass. They are informational only.
+- **Flash:** not testable in round 3. Its two public EMS AOIs fail the metadata rules, and Sentinel-1 labels are refused for flash (DIAGNOSIS §e).
+- **No power gate (owner).** The bar's ≥ 5 usable units still applies.
+- **Overlap:** EMSR753 (Alau dam, Borno, 2024) is in round 3's public EMS pool as a river AOI. The M6–M8 session was told so that the two reserves do not share it.
