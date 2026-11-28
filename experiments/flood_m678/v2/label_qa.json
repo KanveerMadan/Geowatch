@@ -1,0 +1,4110 @@
+{
+ "labels": [
+  {
+   "dry": 60712,
+   "flags": [],
+   "flooded": 446,
+   "flooded_share": 0.0073,
+   "flooded_within_5km_of_anchor": 117,
+   "lead": "asdso:GA00000-3345",
+   "m7_evidence": true,
+   "optical_share": 0.077,
+   "phase_disagreement": 0.0103,
+   "stratum": "small_dam",
+   "submode": "reservoir_breach",
+   "type": "M7",
+   "usable": true
+  },
+  {
+   "dry": 1063,
+   "flags": [
+    "small_dam_flood_not_near_dam"
+   ],
+   "flooded": 63,
+   "flooded_share": 0.056,
+   "flooded_within_5km_of_anchor": 0,
+   "lead": "asdso:VA04173-2447",
+   "m7_evidence": false,
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "stratum": "small_dam",
+   "submode": "reservoir_breach",
+   "type": "M7",
+   "usable": true
+  },
+  {
+   "dry": 38600,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 0.0,
+   "lead": "crid:02RD002:2000-2001",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 4450,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 4,
+   "flooded_share": 0.0009,
+   "lead": "crid:02UC002:1987-1988",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 58590,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 146,
+   "flooded_share": 0.0025,
+   "lead": "crid:05AC003:2008-2009",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1189,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 0.0008,
+   "lead": "crid:07AE001:2019-2020",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 6409,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 5,
+   "flooded_share": 0.0008,
+   "lead": "crid:07CD004:2009-2010",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 27675,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 348,
+   "flooded_share": 0.0124,
+   "lead": "crid:07FB001:2019-2020",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 23558,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 658,
+   "flooded_share": 0.0272,
+   "lead": "crid:07HA001:2019-2020",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 23357,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 0.0,
+   "lead": "crid:07KC001:1996-1997",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 46170,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 506,
+   "flooded_share": 0.0108,
+   "lead": "crid:07QD007:2020-2021",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 5,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 66,
+   "flooded_share": 0.9296,
+   "lead": "crid:08NL007:2011-2012",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 10201,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 11,
+   "flooded_share": 0.0011,
+   "lead": "crid:09CD001:2007-2008",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 4112,
+   "flags": [],
+   "flooded": 61,
+   "flooded_share": 0.0146,
+   "lead": "crid:10EA003:2020-2021",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 7202,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 14,
+   "flooded_share": 0.0019,
+   "lead": "crid:10LC002:2005-2006",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "ice_jam",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 22978,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 27556,
+   "flooded_share": 0.5453,
+   "flooded_within_5km_of_anchor": 25245,
+   "lead": "handlocated:mondego-casalnovo-2019",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0637,
+   "stratum": "primary",
+   "submode": "levee_breach",
+   "type": "M7",
+   "usable": true
+  },
+  {
+   "dry": 1019,
+   "flags": [],
+   "flooded": 22,
+   "flooded_share": 0.0211,
+   "flooded_within_5km_of_anchor": 1,
+   "lead": "npdp:INC_19990420_00189",
+   "m7_evidence": false,
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "stratum": "small_dam",
+   "submode": "reservoir_breach",
+   "type": "M7",
+   "usable": false
+  },
+  {
+   "dry": 1063,
+   "flags": [
+    "small_dam_flood_not_near_dam"
+   ],
+   "flooded": 63,
+   "flooded_share": 0.056,
+   "flooded_within_5km_of_anchor": 0,
+   "lead": "npdp:INC_2014611_00035",
+   "m7_evidence": false,
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "stratum": "small_dam",
+   "submode": "reservoir_breach",
+   "type": "M7",
+   "usable": true
+  },
+  {
+   "dry": 178,
+   "flags": [],
+   "flooded": 40,
+   "flooded_share": 0.1835,
+   "flooded_within_5km_of_anchor": 27,
+   "lead": "usgs_peaks:05552500:1996-07-19",
+   "m7_evidence": false,
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "stratum": "small_dam",
+   "submode": "reservoir_breach",
+   "type": "M7",
+   "usable": false
+  },
+  {
+   "dry": 44326,
+   "flags": [],
+   "flooded": 299,
+   "flooded_share": 0.0067,
+   "lead": "wsc_melt:01AF002:2019-04-23T13:05",
+   "optical_share": 0.677,
+   "phase_disagreement": 0.0011,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 24621,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 1017,
+   "flooded_share": 0.0397,
+   "lead": "wsc_melt:01AG003:2018-04-28T05:45",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 7046,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 18,
+   "flooded_share": 0.0025,
+   "lead": "wsc_melt:01AO003:2008-05-03T15:29",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 952,
+   "flags": [],
+   "flooded": 15,
+   "flooded_share": 0.0155,
+   "lead": "wsc_melt:01AP003:2005-05-03T22:56",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 3125,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 3,
+   "flooded_share": 0.001,
+   "lead": "wsc_melt:01AP005:1994-04-21T07:56",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 8785,
+   "flags": [],
+   "flooded": 177,
+   "flooded_share": 0.0198,
+   "lead": "wsc_melt:01AP005:2008-05-04T22:55",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 2328,
+   "flags": [],
+   "flooded": 21,
+   "flooded_share": 0.0089,
+   "lead": "wsc_melt:01AR009:1984-06-03T14:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 17,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 112,
+   "flooded_share": 0.8682,
+   "lead": "wsc_melt:01AR009:1989-05-16T01:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 23718,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 498,
+   "flooded_share": 0.0206,
+   "lead": "wsc_melt:01BC001:2018-04-28T02:50",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 4,
+   "flooded_share": 0.8,
+   "lead": "wsc_melt:01BQ001:2017-04-13T20:50",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 260,
+   "flags": [],
+   "flooded": 6,
+   "flooded_share": 0.0226,
+   "lead": "wsc_melt:02BC006:2013-05-22T04:36",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0263,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 36401,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 941,
+   "flooded_share": 0.0252,
+   "lead": "wsc_melt:02DC012:2019-05-11T11:35",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 53671,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 1074,
+   "flooded_share": 0.0196,
+   "lead": "wsc_melt:02DD022:2019-04-21T21:45",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 10259,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 2,
+   "flooded_share": 0.0002,
+   "lead": "wsc_melt:02EC015:1991-04-30T16:04",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 2187,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 2,
+   "flooded_share": 0.0009,
+   "lead": "wsc_melt:02EC015:1992-05-17T17:11",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 27487,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 2,
+   "flooded_share": 0.0001,
+   "lead": "wsc_melt:02GF002:1997-06-21T23:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 5102,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 18,
+   "flooded_share": 0.0035,
+   "lead": "wsc_melt:02HA018:1986-05-01T18:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 5432,
+   "flags": [],
+   "flooded": 45,
+   "flooded_share": 0.0082,
+   "lead": "wsc_melt:02HA018:1991-04-30T16:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 6531,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 9,
+   "flooded_share": 0.0014,
+   "lead": "wsc_melt:02HK005:2016-04-02T21:55",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 7625,
+   "flags": [],
+   "flooded": 363,
+   "flooded_share": 0.0454,
+   "lead": "wsc_melt:02KC005:1985-04-29T14:07",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 22411,
+   "flags": [],
+   "flooded": 133,
+   "flooded_share": 0.0059,
+   "lead": "wsc_melt:02LB010:1985-04-30T04:54",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 13073,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 3,
+   "flooded_share": 0.0002,
+   "lead": "wsc_melt:02LB010:1996-05-05T10:33",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 4272,
+   "flags": [],
+   "flooded": 23,
+   "flooded_share": 0.0054,
+   "lead": "wsc_melt:02MB007:1997-05-16T14:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 1956,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 0.0005,
+   "lead": "wsc_melt:02MB007:2000-06-25T13:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 4335,
+   "flags": [],
+   "flooded": 46,
+   "flooded_share": 0.0105,
+   "lead": "wsc_melt:02MB008:1996-05-13T18:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 1274,
+   "flags": [],
+   "flooded": 745,
+   "flooded_share": 0.369,
+   "lead": "wsc_melt:02OH001:1996-05-16T13:40",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 4046,
+   "flags": [],
+   "flooded": 28,
+   "flooded_share": 0.0069,
+   "lead": "wsc_melt:02OJ016:1996-05-16T18:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 0,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 1.0,
+   "lead": "wsc_melt:02YO006:2018-04-30T20:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 39659,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 51,
+   "flooded_share": 0.0013,
+   "lead": "wsc_melt:02YO011:2020-06-03T22:50",
+   "optical_share": 0.04,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 28265,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 726,
+   "flooded_share": 0.025,
+   "lead": "wsc_melt:02YR001:2021-04-13T20:00",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 31996,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 195,
+   "flooded_share": 0.0061,
+   "lead": "wsc_melt:02YS006:2021-04-14T01:40",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 45258,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 306,
+   "flooded_share": 0.0067,
+   "lead": "wsc_melt:03NF001:2020-06-14T07:00",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 37388,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 66,
+   "flooded_share": 0.0018,
+   "lead": "wsc_melt:03OE010:2018-06-02T15:30",
+   "optical_share": 0.057,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 226,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 0.0044,
+   "lead": "wsc_melt:04FA001:2014-05-23T16:06",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 97,
+   "flags": [],
+   "flooded": 2,
+   "flooded_share": 0.0202,
+   "lead": "wsc_melt:04LE002:2019-04-29T00:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 2585,
+   "flags": [],
+   "flooded": 42,
+   "flooded_share": 0.016,
+   "lead": "wsc_melt:05AA008:2013-06-20T07:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 5514,
+   "flags": [],
+   "flooded": 217,
+   "flooded_share": 0.0379,
+   "lead": "wsc_melt:05AB044:2006-06-15T14:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 50203,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 1054,
+   "flooded_share": 0.0206,
+   "lead": "wsc_melt:05AC022:2015-06-12T13:00",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 3153,
+   "flags": [],
+   "flooded": 502,
+   "flooded_share": 0.1373,
+   "lead": "wsc_melt:05AC901:2005-07-01T03:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 3260,
+   "flags": [],
+   "flooded": 637,
+   "flooded_share": 0.1635,
+   "lead": "wsc_melt:05AC901:2006-06-25T07:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.001,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 34107,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 63,
+   "flooded_share": 0.0018,
+   "lead": "wsc_melt:05AC919:1999-06-05T17:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 3294,
+   "flags": [],
+   "flooded": 160,
+   "flooded_share": 0.0463,
+   "lead": "wsc_melt:05AD007:2013-06-22T01:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0003,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1655,
+   "flags": [],
+   "flooded": 38,
+   "flooded_share": 0.0224,
+   "lead": "wsc_melt:05AD007:2020-07-01T23:20",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 357,
+   "flags": [],
+   "flooded": 267,
+   "flooded_share": 0.4279,
+   "lead": "wsc_melt:05AD010:2013-06-20T09:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 38469,
+   "flags": [],
+   "flooded": 875,
+   "flooded_share": 0.0222,
+   "lead": "wsc_melt:05AD010:2020-06-30T15:55",
+   "optical_share": 0.033,
+   "phase_disagreement": 0.0001,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 45664,
+   "flags": [],
+   "flooded": 3143,
+   "flooded_share": 0.0644,
+   "lead": "wsc_melt:05AD026:2018-06-20T05:25",
+   "optical_share": 0.033,
+   "phase_disagreement": 0.0018,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 16436,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 24,
+   "flooded_share": 0.0015,
+   "lead": "wsc_melt:05AF030:1987-06-04T14:55",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 42137,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 171,
+   "flooded_share": 0.004,
+   "lead": "wsc_melt:05AF030:1989-06-05T14:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1118,
+   "flags": [],
+   "flooded": 9,
+   "flooded_share": 0.008,
+   "lead": "wsc_melt:05AG006:2013-06-22T20:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 56779,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 1751,
+   "flooded_share": 0.0299,
+   "lead": "wsc_melt:05AG006:2017-03-17T09:50",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 55356,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 25,
+   "flooded_share": 0.0005,
+   "lead": "wsc_melt:05AH048:2015-04-11T08:01",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 16846,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 1073,
+   "flooded_share": 0.0599,
+   "lead": "wsc_melt:05BB001:2017-06-10T00:45",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 3451,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 0.0003,
+   "lead": "wsc_melt:05BH005:2014-03-01T12:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 7847,
+   "flags": [],
+   "flooded": 81,
+   "flooded_share": 0.0102,
+   "lead": "wsc_melt:05BH013:2019-06-21T15:20",
+   "optical_share": 0.015,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 40919,
+   "flags": [],
+   "flooded": 1011,
+   "flooded_share": 0.0241,
+   "lead": "wsc_melt:05BK001:2020-04-20T23:20",
+   "optical_share": 0.06,
+   "phase_disagreement": 0.0021,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 29,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 70,
+   "flooded_share": 0.7071,
+   "lead": "wsc_melt:05CD005:2012-07-04T07:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 6433,
+   "flags": [],
+   "flooded": 60,
+   "flooded_share": 0.0092,
+   "lead": "wsc_melt:05CD005:2014-06-01T19:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 49466,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 9,
+   "flooded_share": 0.0002,
+   "lead": "wsc_melt:05CD905:1997-04-15T11:10",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 65087,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 6,
+   "flooded_share": 0.0001,
+   "lead": "wsc_melt:05CD905:2003-04-15T05:25",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 64592,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 3421,
+   "flooded_share": 0.0503,
+   "lead": "wsc_melt:05CH011:2015-03-12T01:01",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 40507,
+   "flags": [],
+   "flooded": 1336,
+   "flooded_share": 0.0319,
+   "lead": "wsc_melt:05DE002:2020-06-23T16:25",
+   "optical_share": 0.374,
+   "phase_disagreement": 0.0432,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 26129,
+   "flags": [],
+   "flooded": 1161,
+   "flooded_share": 0.0425,
+   "lead": "wsc_melt:05DE002:2021-05-27T21:15",
+   "optical_share": 0.351,
+   "phase_disagreement": 0.0064,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 70034,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 149,
+   "flooded_share": 0.0021,
+   "lead": "wsc_melt:05EA001:2020-04-20T09:35",
+   "optical_share": 0.879,
+   "phase_disagreement": 0.0125,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 68632,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 200,
+   "flooded_share": 0.0029,
+   "lead": "wsc_melt:05ED002:2018-04-24T08:20",
+   "optical_share": 0.978,
+   "phase_disagreement": 0.0059,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 13017,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 17,
+   "flooded_share": 0.0013,
+   "lead": "wsc_melt:05EE008:1997-05-01T10:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 63701,
+   "flags": [],
+   "flooded": 574,
+   "flooded_share": 0.0089,
+   "lead": "wsc_melt:05EE010:2018-05-01T12:05",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0084,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 63701,
+   "flags": [],
+   "flooded": 574,
+   "flooded_share": 0.0089,
+   "lead": "wsc_melt:05EE011:2018-05-01T12:55",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0084,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 836,
+   "flags": [],
+   "flooded": 6,
+   "flooded_share": 0.0071,
+   "lead": "wsc_melt:05EF001:2013-06-25T08:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 72126,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 300,
+   "flooded_share": 0.0041,
+   "lead": "wsc_melt:05EF001:2018-04-25T17:05",
+   "optical_share": 0.939,
+   "phase_disagreement": 0.0464,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 19977,
+   "flags": [],
+   "flooded": 169,
+   "flooded_share": 0.0084,
+   "lead": "wsc_melt:05EG003:1985-05-17T14:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 55733,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 1855,
+   "flooded_share": 0.0322,
+   "lead": "wsc_melt:05FA012:2018-04-19T09:01",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 69162,
+   "flags": [],
+   "flooded": 6041,
+   "flooded_share": 0.0803,
+   "lead": "wsc_melt:05FA016:2018-04-24T21:45",
+   "optical_share": 0.821,
+   "phase_disagreement": 0.0468,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 54274,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 25,
+   "flooded_share": 0.0005,
+   "lead": "wsc_melt:05FA020:2015-03-31T17:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 54179,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 2158,
+   "flooded_share": 0.0383,
+   "lead": "wsc_melt:05FA020:2017-04-10T23:00",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 70569,
+   "flags": [],
+   "flooded": 386,
+   "flooded_share": 0.0054,
+   "lead": "wsc_melt:05FB002:2018-04-17T14:11",
+   "optical_share": 0.932,
+   "phase_disagreement": 0.046,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 44266,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 4066,
+   "flooded_share": 0.0841,
+   "lead": "wsc_melt:05FB002:2020-04-25T08:20",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 49961,
+   "flags": [],
+   "flooded": 5265,
+   "flooded_share": 0.0953,
+   "lead": "wsc_melt:05FC001:2020-05-05T18:35",
+   "optical_share": 0.002,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 35236,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 14,
+   "flooded_share": 0.0004,
+   "lead": "wsc_melt:05FD007:2019-04-17T17:40",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 54961,
+   "flags": [],
+   "flooded": 739,
+   "flooded_share": 0.0133,
+   "lead": "wsc_melt:05FE004:2017-04-05T11:20",
+   "optical_share": 0.627,
+   "phase_disagreement": 0.0148,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 73124,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 173,
+   "flooded_share": 0.0024,
+   "lead": "wsc_melt:05FE004:2018-04-25T05:49",
+   "optical_share": 0.993,
+   "phase_disagreement": 0.0461,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 52,
+   "flags": [],
+   "flooded": 78,
+   "flooded_share": 0.6,
+   "lead": "wsc_melt:05GG005:2011-06-26T20:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 33509,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 26,
+   "flooded_share": 0.0008,
+   "lead": "wsc_melt:05HA064:1986-05-28T12:12",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 59203,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 209,
+   "flooded_share": 0.0035,
+   "lead": "wsc_melt:05HA064:1987-04-05T11:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 58151,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 61,
+   "flooded_share": 0.001,
+   "lead": "wsc_melt:05HD033:1994-03-16T23:52",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 60066,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 0.0,
+   "lead": "wsc_melt:05JG009:1999-04-01T13:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 21762,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 42,
+   "flooded_share": 0.0019,
+   "lead": "wsc_melt:05JH004:1997-05-11T16:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 18109,
+   "flags": [],
+   "flooded": 17537,
+   "flooded_share": 0.492,
+   "lead": "wsc_melt:05JH004:1999-05-26T07:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 11172,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 38,
+   "flooded_share": 0.0034,
+   "lead": "wsc_melt:05JJ003:2011-04-18T23:35",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 35951,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 55,
+   "flooded_share": 0.0015,
+   "lead": "wsc_melt:05JM007:2011-05-06T15:50",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 52713,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 71,
+   "flooded_share": 0.0013,
+   "lead": "wsc_melt:05JM007:2013-05-10T16:10",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 23,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 66,
+   "flooded_share": 0.7416,
+   "lead": "wsc_melt:05KD003:2011-06-27T20:25",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 508,
+   "flags": [],
+   "flooded": 25,
+   "flooded_share": 0.0469,
+   "lead": "wsc_melt:05KE008:2006-06-05T23:50",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 935,
+   "flags": [],
+   "flooded": 52,
+   "flooded_share": 0.0527,
+   "lead": "wsc_melt:05KJ001:2013-07-11T20:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 72353,
+   "flags": [],
+   "flooded": 780,
+   "flooded_share": 0.0107,
+   "lead": "wsc_melt:05LC001:2017-04-04T06:15",
+   "optical_share": 0.716,
+   "phase_disagreement": 0.0015,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 75284,
+   "flags": [],
+   "flooded": 615,
+   "flooded_share": 0.0081,
+   "lead": "wsc_melt:05LC001:2018-04-23T21:50",
+   "optical_share": 0.717,
+   "phase_disagreement": 0.0012,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 155,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 464,
+   "flooded_share": 0.7496,
+   "lead": "wsc_melt:05LC003:1988-05-12T12:27",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 51523,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 4,
+   "flooded_share": 0.0001,
+   "lead": "wsc_melt:05LL809:2013-04-29T08:23",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 3149,
+   "flags": [],
+   "flooded": 1497,
+   "flooded_share": 0.3222,
+   "lead": "wsc_melt:05MA011:2014-06-30T09:58",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 73476,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 21,
+   "flooded_share": 0.0003,
+   "lead": "wsc_melt:05MB009:1986-04-04T20:26",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 26536,
+   "flags": [],
+   "flooded": 1002,
+   "flooded_share": 0.0364,
+   "lead": "wsc_melt:05MD004:2011-04-20T01:58",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 540,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 4309,
+   "flooded_share": 0.8886,
+   "lead": "wsc_melt:05MD004:2014-07-06T21:20",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 14143,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 11,
+   "flooded_share": 0.0008,
+   "lead": "wsc_melt:05ME003:2011-05-07T08:40",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 64783,
+   "flags": [],
+   "flooded": 1516,
+   "flooded_share": 0.0229,
+   "lead": "wsc_melt:05ME005:2017-04-03T15:50",
+   "optical_share": 0.76,
+   "phase_disagreement": 0.0087,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 54193,
+   "flags": [],
+   "flooded": 588,
+   "flooded_share": 0.0107,
+   "lead": "wsc_melt:05ME010:2017-04-03T10:55",
+   "optical_share": 0.693,
+   "phase_disagreement": 0.0011,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 30,
+   "flags": [],
+   "flooded": 1,
+   "flooded_share": 0.0323,
+   "lead": "wsc_melt:05MF019:2005-07-10T02:55",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 14550,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 5,
+   "flooded_share": 0.0003,
+   "lead": "wsc_melt:05NF010:2017-03-27T13:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 6232,
+   "flags": [],
+   "flooded": 378,
+   "flooded_share": 0.0572,
+   "lead": "wsc_melt:05NG012:2014-06-30T16:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 52692,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 285,
+   "flooded_share": 0.0054,
+   "lead": "wsc_melt:05NG024:2015-03-17T17:25",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 69510,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 0.0,
+   "lead": "wsc_melt:05NG024:2017-04-02T12:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 52910,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 44,
+   "flooded_share": 0.0008,
+   "lead": "wsc_melt:05NG814:2006-04-06T00:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 37900,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 2,
+   "flooded_share": 0.0001,
+   "lead": "wsc_melt:05OB014:1987-04-06T00:33",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 885,
+   "flags": [],
+   "flooded": 7,
+   "flooded_share": 0.0078,
+   "lead": "wsc_melt:05PA010:1996-05-21T17:05",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 410,
+   "flags": [],
+   "flooded": 75,
+   "flooded_share": 0.1546,
+   "lead": "wsc_melt:05PA011:1996-05-27T17:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 345,
+   "flags": [],
+   "flooded": 34,
+   "flooded_share": 0.0897,
+   "lead": "wsc_melt:05PA012:2008-05-14T19:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 488,
+   "flags": [],
+   "flooded": 32,
+   "flooded_share": 0.0615,
+   "lead": "wsc_melt:05PA012:2014-05-23T01:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 30983,
+   "flags": [],
+   "flooded": 1152,
+   "flooded_share": 0.0358,
+   "lead": "wsc_melt:05SB003:1986-05-12T15:26",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 2882,
+   "flags": [],
+   "flooded": 273,
+   "flooded_share": 0.0865,
+   "lead": "wsc_melt:05TG002:2005-06-08T01:55",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0558,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 3135,
+   "flags": [],
+   "flooded": 784,
+   "flooded_share": 0.2001,
+   "lead": "wsc_melt:05TG003:2017-05-31T09:10",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0041,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 604,
+   "flags": [],
+   "flooded": 75,
+   "flooded_share": 0.1105,
+   "lead": "wsc_melt:05TG003:2020-07-06T14:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 66474,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 131,
+   "flooded_share": 0.002,
+   "lead": "wsc_melt:06AA002:2018-04-24T22:50",
+   "optical_share": 0.791,
+   "phase_disagreement": 0.0026,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 40915,
+   "flags": [],
+   "flooded": 1575,
+   "flooded_share": 0.0371,
+   "lead": "wsc_melt:06AA002:2020-06-09T03:30",
+   "optical_share": 0.027,
+   "phase_disagreement": 0.0002,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 52539,
+   "flags": [],
+   "flooded": 446,
+   "flooded_share": 0.0084,
+   "lead": "wsc_melt:06AB001:2017-07-31T05:20",
+   "optical_share": 0.045,
+   "phase_disagreement": 0.0013,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 11,
+   "flags": [],
+   "flooded": 1,
+   "flooded_share": 0.0833,
+   "lead": "wsc_melt:06AB002:2013-06-19T08:31",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 21396,
+   "flags": [],
+   "flooded": 690,
+   "flooded_share": 0.0312,
+   "lead": "wsc_melt:06AB002:2017-05-23T05:25",
+   "optical_share": 0.02,
+   "phase_disagreement": 0.0017,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 499,
+   "flags": [],
+   "flooded": 3,
+   "flooded_share": 0.006,
+   "lead": "wsc_melt:06AC001:2012-07-04T13:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 22583,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 12,
+   "flooded_share": 0.0005,
+   "lead": "wsc_melt:06AC007:1988-05-05T14:13",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 1060,
+   "flags": [],
+   "flooded": 15,
+   "flooded_share": 0.014,
+   "lead": "wsc_melt:06AC007:1989-06-10T06:31",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 64054,
+   "flags": [],
+   "flooded": 445,
+   "flooded_share": 0.0069,
+   "lead": "wsc_melt:06AD006:2018-04-26T11:40",
+   "optical_share": 0.651,
+   "phase_disagreement": 0.0195,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 54295,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 2333,
+   "flooded_share": 0.0412,
+   "lead": "wsc_melt:06AD006:2020-06-14T03:30",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 19,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 427,
+   "flooded_share": 0.9574,
+   "lead": "wsc_melt:06DC001:2020-06-26T20:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0022,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 47689,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 140,
+   "flooded_share": 0.0029,
+   "lead": "wsc_melt:06DC001:2021-06-19T06:30",
+   "optical_share": 0.015,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 58782,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 6595,
+   "flooded_share": 0.1009,
+   "lead": "wsc_melt:06FD002:2017-05-28T05:05",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 48225,
+   "flags": [],
+   "flooded": 2444,
+   "flooded_share": 0.0482,
+   "lead": "wsc_melt:06JB001:2021-06-22T13:40",
+   "optical_share": 0.015,
+   "phase_disagreement": 0.002,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 35429,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 19466,
+   "flooded_share": 0.3546,
+   "lead": "wsc_melt:06JC002:2019-06-18T13:55",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 543,
+   "flags": [],
+   "flooded": 541,
+   "flooded_share": 0.4991,
+   "lead": "wsc_melt:06JC002:2020-06-22T19:10",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0018,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1252,
+   "flags": [],
+   "flooded": 14,
+   "flooded_share": 0.0111,
+   "lead": "wsc_melt:06LC004:1987-07-03T20:16",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 1,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 10,
+   "flooded_share": 0.9091,
+   "lead": "wsc_melt:06MA006:2020-07-06T10:25",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 25700,
+   "flags": [],
+   "flooded": 269,
+   "flooded_share": 0.0104,
+   "lead": "wsc_melt:07AA001:2020-06-24T23:55",
+   "optical_share": 0.001,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 15219,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 179,
+   "flooded_share": 0.0116,
+   "lead": "wsc_melt:07AA001:2021-06-04T00:30",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0139,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 23697,
+   "flags": [
+    "radar_only",
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 17,
+   "flooded_share": 0.0007,
+   "lead": "wsc_melt:07AC001:2020-07-02T17:00",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 32884,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 163,
+   "flooded_share": 0.0049,
+   "lead": "wsc_melt:07AD002:2020-07-03T03:25",
+   "optical_share": 0.078,
+   "phase_disagreement": 0.0001,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 26718,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 95,
+   "flooded_share": 0.0035,
+   "lead": "wsc_melt:07AF013:2018-07-04T14:25",
+   "optical_share": 0.133,
+   "phase_disagreement": 0.0001,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 29124,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 106,
+   "flooded_share": 0.0036,
+   "lead": "wsc_melt:07AF013:2020-07-01T21:10",
+   "optical_share": 0.023,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 50421,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 560,
+   "flooded_share": 0.011,
+   "lead": "wsc_melt:07AG007:2019-07-08T23:15",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 196,
+   "flags": [],
+   "flooded": 20,
+   "flooded_share": 0.0926,
+   "lead": "wsc_melt:07AH002:2012-07-25T14:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 59763,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 564,
+   "flooded_share": 0.0093,
+   "lead": "wsc_melt:07AH002:2017-05-14T22:30",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0009,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 271,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 762,
+   "flooded_share": 0.7377,
+   "lead": "wsc_melt:07BF008:1996-06-27T18:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 0,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 7,
+   "flooded_share": 1.0,
+   "lead": "wsc_melt:07BF009:2013-06-27T23:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 53579,
+   "flags": [],
+   "flooded": 6127,
+   "flooded_share": 0.1026,
+   "lead": "wsc_melt:07BF009:2018-06-13T10:05",
+   "optical_share": 0.024,
+   "phase_disagreement": 0.0006,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 7879,
+   "flags": [],
+   "flooded": 171,
+   "flooded_share": 0.0212,
+   "lead": "wsc_melt:07BF010:2013-05-07T20:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 3455,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 6,
+   "flooded_share": 0.0017,
+   "lead": "wsc_melt:07BK007:2014-04-27T21:31",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0006,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 34882,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 8,
+   "flooded_share": 0.0002,
+   "lead": "wsc_melt:07BK007:2018-04-28T23:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 1,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 6,
+   "flooded_share": 0.8571,
+   "lead": "wsc_melt:07BK008:1997-06-29T18:57",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 9492,
+   "flags": [],
+   "flooded": 259,
+   "flooded_share": 0.0266,
+   "lead": "wsc_melt:07BK008:2007-05-11T17:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 50390,
+   "flags": [],
+   "flooded": 1900,
+   "flooded_share": 0.0363,
+   "lead": "wsc_melt:07CA012:2020-06-09T22:25",
+   "optical_share": 0.023,
+   "phase_disagreement": 0.0005,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 62542,
+   "flags": [],
+   "flooded": 489,
+   "flooded_share": 0.0078,
+   "lead": "wsc_melt:07CD005:2018-04-27T09:01",
+   "optical_share": 0.843,
+   "phase_disagreement": 0.0014,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 46096,
+   "flags": [],
+   "flooded": 329,
+   "flooded_share": 0.0071,
+   "lead": "wsc_melt:07CD005:2020-04-29T16:30",
+   "optical_share": 0.586,
+   "phase_disagreement": 0.0006,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 59593,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 1371,
+   "flooded_share": 0.0225,
+   "lead": "wsc_melt:07CE002:2020-06-09T23:55",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 916,
+   "flags": [],
+   "flooded": 20,
+   "flooded_share": 0.0214,
+   "lead": "wsc_melt:07CE906:2014-06-07T06:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 18536,
+   "flags": [],
+   "flooded": 198,
+   "flooded_share": 0.0106,
+   "lead": "wsc_melt:07DA018:2014-05-30T10:46",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 234,
+   "flags": [],
+   "flooded": 15,
+   "flooded_share": 0.0602,
+   "lead": "wsc_melt:07EA007:2013-06-27T23:11",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 12309,
+   "flags": [],
+   "flooded": 218,
+   "flooded_share": 0.0174,
+   "lead": "wsc_melt:07EA007:2021-06-03T12:50",
+   "optical_share": 0.019,
+   "phase_disagreement": 0.0116,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 749,
+   "flags": [],
+   "flooded": 87,
+   "flooded_share": 0.1041,
+   "lead": "wsc_melt:07EB002:2012-06-08T06:31",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 8596,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 39,
+   "flooded_share": 0.0045,
+   "lead": "wsc_melt:07EB002:2021-06-03T12:05",
+   "optical_share": 0.013,
+   "phase_disagreement": 0.0124,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 2993,
+   "flags": [],
+   "flooded": 976,
+   "flooded_share": 0.2459,
+   "lead": "wsc_melt:07EE009:2013-05-13T04:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0005,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 2140,
+   "flags": [],
+   "flooded": 206,
+   "flooded_share": 0.0878,
+   "lead": "wsc_melt:07EE010:2013-05-13T10:21",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 35611,
+   "flags": [],
+   "flooded": 278,
+   "flooded_share": 0.0077,
+   "lead": "wsc_melt:07EE010:2021-05-09T05:45",
+   "optical_share": 0.144,
+   "phase_disagreement": 0.0058,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1413,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 0.0007,
+   "lead": "wsc_melt:07FA006:2013-06-28T18:46",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 26752,
+   "flags": [],
+   "flooded": 213,
+   "flooded_share": 0.0079,
+   "lead": "wsc_melt:07FB002:2017-06-10T20:00",
+   "optical_share": 0.005,
+   "phase_disagreement": 0.0104,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 41414,
+   "flags": [],
+   "flooded": 2070,
+   "flooded_share": 0.0476,
+   "lead": "wsc_melt:07FC001:2017-05-14T13:45",
+   "optical_share": 0.138,
+   "phase_disagreement": 0.0013,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 764,
+   "flags": [],
+   "flooded": 6,
+   "flooded_share": 0.0078,
+   "lead": "wsc_melt:07FC001:2020-07-05T03:55",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 27960,
+   "flags": [],
+   "flooded": 211,
+   "flooded_share": 0.0075,
+   "lead": "wsc_melt:07FD012:2018-04-25T23:05",
+   "optical_share": 0.802,
+   "phase_disagreement": 0.0111,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 69970,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 125,
+   "flooded_share": 0.0018,
+   "lead": "wsc_melt:07FD013:2018-04-28T04:01",
+   "optical_share": 0.556,
+   "phase_disagreement": 0.0032,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1881,
+   "flags": [],
+   "flooded": 609,
+   "flooded_share": 0.2446,
+   "lead": "wsc_melt:07GA001:2017-06-09T21:20",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0165,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1083,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 3,
+   "flooded_share": 0.0028,
+   "lead": "wsc_melt:07GB001:2017-06-10T01:56",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 14897,
+   "flags": [],
+   "flooded": 179,
+   "flooded_share": 0.0119,
+   "lead": "wsc_melt:07GB001:2019-06-29T07:05",
+   "optical_share": 0.008,
+   "phase_disagreement": 0.0009,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 68343,
+   "flags": [],
+   "flooded": 1188,
+   "flooded_share": 0.0171,
+   "lead": "wsc_melt:07GD001:2018-04-29T01:40",
+   "optical_share": 0.764,
+   "phase_disagreement": 0.0281,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 36168,
+   "flags": [],
+   "flooded": 1387,
+   "flooded_share": 0.0369,
+   "lead": "wsc_melt:07GD001:2019-04-01T21:05",
+   "optical_share": 0.363,
+   "phase_disagreement": 0.0411,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 29434,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 4,
+   "flooded_share": 0.0001,
+   "lead": "wsc_melt:07GD004:2013-05-08T09:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 75388,
+   "flags": [],
+   "flooded": 835,
+   "flooded_share": 0.011,
+   "lead": "wsc_melt:07GD004:2018-04-28T18:35",
+   "optical_share": 0.853,
+   "phase_disagreement": 0.0354,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 12437,
+   "flags": [],
+   "flooded": 560,
+   "flooded_share": 0.0431,
+   "lead": "wsc_melt:07GE002:2018-04-22T17:50",
+   "optical_share": 0.013,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 4724,
+   "flags": [],
+   "flooded": 167,
+   "flooded_share": 0.0341,
+   "lead": "wsc_melt:07GE002:2020-04-18T17:05",
+   "optical_share": 0.255,
+   "phase_disagreement": 0.0611,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 3395,
+   "flags": [],
+   "flooded": 294,
+   "flooded_share": 0.0797,
+   "lead": "wsc_melt:07GE003:2016-06-16T01:55",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0022,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 57376,
+   "flags": [],
+   "flooded": 298,
+   "flooded_share": 0.0052,
+   "lead": "wsc_melt:07GE003:2020-04-21T20:35",
+   "optical_share": 0.852,
+   "phase_disagreement": 0.0009,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 4851,
+   "flags": [],
+   "flooded": 89,
+   "flooded_share": 0.018,
+   "lead": "wsc_melt:07GE007:2018-04-26T05:51",
+   "optical_share": 0.116,
+   "phase_disagreement": 0.0063,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 53823,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 18,
+   "flooded_share": 0.0003,
+   "lead": "wsc_melt:07GF001:2018-04-28T13:36",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0015,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 41895,
+   "flags": [],
+   "flooded": 1084,
+   "flooded_share": 0.0252,
+   "lead": "wsc_melt:07GF001:2019-06-29T20:00",
+   "optical_share": 0.015,
+   "phase_disagreement": 0.0142,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 30163,
+   "flags": [],
+   "flooded": 241,
+   "flooded_share": 0.0079,
+   "lead": "wsc_melt:07GH003:2017-05-29T01:36",
+   "optical_share": 0.015,
+   "phase_disagreement": 0.0217,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 33033,
+   "flags": [],
+   "flooded": 1779,
+   "flooded_share": 0.0511,
+   "lead": "wsc_melt:07GH003:2018-05-11T16:06",
+   "optical_share": 0.446,
+   "phase_disagreement": 0.0159,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 42825,
+   "flags": [],
+   "flooded": 888,
+   "flooded_share": 0.0203,
+   "lead": "wsc_melt:07HA003:2018-04-25T01:06",
+   "optical_share": 0.75,
+   "phase_disagreement": 0.004,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 3587,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 10,
+   "flooded_share": 0.0028,
+   "lead": "wsc_melt:07HB001:2014-05-05T02:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 64406,
+   "flags": [],
+   "flooded": 520,
+   "flooded_share": 0.008,
+   "lead": "wsc_melt:07HB001:2020-06-17T15:00",
+   "optical_share": 0.002,
+   "phase_disagreement": 0.002,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 72021,
+   "flags": [],
+   "flooded": 401,
+   "flooded_share": 0.0055,
+   "lead": "wsc_melt:07HF002:2020-07-06T21:30",
+   "optical_share": 0.003,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 27456,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 69,
+   "flooded_share": 0.0025,
+   "lead": "wsc_melt:07JD004:2021-04-15T18:30",
+   "optical_share": 0.453,
+   "phase_disagreement": 0.0033,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 41067,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 5,
+   "flooded_share": 0.0001,
+   "lead": "wsc_melt:07JF003:2013-05-14T21:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 35800,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 25,
+   "flooded_share": 0.0007,
+   "lead": "wsc_melt:07KC005:1994-04-30T13:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 60829,
+   "flags": [
+    "radar_only",
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 53,
+   "flooded_share": 0.0009,
+   "lead": "wsc_melt:07OB003:2020-07-12T06:40",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 60647,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 116,
+   "flooded_share": 0.0019,
+   "lead": "wsc_melt:07OB003:2021-06-25T08:10",
+   "optical_share": 0.023,
+   "phase_disagreement": 0.0001,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 3296,
+   "flags": [],
+   "flooded": 22,
+   "flooded_share": 0.0066,
+   "lead": "wsc_melt:08AC002:2012-06-25T03:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 205,
+   "flags": [],
+   "flooded": 48,
+   "flooded_share": 0.1897,
+   "lead": "wsc_melt:08CD001:2021-06-03T08:08",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 342,
+   "flags": [],
+   "flooded": 35,
+   "flooded_share": 0.0928,
+   "lead": "wsc_melt:08EC001:1997-06-05T13:50",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0053,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 47,
+   "flags": [],
+   "flooded": 17,
+   "flooded_share": 0.2656,
+   "lead": "wsc_melt:08EC003:2015-06-01T21:27",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 103,
+   "flags": [],
+   "flooded": 21,
+   "flooded_share": 0.1694,
+   "lead": "wsc_melt:08EC013:2011-06-06T14:26",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 9606,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 655,
+   "flooded_share": 0.0638,
+   "lead": "wsc_melt:08ED001:2015-05-28T04:51",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 12729,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 609,
+   "flooded_share": 0.0457,
+   "lead": "wsc_melt:08ED002:2015-05-29T03:40",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 31145,
+   "flags": [],
+   "flooded": 207,
+   "flooded_share": 0.0066,
+   "lead": "wsc_melt:08ED002:2021-07-01T08:55",
+   "optical_share": 0.046,
+   "phase_disagreement": 0.0003,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1976,
+   "flags": [],
+   "flooded": 402,
+   "flooded_share": 0.169,
+   "lead": "wsc_melt:08EE003:2011-05-28T08:26",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1092,
+   "flags": [],
+   "flooded": 169,
+   "flooded_share": 0.134,
+   "lead": "wsc_melt:08EE005:2011-05-28T04:41",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 43691,
+   "flags": [],
+   "flooded": 1370,
+   "flooded_share": 0.0304,
+   "lead": "wsc_melt:08EE005:2018-05-10T13:50",
+   "optical_share": 0.391,
+   "phase_disagreement": 0.0015,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 730,
+   "flags": [],
+   "flooded": 468,
+   "flooded_share": 0.3907,
+   "lead": "wsc_melt:08EE013:2011-05-28T02:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1327,
+   "flags": [],
+   "flooded": 400,
+   "flooded_share": 0.2316,
+   "lead": "wsc_melt:08JB002:2011-06-06T18:36",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 21859,
+   "flags": [],
+   "flooded": 2520,
+   "flooded_share": 0.1034,
+   "lead": "wsc_melt:08JB002:2018-05-20T01:15",
+   "optical_share": 0.316,
+   "phase_disagreement": 0.0279,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 600,
+   "flags": [],
+   "flooded": 43,
+   "flooded_share": 0.0669,
+   "lead": "wsc_melt:08JB003:2011-06-02T04:01",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 28107,
+   "flags": [],
+   "flooded": 679,
+   "flooded_share": 0.0236,
+   "lead": "wsc_melt:08JB003:2018-05-15T20:10",
+   "optical_share": 0.105,
+   "phase_disagreement": 0.0011,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 45827,
+   "flags": [],
+   "flooded": 2471,
+   "flooded_share": 0.0512,
+   "lead": "wsc_melt:08JE001:2015-06-11T15:51",
+   "optical_share": 0.008,
+   "phase_disagreement": 0.0001,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 145,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 2,
+   "flooded_share": 0.0136,
+   "lead": "wsc_melt:08JE004:2018-04-25T09:20",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 48054,
+   "flags": [],
+   "flooded": 823,
+   "flooded_share": 0.0168,
+   "lead": "wsc_melt:08JE004:2020-04-24T01:20",
+   "optical_share": 0.01,
+   "phase_disagreement": 0.0002,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 22,
+   "flags": [],
+   "flooded": 14,
+   "flooded_share": 0.3889,
+   "lead": "wsc_melt:08KA004:2011-07-10T21:46",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 17,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 1182,
+   "flooded_share": 0.9858,
+   "lead": "wsc_melt:08KA004:2012-06-19T22:46",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 34975,
+   "flags": [],
+   "flooded": 4178,
+   "flooded_share": 0.1067,
+   "lead": "wsc_melt:08KA005:2020-06-25T07:15",
+   "optical_share": 0.04,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 5995,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 67,
+   "flooded_share": 0.0111,
+   "lead": "wsc_melt:08KA007:2020-06-25T09:15",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 16922,
+   "flags": [],
+   "flooded": 185,
+   "flooded_share": 0.0108,
+   "lead": "wsc_melt:08KA007:2021-06-30T12:10",
+   "optical_share": 0.558,
+   "phase_disagreement": 0.0056,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 4999,
+   "flags": [],
+   "flooded": 363,
+   "flooded_share": 0.0677,
+   "lead": "wsc_melt:08KE018:2008-05-22T11:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 199,
+   "flags": [],
+   "flooded": 3,
+   "flooded_share": 0.0149,
+   "lead": "wsc_melt:08LA012:1993-05-17T07:19",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 78,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 292,
+   "flooded_share": 0.7892,
+   "lead": "wsc_melt:08LB047:2014-05-25T02:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 58,
+   "flags": [],
+   "flooded": 82,
+   "flooded_share": 0.5857,
+   "lead": "wsc_melt:08LB047:2017-06-02T03:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 389,
+   "flags": [],
+   "flooded": 126,
+   "flooded_share": 0.2447,
+   "lead": "wsc_melt:08LB064:2014-05-26T01:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1762,
+   "flags": [],
+   "flooded": 79,
+   "flooded_share": 0.0429,
+   "lead": "wsc_melt:08LB064:2017-06-03T05:25",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 13956,
+   "flags": [],
+   "flooded": 1990,
+   "flooded_share": 0.1248,
+   "lead": "wsc_melt:08LC002:2018-05-20T13:55",
+   "optical_share": 0.165,
+   "phase_disagreement": 0.0077,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 14094,
+   "flags": [],
+   "flooded": 1107,
+   "flooded_share": 0.0728,
+   "lead": "wsc_melt:08LC002:2020-06-03T15:00",
+   "optical_share": 0.093,
+   "phase_disagreement": 0.0032,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 4674,
+   "flags": [],
+   "flooded": 648,
+   "flooded_share": 0.1218,
+   "lead": "wsc_melt:08LC018:2020-06-01T16:05",
+   "optical_share": 0.037,
+   "phase_disagreement": 0.0002,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 34535,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 70,
+   "flooded_share": 0.002,
+   "lead": "wsc_melt:08LF002:2011-06-03T00:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 17574,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 61,
+   "flooded_share": 0.0035,
+   "lead": "wsc_melt:08LF002:2014-06-02T15:51",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 37605,
+   "flags": [],
+   "flooded": 3651,
+   "flooded_share": 0.0885,
+   "lead": "wsc_melt:08LF085:1984-07-02T20:08",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 10710,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 35,
+   "flooded_share": 0.0033,
+   "lead": "wsc_melt:08LF085:1986-06-04T16:52",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 23377,
+   "flags": [],
+   "flooded": 283,
+   "flooded_share": 0.012,
+   "lead": "wsc_melt:08MC045:2020-04-20T23:15",
+   "optical_share": 0.272,
+   "phase_disagreement": 0.0031,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 24,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 72,
+   "flooded_share": 0.75,
+   "lead": "wsc_melt:08MD031:1991-06-28",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 12142,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 8,
+   "flooded_share": 0.0007,
+   "lead": "wsc_melt:08MD035:2019-07-07T01:40",
+   "optical_share": 0.196,
+   "phase_disagreement": 0.0012,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 37,
+   "flags": [],
+   "flooded": 31,
+   "flooded_share": 0.4559,
+   "lead": "wsc_melt:08MG020:1997-06-18T16:04",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 1389,
+   "flags": [],
+   "flooded": 178,
+   "flooded_share": 0.1136,
+   "lead": "wsc_melt:08NA002:2007-06-10T11:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 18932,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 5144,
+   "flooded_share": 0.2137,
+   "lead": "wsc_melt:08NA011:2017-06-09T13:21",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0449,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 20149,
+   "flags": [],
+   "flooded": 5456,
+   "flooded_share": 0.2131,
+   "lead": "wsc_melt:08NA011:2021-06-29T06:45",
+   "optical_share": 0.075,
+   "phase_disagreement": 0.0002,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 14175,
+   "flags": [],
+   "flooded": 162,
+   "flooded_share": 0.0113,
+   "lead": "wsc_melt:08ND012:2020-06-27T16:55",
+   "optical_share": 0.026,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 2118,
+   "flags": [],
+   "flooded": 148,
+   "flooded_share": 0.0653,
+   "lead": "wsc_melt:08NE008:2020-06-01T20:25",
+   "optical_share": 0.037,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 345,
+   "flags": [],
+   "flooded": 42,
+   "flooded_share": 0.1085,
+   "lead": "wsc_melt:08NE114:2018-05-16T21:05",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 3441,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 5,
+   "flooded_share": 0.0015,
+   "lead": "wsc_melt:08NF001:2020-06-02T04:25",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 2540,
+   "flags": [],
+   "flooded": 1598,
+   "flooded_share": 0.3862,
+   "lead": "wsc_melt:08NG065:2020-06-01T17:40",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 8976,
+   "flags": [],
+   "flooded": 102,
+   "flooded_share": 0.0112,
+   "lead": "wsc_melt:08NG077:2020-05-31T17:40",
+   "optical_share": 0.085,
+   "phase_disagreement": 0.0001,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1990,
+   "flags": [],
+   "flooded": 88,
+   "flooded_share": 0.0423,
+   "lead": "wsc_melt:08NJ013:2012-06-23T22:01",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 10926,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 112,
+   "flooded_share": 0.0101,
+   "lead": "wsc_melt:08NJ013:2017-06-01T02:30",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 15600,
+   "flags": [
+    "radar_only",
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 74,
+   "flooded_share": 0.0047,
+   "lead": "wsc_melt:08NK026:2017-05-05T23:46",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 11523,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 18,
+   "flooded_share": 0.0016,
+   "lead": "wsc_melt:08NL070:2018-05-16T03:45",
+   "optical_share": 0.071,
+   "phase_disagreement": 0.0003,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 11585,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 41,
+   "flooded_share": 0.0035,
+   "lead": "wsc_melt:08NL070:2020-05-31T02:55",
+   "optical_share": 0.049,
+   "phase_disagreement": 0.0002,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 2167,
+   "flags": [],
+   "flooded": 1167,
+   "flooded_share": 0.35,
+   "lead": "wsc_melt:08NM073:2011-06-13T00:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0012,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 2182,
+   "flags": [],
+   "flooded": 370,
+   "flooded_share": 0.145,
+   "lead": "wsc_melt:08NM134:2011-05-20T01:40",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 1201,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 4,
+   "flooded_share": 0.0033,
+   "lead": "wsc_melt:08NM134:2013-05-06T19:11",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 122,
+   "flags": [],
+   "flooded": 4,
+   "flooded_share": 0.0317,
+   "lead": "wsc_melt:08NM230:1989-06-15T02:35",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 25398,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 2013,
+   "flooded_share": 0.0734,
+   "lead": "wsc_melt:08NN002:2017-05-06T16:20",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 20610,
+   "flags": [],
+   "flooded": 2191,
+   "flooded_share": 0.0961,
+   "lead": "wsc_melt:08NN002:2018-05-10T15:55",
+   "optical_share": 0.207,
+   "phase_disagreement": 0.0071,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 5298,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 81,
+   "flooded_share": 0.0151,
+   "lead": "wsc_melt:08NN023:2017-05-05T23:00",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 4654,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 53,
+   "flooded_share": 0.0113,
+   "lead": "wsc_melt:08NN023:2018-05-09T17:55",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 123,
+   "flags": [],
+   "flooded": 2,
+   "flooded_share": 0.016,
+   "lead": "wsc_melt:09DC006:1985-06-11T02:24",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 32462,
+   "flags": [],
+   "flooded": 801,
+   "flooded_share": 0.0241,
+   "lead": "wsc_melt:09FB002:2018-05-12T04:15",
+   "optical_share": 0.154,
+   "phase_disagreement": 0.0012,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 484,
+   "flags": [],
+   "flooded": 4,
+   "flooded_share": 0.0082,
+   "lead": "wsc_melt:10AB002:1985-06-08T12:11",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 48143,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 332,
+   "flooded_share": 0.0068,
+   "lead": "wsc_melt:10CD005:2020-06-15T01:40",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 8266,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 5,
+   "flooded_share": 0.0006,
+   "lead": "wsc_melt:10FB005:2002-05-21T12:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 166,
+   "flags": [],
+   "flooded": 7,
+   "flooded_share": 0.0405,
+   "lead": "wsc_melt:10FB005:2006-06-08T02:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 4674,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 14,
+   "flooded_share": 0.003,
+   "lead": "wsc_melt:10GB006:2002-05-19T04:05",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 2987,
+   "flags": [],
+   "flooded": 47,
+   "flooded_share": 0.0155,
+   "lead": "wsc_melt:10KA001:2002-05-22T12:00",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 1575,
+   "flags": [],
+   "flooded": 117,
+   "flooded_share": 0.0691,
+   "lead": "wsc_melt:10KB001:2008-07-10T09:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 10941,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 0.0001,
+   "lead": "wsc_melt:10LC007:2006-05-21T03:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 1497,
+   "flags": [],
+   "flooded": 18,
+   "flooded_share": 0.0119,
+   "lead": "wsc_melt:10LC015:2008-05-25T10:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 2397,
+   "flags": [],
+   "flooded": 32,
+   "flooded_share": 0.0132,
+   "lead": "wsc_melt:10LC015:2011-05-26T07:50",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 1,
+   "flags": [
+    "flooded_share_above_60pct"
+   ],
+   "flooded": 89,
+   "flooded_share": 0.9889,
+   "lead": "wsc_melt:10LC020:2013-06-06T20:30",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 4235,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 5,
+   "flooded_share": 0.0012,
+   "lead": "wsc_melt:10MC003:2011-05-27T13:20",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 9601,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 2,
+   "flooded_share": 0.0002,
+   "lead": "wsc_melt:10MC008:1986-06-06T16:40",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 1176,
+   "flags": [],
+   "flooded": 46,
+   "flooded_share": 0.0376,
+   "lead": "wsc_melt:10MC011:1991-05-27T10:04",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 766,
+   "flags": [],
+   "flooded": 34,
+   "flooded_share": 0.0425,
+   "lead": "wsc_melt:10MC023:2004-06-05T07:45",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 14069,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 11,
+   "flooded_share": 0.0008,
+   "lead": "wsc_melt:10ND002:2009-05-29T00:15",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0001,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 29085,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 5,
+   "flooded_share": 0.0002,
+   "lead": "wsc_melt:10OB001:2011-06-18T03:35",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 42791,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 4,
+   "flooded_share": 0.0001,
+   "lead": "wsc_melt:10OB001:2012-05-31T18:05",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 12590,
+   "flags": [
+    "flooded_share_below_0.5pct"
+   ],
+   "flooded": 1,
+   "flooded_share": 0.0001,
+   "lead": "wsc_melt:10RA001:2012-05-31T21:40",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": false
+  },
+  {
+   "dry": 8092,
+   "flags": [],
+   "flooded": 439,
+   "flooded_share": 0.0515,
+   "lead": "wsc_melt:10RC001:2021-06-28T17:35",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 32523,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 777,
+   "flooded_share": 0.0233,
+   "lead": "wsc_melt:11AA001:2017-03-15T11:55",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 61215,
+   "flags": [],
+   "flooded": 853,
+   "flooded_share": 0.0137,
+   "lead": "wsc_melt:11AB095:2017-03-16T15:00",
+   "optical_share": 0.88,
+   "phase_disagreement": 0.0377,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 42964,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 5647,
+   "flooded_share": 0.1162,
+   "lead": "wsc_melt:11AC037:2017-05-12T22:30",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.087,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 29359,
+   "flags": [
+    "radar_only"
+   ],
+   "flooded": 6341,
+   "flooded_share": 0.1776,
+   "lead": "wsc_melt:11AC037:2018-05-09T21:00",
+   "optical_share": 0.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  },
+  {
+   "dry": 5375,
+   "flags": [],
+   "flooded": 179,
+   "flooded_share": 0.0322,
+   "lead": "wsc_melt:11AC063:1991-06-30T06:43",
+   "optical_share": 1.0,
+   "phase_disagreement": 0.0,
+   "submode": "sustained_melt",
+   "type": "M8",
+   "usable": true
+  }
+ ],
+ "summary": {
+  "flag_counts_usable": {
+   "flooded_share_above_60pct": 4,
+   "flooded_share_below_0.5pct": 25,
+   "radar_only": 40,
+   "small_dam_flood_not_near_dam": 2
+  },
+  "labels": 643,
+  "m7": [
+   {
+    "dry": 60712,
+    "flags": [],
+    "flooded": 446,
+    "flooded_share": 0.0073,
+    "flooded_within_5km_of_anchor": 117,
+    "lead": "asdso:GA00000-3345",
+    "m7_evidence": true,
+    "optical_share": 0.077,
+    "phase_disagreement": 0.0103,
+    "stratum": "small_dam",
+    "submode": "reservoir_breach",
+    "type": "M7",
+    "usable": true
+   },
+   {
+    "dry": 1063,
+    "flags": [
+     "small_dam_flood_not_near_dam"
+    ],
+    "flooded": 63,
+    "flooded_share": 0.056,
+    "flooded_within_5km_of_anchor": 0,
+    "lead": "asdso:VA04173-2447",
+    "m7_evidence": false,
+    "optical_share": 1.0,
+    "phase_disagreement": 0.0,
+    "stratum": "small_dam",
+    "submode": "reservoir_breach",
+    "type": "M7",
+    "usable": true
+   },
+   {
+    "dry": 22978,
+    "flags": [
+     "radar_only"
+    ],
+    "flooded": 27556,
+    "flooded_share": 0.5453,
+    "flooded_within_5km_of_anchor": 25245,
+    "lead": "handlocated:mondego-casalnovo-2019",
+    "optical_share": 0.0,
+    "phase_disagreement": 0.0637,
+    "stratum": "primary",
+    "submode": "levee_breach",
+    "type": "M7",
+    "usable": true
+   },
+   {
+    "dry": 1019,
+    "flags": [],
+    "flooded": 22,
+    "flooded_share": 0.0211,
+    "flooded_within_5km_of_anchor": 1,
+    "lead": "npdp:INC_19990420_00189",
+    "m7_evidence": false,
+    "optical_share": 1.0,
+    "phase_disagreement": 0.0,
+    "stratum": "small_dam",
+    "submode": "reservoir_breach",
+    "type": "M7",
+    "usable": false
+   },
+   {
+    "dry": 1063,
+    "flags": [
+     "small_dam_flood_not_near_dam"
+    ],
+    "flooded": 63,
+    "flooded_share": 0.056,
+    "flooded_within_5km_of_anchor": 0,
+    "lead": "npdp:INC_2014611_00035",
+    "m7_evidence": false,
+    "optical_share": 1.0,
+    "phase_disagreement": 0.0,
+    "stratum": "small_dam",
+    "submode": "reservoir_breach",
+    "type": "M7",
+    "usable": true
+   },
+   {
+    "dry": 178,
+    "flags": [],
+    "flooded": 40,
+    "flooded_share": 0.1835,
+    "flooded_within_5km_of_anchor": 27,
+    "lead": "usgs_peaks:05552500:1996-07-19",
+    "m7_evidence": false,
+    "optical_share": 1.0,
+    "phase_disagreement": 0.0,
+    "stratum": "small_dam",
+    "submode": "reservoir_breach",
+    "type": "M7",
+    "usable": false
+   }
+  ],
+  "median_phase_disagreement_usable": 0.0,
+  "radar_only_usable": 40,
+  "usable": 184,
+  "with_flooded_cells": 307
+ }
+}

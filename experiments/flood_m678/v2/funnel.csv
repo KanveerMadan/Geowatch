@@ -1,0 +1,19 @@
+group,labelled,no flooded cell,below 50/50 floor,usable
+M7/country=Portugal,1,0,0,1
+M7/country=USA,24,19,2,3
+M7/crest precision=agency_crest_day,6,5,1,0
+M7/crest precision=breach_day,1,0,0,1
+M7/crest precision=published_day,18,14,1,3
+M7/lag to crest=0 h (in crest window),24,19,2,3
+M7/lag to crest=<= 24 h,1,0,0,1
+M7/submode=levee_breach,1,0,0,1
+M7/submode=reservoir_breach,24,19,2,3
+M8/country=Canada,618,317,121,180
+M8/crest precision=agency_crest_day,1,0,1,0
+M8/crest precision=agency_crest_reading,617,317,120,180
+M8/lag to crest=0 h (in crest window),80,65,10,5
+M8/lag to crest=<= 24 h,347,147,67,133
+M8/lag to crest=<= 48 h,107,54,22,31
+M8/lag to crest=> 48 h,84,51,22,11
+M8/submode=ice_jam,76,63,8,5
+M8/submode=sustained_melt,542,254,113,175

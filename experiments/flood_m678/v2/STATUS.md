@@ -325,3 +325,55 @@ The reserve stays sealed. Nothing is promoted from DEV.
 2. Blind label QA and the DEV funnel.
 3. The full DEV comparison.
 4. Power for the joint pass rule.
+
+## Owner decisions applied (2026-11-28, Amendment 6), and label QA part A
+
+**Your decisions, now in the rules (SELECTION.md Amendment 6, committed before any reserve access):**
+- **Earth Engine stays free:**
+  - after 3 quota errors in a row a job waits an hour, and failed units get one retry later;
+  - one heavy job at a time;
+  - jobs pause between units while round 3 is using Earth Engine.
+- **Batch exports are written (`ee_batch.py`) but cannot run yet.** This Cloud project has no Earth Engine asset folder, so a batch export has nowhere to write (round 3 hit the same wall). Two possible fixes, both free: create the project's asset folder once in the Earth Engine Code Editor (not yet tested), or allow export to your Google Drive. Until then, jobs stay interactive and wait out the quota.
+- **M7 split by whether water stays long enough to be seen:**
+  - "primary" means levee or embankment breaches, plus dam failures with at least 3 million m³ stored (ICOLD's large-dam figure);
+  - "small dam" means everything else. These are scenario-only, unless a label survives and its flooded cells lie within 5 km of the dam.
+
+  | M7 | primary | small dam |
+  |---|---:|---:|
+  | reserve | **5** (Bihar, Budameru, and dams in Louisiana, Wisconsin and Oklahoma) | 43 |
+  | DEV | 2 (Mondego, and Hurricane Matthew's 2 large reservoirs) | 16 |
+
+- **Power is reported, not a gate.** The floor of 5 usable units per type stays.
+
+**M7 DEV, after relabelling with primary leads first**
+- The two large Matthew reservoirs (5 and 6.7 million m³) show no flooded cell either.
+- **Usable primary evidence on DEV is Mondego alone.**
+- Of the two small-dam labels that survived:
+  - Georgia 2019 has 117 flooded cells within 5 km of the dam, so it counts (small-dam stratum);
+  - Virginia 2014 has none near the dam, so its flood is the storm's, not the breach's.
+- **Plain reading:** M7 will be tested on at most 5 primary reserve groups. It can only pass if almost all of them give usable labels, so the best lever is recruiting more levee breaches.
+
+**Label QA part A** (local files only; no prediction, HAND or elevation looked at; `label_qa.json`, `funnel.csv`). Of 643 DEV labels:
+- 307 have flooded cells and 184 are usable;
+- 40 usable labels are radar-only and need the visual check in part B;
+- 25 usable labels have flooded cells covering under 0.5 % of the box: they pass the floor, but the flooded cells could be speckle;
+- 4 are over 60 % flooded, so they have few true dry cells;
+- the median phase disagreement (union against merge) is 0.
+
+DEV funnel (labelled → no flooded cell / below floor / usable):
+
+| submode | labelled | no flood | below floor | usable |
+|---|---:|---:|---:|---:|
+| M8 snowmelt | 542 | 254 | 113 | 175 |
+| M8 ice jam | 76 | 63 | 8 | 5 |
+| M7 dam | 24 | 19 | 2 | 3 |
+| M7 levee | 1 | 0 | 0 | 1 |
+
+**Running (the one heavy job):** the corridor, until 20 units are usable (14 done).
+- log: `~/.cache/geowatch/m678v2/m7_chain.log`.
+
+**Next:**
+1. Corridor stop rule.
+2. QA part B: optical-against-radar agreement and the blind visual sample.
+3. The DEV comparison.
+4. The power report.
