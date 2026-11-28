@@ -169,3 +169,6 @@ The owner will not provide an EMS login, so login-gated EMS products (most activ
   - §1 refuses Sentinel-1 candidates only at the same place (20 km) **and** date (30 days) as a used unit. So a plains reserve square may lie where DEV squares of other years were.
   - Each unit is flagged `near_dev_unit_20km`. The report gives every type's numbers on all units (the verdict) and on units with the flag false ("new places"), with counts.
   - The verdict is unchanged: it uses all units.
+- **311 reserve storms (§10 secondary): dropped before the seal, for compute.**
+  - Each storm needs drainage-loss SFINCS runs on every box it touches, and FloodNet alone needs ~64 NYC boxes × each storm.
+  - The secondary result never decided the verdict. The rain secondary is the public EMS rain AOIs.

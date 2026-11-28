@@ -109,7 +109,13 @@ def load(types):
                 for f in feats_of(k, F0):
                     if f not in U:
                         U.append(f)
-        dp = os.path.join(CK, "D", f"{n}.npy")
+        import hashlib
+        r34 = []                           # the R34 (flash + waterlogging) column list keeps the original "D" cache
+        for k in needed(["flash_flood", "waterlogging"])[0]:
+            r34 += [f for f in feats_of(k, F0) if f not in r34]
+        ddir = os.path.join(CK, "D") if U == r34 else os.path.join(CK, "D_" + hashlib.md5("|".join(U).encode()).hexdigest()[:8])
+        os.makedirs(ddir, exist_ok=True)
+        dp = os.path.join(ddir, f"{n}.npy")
         if not os.path.exists(dp):
             ev = {}
             if lp is None:
@@ -117,6 +123,15 @@ def load(types):
                 if os.path.exists(p):
                     e = np.load(p)
                     ev = {k: e[k] for k in D.EV_FEATS}
+            elif any(f in U for f in D._fine()):        # 311 units: fine, drainage and SFINCS features, as dev_cv_r3.load_311
+                from experiments.flood_round3 import fine_feats as FF
+                from experiments.flood_round3 import sfincs_drain as SD
+                ev.update(FF.extras_311(n))
+                ev.update(FF.drainage_311(n))
+                sp = os.path.join(SD.CACHE, f"{n}.npz")
+                if os.path.exists(sp):
+                    z2 = np.load(sp)
+                    ev.update({k: z2[k] for k in SD.FEATS})
             ev.update(D._extra(n, y))
             cols = []
             for f in U:

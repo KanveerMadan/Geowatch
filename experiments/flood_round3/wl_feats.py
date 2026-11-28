@@ -117,30 +117,38 @@ def units():
     return out
 
 
-def main(argv=None):
+def one(n, ee, refs=None, tables=None):
+    """Waterlogging features for one unit (cached in OUTD)."""
     from experiments.flood_round3 import build_r3 as B
+    p = os.path.join(OUTD, f"{n}.npz")
+    if os.path.exists(p):
+        z = np.load(p)
+        return {k: z[k] for k in FEATS}
+    tb = np.load(os.path.join(tables or B.TABLES, f"{n}.npz"), allow_pickle=False)
+    m = json.loads(str(tb["meta"]))
+    peak = None
+    rp = os.path.join(refs or B.REFS, f"{n}.npz")
+    if os.path.exists(rp):
+        rm = json.loads(str(np.load(rp)["meta"]))
+        peak = rm.get("peak") or (rm.get("label_v3") or {}).get("peak")
+    out = ee_layers(ee, m["grid"], m["event"], peak)
+    plain = n.split("_")[1] if n.startswith("r3pl_") else None
+    if plain == "south":
+        plain = "south_sudan"
+    out.update(canal_layers(m["grid"], PLAIN_PBF.get(plain, ())))
+    os.makedirs(OUTD, exist_ok=True)
+    np.savez_compressed(p, **out)
+    print(n, {k: round(float(np.nanmean(v)), 3) for k, v in out.items()}, flush=True)
+    return out
+
+
+def main(argv=None):
     from experiments.flood_round3.diagnose_ee import _init
     ee = _init()
     os.makedirs(OUTD, exist_ok=True)
     for n in units():
-        p = os.path.join(OUTD, f"{n}.npz")
-        if os.path.exists(p):
-            continue
         try:
-            tb = np.load(os.path.join(B.TABLES, f"{n}.npz"), allow_pickle=False)
-            m = json.loads(str(tb["meta"]))
-            peak = None
-            rp = os.path.join(B.REFS, f"{n}.npz")
-            if os.path.exists(rp):
-                rm = json.loads(str(np.load(rp)["meta"]))
-                peak = rm.get("peak") or (rm.get("label_v3") or {}).get("peak")
-            out = ee_layers(ee, m["grid"], m["event"], peak)
-            plain = n.split("_")[1] if n.startswith("r3pl_") else None
-            if plain == "south":
-                plain = "south_sudan"
-            out.update(canal_layers(m["grid"], PLAIN_PBF.get(plain, ())))
-            np.savez_compressed(p, **out)
-            print(n, {k: round(float(np.nanmean(v)), 3) for k, v in out.items()}, flush=True)
+            one(n, ee)
         except Exception as e:          # noqa: BLE001
             print(n, "FAILED", type(e).__name__, str(e)[:200], flush=True)
     return 0
