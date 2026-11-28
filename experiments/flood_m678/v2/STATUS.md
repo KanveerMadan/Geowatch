@@ -271,3 +271,25 @@ The reserve stays sealed. Nothing is promoted from DEV.
   - the Earth Engine lock is held exclusively for heavy calls;
   - LightGBM comes from `~/.cache/geowatch/flood_learned/pylib` (add it to PYTHONPATH);
   - the reserve stays sealed until its power receipt exists, and nothing is ever promoted from DEV.
+
+## M7 older-breach recruitment, toward seal 2.3 (2026-11-28, in progress)
+
+**Done**
+- **Rules first.** Amendment 5 (SELECTION.md, decisions.md) was committed before any new lead was screened.
+- **ASDSO** (your export): 411 dam-failure leads from 1984 on. 405 have a location; 6 do not, because NID puts the dam more than 5 km away or there are no coordinates. 49 are from 2022 or later, and 74 carry a storm name (Matthew 38, Florence 11, Irene 10, ...). Dams that failed in one storm count as one group.
+- **NPDP:** your save was empty, so I fetched it myself from npdp.stanford.edu. A search for "uncontrolled release = Yes" returns 1,594 incidents. 820 are from 1984 on, all in the US, and none is from 2022 or later. Each incident's own page gives the coordinates, and those pages are downloading now, slowly (about 8 a minute). Raw pages are kept under `~/.cache/geowatch/m678v2/sources/npdp/`.
+- **NID** (your export) is used to check ASDSO's dam locations.
+- **Timing:** neither database gives a reliable clock time, so the crest is the incident day with the "time zone unknown" window, then the dam rule (same day or next day).
+- **Older EMS breaches:**
+  - Mondego, Portugal, 22 Dec 2019: added (second dike collapse; source ECO/Lusa).
+  - Evros, Greece 2015: not added; no single breach has a place or day.
+  - Lazio 2021: not added; no breach is reported.
+  - New rule: a levee breach known only to the day gets the window [end of that day, start of that day + 3 days].
+- **EMSR753 (Alau dam)** is excluded by name. The round-3 session asked for this, and I checked that it is in round 3's reserve pool. It was never in a v2 seal.
+- **Gap found and fixed:** the seal script never tested SELECTION §4 (stay out of round 3's footprints) itself. I checked by hand: no reserve group in seals 2.0–2.2 touches one. From seal 2.3 the script tests it against the pinned footprints and round 3's live candidate pools.
+
+**Corridor (heavy job, still running)**
+- 28 of 175 units have run in 9 hours. About half fail on Earth Engine memory limits, so only 12 are usable so far. The stop rule needs 20.
+- So far, per-reach forcing changes the physics AUC by at most about 0.03, with rank correlation ≥ 0.997. That leans toward the stop rule, but it is not judged before 20 units.
+
+**Next:** finish NPDP, then rejoin the groups, screen the new leads for a satellite image in the window (light, no Earth Engine), build seal 2.3, and only then make M7 DEV labels.
