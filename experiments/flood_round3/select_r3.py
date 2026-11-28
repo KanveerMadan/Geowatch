@@ -340,6 +340,7 @@ FN_CACHE = os.path.expanduser("~/.cache/geowatch/flood_round3/floodnet")
 BATTERY = "8518750"
 FN_EXCLUDED_DAY = "2026-11-09"          # FLOODNET_TEST_DESIGN rule 6
 EVENT_CAP = 2                           # §6 / §11: at most 2 units per joined event
+FN_STORM_CAP = 12                       # §12: FloodNet storms taken (compute)
 
 
 def _imerg_daily(ee, bbox, d0, d1):
@@ -420,7 +421,9 @@ def floodnet_storms():
             row["tide_max_ft"], row["tide_minor_ft"] = tide, minor
             active = [x for x in sensors if x["date_installed"][:10] <= (w0 - dt.timedelta(days=1)).isoformat()]
             row["active_nontidal_sensors"] = len(active)
-            if tide is not None and tide >= minor:
+            if tide is None:
+                row["refused"] = "rule 2: no Battery tide record for the window (cannot confirm below minor)"
+            elif tide >= minor:
                 row["refused"] = "rule 2: Battery at or above NOAA minor flood level"
             elif len(active) < 100:
                 row["refused"] = "rule 4: fewer than 100 active non-tidal sensors"
@@ -514,7 +517,7 @@ def seal():
         lat, lon = c["search_point"]
         units.append({"unit": c["unit"], "type": "waterlogging", "label_family": "S1v3", "source": c["source"],
                       "event": c["event"], "peak": c["peak_day"], "image": c["image"], "centre": [lon, lat],
-                      "square": c["square"], "cluster_hint": c["cluster"], "order": len(units)})
+                      "square": c["square"], "storm": c["cluster"], "order": len(units)})     # §12: one (plain, year) = one event
     for r in ems_timing():
         if r.get("refused"):
             refused.append({"unit": r["unit"], "why": r["refused"]})
@@ -536,6 +539,9 @@ def seal():
         u["near_dev_unit_20km"] = any(_hav(u["centre"], q[:2]) <= PROX_KM for q in dev_pts)
         taken.append(u)
     fn = floodnet_storms()
+    ok = sorted((x for x in fn if not x.get("refused")), key=lambda x: (-x["rain_3day_mm"], x["peak_day"]))
+    for x in ok[FN_STORM_CAP:]:                  # §12 compute cap: the FN_STORM_CAP largest IMERG storms
+        x["refused"] = f"§12 cap: not among the {FN_STORM_CAP} storms with the largest IMERG 3-day totals (compute)"
     crit = os.path.join(HERE, "RESERVE_CRITERIA_R3.md")
     out = {"sealed": SEAL_DATE, "criteria_sha256": hashlib.sha256(open(crit, "rb").read()).hexdigest(),
            "design_sha256": {f: hashlib.sha256(open(os.path.join(HERE, f), "rb").read()).hexdigest()

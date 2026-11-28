@@ -1,0 +1,7 @@
+Round 3 reserve seal (login-free sources; criteria §1–§12)
+
+reserve_r3.json          sha256 328bac6daae9782db20339c421a2a891d43596ff4dfcc9027c0dce0bde774270
+RESERVE_CRITERIA_R3.md   sha256 3338c8dde086fd11024912ad573cc1fa0512b73cf7e5382f758d20c9819a36e6
+Sealed from metadata only on 2026-11-28 by select_r3.py seal. No reserve label, feature table or score existed at this point.
+Units: waterlogging 40 (plains, S1v3), river 2 (public EMS, informational), rain 12 FloodNet storms.
+Push time: recorded in the next commit, after the push.

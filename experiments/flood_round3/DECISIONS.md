@@ -334,3 +334,13 @@ GFM was read only on DEV EMS units (the §e set), with the product picked by Sen
 - **Flash:** not testable in round 3. Its two public EMS AOIs fail the metadata rules, and Sentinel-1 labels are refused for flash (DIAGNOSIS §e).
 - **No power gate (owner).** The bar's ≥ 5 usable units still applies.
 - **Overlap:** EMSR753 (Alau dam, Borno, 2024) is in round 3's public EMS pool as a river AOI. The M6–M8 session was told so that the two reserves do not share it.
+
+## R41 (2026-11-28): reserve sealed (login-free), metadata only
+- **Contents:**
+  - waterlogging: 40 plains units (20 plain-years 2022–2025 × the first 2 squares each, S1v3);
+  - river: 2 public EMS AOIs (EMSR771 AOI05 and AOI07), informational only;
+  - rain: 12 FloodNet storms (the largest IMERG 3-day totals among the 33 that pass rules 1–4 and 6, after the tide-record rule).
+- **Refused:**
+  - every other public EMS AOI, by §1–§4 (proximity, size, driver, timing; listed in `reserve_r3.json`);
+  - flash and coastal/compound: no unit.
+- `RESERVE_HASH_R3.txt` holds the SHA256s.

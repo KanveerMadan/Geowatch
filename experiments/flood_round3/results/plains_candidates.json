@@ -5393,6 +5393,3726 @@
    "split": "dev",
    "cluster": "pl_nigeria_2021",
    "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2022_012_013",
+   "plain": "sindh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-18",
+   "peak_day": "2022-08-18",
+   "rain_3day_mm_plain": 122.6,
+   "rain_3day_mm_square": 294.0,
+   "relief_sd_m": 1.34,
+   "image": "2022-08-22",
+   "orbit": 144,
+   "lag_days": 4,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    25.845777937477543,
+    69.20085266637992
+   ],
+   "square": [
+    69.100821,
+    25.755947,
+    69.300884,
+    25.935609
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2022_012_012",
+   "plain": "sindh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-18",
+   "peak_day": "2022-08-18",
+   "rain_3day_mm_plain": 122.6,
+   "rain_3day_mm_square": 290.5,
+   "relief_sd_m": 1.29,
+   "image": "2022-08-18",
+   "orbit": 78,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    25.845777937477543,
+    69.00078950590732
+   ],
+   "square": [
+    68.900758,
+    25.755947,
+    69.100821,
+    25.935609
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2022_016_009",
+   "plain": "sindh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-18",
+   "peak_day": "2022-08-18",
+   "rain_3day_mm_plain": 122.6,
+   "rain_3day_mm_square": 287.8,
+   "relief_sd_m": 3.69,
+   "image": "2022-08-18",
+   "orbit": 78,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.564426877470357,
+    68.40060002448956
+   ],
+   "square": [
+    68.300568,
+    26.474596,
+    68.500632,
+    26.654258
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2022_013_012",
+   "plain": "sindh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-18",
+   "peak_day": "2022-08-18",
+   "rain_3day_mm_plain": 122.6,
+   "rain_3day_mm_square": 282.4,
+   "relief_sd_m": 1.18,
+   "image": "2022-08-18",
+   "orbit": 78,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.025440172475747,
+    69.00078950590732
+   ],
+   "square": [
+    68.900758,
+    25.935609,
+    69.100821,
+    26.115271
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2022_015_010",
+   "plain": "sindh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-18",
+   "peak_day": "2022-08-18",
+   "rain_3day_mm_plain": 122.6,
+   "rain_3day_mm_square": 281.0,
+   "relief_sd_m": 3.69,
+   "image": "2022-08-18",
+   "orbit": 78,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.384764642472156,
+    68.60066318496214
+   ],
+   "square": [
+    68.500632,
+    26.294934,
+    68.700695,
+    26.474596
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2022_014_011",
+   "plain": "sindh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-18",
+   "peak_day": "2022-08-18",
+   "rain_3day_mm_plain": 122.6,
+   "rain_3day_mm_square": 280.6,
+   "relief_sd_m": 1.8,
+   "image": "2022-08-18",
+   "orbit": 78,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.20510240747395,
+    68.80072634543474
+   ],
+   "square": [
+    68.700695,
+    26.115271,
+    68.900758,
+    26.294934
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2023_016_006",
+   "plain": "sindh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-22",
+   "peak_day": "2023-07-22",
+   "rain_3day_mm_plain": 65.7,
+   "rain_3day_mm_square": 161.9,
+   "relief_sd_m": 1.51,
+   "image": "2023-07-29",
+   "orbit": 42,
+   "lag_days": 7,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.564426877470357,
+    67.8004105430718
+   ],
+   "square": [
+    67.700379,
+    26.474596,
+    67.900442,
+    26.654258
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2023_016_005",
+   "plain": "sindh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-22",
+   "peak_day": "2023-07-22",
+   "rain_3day_mm_plain": 65.7,
+   "rain_3day_mm_square": 159.2,
+   "relief_sd_m": 2.74,
+   "image": "2023-07-29",
+   "orbit": 42,
+   "lag_days": 7,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.564426877470357,
+    67.60034738259922
+   ],
+   "square": [
+    67.500316,
+    26.474596,
+    67.700379,
+    26.654258
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2023_017_006",
+   "plain": "sindh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-22",
+   "peak_day": "2023-07-22",
+   "rain_3day_mm_plain": 65.7,
+   "rain_3day_mm_square": 143.7,
+   "relief_sd_m": 1.35,
+   "image": "2023-07-29",
+   "orbit": 42,
+   "lag_days": 7,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.74408911246856,
+    67.8004105430718
+   ],
+   "square": [
+    67.700379,
+    26.654258,
+    67.900442,
+    26.83392
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2023_015_007",
+   "plain": "sindh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-22",
+   "peak_day": "2023-07-22",
+   "rain_3day_mm_plain": 65.7,
+   "rain_3day_mm_square": 142.9,
+   "relief_sd_m": 1.5,
+   "image": "2023-07-24",
+   "orbit": 144,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.384764642472156,
+    68.0004737035444
+   ],
+   "square": [
+    67.900442,
+    26.294934,
+    68.100505,
+    26.474596
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2023_016_007",
+   "plain": "sindh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-22",
+   "peak_day": "2023-07-22",
+   "rain_3day_mm_plain": 65.7,
+   "rain_3day_mm_square": 142.5,
+   "relief_sd_m": 1.57,
+   "image": "2023-07-24",
+   "orbit": 144,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.564426877470357,
+    68.0004737035444
+   ],
+   "square": [
+    67.900442,
+    26.474596,
+    68.100505,
+    26.654258
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2023_015_009",
+   "plain": "sindh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-22",
+   "peak_day": "2023-07-22",
+   "rain_3day_mm_plain": 65.7,
+   "rain_3day_mm_square": 140.6,
+   "relief_sd_m": 1.98,
+   "image": "2023-07-24",
+   "orbit": 144,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.384764642472156,
+    68.40060002448956
+   ],
+   "square": [
+    68.300568,
+    26.294934,
+    68.500632,
+    26.474596
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2024_004_008",
+   "plain": "sindh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-27",
+   "peak_day": "2024-08-27",
+   "rain_3day_mm_plain": 72.3,
+   "rain_3day_mm_square": 210.4,
+   "relief_sd_m": 0.99,
+   "image": "2024-08-28",
+   "orbit": 42,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.408480057491914,
+    68.20053686401698
+   ],
+   "square": [
+    68.100505,
+    24.318649,
+    68.300568,
+    24.498311
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2024_003_008",
+   "plain": "sindh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-27",
+   "peak_day": "2024-08-27",
+   "rain_3day_mm_plain": 72.3,
+   "rain_3day_mm_square": 209.3,
+   "relief_sd_m": 0.91,
+   "image": "2024-08-28",
+   "orbit": 42,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.228817822493713,
+    68.20053686401698
+   ],
+   "square": [
+    68.100505,
+    24.138987,
+    68.300568,
+    24.318649
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2024_003_005",
+   "plain": "sindh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-27",
+   "peak_day": "2024-08-27",
+   "rain_3day_mm_plain": 72.3,
+   "rain_3day_mm_square": 205.9,
+   "relief_sd_m": 1.12,
+   "image": "2024-08-28",
+   "orbit": 42,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.228817822493713,
+    67.60034738259922
+   ],
+   "square": [
+    67.500316,
+    24.138987,
+    67.700379,
+    24.318649
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2024_001_012",
+   "plain": "sindh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-27",
+   "peak_day": "2024-08-27",
+   "rain_3day_mm_plain": 72.3,
+   "rain_3day_mm_square": 203.1,
+   "relief_sd_m": 0.7,
+   "image": "2024-08-26",
+   "orbit": 5,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    23.869493352497308,
+    69.00078950590732
+   ],
+   "square": [
+    68.900758,
+    23.779662,
+    69.100821,
+    23.959324
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2024_004_005",
+   "plain": "sindh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-27",
+   "peak_day": "2024-08-27",
+   "rain_3day_mm_plain": 72.3,
+   "rain_3day_mm_square": 201.9,
+   "relief_sd_m": 0.84,
+   "image": "2024-08-28",
+   "orbit": 42,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.408480057491914,
+    67.60034738259922
+   ],
+   "square": [
+    67.500316,
+    24.318649,
+    67.700379,
+    24.498311
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2024_003_006",
+   "plain": "sindh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-27",
+   "peak_day": "2024-08-27",
+   "rain_3day_mm_plain": 72.3,
+   "rain_3day_mm_square": 197.8,
+   "relief_sd_m": 1.54,
+   "image": "2024-08-28",
+   "orbit": 42,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.228817822493713,
+    67.8004105430718
+   ],
+   "square": [
+    67.700379,
+    24.138987,
+    67.900442,
+    24.318649
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2025_004_005",
+   "plain": "sindh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-20",
+   "peak_day": "2025-08-20",
+   "rain_3day_mm_plain": 58.4,
+   "rain_3day_mm_square": 177.0,
+   "relief_sd_m": 0.84,
+   "image": "2025-08-23",
+   "orbit": 42,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.408480057491914,
+    67.60034738259922
+   ],
+   "square": [
+    67.500316,
+    24.318649,
+    67.700379,
+    24.498311
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2025_003_005",
+   "plain": "sindh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-20",
+   "peak_day": "2025-08-20",
+   "rain_3day_mm_plain": 58.4,
+   "rain_3day_mm_square": 166.9,
+   "relief_sd_m": 1.12,
+   "image": "2025-08-23",
+   "orbit": 42,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.228817822493713,
+    67.60034738259922
+   ],
+   "square": [
+    67.500316,
+    24.138987,
+    67.700379,
+    24.318649
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2025_005_005",
+   "plain": "sindh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-20",
+   "peak_day": "2025-08-20",
+   "rain_3day_mm_plain": 58.4,
+   "rain_3day_mm_square": 165.9,
+   "relief_sd_m": 1.06,
+   "image": "2025-08-23",
+   "orbit": 42,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.58814229249012,
+    67.60034738259922
+   ],
+   "square": [
+    67.500316,
+    24.498311,
+    67.700379,
+    24.677973
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2025_003_006",
+   "plain": "sindh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-20",
+   "peak_day": "2025-08-20",
+   "rain_3day_mm_plain": 58.4,
+   "rain_3day_mm_square": 143.4,
+   "relief_sd_m": 1.54,
+   "image": "2025-08-23",
+   "orbit": 42,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.228817822493713,
+    67.8004105430718
+   ],
+   "square": [
+    67.700379,
+    24.138987,
+    67.900442,
+    24.318649
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2025_004_006",
+   "plain": "sindh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-20",
+   "peak_day": "2025-08-20",
+   "rain_3day_mm_plain": 58.4,
+   "rain_3day_mm_square": 141.8,
+   "relief_sd_m": 1.57,
+   "image": "2025-08-23",
+   "orbit": 42,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.408480057491914,
+    67.8004105430718
+   ],
+   "square": [
+    67.700379,
+    24.318649,
+    67.900442,
+    24.498311
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_sindh_2025_006_008",
+   "plain": "sindh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-20",
+   "peak_day": "2025-08-20",
+   "rain_3day_mm_plain": 58.4,
+   "rain_3day_mm_square": 127.6,
+   "relief_sd_m": 1.44,
+   "image": "2025-08-23",
+   "orbit": 42,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.767804527488323,
+    68.20053686401698
+   ],
+   "square": [
+    68.100505,
+    24.677973,
+    68.300568,
+    24.857636
+   ],
+   "split": "reserve",
+   "cluster": "pl_sindh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2022_023_016",
+   "plain": "bangladesh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-06-16",
+   "peak_day": "2022-06-16",
+   "rain_3day_mm_plain": 136.7,
+   "rain_3day_mm_square": 374.4,
+   "relief_sd_m": 1.84,
+   "image": "2022-06-16",
+   "orbit": 41,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.92206252245778,
+    91.23622791851469
+   ],
+   "square": [
+    91.13816,
+    24.832231,
+    91.334295,
+    25.011894
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2022_030_016",
+   "plain": "bangladesh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-06-16",
+   "peak_day": "2022-06-16",
+   "rain_3day_mm_plain": 136.7,
+   "rain_3day_mm_square": 345.0,
+   "relief_sd_m": 2.8,
+   "image": "2022-06-16",
+   "orbit": 41,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    26.179698167445203,
+    91.23622791851469
+   ],
+   "square": [
+    91.13816,
+    26.089867,
+    91.334295,
+    26.269529
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2022_021_018",
+   "plain": "bangladesh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-06-16",
+   "peak_day": "2022-06-16",
+   "rain_3day_mm_plain": 136.7,
+   "rain_3day_mm_square": 341.9,
+   "relief_sd_m": 3.88,
+   "image": "2022-06-16",
+   "orbit": 41,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.56273805246137,
+    91.62849796924374
+   ],
+   "square": [
+    91.53043,
+    24.472907,
+    91.726565,
+    24.652569
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2022_022_018",
+   "plain": "bangladesh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-06-16",
+   "peak_day": "2022-06-16",
+   "rain_3day_mm_plain": 136.7,
+   "rain_3day_mm_square": 339.5,
+   "relief_sd_m": 2.56,
+   "image": "2022-06-16",
+   "orbit": 41,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.742400287459574,
+    91.62849796924374
+   ],
+   "square": [
+    91.53043,
+    24.652569,
+    91.726565,
+    24.832231
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2022_023_015",
+   "plain": "bangladesh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-06-16",
+   "peak_day": "2022-06-16",
+   "rain_3day_mm_plain": 136.7,
+   "rain_3day_mm_square": 331.8,
+   "relief_sd_m": 2.38,
+   "image": "2022-06-16",
+   "orbit": 41,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.92206252245778,
+    91.04009289315016
+   ],
+   "square": [
+    90.942025,
+    24.832231,
+    91.13816,
+    25.011894
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2022_023_014",
+   "plain": "bangladesh",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-06-16",
+   "peak_day": "2022-06-16",
+   "rain_3day_mm_plain": 136.7,
+   "rain_3day_mm_square": 319.3,
+   "relief_sd_m": 2.42,
+   "image": "2022-06-21",
+   "orbit": 114,
+   "lag_days": 5,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.92206252245778,
+    90.84395786778563
+   ],
+   "square": [
+    90.74589,
+    24.832231,
+    90.942025,
+    25.011894
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2023_006_011",
+   "plain": "bangladesh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 150.7,
+   "rain_3day_mm_square": 330.1,
+   "relief_sd_m": 2.2,
+   "image": "2023-08-15",
+   "orbit": 114,
+   "lag_days": 8,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    21.86780452748832,
+    90.25555279169205
+   ],
+   "square": [
+    90.157485,
+    21.777973,
+    90.35362,
+    21.957636
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2023_008_015",
+   "plain": "bangladesh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 150.7,
+   "rain_3day_mm_square": 317.8,
+   "relief_sd_m": 2.31,
+   "image": "2023-08-12",
+   "orbit": 77,
+   "lag_days": 5,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    22.227128997484726,
+    91.04009289315016
+   ],
+   "square": [
+    90.942025,
+    22.137298,
+    91.13816,
+    22.31696
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2023_007_012",
+   "plain": "bangladesh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 150.7,
+   "rain_3day_mm_square": 296.1,
+   "relief_sd_m": 3.22,
+   "image": "2023-08-12",
+   "orbit": 77,
+   "lag_days": 5,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    22.047466762486525,
+    90.45168781705658
+   ],
+   "square": [
+    90.35362,
+    21.957636,
+    90.549755,
+    22.137298
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2023_008_014",
+   "plain": "bangladesh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 150.7,
+   "rain_3day_mm_square": 282.6,
+   "relief_sd_m": 2.72,
+   "image": "2023-08-12",
+   "orbit": 77,
+   "lag_days": 5,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    22.227128997484726,
+    90.84395786778563
+   ],
+   "square": [
+    90.74589,
+    22.137298,
+    90.942025,
+    22.31696
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2023_007_011",
+   "plain": "bangladesh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 150.7,
+   "rain_3day_mm_square": 272.6,
+   "relief_sd_m": 1.69,
+   "image": "2023-08-15",
+   "orbit": 114,
+   "lag_days": 8,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    22.047466762486525,
+    90.25555279169205
+   ],
+   "square": [
+    90.157485,
+    21.957636,
+    90.35362,
+    22.137298
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2023_008_013",
+   "plain": "bangladesh",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 150.7,
+   "rain_3day_mm_square": 256.1,
+   "relief_sd_m": 2.86,
+   "image": "2023-08-12",
+   "orbit": 77,
+   "lag_days": 5,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    22.227128997484726,
+    90.6478228424211
+   ],
+   "square": [
+    90.549755,
+    22.137298,
+    90.74589,
+    22.31696
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2024_022_017",
+   "plain": "bangladesh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-07-01",
+   "peak_day": "2024-07-01",
+   "rain_3day_mm_plain": 179.5,
+   "rain_3day_mm_square": 217.4,
+   "relief_sd_m": 1.86,
+   "image": "2024-07-04",
+   "orbit": 114,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.742400287459574,
+    91.43236294387921
+   ],
+   "square": [
+    91.334295,
+    24.652569,
+    91.53043,
+    24.832231
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2024_023_016",
+   "plain": "bangladesh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-07-01",
+   "peak_day": "2024-07-01",
+   "rain_3day_mm_plain": 179.5,
+   "rain_3day_mm_square": 210.2,
+   "relief_sd_m": 1.84,
+   "image": "2024-07-04",
+   "orbit": 114,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.92206252245778,
+    91.23622791851469
+   ],
+   "square": [
+    91.13816,
+    24.832231,
+    91.334295,
+    25.011894
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2024_025_008",
+   "plain": "bangladesh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-07-01",
+   "peak_day": "2024-07-01",
+   "rain_3day_mm_plain": 179.5,
+   "rain_3day_mm_square": 208.8,
+   "relief_sd_m": 2.83,
+   "image": "2024-07-04",
+   "orbit": 114,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    25.281386992454188,
+    89.66714771559847
+   ],
+   "square": [
+    89.56908,
+    25.191556,
+    89.765215,
+    25.371218
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2024_025_007",
+   "plain": "bangladesh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-07-01",
+   "peak_day": "2024-07-01",
+   "rain_3day_mm_plain": 179.5,
+   "rain_3day_mm_square": 208.0,
+   "relief_sd_m": 2.68,
+   "image": "2024-07-04",
+   "orbit": 114,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    25.281386992454188,
+    89.47101269023395
+   ],
+   "square": [
+    89.372945,
+    25.191556,
+    89.56908,
+    25.371218
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2024_022_016",
+   "plain": "bangladesh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-07-01",
+   "peak_day": "2024-07-01",
+   "rain_3day_mm_plain": 179.5,
+   "rain_3day_mm_square": 206.8,
+   "relief_sd_m": 1.52,
+   "image": "2024-07-04",
+   "orbit": 114,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    24.742400287459574,
+    91.23622791851469
+   ],
+   "square": [
+    91.13816,
+    24.652569,
+    91.334295,
+    24.832231
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2024_024_009",
+   "plain": "bangladesh",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-07-01",
+   "peak_day": "2024-07-01",
+   "rain_3day_mm_plain": 179.5,
+   "rain_3day_mm_square": 201.5,
+   "relief_sd_m": 2.32,
+   "image": "2024-07-04",
+   "orbit": 114,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    25.101724757455983,
+    89.863282740963
+   ],
+   "square": [
+    89.765215,
+    25.011894,
+    89.96135,
+    25.191556
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2025_007_011",
+   "plain": "bangladesh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-07-07",
+   "peak_day": "2025-07-07",
+   "rain_3day_mm_plain": 108.6,
+   "rain_3day_mm_square": 294.2,
+   "relief_sd_m": 1.69,
+   "image": "2025-07-11",
+   "orbit": 114,
+   "lag_days": 4,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    22.047466762486525,
+    90.25555279169205
+   ],
+   "square": [
+    90.157485,
+    21.957636,
+    90.35362,
+    22.137298
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2025_008_012",
+   "plain": "bangladesh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-07-07",
+   "peak_day": "2025-07-07",
+   "rain_3day_mm_plain": 108.6,
+   "rain_3day_mm_square": 293.3,
+   "relief_sd_m": 2.27,
+   "image": "2025-07-08",
+   "orbit": 77,
+   "lag_days": 1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    22.227128997484726,
+    90.45168781705658
+   ],
+   "square": [
+    90.35362,
+    22.137298,
+    90.549755,
+    22.31696
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2025_010_012",
+   "plain": "bangladesh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-07-07",
+   "peak_day": "2025-07-07",
+   "rain_3day_mm_plain": 108.6,
+   "rain_3day_mm_square": 292.2,
+   "relief_sd_m": 3.15,
+   "image": "2025-07-11",
+   "orbit": 114,
+   "lag_days": 4,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    22.586453467481135,
+    90.45168781705658
+   ],
+   "square": [
+    90.35362,
+    22.496622,
+    90.549755,
+    22.676285
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2025_009_012",
+   "plain": "bangladesh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-07-07",
+   "peak_day": "2025-07-07",
+   "rain_3day_mm_plain": 108.6,
+   "rain_3day_mm_square": 291.6,
+   "relief_sd_m": 2.54,
+   "image": "2025-07-11",
+   "orbit": 114,
+   "lag_days": 4,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    22.40679123248293,
+    90.45168781705658
+   ],
+   "square": [
+    90.35362,
+    22.31696,
+    90.549755,
+    22.496622
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2025_007_012",
+   "plain": "bangladesh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-07-07",
+   "peak_day": "2025-07-07",
+   "rain_3day_mm_plain": 108.6,
+   "rain_3day_mm_square": 289.7,
+   "relief_sd_m": 3.22,
+   "image": "2025-07-08",
+   "orbit": 77,
+   "lag_days": 1,
+   "baseline_passes": 3,
+   "baseline_year_before": false,
+   "search_point": [
+    22.047466762486525,
+    90.45168781705658
+   ],
+   "square": [
+    90.35362,
+    21.957636,
+    90.549755,
+    22.137298
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_bangladesh_2025_008_011",
+   "plain": "bangladesh",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-07-07",
+   "peak_day": "2025-07-07",
+   "rain_3day_mm_plain": 108.6,
+   "rain_3day_mm_square": 287.2,
+   "relief_sd_m": 2.4,
+   "image": "2025-07-11",
+   "orbit": 114,
+   "lag_days": 4,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    22.227128997484726,
+    90.25555279169205
+   ],
+   "square": [
+    90.157485,
+    22.137298,
+    90.35362,
+    22.31696
+   ],
+   "split": "reserve",
+   "cluster": "pl_bangladesh_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2022_017_024",
+   "plain": "punjab",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-07-15",
+   "peak_day": "2022-07-15",
+   "rain_3day_mm_plain": 44.8,
+   "rain_3day_mm_square": 180.4,
+   "relief_sd_m": 2.04,
+   "image": "2022-07-14",
+   "orbit": 100,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    30.84408911246856,
+    74.39038549789187
+   ],
+   "square": [
+    74.2865,
+    30.754258,
+    74.494271,
+    30.93392
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2022_015_022",
+   "plain": "punjab",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-07-15",
+   "peak_day": "2022-07-15",
+   "rain_3day_mm_plain": 44.8,
+   "rain_3day_mm_square": 179.7,
+   "relief_sd_m": 1.88,
+   "image": "2022-07-14",
+   "orbit": 100,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    30.48476464247215,
+    73.97484382459457
+   ],
+   "square": [
+    73.870958,
+    30.394934,
+    74.078729,
+    30.574596
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2022_016_024",
+   "plain": "punjab",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-07-15",
+   "peak_day": "2022-07-15",
+   "rain_3day_mm_plain": 44.8,
+   "rain_3day_mm_square": 176.8,
+   "relief_sd_m": 2.09,
+   "image": "2022-07-14",
+   "orbit": 100,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    30.664426877470355,
+    74.39038549789187
+   ],
+   "square": [
+    74.2865,
+    30.574596,
+    74.494271,
+    30.754258
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2022_016_023",
+   "plain": "punjab",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-07-15",
+   "peak_day": "2022-07-15",
+   "rain_3day_mm_plain": 44.8,
+   "rain_3day_mm_square": 167.5,
+   "relief_sd_m": 1.9,
+   "image": "2022-07-14",
+   "orbit": 100,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    30.664426877470355,
+    74.18261466124322
+   ],
+   "square": [
+    74.078729,
+    30.574596,
+    74.2865,
+    30.754258
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2022_014_022",
+   "plain": "punjab",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-07-15",
+   "peak_day": "2022-07-15",
+   "rain_3day_mm_plain": 44.8,
+   "rain_3day_mm_square": 166.4,
+   "relief_sd_m": 2.97,
+   "image": "2022-07-14",
+   "orbit": 100,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    30.305102407473946,
+    73.97484382459457
+   ],
+   "square": [
+    73.870958,
+    30.215271,
+    74.078729,
+    30.394934
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2022_014_021",
+   "plain": "punjab",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-07-15",
+   "peak_day": "2022-07-15",
+   "rain_3day_mm_plain": 44.8,
+   "rain_3day_mm_square": 165.1,
+   "relief_sd_m": 1.81,
+   "image": "2022-07-14",
+   "orbit": 100,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    30.305102407473946,
+    73.76707298794592
+   ],
+   "square": [
+    73.663188,
+    30.215271,
+    73.870958,
+    30.394934
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2023_011_036",
+   "plain": "punjab",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-25",
+   "peak_day": "2023-07-25",
+   "rain_3day_mm_plain": 38.9,
+   "rain_3day_mm_square": 114.2,
+   "relief_sd_m": 2.91,
+   "image": "2023-07-24",
+   "orbit": 136,
+   "lag_days": -1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    29.76611570247934,
+    76.88363553767564
+   ],
+   "square": [
+    76.77975,
+    29.676285,
+    76.987521,
+    29.855947
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2023_008_018",
+   "plain": "punjab",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-25",
+   "peak_day": "2023-07-25",
+   "rain_3day_mm_plain": 38.9,
+   "rain_3day_mm_square": 104.8,
+   "relief_sd_m": 2.79,
+   "image": "2023-07-26",
+   "orbit": 173,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    29.227128997484726,
+    73.14376047799998
+   ],
+   "square": [
+    73.039875,
+    29.137298,
+    73.247646,
+    29.31696
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2023_009_016",
+   "plain": "punjab",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-25",
+   "peak_day": "2023-07-25",
+   "rain_3day_mm_plain": 38.9,
+   "rain_3day_mm_square": 104.5,
+   "relief_sd_m": 2.1,
+   "image": "2023-07-26",
+   "orbit": 173,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    29.40679123248293,
+    72.72821880470269
+   ],
+   "square": [
+    72.624333,
+    29.31696,
+    72.832104,
+    29.496622
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2023_009_017",
+   "plain": "punjab",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-25",
+   "peak_day": "2023-07-25",
+   "rain_3day_mm_plain": 38.9,
+   "rain_3day_mm_square": 102.7,
+   "relief_sd_m": 2.01,
+   "image": "2023-07-26",
+   "orbit": 173,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    29.40679123248293,
+    72.93598964135134
+   ],
+   "square": [
+    72.832104,
+    29.31696,
+    73.039875,
+    29.496622
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2023_008_017",
+   "plain": "punjab",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-25",
+   "peak_day": "2023-07-25",
+   "rain_3day_mm_plain": 38.9,
+   "rain_3day_mm_square": 101.7,
+   "relief_sd_m": 2.46,
+   "image": "2023-07-26",
+   "orbit": 173,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    29.227128997484726,
+    72.93598964135134
+   ],
+   "square": [
+    72.832104,
+    29.137298,
+    73.039875,
+    29.31696
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2023_010_017",
+   "plain": "punjab",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-07-25",
+   "peak_day": "2023-07-25",
+   "rain_3day_mm_plain": 38.9,
+   "rain_3day_mm_square": 98.4,
+   "relief_sd_m": 2.0,
+   "image": "2023-07-26",
+   "orbit": 173,
+   "lag_days": 1,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    29.586453467481135,
+    72.93598964135134
+   ],
+   "square": [
+    72.832104,
+    29.496622,
+    73.039875,
+    29.676285
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2024_019_008",
+   "plain": "punjab",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-16",
+   "peak_day": "2024-08-16",
+   "rain_3day_mm_plain": 48.8,
+   "rain_3day_mm_square": 129.1,
+   "relief_sd_m": 2.0,
+   "image": "2024-08-18",
+   "orbit": 71,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    31.203413582464965,
+    71.0660521115135
+   ],
+   "square": [
+    70.962167,
+    31.113582,
+    71.169938,
+    31.293245
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2024_019_009",
+   "plain": "punjab",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-16",
+   "peak_day": "2024-08-16",
+   "rain_3day_mm_plain": 48.8,
+   "rain_3day_mm_square": 124.1,
+   "relief_sd_m": 2.06,
+   "image": "2024-08-18",
+   "orbit": 71,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    31.203413582464965,
+    71.27382294816215
+   ],
+   "square": [
+    71.169938,
+    31.113582,
+    71.377708,
+    31.293245
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2024_017_010",
+   "plain": "punjab",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-16",
+   "peak_day": "2024-08-16",
+   "rain_3day_mm_plain": 48.8,
+   "rain_3day_mm_square": 122.1,
+   "relief_sd_m": 2.07,
+   "image": "2024-08-18",
+   "orbit": 71,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    30.84408911246856,
+    71.4815937848108
+   ],
+   "square": [
+    71.377708,
+    30.754258,
+    71.585479,
+    30.93392
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2024_018_009",
+   "plain": "punjab",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-16",
+   "peak_day": "2024-08-16",
+   "rain_3day_mm_plain": 48.8,
+   "rain_3day_mm_square": 121.6,
+   "relief_sd_m": 1.64,
+   "image": "2024-08-18",
+   "orbit": 71,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    31.023751347466764,
+    71.27382294816215
+   ],
+   "square": [
+    71.169938,
+    30.93392,
+    71.377708,
+    31.113582
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2024_020_008",
+   "plain": "punjab",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-16",
+   "peak_day": "2024-08-16",
+   "rain_3day_mm_plain": 48.8,
+   "rain_3day_mm_square": 121.1,
+   "relief_sd_m": 2.42,
+   "image": "2024-08-18",
+   "orbit": 71,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    31.38307581746317,
+    71.0660521115135
+   ],
+   "square": [
+    70.962167,
+    31.293245,
+    71.169938,
+    31.472907
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2024_018_010",
+   "plain": "punjab",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-16",
+   "peak_day": "2024-08-16",
+   "rain_3day_mm_plain": 48.8,
+   "rain_3day_mm_square": 120.1,
+   "relief_sd_m": 2.23,
+   "image": "2024-08-18",
+   "orbit": 71,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    31.023751347466764,
+    71.4815937848108
+   ],
+   "square": [
+    71.377708,
+    30.93392,
+    71.585479,
+    31.113582
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2025_019_031",
+   "plain": "punjab",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-31",
+   "peak_day": "2025-08-31",
+   "rain_3day_mm_plain": 50.9,
+   "rain_3day_mm_square": 217.9,
+   "relief_sd_m": 2.91,
+   "image": "2025-08-30",
+   "orbit": 136,
+   "lag_days": -1,
+   "baseline_passes": 6,
+   "baseline_year_before": false,
+   "search_point": [
+    31.203413582464965,
+    75.8447813544324
+   ],
+   "square": [
+    75.740896,
+    31.113582,
+    75.948667,
+    31.293245
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2025_019_030",
+   "plain": "punjab",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-31",
+   "peak_day": "2025-08-31",
+   "rain_3day_mm_plain": 50.9,
+   "rain_3day_mm_square": 176.2,
+   "relief_sd_m": 3.6,
+   "image": "2025-09-03",
+   "orbit": 27,
+   "lag_days": 3,
+   "baseline_passes": 6,
+   "baseline_year_before": false,
+   "search_point": [
+    31.203413582464965,
+    75.63701051778375
+   ],
+   "square": [
+    75.533125,
+    31.113582,
+    75.740896,
+    31.293245
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2025_023_022",
+   "plain": "punjab",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-31",
+   "peak_day": "2025-08-31",
+   "rain_3day_mm_plain": 50.9,
+   "rain_3day_mm_square": 173.5,
+   "relief_sd_m": 2.12,
+   "image": "2025-09-04",
+   "orbit": 34,
+   "lag_days": 4,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    31.92206252245778,
+    73.97484382459457
+   ],
+   "square": [
+    73.870958,
+    31.832231,
+    74.078729,
+    32.011894
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2025_024_021",
+   "plain": "punjab",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-31",
+   "peak_day": "2025-08-31",
+   "rain_3day_mm_plain": 50.9,
+   "rain_3day_mm_square": 172.9,
+   "relief_sd_m": 2.28,
+   "image": "2025-09-08",
+   "orbit": 100,
+   "lag_days": 8,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    32.10172475745598,
+    73.76707298794592
+   ],
+   "square": [
+    73.663188,
+    32.011894,
+    73.870958,
+    32.191556
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2025_024_022",
+   "plain": "punjab",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-31",
+   "peak_day": "2025-08-31",
+   "rain_3day_mm_plain": 50.9,
+   "rain_3day_mm_square": 168.5,
+   "relief_sd_m": 2.43,
+   "image": "2025-09-04",
+   "orbit": 34,
+   "lag_days": 4,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    32.10172475745598,
+    73.97484382459457
+   ],
+   "square": [
+    73.870958,
+    32.011894,
+    74.078729,
+    32.191556
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_punjab_2025_023_021",
+   "plain": "punjab",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-31",
+   "peak_day": "2025-08-31",
+   "rain_3day_mm_plain": 50.9,
+   "rain_3day_mm_square": 166.9,
+   "relief_sd_m": 2.17,
+   "image": "2025-09-08",
+   "orbit": 100,
+   "lag_days": 8,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    31.92206252245778,
+    73.76707298794592
+   ],
+   "square": [
+    73.663188,
+    31.832231,
+    73.870958,
+    32.011894
+   ],
+   "split": "reserve",
+   "cluster": "pl_punjab_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2022_sudan_016_024",
+   "plain": "south_sudan",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-24",
+   "peak_day": "2022-08-24",
+   "rain_3day_mm_plain": 30.3,
+   "rain_3day_mm_square": 67.7,
+   "relief_sd_m": 1.9,
+   "image": "2022-09-02",
+   "orbit": 123,
+   "lag_days": 9,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    8.964426877470355,
+    33.44498302671688
+   ],
+   "square": [
+    33.354269,
+    8.874596,
+    33.535697,
+    9.054258
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2022_sudan_019_021",
+   "plain": "south_sudan",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-24",
+   "peak_day": "2022-08-24",
+   "rain_3day_mm_plain": 30.3,
+   "rain_3day_mm_square": 59.4,
+   "relief_sd_m": 0.9,
+   "image": "2022-09-02",
+   "orbit": 123,
+   "lag_days": 9,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    9.503413582464965,
+    32.90069939079237
+   ],
+   "square": [
+    32.809985,
+    9.413582,
+    32.991413,
+    9.593245
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2022_sudan_015_024",
+   "plain": "south_sudan",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-24",
+   "peak_day": "2022-08-24",
+   "rain_3day_mm_plain": 30.3,
+   "rain_3day_mm_square": 58.9,
+   "relief_sd_m": 0.8,
+   "image": "2022-09-02",
+   "orbit": 123,
+   "lag_days": 9,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    8.784764642472151,
+    33.44498302671688
+   ],
+   "square": [
+    33.354269,
+    8.694934,
+    33.535697,
+    8.874596
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2022_sudan_020_020",
+   "plain": "south_sudan",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-24",
+   "peak_day": "2022-08-24",
+   "rain_3day_mm_plain": 30.3,
+   "rain_3day_mm_square": 58.8,
+   "relief_sd_m": 0.62,
+   "image": "2022-09-02",
+   "orbit": 123,
+   "lag_days": 9,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    9.68307581746317,
+    32.719271512150854
+   ],
+   "square": [
+    32.628558,
+    9.593245,
+    32.809985,
+    9.772907
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2022_sudan_015_013",
+   "plain": "south_sudan",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-24",
+   "peak_day": "2022-08-24",
+   "rain_3day_mm_plain": 30.3,
+   "rain_3day_mm_square": 57.6,
+   "relief_sd_m": 1.6,
+   "image": "2022-08-26",
+   "orbit": 21,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    8.784764642472151,
+    31.44927636166032
+   ],
+   "square": [
+    31.358562,
+    8.694934,
+    31.53999,
+    8.874596
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2022_sudan_019_020",
+   "plain": "south_sudan",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-08-24",
+   "peak_day": "2022-08-24",
+   "rain_3day_mm_plain": 30.3,
+   "rain_3day_mm_square": 57.6,
+   "relief_sd_m": 0.79,
+   "image": "2022-09-02",
+   "orbit": 123,
+   "lag_days": 9,
+   "baseline_passes": 4,
+   "baseline_year_before": false,
+   "search_point": [
+    9.503413582464965,
+    32.719271512150854
+   ],
+   "square": [
+    32.628558,
+    9.413582,
+    32.809985,
+    9.593245
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2023_sudan_018_003",
+   "plain": "south_sudan",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 29.8,
+   "rain_3day_mm_square": 70.8,
+   "relief_sd_m": 1.06,
+   "image": "2023-08-14",
+   "orbit": 94,
+   "lag_days": 7,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    9.323751347466763,
+    29.63499757524527
+   ],
+   "square": [
+    29.544284,
+    9.23392,
+    29.725712,
+    9.413582
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2023_sudan_004_005",
+   "plain": "south_sudan",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 29.8,
+   "rain_3day_mm_square": 68.7,
+   "relief_sd_m": 2.21,
+   "image": "2023-08-09",
+   "orbit": 21,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    6.808480057491915,
+    29.99785333252828
+   ],
+   "square": [
+    29.907139,
+    6.718649,
+    30.088567,
+    6.898311
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2023_sudan_017_003",
+   "plain": "south_sudan",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 29.8,
+   "rain_3day_mm_square": 66.1,
+   "relief_sd_m": 1.24,
+   "image": "2023-08-14",
+   "orbit": 94,
+   "lag_days": 7,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    9.14408911246856,
+    29.63499757524527
+   ],
+   "square": [
+    29.544284,
+    9.054258,
+    29.725712,
+    9.23392
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2023_sudan_018_004",
+   "plain": "south_sudan",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 29.8,
+   "rain_3day_mm_square": 63.8,
+   "relief_sd_m": 0.8,
+   "image": "2023-08-14",
+   "orbit": 94,
+   "lag_days": 7,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    9.323751347466763,
+    29.816425453886772
+   ],
+   "square": [
+    29.725712,
+    9.23392,
+    29.907139,
+    9.413582
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2023_sudan_003_005",
+   "plain": "south_sudan",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 29.8,
+   "rain_3day_mm_square": 62.9,
+   "relief_sd_m": 3.39,
+   "image": "2023-08-09",
+   "orbit": 21,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    6.628817822493712,
+    29.99785333252828
+   ],
+   "square": [
+    29.907139,
+    6.538987,
+    30.088567,
+    6.718649
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2023_sudan_001_016",
+   "plain": "south_sudan",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-07",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm_plain": 29.8,
+   "rain_3day_mm_square": 61.5,
+   "relief_sd_m": 1.05,
+   "image": "2023-08-09",
+   "orbit": 21,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    6.269493352497305,
+    31.993559997584835
+   ],
+   "square": [
+    31.902846,
+    6.179662,
+    32.084274,
+    6.359324
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2024_sudan_013_018",
+   "plain": "south_sudan",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-09-30",
+   "peak_day": "2024-09-30",
+   "rain_3day_mm_plain": 32.6,
+   "rain_3day_mm_square": 98.5,
+   "relief_sd_m": 0.77,
+   "image": "2024-10-02",
+   "orbit": 21,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    8.425440172475746,
+    32.35641575486785
+   ],
+   "square": [
+    32.265702,
+    8.335609,
+    32.44713,
+    8.515271
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2024_sudan_012_018",
+   "plain": "south_sudan",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-09-30",
+   "peak_day": "2024-09-30",
+   "rain_3day_mm_plain": 32.6,
+   "rain_3day_mm_square": 93.3,
+   "relief_sd_m": 0.99,
+   "image": "2024-10-02",
+   "orbit": 21,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    8.245777937477541,
+    32.35641575486785
+   ],
+   "square": [
+    32.265702,
+    8.155947,
+    32.44713,
+    8.335609
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2024_sudan_013_017",
+   "plain": "south_sudan",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-09-30",
+   "peak_day": "2024-09-30",
+   "rain_3day_mm_plain": 32.6,
+   "rain_3day_mm_square": 85.2,
+   "relief_sd_m": 1.02,
+   "image": "2024-10-02",
+   "orbit": 21,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    8.425440172475746,
+    32.17498787622634
+   ],
+   "square": [
+    32.084274,
+    8.335609,
+    32.265702,
+    8.515271
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2024_sudan_013_012",
+   "plain": "south_sudan",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-09-30",
+   "peak_day": "2024-09-30",
+   "rain_3day_mm_plain": 32.6,
+   "rain_3day_mm_square": 85.1,
+   "relief_sd_m": 1.35,
+   "image": "2024-10-02",
+   "orbit": 21,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    8.425440172475746,
+    31.267848483018817
+   ],
+   "square": [
+    31.177135,
+    8.335609,
+    31.358562,
+    8.515271
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2024_sudan_012_017",
+   "plain": "south_sudan",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-09-30",
+   "peak_day": "2024-09-30",
+   "rain_3day_mm_plain": 32.6,
+   "rain_3day_mm_square": 84.6,
+   "relief_sd_m": 0.76,
+   "image": "2024-10-02",
+   "orbit": 21,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    8.245777937477541,
+    32.17498787622634
+   ],
+   "square": [
+    32.084274,
+    8.155947,
+    32.265702,
+    8.335609
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2024_sudan_013_016",
+   "plain": "south_sudan",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-09-30",
+   "peak_day": "2024-09-30",
+   "rain_3day_mm_plain": 32.6,
+   "rain_3day_mm_square": 75.4,
+   "relief_sd_m": 1.29,
+   "image": "2024-10-02",
+   "orbit": 21,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    8.425440172475746,
+    31.993559997584835
+   ],
+   "square": [
+    31.902846,
+    8.335609,
+    32.084274,
+    8.515271
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2025_sudan_002_025",
+   "plain": "south_sudan",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-02",
+   "peak_day": "2025-08-02",
+   "rain_3day_mm_plain": 28.6,
+   "rain_3day_mm_square": 70.0,
+   "relief_sd_m": 0.8,
+   "image": "2025-08-05",
+   "orbit": 123,
+   "lag_days": 3,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    6.449155587495508,
+    33.626410905358384
+   ],
+   "square": [
+    33.535697,
+    6.359324,
+    33.717125,
+    6.538987
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2025_sudan_001_025",
+   "plain": "south_sudan",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-02",
+   "peak_day": "2025-08-02",
+   "rain_3day_mm_plain": 28.6,
+   "rain_3day_mm_square": 65.4,
+   "relief_sd_m": 0.92,
+   "image": "2025-08-05",
+   "orbit": 123,
+   "lag_days": 3,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    6.269493352497305,
+    33.626410905358384
+   ],
+   "square": [
+    33.535697,
+    6.179662,
+    33.717125,
+    6.359324
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2025_sudan_000_026",
+   "plain": "south_sudan",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-02",
+   "peak_day": "2025-08-02",
+   "rain_3day_mm_plain": 28.6,
+   "rain_3day_mm_square": 62.8,
+   "relief_sd_m": 3.1,
+   "image": "2025-08-05",
+   "orbit": 123,
+   "lag_days": 3,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    6.089831117499102,
+    33.807838783999884
+   ],
+   "square": [
+    33.717125,
+    6.0,
+    33.898553,
+    6.179662
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2025_sudan_020_000",
+   "plain": "south_sudan",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-02",
+   "peak_day": "2025-08-02",
+   "rain_3day_mm_plain": 28.6,
+   "rain_3day_mm_square": 61.4,
+   "relief_sd_m": 0.99,
+   "image": "2025-08-09",
+   "orbit": 94,
+   "lag_days": 7,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    9.68307581746317,
+    29.09071393932075
+   ],
+   "square": [
+    29.0,
+    9.593245,
+    29.181428,
+    9.772907
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2025_sudan_021_000",
+   "plain": "south_sudan",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-02",
+   "peak_day": "2025-08-02",
+   "rain_3day_mm_plain": 28.6,
+   "rain_3day_mm_square": 61.4,
+   "relief_sd_m": 0.98,
+   "image": "2025-08-09",
+   "orbit": 94,
+   "lag_days": 7,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    9.862738052461374,
+    29.09071393932075
+   ],
+   "square": [
+    29.0,
+    9.772907,
+    29.181428,
+    9.952569
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_south_sudan_2025_sudan_010_011",
+   "plain": "south_sudan",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-02",
+   "peak_day": "2025-08-02",
+   "rain_3day_mm_plain": 28.6,
+   "rain_3day_mm_square": 60.6,
+   "relief_sd_m": 0.98,
+   "image": "2025-08-04",
+   "orbit": 21,
+   "lag_days": 2,
+   "baseline_passes": 10,
+   "baseline_year_before": false,
+   "search_point": [
+    7.886453467481136,
+    31.08642060437731
+   ],
+   "square": [
+    30.995707,
+    7.796622,
+    31.177135,
+    7.976285
+   ],
+   "split": "reserve",
+   "cluster": "pl_south_sudan_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2022_027_056",
+   "plain": "nigeria",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-09-01",
+   "peak_day": "2022-09-01",
+   "rain_3day_mm_plain": 37.9,
+   "rain_3day_mm_square": 51.2,
+   "relief_sd_m": 3.81,
+   "image": "2022-09-04",
+   "orbit": 153,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    11.440711462450594,
+    13.30751052309461
+   ],
+   "square": [
+    13.216294,
+    11.35088,
+    13.398727,
+    11.530543
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2022_036_061",
+   "plain": "nigeria",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-09-01",
+   "peak_day": "2022-09-01",
+   "rain_3day_mm_plain": 37.9,
+   "rain_3day_mm_square": 46.1,
+   "relief_sd_m": 0.49,
+   "image": "2022-09-04",
+   "orbit": 153,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    13.057671577434423,
+    14.21967959593484
+   ],
+   "square": [
+    14.128463,
+    12.96784,
+    14.310897,
+    13.147503
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2022_036_060",
+   "plain": "nigeria",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-09-01",
+   "peak_day": "2022-09-01",
+   "rain_3day_mm_plain": 37.9,
+   "rain_3day_mm_square": 41.7,
+   "relief_sd_m": 0.41,
+   "image": "2022-09-04",
+   "orbit": 153,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    13.057671577434423,
+    14.037245781366794
+   ],
+   "square": [
+    13.946029,
+    12.96784,
+    14.128463,
+    13.147503
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2022_035_061",
+   "plain": "nigeria",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-09-01",
+   "peak_day": "2022-09-01",
+   "rain_3day_mm_plain": 37.9,
+   "rain_3day_mm_square": 38.1,
+   "relief_sd_m": 0.67,
+   "image": "2022-09-04",
+   "orbit": 153,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.878009342436219,
+    14.21967959593484
+   ],
+   "square": [
+    14.128463,
+    12.788178,
+    14.310897,
+    12.96784
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2022_035_062",
+   "plain": "nigeria",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-09-01",
+   "peak_day": "2022-09-01",
+   "rain_3day_mm_plain": 37.9,
+   "rain_3day_mm_square": 29.4,
+   "relief_sd_m": 0.82,
+   "image": "2022-09-04",
+   "orbit": 153,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.878009342436219,
+    14.402113410502887
+   ],
+   "square": [
+    14.310897,
+    12.788178,
+    14.49333,
+    12.96784
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2022_035_054",
+   "plain": "nigeria",
+   "year": 2022,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2022-09-01",
+   "peak_day": "2022-09-01",
+   "rain_3day_mm_plain": 37.9,
+   "rain_3day_mm_square": 29.3,
+   "relief_sd_m": 1.68,
+   "image": "2022-09-04",
+   "orbit": 153,
+   "lag_days": 3,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.878009342436219,
+    12.942642893958517
+   ],
+   "square": [
+    12.851426,
+    12.788178,
+    13.03386,
+    12.96784
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2022",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2023_032_049",
+   "plain": "nigeria",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-23",
+   "peak_day": "2023-08-23",
+   "rain_3day_mm_plain": 29.9,
+   "rain_3day_mm_square": 51.3,
+   "relief_sd_m": 3.44,
+   "image": "2023-08-30",
+   "orbit": 161,
+   "lag_days": 7,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.339022637441609,
+    12.030473821118287
+   ],
+   "square": [
+    11.939257,
+    12.249192,
+    12.121691,
+    12.428854
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2023_032_050",
+   "plain": "nigeria",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-23",
+   "peak_day": "2023-08-23",
+   "rain_3day_mm_plain": 29.9,
+   "rain_3day_mm_square": 49.5,
+   "relief_sd_m": 2.87,
+   "image": "2023-08-30",
+   "orbit": 161,
+   "lag_days": 7,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.339022637441609,
+    12.212907635686333
+   ],
+   "square": [
+    12.121691,
+    12.249192,
+    12.304125,
+    12.428854
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2023_027_060",
+   "plain": "nigeria",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-23",
+   "peak_day": "2023-08-23",
+   "rain_3day_mm_plain": 29.9,
+   "rain_3day_mm_square": 46.8,
+   "relief_sd_m": 3.09,
+   "image": "2023-08-25",
+   "orbit": 88,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    11.440711462450594,
+    14.037245781366794
+   ],
+   "square": [
+    13.946029,
+    11.35088,
+    14.128463,
+    11.530543
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2023_032_048",
+   "plain": "nigeria",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-23",
+   "peak_day": "2023-08-23",
+   "rain_3day_mm_plain": 29.9,
+   "rain_3day_mm_square": 46.8,
+   "relief_sd_m": 3.84,
+   "image": "2023-08-30",
+   "orbit": 161,
+   "lag_days": 7,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.339022637441609,
+    11.84804000655024
+   ],
+   "square": [
+    11.756823,
+    12.249192,
+    11.939257,
+    12.428854
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2023_028_061",
+   "plain": "nigeria",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-23",
+   "peak_day": "2023-08-23",
+   "rain_3day_mm_plain": 29.9,
+   "rain_3day_mm_square": 45.2,
+   "relief_sd_m": 2.43,
+   "image": "2023-08-25",
+   "orbit": 88,
+   "lag_days": 2,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    11.620373697448798,
+    14.21967959593484
+   ],
+   "square": [
+    14.128463,
+    11.530543,
+    14.310897,
+    11.710205
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2023_030_038",
+   "plain": "nigeria",
+   "year": 2023,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2023-08-23",
+   "peak_day": "2023-08-23",
+   "rain_3day_mm_plain": 29.9,
+   "rain_3day_mm_square": 43.0,
+   "relief_sd_m": 3.97,
+   "image": "2023-08-23",
+   "orbit": 59,
+   "lag_days": 0,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    11.979698167445203,
+    10.023701860869778
+   ],
+   "square": [
+    9.932485,
+    11.889867,
+    10.114919,
+    12.069529
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2023",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2024_027_056",
+   "plain": "nigeria",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-19",
+   "peak_day": "2024-08-19",
+   "rain_3day_mm_plain": 40.1,
+   "rain_3day_mm_square": 68.4,
+   "relief_sd_m": 3.81,
+   "image": "2024-08-24",
+   "orbit": 153,
+   "lag_days": 5,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    11.440711462450594,
+    13.30751052309461
+   ],
+   "square": [
+    13.216294,
+    11.35088,
+    13.398727,
+    11.530543
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2024_032_040",
+   "plain": "nigeria",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-19",
+   "peak_day": "2024-08-19",
+   "rain_3day_mm_plain": 40.1,
+   "rain_3day_mm_square": 57.9,
+   "relief_sd_m": 2.12,
+   "image": "2024-08-29",
+   "orbit": 59,
+   "lag_days": 10,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.339022637441609,
+    10.388569490005871
+   ],
+   "square": [
+    10.297353,
+    12.249192,
+    10.479786,
+    12.428854
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2024_030_038",
+   "plain": "nigeria",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-19",
+   "peak_day": "2024-08-19",
+   "rain_3day_mm_plain": 40.1,
+   "rain_3day_mm_square": 57.7,
+   "relief_sd_m": 3.97,
+   "image": "2024-08-29",
+   "orbit": 59,
+   "lag_days": 10,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    11.979698167445203,
+    10.023701860869778
+   ],
+   "square": [
+    9.932485,
+    11.889867,
+    10.114919,
+    12.069529
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2024_031_039",
+   "plain": "nigeria",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-19",
+   "peak_day": "2024-08-19",
+   "rain_3day_mm_plain": 40.1,
+   "rain_3day_mm_square": 55.6,
+   "relief_sd_m": 3.18,
+   "image": "2024-08-29",
+   "orbit": 59,
+   "lag_days": 10,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.159360402443408,
+    10.206135675437825
+   ],
+   "square": [
+    10.114919,
+    12.069529,
+    10.297353,
+    12.249192
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2024_032_041",
+   "plain": "nigeria",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-19",
+   "peak_day": "2024-08-19",
+   "rain_3day_mm_plain": 40.1,
+   "rain_3day_mm_square": 55.4,
+   "relief_sd_m": 2.22,
+   "image": "2024-08-29",
+   "orbit": 59,
+   "lag_days": 10,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.339022637441609,
+    10.571003304573917
+   ],
+   "square": [
+    10.479786,
+    12.249192,
+    10.66222,
+    12.428854
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2024_031_038",
+   "plain": "nigeria",
+   "year": 2024,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2024-08-19",
+   "peak_day": "2024-08-19",
+   "rain_3day_mm_plain": 40.1,
+   "rain_3day_mm_square": 55.1,
+   "relief_sd_m": 2.82,
+   "image": "2024-08-29",
+   "orbit": 59,
+   "lag_days": 10,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.159360402443408,
+    10.023701860869778
+   ],
+   "square": [
+    9.932485,
+    12.069529,
+    10.114919,
+    12.249192
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2024",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2025_035_037",
+   "plain": "nigeria",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-14",
+   "peak_day": "2025-08-14",
+   "rain_3day_mm_plain": 28.4,
+   "rain_3day_mm_square": 72.3,
+   "relief_sd_m": 1.69,
+   "image": "2025-08-24",
+   "orbit": 59,
+   "lag_days": 10,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.878009342436219,
+    9.841268046301732
+   ],
+   "square": [
+    9.750051,
+    12.788178,
+    9.932485,
+    12.96784
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2025_030_053",
+   "plain": "nigeria",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-14",
+   "peak_day": "2025-08-14",
+   "rain_3day_mm_plain": 28.4,
+   "rain_3day_mm_square": 68.4,
+   "relief_sd_m": 3.96,
+   "image": "2025-08-19",
+   "orbit": 153,
+   "lag_days": 5,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    11.979698167445203,
+    12.76020907939047
+   ],
+   "square": [
+    12.668992,
+    11.889867,
+    12.851426,
+    12.069529
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2025_029_054",
+   "plain": "nigeria",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-14",
+   "peak_day": "2025-08-14",
+   "rain_3day_mm_plain": 28.4,
+   "rain_3day_mm_square": 66.5,
+   "relief_sd_m": 2.53,
+   "image": "2025-08-19",
+   "orbit": 153,
+   "lag_days": 5,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    11.800035932446999,
+    12.942642893958517
+   ],
+   "square": [
+    12.851426,
+    11.710205,
+    13.03386,
+    11.889867
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2025_036_037",
+   "plain": "nigeria",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-14",
+   "peak_day": "2025-08-14",
+   "rain_3day_mm_plain": 28.4,
+   "rain_3day_mm_square": 62.9,
+   "relief_sd_m": 1.99,
+   "image": "2025-08-24",
+   "orbit": 59,
+   "lag_days": 10,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    13.057671577434423,
+    9.841268046301732
+   ],
+   "square": [
+    9.750051,
+    12.96784,
+    9.932485,
+    13.147503
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2025_032_044",
+   "plain": "nigeria",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-14",
+   "peak_day": "2025-08-14",
+   "rain_3day_mm_plain": 28.4,
+   "rain_3day_mm_square": 58.5,
+   "relief_sd_m": 3.09,
+   "image": "2025-08-24",
+   "orbit": 59,
+   "lag_days": 10,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.339022637441609,
+    11.118304748278055
+   ],
+   "square": [
+    11.027088,
+    12.249192,
+    11.209522,
+    12.428854
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
+  },
+  {
+   "unit": "r3pl_nigeria_2025_032_045",
+   "plain": "nigeria",
+   "year": 2025,
+   "tags": [
+    "waterlogging"
+   ],
+   "event": "2025-08-14",
+   "peak_day": "2025-08-14",
+   "rain_3day_mm_plain": 28.4,
+   "rain_3day_mm_square": 58.1,
+   "relief_sd_m": 3.46,
+   "image": "2025-08-19",
+   "orbit": 161,
+   "lag_days": 5,
+   "baseline_passes": 5,
+   "baseline_year_before": false,
+   "search_point": [
+    12.339022637441609,
+    11.300738562846101
+   ],
+   "square": [
+    11.209522,
+    12.249192,
+    11.391955,
+    12.428854
+   ],
+   "split": "reserve",
+   "cluster": "pl_nigeria_2025",
+   "source": "R29 plains screen (IMERG, GLO-30 relief, S1 metadata); v3 Sentinel-1 label"
   }
  ],
  "refused": [
@@ -5602,6 +9322,34 @@
   },
   {
    "unit": "r3pl_punjab_2020_025_020",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3pl_bangladesh_2022_024_016",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3pl_bangladesh_2022_023_017",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3pl_bangladesh_2022_023_018",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3pl_bangladesh_2022_022_019",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3pl_bangladesh_2024_023_018",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3pl_bangladesh_2024_023_017",
+   "why": "within 20 km of a burned unit"
+  },
+  {
+   "unit": "r3pl_punjab_2025_025_021",
    "why": "within 20 km of a burned unit"
   }
  ],
@@ -5844,6 +9592,166 @@
    "split": "dev",
    "peak_day": "2021-09-02",
    "rain_3day_mm": 31.0,
+   "taken": 6
+  },
+  {
+   "plain": "sindh",
+   "year": 2022,
+   "split": "reserve",
+   "peak_day": "2022-08-18",
+   "rain_3day_mm": 122.6,
+   "taken": 6
+  },
+  {
+   "plain": "sindh",
+   "year": 2023,
+   "split": "reserve",
+   "peak_day": "2023-07-22",
+   "rain_3day_mm": 65.7,
+   "taken": 6
+  },
+  {
+   "plain": "sindh",
+   "year": 2024,
+   "split": "reserve",
+   "peak_day": "2024-08-27",
+   "rain_3day_mm": 72.3,
+   "taken": 6
+  },
+  {
+   "plain": "sindh",
+   "year": 2025,
+   "split": "reserve",
+   "peak_day": "2025-08-20",
+   "rain_3day_mm": 58.4,
+   "taken": 6
+  },
+  {
+   "plain": "bangladesh",
+   "year": 2022,
+   "split": "reserve",
+   "peak_day": "2022-06-16",
+   "rain_3day_mm": 136.7,
+   "taken": 6
+  },
+  {
+   "plain": "bangladesh",
+   "year": 2023,
+   "split": "reserve",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm": 150.7,
+   "taken": 6
+  },
+  {
+   "plain": "bangladesh",
+   "year": 2024,
+   "split": "reserve",
+   "peak_day": "2024-07-01",
+   "rain_3day_mm": 179.5,
+   "taken": 6
+  },
+  {
+   "plain": "bangladesh",
+   "year": 2025,
+   "split": "reserve",
+   "peak_day": "2025-07-07",
+   "rain_3day_mm": 108.6,
+   "taken": 6
+  },
+  {
+   "plain": "punjab",
+   "year": 2022,
+   "split": "reserve",
+   "peak_day": "2022-07-15",
+   "rain_3day_mm": 44.8,
+   "taken": 6
+  },
+  {
+   "plain": "punjab",
+   "year": 2023,
+   "split": "reserve",
+   "peak_day": "2023-07-25",
+   "rain_3day_mm": 38.9,
+   "taken": 6
+  },
+  {
+   "plain": "punjab",
+   "year": 2024,
+   "split": "reserve",
+   "peak_day": "2024-08-16",
+   "rain_3day_mm": 48.8,
+   "taken": 6
+  },
+  {
+   "plain": "punjab",
+   "year": 2025,
+   "split": "reserve",
+   "peak_day": "2025-08-31",
+   "rain_3day_mm": 50.9,
+   "taken": 6
+  },
+  {
+   "plain": "south_sudan",
+   "year": 2022,
+   "split": "reserve",
+   "peak_day": "2022-08-24",
+   "rain_3day_mm": 30.3,
+   "taken": 6
+  },
+  {
+   "plain": "south_sudan",
+   "year": 2023,
+   "split": "reserve",
+   "peak_day": "2023-08-07",
+   "rain_3day_mm": 29.8,
+   "taken": 6
+  },
+  {
+   "plain": "south_sudan",
+   "year": 2024,
+   "split": "reserve",
+   "peak_day": "2024-09-30",
+   "rain_3day_mm": 32.6,
+   "taken": 6
+  },
+  {
+   "plain": "south_sudan",
+   "year": 2025,
+   "split": "reserve",
+   "peak_day": "2025-08-02",
+   "rain_3day_mm": 28.6,
+   "taken": 6
+  },
+  {
+   "plain": "nigeria",
+   "year": 2022,
+   "split": "reserve",
+   "peak_day": "2022-09-01",
+   "rain_3day_mm": 37.9,
+   "taken": 6
+  },
+  {
+   "plain": "nigeria",
+   "year": 2023,
+   "split": "reserve",
+   "peak_day": "2023-08-23",
+   "rain_3day_mm": 29.9,
+   "taken": 6
+  },
+  {
+   "plain": "nigeria",
+   "year": 2024,
+   "split": "reserve",
+   "peak_day": "2024-08-19",
+   "rain_3day_mm": 40.1,
+   "taken": 6
+  },
+  {
+   "plain": "nigeria",
+   "year": 2025,
+   "split": "reserve",
+   "peak_day": "2025-08-14",
+   "rain_3day_mm": 28.4,
    "taken": 6
   }
  ]

@@ -1,6 +1,6 @@
 # Round-3 reserve: selection criteria (written before any candidate is listed)
 
-**Status: DRAFT, not sealed.** The source list in §6 is open until the fresh-event pool is settled (DECISIONS R23). No reserve has been selected, and nothing in §1–§7 has been applied to choose events. When final, this line changes to the final commit and the file is hashed with `reserve_r3.json`.
+**Status: FINAL (sealed 2026-11-28).** §1–§12 are the rules that `select_r3.py seal` applied; `reserve_r3.json` records this file's SHA256, and `RESERVE_HASH_R3.txt` records the reserve file's SHA256 and push time. Earlier drafts are in the git history.
 
 The reserve is chosen **mechanically from metadata**. Metadata means:
 - imagery availability and acquisition times;
@@ -172,3 +172,8 @@ The owner will not provide an EMS login, so login-gated EMS products (most activ
 - **311 reserve storms (§10 secondary): dropped before the seal, for compute.**
   - Each storm needs drainage-loss SFINCS runs on every box it touches, and FloodNet alone needs ~64 NYC boxes × each storm.
   - The secondary result never decided the verdict. The rain secondary is the public EMS rain AOIs.
+- **FloodNet compute cap and tide records (added before the seal was committed; metadata only):**
+  - The rain model needs drainage-loss SFINCS for every storm × box: 5–9 minutes each, ~64 NYC boxes per storm. All 37 storms passing rules 1–4 and 6 would need ~270 h.
+  - The **12 storms with the largest IMERG 3-day totals** are taken (ties to the earliest), because large storms are the most likely to reach 50 wet sensor cells. Rain totals are metadata; no label is read.
+  - SFINCS and features run only on boxes holding at least one sensor active at that storm.
+  - Rule 2 needs the Battery tide **confirmed** below minor flood level. A window with no tide record yet (NOAA's verified series lags) is refused.
