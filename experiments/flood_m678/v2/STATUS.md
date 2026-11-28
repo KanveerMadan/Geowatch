@@ -272,25 +272,47 @@ The reserve stays sealed. Nothing is promoted from DEV.
   - LightGBM comes from `~/.cache/geowatch/flood_learned/pylib` (add it to PYTHONPATH);
   - the reserve stays sealed until its power receipt exists, and nothing is ever promoted from DEV.
 
-## M7 older-breach recruitment, toward seal 2.3 (2026-11-28, in progress)
+## M7 older-breach recruitment and seal 2.3 (2026-11-28, tag `m678v2-seal-2.3`, commit 8e84e28, pushed)
 
-**Done**
-- **Rules first.** Amendment 5 (SELECTION.md, decisions.md) was committed before any new lead was screened.
-- **ASDSO** (your export): 411 dam-failure leads from 1984 on. 405 have a location; 6 do not, because NID puts the dam more than 5 km away or there are no coordinates. 49 are from 2022 or later, and 74 carry a storm name (Matthew 38, Florence 11, Irene 10, ...). Dams that failed in one storm count as one group.
-- **NPDP:** your save was empty, so I fetched it myself from npdp.stanford.edu. A search for "uncontrolled release = Yes" returns 1,594 incidents. 820 are from 1984 on, all in the US, and none is from 2022 or later. Each incident's own page gives the coordinates, and those pages are downloading now, slowly (about 8 a minute). Raw pages are kept under `~/.cache/geowatch/m678v2/sources/npdp/`.
-- **NID** (your export) is used to check ASDSO's dam locations.
-- **Timing:** neither database gives a reliable clock time, so the crest is the incident day with the "time zone unknown" window, then the dam rule (same day or next day).
+**What was added**
+- **ASDSO** (your export): 411 dam failures from 1984 on. 405 have a location. The other 6 have no coordinates, or the National Inventory of Dams puts the dam more than 5 km from ASDSO's point.
+- **NPDP:** your save was empty, so I fetched it from npdp.stanford.edu. The search "uncontrolled release = Yes" gives 1,594 incidents, 820 of them from 1984 on, all in the US and none after 2021. 485 have coordinates on their own page. Raw pages are kept under `~/.cache/geowatch/m678v2/sources/npdp/`.
 - **Older EMS breaches:**
-  - Mondego, Portugal, 22 Dec 2019: added (second dike collapse; source ECO/Lusa).
-  - Evros, Greece 2015: not added; no single breach has a place or day.
+  - Mondego, Portugal, 22 Dec 2019: added. The source is ECO/Lusa, which gives the day but no clock time.
+  - Evros, Greece 2015: not added; no source names one breach with a place and a day.
   - Lazio 2021: not added; no breach is reported.
-  - New rule: a levee breach known only to the day gets the window [end of that day, start of that day + 3 days].
-- **EMSR753 (Alau dam)** is excluded by name. The round-3 session asked for this, and I checked that it is in round 3's reserve pool. It was never in a v2 seal.
-- **Gap found and fixed:** the seal script never tested SELECTION §4 (stay out of round 3's footprints) itself. I checked by hand: no reserve group in seals 2.0–2.2 touches one. From seal 2.3 the script tests it against the pinned footprints and round 3's live candidate pools.
-- **Round 3 sealed its reserve today** (tag `r3-reserve-seal`). Its 40 plains squares, 2 EMSR771 river areas and New York City (for its 12 FloodNet storms) are now off-limits to the v2 reserve as well. That makes 1,538 round-3 boxes in all. None of v2's already-sealed reserve groups touches any of them.
+- **Timing:** each failure is timed to its reported day, because neither database gives a usable clock time. One catch: both databases store an unknown day as the 1st of the month. The 1st shows up about 5 times more often than it should, so those leads are left untimed (111 leads). I caught this after screening a draft seal and before anything was published, so the draft was thrown away.
+- **Rules** are in SELECTION.md Amendment 5 (items 1–9), each committed before the step it governs.
 
-**Corridor (heavy job, still running)**
-- 28 of 175 units have run in 9 hours. About half fail on Earth Engine memory limits, so only 12 are usable so far. The stop rule needs 20.
-- So far (11 units with per-reach values), real against seasonal per-reach forcing changes the physics AUC by 0.000 in the median unit and 0.060 at most, with rank correlation ≥ 0.979. That leans toward the stop rule, but it is not judged before 20 units.
+**Keeping out of round 3's way**
+- EMSR753 (Alau dam) is excluded by name, at round 3's request (checked in its files).
+- Round 3 sealed its reserve today (tag `r3-reserve-seal`). Its 40 plains squares, 2 EMSR771 river areas and New York City (for its 12 FloodNet storms) are now off-limits too: 1,538 round-3 boxes in all.
+- The seal script now tests this itself. Before, it relied on the rule being met; I checked seals 2.0–2.2 by hand, and none of their reserve groups touches a round-3 box.
 
-**Next:** finish NPDP, then rejoin the groups, screen the new leads for a satellite image in the window (light, no Earth Engine), build seal 2.3, and only then make M7 DEV labels.
+**Seal 2.3 result**
+- Every seal 2.2 lead kept its side (1,401 of 1,401). Two DEV groups have new names, because a new lead joined them, but they are still DEV.
+
+  | submode | reserve groups | DEV groups |
+  |---|---:|---:|
+  | M7 dam breach | **46** (was 1) | 17 |
+  | M7 levee breach | 2 | 1 (Mondego) |
+  | M8 snowmelt | 254 | 301 |
+  | M8 ice jam | 8 | 52 |
+
+- Of the 45 new M7 reserve groups, 16 are from 2022 or later. The other 29 are older and went to the reserve by the published random key.
+- The key sent 29 of 42 older groups to the reserve, more than the expected half (a 2 % chance). I checked: every group follows the key, and over all 2,763 groups the key splits evenly (1,409 to 1,354). So it is chance, not a bug.
+- Caveat: these are mostly small US dams. A dam-break flood often drains within a day, so many will not show flooded cells. The DEV labels will show how many survive.
+
+**Now running (the one heavy job):** M7 DEV labels (23 leads in 18 groups; at most 2 leads per group), then the corridor resumes by itself. Because M7 comes before M8, I paused the corridor between units; it saves after every unit, and nothing was lost.
+- Log: `~/.cache/geowatch/m678v2/m7_chain.log`.
+- First result: the two Hurricane Floyd 1999 leads show no flooded cell.
+
+**Earth Engine warning.** Earth Engine says the project has gone over its free (noncommercial) compute quota and is in "restricted mode". That probably explains the "memory limit" failures that cost the corridor about half its units. Jobs still run, but more slowly and with more failures. **Owner decision:** wait for the quota to reset, or raise it in the Google Cloud console.
+
+**Corridor so far:** 13 units, 11 with per-reach values. Real against seasonal forcing changes the AUC by 0.000 in the median unit and 0.060 at most; rank correlation is at least 0.979. The stop rule needs 20 usable units, so it is not judged yet.
+
+**Next, in order**
+1. Finish the M7 DEV labels, then the corridor stop rule once 20 units are usable.
+2. Blind label QA and the DEV funnel.
+3. The full DEV comparison.
+4. Power for the joint pass rule.
