@@ -77,3 +77,9 @@
 - New M7 sources: ASDSO failures (owner export) and NPDP uncontrolled-release incidents (fetched by the session from the public search page; raw HTML kept under `~/.cache/geowatch/m678v2/sources/npdp/`). Crest = incident day, time zone unknown. No size floor at lead stage, the same as the USGS code-3 leads; the label floor (≥ 50 flooded and ≥ 50 dry cells) decides.
 - Round 3 asked (cross-session, 2026-11-28) that EMSR753 stay round-3 territory. Verified in round 3's `r3_ems_candidates.json` and DECISIONS at 30580f9. Excluded by name.
 - Gap found and fixed: `seal_v2.py` never applied SELECTION §4's round-3 footprint test itself. Rechecked: 0 of 265 seal-2.2 reserve components touch a footprint (one DEV component does, and DEV is allowed). The test is now in code from seal 2.3, against the pinned set plus round 3's live candidate pools.
+
+## 2026-11-28: M7 DEV labels (code fixed before any M7 label)
+- `labels.py dev --seal 2.3 --type M7` labels the M7 DEV components of seal 2.3 (2 leads per component at most, as before).
+- M7 scene windows come from the same function the seal screen uses (`screen_v2.screen_lead`), so a DEV label sees exactly the sealed window. A dry run showed the same optical and radar counts as the screen for all 23 leads.
+- Each M7 label records its lag to the breach (Amendment 4.1): from the reported breach time, the start of the breach day, or, for dams known only to the day, the start of the crest window.
+- Priority M7 > M8: the corridor (an M8 diagnostic) is paused between units for the M7 DEV labels, then resumes. It saves after every unit.

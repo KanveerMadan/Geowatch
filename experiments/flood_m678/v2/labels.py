@@ -87,6 +87,13 @@ def nearest_merge(stacks, offsets, families):
 def scenes_for(lead, lat, lon, ses):
     import screen_acquisitions as SA
     lo, hi = _utc(lead["crest_utc_min"]), _utc(lead["crest_utc_max"])
+    if lead["type"] == "M7":
+        # M7 (Amendments 4 and 5): the same window code as the seal screen, so DEV labels see exactly the
+        # sealed window (levee: [breach, breach + 72 h]; breach known to the day: [day end, day start + 72 h];
+        # dam: [crest - 24 h, crest + 48 h] floored at any reported breach time).
+        SV = _load("v2screen", os.path.join(V2, "screen_v2.py"))
+        src = {**lead, "crest_kind": lead.get("src_crest_kind", lead.get("crest_kind", ""))}
+        return SV.screen_lead(src, lo, hi, ses)["scenes"], lo, hi
     site = {"type": lead["type"], "subtype": "ice jam" if lead["submode"] == "ice_jam" else lead["submode"],
             "zone": "UTC", "longitude": lon, "latitude": lat}
     ev = {"date": lead["date"], "crest_utc_bracket": [lo.isoformat(), hi.isoformat()]}
@@ -178,21 +185,39 @@ def build(lead, comp, ee):
                 unobserved_cells=int((y == -1).sum()), permanent_cells=int((y == -2).sum()), scenes=b["scenes"],
                 optical_share=float((b["family"][np.isin(y, (0, 1))] == 1).mean()) if np.isin(y, (0, 1)).any() else None,
                 union_flooded=int((b["union"] == 1).sum()))
+    if lead["type"] == "M7":                     # Amendment 4.1: each label records its lag to the breach
+        ref = _breach_ref(lead, lo)
+        meta["breach_ref_utc"], meta["breach_ref_kind"] = ref[0].isoformat(), ref[1]
+        meta["lag_to_breach_h"] = [round((_utc(sc["utc"]) - ref[0]).total_seconds() / 3600, 2)
+                                   for sc in b["scenes"] if "utc" in sc]
     np.savez_compressed(out_p + ".tmp.npz", y=y, family=b["family"], scene=b["scene"], offset=b["offset"],
                         union=b["union"], meta=np.array(json.dumps(meta, default=str)))
     os.replace(out_p + ".tmp.npz", out_p)
     return meta
 
 
-def dev_leads(limit=None):
-    seal = json.load(open(os.path.join(V2, "seal_2.0.json")))
+def _breach_ref(lead, lo):
+    """The breach time a label's lag is measured from: the reported breach time (levee), the start of the
+    breach day (breach known to the day), else the start of the dam crest window (incident day)."""
+    kind = lead.get("src_crest_kind", lead.get("crest_kind", ""))
+    if lead["submode"] == "levee_breach" and kind == "breach_day":
+        return lo, "breach_day_start"
+    if lead.get("not_before_utc"):
+        return _utc(lead["not_before_utc"]), "reported_breach_time"
+    return lo, "crest_window_start"
+
+
+def dev_leads(limit=None, seal_version="2.0", only_type=None):
+    seal = json.load(open(os.path.join(V2, f"seal_{seal_version}.json")))
     leads = {r["lead_id"]: r for r in csv.DictReader(open(os.path.join(V2, "leads.csv")))}
     order = {"sustained_melt": 0, "ice_jam": 1}
     out = []
     for c in sorted(seal["dev"], key=lambda c: (order.get(c["submode"], 9), c["component"])):
         same = [x for x in c["leads"] if leads[x["lead_id"]]["submode"] == c["submode"]]
+        if only_type and c["type"] != only_type:
+            continue
         for x in sorted(same, key=lambda x: x["date"])[:MAX_PER_COMPONENT]:
-            out.append((c["component"], {**leads[x["lead_id"]], **x}))
+            out.append((c["component"], {**leads[x["lead_id"]], **x, "src_crest_kind": leads[x["lead_id"]]["crest_kind"]}))
     return out[:limit] if limit else out
 
 
@@ -222,9 +247,11 @@ def main(argv):
     if argv[0] != "dev":
         raise SystemExit("v2 labels.py builds DEV only; the reserve is built by score_once after the gates")
     limit = int(argv[argv.index("--limit") + 1]) if "--limit" in argv else None
+    seal_version = argv[argv.index("--seal") + 1] if "--seal" in argv else "2.0"
+    only_type = argv[argv.index("--type") + 1] if "--type" in argv else None
     S.init()
     ee = LM.init_ee()
-    for comp, lead in dev_leads(limit):
+    for comp, lead in dev_leads(limit, seal_version, only_type):
         try:
             m = build(lead, comp, ee)
             print(lead["lead_id"], json.dumps({k: m.get(k) for k in ("flooded_cells", "dry_cells", "optical_share", "dropout")}),
