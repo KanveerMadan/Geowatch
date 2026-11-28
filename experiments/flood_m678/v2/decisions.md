@@ -72,3 +72,8 @@
 2026-11-28. **Addendum seal 2.2 rules (owner approved both), before any label of an affected lead.**
 1. Levee/embankment breach window: [breach, breach + 72 h]. Dam breaches unchanged. Lag per label to the breach.
 2. Keyed random split for newly entering components. Key sha256 `742b0d6f05365c71cb4151e28ce7c4a2ef6b9ec65364d6a9771163bd7f5abb8b` (`split_key.txt`), published with SELECTION.md Amendment 4 before assignment. Previously used, labelled or inspected units stay DEV-only. Seal 2.0/2.1 sides are fixed.
+
+## 2026-11-28: Amendment 5 (seal 2.3 rules), written before any ASDSO/NPDP lead is screened
+- New M7 sources: ASDSO failures (owner export) and NPDP uncontrolled-release incidents (fetched by the session from the public search page; raw HTML kept under `~/.cache/geowatch/m678v2/sources/npdp/`). Crest = incident day, time zone unknown. No size floor at lead stage, the same as the USGS code-3 leads; the label floor (≥ 50 flooded and ≥ 50 dry cells) decides.
+- Round 3 asked (cross-session, 2026-11-28) that EMSR753 stay round-3 territory. Verified in round 3's `r3_ems_candidates.json` and DECISIONS at 30580f9. Excluded by name.
+- Gap found and fixed: `seal_v2.py` never applied SELECTION §4's round-3 footprint test itself. Rechecked: 0 of 265 seal-2.2 reserve components touch a footprint (one DEV component does, and DEV is allowed). The test is now in code from seal 2.3, against the pinned set plus round 3's live candidate pools.

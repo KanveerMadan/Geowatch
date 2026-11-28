@@ -120,3 +120,16 @@ Changes to joining and sealing:
 ### Amendment 4a (2026-11-28, before any component is assigned under Amendment 4)
 
 Matching the owner's instruction ("a keyed random split by component for uninspected pre-2022 incidents"), the keyed split applies only to newly entering components with at least one timed pre-2022 incident. A newly entering component whose timed incidents are all from 2022 onwards is reserve by the date rule, as before. Everything else in Amendment 4 stands.
+
+## Amendment 5 = addendum seal 2.3 rules (2026-11-28; written before any ASDSO or NPDP lead is screened, and before any M7 label)
+
+1. **New M7 lead sources (metadata only), all as `reservoir_breach`:**
+   - **ASDSO Dam Incident Database:** the owner's export of https://damsafety.org/incidents (2026-11-28). Only rows with Incident Type = Failure, from 1984. Anchor: ASDSO's dam coordinates. When the row's NID number is in the National Inventory of Dams (owner's export, data date 2026-11-20) and NID puts the dam more than 5 km away, the lead is unlocated ("country only") and is not screened. A named hydrologic event becomes a storm tag, so dams failing in one storm are one component.
+   - **NPDP Dam Incident Database:** the search "Uncontrolled Release of the Reservoir = Yes" on https://npdp.stanford.edu/data_access/dam_incidents_list.php, from 1984. Coordinates and storage come from each incident's own page (`dam_incidents_view.php?editid1=<id>`).
+   - Tailings dams are dropped, as in §1.
+2. **Timing:** the crest is the reported incident day. Neither source gives a reliable time (ASDSO's time field is sparse and mixes placeholders such as "12:00 AM"), so the day gets the time-zone-unknown window of Amendment 2 (local day −12 h to +36 h UTC), and then the dam window of §2 (crest − 24 h to crest + 48 h).
+3. **Duplicates:** ASDSO, NPDP and USGS code-3 records of one failure are joined by §3 (anchors within 20 km and dates within 30 days) before counting.
+4. **Split:** as Amendment 4 and 4a. A newly entering component with a pre-2022 incident is assigned by the published key. Components joined to sealed ones keep their side.
+5. **§4 enforced in code from seal 2.3.** Until now the seal script did not itself test the round-3 footprint rule (§4, 961 footprints in `registry.json`). A check on 2026-11-28 found that no reserve component of seals 2.0–2.2 touches one, so no earlier assignment is affected. From seal 2.3:
+   - every reserve candidate's 20 km search square is tested against the pinned footprints **and** round 3's candidate pools at round 3's current branch head (its SHA is recorded in the seal). A touching new component is excluded. A touching sealed reserve component stops the seal for an owner decision.
+   - **EMSR753 (Alau dam, Borno, 2024) is excluded by name.** It is in round 3's public-EMS reserve pool (`r3_emsr753_aoi01`, round-3 DECISIONS §12 at 30580f9), so round 3 keeps it. It was never on either side of a v2 seal (screened `no_scene_in_window`).

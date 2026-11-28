@@ -29,6 +29,12 @@ def sha(p):
 
 
 KEYED_FROM = (2, 2)                     # Amendment 4: keyed split for components entering from seal 2.2
+ENFORCE_FROM = (2, 3)                   # Amendment 5: SELECTION §4 exclusions enforced in code from seal 2.3
+EXCLUDED_LEADS = {                      # Amendment 5: named exclusions (component excluded whole)
+    "ems_peer:EMSR753": "round-3 public EMS reserve pool (r3_emsr753_aoi01); round 3 keeps it",
+    "handlocated:EMSR753": "round-3 public EMS reserve pool (r3_emsr753_aoi01); round 3 keeps it",
+}
+R3_LIVE = ("~/gw-floodproto", "exp/flood-round3")   # round 3's reserve metadata, rechecked at seal time (§4)
 
 
 def version_tuple(v):
@@ -47,8 +53,40 @@ def labelled_leads():
     return {f[:-4].replace("__", ":") for f in os.listdir(d)} if os.path.isdir(d) else set()
 
 
+def exclusion_boxes():
+    """Round 3's footprints: the pinned registry.json set plus the candidate pools at round 3's current head."""
+    import subprocess
+    from experiments.flood_m678.v2 import registry as R
+    geo = [g["bbox"] for g in json.load(open(os.path.join(HERE, "registry.json")))["exclusion_geometry"]]
+    repo = os.path.expanduser(R3_LIVE[0])
+    head = subprocess.check_output(["git", "-C", repo, "rev-parse", R3_LIVE[1]], text=True).strip()
+    for name, key in R.R3_CANDIDATES.items():
+        try:
+            d = json.loads(subprocess.check_output(["git", "-C", repo, "show", f"{head}:experiments/flood_round3/results/{name}.json"]))
+        except subprocess.CalledProcessError:
+            continue
+        geo += [row[key] for row in d["candidates"] if row.get(key)]
+    return geo, head
+
+
+def touches(lead, boxes, km=10.0):
+    """SELECTION §4: the lead's 20 km search square (anchor ± 10 km) intersects any footprint box."""
+    import math
+    try:
+        lat, lon = float(lead["lat"]), float(lead["lon"])
+    except (TypeError, ValueError):
+        return False
+    dl, dg = km / 111.0, km / (111.0 * max(math.cos(math.radians(lat)), 1e-3))
+    x0, y0, x1, y1 = lon - dg, lat - dl, lon + dg, lat + dl
+    return any(not (x1 < b[0] or x0 > b[2] or y1 < b[1] or y0 > b[3]) for b in boxes)
+
+
 def build(version):
     labelled = labelled_leads()
+    enforce = version_tuple(version) >= ENFORCE_FROM
+    if enforce:
+        boxes, r3_head = exclusion_boxes()
+        anchors = {r["lead_id"]: r for r in csv.DictReader(open(os.path.join(HERE, "leads.csv")))}
     scr = list(csv.DictReader(open(os.path.join(HERE, "screening.csv"))))
     prev, lead_side = {}, {}
     for f in sorted(os.listdir(HERE)):
@@ -76,6 +114,10 @@ def build(version):
         if len(sides) > 1:
             out["excluded_addendum"].append({"component": cid, "reason": "joins sealed DEV and reserve components"})
             continue
+        named = sorted({EXCLUDED_LEADS[x["lead_id"]] for x in c["leads"] if x["lead_id"] in EXCLUDED_LEADS})
+        if enforce and named:
+            out["excluded_addendum"].append({"component": cid, "reason": "; ".join(named)})
+            continue
         keyed = False
         if sides:
             side = sides.pop()
@@ -94,6 +136,11 @@ def build(version):
             side = "dev" if c["side"] == "dev_only" else c["side"]
         if side == "reserve" and not keyed:
             c["leads"] = [x for x in c["leads"] if x["date"] >= "2022-01-01"]
+        if enforce and side == "reserve" and any(touches(anchors.get(x["lead_id"], {}), boxes) for x in c["leads"]):
+            if cid in prev or sides:
+                raise SystemExit(f"sealed reserve component {cid} touches a round-3 footprint: stop and report")
+            out["excluded_addendum"].append({"component": cid, "reason": "20 km search square touches a round-3 footprint (§4)"})
+            continue
         if not c["leads"]:
             continue
         ty = Counter(f"{x['type']}/{x['submode']}" for x in c["leads"]).most_common(1)[0][0]
@@ -103,6 +150,8 @@ def build(version):
     counts = {side: dict(Counter(f"{c['type']}/{c['submode']}" for c in out[side])) for side in ("reserve", "dev")}
     seal = {"version": version, "sealed_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "inputs_sha256": {f: sha(f) for f in FILES}, "counts_components": counts, **out}
+    if enforce:
+        seal["round3_head_checked"] = r3_head
     p = os.path.join(HERE, f"seal_{version}.json")
     blob = json.dumps(seal, indent=1, sort_keys=True) + "\n"
     open(p, "w").write(blob)

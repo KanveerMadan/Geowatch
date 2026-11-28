@@ -338,8 +338,100 @@ def ems_peer():
                "source_url": f"https://emergency.copernicus.eu/{x['code']}"}
 
 
+# ------------------------------------------------------------------ dam-incident databases (Amendment 5)
+NID_CONFLICT_KM = 5.0
+
+
+def _km(a, b):
+    import math
+    (la1, lo1), (la2, lo2) = a, b
+    p = math.pi / 180
+    h = (math.sin((la2 - la1) * p / 2) ** 2 + math.cos(la1 * p) * math.cos(la2 * p) * math.sin((lo2 - lo1) * p / 2) ** 2)
+    return 12742 * math.asin(min(1.0, math.sqrt(h)))
+
+
+def _us_date(s):
+    """'M/D/YYYY' -> 'YYYY-MM-DD' (None when not a full date)."""
+    import re
+    m = re.match(r"^\s*(\d{1,2})/(\d{1,2})/(\d{4})\s*$", s or "")
+    return f"{m.group(3)}-{int(m.group(1)):02d}-{int(m.group(2)):02d}" if m else None
+
+
+def _nid():
+    p = os.path.join(SRC, "nid", "nation.csv")
+    fh = open(p, encoding="utf-8-sig", errors="replace")
+    next(fh)                                             # "Data Last Updated:" line
+    out = {}
+    for r in csv.DictReader(fh):
+        try:
+            out[r["NID ID"].strip()] = (float(r["Latitude"]), float(r["Longitude"]))
+        except (ValueError, KeyError):
+            pass
+    return out
+
+
+def asdso():
+    """ASDSO Dam Incident Database (owner's browser export, 2026-11-28): Incident Type = Failure, 1984+.
+    Anchor: ASDSO dam coordinates; refused (country only) when NID's coordinates for the same NID number
+    differ by more than 5 km. Crest: the incident day, time zone unknown (Amendment 2 window)."""
+    nid = _nid()
+    p = os.path.join(SRC, "asdso", "asdso_incidents.csv")
+    for r in csv.DictReader(open(p, encoding="utf-8-sig", errors="replace")):
+        if (r.get("Incident Type") or "").strip().lower() != "failure":
+            continue
+        d = _us_date(r.get("Incident Date"))
+        if not d or int(d[:4]) < MIN_YEAR:
+            continue
+        text = " ".join(r.get(k) or "" for k in ("Dam Type", "Primary Purposes", "Incident Description")).lower()
+        if "tailing" in text:
+            continue
+        try:
+            lat, lon = float(r["Latitude"]), float(r["Longitude"])
+        except ValueError:
+            lat = lon = None
+        anchor = f"dam {r['Dam Name'].strip()}"
+        n = (r.get("NID Number") or "").strip()
+        if lat is not None and n in nid and _km((lat, lon), nid[n]) > NID_CONFLICT_KM:
+            lat = lon = None
+            anchor = "country only"                      # ASDSO and NID disagree on where the dam is
+        if lat is None:
+            anchor = "country only"
+        storm = (r.get("Named Hydrologic Event") or "").strip()
+        yield {"source": "asdso", "source_row": (r.get("Incident ID") or "").strip(), "type": "M7",
+               "submode": "reservoir_breach",
+               "cause": f"ASDSO failure: {r.get('Incident Driver', '')}; {r.get('Incident Mechanism 1', '')}"[:120],
+               "date": d, "crest_local": d, "crest_kind": "published_day", "lat": lat, "lon": lon, "anchor": anchor,
+               "country": "USA", "region": (r.get("State") or "").strip(), "peak_value": "", "peak_unit": "",
+               "station_p80": "", "not_before_utc": "", "storm": f"asdso:{storm.lower()}" if storm else "",
+               "source_url": "https://damsafety.org/incidents"}
+
+
+def npdp():
+    """NPDP Dam Incident Database, search 'Uncontrolled Release of the Reservoir = Yes', 1984+; coordinates from
+    each incident page. Crest: the incident day, time zone unknown."""
+    p = os.path.join(SRC, "npdp", "npdp_failures_1984.csv")
+    for r in csv.DictReader(open(p, encoding="utf-8", errors="replace")):
+        d = _us_date(r.get("date"))
+        if not d or int(d[:4]) < MIN_YEAR:
+            continue
+        if "tailing" in (r.get("dam_type", "") + r.get("description", "")).lower():
+            continue
+        try:
+            lat, lon = float(r["lat"]), float(r["lon"])
+            if lat == 0 and lon == 0:
+                raise ValueError
+        except ValueError:
+            lat = lon = None
+        yield {"source": "npdp", "source_row": r["event_id"], "type": "M7", "submode": "reservoir_breach",
+               "cause": f"NPDP uncontrolled release: {r.get('incident_type', '')}; {r.get('initiating_event', '')}"[:120],
+               "date": d, "crest_local": d, "crest_kind": "published_day", "lat": lat, "lon": lon,
+               "anchor": f"dam {r['dam_name']}" if lat is not None else "country only",
+               "country": "USA", "region": r.get("state", ""), "peak_value": "", "peak_unit": "", "station_p80": "",
+               "not_before_utc": "", "storm": "", "source_url": r["source_url"]}
+
+
 ADAPTERS = {"usgs_peaks": usgs_peaks, "wsc_ice": wsc_ice, "wsc_melt": wsc_melt, "crid": crid, "dfo": dfo, "glof": glof, "wiki_dams": wiki_dams,
-            "handlocated": handlocated, "ems_peer": ems_peer}
+            "handlocated": handlocated, "ems_peer": ems_peer, "asdso": asdso, "npdp": npdp}
 
 
 def run(names):
