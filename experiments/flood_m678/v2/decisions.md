@@ -83,3 +83,11 @@
 - M7 scene windows come from the same function the seal screen uses (`screen_v2.screen_lead`), so a DEV label sees exactly the sealed window. A dry run showed the same optical and radar counts as the screen for all 23 leads.
 - Each M7 label records its lag to the breach (Amendment 4.1): from the reported breach time, the start of the breach day, or, for dams known only to the day, the start of the crest window.
 - Priority M7 > M8: the corridor (an M8 diagnostic) is paused between units for the M7 DEV labels, then resumes. It saves after every unit.
+
+## 2026-11-28: owner decisions recorded as Amendment 6
+- Free-tier Earth Engine: no quota raise, wait for resets, batch exports where possible, one heavy job at a time, and pause while round 3 uses EE.
+- M7: levees and large reservoirs (≥ 3 million m³) are primary; small dams are scenario-only unless a label survives.
+- Power is reported, not a gate.
+- **DEV observation behind the M7 split:** the two small-dam DEV labels that passed the floor come from tiny reservoirs (about 37,000 and 61,000 m³). Their flooded cells are more likely the storm's ordinary flooding than breach water. Label QA checks where those cells lie relative to the dam's downstream valley before they count as M7 evidence.
+- Batch export: `ee_batch.py` (interactive request → batch export to an asset → read back on the same grid) is written. It stays inactive, because the project has no asset root. To turn it on, the owner opens the Earth Engine Code Editor for the project once and creates the home asset folder (free).
+- The corridor now stops when 20 units are usable (`--until-usable 20`), which is when the stop rule is judged.

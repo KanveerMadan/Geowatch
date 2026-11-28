@@ -144,3 +144,19 @@ Matching the owner's instruction ("a keyed random split by component for uninspe
    - All of `r3_ems_candidates.json` stays round-3 territory, whether round 3 refused a unit or not.
    - Rechecked: none of the 265 seal-2.2 reserve components touches any of the 1,538 boxes.
 9. **Placeholder days in ASDSO and NPDP** (found by the metadata screen, before any seal 2.3 or label existed): the 1st of a month is about 5 times over-represented (ASDSO 66 against about 14 expected, NPDP 166 against about 27), and NPDP event ids such as `INC_19840000_…` show that an unknown day was stored as the 1st. So in these two sources a lead dated on the 1st of a month is untimed (`no_crest`) and is not screened. A real failure on the 1st is lost; that is the price of never timing a placeholder day. A draft seal 2.3 built before this rule was discarded unpublished, and the screen rows of the affected leads are redone.
+
+## Amendment 6 = owner decisions of 2026-11-28 (before any reserve access; no reserve label exists)
+
+1. **M7 strata** (metadata only; `m7_strata.py`, `m7_strata_2.3.json`):
+   - **Primary:** levee and embankment breaches, and reservoir breaches whose reservoir holds at least 3 million m³ (ICOLD's storage criterion for a large dam). Water persists there, so a satellite can still see it. Storage is the largest of ASDSO's Max Storage, NID's Max/NID Storage (matched by NID number) and NPDP's Normal Storage. A component is primary if any of its timed leads is.
+   - **Small dams** (below 3 million m³, or storage unknown): scenario-only in the product. A small-dam unit is scored only when its label passes the floor, and it is reported as its own stratum. The M7 verdict for primary units never depends on it.
+   - In an M7 component, primary leads are labelled first, then the rest by date (at most 2 per component, DEV and reserve alike).
+   - Seal 2.3: reserve has 5 primary and 43 small-dam groups; DEV has 2 primary and 16 small-dam groups. No side changes.
+2. **Power is reported, not a gate.** The power report for the joint pass rule is still computed on DEV before any reserve access, and still states what it shows. But the test no longer waits for power ≥ 0.80 (this replaces that sentence of §5). The floor of at least 5 usable units, each with ≥ 50 flooded and ≥ 50 dry cells, stays.
+3. **Earth Engine on the free tier:**
+   - No quota raise.
+   - Wait for resets: after 3 quota or memory errors in a row a worker waits 1 h, and failed units get one retry pass after a further wait.
+   - Batch exports are used when a destination exists. This project has no asset root (createAsset is refused, as round 3 found), so until the owner provides one the fallback is off and requests stay interactive.
+   - One heavy EE job at a time.
+   - Between units, workers pause while round 3 uses EE: a round-3 Python process is running, or another client holds the shared lock.
+4. **Order of work:** the corridor stop rule at 20 usable units, then label QA, then the DEV comparison, then the power report.

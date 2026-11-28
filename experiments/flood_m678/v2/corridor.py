@@ -32,6 +32,7 @@ def _load(n):
 
 
 S, R, F, LB, DT = _load("storage"), _load("routing"), _load("forcing"), _load("labels"), _load("dev_tables")
+B = _load("ee_batch")
 DOMAIN_M, BUFFER_M, HAND_MAX, UPA_NET = 40000.0, 1500.0, 30.0, 10.0
 OUT = os.path.join(V2, "corridor_results.json")
 
@@ -107,7 +108,10 @@ def auc(s, y, m):
     return None if a is None else round(float(a), 4)
 
 
-def run(limit=None):
+BACKOFF_S = 3600
+
+
+def run(limit=None, until=None):
     import labels_m678 as LM
     import requests
     from scipy.stats import spearmanr
@@ -124,14 +128,44 @@ def run(limit=None):
             if m.get("q_peak") and m.get("q_median"):
                 units.append((f, m))
     ratios = [m["q_peak"] / m["q_median"] for _, m in units]
-    for k, (f, m) in enumerate(units[:limit] if limit else units):
-        if f in done:
-            continue
-        try:
-            _one(k, f, m, done, ratios, ee, qtab, LM, requests, spearmanr, Rf)
-        except Exception as e:      # noqa: BLE001
-            print(f, "ERROR", type(e).__name__, str(e)[:200], flush=True)
+    # Owner 2026-11-28: free tier. Pause while round 3 uses EE; back off on quota/memory errors (wait for the
+    # reset) and retry failed units once after a wait; stop once the stop rule is evaluable (>= until usable units).
+    import time
+    B.install(ee, os.environ.get("GEE_PROJECT_ID"))
+    failed, streak = [], 0
+    for rnd in range(2):
+        todo = [(k, f, m) for k, (f, m) in enumerate(units[:limit] if limit else units) if f not in done]
+        if rnd == 1:
+            todo = [x for x in todo if x[1] in failed]
+            if not todo:
+                break
+            print(f"retry pass for {len(todo)} failed units after a {BACKOFF_S // 60} min wait", flush=True)
+            time.sleep(BACKOFF_S)
+        for k, f, m in todo:
+            if until and usable(done) >= until:
+                break
+            B.wait_for_round3()
+            try:
+                _one(k, f, m, done, ratios, ee, qtab, LM, requests, spearmanr, Rf)
+                streak = 0
+            except Exception as e:      # noqa: BLE001
+                print(f, "ERROR", type(e).__name__, str(e)[:200], flush=True)
+                if f not in failed:
+                    failed.append(f)
+                streak = streak + 1 if B._fallback(e) else 0
+                if streak >= 3:
+                    print(f"{time.strftime('%H:%M:%S')} {streak} quota/memory errors in a row: waiting "
+                          f"{BACKOFF_S // 60} min for the Earth Engine quota to recover", flush=True)
+                    time.sleep(BACKOFF_S)
+                    streak = 0
+        if until and usable(done) >= until:
+            break
     summarize(done)
+
+
+def usable(done):
+    return sum(1 for r in done.values() if isinstance(r, dict) and r.get("auc") and r["auc"].get("reach") is not None
+               and r["auc"].get("reach_seasonal") is not None)
 
 
 def _one(k, f, m, done, ratios, ee, qtab, LM, requests, spearmanr, Rf):
@@ -202,4 +236,5 @@ def summarize(done):
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    run(int(a[a.index("--limit") + 1]) if "--limit" in a else None)
+    run(int(a[a.index("--limit") + 1]) if "--limit" in a else None,
+        int(a[a.index("--until-usable") + 1]) if "--until-usable" in a else None)

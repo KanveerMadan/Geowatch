@@ -216,7 +216,13 @@ def dev_leads(limit=None, seal_version="2.0", only_type=None):
         same = [x for x in c["leads"] if leads[x["lead_id"]]["submode"] == c["submode"]]
         if only_type and c["type"] != only_type:
             continue
-        for x in sorted(same, key=lambda x: x["date"])[:MAX_PER_COMPONENT]:
+        # Amendment 6: in an M7 component, primary leads (levee breach, or reservoir >= 3 million m3) come first
+        prim = set()
+        sp = os.path.join(V2, f"m7_strata_{seal_version}.json")
+        if c["type"] == "M7" and os.path.exists(sp):
+            prim = {l["lead_id"] for l in json.load(open(sp))["components"].get(c["component"], {}).get("leads", [])
+                    if l["primary"]}
+        for x in sorted(same, key=lambda x: (x["lead_id"] not in prim, x["date"]))[:MAX_PER_COMPONENT]:
             out.append((c["component"], {**leads[x["lead_id"]], **x, "src_crest_kind": leads[x["lead_id"]]["crest_kind"]}))
     return out[:limit] if limit else out
 

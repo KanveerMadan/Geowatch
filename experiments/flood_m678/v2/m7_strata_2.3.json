@@ -1,0 +1,1194 @@
+{
+ "components": {
+  "casdso_CO00000-2120": {
+   "leads": [
+    {
+     "lead_id": "usgs_peaks:01377370:1999-09-16",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "usgs_peaks:01377500:1999-09-16",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_GA00000-3345": {
+   "leads": [
+    {
+     "lead_id": "asdso:GA00000-3345",
+     "primary": false,
+     "storage_m3": 37004.4,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_LA00009-3558": {
+   "leads": [
+    {
+     "lead_id": "asdso:LA00009-3558",
+     "primary": true,
+     "storage_m3": 65374440.0,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "primary",
+   "submode": "reservoir_breach"
+  },
+  "casdso_MD00121-3076": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_19990915_00229",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_MN00111-2647": {
+   "leads": [
+    {
+     "lead_id": "asdso:MN00111-2647",
+     "primary": false,
+     "storage_m3": 289867.8,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2014614_00027",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_MN00120-3105": {
+   "leads": [
+    {
+     "lead_id": "asdso:MN00120-3105",
+     "primary": false,
+     "storage_m3": 555066.0,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_MO00000-2857": {
+   "leads": [
+    {
+     "lead_id": "asdso:MO00000-2857",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2015720_00102",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_MS00000-3484": {
+   "leads": [
+    {
+     "lead_id": "asdso:MS00000-3484",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_MS03469-1440": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_20040312_00006",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_MS06876-3482": {
+   "leads": [
+    {
+     "lead_id": "asdso:MS06876-3482",
+     "primary": false,
+     "storage_m3": 161585.88,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_NC00891-2645": {
+   "leads": [
+    {
+     "lead_id": "asdso:NC00896-2986",
+     "primary": false,
+     "storage_m3": 663612.24,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC00943-2984",
+     "primary": false,
+     "storage_m3": 138149.76,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC00944-2985",
+     "primary": true,
+     "storage_m3": 6717532.08,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC00948-2981",
+     "primary": false,
+     "storage_m3": 638942.64,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC01083-2982",
+     "primary": false,
+     "storage_m3": 61674.0,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC01098-2979",
+     "primary": false,
+     "storage_m3": 88810.56,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC01142-2967",
+     "primary": false,
+     "storage_m3": 94977.96,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC01148-2970",
+     "primary": false,
+     "storage_m3": 90044.04000000001,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC01156-2977",
+     "primary": false,
+     "storage_m3": 160352.4,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC02151-2971",
+     "primary": false,
+     "storage_m3": 29603.52,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC02160-2973",
+     "primary": true,
+     "storage_m3": 5002994.88,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC05468-2983",
+     "primary": false,
+     "storage_m3": 379295.1,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:NC05977-2978",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC02012-3000",
+     "primary": false,
+     "storage_m3": 146784.12,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC02016-3004",
+     "primary": false,
+     "storage_m3": 78942.72,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00032",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00033",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00034",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00035",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00036",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00037",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00039",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00042",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00043",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00045",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00046",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00048",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00066",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2016108_00067",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC00044-3117",
+     "primary": false,
+     "storage_m3": 213392.04,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC00622-3118",
+     "primary": false,
+     "storage_m3": 108546.24,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC00625-3129",
+     "primary": false,
+     "storage_m3": 180088.08000000002,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC00626-3130",
+     "primary": false,
+     "storage_m3": 178854.6,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC00637-3119",
+     "primary": false,
+     "storage_m3": 582202.56,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC00638-3120",
+     "primary": false,
+     "storage_m3": 485991.12,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC00645-3121",
+     "primary": false,
+     "storage_m3": 493392.0,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC01805-3122",
+     "primary": false,
+     "storage_m3": 173920.68,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC01902-3123",
+     "primary": false,
+     "storage_m3": 87577.08,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC02073-3124",
+     "primary": false,
+     "storage_m3": 117180.6,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:SC02311-3125",
+     "primary": false,
+     "storage_m3": 88810.56,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "primary",
+   "submode": "reservoir_breach"
+  },
+  "casdso_NC05945-1980": {
+   "leads": [
+    {
+     "lead_id": "asdso:NC05945-1980",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_201422_00034",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_NE06722-3033": {
+   "leads": [
+    {
+     "lead_id": "asdso:NE06722-3033",
+     "primary": false,
+     "storage_m3": 506960.28,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_201557_00104",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_NJ00000-3592": {
+   "leads": [
+    {
+     "lead_id": "asdso:NJ00000-3592",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_NV00000-3436": {
+   "leads": [
+    {
+     "lead_id": "asdso:NV00000-3436",
+     "primary": false,
+     "storage_m3": 26519.82,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_OH00000-3265": {
+   "leads": [
+    {
+     "lead_id": "asdso:OH00000-3265",
+     "primary": false,
+     "storage_m3": 35277.528000000006,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_OK10731-3494": {
+   "leads": [
+    {
+     "lead_id": "asdso:OK10731-3494",
+     "primary": true,
+     "storage_m3": 3577092.0,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "primary",
+   "submode": "reservoir_breach"
+  },
+  "casdso_OK20735-2849": {
+   "leads": [
+    {
+     "lead_id": "asdso:OK20735-2849",
+     "primary": false,
+     "storage_m3": 88810.56,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2015617_00042",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_PA00000-3232": {
+   "leads": [
+    {
+     "lead_id": "asdso:PA00780-3220",
+     "primary": false,
+     "storage_m3": 2891277.12,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_19940426_00006",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_PA00000-3235": {
+   "leads": [
+    {
+     "lead_id": "asdso:PA00145-3260",
+     "primary": false,
+     "storage_m3": 1534449.12,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_SD00691-3410": {
+   "leads": [
+    {
+     "lead_id": "asdso:SD00691-3410",
+     "primary": false,
+     "storage_m3": 419383.2,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_SD01073-3250": {
+   "leads": [
+    {
+     "lead_id": "asdso:SD01073-3250",
+     "primary": false,
+     "storage_m3": 1066960.2,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_TN07107-3509": {
+   "leads": [
+    {
+     "lead_id": "asdso:TN07107-3509",
+     "primary": false,
+     "storage_m3": 102378.84,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_TN14112-3428": {
+   "leads": [
+    {
+     "lead_id": "asdso:TN14112-3428",
+     "primary": false,
+     "storage_m3": 37004.4,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:TN14112-3516",
+     "primary": false,
+     "storage_m3": 37004.4,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_TX02575-2681": {
+   "leads": [
+    {
+     "lead_id": "asdso:TX02575-2681",
+     "primary": false,
+     "storage_m3": 671013.12,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_20151025_00095",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_TX02636-2679": {
+   "leads": [
+    {
+     "lead_id": "asdso:TX02636-2679",
+     "primary": false,
+     "storage_m3": 786960.24,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_20151025_00096",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_TX02805-3291": {
+   "leads": [
+    {
+     "lead_id": "asdso:TX02805-3291",
+     "primary": false,
+     "storage_m3": 168986.76,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_TX02845-3290": {
+   "leads": [
+    {
+     "lead_id": "asdso:TX02845-3290",
+     "primary": false,
+     "storage_m3": 118414.08,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:TX02845-3387",
+     "primary": false,
+     "storage_m3": 118414.08,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_TX05067-2680": {
+   "leads": [
+    {
+     "lead_id": "asdso:TX05067-2680",
+     "primary": false,
+     "storage_m3": 133215.84,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_20151025_00100",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_VA029077-3547": {
+   "leads": [
+    {
+     "lead_id": "asdso:VA029077-3547",
+     "primary": false,
+     "storage_m3": 85973.55600000001,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_VA04173-2447": {
+   "leads": [
+    {
+     "lead_id": "asdso:VA04173-2447",
+     "primary": false,
+     "storage_m3": 61180.608,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "npdp:INC_2014611_00035",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_VA065006-3495": {
+   "leads": [
+    {
+     "lead_id": "asdso:VA065006-3495",
+     "primary": false,
+     "storage_m3": 114713.64,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_VA075007-3541": {
+   "leads": [
+    {
+     "lead_id": "asdso:VA075007-3541",
+     "primary": false,
+     "storage_m3": 222026.4,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_VA099006-3493": {
+   "leads": [
+    {
+     "lead_id": "asdso:VA099006-3493",
+     "primary": false,
+     "storage_m3": 748722.36,
+     "submode": "reservoir_breach"
+    },
+    {
+     "lead_id": "asdso:VA099006-3545",
+     "primary": false,
+     "storage_m3": 748722.36,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_VA113011-3542": {
+   "leads": [
+    {
+     "lead_id": "asdso:VA113011-3542",
+     "primary": false,
+     "storage_m3": 129515.40000000001,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_VA145007-3544": {
+   "leads": [
+    {
+     "lead_id": "asdso:VA145007-3544",
+     "primary": false,
+     "storage_m3": 233127.72,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_VA177036-3392": {
+   "leads": [
+    {
+     "lead_id": "asdso:VA177036-3392",
+     "primary": false,
+     "storage_m3": 338824.6212,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_VT00000-3552": {
+   "leads": [
+    {
+     "lead_id": "asdso:VT00000-3552",
+     "primary": false,
+     "storage_m3": 8511.012,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_WA00000-3156": {
+   "leads": [
+    {
+     "lead_id": "asdso:WA00000-3156",
+     "primary": false,
+     "storage_m3": 44405.28,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_WI00000-3560": {
+   "leads": [
+    {
+     "lead_id": "asdso:WI00000-3560",
+     "primary": false,
+     "storage_m3": 46872.24,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_WI00000-3609": {
+   "leads": [
+    {
+     "lead_id": "asdso:WI00000-3609",
+     "primary": false,
+     "storage_m3": 493392.0,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_WI00000-3612": {
+   "leads": [
+    {
+     "lead_id": "asdso:WI00000-3612",
+     "primary": false,
+     "storage_m3": 524845.74,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_WI00111-3562": {
+   "leads": [
+    {
+     "lead_id": "asdso:WI00111-3562",
+     "primary": false,
+     "storage_m3": 740088.0,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_WI00450-3340": {
+   "leads": [
+    {
+     "lead_id": "asdso:WI00450-3340",
+     "primary": false,
+     "storage_m3": 370044.0,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_WI00691-3501": {
+   "leads": [
+    {
+     "lead_id": "asdso:WI00691-3501",
+     "primary": false,
+     "storage_m3": 154185.0,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_WI00970-3502": {
+   "leads": [
+    {
+     "lead_id": "asdso:WI00970-3502",
+     "primary": false,
+     "storage_m3": 123348.0,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "casdso_WI01062-3563": {
+   "leads": [
+    {
+     "lead_id": "asdso:WI01062-3563",
+     "primary": true,
+     "storage_m3": 24669600.0,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "primary",
+   "submode": "reservoir_breach"
+  },
+  "cems_peer_EMSR417": {
+   "leads": [
+    {
+     "lead_id": "handlocated:mondego-casalnovo-2019",
+     "primary": true,
+     "storage_m3": null,
+     "submode": "levee_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "primary",
+   "submode": "levee_breach"
+  },
+  "chandlocated_bagmati-belsand-2024": {
+   "leads": [
+    {
+     "lead_id": "handlocated:bagmati-belsand-2024",
+     "primary": true,
+     "storage_m3": null,
+     "submode": "levee_breach"
+    },
+    {
+     "lead_id": "handlocated:kosi-bhubhol-2024",
+     "primary": true,
+     "storage_m3": null,
+     "submode": "levee_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "primary",
+   "submode": "levee_breach"
+  },
+  "chandlocated_budameru-2024": {
+   "leads": [
+    {
+     "lead_id": "handlocated:budameru-2024",
+     "primary": true,
+     "storage_m3": null,
+     "submode": "levee_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "primary",
+   "submode": "levee_breach"
+  },
+  "cnpdp_INC_19860910_00098": {
+   "leads": [
+    {
+     "lead_id": "usgs_peaks:04115000:1986-09-12",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cnpdp_INC_19870725_00105": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_19870725_00105",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cnpdp_INC_19890929_00242": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_19890929_00242",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cnpdp_INC_19980218_00034": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_19980218_00034",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cnpdp_INC_19990420_00189": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_19990420_00189",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cnpdp_INC_19990915_00184": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_19990915_00184",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cnpdp_INC_20000107_00064": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_20000107_00064",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cnpdp_INC_20000612_00066": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_20000612_00066",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cnpdp_INC_20010316_00047": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_20010316_00047",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cnpdp_INC_20060314_00179": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_20060314_00179",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cnpdp_INC_20101221_00020": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_20101221_00020",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cnpdp_INC_2013912_00024": {
+   "leads": [
+    {
+     "lead_id": "npdp:INC_2013916_00026",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cusgs_peaks_02358000_2023-04-01": {
+   "leads": [
+    {
+     "lead_id": "usgs_peaks:02358000:2023-04-01",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "reserve",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cusgs_peaks_05552500_1996-07-19": {
+   "leads": [
+    {
+     "lead_id": "usgs_peaks:05552500:1996-07-19",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cusgs_peaks_13213072_2017-06-06": {
+   "leads": [
+    {
+     "lead_id": "usgs_peaks:13213072:2017-06-06",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  },
+  "cusgs_peaks_14123500_1996-02-08": {
+   "leads": [
+    {
+     "lead_id": "usgs_peaks:14123500:2011-10-26",
+     "primary": false,
+     "storage_m3": null,
+     "submode": "reservoir_breach"
+    }
+   ],
+   "side": "dev",
+   "stratum": "small_dam",
+   "submode": "reservoir_breach"
+  }
+ },
+ "counts": {
+  "dev/primary": 2,
+  "dev/small_dam": 16,
+  "reserve/primary": 5,
+  "reserve/small_dam": 43
+ },
+ "large_m3": 3000000.0,
+ "seal": "2.3"
+}
