@@ -4,4 +4,4 @@ reserve_r3.json          sha256 328bac6daae9782db20339c421a2a891d43596ff4dfcc902
 RESERVE_CRITERIA_R3.md   sha256 3338c8dde086fd11024912ad573cc1fa0512b73cf7e5382f758d20c9819a36e6
 Sealed from metadata only on 2026-11-28 by select_r3.py seal. No reserve label, feature table or score existed at this point.
 Units: waterlogging 40 (plains, S1v3), river 2 (public EMS, informational), rain 12 FloodNet storms.
-Push time: recorded in the next commit, after the push.
+Pushed: commit 1aae79af01a81a37f05ac345440c2e8b2d94ab67 at 2026-11-28T08:23:47Z (tag r3-reserve-seal).
