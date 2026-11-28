@@ -222,52 +222,61 @@ def fn_labels(storm):
 
 
 # ------------------------------------------------------------------ build
-def build():
+def _active_boxes(storm):
+    """Boxes (rule 10) holding at least one non-tidal sensor active at the storm's window start (criteria §12)."""
+    w0 = dt.date.fromisoformat(storm["window"][0])
+    act = [x for x in _sensors() if x["date_installed"][:10] <= (w0 - dt.timedelta(days=1)).isoformat()]
+    return sorted({b for x in act for b in [fn_box_of(float(x["longitude"]), float(x["latitude"]))] if b})
+
+
+def _run(lg, key, fn):
+    rec = lg.setdefault(key, {"tries": 0})
+    if rec.get("done") or rec["tries"] >= 3:
+        return
+    rec["tries"] += 1
+    try:
+        r = fn()
+        rec.update(done=True, **(r or {}))
+    except Exception as e:          # noqa: BLE001
+        rec["error"] = f"{type(e).__name__}: {str(e)[:200]}"
+    print(key, json.dumps(rec)[:240], flush=True)
+
+
+def build(stage="all", shard=0, shards=1):
+    """stage units: plains + EMS units; boxes: NYC box tables; fn: FloodNet storm x box features (shardable)."""
     from experiments.flood_round3.diagnose_ee import _init
     res = json.load(open(RESERVE))
     ee = _init()
-    lg = _log()
-    for u in res["units"]:
-        n = u["unit"]
-        rec = lg.setdefault(n, {"tries": 0})
-        if rec.get("done") or rec["tries"] >= 3:
-            continue
-        rec["tries"] += 1
-        try:
-            r = plains_unit(u, ee) if u["label_family"] == "S1v3" else ems_unit(u, ee)
-            rec.update(done=True, **r)
-        except Exception as e:          # noqa: BLE001
-            rec["error"] = f"{type(e).__name__}: {str(e)[:200]}"
-        print(n, json.dumps(rec)[:240], flush=True)
-        _save_log(lg)
-    boxes = sorted({b for s in _sensors() for b in [fn_box_of(float(s["longitude"]), float(s["latitude"]))] if b})
-    for box in boxes:
-        rec = lg.setdefault(f"box:{box}", {"tries": 0})
-        if rec.get("done") or rec["tries"] >= 3:
-            continue
-        rec["tries"] += 1
-        try:
-            fn_box_table(box)
-            rec["done"] = True
-        except Exception as e:          # noqa: BLE001
-            rec["error"] = f"{type(e).__name__}: {str(e)[:200]}"
-        print("box", box, json.dumps(rec)[:200], flush=True)
-        _save_log(lg)
-    for s in res["floodnet_storms"]:
-        for box in boxes:
-            k = f"fn:{s['peak_day']}:{box}"
-            rec = lg.setdefault(k, {"tries": 0})
-            if rec.get("done") or rec["tries"] >= 3 or not lg.get(f"box:{box}", {}).get("done"):
+    logp = LOG if shards == 1 else LOG.replace(".json", f"_{shard}of{shards}.json")
+    lg = json.load(open(logp)) if os.path.exists(logp) else {}
+    if stage in ("all", "units"):
+        for u in res["units"]:
+            _run(lg, u["unit"], lambda u=u: plains_unit(u, ee) if u["label_family"] == "S1v3" else ems_unit(u, ee))
+            json.dump(lg, open(logp, "w"), indent=1)
+    boxes = sorted({b for s in res["floodnet_storms"] for b in _active_boxes(s)})
+    if stage in ("all", "boxes"):
+        for i, box in enumerate(boxes):
+            if i % shards == shard:
+                _run(lg, f"box:{box}", lambda box=box: (fn_box_table(box), None)[1])
+                json.dump(lg, open(logp, "w"), indent=1)
+    if stage in ("all", "fn"):
+        jobs = [(s, b) for s in res["floodnet_storms"] for b in _active_boxes(s)]
+        for s, box in jobs:                 # shard by box, so one box's caches (DEM, rail bridges) have one writer
+            if boxes.index(box) % shards != shard or not os.path.exists(os.path.join(B.TABLES, f"{box}.npz")):
                 continue
-            rec["tries"] += 1
-            try:
-                fn_unit_feats(s, box, ee)
-                rec["done"] = True
-            except Exception as e:      # noqa: BLE001
-                rec["error"] = f"{type(e).__name__}: {str(e)[:200]}"
-            print(k, json.dumps(rec)[:200], flush=True)
-            _save_log(lg)
+            _run(lg, f"fn:{s['peak_day']}:{box}", lambda s=s, box=box: (fn_unit_feats(s, box, ee), None)[1])
+            json.dump(lg, open(logp, "w"), indent=1)
     return 0
+
+
+def _merged_log():
+    lg = {}
+    for f in sorted(os.listdir(D.BIG)):
+        if f.startswith("heldout_r3_log") and f.endswith(".json"):
+            for k, v in json.load(open(os.path.join(D.BIG, f))).items():
+                if v.get("done") or k not in lg:
+                    lg[k] = v
+    return lg
 
 
 # ------------------------------------------------------------------ score
@@ -302,7 +311,7 @@ def _bar(tables, members, cluster, runs, method):
 def score():
     from experiments.flood_round3 import wl_feats as WF
     res = json.load(open(RESERVE))
-    lg = _log()
+    lg = _merged_log()
     units = {u["unit"]: u for u in res["units"]}
     ok = [n for n, u in units.items() if lg.get(n, {}).get("usable")]
     tables, runs = {}, {"elev": {}, "hand": {}, "method": {}}
@@ -405,7 +414,9 @@ def score_floodnet(res, model):
 
 def main(argv=None):
     a = argv or sys.argv[1:]
-    return {"build": build, "score": score}[a[0]]()
+    if a[0] == "build":
+        return build(a[1] if len(a) > 1 else "all", int(a[2]) if len(a) > 2 else 0, int(a[3]) if len(a) > 3 else 1)
+    return {"score": score}[a[0]]()
 
 
 if __name__ == "__main__":
