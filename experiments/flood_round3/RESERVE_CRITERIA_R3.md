@@ -165,3 +165,7 @@ The owner will not provide an EMS login, so login-gated EMS products (most activ
 - **Joining:** candidates are joined by §11 / GFM_DESIGN §3, with at most 2 units per joined event.
   - A plains event is one (plain, year).
   - Its first two squares in the screen's own order (square IMERG total at the peak, then lattice id) are taken.
+- **Same place, another year (reporting only, added before the seal):**
+  - §1 refuses Sentinel-1 candidates only at the same place (20 km) **and** date (30 days) as a used unit. So a plains reserve square may lie where DEV squares of other years were.
+  - Each unit is flagged `near_dev_unit_20km`. The report gives every type's numbers on all units (the verdict) and on units with the flag false ("new places"), with counts.
+  - The verdict is unchanged: it uses all units.
