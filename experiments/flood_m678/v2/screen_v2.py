@@ -93,6 +93,9 @@ def screen_lead(lead, lo, hi, session):
     if lead["submode"] == "levee_breach" and lead.get("not_before_utc"):
         # Seal 2.2 rule: window [breach, breach + 72 h] (v1's 72 h late bound, anchored on the breach).
         b = lead["not_before_utc"]
+        if lead.get("crest_kind") == "breach_day":
+            # Amendment 5: breach known to the day only -> [end of that day, start of that day + 72 h]
+            b = lo.isoformat()
         ev["crest_utc_bracket"] = [b, b]
         site = {**site, "type": "M8", "subtype": "levee window"}      # v1 late_hours -> 72 h
     if lead.get("not_before_utc"):
