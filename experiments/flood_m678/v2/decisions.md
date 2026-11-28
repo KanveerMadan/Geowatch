@@ -91,3 +91,16 @@
 - **DEV observation behind the M7 split:** the two small-dam DEV labels that passed the floor come from tiny reservoirs (about 37,000 and 61,000 m³). Their flooded cells are more likely the storm's ordinary flooding than breach water. Label QA checks where those cells lie relative to the dam's downstream valley before they count as M7 evidence.
 - Batch export: `ee_batch.py` (interactive request → batch export to an asset → read back on the same grid) is written. It stays inactive, because the project has no asset root. A likely fix (not yet tested here) is for the owner to open the Earth Engine Code Editor for this project once and create its home asset folder, which is free.
 - The corridor now stops when 20 units are usable (`--until-usable 20`), which is when the stop rule is judged.
+
+## 2026-11-28: label QA protocol (committed before label_qa.py is first run)
+- **Part A (`label_qa.py`, local, no Earth Engine):** blind to prediction. It reads only label rasters and lead metadata (no score, HAND or elevation). It reports:
+  - phase disagreement (union flooded where the merge says dry);
+  - the sensor mix, and the radar-only labels;
+  - a flooded share below 0.5 % or above 60 %;
+  - for M7, the flooded cells within 5 km of the dam or breach anchor.
+  - The DEV funnel by submode, country, crest precision and lag.
+  - Flags are reported and never remove a label.
+- **One rule with consequences:** a small-dam M7 label is M7 evidence only if at least 50 flooded cells lie within 5 km of the dam. Otherwise it is reported as storm flooding, not breach water.
+- **Part B (Earth Engine, after the corridor):**
+  - κ between the optical and radar labels where both observe a cell, per event (PREREGISTRATION);
+  - a seeded random visual sample of usable labels, 4 per submode, shown as true colour with the label drawn on top and no prediction.
